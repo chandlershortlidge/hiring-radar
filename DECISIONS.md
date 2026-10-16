@@ -5,6 +5,57 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-16 — Two labeling rulings; the labeling guide is frozen
+
+`requirement_accuracy` sat at 0.944 (3 repeats, min 0.942 max 0.945 — stable, not noise)
+while every other metric improved. The 19 disagreements behind it were not scattered
+phrasing: 17 of 19 ran `nice_to_have` -> `required`, in two clusters that pointed opposite
+ways. Both are resolved by deciding what the label means, not by tuning the model.
+
+- **A section heading scopes the items under it.** 10 of the 19 were golden_019, whose
+  `Strongly Preferred` heading the Goldens treat as covering every bullet beneath it. Rule
+  6 listed only inline markers, so the model read each unmarked bullet as `required`. The
+  Goldens were right; the rule was silent. Rule 6 now says a heading that marks its section
+  optional sets the default for every item under it until the next heading, and a marker on
+  the item itself overrides that default either way.
+- **An unmarked entry in a tech-stack list is `required`.** The other cluster was
+  golden_003's `Tech stack you will work with` line, where the Goldens had `langgraph`,
+  `docling`, `litellm`, `phoenix` and `aws` as `nice_to_have`. Here the model was right by
+  the prompt's own rules — a tech stack describes the job, and nothing marked those entries
+  optional. Those five are relabeled `required`. Nothing else in any Golden was touched.
+- **`raw_text` quotes the mention that determined the label.** `langgraph` and `aws` are
+  each named twice in golden_003, once with an inline marker and once in the stack list;
+  the stack mention is what makes them `required`, so that is the phrase they quote. Bare
+  "LangGraph" appears 3x in that JD and bare "AWS" 6x, so these two quote enough of the
+  stack line to identify it, which the shortest-phrase rule alone would not.
+
+**`evals/LABELING.md` is the frozen guide** holding these rules plus the skill definition
+and the one-criterion-per-skill rule. Editing it changes what the Goldens mean and
+invalidates stored results, so an edit is a release decision: record it here and relabel in
+the same change.
+
+Before and after, dev split, 3 repeats, taxonomy v2, `claude-sonnet-5-5`:
+
+| | P | R | F1 | req | rho |
+|---|---|---|---|---|---|
+| before (`x2-14856c159b`) | 0.901 | 0.973 | 0.936 | 0.944 | 0.914 |
+| rule 6 only (`x2-d5dedb6520`) | 0.903 | 0.970 | 0.935 | 0.988 | 0.910 |
+| + golden_003 relabeled (`x2-d5dedb6520`) | 0.908 | 0.953 | 0.930 | 0.991 | 0.903 |
+
+`requirement_accuracy` 0.944 -> 0.991, nearly all of it from the heading-scope sentence;
+the relabeling added the last 0.003 and lifted precision. Both post-change runs share
+`extractor_version` `x2-d5dedb6520` because the version hashes the prompt, tool schema,
+taxonomy and model — not the Goldens — so a relabeling is invisible in it. Compare run
+directories by timestamp, not version, when only labels moved.
+
+The F1 and recall dip in the last row is one `stop_reason='refusal'` on golden_019 in run
+3 of 3 (a red-team / adversary-emulation JD), which cost that run every skill in the
+Golden: recall 0.913 against 0.970-0.976 in the other two. It is the model's safety
+classifier declining, not an extraction bug, and it is intermittent — the same Golden
+scored clean in the two preceding runs and in every earlier run today. Not addressed here;
+if it recurs, the harness has no retry by design, so a refusal will keep showing up as an
+error on whichever run draws it.
+
 ## 2026-10-16 — Stage 2 extractor and eval harness
 
 - **Prompt = 8 general principles + the taxonomy as an id list.** No JD-specific rules; a

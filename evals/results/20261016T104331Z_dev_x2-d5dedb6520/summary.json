@@ -1,0 +1,162 @@
+{
+  "meta": {
+    "run_id": "20261016T104331Z_dev_x2-d5dedb6520",
+    "split": "dev",
+    "n_goldens": 20,
+    "repeats": 3,
+    "model": "claude-sonnet-5-5",
+    "extractor_version": "x2-d5dedb6520",
+    "taxonomy_version": 2
+  },
+  "aggregate": {
+    "precision": {
+      "mean": 0.9081175630932669,
+      "min": 0.9058171745152355,
+      "max": 0.9107142857142857,
+      "n": 3
+    },
+    "recall": {
+      "mean": 0.9532338308457712,
+      "min": 0.9134328358208955,
+      "max": 0.9761194029850746,
+      "n": 3
+    },
+    "f1": {
+      "mean": 0.9298925484623619,
+      "min": 0.9120715350223547,
+      "max": 0.939655172413793,
+      "n": 3
+    },
+    "requirement_accuracy": {
+      "mean": 0.9905969990913327,
+      "min": 0.9901960784313726,
+      "max": 0.9908256880733946,
+      "n": 3
+    },
+    "rank_spearman": {
+      "mean": 0.9034957308823932,
+      "min": 0.8782181659259907,
+      "max": 0.9245910462978305,
+      "n": 3
+    },
+    "top10_overlap": {
+      "mean": 0.7666666666666666,
+      "min": 0.7,
+      "max": 0.8,
+      "n": 3
+    }
+  },
+  "runs": [
+    {
+      "n_goldens": 20,
+      "n_errors": 0,
+      "tp": 327,
+      "fp": 34,
+      "fn": 8,
+      "precision": 0.9058171745152355,
+      "recall": 0.9761194029850746,
+      "f1": 0.939655172413793,
+      "requirement_accuracy": 0.9908256880733946,
+      "rank_spearman": 0.9245910462978305,
+      "top10_overlap": 0.8,
+      "gold_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "apis",
+        "aws",
+        "cloud",
+        "prompt-engineering",
+        "ci-cd"
+      ],
+      "pred_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "aws",
+        "ci-cd",
+        "cloud",
+        "langchain",
+        "testing"
+      ]
+    },
+    {
+      "n_goldens": 20,
+      "n_errors": 0,
+      "tp": 325,
+      "fp": 33,
+      "fn": 10,
+      "precision": 0.9078212290502793,
+      "recall": 0.9701492537313433,
+      "f1": 0.937950937950938,
+      "requirement_accuracy": 0.9907692307692307,
+      "rank_spearman": 0.9076779804233585,
+      "top10_overlap": 0.8,
+      "gold_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "apis",
+        "aws",
+        "cloud",
+        "prompt-engineering",
+        "ci-cd"
+      ],
+      "pred_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "aws",
+        "ci-cd",
+        "cloud",
+        "langchain",
+        "testing"
+      ]
+    },
+    {
+      "n_goldens": 20,
+      "n_errors": 1,
+      "tp": 306,
+      "fp": 30,
+      "fn": 29,
+      "precision": 0.9107142857142857,
+      "recall": 0.9134328358208955,
+      "f1": 0.9120715350223547,
+      "requirement_accuracy": 0.9901960784313726,
+      "rank_spearman": 0.8782181659259907,
+      "top10_overlap": 0.7,
+      "gold_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "apis",
+        "aws",
+        "cloud",
+        "prompt-engineering",
+        "ci-cd"
+      ],
+      "pred_top": [
+        "llms",
+        "python",
+        "rag",
+        "evaluation",
+        "agents",
+        "aws",
+        "ci-cd",
+        "langchain",
+        "testing",
+        "vector-databases"
+      ]
+    }
+  ]
+}

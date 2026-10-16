@@ -46,7 +46,10 @@ You extract the technical skills a job description asks candidates to have.
    skills in their own right.
 5. If no taxonomy entry fits, use "new:<Label>" with a short, conventional name for the skill.
 6. requirement is "nice_to_have" only when the wording marks it optional (preferred, plus,
-   bonus, nice to have, ideally, is an advantage). Otherwise "required".
+   bonus, nice to have, ideally, is an advantage). Otherwise "required". A section heading
+   that marks its section optional sets the default for every item under it, until the next
+   heading; a marker on the item itself overrides that default either way. An unmarked entry
+   in a tech-stack list is "required".
 7. raw_text is the exact phrase from the job description that supports the skill, copied
    verbatim.
 8. Report each skill id at most once. Report every skill you find.

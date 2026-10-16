@@ -21,8 +21,8 @@
     },
     {
       "skill_id": "aws",
-      "requirement": "nice_to_have",
-      "raw_text": "cloud-based deployment and scaling, ideally using AWS services"
+      "requirement": "required",
+      "raw_text": "AWS (Lambda, S3, ECS, and more)"
     },
     {
       "skill_id": "aws-bedrock",
@@ -36,7 +36,7 @@
     },
     {
       "skill_id": "docling",
-      "requirement": "nice_to_have",
+      "requirement": "required",
       "raw_text": "Docling"
     },
     {
@@ -51,12 +51,12 @@
     },
     {
       "skill_id": "langgraph",
-      "requirement": "nice_to_have",
-      "raw_text": "preferably with LangGraph or similar frameworks"
+      "requirement": "required",
+      "raw_text": "LangGraph & related LLM orchestration tools"
     },
     {
       "skill_id": "litellm",
-      "requirement": "nice_to_have",
+      "requirement": "required",
       "raw_text": "LiteLLM"
     },
     {
@@ -86,7 +86,7 @@
     },
     {
       "skill_id": "phoenix",
-      "requirement": "nice_to_have",
+      "requirement": "required",
       "raw_text": "Phoenix"
     },
     {
