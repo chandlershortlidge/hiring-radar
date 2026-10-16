@@ -23,6 +23,28 @@ def test_missing_api_key_exits_before_any_call(monkeypatch):
         run_eval.main([])
 
 
+def _one_golden(tmp_path):
+    (tmp_path / "evals/goldens").mkdir(parents=True)
+    (tmp_path / "evals/goldens/g1.json").write_text(json.dumps({
+        "id": "g1", "split": "dev", "source_sha256": "x", "job_description": "Python",
+        "expected": [{"skill_id": "python", "requirement": "required", "raw_text": "Python"}]}))
+
+
+def test_all_errors_prints_cause_and_writes_nothing(monkeypatch, tmp_path, capsys):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
+    monkeypatch.setattr(run_eval, "ROOT", tmp_path)
+    _one_golden(tmp_path)
+
+    def boom(**kw):
+        raise RuntimeError("401 invalid x-api-key")
+
+    monkeypatch.setattr(run_eval, "make_client", lambda: SimpleNamespace(messages=SimpleNamespace(create=boom)))
+    with pytest.raises(SystemExit, match="Every Golden failed"):
+        run_eval.main(["--repeats", "1", "--model", "m"])
+    assert "401 invalid x-api-key" in capsys.readouterr().out
+    assert not (tmp_path / "evals/results").exists()
+
+
 def test_full_run_writes_results_with_mocked_model(monkeypatch, tmp_path):
     monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
     monkeypatch.setattr(run_eval, "ROOT", tmp_path)

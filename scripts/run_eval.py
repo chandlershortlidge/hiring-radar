@@ -90,6 +90,12 @@ def main(argv=None):
         s = runs[-1].summary
         print(f"  P={fmt(s['precision'])} R={fmt(s['recall'])} F1={fmt(s['f1'])} "
               f"req={fmt(s['requirement_accuracy'])} rho={fmt(s['rank_spearman'])} errors={s['n_errors']}")
+        errors = [(gid, p["error"]) for gid, p in runs[-1].predictions.items() if "error" in p]
+        if errors:
+            gid, msg = errors[0]
+            print(f"  first error ({gid}): {msg[:500]}")
+        if len(errors) == len(goldens):
+            sys.exit("Every Golden failed — no results written. Fix the error above and re-run.")
 
     agg = evaluation.across_runs(runs)
     version = extractor_version(tax, args.model)
