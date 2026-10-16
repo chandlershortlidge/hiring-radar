@@ -60,7 +60,7 @@
       "raw_text": "Expert knowledge in machine learning, generative AI, LLMs & RAG, AI agents and related technical tools"
     },
     {
-      "skill_id": "openai",
+      "skill_id": "openai-api",
       "requirement": "required",
       "raw_text": "related technical tools (OpenAI, LangChain, Langfuse …)"
     },

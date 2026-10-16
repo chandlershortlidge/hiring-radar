@@ -10,6 +10,11 @@
       "raw_text": "evaluation frameworks"
     },
     {
+      "skill_id": "llm-guardrails",
+      "requirement": "required",
+      "raw_text": "security guardrails"
+    },
+    {
       "skill_id": "llms",
       "requirement": "required",
       "raw_text": "practical experience building production-oriented LLM workflows"
@@ -23,11 +28,6 @@
       "skill_id": "rag",
       "requirement": "required",
       "raw_text": "RAG architectures"
-    },
-    {
-      "skill_id": "security-guardrails",
-      "requirement": "required",
-      "raw_text": "security guardrails"
     },
     {
       "skill_id": "software-engineering",

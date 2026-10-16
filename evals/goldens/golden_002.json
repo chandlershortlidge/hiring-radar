@@ -80,11 +80,6 @@
       "raw_text": "Interest in LLMs, AI agents, RAG, vector databases, knowledge graphs, and AI infrastructure"
     },
     {
-      "skill_id": "sdks",
-      "requirement": "required",
-      "raw_text": "Strong Python skills and comfort working with APIs, SDKs, notebooks, and developer tools"
-    },
-    {
       "skill_id": "vector-databases",
       "requirement": "required",
       "raw_text": "Interest in LLMs, AI agents, RAG, vector databases, knowledge graphs, and AI infrastructure"

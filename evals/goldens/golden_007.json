@@ -15,7 +15,7 @@
       "raw_text": "Airflow"
     },
     {
-      "skill_id": "anthropic",
+      "skill_id": "anthropic-api",
       "requirement": "required",
       "raw_text": "LLM APIs (OpenAI, Anthropic, etc.)"
     },
@@ -105,7 +105,7 @@
       "raw_text": "n8n/Make/Zapier"
     },
     {
-      "skill_id": "openai",
+      "skill_id": "openai-api",
       "requirement": "required",
       "raw_text": "LLM APIs (OpenAI, Anthropic, etc.)"
     },

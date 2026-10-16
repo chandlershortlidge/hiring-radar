@@ -10,7 +10,7 @@
       "raw_text": "Proven experience building AI-driven or agentic systems"
     },
     {
-      "skill_id": "anthropic",
+      "skill_id": "anthropic-api",
       "requirement": "required",
       "raw_text": "Hands-on experience working with LLM providers such as OpenAI, Anthropic, or AWS Bedrock"
     },
@@ -80,7 +80,7 @@
       "raw_text": "observability and monitoring solutions for AI systems"
     },
     {
-      "skill_id": "openai",
+      "skill_id": "openai-api",
       "requirement": "required",
       "raw_text": "Hands-on experience working with LLM providers such as OpenAI, Anthropic, or AWS Bedrock"
     },

@@ -45,11 +45,6 @@
       "raw_text": "CI/CD for AI workflows"
     },
     {
-      "skill_id": "data-stores",
-      "requirement": "required",
-      "raw_text": "Experience working with data stores (SQL databases such as PostgreSQL/MySQL, object storage such as S3, and/or NoSQL)"
-    },
-    {
       "skill_id": "databricks",
       "requirement": "required",
       "raw_text": "Experience working with Databricks"
@@ -118,11 +113,6 @@
       "skill_id": "molecular-similarity-search",
       "requirement": "nice_to_have",
       "raw_text": "molecular similarity search"
-    },
-    {
-      "skill_id": "multi-step-reasoning",
-      "requirement": "required",
-      "raw_text": "multi-step reasoning"
     },
     {
       "skill_id": "mysql",

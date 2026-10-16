@@ -15,11 +15,6 @@
       "raw_text": "Practical experience with coding agents"
     },
     {
-      "skill_id": "ai-integration",
-      "requirement": "required",
-      "raw_text": "LLM integration"
-    },
-    {
       "skill_id": "ai-ml",
       "requirement": "required",
       "raw_text": "familiarity with the AI/ML ecosystem"

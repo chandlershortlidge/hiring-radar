@@ -1,19 +1,19 @@
 {
-  "version": 1,
+  "version": 2,
   "skills": [
     {
       "id": "a-b-testing",
       "display": "A/B Testing",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "active-directory",
       "display": "Active Directory",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "adversary-emulation",
@@ -22,7 +22,7 @@
       "parents": [
         "cybersecurity"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "agent-architecture",
@@ -31,7 +31,7 @@
       "parents": [
         "agents"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "agent-state-management",
@@ -40,7 +40,7 @@
       "parents": [
         "agents"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "agents",
@@ -52,37 +52,18 @@
         "ai agents"
       ],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "agno",
       "display": "Agno",
-      "aliases": [],
+      "aliases": [
+        "phidata"
+      ],
       "parents": [
         "agents"
       ],
-      "reviewed": false
-    },
-    {
-      "id": "ai-application-development",
-      "display": "AI application development",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "ai-architecture",
-      "display": "AI Architecture",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "ai-consulting",
-      "display": "AI Consulting",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "ai-deployment",
@@ -92,39 +73,24 @@
         "model deployment"
       ],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "ai-developer-tooling",
       "display": "AI developer tooling",
       "aliases": [
-        "coding agents"
+        "coding agents",
+        "ai development tools"
       ],
       "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "ai-development-tools",
-      "display": "AI development tools",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "ai-infrastructure",
       "display": "AI Infrastructure",
       "aliases": [],
       "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "ai-integration",
-      "display": "AI Integration",
-      "aliases": [
-        "llm integration"
-      ],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "ai-ml",
@@ -134,21 +100,14 @@
         "applied ai"
       ],
       "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "ai-systems-optimization",
-      "display": "AI systems optimization",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "aiops",
       "display": "AIOps",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "airflow",
@@ -157,30 +116,24 @@
         "apache airflow"
       ],
       "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "anthropic",
-      "display": "Anthropic",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "anthropic-api",
       "display": "Anthropic API",
       "aliases": [
-        "anthropic apis"
+        "anthropic apis",
+        "anthropic"
       ],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "apache-spark",
       "display": "Apache Spark",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "api-design",
@@ -191,7 +144,7 @@
       "parents": [
         "software-engineering"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "apis",
@@ -204,35 +157,30 @@
         "restful apis"
       ],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "async-processing",
       "display": "Async Processing",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "autogen",
       "display": "AutoGen",
       "aliases": [],
-      "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "automation-integrations",
-      "display": "automation/integrations",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "parents": [
+        "agents"
+      ],
+      "reviewed": true
     },
     {
       "id": "automl",
       "display": "AutoML",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "aws",
@@ -241,14 +189,14 @@
       "parents": [
         "cloud"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "aws-bedrock",
       "display": "AWS Bedrock",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "aws-s3",
@@ -260,7 +208,7 @@
         "aws",
         "object-storage"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "azure",
@@ -271,30 +219,24 @@
       "parents": [
         "cloud"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "backend-development",
       "display": "Backend development",
       "aliases": [
-        "backend"
+        "backend",
+        "backend engineering"
       ],
       "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "backend-engineering",
-      "display": "Backend Engineering",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "bigquery",
       "display": "BigQuery",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "chain-of-thought",
@@ -303,7 +245,7 @@
       "parents": [
         "prompt-engineering"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "chemical-descriptors",
@@ -312,21 +254,21 @@
       "parents": [
         "cheminformatics"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "cheminformatics",
       "display": "Cheminformatics",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "ci-cd",
       "display": "CI/CD",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "claude-code",
@@ -335,14 +277,14 @@
       "parents": [
         "ai-developer-tooling"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "claude-enterprise",
       "display": "Claude Enterprise",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "cloud",
@@ -352,14 +294,7 @@
         "cloud platforms"
       ],
       "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "code-review",
-      "display": "Code review",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "codex",
@@ -370,7 +305,7 @@
       "parents": [
         "ai-developer-tooling"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "containerization",
@@ -380,21 +315,23 @@
         "containers"
       ],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "crewai",
       "display": "CrewAI",
       "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "parents": [
+        "agents"
+      ],
+      "reviewed": true
     },
     {
       "id": "csharp",
       "display": "C#",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "cursor",
@@ -403,7 +340,7 @@
       "parents": [
         "ai-developer-tooling"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "cyber-ranges",
@@ -412,28 +349,23 @@
       "parents": [
         "cybersecurity"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "cybersecurity",
       "display": "Cybersecurity",
-      "aliases": [],
+      "aliases": [
+        "cybersecurity / mitre att&ck"
+      ],
       "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "cybersecurity-mitre-att-and-ck",
-      "display": "Cybersecurity / MITRE ATT&CK",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "data-modeling",
       "display": "Data modeling",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "data-pipelines",
@@ -444,56 +376,42 @@
         "etl/elt pipelines"
       ],
       "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "data-platforms",
-      "display": "Data Platforms",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "data-privacy-and-security",
       "display": "Data Privacy & Security",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "data-science",
       "display": "Data Science",
       "aliases": [],
       "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "data-stores",
-      "display": "Data stores",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "data-visualization",
       "display": "Data Visualization",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "databricks",
       "display": "Databricks",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "dbt",
       "display": "dbt",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "deep-learning",
@@ -502,14 +420,14 @@
         "deep learning frameworks"
       ],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "distributed-systems",
       "display": "Distributed Systems",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "docker",
@@ -518,42 +436,28 @@
       "parents": [
         "containerization"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "docling",
       "display": "Docling",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "elasticsearch",
       "display": "Elasticsearch",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "embeddings",
       "display": "Embeddings",
       "aliases": [],
       "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "english",
-      "display": "English",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "error-handling",
-      "display": "Error Handling",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "evaluation",
@@ -568,7 +472,7 @@
         "model evaluation"
       ],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "event-driven-systems",
@@ -577,14 +481,14 @@
         "event-driven architecture"
       ],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "experiment-tracking",
       "display": "Experiment Tracking",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "fastapi",
@@ -593,7 +497,7 @@
       "parents": [
         "apis"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "fine-tuning",
@@ -603,7 +507,7 @@
         "model fine-tuning"
       ],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "flask",
@@ -612,7 +516,7 @@
       "parents": [
         "apis"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "frontend-development",
@@ -621,7 +525,7 @@
         "frontend"
       ],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "full-stack-development",
@@ -631,7 +535,7 @@
         "full-stack competence"
       ],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "gcp",
@@ -642,7 +546,7 @@
       "parents": [
         "cloud"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "gemini",
@@ -653,21 +557,7 @@
       "parents": [
         "llms"
       ],
-      "reviewed": false
-    },
-    {
-      "id": "german",
-      "display": "German",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "german-language",
-      "display": "German language",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "git",
@@ -677,7 +567,7 @@
         "version control"
       ],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "github-copilot",
@@ -688,7 +578,7 @@
       "parents": [
         "ai-developer-tooling"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "google-adk",
@@ -700,77 +590,49 @@
       "parents": [
         "agents"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "hallucination-detection",
       "display": "Hallucination detection",
       "aliases": [],
       "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "healthcare-domain-knowledge",
-      "display": "Healthcare domain knowledge",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "healthcare-life-sciences",
-      "display": "Healthcare/Life Sciences",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "healthcare-software",
-      "display": "Healthcare software",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "hugging-face",
       "display": "Hugging Face",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "inference-optimization",
       "display": "Inference optimization",
       "aliases": [],
       "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "issue-tracking",
-      "display": "Issue tracking",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "java",
       "display": "Java",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "jupyter-notebooks",
       "display": "Jupyter Notebooks",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "knowledge-graphs",
       "display": "Knowledge Graphs",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "kubernetes",
@@ -779,7 +641,7 @@
       "parents": [
         "containerization"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "langchain",
@@ -788,23 +650,24 @@
       "parents": [
         "llm-orchestration"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "langfuse",
       "display": "Langfuse",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "langgraph",
       "display": "LangGraph",
       "aliases": [],
       "parents": [
-        "agents"
+        "agents",
+        "llm-orchestration"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "langsmith",
@@ -813,7 +676,7 @@
       "parents": [
         "evaluation"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "lateral-movement",
@@ -822,14 +685,14 @@
       "parents": [
         "cybersecurity"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "litellm",
       "display": "LiteLLM",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "llamaindex",
@@ -838,16 +701,19 @@
       "parents": [
         "llm-orchestration"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "llm-guardrails",
       "display": "LLM guardrails",
-      "aliases": [],
+      "aliases": [
+        "security guardrails",
+        "ai security guardrails"
+      ],
       "parents": [
         "llms"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "llm-orchestration",
@@ -856,7 +722,7 @@
       "parents": [
         "llms"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "llmops",
@@ -865,7 +731,7 @@
       "parents": [
         "mlops"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "llms",
@@ -878,37 +744,32 @@
         "llm apis"
       ],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "machine-learning",
       "display": "Machine Learning",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "make",
       "display": "Make",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "mcp",
       "display": "MCP",
       "aliases": [
-        "model context protocol"
+        "model context protocol",
+        "model context protocol (mcp)",
+        "mcp integrations"
       ],
       "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "mcp-integrations",
-      "display": "MCP integrations",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "mitre-att-and-ck",
@@ -917,7 +778,7 @@
       "parents": [
         "cybersecurity"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "mitre-caldera",
@@ -926,56 +787,49 @@
       "parents": [
         "adversary-emulation"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "ml-engineering",
       "display": "ML Engineering",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "mlops",
       "display": "MLOps",
       "aliases": [],
       "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "model-context-protocol-mcp",
-      "display": "Model Context Protocol (MCP)",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "model-development",
       "display": "Model Development",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "model-selection",
       "display": "Model Selection",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "model-serving",
       "display": "Model serving",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "model-versioning",
       "display": "Model Versioning",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "molecular-fingerprints",
@@ -984,7 +838,7 @@
       "parents": [
         "cheminformatics"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "molecular-similarity-search",
@@ -993,7 +847,7 @@
       "parents": [
         "cheminformatics"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "multi-agent-systems",
@@ -1002,14 +856,7 @@
       "parents": [
         "agents"
       ],
-      "reviewed": false
-    },
-    {
-      "id": "multi-step-reasoning",
-      "display": "Multi-step reasoning",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "mysql",
@@ -1018,44 +865,42 @@
       "parents": [
         "sql"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "n8n",
       "display": "n8n",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "networking",
       "display": "Networking",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "next-js",
       "display": "Next.js",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "node-js",
       "display": "Node.js",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "nosql",
       "display": "NoSQL",
       "aliases": [],
-      "parents": [
-        "data-stores"
-      ],
-      "reviewed": false
+      "parents": [],
+      "reviewed": true
     },
     {
       "id": "numpy",
@@ -1064,16 +909,14 @@
       "parents": [
         "python"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "object-storage",
       "display": "Object Storage",
       "aliases": [],
-      "parents": [
-        "data-stores"
-      ],
-      "reviewed": false
+      "parents": [],
+      "reviewed": true
     },
     {
       "id": "observability",
@@ -1086,44 +929,29 @@
         "monitoring & observability"
       ],
       "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "open-source",
-      "display": "Open Source",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "open-source-ai",
-      "display": "Open-Source AI",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "open-source-llms",
       "display": "Open-source LLMs",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "openai",
-      "display": "OpenAI",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "aliases": [
+        "open-source ai",
+        "self-hosted llms"
+      ],
+      "parents": [
+        "llms"
+      ],
+      "reviewed": true
     },
     {
       "id": "openai-api",
       "display": "OpenAI API",
       "aliases": [
-        "openai apis"
+        "openai apis",
+        "openai"
       ],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "pandas",
@@ -1132,14 +960,7 @@
       "parents": [
         "python"
       ],
-      "reviewed": false
-    },
-    {
-      "id": "performance-optimization",
-      "display": "Performance Optimization",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "persistence",
@@ -1148,7 +969,7 @@
       "parents": [
         "cybersecurity"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "pgvector",
@@ -1157,14 +978,14 @@
       "parents": [
         "vector-databases"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "phoenix",
       "display": "Phoenix",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "postgresql",
@@ -1173,14 +994,14 @@
       "parents": [
         "sql"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "prefect",
       "display": "Prefect",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "prompt-engineering",
@@ -1189,21 +1010,23 @@
       "parents": [
         "llms"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "pyspark",
       "display": "PySpark",
       "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "parents": [
+        "apache-spark"
+      ],
+      "reviewed": true
     },
     {
       "id": "python",
       "display": "Python",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "pytorch",
@@ -1212,7 +1035,7 @@
       "parents": [
         "deep-learning"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "rag",
@@ -1223,7 +1046,7 @@
       "parents": [
         "llms"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "ragas",
@@ -1232,7 +1055,7 @@
       "parents": [
         "evaluation"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "rdkit",
@@ -1241,14 +1064,14 @@
       "parents": [
         "cheminformatics"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "react",
       "display": "React",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "react-agent-pattern",
@@ -1257,14 +1080,14 @@
       "parents": [
         "agents"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "recommender-systems",
       "display": "Recommender Systems",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "red-team-tooling",
@@ -1273,7 +1096,7 @@
       "parents": [
         "cybersecurity"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "scikit-learn",
@@ -1282,23 +1105,7 @@
       "parents": [
         "python"
       ],
-      "reviewed": false
-    },
-    {
-      "id": "sdks",
-      "display": "SDKs",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "security-guardrails",
-      "display": "security guardrails",
-      "aliases": [
-        "ai security guardrails"
-      ],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "security-simulation",
@@ -1307,65 +1114,49 @@
       "parents": [
         "cybersecurity"
       ],
-      "reviewed": false
-    },
-    {
-      "id": "self-hosted-llms",
-      "display": "Self-hosted LLMs",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "serverless",
       "display": "Serverless",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "snowflake",
       "display": "Snowflake",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "software-engineering",
       "display": "Software engineering",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "sql",
       "display": "SQL",
       "aliases": [],
-      "parents": [
-        "data-stores"
-      ],
-      "reviewed": false
+      "parents": [],
+      "reviewed": true
     },
     {
       "id": "streamlit",
       "display": "Streamlit",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "structured-data-extraction",
       "display": "Structured data extraction",
       "aliases": [],
       "parents": [],
-      "reviewed": false
-    },
-    {
-      "id": "technical-writing",
-      "display": "Technical Writing",
-      "aliases": [],
-      "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "tensorflow",
@@ -1374,7 +1165,7 @@
       "parents": [
         "deep-learning"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "testing",
@@ -1386,7 +1177,7 @@
         "test automation"
       ],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "tool-calling",
@@ -1395,21 +1186,21 @@
         "tool use"
       ],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "vector-databases",
       "display": "Vector Databases",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "vector-search",
       "display": "Vector Search",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "vertex-ai",
@@ -1418,28 +1209,30 @@
       "parents": [
         "gcp"
       ],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "vue",
       "display": "Vue",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "workflow-automation",
       "display": "workflow automation",
-      "aliases": [],
+      "aliases": [
+        "automation/integrations"
+      ],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     },
     {
       "id": "zapier",
       "display": "Zapier",
       "aliases": [],
       "parents": [],
-      "reviewed": false
+      "reviewed": true
     }
   ]
 }

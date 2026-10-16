@@ -5,24 +5,9 @@
   "job_description": "AI Engineer (LLM) - Remote\ndexter health · Germany (Remote)\n\nabout outcomes more than titles.\n\nMust-have\n\n• Strong software engineering skills, especially in Python or a comparable backend language\n• Experience building AI-powered product features or LLM-based workflows\n• Ability to turn ambiguous product ideas into working software quickly\n• Strong understanding of how to design, test, validate, and improve AI outputs\n• Experience integrating AI workflows into production systems\n• Strong debugging instincts across application logic, data, model outputs, and user-facing behavior\n• Experience with evaluation, testing, validation, or quality checks for AI-generated outputs\n• Serious experience using AI development tools such as Claude Code, Codex, Cursor, Copilot, or similar as part of your daily workflow\n• High intelligence, fast learning speed, bias to action, and ownership mindset\n• Comfortable with ambiguity, fast decisions, and a high-trust startup environment\n• Clear written and spoken English\n\nNice-to-have\n\n• Experience with frontend or fullstack product development\n• Experience with self-hosted LLMs, model serving, inference optimization, or similar systems\n• Experience with open-source LLMs and related deployment workflows\n• Experience improving latency, cost, quality, or reliability of AI systems\n• Experience with healthcare software, healthcare data, or regulated environments\n• Experience working with structured data extraction, documentation automation, voice workflows, or workflow automation\n• German language skills\n• Knowledge of nursing homes or elderly care workflows",
   "expected": [
     {
-      "skill_id": "ai-application-development",
-      "requirement": "required",
-      "raw_text": "Experience building AI-powered product features or LLM-based workflows"
-    },
-    {
       "skill_id": "ai-deployment",
       "requirement": "nice_to_have",
       "raw_text": "related deployment workflows"
-    },
-    {
-      "skill_id": "ai-integration",
-      "requirement": "required",
-      "raw_text": "Experience integrating AI workflows into production systems"
-    },
-    {
-      "skill_id": "ai-systems-optimization",
-      "requirement": "nice_to_have",
-      "raw_text": "Experience improving latency, cost, quality, or reliability of AI systems"
     },
     {
       "skill_id": "claude-code",
@@ -83,11 +68,6 @@
       "skill_id": "python",
       "requirement": "required",
       "raw_text": "Strong software engineering skills, especially in Python or a comparable backend language"
-    },
-    {
-      "skill_id": "self-hosted-llms",
-      "requirement": "nice_to_have",
-      "raw_text": "self-hosted LLMs"
     },
     {
       "skill_id": "software-engineering",

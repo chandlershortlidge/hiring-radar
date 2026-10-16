@@ -35,11 +35,6 @@
       "raw_text": "CI/CD"
     },
     {
-      "skill_id": "data-platforms",
-      "requirement": "nice_to_have",
-      "raw_text": "data platforms"
-    },
-    {
       "skill_id": "docker",
       "requirement": "required",
       "raw_text": "Docker"
