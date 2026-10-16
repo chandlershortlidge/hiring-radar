@@ -80,7 +80,11 @@ uv run python -m app poll                 # fetch feeds → ingest → extract n
 uv run python -m app poll --no-extract    # fetch + ingest only (no model calls)
 uv run python -m app extract              # extract anything still pending
 pbpaste | uv run python -m app add-text --company "Acme" --title "AI Engineer" --location Berlin --found-via linkedin
+uv run python -m app add-screenshot shot.png --company "Acme" --title "AI Engineer" --location Berlin
 uv run python -m app stats
+
+# One-off: import the legacy corpus (needs the screenshot folder from the old Supabase bucket)
+uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --city Berlin --dry-run
 ```
 
 ### Stack
@@ -95,6 +99,8 @@ uv run python -m app stats
 - `app/db.py` — connection + migrations. `app/migrations/NNN_name.sql` — never edit a
   committed migration; add a new one.
 - `app/taxonomy.py` — load/validate `taxonomy/skills.json`, resolve labels to skill ids.
+- `app/transcribe.py` — stage 1: screenshot bytes → verbatim transcript (vision call).
+  Only screenshots go through it; feeds and pastes are already text.
 - `app/extract.py` — stage 2: JD text → skill mentions (taxonomy ids), proposed new
   skills, and rejected items. Model client is injected.
 - `app/evaluation.py` — scoring (micro P/R/F1, requirement accuracy, rank agreement)
@@ -113,6 +119,8 @@ uv run python -m app stats
   See `taxonomy/README.md` for how to edit it.
 - `evals/goldens/` — labeled JDs: text + expected `{skill_id, requirement, raw_text}`.
   Each has a `split` (`dev` or `heldout`).
+- `legacy/` + `scripts/import_legacy.py` — the old Supabase export (48 jobs, their skills)
+  and the one-off importer. See its docstring for the three import paths.
 - `scripts/seed_from_legacy.py` — one-off that built the taxonomy and Goldens from the
   legacy repo. Kept for provenance.
 - `tests/` — pytest.

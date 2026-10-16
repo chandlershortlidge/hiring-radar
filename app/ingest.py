@@ -10,8 +10,8 @@ a title needs both an AI/ML domain term and a technical role term.
 
 Does NOT: call the model (see app/pipeline.py), fetch anything, or delete rows.
 
-Invariants: one DB transaction per posting; `job.first_seen` never moves later;
-`job.last_seen` never moves earlier; a posting that fails the filters is counted, not stored.
+Invariants: one DB transaction per posting; `job.first_seen` never moves later (a
+backdated sighting may move it earlier); `job.last_seen` never moves earlier; a posting that fails the filters is counted, not stored.
 """
 
 import re
@@ -71,10 +71,14 @@ def _candidates(conn: sqlite3.Connection, company: str | None) -> list[dedup.Can
 
 
 def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
-               require_city: bool = True, found_via: str | None = None) -> str:
-    """Returns one of: still_listed, merged, repost, new, skipped_title, skipped_city."""
+               require_city: bool = True, found_via: str | None = None,
+               trust_title: bool = False) -> str:
+    """Returns one of: still_listed, merged, repost, new, skipped_title, skipped_city.
+
+    trust_title skips the title filter — for postings a person chose by hand.
+    """
     when = when or now_iso()
-    if not in_scope_title(p.title):
+    if not trust_title and not in_scope_title(p.title):
         return "skipped_title"
     city = city_of(p.location_raw)
     if require_city and city is None:
@@ -99,7 +103,8 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
                 "INSERT INTO job_source (job_id, source, source_job_id, url, found_via, first_seen, last_seen, posted_at)"
                 " VALUES (?,?,?,?,?,?,?,?)",
                 (job_id, p.source, p.source_job_id or None, p.url or None, found_via, when, when, p.posted_at))
-            conn.execute("UPDATE job SET last_seen=max(last_seen, ?) WHERE id=?", (when, job_id))
+            conn.execute("UPDATE job SET last_seen=max(last_seen, ?), first_seen=min(first_seen, ?) WHERE id=?",
+                         (when, when, job_id))
             if same_source_other_id:
                 conn.execute("UPDATE job SET repost_count = repost_count + 1 WHERE id=?", (job_id,))
                 return "repost"
@@ -132,3 +137,15 @@ def ingest(conn: sqlite3.Connection, postings: list[Posting], when: str | None =
         else:
             setattr(r, outcome, getattr(r, outcome) + 1)
     return r
+
+
+def store_screenshot(conn: sqlite3.Connection, job_id: int, data: bytes, sha256: str, media_type: str) -> None:
+    """Keep the image so stage 1 can be re-run; one per job, replaced if re-added."""
+    with conn:
+        conn.execute("INSERT OR REPLACE INTO screenshot (job_id, sha256, media_type, bytes) VALUES (?,?,?,?)",
+                     (job_id, sha256, media_type, data))
+
+
+def job_id_for_screenshot(conn: sqlite3.Connection, sha256: str) -> int | None:
+    row = conn.execute("SELECT job_id FROM screenshot WHERE sha256=?", (sha256,)).fetchone()
+    return row["job_id"] if row else None

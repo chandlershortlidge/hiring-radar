@@ -3,6 +3,7 @@
   poll              fetch all enabled feeds, ingest, extract skills for new jobs
   extract           extract skills for any job still missing them (e.g. after a taxonomy bump)
   add-text          add one job from pasted text (reads stdin): --company --title --location --found-via
+  add-screenshot    add one job from an image file (stage 1 vision → stage 2): same flags + path
   stats             counts by city and source; feed coverage of manually added jobs
   migrate           apply pending migrations and exit
 
@@ -21,11 +22,12 @@ load_dotenv(ROOT / ".env")
 
 from app import db  # noqa: E402
 from app.extract import DEFAULT_MODEL, extract, make_client  # noqa: E402
-from app.ingest import ingest_one, now_iso  # noqa: E402
+from app.ingest import ingest_one, job_id_for_screenshot, now_iso, store_screenshot  # noqa: E402
 from app.pipeline import extract_pending  # noqa: E402
 from app.poll import load_feeds, poll_feeds  # noqa: E402
 from app.sources import Posting  # noqa: E402
 from app.taxonomy import Taxonomy  # noqa: E402
+from app.transcribe import DEFAULT_MODEL as VISION_MODEL, transcribe  # noqa: E402
 
 DB_PATH = Path(os.environ.get("HIRING_RADAR_DB", ROOT / "data" / "hiring-radar.db"))
 
@@ -67,10 +69,30 @@ def cmd_add_text(args):
     conn = open_db()
     p = Posting(source="paste", source_job_id="", url=args.url or "", company=args.company,
                 title=args.title, location_raw=args.location, description_text=text)
-    outcome = ingest_one(conn, p, now_iso(), require_city=False, found_via=args.found_via)
+    outcome = ingest_one(conn, p, now_iso(), require_city=False, found_via=args.found_via, trust_title=True)
     print(outcome)
     if outcome.startswith("new:") and not args.no_extract:
         run_extraction(conn)
+
+
+def cmd_add_screenshot(args):
+    data = Path(args.path).read_bytes()
+    conn = open_db()
+    import hashlib
+    existing = job_id_for_screenshot(conn, hashlib.sha256(data).hexdigest())
+    if existing:
+        print(f"already added as job {existing}")
+        return
+    t = transcribe(data, make_client(), VISION_MODEL)
+    p = Posting(source="screenshot", source_job_id="", url=args.url or "", company=args.company,
+                title=args.title, location_raw=args.location, description_text=t.text)
+    outcome = ingest_one(conn, p, now_iso(), require_city=False, found_via=args.found_via, trust_title=True)
+    print(outcome)
+    job_id = int(outcome[4:]) if outcome.startswith("new:") else None
+    if job_id:
+        store_screenshot(conn, job_id, data, t.sha256, t.media_type)
+        if not args.no_extract:
+            run_extraction(conn)
 
 
 def cmd_stats(args):
@@ -110,6 +132,12 @@ def main(argv=None):
     p.add_argument("--location", default=None); p.add_argument("--url", default=None)
     p.add_argument("--found-via", default="linkedin", choices=["linkedin", "indeed", "company_site", "referral", "other"])
     p.add_argument("--no-extract", action="store_true"); p.set_defaults(fn=cmd_add_text)
+    p = sub.add_parser("add-screenshot")
+    p.add_argument("path")
+    p.add_argument("--company", required=True); p.add_argument("--title", required=True)
+    p.add_argument("--location", default=None); p.add_argument("--url", default=None)
+    p.add_argument("--found-via", default="linkedin", choices=["linkedin", "indeed", "company_site", "referral", "other"])
+    p.add_argument("--no-extract", action="store_true"); p.set_defaults(fn=cmd_add_screenshot)
     sub.add_parser("stats").set_defaults(fn=cmd_stats)
     sub.add_parser("migrate").set_defaults(fn=cmd_migrate)
     args = ap.parse_args(argv)

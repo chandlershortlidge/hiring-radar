@@ -5,6 +5,28 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-16 — Stage 1 (vision) and the legacy import
+
+- **Stage 1 is transcription only.** The vision model returns the posting's text verbatim
+  (headings and bullets kept, UI chrome dropped). It never names skills; stage 2 reads
+  the transcript like any other text. Truncated, empty, or refused responses raise rather
+  than yielding partial text.
+- **Screenshot bytes are stored** on the job (`screenshot` table, SHA-256 unique), so stage
+  1 can be re-run and a re-upload of the same image is caught before any model call.
+- **Manually added jobs skip the title filter** (`trust_title`): a person chose them.
+  Feeds still go through it.
+- **A backdated sighting may move `first_seen` earlier.** Needed for the legacy import,
+  where real capture dates are June–Sept 2026.
+- **Legacy corpus: 48 jobs in three groups.** 20 have text in the Goldens (19 corpus +
+  Artefact, which was deleted as job-1 and re-added live); 21 have a screenshot and get
+  transcribed; 7 have neither (files never stored) and are imported with the old summary
+  as text and their old skills mapped through the taxonomy, stamped
+  `extractor_version='legacy'` so they count on the chart but are never re-extracted.
+  Old labels the taxonomy can't resolve are dropped and reported. All legacy rows are
+  `source=screenshot, found_via=linkedin`.
+
+---
+
 ## 2026-10-16 — Title filter needs a role term; startup.jobs ordering is nondeterministic
 
 - **An in-scope title names an AI/ML domain AND a technical role.** The domain-only regex
