@@ -5,6 +5,35 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-16 — Title filter needs a role term; startup.jobs ordering is nondeterministic
+
+- **An in-scope title names an AI/ML domain AND a technical role.** The domain-only regex
+  put three postings in the database that nobody would call AI engineering: an
+  `Account Executive / Sales Manager … Industrial AI & SaaS`, a `Call Center Agent` and a
+  `Brand Agent … Minijob`. "AI" turns up in sales titles and "Agent" is a job-title agent
+  far more often than the agent pattern. `in_scope_title` is now
+  `DOMAIN_PATTERN and ROLE_PATTERN` (role = engineer/developer/scientist/researcher/
+  architect/mlops). `applied scientist` and `research engineer` stay in the domain pattern
+  too, so those role names still pass on their own as they did before.
+  Also fixed in passing: `\bdata scien\b` could never match "Data Scientist" — the trailing
+  word boundary made the prefix useless. It is `data scien\w*` now.
+- **Those three jobs are deleted from the local DB** (ids 1, 7, and 8; no skill_mention rows
+  between them, so no chart data moved). They cannot be re-ingested under the new filter.
+  Three more stored jobs are out of scope under it and were **not** deleted — two
+  `Senior Performance Marketing Manager … & AI` and one `AI Consultant – Customer
+  Experience`. They are where the Meta/Bing/Pinterest/Reddit Ads proposals come from, so
+  the next person looking at `proposed_skill` should decide whether to drop them as well.
+- **startup.jobs page ordering is unstable between calls; accepted.** The same query minutes
+  apart returns a different page 1, so pages collected across a poll can repeat jobs or miss
+  them: per-poll coverage is nondeterministic. Dedup absorbs the repeats and the next poll
+  catches what a run missed, which is enough for a document-frequency chart. Not worked
+  around — no cursor snapshot, no retry-until-stable.
+- **Taxonomy v3 adds `typescript`** (reviewed, no parents) and the four pending `TypeScript`
+  proposals are `accepted` with `resolved_skill_id='typescript'`. Bumping the taxonomy
+  changes `extractor_version`, which re-queues every job for extraction.
+
+---
+
 ## 2026-10-16 — Intake: feeds, dedup, daily poll
 
 - **Five adapters, one Posting shape.** Greenhouse/Lever/Ashby company boards, arbeitnow,

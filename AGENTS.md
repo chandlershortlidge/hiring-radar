@@ -143,4 +143,35 @@ Three layout rules:
   in an untracked city is dropped, not stored — widen `app/geo.py` to add a city.
 - `skill_mention` holds one extraction per job (the latest). Re-extraction replaces.
 
+## Reporting a run
+
+When you run `poll`, `extract` or `stats`, lead with one headline and stop there. Do not
+paste per-feed lines, the stats block or raw stdout unless asked.
+
+The headline is one or two sentences carrying, in this order:
+
+- jobs and cities (`17 jobs, all Berlin`)
+- mentions extracted, then proposed skills pending
+- failures — always named, `0 failed` as explicitly as a non-zero count
+- a count of judgment calls that need a human, if any
+
+> Poll clean: 17 jobs (all Berlin), 106 mentions, 58 proposed, 0 failed. 2 judgment calls.
+
+Then offer the rest: per-feed counts, document-frequency table, the judgment calls. The
+numbers come from the command output and `data/hiring-radar.db`; query the DB directly for
+anything `stats` does not print (mention counts, top skills, zero-skill jobs).
+
+Three things break the headline rule, because a wrong summary of them costs a model call
+or a bad chart:
+
+- **Any FAILED line, or `extracted=n/m` where n < m** — report it in full, unsummarized,
+  with the job ids.
+- **A silently truncated or empty feed.** A feed that returns far fewer postings than its
+  `max_pages` allows has usually stopped paginating; say so rather than reporting the
+  smaller number as the result. See the startup.jobs docstring for how that looks.
+- **A judgment call you did not take** — a leaking title filter, an unstable feed, a
+  near-miss dedup. State it plainly as the person's call, separate from the numbers.
+
+A clean run is one headline. Silence on failures is not cleanliness.
+
 <!-- END PROJECT -->

@@ -1,7 +1,7 @@
 import pytest
 
 from app import db
-from app.ingest import ingest, ingest_one
+from app.ingest import in_scope_title, ingest, ingest_one
 from app.sources import Posting
 
 JD = ("AI Engineer. Requirements: 3+ years Python, experience with LLM applications, RAG "
@@ -63,6 +63,47 @@ def test_different_role_at_same_company_is_a_new_job(conn):
     ingest_one(conn, posting(sid="a1"))
     out = ingest_one(conn, posting(sid="a2", title="ML Platform Engineer", text="SQL, Airflow, dbt, Snowflake. Pipelines."))
     assert out == "new:2"
+
+
+# Titles a feed actually served that the domain-only filter let through: "AI" in a sales
+# title, "Agent" as a job-title agent rather than the agent pattern.
+LEAKED_TITLES = [
+    "Account Executive / Sales Manager (m/w/d) \u2013 Industrial AI & SaaS",
+    "Call Center Agent - Kreditabsicherung im Homeoffice (w/m/d)",
+    "Brand Agent (m/w/d) - Makaro Store Berlin - Minijob - 8h/Woche",
+]
+
+
+@pytest.mark.parametrize("title", LEAKED_TITLES + [
+    "Account Executive",
+    "Sales",
+    "Software Engineer",      # role, no domain
+    "Backend Developer",
+])
+def test_in_scope_title_rejects_without_both_halves(title):
+    assert in_scope_title(title) is False
+
+
+@pytest.mark.parametrize("title", [
+    "AI Agent Architect (m/w/d)",
+    "Applied Scientist, GenAI",
+    "AI Engineer (m/w/d)",
+    "ML Platform Engineer",
+    "MLOps Engineer",
+    "Data Scientist",
+    "NLP Researcher",
+    # Role names that carry the domain themselves, in scope before this rule and still in it.
+    "Applied Scientist",
+    "Research Engineer",
+])
+def test_in_scope_title_accepts_domain_plus_role(title):
+    assert in_scope_title(title) is True
+
+
+@pytest.mark.parametrize("title", LEAKED_TITLES)
+def test_leaked_titles_are_not_ingested(conn, title):
+    assert ingest_one(conn, posting(title=title)) == "skipped_title"
+    assert count(conn, "job") == 0
 
 
 def test_filters_skip_out_of_scope_titles_and_cities(conn):

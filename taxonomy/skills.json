@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "skills": [
     {
       "id": "a-b-testing",
@@ -1185,6 +1185,13 @@
       "aliases": [
         "tool use"
       ],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "typescript",
+      "display": "TypeScript",
+      "aliases": [],
       "parents": [],
       "reviewed": true
     },

@@ -5,7 +5,8 @@ Does: for each posting decide, in order —
   2. same company + near-identical text as an existing job → merge: add a job_source row;
      if that source already had a *different* id for this job, it's a repost (repost_count+1);
   3. otherwise insert a new job.
-Also applies the title/city filters so feeds' unrelated postings never become rows.
+Also applies the title/city filters so feeds' unrelated postings never become rows:
+a title needs both an AI/ML domain term and a technical role term.
 
 Does NOT: call the model (see app/pipeline.py), fetch anything, or delete rows.
 
@@ -22,10 +23,18 @@ from app import dedup
 from app.geo import city_of
 from app.sources import Posting
 
-# Titles we treat as in-scope. Deliberately broad; the taxonomy decides what counts later.
-TITLE_PATTERN = re.compile(
-    r"\b(ai|ml|machine learning|llm|genai|generative ai|nlp|data scien|deep learning|"
-    r"agentic|agent|applied scientist|research engineer|prompt)\b", re.I)
+# A title is in scope only when it names an AI/ML domain AND a technical role. Either half
+# alone is noise: feeds carry "Industrial AI" in sales titles and "Agent" in call-centre and
+# retail ones, and plain "Software Engineer" is not what this project measures. Still broad
+# within that rule; the taxonomy decides what the skills are later.
+DOMAIN_PATTERN = re.compile(
+    r"\b(ai|ml|mlops|llmops|llm|genai|generative ai|nlp|deep learning|agentic|agent|prompt|"
+    r"machine learning|data scien\w*|applied scientist|research engineer)\b", re.I)
+
+# `applied scientist` and `research engineer` sit in DOMAIN_PATTERN as well: they carry the
+# domain in the role name, so they satisfy both halves on their own, as they did before.
+ROLE_PATTERN = re.compile(
+    r"\b(engineer\w*|developer|scientist|researcher|architect|mlops)\b", re.I)
 
 
 def now_iso() -> str:
@@ -33,7 +42,7 @@ def now_iso() -> str:
 
 
 def in_scope_title(title: str) -> bool:
-    return bool(TITLE_PATTERN.search(title))
+    return bool(DOMAIN_PATTERN.search(title) and ROLE_PATTERN.search(title))
 
 
 @dataclass
