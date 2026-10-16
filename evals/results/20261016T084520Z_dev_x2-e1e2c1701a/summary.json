@@ -1,0 +1,88 @@
+{
+  "meta": {
+    "run_id": "20261016T084520Z_dev_x2-e1e2c1701a",
+    "split": "dev",
+    "n_goldens": 20,
+    "repeats": 1,
+    "model": "claude-sonnet-5-5",
+    "extractor_version": "x2-e1e2c1701a",
+    "taxonomy_version": 1
+  },
+  "aggregate": {
+    "precision": {
+      "mean": 0.8703703703703703,
+      "min": 0.8703703703703703,
+      "max": 0.8703703703703703,
+      "n": 1
+    },
+    "recall": {
+      "mean": 0.9563953488372093,
+      "min": 0.9563953488372093,
+      "max": 0.9563953488372093,
+      "n": 1
+    },
+    "f1": {
+      "mean": 0.9113573407202217,
+      "min": 0.9113573407202217,
+      "max": 0.9113573407202217,
+      "n": 1
+    },
+    "requirement_accuracy": {
+      "mean": 0.9787234042553191,
+      "min": 0.9787234042553191,
+      "max": 0.9787234042553191,
+      "n": 1
+    },
+    "rank_spearman": {
+      "mean": 0.7707932369121607,
+      "min": 0.7707932369121607,
+      "max": 0.7707932369121607,
+      "n": 1
+    },
+    "top10_overlap": {
+      "mean": 0.8,
+      "min": 0.8,
+      "max": 0.8,
+      "n": 1
+    }
+  },
+  "runs": [
+    {
+      "n_goldens": 20,
+      "n_errors": 0,
+      "tp": 329,
+      "fp": 49,
+      "fn": 15,
+      "precision": 0.8703703703703703,
+      "recall": 0.9563953488372093,
+      "f1": 0.9113573407202217,
+      "requirement_accuracy": 0.9787234042553191,
+      "rank_spearman": 0.7707932369121607,
+      "top10_overlap": 0.8,
+      "gold_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "apis",
+        "aws",
+        "cloud",
+        "prompt-engineering",
+        "ci-cd"
+      ],
+      "pred_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "aws",
+        "ci-cd",
+        "langchain",
+        "testing",
+        "cloud"
+      ]
+    }
+  ]
+}
