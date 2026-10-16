@@ -1,0 +1,63 @@
+{
+  "id": "golden_008",
+  "split": "dev",
+  "source_sha256": "37a134b9f85a095e5a74fed71f3c938a9a9f81e42871b74bd90e3baeb9f21433",
+  "job_description": "AI Engineer (all genders)\nellamind · Berlin, Berlin, Germany (On-site)\n\n• Build AI evaluation systems: Design and implement intelligent systems that automatically assess LLM outputs for quality, safety, and compliance with user-defined requirements across diverse use cases and industries.\n• Integrate cutting-edge AI technologies: Work with multiple LLM providers and AI platforms, ensuring seamless, reliable connections that handle real-world production scenarios at scale.\n• Develop automated testing frameworks: Create sophisticated workflows that enable teams to systematically evaluate their AI applications through batch testing, comparing model configurations, and tracking performance over time.\n• Optimize evaluation workflows: Design efficient systems that balance evaluation quality, cost, and speed, enabling customers to run comprehensive tests without breaking their budgets or timelines.\n• Build prompt optimization infrastructure: Develop systematic approaches to analyze prompt performance across large datasets, identify failure patterns, implement A/B testing frameworks, and create data-driven optimization pipelines that surface actionable insights.\n• Scale AI operations: Architect systems that handle high-volume evaluation workloads, managing concurrent processing, resource allocation, and ensuring consistent results across thousands of test cases.\n• Advance evaluation methodologies: Research and implement novel approaches to AI testing, quality measurement, and automated scoring that push the boundaries of what's possible in AI evaluation.\n• Drive technical innovation: Explore emerging AI capabilities, experiment with new models and techniques, and integrate breakthrough technologies that give our customers a competitive advantage.\n• Ensure production reliability: Build robust, enterprise-grade systems with proper monitoring, error handling, and quality assurance that customers can depend on for critical AI validation workflows.\n\nYou'll work across our Python-based platform, collaborating with fullstack engineers, product teams, and directly with customers to understand their evaluation challenges and deliver solutions that make rigorous AI testing accessible to teams of all sizes.\n\nWhat we're looking for\n\nMust-haves\n\n• Strong Python engineering skills: Experience building production AI systems with clean, maintainable code, comprehensive testing, and performance optimization at scale.\n• Hands-on LLM experience: Practical work with OpenAI, Anthropic, or similar APIs - you've built features that call LLMs, handle responses, implement retry logic, and solve real-world reliability and consistency challenges.\n• Software engineering fundamentals: Solid understanding of API design, data modeling, async processing, error handling, and building distributed systems that scale efficiently.\n• AI systems thinking: Experience designing evaluation methodologies, understanding model behavior and limitations, debugging inconsistent outputs, and implementing quality assurance for AI applications.\n• Enthusiasm for AI reliability: Genuine interest in testing, measuring, and improving AI systems - you care about building AI that works consistently and can be trusted in production.\n• On-site collaboration: ≥3 days/week in Berlin or Bremen. Travel to our Bremen HQ during onboarding.\n• Fluency in English: At least B2 level for team collaboration and technical discussions.\n• Valid EU work authorization.",
+  "expected": [
+    {
+      "skill_id": "anthropic",
+      "requirement": "required",
+      "raw_text": "Practical work with OpenAI, Anthropic, or similar APIs - you've built features that call LLMs"
+    },
+    {
+      "skill_id": "api-design",
+      "requirement": "required",
+      "raw_text": "Software engineering fundamentals: Solid understanding of API design, data modeling, async processing, error handling, and building distributed systems that scale efficiently"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "Hands-on LLM experience: Practical work with OpenAI, Anthropic, or similar APIs"
+    },
+    {
+      "skill_id": "async-processing",
+      "requirement": "required",
+      "raw_text": "Software engineering fundamentals: Solid understanding of API design, data modeling, async processing, error handling, and building distributed systems that scale efficiently"
+    },
+    {
+      "skill_id": "data-modeling",
+      "requirement": "required",
+      "raw_text": "Software engineering fundamentals: Solid understanding of API design, data modeling, async processing, error handling, and building distributed systems that scale efficiently"
+    },
+    {
+      "skill_id": "distributed-systems",
+      "requirement": "required",
+      "raw_text": "Software engineering fundamentals: Solid understanding of API design, data modeling, async processing, error handling, and building distributed systems that scale efficiently"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "AI systems thinking: Experience designing evaluation methodologies, understanding model behavior and limitations, debugging inconsistent outputs, and implementing quality assurance for AI applications"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Hands-on LLM experience: Practical work with OpenAI, Anthropic, or similar APIs"
+    },
+    {
+      "skill_id": "openai",
+      "requirement": "required",
+      "raw_text": "Practical work with OpenAI, Anthropic, or similar APIs - you've built features that call LLMs"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Strong Python engineering skills"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Software engineering fundamentals: Solid understanding of API design, data modeling, async processing, error handling, and building distributed systems that scale efficiently"
+    }
+  ]
+}

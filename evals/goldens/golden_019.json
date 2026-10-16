@@ -1,0 +1,103 @@
+{
+  "id": "golden_019",
+  "split": "dev",
+  "source_sha256": "5d8339eac90aed8fc03a6e29436905105153ce9b70cd22185b98207f9c438431",
+  "job_description": "AI Engineer\nTryHackMe · EMEA (Remote)\n\nand surfaces investigation tasks tied to real attacker behaviour. This system needs precise, programmatic knowledge of what forensic artefacts each technique produces and what a valid defensive response looks like.\n\nAlongside these core systems, you'll also work on:\n\n• Prompt engineering for both red and blue team agent components, in close collaboration with our content engineering team\n• Integration with adversary emulation tooling for realistic technique execution\n• User emulation and noise generation — simulating realistic background activity so participants must distinguish real attacker behaviour from normal log volume\n• Documentation and architecture that allows the broader engineering team to operate and debug the AI layer without dependency on any single person\n\nWhat you'll be working on first\n\nThe immediate priority is building the attacker agent from the ground up. You'll design and implement an autonomous LLM-powered agent that receives a threat actor profile, a network map, and a configured attack chain — and executes it against a live provisioned environment without human intervention.\n\nThis means: scoping the agent architecture, choosing the right tooling and framework, building the planning and execution loop, and getting to a working demo where the agent autonomously compromises a target network end to end.\n\nA key part of this work will be using LLMs to analyse an attack chain and automatically configure the target network to be vulnerable in the right ways — introducing the misconfigurations, weak credentials, and exploitable conditions that the attack chain requires, without manual setup for each scenario. Speed matters here — we want to prove the core capability as quickly as possible so we can validate it with real clients.\n\nWhat we're looking for\n\nEssential\n\n• Hands-on experience building LLM-powered agents — planning loops, tool use, memory, state management\n• Strong Python engineering; able to ship production-quality agentic systems, not just prototypes\n• Ability to design prompts and agent architectures that are reliable and predictable under adversarial conditions\n• Comfortable working autonomously on problems that aren't fully defined — you'll need to make good technical decisions with limited hand-holding\n• Strong async communication; the team is distributed and documentation matters\n\nStrongly Preferred\n\n• Working familiarity with cybersecurity concepts — attack techniques, MITRE ATT&CK, network fundamentals (Active Directory, lateral movement, persistence). You don't need to be a penetration tester, but you need enough domain fluency to build realistic attack logic\n• Experience with adversary emulation frameworks (MITRE CALDERA or similar)\n• Experience building event-driven systems that monitor and react to real-time state changes\n• Familiarity with cloud infrastructure (we provision VMs and networks dynamically per exercise)\n\nNice to have\n\n• Prior work in the cyber range, red team tooling, or security simulation space\n• Experience with multi-agent architectures where agents observe and react to each other",
+  "expected": [
+    {
+      "skill_id": "active-directory",
+      "requirement": "nice_to_have",
+      "raw_text": "Active Directory"
+    },
+    {
+      "skill_id": "adversary-emulation",
+      "requirement": "nice_to_have",
+      "raw_text": "Experience with adversary emulation frameworks (MITRE CALDERA or similar)"
+    },
+    {
+      "skill_id": "agent-architecture",
+      "requirement": "required",
+      "raw_text": "Ability to design prompts and agent architectures that are reliable and predictable under adversarial conditions"
+    },
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "Hands-on experience building LLM-powered agents — planning loops, tool use, memory, state management"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "nice_to_have",
+      "raw_text": "Familiarity with cloud infrastructure (we provision VMs and networks dynamically per exercise)"
+    },
+    {
+      "skill_id": "cyber-ranges",
+      "requirement": "nice_to_have",
+      "raw_text": "cyber range"
+    },
+    {
+      "skill_id": "cybersecurity",
+      "requirement": "nice_to_have",
+      "raw_text": "Working familiarity with cybersecurity concepts — attack techniques, MITRE ATT&CK, network fundamentals (Active Directory, lateral movement, persistence)"
+    },
+    {
+      "skill_id": "event-driven-systems",
+      "requirement": "nice_to_have",
+      "raw_text": "Experience building event-driven systems that monitor and react to real-time state changes"
+    },
+    {
+      "skill_id": "lateral-movement",
+      "requirement": "nice_to_have",
+      "raw_text": "lateral movement"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Hands-on experience building LLM-powered agents — planning loops, tool use, memory, state management"
+    },
+    {
+      "skill_id": "mitre-att-and-ck",
+      "requirement": "nice_to_have",
+      "raw_text": "MITRE ATT&CK"
+    },
+    {
+      "skill_id": "mitre-caldera",
+      "requirement": "nice_to_have",
+      "raw_text": "Experience with adversary emulation frameworks (MITRE CALDERA or similar)"
+    },
+    {
+      "skill_id": "multi-agent-systems",
+      "requirement": "nice_to_have",
+      "raw_text": "Experience with multi-agent architectures where agents observe and react to each other"
+    },
+    {
+      "skill_id": "networking",
+      "requirement": "nice_to_have",
+      "raw_text": "network fundamentals"
+    },
+    {
+      "skill_id": "persistence",
+      "requirement": "nice_to_have",
+      "raw_text": "persistence"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "Ability to design prompts and agent architectures that are reliable and predictable under adversarial conditions"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Strong Python engineering; able to ship production-quality agentic systems, not just prototypes"
+    },
+    {
+      "skill_id": "red-team-tooling",
+      "requirement": "nice_to_have",
+      "raw_text": "red team tooling"
+    },
+    {
+      "skill_id": "security-simulation",
+      "requirement": "nice_to_have",
+      "raw_text": "security simulation"
+    }
+  ]
+}

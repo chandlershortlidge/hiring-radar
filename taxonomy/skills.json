@@ -1,0 +1,1445 @@
+{
+  "version": 1,
+  "skills": [
+    {
+      "id": "a-b-testing",
+      "display": "A/B Testing",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "active-directory",
+      "display": "Active Directory",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "adversary-emulation",
+      "display": "Adversary emulation",
+      "aliases": [],
+      "parents": [
+        "cybersecurity"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "agent-architecture",
+      "display": "Agent architecture",
+      "aliases": [],
+      "parents": [
+        "agents"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "agent-state-management",
+      "display": "Agent state management",
+      "aliases": [],
+      "parents": [
+        "agents"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "agents",
+      "display": "Agents",
+      "aliases": [
+        "agent frameworks",
+        "agentic ai frameworks",
+        "agentic frameworks",
+        "ai agents"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "agno",
+      "display": "Agno",
+      "aliases": [],
+      "parents": [
+        "agents"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "ai-application-development",
+      "display": "AI application development",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "ai-architecture",
+      "display": "AI Architecture",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "ai-consulting",
+      "display": "AI Consulting",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "ai-deployment",
+      "display": "AI deployment",
+      "aliases": [
+        "ml model deployment",
+        "model deployment"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "ai-developer-tooling",
+      "display": "AI developer tooling",
+      "aliases": [
+        "coding agents"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "ai-development-tools",
+      "display": "AI development tools",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "ai-infrastructure",
+      "display": "AI Infrastructure",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "ai-integration",
+      "display": "AI Integration",
+      "aliases": [
+        "llm integration"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "ai-ml",
+      "display": "AI/ML",
+      "aliases": [
+        "ai/ml ecosystem",
+        "applied ai"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "ai-systems-optimization",
+      "display": "AI systems optimization",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "aiops",
+      "display": "AIOps",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "airflow",
+      "display": "Airflow",
+      "aliases": [
+        "apache airflow"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "anthropic",
+      "display": "Anthropic",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "anthropic-api",
+      "display": "Anthropic API",
+      "aliases": [
+        "anthropic apis"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "apache-spark",
+      "display": "Apache Spark",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "api-design",
+      "display": "API Design",
+      "aliases": [
+        "api architecture"
+      ],
+      "parents": [
+        "software-engineering"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "apis",
+      "display": "APIs",
+      "aliases": [
+        "api development",
+        "api integration",
+        "api integrations",
+        "rest apis",
+        "restful apis"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "async-processing",
+      "display": "Async Processing",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "autogen",
+      "display": "AutoGen",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "automation-integrations",
+      "display": "automation/integrations",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "automl",
+      "display": "AutoML",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "aws",
+      "display": "AWS",
+      "aliases": [],
+      "parents": [
+        "cloud"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "aws-bedrock",
+      "display": "AWS Bedrock",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "aws-s3",
+      "display": "AWS S3",
+      "aliases": [
+        "amazon s3"
+      ],
+      "parents": [
+        "aws",
+        "object-storage"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "azure",
+      "display": "Azure",
+      "aliases": [
+        "microsoft azure"
+      ],
+      "parents": [
+        "cloud"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "backend-development",
+      "display": "Backend development",
+      "aliases": [
+        "backend"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "backend-engineering",
+      "display": "Backend Engineering",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "bigquery",
+      "display": "BigQuery",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "chain-of-thought",
+      "display": "Chain-of-Thought",
+      "aliases": [],
+      "parents": [
+        "prompt-engineering"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "chemical-descriptors",
+      "display": "Chemical Descriptors",
+      "aliases": [],
+      "parents": [
+        "cheminformatics"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "cheminformatics",
+      "display": "Cheminformatics",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "ci-cd",
+      "display": "CI/CD",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "claude-code",
+      "display": "Claude Code",
+      "aliases": [],
+      "parents": [
+        "ai-developer-tooling"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "claude-enterprise",
+      "display": "Claude Enterprise",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "cloud",
+      "display": "Cloud",
+      "aliases": [
+        "cloud infrastructure",
+        "cloud platforms"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "code-review",
+      "display": "Code review",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "codex",
+      "display": "Codex",
+      "aliases": [
+        "openai codex"
+      ],
+      "parents": [
+        "ai-developer-tooling"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "containerization",
+      "display": "Containerization",
+      "aliases": [
+        "containerized workloads",
+        "containers"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "crewai",
+      "display": "CrewAI",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "csharp",
+      "display": "C#",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "cursor",
+      "display": "Cursor",
+      "aliases": [],
+      "parents": [
+        "ai-developer-tooling"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "cyber-ranges",
+      "display": "Cyber ranges",
+      "aliases": [],
+      "parents": [
+        "cybersecurity"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "cybersecurity",
+      "display": "Cybersecurity",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "cybersecurity-mitre-att-and-ck",
+      "display": "Cybersecurity / MITRE ATT&CK",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "data-modeling",
+      "display": "Data modeling",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "data-pipelines",
+      "display": "Data pipelines",
+      "aliases": [
+        "etl pipelines",
+        "etl/elt",
+        "etl/elt pipelines"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "data-platforms",
+      "display": "Data Platforms",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "data-privacy-and-security",
+      "display": "Data Privacy & Security",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "data-science",
+      "display": "Data Science",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "data-stores",
+      "display": "Data stores",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "data-visualization",
+      "display": "Data Visualization",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "databricks",
+      "display": "Databricks",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "dbt",
+      "display": "dbt",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "deep-learning",
+      "display": "Deep Learning",
+      "aliases": [
+        "deep learning frameworks"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "distributed-systems",
+      "display": "Distributed Systems",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "docker",
+      "display": "Docker",
+      "aliases": [],
+      "parents": [
+        "containerization"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "docling",
+      "display": "Docling",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "elasticsearch",
+      "display": "Elasticsearch",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "embeddings",
+      "display": "Embeddings",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "english",
+      "display": "English",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "error-handling",
+      "display": "Error Handling",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "evaluation",
+      "display": "Evaluation",
+      "aliases": [
+        "ai evaluation",
+        "ai evaluation & benchmarking",
+        "ai evaluation & observability",
+        "ai output evaluation",
+        "evaluation frameworks",
+        "llm evaluation",
+        "model evaluation"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "event-driven-systems",
+      "display": "Event-driven systems",
+      "aliases": [
+        "event-driven architecture"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "experiment-tracking",
+      "display": "Experiment Tracking",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "fastapi",
+      "display": "FastAPI",
+      "aliases": [],
+      "parents": [
+        "apis"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "fine-tuning",
+      "display": "Fine-tuning",
+      "aliases": [
+        "llm fine-tuning",
+        "model fine-tuning"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "flask",
+      "display": "Flask",
+      "aliases": [],
+      "parents": [
+        "apis"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "frontend-development",
+      "display": "Frontend development",
+      "aliases": [
+        "frontend"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "full-stack-development",
+      "display": "Full-stack development",
+      "aliases": [
+        "full stack competence",
+        "full-stack competence"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "gcp",
+      "display": "GCP",
+      "aliases": [
+        "google cloud platform"
+      ],
+      "parents": [
+        "cloud"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "gemini",
+      "display": "Gemini",
+      "aliases": [
+        "gemini models"
+      ],
+      "parents": [
+        "llms"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "german",
+      "display": "German",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "german-language",
+      "display": "German language",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "git",
+      "display": "Git",
+      "aliases": [
+        "github",
+        "version control"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "github-copilot",
+      "display": "GitHub Copilot",
+      "aliases": [
+        "copilot"
+      ],
+      "parents": [
+        "ai-developer-tooling"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "google-adk",
+      "display": "Google ADK",
+      "aliases": [
+        "google agent development kit",
+        "google agent development kit (adk)"
+      ],
+      "parents": [
+        "agents"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "hallucination-detection",
+      "display": "Hallucination detection",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "healthcare-domain-knowledge",
+      "display": "Healthcare domain knowledge",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "healthcare-life-sciences",
+      "display": "Healthcare/Life Sciences",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "healthcare-software",
+      "display": "Healthcare software",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "hugging-face",
+      "display": "Hugging Face",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "inference-optimization",
+      "display": "Inference optimization",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "issue-tracking",
+      "display": "Issue tracking",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "java",
+      "display": "Java",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "jupyter-notebooks",
+      "display": "Jupyter Notebooks",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "knowledge-graphs",
+      "display": "Knowledge Graphs",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "kubernetes",
+      "display": "Kubernetes",
+      "aliases": [],
+      "parents": [
+        "containerization"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "langchain",
+      "display": "LangChain",
+      "aliases": [],
+      "parents": [
+        "llm-orchestration"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "langfuse",
+      "display": "Langfuse",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "langgraph",
+      "display": "LangGraph",
+      "aliases": [],
+      "parents": [
+        "agents"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "langsmith",
+      "display": "LangSmith",
+      "aliases": [],
+      "parents": [
+        "evaluation"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "lateral-movement",
+      "display": "Lateral movement",
+      "aliases": [],
+      "parents": [
+        "cybersecurity"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "litellm",
+      "display": "LiteLLM",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "llamaindex",
+      "display": "LlamaIndex",
+      "aliases": [],
+      "parents": [
+        "llm-orchestration"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "llm-guardrails",
+      "display": "LLM guardrails",
+      "aliases": [],
+      "parents": [
+        "llms"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "llm-orchestration",
+      "display": "LLM orchestration",
+      "aliases": [],
+      "parents": [
+        "llms"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "llmops",
+      "display": "LLMOps",
+      "aliases": [],
+      "parents": [
+        "mlops"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "llms",
+      "display": "LLMs",
+      "aliases": [
+        "generative ai",
+        "generative ai applications",
+        "generative ai solutions",
+        "large language models",
+        "llm apis"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "machine-learning",
+      "display": "Machine Learning",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "make",
+      "display": "Make",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "mcp",
+      "display": "MCP",
+      "aliases": [
+        "model context protocol"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "mcp-integrations",
+      "display": "MCP integrations",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "mitre-att-and-ck",
+      "display": "MITRE ATT&CK",
+      "aliases": [],
+      "parents": [
+        "cybersecurity"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "mitre-caldera",
+      "display": "MITRE CALDERA",
+      "aliases": [],
+      "parents": [
+        "adversary-emulation"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "ml-engineering",
+      "display": "ML Engineering",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "mlops",
+      "display": "MLOps",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "model-context-protocol-mcp",
+      "display": "Model Context Protocol (MCP)",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "model-development",
+      "display": "Model Development",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "model-selection",
+      "display": "Model Selection",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "model-serving",
+      "display": "Model serving",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "model-versioning",
+      "display": "Model Versioning",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "molecular-fingerprints",
+      "display": "Molecular Fingerprints",
+      "aliases": [],
+      "parents": [
+        "cheminformatics"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "molecular-similarity-search",
+      "display": "Molecular Similarity Search",
+      "aliases": [],
+      "parents": [
+        "cheminformatics"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "multi-agent-systems",
+      "display": "Multi-Agent Systems",
+      "aliases": [],
+      "parents": [
+        "agents"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "multi-step-reasoning",
+      "display": "Multi-step reasoning",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "mysql",
+      "display": "MySQL",
+      "aliases": [],
+      "parents": [
+        "sql"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "n8n",
+      "display": "n8n",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "networking",
+      "display": "Networking",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "next-js",
+      "display": "Next.js",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "node-js",
+      "display": "Node.js",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "nosql",
+      "display": "NoSQL",
+      "aliases": [],
+      "parents": [
+        "data-stores"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "numpy",
+      "display": "NumPy",
+      "aliases": [],
+      "parents": [
+        "python"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "object-storage",
+      "display": "Object Storage",
+      "aliases": [],
+      "parents": [
+        "data-stores"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "observability",
+      "display": "Observability",
+      "aliases": [
+        "ai observability",
+        "ai observability & monitoring",
+        "model monitoring",
+        "monitoring",
+        "monitoring & observability"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "open-source",
+      "display": "Open Source",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "open-source-ai",
+      "display": "Open-Source AI",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "open-source-llms",
+      "display": "Open-source LLMs",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "openai",
+      "display": "OpenAI",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "openai-api",
+      "display": "OpenAI API",
+      "aliases": [
+        "openai apis"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "pandas",
+      "display": "pandas",
+      "aliases": [],
+      "parents": [
+        "python"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "performance-optimization",
+      "display": "Performance Optimization",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "persistence",
+      "display": "Persistence",
+      "aliases": [],
+      "parents": [
+        "cybersecurity"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "pgvector",
+      "display": "pgvector",
+      "aliases": [],
+      "parents": [
+        "vector-databases"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "phoenix",
+      "display": "Phoenix",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "postgresql",
+      "display": "PostgreSQL",
+      "aliases": [],
+      "parents": [
+        "sql"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "prefect",
+      "display": "Prefect",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "prompt-engineering",
+      "display": "Prompt engineering",
+      "aliases": [],
+      "parents": [
+        "llms"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "pyspark",
+      "display": "PySpark",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "python",
+      "display": "Python",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "pytorch",
+      "display": "PyTorch",
+      "aliases": [],
+      "parents": [
+        "deep-learning"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "rag",
+      "display": "RAG",
+      "aliases": [
+        "retrieval-augmented generation"
+      ],
+      "parents": [
+        "llms"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "ragas",
+      "display": "Ragas",
+      "aliases": [],
+      "parents": [
+        "evaluation"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "rdkit",
+      "display": "RDKit",
+      "aliases": [],
+      "parents": [
+        "cheminformatics"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "react",
+      "display": "React",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "react-agent-pattern",
+      "display": "ReAct",
+      "aliases": [],
+      "parents": [
+        "agents"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "recommender-systems",
+      "display": "Recommender Systems",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "red-team-tooling",
+      "display": "Red team tooling",
+      "aliases": [],
+      "parents": [
+        "cybersecurity"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "scikit-learn",
+      "display": "scikit-learn",
+      "aliases": [],
+      "parents": [
+        "python"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "sdks",
+      "display": "SDKs",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "security-guardrails",
+      "display": "security guardrails",
+      "aliases": [
+        "ai security guardrails"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "security-simulation",
+      "display": "Security simulation",
+      "aliases": [],
+      "parents": [
+        "cybersecurity"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "self-hosted-llms",
+      "display": "Self-hosted LLMs",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "serverless",
+      "display": "Serverless",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "snowflake",
+      "display": "Snowflake",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "software-engineering",
+      "display": "Software engineering",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "sql",
+      "display": "SQL",
+      "aliases": [],
+      "parents": [
+        "data-stores"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "streamlit",
+      "display": "Streamlit",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "structured-data-extraction",
+      "display": "Structured data extraction",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "technical-writing",
+      "display": "Technical Writing",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "tensorflow",
+      "display": "TensorFlow",
+      "aliases": [],
+      "parents": [
+        "deep-learning"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "testing",
+      "display": "Testing",
+      "aliases": [
+        "automated testing",
+        "debugging & testing",
+        "integration testing",
+        "test automation"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "tool-calling",
+      "display": "Tool calling",
+      "aliases": [
+        "tool use"
+      ],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "vector-databases",
+      "display": "Vector Databases",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "vector-search",
+      "display": "Vector Search",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "vertex-ai",
+      "display": "Vertex AI",
+      "aliases": [],
+      "parents": [
+        "gcp"
+      ],
+      "reviewed": false
+    },
+    {
+      "id": "vue",
+      "display": "Vue",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "workflow-automation",
+      "display": "workflow automation",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    },
+    {
+      "id": "zapier",
+      "display": "Zapier",
+      "aliases": [],
+      "parents": [],
+      "reviewed": false
+    }
+  ]
+}

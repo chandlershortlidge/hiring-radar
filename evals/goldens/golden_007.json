@@ -1,0 +1,158 @@
+{
+  "id": "golden_007",
+  "split": "dev",
+  "source_sha256": "836fb0bfed81053adc70f6a2ec04bfcd12def8be7afcd88eaa78aee28437223b",
+  "job_description": "AI & Automation Engineer\nWaveSix · Berlin, Berlin, Germany (On-site)\n\nAbout the job\n\nWhat You'll Do\n\nYou'll design and ship AI systems and automation workflows that solve real business problems. You know when to reach for an LLM and when a simple rule or lookup table does the job better — and you build accordingly.\n\nExperience with data engineering is a meaningful plus: DAGs, ETL pipelines, and agent workflows share the same core challenges around reliability, observability, and failure handling.\n\nWhat You Bring\n\nThe Role\n\nYou'll design and ship AI systems and automation workflows that solve real business problems. You know when to reach for an LLM and when a simple rule or lookup table does the job better — and you build accordingly.\n\nExperience with data engineering is a meaningful plus: DAGs, ETL pipelines, and agent workflows share the same core challenges around reliability, observability, and failure handling.\n\nYou'll Build\n\n• Data pipelines and orchestrated automation workflows\n• AI pipelines with LLMs, embeddings, and retrieval where they add real value\n• RAG systems and agents grounded in real company data\n• Integrations that connect AI outputs to actual business tools and processes\n\nWhat We're Looking For\n\nCore:\n\n• Python, LLM APIs (OpenAI, Anthropic, etc.), prompt engineering and evaluation\n• RAG pipelines, embeddings, vector databases\n• Workflow automation and orchestration — agents, triggers, conditional logic\n• Strong judgment on when to use AI vs. deterministic logic\n\nBig plus:\n\n• ETL/ELT pipeline design, SQL, data modeling, API integrations\n• Airflow, Prefect, dbt, BigQuery/Snowflake, cloud (GCP/AWS/Azure)\n\nBonus:\n\n• LangChain/LlamaIndex\n• n8n/Make/Zapier\n• Docker\n\nYou Likely…",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "Workflow automation and orchestration — agents, triggers, conditional logic"
+    },
+    {
+      "skill_id": "airflow",
+      "requirement": "nice_to_have",
+      "raw_text": "Airflow"
+    },
+    {
+      "skill_id": "anthropic",
+      "requirement": "required",
+      "raw_text": "LLM APIs (OpenAI, Anthropic, etc.)"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "LLM APIs (OpenAI, Anthropic, etc.)"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "nice_to_have",
+      "raw_text": "cloud (GCP/AWS/Azure)"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "nice_to_have",
+      "raw_text": "cloud (GCP/AWS/Azure)"
+    },
+    {
+      "skill_id": "bigquery",
+      "requirement": "nice_to_have",
+      "raw_text": "BigQuery/Snowflake"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "nice_to_have",
+      "raw_text": "cloud (GCP/AWS/Azure)"
+    },
+    {
+      "skill_id": "data-modeling",
+      "requirement": "nice_to_have",
+      "raw_text": "data modeling"
+    },
+    {
+      "skill_id": "data-pipelines",
+      "requirement": "nice_to_have",
+      "raw_text": "ETL/ELT pipeline design"
+    },
+    {
+      "skill_id": "dbt",
+      "requirement": "nice_to_have",
+      "raw_text": "dbt"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "nice_to_have",
+      "raw_text": "Docker"
+    },
+    {
+      "skill_id": "embeddings",
+      "requirement": "required",
+      "raw_text": "RAG pipelines, embeddings, vector databases"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "prompt engineering and evaluation"
+    },
+    {
+      "skill_id": "gcp",
+      "requirement": "nice_to_have",
+      "raw_text": "cloud (GCP/AWS/Azure)"
+    },
+    {
+      "skill_id": "langchain",
+      "requirement": "nice_to_have",
+      "raw_text": "LangChain/LlamaIndex"
+    },
+    {
+      "skill_id": "llamaindex",
+      "requirement": "nice_to_have",
+      "raw_text": "LangChain/LlamaIndex"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "LLM APIs (OpenAI, Anthropic, etc.)"
+    },
+    {
+      "skill_id": "make",
+      "requirement": "nice_to_have",
+      "raw_text": "n8n/Make/Zapier"
+    },
+    {
+      "skill_id": "n8n",
+      "requirement": "nice_to_have",
+      "raw_text": "n8n/Make/Zapier"
+    },
+    {
+      "skill_id": "openai",
+      "requirement": "required",
+      "raw_text": "LLM APIs (OpenAI, Anthropic, etc.)"
+    },
+    {
+      "skill_id": "prefect",
+      "requirement": "nice_to_have",
+      "raw_text": "Prefect"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "prompt engineering and evaluation"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python, LLM APIs (OpenAI, Anthropic, etc.), prompt engineering and evaluation"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG pipelines, embeddings, vector databases"
+    },
+    {
+      "skill_id": "snowflake",
+      "requirement": "nice_to_have",
+      "raw_text": "BigQuery/Snowflake"
+    },
+    {
+      "skill_id": "sql",
+      "requirement": "nice_to_have",
+      "raw_text": "SQL"
+    },
+    {
+      "skill_id": "vector-databases",
+      "requirement": "required",
+      "raw_text": "RAG pipelines, embeddings, vector databases"
+    },
+    {
+      "skill_id": "workflow-automation",
+      "requirement": "required",
+      "raw_text": "Workflow automation and orchestration — agents, triggers, conditional logic"
+    },
+    {
+      "skill_id": "zapier",
+      "requirement": "nice_to_have",
+      "raw_text": "n8n/Make/Zapier"
+    }
+  ]
+}

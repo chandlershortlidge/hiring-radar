@@ -1,0 +1,198 @@
+{
+  "id": "golden_018",
+  "split": "dev",
+  "source_sha256": "7700224ce40612cc6324f7c8b93a03121595c6a6b9120efc03d2c64cfb157e73",
+  "job_description": "AI Engineer\nQuantori · European Union (Remote)\n\nAbout the job\n\nWe are looking for a skilled and motivated AI / ML Engineer to join our team at Quantori.\n\nLocation:\nQuantori is an international team: we have colleagues who work not only from office but also remotely from all over the world.\n\nResponsibilities:\n• Design and implement an evaluation strategy for AI agents within the Databricks environment.\n• Apply data science methodologies to assess model and agent performance, reliability, and business relevance.\n• Contribute to MLOps workflows supporting the development and deployment of AI agents.\n• Contribute to AI solution refinement through experimentation, validation, and optimization.\n• Prepare and deliver client demos, including presentation preparation, demo planning, and showcasing AI use cases.\n• Perform basic domain research (chemistry-related) to support demo preparation and solution demonstrations.\n\nWhat we expect:\n• Strong Python engineering skills, including writing production-quality code and tests.\n• Experience building and integrating REST APIs (e.g., FastAPI/Flask) for AI services.\n• Practical experience with LLM agents / agentic workflows, including state management, tool/function calling, iterative execution, and output validation/guardrails.\n• Familiarity with core ML tooling (e.g., NumPy, scikit-learn, PyTorch) sufficient to support experimentation and validation.\n• Experience working with data stores (SQL databases such as PostgreSQL/MySQL, object storage such as S3, and/or NoSQL).\n• Working knowledge of MLOps / LLMOps: experiment tracking, versioning, CI/CD for AI workflows, and deployment/monitoring basics.\n• Experience designing evaluation and QA frameworks for LLM/agent outputs (quality, accuracy, consistency), including offline test sets, metrics, and regression testing.\n• Hands-on experience building production LLM applications and agents (RAG, multi-step reasoning, tool/function calling, MCP).\n• Experience working with Databricks.\n• Experience working with Docker.\n• English level B2+.\n\nNice to have:\n• Experience with cheminformatics (e.g., molecular fingerprints, chemical descriptors, RDKit, molecular similarity search).\n• Experience working on healthcare or life sciences projects.\n\nWe offer:\n• Competitive compensation\n• Remote or office work\n• Flexible working hours\n• Healthcare benefits: medical insurance and paid sick leave\n• Continuous education, mentoring, and professional development programs\n• A team with an excellent tech expertise\n• Certifications paid by the company",
+  "expected": [
+    {
+      "skill_id": "agent-state-management",
+      "requirement": "required",
+      "raw_text": "state management"
+    },
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "Practical experience with LLM agents / agentic workflows, including state management, tool/function calling, iterative execution, and output validation/guardrails"
+    },
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "deployment/monitoring basics"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "Experience building and integrating REST APIs (e.g., FastAPI/Flask) for AI services"
+    },
+    {
+      "skill_id": "aws-s3",
+      "requirement": "required",
+      "raw_text": "S3"
+    },
+    {
+      "skill_id": "chemical-descriptors",
+      "requirement": "nice_to_have",
+      "raw_text": "chemical descriptors"
+    },
+    {
+      "skill_id": "cheminformatics",
+      "requirement": "nice_to_have",
+      "raw_text": "Experience with cheminformatics (e.g., molecular fingerprints, chemical descriptors, RDKit, molecular similarity search)"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD for AI workflows"
+    },
+    {
+      "skill_id": "data-stores",
+      "requirement": "required",
+      "raw_text": "Experience working with data stores (SQL databases such as PostgreSQL/MySQL, object storage such as S3, and/or NoSQL)"
+    },
+    {
+      "skill_id": "databricks",
+      "requirement": "required",
+      "raw_text": "Experience working with Databricks"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Experience working with Docker"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "Experience designing evaluation and QA frameworks for LLM/agent outputs (quality, accuracy, consistency), including offline test sets, metrics, and regression testing"
+    },
+    {
+      "skill_id": "experiment-tracking",
+      "requirement": "required",
+      "raw_text": "experiment tracking"
+    },
+    {
+      "skill_id": "fastapi",
+      "requirement": "required",
+      "raw_text": "FastAPI"
+    },
+    {
+      "skill_id": "flask",
+      "requirement": "required",
+      "raw_text": "Flask"
+    },
+    {
+      "skill_id": "llm-guardrails",
+      "requirement": "required",
+      "raw_text": "output validation/guardrails"
+    },
+    {
+      "skill_id": "llmops",
+      "requirement": "required",
+      "raw_text": "LLMOps"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Hands-on experience building production LLM applications and agents (RAG, multi-step reasoning, tool/function calling, MCP)"
+    },
+    {
+      "skill_id": "mcp",
+      "requirement": "required",
+      "raw_text": "MCP"
+    },
+    {
+      "skill_id": "mlops",
+      "requirement": "required",
+      "raw_text": "MLOps"
+    },
+    {
+      "skill_id": "model-versioning",
+      "requirement": "required",
+      "raw_text": "versioning"
+    },
+    {
+      "skill_id": "molecular-fingerprints",
+      "requirement": "nice_to_have",
+      "raw_text": "molecular fingerprints"
+    },
+    {
+      "skill_id": "molecular-similarity-search",
+      "requirement": "nice_to_have",
+      "raw_text": "molecular similarity search"
+    },
+    {
+      "skill_id": "multi-step-reasoning",
+      "requirement": "required",
+      "raw_text": "multi-step reasoning"
+    },
+    {
+      "skill_id": "mysql",
+      "requirement": "required",
+      "raw_text": "MySQL"
+    },
+    {
+      "skill_id": "nosql",
+      "requirement": "required",
+      "raw_text": "NoSQL"
+    },
+    {
+      "skill_id": "numpy",
+      "requirement": "required",
+      "raw_text": "Familiarity with core ML tooling (e.g., NumPy, scikit-learn, PyTorch) sufficient to support experimentation and validation"
+    },
+    {
+      "skill_id": "object-storage",
+      "requirement": "required",
+      "raw_text": "object storage"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "monitoring basics"
+    },
+    {
+      "skill_id": "postgresql",
+      "requirement": "required",
+      "raw_text": "PostgreSQL"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Strong Python engineering skills, including writing production-quality code and tests"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "Familiarity with core ML tooling (e.g., NumPy, scikit-learn, PyTorch) sufficient to support experimentation and validation"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG"
+    },
+    {
+      "skill_id": "rdkit",
+      "requirement": "nice_to_have",
+      "raw_text": "RDKit"
+    },
+    {
+      "skill_id": "scikit-learn",
+      "requirement": "required",
+      "raw_text": "Familiarity with core ML tooling (e.g., NumPy, scikit-learn, PyTorch) sufficient to support experimentation and validation"
+    },
+    {
+      "skill_id": "sql",
+      "requirement": "required",
+      "raw_text": "SQL databases"
+    },
+    {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "regression testing"
+    },
+    {
+      "skill_id": "tool-calling",
+      "requirement": "required",
+      "raw_text": "tool/function calling"
+    }
+  ]
+}

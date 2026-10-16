@@ -1,0 +1,108 @@
+{
+  "id": "golden_011",
+  "split": "dev",
+  "source_sha256": "db3412446bc53a51c6ebeacb8421e678b0b9250c13b090aa52ade7b494c1e448",
+  "job_description": "Artificial Intelligence Engineer\ntechstaff-in · Berlin, Germany (Hybrid)\n\nAbout the job\n\nFreelance Lead AI Engineer / AI Architect\nPlease note this role is solely for people who have a GmbH and freelance projects to refer to!\n\nRate: up to €115 per hour\nLocation: Berlin - 1-2 days onsite per week\nDuration: 12 month contract\n\nOverview\n\nI’m supporting an AI transformation business that helps mid-market companies move from AI ideas and workshops into real working systems.\n\nThe challenge is simple: their clients want to use AI properly, but many do not yet have the architecture, data foundations or internal knowledge to make it scalable.\n\nThey need a Lead AI Engineer / AI Architect who can help turn business problems into production-ready AI solutions.\n\nYou’ll be working across:\nAI solution architecture\nPython / FastAPI development\nLLMs, embeddings and automation workflows\nData pipelines and validation\nCloud-native deployment\nMLOps, monitoring and engineering standards\nTechnical guidance for consultants, founders and engineers\n\nTech stack includes:\nPython, FastAPI, SQL/NoSQL, LLM APIs, embeddings, AWS/Azure/GCP, Docker, Kubernetes, Airflow, Spark/PySpark, Git, CI/CD.\n\nThis would suit someone who enjoys being close to both architecture and hands-on delivery, especially in environments where AI needs to move beyond proof of concept and into production.\n\nExperience with AI consulting, client-facing technical delivery, recommender systems, GenAI, data platforms or production ML would be highly relevant.\n\nIf you're an experienced Lead AI Engineer/Architect feel free to apply or send your resume to niall@techstaff-in.com\n\nFreelance Lead AI Engineer / AI Architect",
+  "expected": [
+    {
+      "skill_id": "airflow",
+      "requirement": "required",
+      "raw_text": "Airflow"
+    },
+    {
+      "skill_id": "apache-spark",
+      "requirement": "required",
+      "raw_text": "Spark/PySpark"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "LLM APIs"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "AWS/Azure/GCP"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "AWS/Azure/GCP"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD"
+    },
+    {
+      "skill_id": "data-platforms",
+      "requirement": "nice_to_have",
+      "raw_text": "data platforms"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Docker"
+    },
+    {
+      "skill_id": "embeddings",
+      "requirement": "required",
+      "raw_text": "embeddings"
+    },
+    {
+      "skill_id": "fastapi",
+      "requirement": "required",
+      "raw_text": "Tech stack includes: FastAPI"
+    },
+    {
+      "skill_id": "gcp",
+      "requirement": "required",
+      "raw_text": "AWS/Azure/GCP"
+    },
+    {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "Git"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "LLM APIs"
+    },
+    {
+      "skill_id": "ml-engineering",
+      "requirement": "nice_to_have",
+      "raw_text": "production ML"
+    },
+    {
+      "skill_id": "nosql",
+      "requirement": "required",
+      "raw_text": "SQL/NoSQL"
+    },
+    {
+      "skill_id": "pyspark",
+      "requirement": "required",
+      "raw_text": "Spark/PySpark"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Tech stack includes: Python"
+    },
+    {
+      "skill_id": "recommender-systems",
+      "requirement": "nice_to_have",
+      "raw_text": "recommender systems"
+    },
+    {
+      "skill_id": "sql",
+      "requirement": "required",
+      "raw_text": "SQL/NoSQL"
+    }
+  ]
+}

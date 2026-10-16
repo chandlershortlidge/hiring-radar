@@ -1,0 +1,143 @@
+{
+  "id": "golden_016",
+  "split": "dev",
+  "source_sha256": "d4d534b9d78a47542fdce1bf978f53f52cc0baad05c6c197abe9f2de2e738b99",
+  "job_description": "AI Engineer (f/m/x)\nNetconomy · Berlin, Berlin, Germany (Hybrid)\n\nAbout the job\n\nAs a leading expert for Digital Platform Building and Customer Experience Innovation, NETCONOMY is shaping the digital leadership of its clients. We help brands to build flexible and scalable digital platforms, with top-notch technologies by SAP, Google Cloud and Microsoft Azure. NETCONOMY has 20 years of experience and employs close to 500 professionals across Europe. By introducing and driving innovation initiatives around customer experience, we support clients on the road of expanding their core business in the digital world.\n\nOver the past 25 years, NETCONOMY has grown from a startup into a team of 450+ experts across ten European locations. We believe in the power of agile and cross-functional collaboration, bringing together people from diverse backgrounds to build outstanding digital solutions.\n\nYOUR JOB\n\nAs an AI Engineer, you will play a crucial role in driving innovation and implementing cutting-edge Generative AI solutions and intelligent agentic systems. Join our dynamic team and contribute to the development of intelligent systems that solve complex problems and enhance our business capabilities.\n\nYour Job's Key Responsibilities Are\n\n• Designing and implementing end-to-end Generative AI solutions, AI agents, and RAG (Retrieval-Augmented Generation) pipelines to address business challenges and opportunities\n• Collaborating with cross-functional teams to understand requirements, providing technical expertise, and delivering scalable and robust AI solutions\n• Conducting research and evaluation of emerging AI models, agentic frameworks, and development kits\n• Working independently on Proof of Concepts (PoC) to validate and showcase the feasibility of proposed solutions\n• Conducting direct client communication to understand their needs and tailor AI-driven solutions accordingly\n\nYour Skills\n\nEssential Skills:\n\n• 3+ years of experience in Applied AI or Machine Learning in the industry\n• Proficiency in building Generative AI and Agentic applications at scale, with expertise in using agentic frameworks, vector databases, grounding, and other relevant concepts\n• Direct experience or strong familiarity with agent development (e.g. LangGraph, Google Agent Development Kit (ADK), Agno)\n• Proven experience in research and evaluation of emerging AI technologies, models, and frameworks\n• Extensive knowledge of Cloud AI offerings on one of the Hyperscalers (GCP, AWS or Azure), including ready-to-use AI services, AutoML approaches, and custom model development\n• Strong and assertive communication skills\n• Passion for keeping up with industry trends and advancements in Generative AI and agentic systems\n\nBeneficial Skills\n\n• Hands-on experience with the Google Cloud AI/ML stack (e.g., Vertex AI, Gemini Models, Vector Search)\n• Experience with AI evaluation frameworks (e.g., RAGAs, LangSmith), writing integration tests, and establishing robust validation strategies for Generative AI and agentic applications\n• Knowledge of Docker and Kubernetes\n• Familiarity with CI/CD processes for MLOps/AIOps\n• A/B testing expertise for AI models and applications",
+  "expected": [
+    {
+      "skill_id": "a-b-testing",
+      "requirement": "nice_to_have",
+      "raw_text": "A/B testing expertise for AI models and applications"
+    },
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "Proficiency in building Generative AI and Agentic applications at scale, with expertise in using agentic frameworks, vector databases, grounding, and other relevant concepts"
+    },
+    {
+      "skill_id": "agno",
+      "requirement": "required",
+      "raw_text": "Direct experience or strong familiarity with agent development (e.g. LangGraph, Google Agent Development Kit (ADK), Agno)"
+    },
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "3+ years of experience in Applied AI or Machine Learning in the industry"
+    },
+    {
+      "skill_id": "aiops",
+      "requirement": "nice_to_have",
+      "raw_text": "Familiarity with CI/CD processes for MLOps/AIOps"
+    },
+    {
+      "skill_id": "automl",
+      "requirement": "required",
+      "raw_text": "AutoML approaches"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "Cloud AI offerings on one of the Hyperscalers (GCP, AWS or Azure)"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Cloud AI offerings on one of the Hyperscalers (GCP, AWS or Azure)"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "nice_to_have",
+      "raw_text": "Familiarity with CI/CD processes for MLOps/AIOps"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Cloud AI offerings on one of the Hyperscalers (GCP, AWS or Azure)"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "nice_to_have",
+      "raw_text": "Knowledge of Docker and Kubernetes"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "Proven experience in research and evaluation of emerging AI technologies, models, and frameworks"
+    },
+    {
+      "skill_id": "gcp",
+      "requirement": "required",
+      "raw_text": "Cloud AI offerings on one of the Hyperscalers (GCP, AWS or Azure)"
+    },
+    {
+      "skill_id": "gemini",
+      "requirement": "nice_to_have",
+      "raw_text": "Hands-on experience with the Google Cloud AI/ML stack (e.g., Vertex AI, Gemini Models, Vector Search)"
+    },
+    {
+      "skill_id": "google-adk",
+      "requirement": "required",
+      "raw_text": "Direct experience or strong familiarity with agent development (e.g. LangGraph, Google Agent Development Kit (ADK), Agno)"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "nice_to_have",
+      "raw_text": "Knowledge of Docker and Kubernetes"
+    },
+    {
+      "skill_id": "langgraph",
+      "requirement": "required",
+      "raw_text": "Direct experience or strong familiarity with agent development (e.g. LangGraph, Google Agent Development Kit (ADK), Agno)"
+    },
+    {
+      "skill_id": "langsmith",
+      "requirement": "nice_to_have",
+      "raw_text": "Experience with AI evaluation frameworks (e.g., RAGAs, LangSmith), writing integration tests, and establishing robust validation strategies for Generative AI and agentic applications"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Proficiency in building Generative AI and Agentic applications at scale"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "3+ years of experience in Applied AI or Machine Learning in the industry"
+    },
+    {
+      "skill_id": "mlops",
+      "requirement": "nice_to_have",
+      "raw_text": "Familiarity with CI/CD processes for MLOps/AIOps"
+    },
+    {
+      "skill_id": "model-development",
+      "requirement": "required",
+      "raw_text": "custom model development"
+    },
+    {
+      "skill_id": "ragas",
+      "requirement": "nice_to_have",
+      "raw_text": "Experience with AI evaluation frameworks (e.g., RAGAs, LangSmith), writing integration tests, and establishing robust validation strategies for Generative AI and agentic applications"
+    },
+    {
+      "skill_id": "testing",
+      "requirement": "nice_to_have",
+      "raw_text": "writing integration tests and establishing robust validation strategies"
+    },
+    {
+      "skill_id": "vector-databases",
+      "requirement": "required",
+      "raw_text": "expertise in using agentic frameworks, vector databases, grounding, and other relevant concepts"
+    },
+    {
+      "skill_id": "vector-search",
+      "requirement": "nice_to_have",
+      "raw_text": "Hands-on experience with the Google Cloud AI/ML stack (e.g., Vertex AI, Gemini Models, Vector Search)"
+    },
+    {
+      "skill_id": "vertex-ai",
+      "requirement": "nice_to_have",
+      "raw_text": "Hands-on experience with the Google Cloud AI/ML stack (e.g., Vertex AI, Gemini Models, Vector Search)"
+    }
+  ]
+}
