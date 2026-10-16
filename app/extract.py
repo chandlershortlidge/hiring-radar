@@ -1,7 +1,7 @@
 """Stage 2: job-description text → skill mentions, as taxonomy ids.
 
 Does: build the prompt (general principles + the taxonomy as a lookup list), call the
-model once with a forced tool call, and turn the tool output into validated mentions.
+model once asking for a single tool call, and turn the tool output into validated mentions.
 Labels the taxonomy doesn't know become `proposed` items, never mentions.
 
 Does NOT: read images (that's stage 1), retry failed calls, write to the database,
@@ -13,7 +13,9 @@ Invariants:
   - Each skill_id appears at most once per job; if any mention is required, it is required.
   - Every mention's raw_text is found in the job text (whitespace/case-insensitive);
     unsupported items are reported in `rejected`, not silently kept.
-  - A call that does not end in the forced tool call raises ExtractionError.
+  - A call that does not produce exactly one record_skills tool call raises
+    ExtractionError. tool_choice is "auto" (forced tool use is rejected by current
+    models), so the prompt asks for the call and `strict` keeps its arguments valid.
 """
 
 import hashlib
@@ -47,11 +49,14 @@ You extract the technical skills a job description asks candidates to have.
    bonus, nice to have, ideally, is an advantage). Otherwise "required".
 7. raw_text is the exact phrase from the job description that supports the skill, copied
    verbatim.
-8. Report each skill id at most once. Report every skill you find."""
+8. Report each skill id at most once. Report every skill you find.
+
+Always respond by calling the record_skills tool exactly once. Do not reply with text."""
 
 TOOL = {
     "name": "record_skills",
     "description": "Record the technical skills the job description asks candidates to have.",
+    "strict": True,  # arguments validate against the schema; replaces forced tool_choice
     "input_schema": {
         "type": "object",
         "properties": {
@@ -65,10 +70,12 @@ TOOL = {
                         "raw_text": {"type": "string"},
                     },
                     "required": ["skill_id", "requirement", "raw_text"],
+                    "additionalProperties": False,
                 },
             }
         },
         "required": ["skills"],
+        "additionalProperties": False,
     },
 }
 
@@ -175,7 +182,7 @@ def build_request(tax: Taxonomy, jd_text: str, model: str) -> dict:
         "max_tokens": MAX_TOKENS,
         "system": [{"type": "text", "text": system_prompt(tax), "cache_control": {"type": "ephemeral"}}],
         "tools": [TOOL],
-        "tool_choice": {"type": "tool", "name": TOOL["name"]},
+        "tool_choice": {"type": "auto"},
         "messages": [{"role": "user", "content": f"<job_description>\n{jd_text}\n</job_description>"}],
     }
 
@@ -189,8 +196,8 @@ def make_client():
 
 def extract(jd_text: str, tax: Taxonomy, client, model: str = DEFAULT_MODEL) -> Extraction:
     response = client.messages.create(**build_request(tax, jd_text, model))
-    if response.stop_reason != "tool_use":
-        raise ExtractionError(f"expected tool_use, got stop_reason={response.stop_reason!r}")
+    if response.stop_reason in ("max_tokens", "refusal"):
+        raise ExtractionError(f"call did not complete: stop_reason={response.stop_reason!r}")
     blocks = [b for b in response.content if getattr(b, "type", None) == "tool_use" and b.name == TOOL["name"]]
     if len(blocks) != 1:
         raise ExtractionError(f"expected one {TOOL['name']} call, got {len(blocks)}")

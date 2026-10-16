@@ -91,12 +91,29 @@ def test_non_object_items_are_rejected(tax):
 
 # --- request + version -----------------------------------------------------------
 
-def test_request_forces_tool_and_caches_system_prompt(tax):
+def test_request_uses_auto_tool_choice_and_caches_system_prompt(tax):
+    # Forced tool_choice ("tool"/"any") is rejected by current models, so the call asks
+    # for the tool in the prompt and relies on `strict` for valid arguments instead.
     req = ex.build_request(tax, JD, "m")
-    assert req["tool_choice"] == {"type": "tool", "name": "record_skills"}
+    assert req["tool_choice"] == {"type": "auto"}
     assert req["system"][0]["cache_control"] == {"type": "ephemeral"}
     assert "llms: LLMs [large language models]" in req["system"][0]["text"]
     assert JD in req["messages"][0]["content"]
+
+
+def test_tool_is_strict_with_closed_schemas(tax):
+    # `strict` requires additionalProperties: false plus `required` on every object.
+    assert ex.TOOL["strict"] is True
+    schema = ex.TOOL["input_schema"]
+    assert schema["additionalProperties"] is False
+    item = schema["properties"]["skills"]["items"]
+    assert item["additionalProperties"] is False
+    assert item["required"] == ["skill_id", "requirement", "raw_text"]
+
+
+def test_prompt_asks_for_the_tool_call(tax):
+    # With tool_choice "auto" the model chooses, so the instruction has to be explicit.
+    assert "record_skills" in ex.system_prompt(tax)
 
 
 def test_extractor_version_changes_with_taxonomy_and_model(tax):
@@ -139,9 +156,20 @@ def test_extract_end_to_end_with_fake_client(tax):
 
 @pytest.mark.parametrize("resp", [response(stop="max_tokens"), response(stop="refusal"),
                                   response(n_blocks=0), response(n_blocks=2), response(name="other")])
-def test_extract_raises_on_anything_but_one_forced_tool_call(tax, resp):
+def test_extract_raises_on_anything_but_one_tool_call(tax, resp):
     with pytest.raises(ex.ExtractionError):
         ex.extract(JD, tax, FakeClient(resp), model="m")
+
+
+def test_extract_raises_when_the_model_answers_with_text_instead_of_calling_the_tool(tax):
+    # The failure path "auto" introduces that forced tool_choice could not produce.
+    text_only = SimpleNamespace(
+        stop_reason="end_turn",
+        content=[SimpleNamespace(type="text", text="Here are the skills: Python, LLMs.")],
+        usage=None,
+    )
+    with pytest.raises(ex.ExtractionError):
+        ex.extract(JD, tax, FakeClient(text_only), model="m")
 
 
 def test_prompt_contains_no_golden_specific_text(tax):
