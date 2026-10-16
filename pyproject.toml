@@ -5,6 +5,7 @@ description = "What skills is the AI job market asking for, by city — extracte
 requires-python = ">=3.12"
 dependencies = [
     "anthropic>=1.15.0",
+    "python-dotenv>=1.2.4",
 ]
 
 [dependency-groups]

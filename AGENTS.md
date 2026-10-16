@@ -70,7 +70,8 @@ counts, anything that requires LinkedIn.
 uv sync                      # Python deps
 uv run pytest                # tests — model calls are always mocked
 
-# Live eval (needs ANTHROPIC_API_KEY; ~20 model calls per repeat)
+# Live eval (~20 model calls per repeat). Key comes from the environment or .env:
+cp .env.example .env         # then put the key in .env — it is gitignored; never commit it
 uv run python scripts/run_eval.py --repeats 1     # quick look
 uv run python scripts/run_eval.py                 # dev split, 3 repeats → evals/results/<run_id>/
 ```

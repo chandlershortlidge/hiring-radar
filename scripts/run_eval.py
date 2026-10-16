@@ -5,7 +5,7 @@ Usage:
     uv run python scripts/run_eval.py --repeats 1     # quick look
     uv run python scripts/run_eval.py --split heldout --i-am-releasing   # release points only
 
-Needs ANTHROPIC_API_KEY. Calls the model sequentially, no retries.
+Needs ANTHROPIC_API_KEY, from the environment or a .env file at the repo root (see .env.example). Calls the model sequentially, no retries.
 Writes evals/results/<run_id>/{predictions.jsonl, summary.json, summary.md}.
 
 Does NOT: change prompts, taxonomy, or Goldens; run held-out Goldens without the explicit
@@ -22,6 +22,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
+
+from dotenv import load_dotenv  # noqa: E402
+
+load_dotenv(ROOT / ".env")  # existing environment variables win over .env
 
 from app import evaluation  # noqa: E402
 from app.extract import DEFAULT_MODEL, extract, extractor_version, make_client  # noqa: E402
@@ -74,7 +78,7 @@ def main(argv=None):
     if args.split == "heldout" and not args.i_am_releasing:
         sys.exit("Held-out Goldens are for release points only. Pass --i-am-releasing if this is one.")
     if not os.environ.get("ANTHROPIC_API_KEY"):
-        sys.exit("ANTHROPIC_API_KEY is not set.")
+        sys.exit("ANTHROPIC_API_KEY is not set. Copy .env.example to .env and add your key.")
 
     tax = Taxonomy.load()
     goldens = load_goldens(args.split)
