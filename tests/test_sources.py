@@ -58,12 +58,38 @@ def test_arbeitnow_parse_and_pagination():
     assert arbeitnow.next_url(payload) == "https://www.arbeitnow.com/api/job-board-api?page=2"
 
 
-def test_startup_jobs_parse_handles_nested_company():
+def test_startup_jobs_parse_reads_nested_company_and_location():
     payload = load("startup_jobs.json")
-    [p] = startup_jobs.parse(payload)
-    assert p.company == "Clera" and p.source_job_id == "98765" and p.location_raw == "Berlin, Germany"
-    assert "- Experience with LLMs and agents" in p.description_text
-    assert startup_jobs.next_url(payload) is None
+    first, second = startup_jobs.parse(payload)
+    assert first.source_job_id == "10479227"
+    assert first.company == "bei Buddybrand"
+    assert first.location_raw == "Berlin"
+    # The API appends its own attribution params to every job url; we keep them as served.
+    assert first.url == (
+        "https://startup.jobs/junior-influencer-creator-marketing-manager-m-w-d-bei-buddybrand-10479227"
+        "?utm_source=startup-jobs-key1&utm_medium=api"
+    )
+    assert first.posted_at == "2026-10-15T10:51:25Z"
+    assert "WAS DU BEI UNS MACHST" in first.description_text
+    assert "<li>" not in first.description_text
+    assert second.company == "Databricks" and second.location_raw == "Munich"
+
+
+def test_startup_jobs_next_url_advances_on_the_last_id():
+    payload = load("startup_jobs.json")
+    url = "https://api.startup.jobs/v1/jobs?search=AI+engineer&country=DE"
+    # next_cursor repeats the id of the last job in the page.
+    assert payload["next_cursor"] == 10483131
+    nxt = startup_jobs.next_url(payload, url)
+    assert nxt == url + "&starting_after=10483131"
+    # A second page replaces the cursor rather than appending another one.
+    assert startup_jobs.next_url(payload, nxt) == nxt
+
+
+def test_startup_jobs_next_url_stops_when_has_more_is_false():
+    payload = load("startup_jobs.json")
+    assert startup_jobs.next_url({**payload, "has_more": False}, "https://x/?a=1") is None
+    assert startup_jobs.next_url({**payload, "next_cursor": None}, "https://x/?a=1") is None
 
 
 def test_startup_jobs_fetch_requires_key(monkeypatch):

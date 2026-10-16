@@ -1,1 +1,83 @@
-{"data":[{"id":98765,"title":"AI Engineer","url":"https://startup.jobs/ai-engineer-acme-98765","company":{"name":"Clera"},"location":"Berlin, Germany","published_at":"2026-10-11T09:00:00Z","description_html":"<h2>What you bring</h2><ul><li>Strong Python</li><li>Experience with LLMs and agents</li></ul>"}],"links":{"next":null}}
+{
+  "data": [
+    {
+      "id": 10479227,
+      "title": "Junior Influencer/Creator Marketing Manager (m/w/d)",
+      "url": "https://startup.jobs/junior-influencer-creator-marketing-manager-m-w-d-bei-buddybrand-10479227?utm_source=startup-jobs-key1&utm_medium=api",
+      "published_at": "2026-10-15T10:51:25Z",
+      "employment_type": "full-time",
+      "workplace_type": "hybrid",
+      "location": {
+        "city": "Berlin",
+        "state": "Berlin",
+        "country": "Germany",
+        "country_code": "DE"
+      },
+      "roles": [
+        {
+          "title": "Marketing",
+          "slug": "marketing"
+        },
+        {
+          "title": "Marketing Manager",
+          "slug": "marketing-manager"
+        },
+        {
+          "title": "Management",
+          "slug": "management"
+        },
+        {
+          "title": "Manager",
+          "slug": "manager"
+        }
+      ],
+      "salary": null,
+      "company": {
+        "name": "bei Buddybrand",
+        "slug": "bei-buddybrand",
+        "url": "https://startup.jobs/company/bei-buddybrand?utm_source=startup-jobs-key1&utm_medium=api",
+        "website_url": "https://buddybrand.de",
+        "logo_url": "https://startup.jobs/logos/48402",
+        "active_jobs_count": 4
+      },
+      "description_html": "<h3>WAS DU BEI UNS MACHST</h3><ul><li>Unterstützung bei der Planung, Umsetzung und Betreuung von Influencer-Marketing-Kampagnen</li><li>Recherche und Auswahl geeigneter Influencer:innen und Creator:innen sowie Unterstützung bei der Abstimmung von Kooperationen</li><li>Kommunikation und Koordination mit Influencer:innen, Kund:innen und internen Teams</li><li>Mitarbeit bei der Konzeptentwicklung gemeinsam mit dem Kreativ-Team</li><li>Unterstützung bei der Planung und Betreuung von Foto- und Videoproduktionen</li><li>Erstellung von Kampagnenauswertungen, Kundenpräsentationen und Reportings</li><li>Unterstützung bei der Betreuung und Beratung unserer Kund:innen</li></ul>\n\n<h3>WAS DU MITBRINGEN SOLLTEST</h3><ul><li>Begeisterung für Influencer Marketing, Social Media und aktuelle Trends</li><li>Erste praktische Erfahrungen im Influencer Marketing, idealerweise durch Praktika, Werkstudententätigkeiten oder erste Berufserfahrung</li><li>Freude daran, mit Influencer:innen und Creator:innen zu kommunizieren und langfristige Beziehungen aufzubauen</li><li>Ein gutes Gespür für passende Influencer:innen, Marken und kreative Inhalte</li><li>Eine strukturierte, zuverlässige und eigenständige Arbeitsweise</li><li>Kommunikationsstärke, Teamgeist und Freude an der Zusammenarbeit mit unterschiedlichen Ansprechpartner:innen</li><li>Interesse an Plattformen wie Instagram, TikTok und YouTube sowie an digitalem Marketing und Markenkommunikation</li><li>Sehr gute Deutschkenntnisse</li></ul><br>\n\n<h3>WAS DICH BEI UNS ERWARTET</h3><strong>Work is where the heart is:</strong> Wir arbeiten flexibel. Das heißt, wir vertrauen darauf, dass sich jede:r dort am besten entfalten kann, where the heart ist. Du weißt am besten, was für ein Setting du für deine Gedanken brauchst. In Düsseldorf wohnen, und in Berlin arbeiten? Mach’s! Nutze alle Möglichkeiten, ob einen Monat im Jahr aus dem Ausland, regelmäßig im Homeoffice oder jeden Tag im Büro in Kreuzberg - du entscheidest!<br><br><strong>Druckbetankung:</strong> Wir bilden dich weiter mit Buddysessions (Trend- und Kanal-Deep-Dives), individuellen Weiterbildungsprogrammen, internen und externen Workshops sowie unserem wöchentlichen Buddybuzz. Bei uns steht Wissenstransfer an oberster Stelle.<br><br><strong>Wolt, hrmony und co.:</strong> Mit unseren Benefits-Partnern geht dein Team-Lunch einmal pro Woche auf uns, nutze zahlreiche Rabatte über corporate benefits und profitiere vom Angebot von hrmony. &nbsp;Wie üblich gibt es kostenlose Getränke, frisches Obst und Snacks im Büro, wir organisieren zusätzlich regelmäßige Buddybeers und dein Hund ist im Büro auch willkommen!<br><br><strong>We are Buddies:</strong> Tausche dich in Communities zu Interessen deiner Wahl auch unabhängig vom Arbeitskontext aus und bringe dich und deine Ideen in die Agentur ein. Jede*r Einzelne*r bei uns macht das Buddy in Buddybrand aus!\n<p>Originally posted on <a href=\"https://startup.jobs/junior-influencer-creator-marketing-manager-m-w-d-bei-buddybrand-10479227\">startup.jobs</a></p>"
+    },
+    {
+      "id": 10483131,
+      "title": "Emerging Enterprise Core Account Executive, DACH",
+      "url": "https://startup.jobs/emerging-enterprise-core-account-executive-dach-databricks-10483131?utm_source=startup-jobs-key1&utm_medium=api",
+      "published_at": "2026-10-15T10:41:45Z",
+      "employment_type": "full-time",
+      "workplace_type": "on-site",
+      "location": {
+        "city": "Munich",
+        "state": "Bavaria",
+        "country": "Germany",
+        "country_code": "DE"
+      },
+      "roles": [
+        {
+          "title": "Account Executive",
+          "slug": "account-executive"
+        },
+        {
+          "title": "Account Executive, DACH",
+          "slug": "account-executive-dach"
+        }
+      ],
+      "salary": null,
+      "company": {
+        "name": "Databricks",
+        "slug": "databricks",
+        "url": "https://startup.jobs/company/databricks?utm_source=startup-jobs-key1&utm_medium=api",
+        "website_url": "http://databricks.com/",
+        "logo_url": "https://startup.jobs/logos/713",
+        "active_jobs_count": 904
+      },
+      "description_html": "<p data-pm-slice=\"1 1 []\">SLSQ427R945</p>\n<p>As an Emerging Enterprise and Digital Natives Account Executive at Databricks, you come with relevant experience selling to Emerging Enterprise ($250 - $1B revenue) and Digital Native accounts across the DACH region. As a successful candidate you are a self-starter who understands the consumption sales process. You know how to sell innovation and value to existing customers, identify new use cases and grow consumption and can guide deals forward to compress decision cycles. You love understanding a product in-depth and are passionate about communicating its value to customers and partners. You will be offered huge potential for career progression with the pace of the team's growth.</p>\n<p><br><strong>The impact you will have:</strong></p>\n<ul>\n<li>Assess your territory and develop a successful execution strategy&nbsp;</li>\n<li>Drive quarter-on-quarter consumption growth in existing accounts</li>\n<li>Exceed activity and quarterly revenue targets</li>\n<li>Track all customer details including use case, purchase time frames, next steps, and forecasting in Salesforce</li>\n<li>Identify new use case opportunities and showcase value to existing customers</li>\n<li>Promote the value of the Databricks' Data Intelligence Platform&nbsp;</li>\n<li>Ensure 100% satisfaction among all customers</li>\n<li>Connect to your accounts ecosystem (stakeholders, influencers, partners, VC, PE, cloud providers etc)</li>\n<li>Drive both technical and business discussions, adapting the narrative to the audience (C level, middle management, practitioner…) and persona (IT, Data &amp; AI, Finance, Operations, Marketing, Sales…)&nbsp;</li>\n</ul>\n<p><strong>What we look for:</strong></p>\n<ul>\n<li>Strong closing experience selling SaaS / Cloud or Big Data/AI solutions to customers across the DACH region (Digital Native experience is highly desirable)&nbsp;</li>\n<li>Solution and business-outcomes focused sales approach (Command of the Message, MEDDPIC, Challenger Sale)</li>\n<li>Ability to simply articulate intricate cloud &amp; big data / AI technologies and their business value for the customer</li>\n<li>Experience exceeding sales targets/quotas</li>\n<li>Master’s Degree or relevant work experience</li>\n<li>Fluency in English and German is required</li>\n</ul><div class=\"content-conclusion\"><p><strong>About Databricks</strong></p>\n<p><span style=\"font-family: arial, sans-serif;\">Databricks is the Data and AI company. More than 20,000 organizations worldwide — including adidas, AT&amp;T, Bayer, Block, Mastercard, Rivian, Unilever, and 70% of the Fortune 500 — rely on the Databricks Data + AI Platform to build and scale data and AI apps, analytics and agents. Headquartered in San Francisco with 30+ offices around the globe, Databricks offers a unified platform that includes Genie, Lakebase, Agent Bricks, Lakeflow, Lakehouse, and Unity Catalog. To learn more, follow Databricks on <a href=\"https://www.linkedin.com/company/databricks\">LinkedIn</a>, <a href=\"https://x.com/databricks\">X</a>, <a href=\"https://www.youtube.com/@Databricks\">YouTube</a>, and <a href=\"https://www.instagram.com/databricksinc/?hl=en\">Instagram</a>.<br><br><strong>Benefits<br><br></strong></span>At Databricks, we strive to provide comprehensive benefits and perks that meet the needs of all of our employees. For specific details on the benefits offered in your region click <a href=\"https://docs.google.com/document/d/154un3e8Xav4BceOSlcYFZRGEuQI54xMxVydRwQn54eQ/edit?usp=sharing\">here</a>.<br><br></p>\n<p><strong>Our Commitment to Diversity and Inclusion</strong></p>\n<p>At Databricks, we are committed to fostering a diverse and inclusive culture where everyone can excel. We take great care to ensure that our hiring practices are inclusive and meet equal employment opportunity standards. Individuals looking for employment at Databricks are considered without regard to age, color, disability, ethnicity, family or marital status, gender identity or expression, language, national origin, physical and mental ability, political affiliation, race, religion, sexual orientation, socio-economic status, veteran status, and other protected characteristics.</p>\n<p><strong>Compliance</strong></p>\n<p><strong><span style=\"font-weight: 400;\">If access to export-controlled technology or source code is required for performance of job duties, it is within Employer's discretion whether to apply for a U.S. government license for such positions, and Employer may decline to proceed with an applicant on this basis alone.</span></strong></p></div>\n<p>Originally posted on <a href=\"https://startup.jobs/emerging-enterprise-core-account-executive-dach-databricks-10483131\">startup.jobs</a></p>"
+    }
+  ],
+  "total_count": 2013,
+  "has_more": true,
+  "next_cursor": 10483131
+}

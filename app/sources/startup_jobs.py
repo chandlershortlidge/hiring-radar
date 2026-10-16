@@ -2,8 +2,21 @@
 
 Terms (their API page): credit Startup Jobs as the source and link titles back to the
 job page wherever jobs are shown. Returns jobs from the last 14 days with full descriptions.
-The exact response shape is taken from their OpenAPI spec at first use; `parse` is written
-defensively and the fixture in tests/ records what we have actually seen.
+
+Response shape, recorded from a real call (tests/fixtures/feeds/startup_jobs.json):
+`{"data": [...], "total_count": int, "has_more": bool, "next_cursor": int}`. A job carries
+`id`, `title`, `url`, `description_html`, `published_at`, nested `company` (`name`, `slug`,
+`url`) and nested `location` (`city`, `state`, `country`, `country_code`), plus
+`employment_type`, `workplace_type`, `roles` and `salary`, which we do not use.
+
+Pagination is keyed on the id of the last job in the page: `next_cursor` repeats that id,
+and the next page is the same query with `starting_after=<next_cursor>`. There is no `links`
+or `meta` object and no `page`/`offset`/`cursor` parameter — unknown query parameters are
+ignored and silently return page 1 again, so a wrong parameter name looks like a one-page
+feed rather than an error. `has_more` says whether another page exists.
+
+Ordering is not stable between calls, so pages collected minutes apart can repeat or miss
+jobs; dedup at ingest is what makes that harmless.
 """
 
 import os
@@ -51,11 +64,17 @@ def parse(payload) -> list[Posting]:
     return out
 
 
-def next_url(payload) -> str | None:
-    if isinstance(payload, dict):
-        links = payload.get("links") or {}
-        return links.get("next") or (payload.get("meta") or {}).get("next")
-    return None
+def next_url(payload, url: str) -> str | None:
+    """The same query advanced one page, or None at the end of the feed."""
+    if not isinstance(payload, dict) or not payload.get("has_more"):
+        return None
+    cursor = payload.get("next_cursor")
+    if cursor in (None, ""):
+        return None
+    parts = urllib.parse.urlsplit(url)
+    params = [(k, v) for k, v in urllib.parse.parse_qsl(parts.query) if k != "starting_after"]
+    params.append(("starting_after", str(cursor)))
+    return urllib.parse.urlunsplit(parts._replace(query=urllib.parse.urlencode(params)))
 
 
 def fetch(search: str, country: str | None = None, max_pages: int = 3, api_key: str | None = None) -> list[Posting]:
@@ -70,5 +89,5 @@ def fetch(search: str, country: str | None = None, max_pages: int = 3, api_key: 
     while url and pages < max_pages:
         payload = fetch_json(url, headers={"Authorization": f"Bearer {key}"})
         out.extend(parse(payload))
-        url, pages = next_url(payload), pages + 1
+        url, pages = next_url(payload, url), pages + 1
     return out
