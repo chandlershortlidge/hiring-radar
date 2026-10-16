@@ -5,6 +5,26 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-16 — Stage 2 extractor and eval harness
+
+- **Prompt = 8 general principles + the taxonomy as an id list.** No JD-specific rules; a
+  test fails if known legacy Golden phrases appear in the principles.
+- **Every mention must be grounded.** `raw_text` has to appear in the JD (case- and
+  whitespace-insensitive) or the item is rejected and reported. Checked against the
+  Goldens' own answers: 342/344 pass; the 2 failures are synthesized `raw_text` in
+  golden_011 and golden_016 labels, which the scorer doesn't use.
+- **Unknown labels are proposals.** `new:<Label>` (or an id the taxonomy can't resolve
+  as a display/alias) goes to `proposed`, never to mentions. The eval summary lists the
+  most frequent proposals as taxonomy candidates.
+- **No retries.** Anything other than exactly one forced tool call raises; in the eval,
+  that Golden counts as an error with all expected skills missed.
+- **`extractor_version`** hashes the prompt, tool schema, taxonomy, and model, so any
+  change to one of them produces a new version on stored rows and eval runs.
+- **Micro-averaged metrics**, plus Spearman rank correlation and top-10 overlap of skill
+  frequencies across the suite. Three repeats by default; summary reports mean/min/max.
+- Default model `claude-sonnet-5-5` (override with `HIRING_RADAR_MODEL` or `--model`).
+  Not yet run live.
+
 ## 2026-10-16 — Rebuild from scratch; scope, architecture, and evaluation reset
 
 Built after a full review of the legacy `job-skills-dashboard` repo (164 commits, June–Sept 2026).

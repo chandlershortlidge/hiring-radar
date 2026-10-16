@@ -69,6 +69,10 @@ counts, anything that requires LinkedIn.
 ```bash
 uv sync                      # Python deps
 uv run pytest                # tests — model calls are always mocked
+
+# Live eval (needs ANTHROPIC_API_KEY; ~20 model calls per repeat)
+uv run python scripts/run_eval.py --repeats 1     # quick look
+uv run python scripts/run_eval.py                 # dev split, 3 repeats → evals/results/<run_id>/
 ```
 
 ### Stack
@@ -83,6 +87,10 @@ uv run pytest                # tests — model calls are always mocked
 - `app/db.py` — connection + migrations. `app/migrations/NNN_name.sql` — never edit a
   committed migration; add a new one.
 - `app/taxonomy.py` — load/validate `taxonomy/skills.json`, resolve labels to skill ids.
+- `app/extract.py` — stage 2: JD text → skill mentions (taxonomy ids), proposed new
+  skills, and rejected items. Model client is injected.
+- `app/evaluation.py` — scoring (micro P/R/F1, requirement accuracy, rank agreement)
+  and the suite runner. `scripts/run_eval.py` — live CLI around it.
 - `taxonomy/skills.json` — the skill taxonomy. The source of truth for what a skill is.
   See `taxonomy/README.md` for how to edit it.
 - `evals/goldens/` — labeled JDs: text + expected `{skill_id, requirement, raw_text}`.
