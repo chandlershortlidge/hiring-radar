@@ -5,6 +5,33 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-16 — Intake: feeds, dedup, daily poll
+
+- **Five adapters, one Posting shape.** Greenhouse/Lever/Ashby company boards, arbeitnow,
+  startup.jobs (needs a free key; skipped without one). Each adapter's `parse` is pure and
+  pinned to a recorded fixture. Adapters return everything; ingest filters.
+- **Filters at ingest, not fetch.** Title regex (AI/ML/LLM/agent/…) and tracked-city match
+  (`app/geo.py`). Remote-only and untracked-city postings are dropped. Manual adds skip
+  the city filter.
+- **Dedup is three checks in order.** (1) same source + same source id → still listed,
+  bump `last_seen`, no model call. (2) same normalized company AND description similarity
+  ≥ 0.7 (Jaccard over 3-word shingles) → merge: add a sighting; if that source already
+  had a different id for the job, it's a repost (`repost_count` +1). (3) else new job.
+  Company suffixes (GmbH, Inc…) and gender tags ((m/w/d)…) are stripped from keys.
+  Below 0.7 is a new job; no review queue for near-misses yet — add one if the stats show
+  it's needed.
+- **Repost = same source, new id, same text.** Another source finding the same job is a
+  sighting, not a repost.
+- **Extraction is decoupled from fetch** and keyed on `job.extracted_version`: a job is
+  processed once per extractor version, zero-skill jobs included; a taxonomy or prompt
+  change re-queues everything on the next `extract`. One extraction per job is kept.
+- **Coverage query lives in `stats`:** manually added jobs that a feed later matched ÷
+  all manually added jobs.
+- **Polling cadence: daily**, via Railway cron or crontab running `python -m app poll`.
+  Re-running is idempotent.
+- Not built yet: URL paste (ATS detection + HTML/JSON-LD fallback), screenshot path
+  (stage 1), near-miss review, web UI.
+
 ## 2026-10-16 — Two labeling rulings; the labeling guide is frozen
 
 `requirement_accuracy` sat at 0.944 (3 repeats, min 0.942 max 0.945 — stable, not noise)

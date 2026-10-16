@@ -1,0 +1,6 @@
+{"jobs":[
+ {"id":5390795008,"title":"Applied AI Engineer, Enterprise","absolute_url":"https://job-boards.greenhouse.io/acme/jobs/5390795008","location":{"name":"Berlin, Germany"},"updated_at":"2026-08-19T11:20:58-04:00","first_published":"2026-08-01T10:00:00-04:00","company_name":"Acme","content":"&lt;div&gt;&lt;h3&gt;Requirements&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;6+ years as a software engineer&lt;/li&gt;&lt;li&gt;Production experience with LLM applications, including prompting, agent architectures&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;"},
+ {"id":1,"title":"Account Executive","absolute_url":"https://x/1","location":{"name":"Berlin, Germany"},"content":"&lt;p&gt;Sell things&lt;/p&gt;"},
+ {"id":2,"title":"ML Engineer","absolute_url":"https://x/2","location":{"name":"Tokyo, Japan"},"content":"&lt;p&gt;PyTorch required&lt;/p&gt;"},
+ {"id":3,"title":"Empty content","absolute_url":"https://x/3","location":{"name":"Berlin"},"content":""}
+]}

@@ -1,0 +1,75 @@
+"""Run stage 2 over stored jobs that have no skills yet, and persist the results.
+
+Does: find jobs whose `extracted_version` is not the current one, extract, and write
+skill_mention + proposed_skill rows, then stamp the job. One job per transaction.
+
+Does NOT: fetch postings, dedup, or decide which taxonomy/model to use (passed in).
+
+Invariants: a job holds exactly one extraction (the latest; older rows are replaced on
+re-extract); a job is processed once per extractor_version, including jobs with zero skills; a failed extraction leaves the job unstamped and no partial rows, and is reported,
+not raised; re-running is safe.
+"""
+
+import sqlite3
+from dataclasses import dataclass, field
+
+from app.extract import Extraction, extractor_version
+from app.taxonomy import Taxonomy
+
+
+@dataclass
+class ExtractReport:
+    attempted: int = 0
+    succeeded: int = 0
+    failed: list[tuple[int, str]] = field(default_factory=list)
+    mentions: int = 0
+    proposed: int = 0
+
+    def line(self) -> str:
+        return (f"extracted={self.succeeded}/{self.attempted} mentions={self.mentions} "
+                f"proposed={self.proposed} failed={len(self.failed)}")
+
+
+def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int | None = None) -> list[sqlite3.Row]:
+    sql = ("SELECT id, description_text FROM job"
+           " WHERE extracted_version IS NULL OR extracted_version != ? ORDER BY id")
+    if limit:
+        sql += f" LIMIT {int(limit)}"
+    return conn.execute(sql, (version,)).fetchall()
+
+
+def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction) -> None:
+    with conn:
+        conn.execute("DELETE FROM skill_mention WHERE job_id=?", (job_id,))  # one current extraction per job
+        conn.executemany(
+            "INSERT INTO skill_mention (job_id, skill_id, requirement, raw_text, taxonomy_version, extractor_version)"
+            " VALUES (?,?,?,?,?,?)",
+            [(job_id, m.skill_id, m.requirement, m.raw_text, ex.taxonomy_version, ex.extractor_version)
+             for m in ex.mentions])
+        conn.execute("DELETE FROM proposed_skill WHERE job_id=? AND status='pending'", (job_id,))
+        conn.executemany(
+            "INSERT INTO proposed_skill (job_id, label, raw_text) VALUES (?,?,?)",
+            [(job_id, p.label, p.raw_text) for p in ex.proposed])
+        conn.execute("UPDATE job SET extracted_version=? WHERE id=?", (ex.extractor_version, job_id))
+
+
+def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn, model: str,
+                    limit: int | None = None, log=print) -> ExtractReport:
+    """extract_fn(text, tax, model) -> Extraction. Injected so tests never hit the API."""
+    version = extractor_version(tax, model)
+    report = ExtractReport()
+    for row in jobs_needing_extraction(conn, version, limit):
+        report.attempted += 1
+        try:
+            ex = extract_fn(row["description_text"], tax, model)
+        except Exception as e:  # keep going; the job stays pending for the next run
+            report.failed.append((row["id"], f"{type(e).__name__}: {e}"))
+            log(f"  job {row['id']}: FAILED {type(e).__name__}: {str(e)[:200]}")
+            continue
+        if not ex.mentions:
+            log(f"  job {row['id']}: 0 skills")  # legitimate for a partial posting; recorded, not retried
+        store_extraction(conn, row["id"], ex)
+        report.succeeded += 1
+        report.mentions += len(ex.mentions)
+        report.proposed += len(ex.proposed)
+    return report

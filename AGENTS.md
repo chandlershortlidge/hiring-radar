@@ -74,6 +74,13 @@ uv run pytest                # tests — model calls are always mocked
 cp .env.example .env         # then put the key in .env — it is gitignored; never commit it
 uv run python scripts/run_eval.py --repeats 1     # quick look
 uv run python scripts/run_eval.py                 # dev split, 3 repeats → evals/results/<run_id>/
+
+# Intake (writes ./data/hiring-radar.db; migrations apply automatically)
+uv run python -m app poll                 # fetch feeds → ingest → extract new jobs
+uv run python -m app poll --no-extract    # fetch + ingest only (no model calls)
+uv run python -m app extract              # extract anything still pending
+pbpaste | uv run python -m app add-text --company "Acme" --title "AI Engineer" --location Berlin --found-via linkedin
+uv run python -m app stats
 ```
 
 ### Stack
@@ -92,6 +99,16 @@ uv run python scripts/run_eval.py                 # dev split, 3 repeats → eva
   skills, and rejected items. Model client is injected.
 - `app/evaluation.py` — scoring (micro P/R/F1, requirement accuracy, rank agreement)
   and the suite runner. `scripts/run_eval.py` — live CLI around it.
+- `app/sources/` — one adapter per feed (`greenhouse`, `lever`, `ashby`, `arbeitnow`,
+  `startup_jobs`): `parse(payload)` is pure and tested on `tests/fixtures/feeds/`;
+  `fetch()` is the thin HTTP wrapper. `app/html_text.py` strips HTML.
+- `app/dedup.py` — company/title keys and 3-word-shingle Jaccard similarity; `find_match`
+  needs same company AND similarity ≥ 0.7. `app/geo.py` — location → tracked city.
+- `app/ingest.py` — the still-listed / merge / repost / new decision and the title+city
+  filters. `app/pipeline.py` — extract skills for jobs not yet at the current
+  `extractor_version`. `app/poll.py` — run all feeds in `config/feeds.json`.
+- `app/__main__.py` — the CLI (`python -m app ...`).
+- `config/feeds.json` — which feeds to poll. Add a company's Greenhouse/Lever/Ashby board here.
 - `taxonomy/skills.json` — the skill taxonomy. The source of truth for what a skill is.
   See `taxonomy/README.md` for how to edit it.
 - `evals/goldens/` — labeled JDs: text + expected `{skill_id, requirement, raw_text}`.
@@ -120,5 +137,10 @@ Three layout rules:
 
 - `ReAct` (agent pattern) and `React` (framework) differ only by case. The taxonomy
   resolves them case-sensitively; keep it that way.
+- `scripts/seed_from_legacy.py` output no longer matches the committed taxonomy/Goldens
+  (they were hand-edited after seeding). Never run it against the real files.
+- Feeds return everything; `app/ingest.py` filters by title regex and tracked city. A job
+  in an untracked city is dropped, not stored — widen `app/geo.py` to add a city.
+- `skill_mention` holds one extraction per job (the latest). Re-extraction replaces.
 
 <!-- END PROJECT -->

@@ -7,7 +7,8 @@ from app import db
 
 def test_migrate_creates_core_tables_and_is_idempotent(tmp_path):
     conn = db.connect(tmp_path / "t.db")
-    assert db.migrate(conn) == [1]
+    applied = db.migrate(conn)
+    assert applied[0] == 1 and applied == sorted(applied)
     assert db.migrate(conn) == []
     tables = {r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type='table'")}
     assert {"job", "job_source", "screenshot", "skill_mention", "proposed_skill"} <= tables

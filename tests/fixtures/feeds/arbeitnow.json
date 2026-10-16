@@ -1,0 +1,4 @@
+{"data":[
+ {"slug":"ai-agent-architect-berlin-123","company_name":"logen.ai","title":"AI Agent Architect (m/w/d)","description":"<p>Must have:</p><ul><li>Experience with APIs and backend systems</li><li>Basic programming skills, ideally in Python</li></ul>","remote":false,"url":"https://www.arbeitnow.com/jobs/companies/logen-ai/ai-agent-architect-berlin-123","tags":["AI"],"job_types":["full-time"],"location":"Berlin","created_at":1760000000},
+ {"slug":"seo-manager-berlin-456","company_name":"We Love X GmbH","title":"SEO Manager (m/f/d)","description":"<p>SEO</p>","remote":true,"url":"https://x/456","tags":[],"job_types":[],"location":"Berlin","created_at":1760000000}
+],"links":{"first":"https://www.arbeitnow.com/api/job-board-api?page=1","next":"https://www.arbeitnow.com/api/job-board-api?page=2"},"meta":{"current_page":1}}
