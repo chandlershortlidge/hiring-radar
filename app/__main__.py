@@ -146,6 +146,13 @@ def cmd_migrate(args):
     print("ok")
 
 
+def cmd_serve(args):
+    import uvicorn
+    open_db().close()  # apply migrations before the first request
+    print(f"hiring-radar on http://{args.host}:{args.port}  (db: {DB_PATH})")
+    uvicorn.run("app.api:factory", factory=True, host=args.host, port=args.port, reload=args.reload)
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="python -m app", description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -172,6 +179,9 @@ def main(argv=None):
     p.add_argument("--no-extract", action="store_true"); p.set_defaults(fn=cmd_check)
     sub.add_parser("stats").set_defaults(fn=cmd_stats)
     sub.add_parser("migrate").set_defaults(fn=cmd_migrate)
+    p = sub.add_parser("serve", help="run the dashboard API (and web/dist if built)")
+    p.add_argument("--host", default="127.0.0.1"); p.add_argument("--port", type=int, default=int(os.environ.get("PORT", 8000)))
+    p.add_argument("--reload", action="store_true"); p.set_defaults(fn=cmd_serve)
     args = ap.parse_args(argv)
     args.fn(args)
 

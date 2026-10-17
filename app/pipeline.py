@@ -30,12 +30,19 @@ class ExtractReport:
                 f"proposed={self.proposed} failed={len(self.failed)}")
 
 
-def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int | None = None) -> list[sqlite3.Row]:
+def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int | None = None,
+                            job_ids: list[int] | None = None) -> list[sqlite3.Row]:
+    """Jobs without a current extraction; `job_ids` narrows to those jobs (the add endpoints)."""
     sql = ("SELECT id, description_text FROM job"
-           " WHERE extracted_version IS NULL OR extracted_version != ? ORDER BY id")
+           " WHERE (extracted_version IS NULL OR extracted_version != ?)")
+    params: list = [version]
+    if job_ids:
+        sql += f" AND id IN ({','.join('?' * len(job_ids))})"
+        params += list(job_ids)
+    sql += " ORDER BY id"
     if limit:
         sql += f" LIMIT {int(limit)}"
-    return conn.execute(sql, (version,)).fetchall()
+    return conn.execute(sql, params).fetchall()
 
 
 def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction) -> None:
@@ -56,11 +63,11 @@ def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction) -> N
 
 
 def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn, model: str,
-                    limit: int | None = None, log=print) -> ExtractReport:
+                    limit: int | None = None, log=print, job_ids: list[int] | None = None) -> ExtractReport:
     """extract_fn(text, tax, model) -> Extraction. Injected so tests never hit the API."""
     version = extractor_version(tax, model)
     report = ExtractReport()
-    for row in jobs_needing_extraction(conn, version, limit):
+    for row in jobs_needing_extraction(conn, version, limit, job_ids):
         report.attempted += 1
         try:
             ex = extract_fn(row["description_text"], tax, model)

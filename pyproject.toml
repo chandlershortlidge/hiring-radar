@@ -5,11 +5,17 @@ description = "What skills is the AI job market asking for, by city — extracte
 requires-python = ">=3.12"
 dependencies = [
     "anthropic>=1.15.0",
+    "fastapi>=0.143.3",
     "python-dotenv>=1.2.4",
+    "python-multipart>=0.0.32",
+    "uvicorn[standard]>=0.54.0",
 ]
 
 [dependency-groups]
-dev = ["pytest>=8"]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=8",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
