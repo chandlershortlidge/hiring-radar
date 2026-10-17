@@ -287,10 +287,16 @@ def check_url(conn: sqlite3.Connection, url: str, feeds: list[dict], company: st
     if posting is None:
         posting, how = posting_from_html(url, fetch_page(url), company, title, location)
         result.notes.append(f"read posting from {how}")
-    elif company or title or location:
-        posting = Posting(posting.source, posting.source_job_id, posting.url,
-                          company or posting.company, title or posting.title,
-                          location or posting.location_raw, posting.description_text, posting.posted_at)
+    else:
+        # Lever and Ashby boards don't name the company; the board token is its slug
+        # ("almedia" ↔ "Almedia GmbH" under company_key), so use it unless told otherwise.
+        fallback = company or posting.company or ref.token
+        if fallback != posting.company or title or location:
+            posting = Posting(posting.source, posting.source_job_id, posting.url, fallback,
+                              title or posting.title, location or posting.location_raw,
+                              posting.description_text, posting.posted_at)
+            if not company and fallback == ref.token:
+                result.notes.append(f"company taken from board token: {ref.token!r}")
     result.posting = posting
 
     # 3. Same company, stored under another source?

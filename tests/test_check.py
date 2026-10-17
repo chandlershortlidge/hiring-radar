@@ -172,3 +172,22 @@ def test_diagnose_is_pure_and_names_the_filter():
     p = Posting("url", "", "u", "Acme", "Call Center Agent", "Berlin", JD)
     assert "fails the title filter" in diagnose(p, None, FEEDS, None)
     assert "no feed can reach it" in diagnose(p, None, FEEDS, None)
+
+
+def test_board_without_company_uses_board_token_for_the_match(conn):
+    ingest_one(conn, posting(company="Almedia GmbH"))   # stored via arbeitnow
+    url = "https://jobs.ashbyhq.com/almedia/0a1b2c3d-1111-2222-3333-444455556666"
+    board = [Posting("ashby", "0a1b2c3d-1111-2222-3333-444455556666", url, None, "AI Engineer", "Berlin", JD)]
+    r = check_url(conn, url, FEEDS, fetch_page=no_fetch, fetch_board=lambda s, t: board)
+    assert r.verdict == "found" and r.job_id == 1 and r.sources == ["arbeitnow"]
+    assert "company taken from board token: 'almedia'" in r.notes
+    assert r.posting.company == "almedia"
+
+
+def test_board_without_company_not_found_hint_names_the_token(conn):
+    url = "https://jobs.ashbyhq.com/almedia/0a1b2c3d-1111-2222-3333-444455556666"
+    board = [Posting("ashby", "0a1b2c3d-1111-2222-3333-444455556666", url, None, "AI Engineer", "Berlin", JD)]
+    r = check_url(conn, url, FEEDS, fetch_page=no_fetch, fetch_board=lambda s, t: board)
+    assert r.verdict == "not_found"
+    assert json.loads(r.diagnosis.split("add ", 1)[1])["company"] == "almedia"
+    assert not any("pass --company" in n for n in r.notes)
