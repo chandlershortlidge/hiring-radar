@@ -5,6 +5,17 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-17 — Held-out Goldens: only postings labeled after the freeze
+
+A held-out Golden is one labeled **after the prompt and taxonomy froze (2026-10-16)** and
+never used while tuning — not looked at, not scored against while a rule was being changed.
+The original 20 Goldens are `dev` permanently: all of them were labeled, relabeled or
+scored against while the prompt and taxonomy were being written, so none can serve as an
+out-of-sample check. **golden_021 (Almedia) is the first held-out item.** New Goldens go to
+`heldout` unless they are added to fix a dev-side problem.
+
+---
+
 ## 2026-10-17 — Every `check` is logged; coverage is measured over checked URLs
 
 The coverage line in `stats` (manually added jobs a feed later matched) read 0/48 and
