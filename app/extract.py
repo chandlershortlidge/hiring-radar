@@ -89,8 +89,10 @@ TOOL = {
                     "additionalProperties": False,
                 },
             },
-            "seniority": {"type": ["string", "null"], "enum": ["junior", "mid", "senior", None]},
-            "seniority_basis": {"type": ["string", "null"], "enum": ["stated", "inferred", None]},
+            # A nullable enum must be anyOf: the API rejects an enum whose values do not all
+            # match a union `type` (400 "Enum value 'junior' does not match declared type").
+            "seniority": {"anyOf": [{"type": "string", "enum": list(SENIORITY_LEVELS)}, {"type": "null"}]},
+            "seniority_basis": {"anyOf": [{"type": "string", "enum": ["stated", "inferred"]}, {"type": "null"}]},
             "seniority_signal": {"type": ["string", "null"]},
         },
         "required": ["skills", "seniority", "seniority_basis", "seniority_signal"],

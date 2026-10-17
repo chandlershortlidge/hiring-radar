@@ -219,4 +219,27 @@ def test_extract_carries_seniority(tax):
 
 def test_tool_schema_requires_seniority_fields():
     assert {"seniority", "seniority_basis", "seniority_signal"} <= set(ex.TOOL["input_schema"]["required"])
-    assert ex.TOOL["input_schema"]["properties"]["seniority"]["enum"] == ["junior", "mid", "senior", None]
+    levels = ex.TOOL["input_schema"]["properties"]["seniority"]["anyOf"]
+    assert levels == [{"type": "string", "enum": ["junior", "mid", "senior"]}, {"type": "null"}]
+
+
+def _schema_nodes(node):
+    """Every dict in the schema tree, so a shape rule can be asserted over all of them."""
+    if isinstance(node, dict):
+        yield node
+        for v in node.values():
+            yield from _schema_nodes(v)
+    elif isinstance(node, list):
+        for v in node:
+            yield from _schema_nodes(v)
+
+
+def test_no_enum_sits_on_a_union_type():
+    """The API 400s on an enum whose values do not all match a union `type`.
+
+    A nullable enum has to be expressed as anyOf, so no node may carry both an `enum`
+    and a list-valued `type`.
+    """
+    for node in _schema_nodes(ex.TOOL["input_schema"]):
+        if "enum" in node:
+            assert not isinstance(node.get("type"), list), node
