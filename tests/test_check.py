@@ -3,8 +3,8 @@ import json
 import pytest
 
 from app import db
-from app.check import (AtsRef, check_url, containment, diagnose, parse_ats_url,
-                       posting_from_html)
+from app.check import (AtsRef, CheckResult, check_url, checked_coverage, containment, diagnose,
+                       feed_had_it, log_check, parse_ats_url, posting_from_html)
 from app.ingest import ingest_one
 from app.sources import Posting
 
@@ -191,3 +191,55 @@ def test_board_without_company_not_found_hint_names_the_token(conn):
     assert r.verdict == "not_found"
     assert json.loads(r.diagnosis.split("add ", 1)[1])["company"] == "almedia"
     assert not any("pass --company" in n for n in r.notes)
+
+
+# --- check log and checked-URL coverage ---------------------------------------------------
+
+T1, T2 = "2026-10-17T10:00:00Z", "2026-10-17T10:05:00Z"
+
+
+def test_feed_had_it_needs_a_feed_source():
+    assert feed_had_it(CheckResult("u", "found", "ats id", sources=["greenhouse"]))
+    assert feed_had_it(CheckResult("u", "found", "text 0.9", sources=["screenshot", "arbeitnow"]))
+    assert not feed_had_it(CheckResult("u", "found", "text 0.9", sources=["screenshot", "url"]))
+    assert not feed_had_it(CheckResult("u", "not_found", "", sources=[]))
+
+
+def test_logged_check_counts_a_feed_hit_and_a_miss(conn):
+    ingest_one(conn, posting(source="greenhouse", sid="4012345", url=GH_URL))
+    hit = check_url(conn, GH_URL, FEEDS, fetch_page=no_fetch, fetch_board=no_fetch)
+    log_check(conn, hit, "linkedin", T1)
+    url = "https://jobs.lever.co/newco/0a1b2c3d-1111-2222-3333-444455556666"
+    board = [Posting("lever", "0a1b2c3d-1111-2222-3333-444455556666", url, "NewCo", "AI Engineer", "Berlin", JD)]
+    miss = check_url(conn, url, FEEDS, fetch_page=no_fetch, fetch_board=lambda s, t: board)
+    log_check(conn, miss, "linkedin", T1)
+    assert checked_coverage(conn) == (1, 2)
+    row = conn.execute("SELECT * FROM url_check WHERE verdict='not_found'").fetchone()
+    assert row["job_id"] is None and row["found_via"] == "linkedin"
+    assert row["diagnosis"].startswith("board lever:newco is not in config/feeds.json")
+
+
+def test_recheck_after_poll_does_not_count_as_the_feed_having_had_it(conn):
+    # The /check-url flow: miss → add board → poll → re-check finds it. Only the first check counts.
+    url = "https://jobs.lever.co/newco/0a1b2c3d-1111-2222-3333-444455556666"
+    board = [Posting("lever", "0a1b2c3d-1111-2222-3333-444455556666", url, "NewCo", "AI Engineer", "Berlin", JD)]
+    log_check(conn, check_url(conn, url, FEEDS, fetch_page=no_fetch, fetch_board=lambda s, t: board), "linkedin", T1)
+    ingest_one(conn, board[0])   # what the poll does once the board is in feeds.json
+    again = check_url(conn, url, FEEDS, fetch_page=no_fetch, fetch_board=no_fetch)
+    assert again.verdict == "found"
+    log_check(conn, again, "linkedin", T2)
+    assert checked_coverage(conn) == (0, 1)
+
+
+def test_found_only_via_a_manual_add_is_not_feed_coverage(conn):
+    ingest_one(conn, posting(source="url", sid="https://acme.com/careers/ai", url="https://acme.com/careers/ai"),
+               require_city=False, found_via="company_site", trust_title=True)
+    r = check_url(conn, "https://acme.com/careers/ai", FEEDS, company="Acme GmbH",
+                  fetch_page=lambda u: page(), fetch_board=no_fetch)
+    assert r.verdict == "found"
+    log_check(conn, r, "linkedin", T1)
+    assert checked_coverage(conn) == (0, 1)
+
+
+def test_no_checks_logged_is_zero_of_zero(conn):
+    assert checked_coverage(conn) == (0, 0)

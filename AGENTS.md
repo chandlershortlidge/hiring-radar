@@ -118,7 +118,8 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   `extractor_version`. `app/poll.py` — run all feeds in `config/feeds.json`.
 - `app/check.py` — `check`: a careers-page URL → found / not found, and on a miss why no
   feed could have stored it (board not polled, filter would drop it, not an ATS page).
-  Read-only; `--add` in the CLI hands the resolved posting to `ingest_one`.
+  Writes only its own log (`url_check`, the first check per URL drives the coverage line
+  in `stats`); `--add` in the CLI hands the resolved posting to `ingest_one`.
 - `app/__main__.py` — the CLI (`python -m app ...`).
 - `.claude/skills/check-url/` — `/check-url <url>`: runs `check` and acts on the verdict
   (adds the board to `config/feeds.json` and polls; stops on filter judgment calls).

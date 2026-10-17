@@ -4,8 +4,9 @@
   extract           extract skills for any job still missing them (e.g. after a taxonomy bump)
   add-text          add one job from pasted text (reads stdin): --company --title --location --found-via
   add-screenshot    add one job from an image file (stage 1 vision → stage 2): same flags + path
-  check             is this careers-page URL already in the DB? If not, why no feed stored it. --add ingests it
-  stats             counts by city and source; feed coverage of manually added jobs
+  check             is this careers-page URL already in the DB? If not, why no feed stored it. --add ingests it;
+                    every check is logged for the coverage line in `stats`
+  stats             counts by city and source; feed coverage of manually added jobs and of checked URLs
   migrate           apply pending migrations and exit
 
 Database path: $HIRING_RADAR_DB, default ./data/hiring-radar.db.
@@ -22,7 +23,7 @@ ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(ROOT / ".env")
 
 from app import db  # noqa: E402
-from app.check import check_url  # noqa: E402
+from app.check import check_url, checked_coverage, log_check  # noqa: E402
 from app.extract import DEFAULT_MODEL, extract, make_client  # noqa: E402
 from app.ingest import ingest_one, job_id_for_screenshot, now_iso, store_screenshot  # noqa: E402
 from app.pipeline import extract_pending  # noqa: E402
@@ -100,6 +101,7 @@ def cmd_add_screenshot(args):
 def cmd_check(args):
     conn = open_db()
     r = check_url(conn, args.url, load_feeds(), args.company, args.title, args.location)
+    log_check(conn, r, args.found_via, now_iso())
     print(r.line())
     for n in r.notes:
         print(f"  note: {n}")
@@ -132,6 +134,9 @@ def cmd_stats(args):
     """).fetchone()
     if manual["total"]:
         print(f"feed coverage of manually added jobs: {manual['covered']}/{manual['total']}")
+    covered, checked = checked_coverage(conn)
+    if checked:
+        print(f"feed coverage of checked URLs (first check each): {covered}/{checked}")
     pending = conn.execute("SELECT count(*) FROM proposed_skill WHERE status='pending'").fetchone()[0]
     print(f"proposed skills pending review: {pending}")
 

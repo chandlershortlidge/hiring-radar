@@ -5,6 +5,28 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-17 — Every `check` is logged; coverage is measured over checked URLs
+
+The coverage line in `stats` (manually added jobs a feed later matched) read 0/48 and
+could not move: all 48 manual jobs are legacy screenshots with no URL, and a `check` that
+found the posting already in a feed left no trace, which was the most informative outcome
+of all. So `check` now appends one row to `url_check` (migration 005): url, time,
+`found_via`, verdict, matched job, and `feed_had_it`.
+
+- **`feed_had_it` is fixed at check time:** found, and at least one of the job's sources
+  is a feed (not `url`/`paste`/`screenshot`). A job a person added by hand earlier does
+  not count as feed coverage.
+- **Only the first check of a URL counts.** The /check-url skill re-checks after adding a
+  board and polling; that re-check finds the job via the feed and would otherwise score as
+  the feed having had it all along. A different URL for the same posting counts again;
+  accepted, it should be rare.
+- **`check_url` itself still never writes.** `log_check` is called from the CLI; the
+  existing coverage line stays alongside the new one.
+- **`found_via` default unchanged** (`company_site`, from the `check` entry below). For
+  the LinkedIn flow pass `--found-via linkedin`; the skill now says so.
+
+---
+
 ## 2026-10-17 — Skills count only where the candidate is asked for them (PRINCIPLES rule 1)
 
 The chart measures **what employers ask candidates to have**, not what the job involves.

@@ -14,7 +14,12 @@ lookup, edit `app/ingest.py` filters, or touch the database by hand.
 uv run python -m app check "<url>"            # quote the URL: ? and & break the shell
 ```
 
-Add `--company "<Name>"` only if the person gave one or the output asks for it.
+Add `--company "<Name>"` only if the person gave one or the output asks for it. Add
+`--found-via linkedin` (or `indeed`, `referral`) when the person says where they found the
+posting; the default is `company_site`.
+
+Every `check` is logged to `url_check` and feeds the "coverage of checked URLs" line in
+`stats`. Only the first check of a URL counts, so the re-checks below are safe to run.
 
 ## 2. Act on the verdict — exactly one branch
 

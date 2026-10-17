@@ -12,12 +12,18 @@ Does:
     filter would have dropped it; board polled and it would have passed (a feed bug, or
     posted since the last poll); not a feed-reachable page at all.
 
-Does NOT: write to the database (the CLI's --add hands the resolved Posting to
-app.ingest), call a model, or fetch LinkedIn (its pages are not readable without a login
+  - log each check (`log_check`) and report coverage over the logged checks
+    (`checked_coverage`): of the URLs a person checked, how many a feed already had.
+
+Does NOT: write anything but the url_check log (the CLI's --add hands the resolved Posting
+to app.ingest), call a model, or fetch LinkedIn (its pages are not readable without a login
 and the project does not scrape it).
 
-Invariants: `parse_ats_url`, `posting_from_html`, `containment` and `diagnose` are pure;
-`check_url` does I/O only through the injected fetchers, so tests never touch the network.
+Invariants: `parse_ats_url`, `posting_from_html`, `containment`, `diagnose` and
+`feed_had_it` are pure; `check_url` reads the DB and never writes it, and does network I/O
+only through the injected fetchers, so tests never touch the network. Coverage counts only
+the first check of each URL: the /check-url skill re-checks after adding a board and
+polling, and that re-check must not count as the feed having had the posting.
 Text matching here is one-directional containment (how much of the *stored* JD appears on
 the page), not ingest's symmetric Jaccard: a careers page carries nav, footer and other
 listings, which would sink a symmetric score for the same posting.
@@ -37,6 +43,7 @@ from app.ingest import in_scope_title
 from app.sources import Posting, ashby, fetch_text, greenhouse, lever
 
 CONTAINMENT_THRESHOLD = 0.7   # share of a stored JD's 3-word shingles that must appear on the page
+MANUAL_SOURCES = ("url", "paste", "screenshot")   # job_source values a person added; the rest are feeds
 
 _ATS_PATTERNS = (
     # https://boards.greenhouse.io/acme/jobs/4012345  (also job-boards.greenhouse.io, job-boards.eu.greenhouse.io)
@@ -315,3 +322,27 @@ def _found(conn, result: CheckResult, job_id: int, how: str) -> CheckResult:
     result.job_title = conn.execute("SELECT title FROM job WHERE id=?", (job_id,)).fetchone()["title"]
     result.sources = sources_of(conn, job_id)
     return result
+
+
+def feed_had_it(result: CheckResult) -> bool:
+    """Pure: the check found the posting and at least one feed had stored it."""
+    return result.verdict == "found" and any(s not in MANUAL_SOURCES for s in result.sources)
+
+
+def log_check(conn: sqlite3.Connection, result: CheckResult, found_via: str | None, now: str) -> None:
+    conn.execute(
+        "INSERT INTO url_check (url, checked_at, found_via, verdict, job_id, feed_had_it, diagnosis)"
+        " VALUES (?, ?, ?, ?, ?, ?, ?)",
+        (result.url, now, found_via, result.verdict, result.job_id, int(feed_had_it(result)),
+         result.diagnosis or None))
+    conn.commit()
+
+
+def checked_coverage(conn: sqlite3.Connection) -> tuple[int, int]:
+    """(URLs whose first check found the posting already in a feed, distinct URLs checked)."""
+    row = conn.execute("""
+        SELECT count(*) total, coalesce(sum(c.feed_had_it), 0) covered
+        FROM url_check c
+        WHERE c.id = (SELECT min(id) FROM url_check WHERE url = c.url)
+    """).fetchone()
+    return row["covered"], row["total"]
