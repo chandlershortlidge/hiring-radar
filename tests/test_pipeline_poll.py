@@ -38,6 +38,13 @@ def test_extract_pending_stores_mentions_and_stamps_jobs(conn):
     assert pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None).attempted == 0
 
 
+def test_legacy_stamped_jobs_are_never_re_extracted(conn):
+    conn.execute("UPDATE job SET extracted_version='legacy' WHERE id=1")
+    r = pipeline.extract_pending(conn, TAX, fake_extract([Mention("python", "required", "Python")]), "m", log=lambda *_: None)
+    assert r.attempted == 2
+    assert conn.execute("SELECT extracted_version FROM job WHERE id=1").fetchone()[0] == "legacy"
+
+
 def test_zero_skill_job_is_stamped_and_not_retried(conn):
     r = pipeline.extract_pending(conn, TAX, fake_extract([]), "m", log=lambda *_: None)
     assert r.succeeded == 3 and r.mentions == 0

@@ -5,6 +5,22 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-17 — Legacy-only jobs are listed but never charted or re-extracted
+
+Of the 48 jobs imported from the old project, 7 had no posting text and no screenshot.
+They were inserted with the old summary as text and the hackathon extractor's skills,
+stamped `extracted_version='legacy'`. Those skills were never produced by the evaluated
+extractor, and re-extracting from a summary would be worse than the labels they carry.
+
+Decision: `queries.job_set_clause` excludes them from skill frequencies and city totals;
+`list_jobs`/`job_detail` include them with `legacy: true` so the UI can show them greyed;
+`pipeline.jobs_needing_extraction` skips them permanently. The way to fix one is to add
+the real posting (link or screenshot), which supersedes it through the normal dedup path.
+
+The 21 screenshot-transcribed imports are a separate, open question: the extractor is
+evaluated, the transcription step is not. Labeling a sample of them as held-out Goldens
+(checking transcript against image first) covers both.
+
 ## 2026-10-17 — Held-out Goldens: only postings labeled after the freeze
 
 A held-out Golden is one labeled **after the prompt and taxonomy froze (2026-10-16)** and

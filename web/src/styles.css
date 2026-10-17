@@ -140,6 +140,7 @@ select.sel { padding-right: 28px; }
 .srcs { display: flex; gap: 4px; }
 .src { display: inline-flex; align-items: center; height: 20px; padding: 0 5px; border: 1px solid var(--line-3); border-radius: 4px; font: 10.5px var(--mono); color: var(--ink-2); }
 .row .exp { width: 32px; height: 32px; border: 0; border-radius: 6px; background: transparent; color: var(--ink-2); display: inline-flex; align-items: center; justify-content: center; }
+.row.legacy .co, .row.legacy .ti { color: var(--ink-3); }
 .row.open-row { background: #fafafa; box-shadow: inset 3px 0 0 var(--ink); border-bottom: 0; }
 .row.open-row .co { font-weight: 600; }
 .detail { background: #fafafa; box-shadow: inset 3px 0 0 var(--ink); border-bottom: 1px solid var(--line); padding: 4px 20px 20px; display: flex; flex-direction: column; gap: 16px; }

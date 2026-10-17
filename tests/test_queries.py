@@ -97,6 +97,19 @@ def test_job_detail(conn):
     assert q.job_detail(conn, 999, NOW) is None
 
 
+def test_legacy_jobs_stay_out_of_the_chart_but_in_the_list(conn):
+    jid = add(conn, "Zeta", "AI Engineer", "Berlin", "paste", ts(1), [("python", "required"), ("docker", "required")])
+    conn.execute("UPDATE job SET extracted_version='legacy' WHERE id=?", (jid,))
+    f = q.Filters(window="all")
+    assert q.skill_frequency(conn, f, NOW)["total"] == 5            # not 6
+    assert {s["skill_id"]: s["count"] for s in q.skill_frequency(conn, f, NOW)["skills"]}["docker"] == 1
+    assert q.city_totals(conn, f, NOW) == {"Berlin": 4, "San Francisco": 1}
+    r = q.list_jobs(conn, f, NOW)
+    assert r["total"] == 6 and {j["company"]: j["legacy"] for j in r["jobs"]}["Zeta"] is True
+    assert q.job_detail(conn, jid, NOW)["legacy"] is True
+    assert q.stats(conn, NOW, 1)["legacy"] == 1
+
+
 def test_proposed_grouping_and_resolution(conn):
     groups = q.proposed_skills(conn)
     assert [(g["label"], g["count"]) for g in groups] == [("Rust", 2), ("DSPy", 1)]  # case-insensitive group

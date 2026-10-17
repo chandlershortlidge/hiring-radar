@@ -26,6 +26,8 @@ MANUAL_OPEN_DAYS = 60
 WINDOWS = ("open", "30d", "90d", "all")
 REQUIREMENTS = ("required", "all")
 SENIORITIES = ("junior", "mid", "senior")
+LEGACY_VERSION = "legacy"   # jobs imported with the hackathon extractor's skills and no real JD text
+_NOT_LEGACY = "(j.extracted_version IS NULL OR j.extracted_version != 'legacy')"
 
 
 def now_iso() -> str:
@@ -58,9 +60,12 @@ def open_clause(now: str) -> tuple[str, list]:
             [_days_ago(now, FEED_OPEN_DAYS), _days_ago(now, MANUAL_OPEN_DAYS)])
 
 
-def job_set_clause(f: Filters, now: str) -> tuple[str, list]:
-    """WHERE fragment (over alias j) selecting the jobs the filters describe."""
-    parts, params = [], []
+def job_set_clause(f: Filters, now: str, include_legacy: bool = False) -> tuple[str, list]:
+    """WHERE fragment (over alias j) selecting the jobs the filters describe.
+
+    Legacy-imported jobs are out unless include_legacy: their skills were never produced by
+    the evaluated extractor, so they must not reach the chart. The job list shows them."""
+    parts, params = ([] if include_legacy else [_NOT_LEGACY]), []
     if f.cities:
         parts.append(f"j.city IN ({','.join('?' * len(f.cities))})")
         params += list(f.cities)
@@ -93,8 +98,9 @@ def stats(conn: sqlite3.Connection, now: str, skills_tracked: int) -> dict:
     companies = conn.execute("SELECT count(DISTINCT lower(company)) FROM job WHERE company IS NOT NULL").fetchone()[0]
     last = conn.execute("SELECT max(last_seen) FROM job").fetchone()[0]
     pending = conn.execute("SELECT count(*) FROM proposed_skill WHERE status='pending'").fetchone()[0]
+    legacy = conn.execute("SELECT count(*) FROM job WHERE extracted_version = ?", (LEGACY_VERSION,)).fetchone()[0]
     return {"jobs": total, "open": open_total, "open_by_city": by_city, "companies": companies,
-            "skills_tracked": skills_tracked, "last_updated": last, "proposed_pending": pending,
+            "skills_tracked": skills_tracked, "last_updated": last, "proposed_pending": pending, "legacy": legacy,
             "open_rule": {"feed_days": FEED_OPEN_DAYS, "manual_days": MANUAL_OPEN_DAYS}}
 
 
@@ -145,7 +151,7 @@ def _status(row, now: str, feed_sources: set[str]) -> str:
 
 def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newest",
               limit: int = 20, offset: int = 0) -> dict:
-    jc, jp = job_set_clause(f, now)
+    jc, jp = job_set_clause(f, now, include_legacy=True)
     params = list(jp)
     where = [jc]
     if f.skill_id:
@@ -161,7 +167,7 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
     order = SORTS.get(sort, SORTS["newest"])
     rows = conn.execute(
         f"SELECT j.id, j.company, j.title, j.city, j.seniority, j.seniority_basis, j.first_seen, j.last_seen,"
-        f" j.repost_count FROM job j WHERE {w} ORDER BY {order} LIMIT ? OFFSET ?",
+        f" j.repost_count, j.extracted_version FROM job j WHERE {w} ORDER BY {order} LIMIT ? OFFSET ?",
         params + [limit, offset]).fetchall()
     ids = [r["id"] for r in rows]
     srcs: dict[int, list] = {i: [] for i in ids}
@@ -183,6 +189,7 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
     jobs = []
     for r in rows:
         d = dict(r)
+        d["legacy"] = d.pop("extracted_version") == LEGACY_VERSION
         d["sources"] = srcs[r["id"]]
         d["status"] = _status(r, now, {s["source"] for s in d["sources"]})
         d["skill_counts"] = skill_counts[r["id"]]
@@ -202,6 +209,7 @@ def job_detail(conn: sqlite3.Connection, job_id: int, now: str) -> dict | None:
         "SELECT source, source_job_id, url, found_via, first_seen, last_seen, posted_at FROM job_source"
         " WHERE job_id = ? ORDER BY first_seen", (job_id,))]
     d["status"] = _status(r, now, {s["source"] for s in d["sources"]})
+    d["legacy"] = d["extracted_version"] == LEGACY_VERSION
     d["skills"] = [dict(m) for m in conn.execute(
         "SELECT skill_id, requirement, raw_text FROM skill_mention WHERE job_id = ?"
         " ORDER BY requirement = 'required' DESC, skill_id", (job_id,))]

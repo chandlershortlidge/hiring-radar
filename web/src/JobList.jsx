@@ -72,9 +72,9 @@ function Row({ job: j, open, onToggle, profile, taxonomy }) {
   const cov = profile ? coverage(profile, (j.required_skills || []).map((id) => ({ skill_id: id, requirement: "required" }))) : null;
   return (
     <>
-      <div className={`row${open ? " open-row" : ""}`} onClick={onToggle} role="button" tabIndex={0} aria-expanded={open}
+      <div className={`row${open ? " open-row" : ""}${j.legacy ? " legacy" : ""}`} onClick={onToggle} role="button" tabIndex={0} aria-expanded={open}
         onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onToggle(); } }}>
-        <span className="co">{j.company}</span>
+        <span className="co">{j.company}{j.legacy && <span className="src" style={{ marginLeft: 6 }} title="Imported from the old project with its skills; not in the chart">legacy</span>}</span>
         <span className="ti">{cov && <span className={`fit${cov.covered === cov.total ? " full" : ""}`} title={`You cover ${cov.covered} of ${cov.total} required skills`}>{cov.covered}/{cov.total}</span>}{j.title}{j.seniority && <span className="dim" style={{ marginLeft: 8, fontSize: 12 }}>{cap(j.seniority)}</span>}</span>
         <span className="ci muted">{j.city || "—"}</span>
         <span className="fs muted" style={{ fontSize: 13 }}>{timeAgo(j.first_seen)}</span>
@@ -123,6 +123,9 @@ function Detail({ job, d, profile, taxonomy, cov }) {
       )}
       {cov && (
         <div className="cover">You cover <b>{cov.covered} of {cov.total}</b> required skills{cov.missing.length ? ` · missing: ${cov.missing.map((id) => taxonomy[id] || id).join(", ")}` : " · full match"}.</div>
+      )}
+      {d.legacy && (
+        <div className="cover">Imported from the old project with the old extractor's skills and no posting text, so it is <b>left out of the chart</b> and never re-extracted. Add the posting via a link or screenshot to replace it.</div>
       )}
       {d.proposed.filter((p) => p.status === "pending").length > 0 && (
         <div className="cover">Also mentions {d.proposed.filter((p) => p.status === "pending").map((p) => p.label).join(", ")} — not in the taxonomy yet, waiting for review.</div>

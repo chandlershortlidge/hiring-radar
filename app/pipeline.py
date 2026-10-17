@@ -32,9 +32,12 @@ class ExtractReport:
 
 def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int | None = None,
                             job_ids: list[int] | None = None) -> list[sqlite3.Row]:
-    """Jobs without a current extraction; `job_ids` narrows to those jobs (the add endpoints)."""
+    """Jobs without a current extraction; `job_ids` narrows to those jobs (the add endpoints).
+
+    Jobs stamped 'legacy' are never re-extracted: they carry the old summary as text, not
+    the posting, so a fresh extraction would be worse than the labels they have."""
     sql = ("SELECT id, description_text FROM job"
-           " WHERE (extracted_version IS NULL OR extracted_version != ?)")
+           " WHERE (extracted_version IS NULL OR extracted_version != ?) AND extracted_version IS NOT 'legacy'")
     params: list = [version]
     if job_ids:
         sql += f" AND id IN ({','.join('?' * len(job_ids))})"
