@@ -176,3 +176,47 @@ def test_prompt_contains_no_golden_specific_text(tax):
     # Guard for the AGENTS.md rule: no JD wording copied into the prompt.
     for phrase in ("Agentic Coding Patterns", "Golden", "full-stack competence", "Elasticsearch, pgvector"):
         assert phrase not in ex.PRINCIPLES
+
+
+# --- seniority -------------------------------------------------------------------
+
+SEN_JD = "Senior AI Engineer (m/w/d). Requirements: 5+ years building production ML systems. Python."
+
+
+def test_seniority_stated_with_quoted_signal():
+    s = ex.parse_seniority({"seniority": "senior", "seniority_basis": "stated", "seniority_signal": "Senior AI Engineer"}, SEN_JD)
+    assert s == ex.Seniority("senior", "stated", "Senior AI Engineer")
+
+
+def test_seniority_inferred_keeps_level_even_if_signal_is_not_verbatim():
+    s = ex.parse_seniority({"seniority": "senior", "seniority_basis": "inferred", "seniority_signal": "five years experience"}, SEN_JD)
+    assert s == ex.Seniority("senior", "inferred", None)
+
+
+def test_seniority_stated_without_signal_is_dropped():
+    s = ex.parse_seniority({"seniority": "senior", "seniority_basis": "stated", "seniority_signal": None}, SEN_JD)
+    assert s == ex.NO_SENIORITY
+
+
+@pytest.mark.parametrize("data", [
+    {"seniority": None, "seniority_basis": None, "seniority_signal": None},
+    {"seniority": "lead", "seniority_basis": "stated", "seniority_signal": "Senior AI Engineer"},
+    {"seniority": "mid", "seniority_basis": None, "seniority_signal": None},
+    {},
+])
+def test_seniority_invalid_or_absent_is_no_seniority(data):
+    assert ex.parse_seniority(data, SEN_JD) == ex.NO_SENIORITY
+
+
+def test_extract_carries_seniority(tax):
+    tool = SimpleNamespace(type="tool_use", name="record_skills", input={
+        "skills": [item("python", "Python")], "seniority": "senior", "seniority_basis": "stated",
+        "seniority_signal": "Senior AI Engineer"})
+    resp = SimpleNamespace(stop_reason="tool_use", content=[tool], usage=None)
+    out = ex.extract(SEN_JD, tax, FakeClient(resp), model="m")
+    assert out.seniority.level == "senior" and [m.skill_id for m in out.mentions] == ["python"]
+
+
+def test_tool_schema_requires_seniority_fields():
+    assert {"seniority", "seniority_basis", "seniority_signal"} <= set(ex.TOOL["input_schema"]["required"])
+    assert ex.TOOL["input_schema"]["properties"]["seniority"]["enum"] == ["junior", "mid", "senior", None]

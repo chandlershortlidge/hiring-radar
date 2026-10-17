@@ -9,6 +9,8 @@ add or change taxonomy entries, or contain rules about specific job descriptions
 Policy belongs in taxonomy/skills.json; the prompt stays general (AGENTS.md).
 
 Invariants:
+  - Seniority is one of junior/mid/senior with a basis, or absent; never a guess without a
+    basis, and a "stated" level always carries its quoted signal.
   - Every returned mention has a skill_id that exists in the taxonomy it was run with.
   - Each skill_id appears at most once per job; if any mention is required, it is required.
   - Every mention's raw_text is found in the job text (whitespace/case-insensitive);
@@ -54,7 +56,18 @@ You extract the technical skills a job description asks candidates to have.
    verbatim.
 8. Report each skill id at most once. Report every skill you find.
 
+Also report the seniority the posting targets:
+- "junior", "mid", or "senior". Intern, working student, graduate, entry-level, and "(Junior)"
+  are junior. Lead, principal, staff, head, and architect are senior.
+- seniority_basis is "stated" when the title or text names the level outright; "inferred"
+  when you read it from years of experience, ownership or mentoring language, or the
+  qualifications asked for. If the posting gives no usable signal, set seniority to null
+  and basis to null.
+- seniority_signal is the verbatim phrase you based it on, or null.
+
 Always respond by calling the record_skills tool exactly once. Do not reply with text."""
+
+SENIORITY_LEVELS = ("junior", "mid", "senior")
 
 TOOL = {
     "name": "record_skills",
@@ -75,9 +88,12 @@ TOOL = {
                     "required": ["skill_id", "requirement", "raw_text"],
                     "additionalProperties": False,
                 },
-            }
+            },
+            "seniority": {"type": ["string", "null"], "enum": ["junior", "mid", "senior", None]},
+            "seniority_basis": {"type": ["string", "null"], "enum": ["stated", "inferred", None]},
+            "seniority_signal": {"type": ["string", "null"]},
         },
-        "required": ["skills"],
+        "required": ["skills", "seniority", "seniority_basis", "seniority_signal"],
         "additionalProperties": False,
     },
 }
@@ -101,8 +117,19 @@ class Proposed:
     raw_text: str
 
 
+@dataclass(frozen=True)
+class Seniority:
+    level: str | None      # junior | mid | senior | None
+    basis: str | None      # stated | inferred | None
+    signal: str | None     # verbatim phrase, or None
+
+
+NO_SENIORITY = Seniority(None, None, None)
+
+
 @dataclass
 class Extraction:
+    seniority: Seniority = NO_SENIORITY
     mentions: list[Mention] = field(default_factory=list)
     proposed: list[Proposed] = field(default_factory=list)
     rejected: list[dict] = field(default_factory=list)
@@ -179,6 +206,28 @@ def parse_skills(items: list, tax: Taxonomy, jd_text: str) -> tuple[list[Mention
     return mentions, sorted(proposed.values(), key=lambda p: p.label.lower()), rejected
 
 
+def parse_seniority(data: dict, jd_text: str) -> Seniority:
+    """Validate the model's seniority fields; anything inconsistent collapses to NO_SENIORITY.
+
+    A level needs a basis; a signal must be quoted from the text (else it is dropped, the
+    level is kept); "stated" requires a signal, since a stated level is by definition visible.
+    """
+    level = data.get("seniority")
+    basis = data.get("seniority_basis")
+    signal = data.get("seniority_signal")
+    if level not in SENIORITY_LEVELS or basis not in ("stated", "inferred"):
+        return NO_SENIORITY
+    if isinstance(signal, str):
+        signal = signal.strip() or None
+        if signal and _norm(signal) not in _norm(jd_text):
+            signal = None
+    else:
+        signal = None
+    if basis == "stated" and signal is None:
+        return NO_SENIORITY
+    return Seniority(level, basis, signal)
+
+
 def build_request(tax: Taxonomy, jd_text: str, model: str) -> dict:
     return {
         "model": model,
@@ -211,6 +260,7 @@ def extract(jd_text: str, tax: Taxonomy, client, model: str = DEFAULT_MODEL) -> 
     mentions, proposed, rejected = parse_skills(items, tax, jd_text)
     usage = getattr(response, "usage", None)
     return Extraction(
+        seniority=parse_seniority(blocks[0].input, jd_text),
         mentions=mentions,
         proposed=proposed,
         rejected=rejected,

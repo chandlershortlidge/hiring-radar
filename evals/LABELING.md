@@ -58,3 +58,16 @@ place, the mentions collapse into one criterion:
 - **`raw_text` quotes the mention that determined the label** — the `required` one where
   they disagree. Where the skill's bare name appears in several mentions, quote enough of
   the determining one to identify it.
+
+
+## Seniority
+
+One label per posting: `junior`, `mid`, `senior`, or none.
+
+- **Basis `stated`**: the title or text names the level. Intern, working student, graduate,
+  entry-level, "(Junior)" → junior. Lead, principal, staff, head, architect → senior.
+- **Basis `inferred`**: read from years of experience, ownership or mentoring language, or
+  the depth of the qualifications. Roughly: 0–2 years or "first experience" → junior;
+  3–5 years or "proven experience" → mid; 5+ years, lead/mentor language → senior.
+- **None**: no usable signal. "All levels" is none, not mid. Do not default to mid.
+- `seniority_signal` quotes the phrase the label rests on; required when stated.

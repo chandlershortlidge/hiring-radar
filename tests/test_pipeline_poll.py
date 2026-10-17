@@ -95,3 +95,16 @@ def test_load_feeds_skips_disabled(tmp_path):
 def test_committed_feeds_config_is_valid():
     for f in poll.load_feeds():
         assert f["type"] in ("arbeitnow", "startup_jobs", "greenhouse", "lever", "ashby")
+
+
+def test_extraction_stores_seniority_on_the_job(conn):
+    from app.extract import Seniority
+
+    def fn(text, tax, model):
+        x = fake_extract([Mention("python", "required", "Python")])(text, tax, model)
+        x.seniority = Seniority("junior", "stated", "Junior")
+        return x
+
+    pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None)
+    row = conn.execute("SELECT seniority, seniority_basis, seniority_signal FROM job WHERE id=1").fetchone()
+    assert tuple(row) == ("junior", "stated", "Junior")

@@ -77,3 +77,27 @@ def test_across_runs_reports_mean_and_spread():
     runs = [SimpleNamespace(summary={m: v for m in ev.METRICS}) for v in (0.8, 0.9, 1.0)]
     agg = ev.across_runs(runs)
     assert agg["recall"] == {"mean": pytest.approx(0.9), "min": 0.8, "max": 1.0, "n": 3}
+
+
+def test_seniority_accuracy_counts_only_labeled_goldens():
+    goldens = [
+        {"id": "g1", "job_description": "a", "expected": [e("a")], "seniority": "junior"},
+        {"id": "g2", "job_description": "b", "expected": [e("b")], "seniority": "senior"},
+        {"id": "g3", "job_description": "c", "expected": [e("c")]},  # unlabeled
+    ]
+    from app.extract import Seniority
+    levels = {"a": "junior", "b": "mid", "c": "senior"}
+
+    def fake(text):
+        x = _extraction([text])
+        x.seniority = Seniority(levels[text], "inferred", None)
+        return x
+
+    s = ev.run_once(goldens, fake).summary
+    assert s["seniority_n"] == 2 and s["seniority_accuracy"] == pytest.approx(0.5)
+
+
+def test_seniority_accuracy_is_none_when_nothing_is_labeled():
+    goldens = [{"id": "g1", "job_description": "a", "expected": [e("a")]}]
+    s = ev.run_once(goldens, lambda t: _extraction(["a"])).summary
+    assert s["seniority_accuracy"] is None and s["seniority_n"] == 0

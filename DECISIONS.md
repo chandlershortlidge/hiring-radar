@@ -5,6 +5,28 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-17 — Seniority comes from stage 2, with a basis, or not at all
+
+Same three fields as the legacy project (level, basis, quoted signal), produced by the
+same stage-2 call that returns skills — no extra model call.
+
+- **Levels: junior / mid / senior, or none.** The legacy extractor forced a guess and
+  defaulted to mid (most legacy rows read "Mid / inferred"). Now a level without a basis
+  is dropped, a "stated" level must carry its quoted signal, and "all levels" or no signal
+  means none. Lead/principal/staff/architect fold into senior; intern/working
+  student/graduate into junior.
+- **Scored.** `seniority_accuracy` is reported next to skill P/R, over Goldens that carry a
+  label. All 20 Goldens got their legacy labels, flagged `seniority_reviewed: false`:
+  they were model output, not human review. Three look wrong under the new rules and
+  should be checked first: golden_002 (working student → junior/stated, not inferred),
+  golden_011 ("Lead AI Engineer" in the title → stated), golden_006 ("all levels" → none).
+- **Stored on `job`** (migration 004). Re-extraction overwrites it like skills.
+- **Why it matters:** seniority is the first filter in the user profile (role family →
+  seniority → skills). It was the legacy dashboard's best demo and is the main lever
+  for "jobs I could plausibly get" without a résumé.
+
+---
+
 ## 2026-10-16 — Stage 1 (vision) and the legacy import
 
 - **Stage 1 is transcription only.** The vision model returns the posting's text verbatim

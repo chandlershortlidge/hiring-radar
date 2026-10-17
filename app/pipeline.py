@@ -1,7 +1,7 @@
 """Run stage 2 over stored jobs that have no skills yet, and persist the results.
 
 Does: find jobs whose `extracted_version` is not the current one, extract, and write
-skill_mention + proposed_skill rows, then stamp the job. One job per transaction.
+skill_mention + proposed_skill rows and the job's seniority, then stamp the job. One job per transaction.
 
 Does NOT: fetch postings, dedup, or decide which taxonomy/model to use (passed in).
 
@@ -50,7 +50,9 @@ def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction) -> N
         conn.executemany(
             "INSERT INTO proposed_skill (job_id, label, raw_text) VALUES (?,?,?)",
             [(job_id, p.label, p.raw_text) for p in ex.proposed])
-        conn.execute("UPDATE job SET extracted_version=? WHERE id=?", (ex.extractor_version, job_id))
+        sen = ex.seniority
+        conn.execute("UPDATE job SET extracted_version=?, seniority=?, seniority_basis=?, seniority_signal=? WHERE id=?",
+                     (ex.extractor_version, sen.level, sen.basis, sen.signal, job_id))
 
 
 def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn, model: str,

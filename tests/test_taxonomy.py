@@ -53,3 +53,10 @@ def test_committed_taxonomy_loads_and_covers_every_golden_label():
         g = json.loads(p.read_text())
         for e in g["expected"]:
             assert e["skill_id"] in t.skills, f"{p.name}: {e['skill_id']} not in taxonomy"
+
+
+def test_every_golden_has_a_valid_seniority_label():
+    for p in sorted((ROOT / "evals/goldens").glob("*.json")):
+        g = json.loads(p.read_text())
+        assert g["seniority"] in ("junior", "mid", "senior"), p.name
+        assert g["seniority_basis"] in ("stated", "inferred"), p.name

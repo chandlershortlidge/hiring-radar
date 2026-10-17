@@ -102,7 +102,8 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `app/transcribe.py` — stage 1: screenshot bytes → verbatim transcript (vision call).
   Only screenshots go through it; feeds and pastes are already text.
 - `app/extract.py` — stage 2: JD text → skill mentions (taxonomy ids), proposed new
-  skills, and rejected items. Model client is injected.
+  skills, rejected items, and the posting's seniority (level, basis, quoted signal — or
+  none). One tool call. Model client is injected.
 - `app/evaluation.py` — scoring (micro P/R/F1, requirement accuracy, rank agreement)
   and the suite runner. `scripts/run_eval.py` — live CLI around it.
 - `app/sources/` — one adapter per feed (`greenhouse`, `lever`, `ashby`, `arbeitnow`,

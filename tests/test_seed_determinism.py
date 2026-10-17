@@ -18,6 +18,13 @@ ROOT = Path(__file__).resolve().parent.parent
 LEGACY = Path(os.environ.get("LEGACY_REPO", ROOT.parent / "job-skills-dashboard"))
 
 
+def _real_digest() -> str:
+    h = hashlib.sha256()
+    for p in [ROOT / "taxonomy/skills.json", *sorted((ROOT / "evals/goldens").glob("*.json"))]:
+        h.update(p.read_bytes())
+    return h.hexdigest()
+
+
 def _run_in(tmp: Path) -> str:
     scripts = tmp / "scripts"
     scripts.mkdir(parents=True)
@@ -32,9 +39,8 @@ def _run_in(tmp: Path) -> str:
 
 @pytest.mark.skipif(not (LEGACY / "evals").exists(), reason="legacy repo not available")
 def test_seed_script_is_deterministic(tmp_path):
+    before = _real_digest()
     a = _run_in(tmp_path / "a")
     b = _run_in(tmp_path / "b")
     assert a == b
-    # And it never touched the real files.
-    assert subprocess.run(["git", "status", "--short", "taxonomy", "evals/goldens"],
-                          cwd=ROOT, capture_output=True, text=True).stdout == ""
+    assert _real_digest() == before  # it never touched the real files

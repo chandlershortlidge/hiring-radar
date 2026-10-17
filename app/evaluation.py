@@ -1,7 +1,8 @@
 """Score extractions against Goldens and run the eval suite.
 
 Does: per-Golden set comparison on skill ids, micro-averaged precision/recall/F1,
-requirement accuracy on matched skills, and rank agreement between predicted and gold
+requirement accuracy on matched skills, seniority accuracy over Goldens that carry a
+seniority label, and rank agreement between predicted and gold
 skill frequencies across the suite (the chart is a frequency ranking, so we measure it
 directly). Runs a suite N times and summarizes mean and spread.
 
@@ -26,9 +27,12 @@ class GoldenScore:
     fn: list[str]
     requirement_matches: int
     error: str | None = None
+    seniority_expected: str | None = None   # None = Golden has no seniority label; not scored
+    seniority_predicted: str | None = None
 
 
-def score_golden(golden_id: str, expected: list[dict], predicted: list[dict]) -> GoldenScore:
+def score_golden(golden_id: str, expected: list[dict], predicted: list[dict],
+                 seniority_expected: str | None = None, seniority_predicted: str | None = None) -> GoldenScore:
     exp = {e["skill_id"]: e["requirement"] for e in expected}
     pred = {p["skill_id"]: p["requirement"] for p in predicted}
     tp = sorted(exp.keys() & pred.keys())
@@ -38,6 +42,8 @@ def score_golden(golden_id: str, expected: list[dict], predicted: list[dict]) ->
         fp=sorted(pred.keys() - exp.keys()),
         fn=sorted(exp.keys() - pred.keys()),
         requirement_matches=sum(1 for s in tp if exp[s] == pred[s]),
+        seniority_expected=seniority_expected,
+        seniority_predicted=seniority_predicted,
     )
 
 
@@ -83,6 +89,9 @@ def summarize(scores: list[GoldenScore], expected_by_id: dict[str, list[dict]],
     recall = tp / (tp + fn) if tp + fn else None
     f1 = (2 * precision * recall / (precision + recall)) if precision and recall else None
     req_acc = sum(s.requirement_matches for s in scores) / tp if tp else None
+    labeled = [s for s in scores if s.seniority_expected is not None]
+    sen_acc = (sum(1 for s in labeled if s.seniority_predicted == s.seniority_expected) / len(labeled)
+               if labeled else None)
 
     gold_freq = Counter(e["skill_id"] for es in expected_by_id.values() for e in es)
     pred_freq = Counter(p["skill_id"] for ps in predicted_by_id.values() for p in ps)
@@ -96,6 +105,8 @@ def summarize(scores: list[GoldenScore], expected_by_id: dict[str, list[dict]],
         "tp": tp, "fp": fp, "fn": fn,
         "precision": precision, "recall": recall, "f1": f1,
         "requirement_accuracy": req_acc,
+        "seniority_accuracy": sen_acc,
+        "seniority_n": len(labeled),
         "rank_spearman": rho,
         f"top{k}_overlap": len(set(gold_top) & set(pred_top)) / k if gold_top else None,
         "gold_top": gold_top, "pred_top": pred_top,
@@ -117,23 +128,28 @@ def run_once(goldens: list[dict], extract_fn) -> RunResult:
         try:
             ex = extract_fn(g["job_description"])
             pred = [{"skill_id": m.skill_id, "requirement": m.requirement, "raw_text": m.raw_text} for m in ex.mentions]
+            sen = getattr(ex, "seniority", None)
             predictions[g["id"]] = {
                 "mentions": pred,
                 "proposed": [vars(p) for p in ex.proposed],
                 "rejected": ex.rejected,
+                "seniority": vars(sen) if sen else None,
                 "usage": getattr(ex, "usage", {}),
             }
-            s = score_golden(g["id"], g["expected"], pred)
+            s = score_golden(g["id"], g["expected"], pred,
+                             seniority_expected=g.get("seniority"),
+                             seniority_predicted=sen.level if sen else None)
         except Exception as e:  # one bad Golden must not hide the rest of the run
             pred = []
             predictions[g["id"]] = {"error": f"{type(e).__name__}: {e}"}
-            s = GoldenScore(g["id"], [], [], sorted(x["skill_id"] for x in g["expected"]), 0, error=str(e))
+            s = GoldenScore(g["id"], [], [], sorted(x["skill_id"] for x in g["expected"]), 0, error=str(e),
+                            seniority_expected=g.get("seniority"))
         predicted_by_id[g["id"]] = pred
         scores.append(s)
     return RunResult(summarize(scores, expected_by_id, predicted_by_id), scores, predictions)
 
 
-METRICS = ("precision", "recall", "f1", "requirement_accuracy", "rank_spearman", "top10_overlap")
+METRICS = ("precision", "recall", "f1", "requirement_accuracy", "seniority_accuracy", "rank_spearman", "top10_overlap")
 
 
 def across_runs(runs: list[RunResult]) -> dict:
