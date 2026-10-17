@@ -5,6 +5,33 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-17 — Skills count only where the candidate is asked for them (PRINCIPLES rule 1)
+
+The chart measures **what employers ask candidates to have**, not what the job involves.
+Those are different sets, and conflating them makes the ranking useless: almost every
+posting *describes* technologies in its responsibilities, so a chart built from
+responsibilities measures what teams happen to run, which is already public and tells a
+candidate nothing about what to learn.
+
+So rule 1 of `PRINCIPLES` in `app/extract.py` stands: extract only from requirements,
+qualifications, "nice to have" lists, or a dedicated tech-stack section. A technology that
+appears **only** in responsibilities or the company description is excluded unless the
+candidate is also asked for it.
+
+This looks like under-extraction when you read a posting by eye, and it is not.
+`golden_021` (Almedia, Junior Data Scientist, job 66) is the reference case: the posting
+says "Run A/B tests on offers, rewards and ranking" and "Build and fix the data pipelines
+your models depend on" under *What You'll Do*, and `a-b-testing` and `data-pipelines` both
+exist in the taxonomy — yet the Golden expects only `python` and `sql`, the two skills
+*What You'll Bring* actually asks for. A low skill count on a long posting is not by
+itself evidence of a bug; check which section the skills sat in first.
+
+Consequence to live with: a posting that lists its stack only in responsibilities
+contributes few or no mentions. That is the intended trade — a precise answer to a
+narrower question beats a muddled answer to a broader one.
+
+---
+
 ## 2026-10-17 — `check`: audit feed coverage one careers-page URL at a time
 
 The question behind the LinkedIn pass is not "add this job" but "did the feeds already

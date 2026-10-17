@@ -1,0 +1,96 @@
+{
+  "meta": {
+    "run_id": "20261017T164449Z_dev_x2-2b27d20b30",
+    "split": "dev",
+    "n_goldens": 21,
+    "repeats": 1,
+    "model": "claude-sonnet-5-5",
+    "extractor_version": "x2-2b27d20b30",
+    "taxonomy_version": 3
+  },
+  "aggregate": {
+    "precision": {
+      "mean": 0.8793565683646113,
+      "min": 0.8793565683646113,
+      "max": 0.8793565683646113,
+      "n": 1
+    },
+    "recall": {
+      "mean": 0.973293768545994,
+      "min": 0.973293768545994,
+      "max": 0.973293768545994,
+      "n": 1
+    },
+    "f1": {
+      "mean": 0.923943661971831,
+      "min": 0.923943661971831,
+      "max": 0.923943661971831,
+      "n": 1
+    },
+    "requirement_accuracy": {
+      "mean": 0.9603658536585366,
+      "min": 0.9603658536585366,
+      "max": 0.9603658536585366,
+      "n": 1
+    },
+    "seniority_accuracy": {
+      "mean": 0.6190476190476191,
+      "min": 0.6190476190476191,
+      "max": 0.6190476190476191,
+      "n": 1
+    },
+    "rank_spearman": {
+      "mean": 0.9021425335733322,
+      "min": 0.9021425335733322,
+      "max": 0.9021425335733322,
+      "n": 1
+    },
+    "top10_overlap": {
+      "mean": 0.8,
+      "min": 0.8,
+      "max": 0.8,
+      "n": 1
+    }
+  },
+  "runs": [
+    {
+      "n_goldens": 21,
+      "n_errors": 0,
+      "tp": 328,
+      "fp": 45,
+      "fn": 9,
+      "precision": 0.8793565683646113,
+      "recall": 0.973293768545994,
+      "f1": 0.923943661971831,
+      "requirement_accuracy": 0.9603658536585366,
+      "seniority_accuracy": 0.6190476190476191,
+      "seniority_n": 21,
+      "rank_spearman": 0.9021425335733322,
+      "top10_overlap": 0.8,
+      "gold_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "apis",
+        "aws",
+        "cloud",
+        "prompt-engineering",
+        "ci-cd"
+      ],
+      "pred_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "aws",
+        "ci-cd",
+        "cloud",
+        "langchain",
+        "testing"
+      ]
+    }
+  ]
+}
