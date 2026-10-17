@@ -51,7 +51,7 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
 
     def conn_dep():
         db_path.parent.mkdir(parents=True, exist_ok=True)
-        c = db.connect(db_path)
+        c = db.connect(db_path, same_thread=False)
         db.migrate(c)
         try:
             yield c

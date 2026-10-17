@@ -1,0 +1,42 @@
+export const SOURCE_CODES = {
+  arbeitnow: ["AB", "arbeitnow"],
+  startup_jobs: ["SJ", "startup.jobs"],
+  greenhouse: ["GH", "Greenhouse"],
+  lever: ["LV", "Lever"],
+  ashby: ["AS", "Ashby"],
+  url: ["URL", "Pasted link"],
+  paste: ["TXT", "Pasted text"],
+  screenshot: ["IMG", "Screenshot"],
+};
+export const sourceCode = (s) => (SOURCE_CODES[s] || [s.toUpperCase().slice(0, 3), s]);
+
+export const CITIES = ["Berlin", "San Francisco"];
+export const SENIORITIES = ["junior", "mid", "senior"];
+export const cap = (s) => (s ? s[0].toUpperCase() + s.slice(1) : s);
+
+export function timeAgo(iso, now = Date.now()) {
+  if (!iso) return "—";
+  const t = Date.parse(iso);
+  const s = Math.max(0, (now - t) / 1000);
+  if (s < 90) return "just now";
+  const m = s / 60; if (m < 60) return `${Math.round(m)} min ago`;
+  const h = m / 60; if (h < 36) return `${Math.round(h)} h ago`;
+  const d = h / 24; if (d < 45) return `${Math.round(d)} days ago`;
+  return dateShort(iso);
+}
+
+export function dateShort(iso) {
+  if (!iso) return "—";
+  return new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" });
+}
+
+export function dateTime(iso) {
+  if (!iso) return "—";
+  return new Date(iso).toLocaleString("en-GB", { day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+}
+
+export const pct = (n, d) => (d ? Math.round((n / d) * 1000) / 10 : 0);
+export const pctInt = (n, d) => (d ? Math.round((n / d) * 100) : 0);
+
+// Axis max: next multiple of 20 at or above the largest share, at least 20, at most 100.
+export const axisMax = (maxPct) => Math.min(100, Math.max(20, Math.ceil((maxPct || 0) / 20) * 20));

@@ -172,17 +172,21 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
             srcs[s["job_id"]].append({"source": s["source"], "url": s["url"], "first_seen": s["first_seen"],
                                       "found_via": s["found_via"]})
     skill_counts: dict[int, dict] = {i: {"required": 0, "nice_to_have": 0} for i in ids}
+    required: dict[int, list] = {i: [] for i in ids}
     if ids:
         for s in conn.execute(
-                f"SELECT job_id, requirement, count(*) n FROM skill_mention"
-                f" WHERE job_id IN ({','.join('?' * len(ids))}) GROUP BY job_id, requirement", ids):
-            skill_counts[s["job_id"]][s["requirement"]] = s["n"]
+                f"SELECT job_id, skill_id, requirement FROM skill_mention"
+                f" WHERE job_id IN ({','.join('?' * len(ids))}) ORDER BY skill_id", ids):
+            skill_counts[s["job_id"]][s["requirement"]] += 1
+            if s["requirement"] == "required":
+                required[s["job_id"]].append(s["skill_id"])
     jobs = []
     for r in rows:
         d = dict(r)
         d["sources"] = srcs[r["id"]]
         d["status"] = _status(r, now, {s["source"] for s in d["sources"]})
         d["skill_counts"] = skill_counts[r["id"]]
+        d["required_skills"] = required[r["id"]]  # ids only; the browser-side profile match uses them
         jobs.append(d)
     return {"total": total, "jobs": jobs, "limit": limit, "offset": offset}
 

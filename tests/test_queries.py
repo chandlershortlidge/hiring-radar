@@ -85,6 +85,7 @@ def test_list_jobs_filters_search_sort_and_status(conn):
     r = q.list_jobs(conn, q.Filters(window="all"), NOW, sort="company", limit=2, offset=1)
     assert [j["company"] for j in r["jobs"]] == ["Beta", "Delta"] and r["total"] == 5
     assert r["jobs"][0]["skill_counts"] == {"required": 2, "nice_to_have": 0}
+    assert r["jobs"][0]["required_skills"] == ["docker", "python"]
 
 
 def test_job_detail(conn):

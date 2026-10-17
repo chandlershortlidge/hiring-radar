@@ -85,15 +85,22 @@ uv run python -m app check https://boards.greenhouse.io/acme/jobs/4012345   # in
 uv run python -m app check https://acme.com/careers/ai-engineer --company "Acme" --add   # ...and store it
 uv run python -m app stats
 
+# Dashboard
+cd web && npm install && npm run build && cd ..   # once, and after frontend changes → web/dist
+uv run python -m app serve                        # http://127.0.0.1:8000 (API + built frontend)
+cd web && npm run dev                             # frontend with hot reload on :5173, proxies /api to :8000
+HIRING_RADAR_DB=/tmp/demo.db uv run python scripts/seed_demo.py   # fake data to look at the UI without model calls
+
 # One-off: import the legacy corpus (needs the screenshot folder from the old Supabase bucket)
 uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --city Berlin --dry-run
 ```
 
 ### Stack
 
-- Python 3.13, `uv`. FastAPI (to come), Anthropic SDK called in-process (to come).
+- Python 3.13, `uv`. FastAPI; Anthropic SDK called in-process from the add endpoints.
 - SQLite, one file, schema managed by numbered migrations in `app/migrations/`.
-- React frontend (to come), served by the same process.
+- React 18 + Vite frontend in `web/`, no chart library (CSS bars), served from `web/dist`
+  by the same process.
 - Hosting: Railway (to come). Runs locally until then.
 
 ### Where things live
@@ -120,7 +127,17 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   feed could have stored it (board not polled, filter would drop it, not an ATS page).
   Writes only its own log (`url_check`, the first check per URL drives the coverage line
   in `stats`); `--add` in the CLI hands the resolved posting to `ingest_one`.
-- `app/__main__.py` — the CLI (`python -m app ...`).
+- `app/queries.py` — read queries behind the dashboard: filters (city, seniority,
+  requirement, window), skill document frequency with per-city counts, job list/detail,
+  proposed-skill grouping and resolution. The open-job rule lives here.
+- `app/api.py` — FastAPI routes over `queries` plus the add-a-job paths (url / text /
+  screenshot), which run intake + extraction for the one job added. Validates every filter
+  value (422), one SQLite connection per request, model client created lazily.
+- `web/src/` — `App.jsx` (filters, header, stats, controls), `SkillChart.jsx`,
+  `CompareChart.jsx`, `JobList.jsx` (rows + expanded detail with quotes), the three drawers
+  (`AddJobDrawer`, `ReviewDrawer`, `ProfileDrawer`), `profile.js` (localStorage profile +
+  set-overlap coverage; the server never sees it), `api.js`, `format.js`.
+- `app/__main__.py` — the CLI (`python -m app ...`, including `serve`).
 - `.claude/skills/check-url/` — `/check-url <url>`: runs `check` and acts on the verdict
   (adds the board to `config/feeds.json` and polls; stops on filter judgment calls).
 - `config/feeds.json` — which feeds to poll. Add a company's Greenhouse/Lever/Ashby board here.

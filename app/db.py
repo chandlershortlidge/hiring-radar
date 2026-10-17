@@ -19,8 +19,10 @@ MIGRATIONS_DIR = Path(__file__).parent / "migrations"
 _NAME = re.compile(r"^(\d{3})_[a-z0-9_]+\.sql$")
 
 
-def connect(path: str | Path) -> sqlite3.Connection:
-    conn = sqlite3.connect(path)
+def connect(path: str | Path, same_thread: bool = True) -> sqlite3.Connection:
+    """same_thread=False is for the HTTP layer, where a request's connection is opened and
+    closed on different threadpool threads but never used concurrently."""
+    conn = sqlite3.connect(path, check_same_thread=same_thread)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     conn.execute("PRAGMA journal_mode = WAL")
