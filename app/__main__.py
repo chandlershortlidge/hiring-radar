@@ -4,6 +4,7 @@
   extract           extract skills for any job still missing them (e.g. after a taxonomy bump)
   add-text          add one job from pasted text (reads stdin): --company --title --location --found-via
   add-screenshot    add one job from an image file (stage 1 vision → stage 2): same flags + path
+  check             is this careers-page URL already in the DB? If not, why no feed stored it. --add ingests it
   stats             counts by city and source; feed coverage of manually added jobs
   migrate           apply pending migrations and exit
 
@@ -21,6 +22,7 @@ ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(ROOT / ".env")
 
 from app import db  # noqa: E402
+from app.check import check_url  # noqa: E402
 from app.extract import DEFAULT_MODEL, extract, make_client  # noqa: E402
 from app.ingest import ingest_one, job_id_for_screenshot, now_iso, store_screenshot  # noqa: E402
 from app.pipeline import extract_pending  # noqa: E402
@@ -95,6 +97,24 @@ def cmd_add_screenshot(args):
             run_extraction(conn)
 
 
+def cmd_check(args):
+    conn = open_db()
+    r = check_url(conn, args.url, load_feeds(), args.company, args.title, args.location)
+    print(r.line())
+    for n in r.notes:
+        print(f"  note: {n}")
+    if not args.add or r.posting is None:
+        return
+    # Board postings keep their feed source and id, so a later poll sees them as still-listed;
+    # page postings are source=url. Either way found_via records that a person found it.
+    is_board = r.posting.source in ("greenhouse", "lever", "ashby")
+    outcome = ingest_one(conn, r.posting, now_iso(), require_city=not is_board,
+                         found_via=args.found_via, trust_title=True)
+    print(f"add: {outcome}")
+    if outcome.startswith("new:") and not args.no_extract:
+        run_extraction(conn)
+
+
 def cmd_stats(args):
     conn = open_db()
     print("jobs by city:")
@@ -138,6 +158,13 @@ def main(argv=None):
     p.add_argument("--location", default=None); p.add_argument("--url", default=None)
     p.add_argument("--found-via", default="linkedin", choices=["linkedin", "indeed", "company_site", "referral", "other"])
     p.add_argument("--no-extract", action="store_true"); p.set_defaults(fn=cmd_add_screenshot)
+    p = sub.add_parser("check")
+    p.add_argument("url")
+    p.add_argument("--company", default=None); p.add_argument("--title", default=None)
+    p.add_argument("--location", default=None)
+    p.add_argument("--add", action="store_true", help="ingest the posting if not already stored (and extract)")
+    p.add_argument("--found-via", default="company_site", choices=["linkedin", "indeed", "company_site", "referral", "other"])
+    p.add_argument("--no-extract", action="store_true"); p.set_defaults(fn=cmd_check)
     sub.add_parser("stats").set_defaults(fn=cmd_stats)
     sub.add_parser("migrate").set_defaults(fn=cmd_migrate)
     args = ap.parse_args(argv)

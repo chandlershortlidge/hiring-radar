@@ -5,6 +5,36 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-17 — `check`: audit feed coverage one careers-page URL at a time
+
+The question behind the LinkedIn pass is not "add this job" but "did the feeds already
+have it, and if not, why not". `python -m app check <url>` answers that without writing.
+
+- **Three lookups, in order.** (1) A hosted Greenhouse/Lever/Ashby URL carries the board
+  token and the board's job id → exact hit on `job_source`, no network. (2) Otherwise the
+  posting text is fetched — from the board API when the board is known, else the page
+  (JSON-LD `JobPosting` if present, whole page text if not) — and matched against stored
+  jobs of the same company. (3) Nothing → `not found` plus a diagnosis.
+- **Text matching is containment, not Jaccard.** A careers page carries nav, footer and
+  sibling listings, so ingest's symmetric similarity would score the same posting below
+  0.7. `check` scores the share of the *stored* JD's shingles present on the page (≥ 0.7).
+  Ingest's dedup is unchanged; `--add` still goes through `ingest_one` and its rules.
+- **The diagnosis is the product.** It says what to do: `board lever:newco is not in
+  config/feeds.json — add {...}` (the common case, paste it into feeds.json); the board is
+  polled but the title or city filter would drop it (a filter bug or a correct rejection —
+  the person decides); polled and it passes (posted since the last poll, or a feed bug);
+  or not an ATS page at all (no feed can reach it; `--add` stores it as `source=url`).
+- **`--add` keeps the feed identity.** A board posting is ingested as its feed source with
+  its board id, so the next poll sees it as still-listed rather than a repost; a page
+  posting is `source=url`. `found_via` defaults to `company_site`.
+- **LinkedIn URLs are not fetched.** Out of scope by the first entry; the page needs a
+  login anyway. `check` reports them as not-an-ATS-page.
+- Not done: a `gh_jid` embed URL gives the job id but not the board token, so it gets the
+  exact lookup but no board fetch; the coverage number in `stats` still counts only manual
+  adds, so a `found` with no `--add` leaves no trace.
+
+---
+
 ## 2026-10-17 — Seniority comes from stage 2, with a basis, or not at all
 
 Same three fields as the legacy project (level, basis, quoted signal), produced by the

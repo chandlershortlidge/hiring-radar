@@ -81,6 +81,8 @@ uv run python -m app poll --no-extract    # fetch + ingest only (no model calls)
 uv run python -m app extract              # extract anything still pending
 pbpaste | uv run python -m app add-text --company "Acme" --title "AI Engineer" --location Berlin --found-via linkedin
 uv run python -m app add-screenshot shot.png --company "Acme" --title "AI Engineer" --location Berlin
+uv run python -m app check https://boards.greenhouse.io/acme/jobs/4012345   # in the DB? if not, why no feed stored it
+uv run python -m app check https://acme.com/careers/ai-engineer --company "Acme" --add   # ...and store it
 uv run python -m app stats
 
 # One-off: import the legacy corpus (needs the screenshot folder from the old Supabase bucket)
@@ -114,6 +116,9 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `app/ingest.py` — the still-listed / merge / repost / new decision and the title+city
   filters. `app/pipeline.py` — extract skills for jobs not yet at the current
   `extractor_version`. `app/poll.py` — run all feeds in `config/feeds.json`.
+- `app/check.py` — `check`: a careers-page URL → found / not found, and on a miss why no
+  feed could have stored it (board not polled, filter would drop it, not an ATS page).
+  Read-only; `--add` in the CLI hands the resolved posting to `ingest_one`.
 - `app/__main__.py` — the CLI (`python -m app ...`).
 - `config/feeds.json` — which feeds to poll. Add a company's Greenhouse/Lever/Ashby board here.
 - `taxonomy/skills.json` — the skill taxonomy. The source of truth for what a skill is.
