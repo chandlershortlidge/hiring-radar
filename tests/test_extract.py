@@ -243,3 +243,62 @@ def test_no_enum_sits_on_a_union_type():
     for node in _schema_nodes(ex.TOOL["input_schema"]):
         if "enum" in node:
             assert not isinstance(node.get("type"), list), node
+
+
+# --- German requirement ----------------------------------------------------------
+
+DE_JD = "AI Engineer. Requirements: Python, LLMs. Languages: fluent English; very good German skills (C1)."
+DE_WRITTEN_JD = "KI-Entwickler (m/w/d). Dein Profil: Erfahrung mit Python und LLMs. Wir freuen uns auf dich."
+
+
+def test_german_stated_with_quoted_signal():
+    g = ex.parse_german({"german": "required", "german_basis": "stated", "german_signal": "very good German skills (C1)"}, DE_JD)
+    assert g == ex.German("required", "stated", "very good German skills (C1)")
+
+
+def test_german_stated_without_a_signal_found_in_the_text_is_not_mentioned():
+    # The guard against "inferred quietly absorbs everything": a stated requirement is
+    # visible by definition, so a stated level whose quote is not in the text is dropped.
+    for signal in (None, "", "native German speaker"):
+        g = ex.parse_german({"german": "required", "german_basis": "stated", "german_signal": signal}, DE_JD)
+        assert g == ex.NO_GERMAN
+
+
+def test_german_inferred_from_a_german_language_posting_keeps_level():
+    g = ex.parse_german({"german": "required", "german_basis": "inferred", "german_signal": "Wir freuen uns auf dich."}, DE_WRITTEN_JD)
+    assert g == ex.German("required", "inferred", "Wir freuen uns auf dich.")
+    g = ex.parse_german({"german": "required", "german_basis": "inferred", "german_signal": "posting is in German"}, DE_WRITTEN_JD)
+    assert g == ex.German("required", "inferred", None)
+
+
+@pytest.mark.parametrize("data", [
+    {"german": None, "german_basis": None, "german_signal": None},
+    {"german": "fluent", "german_basis": "stated", "german_signal": "very good German skills (C1)"},
+    {"german": "nice_to_have", "german_basis": None, "german_signal": "very good German skills (C1)"},
+    {},
+])
+def test_german_invalid_or_absent_is_not_mentioned(data):
+    assert ex.parse_german(data, DE_JD) == ex.NO_GERMAN
+
+
+def test_extract_carries_german_without_touching_skills(tax):
+    tool = SimpleNamespace(type="tool_use", name="record_skills", input={
+        "skills": [item("python", "Python")], "seniority": None, "seniority_basis": None, "seniority_signal": None,
+        "german": "required", "german_basis": "stated", "german_signal": "very good German skills (C1)"})
+    resp = SimpleNamespace(stop_reason="tool_use", content=[tool], usage=None)
+    out = ex.extract(DE_JD, tax, FakeClient(resp), model="m")
+    assert out.german == ex.German("required", "stated", "very good German skills (C1)")
+    assert [m.skill_id for m in out.mentions] == ["python"] and out.seniority == ex.NO_SENIORITY
+
+
+def test_tool_schema_requires_german_fields_as_nullable_anyof():
+    schema = ex.TOOL["input_schema"]
+    assert {"german", "german_basis", "german_signal"} <= set(schema["required"])
+    assert schema["properties"]["german"]["anyOf"] == [{"type": "string", "enum": ["required", "nice_to_have"]}, {"type": "null"}]
+    for f in ("german", "german_basis", "german_signal"):
+        assert "anyOf" in schema["properties"][f] and "type" not in schema["properties"][f]
+
+
+def test_spoken_languages_are_still_not_skills():
+    # German is reported in its own fields; rule 2 of the skill rules must not change.
+    assert "Spoken languages, degrees, years of experience" in ex.PRINCIPLES

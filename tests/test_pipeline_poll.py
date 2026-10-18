@@ -108,3 +108,16 @@ def test_extraction_stores_seniority_on_the_job(conn):
     pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None)
     row = conn.execute("SELECT seniority, seniority_basis, seniority_signal FROM job WHERE id=1").fetchone()
     assert tuple(row) == ("junior", "stated", "Junior")
+
+
+def test_extraction_stores_german_on_the_job(conn):
+    from app.extract import German
+
+    def fn(text, tax, model):
+        x = fake_extract([Mention("python", "required", "Python")])(text, tax, model)
+        x.german = German("nice_to_have", "stated", "German is a plus")
+        return x
+
+    pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None)
+    row = conn.execute("SELECT german, german_basis, german_signal FROM job WHERE id=1").fetchone()
+    assert tuple(row) == ("nice_to_have", "stated", "German is a plus")

@@ -5,6 +5,7 @@ import pytest
 from app import db
 from app.check import (AtsRef, CheckResult, check_url, checked_coverage, containment, diagnose,
                        feed_had_it, log_check, parse_ats_url, posting_from_html)
+from app.geo import city_of
 from app.ingest import ingest_one
 from app.sources import Posting
 
@@ -69,6 +70,17 @@ def test_json_ld_job_posting_wins_over_page_text():
     assert (p.source, p.company, p.title, p.location_raw, p.posted_at) == ("url", "Acme GmbH", "AI Engineer", "Berlin, DE", "2026-10-01")
     assert p.description_text == JD          # not the nav/footer
     assert "Imprint" not in p.description_text
+
+
+def test_json_ld_multi_office_keeps_every_location():
+    # Phenom (careers.bcg.com) lists offices in jobLocation order; Berlin is not first.
+    ld = {"@type": "JobPosting", "title": "AI Associate", "description": JD, "jobLocation": [
+        {"@type": "Place", "address": {"addressLocality": "Cologne", "addressRegion": "", "addressCountry": "Germany"}},
+        {"@type": "Place", "address": {"addressLocality": " Berlin", "addressRegion": "", "addressCountry": "Germany"}},
+    ]}
+    p, _ = posting_from_html("u", page(ld=ld))
+    assert p.location_raw == "Cologne, Germany; Berlin, Germany"
+    assert city_of(p.location_raw) == "Berlin"
 
 
 def test_json_ld_in_graph_and_flag_overrides():

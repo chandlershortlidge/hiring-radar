@@ -101,3 +101,29 @@ def test_seniority_accuracy_is_none_when_nothing_is_labeled():
     goldens = [{"id": "g1", "job_description": "a", "expected": [e("a")]}]
     s = ev.run_once(goldens, lambda t: _extraction(["a"])).summary
     assert s["seniority_accuracy"] is None and s["seniority_n"] == 0
+
+
+def test_german_accuracy_treats_null_as_a_label_and_skips_unlabeled():
+    goldens = [
+        {"id": "g1", "job_description": "a", "expected": [e("a")], "german": "required"},
+        {"id": "g2", "job_description": "b", "expected": [e("b")], "german": None},   # "not mentioned"
+        {"id": "g3", "job_description": "c", "expected": [e("c")], "german": "nice_to_have"},
+        {"id": "g4", "job_description": "d", "expected": [e("d")]},                   # unlabeled
+    ]
+    from app.extract import NO_GERMAN, German
+    pred = {"a": German("required", "stated", "German"), "b": NO_GERMAN,
+            "c": NO_GERMAN, "d": German("required", "stated", "German")}
+
+    def fake(text):
+        x = _extraction([text])
+        x.german = pred[text]
+        return x
+
+    s = ev.run_once(goldens, fake).summary
+    assert s["german_n"] == 3 and s["german_accuracy"] == pytest.approx(2 / 3)
+
+
+def test_german_accuracy_is_none_when_nothing_is_labeled():
+    goldens = [{"id": "g1", "job_description": "a", "expected": [e("a")]}]
+    s = ev.run_once(goldens, lambda t: _extraction(["a"])).summary
+    assert s["german_accuracy"] is None and s["german_n"] == 0

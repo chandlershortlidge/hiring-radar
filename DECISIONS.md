@@ -5,6 +5,30 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-17 — The German requirement comes from stage 2, on the seniority pattern
+
+Groundwork for the planned skills match: "how many jobs would fit me except for German?"
+Spoken languages stay out of the skill list (PRINCIPLES rule 2 is unchanged); German is
+reported in three separate fields of the same stage-2 call, as seniority is.
+
+- **Levels: required / nice_to_have, or not mentioned (null).** "nice_to_have" only when
+  the wording marks German optional.
+- **Basis: stated or inferred.** "stated" = the text asks for German outright, and it must
+  carry a signal quoted verbatim from the posting, or it collapses to not mentioned (the
+  same rule as seniority, in a shared `_graded` validator). That stops "inferred" from
+  quietly absorbing everything. "inferred" means one thing only: the posting is written in
+  German. Company location, market or customers do not count.
+- **Scored.** `german_accuracy` over Goldens with a `german` key; null there is a label
+  ("not mentioned"), unlike seniority. The 20 dev Goldens were labeled from their text
+  (6 mention German, all stated: one required, five nice-to-have), flagged
+  `german_reviewed: false`. The held-out Golden is unlabeled. No Golden is written in
+  German, so the "inferred" path is covered by unit tests only.
+- **Stored on `job`** (migration 006). Re-extraction overwrites it like skills.
+- **Skill extraction must not move.** Dev eval before and after, 3 repeats each; the result
+  is in the commit message.
+
+---
+
 ## 2026-10-17 — Held-out Goldens: only postings labeled after the freeze
 
 A held-out Golden is one labeled **after the prompt and taxonomy froze (2026-10-16)** and

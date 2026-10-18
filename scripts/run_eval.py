@@ -94,6 +94,7 @@ def main(argv=None):
         s = runs[-1].summary
         print(f"  P={fmt(s['precision'])} R={fmt(s['recall'])} F1={fmt(s['f1'])} "
               f"req={fmt(s['requirement_accuracy'])} sen={fmt(s['seniority_accuracy'])}/{s['seniority_n']} "
+              f"de={fmt(s['german_accuracy'])}/{s['german_n']} "
               f"rho={fmt(s['rank_spearman'])} errors={s['n_errors']}")
         errors = [(gid, p["error"]) for gid, p in runs[-1].predictions.items() if "error" in p]
         if errors:

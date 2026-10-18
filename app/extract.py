@@ -11,6 +11,8 @@ Policy belongs in taxonomy/skills.json; the prompt stays general (AGENTS.md).
 Invariants:
   - Seniority is one of junior/mid/senior with a basis, or absent; never a guess without a
     basis, and a "stated" level always carries its quoted signal.
+  - The German requirement follows the same rules: required/nice_to_have with a basis, or
+    absent ("not mentioned"); "stated" always carries a signal quoted from the text.
   - Every returned mention has a skill_id that exists in the taxonomy it was run with.
   - Each skill_id appears at most once per job; if any mention is required, it is required.
   - Every mention's raw_text is found in the job text (whitespace/case-insensitive);
@@ -65,9 +67,18 @@ Also report the seniority the posting targets:
   and basis to null.
 - seniority_signal is the verbatim phrase you based it on, or null.
 
+Also report whether the posting asks for German:
+- german is "required" when the candidate must speak German, "nice_to_have" when the wording
+  marks it optional, and null when the posting does not ask for German.
+- german_basis is "stated" when the text asks for German outright; "inferred" when it does
+  not, but the posting itself is written in German. Do not infer German from the company's
+  location, market, or customers. If german is null, set basis to null.
+- german_signal is the verbatim phrase you based it on, or null.
+
 Always respond by calling the record_skills tool exactly once. Do not reply with text."""
 
 SENIORITY_LEVELS = ("junior", "mid", "senior")
+GERMAN_LEVELS = ("required", "nice_to_have")
 
 TOOL = {
     "name": "record_skills",
@@ -94,8 +105,12 @@ TOOL = {
             "seniority": {"anyOf": [{"type": "string", "enum": list(SENIORITY_LEVELS)}, {"type": "null"}]},
             "seniority_basis": {"anyOf": [{"type": "string", "enum": ["stated", "inferred"]}, {"type": "null"}]},
             "seniority_signal": {"type": ["string", "null"]},
+            "german": {"anyOf": [{"type": "string", "enum": list(GERMAN_LEVELS)}, {"type": "null"}]},
+            "german_basis": {"anyOf": [{"type": "string", "enum": ["stated", "inferred"]}, {"type": "null"}]},
+            "german_signal": {"anyOf": [{"type": "string"}, {"type": "null"}]},
         },
-        "required": ["skills", "seniority", "seniority_basis", "seniority_signal"],
+        "required": ["skills", "seniority", "seniority_basis", "seniority_signal",
+                     "german", "german_basis", "german_signal"],
         "additionalProperties": False,
     },
 }
@@ -129,9 +144,20 @@ class Seniority:
 NO_SENIORITY = Seniority(None, None, None)
 
 
+@dataclass(frozen=True)
+class German:
+    level: str | None      # required | nice_to_have | None (not mentioned)
+    basis: str | None      # stated | inferred | None
+    signal: str | None     # verbatim phrase, or None
+
+
+NO_GERMAN = German(None, None, None)
+
+
 @dataclass
 class Extraction:
     seniority: Seniority = NO_SENIORITY
+    german: German = NO_GERMAN
     mentions: list[Mention] = field(default_factory=list)
     proposed: list[Proposed] = field(default_factory=list)
     rejected: list[dict] = field(default_factory=list)
@@ -208,17 +234,17 @@ def parse_skills(items: list, tax: Taxonomy, jd_text: str) -> tuple[list[Mention
     return mentions, sorted(proposed.values(), key=lambda p: p.label.lower()), rejected
 
 
-def parse_seniority(data: dict, jd_text: str) -> Seniority:
-    """Validate the model's seniority fields; anything inconsistent collapses to NO_SENIORITY.
+def _graded(data: dict, field_name: str, levels: tuple[str, ...], jd_text: str) -> tuple | None:
+    """(level, basis, signal) from `<field>`, `<field>_basis`, `<field>_signal`, or None.
 
     A level needs a basis; a signal must be quoted from the text (else it is dropped, the
     level is kept); "stated" requires a signal, since a stated level is by definition visible.
     """
-    level = data.get("seniority")
-    basis = data.get("seniority_basis")
-    signal = data.get("seniority_signal")
-    if level not in SENIORITY_LEVELS or basis not in ("stated", "inferred"):
-        return NO_SENIORITY
+    level = data.get(field_name)
+    basis = data.get(f"{field_name}_basis")
+    signal = data.get(f"{field_name}_signal")
+    if level not in levels or basis not in ("stated", "inferred"):
+        return None
     if isinstance(signal, str):
         signal = signal.strip() or None
         if signal and _norm(signal) not in _norm(jd_text):
@@ -226,8 +252,20 @@ def parse_seniority(data: dict, jd_text: str) -> Seniority:
     else:
         signal = None
     if basis == "stated" and signal is None:
-        return NO_SENIORITY
-    return Seniority(level, basis, signal)
+        return None
+    return level, basis, signal
+
+
+def parse_seniority(data: dict, jd_text: str) -> Seniority:
+    """Validate the model's seniority fields; anything inconsistent collapses to NO_SENIORITY."""
+    g = _graded(data, "seniority", SENIORITY_LEVELS, jd_text)
+    return Seniority(*g) if g else NO_SENIORITY
+
+
+def parse_german(data: dict, jd_text: str) -> German:
+    """Same rules as parse_seniority; anything inconsistent collapses to NO_GERMAN (not mentioned)."""
+    g = _graded(data, "german", GERMAN_LEVELS, jd_text)
+    return German(*g) if g else NO_GERMAN
 
 
 def build_request(tax: Taxonomy, jd_text: str, model: str) -> dict:
@@ -263,6 +301,7 @@ def extract(jd_text: str, tax: Taxonomy, client, model: str = DEFAULT_MODEL) -> 
     usage = getattr(response, "usage", None)
     return Extraction(
         seniority=parse_seniority(blocks[0].input, jd_text),
+        german=parse_german(blocks[0].input, jd_text),
         mentions=mentions,
         proposed=proposed,
         rejected=rejected,
