@@ -2,17 +2,115 @@
   "id": "golden_023",
   "split": "heldout",
   "draft": true,
-  "seniority": null,
-  "seniority_basis": null,
-  "seniority_signal": null,
-  "german": null,
-  "german_basis": null,
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Senior Data Engineer* / Machine Learning Engineer*",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "inferred",
   "german_signal": null,
   "degree": null,
   "degree_requirement": null,
   "degree_or_equivalent": false,
   "degree_signal": null,
+  "attrs_reviewed": false,
   "source_sha256": "75d1ef7fcc9227eb32a2a21bf9c599ffffd889f6c78bd993fd69605de2fa830e",
   "job_description": "Was du bei uns bewegen kannst\nGemeinsam mit deinem agilen, cross-funktionalen Projektteam hilfst du unseren Kunden aus unterschiedlichen Branchen, ihre Daten nutzbar zu machen.\nDein Job beginnt nicht erst mit der Entwicklung von Datenprojekten: Du stimmst dich eng mit unseren Kunden ab und berätst sie in Bezug auf die technische Machbarkeit und die konkrete Umsetzung ihrer digitalen Innovationen.\nAls Senior Data Engineer* / Machine Learning Engineer* gestaltest du das Fundament für spätere Analysen sowie data-driven Services und entwickelst skalierbare, robuste und wartbare Architekturen.\nDu konzipierst und implementierst Datenplattformen, Datenverarbeitungsprozesse und Daten-Services als hochskalierbare, verteilte Systeme in der Cloud, on premise oder hybrid.\nDu bist Expert:in für die Ende-zu-Ende-Integration von Daten- / ETL-Pipelines und das Deployment von Machine-Learning-Modellen bis hin zur Bereitstellung der Ergebnisse innerhalb bestehender IT-Systeme.\nAls Architect oder Technical Lead bist du verantwortlich für die Auswahl und Implementierung geeigneter Technologien, die Sicherstellung der Datenintegrität und -sicherheit, sowie für die effektive Zusammenarbeit mit anderen Teams und Stakeholdern, um die Kundenziele durch datenbasierte Lösungen zu erreichen.\n\nIn unseren Projekten verwenden wir häufig folgende Technologien:\nPython, SQL, Java\nRelationale und NoSQL-Datenbanken\nFlask oder FastAPI\nDatabricks, Spark, Kafka, Airflow, dbt, BigQuery oder Snowflake\nAWS, GCP, Azure\nDocker, Kubernetes\nIntern wie extern kannst du dich bei uns auf vielfältige Art einbringen: Deinen anfangs gewählten Schwerpunkt kannst du jederzeit verlagern. Als Senior hast du außerdem die Möglichkeit, jüngere Kolleg:innen als Mentor:in oder Coach zu unterstützen.",
-  "expected": []
+  "expected": [
+    {
+      "skill_id": "data-pipelines",
+      "requirement": "required",
+      "raw_text": "ETL-Pipelines"
+    },
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "Deployment von Machine-Learning-Modellen"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "sql",
+      "requirement": "required",
+      "raw_text": "SQL, Java"
+    },
+    {
+      "skill_id": "java",
+      "requirement": "required",
+      "raw_text": "Java"
+    },
+    {
+      "skill_id": "nosql",
+      "requirement": "required",
+      "raw_text": "NoSQL-Datenbanken"
+    },
+    {
+      "skill_id": "flask",
+      "requirement": "required",
+      "raw_text": "Flask"
+    },
+    {
+      "skill_id": "fastapi",
+      "requirement": "required",
+      "raw_text": "FastAPI"
+    },
+    {
+      "skill_id": "databricks",
+      "requirement": "required",
+      "raw_text": "Databricks"
+    },
+    {
+      "skill_id": "apache-spark",
+      "requirement": "required",
+      "raw_text": "Spark"
+    },
+    {
+      "skill_id": "airflow",
+      "requirement": "required",
+      "raw_text": "Airflow"
+    },
+    {
+      "skill_id": "dbt",
+      "requirement": "required",
+      "raw_text": "dbt"
+    },
+    {
+      "skill_id": "bigquery",
+      "requirement": "required",
+      "raw_text": "BigQuery"
+    },
+    {
+      "skill_id": "snowflake",
+      "requirement": "required",
+      "raw_text": "Snowflake"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "AWS"
+    },
+    {
+      "skill_id": "gcp",
+      "requirement": "required",
+      "raw_text": "GCP"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Azure"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Docker"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes"
+    }
+  ]
 }

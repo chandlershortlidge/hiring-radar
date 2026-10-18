@@ -2,17 +2,70 @@
   "id": "golden_022",
   "split": "heldout",
   "draft": true,
-  "seniority": null,
-  "seniority_basis": null,
-  "seniority_signal": null,
-  "german": null,
-  "german_basis": null,
-  "german_signal": null,
-  "degree": null,
-  "degree_requirement": null,
-  "degree_or_equivalent": false,
-  "degree_signal": null,
+  "seniority": "junior",
+  "seniority_basis": "inferred",
+  "seniority_signal": "Erste praktische Erfahrung, z. B. aus Projekten oder ersten Berufsjahren",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Sehr gute Deutschkenntnisse (mindestens C1)",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Abgeschlossenes Studium in Data Science, Informatik, Mathematik, Statistik, Physik, Bioinformatik oder einem vergleichbaren Fach, alternativ vergleichbare Praxiserfahrung",
+  "attrs_reviewed": false,
   "source_sha256": "e455dbb4af76b8272f43122392b57c2edcb30b10586bc0d0ba8b60d4fbdc2d53",
   "job_description": "Limebit ist ein Berliner Beratungsunternehmen für Data Science und Machine Learning im Gesundheitswesen. Seit zehn Jahren arbeiten wir mit Krankenkassen, Klinikgruppen, Forschungseinrichtungen und Pharmaunternehmen daran, aus Medizindaten belastbare Erkenntnisse und produktive Anwendungen zu machen.\n\n**Unser Team aus Data Scientists, ML Engineers, Mathematiker:innen und Softwareentwickler:innen wächst weiter. Wir suchen eine Person mit erster Praxiserfahrung, die mit uns an anspruchsvollen Kundenprojekten arbeitet und sich bei uns fachlich weiterentwickeln will.**\n\nBei uns zählen ein wertschätzendes Miteinander, flache Hierarchien und eine selbstständige, verantwortungsbewusste Arbeitsweise.\n\n## Aufgaben\n\nDu arbeitest gemeinsam mit uns an Projekten für Kunden aus dem Gesundheitswesen, zum Beispiel:\n\n* Analysen und ML-Modelle auf echten Versorgungsdaten wie GKV-Abrechnungsdaten, Krankenhausdaten oder Krebsregisterdaten\n* Real-World-Evidence-Studien für Pharmaunternehmen, inklusive Überlebenszeitanalysen\n* Prüf- und Scoring-Modelle für Krankenkassen, auch mit NLP auf unstrukturierten Texten\n* Entwicklung von Datenpipelines und der Weg vom Prototyp in die Produktion\n* Softwaredevelopment mit gängigen Machine Learning und Statistik Bibliotheken (scikit-learn, SciPy, NumPy, Pandas, PyTorch, Tensorflow etc.) und typischen Development-Tools (Git, GitFlow, GitHub, GitLab, Jira)\n* Literaturrecherche und Umsetzung neuer Methoden als Prototyp\n* Abstimmung mit Fachexpert:innen auf Kundenseite und Präsentation von Ergebnissen\n* Optional: Lehrtätigkeiten im Bereich Data Science und Programmierung\n\n## Qualifikation\n\n**Das bringst du mit:**\n\n* Abgeschlossenes Studium in Data Science, Informatik, Mathematik, Statistik, Physik, Bioinformatik oder einem vergleichbaren Fach, alternativ vergleichbare Praxiserfahrung\n* Erste praktische Erfahrung, z. B. aus Projekten oder ersten Berufsjahren\n* Sicherer Umgang mit **Python** und gängigen Bibliotheken (z. B. _pandas oder Polars, NumPy, SciPy, scikit-learn, PyTorch_) sowie SQL\n* Solides Verständnis **statistischer Methoden und ML-Verfahren**\n* Erfahrung mit Git und kollaborativer Entwicklung\n* Sehr gute Deutschkenntnisse (mindestens C1), da unsere Kunden aus dem deutschen Gesundheitswesen und öffentlichen Umfeld kommen, sowie gute Englischkenntnisse\n\n**Ein zusätzliches Plus gibt's für:**\n\n* Erfahrung mit Gesundheitsdaten\n* Survival Analysis oder kausale Inferenz\n* R, Rust, Kubernetes oder Airflow\n\n## Benefits\n\n**Benefits**\n\n* Flexibles Arbeiten: 2-3 Tage Home Office pro Woche\n* Individuelle Weiterbildungsmöglichkeiten\n* Erfahrenes Management, das jederzeit ansprechbar ist und dir früh Verantwortung überträgt\n* Keine unbezahlten Überstunden, Mehrarbeit wird durch Freizeit ausgeglichen\n* Edenred-Karte mit monatlichem Budget zur freien Verwendung\n* Kostenloses Mittagessen, Getränke und Snacks im Büro\n* MacBook als Arbeitsgerät\n* 28 Urlaubstage\n\n**Wer ist deine Ansprechpartner:in bei uns?**\n\nWir sind klein genug, dass du dich in jeder Situation auf Feedback und Unterstützung des ganzen Teams verlassen kannst. [Florian](https://www.linkedin.com/in/florian-richter-limebit/) und [Philipp](https://www.linkedin.com/in/philipp-gro%C3%9Fer/) werden dich einarbeiten, dir ein bisschen was über die Geschichte von Limebit erzählen, dir dein neues MacBook überreichen und dich ganz persönlich willkommen heißen. Danach arbeitet ihr als Team gemeinsam an Kundenprojekten.\n\nSchick uns einfach deinen Lebenslauf, ein Anschreiben brauchen wir nicht. Wir freuen uns über alle Bewerbungen, unabhängig von Herkunft, Hautfarbe, Geschlecht, sexueller Orientierung, Religion, Alter oder Behinderung.",
-  "expected": []
+  "expected": [
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "pandas",
+      "requirement": "required",
+      "raw_text": "pandas oder Polars"
+    },
+    {
+      "skill_id": "numpy",
+      "requirement": "required",
+      "raw_text": "Polars, NumPy"
+    },
+    {
+      "skill_id": "scikit-learn",
+      "requirement": "required",
+      "raw_text": "SciPy, scikit-learn"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "scikit-learn, PyTorch"
+    },
+    {
+      "skill_id": "sql",
+      "requirement": "required",
+      "raw_text": "sowie SQL"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "ML-Verfahren"
+    },
+    {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "Erfahrung mit Git"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "nice_to_have",
+      "raw_text": "Kubernetes"
+    },
+    {
+      "skill_id": "airflow",
+      "requirement": "nice_to_have",
+      "raw_text": "Airflow"
+    }
+  ]
 }
