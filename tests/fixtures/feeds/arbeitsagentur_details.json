@@ -1,0 +1,17 @@
+{
+  "_comment": "Keyed by reference number. The first is trimmed from the live details call for the search fixture's first result (description cut, as printed); its details list Leipzig first. The second is hand-made with no description.",
+  "12336-a26f1192j0456062-S": {
+    "stellenangebotsart": "ARBEIT", "stellenangebotsTitel": "AI Engineer (m/d/w)",
+    "stellenangebotsBeschreibung": "**AI Engineer** für internationale **Kundenprojekte**: Architektur, Beratung und",
+    "stellenlokationen": [{"adresse": {"plz": "04109", "ort": "Leipzig", "region": "SACHSEN", "land": "DEUTSCHLAND"}}],
+    "datumErsteVeroeffentlichung": "2026-10-14",
+    "externeURL": "https://gute-jobs.de/viewjob-nsx8n",
+    "hauptberuf": "KI-Engineer", "firma": "EXXETA AG",
+    "allianzpartnerUrl": "[www.gute-jobs.de](https://www.gute-jobs.de)", "allianzpartnerName": "Wollmilchsau GmbH",
+    "referenznummer": "12336-a26f1192j0456062-S"
+  },
+  "12265-PARTNER99-S": {
+    "stellenangebotsTitel": "Machine Learning Engineer", "firma": "Partner AG",
+    "referenznummer": "12265-PARTNER99-S"
+  }
+}

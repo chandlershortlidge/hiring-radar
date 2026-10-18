@@ -123,19 +123,24 @@ def _job_postings(obj) -> list[dict]:
     return _job_postings(obj.get("@graph", []))
 
 
-def _location_of(jp: dict) -> str | None:
-    loc = jp.get("jobLocation")
-    if isinstance(loc, list):
-        loc = loc[0] if loc else None
+def _place_of(loc) -> str | None:
     if not isinstance(loc, dict):
         return None
     addr = loc.get("address")
     if isinstance(addr, str):
-        return addr
+        return addr.strip() or None
     if isinstance(addr, dict):
         parts = [addr.get("addressLocality"), addr.get("addressRegion"), addr.get("addressCountry")]
-        return ", ".join(p for p in parts if isinstance(p, str) and p) or None
+        return ", ".join(p.strip() for p in parts if isinstance(p, str) and p.strip()) or None
     return loc.get("name")
+
+
+def _location_of(jp: dict) -> str | None:
+    """Every place the posting lists, "; "-joined — as Greenhouse does — so a multi-office
+    posting whose first office is untracked still maps to a tracked city."""
+    loc = jp.get("jobLocation")
+    places = [_place_of(l) for l in (loc if isinstance(loc, list) else [loc])]
+    return "; ".join(p for p in places if p) or None
 
 
 def posting_from_html(url: str, markup: str, company: str | None = None,

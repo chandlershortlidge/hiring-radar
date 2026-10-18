@@ -2,11 +2,16 @@
   "_comment": "Feeds polled daily by `python -m app poll`. Postings are filtered by title and city after fetch (see app/ingest.py), so a feed can be broad. company is optional on board feeds; it is used when the feed does not name one.",
   "feeds": [
     {"type": "arbeitnow", "enabled": true, "max_pages": 5},
+    {"type": "arbeitsagentur", "enabled": true, "search": "AI Engineer", "where": "Berlin", "radius_km": 25, "days": 30},
+    {"type": "arbeitsagentur", "enabled": true, "search": "Machine Learning Engineer", "where": "Berlin", "radius_km": 25, "days": 30},
+    {"type": "jsearch", "enabled": true, "search": "AI engineer in Berlin", "country": "de", "date_posted": "week", "num_pages": 1},
+    {"type": "jsearch", "enabled": true, "search": "machine learning engineer in Berlin", "country": "de", "date_posted": "week", "num_pages": 1},
     {"type": "startup_jobs", "enabled": true, "search": "AI engineer", "country": "DE"},
     {"type": "startup_jobs", "enabled": true, "search": "machine learning engineer", "country": "DE"},
     {"type": "greenhouse", "enabled": false, "token": "example-token", "company": "Example GmbH"},
     {"type": "lever", "enabled": false, "token": "example", "company": "Example"},
     {"type": "ashby", "enabled": false, "token": "example", "company": "Example"},
-    {"type": "ashby", "enabled": true, "token": "almedia", "company": "almedia"}
+    {"type": "ashby", "enabled": true, "token": "almedia", "company": "almedia"},
+    {"type": "ashby", "enabled": true, "token": "jupus", "company": "jupus"}
   ]
 }

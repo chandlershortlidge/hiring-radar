@@ -79,6 +79,8 @@ LEAKED_TITLES = [
     "Sales",
     "Software Engineer",      # role, no domain
     "Backend Developer",
+    "Senior KI Consultant (m/w/d)",   # German domain word, but no technical role
+    "Kirchenmusiker (m/w/d)",         # "ki" only as a whole word
 ])
 def test_in_scope_title_rejects_without_both_halves(title):
     assert in_scope_title(title) is False
@@ -95,6 +97,9 @@ def test_in_scope_title_rejects_without_both_halves(title):
     # Role names that carry the domain themselves, in scope before this rule and still in it.
     "Applied Scientist",
     "Research Engineer",
+    # German domain words (Arbeitsagentur titles, 2026-10-18).
+    "Software Engineer / Softwareentwickler (w/m/d) Schwerpunkt Künstliche Intelligenz",
+    "KI-Engineer (m/w/d)",
 ])
 def test_in_scope_title_accepts_domain_plus_role(title):
     assert in_scope_title(title) is True

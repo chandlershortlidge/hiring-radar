@@ -80,3 +80,35 @@ def test_failed_migration_records_nothing(tmp_path):
     assert applied == {1}
     tables = {r[0] for r in conn.execute("SELECT name FROM sqlite_master WHERE type='table'")}
     assert "b" not in tables
+
+
+def test_every_feed_adapter_source_is_allowed_by_the_schema(tmp_path):
+    # Regression: arbeitsagentur/jsearch postings hit the job_source CHECK at ingest.
+    from app.sources import arbeitnow, arbeitsagentur, ashby, greenhouse, jsearch, lever, startup_jobs
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+    job_id = _job(conn)
+    for i, mod in enumerate((arbeitnow, arbeitsagentur, ashby, greenhouse, jsearch, lever, startup_jobs)):
+        conn.execute("INSERT INTO job_source (job_id, source, source_job_id, first_seen, last_seen) "
+                     "VALUES (?, ?, ?, 'now', 'now')", (job_id, mod.SOURCE, f"id{i}"))
+
+
+def test_migration_007_keeps_existing_job_source_rows(tmp_path):
+    import shutil
+    old = tmp_path / "old"
+    old.mkdir()
+    for p in sorted(db.MIGRATIONS_DIR.glob("*.sql")):
+        if int(p.name[:3]) < 7:
+            shutil.copy(p, old / p.name)
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn, old)
+    job_id = _job(conn)
+    conn.execute("INSERT INTO job_source (job_id, source, source_job_id, url, first_seen, last_seen, posted_at) "
+                 "VALUES (?, 'arbeitnow', 'a1', 'u', 'f', 'l', 'p')", (job_id,))
+    conn.commit()
+    db.migrate(conn)
+    rows = [tuple(r) for r in conn.execute(
+        "SELECT job_id, source, source_job_id, url, first_seen, last_seen, posted_at FROM job_source")]
+    assert rows == [(job_id, "arbeitnow", "a1", "u", "f", "l", "p")]
+    conn.execute("DELETE FROM job WHERE id=?", (job_id,))   # cascade still wired
+    assert conn.execute("SELECT COUNT(*) FROM job_source").fetchone()[0] == 0

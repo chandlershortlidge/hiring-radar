@@ -1,0 +1,21 @@
+{
+  "_comment": "First result trimmed from a live v6 search (AI Engineer, Berlin, 2026-10-18). The second result is hand-made: a posting whose details carry no description.",
+  "ergebnisliste": [
+    {"stellenangebotsart": "ARBEIT", "stellenangebotsTitel": "AI Engineer (m/d/w)",
+     "stellenlokationen": [{"adresse": {"plz": "10178", "ort": "Berlin", "region": "BERLIN", "land": "DEUTSCHLAND"},
+                            "breite": 52.5210906, "laenge": 13.4099785}],
+     "veroeffentlichungszeitraum": {"von": "2026-10-14"},
+     "datumErsteVeroeffentlichung": "2026-10-14", "aenderungsdatum": "2026-10-14T07:01:01.046",
+     "externeURL": "https://gute-jobs.de/viewjob-nsx8n?utm_source=jsba-premium&utm_medium=n-a&utm_campaign=jsba-premium&utm_term=ai-engineer-m-d-w",
+     "hauptberuf": "KI-Engineer", "firma": "EXXETA AG", "referenznummer": "12336-a26f1192j0456062-S",
+     "entfernung": 2, "alleBerufe": ["KI-Engineer"]},
+    {"stellenangebotsTitel": "Machine Learning Engineer", "firma": "Partner AG",
+     "stellenlokationen": [{"adresse": {"ort": "Berlin"}}], "referenznummer": "12265-PARTNER99-S"},
+    {"stellenangebotsTitel": "no reference number, dropped"}
+  ],
+  "maxErgebnisse": 3,
+  "page": 1,
+  "size": 2,
+  "woOutput": {},
+  "facetten": {}
+}

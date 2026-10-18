@@ -117,7 +117,7 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `app/evaluation.py` — scoring (micro P/R/F1, requirement accuracy, rank agreement)
   and the suite runner. `scripts/run_eval.py` — live CLI around it.
 - `app/sources/` — one adapter per feed (`greenhouse`, `lever`, `ashby`, `arbeitnow`,
-  `startup_jobs`): `parse(payload)` is pure and tested on `tests/fixtures/feeds/`;
+  `arbeitsagentur`, `jsearch`, `startup_jobs`): `parse(payload)` is pure and tested on `tests/fixtures/feeds/`;
   `fetch()` is the thin HTTP wrapper. `app/html_text.py` strips HTML.
 - `app/dedup.py` — company/title keys and 3-word-shingle Jaccard similarity; `find_match`
   needs same company AND similarity ≥ 0.7. `app/geo.py` — location → tracked city.
@@ -148,6 +148,8 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   Each has a `split` (`dev` or `heldout`).
 - `legacy/` + `scripts/import_legacy.py` — the old Supabase export (48 jobs, their skills)
   and the one-off importer. See its docstring for the three import paths.
+- `scripts/fix_jsearch_ids.py` — one-off: collapse jsearch rows stored under unstable ids
+  (before 2026-10-18) and undo the repost counts they caused. `--dry-run` first.
 - `scripts/seed_from_legacy.py` — one-off that built the taxonomy and Goldens from the
   legacy repo. Kept for provenance.
 - `tests/` — pytest.
