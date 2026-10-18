@@ -24,10 +24,16 @@ Field names come from OpenWeb Ninja's sample response and third-party write-ups,
 recorded call: tests/fixtures/feeds/jsearch.json is hand-built to that shape. Replace it
 with a recorded response when one is available.
 
+`job_id` is not stable: it is base64 of `<docid>:<per-request token>`, and the token changes
+on every call (seen live 2026-10-18: one StepStone posting under four ids in two polls,
+each counted as a repost). The `<docid>` part is stable, so that is the source_job_id.
+
 The same posting often also arrives from arbeitnow, a board feed, or the Arbeitsagentur;
 dedup at ingest merges those (same company, similar text).
 """
 
+import base64
+import binascii
 import os
 import urllib.parse
 
@@ -41,6 +47,17 @@ HOSTS = {
 }
 
 
+def stable_id(job_id: str) -> str:
+    """The stable part of a JSearch job_id: the decoded text before the first ':'.
+    Returns job_id unchanged when it does not decode to that shape."""
+    try:
+        raw = base64.b64decode(job_id + "=" * (-len(job_id) % 4), validate=True).decode("ascii")
+    except (binascii.Error, ValueError, UnicodeDecodeError):
+        return job_id
+    head, sep, _ = raw.partition(":")
+    return head if sep and head else job_id
+
+
 def parse(payload) -> list[Posting]:
     items = payload.get("data") if isinstance(payload, dict) else None
     out = []
@@ -50,7 +67,7 @@ def parse(payload) -> list[Posting]:
             continue
         out.append(Posting(
             source=SOURCE,
-            source_job_id=str(job_id),
+            source_job_id=stable_id(str(job_id)),
             url=j.get("job_apply_link") or j.get("job_google_link") or "",
             company=j.get("employer_name"),
             title=str(title).strip(),

@@ -148,6 +148,8 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   Each has a `split` (`dev` or `heldout`).
 - `legacy/` + `scripts/import_legacy.py` — the old Supabase export (48 jobs, their skills)
   and the one-off importer. See its docstring for the three import paths.
+- `scripts/fix_jsearch_ids.py` — one-off: collapse jsearch rows stored under unstable ids
+  (before 2026-10-18) and undo the repost counts they caused. `--dry-run` first.
 - `scripts/seed_from_legacy.py` — one-off that built the taxonomy and Goldens from the
   legacy repo. Kept for provenance.
 - `tests/` — pytest.

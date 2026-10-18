@@ -224,3 +224,25 @@ def test_jsearch_fetch_needs_a_key_and_makes_one_call(monkeypatch):
     monkeypatch.setattr(jsearch, "fetch_json", lambda url, headers=None, timeout=30: calls.append(url) or load("jsearch.json"))
     monkeypatch.setenv("JSEARCH_API_KEY", "k")
     assert len(jsearch.fetch("AI engineer in Berlin")) == 2 and len(calls) == 1
+
+
+# Two ids JSearch returned for the same StepStone posting on two calls (live, 2026-10-18).
+JSEARCH_IDS_SAME_POSTING = (
+    "OXF1enQyQ2NBc3JrX1hWS0FBQUFBQT09OkVzd0JDb3dCUVVwcFZEUjBTV1o1YldwR2JEZExaekI2ZFRCdGFqRm1NMlV6T1VsMWQxTXRjRVZQV1Vzd1FsVlRlRU5ETlhCNFkwWlJZamcwY1VkT2FHZFlhM0pMWjJsblIwcFhkV3MwYUU1RVJISlVRMnhUU1RKclExRkhPVUo0WldaSGVtbDVjM3AzU25Zd1JrNXZOazlEUWxBeFIwWkRaa1EzWmtwbVJsWjJSRTlHTjA1a2IxUnlaMmhQT1hkYWNHb1NGMGxSVUZaaGNTMXZTSEpwWlRWT2IxQnJjV2xWYlVGbkdpSkJSSE55T1daU1JtYzBaMlpsTkZsbWRrNXJORjlGWm10bFVqWnhZM3BFTkZCUg",
+    "OXF1enQyQ2NBc3JrX1hWS0FBQUFBQT09OkVzd0JDb3dCUVVwcFZEUjBTVzlNT1VReVRrWldjMk5aU25Ga016WnFlVEEwUjJGdVdrcEJja3BMYUdSc01VaHpOakkwWkZkS05XaHBaSE14TUdsTGIyWnZXVWxqY1ZWRlVYWmFTVEZLTWxRM1gycFJZMnh0YzFGdmR6UlpZMGx4VUZOM0xXRnZkR05wVkZWaFNFcHpkbmswUm1aSVREZHhSMkl0UlRWeldYVmZaSEpITFRSWWJEVXhZMVpwTFVwaVZGTVNGelZSU0ZaaGRIbHdTelZ1WlRWT2IxQnVUQzFRYzBFd0dpSkJSSE55T1daUlppMVVNRmR4V25oWUxWQkhWVGh5TmpSd0xWb3hObk5oV0daUg",
+)
+
+
+def test_jsearch_stable_id_drops_the_per_request_token():
+    from app.sources import jsearch
+    a, b = (jsearch.stable_id(i) for i in JSEARCH_IDS_SAME_POSTING)
+    assert a == b == "9quzt2CcAsrk_XVKAAAAAA=="
+    for odd in ("abc123==", "not base64!", "", "bm9jb2xvbg=="):   # last decodes to "nocolon"
+        assert jsearch.stable_id(odd) == odd
+
+
+def test_jsearch_parse_uses_the_stable_id():
+    from app.sources import jsearch
+    payload = {"data": [{"job_id": i, "job_title": "AI Engineer", "job_description": "x"}
+                        for i in JSEARCH_IDS_SAME_POSTING]}
+    assert {p.source_job_id for p in jsearch.parse(payload)} == {"9quzt2CcAsrk_XVKAAAAAA=="}
