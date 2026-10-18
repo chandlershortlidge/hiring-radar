@@ -26,10 +26,11 @@ from app.sources import Posting
 # A title is in scope only when it names an AI/ML domain AND a technical role. Either half
 # alone is noise: feeds carry "Industrial AI" in sales titles and "Agent" in call-centre and
 # retail ones, and plain "Software Engineer" is not what this project measures. Still broad
-# within that rule; the taxonomy decides what the skills are later.
+# within that rule; the taxonomy decides what the skills are later. German domain words
+# (KI, Künstliche Intelligenz) are in because the Arbeitsagentur feed carries German titles.
 DOMAIN_PATTERN = re.compile(
-    r"\b(ai|ml|mlops|llmops|llm|genai|generative ai|nlp|deep learning|agentic|agent|prompt|"
-    r"machine learning|data scien\w*|applied scientist|research engineer)\b", re.I)
+    r"\b(ai|ki|künstliche intelligenz|ml|mlops|llmops|llm|genai|generative ai|nlp|deep learning|"
+    r"agentic|agent|prompt|machine learning|data scien\w*|applied scientist|research engineer)\b", re.I)
 
 # `applied scientist` and `research engineer` sit in DOMAIN_PATTERN as well: they carry the
 # domain in the role name, so they satisfy both halves on their own, as they did before.
