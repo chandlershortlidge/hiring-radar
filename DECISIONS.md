@@ -5,6 +5,22 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-18 — Open rule: complete feeds vs search sources
+
+A job counts as open while a *complete* feed (Greenhouse, Lever, Ashby, arbeitnow,
+startup.jobs) saw it in the last 3 days — those list every live posting each poll, so
+absence means closed. JSearch and the Arbeitsagentur are *search sources*: JSearch returns
+~10 ranked results per query, the Arbeitsagentur query only covers postings published in
+the last 30 days, so absence there proves nothing. A job known only from search sources
+(or added by hand) is assumed open for 60 days. When a complete feed has the job, only
+that feed's own last sighting counts — a search source re-finding a job must not keep a
+delisted board posting open. `queries.FEED_SOURCES` / `SEARCH_SOURCES`.
+
+German-language postings arrive via the Arbeitsagentur and are not represented in the
+Goldens. `scripts/new_goldens.py --german N` drafts unlabeled held-out Goldens from them
+(no model pre-fill — held-out labels must not be anchored on the extractor's answer);
+run_eval skips files marked `draft`.
+
 ## 2026-10-18 — German and degree are per-job attributes, extracted like seniority; three is the limit
 
 Two more things a posting asks for that decide whether it is open to a given person:

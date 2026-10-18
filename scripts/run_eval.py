@@ -36,7 +36,7 @@ def load_goldens(split: str) -> list[dict]:
     out = []
     for p in sorted((ROOT / "evals/goldens").glob("*.json")):
         g = json.loads(p.read_text())
-        if g["split"] == split:
+        if g["split"] == split and not g.get("draft"):  # drafts are unlabeled (scripts/new_goldens.py)
             out.append(g)
     return out
 

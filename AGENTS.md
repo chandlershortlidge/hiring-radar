@@ -150,6 +150,8 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   and the one-off importer. See its docstring for the three import paths.
 - `scripts/fix_jsearch_ids.py` — one-off: collapse jsearch rows stored under unstable ids
   (before 2026-10-18) and undo the repost counts they caused. `--dry-run` first.
+- `scripts/new_goldens.py` — draft unlabeled held-out Goldens from DB jobs
+  (`--german N` or `--ids ...`); run_eval skips files with `"draft": true`.
 - `scripts/seed_from_legacy.py` — one-off that built the taxonomy and Goldens from the
   legacy repo. Kept for provenance.
 - `tests/` — pytest.

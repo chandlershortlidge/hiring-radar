@@ -50,6 +50,22 @@ def test_open_rule_feed_vs_manual(conn):
     assert s["companies"] == 5 and s["proposed_pending"] == 3
 
 
+def test_search_sources_use_the_manual_rule_and_never_keep_a_closed_feed_job_open(conn):
+    # JSearch-only, last seen 20 days ago: open (absence from a search sample proves nothing).
+    add(conn, "Zeta", "AI Engineer", "Berlin", "jsearch", ts(20), [("python", "required")])
+    # Arbeitsagentur-only, 70 days: closed under the 60-day rule.
+    add(conn, "Eta", "AI Engineer", "Berlin", "arbeitsagentur", ts(70), [("python", "required")])
+    # Beta's arbeitnow listing went stale 10 days ago; JSearch re-finding it today must not reopen it.
+    beta = conn.execute("SELECT id FROM job WHERE company='Beta'").fetchone()[0]
+    conn.execute("INSERT INTO job_source (job_id, source, source_job_id, first_seen, last_seen) VALUES (?,?,?,?,?)",
+                 (beta, "jsearch", "js-beta", ts(0), ts(0)))
+    conn.execute("UPDATE job SET last_seen=? WHERE id=?", (ts(0), beta))
+    s = {j["company"]: j["status"] for j in q.list_jobs(conn, q.Filters(window="all"), NOW)["jobs"]}
+    assert (s["Zeta"], s["Eta"], s["Beta"]) == ("open", "closed", "closed")
+    assert q.stats(conn, NOW, 1)["open"] == 4  # Acme, Gamma, Delta, Zeta
+    assert q.job_detail(conn, beta, NOW)["status"] == "closed"
+
+
 def test_skill_frequency_required_only_over_open_jobs(conn):
     r = q.skill_frequency(conn, q.Filters(), NOW)
     assert r["total"] == 3

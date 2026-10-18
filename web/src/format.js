@@ -4,6 +4,8 @@ export const SOURCE_CODES = {
   greenhouse: ["GH", "Greenhouse"],
   lever: ["LV", "Lever"],
   ashby: ["AS", "Ashby"],
+  arbeitsagentur: ["BA", "Bundesagentur für Arbeit"],
+  jsearch: ["JS", "JSearch (Google for Jobs)"],
   url: ["URL", "Pasted link"],
   paste: ["TXT", "Pasted text"],
   screenshot: ["IMG", "Screenshot"],

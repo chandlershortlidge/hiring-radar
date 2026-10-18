@@ -19,7 +19,13 @@ import sqlite3
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 
+# Complete feeds list every live posting on every poll, so not seeing a job for
+# FEED_OPEN_DAYS means it closed. Search sources return a sample (JSearch: ~10 ranked
+# results; Arbeitsagentur: only postings published in the last 30 days), so absence there
+# proves nothing: a job known only from them, or added by hand, is assumed open for
+# MANUAL_OPEN_DAYS. When a complete feed has the job, only that feed's last sighting counts.
 FEED_SOURCES = ("greenhouse", "lever", "ashby", "startup_jobs", "arbeitnow")
+SEARCH_SOURCES = ("jsearch", "arbeitsagentur")
 MANUAL_SOURCES = ("url", "paste", "screenshot")
 FEED_OPEN_DAYS = 3
 MANUAL_OPEN_DAYS = 60
@@ -70,9 +76,13 @@ class Filters:
 _HAS_FEED = f"EXISTS (SELECT 1 FROM job_source s WHERE s.job_id = j.id AND s.source IN {FEED_SOURCES})"
 
 
+_FEED_SEEN = (f"EXISTS (SELECT 1 FROM job_source s WHERE s.job_id = j.id AND s.source IN {FEED_SOURCES}"
+              f" AND s.last_seen >= ?)")
+
+
 def open_clause(now: str) -> tuple[str, list]:
-    """SQL (over alias j) that is true when the job counts as open."""
-    return (f"(({_HAS_FEED} AND j.last_seen >= ?) OR (NOT {_HAS_FEED} AND j.last_seen >= ?))",
+    """SQL (over alias j) that is true when the job counts as open (rule above FEED_SOURCES)."""
+    return (f"({_FEED_SEEN} OR (NOT {_HAS_FEED} AND j.last_seen >= ?))",
             [_days_ago(now, FEED_OPEN_DAYS), _days_ago(now, MANUAL_OPEN_DAYS)])
 
 
@@ -166,10 +176,12 @@ SORTS = {
 }
 
 
-def _status(row, now: str, feed_sources: set[str]) -> str:
-    has_feed = bool(feed_sources & set(FEED_SOURCES))
-    cutoff = _days_ago(now, FEED_OPEN_DAYS if has_feed else MANUAL_OPEN_DAYS)
-    return "open" if row["last_seen"] >= cutoff else "closed"
+def _status(row, now: str, sources: list[dict]) -> str:
+    """Python twin of open_clause, over a job row and its job_source rows (need last_seen)."""
+    feed_seen = [s["last_seen"] for s in sources if s["source"] in FEED_SOURCES]
+    if feed_seen:
+        return "open" if max(feed_seen) >= _days_ago(now, FEED_OPEN_DAYS) else "closed"
+    return "open" if row["last_seen"] >= _days_ago(now, MANUAL_OPEN_DAYS) else "closed"
 
 
 def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newest",
@@ -197,10 +209,10 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
     srcs: dict[int, list] = {i: [] for i in ids}
     if ids:
         for s in conn.execute(
-                f"SELECT job_id, source, url, first_seen, found_via FROM job_source"
+                f"SELECT job_id, source, url, first_seen, last_seen, found_via FROM job_source"
                 f" WHERE job_id IN ({','.join('?' * len(ids))}) ORDER BY first_seen", ids):
             srcs[s["job_id"]].append({"source": s["source"], "url": s["url"], "first_seen": s["first_seen"],
-                                      "found_via": s["found_via"]})
+                                      "last_seen": s["last_seen"], "found_via": s["found_via"]})
     skill_counts: dict[int, dict] = {i: {"required": 0, "nice_to_have": 0} for i in ids}
     required: dict[int, list] = {i: [] for i in ids}
     if ids:
@@ -216,7 +228,7 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
         d["legacy"] = d.pop("extracted_version") == LEGACY_VERSION
         d["degree_or_equivalent"] = bool(d["degree_or_equivalent"])
         d["sources"] = srcs[r["id"]]
-        d["status"] = _status(r, now, {s["source"] for s in d["sources"]})
+        d["status"] = _status(r, now, d["sources"])
         d["skill_counts"] = skill_counts[r["id"]]
         d["required_skills"] = required[r["id"]]  # ids only; the browser-side profile match uses them
         jobs.append(d)
@@ -234,7 +246,7 @@ def job_detail(conn: sqlite3.Connection, job_id: int, now: str) -> dict | None:
     d["sources"] = [dict(s) for s in conn.execute(
         "SELECT source, source_job_id, url, found_via, first_seen, last_seen, posted_at FROM job_source"
         " WHERE job_id = ? ORDER BY first_seen", (job_id,))]
-    d["status"] = _status(r, now, {s["source"] for s in d["sources"]})
+    d["status"] = _status(r, now, d["sources"])
     d["legacy"] = d["extracted_version"] == LEGACY_VERSION
     d["degree_or_equivalent"] = bool(d["degree_or_equivalent"])
     d["skills"] = [dict(m) for m in conn.execute(
