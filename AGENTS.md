@@ -117,7 +117,7 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `app/evaluation.py` — scoring (micro P/R/F1, requirement accuracy, rank agreement)
   and the suite runner. `scripts/run_eval.py` — live CLI around it.
 - `app/sources/` — one adapter per feed (`greenhouse`, `lever`, `ashby`, `arbeitnow`,
-  `arbeitsagentur`, `startup_jobs`): `parse(payload)` is pure and tested on `tests/fixtures/feeds/`;
+  `arbeitsagentur`, `jsearch`, `startup_jobs`): `parse(payload)` is pure and tested on `tests/fixtures/feeds/`;
   `fetch()` is the thin HTTP wrapper. `app/html_text.py` strips HTML.
 - `app/dedup.py` — company/title keys and 3-word-shingle Jaccard similarity; `find_match`
   needs same company AND similarity ≥ 0.7. `app/geo.py` — location → tracked city.

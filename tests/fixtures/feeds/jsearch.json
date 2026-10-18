@@ -1,0 +1,19 @@
+{
+  "_comment": "Hand-built to the documented shape (OpenWeb Ninja sample response), not a recorded response.",
+  "status": "OK",
+  "request_id": "00000000-0000-0000-0000-000000000000",
+  "parameters": {"query": "AI engineer in Berlin", "page": 1, "num_pages": 1, "country": "de", "date_posted": "week"},
+  "data": [
+    {"job_id": "abc123==", "job_title": "AI Engineer (m/w/d) ", "employer_name": "Beispiel GmbH",
+     "job_publisher": "LinkedIn", "job_apply_link": "https://www.linkedin.com/jobs/view/123",
+     "job_google_link": "https://www.google.com/search?q=jobs&ibp=htl;jobs#htidocid=abc123",
+     "job_description": "We build agents.\n\nRequirements:\n- Python\n- RAG",
+     "job_city": "Berlin", "job_location": "Berlin, Germany", "job_country": "DE",
+     "job_posted_at_datetime_utc": "2026-10-16T09:00:00.000Z"},
+    {"job_id": "def456==", "job_title": "Machine Learning Engineer", "employer_name": "Acme",
+     "job_google_link": "https://www.google.com/search?q=jobs&ibp=htl;jobs#htidocid=def456",
+     "job_description": "PyTorch and MLOps.", "job_city": null, "job_location": "Germany",
+     "job_posted_at_datetime_utc": null},
+    {"job_id": "empty==", "job_title": "AI Engineer", "employer_name": "NoText", "job_description": ""}
+  ]
+}

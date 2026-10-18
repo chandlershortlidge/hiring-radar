@@ -16,7 +16,7 @@ import sqlite3
 from pathlib import Path
 
 from app.ingest import Report, ingest
-from app.sources import arbeitnow, arbeitsagentur, ashby, greenhouse, lever, startup_jobs
+from app.sources import arbeitnow, arbeitsagentur, ashby, greenhouse, jsearch, lever, startup_jobs
 
 ROOT = Path(__file__).resolve().parent.parent
 FEEDS_PATH = ROOT / "config" / "feeds.json"
@@ -35,6 +35,9 @@ def fetch_feed(feed: dict) -> list:
     if t == "arbeitsagentur":
         return arbeitsagentur.fetch(feed["search"], feed.get("where", "Berlin"), feed.get("radius_km", 25),
                                     feed.get("days", 30), feed.get("max_pages", 2), feed.get("size", 50))
+    if t == "jsearch":
+        return jsearch.fetch(feed["search"], feed.get("country", "de"), feed.get("date_posted", "week"),
+                             feed.get("num_pages", 1))
     if t == "greenhouse":
         return greenhouse.fetch(feed["token"], feed.get("company"))
     if t == "lever":

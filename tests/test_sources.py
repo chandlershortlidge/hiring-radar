@@ -171,3 +171,48 @@ def test_arbeitsagentur_fetch_pages_and_calls_details(monkeypatch):
     ps = arbeitsagentur.fetch("AI Engineer", max_pages=5)
     assert [p.source_job_id for p in ps] == ["10001-1001234567-S"]
     assert sum("/pc/v4/jobs?" in c for c in calls) == 2 and sum("/jobdetails/" in c for c in calls) == 2
+
+
+# --- jsearch (fixture is hand-built to the documented shape) ---------------------
+
+def test_jsearch_parse_maps_fields_and_skips_empty():
+    from app.sources import jsearch
+    first, second = jsearch.parse(load("jsearch.json"))   # third has no description
+    assert first.source == "jsearch" and first.source_job_id == "abc123=="
+    assert first.title == "AI Engineer (m/w/d)" and first.company == "Beispiel GmbH"
+    assert first.url == "https://www.linkedin.com/jobs/view/123" and first.location_raw == "Berlin"
+    assert first.posted_at == "2026-10-16T09:00:00.000Z" and "- RAG" in first.description_text
+    # No apply link → Google link; no city → location string.
+    assert second.url.startswith("https://www.google.com/") and second.location_raw == "Germany"
+    assert second.posted_at is None
+    assert jsearch.parse({"status": "ERROR"}) == [] and jsearch.parse([]) == []
+
+
+def test_jsearch_request_per_host():
+    from app.sources import jsearch
+    url, headers = jsearch.request("AI engineer in Berlin", "de", "week", 1, 1, "openwebninja", "k")
+    assert url.startswith("https://api.openwebninja.com/jsearch/search?") and headers == {"x-api-key": "k"}
+    for part in ("query=AI+engineer+in+Berlin", "country=de", "date_posted=week", "page=1", "num_pages=1"):
+        assert part in url
+    url, headers = jsearch.request("x", None, None, 1, 1, "rapidapi", "k")
+    assert url.startswith("https://jsearch.p.rapidapi.com/search?") and "country" not in url
+    assert headers == {"X-RapidAPI-Key": "k", "X-RapidAPI-Host": "jsearch.p.rapidapi.com"}
+
+
+def test_jsearch_request_rejects_unknown_host():
+    import pytest
+    from app.sources import jsearch
+    with pytest.raises(ValueError):
+        jsearch.request("x", None, None, 1, 1, "openai", "k")
+
+
+def test_jsearch_fetch_needs_a_key_and_makes_one_call(monkeypatch):
+    import pytest
+    from app.sources import jsearch
+    monkeypatch.delenv("JSEARCH_API_KEY", raising=False)
+    with pytest.raises(RuntimeError):
+        jsearch.fetch("AI engineer in Berlin")
+    calls = []
+    monkeypatch.setattr(jsearch, "fetch_json", lambda url, headers=None, timeout=30: calls.append(url) or load("jsearch.json"))
+    monkeypatch.setenv("JSEARCH_API_KEY", "k")
+    assert len(jsearch.fetch("AI engineer in Berlin")) == 2 and len(calls) == 1
