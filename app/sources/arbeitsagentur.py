@@ -5,25 +5,20 @@ Germany's federal job board. Free, no account: every request carries the public 
 agency's own site uses (documented by the community at github.com/bundesAPI/jobsuche-api),
 so it can change without notice.
 
-Two calls per posting:
+Two calls per posting (shapes recorded from a live call, 2026-10-18):
 - search `GET /pc/v6/jobs?was=..&wo=..&umkreis=..&veroeffentlichtseit=..&page=..&size=..`
-  → `{"stellenangebote": [...], "maxErgebnisse": int, "page": int, "size": int}`. A listing
-  has `referenznummer` (`refnr` in the older v4 search; both are read), `titel`, `arbeitgeber`, `arbeitsort` (`ort`, `plz`, `region`, `land`),
-  `aktuelleVeroeffentlichungsdatum`, and `externeUrl` when the posting lives elsewhere.
-  No description.
-- details `GET /pc/v4/jobdetails/{base64(refnr)}` → `stellenangebotsTitel`, `firma`,
-  `stellenangebotsBeschreibung` (plain text, sometimes HTML-ish), `stellenlokationen`
-  (`[{"adresse": {"ort": ..}}]`), `datumErsteVeroeffentlichung`, `allianzpartnerUrl`.
+  → `{"ergebnisliste": [...], "maxErgebnisse": int, "page": int, "size": int, "woOutput",
+  "facetten"}`. A result carries `referenznummer`, `stellenangebotsTitel`, `firma`,
+  `stellenlokationen` (`[{"adresse": {"ort": ..}}]`), `datumErsteVeroeffentlichung`,
+  `externeURL`, `hauptberuf`, but no description. (The v4 search, `stellenangebote` with
+  `refnr`, now answers `403 No match found for request`.)
+- details `GET /pc/v4/jobdetails/{base64(refnr)}` → the same fields plus
+  `stellenangebotsBeschreibung` (the description, Markdown-ish text).
 
-Field names come from the bundesAPI docs and the `jobsuche` Rust crate's response types,
-not from a recorded call: tests/fixtures/feeds/arbeitsagentur_*.json are hand-built to
-that shape. Replace them with a recorded response when one is available.
+tests/fixtures/feeds/arbeitsagentur_*.json are trimmed from that live call.
 
 Postings from partner boards often have no description in the details response; those
 are skipped (a Posting needs description text), the same as other adapters skip empties.
-
-The v4 search path answers `403 No match found for request` (seen on a live poll,
-2026-10-18): it is gone, so search uses v6. Details stay on v4, the documented choice.
 
 Pagination: page numbers start at 1; stop on an empty page or once page*size covers
 maxErgebnisse.
@@ -45,10 +40,12 @@ JOB_PAGE = "https://www.arbeitsagentur.de/jobsuche/jobdetail/"
 
 
 def listings(payload: dict) -> list[dict]:
-    """The listings in a search page that carry a reference number, each with `refnr` set
-    (v6 calls it `referenznummer`)."""
+    """The results in a search page that carry a reference number, each with `refnr` set.
+    v6 returns them under `ergebnisliste` with `referenznummer`; v4 used `stellenangebote`
+    and `refnr`. Both are read."""
+    payload = payload or {}
     out = []
-    for l in (payload or {}).get("stellenangebote") or []:
+    for l in payload.get("ergebnisliste") or payload.get("stellenangebote") or []:
         ref = l.get("refnr") or l.get("referenznummer")
         if ref:
             out.append({**l, "refnr": ref})
@@ -65,28 +62,39 @@ def has_next(payload: dict) -> bool:
     return page * size < total
 
 
+def _first_city(locations) -> str | None:
+    for loc in locations or []:
+        city = ((loc or {}).get("adresse") or {}).get("ort")
+        if city:
+            return city
+    return None
+
+
 def parse(listing: dict, details: dict) -> Posting | None:
-    """One listing plus its details → a Posting, or None when there is no description."""
+    """One search result plus its details → a Posting, or None when there is no description.
+
+    Location comes from the search result first: a posting listed in several cities is
+    returned by a Berlin search with Berlin first, while its details may list another
+    city first (seen live: Berlin in search, Leipzig first in details)."""
     text = html_to_text(details.get("stellenangebotsBeschreibung") or "")
-    title = details.get("stellenangebotsTitel") or listing.get("titel")
+    title = (listing.get("stellenangebotsTitel") or details.get("stellenangebotsTitel")
+             or listing.get("titel"))
     if not text or not title:
         return None
-    location = None
-    for loc in details.get("stellenlokationen") or []:
-        location = ((loc or {}).get("adresse") or {}).get("ort")
-        if location:
-            break
-    location = location or (listing.get("arbeitsort") or {}).get("ort")
+    location = (_first_city(listing.get("stellenlokationen"))
+                or (listing.get("arbeitsort") or {}).get("ort")
+                or _first_city(details.get("stellenlokationen")))
     refnr = listing["refnr"]
     return Posting(
         source=SOURCE,
         source_job_id=refnr,
         url=JOB_PAGE + refnr,
-        company=details.get("firma") or listing.get("arbeitgeber"),
+        company=listing.get("firma") or details.get("firma") or listing.get("arbeitgeber"),
         title=str(title).strip(),
         location_raw=location,
         description_text=text,
-        posted_at=details.get("datumErsteVeroeffentlichung") or listing.get("aktuelleVeroeffentlichungsdatum"),
+        posted_at=(listing.get("datumErsteVeroeffentlichung") or details.get("datumErsteVeroeffentlichung")
+                   or listing.get("aktuelleVeroeffentlichungsdatum")),
     )
 
 

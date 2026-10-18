@@ -99,35 +99,40 @@ def test_startup_jobs_fetch_requires_key(monkeypatch):
         startup_jobs.fetch("ai")
 
 
-# --- arbeitsagentur (fixtures are hand-built to the documented shape) ------------
+# --- arbeitsagentur (fixtures trimmed from a live call, plus one hand-made empty) --
 
-def test_arbeitsagentur_listings_keep_only_rows_with_refnr():
+def test_arbeitsagentur_listings_keep_only_rows_with_a_reference_number():
     from app.sources import arbeitsagentur
     ls = arbeitsagentur.listings(load("arbeitsagentur_search.json"))
-    assert [l["refnr"] for l in ls] == ["10001-1001234567-S", "12265-PARTNER99-S"]
-    assert arbeitsagentur.listings({}) == [] and arbeitsagentur.listings({"stellenangebote": None}) == []
-    # v6 search names the field referenznummer.
-    assert arbeitsagentur.listings({"stellenangebote": [{"referenznummer": "R-1"}]})[0]["refnr"] == "R-1"
+    assert [l["refnr"] for l in ls] == ["12336-a26f1192j0456062-S", "12265-PARTNER99-S"]
+    assert arbeitsagentur.listings({}) == [] and arbeitsagentur.listings({"ergebnisliste": None}) == []
+    # The older v4 shape still reads.
+    assert arbeitsagentur.listings({"stellenangebote": [{"refnr": "R-1"}]})[0]["refnr"] == "R-1"
 
 
-def test_arbeitsagentur_parse_prefers_details_and_strips_html():
+def test_arbeitsagentur_parse_takes_location_from_the_search_result():
     from app.sources import arbeitsagentur
     listing = arbeitsagentur.listings(load("arbeitsagentur_search.json"))[0]
     p = arbeitsagentur.parse(listing, load("arbeitsagentur_details.json")[listing["refnr"]])
-    assert p.source == "arbeitsagentur" and p.source_job_id == "10001-1001234567-S"
-    assert p.url == "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1001234567-S"
-    assert p.title == "AI Engineer (m/w/d) - LLM Plattform" and p.company == "Beispiel GmbH"
-    assert p.location_raw == "Berlin" and p.posted_at == "2026-10-01"
-    assert "- Python und LangGraph" in p.description_text and "RAG & Evaluierung" in p.description_text
-    assert "<" not in p.description_text
+    assert p.source == "arbeitsagentur" and p.source_job_id == "12336-a26f1192j0456062-S"
+    assert p.url == "https://www.arbeitsagentur.de/jobsuche/jobdetail/12336-a26f1192j0456062-S"
+    assert p.title == "AI Engineer (m/d/w)" and p.company == "EXXETA AG"
+    assert p.location_raw == "Berlin"          # details list Leipzig first; the Berlin search matched Berlin
+    assert p.posted_at == "2026-10-14"
+    assert p.description_text.startswith("**AI Engineer**")
 
 
-def test_arbeitsagentur_parse_falls_back_to_listing_fields():
+def test_arbeitsagentur_parse_falls_back_to_details_and_v4_fields():
     from app.sources import arbeitsagentur
-    listing = arbeitsagentur.listings(load("arbeitsagentur_search.json"))[0]
-    p = arbeitsagentur.parse(listing, {"stellenangebotsBeschreibung": "Python"})
-    assert p.title == "AI Engineer (m/w/d)" and p.company == "Beispiel GmbH"
-    assert p.location_raw == "Berlin" and p.posted_at == "2026-10-14"
+    d = {"stellenangebotsBeschreibung": "Python", "stellenangebotsTitel": "AI Engineer",
+         "firma": "D GmbH", "stellenlokationen": [{"adresse": {"ort": "Munich"}}],
+         "datumErsteVeroeffentlichung": "2026-10-01"}
+    p = arbeitsagentur.parse({"refnr": "R"}, d)
+    assert (p.title, p.company, p.location_raw, p.posted_at) == ("AI Engineer", "D GmbH", "Munich", "2026-10-01")
+    v4 = {"refnr": "R", "titel": "ML Engineer", "arbeitgeber": "V4 AG", "arbeitsort": {"ort": "Berlin"},
+          "aktuelleVeroeffentlichungsdatum": "2026-09-30"}
+    p = arbeitsagentur.parse(v4, {"stellenangebotsBeschreibung": "x"})
+    assert (p.title, p.company, p.location_raw, p.posted_at) == ("ML Engineer", "V4 AG", "Berlin", "2026-09-30")
 
 
 def test_arbeitsagentur_parse_skips_postings_without_description():
@@ -141,8 +146,8 @@ def test_arbeitsagentur_has_next_stops_at_total_or_empty_page():
     payload = load("arbeitsagentur_search.json")
     assert arbeitsagentur.has_next(payload)                                  # 1*2 < 3
     assert not arbeitsagentur.has_next({**payload, "page": 2})               # 2*2 >= 3
-    assert not arbeitsagentur.has_next({**payload, "stellenangebote": []})   # empty page
-    assert not arbeitsagentur.has_next({"stellenangebote": payload["stellenangebote"]})  # no counts
+    assert not arbeitsagentur.has_next({**payload, "ergebnisliste": []})     # empty page
+    assert not arbeitsagentur.has_next({"ergebnisliste": payload["ergebnisliste"]})  # no counts
 
 
 def test_arbeitsagentur_urls():
@@ -168,11 +173,11 @@ def test_arbeitsagentur_fetch_pages_and_calls_details(monkeypatch):
                 if url == arbeitsagentur.details_url(refnr):
                     return d
             raise AssertionError(url)
-        return search if "page=1" in url else {**search, "page": 2, "stellenangebote": []}
+        return search if "page=1" in url else {**search, "page": 2, "ergebnisliste": []}
 
     monkeypatch.setattr(arbeitsagentur, "fetch_json", fake_fetch_json)
     ps = arbeitsagentur.fetch("AI Engineer", max_pages=5)
-    assert [p.source_job_id for p in ps] == ["10001-1001234567-S"]
+    assert [p.source_job_id for p in ps] == ["12336-a26f1192j0456062-S"]
     assert sum("/pc/v6/jobs?" in c for c in calls) == 2 and sum("/jobdetails/" in c for c in calls) == 2
 
 
