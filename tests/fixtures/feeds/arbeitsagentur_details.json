@@ -1,0 +1,17 @@
+{
+  "_comment": "Hand-built to the documented shape, keyed by refnr. The partner posting has no description, as partner postings often do.",
+  "10001-1001234567-S": {
+    "referenznummer": "10001-1001234567-S",
+    "stellenangebotsTitel": "AI Engineer (m/w/d) - LLM Plattform",
+    "firma": "Beispiel GmbH",
+    "stellenangebotsBeschreibung": "Ihre Aufgaben:\n<ul><li>Python und LangGraph</li><li>RAG &amp; Evaluierung</li></ul>",
+    "stellenlokationen": [{"adresse": {"ort": "Berlin", "plz": "10115", "land": "Deutschland", "region": "Berlin"}}],
+    "datumErsteVeroeffentlichung": "2026-10-01"
+  },
+  "12265-PARTNER99-S": {
+    "referenznummer": "12265-PARTNER99-S",
+    "stellenangebotsTitel": "Machine Learning Engineer",
+    "firma": "Partner AG",
+    "allianzpartnerUrl": "https://partner.example/jobs/99"
+  }
+}
