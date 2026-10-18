@@ -107,6 +107,11 @@ def cmd_check(args):
         print(f"  note: {n}")
     if not args.add or r.posting is None:
         return
+    if r.verdict == "found":
+        # Ingest's own dedup is symmetric Jaccard, which a full careers page can fail against a
+        # shorter stored transcript; the check's containment match already said it is stored.
+        print(f"add: skipped — already job {r.job_id}")
+        return
     # Board postings keep their feed source and id, so a later poll sees them as still-listed;
     # page postings are source=url. Either way found_via records that a person found it.
     is_board = r.posting.source in ("greenhouse", "lever", "ashby")
