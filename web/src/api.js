@@ -24,6 +24,8 @@ export const filterParams = (f) => ({
   seniority: f.seniorities,
   requirement: f.requirement,
   window: f.window,
+  german: f.german,
+  degree: f.degree,
 });
 
 export const api = {

@@ -26,6 +26,20 @@ MANUAL_OPEN_DAYS = 60
 WINDOWS = ("open", "30d", "90d", "all")
 REQUIREMENTS = ("required", "all")
 SENIORITIES = ("junior", "mid", "senior")
+# Single-choice filters over the German / degree attributes. "open" on degree means a person
+# without one can still apply: no degree named, marked optional, or equivalent experience accepted.
+GERMAN_FILTERS = {
+    "any": None,
+    "none": "j.german IS NULL",
+    "not_required": "(j.german IS NULL OR j.german = 'nice_to_have')",
+    "required": "j.german = 'required'",
+}
+DEGREE_FILTERS = {
+    "any": None,
+    "none": "j.degree IS NULL",
+    "open": "(j.degree IS NULL OR j.degree_or_equivalent = 1 OR j.degree_requirement = 'nice_to_have')",
+    "required": "(j.degree IS NOT NULL AND j.degree_or_equivalent = 0 AND j.degree_requirement = 'required')",
+}
 LEGACY_VERSION = "legacy"   # jobs imported with the hackathon extractor's skills and no real JD text
 _NOT_LEGACY = "(j.extracted_version IS NULL OR j.extracted_version != 'legacy')"
 
@@ -43,6 +57,8 @@ def _days_ago(now: str, days: int) -> str:
 class Filters:
     cities: tuple[str, ...] = ()          # () = all
     seniorities: tuple[str, ...] = ()     # () = all, including unknown
+    german: str = "any"                   # key of GERMAN_FILTERS
+    degree: str = "any"                   # key of DEGREE_FILTERS
     requirement: str = "required"         # 'required' | 'all'
     window: str = "open"                  # 'open' | '30d' | '90d' | 'all'
     skill_id: str | None = None           # job list only
@@ -72,6 +88,10 @@ def job_set_clause(f: Filters, now: str, include_legacy: bool = False) -> tuple[
     if f.seniorities:
         parts.append(f"j.seniority IN ({','.join('?' * len(f.seniorities))})")
         params += list(f.seniorities)
+    if GERMAN_FILTERS.get(f.german):
+        parts.append(GERMAN_FILTERS[f.german])
+    if DEGREE_FILTERS.get(f.degree):
+        parts.append(DEGREE_FILTERS[f.degree])
     if f.window == "open":
         c, p = open_clause(now)
         parts.append(c); params += p
@@ -99,8 +119,11 @@ def stats(conn: sqlite3.Connection, now: str, skills_tracked: int) -> dict:
     last = conn.execute("SELECT max(last_seen) FROM job").fetchone()[0]
     pending = conn.execute("SELECT count(*) FROM proposed_skill WHERE status='pending'").fetchone()[0]
     legacy = conn.execute("SELECT count(*) FROM job WHERE extracted_version = ?", (LEGACY_VERSION,)).fetchone()[0]
+    open_german = conn.execute(f"SELECT count(*) FROM job j WHERE {oc} AND {GERMAN_FILTERS['required']}", op).fetchone()[0]
+    open_degree = conn.execute(f"SELECT count(*) FROM job j WHERE {oc} AND {DEGREE_FILTERS['required']}", op).fetchone()[0]
     return {"jobs": total, "open": open_total, "open_by_city": by_city, "companies": companies,
             "skills_tracked": skills_tracked, "last_updated": last, "proposed_pending": pending, "legacy": legacy,
+            "open_german_required": open_german, "open_degree_required": open_degree,
             "open_rule": {"feed_days": FEED_OPEN_DAYS, "manual_days": MANUAL_OPEN_DAYS}}
 
 
@@ -167,7 +190,8 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
     order = SORTS.get(sort, SORTS["newest"])
     rows = conn.execute(
         f"SELECT j.id, j.company, j.title, j.city, j.seniority, j.seniority_basis, j.first_seen, j.last_seen,"
-        f" j.repost_count, j.extracted_version FROM job j WHERE {w} ORDER BY {order} LIMIT ? OFFSET ?",
+        f" j.repost_count, j.extracted_version, j.german, j.degree, j.degree_requirement, j.degree_or_equivalent"
+        f" FROM job j WHERE {w} ORDER BY {order} LIMIT ? OFFSET ?",
         params + [limit, offset]).fetchall()
     ids = [r["id"] for r in rows]
     srcs: dict[int, list] = {i: [] for i in ids}
@@ -190,6 +214,7 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
     for r in rows:
         d = dict(r)
         d["legacy"] = d.pop("extracted_version") == LEGACY_VERSION
+        d["degree_or_equivalent"] = bool(d["degree_or_equivalent"])
         d["sources"] = srcs[r["id"]]
         d["status"] = _status(r, now, {s["source"] for s in d["sources"]})
         d["skill_counts"] = skill_counts[r["id"]]
@@ -201,6 +226,7 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
 def job_detail(conn: sqlite3.Connection, job_id: int, now: str) -> dict | None:
     r = conn.execute(
         "SELECT id, company, title, city, location_raw, seniority, seniority_basis, seniority_signal,"
+        " german, german_basis, german_signal, degree, degree_requirement, degree_or_equivalent, degree_signal,"
         " first_seen, last_seen, repost_count, extracted_version FROM job WHERE id = ?", (job_id,)).fetchone()
     if not r:
         return None
@@ -210,6 +236,7 @@ def job_detail(conn: sqlite3.Connection, job_id: int, now: str) -> dict | None:
         " WHERE job_id = ? ORDER BY first_seen", (job_id,))]
     d["status"] = _status(r, now, {s["source"] for s in d["sources"]})
     d["legacy"] = d["extracted_version"] == LEGACY_VERSION
+    d["degree_or_equivalent"] = bool(d["degree_or_equivalent"])
     d["skills"] = [dict(m) for m in conn.execute(
         "SELECT skill_id, requirement, raw_text FROM skill_mention WHERE job_id = ?"
         " ORDER BY requirement = 'required' DESC, skill_id", (job_id,))]

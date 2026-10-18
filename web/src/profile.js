@@ -1,9 +1,10 @@
 // The "what does this mean for me" profile. Lives only in this browser (localStorage);
-// the server never sees it. Shape: { role, seniority, skills: [skill_id] }.
+// the server never sees it. Shape: { role, seniority, german (bool: professional German),
+// degree ('' | bachelor | master | phd), skills: [skill_id] }.
 import { useCallback, useEffect, useState } from "react";
 
 const KEY = "hiring-radar.profile.v1";
-export const EMPTY = { role: "AI engineer", seniority: "", skills: [] };
+export const EMPTY = { role: "AI engineer", seniority: "", german: false, degree: "", skills: [] };
 
 function load() {
   try {

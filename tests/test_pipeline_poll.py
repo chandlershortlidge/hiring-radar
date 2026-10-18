@@ -38,6 +38,18 @@ def test_extract_pending_stores_mentions_and_stamps_jobs(conn):
     assert pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None).attempted == 0
 
 
+def test_extraction_stores_german_and_degree_on_the_job(conn):
+    from app.extract import Degree, German
+    def fn(text, tax, model):
+        return Extraction(mentions=[], german=German("required", "inferred", None),
+                          degree=Degree("master", "required", True, "M.Sc."),
+                          extractor_version=extractor_version(tax, model), taxonomy_version=tax.version)
+    pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None)
+    row = conn.execute("SELECT german, german_basis, german_signal, degree, degree_requirement, degree_or_equivalent, degree_signal"
+                       " FROM job WHERE id=1").fetchone()
+    assert tuple(row) == ("required", "inferred", None, "master", "required", 1, "M.Sc.")
+
+
 def test_legacy_stamped_jobs_are_never_re_extracted(conn):
     conn.execute("UPDATE job SET extracted_version='legacy' WHERE id=1")
     r = pipeline.extract_pending(conn, TAX, fake_extract([Mention("python", "required", "Python")]), "m", log=lambda *_: None)

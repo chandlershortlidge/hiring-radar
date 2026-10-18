@@ -11,6 +11,9 @@ Policy belongs in taxonomy/skills.json; the prompt stays general (AGENTS.md).
 Invariants:
   - Seniority is one of junior/mid/senior with a basis, or absent; never a guess without a
     basis, and a "stated" level always carries its quoted signal.
+  - German and degree follow the same rule: a value needs its quoted signal from the text
+    ("inferred" German — a posting written in German — is the one exception, and carries
+    no signal). Anything inconsistent collapses to "not mentioned", never to a guess.
   - Every returned mention has a skill_id that exists in the taxonomy it was run with.
   - Each skill_id appears at most once per job; if any mention is required, it is required.
   - Every mention's raw_text is found in the job text (whitespace/case-insensitive);
@@ -65,9 +68,31 @@ Also report the seniority the posting targets:
   and basis to null.
 - seniority_signal is the verbatim phrase you based it on, or null.
 
+Also report whether the posting asks for German:
+- german is "required" when German is asked for and not marked optional, "nice_to_have"
+  when it is marked optional (plus, preferred, ideally, advantage), or null when the
+  posting does not mention German at all. English or other languages do not count.
+- german_basis is "stated" when the text asks for German outright; "inferred" when the
+  posting itself is written in German and says nothing about language (treat that as
+  "required"). Otherwise null.
+- german_signal is the verbatim phrase, or null when inferred or not mentioned.
+
+Also report the degree the posting asks for:
+- degree is the highest level named: "bachelor", "master", or "phd" (an unspecified
+  "degree in computer science" is "bachelor"). null when no degree is mentioned.
+- degree_requirement is "nice_to_have" only when the degree is marked optional; otherwise
+  "required", including a bare mention in a requirements list. null when degree is null.
+- degree_or_equivalent is true when the posting accepts equivalent or comparable
+  experience in place of the degree ("or equivalent experience", "or comparable
+  qualification"). false otherwise, and false when degree is null.
+- degree_signal is the verbatim phrase naming the degree (include the "or equivalent"
+  wording if present), or null.
+
 Always respond by calling the record_skills tool exactly once. Do not reply with text."""
 
 SENIORITY_LEVELS = ("junior", "mid", "senior")
+REQUIREMENT_LEVELS = ("required", "nice_to_have")
+DEGREE_LEVELS = ("bachelor", "master", "phd")
 
 TOOL = {
     "name": "record_skills",
@@ -94,8 +119,17 @@ TOOL = {
             "seniority": {"anyOf": [{"type": "string", "enum": list(SENIORITY_LEVELS)}, {"type": "null"}]},
             "seniority_basis": {"anyOf": [{"type": "string", "enum": ["stated", "inferred"]}, {"type": "null"}]},
             "seniority_signal": {"type": ["string", "null"]},
+            "german": {"anyOf": [{"type": "string", "enum": list(REQUIREMENT_LEVELS)}, {"type": "null"}]},
+            "german_basis": {"anyOf": [{"type": "string", "enum": ["stated", "inferred"]}, {"type": "null"}]},
+            "german_signal": {"type": ["string", "null"]},
+            "degree": {"anyOf": [{"type": "string", "enum": list(DEGREE_LEVELS)}, {"type": "null"}]},
+            "degree_requirement": {"anyOf": [{"type": "string", "enum": list(REQUIREMENT_LEVELS)}, {"type": "null"}]},
+            "degree_or_equivalent": {"type": "boolean"},
+            "degree_signal": {"type": ["string", "null"]},
         },
-        "required": ["skills", "seniority", "seniority_basis", "seniority_signal"],
+        "required": ["skills", "seniority", "seniority_basis", "seniority_signal",
+                     "german", "german_basis", "german_signal",
+                     "degree", "degree_requirement", "degree_or_equivalent", "degree_signal"],
         "additionalProperties": False,
     },
 }
@@ -129,9 +163,32 @@ class Seniority:
 NO_SENIORITY = Seniority(None, None, None)
 
 
+@dataclass(frozen=True)
+class German:
+    requirement: str | None   # required | nice_to_have | None (not mentioned)
+    basis: str | None         # stated | inferred (posting written in German) | None
+    signal: str | None        # verbatim phrase when stated, else None
+
+
+NO_GERMAN = German(None, None, None)
+
+
+@dataclass(frozen=True)
+class Degree:
+    level: str | None         # bachelor | master | phd | None (not mentioned)
+    requirement: str | None   # required | nice_to_have | None
+    or_equivalent: bool       # posting accepts equivalent experience instead
+    signal: str | None        # verbatim phrase; always present when level is set
+
+
+NO_DEGREE = Degree(None, None, False, None)
+
+
 @dataclass
 class Extraction:
     seniority: Seniority = NO_SENIORITY
+    german: German = NO_GERMAN
+    degree: Degree = NO_DEGREE
     mentions: list[Mention] = field(default_factory=list)
     proposed: list[Proposed] = field(default_factory=list)
     rejected: list[dict] = field(default_factory=list)
@@ -230,6 +287,40 @@ def parse_seniority(data: dict, jd_text: str) -> Seniority:
     return Seniority(level, basis, signal)
 
 
+def _quoted(signal, jd_text: str) -> str | None:
+    """The signal if it is a non-empty string found in the text, else None."""
+    if not isinstance(signal, str):
+        return None
+    signal = signal.strip()
+    return signal if signal and _norm(signal) in _norm(jd_text) else None
+
+
+def parse_german(data: dict, jd_text: str) -> German:
+    """Validate the German fields. "stated" needs a quoted signal; "inferred" means the
+    posting is written in German and carries no signal. Anything else is NO_GERMAN."""
+    req = data.get("german")
+    basis = data.get("german_basis")
+    if req not in REQUIREMENT_LEVELS or basis not in ("stated", "inferred"):
+        return NO_GERMAN
+    if basis == "inferred":
+        return German(req, basis, None)
+    signal = _quoted(data.get("german_signal"), jd_text)
+    return German(req, basis, signal) if signal else NO_GERMAN
+
+
+def parse_degree(data: dict, jd_text: str) -> Degree:
+    """Validate the degree fields. A degree is always stated, so a level without a quoted
+    signal is dropped. or_equivalent is only kept alongside a level."""
+    level = data.get("degree")
+    req = data.get("degree_requirement")
+    if level not in DEGREE_LEVELS or req not in REQUIREMENT_LEVELS:
+        return NO_DEGREE
+    signal = _quoted(data.get("degree_signal"), jd_text)
+    if not signal:
+        return NO_DEGREE
+    return Degree(level, req, bool(data.get("degree_or_equivalent")), signal)
+
+
 def build_request(tax: Taxonomy, jd_text: str, model: str) -> dict:
     return {
         "model": model,
@@ -263,6 +354,8 @@ def extract(jd_text: str, tax: Taxonomy, client, model: str = DEFAULT_MODEL) -> 
     usage = getattr(response, "usage", None)
     return Extraction(
         seniority=parse_seniority(blocks[0].input, jd_text),
+        german=parse_german(blocks[0].input, jd_text),
+        degree=parse_degree(blocks[0].input, jd_text),
         mentions=mentions,
         proposed=proposed,
         rejected=rejected,

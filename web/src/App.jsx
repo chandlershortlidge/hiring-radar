@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { api } from "./api.js";
-import { CITIES, SENIORITIES, cap, dateTime, timeAgo } from "./format.js";
+import { CITIES, DEGREE_FILTERS, GERMAN_FILTERS, SENIORITIES, cap, dateTime, timeAgo } from "./format.js";
 import { useProfile } from "./profile.js";
 import { Compare, Person, Plus, Radar } from "./icons.jsx";
 import SkillChart from "./SkillChart.jsx";
@@ -11,7 +11,7 @@ import ReviewDrawer from "./ReviewDrawer.jsx";
 import ProfileDrawer from "./ProfileDrawer.jsx";
 
 const WINDOWS = { open: "Currently open", "30d": "Last 30 days", "90d": "Last 90 days", all: "All" };
-const DEFAULT = { cities: [], compare: false, seniorities: [], requirement: "required", window: "open", skill: null, query: "" };
+const DEFAULT = { cities: [], compare: false, seniorities: [], requirement: "required", window: "open", german: "any", degree: "any", skill: null, query: "" };
 
 export default function App() {
   const [filters, setFilters] = useState(DEFAULT);
@@ -36,7 +36,9 @@ export default function App() {
   const cityLabel = filters.compare ? `${CITIES.join(" + ")}` : filters.cities.length ? filters.cities.join(" + ") : CITIES.join(" + ");
   const winLabel = filters.window === "open" ? "currently open" : filters.window === "all" ? "" : `from the last ${filters.window.replace("d", " days")}`;
   const reqLabel = filters.requirement === "required" ? "as required" : "as required or nice-to-have";
-  const senLabel = filters.seniorities.length ? ` · ${filters.seniorities.map(cap).join("/")} roles` : "";
+  const senLabel = (filters.seniorities.length ? ` · ${filters.seniorities.map(cap).join("/")} roles` : "")
+    + (filters.german !== "any" ? ` · German: ${GERMAN_FILTERS[filters.german].toLowerCase()}` : "")
+    + (filters.degree !== "any" ? ` · degree: ${DEGREE_FILTERS[filters.degree].toLowerCase()}` : "");
 
   return (
     <>
@@ -61,6 +63,8 @@ export default function App() {
               {Object.keys(stats.open_by_city).length > 1 && ` (${Object.entries(stats.open_by_city).map(([c, n]) => `${c} ${n}`).join(" · ")})`}</span><span>·</span>
             <span>{stats.companies} companies</span><span>·</span>
             <span>{stats.skills_tracked} skills tracked</span><span>·</span>
+            {stats.open > 0 && <><span><abbr title="Open jobs that ask for German outright or are written in German">{stats.open_german_required} need German</abbr></span><span>·</span>
+            <span><abbr title="Open jobs that name a degree, don't mark it optional, and don't accept equivalent experience">{stats.open_degree_required} need a degree</abbr></span><span>·</span></>}
             {stats.legacy > 0 && <><span><abbr title="Imported from the old project with the old extractor's skills; listed but not counted in the chart">{stats.legacy} legacy, not charted</abbr></span><span>·</span></>}
             <span>{stats.last_updated ? `last updated ${timeAgo(stats.last_updated)} (${dateTime(stats.last_updated)})` : "no jobs yet"}</span>
           </p>
@@ -94,6 +98,16 @@ export default function App() {
                 <button type="button" aria-pressed={!filters.seniorities.length} onClick={() => set({ seniorities: [] })}>Any</button>
                 {SENIORITIES.map((s) => <button key={s} type="button" aria-pressed={filters.seniorities.includes(s)} onClick={() => toggleSen(s)}>{cap(s)}</button>)}
               </div>
+            </div>
+            <div className="ctl"><label htmlFor="de">German</label>
+              <select id="de" className="sel" value={filters.german} onChange={(e) => set({ german: e.target.value })}>
+                {Object.entries(GERMAN_FILTERS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
+              </select>
+            </div>
+            <div className="ctl"><label htmlFor="deg">Degree</label>
+              <select id="deg" className="sel" value={filters.degree} onChange={(e) => set({ degree: e.target.value })}>
+                {Object.entries(DEGREE_FILTERS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
+              </select>
             </div>
             <div className="ctl"><label htmlFor="win">Time window</label>
               <select id="win" className="sel" value={filters.window} onChange={(e) => set({ window: e.target.value })}>

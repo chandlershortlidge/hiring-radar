@@ -5,6 +5,31 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-18 — German and degree are per-job attributes, extracted like seniority; three is the limit
+
+Two more things a posting asks for that decide whether it is open to a given person:
+German, and a degree. Neither is a skill (PRINCIPLES rule 2 still excludes them from the
+skills list); each is a per-job attribute with the seniority shape — value, basis, verbatim
+signal — in migration 006, with the same validation rule: a value without a quote found in
+the text collapses to "not mentioned". The one exception is `german_basis='inferred'`: a
+posting written in German, which carries no quote.
+
+Degree carries `degree_or_equivalent` because "or equivalent experience" is the line that
+decides whether a posting is open to someone without a degree. A bare "Master's in CS or a
+related field" in a requirements list is `required`, `or_equivalent=false` — "related
+field" widens the field, not the requirement. Expect most labeled degrees to be `required`.
+
+Both are scored in the eval (`german_accuracy`, `degree_accuracy`) over every Golden that
+carries the key, so "not mentioned" is a scored label — unlike seniority, where an unlabeled
+and a labeled-none Golden are indistinguishable today. The 21 Goldens were pre-filled and
+marked `attrs_reviewed: false`.
+
+Rule going forward: `job` now has three attribute column groups (seniority, german, degree).
+A fourth per-job requirement (years of experience, visa sponsorship, remote) goes into a
+`job_requirement` table, not more columns on `job`.
+
+Done in one migration and one prompt change so the ~78 jobs re-extract once, not twice.
+
 ## 2026-10-17 — Legacy-only jobs are listed but never charted or re-extracted
 
 Of the 48 jobs imported from the old project, 7 had no posting text and no screenshot.

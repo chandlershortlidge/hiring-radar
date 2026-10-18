@@ -97,6 +97,26 @@ def test_job_detail(conn):
     assert q.job_detail(conn, 999, NOW) is None
 
 
+def test_german_and_degree_filters(conn):
+    # Acme: German required, master's or equivalent. Gamma: German nice, bachelor required. Beta: nothing.
+    conn.execute("UPDATE job SET german='required', german_basis='stated', german_signal='German', degree='master',"
+                 " degree_requirement='required', degree_or_equivalent=1, degree_signal='M.Sc. or equivalent' WHERE company='Acme'")
+    conn.execute("UPDATE job SET german='nice_to_have', german_basis='stated', german_signal='German is a plus', degree='bachelor',"
+                 " degree_requirement='required', degree_or_equivalent=0, degree_signal='B.Sc.' WHERE company='Gamma'")
+    names = lambda f: {j["company"] for j in q.list_jobs(conn, f, NOW)["jobs"]}
+    assert names(q.Filters(window="all", german="required")) == {"Acme"}
+    assert names(q.Filters(window="all", german="not_required")) == {"Beta", "Gamma", "Delta", "Epsilon"}
+    assert names(q.Filters(window="all", german="none")) == {"Beta", "Delta", "Epsilon"}
+    assert names(q.Filters(window="all", degree="required")) == {"Gamma"}
+    assert names(q.Filters(window="all", degree="open")) == {"Acme", "Beta", "Delta", "Epsilon"}
+    assert names(q.Filters(window="all", degree="none")) == {"Beta", "Delta", "Epsilon"}
+    assert q.skill_frequency(conn, q.Filters(window="all", german="required"), NOW)["total"] == 1
+    s = q.stats(conn, NOW, 1)
+    assert s["open_german_required"] == 1 and s["open_degree_required"] == 1
+    d = q.job_detail(conn, q.list_jobs(conn, q.Filters(window="all", query="acme"), NOW)["jobs"][0]["id"], NOW)
+    assert d["degree"] == "master" and d["degree_or_equivalent"] is True and d["german_signal"] == "German"
+
+
 def test_legacy_jobs_stay_out_of_the_chart_but_in_the_list(conn):
     jid = add(conn, "Zeta", "AI Engineer", "Berlin", "paste", ts(1), [("python", "required"), ("docker", "required")])
     conn.execute("UPDATE job SET extracted_version='legacy' WHERE id=?", (jid,))

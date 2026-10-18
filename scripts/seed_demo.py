@@ -16,7 +16,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from app import db  # noqa: E402
-from app.extract import Extraction, Mention, Proposed, Seniority  # noqa: E402
+from app.extract import Degree, Extraction, German, Mention, Proposed, Seniority  # noqa: E402
 from app.ingest import ingest_one  # noqa: E402
 from app.pipeline import store_extraction  # noqa: E402
 from app.sources import Posting  # noqa: E402
@@ -72,7 +72,13 @@ def main():
                      (last.strftime("%Y-%m-%dT%H:%M:%SZ"), rng.choice([0, 0, 0, 0, 1, 2, 3]), job_id))
         mentions = [Mention(s, "required" if rng.random() < 0.75 else "nice_to_have", tax.skills[s].display) for s in skills]
         proposed = [Proposed(l, "required", f"experience with {l} is a plus") for l in rng.sample(["Model Context Protocol (MCP)", "DSPy", "Unsloth", "Modal"], k=1)] if rng.random() < 0.2 else []
+        ger = rng.choice([German(None, None, None)] * 3 + [German("required", "stated", "German"), German("nice_to_have", "stated", "German is a plus"),
+                                                        German("required", "inferred", None)])
+        deg = rng.choice([Degree(None, None, False, None)] * 2 + [Degree("bachelor", "required", False, "Degree in computer science"),
+                                                                 Degree("master", "required", True, "M.Sc. or equivalent experience"),
+                                                                 Degree("master", "nice_to_have", False, "Master's degree is a plus")])
         store_extraction(conn, job_id, Extraction(seniority=Seniority(sen, "stated", title) if sen else Seniority(None, None, None),
+                                                   german=ger, degree=deg,
                                                    mentions=mentions, proposed=proposed, extractor_version="demo", taxonomy_version=tax.version))
     conn.commit()
     print(f"seeded {n} jobs into {path}")

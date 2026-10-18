@@ -243,3 +243,69 @@ def test_no_enum_sits_on_a_union_type():
     for node in _schema_nodes(ex.TOOL["input_schema"]):
         if "enum" in node:
             assert not isinstance(node.get("type"), list), node
+
+
+# --- German and degree -------------------------------------------------------------
+
+ATTR_JD = ("Requirements: M.Sc. in Computer Science or a related field, or equivalent practical experience. "
+           "Fluent English; German is a plus. Python.")
+
+
+def test_german_stated_with_quote():
+    g = ex.parse_german({"german": "nice_to_have", "german_basis": "stated", "german_signal": "German is a plus"}, ATTR_JD)
+    assert g == ex.German("nice_to_have", "stated", "German is a plus")
+
+
+def test_german_stated_without_a_found_quote_is_not_mentioned():
+    assert ex.parse_german({"german": "required", "german_basis": "stated", "german_signal": "fluent German"}, ATTR_JD) == ex.NO_GERMAN
+    assert ex.parse_german({"german": "required", "german_basis": "stated", "german_signal": None}, ATTR_JD) == ex.NO_GERMAN
+
+
+def test_german_inferred_carries_no_signal():
+    g = ex.parse_german({"german": "required", "german_basis": "inferred", "german_signal": "Deutschkenntnisse"}, "Wir suchen...")
+    assert g == ex.German("required", "inferred", None)
+
+
+@pytest.mark.parametrize("data", [{}, {"german": None, "german_basis": None, "german_signal": None},
+                                  {"german": "mandatory", "german_basis": "stated", "german_signal": "German is a plus"},
+                                  {"german": "required", "german_basis": None, "german_signal": "German is a plus"}])
+def test_german_invalid_or_absent(data):
+    assert ex.parse_german(data, ATTR_JD) == ex.NO_GERMAN
+
+
+def test_degree_with_or_equivalent():
+    d = ex.parse_degree({"degree": "master", "degree_requirement": "required", "degree_or_equivalent": True,
+                         "degree_signal": "M.Sc. in Computer Science or a related field, or equivalent practical experience"}, ATTR_JD)
+    assert d == ex.Degree("master", "required", True, "M.Sc. in Computer Science or a related field, or equivalent practical experience")
+
+
+def test_degree_needs_a_quoted_signal():
+    assert ex.parse_degree({"degree": "master", "degree_requirement": "required", "degree_or_equivalent": False, "degree_signal": None}, ATTR_JD) == ex.NO_DEGREE
+    assert ex.parse_degree({"degree": "master", "degree_requirement": "required", "degree_or_equivalent": False, "degree_signal": "PhD"}, ATTR_JD) == ex.NO_DEGREE
+
+
+@pytest.mark.parametrize("data", [{}, {"degree": None, "degree_requirement": None, "degree_or_equivalent": True, "degree_signal": "M.Sc."},
+                                  {"degree": "diploma", "degree_requirement": "required", "degree_or_equivalent": False, "degree_signal": "M.Sc."},
+                                  {"degree": "master", "degree_requirement": None, "degree_or_equivalent": False, "degree_signal": "M.Sc."}])
+def test_degree_invalid_or_absent(data):
+    assert ex.parse_degree(data, ATTR_JD) == ex.NO_DEGREE
+
+
+def test_extract_carries_german_and_degree(tax):
+    tool = SimpleNamespace(type="tool_use", name="record_skills", input={
+        "skills": [item("python", "Python")], "seniority": None, "seniority_basis": None, "seniority_signal": None,
+        "german": "nice_to_have", "german_basis": "stated", "german_signal": "German is a plus",
+        "degree": "master", "degree_requirement": "required", "degree_or_equivalent": True, "degree_signal": "M.Sc. in Computer Science"})
+    out = ex.extract(ATTR_JD, tax, FakeClient(SimpleNamespace(stop_reason="tool_use", content=[tool], usage=None)), model="m")
+    assert out.german.requirement == "nice_to_have" and out.degree == ex.Degree("master", "required", True, "M.Sc. in Computer Science")
+
+
+def test_tool_schema_requires_german_and_degree_fields():
+    req = set(ex.TOOL["input_schema"]["required"])
+    assert {"german", "german_basis", "german_signal", "degree", "degree_requirement", "degree_or_equivalent", "degree_signal"} <= req
+    assert ex.TOOL["input_schema"]["properties"]["degree_or_equivalent"] == {"type": "boolean"}
+
+
+def test_prompt_keeps_degrees_and_languages_out_of_skills():
+    # Rule 2 still excludes them from skills; the attribute blocks are additive.
+    assert "degrees, years of experience" in ex.PRINCIPLES and "Also report the degree" in ex.PRINCIPLES

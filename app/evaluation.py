@@ -29,10 +29,15 @@ class GoldenScore:
     error: str | None = None
     seniority_expected: str | None = None   # None = Golden has no seniority label; not scored
     seniority_predicted: str | None = None
+    # German and degree: scored whenever the Golden carries the key, so "not mentioned"
+    # (None) is a label like any other. Each is a tuple so a mismatch in any part counts.
+    german: tuple | None = None             # (expected, predicted) or None = unlabeled
+    degree: tuple | None = None             # ((level, or_equivalent), (level, or_equivalent)) or None
 
 
 def score_golden(golden_id: str, expected: list[dict], predicted: list[dict],
-                 seniority_expected: str | None = None, seniority_predicted: str | None = None) -> GoldenScore:
+                 seniority_expected: str | None = None, seniority_predicted: str | None = None,
+                 german: tuple | None = None, degree: tuple | None = None) -> GoldenScore:
     exp = {e["skill_id"]: e["requirement"] for e in expected}
     pred = {p["skill_id"]: p["requirement"] for p in predicted}
     tp = sorted(exp.keys() & pred.keys())
@@ -44,6 +49,8 @@ def score_golden(golden_id: str, expected: list[dict], predicted: list[dict],
         requirement_matches=sum(1 for s in tp if exp[s] == pred[s]),
         seniority_expected=seniority_expected,
         seniority_predicted=seniority_predicted,
+        german=german,
+        degree=degree,
     )
 
 
@@ -93,6 +100,11 @@ def summarize(scores: list[GoldenScore], expected_by_id: dict[str, list[dict]],
     sen_acc = (sum(1 for s in labeled if s.seniority_predicted == s.seniority_expected) / len(labeled)
                if labeled else None)
 
+    ger = [s.german for s in scores if s.german is not None]
+    ger_acc = sum(1 for e, p in ger if e == p) / len(ger) if ger else None
+    deg = [s.degree for s in scores if s.degree is not None]
+    deg_acc = sum(1 for e, p in deg if e == p) / len(deg) if deg else None
+
     gold_freq = Counter(e["skill_id"] for es in expected_by_id.values() for e in es)
     pred_freq = Counter(p["skill_id"] for ps in predicted_by_id.values() for p in ps)
     universe = sorted(gold_freq.keys() | pred_freq.keys())
@@ -107,6 +119,8 @@ def summarize(scores: list[GoldenScore], expected_by_id: dict[str, list[dict]],
         "requirement_accuracy": req_acc,
         "seniority_accuracy": sen_acc,
         "seniority_n": len(labeled),
+        "german_accuracy": ger_acc, "german_n": len(ger),
+        "degree_accuracy": deg_acc, "degree_n": len(deg),
         "rank_spearman": rho,
         f"top{k}_overlap": len(set(gold_top) & set(pred_top)) / k if gold_top else None,
         "gold_top": gold_top, "pred_top": pred_top,
@@ -129,27 +143,37 @@ def run_once(goldens: list[dict], extract_fn) -> RunResult:
             ex = extract_fn(g["job_description"])
             pred = [{"skill_id": m.skill_id, "requirement": m.requirement, "raw_text": m.raw_text} for m in ex.mentions]
             sen = getattr(ex, "seniority", None)
+            ger = getattr(ex, "german", None)
+            deg = getattr(ex, "degree", None)
             predictions[g["id"]] = {
                 "mentions": pred,
                 "proposed": [vars(p) for p in ex.proposed],
                 "rejected": ex.rejected,
                 "seniority": vars(sen) if sen else None,
+                "german": vars(ger) if ger else None,
+                "degree": vars(deg) if deg else None,
                 "usage": getattr(ex, "usage", {}),
             }
             s = score_golden(g["id"], g["expected"], pred,
                              seniority_expected=g.get("seniority"),
-                             seniority_predicted=sen.level if sen else None)
+                             seniority_predicted=sen.level if sen else None,
+                             german=(g["german"], ger.requirement if ger else None) if "german" in g else None,
+                             degree=((g["degree"], bool(g.get("degree_or_equivalent"))),
+                                     (deg.level, deg.or_equivalent) if deg else (None, False)) if "degree" in g else None)
         except Exception as e:  # one bad Golden must not hide the rest of the run
             pred = []
             predictions[g["id"]] = {"error": f"{type(e).__name__}: {e}"}
             s = GoldenScore(g["id"], [], [], sorted(x["skill_id"] for x in g["expected"]), 0, error=str(e),
-                            seniority_expected=g.get("seniority"))
+                            seniority_expected=g.get("seniority"),
+                            german=(g["german"], None) if "german" in g else None,
+                            degree=((g["degree"], bool(g.get("degree_or_equivalent"))), (None, False)) if "degree" in g else None)
         predicted_by_id[g["id"]] = pred
         scores.append(s)
     return RunResult(summarize(scores, expected_by_id, predicted_by_id), scores, predictions)
 
 
-METRICS = ("precision", "recall", "f1", "requirement_accuracy", "seniority_accuracy", "rank_spearman", "top10_overlap")
+METRICS = ("precision", "recall", "f1", "requirement_accuracy", "seniority_accuracy", "german_accuracy", "degree_accuracy",
+           "rank_spearman", "top10_overlap")
 
 
 def across_runs(runs: list[RunResult]) -> dict:

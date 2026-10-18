@@ -101,3 +101,30 @@ def test_seniority_accuracy_is_none_when_nothing_is_labeled():
     goldens = [{"id": "g1", "job_description": "a", "expected": [e("a")]}]
     s = ev.run_once(goldens, lambda t: _extraction(["a"])).summary
     assert s["seniority_accuracy"] is None and s["seniority_n"] == 0
+
+
+def test_german_and_degree_score_null_labels_too():
+    from app.extract import Degree, German
+    goldens = [
+        # labeled "not mentioned": a correct None prediction counts as a hit
+        {"id": "g1", "job_description": "a", "expected": [e("a")], "german": None, "degree": None},
+        {"id": "g2", "job_description": "b", "expected": [e("b")], "german": "required", "degree": "master", "degree_or_equivalent": True},
+        {"id": "g3", "job_description": "c", "expected": [e("c")]},  # unlabeled: not scored
+    ]
+    pred = {"a": (German(None, None, None), Degree(None, None, False, None)),
+            "b": (German("nice_to_have", "stated", "German is a plus"), Degree("master", "required", False, "M.Sc.")),  # both wrong
+            "c": (German("required", "inferred", None), Degree("phd", "required", False, "PhD"))}
+
+    def fake(text):
+        x = _extraction([text])
+        x.german, x.degree = pred[text]
+        return x
+
+    s = ev.run_once(goldens, fake).summary
+    assert s["german_n"] == 2 and s["german_accuracy"] == pytest.approx(0.5)
+    assert s["degree_n"] == 2 and s["degree_accuracy"] == pytest.approx(0.5)  # g2: or_equivalent mismatch
+
+
+def test_german_and_degree_are_none_when_unlabeled():
+    s = ev.run_once([{"id": "g1", "job_description": "a", "expected": [e("a")]}], lambda t: _extraction(["a"])).summary
+    assert s["german_accuracy"] is None and s["degree_accuracy"] is None

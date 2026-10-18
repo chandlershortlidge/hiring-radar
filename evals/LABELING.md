@@ -71,3 +71,34 @@ One label per posting: `junior`, `mid`, `senior`, or none.
   3–5 years or "proven experience" → mid; 5+ years, lead/mentor language → senior.
 - **None**: no usable signal. "All levels" is none, not mid. Do not default to mid.
 - `seniority_signal` quotes the phrase the label rests on; required when stated.
+
+
+## German
+
+One label per posting: `required`, `nice_to_have`, or none (`null`). Only German counts;
+English, "multiple languages" and other languages are none.
+
+- `required`: German is asked for and not marked optional. A level ("C1", "B2+") alone is
+  a requirement. An unmarked entry in a requirements list is required (same as skills).
+- `nice_to_have`: marked optional — plus, preferred, beneficial, advantage, "not a hard
+  requirement".
+- **Basis `stated`** quotes the phrase in `german_signal`. **Basis `inferred`** is only
+  for a posting written in German that says nothing about language: label `required`,
+  `german_signal` null. Do not infer from the company's country or office location.
+
+
+## Degree
+
+One label per posting, or none (`null`) when no degree is mentioned.
+
+- `degree` is the highest level named: `bachelor`, `master`, `phd`. "Degree in …",
+  "university degree", "completed studies", "currently studying" with no level → `bachelor`.
+- `degree_requirement` follows the skill rule: `nice_to_have` only when marked optional;
+  otherwise `required`, including a bare mention in a requirements list. Most postings
+  are bare mentions, so most labeled degrees are `required` — that is correct, not a
+  default to fix.
+- `degree_or_equivalent` is true when the posting accepts experience in place of the degree:
+  "or equivalent experience", "or comparable qualification/experience". "…or a related
+  field" / "or a comparable technical focus" widens the *field*, not the requirement → false.
+- `degree_signal` quotes the phrase, including the "or equivalent" wording when present.
+- `attrs_reviewed: false` marks pre-filled German/degree labels not yet checked by a person.

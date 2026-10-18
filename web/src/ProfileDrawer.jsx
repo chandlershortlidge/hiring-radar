@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import Drawer from "./Drawer.jsx";
 import { api } from "./api.js";
-import { SENIORITIES, cap } from "./format.js";
+import { DEGREE_NAMES, SENIORITIES, cap } from "./format.js";
 import { EMPTY } from "./profile.js";
 
 const ROLES = ["AI engineer", "ML engineer", "Data scientist", "LLM / applied scientist", "Other"];
@@ -37,6 +37,12 @@ export default function ProfileDrawer({ onClose, profile, save, taxonomyList }) 
         <div className="field"><label htmlFor="sen">Seniority you're targeting</label>
           <select id="sen" value={p.seniority} onChange={(e) => setP({ ...p, seniority: e.target.value })}>
             <option value="">Any</option>{SENIORITIES.map((s) => <option key={s} value={s}>{cap(s)}</option>)}</select></div>
+        <div className="field"><label htmlFor="deg">Highest degree</label>
+          <select id="deg" value={p.degree || ""} onChange={(e) => setP({ ...p, degree: e.target.value })}>
+            <option value="">None / bootcamp</option>{Object.entries(DEGREE_NAMES).map(([k, v]) => <option key={k} value={k}>{v}</option>)}</select></div>
+        <div className="field"><label htmlFor="ger">Professional German</label>
+          <select id="ger" value={p.german ? "yes" : "no"} onChange={(e) => setP({ ...p, german: e.target.value === "yes" })}>
+            <option value="no">No / not yet</option><option value="yes">Yes (B2 or better)</option></select></div>
       </div>
       <div className="field">
         <label htmlFor="sq">Skills you have</label>

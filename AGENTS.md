@@ -111,8 +111,9 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `app/transcribe.py` — stage 1: screenshot bytes → verbatim transcript (vision call).
   Only screenshots go through it; feeds and pastes are already text.
 - `app/extract.py` — stage 2: JD text → skill mentions (taxonomy ids), proposed new
-  skills, rejected items, and the posting's seniority (level, basis, quoted signal — or
-  none). One tool call. Model client is injected.
+  skills, rejected items, and three per-job attributes, each with a quoted signal or none:
+  seniority (junior/mid/senior), German (required/nice_to_have), degree (level,
+  requirement, or-equivalent-experience). One tool call. Model client is injected.
 - `app/evaluation.py` — scoring (micro P/R/F1, requirement accuracy, rank agreement)
   and the suite runner. `scripts/run_eval.py` — live CLI around it.
 - `app/sources/` — one adapter per feed (`greenhouse`, `lever`, `ashby`, `arbeitnow`,
@@ -127,8 +128,8 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   feed could have stored it (board not polled, filter would drop it, not an ATS page).
   Writes only its own log (`url_check`, the first check per URL drives the coverage line
   in `stats`); `--add` in the CLI hands the resolved posting to `ingest_one`.
-- `app/queries.py` — read queries behind the dashboard: filters (city, seniority,
-  requirement, window), skill document frequency with per-city counts, job list/detail,
+- `app/queries.py` — read queries behind the dashboard: filters (city, seniority, German,
+  degree, requirement, window), skill document frequency with per-city counts, job list/detail,
   proposed-skill grouping and resolution. The open-job rule lives here.
 - `app/api.py` — FastAPI routes over `queries` plus the add-a-job paths (url / text /
   screenshot), which run intake + extraction for the one job added. Validates every filter

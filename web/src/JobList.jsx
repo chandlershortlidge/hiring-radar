@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { api } from "./api.js";
 import { Down, Ext, Repost, Search, Up, X } from "./icons.jsx";
-import { cap, dateShort, sourceCode, timeAgo } from "./format.js";
+import { DEGREE_RANK, cap, dateShort, degreeLine, germanLine, sourceCode, timeAgo } from "./format.js";
 import { coverage } from "./profile.js";
 
 const SORTS = { newest: "Newest first", oldest: "Oldest first", reposts: "Most reposted", company: "Company A–Z" };
@@ -75,7 +75,7 @@ function Row({ job: j, open, onToggle, profile, taxonomy }) {
       <div className={`row${open ? " open-row" : ""}${j.legacy ? " legacy" : ""}`} onClick={onToggle} role="button" tabIndex={0} aria-expanded={open}
         onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onToggle(); } }}>
         <span className="co">{j.company}{j.legacy && <span className="src" style={{ marginLeft: 6 }} title="Imported from the old project with its skills; not in the chart">legacy</span>}</span>
-        <span className="ti">{cov && <span className={`fit${cov.covered === cov.total ? " full" : ""}`} title={`You cover ${cov.covered} of ${cov.total} required skills`}>{cov.covered}/{cov.total}</span>}{j.title}{j.seniority && <span className="dim" style={{ marginLeft: 8, fontSize: 12 }}>{cap(j.seniority)}</span>}</span>
+        <span className="ti">{profile && (flag(profile, "german", j) === "miss" || flag(profile, "degree", j) === "miss") && <span className="fit miss" title={[flag(profile, "german", j) === "miss" && "needs German", flag(profile, "degree", j) === "miss" && "needs a degree you don't list"].filter(Boolean).join(" · ")}>!</span>}{cov && <span className={`fit${cov.covered === cov.total ? " full" : ""}`} title={`You cover ${cov.covered} of ${cov.total} required skills`}>{cov.covered}/{cov.total}</span>}{j.title}{j.seniority && <span className="dim" style={{ marginLeft: 8, fontSize: 12 }}>{cap(j.seniority)}</span>}</span>
         <span className="ci muted">{j.city || "—"}</span>
         <span className="fs muted" style={{ fontSize: 13 }}>{timeAgo(j.first_seen)}</span>
         <span className="st">
@@ -89,6 +89,14 @@ function Row({ job: j, open, onToggle, profile, taxonomy }) {
       {open && <Detail job={j} d={detail} profile={profile} taxonomy={taxonomy} cov={cov} />}
     </>
   );
+}
+
+// "miss" when the profile says the person does not meet a hard ask; "" otherwise.
+function flag(profile, what, j) {
+  if (!profile) return "";
+  if (what === "german") return j.german === "required" && !profile.german ? "miss" : "ok";
+  const hard = j.degree_requirement === "required" && !j.degree_or_equivalent;
+  return hard && DEGREE_RANK[profile.degree || ""] < DEGREE_RANK[j.degree] ? "miss" : "ok";
 }
 
 function Detail({ job, d, profile, taxonomy, cov }) {
@@ -123,6 +131,12 @@ function Detail({ job, d, profile, taxonomy, cov }) {
       )}
       {cov && (
         <div className="cover">You cover <b>{cov.covered} of {cov.total}</b> required skills{cov.missing.length ? ` · missing: ${cov.missing.map((id) => taxonomy[id] || id).join(", ")}` : " · full match"}.</div>
+      )}
+      {(d.german || d.degree) && (
+        <div className="cover attrs">
+          {d.german && <span className={flag(profile, "german", d)}>{germanLine(d)}{d.german_signal && <span className="dim"> · “{d.german_signal}”</span>}</span>}
+          {d.degree && <span className={flag(profile, "degree", d)}>{degreeLine(d)}{d.degree_signal && <span className="dim"> · “{d.degree_signal}”</span>}</span>}
+        </div>
       )}
       {d.legacy && (
         <div className="cover">Imported from the old project with the old extractor's skills and no posting text, so it is <b>left out of the chart</b> and never re-extracted. Add the posting via a link or screenshot to replace it.</div>
