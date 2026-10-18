@@ -6,9 +6,9 @@ agency's own site uses (documented by the community at github.com/bundesAPI/jobs
 so it can change without notice.
 
 Two calls per posting:
-- search `GET /pc/v4/jobs?was=..&wo=..&umkreis=..&veroeffentlichtseit=..&page=..&size=..`
+- search `GET /pc/v6/jobs?was=..&wo=..&umkreis=..&veroeffentlichtseit=..&page=..&size=..`
   → `{"stellenangebote": [...], "maxErgebnisse": int, "page": int, "size": int}`. A listing
-  has `refnr`, `titel`, `arbeitgeber`, `arbeitsort` (`ort`, `plz`, `region`, `land`),
+  has `referenznummer` (`refnr` in the older v4 search; both are read), `titel`, `arbeitgeber`, `arbeitsort` (`ort`, `plz`, `region`, `land`),
   `aktuelleVeroeffentlichungsdatum`, and `externeUrl` when the posting lives elsewhere.
   No description.
 - details `GET /pc/v4/jobdetails/{base64(refnr)}` → `stellenangebotsTitel`, `firma`,
@@ -21,6 +21,9 @@ that shape. Replace them with a recorded response when one is available.
 
 Postings from partner boards often have no description in the details response; those
 are skipped (a Posting needs description text), the same as other adapters skip empties.
+
+The v4 search path answers `403 No match found for request` (seen on a live poll,
+2026-10-18): it is gone, so search uses v6. Details stay on v4, the documented choice.
 
 Pagination: page numbers start at 1; stop on an empty page or once page*size covers
 maxErgebnisse.
@@ -42,8 +45,14 @@ JOB_PAGE = "https://www.arbeitsagentur.de/jobsuche/jobdetail/"
 
 
 def listings(payload: dict) -> list[dict]:
-    """The listings in a search page that carry a refnr."""
-    return [l for l in (payload or {}).get("stellenangebote") or [] if l.get("refnr")]
+    """The listings in a search page that carry a reference number, each with `refnr` set
+    (v6 calls it `referenznummer`)."""
+    out = []
+    for l in (payload or {}).get("stellenangebote") or []:
+        ref = l.get("refnr") or l.get("referenznummer")
+        if ref:
+            out.append({**l, "refnr": ref})
+    return out
 
 
 def has_next(payload: dict) -> bool:
@@ -90,7 +99,7 @@ def search_url(search: str, where: str | None, radius_km: int | None, days: int 
         params["umkreis"] = radius_km
     if days is not None:
         params["veroeffentlichtseit"] = days
-    return f"{BASE}/pc/v4/jobs?{urllib.parse.urlencode(params)}"
+    return f"{BASE}/pc/v6/jobs?{urllib.parse.urlencode(params)}"
 
 
 def details_url(refnr: str) -> str:

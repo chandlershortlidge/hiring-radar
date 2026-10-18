@@ -106,6 +106,8 @@ def test_arbeitsagentur_listings_keep_only_rows_with_refnr():
     ls = arbeitsagentur.listings(load("arbeitsagentur_search.json"))
     assert [l["refnr"] for l in ls] == ["10001-1001234567-S", "12265-PARTNER99-S"]
     assert arbeitsagentur.listings({}) == [] and arbeitsagentur.listings({"stellenangebote": None}) == []
+    # v6 search names the field referenznummer.
+    assert arbeitsagentur.listings({"stellenangebote": [{"referenznummer": "R-1"}]})[0]["refnr"] == "R-1"
 
 
 def test_arbeitsagentur_parse_prefers_details_and_strips_html():
@@ -148,6 +150,7 @@ def test_arbeitsagentur_urls():
     assert arbeitsagentur.details_url("10001-1001234567-S").endswith(
         "/pc/v4/jobdetails/MTAwMDEtMTAwMTIzNDU2Ny1T")
     u = arbeitsagentur.search_url("AI Engineer", "Berlin", 25, 30, page=2, size=50)
+    assert "/pc/v6/jobs?" in u
     assert "was=AI+Engineer" in u and "wo=Berlin" in u and "umkreis=25" in u
     assert "veroeffentlichtseit=30" in u and "page=2" in u and "angebotsart=1" in u
 
@@ -170,7 +173,7 @@ def test_arbeitsagentur_fetch_pages_and_calls_details(monkeypatch):
     monkeypatch.setattr(arbeitsagentur, "fetch_json", fake_fetch_json)
     ps = arbeitsagentur.fetch("AI Engineer", max_pages=5)
     assert [p.source_job_id for p in ps] == ["10001-1001234567-S"]
-    assert sum("/pc/v4/jobs?" in c for c in calls) == 2 and sum("/jobdetails/" in c for c in calls) == 2
+    assert sum("/pc/v6/jobs?" in c for c in calls) == 2 and sum("/jobdetails/" in c for c in calls) == 2
 
 
 # --- jsearch (fixture is hand-built to the documented shape) ---------------------
