@@ -12,6 +12,8 @@
     {"type": "lever", "enabled": false, "token": "example", "company": "Example"},
     {"type": "ashby", "enabled": false, "token": "example", "company": "Example"},
     {"type": "ashby", "enabled": true, "token": "almedia", "company": "almedia"},
-    {"type": "ashby", "enabled": true, "token": "jupus", "company": "jupus"}
+    {"type": "ashby", "enabled": true, "token": "jupus", "company": "jupus"},
+    {"type": "greenhouse", "enabled": true, "token": "bluefishai", "company": "Bluefish"},
+    {"type": "lever", "enabled": true, "token": "vestiairecollective", "company": "Vestiaire Collective"}
   ]
 }
