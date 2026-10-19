@@ -96,6 +96,20 @@ def test_plain_page_falls_back_to_title_tag_and_page_text():
     assert "Imprint" in p.description_text    # whole page; that is why matching uses containment
 
 
+def test_script_rendered_page_falls_back_to_meta_description():
+    # jobs.gem.com: empty body until JavaScript runs; the JD sits in the meta description.
+    markup = ('<html><head><title>Machine Learning Engineer</title>'
+              f'<meta name="description" content="{JD}"><meta property="og:description" content="short">'
+              '</head><body><div id="root"></div><script>app()</script></body></html>')
+    p, how = posting_from_html("u", markup)
+    assert how == "meta-description" and p.description_text == JD
+
+
+def test_page_text_wins_over_a_shorter_meta_description():
+    p, how = posting_from_html("u", page().replace("<head>", '<head><meta name="description" content="Jobs at Acme">'))
+    assert how == "page-text"
+
+
 def test_containment_is_one_directional():
     noisy = page()
     assert containment(JD, noisy) == 1.0

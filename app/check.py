@@ -85,11 +85,12 @@ def parse_ats_url(url: str) -> AtsRef | None:
 
 
 class _PageParser(HTMLParser):
-    """Collect <title> and every <script type="application/ld+json"> body."""
+    """Collect <title>, the longest meta/og description, and every <script type="application/ld+json"> body."""
 
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.title = ""
+        self.meta_description = ""
         self.ld_json: list[str] = []
         self._in: str | None = None
 
@@ -97,6 +98,10 @@ class _PageParser(HTMLParser):
         a = dict(attrs)
         if tag == "title":
             self._in = "title"
+        elif tag == "meta" and (a.get("name") or a.get("property") or "").lower() in ("description", "og:description"):
+            content = (a.get("content") or "").strip()
+            if len(content) > len(self.meta_description):
+                self.meta_description = content
         elif tag == "script" and (a.get("type") or "").lower() == "application/ld+json":
             self._in = "ld"
             self.ld_json.append("")
@@ -145,11 +150,13 @@ def _location_of(jp: dict) -> str | None:
 
 def posting_from_html(url: str, markup: str, company: str | None = None,
                       title: str | None = None, location: str | None = None) -> tuple[Posting, str]:
-    """Build a Posting from a careers page. Returns (posting, how), how ∈ {'json-ld', 'page-text'}.
+    """Build a Posting from a careers page. Returns (posting, how), how ∈ {'json-ld', 'page-text', 'meta-description'}.
 
     JSON-LD JobPosting wins when present: its description is the posting alone. Otherwise
     the whole page's text is the description and the caller's --company/--title fill in
-    what the page cannot say for itself. Explicit flags override JSON-LD fields.
+    what the page cannot say for itself. A JavaScript-rendered page (jobs.gem.com) has
+    almost no body text; when its meta description is longer, that is the description.
+    Explicit flags override JSON-LD fields.
     """
     p = _PageParser()
     p.feed(markup)
@@ -172,11 +179,14 @@ def posting_from_html(url: str, markup: str, company: str | None = None,
                 description_text=text or html_to_text(markup),
                 posted_at=jp.get("datePosted"),
             ), "json-ld"
+    text, how = html_to_text(markup), "page-text"
+    if len(p.meta_description) > len(text):
+        text, how = p.meta_description, "meta-description"
     return Posting(
         source="url", source_job_id="", url=url, company=company,
         title=title or p.title.strip(), location_raw=location,
-        description_text=html_to_text(markup),
-    ), "page-text"
+        description_text=text,
+    ), how
 
 
 def containment(stored: str, page: str) -> float:

@@ -1,11 +1,11 @@
 """Command line: `uv run python -m app <command>`.
 
-  poll              fetch all enabled feeds, ingest, extract skills for new jobs
+  poll              fetch all enabled feeds, ingest, extract skills for new jobs; --only ashby:jupus polls one feed
   extract           extract skills for any job still missing them (e.g. after a taxonomy bump)
   add-text          add one job from pasted text (reads stdin): --company --title --location --found-via
   add-screenshot    add one job from an image file (stage 1 vision → stage 2): same flags + path
   check             is this careers-page URL already in the DB? If not, why no feed stored it. --add ingests it;
-                    every check is logged for the coverage line in `stats`
+                    every check is logged for the coverage line in `stats`. Takes many URLs, or --file urls.txt
   stats             counts by city and source; feed coverage of manually added jobs and of checked URLs
   migrate           apply pending migrations and exit
 
@@ -27,11 +27,12 @@ from app.check import check_url, checked_coverage, log_check  # noqa: E402
 from app.extract import DEFAULT_MODEL, extract, make_client  # noqa: E402
 from app.ingest import ingest_one, job_id_for_screenshot, now_iso, store_screenshot  # noqa: E402
 from app.pipeline import extract_pending  # noqa: E402
-from app.poll import load_feeds, poll_feeds  # noqa: E402
+from app.poll import load_feeds, poll_feeds, select_feeds  # noqa: E402
 from app.sources import Posting  # noqa: E402
 from app.taxonomy import Taxonomy  # noqa: E402
 from app.transcribe import DEFAULT_MODEL as VISION_MODEL, transcribe  # noqa: E402
 
+MIN_ADD_TEXT = 200   # characters; shorter than any real JD
 DB_PATH = Path(os.environ.get("HIRING_RADAR_DB", ROOT / "data" / "hiring-radar.db"))
 
 
@@ -53,8 +54,12 @@ def run_extraction(conn, limit=None):
 
 
 def cmd_poll(args):
+    try:
+        feeds = select_feeds(load_feeds(), args.only)
+    except ValueError as e:
+        sys.exit(str(e))
     conn = open_db()
-    r = poll_feeds(conn, load_feeds())
+    r = poll_feeds(conn, feeds)
     print(f"TOTAL {r.line()}")
     if args.no_extract:
         return
@@ -98,9 +103,34 @@ def cmd_add_screenshot(args):
             run_extraction(conn)
 
 
+def check_urls_from(args) -> list[str]:
+    """URLs from the arguments plus --file (one per line, `-` = stdin; blanks and # lines skipped), deduplicated in order."""
+    urls = list(args.url)
+    if args.file:
+        lines = (sys.stdin if args.file == "-" else open(args.file)).read().splitlines()
+        urls += [ln.strip() for ln in lines if ln.strip() and not ln.strip().startswith("#")]
+    return list(dict.fromkeys(urls))
+
+
 def cmd_check(args):
+    urls = check_urls_from(args)
+    if not urls:
+        sys.exit("no URLs given")
+    if len(urls) > 1 and (args.title or args.location):   # --company is fine: one company's board
+        sys.exit("--title/--location describe one posting; check that URL on its own")
     conn = open_db()
-    r = check_url(conn, args.url, load_feeds(), args.company, args.title, args.location)
+    feeds = load_feeds()
+    for url in urls:
+        if len(urls) > 1:
+            print(f"== {url}")
+        try:
+            check_one(conn, url, feeds, args)
+        except Exception as e:  # one dead page must not stop a batch
+            print(f"error: {type(e).__name__}: {str(e)[:200]}")
+
+
+def check_one(conn, url, feeds, args):
+    r = check_url(conn, url, feeds, args.company, args.title, args.location)
     log_check(conn, r, args.found_via, now_iso())
     print(r.line())
     for n in r.notes:
@@ -111,6 +141,11 @@ def cmd_check(args):
         # Ingest's own dedup is symmetric Jaccard, which a full careers page can fail against a
         # shorter stored transcript; the check's containment match already said it is stored.
         print(f"add: skipped — already job {r.job_id}")
+        return
+    if len(r.posting.description_text) < MIN_ADD_TEXT:
+        # A page that rendered nothing readable would be stored as an empty job with no skills.
+        print(f"add: refused — only {len(r.posting.description_text)} characters of posting text; "
+              f"paste it with add-text instead")
         return
     # Board postings keep their feed source and id, so a later poll sees them as still-listed;
     # page postings are source=url. Either way found_via records that a person found it.
@@ -162,7 +197,10 @@ def main(argv=None):
     ap = argparse.ArgumentParser(prog="python -m app", description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
-    p = sub.add_parser("poll"); p.add_argument("--no-extract", action="store_true"); p.set_defaults(fn=cmd_poll)
+    p = sub.add_parser("poll"); p.add_argument("--no-extract", action="store_true")
+    p.add_argument("--only", action="append", default=[], metavar="LABEL",
+                   help="poll just this feed, by its log label (e.g. ashby:jupus); repeatable")
+    p.set_defaults(fn=cmd_poll)
     p = sub.add_parser("extract"); p.add_argument("--limit", type=int); p.set_defaults(fn=cmd_extract)
     p = sub.add_parser("add-text")
     p.add_argument("--company", required=True); p.add_argument("--title", required=True)
@@ -176,7 +214,8 @@ def main(argv=None):
     p.add_argument("--found-via", default="linkedin", choices=["linkedin", "indeed", "company_site", "referral", "other"])
     p.add_argument("--no-extract", action="store_true"); p.set_defaults(fn=cmd_add_screenshot)
     p = sub.add_parser("check")
-    p.add_argument("url")
+    p.add_argument("url", nargs="*")
+    p.add_argument("--file", default=None, help="more URLs, one per line; - reads stdin")
     p.add_argument("--company", default=None); p.add_argument("--title", default=None)
     p.add_argument("--location", default=None)
     p.add_argument("--add", action="store_true", help="ingest the posting if not already stored (and extract)")
