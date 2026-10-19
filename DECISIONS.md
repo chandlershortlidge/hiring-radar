@@ -30,6 +30,8 @@ merged them into job 169, correctly, but also set repost_count=1.
 - Data: job 169's repost_count was set back to 0. It was the only job with reposts, so no
   other job needed fixing.
 
+---
+
 ## 2026-10-19 — Active cities: Berlin only until the held-out eval passes
 
 The plan said SF collection starts only after Berlin extraction passes the held-out eval
