@@ -23,6 +23,27 @@
     {"type": "ashby", "enabled": true, "token": "rematiq-gmbh", "company": "Rematiq"},
     {"type": "join", "enabled": true, "token": "motor-ai", "company": "MOTOR Ai"},
     {"type": "greenhouse", "enabled": true, "token": "bluefishai", "company": "Bluefish"},
-    {"type": "lever", "enabled": true, "token": "vestiairecollective", "company": "Vestiaire Collective"}
+    {"type": "lever", "enabled": true, "token": "vestiairecollective", "company": "Vestiaire Collective"},
+    {"type": "greenhouse", "enabled": true, "token": "commercetools", "company": "commercetools"},
+    {"type": "greenhouse", "enabled": true, "token": "awin", "company": "Awin"},
+    {"type": "greenhouse", "enabled": true, "token": "doctolib", "company": "Doctolib"},
+    {"type": "greenhouse", "enabled": true, "token": "sumup", "company": "SumUp"},
+    {"type": "greenhouse", "enabled": true, "token": "lawzero", "company": "LawZero"},
+    {"type": "greenhouse", "enabled": true, "token": "smartlyio", "company": "Smartly.io"},
+    {"type": "greenhouse", "enabled": true, "token": "zetaglobal", "company": "Zeta Global"},
+    {"type": "greenhouse", "enabled": true, "token": "soundcloud71", "company": "SoundCloud"},
+    {"type": "greenhouse", "enabled": true, "token": "nebius", "company": "Nebius"},
+    {"type": "greenhouse", "enabled": true, "token": "autoscout24", "company": "AutoScout24"},
+    {"type": "lever", "enabled": true, "token": "mendix", "company": "Mendix"},
+    {"type": "ashby", "enabled": true, "token": "nelly", "company": "Nelly"},
+    {"type": "ashby", "enabled": true, "token": "bunch", "company": "Bunch"},
+    {"type": "ashby", "enabled": true, "token": "perplexity", "company": "Perplexity"},
+    {"type": "ashby", "enabled": true, "token": "ppro", "company": "PPRO"},
+    {"type": "ashby", "enabled": true, "token": "clera", "company": "Clera"},
+    {"type": "ashby", "enabled": true, "token": "sensmore", "company": "Sensmore"},
+    {"type": "join", "enabled": true, "token": "alpas", "company": "alpas"},
+    {"type": "join", "enabled": true, "token": "noah-labs", "company": "Noah Labs"},
+    {"type": "join", "enabled": true, "token": "ai-coustics", "company": "ai-coustics"},
+    {"type": "join", "enabled": true, "token": "limebit", "company": "Limebit"}
   ]
 }
