@@ -5,6 +5,19 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-19 — Consulting roles are out of scope for the MVP
+
+Titles like "Consultant GenAI & Agentic AI" fail the title filter ("Consultant" is not a
+role word), and they stay out, both from feeds and from manual `check --add`. The chart
+measures what AI *engineering* jobs ask for. Consulting JDs mix in advisory skills (client
+management, pre-sales, workshops) that would dilute it. Adding them by hand, one at a time,
+would also make the data depend on which links someone happened to click.
+
+To revisit: `url_check.diagnosis` records every rejected check, so count the "Consultant"
+title rejections first. Widening is one word in `ROLE_PATTERN` (`app/ingest.py`).
+
+---
+
 ## 2026-10-18 — Open rule: complete feeds vs search sources
 
 A job counts as open while a *complete* feed (Greenhouse, Lever, Ashby, arbeitnow,
