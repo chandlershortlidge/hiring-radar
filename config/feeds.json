@@ -18,6 +18,8 @@
     {"type": "join", "enabled": true, "token": "dexter-health", "company": "dexter health"},
     {"type": "join", "enabled": true, "token": "anni", "company": "Lane One"},
     {"type": "join", "enabled": true, "token": "xheroncom", "company": "xHeron Solutions"},
-    {"type": "join", "enabled": true, "token": "vicoland", "company": "Vicoland"}
+    {"type": "join", "enabled": true, "token": "vicoland", "company": "Vicoland"},
+    {"type": "join", "enabled": true, "token": "paddy", "company": "paddy"},
+    {"type": "ashby", "enabled": true, "token": "rematiq-gmbh", "company": "Rematiq"}
   ]
 }
