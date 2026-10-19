@@ -16,7 +16,7 @@ import sqlite3
 from pathlib import Path
 
 from app.ingest import Report, ingest
-from app.sources import arbeitnow, arbeitsagentur, ashby, greenhouse, jsearch, lever, startup_jobs
+from app.sources import arbeitnow, arbeitsagentur, ashby, greenhouse, join, jsearch, lever, startup_jobs
 
 ROOT = Path(__file__).resolve().parent.parent
 FEEDS_PATH = ROOT / "config" / "feeds.json"
@@ -44,6 +44,8 @@ def fetch_feed(feed: dict) -> list:
         return lever.fetch(feed["token"], feed.get("company"))
     if t == "ashby":
         return ashby.fetch(feed["token"], feed.get("company"))
+    if t == "join":
+        return join.fetch(feed["token"], feed.get("company"), feed.get("max_pages", 10))
     raise ValueError(f"unknown feed type {t!r}")
 
 

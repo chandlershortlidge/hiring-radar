@@ -24,7 +24,7 @@ from datetime import datetime, timedelta, timezone
 # results; Arbeitsagentur: only postings published in the last 30 days), so absence there
 # proves nothing: a job known only from them, or added by hand, is assumed open for
 # MANUAL_OPEN_DAYS. When a complete feed has the job, only that feed's last sighting counts.
-FEED_SOURCES = ("greenhouse", "lever", "ashby", "startup_jobs", "arbeitnow")
+FEED_SOURCES = ("greenhouse", "lever", "ashby", "join", "startup_jobs", "arbeitnow")
 SEARCH_SOURCES = ("jsearch", "arbeitsagentur")
 MANUAL_SOURCES = ("url", "paste", "screenshot")
 FEED_OPEN_DAYS = 3

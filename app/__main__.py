@@ -149,7 +149,7 @@ def check_one(conn, url, feeds, args):
         return
     # Board postings keep their feed source and id, so a later poll sees them as still-listed;
     # page postings are source=url. Either way found_via records that a person found it.
-    is_board = r.posting.source in ("greenhouse", "lever", "ashby")
+    is_board = r.posting.source in ("greenhouse", "lever", "ashby", "join")
     outcome = ingest_one(conn, r.posting, now_iso(), require_city=not is_board,
                          found_via=args.found_via, trust_title=True)
     print(f"add: {outcome}")

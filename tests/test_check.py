@@ -52,6 +52,9 @@ def no_fetch(*a, **k):
      AtsRef("ashby", "acme", "0a1b2c3d-1111-2222-3333-444455556666")),
     ("https://acme.com/careers/ai-engineer", None),
     ("https://www.linkedin.com/jobs/view/4012345", None),
+    ("https://join.com/companies/xheroncom/16814436-ai-harness-engineer-m-f-x?widgetv2=true",
+     AtsRef("join", "xheroncom", "16814436")),
+    ("https://join.com/companies/dexter-health", None),
     ("https://boards.greenhouse.io/acme", None),
 ])
 def test_parse_ats_url(url, expected):

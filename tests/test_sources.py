@@ -246,3 +246,57 @@ def test_jsearch_parse_uses_the_stable_id():
     payload = {"data": [{"job_id": i, "job_title": "AI Engineer", "job_description": "x"}
                         for i in JSEARCH_IDS_SAME_POSTING]}
     assert {p.source_job_id for p in jsearch.parse(payload)} == {"9quzt2CcAsrk_XVKAAAAAA=="}
+
+
+# --- join (fixtures: trimmed initialState from live pages, 2026-10-19) -----------------
+from app.sources import join  # noqa: E402
+
+
+def test_join_page_state_reads_next_data_and_tolerates_pages_without_it():
+    markup = ('<html><script id="__NEXT_DATA__" type="application/json">'
+              '{"props": {"pageProps": {"initialState": {"job": {"title": "x"}}}}}</script></html>')
+    assert join.page_state(markup) == {"job": {"title": "x"}}
+    assert join.page_state("<html>no data</html>") == {}
+    assert join.page_state('<script id="__NEXT_DATA__">{broken</script>') == {}
+
+
+def test_join_listing_gives_id_params_and_page_count():
+    ids, pages = join.listing(load("join_company.json"))
+    assert ids[0] == "16792067-ai-developer-llm-products-remote" and len(ids) == 3
+    assert pages == 2
+    assert join.listing({}) == ([], 0)
+
+
+def test_join_parse_uses_the_url_number_as_id():
+    p = join.parse(load("join_job.json"), "xheroncom")
+    assert p.source == "join"
+    assert p.source_job_id == "16814436"          # from idParam, not the internal `id`
+    assert p.url == "https://join.com/companies/xheroncom/16814436-ai-harness-engineer-agentic-and-autonomous-operations-m-f-x"
+    assert (p.company, p.location_raw) == ("xHeron Solutions", "Berlin, Germany")
+    assert p.title.startswith("AI Harness Engineer") and "<p>" not in p.description_text
+    assert p.posted_at.startswith("2026-09-14")
+
+
+def test_join_parse_marks_remote_and_skips_empty():
+    state = load("join_job.json")
+    state["job"]["workplaceType"] = "REMOTE"
+    assert join.parse(state, "xheroncom", company="xHeron").location_raw == "Berlin, Germany (remote)"
+    state["job"]["description"] = ""
+    assert join.parse(state, "xheroncom") is None
+
+
+def test_join_fetch_dedups_overlapping_pages(monkeypatch):
+    company = load("join_company.json")
+    page2 = {"jobs": {"items": [company["jobs"]["items"][0]], "pagination": {"pageCount": 2}}}
+    job = load("join_job.json")
+    fetched = []
+
+    def fake(url):
+        fetched.append(url)
+        state = company if url.endswith("?page=1") else page2 if url.endswith("?page=2") else job
+        return '<script id="__NEXT_DATA__">' + json.dumps({"props": {"pageProps": {"initialState": state}}}) + "</script>"
+
+    monkeypatch.setattr(join, "fetch_text", fake)
+    out = join.fetch("dexter-health")
+    job_pages = [u for u in fetched if "?page=" not in u]
+    assert len(job_pages) == 3 == len(out)        # page 2's job was already on page 1

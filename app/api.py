@@ -163,7 +163,7 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
             return {"outcome": "exists", "job_id": r.job_id, "job": d, "verdict": r.line()}
         if r.posting is None:
             return {"outcome": "unreadable", "job_id": None, "verdict": r.line(), "notes": r.notes}
-        is_board = r.posting.source in ("greenhouse", "lever", "ashby")
+        is_board = r.posting.source in ("greenhouse", "lever", "ashby", "join")
         outcome = ingest_one(conn, r.posting, now_iso(), require_city=not is_board,
                              found_via=body.found_via, trust_title=True)
         res = finish_add(conn, outcome)

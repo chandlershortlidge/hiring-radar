@@ -84,11 +84,11 @@ def test_failed_migration_records_nothing(tmp_path):
 
 def test_every_feed_adapter_source_is_allowed_by_the_schema(tmp_path):
     # Regression: arbeitsagentur/jsearch postings hit the job_source CHECK at ingest.
-    from app.sources import arbeitnow, arbeitsagentur, ashby, greenhouse, jsearch, lever, startup_jobs
+    from app.sources import arbeitnow, arbeitsagentur, ashby, greenhouse, join, jsearch, lever, startup_jobs
     conn = db.connect(tmp_path / "t.db")
     db.migrate(conn)
     job_id = _job(conn)
-    for i, mod in enumerate((arbeitnow, arbeitsagentur, ashby, greenhouse, jsearch, lever, startup_jobs)):
+    for i, mod in enumerate((arbeitnow, arbeitsagentur, ashby, greenhouse, join, jsearch, lever, startup_jobs)):
         conn.execute("INSERT INTO job_source (job_id, source, source_job_id, first_seen, last_seen) "
                      "VALUES (?, ?, ?, 'now', 'now')", (job_id, mod.SOURCE, f"id{i}"))
 
