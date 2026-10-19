@@ -186,8 +186,10 @@ Three layout rules:
   resolves them case-sensitively; keep it that way.
 - `scripts/seed_from_legacy.py` output no longer matches the committed taxonomy/Goldens
   (they were hand-edited after seeding). Never run it against the real files.
-- Feeds return everything; `app/ingest.py` filters by title regex and tracked city. A job
-  in an untracked city is dropped, not stored — widen `app/geo.py` to add a city.
+- Feeds return everything; `app/ingest.py` filters by title regex and *active* city. A job
+  in an untracked or inactive city is dropped, not stored. `app/geo.py` has two lists:
+  `CITIES` (recognized) and `ACTIVE_CITIES` (collected; Berlin only until the held-out eval
+  passes). Change `ACTIVE_CITIES` only on purpose (DECISIONS 2026-10-19).
 - `skill_mention` holds one extraction per job (the latest). Re-extraction replaces.
 
 ## Reporting a run

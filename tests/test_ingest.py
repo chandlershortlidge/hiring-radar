@@ -120,6 +120,13 @@ def test_filters_skip_out_of_scope_titles_and_cities(conn):
     assert count(conn, "job") == 1
 
 
+def test_tracked_but_inactive_city_is_skipped_unless_added_by_hand(conn):
+    """San Francisco is tracked (geo.CITIES) but not in ACTIVE_CITIES: feeds drop it."""
+    assert ingest_one(conn, posting(location="San Francisco, CA")) == "skipped_city"
+    assert ingest_one(conn, posting(location="San Francisco, CA"), require_city=False).startswith("new:")
+    assert conn.execute("SELECT city FROM job").fetchone()["city"] == "San Francisco"
+
+
 def test_manual_add_records_found_via_and_has_no_source_id(conn):
     p = Posting("paste", "", "", "Acme", "AI Engineer", None, JD)
     out = ingest_one(conn, p, require_city=False, found_via="linkedin")

@@ -5,17 +5,23 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
-## 2026-10-19 — San Francisco collection starts now (replaces the "Second city" gate)
+## 2026-10-19 — Active cities: Berlin only until the held-out eval passes
 
-The plan said SF collection would start only after Berlin extraction passed the held-out eval
-("Second city", below). The code never held to that: `app/geo.py` has tracked San Francisco
-since the intake build (32c43c5, 2026-10-16), so every poll already kept SF postings. Nobody
-made that call on purpose, and it went unnoticed until discover-boards listed SF-heavy boards
-(OpenAI, Anthropic). The person decided to keep it: collect SF from now on.
+The plan said SF collection starts only after Berlin extraction passes the held-out eval
+("Second city", below). The code never held to that. `app/geo.py` has tracked San Francisco
+since the intake build (32c43c5, 2026-10-16), so every poll kept SF postings. Nobody chose
+that on purpose. It surfaced when discover-boards listed SF-heavy boards (OpenAI, Anthropic):
+208 SF roles against 33 Berlin.
 
-- No code change. The city filter stays as it is.
-- Before SF counts are compared with Berlin, check extraction quality on SF job descriptions
-  too. The Goldens are all Berlin postings.
+- **Tracked vs active.** `geo.CITIES` still recognizes San Francisco, and manual adds keep
+  their real city. Only `geo.ACTIVE_CITIES` (`("Berlin",)`) passes the ingest filter and
+  discover-boards' relevance check, through `geo.active_city`. `check` names a tracked but
+  inactive city in its diagnosis.
+- **Turning SF on** is a one-line change to `ACTIVE_CITIES`. Make it deliberately, once
+  the held-out eval passes. Also check extraction on SF descriptions then: every Golden is a
+  Berlin posting.
+- Job 140 (Intercom, SF, polled 2026-10-19) predates this change and stays in the DB. Polls
+  now skip its posting, so it is no longer marked as still listed.
 
 ---
 

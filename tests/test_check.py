@@ -202,6 +202,8 @@ def test_diagnose_is_pure_and_names_the_filter():
     p = Posting("url", "", "u", "Acme", "Call Center Agent", "Berlin", JD)
     assert "fails the title filter" in diagnose(p, None, FEEDS, None)
     assert "no feed can reach it" in diagnose(p, None, FEEDS, None)
+    sf = Posting("url", "", "u", "Acme", "AI Engineer", "San Francisco, CA", JD)
+    assert "maps to San Francisco, which is tracked but not active (active: Berlin)" in diagnose(sf, None, FEEDS, None)
 
 
 def test_board_without_company_uses_board_token_for_the_match(conn):
