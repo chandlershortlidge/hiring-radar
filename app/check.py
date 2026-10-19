@@ -2,7 +2,7 @@
 not, why the feeds could not have stored it. This is how feed coverage gets audited by hand.
 
 Does:
-  - recognize hosted ATS job URLs (Greenhouse, Lever, Ashby) and turn them into
+  - recognize hosted ATS job URLs (Greenhouse, Lever, Ashby, JOIN) and turn them into
     (source, board token, job id);
   - look the job up by exact (source, source_job_id), then by company + text containment
     against stored jobs (the page may have been stored via another source, e.g. arbeitnow);
@@ -40,7 +40,7 @@ from app import dedup
 from app.geo import city_of
 from app.html_text import html_to_text
 from app.ingest import in_scope_title
-from app.sources import Posting, ashby, fetch_text, greenhouse, lever
+from app.sources import Posting, ashby, fetch_text, greenhouse, join, lever
 
 CONTAINMENT_THRESHOLD = 0.7   # share of a stored JD's 3-word shingles that must appear on the page
 MANUAL_SOURCES = ("url", "paste", "screenshot")   # job_source values a person added; the rest are feeds
@@ -55,8 +55,11 @@ _ATS_PATTERNS = (
     # https://jobs.ashbyhq.com/acme/0a1b2c3d-...
     ("ashby", re.compile(r"^jobs\.ashbyhq\.com$", re.I),
      re.compile(r"^/(?P<token>[^/]+)/(?P<id>[0-9a-f-]{36})")),
+    # https://join.com/companies/acme/16814436-ai-engineer-m-f-x  (the id is the leading number)
+    ("join", re.compile(r"^(?:www\.)?join\.com$", re.I),
+     re.compile(r"^/companies/(?P<token>[^/]+)/(?P<id>\d+)")),
 )
-_FETCHERS = {"greenhouse": greenhouse.fetch, "lever": lever.fetch, "ashby": ashby.fetch}
+_FETCHERS = {"greenhouse": greenhouse.fetch, "lever": lever.fetch, "ashby": ashby.fetch, "join": join.fetch}
 
 
 @dataclass(frozen=True)

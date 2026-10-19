@@ -1,0 +1,63 @@
+{
+ "company": {
+  "id": 28474,
+  "name": "dexter health",
+  "domain": "dexter-health"
+ },
+ "jobs": {
+  "items": [
+   {
+    "id": 16305705,
+    "idParam": "16792067-ai-developer-llm-products-remote",
+    "title": "AI Developer (LLM Products) - Remote",
+    "createdAt": "2026-06-14T13:26:30.656Z",
+    "workplaceType": "REMOTE",
+    "remoteType": "ANYWHERE",
+    "city": {
+     "cityName": "Cologne",
+     "countryName": "Germany"
+    },
+    "country": {
+     "iso3166": "DE"
+    }
+   },
+   {
+    "id": 16070421,
+    "idParam": "16802057-ai-engineer-llm-products-remote",
+    "title": "AI Engineer (LLM Products) - Remote",
+    "createdAt": "2026-04-26T19:53:37.078Z",
+    "workplaceType": "REMOTE",
+    "remoteType": "ANYWHERE",
+    "city": {
+     "cityName": "Cologne",
+     "countryName": "Germany"
+    },
+    "country": {
+     "iso3166": "DE"
+    }
+   },
+   {
+    "id": 16305703,
+    "idParam": "16754856-ai-engineer-llm-remote",
+    "title": "AI Engineer (LLM) - Remote",
+    "createdAt": "2026-06-14T13:25:01.911Z",
+    "workplaceType": "REMOTE",
+    "remoteType": "ANYWHERE",
+    "city": {
+     "cityName": "Cologne",
+     "countryName": "Germany"
+    },
+    "country": {
+     "iso3166": "DE"
+    }
+   }
+  ],
+  "pagination": {
+   "page": 1,
+   "pageCount": 2,
+   "pageSize": 5,
+   "perPage": 5,
+   "total": 8
+  }
+ }
+}

@@ -14,6 +14,9 @@
     {"type": "ashby", "enabled": true, "token": "almedia", "company": "almedia"},
     {"type": "ashby", "enabled": true, "token": "jupus", "company": "jupus"},
     {"type": "lever", "enabled": true, "token": "pipedrive", "company": "Pipedrive"},
-    {"type": "greenhouse", "enabled": true, "token": "intercom", "company": "Intercom"}
+    {"type": "greenhouse", "enabled": true, "token": "intercom", "company": "Intercom"},
+    {"type": "join", "enabled": true, "token": "dexter-health", "company": "dexter health"},
+    {"type": "join", "enabled": true, "token": "anni", "company": "Lane One"},
+    {"type": "join", "enabled": true, "token": "xheroncom", "company": "xHeron Solutions"}
   ]
 }

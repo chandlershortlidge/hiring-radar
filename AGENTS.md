@@ -118,7 +118,7 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   requirement, or-equivalent-experience). One tool call. Model client is injected.
 - `app/evaluation.py` — scoring (micro P/R/F1, requirement accuracy, rank agreement)
   and the suite runner. `scripts/run_eval.py` — live CLI around it.
-- `app/sources/` — one adapter per feed (`greenhouse`, `lever`, `ashby`, `arbeitnow`,
+- `app/sources/` — one adapter per feed (`greenhouse`, `lever`, `ashby`, `join`, `arbeitnow`,
   `arbeitsagentur`, `jsearch`, `startup_jobs`): `parse(payload)` is pure and tested on `tests/fixtures/feeds/`;
   `fetch()` is the thin HTTP wrapper. `app/html_text.py` strips HTML.
 - `app/dedup.py` — company/title keys and 3-word-shingle Jaccard similarity; `find_match`
@@ -143,7 +143,7 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `app/__main__.py` — the CLI (`python -m app ...`, including `serve`).
 - `.claude/skills/check-url/` — `/check-url <url>`: runs `check` and acts on the verdict
   (adds the board to `config/feeds.json` and polls; stops on filter judgment calls).
-- `config/feeds.json` — which feeds to poll. Add a company's Greenhouse/Lever/Ashby board here.
+- `config/feeds.json` — which feeds to poll. Add a company's Greenhouse/Lever/Ashby/JOIN board here.
 - `taxonomy/skills.json` — the skill taxonomy. The source of truth for what a skill is.
   See `taxonomy/README.md` for how to edit it.
 - `evals/goldens/` — labeled JDs: text + expected `{skill_id, requirement, raw_text}`.

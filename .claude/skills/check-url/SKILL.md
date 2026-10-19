@@ -19,6 +19,9 @@ Write the URLs to a scratchpad file (one per line), then:
 uv run python -m app check --file <urls.txt>                # add --found-via linkedin if the person said so
 ```
 
+A JOIN company page (`join.com/companies/<slug>`, no job number) is not a posting: add
+`{"type": "join", "enabled": true, "token": "<slug>", "company": "<Name>"}` and poll it.
+
 The output has one `== <url>` block per URL. A single URL can be passed directly (quote it).
 Every check is logged to `url_check`; only the first check of a URL counts toward coverage,
 so the re-check in step 3 is safe.

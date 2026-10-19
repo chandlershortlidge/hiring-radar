@@ -1,0 +1,37 @@
+{
+ "job": {
+  "id": 16706726,
+  "idParam": "16814436-ai-harness-engineer-agentic-and-autonomous-operations-m-f-x",
+  "title": "AI Harness Engineer - Agentic & Autonomous Operations (m/f/x)",
+  "status": "ONLINE",
+  "createdAt": "2026-09-14T17:20:37.114Z",
+  "company": {
+   "id": 160366,
+   "name": "xHeron Solutions",
+   "domain": "xheroncom"
+  },
+  "description": "<p><strong>xHeron is building the Service-as-Software company for short-term rental operators.</strong> We take responsibility for guest communication, team coordination and issue resolution, so customers can hand over the work without handing over their business.</p>\n<p>Today, we deliver that service through people, software and AI. We’re turning the expertise behind it into autonomous systems that understand situations, take action and follow through. <strong>Not another tool to supervise. A service that gets the job done.</strong></p>\n<p>We’re looking for an <strong>AI Engineer</strong> to build the agentic capabilities at the heart of xHeron. You’ll help shape how our agents reason, act and learn, and build a company where AI doesn’t just support the work, but increasingly delivers it.</p>\n<h2>Tasks</h2>\n<p>We are looking for an AI Harness Engineer to build the software layer that turns language models into dependable operational systems.</p>\n<p>You will work on orchestration, context assembly, tool execution, state, permissions, evaluations, observability, failure recovery, and human handoffs. The goal is not merely to generate a good response.</p>",
+  "city": {
+   "cityName": "Berlin",
+   "countryCode": "de",
+   "countryName": "Germany",
+   "regionName": null
+  },
+  "country": {
+   "id": 86,
+   "iso3166": "DE",
+   "name": "Germany"
+  },
+  "workplaceType": "ONSITE",
+  "remoteType": null,
+  "office": {
+   "city": {
+    "cityName": "Berlin",
+    "countryName": "Germany"
+   },
+   "postalCode": null,
+   "streetName": null,
+   "streetNumber": null
+  }
+ }
+}
