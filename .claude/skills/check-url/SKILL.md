@@ -1,71 +1,73 @@
 ---
 name: check-url
-description: Audit feed coverage for one careers-page URL — run `python -m app check`, then act on its verdict (add the board to feeds.json and poll, add the posting, or stop on a judgment call). Use when the person pastes a job URL and asks whether we have it, or invokes /check-url.
+description: Audit feed coverage for one or many careers-page URLs — run `python -m app check` on the batch, add every missing board in one pass, poll only those boards, re-check, and report once with judgment calls grouped. Use when the person pastes job URLs and asks whether we have them, or invokes /check-url.
 ---
 
-# /check-url <url> [--company "Name"]
+# /check-url <url> [<url> …]
 
 `app/check.py` decides; this skill only chooses the next command. Never re-implement the
-lookup, edit `app/ingest.py` filters, or touch the database by hand.
+lookup or edit `app/ingest.py` / `app/geo.py` filters.
 
-## 1. Run the check
+**Batch rule: never stop mid-batch to ask.** Run every URL through, do all the mechanical
+work, and put every question in the one report at the end.
+
+## 1. Check the whole batch
+
+Write the URLs to a scratchpad file (one per line), then:
 
 ```bash
-uv run python -m app check "<url>"            # quote the URL: ? and & break the shell
+uv run python -m app check --file <urls.txt>                # add --found-via linkedin if the person said so
 ```
 
-Add `--company "<Name>"` only if the person gave one or the output asks for it. Add
-`--found-via linkedin` (or `indeed`, `referral`) when the person says where they found the
-posting; the default is `company_site`.
+The output has one `== <url>` block per URL. A single URL can be passed directly (quote it).
+Every check is logged to `url_check`; only the first check of a URL counts toward coverage,
+so the re-check in step 3 is safe.
 
-Every `check` is logged to `url_check` and feeds the "coverage of checked URLs" line in
-`stats`. Only the first check of a URL counts, so the re-checks below are safe to run.
+## 2. Do the mechanical work, all at once
 
-## 2. Act on the verdict — exactly one branch
+Sort the blocks by verdict:
 
-**`found: job N …`** → report it (step 3). Nothing to do.
+| verdict | action |
+|---|---|
+| `found: job N …` | nothing |
+| `board <type>:<token> is not in config/feeds.json — add {…}` | append that JSON to `feeds` in `config/feeds.json` (if the type+token is already there, set `"enabled": true` instead). Use the real company name if the page makes it obvious, else the token. Do this for every such board before polling. |
+| `is polled and the posting passes both filters` | queue the board for the poll |
+| `is polled; ingest would drop it: <reason>` | **judgment call** — collect it, don't act |
+| `no longer lists job` | closed — collect it |
+| `not a hosted ATS page` | if `--company` is not needed, collect it as "add?"; if it is, take the company from the page title when unambiguous, otherwise collect it as "needs company" |
+| `board token unknown` (`?gh_jid=`) | collect it as "needs the boards.greenhouse.io link" |
+| `error: …` | collect it with the message |
 
-**`not found: board <type>:<token> is not in config/feeds.json — add {…}`**
-1. Open `config/feeds.json`. If an entry with the same `type` and `token` exists, do not
-   add another; set it `"enabled": true` if it was false.
-2. Otherwise append the printed JSON object to the `feeds` array. Keep the file valid JSON.
-3. Run `uv run python -m app poll`.
-4. Re-run the check from step 1. It must now say `found … via <type>`. If it does not,
-   this is a feed or adapter bug: report the full `check` and `poll` output, unsummarized,
-   with the board token and job id, and stop.
+Then **one** poll limited to the boards just added or queued:
 
-**`not found: board … is polled; ingest would drop it: <reason>`** → STOP. This is the
-person's call: either the filter is leaking (fix `app/ingest.py` or `app/geo.py`, with a
-test) or the rejection is correct and the job is out of scope. Report the exact reason
-and ask which. Do not change the filter on your own.
+```bash
+uv run python -m app poll --only ashby:jupus --only greenhouse:acme …
+```
 
-**`not found: board … is polled and the posting passes both filters …`**
-1. Run `uv run python -m app poll`.
-2. Re-run the check. `found` → report it, noting it was posted since the last poll.
-   Still `not found` → feed bug. Report both outputs unsummarized with the job id and stop.
+Never run a full `poll` for a check; that fetches every search feed (JSearch has a quota) and
+is the slow part. Then re-run `check` only on the URLs whose boards were polled. A URL that
+should now be found but still says `passes both filters` is a feed bug: include both outputs
+unsummarized in the report.
 
-**`not found: board … no longer lists job …`** → report as closed/re-posted. If the
-person wants it anyway, `check --add` stores the page version as `source=url`.
+## 3. Report once
 
-**`not found: not a hosted ATS page …`**
-- If the notes say `pass --company`, ask for the company (or take it from the page title
-  if unambiguous) and re-run with `--company`.
-- Then `uv run python -m app check "<url>" --company "<Name>" --add --found-via company_site`.
-  Extraction runs automatically. Report the `add:` line and the extraction line.
+**Keep it extremely short.** The person is working through many URLs. A clean result is one
+line, e.g. `Already have it (job 31).` or `Added 2: AI Engineer (Berlin), ML Engineer (Berlin).`
+No background or mechanics. Questions are one line each. For a big batch:
 
-**`board token unknown`** (a `?gh_jid=` embed URL) → ask for the `boards.greenhouse.io`
-link for that job and re-run.
+> 23 checked: 14 already in (feeds covered 12), 4 added via 3 new boards (poll: 4 new, 0 failed), 5 need you.
 
-## 3. Report
+Then the items that need the person, **grouped by reason** so one answer covers many:
 
-One headline, per AGENTS.md "Reporting a run":
+- `location 'Germany' maps to no tracked city` × 3: urls… → keep out, or widen `app/geo.py`?
+- `title '…' fails the title filter` × 1: url → out of scope, or a leaking filter?
+- not an ATS page × 2: urls… → add them (`check <url> --company X --add`)?
+- closed × 1, errors × n, feed bugs (in full).
 
-> found: job 42 "AI Engineer" via arbeitnow, ashby — board almedia added to feeds.json, poll clean (3 new, 0 failed).
-
-Then offer detail. Any `FAILED` line, `extracted=n/m` with n<m, or a judgment call you
-did not take is reported in full, not summarized.
+Any `FAILED` poll line or `extracted=n/m` with n<m is reported in full. When the person
+answers, act on the whole group at once (e.g. `check --file <group.txt> --add`).
 
 ## 4. Commit
 
-If `config/feeds.json` changed: one commit, message `feeds: add <type>:<token> (<Company>)`.
-Do not commit the database.
+If `config/feeds.json` changed: one commit for the batch,
+`feeds: add <type>:<token>, <type>:<token> (<Companies>)`. Do not commit the database.

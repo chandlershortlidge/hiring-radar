@@ -83,6 +83,8 @@ pbpaste | uv run python -m app add-text --company "Acme" --title "AI Engineer" -
 uv run python -m app add-screenshot shot.png --company "Acme" --title "AI Engineer" --location Berlin
 uv run python -m app check https://boards.greenhouse.io/acme/jobs/4012345   # in the DB? if not, why no feed stored it
 uv run python -m app check https://acme.com/careers/ai-engineer --company "Acme" --add   # ...and store it
+uv run python -m app check --file urls.txt          # a batch, one URL per line (- = stdin)
+uv run python -m app poll --only ashby:jupus        # poll just the named feed(s), e.g. after adding a board
 uv run python -m app stats
 
 # Dashboard
