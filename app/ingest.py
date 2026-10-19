@@ -3,7 +3,10 @@
 Does: for each posting decide, in order —
   1. same (source, source_job_id) already stored → still listed: bump last_seen, nothing else;
   2. same company + near-identical text as an existing job → merge: add a job_source row;
-     if that source already had a *different* id for this job, it's a repost (repost_count+1);
+     it's a repost (repost_count+1) only when that source had a *different* id for this job
+     and none of those ids is in the current fetch — the earlier listing went away. Only
+     board feeds (REPOST_SOURCES) can say that; a second id listed at the same time is a
+     concurrent duplicate and just merges;
   3. otherwise insert a new job.
 Also applies the title/city filters so feeds' unrelated postings never become rows:
 a title needs both an AI/ML domain term and a technical role term.
@@ -37,6 +40,13 @@ DOMAIN_PATTERN = re.compile(
 # domain in the role name, so they satisfy both halves on their own, as they did before.
 ROLE_PATTERN = re.compile(
     r"\b(engineer\w*|developer|scientist|researcher|architect|mlops)\b", re.I)
+
+
+# Board feeds return a company's whole board on every fetch, so an id missing from the
+# fetch was taken down. Everything else returns a sample (search sources, capped or
+# windowed aggregators) or isn't a feed (manual adds), so absence there proves nothing
+# and never makes a repost. DECISIONS 2026-10-19 "Reposts".
+REPOST_SOURCES = ("greenhouse", "lever", "ashby", "join")
 
 
 def now_iso() -> str:
@@ -74,10 +84,12 @@ def _candidates(conn: sqlite3.Connection, company: str | None) -> list[dedup.Can
 
 def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
                require_city: bool = True, found_via: str | None = None,
-               trust_title: bool = False) -> str:
+               trust_title: bool = False, fetched_ids: frozenset[str] | None = None) -> str:
     """Returns one of: still_listed, merged, repost, new, skipped_title, skipped_city.
 
     trust_title skips the title filter — for postings a person chose by hand.
+    fetched_ids is every source_job_id in the fetch this posting came from; without it
+    (a single posting added by hand) nothing counts as a repost.
     """
     when = when or now_iso()
     if not trust_title and not in_scope_title(p.title):
@@ -98,16 +110,18 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
         match = dedup.find_match(p.company, p.description_text, _candidates(conn, p.company))
         if match:
             job_id = match.job_id
-            same_source_other_id = conn.execute(
-                "SELECT 1 FROM job_source WHERE job_id=? AND source=? AND source_job_id IS NOT ?",
-                (job_id, p.source, p.source_job_id)).fetchone() is not None
+            other_ids = {r[0] for r in conn.execute(
+                "SELECT source_job_id FROM job_source WHERE job_id=? AND source=? AND source_job_id IS NOT ?",
+                (job_id, p.source, p.source_job_id))}
+            is_repost = (p.source in REPOST_SOURCES and fetched_ids is not None
+                         and bool(other_ids) and not other_ids & fetched_ids)
             conn.execute(
                 "INSERT INTO job_source (job_id, source, source_job_id, url, found_via, first_seen, last_seen, posted_at)"
                 " VALUES (?,?,?,?,?,?,?,?)",
                 (job_id, p.source, p.source_job_id or None, p.url or None, found_via, when, when, p.posted_at))
             conn.execute("UPDATE job SET last_seen=max(last_seen, ?), first_seen=min(first_seen, ?) WHERE id=?",
                          (when, when, job_id))
-            if same_source_other_id:
+            if is_repost:
                 conn.execute("UPDATE job SET repost_count = repost_count + 1 WHERE id=?", (job_id,))
                 return "repost"
             return "merged"
@@ -126,10 +140,13 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
 
 def ingest(conn: sqlite3.Connection, postings: list[Posting], when: str | None = None,
            require_city: bool = True) -> Report:
+    """Ingest one feed's fetch. `postings` must be the whole fetch: repost detection reads
+    which ids it contains, in any order."""
     r = Report()
+    fetched_ids = frozenset(p.source_job_id for p in postings if p.source_job_id)
     for p in postings:
         r.seen += 1
-        outcome = ingest_one(conn, p, when, require_city)
+        outcome = ingest_one(conn, p, when, require_city, fetched_ids=fetched_ids)
         if outcome.startswith("new:"):
             r.new += 1
             r.new_job_ids.append(int(outcome[4:]))
