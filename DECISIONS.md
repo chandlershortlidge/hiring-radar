@@ -40,6 +40,18 @@ Kept from the same review (golden_022–024, now final held-out Goldens): a tech
 dev golden_003, even at a consultancy; and "you are an expert in X" counts as a
 requirement wherever it appears, including the responsibilities.
 
+## 2026-10-19 — San Francisco collection starts now (replaces the "Second city" gate)
+
+The plan said SF collection would start only after Berlin extraction passed the held-out eval
+("Second city", below). The code never held to that: `app/geo.py` has tracked San Francisco
+since the intake build (32c43c5, 2026-10-16), so every poll already kept SF postings. Nobody
+made that call on purpose, and it went unnoticed until discover-boards listed SF-heavy boards
+(OpenAI, Anthropic). The person decided to keep it: collect SF from now on.
+
+- No code change. The city filter stays as it is.
+- Before SF counts are compared with Berlin, check extraction quality on SF job descriptions
+  too. The Goldens are all Berlin postings.
+
 ## 2026-10-19 — discover-boards: find new company boards by `site:` web search, add by hand
 
 Board feeds (Greenhouse, Lever, Ashby, JOIN) each cover one company, and none of those
