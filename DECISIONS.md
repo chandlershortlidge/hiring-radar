@@ -40,6 +40,30 @@ Kept from the same review (golden_022–024, now final held-out Goldens): a tech
 dev golden_003, even at a consultancy; and "you are an expert in X" counts as a
 requirement wherever it appears, including the responsibilities.
 
+## 2026-10-19 — discover-boards: find new company boards by `site:` web search, add by hand
+
+Board feeds (Greenhouse, Lever, Ashby, JOIN) each cover one company, and none of those
+services lists the companies using it. So a company we have never heard of stays invisible:
+Pipedrive, Intercom and Rematiq were all misses until someone pasted a link. The search
+feeds can't fill the gap. Measured: 0 of the feed rows in `job_source` point to a
+greenhouse/lever/ashby page (they link to arbeitsagentur.de, arbeitnow, StepStone, LinkedIn).
+
+- **`site:` search over the hosted ATS domains** (`site:jobs.lever.co "AI engineer" Berlin`)
+  finds pages that name a board. A manual test on 2026-10-19 found 3 boards: 2 had current
+  Berlin AI roles (bluefishai on Greenhouse, vestiairecollective on Lever) and 1 was stale
+  (cortea on Ashby: the indexed posting was gone and no live Berlin role passed the title
+  filter). Search hits are leads, so every board is fetched live and judged by ingest's
+  own title and city filters before it is reported.
+- **Approval is manual** (`--add` / `--reject`). A board joins the daily poll, and its
+  jobs reach the chart, only after a person looks at it. A rejection is written to
+  `config/boards_rejected.json` with its reason so it is not suggested again.
+- **Brave Search, not Google.** Google's Custom Search JSON API is closed to new sign-ups
+  and retires on 1 Jan 2027. Brave's web search API supports `site:`, costs $5 per 1,000
+  searches with $5 of monthly credit, and a run is domains × queries searches (10 by
+  default).
+- JOIN's own site-wide job sitemap is behind bot protection (403 for scripts). We don't work
+  around that; `site:join.com/companies` is in the search domains instead.
+
 ## 2026-10-19 — Consulting roles are out of scope for the MVP
 
 Titles like "Consultant GenAI & Agentic AI" fail the title filter ("Consultant" is not a

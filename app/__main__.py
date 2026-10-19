@@ -8,12 +8,15 @@
                     every check is logged for the coverage line in `stats`. Takes many URLs, or --file urls.txt
   stats             counts by city and source; share of jobs a feed has seen (legacy imports excluded);
                     checked URLs split by whether a feed can reach them now
+  discover-boards   web-search for Greenhouse/Lever/Ashby/JOIN boards we don't poll, check each live, report;
+                    --add source:token appends to feeds.json, --reject source:token --reason R remembers a no
   migrate           apply pending migrations and exit
 
 Database path: $HIRING_RADAR_DB, default ./data/hiring-radar.db.
 """
 
 import argparse
+import json
 import os
 import sys
 from pathlib import Path
@@ -28,7 +31,7 @@ from app.check import check_url, checked_coverage, job_coverage, log_check, reac
 from app.extract import DEFAULT_MODEL, extract, make_client  # noqa: E402
 from app.ingest import ingest_one, job_id_for_screenshot, now_iso, store_screenshot  # noqa: E402
 from app.pipeline import extract_pending  # noqa: E402
-from app.poll import load_feeds, poll_feeds, select_feeds  # noqa: E402
+from app.poll import FEEDS_PATH, load_feeds, poll_feeds, select_feeds  # noqa: E402
 from app.sources import Posting  # noqa: E402
 from app.taxonomy import Taxonomy  # noqa: E402
 from app.transcribe import DEFAULT_MODEL as VISION_MODEL, transcribe  # noqa: E402
@@ -179,6 +182,35 @@ def cmd_stats(args):
     print(f"proposed skills pending review: {pending}")
 
 
+def cmd_discover_boards(args):
+    from datetime import date
+
+    from app import discover
+    from app.sources import brave
+    if args.reject and not args.reason:
+        sys.exit("--reject needs --reason")
+    if args.add or args.reject:   # approval only: no search
+        try:
+            for b in args.add:
+                added = discover.add_board(discover.parse_board(b))
+                print(f"{b}: {'added to' if added else 'already in'} config/feeds.json")
+            for b in args.reject:
+                done = discover.reject_board(discover.parse_board(b), args.reason, date.today().isoformat())
+                print(f"{b}: {'added to' if done else 'already in'} config/boards_rejected.json")
+        except ValueError as e:
+            sys.exit(str(e))
+        return
+    try:
+        key = brave.api_key()
+    except brave.MissingKey as e:
+        sys.exit(str(e))
+    config = json.loads(discover.CONFIG_PATH.read_text())
+    r = discover.run(config, json.loads(FEEDS_PATH.read_text()), json.loads(discover.REJECTED_PATH.read_text()),
+                     lambda q: brave.fetch(q, key, config.get("count", 20)))
+    for line in discover.report_lines(r):
+        print(line)
+
+
 def cmd_migrate(args):
     open_db()
     print("ok")
@@ -220,6 +252,10 @@ def main(argv=None):
     p.add_argument("--found-via", default="company_site", choices=["linkedin", "indeed", "company_site", "referral", "other"])
     p.add_argument("--no-extract", action="store_true"); p.set_defaults(fn=cmd_check)
     sub.add_parser("stats").set_defaults(fn=cmd_stats)
+    p = sub.add_parser("discover-boards", help="find company job boards we don't poll yet (Brave search)")
+    p.add_argument("--add", action="append", default=[], metavar="SOURCE:TOKEN")
+    p.add_argument("--reject", action="append", default=[], metavar="SOURCE:TOKEN")
+    p.add_argument("--reason", default=None); p.set_defaults(fn=cmd_discover_boards)
     sub.add_parser("migrate").set_defaults(fn=cmd_migrate)
     p = sub.add_parser("serve", help="run the dashboard API (and web/dist if built)")
     p.add_argument("--host", default="127.0.0.1"); p.add_argument("--port", type=int, default=int(os.environ.get("PORT", 8000)))

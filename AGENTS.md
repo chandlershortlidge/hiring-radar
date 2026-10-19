@@ -85,6 +85,8 @@ uv run python -m app check https://boards.greenhouse.io/acme/jobs/4012345   # in
 uv run python -m app check https://acme.com/careers/ai-engineer --company "Acme" --add   # ...and store it
 uv run python -m app check --file urls.txt          # a batch, one URL per line (- = stdin)
 uv run python -m app poll --only ashby:jupus        # poll just the named feed(s), e.g. after adding a board
+uv run python -m app discover-boards                # find boards we don't poll (Brave search, ~10 searches)
+uv run python -m app discover-boards --add lever:acme   # or --reject lever:acme --reason "no Berlin AI roles"
 uv run python -m app stats
 
 # Dashboard
@@ -126,6 +128,10 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `app/ingest.py` — the still-listed / merge / repost / new decision and the title+city
   filters. `app/pipeline.py` — extract skills for jobs not yet at the current
   `extractor_version`. `app/poll.py` — run all feeds in `config/feeds.json`.
+- `app/discover.py` + `app/sources/brave.py` — `discover-boards`: Brave `site:` searches
+  (config/discover.json: domains × queries) → boards we don't poll → each fetched live and
+  judged by ingest's filters → report. `--add`/`--reject` are the only writes (feeds.json,
+  `config/boards_rejected.json`). Needs `BRAVE_API_KEY`.
 - `app/check.py` — `check`: a careers-page URL → found / not found, and on a miss why no
   feed could have stored it (board not polled, filter would drop it, not an ATS page).
   Writes only its own log (`url_check`, the first check per URL drives the coverage line

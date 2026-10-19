@@ -1,0 +1,15 @@
+{
+  "_comment": "discover-boards: every (domain x query) pair is one Brave search, `site:<domain> <query>`, one page of `count` results. Brave bills per search ($5 per 1,000, $5 monthly credit), so domains x queries is the cost of a run.",
+  "count": 20,
+  "domains": [
+    "job-boards.greenhouse.io",
+    "boards.greenhouse.io",
+    "jobs.lever.co",
+    "jobs.ashbyhq.com",
+    "join.com/companies"
+  ],
+  "queries": [
+    "\"AI engineer\" Berlin",
+    "\"machine learning\" Berlin"
+  ]
+}

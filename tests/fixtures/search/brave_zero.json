@@ -1,0 +1,33 @@
+{
+ "type": "search",
+ "query": {
+  "original": "site:jobs.ashbyhq.com \"zzqxv-nonexistent-term-8812\" Berlin",
+  "show_strict_warning": false,
+  "cleaned": "zzqxv-nonexistent-term-8812 Berlin",
+  "is_navigational": false,
+  "is_news_breaking": false,
+  "spellcheck_off": false,
+  "country": "us",
+  "bad_results": true,
+  "should_fallback": true,
+  "postal_code": "",
+  "city": "",
+  "header_country": "",
+  "more_results_available": false,
+  "state": "",
+  "search_operators": {
+   "applied": true,
+   "cleaned_query": "zzqxv-nonexistent-term-8812 Berlin",
+   "sites": [
+    "jobs.ashbyhq.com"
+   ]
+  },
+  "related_queries": []
+ },
+ "mixed": {
+  "type": "mixed",
+  "main": [],
+  "top": [],
+  "side": []
+ }
+}

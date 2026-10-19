@@ -1,0 +1,287 @@
+{
+ "type": "search",
+ "query": {
+  "original": "site:jobs.ashbyhq.com \"AI engineer\" Berlin",
+  "show_strict_warning": false,
+  "cleaned": "AI engineer Berlin",
+  "is_navigational": true,
+  "is_news_breaking": false,
+  "spellcheck_off": false,
+  "country": "us",
+  "bad_results": false,
+  "should_fallback": false,
+  "postal_code": "",
+  "city": "",
+  "header_country": "",
+  "more_results_available": true,
+  "state": "",
+  "search_operators": {
+   "applied": true,
+   "cleaned_query": "AI engineer Berlin",
+   "sites": [
+    "jobs.ashbyhq.com"
+   ]
+  },
+  "related_queries": []
+ },
+ "mixed": {
+  "type": "mixed",
+  "main": [
+   {
+    "type": "web",
+    "index": 0,
+    "all": false
+   },
+   {
+    "type": "web",
+    "index": 1,
+    "all": false
+   },
+   {
+    "type": "web",
+    "index": 2,
+    "all": false
+   },
+   {
+    "type": "web",
+    "index": 3,
+    "all": false
+   },
+   {
+    "type": "web",
+    "index": 4,
+    "all": false
+   }
+  ],
+  "top": [],
+  "side": []
+ },
+ "web": {
+  "type": "search",
+  "results": [
+   {
+    "title": "Senior AI Engineer @ Nelly Solutions",
+    "url": "https://jobs.ashbyhq.com/nelly/a1d054b8-6ece-4240-ad54-d4db2d0fc427",
+    "is_source_local": false,
+    "is_source_both": false,
+    "description": "We’re on the lookout for an ambitious AI-Engineer to join our Engineering team at our office in Berlin. Join us in building the largest AI enabled fintech for healthcare! What to expect in the role as Senior AI Engineer: As part of our freshly launched AI division at Nelly, where you&#x27;ll be one of the pioneers shaping our future in AI.",
+    "profile": {
+     "name": "G2i Inc.",
+     "url": "https://jobs.ashbyhq.com/nelly/a1d054b8-6ece-4240-ad54-d4db2d0fc427",
+     "long_name": "jobs.ashbyhq.com",
+     "img": "https://imgs.search.brave.com/cVIYmPKhHhXokNvX20xFWo6_IqoYOfrOWPRKPy9bgM4/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvYTA0NjgxZDg5/Njc0M2E1ZDQ1MGM2/NzdlMTJkYmUxNTgx/YWM2ODJlOTBiMjEx/YzQ4NzM1YzI1ZDJh/ZjdhZjJjNi9qb2Jz/LmFzaGJ5aHEuY29t/Lw"
+    },
+    "language": "en",
+    "family_friendly": true,
+    "type": "search_result",
+    "subtype": "generic",
+    "is_live": false,
+    "meta_url": {
+     "scheme": "https",
+     "netloc": "jobs.ashbyhq.com",
+     "hostname": "jobs.ashbyhq.com",
+     "favicon": "https://imgs.search.brave.com/cVIYmPKhHhXokNvX20xFWo6_IqoYOfrOWPRKPy9bgM4/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvYTA0NjgxZDg5/Njc0M2E1ZDQ1MGM2/NzdlMTJkYmUxNTgx/YWM2ODJlOTBiMjEx/YzQ4NzM1YzI1ZDJh/ZjdhZjJjNi9qb2Jz/LmFzaGJ5aHEuY29t/Lw",
+     "path": "› nelly  › a1d054b8-6ece-4240-ad54-d4db2d0fc427"
+    },
+    "thumbnail": {
+     "src": "https://imgs.search.brave.com/2QNHPuwYFHI4owqgODIk4hRYi6Q2jXYR2O_s0M_-4yw/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9hcHAu/YXNoYnlocS5jb20v/YXBpL2ltYWdlcy9v/cmctdGhlbWUtc29j/aWFsLzczNzMwMTk1/LTBmMTEtNDc2My1i/NjVkLWEwMGY4ZjY4/ZTU4YS9jZWRhZTY2/NS1iNDQzLTQxNjIt/ODBlOS1jZDhjYzJl/Mzc5ZjAvMmE3OTMz/ODEtY2M3Mi00Mzc5/LWIwZDItMzgyNWJl/MTgwN2NhLnBuZw",
+     "original": "https://app.ashbyhq.com/api/images/org-theme-social/73730195-0f11-4763-b65d-a00f8f68e58a/cedae665-b443-4162-80e9-cd8cc2e379f0/2a793381-cc72-4379-b0d2-3825be1807ca.png",
+     "logo": false
+    },
+    "cluster_type": "generic",
+    "cluster": [
+     {
+      "title": "Deel",
+      "url": "https://jobs.ashbyhq.com/Deel",
+      "is_source_local": false,
+      "is_source_both": false,
+      "description": "You need to enable JavaScript to run this app",
+      "family_friendly": true
+     },
+     {
+      "title": "Suno",
+      "url": "https://jobs.ashbyhq.com/suno",
+      "is_source_local": false,
+      "is_source_both": false,
+      "description": "You need to enable JavaScript to run this app",
+      "family_friendly": true
+     },
+     {
+      "title": "Patreon",
+      "url": "https://jobs.ashbyhq.com/patreon",
+      "is_source_local": false,
+      "is_source_both": false,
+      "description": "You need to enable JavaScript to run this app",
+      "family_friendly": true
+     },
+     {
+      "title": "Second Dinner",
+      "url": "https://jobs.ashbyhq.com/SecondDinner",
+      "is_source_local": false,
+      "is_source_both": false,
+      "description": "Second Dinner Jobs",
+      "family_friendly": true
+     }
+    ],
+    "organization": {
+     "type": "organization",
+     "name": "Nelly Solutions",
+     "contact_points": []
+    },
+    "extra_snippets": [
+     "We’re on the lookout for an ambitious AI-Engineer to join our Engineering team at our office in Berlin. Join us in building the largest AI enabled fintech for healthcare! What to expect in the role as Senior AI Engineer: As part of our freshly launched AI division at Nelly, where you'll be one of the pioneers shaping our future in AI.",
+     "In a small, agile team, you'll work on developing cutting-edge AI systems and robust data pipelines—from rapid prototypes to scalable production solutions. This role is ideal for someone who combines deep ML theory with practical cloud and data engineering know-how, and who can drive innovative GenAI initiatives while keeping a pragmatic product focus.",
+     "Proven track record of technical leadership: driving architecture decisions, mentoring engineers, and establishing engineering best practices. Experience with cloud native development at scale, ideally AWS, but GCP is a strong plus, too. Excellent communication skills in English with ability to articulate complex technical concepts to diverse audiences. ... Experience with modern data workflow orchestration frameworks such as Dagster, Airflow, or Prefect, with emphasis on building robust, dependency-aware pipelines at scale.",
+     "Advanced retrieval engineering experience: embeddings, sophisticated chunking strategies, hybrid search algorithms, schema/metadata design, knowledge graphs, comprehensive eval frameworks, and production monitoring."
+    ]
+   },
+   {
+    "title": "Staff AI Engineer @ Nelly Solutions",
+    "url": "https://jobs.ashbyhq.com/nelly/96f4b6f9-1855-46e0-a4fe-a692bd38994d",
+    "is_source_local": false,
+    "is_source_both": false,
+    "description": "We’re on the lookout for an ambitious Staff AI Engineer to join our Engineering team at our office in Berlin. Join us in building AI products for medical practices - tackling manual processes, bureaucracy, &amp; administrative overload so doctors and staff can focus on patient care instead of paperwork.",
+    "profile": {
+     "name": "G2i Inc.",
+     "url": "https://jobs.ashbyhq.com/nelly/96f4b6f9-1855-46e0-a4fe-a692bd38994d",
+     "long_name": "jobs.ashbyhq.com",
+     "img": "https://imgs.search.brave.com/cVIYmPKhHhXokNvX20xFWo6_IqoYOfrOWPRKPy9bgM4/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvYTA0NjgxZDg5/Njc0M2E1ZDQ1MGM2/NzdlMTJkYmUxNTgx/YWM2ODJlOTBiMjEx/YzQ4NzM1YzI1ZDJh/ZjdhZjJjNi9qb2Jz/LmFzaGJ5aHEuY29t/Lw"
+    },
+    "language": "en",
+    "family_friendly": true,
+    "type": "search_result",
+    "subtype": "generic",
+    "is_live": false,
+    "meta_url": {
+     "scheme": "https",
+     "netloc": "jobs.ashbyhq.com",
+     "hostname": "jobs.ashbyhq.com",
+     "favicon": "https://imgs.search.brave.com/cVIYmPKhHhXokNvX20xFWo6_IqoYOfrOWPRKPy9bgM4/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvYTA0NjgxZDg5/Njc0M2E1ZDQ1MGM2/NzdlMTJkYmUxNTgx/YWM2ODJlOTBiMjEx/YzQ4NzM1YzI1ZDJh/ZjdhZjJjNi9qb2Jz/LmFzaGJ5aHEuY29t/Lw",
+     "path": "› nelly  › 96f4b6f9-1855-46e0-a4fe-a692bd38994d"
+    },
+    "thumbnail": {
+     "src": "https://imgs.search.brave.com/2QNHPuwYFHI4owqgODIk4hRYi6Q2jXYR2O_s0M_-4yw/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9hcHAu/YXNoYnlocS5jb20v/YXBpL2ltYWdlcy9v/cmctdGhlbWUtc29j/aWFsLzczNzMwMTk1/LTBmMTEtNDc2My1i/NjVkLWEwMGY4ZjY4/ZTU4YS9jZWRhZTY2/NS1iNDQzLTQxNjIt/ODBlOS1jZDhjYzJl/Mzc5ZjAvMmE3OTMz/ODEtY2M3Mi00Mzc5/LWIwZDItMzgyNWJl/MTgwN2NhLnBuZw",
+     "original": "https://app.ashbyhq.com/api/images/org-theme-social/73730195-0f11-4763-b65d-a00f8f68e58a/cedae665-b443-4162-80e9-cd8cc2e379f0/2a793381-cc72-4379-b0d2-3825be1807ca.png",
+     "logo": false
+    },
+    "organization": {
+     "type": "organization",
+     "name": "Nelly Solutions",
+     "contact_points": []
+    },
+    "extra_snippets": [
+     "We’re on the lookout for an ambitious Staff AI Engineer to join our Engineering team at our office in Berlin. Join us in building AI products for medical practices - tackling manual processes, bureaucracy, & administrative overload so doctors and staff can focus on patient care instead of paperwork."
+    ]
+   },
+   {
+    "title": "AI Engineer @ Mastra",
+    "url": "https://jobs.ashbyhq.com/mastra/531a3fe8-556f-4b83-bee7-20374f67f980/application",
+    "is_source_local": false,
+    "is_source_both": false,
+    "description": "We’re looking for an AI engineer. You’ll work on features that help developers understand their agents’ behavior, evaluate their performance, and improve them over time. This is a hands-on engineering role. You’ll move between experiments, benchmarks, and product code, taking what you learn from evaluating agents and using it to shape the framework.",
+    "profile": {
+     "name": "G2i Inc.",
+     "url": "https://jobs.ashbyhq.com/mastra/531a3fe8-556f-4b83-bee7-20374f67f980/application",
+     "long_name": "jobs.ashbyhq.com",
+     "img": "https://imgs.search.brave.com/cVIYmPKhHhXokNvX20xFWo6_IqoYOfrOWPRKPy9bgM4/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvYTA0NjgxZDg5/Njc0M2E1ZDQ1MGM2/NzdlMTJkYmUxNTgx/YWM2ODJlOTBiMjEx/YzQ4NzM1YzI1ZDJh/ZjdhZjJjNi9qb2Jz/LmFzaGJ5aHEuY29t/Lw"
+    },
+    "language": "en",
+    "family_friendly": true,
+    "type": "search_result",
+    "subtype": "generic",
+    "is_live": false,
+    "meta_url": {
+     "scheme": "https",
+     "netloc": "jobs.ashbyhq.com",
+     "hostname": "jobs.ashbyhq.com",
+     "favicon": "https://imgs.search.brave.com/cVIYmPKhHhXokNvX20xFWo6_IqoYOfrOWPRKPy9bgM4/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvYTA0NjgxZDg5/Njc0M2E1ZDQ1MGM2/NzdlMTJkYmUxNTgx/YWM2ODJlOTBiMjEx/YzQ4NzM1YzI1ZDJh/ZjdhZjJjNi9qb2Jz/LmFzaGJ5aHEuY29t/Lw",
+     "path": "› mastra  › 531a3fe8-556f-4b83-bee7-20374f67f980  › application"
+    },
+    "thumbnail": {
+     "src": "https://imgs.search.brave.com/to3aS4bBUEmuganr3l0jDvkUKxwLddCXXYdSmiH-mBk/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9hcHAu/YXNoYnlocS5jb20v/YXBpL2ltYWdlcy9v/cmctdGhlbWUtc29j/aWFsLzM4NzdjN2Q1/LTVjMTEtNDJiYS1h/N2I2LWIxNDIxZDZl/MDBkMi9jMDA0YWQ0/Yi03OGMyLTQzYjUt/OTEzYS01MThkNWFm/MTc2ZTAvMzY3YjVl/MTktZTBhNi00NjU5/LTllN2UtODE3MjYz/NWY4MTg3LnBuZw",
+     "original": "https://app.ashbyhq.com/api/images/org-theme-social/3877c7d5-5c11-42ba-a7b6-b1421d6e00d2/c004ad4b-78c2-43b5-913a-518d5af176e0/367b5e19-e0a6-4659-9e7e-8172635f8187.png",
+     "logo": false
+    },
+    "organization": {
+     "type": "organization",
+     "name": "Mastra",
+     "contact_points": []
+    },
+    "extra_snippets": [
+     "We’re looking for an AI engineer. You’ll work on features that help developers understand their agents’ behavior, evaluate their performance, and improve them over time. This is a hands-on engineering role. You’ll move between experiments, benchmarks, and product code, taking what you learn from evaluating agents and using it to shape the framework."
+    ]
+   },
+   {
+    "title": "Member of Technical Staff (Software Engineer, Applied AI) @ Perplexity",
+    "url": "https://jobs.ashbyhq.com/Perplexity/3c656963-876a-458d-bca6-916a42a24c1a",
+    "is_source_local": false,
+    "is_source_both": false,
+    "description": "<strong>Perplexity is looking for an Applied AI Engineer to design, build, and iterate on cutting-edge agents powering our core experience in Perplexity Computer</strong>. Working in this mission critical team, you will develop frontier context layer applications ...",
+    "profile": {
+     "name": "G2i Inc.",
+     "url": "https://jobs.ashbyhq.com/Perplexity/3c656963-876a-458d-bca6-916a42a24c1a",
+     "long_name": "jobs.ashbyhq.com",
+     "img": "https://imgs.search.brave.com/cVIYmPKhHhXokNvX20xFWo6_IqoYOfrOWPRKPy9bgM4/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvYTA0NjgxZDg5/Njc0M2E1ZDQ1MGM2/NzdlMTJkYmUxNTgx/YWM2ODJlOTBiMjEx/YzQ4NzM1YzI1ZDJh/ZjdhZjJjNi9qb2Jz/LmFzaGJ5aHEuY29t/Lw"
+    },
+    "language": "en",
+    "family_friendly": true,
+    "type": "search_result",
+    "subtype": "generic",
+    "is_live": false,
+    "meta_url": {
+     "scheme": "https",
+     "netloc": "jobs.ashbyhq.com",
+     "hostname": "jobs.ashbyhq.com",
+     "favicon": "https://imgs.search.brave.com/cVIYmPKhHhXokNvX20xFWo6_IqoYOfrOWPRKPy9bgM4/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvYTA0NjgxZDg5/Njc0M2E1ZDQ1MGM2/NzdlMTJkYmUxNTgx/YWM2ODJlOTBiMjEx/YzQ4NzM1YzI1ZDJh/ZjdhZjJjNi9qb2Jz/LmFzaGJ5aHEuY29t/Lw",
+     "path": "› Perplexity  › 3c656963-876a-458d-bca6-916a42a24c1a"
+    },
+    "thumbnail": {
+     "src": "https://imgs.search.brave.com/qanuT-MBXUlmBLUjZL7J1r1LM56qcNgWe9JXM3VAcTY/rs:fit:200:200:1:0/g:ce/aHR0cHM6Ly9hcHAu/YXNoYnlocS5jb20v/YXBpL2ltYWdlcy9v/cmctdGhlbWUtc29j/aWFsL2YzZjk4Y2Ni/LTZlZjMtNDFhMi05/ZjRkLTA3ODU3NDlh/YmI3OS84NTYyN2Yy/Yy00MGYxLTRjNTYt/OWVlNy04ODZhMDJm/OTkxZDUvNzkzMDUx/ZDctNGY0OS00MzZl/LTlmZWEtYzA5NzYx/N2VlN2I1LnBuZw",
+     "original": "https://app.ashbyhq.com/api/images/org-theme-social/f3f98ccb-6ef3-41a2-9f4d-0785749abb79/85627f2c-40f1-4c56-9ee7-886a02f991d5/793051d7-4f49-436e-9fea-c097617ee7b5.png",
+     "logo": false
+    },
+    "organization": {
+     "type": "organization",
+     "name": "Perplexity",
+     "contact_points": []
+    },
+    "extra_snippets": [
+     "Perplexity is looking for an Applied AI Engineer to design, build, and iterate on cutting-edge agents powering our core experience in Perplexity Computer. Working in this mission critical team, you will develop frontier context layer applications - fulfilling the curiosity of millions of users across the globe."
+    ]
+   },
+   {
+    "title": "Applied AI Engineer @ Soulside AI",
+    "url": "https://jobs.ashbyhq.com/soulside%20ai/05151b08-3e39-4802-95c0-56c54178ae08",
+    "is_source_local": false,
+    "is_source_both": false,
+    "description": "Applied AI Engineer",
+    "page_age": "2026-08-22T16:58:38",
+    "profile": {
+     "name": "G2i Inc.",
+     "url": "https://jobs.ashbyhq.com/soulside%20ai/05151b08-3e39-4802-95c0-56c54178ae08",
+     "long_name": "jobs.ashbyhq.com",
+     "img": "https://imgs.search.brave.com/cVIYmPKhHhXokNvX20xFWo6_IqoYOfrOWPRKPy9bgM4/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvYTA0NjgxZDg5/Njc0M2E1ZDQ1MGM2/NzdlMTJkYmUxNTgx/YWM2ODJlOTBiMjEx/YzQ4NzM1YzI1ZDJh/ZjdhZjJjNi9qb2Jz/LmFzaGJ5aHEuY29t/Lw"
+    },
+    "language": "en",
+    "family_friendly": true,
+    "type": "search_result",
+    "subtype": "generic",
+    "is_live": false,
+    "meta_url": {
+     "scheme": "https",
+     "netloc": "jobs.ashbyhq.com",
+     "hostname": "jobs.ashbyhq.com",
+     "favicon": "https://imgs.search.brave.com/cVIYmPKhHhXokNvX20xFWo6_IqoYOfrOWPRKPy9bgM4/rs:fit:32:32:1:0/g:ce/aHR0cDovL2Zhdmlj/b25zLnNlYXJjaC5i/cmF2ZS5jb20vaWNv/bnMvYTA0NjgxZDg5/Njc0M2E1ZDQ1MGM2/NzdlMTJkYmUxNTgx/YWM2ODJlOTBiMjEx/YzQ4NzM1YzI1ZDJh/ZjdhZjJjNi9qb2Jz/LmFzaGJ5aHEuY29t/Lw",
+     "path": "› soulside ai  › 05151b08-3e39-4802-95c0-56c54178ae08"
+    },
+    "age": "August 22, 2026",
+    "organization": {
+     "type": "organization",
+     "name": "Soulside AI",
+     "contact_points": []
+    }
+   }
+  ],
+  "family_friendly": true
+ }
+}
