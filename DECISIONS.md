@@ -40,6 +40,31 @@ Kept from the same review (golden_022–024, now final held-out Goldens): a tech
 dev golden_003, even at a consultancy; and "you are an expert in X" counts as a
 requirement wherever it appears, including the responsibilities.
 
+## 2026-10-19 — Reposts: only when the earlier listing is gone from a complete board
+
+A repost is a job taken down and posted again under a new id. Ingest used to count one
+whenever the matched job already had a different id from the same source. That also fired
+when one board listed the same job twice at the same time: Nebius had "Senior Applied
+Scientist, Efficient LLM Inference & Model Optimization" up under two Greenhouse ids. Ingest
+merged them into job 169, correctly, but also set repost_count=1.
+
+- **Rule.** A merge counts as a repost only when (a) the source is a board feed (Greenhouse,
+  Lever, Ashby, JOIN; `ingest.REPOST_SOURCES`), (b) the job already has other ids from that
+  source, and (c) none of them is in the current fetch. `ingest()` passes the fetch's id set
+  down, so the order within a batch does not matter. If any earlier id is still listed, the
+  new id is a concurrent duplicate. It merges and does not count.
+- **Why only boards, and narrower than the open rule's FEED_SOURCES.** A repost needs proof
+  that the earlier listing went away, so it needs a fetch that lists everything. A board
+  fetch returns the company's whole board. JSearch and the Arbeitsagentur are samples
+  (2026-10-18 open-rule entry). startup.jobs is a search query over the last 14 days, with
+  unstable paging. Arbeitnow is capped at `max_pages`. For none of these does a missing id
+  mean a takedown. The open rule still counts startup.jobs and arbeitnow as complete feeds.
+  This entry leaves that unchanged.
+- **Manual adds** (url / paste / screenshot, and `check --add`, which hands `ingest_one` a
+  single board posting) have no fetch around them, so they never count as reposts.
+- Data: job 169's repost_count was set back to 0. It was the only job with reposts, so no
+  other job needed fixing.
+
 ## 2026-10-19 — Active cities: Berlin only until the held-out eval passes
 
 The plan said SF collection starts only after Berlin extraction passes the held-out eval
