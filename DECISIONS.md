@@ -16,6 +16,14 @@ would also make the data depend on which links someone happened to click.
 To revisit: `url_check.diagnosis` records every rejected check, so count the "Consultant"
 title rejections first. Widening is one word in `ROLE_PATTERN` (`app/ingest.py`).
 
+**Exception: roles that build the AI themselves are kept, whatever the title.** For example,
+"AI Associate - Voice-Agents" (Lane One, job 145) runs client workshops and then builds and
+integrates the agent (MCP tools, testing). The test is whether the job builds something.
+Client-facing work alone does not rule a role out. These come in only through
+`check --add` (which trusts the title), because feeds still drop titles like "Associate".
+The trade-off is accepted: part of the point is to count roles like this, especially ones
+that require German.
+
 ---
 
 ## 2026-10-18 — Open rule: complete feeds vs search sources
