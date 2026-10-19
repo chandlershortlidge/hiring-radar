@@ -4,6 +4,7 @@ import pytest
 
 from app import db
 from app.check import (AtsRef, CheckResult, check_url, checked_coverage, containment, diagnose,
+                       job_coverage, reach_breakdown, reach_of,
                        feed_had_it, log_check, parse_ats_url, posting_from_html)
 from app.geo import city_of
 from app.ingest import ingest_one
@@ -272,3 +273,33 @@ def test_found_only_via_a_manual_add_is_not_feed_coverage(conn):
 
 def test_no_checks_logged_is_zero_of_zero(conn):
     assert checked_coverage(conn) == (0, 0)
+
+
+# --- reach and job coverage (stats) ----------------------------------------------------
+
+def test_reach_of_judges_a_checked_url_by_todays_feeds():
+    lever = "https://jobs.lever.co/newco/0a1b2c3d-1111-2222-3333-444455556666"
+    assert reach_of(GH_URL, True, FEEDS) == "feed had it"
+    assert reach_of(GH_URL, False, FEEDS) == "board added since"            # acme is polled now
+    assert reach_of(lever, False, FEEDS) == "board not added"
+    assert reach_of("https://careers.tieto.com/job/x", False, FEEDS) == "no feed can reach it"
+    assert reach_of("https://acme.com/careers?gh_jid=4012345", False, FEEDS) == "no feed can reach it"
+
+
+def test_reach_breakdown_counts_first_checks_only(conn):
+    for url, had, at in ((GH_URL, 0, T1), (GH_URL, 1, T2), ("https://acme.com/j/1", 0, T1)):
+        conn.execute("INSERT INTO url_check (url, checked_at, verdict, feed_had_it) VALUES (?, ?, 'found', ?)",
+                     (url, at, had))
+    assert reach_breakdown(conn, FEEDS) == {"feed had it": 0, "board added since": 1,
+                                            "board not added": 0, "no feed can reach it": 1}
+
+
+def test_job_coverage_leaves_out_legacy_screenshot_imports(conn):
+    ingest_one(conn, posting(sid="a1"))                                           # feed
+    ingest_one(conn, posting(source="url", sid="", company="B Co", text="b " + JD), require_city=False)
+    legacy = ingest_one(conn, posting(source="screenshot", sid="", company="C Co", text="c " + JD),
+                        "2026-06-11T09:00:00Z", require_city=False)
+    new_shot = ingest_one(conn, posting(source="screenshot", sid="", company="D Co", text="d " + JD),
+                          "2026-10-18T09:00:00Z", require_city=False)
+    assert legacy.startswith("new:") and new_shot.startswith("new:")
+    assert job_coverage(conn) == (1, 3, 1)   # feed 1 of (feed, url, new screenshot); 1 legacy out
