@@ -21,6 +21,8 @@
     {"type": "join", "enabled": true, "token": "vicoland", "company": "Vicoland"},
     {"type": "join", "enabled": true, "token": "paddy", "company": "paddy"},
     {"type": "ashby", "enabled": true, "token": "rematiq-gmbh", "company": "Rematiq"},
-    {"type": "join", "enabled": true, "token": "motor-ai", "company": "MOTOR Ai"}
+    {"type": "join", "enabled": true, "token": "motor-ai", "company": "MOTOR Ai"},
+    {"type": "greenhouse", "enabled": true, "token": "bluefishai", "company": "Bluefish"},
+    {"type": "lever", "enabled": true, "token": "vestiairecollective", "company": "Vestiaire Collective"}
   ]
 }
