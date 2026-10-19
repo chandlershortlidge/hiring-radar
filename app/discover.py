@@ -11,7 +11,7 @@ Does:
   - drop boards already in config/feeds.json (enabled or not) or in
     config/boards_rejected.json;
   - fetch each remaining board live and keep the postings that pass ingest's title filter
-    and map to a tracked city;
+    and map to an active city (geo.ACTIVE_CITIES);
   - append a board to feeds.json (`add_board`) or boards_rejected.json (`reject_board`)
     when the person says so.
 
@@ -30,7 +30,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 from app.check import default_fetch_board, parse_ats_url
-from app.geo import city_of
+from app.geo import active_city
 from app.ingest import in_scope_title
 from app.poll import FEEDS_PATH
 
@@ -72,10 +72,10 @@ def new_boards(found: list[Board], known: set[Board], rejected: set[Board]) -> l
 
 
 def relevant_roles(postings) -> list[str]:
-    """Titles (with city) of postings that would pass ingest's title and city filters."""
+    """Titles (with city) of postings that would pass ingest's title and active-city filters."""
     out = []
     for p in postings:
-        city = city_of(p.location_raw)
+        city = active_city(p.location_raw)
         if in_scope_title(p.title) and city:
             out.append(f"{p.title} ({city})")
     return out

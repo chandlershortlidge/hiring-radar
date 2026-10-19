@@ -38,7 +38,7 @@ def posting(title, location):
 
 BOARDS = {
     ("ashby", "newco"): [posting("Senior AI Engineer", "Berlin, Germany"), posting("Sales Lead", "Berlin"),
-                         posting("ML Engineer", "Remote")],
+                         posting("ML Engineer", "Remote"), posting("AI Engineer", "San Francisco, CA")],
     ("lever", "quietco"): [posting("Account Executive", "Berlin"), posting("AI Engineer", "Munich")],
 }
 
@@ -79,12 +79,12 @@ def test_run_classifies_and_reports_failures_without_stopping():
     assert len(seen) == 2 and r.queries[1][1] == 0
     assert (r.urls, r.found, r.known, r.rejected, r.unparsed) == (9, 6, 2, 1, 2)
     by = {c.board: c for c in r.candidates}
-    assert by[("ashby", "newco")].relevant == ["Senior AI Engineer (Berlin)"] and by[("ashby", "newco")].total == 3
+    assert by[("ashby", "newco")].relevant == ["Senior AI Engineer (Berlin)"] and by[("ashby", "newco")].total == 4
     assert by[("lever", "quietco")].relevant == [] and by[("lever", "quietco")].error is None
     assert by[("lever", "deadco")].error == "OSError: HTTP Error 404"
     out = "\n".join(discover.report_lines(r))
     assert 'site:jobs.ashbyhq.com "AI engineer" Berlin → 0 results' in out
-    assert "new boards with relevant roles: 1\n  ashby:newco: 3 jobs, 1 relevant: Senior AI Engineer (Berlin)" in out
+    assert "new boards with relevant roles: 1\n  ashby:newco: 4 jobs, 1 relevant: Senior AI Engineer (Berlin)" in out
     assert '{"type": "ashby", "enabled": true, "token": "newco", "company": "newco"}' in out
     assert "nothing relevant now: 1\n  lever:quietco: 2 jobs, 0 relevant" in out
     assert "board fetch FAILED: 1\n  lever:deadco: OSError: HTTP Error 404" in out

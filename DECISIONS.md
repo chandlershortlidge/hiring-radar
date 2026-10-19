@@ -40,6 +40,24 @@ Kept from the same review (golden_022–024, now final held-out Goldens): a tech
 dev golden_003, even at a consultancy; and "you are an expert in X" counts as a
 requirement wherever it appears, including the responsibilities.
 
+## 2026-10-19 — Active cities: Berlin only until the held-out eval passes
+
+The plan said SF collection starts only after Berlin extraction passes the held-out eval
+("Second city", below). The code never held to that. `app/geo.py` has tracked San Francisco
+since the intake build (32c43c5, 2026-10-16), so every poll kept SF postings. Nobody chose
+that on purpose. It surfaced when discover-boards listed SF-heavy boards (OpenAI, Anthropic):
+208 SF roles against 33 Berlin.
+
+- **Tracked vs active.** `geo.CITIES` still recognizes San Francisco, and manual adds keep
+  their real city. Only `geo.ACTIVE_CITIES` (`("Berlin",)`) passes the ingest filter and
+  discover-boards' relevance check, through `geo.active_city`. `check` names a tracked but
+  inactive city in its diagnosis.
+- **Turning SF on** is a one-line change to `ACTIVE_CITIES`. Make it deliberately, once
+  the held-out eval passes. Also check extraction on SF descriptions then: every Golden is a
+  Berlin posting.
+- Job 140 (Intercom, SF, polled 2026-10-19) predates this change and stays in the DB. Polls
+  now skip its posting, so it is no longer marked as still listed.
+
 ## 2026-10-19 — San Francisco collection starts now (replaces the "Second city" gate)
 
 The plan said SF collection would start only after Berlin extraction passed the held-out eval

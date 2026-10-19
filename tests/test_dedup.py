@@ -1,5 +1,5 @@
 from app import dedup
-from app.geo import city_of
+from app.geo import active_city, city_of
 
 JD = """AI Engineer. Requirements: 3+ years Python, experience with LLM applications,
 RAG pipelines and vector databases. Nice to have: Kubernetes, AWS. We are a Berlin startup
@@ -52,3 +52,9 @@ def test_city_of():
     assert city_of("Remote (Germany)") is None
     assert city_of("Berlinton") is None
     assert city_of(None) is None
+
+
+def test_active_city_is_berlin_only_for_now():
+    assert active_city("Berlin, Germany") == "Berlin"
+    assert active_city("San Francisco, CA") is None and city_of("San Francisco, CA") == "San Francisco"
+    assert active_city("Remote") is None

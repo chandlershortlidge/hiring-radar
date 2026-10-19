@@ -39,7 +39,7 @@ from dataclasses import dataclass, field
 from html.parser import HTMLParser
 
 from app import dedup
-from app.geo import city_of
+from app.geo import ACTIVE_CITIES, active_city, city_of
 from app.html_text import html_to_text
 from app.ingest import in_scope_title
 from app.sources import Posting, ashby, fetch_text, greenhouse, join, lever
@@ -241,8 +241,11 @@ def diagnose(posting: Posting, ref: AtsRef | None, feeds: list[dict], board_had_
     reasons = []
     if not in_scope_title(posting.title):
         reasons.append(f"title {posting.title!r} fails the title filter (needs an AI/ML term and a role term)")
-    if city_of(posting.location_raw) is None:
-        reasons.append(f"location {posting.location_raw!r} maps to no tracked city")
+    if active_city(posting.location_raw) is None:
+        city = city_of(posting.location_raw)
+        reasons.append(f"location {posting.location_raw!r} maps to {city}, which is tracked but not active "
+                       f"(active: {', '.join(ACTIVE_CITIES)})" if city else
+                       f"location {posting.location_raw!r} maps to no tracked city")
     if ref is None:
         base = "not a hosted ATS page — no feed can reach it; --add stores it as source=url"
         return base + ("; it would also be dropped: " + "; ".join(reasons) if reasons else "")
