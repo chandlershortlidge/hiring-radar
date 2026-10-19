@@ -18,3 +18,47 @@ def test_add_skips_a_posting_the_check_found(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr(cli, "ingest_one", lambda *a, **k: (_ for _ in ()).throw(AssertionError("ingested")))
     cli.main(["check", page.url, "--add"])
     assert "add: skipped — already job 51" in capsys.readouterr().out
+
+
+def test_check_takes_a_batch_and_one_bad_url_does_not_stop_it(tmp_path, monkeypatch, capsys):
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+    listing = tmp_path / "urls.txt"
+    listing.write_text("# from LinkedIn\nhttps://b.example/2\n\nhttps://a.example/1\n")
+
+    def fake_check(conn, url, *a, **k):
+        if url.startswith("https://b."):
+            raise OSError("dead page")
+        return CheckResult(url=url, verdict="not_found", how="", diagnosis="not a hosted ATS page")
+
+    monkeypatch.setattr(cli, "open_db", lambda: conn)
+    monkeypatch.setattr(cli, "load_feeds", lambda: [])
+    monkeypatch.setattr(cli, "check_url", fake_check)
+    monkeypatch.setattr(cli, "log_check", lambda *a, **k: None)
+    cli.main(["check", "https://a.example/1", "--file", str(listing)])
+    out = capsys.readouterr().out
+    # a.example/1 appears twice in the input but is checked once; order kept
+    assert out.count("== https://a.example/1") == 1
+    assert out.index("== https://a.example/1") < out.index("== https://b.example/2")
+    assert "error: OSError: dead page" in out
+    assert "not found: not a hosted ATS page" in out
+
+
+def test_check_refuses_per_posting_flags_on_a_batch(monkeypatch):
+    import pytest
+    monkeypatch.setattr(cli, "open_db", lambda: (_ for _ in ()).throw(AssertionError("opened db")))
+    with pytest.raises(SystemExit):
+        cli.main(["check", "https://a.example/1", "https://b.example/2", "--title", "AI Engineer"])
+
+
+def test_add_refuses_a_posting_with_no_readable_text(tmp_path, monkeypatch, capsys):
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+    empty = Posting("url", "", "https://jobs.gem.com/x/1", "sennder", "ML Engineer", "Berlin", "")
+    r = CheckResult(url=empty.url, verdict="not_found", how="", diagnosis="not a hosted ATS page", posting=empty)
+    monkeypatch.setattr(cli, "open_db", lambda: conn)
+    monkeypatch.setattr(cli, "check_url", lambda *a, **k: r)
+    monkeypatch.setattr(cli, "log_check", lambda *a, **k: None)
+    monkeypatch.setattr(cli, "ingest_one", lambda *a, **k: (_ for _ in ()).throw(AssertionError("ingested")))
+    cli.main(["check", empty.url, "--add"])
+    assert "add: refused — only 0 characters" in capsys.readouterr().out
