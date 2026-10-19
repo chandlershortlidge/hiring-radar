@@ -127,3 +127,14 @@ def test_extraction_stores_seniority_on_the_job(conn):
     pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None)
     row = conn.execute("SELECT seniority, seniority_basis, seniority_signal FROM job WHERE id=1").fetchone()
     assert tuple(row) == ("junior", "stated", "Junior")
+
+
+def test_select_feeds_by_label():
+    import pytest
+    feeds = [{"type": "arbeitnow"}, {"type": "ashby", "token": "jupus"},
+             {"type": "startup_jobs", "search": "AI engineer"}]
+    assert poll.select_feeds(feeds, []) == feeds
+    assert poll.select_feeds(feeds, ["ashby:jupus"]) == [feeds[1]]
+    assert poll.select_feeds(feeds, ["startup_jobs:AI engineer", "arbeitnow"]) == [feeds[0], feeds[2]]
+    with pytest.raises(ValueError, match="ashby:nope"):
+        poll.select_feeds(feeds, ["ashby:nope"])

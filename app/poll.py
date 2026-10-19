@@ -47,10 +47,27 @@ def fetch_feed(feed: dict) -> list:
     raise ValueError(f"unknown feed type {t!r}")
 
 
+def feed_label(feed: dict) -> str:
+    """`ashby:jupus`, `startup_jobs:AI engineer`, `arbeitnow` — what poll logs and `--only` matches."""
+    key = feed.get("token") or feed.get("search")
+    return feed["type"] + (f":{key}" if key else "")
+
+
+def select_feeds(feeds: list[dict], only: list[str]) -> list[dict]:
+    """Pure: the feeds whose label is in `only` (all of them when `only` is empty).
+    An unknown label is an error, not a silent no-op poll."""
+    if not only:
+        return feeds
+    unknown = set(only) - {feed_label(f) for f in feeds}
+    if unknown:
+        raise ValueError(f"no enabled feed labelled {sorted(unknown)}")
+    return [f for f in feeds if feed_label(f) in only]
+
+
 def poll_feeds(conn: sqlite3.Connection, feeds: list[dict], fetch=fetch_feed, log=print) -> Report:
     total = Report()
     for feed in feeds:
-        label = feed["type"] + (f":{feed.get('token') or feed.get('search', '')}" if feed.get("token") or feed.get("search") else "")
+        label = feed_label(feed)
         try:
             postings = fetch(feed)
         except Exception as e:
