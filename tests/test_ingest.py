@@ -100,6 +100,8 @@ def test_in_scope_title_rejects_without_both_halves(title):
     # German domain words (Arbeitsagentur titles, 2026-10-18).
     "Software Engineer / Softwareentwickler (w/m/d) Schwerpunkt Künstliche Intelligenz",
     "KI-Engineer (m/w/d)",
+    # AI spelled out (a recruiter posting, 2026-10-19).
+    "Artificial Intelligence Engineer",
 ])
 def test_in_scope_title_accepts_domain_plus_role(title):
     assert in_scope_title(title) is True

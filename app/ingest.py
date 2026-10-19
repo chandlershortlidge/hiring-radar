@@ -27,9 +27,10 @@ from app.sources import Posting
 # alone is noise: feeds carry "Industrial AI" in sales titles and "Agent" in call-centre and
 # retail ones, and plain "Software Engineer" is not what this project measures. Still broad
 # within that rule; the taxonomy decides what the skills are later. German domain words
-# (KI, Künstliche Intelligenz) are in because the Arbeitsagentur feed carries German titles.
+# (KI, Künstliche Intelligenz) are in because the Arbeitsagentur feed carries German titles;
+# "Artificial Intelligence" because titles spell AI out too.
 DOMAIN_PATTERN = re.compile(
-    r"\b(ai|ki|künstliche intelligenz|ml|mlops|llmops|llm|genai|generative ai|nlp|deep learning|"
+    r"\b(ai|ki|künstliche intelligenz|artificial intelligence|ml|mlops|llmops|llm|genai|generative ai|nlp|deep learning|"
     r"agentic|agent|prompt|machine learning|data scien\w*|applied scientist|research engineer)\b", re.I)
 
 # `applied scientist` and `research engineer` sit in DOMAIN_PATTERN as well: they carry the
