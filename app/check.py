@@ -13,7 +13,9 @@ Does:
     posted since the last poll); not a feed-reachable page at all.
 
   - log each check (`log_check`) and report coverage over the logged checks
-    (`checked_coverage`): of the URLs a person checked, how many a feed already had.
+    (`checked_coverage`): of the URLs a person checked, how many a feed already had;
+    `reach_breakdown` sorts the misses by whether a feed can reach them *now*;
+  - count jobs a feed has seen (`job_coverage`), leaving out the legacy screenshot imports.
 
 Does NOT: write anything but the url_check log (the CLI's --add hands the resolved Posting
 to app.ingest), call a model, or fetch LinkedIn (its pages are not readable without a login
@@ -44,6 +46,9 @@ from app.sources import Posting, ashby, fetch_text, greenhouse, join, lever
 
 CONTAINMENT_THRESHOLD = 0.7   # share of a stored JD's 3-word shingles that must appear on the page
 MANUAL_SOURCES = ("url", "paste", "screenshot")   # job_source values a person added; the rest are feeds
+# The legacy importer keeps the old project's dates as first_seen, all before the rebuild
+# began; a screenshot first seen before this is from the old (hackathon) collection method.
+REBUILD_START = "2026-10-16"
 
 _ATS_PATTERNS = (
     # https://boards.greenhouse.io/acme/jobs/4012345  (also job-boards.greenhouse.io, job-boards.eu.greenhouse.io)
@@ -364,3 +369,47 @@ def checked_coverage(conn: sqlite3.Connection) -> tuple[int, int]:
         WHERE c.id = (SELECT min(id) FROM url_check WHERE url = c.url)
     """).fetchone()
     return row["covered"], row["total"]
+
+
+FEED_HAD_IT, BOARD_ADDED, BOARD_NOT_ADDED, NO_FEED = (
+    "feed had it", "board added since", "board not added", "no feed can reach it")
+
+
+def reach_of(url: str, had_it: bool, feeds: list[dict]) -> str:
+    """Pure: one checked URL's coverage, judged by today's parser and feeds. A miss on a
+    board that has since been added is now covered; a page no adapter recognizes (careers
+    sites, recruiters, Gem) can only ever be added by hand."""
+    if had_it:
+        return FEED_HAD_IT
+    ref = parse_ats_url(url)
+    if ref is None or ref.token is None:
+        return NO_FEED
+    return BOARD_ADDED if (ref.source, ref.token) in polled_boards(feeds) else BOARD_NOT_ADDED
+
+
+def reach_breakdown(conn: sqlite3.Connection, feeds: list[dict]) -> dict[str, int]:
+    """{reach_of kind: count} over the first check of each URL, in a fixed order."""
+    rows = conn.execute("""
+        SELECT c.url, c.feed_had_it FROM url_check c
+        WHERE c.id = (SELECT min(id) FROM url_check WHERE url = c.url)
+    """).fetchall()
+    out = dict.fromkeys((FEED_HAD_IT, BOARD_ADDED, BOARD_NOT_ADDED, NO_FEED), 0)
+    for r in rows:
+        out[reach_of(r["url"], bool(r["feed_had_it"]), feeds)] += 1
+    return out
+
+
+def job_coverage(conn: sqlite3.Connection) -> tuple[int, int, int]:
+    """(jobs a feed has seen, jobs counted, legacy imports left out). A legacy import is a job
+    with a screenshot first seen before REBUILD_START: collected by the old method, so it
+    says nothing about what today's feeds miss."""
+    legacy = ("EXISTS (SELECT 1 FROM job_source s WHERE s.job_id = j.id"
+              " AND s.source = 'screenshot' AND s.first_seen < :start)")
+    feed = f"EXISTS (SELECT 1 FROM job_source s WHERE s.job_id = j.id AND s.source NOT IN {MANUAL_SOURCES})"
+    row = conn.execute(f"""
+        SELECT coalesce(sum(CASE WHEN {legacy} THEN 0 ELSE 1 END), 0) counted,
+               coalesce(sum(CASE WHEN {legacy} THEN 0 WHEN {feed} THEN 1 ELSE 0 END), 0) seen,
+               coalesce(sum(CASE WHEN {legacy} THEN 1 ELSE 0 END), 0) legacy
+        FROM job j
+    """, {"start": REBUILD_START}).fetchone()
+    return row["seen"], row["counted"], row["legacy"]

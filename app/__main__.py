@@ -6,7 +6,8 @@
   add-screenshot    add one job from an image file (stage 1 vision → stage 2): same flags + path
   check             is this careers-page URL already in the DB? If not, why no feed stored it. --add ingests it;
                     every check is logged for the coverage line in `stats`. Takes many URLs, or --file urls.txt
-  stats             counts by city and source; feed coverage of manually added jobs and of checked URLs
+  stats             counts by city and source; share of jobs a feed has seen (legacy imports excluded);
+                    checked URLs split by whether a feed can reach them now
   migrate           apply pending migrations and exit
 
 Database path: $HIRING_RADAR_DB, default ./data/hiring-radar.db.
@@ -23,7 +24,7 @@ ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(ROOT / ".env")
 
 from app import db  # noqa: E402
-from app.check import check_url, checked_coverage, log_check  # noqa: E402
+from app.check import check_url, checked_coverage, job_coverage, log_check, reach_breakdown  # noqa: E402
 from app.extract import DEFAULT_MODEL, extract, make_client  # noqa: E402
 from app.ingest import ingest_one, job_id_for_screenshot, now_iso, store_screenshot  # noqa: E402
 from app.pipeline import extract_pending  # noqa: E402
@@ -165,18 +166,15 @@ def cmd_stats(args):
     print("sightings by source:")
     for r in conn.execute("SELECT source, count(*) n FROM job_source GROUP BY source ORDER BY n DESC"):
         print(f"  {r['source']:<16}{r['n']}")
-    manual = conn.execute("""
-        SELECT count(DISTINCT j.id) total,
-               count(DISTINCT CASE WHEN f.job_id IS NOT NULL THEN j.id END) covered
-        FROM job j
-        JOIN job_source m ON m.job_id = j.id AND m.source IN ('url','paste','screenshot')
-        LEFT JOIN job_source f ON f.job_id = j.id AND f.source NOT IN ('url','paste','screenshot')
-    """).fetchone()
-    if manual["total"]:
-        print(f"feed coverage of manually added jobs: {manual['covered']}/{manual['total']}")
+    seen, counted, legacy = job_coverage(conn)
+    if counted:
+        print(f"jobs a feed has seen: {seen}/{counted} ({seen / counted:.0%}); "
+              f"{counted - seen} added by hand only (excludes {legacy} legacy imports)")
     covered, checked = checked_coverage(conn)
     if checked:
-        print(f"feed coverage of checked URLs (first check each): {covered}/{checked}")
+        print(f"checked URLs (first check each): {checked}, feed already had {covered} ({covered / checked:.0%})")
+        for kind, n in reach_breakdown(conn, load_feeds()).items():
+            print(f"  {kind:<22}{n}")
     pending = conn.execute("SELECT count(*) FROM proposed_skill WHERE status='pending'").fetchone()[0]
     print(f"proposed skills pending review: {pending}")
 
