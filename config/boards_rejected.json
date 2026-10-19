@@ -1,0 +1,4 @@
+{
+  "_comment": "Boards discover-boards should not suggest again. Added with `python -m app discover-boards --reject source:token --reason \"...\"`.",
+  "boards": []
+}
