@@ -1,0 +1,198 @@
+{
+  "meta": {
+    "run_id": "20261020T140807Z_dev_x2-756d2dfc45",
+    "split": "dev",
+    "n_goldens": 20,
+    "repeats": 3,
+    "model": "claude-sonnet-5-5",
+    "extractor_version": "x2-756d2dfc45",
+    "taxonomy_version": 3
+  },
+  "aggregate": {
+    "precision": {
+      "mean": 0.873787807864887,
+      "min": 0.870026525198939,
+      "max": 0.8770053475935828,
+      "n": 3
+    },
+    "recall": {
+      "mean": 0.9781094527363184,
+      "min": 0.9761194029850746,
+      "max": 0.9791044776119403,
+      "n": 3
+    },
+    "f1": {
+      "mean": 0.9230070310560318,
+      "min": 0.9213483146067415,
+      "max": 0.92524682651622,
+      "n": 3
+    },
+    "requirement_accuracy": {
+      "mean": 0.9694717933417866,
+      "min": 0.9602446483180428,
+      "max": 0.9878048780487805,
+      "n": 3
+    },
+    "seniority_accuracy": {
+      "mean": 0.85,
+      "min": 0.85,
+      "max": 0.85,
+      "n": 3
+    },
+    "german_accuracy": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n": 3
+    },
+    "degree_accuracy": {
+      "mean": 0.9499999999999998,
+      "min": 0.95,
+      "max": 0.95,
+      "n": 3
+    },
+    "rank_spearman": {
+      "mean": 0.8977536877520583,
+      "min": 0.8906008032147967,
+      "max": 0.905012690453727,
+      "n": 3
+    },
+    "top10_overlap": {
+      "mean": 0.8333333333333334,
+      "min": 0.8,
+      "max": 0.9,
+      "n": 3
+    }
+  },
+  "runs": [
+    {
+      "n_goldens": 20,
+      "n_errors": 0,
+      "tp": 327,
+      "fp": 47,
+      "fn": 8,
+      "precision": 0.8743315508021391,
+      "recall": 0.9761194029850746,
+      "f1": 0.922425952045134,
+      "requirement_accuracy": 0.9602446483180428,
+      "seniority_accuracy": 0.85,
+      "seniority_n": 20,
+      "german_accuracy": 1.0,
+      "german_n": 20,
+      "degree_accuracy": 0.95,
+      "degree_n": 20,
+      "rank_spearman": 0.8976475695876512,
+      "top10_overlap": 0.8,
+      "gold_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "apis",
+        "aws",
+        "cloud",
+        "prompt-engineering",
+        "ci-cd"
+      ],
+      "pred_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "aws",
+        "ci-cd",
+        "cloud",
+        "langchain",
+        "testing"
+      ]
+    },
+    {
+      "n_goldens": 20,
+      "n_errors": 0,
+      "tp": 328,
+      "fp": 49,
+      "fn": 7,
+      "precision": 0.870026525198939,
+      "recall": 0.9791044776119403,
+      "f1": 0.9213483146067415,
+      "requirement_accuracy": 0.9603658536585366,
+      "seniority_accuracy": 0.85,
+      "seniority_n": 20,
+      "german_accuracy": 1.0,
+      "german_n": 20,
+      "degree_accuracy": 0.95,
+      "degree_n": 20,
+      "rank_spearman": 0.8906008032147967,
+      "top10_overlap": 0.9,
+      "gold_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "apis",
+        "aws",
+        "cloud",
+        "prompt-engineering",
+        "ci-cd"
+      ],
+      "pred_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "aws",
+        "ci-cd",
+        "cloud",
+        "langchain",
+        "prompt-engineering"
+      ]
+    },
+    {
+      "n_goldens": 20,
+      "n_errors": 0,
+      "tp": 328,
+      "fp": 46,
+      "fn": 7,
+      "precision": 0.8770053475935828,
+      "recall": 0.9791044776119403,
+      "f1": 0.92524682651622,
+      "requirement_accuracy": 0.9878048780487805,
+      "seniority_accuracy": 0.85,
+      "seniority_n": 20,
+      "german_accuracy": 1.0,
+      "german_n": 20,
+      "degree_accuracy": 0.95,
+      "degree_n": 20,
+      "rank_spearman": 0.905012690453727,
+      "top10_overlap": 0.8,
+      "gold_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "apis",
+        "aws",
+        "cloud",
+        "prompt-engineering",
+        "ci-cd"
+      ],
+      "pred_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "aws",
+        "ci-cd",
+        "cloud",
+        "langchain",
+        "testing"
+      ]
+    }
+  ]
+}
