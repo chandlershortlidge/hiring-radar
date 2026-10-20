@@ -1,0 +1,4024 @@
+{
+  "exported_on": "2026-10-20",
+  "db": "data/hiring-radar.db",
+  "filter": "proposed_skill.status = 'pending'",
+  "totals": {
+    "groups": 247,
+    "rows": 387,
+    "distinct_jobs": 88
+  },
+  "labels": [
+    {
+      "label": "MLflow",
+      "distinct_jobs": 12,
+      "rows": 12,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 3,
+          "company": "StellDirVor GmbH",
+          "title": "ML Engineer (Computer Vision & ML Ops)",
+          "raw_text": "MLflow"
+        },
+        {
+          "job_id": 89,
+          "company": "Quantum-Systems GmbH",
+          "title": "Senior) ML Platform Engineer; m​/f​/d",
+          "raw_text": "MLflow"
+        },
+        {
+          "job_id": 105,
+          "company": "BWI GmbH",
+          "title": "Senior AI Platform Engineer (w/m/d)",
+          "raw_text": "MLflow"
+        }
+      ]
+    },
+    {
+      "label": "Infrastructure as Code",
+      "distinct_jobs": 11,
+      "rows": 11,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 11,
+          "company": "CHAPTERS Group AG",
+          "title": "Forward Deployed AI Engineer",
+          "raw_text": "Infrastructure as Code (Bicep, Terraform)"
+        },
+        {
+          "job_id": 69,
+          "company": "Tracium GmbH",
+          "title": "Senior Data Engineer — Document & AI Pipelines",
+          "raw_text": "infrastructure as code"
+        },
+        {
+          "job_id": 86,
+          "company": "Digitl GmbH",
+          "title": "Generative AI Engineer",
+          "raw_text": "Infrastructure as Code"
+        }
+      ]
+    },
+    {
+      "label": "Kubeflow",
+      "distinct_jobs": 10,
+      "rows": 10,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 89,
+          "company": "Quantum-Systems GmbH",
+          "title": "Senior) ML Platform Engineer; m​/f​/d",
+          "raw_text": "Kubeflow"
+        },
+        {
+          "job_id": 105,
+          "company": "BWI GmbH",
+          "title": "Senior AI Platform Engineer (w/m/d)",
+          "raw_text": "Kubeflow"
+        },
+        {
+          "job_id": 110,
+          "company": "Smartly.io Solutions GmbH",
+          "title": "Senior Machine Learning Engineer, AI Platform",
+          "raw_text": "Kubeflow"
+        }
+      ]
+    },
+    {
+      "label": "Feature engineering",
+      "distinct_jobs": 9,
+      "rows": 9,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 110,
+          "company": "Smartly.io Solutions GmbH",
+          "title": "Senior Machine Learning Engineer, AI Platform",
+          "raw_text": "feature engineering"
+        },
+        {
+          "job_id": 126,
+          "company": "SAP",
+          "title": "Senior AI Platform Engineer (f/m/d) for SCI Cross Product Engineering",
+          "raw_text": "feature engineering"
+        },
+        {
+          "job_id": 137,
+          "company": "adesso health solutions GmbH",
+          "title": "Senior Machine Learning Engineer / Data Scientist",
+          "raw_text": "Feature Engineering"
+        }
+      ]
+    },
+    {
+      "label": "Terraform",
+      "distinct_jobs": 8,
+      "rows": 8,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 11,
+          "company": "CHAPTERS Group AG",
+          "title": "Forward Deployed AI Engineer",
+          "raw_text": "Terraform"
+        },
+        {
+          "job_id": 48,
+          "company": "mobile.de",
+          "title": "AI Systems Engineer (d/f/m)",
+          "raw_text": "Terraform"
+        },
+        {
+          "job_id": 49,
+          "company": "OH-SO Digital",
+          "title": "Agentic Engineer (f/m/d)",
+          "raw_text": "infrastructure-as-code with Terraform a plus"
+        }
+      ]
+    },
+    {
+      "label": "Rust",
+      "distinct_jobs": 7,
+      "rows": 7,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 41,
+          "company": "MEDIAN",
+          "title": "AI Engineer (m/f/d)",
+          "raw_text": "Rust"
+        },
+        {
+          "job_id": 75,
+          "company": "almedia",
+          "title": "Junior Engineer (Typescript / Python / DevOps / AI)",
+          "raw_text": "strong TypeScript, Python, or Rust"
+        },
+        {
+          "job_id": 133,
+          "company": "Limebit GmbH",
+          "title": "Data Scientist / Machine Learning Engineer (m/w/d) | Healthcare & Life Science",
+          "raw_text": "R, Rust, Kubernetes oder Airflow"
+        }
+      ]
+    },
+    {
+      "label": "JavaScript",
+      "distinct_jobs": 6,
+      "rows": 6,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 53,
+          "company": "Gulf Associates",
+          "title": "Junior AI Automation Developer",
+          "raw_text": "scripting languages like Python or JavaScript for basic task automation"
+        },
+        {
+          "job_id": 55,
+          "company": "Accenture DACH",
+          "title": "Junior AI Native Engineer",
+          "raw_text": "JavaScript"
+        },
+        {
+          "job_id": 61,
+          "company": "Pixel Systems",
+          "title": "Junior AI Automation Developer",
+          "raw_text": "Basic knowledge of Javascript"
+        }
+      ]
+    },
+    {
+      "label": "Go",
+      "distinct_jobs": 5,
+      "rows": 5,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 115,
+          "company": "CHN Energy Europe Research GmbH",
+          "title": "AI Systems Platform Development Engineer (m/w/d) (40 hours/week)",
+          "raw_text": "Proficiency in Python, Java, or Go"
+        },
+        {
+          "job_id": 126,
+          "company": "SAP",
+          "title": "Senior AI Platform Engineer (f/m/d) for SCI Cross Product Engineering",
+          "raw_text": "Strong programming skills in Go (preferred) and/or Python."
+        },
+        {
+          "job_id": 130,
+          "company": "HelloFresh SE",
+          "title": "Senior Staff Machine Learning Engineer (all gender)",
+          "raw_text": "Go"
+        }
+      ]
+    },
+    {
+      "label": "Kafka",
+      "distinct_jobs": 5,
+      "rows": 5,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 112,
+          "company": "EY Consulting GmbH",
+          "title": "Berater Snowflake Data Engineer - AI & Data (w/m/d)",
+          "raw_text": "Kafka"
+        },
+        {
+          "job_id": 127,
+          "company": "inovex GmbH",
+          "title": "Data Engineer* / Machine Learning Engineer*",
+          "raw_text": "Kafka"
+        },
+        {
+          "job_id": 130,
+          "company": "HelloFresh SE",
+          "title": "Senior Staff Machine Learning Engineer (all gender)",
+          "raw_text": "Kafka"
+        }
+      ]
+    },
+    {
+      "label": "Microservices",
+      "distinct_jobs": 5,
+      "rows": 5,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 111,
+          "company": "ALDB GmbH",
+          "title": "Distinguished Engineer – Software & AI Products (w/m/d)",
+          "raw_text": "Microservices"
+        },
+        {
+          "job_id": 114,
+          "company": "Capgemini Deutschland GmbH",
+          "title": "AI Solution Architect / Senior Engineer Financial Services (w/m/d)",
+          "raw_text": "Microservices"
+        },
+        {
+          "job_id": 126,
+          "company": "SAP",
+          "title": "Senior AI Platform Engineer (f/m/d) for SCI Cross Product Engineering",
+          "raw_text": "microservices"
+        }
+      ]
+    },
+    {
+      "label": "NLP",
+      "distinct_jobs": 5,
+      "rows": 5,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 52,
+          "company": "MA (Montreal Associates)",
+          "title": "Generative AI Engineer",
+          "raw_text": "Knowledge of NLP"
+        },
+        {
+          "job_id": 99,
+          "company": "DKB Service GmbH",
+          "title": "Senior Applied AI Engineer",
+          "raw_text": "fundierte Erfahrung mit NLP"
+        },
+        {
+          "job_id": 141,
+          "company": "Intercom",
+          "title": "Senior Machine Learning Scientist",
+          "raw_text": "NLP"
+        }
+      ]
+    },
+    {
+      "label": "C++",
+      "distinct_jobs": 4,
+      "rows": 4,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 110,
+          "company": "Smartly.io Solutions GmbH",
+          "title": "Senior Machine Learning Engineer, AI Platform",
+          "raw_text": "experience with C++ or Java is a plus"
+        },
+        {
+          "job_id": 151,
+          "company": "MOTOR Ai",
+          "title": "AI/ML Engineer (m/f/d) Autonomous Systems",
+          "raw_text": "C++ integration"
+        },
+        {
+          "job_id": 165,
+          "company": "Smartly.io",
+          "title": "Senior Machine Learning Engineer, AI Platform",
+          "raw_text": "experience with C++ or Java is a plus"
+        }
+      ]
+    },
+    {
+      "label": "Computer Vision",
+      "distinct_jobs": 4,
+      "rows": 4,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 3,
+          "company": "StellDirVor GmbH",
+          "title": "ML Engineer (Computer Vision & ML Ops)",
+          "raw_text": "Solid understanding of computer vision"
+        },
+        {
+          "job_id": 98,
+          "company": "Siemens Energy Global GmbH & Co. KG",
+          "title": "Data & AI Engineer (w/m/d)",
+          "raw_text": "Computer Vision"
+        },
+        {
+          "job_id": 128,
+          "company": "SoftwareOne Deutschland GmbH",
+          "title": "SoftwareOne Deutschland GmbH: Senior AI Consulting Architect (gn)",
+          "raw_text": "Computer Vision"
+        }
+      ]
+    },
+    {
+      "label": "Scala",
+      "distinct_jobs": 4,
+      "rows": 4,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 112,
+          "company": "EY Consulting GmbH",
+          "title": "Berater Snowflake Data Engineer - AI & Data (w/m/d)",
+          "raw_text": "Python, Java oder Scala"
+        },
+        {
+          "job_id": 152,
+          "company": "commercetools",
+          "title": "Senior AI Search engineer(m/f/x)",
+          "raw_text": "Experience working with Scala or other functional programming languages."
+        },
+        {
+          "job_id": 168,
+          "company": "SoundCloud",
+          "title": "Senior Machine Learning Engineer - Recommendations (Experience)",
+          "raw_text": "Strong Python and Scala (or Java/JVM) skills"
+        }
+      ]
+    },
+    {
+      "label": "Statistics",
+      "distinct_jobs": 4,
+      "rows": 4,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 110,
+          "company": "Smartly.io Solutions GmbH",
+          "title": "Senior Machine Learning Engineer, AI Platform",
+          "raw_text": "Strong foundation in linear algebra, statistics, and calculus"
+        },
+        {
+          "job_id": 133,
+          "company": "Limebit GmbH",
+          "title": "Data Scientist / Machine Learning Engineer (m/w/d) | Healthcare & Life Science",
+          "raw_text": "Solides Verständnis **statistischer Methoden und ML-Verfahren**"
+        },
+        {
+          "job_id": 141,
+          "company": "Intercom",
+          "title": "Senior Machine Learning Scientist",
+          "raw_text": "Practical stats knowledge (experiment design, dealing with confounding etc)"
+        }
+      ]
+    },
+    {
+      "label": "vLLM",
+      "distinct_jobs": 4,
+      "rows": 4,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 105,
+          "company": "BWI GmbH",
+          "title": "Senior AI Platform Engineer (w/m/d)",
+          "raw_text": "vLLM"
+        },
+        {
+          "job_id": 162,
+          "company": "LawZero",
+          "title": "Senior ML Data Processing Developer",
+          "raw_text": "vLLM"
+        },
+        {
+          "job_id": 169,
+          "company": "Nebius",
+          "title": "Senior Applied Scientist, Efficient LLM Inference & Model Optimization",
+          "raw_text": "Experience with vLLM, SGLang, TensorRT-LLM, NVIDIA Dynamo, FlashAttention, FlashInfer, Triton, CUDA, or PyTorch internals."
+        }
+      ]
+    },
+    {
+      "label": "Causal Inference",
+      "distinct_jobs": 3,
+      "rows": 3,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 73,
+          "company": "almedia",
+          "title": "Staff Data Scientist",
+          "raw_text": "Deep experience with causal inference techniques (propensity matching, DID, synthetic control, IV estimation)"
+        },
+        {
+          "job_id": 133,
+          "company": "Limebit GmbH",
+          "title": "Data Scientist / Machine Learning Engineer (m/w/d) | Healthcare & Life Science",
+          "raw_text": "Survival Analysis oder kausale Inferenz"
+        },
+        {
+          "job_id": 191,
+          "company": "Bluefish",
+          "title": "Senior/Staff Data Scientist, Analytics",
+          "raw_text": "causal inference"
+        }
+      ]
+    },
+    {
+      "label": "Data Preprocessing",
+      "distinct_jobs": 3,
+      "rows": 3,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 190,
+          "company": "Bluefish",
+          "title": "Senior AI Engineer",
+          "raw_text": "data preprocessing"
+        },
+        {
+          "job_id": 191,
+          "company": "Bluefish",
+          "title": "Senior/Staff Data Scientist, Analytics",
+          "raw_text": "data preprocessing"
+        },
+        {
+          "job_id": 192,
+          "company": "Bluefish",
+          "title": "Staff AI Engineer",
+          "raw_text": "data preprocessing"
+        }
+      ]
+    },
+    {
+      "label": "DevSecOps",
+      "distinct_jobs": 3,
+      "rows": 3,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 111,
+          "company": "ALDB GmbH",
+          "title": "Distinguished Engineer – Software & AI Products (w/m/d)",
+          "raw_text": "DevSecOps"
+        },
+        {
+          "job_id": 126,
+          "company": "SAP",
+          "title": "Senior AI Platform Engineer (f/m/d) for SCI Cross Product Engineering",
+          "raw_text": "DevSecOps"
+        },
+        {
+          "job_id": 187,
+          "company": "ALDB GmbH",
+          "title": "Software Engineer / Softwareentwickler (w/m/d) Schwerpunkt Künstliche Intelligenz",
+          "raw_text": "DevSecOps"
+        }
+      ]
+    },
+    {
+      "label": "GitHub Actions",
+      "distinct_jobs": 3,
+      "rows": 3,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 15,
+          "company": "Infinos GmbH",
+          "title": "Founding Engineer (Tech Lead) · Full-Stack, AI-native (m/w/d)",
+          "raw_text": "GitHub Actions"
+        },
+        {
+          "job_id": 75,
+          "company": "almedia",
+          "title": "Junior Engineer (Typescript / Python / DevOps / AI)",
+          "raw_text": "Kubernetes or GitHub Actions is a plus"
+        },
+        {
+          "job_id": 124,
+          "company": "PTA GmbH",
+          "title": "Qualitätsingenieur KI-Fokus / Quality Engineer (AI-augmented) (m/w/d) IT-Consulting",
+          "raw_text": "GitHub Actions"
+        }
+      ]
+    },
+    {
+      "label": "Grafana",
+      "distinct_jobs": 3,
+      "rows": 3,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 105,
+          "company": "BWI GmbH",
+          "title": "Senior AI Platform Engineer (w/m/d)",
+          "raw_text": "Grafana"
+        },
+        {
+          "job_id": 184,
+          "company": "BWI GmbH",
+          "title": "Senior AI Engineer (w/m/d)",
+          "raw_text": "Grafana"
+        },
+        {
+          "job_id": 185,
+          "company": "BWI GmbH",
+          "title": "Senior AI Engineer (w/m/d)",
+          "raw_text": "Grafana"
+        }
+      ]
+    },
+    {
+      "label": "JAX",
+      "distinct_jobs": 3,
+      "rows": 3,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 91,
+          "company": "European Tech Recruit",
+          "title": "Senior Machine Learning Research Engineer",
+          "raw_text": "JAX"
+        },
+        {
+          "job_id": 163,
+          "company": "LawZero",
+          "title": "Senior ML Research Developer",
+          "raw_text": "JAX"
+        },
+        {
+          "job_id": 164,
+          "company": "LawZero",
+          "title": "Senior ML Research Scientist",
+          "raw_text": "JAX"
+        }
+      ]
+    },
+    {
+      "label": "Kotlin",
+      "distinct_jobs": 3,
+      "rows": 3,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 129,
+          "company": "JetBrains GmbH",
+          "title": "Founding ML Engineer (Spectrum) (m/f/d)",
+          "raw_text": "Kotlin knowledge would be a plus"
+        },
+        {
+          "job_id": 136,
+          "company": "Zalando SE",
+          "title": "Senior Machine Learning Scientist / Data Engineer - Logistics Algorithms (all genders)",
+          "raw_text": "Java, Kotlin, Python, or similar"
+        },
+        {
+          "job_id": 181,
+          "company": "Voize",
+          "title": "Senior Fullstack Engineer (m/f/d) - AI Health tech",
+          "raw_text": "Excellent Kotlin (or JVM) backend experience"
+        }
+      ]
+    },
+    {
+      "label": "LightGBM",
+      "distinct_jobs": 3,
+      "rows": 3,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 80,
+          "company": "All European Careers",
+          "title": "AI Data Scientist – Agentic AI & RAG | Berlin",
+          "raw_text": "LightGBM"
+        },
+        {
+          "job_id": 132,
+          "company": "Deloitte GmbH",
+          "title": "Consultant Data Science & ML Engineering (m/w/d)",
+          "raw_text": "LightGBM"
+        },
+        {
+          "job_id": 167,
+          "company": "Zeta Global",
+          "title": "Senior Data Scientist — Data Cloud Acceleration",
+          "raw_text": "LightGBM"
+        }
+      ]
+    },
+    {
+      "label": "Linux",
+      "distinct_jobs": 3,
+      "rows": 3,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 11,
+          "company": "CHAPTERS Group AG",
+          "title": "Forward Deployed AI Engineer",
+          "raw_text": "Linux"
+        },
+        {
+          "job_id": 121,
+          "company": "OEDIV",
+          "title": "(Senior) Platform Engineer - Kubernetes, Private AI  (m/w/d),Bielefeld,Augsburg,Ol...",
+          "raw_text": "solide Kenntnisse in Linux"
+        },
+        {
+          "job_id": 187,
+          "company": "ALDB GmbH",
+          "title": "Software Engineer / Softwareentwickler (w/m/d) Schwerpunkt Künstliche Intelligenz",
+          "raw_text": "Linux"
+        }
+      ]
+    },
+    {
+      "label": "Prometheus",
+      "distinct_jobs": 3,
+      "rows": 3,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 105,
+          "company": "BWI GmbH",
+          "title": "Senior AI Platform Engineer (w/m/d)",
+          "raw_text": "Prometheus"
+        },
+        {
+          "job_id": 184,
+          "company": "BWI GmbH",
+          "title": "Senior AI Engineer (w/m/d)",
+          "raw_text": "Prometheus"
+        },
+        {
+          "job_id": 185,
+          "company": "BWI GmbH",
+          "title": "Senior AI Engineer (w/m/d)",
+          "raw_text": "Prometheus"
+        }
+      ]
+    },
+    {
+      "label": "Reinforcement Learning",
+      "distinct_jobs": 3,
+      "rows": 3,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 4,
+          "company": "Doctolib",
+          "title": "Principal Machine Learning Engineer - Applied AI & LLMs (x/f/m)",
+          "raw_text": "reinforcement learning"
+        },
+        {
+          "job_id": 141,
+          "company": "Intercom",
+          "title": "Senior Machine Learning Scientist",
+          "raw_text": "Reinforcement learning"
+        },
+        {
+          "job_id": 151,
+          "company": "MOTOR Ai",
+          "title": "AI/ML Engineer (m/f/d) Autonomous Systems",
+          "raw_text": "reinforcement learning"
+        }
+      ]
+    },
+    {
+      "label": "Tableau",
+      "distinct_jobs": 3,
+      "rows": 3,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 85,
+          "company": "Travelcircus GmbH",
+          "title": "Junior Data & AI Engineer (m/f/x)",
+          "raw_text": "Metabase, Tableau, or similar"
+        },
+        {
+          "job_id": 125,
+          "company": "PTA GmbH",
+          "title": "Senior AI Solution Architect / AI Strategy Consultant (m/w/d)",
+          "raw_text": "Tableau"
+        },
+        {
+          "job_id": 191,
+          "company": "Bluefish",
+          "title": "Senior/Staff Data Scientist, Analytics",
+          "raw_text": "Tableau"
+        }
+      ]
+    },
+    {
+      "label": "Weights & Biases",
+      "distinct_jobs": 3,
+      "rows": 3,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 3,
+          "company": "StellDirVor GmbH",
+          "title": "ML Engineer (Computer Vision & ML Ops)",
+          "raw_text": "Weights & Biases"
+        },
+        {
+          "job_id": 151,
+          "company": "MOTOR Ai",
+          "title": "AI/ML Engineer (m/f/d) Autonomous Systems",
+          "raw_text": "Weights & Biases"
+        },
+        {
+          "job_id": 162,
+          "company": "LawZero",
+          "title": "Senior ML Data Processing Developer",
+          "raw_text": "Weights and Biases"
+        }
+      ]
+    },
+    {
+      "label": "Business Intelligence",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 113,
+          "company": "OEDIV",
+          "title": "PreSales Engineer Data & AI (m/w/d),Bielefeld,Berlin",
+          "raw_text": "Business Intelligence"
+        },
+        {
+          "job_id": 131,
+          "company": "Siemens Energy Global GmbH & Co. KG",
+          "title": "Digital Process & Agent Automation Engineer (f/m/d)",
+          "raw_text": "business intelligence"
+        }
+      ]
+    },
+    {
+      "label": "Conversational AI",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 93,
+          "company": "EXXETA AG",
+          "title": "AI Engineer (m/d/w)",
+          "raw_text": "Conversational-AI"
+        },
+        {
+          "job_id": 102,
+          "company": "EXXETA AG",
+          "title": "AI Engineer Team Lead (all genders)",
+          "raw_text": "Conversational-AI"
+        }
+      ]
+    },
+    {
+      "label": "Dagster",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 162,
+          "company": "LawZero",
+          "title": "Senior ML Data Processing Developer",
+          "raw_text": "Dagster"
+        },
+        {
+          "job_id": 172,
+          "company": "Nelly",
+          "title": "Senior AI Engineer",
+          "raw_text": "Dagster"
+        }
+      ]
+    },
+    {
+      "label": "DeepSpeed",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 105,
+          "company": "BWI GmbH",
+          "title": "Senior AI Platform Engineer (w/m/d)",
+          "raw_text": "DeepSpeed"
+        },
+        {
+          "job_id": 174,
+          "company": "Perplexity",
+          "title": "Internship - Machine Learning Research Engineer",
+          "raw_text": "DeepSpeed"
+        }
+      ]
+    },
+    {
+      "label": "DevOps",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 105,
+          "company": "BWI GmbH",
+          "title": "Senior AI Platform Engineer (w/m/d)",
+          "raw_text": "DevOps-Prinzipien"
+        },
+        {
+          "job_id": 112,
+          "company": "EY Consulting GmbH",
+          "title": "Berater Snowflake Data Engineer - AI & Data (w/m/d)",
+          "raw_text": "DevOps"
+        }
+      ]
+    },
+    {
+      "label": "Document Processing",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 69,
+          "company": "Tracium GmbH",
+          "title": "Senior Data Engineer — Document & AI Pipelines",
+          "raw_text": "Document processing, XML."
+        },
+        {
+          "job_id": 70,
+          "company": "Tracium GmbH",
+          "title": "Senior AI Engineer — Document Intelligence",
+          "raw_text": "An understanding of document processing challenges, including imperfect scans and complex layouts."
+        }
+      ]
+    },
+    {
+      "label": "Explainable AI",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 3,
+          "company": "StellDirVor GmbH",
+          "title": "ML Engineer (Computer Vision & ML Ops)",
+          "raw_text": "Knowledge of explainability methods (e.g., Grad-CAM, SHAP)"
+        },
+        {
+          "job_id": 102,
+          "company": "EXXETA AG",
+          "title": "AI Engineer Team Lead (all genders)",
+          "raw_text": "Explainable-AI"
+        }
+      ]
+    },
+    {
+      "label": "FAISS",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 52,
+          "company": "MA (Montreal Associates)",
+          "title": "Generative AI Engineer",
+          "raw_text": "FAISS"
+        },
+        {
+          "job_id": 80,
+          "company": "All European Careers",
+          "title": "AI Data Scientist – Agentic AI & RAG | Berlin",
+          "raw_text": "FAISS"
+        }
+      ]
+    },
+    {
+      "label": "Fastify",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 47,
+          "company": "Kuro",
+          "title": "AI Engineer",
+          "raw_text": "Fastify API"
+        },
+        {
+          "job_id": 81,
+          "company": "Clera",
+          "title": "Senior Software Engineer, Voice AI / Backend",
+          "raw_text": "Fastify"
+        }
+      ]
+    },
+    {
+      "label": "Forecasting",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 136,
+          "company": "Zalando SE",
+          "title": "Senior Machine Learning Scientist / Data Engineer - Logistics Algorithms (all genders)",
+          "raw_text": "forecasting"
+        },
+        {
+          "job_id": 153,
+          "company": "Awin",
+          "title": "Senior Data Scientist (f/m/d)",
+          "raw_text": "forecasting"
+        }
+      ]
+    },
+    {
+      "label": "GitLab CI",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 105,
+          "company": "BWI GmbH",
+          "title": "Senior AI Platform Engineer (w/m/d)",
+          "raw_text": "GitLab CI"
+        },
+        {
+          "job_id": 124,
+          "company": "PTA GmbH",
+          "title": "Qualitätsingenieur KI-Fokus / Quality Engineer (AI-augmented) (m/w/d) IT-Consulting",
+          "raw_text": "GitLab CI"
+        }
+      ]
+    },
+    {
+      "label": "GitOps",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 41,
+          "company": "MEDIAN",
+          "title": "AI Engineer (m/f/d)",
+          "raw_text": "GitOps automation"
+        },
+        {
+          "job_id": 121,
+          "company": "OEDIV",
+          "title": "(Senior) Platform Engineer - Kubernetes, Private AI  (m/w/d),Bielefeld,Augsburg,Ol...",
+          "raw_text": "GitOps"
+        }
+      ]
+    },
+    {
+      "label": "GraphQL",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 185,
+          "company": "BWI GmbH",
+          "title": "Senior AI Engineer (w/m/d)",
+          "raw_text": "GraphQL"
+        },
+        {
+          "job_id": 187,
+          "company": "ALDB GmbH",
+          "title": "Software Engineer / Softwareentwickler (w/m/d) Schwerpunkt Künstliche Intelligenz",
+          "raw_text": "GraphQL"
+        }
+      ]
+    },
+    {
+      "label": "Helm",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 121,
+          "company": "OEDIV",
+          "title": "(Senior) Platform Engineer - Kubernetes, Private AI  (m/w/d),Bielefeld,Augsburg,Ol...",
+          "raw_text": "Helm"
+        },
+        {
+          "job_id": 152,
+          "company": "commercetools",
+          "title": "Senior AI Search engineer(m/f/x)",
+          "raw_text": "Helm"
+        }
+      ]
+    },
+    {
+      "label": "LiveKit",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 77,
+          "company": "eGroup",
+          "title": "AI Product Engineer (f/m/d)",
+          "raw_text": "Livekit"
+        },
+        {
+          "job_id": 81,
+          "company": "Clera",
+          "title": "Senior Software Engineer, Voice AI / Backend",
+          "raw_text": "Relevant technologies include LiveKit, Bun, Node.js, Fastify, React, Temporal, and OpenTelemetry."
+        }
+      ]
+    },
+    {
+      "label": "Matplotlib",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 125,
+          "company": "PTA GmbH",
+          "title": "Senior AI Solution Architect / AI Strategy Consultant (m/w/d)",
+          "raw_text": "Matplotlib"
+        },
+        {
+          "job_id": 141,
+          "company": "Intercom",
+          "title": "Senior Machine Learning Scientist",
+          "raw_text": "matplotlib"
+        }
+      ]
+    },
+    {
+      "label": "Metaflow",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 89,
+          "company": "Quantum-Systems GmbH",
+          "title": "Senior) ML Platform Engineer; m​/f​/d",
+          "raw_text": "Metaflow"
+        },
+        {
+          "job_id": 159,
+          "company": "SumUp",
+          "title": "Senior Machine Learning Engineer - Platform Team",
+          "raw_text": "ML orchestration tools such as Metaflow"
+        }
+      ]
+    },
+    {
+      "label": "Natural Language Processing",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 162,
+          "company": "LawZero",
+          "title": "Senior ML Data Processing Developer",
+          "raw_text": "Natural Language Processing (NLP)"
+        },
+        {
+          "job_id": 164,
+          "company": "LawZero",
+          "title": "Senior ML Research Scientist",
+          "raw_text": "natural language processing"
+        }
+      ]
+    },
+    {
+      "label": "ONNX",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 151,
+          "company": "MOTOR Ai",
+          "title": "AI/ML Engineer (m/f/d) Autonomous Systems",
+          "raw_text": "ONNX"
+        },
+        {
+          "job_id": 177,
+          "company": "Sensmore",
+          "title": "Machine Learning Engineer",
+          "raw_text": "ONNX"
+        }
+      ]
+    },
+    {
+      "label": "R",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 125,
+          "company": "PTA GmbH",
+          "title": "Senior AI Solution Architect / AI Strategy Consultant (m/w/d)",
+          "raw_text": "R"
+        },
+        {
+          "job_id": 133,
+          "company": "Limebit GmbH",
+          "title": "Data Scientist / Machine Learning Engineer (m/w/d) | Healthcare & Life Science",
+          "raw_text": "R, Rust, Kubernetes oder Airflow"
+        }
+      ]
+    },
+    {
+      "label": "ROS",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 151,
+          "company": "MOTOR Ai",
+          "title": "AI/ML Engineer (m/f/d) Autonomous Systems",
+          "raw_text": "ROS/ROS2 familiarity"
+        },
+        {
+          "job_id": 177,
+          "company": "Sensmore",
+          "title": "Machine Learning Engineer",
+          "raw_text": "Experience with C++, ROS, and mmdetection."
+        }
+      ]
+    },
+    {
+      "label": "SGLang",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 162,
+          "company": "LawZero",
+          "title": "Senior ML Data Processing Developer",
+          "raw_text": "SGLang"
+        },
+        {
+          "job_id": 169,
+          "company": "Nebius",
+          "title": "Senior Applied Scientist, Efficient LLM Inference & Model Optimization",
+          "raw_text": "SGLang"
+        }
+      ]
+    },
+    {
+      "label": "Software Architecture",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 99,
+          "company": "DKB Service GmbH",
+          "title": "Senior Applied AI Engineer",
+          "raw_text": "Softwarearchitektur"
+        },
+        {
+          "job_id": 131,
+          "company": "Siemens Energy Global GmbH & Co. KG",
+          "title": "Digital Process & Agent Automation Engineer (f/m/d)",
+          "raw_text": "software architecture"
+        }
+      ]
+    },
+    {
+      "label": "TensorRT",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 151,
+          "company": "MOTOR Ai",
+          "title": "AI/ML Engineer (m/f/d) Autonomous Systems",
+          "raw_text": "TensorRT"
+        },
+        {
+          "job_id": 177,
+          "company": "Sensmore",
+          "title": "Machine Learning Engineer",
+          "raw_text": "TensorRT"
+        }
+      ]
+    },
+    {
+      "label": "Transfer Learning",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 3,
+          "company": "StellDirVor GmbH",
+          "title": "ML Engineer (Computer Vision & ML Ops)",
+          "raw_text": "Hands-on knowledge of transfer learning"
+        },
+        {
+          "job_id": 164,
+          "company": "LawZero",
+          "title": "Senior ML Research Scientist",
+          "raw_text": "transfer learning"
+        }
+      ]
+    },
+    {
+      "label": "Weaviate",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 47,
+          "company": "Kuro",
+          "title": "AI Engineer",
+          "raw_text": "Weaviate"
+        },
+        {
+          "job_id": 52,
+          "company": "MA (Montreal Associates)",
+          "title": "Generative AI Engineer",
+          "raw_text": "Weaviate"
+        }
+      ]
+    },
+    {
+      "label": "XGBoost",
+      "distinct_jobs": 2,
+      "rows": 2,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 80,
+          "company": "All European Careers",
+          "title": "AI Data Scientist – Agentic AI & RAG | Berlin",
+          "raw_text": "XGBoost"
+        },
+        {
+          "job_id": 167,
+          "company": "Zeta Global",
+          "title": "Senior Data Scientist — Data Cloud Acceleration",
+          "raw_text": "XGBoost"
+        }
+      ]
+    },
+    {
+      "label": ".NET",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 98,
+          "company": "Siemens Energy Global GmbH & Co. KG",
+          "title": "Data & AI Engineer (w/m/d)",
+          "raw_text": ".NET"
+        }
+      ]
+    },
+    {
+      "label": "3D Data Processing",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 3,
+          "company": "StellDirVor GmbH",
+          "title": "ML Engineer (Computer Vision & ML Ops)",
+          "raw_text": "Experience with 3D data processing — depth maps, point clouds or mesh reconstruction"
+        }
+      ]
+    },
+    {
+      "label": "3D Perception",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 177,
+          "company": "Sensmore",
+          "title": "Machine Learning Engineer",
+          "raw_text": "Deep expertise in 3D perception and sensor fusion (LiDAR-camera-radar)."
+        }
+      ]
+    },
+    {
+      "label": "3D Reconstruction",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 3,
+          "company": "StellDirVor GmbH",
+          "title": "ML Engineer (Computer Vision & ML Ops)",
+          "raw_text": "3D Reconstruction and Multi-View Geometry"
+        }
+      ]
+    },
+    {
+      "label": "Active Inference",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 151,
+          "company": "MOTOR Ai",
+          "title": "AI/ML Engineer (m/f/d) Autonomous Systems",
+          "raw_text": "familiarity with Active Inference approaches is a plus"
+        }
+      ]
+    },
+    {
+      "label": "Algorithms",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 136,
+          "company": "Zalando SE",
+          "title": "Senior Machine Learning Scientist / Data Engineer - Logistics Algorithms (all genders)",
+          "raw_text": "advanced algorithmic techniques (e.g., from combinatorics, graph theory)"
+        }
+      ]
+    },
+    {
+      "label": "Angular",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 77,
+          "company": "eGroup",
+          "title": "AI Product Engineer (f/m/d)",
+          "raw_text": "frontend with Angular and React"
+        }
+      ]
+    },
+    {
+      "label": "Anomaly Detection",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 126,
+          "company": "SAP",
+          "title": "Senior AI Platform Engineer (f/m/d) for SCI Cross Product Engineering",
+          "raw_text": "anomaly detection"
+        }
+      ]
+    },
+    {
+      "label": "Ansible",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 187,
+          "company": "ALDB GmbH",
+          "title": "Software Engineer / Softwareentwickler (w/m/d) Schwerpunkt Künstliche Intelligenz",
+          "raw_text": "Ansible"
+        }
+      ]
+    },
+    {
+      "label": "Apache Beam",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 108,
+          "company": "NTT DATA Deutschland SE",
+          "title": "NTT DATA Deutschland SE: Senior AI Engineer (w/m/x)",
+          "raw_text": "Beam"
+        }
+      ]
+    },
+    {
+      "label": "Apache Druid",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 120,
+          "company": "PharmaHera",
+          "title": "Data & AI Engineer (all genders), PharmaHera Service GmbH",
+          "raw_text": "Apache Druid"
+        }
+      ]
+    },
+    {
+      "label": "Apache Flink",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 159,
+          "company": "SumUp",
+          "title": "Senior Machine Learning Engineer - Platform Team",
+          "raw_text": "Flink"
+        }
+      ]
+    },
+    {
+      "label": "Apache Iceberg",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 112,
+          "company": "EY Consulting GmbH",
+          "title": "Berater Snowflake Data Engineer - AI & Data (w/m/d)",
+          "raw_text": "Apache Iceberg"
+        }
+      ]
+    },
+    {
+      "label": "Apache Kafka",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 159,
+          "company": "SumUp",
+          "title": "Senior Machine Learning Engineer - Platform Team",
+          "raw_text": "Kafka"
+        }
+      ]
+    },
+    {
+      "label": "Apache NiFi",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 112,
+          "company": "EY Consulting GmbH",
+          "title": "Berater Snowflake Data Engineer - AI & Data (w/m/d)",
+          "raw_text": "NiFi"
+        }
+      ]
+    },
+    {
+      "label": "Apache Superset",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 120,
+          "company": "PharmaHera",
+          "title": "Data & AI Engineer (all genders), PharmaHera Service GmbH",
+          "raw_text": "using BI tools (ideally Apache Superset)"
+        }
+      ]
+    },
+    {
+      "label": "Appium",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 124,
+          "company": "PTA GmbH",
+          "title": "Qualitätsingenieur KI-Fokus / Quality Engineer (AI-augmented) (m/w/d) IT-Consulting",
+          "raw_text": "Appium"
+        }
+      ]
+    },
+    {
+      "label": "Argo",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 178,
+          "company": "alpas",
+          "title": "Senior AI Engineer (f/m/d)",
+          "raw_text": "Argo"
+        }
+      ]
+    },
+    {
+      "label": "Argo Workflows",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 89,
+          "company": "Quantum-Systems GmbH",
+          "title": "Senior) ML Platform Engineer; m​/f​/d",
+          "raw_text": "Argo Workflows"
+        }
+      ]
+    },
+    {
+      "label": "ArgoCD",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 105,
+          "company": "BWI GmbH",
+          "title": "Senior AI Platform Engineer (w/m/d)",
+          "raw_text": "ArgoCD"
+        }
+      ]
+    },
+    {
+      "label": "Athena",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 167,
+          "company": "Zeta Global",
+          "title": "Senior Data Scientist — Data Cloud Acceleration",
+          "raw_text": "Athena"
+        }
+      ]
+    },
+    {
+      "label": "Audio DSP",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 180,
+          "company": "ai-coustics",
+          "title": "Forward Deployed Engineer (Audio & Voice AI)",
+          "raw_text": "Hands-on experience with audio, speech, Voice AI, audio DSP, or a closely related field"
+        }
+      ]
+    },
+    {
+      "label": "Audio processing",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 81,
+          "company": "Clera",
+          "title": "Senior Software Engineer, Voice AI / Backend",
+          "raw_text": "audio processing"
+        }
+      ]
+    },
+    {
+      "label": "Audio Signal Processing",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 183,
+          "company": "NAIRON",
+          "title": "Voice AI Engineer",
+          "raw_text": "Audio signal processing such as echo cancellation or noise suppression."
+        }
+      ]
+    },
+    {
+      "label": "Automatic Speech Recognition",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 4,
+          "company": "Doctolib",
+          "title": "Principal Machine Learning Engineer - Applied AI & LLMs (x/f/m)",
+          "raw_text": "automatic speech recognition"
+        }
+      ]
+    },
+    {
+      "label": "Avro",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 112,
+          "company": "EY Consulting GmbH",
+          "title": "Berater Snowflake Data Engineer - AI & Data (w/m/d)",
+          "raw_text": "AVRO"
+        }
+      ]
+    },
+    {
+      "label": "AWS CDK",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 100,
+          "company": "meinphysio+ GmbH",
+          "title": "Product Engineer – AI-Native (m/w/d)",
+          "raw_text": "AWS/CDK"
+        }
+      ]
+    },
+    {
+      "label": "AWS ECS",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 80,
+          "company": "All European Careers",
+          "title": "AI Data Scientist – Agentic AI & RAG | Berlin",
+          "raw_text": "ECS"
+        }
+      ]
+    },
+    {
+      "label": "AWS Glue",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 167,
+          "company": "Zeta Global",
+          "title": "Senior Data Scientist — Data Cloud Acceleration",
+          "raw_text": "AWS Glue"
+        }
+      ]
+    },
+    {
+      "label": "Azure DevOps",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 124,
+          "company": "PTA GmbH",
+          "title": "Qualitätsingenieur KI-Fokus / Quality Engineer (AI-augmented) (m/w/d) IT-Consulting",
+          "raw_text": "Azure DevOps"
+        }
+      ]
+    },
+    {
+      "label": "Bayesian Methods",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 141,
+          "company": "Intercom",
+          "title": "Senior Machine Learning Scientist",
+          "raw_text": "Bayesian methods"
+        }
+      ]
+    },
+    {
+      "label": "Bayesian Networks",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 136,
+          "company": "Zalando SE",
+          "title": "Senior Machine Learning Scientist / Data Engineer - Logistics Algorithms (all genders)",
+          "raw_text": "Bayesian networks"
+        }
+      ]
+    },
+    {
+      "label": "BEV Perception",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 177,
+          "company": "Sensmore",
+          "title": "Machine Learning Engineer",
+          "raw_text": "Familiarity with BEV perception and multitask learning."
+        }
+      ]
+    },
+    {
+      "label": "Bicep",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 11,
+          "company": "CHAPTERS Group AG",
+          "title": "Forward Deployed AI Engineer",
+          "raw_text": "Bicep"
+        }
+      ]
+    },
+    {
+      "label": "Bun",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 81,
+          "company": "Clera",
+          "title": "Senior Software Engineer, Voice AI / Backend",
+          "raw_text": "Bun"
+        }
+      ]
+    },
+    {
+      "label": "CARLA",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 151,
+          "company": "MOTOR Ai",
+          "title": "AI/ML Engineer (m/f/d) Autonomous Systems",
+          "raw_text": "simulation environments such as CARLA"
+        }
+      ]
+    },
+    {
+      "label": "ChatGPT",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 170,
+          "company": "AutoScout24",
+          "title": "Senior Software Engineer / AI Enabler (m/f/d)",
+          "raw_text": "ChatGPT"
+        }
+      ]
+    },
+    {
+      "label": "Chroma",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 80,
+          "company": "All European Careers",
+          "title": "AI Data Scientist – Agentic AI & RAG | Berlin",
+          "raw_text": "Chroma"
+        }
+      ]
+    },
+    {
+      "label": "Chronon",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 159,
+          "company": "SumUp",
+          "title": "Senior Machine Learning Engineer - Platform Team",
+          "raw_text": "Chronon"
+        }
+      ]
+    },
+    {
+      "label": "Clean Architecture",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 100,
+          "company": "meinphysio+ GmbH",
+          "title": "Product Engineer – AI-Native (m/w/d)",
+          "raw_text": "Clean Architecture"
+        }
+      ]
+    },
+    {
+      "label": "ClearML",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 120,
+          "company": "PharmaHera",
+          "title": "Data & AI Engineer (all genders), PharmaHera Service GmbH",
+          "raw_text": "ClearML"
+        }
+      ]
+    },
+    {
+      "label": "Clinical NLP",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 4,
+          "company": "Doctolib",
+          "title": "Principal Machine Learning Engineer - Applied AI & LLMs (x/f/m)",
+          "raw_text": "clinical NLP"
+        }
+      ]
+    },
+    {
+      "label": "Cloud Run",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 86,
+          "company": "Digitl GmbH",
+          "title": "Generative AI Engineer",
+          "raw_text": "Cloud Run"
+        }
+      ]
+    },
+    {
+      "label": "Clustering",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 141,
+          "company": "Intercom",
+          "title": "Senior Machine Learning Scientist",
+          "raw_text": "clustering"
+        }
+      ]
+    },
+    {
+      "label": "Code Refactoring",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 131,
+          "company": "Siemens Energy Global GmbH & Co. KG",
+          "title": "Digital Process & Agent Automation Engineer (f/m/d)",
+          "raw_text": "code refactoring"
+        }
+      ]
+    },
+    {
+      "label": "Cohere",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 47,
+          "company": "Kuro",
+          "title": "AI Engineer",
+          "raw_text": "Cohere"
+        }
+      ]
+    },
+    {
+      "label": "CSS",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 55,
+          "company": "Accenture DACH",
+          "title": "Junior AI Native Engineer",
+          "raw_text": "CSS"
+        }
+      ]
+    },
+    {
+      "label": "CUDA",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 169,
+          "company": "Nebius",
+          "title": "Senior Applied Scientist, Efficient LLM Inference & Model Optimization",
+          "raw_text": "CUDA"
+        }
+      ]
+    },
+    {
+      "label": "Cypress",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 124,
+          "company": "PTA GmbH",
+          "title": "Qualitätsingenieur KI-Fokus / Quality Engineer (AI-augmented) (m/w/d) IT-Consulting",
+          "raw_text": "Cypress"
+        }
+      ]
+    },
+    {
+      "label": "Data Analysis",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 113,
+          "company": "OEDIV",
+          "title": "PreSales Engineer Data & AI (m/w/d),Bielefeld,Berlin",
+          "raw_text": "der Datenanalyse"
+        }
+      ]
+    },
+    {
+      "label": "Data Engineering",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 113,
+          "company": "OEDIV",
+          "title": "PreSales Engineer Data & AI (m/w/d),Bielefeld,Berlin",
+          "raw_text": "dem Data Engineering"
+        }
+      ]
+    },
+    {
+      "label": "Data Warehousing",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 112,
+          "company": "EY Consulting GmbH",
+          "title": "Berater Snowflake Data Engineer - AI & Data (w/m/d)",
+          "raw_text": "Data-Warehousing"
+        }
+      ]
+    },
+    {
+      "label": "Datadog",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 47,
+          "company": "Kuro",
+          "title": "AI Engineer",
+          "raw_text": "Datadog"
+        }
+      ]
+    },
+    {
+      "label": "Deepgram",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 77,
+          "company": "eGroup",
+          "title": "AI Product Engineer (f/m/d)",
+          "raw_text": "Deepgram"
+        }
+      ]
+    },
+    {
+      "label": "Delta Lake",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 153,
+          "company": "Awin",
+          "title": "Senior Data Scientist (f/m/d)",
+          "raw_text": "Delta Lake"
+        }
+      ]
+    },
+    {
+      "label": "Design Systems",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 100,
+          "company": "meinphysio+ GmbH",
+          "title": "Product Engineer – AI-Native (m/w/d)",
+          "raw_text": "Design System"
+        }
+      ]
+    },
+    {
+      "label": "Distributed Training",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 174,
+          "company": "Perplexity",
+          "title": "Internship - Machine Learning Research Engineer",
+          "raw_text": "experience in distributed training techniques and performance optimization for large models"
+        }
+      ]
+    },
+    {
+      "label": "Document Intelligence",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 68,
+          "company": "Tracium GmbH",
+          "title": "Working Student — AI Engineering & Document Intelligence",
+          "raw_text": "Good understanding about LLMs, machine learning, document intelligence."
+        }
+      ]
+    },
+    {
+      "label": "DVC",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 3,
+          "company": "StellDirVor GmbH",
+          "title": "ML Engineer (Computer Vision & ML Ops)",
+          "raw_text": "DVC"
+        }
+      ]
+    },
+    {
+      "label": "DynamoDB",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 170,
+          "company": "AutoScout24",
+          "title": "Senior Software Engineer / AI Enabler (m/f/d)",
+          "raw_text": "hands-on experience with PostgreSQL, DynamoDB, Kafka, and AWS is a strong plus"
+        }
+      ]
+    },
+    {
+      "label": "Edge AI",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 3,
+          "company": "StellDirVor GmbH",
+          "title": "ML Engineer (Computer Vision & ML Ops)",
+          "raw_text": "Edge AI or wearable deployment (e.g., TensorFlow Lite, ONNX, model quantization)"
+        }
+      ]
+    },
+    {
+      "label": "Edge Computing",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 98,
+          "company": "Siemens Energy Global GmbH & Co. KG",
+          "title": "Data & AI Engineer (w/m/d)",
+          "raw_text": "Edge Computing"
+        }
+      ]
+    },
+    {
+      "label": "ElevenLabs",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 77,
+          "company": "eGroup",
+          "title": "AI Product Engineer (f/m/d)",
+          "raw_text": "Elevenlabs"
+        }
+      ]
+    },
+    {
+      "label": "Entra ID",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 11,
+          "company": "CHAPTERS Group AG",
+          "title": "Forward Deployed AI Engineer",
+          "raw_text": "Enterprise identity: Entra ID, OAuth, SSO"
+        }
+      ]
+    },
+    {
+      "label": "ETL",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 112,
+          "company": "EY Consulting GmbH",
+          "title": "Berater Snowflake Data Engineer - AI & Data (w/m/d)",
+          "raw_text": "ETL-Umfeld"
+        }
+      ]
+    },
+    {
+      "label": "Experimental Design",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 167,
+          "company": "Zeta Global",
+          "title": "Senior Data Scientist — Data Cloud Acceleration",
+          "raw_text": "experimental design"
+        }
+      ]
+    },
+    {
+      "label": "Expo",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 15,
+          "company": "Infinos GmbH",
+          "title": "Founding Engineer (Tech Lead) · Full-Stack, AI-native (m/w/d)",
+          "raw_text": "Expo"
+        }
+      ]
+    },
+    {
+      "label": "Firebase",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 76,
+          "company": "Cloover",
+          "title": "AI Engineering & Automation Specialist (on-site)",
+          "raw_text": "Firebase"
+        }
+      ]
+    },
+    {
+      "label": "FlashAttention",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 169,
+          "company": "Nebius",
+          "title": "Senior Applied Scientist, Efficient LLM Inference & Model Optimization",
+          "raw_text": "FlashAttention"
+        }
+      ]
+    },
+    {
+      "label": "FlashInfer",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 169,
+          "company": "Nebius",
+          "title": "Senior Applied Scientist, Efficient LLM Inference & Model Optimization",
+          "raw_text": "FlashInfer"
+        }
+      ]
+    },
+    {
+      "label": "Flink",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 162,
+          "company": "LawZero",
+          "title": "Senior ML Data Processing Developer",
+          "raw_text": "Flink"
+        }
+      ]
+    },
+    {
+      "label": "FSDP",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 174,
+          "company": "Perplexity",
+          "title": "Internship - Machine Learning Research Engineer",
+          "raw_text": "FSDP"
+        }
+      ]
+    },
+    {
+      "label": "Generative Models",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 3,
+          "company": "StellDirVor GmbH",
+          "title": "ML Engineer (Computer Vision & ML Ops)",
+          "raw_text": "Basic knowledge of generative models (diffusion models or GANs)"
+        }
+      ]
+    },
+    {
+      "label": "Generative UI protocols",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 2,
+          "company": "commercetools",
+          "title": "AI Engineer (m/f/x)",
+          "raw_text": "UI protocols (A2UI, AG-UI, MCP-UI, or similar)"
+        }
+      ]
+    },
+    {
+      "label": "Google Antigravity",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 49,
+          "company": "OH-SO Digital",
+          "title": "Agentic Engineer (f/m/d)",
+          "raw_text": "Google Antigravity"
+        }
+      ]
+    },
+    {
+      "label": "GPU Inference",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 70,
+          "company": "Tracium GmbH",
+          "title": "Senior AI Engineer — Document Intelligence",
+          "raw_text": "GPU inference"
+        }
+      ]
+    },
+    {
+      "label": "gRPC",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 185,
+          "company": "BWI GmbH",
+          "title": "Senior AI Engineer (w/m/d)",
+          "raw_text": "gRPC"
+        }
+      ]
+    },
+    {
+      "label": "High-Performance Computing",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 91,
+          "company": "European Tech Recruit",
+          "title": "Senior Machine Learning Research Engineer",
+          "raw_text": "Strong hands-on experience with HPC environments and large-scale ML workloads"
+        }
+      ]
+    },
+    {
+      "label": "Hive",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 167,
+          "company": "Zeta Global",
+          "title": "Senior Data Scientist — Data Cloud Acceleration",
+          "raw_text": "Hive"
+        }
+      ]
+    },
+    {
+      "label": "HTML",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 55,
+          "company": "Accenture DACH",
+          "title": "Junior AI Native Engineer",
+          "raw_text": "HTML"
+        }
+      ]
+    },
+    {
+      "label": "IAM",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 86,
+          "company": "Digitl GmbH",
+          "title": "Generative AI Engineer",
+          "raw_text": "IAM"
+        }
+      ]
+    },
+    {
+      "label": "Industrial IoT",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 98,
+          "company": "Siemens Energy Global GmbH & Co. KG",
+          "title": "Data & AI Engineer (w/m/d)",
+          "raw_text": "Industrial Internet of Things"
+        }
+      ]
+    },
+    {
+      "label": "Informatica",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 112,
+          "company": "EY Consulting GmbH",
+          "title": "Berater Snowflake Data Engineer - AI & Data (w/m/d)",
+          "raw_text": "Informatica"
+        }
+      ]
+    },
+    {
+      "label": "Jenkins",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 124,
+          "company": "PTA GmbH",
+          "title": "Qualitätsingenieur KI-Fokus / Quality Engineer (AI-augmented) (m/w/d) IT-Consulting",
+          "raw_text": "Jenkins"
+        }
+      ]
+    },
+    {
+      "label": "Keras",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 125,
+          "company": "PTA GmbH",
+          "title": "Senior AI Solution Architect / AI Strategy Consultant (m/w/d)",
+          "raw_text": "Keras"
+        }
+      ]
+    },
+    {
+      "label": "Kubernetes Operators",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 105,
+          "company": "BWI GmbH",
+          "title": "Senior AI Platform Engineer (w/m/d)",
+          "raw_text": "Entwicklung und Anpassung von Kubernetes-Operatoren"
+        }
+      ]
+    },
+    {
+      "label": "Learning to Rank",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 152,
+          "company": "commercetools",
+          "title": "Senior AI Search engineer(m/f/x)",
+          "raw_text": "Learning to rank"
+        }
+      ]
+    },
+    {
+      "label": "LibreChat",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 11,
+          "company": "CHAPTERS Group AG",
+          "title": "Forward Deployed AI Engineer",
+          "raw_text": "LibreChat"
+        }
+      ]
+    },
+    {
+      "label": "Linear algebra",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 110,
+          "company": "Smartly.io Solutions GmbH",
+          "title": "Senior Machine Learning Engineer, AI Platform",
+          "raw_text": "Strong foundation in linear algebra, statistics, and calculus"
+        }
+      ]
+    },
+    {
+      "label": "LiveKit Agents",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 183,
+          "company": "NAIRON",
+          "title": "Voice AI Engineer",
+          "raw_text": "LiveKit Agents"
+        }
+      ]
+    },
+    {
+      "label": "Local AI",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 102,
+          "company": "EXXETA AG",
+          "title": "AI Engineer Team Lead (all genders)",
+          "raw_text": "Local-AI"
+        }
+      ]
+    },
+    {
+      "label": "Looker",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 191,
+          "company": "Bluefish",
+          "title": "Senior/Staff Data Scientist, Analytics",
+          "raw_text": "Looker"
+        }
+      ]
+    },
+    {
+      "label": "Manufacturing Execution Systems",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 98,
+          "company": "Siemens Energy Global GmbH & Co. KG",
+          "title": "Data & AI Engineer (w/m/d)",
+          "raw_text": "Manufacturing-Execution-Systeme"
+        }
+      ]
+    },
+    {
+      "label": "Marketing Mix Modeling",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 73,
+          "company": "almedia",
+          "title": "Staff Data Scientist",
+          "raw_text": "MMM"
+        }
+      ]
+    },
+    {
+      "label": "Mathematical Optimization",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 136,
+          "company": "Zalando SE",
+          "title": "Senior Machine Learning Scientist / Data Engineer - Logistics Algorithms (all genders)",
+          "raw_text": "mathematical modeling (e.g., from operations research, statistics, experimentation)"
+        }
+      ]
+    },
+    {
+      "label": "Matillion",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 112,
+          "company": "EY Consulting GmbH",
+          "title": "Berater Snowflake Data Engineer - AI & Data (w/m/d)",
+          "raw_text": "Matillion"
+        }
+      ]
+    },
+    {
+      "label": "Message queues",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 81,
+          "company": "Clera",
+          "title": "Senior Software Engineer, Voice AI / Backend",
+          "raw_text": "message queues"
+        }
+      ]
+    },
+    {
+      "label": "Metabase",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 85,
+          "company": "Travelcircus GmbH",
+          "title": "Junior Data & AI Engineer (m/f/x)",
+          "raw_text": "Metabase, Tableau, or similar"
+        }
+      ]
+    },
+    {
+      "label": "Micro Frontends",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 187,
+          "company": "ALDB GmbH",
+          "title": "Software Engineer / Softwareentwickler (w/m/d) Schwerpunkt Künstliche Intelligenz",
+          "raw_text": "Micro Frontends"
+        }
+      ]
+    },
+    {
+      "label": "Microsoft Fabric",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 98,
+          "company": "Siemens Energy Global GmbH & Co. KG",
+          "title": "Data & AI Engineer (w/m/d)",
+          "raw_text": "Microsoft Fabric"
+        }
+      ]
+    },
+    {
+      "label": "Microsoft Graph API",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 95,
+          "company": null,
+          "title": "Senior AI Engineer (w/m/d)",
+          "raw_text": "Microsoft Graph API und Office-Automatisierung"
+        }
+      ]
+    },
+    {
+      "label": "mmdetection",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 177,
+          "company": "Sensmore",
+          "title": "Machine Learning Engineer",
+          "raw_text": "Experience with C++, ROS, and mmdetection."
+        }
+      ]
+    },
+    {
+      "label": "Model distillation",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 169,
+          "company": "Nebius",
+          "title": "Senior Applied Scientist, Efficient LLM Inference & Model Optimization",
+          "raw_text": "distillation"
+        }
+      ]
+    },
+    {
+      "label": "MongoDB",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 85,
+          "company": "Travelcircus GmbH",
+          "title": "Junior Data & AI Engineer (m/f/x)",
+          "raw_text": "Experience with Trino, BigQuery or MongoDB"
+        }
+      ]
+    },
+    {
+      "label": "MQTT",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 185,
+          "company": "BWI GmbH",
+          "title": "Senior AI Engineer (w/m/d)",
+          "raw_text": "MQTT"
+        }
+      ]
+    },
+    {
+      "label": "Multi-modal Learning",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 3,
+          "company": "StellDirVor GmbH",
+          "title": "ML Engineer (Computer Vision & ML Ops)",
+          "raw_text": "Exposure to multi-modal learning"
+        }
+      ]
+    },
+    {
+      "label": "Multi-Touch Attribution",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 73,
+          "company": "almedia",
+          "title": "Staff Data Scientist",
+          "raw_text": "MTA"
+        }
+      ]
+    },
+    {
+      "label": "Multimodal Models",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 70,
+          "company": "Tracium GmbH",
+          "title": "Senior AI Engineer — Document Intelligence",
+          "raw_text": "Multimodal models"
+        }
+      ]
+    },
+    {
+      "label": "Multitask Learning",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 177,
+          "company": "Sensmore",
+          "title": "Machine Learning Engineer",
+          "raw_text": "Familiarity with BEV perception and multitask learning."
+        }
+      ]
+    },
+    {
+      "label": "NestJS",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 100,
+          "company": "meinphysio+ GmbH",
+          "title": "Product Engineer – AI-Native (m/w/d)",
+          "raw_text": "NestJS"
+        }
+      ]
+    },
+    {
+      "label": "NVIDIA Dynamo",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 169,
+          "company": "Nebius",
+          "title": "Senior Applied Scientist, Efficient LLM Inference & Model Optimization",
+          "raw_text": "NVIDIA Dynamo"
+        }
+      ]
+    },
+    {
+      "label": "NVIDIA Jetson",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 177,
+          "company": "Sensmore",
+          "title": "Machine Learning Engineer",
+          "raw_text": "Jetson/Orin"
+        }
+      ]
+    },
+    {
+      "label": "NVIDIA Triton",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 105,
+          "company": "BWI GmbH",
+          "title": "Senior AI Platform Engineer (w/m/d)",
+          "raw_text": "NVIDIA Triton"
+        }
+      ]
+    },
+    {
+      "label": "OAuth",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 11,
+          "company": "CHAPTERS Group AG",
+          "title": "Forward Deployed AI Engineer",
+          "raw_text": "OAuth"
+        }
+      ]
+    },
+    {
+      "label": "OAuth 2.0",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 86,
+          "company": "Digitl GmbH",
+          "title": "Generative AI Engineer",
+          "raw_text": "OAuth 2.0"
+        }
+      ]
+    },
+    {
+      "label": "OPC UA",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 98,
+          "company": "Siemens Energy Global GmbH & Co. KG",
+          "title": "Data & AI Engineer (w/m/d)",
+          "raw_text": "OPC UA"
+        }
+      ]
+    },
+    {
+      "label": "Open WebUI",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 11,
+          "company": "CHAPTERS Group AG",
+          "title": "Forward Deployed AI Engineer",
+          "raw_text": "Open WebUI"
+        }
+      ]
+    },
+    {
+      "label": "OpenCV",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 3,
+          "company": "StellDirVor GmbH",
+          "title": "ML Engineer (Computer Vision & ML Ops)",
+          "raw_text": "OpenCV"
+        }
+      ]
+    },
+    {
+      "label": "OpenSearch",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 152,
+          "company": "commercetools",
+          "title": "Senior AI Search engineer(m/f/x)",
+          "raw_text": "OpenSearch"
+        }
+      ]
+    },
+    {
+      "label": "OpenTelemetry",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 81,
+          "company": "Clera",
+          "title": "Senior Software Engineer, Voice AI / Backend",
+          "raw_text": "OpenTelemetry"
+        }
+      ]
+    },
+    {
+      "label": "OracleDB",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 187,
+          "company": "ALDB GmbH",
+          "title": "Software Engineer / Softwareentwickler (w/m/d) Schwerpunkt Künstliche Intelligenz",
+          "raw_text": "OracleDB"
+        }
+      ]
+    },
+    {
+      "label": "ORC",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 112,
+          "company": "EY Consulting GmbH",
+          "title": "Berater Snowflake Data Engineer - AI & Data (w/m/d)",
+          "raw_text": "ORC"
+        }
+      ]
+    },
+    {
+      "label": "Palantir",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 112,
+          "company": "EY Consulting GmbH",
+          "title": "Berater Snowflake Data Engineer - AI & Data (w/m/d)",
+          "raw_text": "Palantir"
+        }
+      ]
+    },
+    {
+      "label": "Parquet",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 112,
+          "company": "EY Consulting GmbH",
+          "title": "Berater Snowflake Data Engineer - AI & Data (w/m/d)",
+          "raw_text": "Parquet"
+        }
+      ]
+    },
+    {
+      "label": "Pinecone",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 52,
+          "company": "MA (Montreal Associates)",
+          "title": "Generative AI Engineer",
+          "raw_text": "Pinecone"
+        }
+      ]
+    },
+    {
+      "label": "Pipecat",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 183,
+          "company": "NAIRON",
+          "title": "Voice AI Engineer",
+          "raw_text": "pipecat"
+        }
+      ]
+    },
+    {
+      "label": "Playwright",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 124,
+          "company": "PTA GmbH",
+          "title": "Qualitätsingenieur KI-Fokus / Quality Engineer (AI-augmented) (m/w/d) IT-Consulting",
+          "raw_text": "Playwright"
+        }
+      ]
+    },
+    {
+      "label": "Polars",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 133,
+          "company": "Limebit GmbH",
+          "title": "Data Scientist / Machine Learning Engineer (m/w/d) | Healthcare & Life Science",
+          "raw_text": "pandas oder Polars"
+        }
+      ]
+    },
+    {
+      "label": "Power BI",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 144,
+          "company": "sennder",
+          "title": "Machine Learning Engineer",
+          "raw_text": "PowerBI"
+        }
+      ]
+    },
+    {
+      "label": "Predictive Analytics",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 98,
+          "company": "Siemens Energy Global GmbH & Co. KG",
+          "title": "Data & AI Engineer (w/m/d)",
+          "raw_text": "Predictive Analytics"
+        }
+      ]
+    },
+    {
+      "label": "Predictive Modeling",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 126,
+          "company": "SAP",
+          "title": "Senior AI Platform Engineer (f/m/d) for SCI Cross Product Engineering",
+          "raw_text": "predictive modeling"
+        }
+      ]
+    },
+    {
+      "label": "Prisma",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 15,
+          "company": "Infinos GmbH",
+          "title": "Founding Engineer (Tech Lead) · Full-Stack, AI-native (m/w/d)",
+          "raw_text": "Prisma"
+        }
+      ]
+    },
+    {
+      "label": "Probabilistic Graphical Models",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 164,
+          "company": "LawZero",
+          "title": "Senior ML Research Scientist",
+          "raw_text": "probabilistic graphical models"
+        }
+      ]
+    },
+    {
+      "label": "PydanticAI",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 184,
+          "company": "BWI GmbH",
+          "title": "Senior AI Engineer (w/m/d)",
+          "raw_text": "PydanticAI"
+        }
+      ]
+    },
+    {
+      "label": "Quantization",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 169,
+          "company": "Nebius",
+          "title": "Senior Applied Scientist, Efficient LLM Inference & Model Optimization",
+          "raw_text": "quantization"
+        }
+      ]
+    },
+    {
+      "label": "Rancher",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 187,
+          "company": "ALDB GmbH",
+          "title": "Software Engineer / Softwareentwickler (w/m/d) Schwerpunkt Künstliche Intelligenz",
+          "raw_text": "Rancher"
+        }
+      ]
+    },
+    {
+      "label": "Ray",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 162,
+          "company": "LawZero",
+          "title": "Senior ML Data Processing Developer",
+          "raw_text": "Ray"
+        }
+      ]
+    },
+    {
+      "label": "Re-ranking",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 152,
+          "company": "commercetools",
+          "title": "Senior AI Search engineer(m/f/x)",
+          "raw_text": "Re-ranker"
+        }
+      ]
+    },
+    {
+      "label": "Real-time systems",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 81,
+          "company": "Clera",
+          "title": "Senior Software Engineer, Voice AI / Backend",
+          "raw_text": "real-time systems"
+        }
+      ]
+    },
+    {
+      "label": "Redis",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 81,
+          "company": "Clera",
+          "title": "Senior Software Engineer, Voice AI / Backend",
+          "raw_text": "data stores such as PostgreSQL or Redis"
+        }
+      ]
+    },
+    {
+      "label": "Representation Learning",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 174,
+          "company": "Perplexity",
+          "title": "Internship - Machine Learning Research Engineer",
+          "raw_text": "Interested in representation learning, including contrastive learning"
+        }
+      ]
+    },
+    {
+      "label": "RLlib",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 151,
+          "company": "MOTOR Ai",
+          "title": "AI/ML Engineer (m/f/d) Autonomous Systems",
+          "raw_text": "RLlib"
+        }
+      ]
+    },
+    {
+      "label": "Robot Framework",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 124,
+          "company": "PTA GmbH",
+          "title": "Qualitätsingenieur KI-Fokus / Quality Engineer (AI-augmented) (m/w/d) IT-Consulting",
+          "raw_text": "Robot Framework"
+        }
+      ]
+    },
+    {
+      "label": "SAP BTP",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 186,
+          "company": "NTT DATA Deutschland SE",
+          "title": "NTT DATA Deutschland SE: SAP AI Lead Architect (w/m/x)",
+          "raw_text": "SAP BTP"
+        }
+      ]
+    },
+    {
+      "label": "SAP Business AI",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 186,
+          "company": "NTT DATA Deutschland SE",
+          "title": "NTT DATA Deutschland SE: SAP AI Lead Architect (w/m/x)",
+          "raw_text": "Fundiertes Wissen in SAP Business AI (inkl. SAP Joule)"
+        }
+      ]
+    },
+    {
+      "label": "SAP S/4HANA",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 186,
+          "company": "NTT DATA Deutschland SE",
+          "title": "NTT DATA Deutschland SE: SAP AI Lead Architect (w/m/x)",
+          "raw_text": "S/4HANA"
+        }
+      ]
+    },
+    {
+      "label": "SCADA",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 98,
+          "company": "Siemens Energy Global GmbH & Co. KG",
+          "title": "Data & AI Engineer (w/m/d)",
+          "raw_text": "SCADA"
+        }
+      ]
+    },
+    {
+      "label": "SciPy",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 133,
+          "company": "Limebit GmbH",
+          "title": "Data Scientist / Machine Learning Engineer (m/w/d) | Healthcare & Life Science",
+          "raw_text": "SciPy"
+        }
+      ]
+    },
+    {
+      "label": "Seaborn",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 125,
+          "company": "PTA GmbH",
+          "title": "Senior AI Solution Architect / AI Strategy Consultant (m/w/d)",
+          "raw_text": "Seaborn"
+        }
+      ]
+    },
+    {
+      "label": "Search",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 152,
+          "company": "commercetools",
+          "title": "Senior AI Search engineer(m/f/x)",
+          "raw_text": "5+ years of experience as a Software Engineer working in search."
+        }
+      ]
+    },
+    {
+      "label": "Search Indexes",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 69,
+          "company": "Tracium GmbH",
+          "title": "Senior Data Engineer — Document & AI Pipelines",
+          "raw_text": "Search indexes, vector databases, or AI data pipelines."
+        }
+      ]
+    },
+    {
+      "label": "Selenium",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 124,
+          "company": "PTA GmbH",
+          "title": "Qualitätsingenieur KI-Fokus / Quality Engineer (AI-augmented) (m/w/d) IT-Consulting",
+          "raw_text": "Selenium"
+        }
+      ]
+    },
+    {
+      "label": "Semi-supervised Learning",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 3,
+          "company": "StellDirVor GmbH",
+          "title": "ML Engineer (Computer Vision & ML Ops)",
+          "raw_text": "Familiarity with semi-supervised learning"
+        }
+      ]
+    },
+    {
+      "label": "Sensor Fusion",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 177,
+          "company": "Sensmore",
+          "title": "Machine Learning Engineer",
+          "raw_text": "Deep expertise in 3D perception and sensor fusion (LiDAR-camera-radar)."
+        }
+      ]
+    },
+    {
+      "label": "Shell Scripting",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 187,
+          "company": "ALDB GmbH",
+          "title": "Software Engineer / Softwareentwickler (w/m/d) Schwerpunkt Künstliche Intelligenz",
+          "raw_text": "Shell Scripting"
+        }
+      ]
+    },
+    {
+      "label": "Small Language Models",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 3,
+          "company": "StellDirVor GmbH",
+          "title": "ML Engineer (Computer Vision & ML Ops)",
+          "raw_text": "Familiarity with small language models (SLMs)"
+        }
+      ]
+    },
+    {
+      "label": "smolagents",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 129,
+          "company": "JetBrains GmbH",
+          "title": "Founding ML Engineer (Spectrum) (m/f/d)",
+          "raw_text": "smolagents"
+        }
+      ]
+    },
+    {
+      "label": "Solr",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 152,
+          "company": "commercetools",
+          "title": "Senior AI Search engineer(m/f/x)",
+          "raw_text": "Solr"
+        }
+      ]
+    },
+    {
+      "label": "Speech Recognition",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 3,
+          "company": "StellDirVor GmbH",
+          "title": "ML Engineer (Computer Vision & ML Ops)",
+          "raw_text": "speech pipelines (e.g., Whisper, on-device speech recognition and text-to-speech)"
+        }
+      ]
+    },
+    {
+      "label": "Speech Recognition and Synthesis",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 183,
+          "company": "NAIRON",
+          "title": "Voice AI Engineer",
+          "raw_text": "Hands-on work with speech (STT, TTS, VAD)"
+        }
+      ]
+    },
+    {
+      "label": "Spring Boot",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 170,
+          "company": "AutoScout24",
+          "title": "Senior Software Engineer / AI Enabler (m/f/d)",
+          "raw_text": "Deep expertise in Java and Spring Boot"
+        }
+      ]
+    },
+    {
+      "label": "SSO",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 11,
+          "company": "CHAPTERS Group AG",
+          "title": "Forward Deployed AI Engineer",
+          "raw_text": "SSO"
+        }
+      ]
+    },
+    {
+      "label": "Stable-Baselines3",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 151,
+          "company": "MOTOR Ai",
+          "title": "AI/ML Engineer (m/f/d) Autonomous Systems",
+          "raw_text": "Stable-Baselines3"
+        }
+      ]
+    },
+    {
+      "label": "Statistical Analysis",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 144,
+          "company": "sennder",
+          "title": "Machine Learning Engineer",
+          "raw_text": "Strong foundation in statistical analysis, hypothesis testing"
+        }
+      ]
+    },
+    {
+      "label": "Statistical Modeling",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 92,
+          "company": "Discover International",
+          "title": "Senior Data Scientist — Berlin – Health Technology",
+          "raw_text": "statistical modeling"
+        }
+      ]
+    },
+    {
+      "label": "Statistical Modelling",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 153,
+          "company": "Awin",
+          "title": "Senior Data Scientist (f/m/d)",
+          "raw_text": "Strong statistical, analytical, and problem-solving skills"
+        }
+      ]
+    },
+    {
+      "label": "Supabase",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 47,
+          "company": "Kuro",
+          "title": "AI Engineer",
+          "raw_text": "Cloud Functions: Supabase"
+        }
+      ]
+    },
+    {
+      "label": "Survival Analysis",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 133,
+          "company": "Limebit GmbH",
+          "title": "Data Scientist / Machine Learning Engineer (m/w/d) | Healthcare & Life Science",
+          "raw_text": "Survival Analysis oder kausale Inferenz"
+        }
+      ]
+    },
+    {
+      "label": "Svelte",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 41,
+          "company": "MEDIAN",
+          "title": "AI Engineer (m/f/d)",
+          "raw_text": "Svelte"
+        }
+      ]
+    },
+    {
+      "label": "Tecton",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 159,
+          "company": "SumUp",
+          "title": "Senior Machine Learning Engineer - Platform Team",
+          "raw_text": "Tecton"
+        }
+      ]
+    },
+    {
+      "label": "Tekton",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 105,
+          "company": "BWI GmbH",
+          "title": "Senior AI Platform Engineer (w/m/d)",
+          "raw_text": "Tekton"
+        }
+      ]
+    },
+    {
+      "label": "Temporal",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 81,
+          "company": "Clera",
+          "title": "Senior Software Engineer, Voice AI / Backend",
+          "raw_text": "Temporal"
+        }
+      ]
+    },
+    {
+      "label": "TensorRT-LLM",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 169,
+          "company": "Nebius",
+          "title": "Senior Applied Scientist, Efficient LLM Inference & Model Optimization",
+          "raw_text": "TensorRT-LLM"
+        }
+      ]
+    },
+    {
+      "label": "Transformer Architectures",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 177,
+          "company": "Sensmore",
+          "title": "Machine Learning Engineer",
+          "raw_text": "Experience with transformer-based perception architectures or VLA models."
+        }
+      ]
+    },
+    {
+      "label": "Trigger.dev",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 15,
+          "company": "Infinos GmbH",
+          "title": "Founding Engineer (Tech Lead) · Full-Stack, AI-native (m/w/d)",
+          "raw_text": "Trigger.dev"
+        }
+      ]
+    },
+    {
+      "label": "Trino",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 85,
+          "company": "Travelcircus GmbH",
+          "title": "Junior Data & AI Engineer (m/f/x)",
+          "raw_text": "Experience with Trino, BigQuery or MongoDB"
+        }
+      ]
+    },
+    {
+      "label": "Triton",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 169,
+          "company": "Nebius",
+          "title": "Senior Applied Scientist, Efficient LLM Inference & Model Optimization",
+          "raw_text": "Triton"
+        }
+      ]
+    },
+    {
+      "label": "tRPC",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 15,
+          "company": "Infinos GmbH",
+          "title": "Founding Engineer (Tech Lead) · Full-Stack, AI-native (m/w/d)",
+          "raw_text": "tRPC"
+        }
+      ]
+    },
+    {
+      "label": "UiPath",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 131,
+          "company": "Siemens Energy Global GmbH & Co. KG",
+          "title": "Digital Process & Agent Automation Engineer (f/m/d)",
+          "raw_text": "UiPath/RPA"
+        }
+      ]
+    },
+    {
+      "label": "Unsupervised Learning",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 191,
+          "company": "Bluefish",
+          "title": "Senior/Staff Data Scientist, Analytics",
+          "raw_text": "Exposure to unsupervised learning methods (e.g., clustering, dimensionality reduction)"
+        }
+      ]
+    },
+    {
+      "label": "Uplift Modelling",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 73,
+          "company": "almedia",
+          "title": "Staff Data Scientist",
+          "raw_text": "uplift modelling"
+        }
+      ]
+    },
+    {
+      "label": "Vercel",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 76,
+          "company": "Cloover",
+          "title": "AI Engineering & Automation Specialist (on-site)",
+          "raw_text": "Vercel"
+        }
+      ]
+    },
+    {
+      "label": "Vercel AI SDK",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 15,
+          "company": "Infinos GmbH",
+          "title": "Founding Engineer (Tech Lead) · Full-Stack, AI-native (m/w/d)",
+          "raw_text": "Vercel AI SDK"
+        }
+      ]
+    },
+    {
+      "label": "Vision-Language-Action Models",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 177,
+          "company": "Sensmore",
+          "title": "Machine Learning Engineer",
+          "raw_text": "Experience with transformer-based perception architectures or VLA models."
+        }
+      ]
+    },
+    {
+      "label": "Web Analytics",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 85,
+          "company": "Travelcircus GmbH",
+          "title": "Junior Data & AI Engineer (m/f/x)",
+          "raw_text": "Experience with Marketing/E-commerce data (Attribution models, Web Analytics)"
+        }
+      ]
+    },
+    {
+      "label": "Web Components",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 187,
+          "company": "ALDB GmbH",
+          "title": "Software Engineer / Softwareentwickler (w/m/d) Schwerpunkt Künstliche Intelligenz",
+          "raw_text": "Web Components"
+        }
+      ]
+    },
+    {
+      "label": "Web scraping",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 53,
+          "company": "Gulf Associates",
+          "title": "Junior AI Automation Developer",
+          "raw_text": "Basic experience with APIs or web scraping techniques"
+        }
+      ]
+    },
+    {
+      "label": "WebRTC",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 183,
+          "company": "NAIRON",
+          "title": "Voice AI Engineer",
+          "raw_text": "LiveKit Agents, pipecat or WebRTC."
+        }
+      ]
+    },
+    {
+      "label": "WebSockets",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 185,
+          "company": "BWI GmbH",
+          "title": "Senior AI Engineer (w/m/d)",
+          "raw_text": "WebSockets"
+        }
+      ]
+    },
+    {
+      "label": "Workflow Orchestration",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 158,
+          "company": "SumUp",
+          "title": "Senior Machine Learning Engineer",
+          "raw_text": "machine learning workflow orchestration"
+        }
+      ]
+    },
+    {
+      "label": "XML",
+      "distinct_jobs": 1,
+      "rows": 1,
+      "requirement_split": null,
+      "examples": [
+        {
+          "job_id": 69,
+          "company": "Tracium GmbH",
+          "title": "Senior Data Engineer — Document & AI Pipelines",
+          "raw_text": "Document processing, XML."
+        }
+      ]
+    }
+  ],
+  "jobs_with_zero_skill_mentions_not_legacy": [
+    {
+      "job_id": 37,
+      "company": "Enpal",
+      "title": "AI Agents & Automations Internship (f/m/x)",
+      "extracted_version": "x2-5d92413d53",
+      "source": "screenshot"
+    },
+    {
+      "job_id": 38,
+      "company": "eduBITES",
+      "title": "AI Product Developer",
+      "extracted_version": "x2-5d92413d53",
+      "source": "screenshot"
+    },
+    {
+      "job_id": 39,
+      "company": "POS TUNING GmbH",
+      "title": "Junior AI Engineer (m/f/d) specializing in AI and digitalization",
+      "extracted_version": "x2-5d92413d53",
+      "source": "screenshot"
+    },
+    {
+      "job_id": 40,
+      "company": "DEPT®",
+      "title": "AI Engineer",
+      "extracted_version": "x2-5d92413d53",
+      "source": "screenshot"
+    },
+    {
+      "job_id": 102,
+      "company": "EXXETA AG",
+      "title": "AI Engineer Team Lead (all genders)",
+      "extracted_version": "x2-5d92413d53",
+      "source": "arbeitsagentur"
+    },
+    {
+      "job_id": 119,
+      "company": "EXXETA AG",
+      "title": "Team Lead Data & AI Engineering (all genders)",
+      "extracted_version": "x2-5d92413d53",
+      "source": "arbeitsagentur"
+    }
+  ]
+}
