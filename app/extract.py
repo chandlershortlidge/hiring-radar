@@ -72,9 +72,9 @@ Also report whether the posting asks for German:
 - german is "required" when German is asked for and not marked optional, "nice_to_have"
   when it is marked optional (plus, preferred, ideally, advantage), or null when the
   posting does not mention German at all. English or other languages do not count.
-- german_basis is "stated" when the text asks for German outright; "inferred" when the
-  posting itself is written in German and says nothing about language (treat that as
-  "required"). Otherwise null.
+- german_basis is "stated" when the text mentions German outright (that wording decides
+  required vs nice_to_have). Otherwise, when the posting itself is written in German, it is
+  "inferred" with german "required", even if it also asks for English. Otherwise null.
 - german_signal is the verbatim phrase, or null when inferred or not mentioned.
 
 Also report the degree the posting asks for:

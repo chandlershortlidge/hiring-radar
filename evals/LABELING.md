@@ -82,9 +82,12 @@ English, "multiple languages" and other languages are none.
   a requirement. An unmarked entry in a requirements list is required (same as skills).
 - `nice_to_have`: marked optional — plus, preferred, beneficial, advantage, "not a hard
   requirement".
-- **Basis `stated`** quotes the phrase in `german_signal`. **Basis `inferred`** is only
-  for a posting written in German that says nothing about language: label `required`,
-  `german_signal` null. Do not infer from the company's country or office location.
+- **Basis `stated`** quotes the phrase in `german_signal`; when the text mentions German
+  outright, that wording decides `required` vs `nice_to_have`.
+- **Basis `inferred`**: a posting written in German that does not mention German outright
+  is `required`, `german_signal` null — **even if it also asks for English**. A posting
+  written in German assumes German. Do not infer from the company's country or office
+  location. (Rule changed 2026-10-20; DECISIONS.)
 
 
 ## Degree

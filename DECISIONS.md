@@ -5,6 +5,21 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-20 — A posting written in German requires German, even if it also asks for English
+
+Previously "inferred" German applied only to a German-language posting that said nothing
+about language. golden_024 (Parship) is written in German and asks for "good English for
+daily communication", which left it as "German not mentioned" — wrong for anyone reading it.
+Rule now: when the text mentions German outright, that wording decides (required or
+nice-to-have, quoted). Otherwise a posting written in German is German required, basis
+inferred, regardless of what it says about English. Changed in LABELING.md and the extractor
+prompt together; the prompt change bumps `extractor_version`, so all jobs re-extract once.
+
+Same review (golden_022–024, now final held-out Goldens): a tech list headed "in our
+projects we often use" counts as a tech-stack list (all entries required), as in dev
+golden_003, even at a consultancy; and "you are an expert in X" counts as a requirement
+wherever it appears, including the responsibilities.
+
 ## 2026-10-18 — Open rule: complete feeds vs search sources
 
 A job counts as open while a *complete* feed (Greenhouse, Lever, Ashby, arbeitnow,
