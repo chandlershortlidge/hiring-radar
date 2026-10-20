@@ -57,9 +57,12 @@ def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction) -> N
             [(job_id, m.skill_id, m.requirement, m.raw_text, ex.taxonomy_version, ex.extractor_version)
              for m in ex.mentions])
         conn.execute("DELETE FROM proposed_skill WHERE job_id=? AND status='pending'", (job_id,))
+        # A label rejected once stays rejected: re-extraction must not re-queue it.
+        rejected = {r[0] for r in conn.execute(
+            "SELECT DISTINCT lower(label) FROM proposed_skill WHERE status='rejected'")}
         conn.executemany(
             "INSERT INTO proposed_skill (job_id, label, raw_text) VALUES (?,?,?)",
-            [(job_id, p.label, p.raw_text) for p in ex.proposed])
+            [(job_id, p.label, p.raw_text) for p in ex.proposed if p.label.lower() not in rejected])
         sen, ger, deg = ex.seniority, ex.german, ex.degree
         conn.execute(
             "UPDATE job SET extracted_version=?, seniority=?, seniority_basis=?, seniority_signal=?,"

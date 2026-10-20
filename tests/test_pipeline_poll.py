@@ -57,6 +57,15 @@ def test_legacy_stamped_jobs_are_never_re_extracted(conn):
     assert conn.execute("SELECT extracted_version FROM job WHERE id=1").fetchone()[0] == "legacy"
 
 
+def test_a_rejected_label_is_not_re_queued(conn):
+    fn = fake_extract([], [Proposed("Search", "required", "search"), Proposed("Rust", "required", "Rust")])
+    pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None)
+    conn.execute("UPDATE proposed_skill SET status='rejected' WHERE label='Search'")
+    pipeline.extract_pending(conn, TAX, fn, "m2", log=lambda *_: None)  # new version: everything re-extracts
+    pending = [r[0] for r in conn.execute("SELECT label FROM proposed_skill WHERE status='pending'")]
+    assert sorted(set(pending)) == ["Rust"] and len(pending) == 3
+
+
 def test_zero_skill_job_is_stamped_and_not_retried(conn):
     r = pipeline.extract_pending(conn, TAX, fake_extract([]), "m", log=lambda *_: None)
     assert r.succeeded == 3 and r.mentions == 0

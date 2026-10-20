@@ -5,6 +5,25 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-20 — Taxonomy v4: proposed-skill batch; a label earns an entry at 3 jobs
+
+First review of the proposed-skill queue: 247 labels, 387 rows, 88 jobs; 182 labels in a
+single job. Added 56 entries (taxonomy v4, 200 skills): everything in 2+ jobs once spelling
+variants merge (MLflow 12, Infrastructure as Code 11, Kubeflow 10, Feature Engineering 9,
+NLP 8, Terraform 8, Rust 7, Statistics 7 …), plus `etl` as an alias of data-pipelines.
+Bare "Triton" left out: ambiguous between NVIDIA's server and OpenAI's language.
+
+Rule from here: a proposed label becomes a taxonomy entry once it appears in **3 jobs**.
+Below that it stays pending; the queue is the frequency counter. Reject only what isn't a
+skill under taxonomy/README.md (domain knowledge, marketing analytics terms, vague words).
+Rejection is now sticky: `store_extraction` skips any label already rejected, so
+re-extraction doesn't re-queue it.
+
+Goldens updated for the new entries (a label the taxonomy couldn't express before is a
+missing gold label now): 001 devops (nice); 022 statistics (req), causal-inference, r-lang,
+rust (nice); 023 kafka (req); 024 nlp (nice). Taxonomy-driven, not tuning, so the
+held-out edits are allowed.
+
 ## 2026-10-20 — Seniority labels reviewed; "none" is a scored label
 
 The 2026-10-18 dev eval had seniority accuracy 0.45. Most of the gap was the labels, not

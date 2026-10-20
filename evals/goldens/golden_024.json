@@ -115,6 +115,11 @@
       "skill_id": "ci-cd",
       "requirement": "nice_to_have",
       "raw_text": "Continuous Integration"
+    },
+    {
+      "skill_id": "nlp",
+      "requirement": "nice_to_have",
+      "raw_text": "Vertrautheit mit NLP"
     }
   ]
 }

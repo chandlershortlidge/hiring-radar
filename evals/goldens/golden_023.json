@@ -110,6 +110,11 @@
       "skill_id": "kubernetes",
       "requirement": "required",
       "raw_text": "Kubernetes"
+    },
+    {
+      "skill_id": "kafka",
+      "requirement": "required",
+      "raw_text": "Spark, Kafka"
     }
   ]
 }

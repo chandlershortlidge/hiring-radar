@@ -65,6 +65,26 @@
       "skill_id": "airflow",
       "requirement": "nice_to_have",
       "raw_text": "Airflow"
+    },
+    {
+      "skill_id": "statistics",
+      "requirement": "required",
+      "raw_text": "statistischer Methoden"
+    },
+    {
+      "skill_id": "causal-inference",
+      "requirement": "nice_to_have",
+      "raw_text": "kausale Inferenz"
+    },
+    {
+      "skill_id": "r-lang",
+      "requirement": "nice_to_have",
+      "raw_text": "R, Rust"
+    },
+    {
+      "skill_id": "rust",
+      "requirement": "nice_to_have",
+      "raw_text": "Rust, Kubernetes"
     }
   ]
 }

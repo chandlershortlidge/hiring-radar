@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "skills": [
     {
       "id": "a-b-testing",
@@ -239,6 +239,24 @@
       "reviewed": true
     },
     {
+      "id": "business-intelligence",
+      "display": "Business Intelligence",
+      "aliases": [],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "causal-inference",
+      "display": "Causal Inference",
+      "aliases": [
+        "kausale inferenz"
+      ],
+      "parents": [
+        "statistics"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "chain-of-thought",
       "display": "Chain-of-Thought",
       "aliases": [],
@@ -308,12 +326,35 @@
       "reviewed": true
     },
     {
+      "id": "computer-vision",
+      "display": "Computer Vision",
+      "aliases": [],
+      "parents": [
+        "deep-learning"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "containerization",
       "display": "Containerization",
       "aliases": [
         "containerized workloads",
         "containers"
       ],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "conversational-ai",
+      "display": "Conversational AI",
+      "aliases": [],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "cpp",
+      "display": "C++",
+      "aliases": [],
       "parents": [],
       "reviewed": true
     },
@@ -361,6 +402,15 @@
       "reviewed": true
     },
     {
+      "id": "dagster",
+      "display": "Dagster",
+      "aliases": [],
+      "parents": [
+        "data-pipelines"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "data-modeling",
       "display": "Data modeling",
       "aliases": [],
@@ -373,7 +423,8 @@
       "aliases": [
         "etl pipelines",
         "etl/elt",
-        "etl/elt pipelines"
+        "etl/elt pipelines",
+        "etl"
       ],
       "parents": [],
       "reviewed": true
@@ -423,10 +474,46 @@
       "reviewed": true
     },
     {
+      "id": "deepspeed",
+      "display": "DeepSpeed",
+      "aliases": [],
+      "parents": [
+        "distributed-training"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "devops",
+      "display": "DevOps",
+      "aliases": [
+        "devops-prinzipien"
+      ],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "devsecops",
+      "display": "DevSecOps",
+      "aliases": [],
+      "parents": [
+        "devops"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "distributed-systems",
       "display": "Distributed Systems",
       "aliases": [],
       "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "distributed-training",
+      "display": "Distributed Training",
+      "aliases": [],
+      "parents": [
+        "deep-learning"
+      ],
       "reviewed": true
     },
     {
@@ -491,11 +578,51 @@
       "reviewed": true
     },
     {
+      "id": "explainable-ai",
+      "display": "Explainable AI",
+      "aliases": [
+        "xai",
+        "explainability"
+      ],
+      "parents": [
+        "machine-learning"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "faiss",
+      "display": "FAISS",
+      "aliases": [],
+      "parents": [
+        "vector-search"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "fastapi",
       "display": "FastAPI",
       "aliases": [],
       "parents": [
         "apis"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "fastify",
+      "display": "Fastify",
+      "aliases": [],
+      "parents": [
+        "node-js",
+        "backend-development"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "feature-engineering",
+      "display": "Feature Engineering",
+      "aliases": [],
+      "parents": [
+        "machine-learning"
       ],
       "reviewed": true
     },
@@ -515,6 +642,26 @@
       "aliases": [],
       "parents": [
         "apis"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "flink",
+      "display": "Flink",
+      "aliases": [
+        "apache flink"
+      ],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "forecasting",
+      "display": "Forecasting",
+      "aliases": [
+        "time series forecasting"
+      ],
+      "parents": [
+        "machine-learning"
       ],
       "reviewed": true
     },
@@ -570,6 +717,15 @@
       "reviewed": true
     },
     {
+      "id": "github-actions",
+      "display": "GitHub Actions",
+      "aliases": [],
+      "parents": [
+        "ci-cd"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "github-copilot",
       "display": "GitHub Copilot",
       "aliases": [
@@ -578,6 +734,35 @@
       "parents": [
         "ai-developer-tooling"
       ],
+      "reviewed": true
+    },
+    {
+      "id": "gitlab-ci",
+      "display": "GitLab CI",
+      "aliases": [
+        "gitlab ci/cd"
+      ],
+      "parents": [
+        "ci-cd"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "gitops",
+      "display": "GitOps",
+      "aliases": [],
+      "parents": [
+        "ci-cd"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "go",
+      "display": "Go",
+      "aliases": [
+        "golang"
+      ],
+      "parents": [],
       "reviewed": true
     },
     {
@@ -593,10 +778,37 @@
       "reviewed": true
     },
     {
+      "id": "grafana",
+      "display": "Grafana",
+      "aliases": [],
+      "parents": [
+        "observability"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "graphql",
+      "display": "GraphQL",
+      "aliases": [],
+      "parents": [
+        "api-design"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "hallucination-detection",
       "display": "Hallucination detection",
       "aliases": [],
       "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "helm",
+      "display": "Helm",
+      "aliases": [],
+      "parents": [
+        "kubernetes"
+      ],
       "reviewed": true
     },
     {
@@ -614,10 +826,37 @@
       "reviewed": true
     },
     {
+      "id": "infrastructure-as-code",
+      "display": "Infrastructure as Code",
+      "aliases": [
+        "iac"
+      ],
+      "parents": [],
+      "reviewed": true
+    },
+    {
       "id": "java",
       "display": "Java",
       "aliases": [],
       "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "javascript",
+      "display": "JavaScript",
+      "aliases": [
+        "js"
+      ],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "jax",
+      "display": "JAX",
+      "aliases": [],
+      "parents": [
+        "deep-learning"
+      ],
       "reviewed": true
     },
     {
@@ -628,10 +867,38 @@
       "reviewed": true
     },
     {
+      "id": "kafka",
+      "display": "Kafka",
+      "aliases": [
+        "apache kafka"
+      ],
+      "parents": [
+        "event-driven-systems"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "knowledge-graphs",
       "display": "Knowledge Graphs",
       "aliases": [],
       "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "kotlin",
+      "display": "Kotlin",
+      "aliases": [],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "kubeflow",
+      "display": "Kubeflow",
+      "aliases": [],
+      "parents": [
+        "mlops",
+        "kubernetes"
+      ],
       "reviewed": true
     },
     {
@@ -688,9 +955,34 @@
       "reviewed": true
     },
     {
+      "id": "lightgbm",
+      "display": "LightGBM",
+      "aliases": [],
+      "parents": [
+        "machine-learning"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "linux",
+      "display": "Linux",
+      "aliases": [],
+      "parents": [],
+      "reviewed": true
+    },
+    {
       "id": "litellm",
       "display": "LiteLLM",
       "aliases": [],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "livekit",
+      "display": "LiveKit",
+      "aliases": [
+        "livekit agents"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -761,12 +1053,39 @@
       "reviewed": true
     },
     {
+      "id": "matplotlib",
+      "display": "Matplotlib",
+      "aliases": [],
+      "parents": [
+        "data-visualization"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "mcp",
       "display": "MCP",
       "aliases": [
         "model context protocol",
         "model context protocol (mcp)",
         "mcp integrations"
+      ],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "metaflow",
+      "display": "Metaflow",
+      "aliases": [],
+      "parents": [
+        "mlops"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "microservices",
+      "display": "Microservices",
+      "aliases": [
+        "microservice architecture"
       ],
       "parents": [],
       "reviewed": true
@@ -794,6 +1113,16 @@
       "display": "ML Engineering",
       "aliases": [],
       "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "mlflow",
+      "display": "MLflow",
+      "aliases": [],
+      "parents": [
+        "experiment-tracking",
+        "mlops"
+      ],
       "reviewed": true
     },
     {
@@ -889,6 +1218,17 @@
       "reviewed": true
     },
     {
+      "id": "nlp",
+      "display": "NLP",
+      "aliases": [
+        "natural language processing"
+      ],
+      "parents": [
+        "machine-learning"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "node-js",
       "display": "Node.js",
       "aliases": [],
@@ -929,6 +1269,15 @@
         "monitoring & observability"
       ],
       "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "onnx",
+      "display": "ONNX",
+      "aliases": [],
+      "parents": [
+        "inference-optimization"
+      ],
       "reviewed": true
     },
     {
@@ -1004,6 +1353,15 @@
       "reviewed": true
     },
     {
+      "id": "prometheus",
+      "display": "Prometheus",
+      "aliases": [],
+      "parents": [
+        "observability"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "prompt-engineering",
       "display": "Prompt engineering",
       "aliases": [],
@@ -1035,6 +1393,13 @@
       "parents": [
         "deep-learning"
       ],
+      "reviewed": true
+    },
+    {
+      "id": "r-lang",
+      "display": "R",
+      "aliases": [],
+      "parents": [],
       "reviewed": true
     },
     {
@@ -1099,6 +1464,38 @@
       "reviewed": true
     },
     {
+      "id": "reinforcement-learning",
+      "display": "Reinforcement Learning",
+      "aliases": [],
+      "parents": [
+        "machine-learning"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "ros",
+      "display": "ROS",
+      "aliases": [
+        "ros2"
+      ],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "rust",
+      "display": "Rust",
+      "aliases": [],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "scala",
+      "display": "Scala",
+      "aliases": [],
+      "parents": [],
+      "reviewed": true
+    },
+    {
       "id": "scikit-learn",
       "display": "scikit-learn",
       "aliases": [],
@@ -1124,10 +1521,31 @@
       "reviewed": true
     },
     {
+      "id": "sglang",
+      "display": "SGLang",
+      "aliases": [],
+      "parents": [
+        "model-serving",
+        "inference-optimization"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "snowflake",
       "display": "Snowflake",
       "aliases": [],
       "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "software-architecture",
+      "display": "Software Architecture",
+      "aliases": [
+        "softwarearchitektur"
+      ],
+      "parents": [
+        "software-engineering"
+      ],
       "reviewed": true
     },
     {
@@ -1138,9 +1556,35 @@
       "reviewed": true
     },
     {
+      "id": "speech-recognition",
+      "display": "Speech Recognition",
+      "aliases": [
+        "automatic speech recognition",
+        "asr",
+        "speech-to-text",
+        "stt"
+      ],
+      "parents": [
+        "deep-learning"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "sql",
       "display": "SQL",
       "aliases": [],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "statistics",
+      "display": "Statistics",
+      "aliases": [
+        "statistical analysis",
+        "statistical modeling",
+        "statistical modelling",
+        "statistical methods"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -1159,11 +1603,41 @@
       "reviewed": true
     },
     {
+      "id": "tableau",
+      "display": "Tableau",
+      "aliases": [],
+      "parents": [
+        "business-intelligence",
+        "data-visualization"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "tensorflow",
       "display": "TensorFlow",
       "aliases": [],
       "parents": [
         "deep-learning"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "tensorrt",
+      "display": "TensorRT",
+      "aliases": [
+        "tensorrt-llm"
+      ],
+      "parents": [
+        "inference-optimization"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "terraform",
+      "display": "Terraform",
+      "aliases": [],
+      "parents": [
+        "infrastructure-as-code"
       ],
       "reviewed": true
     },
@@ -1186,6 +1660,15 @@
         "tool use"
       ],
       "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "transfer-learning",
+      "display": "Transfer Learning",
+      "aliases": [],
+      "parents": [
+        "deep-learning"
+      ],
       "reviewed": true
     },
     {
@@ -1219,10 +1702,42 @@
       "reviewed": true
     },
     {
+      "id": "vllm",
+      "display": "vLLM",
+      "aliases": [],
+      "parents": [
+        "model-serving",
+        "inference-optimization"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "vue",
       "display": "Vue",
       "aliases": [],
       "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "weaviate",
+      "display": "Weaviate",
+      "aliases": [],
+      "parents": [
+        "vector-databases"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "weights-and-biases",
+      "display": "Weights & Biases",
+      "aliases": [
+        "wandb",
+        "w&b",
+        "weights and biases"
+      ],
+      "parents": [
+        "experiment-tracking"
+      ],
       "reviewed": true
     },
     {
@@ -1232,6 +1747,15 @@
         "automation/integrations"
       ],
       "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "xgboost",
+      "display": "XGBoost",
+      "aliases": [],
+      "parents": [
+        "machine-learning"
+      ],
       "reviewed": true
     },
     {

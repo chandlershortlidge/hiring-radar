@@ -70,6 +70,11 @@
       "skill_id": "rag",
       "requirement": "required",
       "raw_text": "Interest in data, LLMs, Prompt Engineering, or Retrieval-Augmented Generation (RAG)."
+    },
+    {
+      "skill_id": "devops",
+      "requirement": "nice_to_have",
+      "raw_text": "DevOps tools"
     }
   ]
 }
