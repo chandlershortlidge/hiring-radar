@@ -1,10 +1,10 @@
 {
   "id": "golden_016",
   "split": "dev",
-  "seniority": "senior",
+  "seniority": "mid",
   "seniority_basis": "inferred",
-  "seniority_signal_legacy": "3+ years of experience in Applied AI or Machine Learning in the industry",
-  "seniority_reviewed": false,
+  "seniority_signal": "3+ years of experience in Applied AI or Machine Learning in the industry",
+  "seniority_reviewed": true,
   "german": null,
   "german_basis": null,
   "german_signal": null,

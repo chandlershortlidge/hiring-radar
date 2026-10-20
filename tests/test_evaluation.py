@@ -128,3 +128,21 @@ def test_german_and_degree_score_null_labels_too():
 def test_german_and_degree_are_none_when_unlabeled():
     s = ev.run_once([{"id": "g1", "job_description": "a", "expected": [e("a")]}], lambda t: _extraction(["a"])).summary
     assert s["german_accuracy"] is None and s["degree_accuracy"] is None
+
+
+def test_seniority_none_label_is_scored_when_the_key_is_present():
+    from app.extract import Seniority
+    goldens = [
+        {"id": "g1", "job_description": "a", "expected": [e("a")], "seniority": None},     # labeled "none"
+        {"id": "g2", "job_description": "b", "expected": [e("b")], "seniority": None},
+        {"id": "g3", "job_description": "c", "expected": [e("c")]},                         # unlabeled
+    ]
+    levels = {"a": None, "b": "senior", "c": "mid"}
+
+    def fake(text):
+        x = _extraction([text])
+        x.seniority = Seniority(levels[text], "inferred" if levels[text] else None, None)
+        return x
+
+    s = ev.run_once(goldens, fake).summary
+    assert s["seniority_n"] == 2 and s["seniority_accuracy"] == pytest.approx(0.5)  # g2 guessed a level

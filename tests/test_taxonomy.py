@@ -56,7 +56,20 @@ def test_committed_taxonomy_loads_and_covers_every_golden_label():
 
 
 def test_every_golden_has_a_valid_seniority_label():
+    # None ("no usable signal", LABELING.md) is a label; a level needs a basis, a stated
+    # level needs a signal, and a signal must be quoted from the posting.
     for p in sorted((ROOT / "evals/goldens").glob("*.json")):
         g = json.loads(p.read_text())
+        if g.get("draft"):
+            continue
+        assert "seniority" in g, p.name
+        if g["seniority"] is None:
+            assert g.get("seniority_basis") is None, p.name
+            continue
         assert g["seniority"] in ("junior", "mid", "senior"), p.name
         assert g["seniority_basis"] in ("stated", "inferred"), p.name
+        sig = g.get("seniority_signal")
+        assert sig or g["seniority_basis"] == "inferred", f"{p.name}: stated without a signal"
+        if sig:
+            norm = lambda x: " ".join(x.split()).lower()
+            assert norm(sig) in norm(g["job_description"]), f"{p.name}: signal not in text"

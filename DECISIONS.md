@@ -5,6 +5,24 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-20 — Seniority labels reviewed; "none" is a scored label
+
+The 2026-10-18 dev eval had seniority accuracy 0.45. Most of the gap was the labels, not
+the extractor: eight dev Goldens carried "mid" from the legacy project with no years, no
+"proven", no level word — the default LABELING.md forbids. Reviewed all 20 with Chandler
+against the guide: 9 → none (006 "all levels"; 007, 008, 010, 012, 013, 018, 019 no
+signal), 003 senior → mid ("proven experience"), 016 senior → mid ("3+ years"), 002 and
+011 inferred → stated (level in the title). Every label now quotes a verbatim
+`seniority_signal` (or is none); `seniority_signal_legacy` removed.
+
+The evaluator used to treat a None seniority as unlabeled and skip it, so guessing a level
+on a "none" posting never counted as a miss. Now a Golden is scored whenever it carries a
+`seniority` key, None included — the same as German and degree.
+
+Re-scoring the 2026-10-18 predictions against the new labels: 0.80. The remaining misses
+(003, 006, 009, 017) are the extractor reading "proven" and "all levels" differently from
+the guide.
+
 ## 2026-10-20 — German rule unchanged after review: a stated working language wins
 
 Considered and reverted the same day: "a posting written in German requires German, even

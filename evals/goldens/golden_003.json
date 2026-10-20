@@ -1,10 +1,10 @@
 {
   "id": "golden_003",
   "split": "dev",
-  "seniority": "senior",
+  "seniority": "mid",
   "seniority_basis": "inferred",
-  "seniority_signal_legacy": "experienced... proven experience building AI-driven or agentic systems",
-  "seniority_reviewed": false,
+  "seniority_signal": "proven experience building AI-driven or agentic systems",
+  "seniority_reviewed": true,
   "german": null,
   "german_basis": null,
   "german_signal": null,

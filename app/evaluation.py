@@ -27,8 +27,9 @@ class GoldenScore:
     fn: list[str]
     requirement_matches: int
     error: str | None = None
-    seniority_expected: str | None = None   # None = Golden has no seniority label; not scored
+    seniority_expected: str | None = None   # None is a label ("no usable signal") when seniority_labeled
     seniority_predicted: str | None = None
+    seniority_labeled: bool = False         # the Golden carries a seniority key; only then is it scored
     # German and degree: scored whenever the Golden carries the key, so "not mentioned"
     # (None) is a label like any other. Each is a tuple so a mismatch in any part counts.
     german: tuple | None = None             # (expected, predicted) or None = unlabeled
@@ -37,7 +38,8 @@ class GoldenScore:
 
 def score_golden(golden_id: str, expected: list[dict], predicted: list[dict],
                  seniority_expected: str | None = None, seniority_predicted: str | None = None,
-                 german: tuple | None = None, degree: tuple | None = None) -> GoldenScore:
+                 german: tuple | None = None, degree: tuple | None = None,
+                 seniority_labeled: bool | None = None) -> GoldenScore:
     exp = {e["skill_id"]: e["requirement"] for e in expected}
     pred = {p["skill_id"]: p["requirement"] for p in predicted}
     tp = sorted(exp.keys() & pred.keys())
@@ -49,6 +51,7 @@ def score_golden(golden_id: str, expected: list[dict], predicted: list[dict],
         requirement_matches=sum(1 for s in tp if exp[s] == pred[s]),
         seniority_expected=seniority_expected,
         seniority_predicted=seniority_predicted,
+        seniority_labeled=seniority_expected is not None if seniority_labeled is None else seniority_labeled,
         german=german,
         degree=degree,
     )
@@ -96,7 +99,7 @@ def summarize(scores: list[GoldenScore], expected_by_id: dict[str, list[dict]],
     recall = tp / (tp + fn) if tp + fn else None
     f1 = (2 * precision * recall / (precision + recall)) if precision and recall else None
     req_acc = sum(s.requirement_matches for s in scores) / tp if tp else None
-    labeled = [s for s in scores if s.seniority_expected is not None]
+    labeled = [s for s in scores if s.seniority_labeled]
     sen_acc = (sum(1 for s in labeled if s.seniority_predicted == s.seniority_expected) / len(labeled)
                if labeled else None)
 
@@ -157,6 +160,7 @@ def run_once(goldens: list[dict], extract_fn) -> RunResult:
             s = score_golden(g["id"], g["expected"], pred,
                              seniority_expected=g.get("seniority"),
                              seniority_predicted=sen.level if sen else None,
+                             seniority_labeled="seniority" in g,
                              german=(g["german"], ger.requirement if ger else None) if "german" in g else None,
                              degree=((g["degree"], bool(g.get("degree_or_equivalent"))),
                                      (deg.level, deg.or_equivalent) if deg else (None, False)) if "degree" in g else None)
@@ -164,7 +168,7 @@ def run_once(goldens: list[dict], extract_fn) -> RunResult:
             pred = []
             predictions[g["id"]] = {"error": f"{type(e).__name__}: {e}"}
             s = GoldenScore(g["id"], [], [], sorted(x["skill_id"] for x in g["expected"]), 0, error=str(e),
-                            seniority_expected=g.get("seniority"),
+                            seniority_expected=g.get("seniority"), seniority_labeled="seniority" in g,
                             german=(g["german"], None) if "german" in g else None,
                             degree=((g["degree"], bool(g.get("degree_or_equivalent"))), (None, False)) if "degree" in g else None)
         predicted_by_id[g["id"]] = pred
