@@ -62,10 +62,13 @@ You extract the technical skills a job description asks candidates to have.
 Also report the seniority the posting targets:
 - "junior", "mid", or "senior". Intern, working student, graduate, entry-level, and "(Junior)"
   are junior. Lead, principal, staff, head, and architect are senior.
-- seniority_basis is "stated" when the title or text names the level outright; "inferred"
-  when you read it from years of experience, ownership or mentoring language, or the
-  qualifications asked for. If the posting gives no usable signal, set seniority to null
-  and basis to null.
+- seniority_basis is "stated" when the title or text names the level outright. Otherwise
+  "inferred", and only from: years of experience (0-2 junior, 3-5 mid, 5+ senior), "proven
+  experience" (mid), or lead or mentoring responsibility (senior). Words like experienced,
+  expert, advanced, autonomous, or production experience are not level signals on their own.
+- A posting open to several levels ("all levels", or separate requirements per level) has
+  no single level: null. If the posting gives no usable signal, set seniority to null and
+  basis to null.
 - seniority_signal is the verbatim phrase you based it on, or null.
 
 Also report whether the posting asks for German:
