@@ -147,3 +147,14 @@ def test_select_feeds_by_label():
     assert poll.select_feeds(feeds, ["startup_jobs:AI engineer", "arbeitnow"]) == [feeds[0], feeds[2]]
     with pytest.raises(ValueError, match="ashby:nope"):
         poll.select_feeds(feeds, ["ashby:nope"])
+
+
+def test_extract_pending_sends_the_title_with_the_text(conn):
+    seen = []
+
+    def fn(text, tax, model):
+        seen.append(text)
+        return fake_extract([])(text, tax, model)
+
+    pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None)
+    assert seen and all(t.startswith("AI Engineer\n\nPython and RAG job") for t in seen)

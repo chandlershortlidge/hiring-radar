@@ -309,3 +309,17 @@ def test_tool_schema_requires_german_and_degree_fields():
 def test_prompt_keeps_degrees_and_languages_out_of_skills():
     # Rule 2 still excludes them from skills; the attribute blocks are additive.
     assert "degrees, years of experience" in ex.PRINCIPLES and "Also report the degree" in ex.PRINCIPLES
+
+
+def test_extraction_input_puts_the_title_on_top():
+    assert ex.extraction_input("Senior AI Engineer", "We build agents.") == "Senior AI Engineer\n\nWe build agents."
+
+
+def test_extraction_input_leaves_text_that_already_opens_with_the_title():
+    text = "AI Engineering - Workingstudent\ncognee · Berlin\n\nWe're looking for builders."
+    assert ex.extraction_input("AI Engineering - Workingstudent", text) == text
+
+
+def test_extraction_input_without_a_title_is_the_text():
+    assert ex.extraction_input(None, "Python") == "Python"
+    assert ex.extraction_input("  ", "Python") == "Python"

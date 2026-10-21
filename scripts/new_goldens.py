@@ -24,6 +24,9 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
+from app.extract import extraction_input  # noqa: E402
 GOLDENS = ROOT / "evals" / "goldens"
 DB = Path(os.environ.get("HIRING_RADAR_DB", ROOT / "data" / "hiring-radar.db"))
 
@@ -50,14 +53,16 @@ def existing() -> tuple[set[str], int]:
     return hashes, top
 
 
-def draft(gid: str, text: str) -> dict:
+def draft(gid: str, text: str, title: str | None = None) -> dict:
+    """source_sha256 hashes the stored description (the dedup key); job_description is what
+    the extractor is sent, title on top, so the eval sees the same input as production."""
     return {
         "id": gid, "split": "heldout", "draft": True,
         "seniority": None, "seniority_basis": None, "seniority_signal": None,
         "german": None, "german_basis": None, "german_signal": None,
         "degree": None, "degree_requirement": None, "degree_or_equivalent": False, "degree_signal": None,
         "source_sha256": sha(text),
-        "job_description": text,
+        "job_description": extraction_input(title, text),
         "expected": [],
     }
 
@@ -91,7 +96,7 @@ def main(argv=None):
         print(f"{gid}  job {r['id']}  {r['company']} · {r['title']}")
         if not args.dry_run:
             path = GOLDENS / f"{gid}.json"
-            path.write_text(json.dumps(draft(gid, r["description_text"]), indent=2, ensure_ascii=False) + "\n")
+            path.write_text(json.dumps(draft(gid, r["description_text"], r["title"]), indent=2, ensure_ascii=False) + "\n")
     if not args.dry_run:
         print("Label each file per evals/LABELING.md, then delete the \"draft\" key.")
 

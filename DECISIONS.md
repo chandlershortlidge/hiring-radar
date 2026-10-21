@@ -5,6 +5,24 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-21 — The extractor sees the job title (HIR-57)
+
+`extract_pending` sent the model `description_text` only. Every feed adapter keeps the title
+in `job.title`, so for feed jobs the model never saw "Senior …", "Junior …" or "Werkstudent …",
+which LABELING.md treats as the strongest seniority signal. The dev Goldens all open with
+their title (screenshot and legacy origin), so the dev seniority score (0.82–0.85) measured
+an input production never sent.
+
+Decision: `extract.extraction_input(title, text)` puts the title on top, unless the text
+already opens with it. `INPUT_FORMAT` is part of `extractor_version`, so this re-extracts
+every job. `new_goldens.py` drafts with the same input; `source_sha256` still hashes the
+stored description, because that is the dedup key against the DB.
+
+Held-out Goldens built from feed text had no title line. golden_021 (Almedia) now opens
+with "Junior Data Scientist", and that title is its seniority signal (it was the indirect
+"Most Junior Data Scientists…" sentence). 022–024 need the same treatment from their job
+rows. This is an input-format fix, not tuning, so the held-out edits are allowed.
+
 ## 2026-10-21 — Jobs with under 400 characters of text are left out of the chart
 
 After the taxonomy v4 re-extract, four jobs had zero skills: 37 Enpal, 38 eduBITES, 39 POS

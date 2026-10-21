@@ -13,7 +13,7 @@ not raised; re-running is safe.
 import sqlite3
 from dataclasses import dataclass, field
 
-from app.extract import Extraction, extractor_version
+from app.extract import Extraction, extraction_input, extractor_version
 from app.taxonomy import Taxonomy
 
 
@@ -36,7 +36,7 @@ def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int |
 
     Jobs stamped 'legacy' are never re-extracted: they carry the old summary as text, not
     the posting, so a fresh extraction would be worse than the labels they have."""
-    sql = ("SELECT id, description_text FROM job"
+    sql = ("SELECT id, title, description_text FROM job"
            " WHERE (extracted_version IS NULL OR extracted_version != ?) AND extracted_version IS NOT 'legacy'")
     params: list = [version]
     if job_ids:
@@ -80,7 +80,7 @@ def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn, model: 
     for row in jobs_needing_extraction(conn, version, limit, job_ids):
         report.attempted += 1
         try:
-            ex = extract_fn(row["description_text"], tax, model)
+            ex = extract_fn(extraction_input(row["title"], row["description_text"]), tax, model)
         except Exception as e:  # keep going; the job stays pending for the next run
             report.failed.append((row["id"], f"{type(e).__name__}: {e}"))
             log(f"  job {row['id']}: FAILED {type(e).__name__}: {str(e)[:200]}")

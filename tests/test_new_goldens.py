@@ -43,3 +43,9 @@ def test_drafts_are_empty_heldout_and_skipped_by_the_eval(tmp_path, monkeypatch)
     assert not (goldens / "golden_009.json").exists()  # English and legacy jobs not picked
     monkeypatch.setattr(re_, "ROOT", tmp_path)  # load_goldens reads ROOT/evals/goldens
     assert [g["id"] for g in re_.load_goldens("heldout")] == []
+
+
+def test_draft_puts_the_title_on_top_but_hashes_the_stored_text():
+    d = ng.draft("golden_099", "Python and RAG", "Senior AI Engineer")
+    assert d["job_description"] == "Senior AI Engineer\n\nPython and RAG"
+    assert d["source_sha256"] == ng.sha("Python and RAG")
