@@ -191,6 +191,7 @@ Three layout rules:
   `CITIES` (recognized) and `ACTIVE_CITIES` (collected; Berlin only until the held-out eval
   passes). Change `ACTIVE_CITIES` only on purpose (DECISIONS 2026-10-19).
 - `skill_mention` holds one extraction per job (the latest). Re-extraction replaces.
+  `extraction_reject` (items that failed validation) follows the same rule.
 
 ## Reporting a run
 

@@ -158,3 +158,20 @@ def test_extract_pending_sends_the_title_with_the_text(conn):
 
     pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None)
     assert seen and all(t.startswith("AI Engineer\n\nPython and RAG job") for t in seen)
+
+
+def test_store_extraction_keeps_rejects_and_replaces_them_on_re_extract(conn):
+    job_id = conn.execute("SELECT id FROM job ORDER BY id LIMIT 1").fetchone()[0]
+    v = extractor_version(TAX, "m")
+    first = Extraction(extractor_version=v, taxonomy_version=TAX.version, rejected=[
+        {"item": {"skill_id": "python", "requirement": "required", "raw_text": "Pythn"}, "reason": "raw_text not found in job text"},
+        {"item": "junk", "reason": "not an object"},
+    ])
+    pipeline.store_extraction(conn, job_id, first)
+    rows = conn.execute("SELECT reason, skill_id, raw_text, extractor_version FROM extraction_reject"
+                        " WHERE job_id=? ORDER BY id", (job_id,)).fetchall()
+    assert [tuple(r) for r in rows] == [("raw_text not found in job text", "python", "Pythn", v),
+                                        ("not an object", None, None, v)]
+
+    pipeline.store_extraction(conn, job_id, Extraction(extractor_version=v, taxonomy_version=TAX.version))
+    assert conn.execute("SELECT count(*) FROM extraction_reject WHERE job_id=?", (job_id,)).fetchone()[0] == 0
