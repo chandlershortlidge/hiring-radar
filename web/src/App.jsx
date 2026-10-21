@@ -66,6 +66,7 @@ export default function App() {
             {stats.open > 0 && <><span><abbr title="Open jobs that ask for German outright or are written in German">{stats.open_german_required} need German</abbr></span><span>·</span>
             <span><abbr title="Open jobs that name a degree, don't mark it optional, and don't accept equivalent experience">{stats.open_degree_required} need a degree</abbr></span><span>·</span></>}
             {stats.legacy > 0 && <><span><abbr title="Imported from the old project with the old extractor's skills; listed but not counted in the chart">{stats.legacy} legacy, not charted</abbr></span><span>·</span></>}
+            {stats.too_short > 0 && <><span><abbr title="Only a fragment of the posting was stored; listed but not counted in the chart">{stats.too_short} too short, not charted</abbr></span><span>·</span></>}
             <span>{stats.last_updated ? `last updated ${timeAgo(stats.last_updated)} (${dateTime(stats.last_updated)})` : "no jobs yet"}</span>
           </p>
         )}

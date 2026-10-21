@@ -5,6 +5,19 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-21 — Jobs with under 400 characters of text are left out of the chart
+
+After the taxonomy v4 re-extract, four jobs had zero skills: 37 Enpal, 38 eduBITES, 39 POS
+TUNING (old screenshot imports) and 43 Mercanis, each with 249–343 characters of stored
+text. That's a fragment, not a posting: the screenshot transcript was cut off (HIR-9) or a
+teaser was stored. They still counted in the chart's denominator, so every share was
+slightly low.
+
+`queries.MIN_TEXT_CHARS = 400`: below that a job is out of skill frequencies and city
+totals, like legacy imports, and the job list shows it greyed as "short". Re-adding the full
+posting by link or text replaces it through dedup. 400 sits well below any real posting
+(the dev Goldens are 1,500+) and above every fragment seen so far.
+
 ## 2026-10-20 — Taxonomy v4: proposed-skill batch; a label earns an entry at 3 jobs
 
 First review of the proposed-skill queue: 247 labels, 387 rows, 88 jobs; 182 labels in a

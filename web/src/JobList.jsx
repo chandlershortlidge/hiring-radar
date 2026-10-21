@@ -72,9 +72,9 @@ function Row({ job: j, open, onToggle, profile, taxonomy }) {
   const cov = profile ? coverage(profile, (j.required_skills || []).map((id) => ({ skill_id: id, requirement: "required" }))) : null;
   return (
     <>
-      <div className={`row${open ? " open-row" : ""}${j.legacy ? " legacy" : ""}`} onClick={onToggle} role="button" tabIndex={0} aria-expanded={open}
+      <div className={`row${open ? " open-row" : ""}${j.legacy || j.too_short ? " legacy" : ""}`} onClick={onToggle} role="button" tabIndex={0} aria-expanded={open}
         onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onToggle(); } }}>
-        <span className="co">{j.company}{j.legacy && <span className="src" style={{ marginLeft: 6 }} title="Imported from the old project with its skills; not in the chart">legacy</span>}</span>
+        <span className="co">{j.company}{j.legacy && <span className="src" style={{ marginLeft: 6 }} title="Imported from the old project with its skills; not in the chart">legacy</span>}{j.too_short && <span className="src" style={{ marginLeft: 6 }} title="Only a fragment of the posting was stored; not in the chart">short</span>}</span>
         <span className="ti">{profile && (flag(profile, "german", j) === "miss" || flag(profile, "degree", j) === "miss") && <span className="fit miss" title={[flag(profile, "german", j) === "miss" && "needs German", flag(profile, "degree", j) === "miss" && "needs a degree you don't list"].filter(Boolean).join(" · ")}>!</span>}{cov && <span className={`fit${cov.covered === cov.total ? " full" : ""}`} title={`You cover ${cov.covered} of ${cov.total} required skills`}>{cov.covered}/{cov.total}</span>}{j.title}{j.seniority && <span className="dim" style={{ marginLeft: 8, fontSize: 12 }}>{cap(j.seniority)}</span>}</span>
         <span className="ci muted">{j.city || "—"}</span>
         <span className="fs muted" style={{ fontSize: 13 }}>{timeAgo(j.first_seen)}</span>
@@ -137,6 +137,9 @@ function Detail({ job, d, profile, taxonomy, cov }) {
           {d.german && <span className={flag(profile, "german", d)}>{germanLine(d)}{d.german_signal && <span className="dim"> · “{d.german_signal}”</span>}</span>}
           {d.degree && <span className={flag(profile, "degree", d)}>{degreeLine(d)}{d.degree_signal && <span className="dim"> · “{d.degree_signal}”</span>}</span>}
         </div>
+      )}
+      {d.too_short && (
+        <div className="cover">Only a fragment of this posting was stored (a cut-off screenshot or a teaser), so it is <b>left out of the chart</b>. Add the full posting via a link or pasted text to replace it.</div>
       )}
       {d.legacy && (
         <div className="cover">Imported from the old project with the old extractor's skills and no posting text, so it is <b>left out of the chart</b> and never re-extracted. Add the posting via a link or screenshot to replace it.</div>
