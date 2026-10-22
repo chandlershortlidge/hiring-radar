@@ -7,7 +7,7 @@ import { coverage } from "./profile.js";
 const SORTS = { newest: "Newest first", oldest: "Oldest first", reposts: "Most reposted", company: "Company A–Z" };
 const PAGE = 20;
 
-export default function JobList({ filters, setFilters, skillName, profile, taxonomy, refreshKey, openJobId, onOpened }) {
+export default function JobList({ filters, setFilters, skillName, profile, taxonomy, refreshKey, openJobId, onOpened, onOpenPage }) {
   const [sort, setSort] = useState("newest");
   const [page, setPage] = useState({ jobs: [], total: 0 });
   const [open, setOpen] = useState(null);
@@ -54,7 +54,7 @@ export default function JobList({ filters, setFilters, skillName, profile, taxon
         <div className="row-head"><span>Company</span><span>Title</span><span>City</span><span>First seen</span><span>Status</span><span>Sources</span><span /></div>
         {page.jobs.map((j) => (
           <Row key={j.id} job={j} open={open === j.id} onToggle={() => setOpen(open === j.id ? null : j.id)}
-            profile={profile} taxonomy={taxonomy} />
+            profile={profile} taxonomy={taxonomy} onOpenPage={onOpenPage} />
         ))}
         {!loading && !page.jobs.length && <div className="empty">No jobs match. Widen the time window or clear the skill filter.</div>}
       </div></div>
@@ -66,7 +66,7 @@ export default function JobList({ filters, setFilters, skillName, profile, taxon
   );
 }
 
-function Row({ job: j, open, onToggle, profile, taxonomy }) {
+function Row({ job: j, open, onToggle, profile, taxonomy, onOpenPage }) {
   const [detail, setDetail] = useState(null);
   useEffect(() => { if (open && !detail) api.job(j.id).then(setDetail); }, [open, detail, j.id]);
   const cov = profile ? coverage(profile, (j.required_skills || []).map((id) => ({ skill_id: id, requirement: "required" }))) : null;
@@ -86,7 +86,7 @@ function Row({ job: j, open, onToggle, profile, taxonomy }) {
         <span className="meta-m muted">{j.city || "—"} · {timeAgo(j.first_seen)} · {cap(j.status)}{j.repost_count > 0 ? ` · reposted ×${j.repost_count}` : ""} · {j.sources.map((s) => sourceCode(s.source)[0]).join(" ")}</span>
         <button type="button" className="exp" aria-label={`${open ? "Hide" : "Show"} skills for ${j.company}`} onClick={(e) => { e.stopPropagation(); onToggle(); }}>{open ? <Up /> : <Down />}</button>
       </div>
-      {open && <Detail job={j} d={detail} profile={profile} taxonomy={taxonomy} cov={cov} />}
+      {open && <Detail job={j} d={detail} profile={profile} taxonomy={taxonomy} cov={cov} onOpenPage={onOpenPage} />}
     </>
   );
 }
@@ -99,7 +99,9 @@ function flag(profile, what, j) {
   return hard && DEGREE_RANK[profile.degree || ""] < DEGREE_RANK[j.degree] ? "miss" : "ok";
 }
 
-function Detail({ job, d, profile, taxonomy, cov }) {
+// Also rendered by JobPage, which passes no onOpenPage: it is already the page, and its header
+// carries the original-posting link, so neither link is repeated here.
+export function Detail({ job, d, profile, taxonomy, cov, onOpenPage }) {
   const [quote, setQuote] = useState(null);
   if (!d) return <div className="detail"><span className="dim">Loading…</span></div>;
   const req = d.skills.filter((s) => s.requirement === "required");
@@ -153,7 +155,10 @@ function Detail({ job, d, profile, taxonomy, cov }) {
           {d.seniority && <><span>·</span><span>Seniority {d.seniority} ({d.seniority_basis}{d.seniority_signal ? `: “${d.seniority_signal}”` : ""})</span></>}
           <span>·</span><span>Sources: {d.sources.map((s) => `${sourceCode(s.source)[1]} (${dateShort(s.first_seen)})`).join(", ")}</span>
         </div>
-        {url && <a href={url} target="_blank" rel="noopener">Open original posting<Ext /></a>}
+        <span className="links">
+          {onOpenPage && <a href={`/jobs/${d.id}`} onClick={(e) => { e.preventDefault(); onOpenPage(d.id); }} title="Our stored copy of the posting; keeps working after the original is taken down">Permanent page</a>}
+          {url && onOpenPage && <a href={url} target="_blank" rel="noopener">Open original posting<Ext /></a>}
+        </span>
       </div>
     </div>
   );

@@ -30,6 +30,7 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
 .brand { display: flex; align-items: center; gap: 10px; }
 .brand b { font: 600 16px var(--mono); }
 .brand .sub { color: var(--ink-3); font-size: 13px; }
+.brand .home { display: flex; align-items: center; gap: 10px; text-decoration: none; }
 .hdr-actions { display: flex; align-items: center; gap: 10px; }
 .pill { display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; border: 1px solid var(--line); border-radius: 16px; background: var(--paper); color: var(--ink-2); font-size: 13px; }
 .pill.on { border-color: var(--ink); color: var(--ink); }
@@ -164,6 +165,19 @@ select.sel { padding-right: 28px; }
 .cover .miss { color: var(--ink); font-weight: 600; }
 .cover .miss::before { content: "! "; }
 .row .ti .fit.miss { border-color: var(--ink); color: var(--ink); font-weight: 600; }
+/* job page (/jobs/{id}) */
+.page > a { align-self: flex-start; font-size: 13px; }
+.page-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 12px 24px; padding: 20px 20px 16px; }
+.page-head h1 { margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
+.page-head .lede { margin: 4px 0 0; color: var(--ink-2); }
+.page-links { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; font-size: 12.5px; }
+.page-links a { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 500; }
+.page .detail { box-shadow: none; border-top: 1px solid var(--line); padding-top: 16px; }
+.posting-wrap { padding: 16px 20px 24px; display: flex; flex-direction: column; gap: 10px; }
+.posting-wrap h4 { margin: 0; font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+.posting { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; font: 14px/1.55 var(--sans); max-width: 76ch; }
+.detail .meta .links { display: flex; flex-wrap: wrap; gap: 16px; }
+
 .jobs-foot { display: flex; align-items: center; justify-content: center; gap: 12px; padding: 14px 20px; color: var(--ink-2); font-size: 12.5px; }
 .empty { padding: 32px 20px; text-align: center; color: var(--ink-3); font-size: 13px; }
 
@@ -209,6 +223,7 @@ select.sel { padding-right: 28px; }
   .hdr-in, .main { padding-left: 16px; padding-right: 16px; }
   .brand .sub, .btn .lbl, .pill .lbl { display: none; }
   .chart { padding: 16px; } .chart h1 { font-size: 17px; }
+  .page-head { padding: 16px; } .page-head h1 { font-size: 17px; } .page-links { align-items: flex-start; } .posting-wrap { padding: 16px; }
   .bars-head, .bar-row { grid-template-columns: 120px minmax(0,1fr); gap: 10px; }
   .search input { width: 100%; }
   .tbl-in { min-width: 0; }
