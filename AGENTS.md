@@ -142,7 +142,9 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `app/api.py` — FastAPI routes over `queries` plus the add-a-job paths (url / text /
   screenshot), which run intake + extraction for the one job added. Validates every filter
   value (422), one SQLite connection per request, model client created lazily.
-- `web/src/` — `App.jsx` (filters, header, stats, controls), `SkillChart.jsx`,
+- `web/src/` — `App.jsx` (filters, header, stats, controls, and the one route: `/jobs/{id}`
+  read from the address bar), `JobPage.jsx` (a job's own page: detail + the stored posting
+  text), `SkillChart.jsx`,
   `CompareChart.jsx`, `JobList.jsx` (rows + expanded detail with quotes), the three drawers
   (`AddJobDrawer`, `ReviewDrawer`, `ProfileDrawer`), `profile.js` (localStorage profile +
   set-overlap coverage; the server never sees it), `api.js`, `format.js`.

@@ -247,7 +247,8 @@ def job_detail(conn: sqlite3.Connection, job_id: int, now: str) -> dict | None:
     r = conn.execute(
         "SELECT id, company, title, city, location_raw, seniority, seniority_basis, seniority_signal,"
         " german, german_basis, german_signal, degree, degree_requirement, degree_or_equivalent, degree_signal,"
-        " first_seen, last_seen, repost_count, extracted_version, length(description_text) AS text_len FROM job WHERE id = ?", (job_id,)).fetchone()
+        " first_seen, last_seen, repost_count, extracted_version, description_text, length(description_text) AS text_len"
+        " FROM job WHERE id = ?", (job_id,)).fetchone()
     if not r:
         return None
     d = dict(r)
