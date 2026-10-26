@@ -300,3 +300,21 @@ def test_join_fetch_dedups_overlapping_pages(monkeypatch):
     out = join.fetch("dexter-health")
     job_pages = [u for u in fetched if "?page=" not in u]
     assert len(job_pages) == 3 == len(out)        # page 2's job was already on page 1
+
+
+def test_remote_flags_become_part_of_the_location():
+    """arbeitnow `remote`, startup.jobs `workplace_type`, JSearch `job_is_remote` → geo sees them."""
+    from app.geo import place_of
+    from app.sources import jsearch
+    item = {"slug": "s", "company_name": "Acme", "title": "AI Engineer", "description": "<p>x</p>",
+            "url": "u", "location": "Munich", "remote": True, "created_at": 1760000000}
+    assert arbeitnow.parse({"data": [item]})[0].location_raw == "Munich (remote, Germany)"
+    assert place_of("Munich (remote, Germany)") == "Remote (EU)"
+    sj = {"id": 1, "title": "AI Engineer", "description": "x", "company_name": "Acme", "url": "u",
+          "workplace_type": "remote", "location": {"city": "Hamburg", "country": "Germany"}}
+    assert startup_jobs.parse({"data": [sj]})[0].location_raw == "Hamburg (remote, Germany)"
+    js = {"job_id": "abc", "job_title": "AI Engineer", "job_description": "x", "employer_name": "Acme",
+          "job_city": None, "job_location": None, "job_country": "DE", "job_is_remote": True}
+    assert jsearch.parse({"data": [js]})[0].location_raw == "Remote (Germany)"
+    assert jsearch.parse({"data": [{**js, "job_country": "US"}]})[0].location_raw == "Remote (US)"
+    assert place_of("Remote (US)") is None

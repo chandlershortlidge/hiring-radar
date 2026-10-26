@@ -2,14 +2,14 @@ import { useState } from "react";
 import Drawer from "./Drawer.jsx";
 import { api } from "./api.js";
 import { Check, Info, Warn } from "./icons.jsx";
-import { CITIES, sourceCode, timeAgo } from "./format.js";
+import { PLACES, sourceCode, timeAgo } from "./format.js";
 
 const FOUND = { linkedin: "LinkedIn", indeed: "Indeed", company_site: "Company site", referral: "Referral", other: "Other" };
 const TABS = { url: "Paste a link", text: "Paste text", screenshot: "Upload screenshot" };
 
 export default function AddJobDrawer({ onClose, onAdded, onViewJob }) {
   const [tab, setTab] = useState("url");
-  const [f, setF] = useState({ url: "", text: "", company: "", title: "", location: CITIES[0], found_via: "linkedin", file: null });
+  const [f, setF] = useState({ url: "", text: "", company: "", title: "", location: PLACES[0], found_via: "linkedin", file: null });
   const [busy, setBusy] = useState(false);
   const [res, setRes] = useState(null);
   const set = (k) => (e) => setF((x) => ({ ...x, [k]: e.target.value }));
@@ -62,7 +62,7 @@ export default function AddJobDrawer({ onClose, onAdded, onViewJob }) {
           <div className="field"><label htmlFor="co">Company{needsMeta ? "" : " (optional)"}</label><input id="co" value={f.company} onChange={set("company")} /></div>
           <div className="field"><label htmlFor="ti">Title{needsMeta ? "" : " (optional)"}</label><input id="ti" value={f.title} onChange={set("title")} /></div>
           <div className="field"><label htmlFor="ci">City</label>
-            <select id="ci" value={f.location} onChange={set("location")}>{CITIES.map((c) => <option key={c}>{c}</option>)}</select></div>
+            <select id="ci" value={f.location} onChange={set("location")}>{PLACES.map((c) => <option key={c}>{c}</option>)}</select></div>
           <div className="field"><label htmlFor="fv">Found via</label>
             <select id="fv" value={f.found_via} onChange={set("found_via")}>{Object.entries(FOUND).map(([k, v]) => <option key={k} value={k}>{v}</option>)}</select></div>
         </div>

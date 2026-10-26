@@ -185,3 +185,10 @@ def test_ingest_report_counts(conn):
     # a1 and a2 in the same fetch are concurrent duplicates: merged, not a repost.
     assert (r.seen, r.new, r.still_listed, r.reposts, r.merged, r.skipped_title, r.skipped_city) == (5, 1, 1, 0, 1, 1, 1)
     assert r.new_job_ids == [1]
+
+
+def test_eu_remote_postings_are_ingested_as_remote_eu(conn):
+    """DECISIONS 2026-10-26: feeds keep EU-remote postings under the place "Remote (EU)"."""
+    assert ingest_one(conn, posting(sid="r1", location="Remote (Germany)")).startswith("new:")
+    assert conn.execute("SELECT city FROM job").fetchone()["city"] == "Remote (EU)"
+    assert ingest_one(conn, posting(sid="r2", company="Other Co", location="Remote - US")) == "skipped_city"

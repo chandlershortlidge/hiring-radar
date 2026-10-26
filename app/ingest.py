@@ -23,7 +23,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
 from app import dedup
-from app.geo import active_city, city_of
+from app.geo import active_place, place_of
 from app.sources import Posting
 
 # A title is in scope only when it names an AI/ML domain AND a technical role. Either half
@@ -94,8 +94,8 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
     when = when or now_iso()
     if not trust_title and not in_scope_title(p.title):
         return "skipped_title"
-    city = city_of(p.location_raw)
-    if require_city and active_city(p.location_raw) is None:
+    city = place_of(p.location_raw, p.title, p.description_text)
+    if require_city and active_place(p.location_raw, p.title, p.description_text) is None:
         return "skipped_city"
 
     with conn:

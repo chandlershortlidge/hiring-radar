@@ -156,11 +156,11 @@ def test_not_found_board_not_polled_says_what_to_add(conn):
 
 
 def test_not_found_board_polled_but_filter_drops_it(conn):
-    board = [posting(source="greenhouse", sid="4012345", title="Account Executive, AI", location="Remote (Germany)", url=GH_URL)]
+    board = [posting(source="greenhouse", sid="4012345", title="Account Executive, AI", location="Remote (US)", url=GH_URL)]
     r = check_url(conn, GH_URL, FEEDS, fetch_page=no_fetch, fetch_board=lambda s, t: board)
     assert r.verdict == "not_found"
     assert "is polled; ingest would drop it" in r.diagnosis
-    assert "fails the title filter" in r.diagnosis and "maps to no tracked city" in r.diagnosis
+    assert "fails the title filter" in r.diagnosis and "is neither a tracked city nor EU-remote" in r.diagnosis
 
 
 def test_not_found_board_polled_and_posting_passes_is_a_feed_question(conn):
@@ -203,7 +203,7 @@ def test_diagnose_is_pure_and_names_the_filter():
     assert "fails the title filter" in diagnose(p, None, FEEDS, None)
     assert "no feed can reach it" in diagnose(p, None, FEEDS, None)
     sf = Posting("url", "", "u", "Acme", "AI Engineer", "San Francisco, CA", JD)
-    assert "maps to San Francisco, which is tracked but not active (active: Berlin)" in diagnose(sf, None, FEEDS, None)
+    assert "maps to San Francisco, which is tracked but not active (active: Berlin, Remote (EU))" in diagnose(sf, None, FEEDS, None)
 
 
 def test_board_without_company_uses_board_token_for_the_match(conn):
