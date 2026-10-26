@@ -5,6 +5,38 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-26 — EU-remote postings are collected as the place "Remote (EU)"
+
+Chandler applies to any remote job he can take from Berlin, and /check-url rejected one
+(Kake, "Senior AI/LLM Engineer (Python) - Remote": no JSON-LD, so no location, so "no
+tracked city"). Until now geo dropped every remote posting on purpose (2026-10-16 below).
+
+- **One extra active place, `geo.REMOTE_EU = "Remote (EU)"`,** stored in `job.city` like a
+  city, so the dashboard filters it and the skills of remote roles stay separable from
+  Berlin's. A city match wins ("Berlin or remote" is Berlin).
+- **What counts:** a remote location naming an EU-wide region or Germany (Europe, EU, EEA,
+  EMEA, DACH, CET/CEST, Germany, Deutschland, bundesweit), or naming no region at all
+  ("Remote", "Anywhere") unless the description restricts residence to a non-EU country
+  ("must be located in the US", "authorized to work in the US", "US only").
+- **What doesn't:** remote tied to one other country ("Remote – Spain", "Remote, US",
+  "Remote (UK)"): those usually need residence or an employer entity there. Revisit if the
+  url_check log shows many of them worth having.
+- **Empty location** (careers pages without JSON-LD): the title's remote part, then strong
+  description phrases ("fully remote", "remote-first", "work from anywhere"). Plain
+  "remote" in a description is not enough: hybrid postings mention remote days.
+- **Sources now carry their remote flag into `location_raw`:** JSON-LD `TELECOMMUTE` +
+  `applicantLocationRequirements`, arbeitnow `remote` (German board → "(remote, Germany)"),
+  startup.jobs `workplace_type`, JSearch `job_is_remote` + `job_country` (field name from
+  JSearch docs, not yet in a recorded fixture). JOIN already did.
+- **Accepted risk:** a bare "Remote" on a US company's board with no residence sentence in
+  the JD gets in. Time-zone overlap ("5h with PST") is not treated as a residence rule.
+- **Extraction caveat:** the Goldens are all Berlin postings; extraction quality on
+  remote-EU descriptions is unmeasured, the same caveat as SF.
+
+Compare mode stays Berlin vs San Francisco; "Remote (EU)" is a filter button.
+
+---
+
 ## 2026-10-21 — Jobs with under 400 characters of text are left out of the chart
 
 After the taxonomy v4 re-extract, four jobs had zero skills: 37 Enpal, 38 eduBITES, 39 POS
@@ -396,7 +428,7 @@ same stage-2 call that returns skills — no extra model call.
   startup.jobs (needs a free key; skipped without one). Each adapter's `parse` is pure and
   pinned to a recorded fixture. Adapters return everything; ingest filters.
 - **Filters at ingest, not fetch.** Title regex (AI/ML/LLM/agent/…) and tracked-city match
-  (`app/geo.py`). Remote-only and untracked-city postings are dropped. Manual adds skip
+  (`app/geo.py`). Remote-only and untracked-city postings are dropped (remote: superseded 2026-10-26). Manual adds skip
   the city filter.
 - **Dedup is three checks in order.** (1) same source + same source id → still listed,
   bump `last_seen`, no model call. (2) same normalized company AND description similarity

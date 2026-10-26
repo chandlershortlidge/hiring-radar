@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { api } from "./api.js";
-import { CITIES, DEGREE_FILTERS, GERMAN_FILTERS, SENIORITIES, cap, dateTime, timeAgo } from "./format.js";
+import { CITIES, PLACES, DEGREE_FILTERS, GERMAN_FILTERS, SENIORITIES, cap, dateTime, timeAgo } from "./format.js";
 import { useProfile } from "./profile.js";
 import { Compare, Person, Plus, Radar } from "./icons.jsx";
 import SkillChart from "./SkillChart.jsx";
@@ -44,7 +44,7 @@ export default function App() {
   const toggleSen = (s) => set({ seniorities: filters.seniorities.includes(s) ? filters.seniorities.filter((x) => x !== s) : [...filters.seniorities, s] });
   const viewJob = (id) => { setDrawer(null); if (pageJob) closePage(); set({ skill: null, query: "", window: "all" }); setJumpTo(id); };
 
-  const cityLabel = filters.compare ? `${CITIES.join(" + ")}` : filters.cities.length ? filters.cities.join(" + ") : CITIES.join(" + ");
+  const cityLabel = filters.compare ? `${CITIES.join(" + ")}` : filters.cities.length ? filters.cities.join(" + ") : PLACES.join(" + ");
   const winLabel = filters.window === "open" ? "currently open" : filters.window === "all" ? "" : `from the last ${filters.window.replace("d", " days")}`;
   const reqLabel = filters.requirement === "required" ? "as required" : "as required or nice-to-have";
   const senLabel = (filters.seniorities.length ? ` · ${filters.seniorities.map(cap).join("/")} roles` : "")
@@ -54,7 +54,7 @@ export default function App() {
   return (
     <>
       <header className="hdr"><div className="hdr-in">
-        <div className="brand"><a href="/" onClick={(e) => { e.preventDefault(); if (pageJob) closePage(); }} className="home" aria-label="hiring-radar home"><Radar /><b>hiring-radar</b></a><span className="sub">AI-engineering skills, {CITIES.join(" + ")}</span></div>
+        <div className="brand"><a href="/" onClick={(e) => { e.preventDefault(); if (pageJob) closePage(); }} className="home" aria-label="hiring-radar home"><Radar /><b>hiring-radar</b></a><span className="sub">AI-engineering skills, {PLACES.join(" + ")}</span></div>
         <div className="hdr-actions">
           <button type="button" className={`pill${profile ? " on" : ""}`} onClick={() => setDrawer("profile")} aria-label="Your profile">
             <Person /><span className="lbl">{profile ? `${profile.skills.length} skills in your profile` : "Set up your profile"}</span>
@@ -95,7 +95,7 @@ export default function App() {
             <div className="ctl"><span>City</span>
               <div className="seg" role="group" aria-label="City">
                 <button type="button" aria-pressed={!filters.compare && !filters.cities.length} onClick={() => setCity(null)}>All</button>
-                {CITIES.map((c) => <button key={c} type="button" aria-pressed={!filters.compare && filters.cities[0] === c} onClick={() => setCity(c)}>{c}</button>)}
+                {PLACES.map((c) => <button key={c} type="button" aria-pressed={!filters.compare && filters.cities[0] === c} onClick={() => setCity(c)}>{c}</button>)}
                 <button type="button" aria-pressed={filters.compare} onClick={() => setCity("compare")}><Compare />Compare</button>
               </div>
             </div>

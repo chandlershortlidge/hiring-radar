@@ -13,7 +13,9 @@ export const SOURCE_CODES = {
 };
 export const sourceCode = (s) => (SOURCE_CODES[s] || [s.toUpperCase().slice(0, 3), s]);
 
+// CITIES is the compare pair; PLACES is every filterable place, EU-remote included (DECISIONS 2026-10-26).
 export const CITIES = ["Berlin", "San Francisco"];
+export const PLACES = ["Berlin", "Remote (EU)", "San Francisco"];
 export const SENIORITIES = ["junior", "mid", "senior"];
 export const cap = (s) => (s ? s[0].toUpperCase() + s.slice(1) : s);
 

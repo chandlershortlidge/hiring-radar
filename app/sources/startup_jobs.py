@@ -48,9 +48,13 @@ def parse(payload) -> list[Posting]:
         company = _get(j, "company_name")
         if company is None:
             company = _get(_get(j, "company", default={}), "name")
-        location = _get(j, "location")
-        if isinstance(location, dict):
-            location = _get(location, "name", "city")
+        loc = _get(j, "location")
+        location = _get(loc, "name", "city") if isinstance(loc, dict) else loc
+        if str(_get(j, "workplace_type", default="")).lower() == "remote":
+            # Name the country so geo can judge the region: "Remote (Germany)" counts.
+            country = _get(loc, "country") if isinstance(loc, dict) else None
+            remote = f"remote, {country}" if country else "remote"
+            location = f"{location} ({remote})" if location else f"Remote ({country})" if country else "Remote"
         out.append(Posting(
             source=SOURCE,
             source_job_id=str(_get(j, "id", "slug")),
