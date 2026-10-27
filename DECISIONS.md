@@ -128,6 +128,31 @@ correlated labelers produce a clean number and measure nothing; the cross-family
 produces 31 real disagreements to adjudicate.
 Until those are filled in, the held-out split is not a release gate.
 
+**Scope calls on that run: two postings out, two kept on purpose.**
+
+- **Out**: golden_048 (benuta, "Senior Performance Marketing Manager – Paid Social & AI") — a
+  marketing role, outside the AI/data engineering scope. golden_039 (Arbeitsagentur, "AI
+  Engineer Team Lead") — 382 characters, a search-result teaser rather than a posting, below
+  the same 400-character floor `queries.MIN_TEXT_CHARS` uses to keep fragments off the chart
+  (2026-10-21). Both are recorded in `evals/goldens/excluded.json` with those reasons.
+- **Kept on purpose**: golden_030 (SAP AI Lead Architect, 5.7k characters, 2 accepted skills)
+  and golden_038 (Intercom Staff Product Engineer, 7.7k, 2 accepted skills). Both are full,
+  in-scope postings whose content is mostly outside the taxonomy — SAP BTP / Joule / Business
+  AI, inference-stack vocabulary. A held-out set holding only postings the taxonomy already
+  covers would hide the gap it exists to measure, so a low skill count is a taxonomy signal,
+  not a bad Golden. **In-scope is about the job, not about how much of it we can currently
+  label.**
+
+The 216 unmapped labels the run collected are triaged in **HIR-72**, after labeling, not
+during it: `taxonomy/skills.json` is inlined into the labeler prompt, so editing it mid-run
+changes what the labelers were asked and invalidates the cache.
+
+**Queue order.** Items are grouped by what they ask of the reviewer, in working order:
+in-scope, disagreements, uncertain, mapping, then the spot-check sample last. A spot-check
+prints the posting excerpt and the agreed label with no `A:` / `B:` lines — both labelers
+said the same thing there by construction, so showing them twice only invites agreeing with
+them. The question a spot-check asks is whether the posting supports the label.
+
 ---
 
 ## 2026-10-27 — LABELING.md: broad vs specific skills written down, no relabel (HIR-70)

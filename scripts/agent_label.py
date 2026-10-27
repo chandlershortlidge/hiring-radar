@@ -481,6 +481,12 @@ DECISIONS = {
     "check-failed": "`A` / `B` / `drop`",
     "spot-check": "`ok` (correct) / `drop` (not a real label) / JSON (what it should be)",
 }
+# The order a human works the queue in: scope first (a `no` there skips the rest of that
+# posting's items), then the items that need a judgment between two labelers, then the blind
+# spot-check sample last, so the sample is not read in the light of the disagreements above it.
+REASON_ORDER = {"in-scope": 0, "disagreement": 1, "uncertain": 2,
+                "mapping": 3, "check-failed": 4, "spot-check": 5}
+
 QUEUE_HEADER = """# Review queue - {run_id}
 
 {n_items} items from {n_postings} postings. Labeler A: `{model_a}` ({provider_a}).
@@ -500,9 +506,14 @@ What the words mean:
   or `DECISION: {{"seniority": "senior", "seniority_basis": "stated", "seniority_signal": "Lead AI Engineer"}}`
   for an attribute. A skill override keeps the printed `skill_id` unless you give one.
 
+Items are grouped by what they ask of you, in the order to work them: the in-scope
+questions, then disagreements, then uncertain, then mapping, then the spot-check sample.
+
 Spot-check items are a seeded random sample ({spot_n} of {spot_pool} accepted labels,
 seed {seed}) of labels A and B already agreed on. They measure the error rate that
-agreement alone cannot: two labelers can agree and both be wrong.
+agreement alone cannot: two labelers can agree and both be wrong. They print the posting
+excerpt and the agreed label only - no `A:`/`B:` lines - so you check the label against the
+posting rather than against the labelers, who by construction both said the same thing.
 
 The first {n_postings} items ask whether each posting belongs in the held-out set at all.
 They come pre-answered `yes`, so leaving them alone keeps every posting. Answer `no <why>`
@@ -512,6 +523,16 @@ for a posting that got past the title and city filters but is not the job market
 measure - a marketing role, a listing in the wrong field. The rest of that posting's items
 are then ignored, so you can answer `no` and skip them.
 """
+
+
+def fmt_value(kind: str, value: dict) -> str:
+    """One labeled skill or attribute as a queue line, without saying who labeled it."""
+    if kind == "skill":
+        return (f"`{value['skill_id']}` · {value['requirement']} · "
+                f"raw_text: {json.dumps(value.get('raw_text'), ensure_ascii=False)}")
+    return " · ".join(
+        f"{k.split('_', 1)[-1] if '_' in k else 'value'}={json.dumps(v, ensure_ascii=False)}"
+        for k, v in value.items())
 
 
 def render_item(n: int, item: dict) -> str:
@@ -524,18 +545,18 @@ def render_item(n: int, item: dict) -> str:
         lines += ["", f"Options: {DECISIONS[item['reason']]}", "",
                   f"DECISION: {item.get('decision', '?')}", ""]
         return "\n".join(lines)
-    for side in ("a", "b"):
-        value = item.get(side)
-        label = "A" if side == "a" else "B"
-        if value is None:
-            lines.append(f"- {label}: (did not label this)")
-        elif item["kind"] == "skill":
-            lines.append(f"- {label}: `{value['skill_id']}` · {value['requirement']} · "
-                         f"raw_text: {json.dumps(value.get('raw_text'), ensure_ascii=False)}")
-        else:
-            lines.append(f"- {label}: " + " · ".join(
-                f"{k.split('_', 1)[-1] if '_' in k else 'value'}={json.dumps(v, ensure_ascii=False)}"
-                for k, v in value.items()))
+    if item["reason"] == "spot-check":
+        # Blind on purpose: both labelers agreed, so printing them twice only invites
+        # agreeing with them. The question is whether the posting supports the label.
+        lines.append("- agreed label: " + fmt_value(item["kind"], item["a"]))
+    else:
+        for side in ("a", "b"):
+            value = item.get(side)
+            label = "A" if side == "a" else "B"
+            if value is None:
+                lines.append(f"- {label}: (did not label this)")
+            else:
+                lines.append(f"- {label}: " + fmt_value(item["kind"], value))
     if item["problems"]:
         lines += ["", "Auto-check:"] + [f"- {p}" for p in item["problems"]]
     lines += ["", f"Options: {DECISIONS[item['reason']]}", "",
@@ -937,6 +958,8 @@ def cmd_label(args):
         items.append({"golden_id": gid, "kind": kind, "key": key, "reason": "spot-check",
                       "a": value, "b": value, "excerpt": excerpt(posting_by_gid[gid], quote),
                       "problems": [], "decision": "?"})
+
+    items.sort(key=lambda i: (REASON_ORDER[i["reason"]], i["golden_id"], i["kind"], i["key"]))
 
     meta = {
         "run_id": run_dir.name, "seed": args.seed,

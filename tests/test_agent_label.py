@@ -723,8 +723,12 @@ def test_parse_scope_rejects_anything_else(bad):
         al.parse_scope(bad)
 
 
-def _scope_run(tmp_path, monkeypatch, postings):
-    """A run over `postings` [(company, title, text)], with the scope item in the queue."""
+def _scope_run(tmp_path, monkeypatch, postings, answers=None):
+    """A run over `postings` [(company, title, text)], with the scope item in the queue.
+
+    `answers` maps a provider to the one answer its labeler returns, so the two labelers
+    can be made to disagree; by default both return `ok_answer()` and agree on everything.
+    """
     goldens = tmp_path / "goldens"
     goldens.mkdir()
     runs = tmp_path / "labeling"
@@ -746,7 +750,9 @@ def _scope_run(tmp_path, monkeypatch, postings):
     monkeypatch.setattr(al.ng, "DB", db)
     monkeypatch.setattr(al.ng, "GOLDENS", goldens)
     monkeypatch.setattr(al.ng, "EXCLUDED", goldens / "excluded.json")
-    monkeypatch.setattr(al, "make_client", lambda provider: FakeAnthropic([ok_answer()]))
+    answers = answers or {}
+    monkeypatch.setattr(al, "make_client", lambda provider: FakeAnthropic(
+        [answers.get(provider, ok_answer())] * len(postings)))
     monkeypatch.setitem(al.PROVIDERS, "openai", al.call_anthropic)
     al.main(["label", "--count", str(len(postings)), "--spot-check", "1", "--seed", "0",
              "--remote-eu", "0", "--german", "0"])
@@ -832,3 +838,42 @@ def test_an_excluded_posting_is_never_picked_again(tmp_path, monkeypatch):
     conn.row_factory = sqlite3.Row
     rows = al.ng.candidates(conn, used)
     assert [r["id"] for r in rows] == [2]
+
+
+# --- queue order and blind spot-checks --------------------------------------------
+
+def _b_drops_docker():
+    """Labeler B's answer: the same as A's minus `docker`, so `docker` is one-sided."""
+    return {"openai": ok_answer(expected=[s for s in ok_answer()["expected"]
+                                          if s["skill_id"] != "docker"])}
+
+
+def test_queue_is_grouped_by_what_it_asks_of_the_reviewer(tmp_path, monkeypatch):
+    _, run_dir = _scope_run(tmp_path, monkeypatch, [("Acme", "Senior AI Engineer", POSTING)],
+                            answers=_b_drops_docker())
+    items = json.loads((run_dir / "items.json").read_text())
+    reasons = [i["reason"] for i in items]
+    assert reasons[0] == "in-scope"
+    assert "disagreement" in reasons and "spot-check" in reasons
+    # every group is contiguous and in the documented order
+    assert reasons == sorted(reasons, key=al.REASON_ORDER.__getitem__)
+    assert reasons.index("disagreement") < reasons.index("spot-check")
+
+
+def test_a_spot_check_item_hides_both_labelers(tmp_path, monkeypatch):
+    _, run_dir = _scope_run(tmp_path, monkeypatch, [("Acme", "Senior AI Engineer", POSTING)],
+                            answers=_b_drops_docker())
+    items = json.loads((run_dir / "items.json").read_text())
+    spot = [(n, i) for n, i in enumerate(items, 1) if i["reason"] == "spot-check"]
+    assert spot
+    for n, item in spot:
+        block = al.render_item(n, item)
+        assert "- agreed label: " in block
+        assert "- A: " not in block and "- B: " not in block
+        # the posting excerpt and the label itself are still there to judge it by
+        assert block.split("\n")[2].startswith(">")
+        assert f"`{item['key']}`" in block
+    # a disagreement still names who said what
+    dis = [(n, i) for n, i in enumerate(items, 1) if i["reason"] == "disagreement"]
+    n, item = dis[0]
+    assert "- A: " in al.render_item(n, item) and "- B: " in al.render_item(n, item)
