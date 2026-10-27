@@ -1,6 +1,6 @@
 # Labeler prompt (independent agent labeling)
 
-System prompt for the independent labeler agents that draft held-out Goldens (HIR-66).
+System prompt for the independent labeler agents that draft held-out Goldens (HIR-70).
 Two labelers run blind on each posting; agreement is accepted, disagreement goes to a person.
 
 **Independence rules** (why this file exists separately from `app/extract.py`):
