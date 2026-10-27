@@ -12,6 +12,9 @@ blind labelers over the same picks, which is where held-out Goldens now come fro
 script stays the hand-labeling path, and shares its candidate query with that one.
 run_eval.py skips drafts until `draft` is removed.
 
+Postings listed in evals/goldens/excluded.json (ruled out of scope by a person during
+adjudication) are never picked again, by either script.
+
     uv run python scripts/new_goldens.py --german 3            # 3 German postings
     uv run python scripts/new_goldens.py --ids 41 57           # specific job ids
     uv run python scripts/new_goldens.py --german 3 --dry-run  # just list the picks
@@ -31,6 +34,7 @@ sys.path.insert(0, str(ROOT))
 
 from app.extract import extraction_input  # noqa: E402
 GOLDENS = ROOT / "evals" / "goldens"
+EXCLUDED = GOLDENS / "excluded.json"
 DB = Path(os.environ.get("HIRING_RADAR_DB", ROOT / "data" / "hiring-radar.db"))
 
 _DE = re.compile(r"\b(und|der|die|das|wir|mit|für|oder|sie|ihre|eine|bei|von|zu|auf|deine?|ist)\b", re.I)
@@ -47,12 +51,30 @@ def sha(text: str) -> str:
     return hashlib.sha256(text.encode()).hexdigest()
 
 
+def excluded() -> list[dict]:
+    """Postings a person ruled out of scope at adjudication (evals/goldens/excluded.json).
+
+    Kept as a record rather than a deletion: a posting dropped silently gets re-picked by
+    the next run, and nobody can see why it is not a Golden."""
+    if not EXCLUDED.exists():
+        return []
+    return json.loads(EXCLUDED.read_text())["excluded"]
+
+
 def existing() -> tuple[set[str], int]:
+    """Hashes not to pick again, and the highest golden_NNN number in use.
+
+    "Not again" covers both Goldens and the excluded list, so a posting ruled out of scope
+    stays out. `top` counts Goldens only — an excluded id is never reused, so numbering
+    keeps climbing past it."""
     hashes, top = set(), 0
     for f in GOLDENS.glob("golden_*.json"):
         g = json.loads(f.read_text())
         hashes.add(g.get("source_sha256") or sha(g["job_description"]))
         top = max(top, int(g["id"].split("_")[1]))
+    for e in excluded():
+        hashes.add(e["source_sha256"])
+        top = max(top, int(e["golden_id"].split("_")[1]))
     return hashes, top
 
 

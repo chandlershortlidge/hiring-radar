@@ -474,6 +474,7 @@ def wilson(k: int, n: int, z: float = 1.959963984540054) -> tuple[float, float] 
 # --- review queue: render and parse -----------------------------------------------
 
 DECISIONS = {
+    "in-scope": "`yes` (already filled in) / `no <why>` - `no` keeps it out of the Goldens",
     "disagreement": "`A` / `B` / `both` / `drop`",
     "mapping": "`A` / `B` / `both` / `drop`",
     "uncertain": "`ok` (keep as agreed) / `A` / `B` / `drop`",
@@ -502,12 +503,27 @@ What the words mean:
 Spot-check items are a seeded random sample ({spot_n} of {spot_pool} accepted labels,
 seed {seed}) of labels A and B already agreed on. They measure the error rate that
 agreement alone cannot: two labelers can agree and both be wrong.
+
+The first {n_postings} items ask whether each posting belongs in the held-out set at all.
+They come pre-answered `yes`, so leaving them alone keeps every posting. Answer `no <why>`
+and that posting is written to `evals/goldens/excluded.json` with your reason instead of
+becoming a Golden, and neither this script nor `new_goldens.py` will pick it again. Use it
+for a posting that got past the title and city filters but is not the job market we
+measure - a marketing role, a listing in the wrong field. The rest of that posting's items
+are then ignored, so you can answer `no` and skip them.
 """
 
 
 def render_item(n: int, item: dict) -> str:
     lines = [f"## {n}. {item['golden_id']} - {item['kind']} `{item['key']}` ({item['reason']})", ""]
     lines += [f"> {item['excerpt']}", ""]
+    if item["kind"] == "scope":
+        lines += [f"- {item['company']} · {item['title']}",
+                  f"- {item['place']} · {item['language']} · {item['source']} · "
+                  f"{item['n_skills']} skill{'' if item['n_skills'] == 1 else 's'} labeled"]
+        lines += ["", f"Options: {DECISIONS[item['reason']]}", "",
+                  f"DECISION: {item.get('decision', '?')}", ""]
+        return "\n".join(lines)
     for side in ("a", "b"):
         value = item.get(side)
         label = "A" if side == "a" else "B"
@@ -522,7 +538,8 @@ def render_item(n: int, item: dict) -> str:
                 for k, v in value.items()))
     if item["problems"]:
         lines += ["", "Auto-check:"] + [f"- {p}" for p in item["problems"]]
-    lines += ["", f"Options: {DECISIONS[item['reason']]}", "", "DECISION: ?", ""]
+    lines += ["", f"Options: {DECISIONS[item['reason']]}", "",
+              f"DECISION: {item.get('decision', '?')}", ""]
     return "\n".join(lines)
 
 
@@ -539,6 +556,20 @@ def parse_queue(text: str) -> list[tuple[int, str]]:
                          text, flags=re.M | re.S):
         out.append((int(m.group(1)), m.group(2).strip()))
     return out
+
+
+def parse_scope(decision: str) -> tuple[bool, str]:
+    """A scope decision: (keep?, reason). `yes` keeps it, `no <why>` rules it out.
+
+    Raises ValueError on anything else, so a typo stops apply rather than silently keeping
+    a posting the person meant to exclude."""
+    word = decision.strip().strip("`")
+    low = word.lower()
+    if low == "yes":
+        return True, ""
+    if low == "no" or low.startswith(("no ", "no:", "no-", "no,", "no\u2014", "no\u2013")):
+        return False, word[2:].lstrip(" :-,\u2014\u2013").strip()
+    raise ValueError(f"{decision!r} is not `yes` or `no <why>`")
 
 
 def apply_decision(item: dict, decision: str):
@@ -783,7 +814,12 @@ def cmd_label(args):
             raise SystemExit(f"no such run: {run_dir}")
         queue = run_dir / "review_queue.md"
         if queue.exists() and not args.force:
-            decided = [n for n, d in parse_queue(queue.read_text()) if d not in ("?", "")]
+            # A scope item ships pre-answered `yes`, so "has a decision" means "differs from
+            # what the queue was written with" -- otherwise every queue looks decided.
+            was = {n: i.get("decision", "?") for n, i
+                   in enumerate(json.loads((run_dir / "items.json").read_text()), 1)}
+            decided = [n for n, d in parse_queue(queue.read_text())
+                       if d not in ("?", "") and d != was.get(n, "?")]
             if decided:
                 raise SystemExit(
                     f"{queue} already has {len(decided)} decisions, and a re-merge rewrites it. "
@@ -870,9 +906,24 @@ def cmd_label(args):
                             auto_check(a, p["job_description"], tax),
                             auto_check(b, p["job_description"], tax)))
 
-    items = [{"golden_id": m.golden_id, **i} for m in merged for i in m.review]
-    sample = spot_check_sample(merged, args.spot_check, args.seed)
     by_gid = {m.golden_id: m for m in merged}
+    pick_by_gid = {p["golden_id"]: p for p in picks}
+    # One scope item per posting, first and pre-answered `yes`: the queue is also where a
+    # posting that slipped past the title and city filters gets ruled out, and that has to
+    # be a recorded decision rather than a deleted file.
+    items = [{"golden_id": m.golden_id, "kind": "scope", "key": "in_scope",
+              "reason": "in-scope", "a": None, "b": None,
+              "excerpt": excerpt(pick_by_gid[m.golden_id]["job_description"], None),
+              "company": pick_by_gid[m.golden_id]["company"],
+              "title": pick_by_gid[m.golden_id]["title"],
+              "place": pick_by_gid[m.golden_id]["place"],
+              "language": pick_by_gid[m.golden_id]["language"],
+              "source": pick_by_gid[m.golden_id]["source"],
+              "n_skills": len(m.accepted_skills),
+              "problems": [], "decision": "yes"}
+             for m in merged]
+    items += [{"golden_id": m.golden_id, **i} for m in merged for i in m.review]
+    sample = spot_check_sample(merged, args.spot_check, args.seed)
     posting_by_gid = {p["golden_id"]: p["job_description"] for p in picks}
     pool_n = sum(len(m.accepted_skills) + len(m.accepted_attrs) for m in merged)
     for gid, kind, key in sample:
@@ -976,8 +1027,25 @@ def cmd_apply(args):
     adjudicated: dict[str, set] = {gid: set() for gid in merged}
     spot_errors, spot_wrong, spot_n = 0, [], 0
 
+    # Scope first: a posting ruled out of scope is not a Golden, so none of its other
+    # decisions matter and its spot-checks must not count toward the error rate.
+    out_of_scope: dict[str, str] = {}
+    for n, item in enumerate(items, 1):
+        if item["kind"] != "scope":
+            continue
+        try:
+            keep, why = parse_scope(decisions[n])
+        except ValueError as e:
+            raise SystemExit(f"item {n} ({item['golden_id']} scope): {e}")
+        if not keep:
+            out_of_scope[item["golden_id"]] = why
+            skills.pop(item["golden_id"], None)
+            attrs.pop(item["golden_id"], None)
+
     for n, item in enumerate(items, 1):
         gid, decision = item["golden_id"], decisions[n]
+        if item["kind"] == "scope" or gid in out_of_scope:
+            continue
         try:
             add, group = apply_decision(item, decision)
         except (ValueError, json.JSONDecodeError) as e:
@@ -1013,6 +1081,20 @@ def cmd_apply(args):
     for gid, _, _ in (tuple(s) for s in summary["spot_check"]["sample"]):
         spot_by_gid[gid] = True
 
+    if out_of_scope and not args.dry_run:
+        record = json.loads(ng.EXCLUDED.read_text()) if ng.EXCLUDED.exists() else {"excluded": []}
+        known = {e["source_sha256"] for e in record["excluded"]}
+        for gid, why in sorted(out_of_scope.items()):
+            pk = picks[gid]
+            if pk["source_sha256"] in known:
+                continue
+            record["excluded"].append({
+                "golden_id": gid, "source_sha256": pk["source_sha256"],
+                "company": pk["company"], "title": pk["title"],
+                "reason": why, "excluded_on": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
+                "run": args.run, "labeled_by": [summary["model_a"], summary["model_b"]]})
+        ng.EXCLUDED.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
+
     written = []
     for gid in sorted(skills):
         golden = final_golden({**picks[gid], "id": gid}, list(skills[gid].values()),
@@ -1034,6 +1116,11 @@ def cmd_apply(args):
         (run_dir / "summary.md").write_text(render_summary(summary, spot))
     print(("(dry run) " if args.dry_run else "") + f"{len(written)} Goldens:")
     print("\n".join("  " + w for w in written))
+    if out_of_scope:
+        print(f"\n{len(out_of_scope)} ruled out of scope -> {ng.EXCLUDED}:")
+        for gid, why in sorted(out_of_scope.items()):
+            print(f"  {gid}  {picks[gid]['company']} · {picks[gid]['title']}"
+                  f"{'  — ' + why if why else ''}")
     print()
     print(render_summary(summary, spot).split("## Spot-check")[-1].strip())
     if not args.dry_run:

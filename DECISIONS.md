@@ -92,7 +92,16 @@ The process, `scripts/agent_label.py`:
    matters: two labelers can agree and both be wrong, so agreement alone measures nothing
    about correctness. `apply` reports its error rate with a 95% Wilson interval (Wilson, not
    the normal approximation, because at 0 errors in 80 the normal interval is [0, 0]).
-6. **Apply** the decisions and write the Goldens, with provenance: `labeled_by` (both model
+6. **Scope.** The queue opens with one `in_scope` item per posting, pre-answered `yes`, so
+   leaving it alone keeps the posting. Answered `no <why>`, the posting goes to
+   `evals/goldens/excluded.json` with the reason instead of becoming a Golden, and neither
+   this script nor `new_goldens.py` picks it again (`existing()` unions both lists, and the
+   spent `golden_NNN` number is never reused). This is for a posting that cleared the title
+   and city filters but isn't the market we measure — the first run turned up benuta's
+   "Senior Performance Marketing Manager – Paid Social & AI". A recorded exclusion beats
+   deleting the file afterwards: a silent drop gets re-picked next run and leaves no trace
+   of why it is not a Golden.
+7. **Apply** the decisions and write the Goldens, with provenance: `labeled_by` (both model
    ids), `adjudicated` (the fields a person decided), `spot_checked`. `apply` refuses while
    any item still says `?`. `seniority_reviewed` / `attrs_reviewed` keep their existing
    meaning — a person looked at this label — so they are true only for a field a person
@@ -105,7 +114,18 @@ holds decisions.
 **Never from this script:** the held-out eval. That stays `run_eval.py --split heldout
 --i-am-releasing`, at a release point (2026-10-17).
 
-Measured on the first full run: **labeler agreement TODO**, **spot-check error rate TODO**.
+Measured on the first full run (`20261027T110516Z_label`, 24 postings, A `claude-opus-5-5`
+vs B `gpt-6.1-sol`, 0 failures): **skills P 0.932 / R 0.974 / F1 0.953** (tp 301, B-only 22,
+A-only 8), requirement 0.993 on shared ids, seniority 24/24, German 24/24, degree 23/24.
+243 skills and 62 attributes accepted on agreement; 201 queue items (24 in-scope, 31
+disagreement, 65 uncertain, 1 mapping, 80 spot-check). **Spot-check error rate TODO** until
+adjudication.
+
+That spread is the argument for insisting labeler B is a different family. A smoke run with
+two Claude models (`claude-opus-5-5` vs `claude-fable-5-1`) agreed on 43/43 skills and all 6
+attributes — F1 1.000, zero disagreements — and flagged the same 8 items uncertain. Two
+correlated labelers produce a clean number and measure nothing; the cross-family pair
+produces 31 real disagreements to adjudicate.
 Until those are filled in, the held-out split is not a release gate.
 
 ---

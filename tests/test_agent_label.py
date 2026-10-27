@@ -702,3 +702,133 @@ def test_a_guide_edit_invalidates_the_cached_labels(tmp_path, monkeypatch):
     assert set(made) == {"anthropic", "openai"}
     raw = json.loads((run_dir / "raw" / "golden_001.A.json").read_text())
     assert raw["prompt_sha256"] == al.ng.sha("GUIDE VERSION TWO")
+
+
+@pytest.mark.parametrize("decision, keep, why", [
+    ("yes", True, ""),
+    ("`yes`", True, ""),
+    ("YES", True, ""),
+    ("no", False, ""),
+    ("no marketing role, not AI engineering", False, "marketing role, not AI engineering"),
+    ("no: wrong field", False, "wrong field"),
+    ("no — a sales listing", False, "a sales listing"),
+])
+def test_parse_scope_vocabulary(decision, keep, why):
+    assert al.parse_scope(decision) == (keep, why)
+
+
+@pytest.mark.parametrize("bad", ["", "?", "maybe", "drop", "A", "nope"])
+def test_parse_scope_rejects_anything_else(bad):
+    with pytest.raises(ValueError):
+        al.parse_scope(bad)
+
+
+def _scope_run(tmp_path, monkeypatch, postings):
+    """A run over `postings` [(company, title, text)], with the scope item in the queue."""
+    goldens = tmp_path / "goldens"
+    goldens.mkdir()
+    runs = tmp_path / "labeling"
+    db = tmp_path / "t.db"
+    conn = sqlite3.connect(db)
+    conn.executescript(
+        "CREATE TABLE job (id INTEGER PRIMARY KEY, company TEXT, title TEXT, city TEXT, seniority TEXT,"
+        " description_text TEXT, first_seen TEXT, extracted_version TEXT);"
+        "CREATE TABLE job_source (job_id INTEGER, source TEXT);")
+    for i, (company, title, text) in enumerate(postings, 1):
+        conn.execute("INSERT INTO job VALUES (?,?,?,'Berlin','senior',?,'2026-10-20',NULL)",
+                     (i, company, title, text))
+        conn.execute("INSERT INTO job_source VALUES (?, 'greenhouse')", (i,))
+    conn.commit()
+    conn.close()
+
+    monkeypatch.setattr(al, "GOLDENS", goldens)
+    monkeypatch.setattr(al, "RUNS", runs)
+    monkeypatch.setattr(al.ng, "DB", db)
+    monkeypatch.setattr(al.ng, "GOLDENS", goldens)
+    monkeypatch.setattr(al.ng, "EXCLUDED", goldens / "excluded.json")
+    monkeypatch.setattr(al, "make_client", lambda provider: FakeAnthropic([ok_answer()]))
+    monkeypatch.setitem(al.PROVIDERS, "openai", al.call_anthropic)
+    al.main(["label", "--count", str(len(postings)), "--spot-check", "1", "--seed", "0",
+             "--remote-eu", "0", "--german", "0"])
+    run_dir, = list(runs.iterdir())
+    return goldens, run_dir
+
+
+def test_scope_items_come_first_and_pre_answered_yes(tmp_path, monkeypatch):
+    goldens, run_dir = _scope_run(tmp_path, monkeypatch, [("Acme", "Senior AI Engineer", POSTING)])
+    items = json.loads((run_dir / "items.json").read_text())
+    assert items[0]["kind"] == "scope" and items[0]["key"] == "in_scope"
+    assert items[0]["reason"] == "in-scope" and items[0]["decision"] == "yes"
+    assert all(i["kind"] != "scope" for i in items[1:])
+
+    text = (run_dir / "review_queue.md").read_text()
+    assert "## 1. golden_001 - scope `in_scope` (in-scope)" in text
+    assert "DECISION: yes" in text
+    # the default is not a decision, so a re-merge is still allowed
+    al.main(["label", "--run", run_dir.name, "--spot-check", "1", "--seed", "0"])
+
+
+def test_scope_yes_still_writes_the_golden(tmp_path, monkeypatch):
+    goldens, run_dir = _scope_run(tmp_path, monkeypatch, [("Acme", "Senior AI Engineer", POSTING)])
+    queue = run_dir / "review_queue.md"
+    queue.write_text(queue.read_text().replace("DECISION: ?", "DECISION: ok"))
+    al.main(["apply", "--run", run_dir.name])
+    assert (goldens / "golden_001.json").exists()
+    assert not (goldens / "excluded.json").exists()
+
+
+def test_scope_no_writes_excluded_json_instead_of_a_golden(tmp_path, monkeypatch, capsys):
+    goldens, run_dir = _scope_run(tmp_path, monkeypatch, [("benuta", "Marketing Manager", POSTING)])
+    queue = run_dir / "review_queue.md"
+    text = queue.read_text().replace("DECISION: ?", "DECISION: ok")
+    # the other items stay answered; a `no` makes them irrelevant
+    queue.write_text(text.replace("DECISION: yes", "DECISION: no marketing role, not AI engineering"))
+
+    al.main(["apply", "--run", run_dir.name])
+    assert not (goldens / "golden_001.json").exists()
+
+    record = json.loads((goldens / "excluded.json").read_text())["excluded"]
+    assert len(record) == 1
+    e = record[0]
+    assert e["golden_id"] == "golden_001"
+    assert e["reason"] == "marketing role, not AI engineering"
+    assert e["company"] == "benuta" and e["title"] == "Marketing Manager"
+    assert e["source_sha256"] == al.ng.sha(POSTING)
+    assert e["run"] == run_dir.name and e["labeled_by"] == [al.DEFAULT_MODEL_A, al.DEFAULT_MODEL_B]
+    assert "ruled out of scope" in capsys.readouterr().out
+
+    # an excluded posting's spot-checks must not count toward the error rate
+    summary = json.loads((run_dir / "summary.json").read_text())
+    assert summary["spot_check"]["n"] == 0
+
+
+def test_an_excluded_posting_is_never_picked_again(tmp_path, monkeypatch):
+    goldens = tmp_path / "goldens"
+    goldens.mkdir()
+    monkeypatch.setattr(al.ng, "GOLDENS", goldens)
+    monkeypatch.setattr(al.ng, "EXCLUDED", goldens / "excluded.json")
+
+    assert al.ng.existing() == (set(), 0)
+
+    (goldens / "excluded.json").write_text(json.dumps({"excluded": [
+        {"golden_id": "golden_048", "source_sha256": al.ng.sha(POSTING),
+         "company": "benuta", "title": "Marketing Manager", "reason": "marketing role"}]}))
+    used, top = al.ng.existing()
+    assert al.ng.sha(POSTING) in used
+    # the number stays spent, so the next Golden does not reuse golden_048
+    assert top == 48
+
+    db = tmp_path / "t.db"
+    conn = sqlite3.connect(db)
+    conn.executescript(
+        "CREATE TABLE job (id INTEGER PRIMARY KEY, company TEXT, title TEXT, city TEXT, seniority TEXT,"
+        " description_text TEXT, first_seen TEXT, extracted_version TEXT);"
+        "CREATE TABLE job_source (job_id INTEGER, source TEXT);")
+    conn.execute("INSERT INTO job VALUES (1,'benuta','Marketing Manager','Berlin','senior',?,'2026-10-20',NULL)",
+                 (POSTING,))
+    conn.execute("INSERT INTO job VALUES (2,'Acme','AI Engineer','Berlin','senior','Other posting entirely','2026-10-20',NULL)")
+    conn.execute("INSERT INTO job_source VALUES (1, 'greenhouse'), (2, 'greenhouse')")
+    conn.commit()
+    conn.row_factory = sqlite3.Row
+    rows = al.ng.candidates(conn, used)
+    assert [r["id"] for r in rows] == [2]
