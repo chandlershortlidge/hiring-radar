@@ -10,3 +10,7 @@ data/
 node_modules/
 web/dist/
 scratch/
+
+# Labeling runs: raw labeler responses and the review queue (scripts/agent_label.py).
+# The Goldens `apply` writes are committed; the working files that produced them are not.
+evals/labeling/

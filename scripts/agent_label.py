@@ -311,7 +311,12 @@ def excerpt(posting: str, quote, width: int = 140) -> str:
             m = re.search(pattern, posting, flags=re.I)
             if m:
                 a, b = max(0, m.start() - 60), min(len(posting), m.end() + 60)
-                return " ".join(posting[a:b].split())
+                before, after = posting[a:m.start()], posting[m.end():b]
+                # snap to word boundaries, so the quote is not buried in a half word
+                before = before.split(" ", 1)[-1] if a > 0 and " " in before else before
+                after = after.rsplit(" ", 1)[0] if b < len(posting) and " " in after else after
+                return (("..." if a > 0 else "") + " ".join((before + m.group(0) + after).split())
+                        + ("..." if b < len(posting) else ""))
         return f"(not found in the posting) {' '.join(str(quote).split())[:width]}"
     return " ".join(posting.splitlines()[0:1])[:width]
 
@@ -636,13 +641,17 @@ def describe(row) -> dict:
     }
 
 
-def pick(rows, count: int, seed: int, quotas: dict) -> list:
+def pick(rows, count: int, seed: int, quotas: dict, unmet: list | None = None) -> list:
     """Pick `count` postings spread across seniority, language, source, role and place.
 
     Quotas first (`remote_eu`, `german`, `source:<name>`, `seniority:<level>`), then fill the
     rest by taking one posting at a time from each stratum in turn, so the picks spread
     instead of clumping on whatever the newest feed happened to return. Seeded, so the same
     database and seed pick the same postings.
+
+    A quota the corpus cannot meet is appended to `unmet` rather than silently under-filled:
+    a picks list that quietly misses its spread is the kind of thing that only shows up as a
+    surprising eval number weeks later.
     """
     rng = random.Random(seed)
     info = {r["id"]: describe(r) for r in rows}
@@ -650,7 +659,8 @@ def pick(rows, count: int, seed: int, quotas: dict) -> list:
     rng.shuffle(pool)
     picked, taken = [], set()
 
-    def take(matching, n):
+    def take(key, matching, n):
+        wanted = n
         for r in matching:
             if len(picked) >= count or n <= 0:
                 break
@@ -659,18 +669,20 @@ def pick(rows, count: int, seed: int, quotas: dict) -> list:
             picked.append(r)
             taken.add(r["id"])
             n -= 1
+        if n > 0 and unmet is not None:
+            unmet.append(f"{key}: asked for {wanted}, the corpus has {wanted - n}")
 
     for key, n in sorted(quotas.items()):
         if n <= 0:
             continue
         if key == "remote_eu":
-            take([r for r in pool if (r["city"] or "").lower().startswith("remote")], n)
+            take(key, [r for r in pool if (r["city"] or "").lower().startswith("remote")], n)
         elif key == "german":
-            take([r for r in pool if info[r["id"]]["language"] == "de"], n)
+            take(key, [r for r in pool if info[r["id"]]["language"] == "de"], n)
         elif key.startswith("source:"):
-            take([r for r in pool if key.split(":", 1)[1] in info[r["id"]]["sources"]], n)
+            take(key, [r for r in pool if key.split(":", 1)[1] in info[r["id"]]["sources"]], n)
         elif key.startswith("seniority:"):
-            take([r for r in pool if info[r["id"]]["seniority"] == key.split(":", 1)[1]], n)
+            take(key, [r for r in pool if info[r["id"]]["seniority"] == key.split(":", 1)[1]], n)
         else:
             raise ValueError(f"unknown quota {key!r}")
 
@@ -781,7 +793,8 @@ def cmd_label(args):
         quotas = {"remote_eu": args.remote_eu, "german": args.german}
         quotas |= {f"source:{s}": n for s, n in args.source}
         quotas |= {f"seniority:{s}": n for s, n in args.seniority}
-        chosen = pick(rows, args.count, args.seed, quotas)
+        unmet: list[str] = []
+        chosen = pick(rows, args.count, args.seed, quotas, unmet)
         picks = []
         for i, r in enumerate(chosen, start=top + 1):
             base = ng.draft(f"golden_{i:03d}", r["description_text"], r["title"])
@@ -795,6 +808,8 @@ def cmd_label(args):
         counts = {k: Counter(p[k] for p in picks) for k in ("seniority", "language", "source", "role", "place")}
         for k, c in counts.items():
             print(f"  {k}: " + ", ".join(f"{v}={n}" for v, n in sorted(c.items())))
+        for u in unmet:
+            print(f"  QUOTA NOT MET  {u}")
         if args.dry_run:
             return
         run_dir = RUNS / run_id_now()

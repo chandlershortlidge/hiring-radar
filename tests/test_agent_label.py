@@ -470,9 +470,31 @@ def test_pick_takes_a_named_source_and_seniority_quota(tmp_path):
     assert sum(1 for d in described if d["seniority"] == "junior") >= 2
 
 
+def test_pick_reports_a_quota_the_corpus_cannot_meet(tmp_path):
+    rows = db_rows(tmp_path)          # the fixture has exactly 3 Remote (EU) postings
+    unmet = []
+    picks = al.pick(rows, count=8, seed=0, quotas={"remote_eu": 5}, unmet=unmet)
+    assert unmet == ["remote_eu: asked for 5, the corpus has 3"]
+    assert sum(1 for r in picks if al.describe(r)["place"] == "Remote (EU)") == 3
+    met = []
+    al.pick(rows, 8, 0, {"remote_eu": 3}, unmet=met)
+    assert met == []                  # a quota the corpus can meet stays silent
+
+
 def test_pick_rejects_an_unknown_quota(tmp_path):
     with pytest.raises(ValueError, match="unknown quota"):
         al.pick(db_rows(tmp_path), 4, 0, {"city:Paris": 1})
+
+
+def test_excerpt_shows_the_quote_in_context_on_word_boundaries():
+    e = al.excerpt(POSTING, "RAG pipelines")
+    assert "RAG pipelines" in e and e.startswith("...") and e.endswith("...")
+    assert not e.startswith("...trong")                 # no half words at the edges
+    assert "\n" not in e
+    # the window reaches the start of the posting, so there is nothing elided before it
+    assert al.excerpt(POSTING, "Strong Python").startswith("Senior AI Engineer")
+    assert al.excerpt(POSTING, "a phrase that is not there").startswith("(not found")
+    assert al.excerpt(POSTING, None) == "Senior AI Engineer (m/f/d)"         # falls back to the title
 
 
 def test_role_family():
