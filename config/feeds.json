@@ -6,6 +6,7 @@
     {"type": "arbeitsagentur", "enabled": true, "search": "Machine Learning Engineer", "where": "Berlin", "radius_km": 25, "days": 30},
     {"type": "jsearch", "enabled": true, "search": "AI engineer in Berlin", "country": "de", "date_posted": "week", "num_pages": 1},
     {"type": "jsearch", "enabled": true, "search": "machine learning engineer in Berlin", "country": "de", "date_posted": "week", "num_pages": 1},
+    {"type": "jsearch", "enabled": true, "search": "remote AI engineer", "country": "de", "date_posted": "week", "num_pages": 1},
     {"type": "startup_jobs", "enabled": true, "search": "AI engineer", "country": "DE"},
     {"type": "startup_jobs", "enabled": true, "search": "machine learning engineer", "country": "DE"},
     {"type": "greenhouse", "enabled": false, "token": "example-token", "company": "Example GmbH"},

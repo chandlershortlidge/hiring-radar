@@ -124,7 +124,7 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   `arbeitsagentur`, `jsearch`, `startup_jobs`): `parse(payload)` is pure and tested on `tests/fixtures/feeds/`;
   `fetch()` is the thin HTTP wrapper. `app/html_text.py` strips HTML.
 - `app/dedup.py` — company/title keys and 3-word-shingle Jaccard similarity; `find_match`
-  needs same company AND similarity ≥ 0.7. `app/geo.py` — location → tracked city.
+  needs same company AND similarity ≥ 0.7. `app/geo.py` — location → tracked city or EU-remote.
 - `app/ingest.py` — the still-listed / merge / repost / new decision and the title+city
   filters. `app/pipeline.py` — extract skills for jobs not yet at the current
   `extractor_version`. `app/poll.py` — run all feeds in `config/feeds.json`.
@@ -142,7 +142,9 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `app/api.py` — FastAPI routes over `queries` plus the add-a-job paths (url / text /
   screenshot), which run intake + extraction for the one job added. Validates every filter
   value (422), one SQLite connection per request, model client created lazily.
-- `web/src/` — `App.jsx` (filters, header, stats, controls), `SkillChart.jsx`,
+- `web/src/` — `App.jsx` (filters, header, stats, controls, and the one route: `/jobs/{id}`
+  read from the address bar), `JobPage.jsx` (a job's own page: detail + the stored posting
+  text), `SkillChart.jsx`,
   `CompareChart.jsx`, `JobList.jsx` (rows + expanded detail with quotes), the three drawers
   (`AddJobDrawer`, `ReviewDrawer`, `ProfileDrawer`), `profile.js` (localStorage profile +
   set-overlap coverage; the server never sees it), `api.js`, `format.js`.
@@ -188,8 +190,9 @@ Three layout rules:
   (they were hand-edited after seeding). Never run it against the real files.
 - Feeds return everything; `app/ingest.py` filters by title regex and *active* city. A job
   in an untracked or inactive city is dropped, not stored. `app/geo.py` has two lists:
-  `CITIES` (recognized) and `ACTIVE_CITIES` (collected; Berlin only until the held-out eval
-  passes). Change `ACTIVE_CITIES` only on purpose (DECISIONS 2026-10-19).
+  `CITIES` (recognized) and `ACTIVE_CITIES` (collected: Berlin and `REMOTE_EU`; SF waits
+  for the held-out eval). Change `ACTIVE_CITIES` only on purpose (DECISIONS 2026-10-19).
+  EU-remote rules live in `geo.is_remote_eu` (DECISIONS 2026-10-26).
 - `skill_mention` holds one extraction per job (the latest). Re-extraction replaces.
   `extraction_reject` (items that failed validation) follows the same rule.
 

@@ -13,6 +13,15 @@ SOURCE = "arbeitnow"
 FIRST_PAGE = "https://www.arbeitnow.com/api/job-board-api"
 
 
+def _location(j: dict) -> str | None:
+    """`remote: true` becomes part of the location so geo can see it. Arbeitnow is a German
+    board and its locations are bare city names, so a remote posting is remote in Germany."""
+    loc = j.get("location")
+    if j.get("remote") is True:
+        return f"{loc} (remote, Germany)" if loc else "Remote (Germany)"
+    return loc
+
+
 def parse(payload: dict) -> list[Posting]:
     out = []
     for j in payload.get("data", []):
@@ -26,7 +35,7 @@ def parse(payload: dict) -> list[Posting]:
             url=j.get("url", ""),
             company=j.get("company_name"),
             title=j["title"].strip(),
-            location_raw=j.get("location"),
+            location_raw=_location(j),
             description_text=text,
             posted_at=datetime.fromtimestamp(created, tz=timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
             if isinstance(created, (int, float)) else None,

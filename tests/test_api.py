@@ -79,6 +79,9 @@ def test_jobs_and_detail(api):
     assert r["total"] == 1 and r["jobs"][0]["company"] == "Acme" and r["jobs"][0]["status"] == "open"
     d = client.get(f"/api/jobs/{r['jobs'][0]['id']}").json()
     assert d["skills"][0]["display"] == "Python" and d["sources"][0]["source"] == "arbeitnow"
+    # the stored posting text is served on detail (the job page shows it), never on the list
+    assert d["description_text"].startswith("Acme AI Engineer wants python, rag, aws")
+    assert "description_text" not in r["jobs"][0]
     assert client.get("/api/jobs/999").status_code == 404
 
 

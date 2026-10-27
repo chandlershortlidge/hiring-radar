@@ -58,6 +58,17 @@ def stable_id(job_id: str) -> str:
     return head if sep and head else job_id
 
 
+def _location(j: dict) -> str | None:
+    """`job_is_remote: true` becomes "Remote (<country>)" so geo can judge the region;
+    otherwise the city, then the location text."""
+    loc = j.get("job_city") or j.get("job_location")
+    if j.get("job_is_remote") is True:
+        where = j.get("job_country")
+        where = {"DE": "Germany"}.get(where, where)
+        return "; ".join(x for x in (loc, f"Remote ({where})" if where else "Remote") if x)
+    return loc
+
+
 def parse(payload) -> list[Posting]:
     items = payload.get("data") if isinstance(payload, dict) else None
     out = []
@@ -71,7 +82,7 @@ def parse(payload) -> list[Posting]:
             url=j.get("job_apply_link") or j.get("job_google_link") or "",
             company=j.get("employer_name"),
             title=str(title).strip(),
-            location_raw=j.get("job_city") or j.get("job_location"),
+            location_raw=_location(j),
             description_text=text,
             posted_at=j.get("job_posted_at_datetime_utc"),
         ))

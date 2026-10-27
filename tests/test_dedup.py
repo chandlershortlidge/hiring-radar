@@ -54,7 +54,8 @@ def test_city_of():
     assert city_of(None) is None
 
 
-def test_active_city_is_berlin_only_for_now():
+def test_active_places_are_berlin_and_eu_remote():
     assert active_city("Berlin, Germany") == "Berlin"
     assert active_city("San Francisco, CA") is None and city_of("San Francisco, CA") == "San Francisco"
-    assert active_city("Remote") is None
+    assert active_city("Remote") == "Remote (EU)"
+    assert active_city("Remote - US") is None
