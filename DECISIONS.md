@@ -54,6 +54,40 @@ labeling run started before this edit was stopped at posting 3 of 24 and restart
 
 ## 2026-10-27 — Held-out Goldens come from two blind labelers plus human adjudication (HIR-70)
 
+> **Handover — adjudication in progress, as of 2026-10-27.** Run
+> `evals/labeling/20261027T110516Z_label/`, tracked in git. **Do not re-merge it**
+> (`label --run …` rewrites `review_queue.md` from `items.json` and would erase every
+> decision and proposal; the queue file is the only copy). **Do not run `apply` or the
+> held-out eval** until the queue is finished.
+>
+> **Done:** 39 of 201 items. All 24 in-scope answers — golden_039 and golden_048 ruled out,
+> reasons in the queue, written to `excluded.json` on apply. 13 of 31 disagreements and 2
+> uncertain items decided.
+>
+> **Open:** 162 items — 18 disagreements, 63 uncertain, 1 mapping, 80 spot-checks. The 82
+> non-spot-check items each carry a `PROPOSED:` line naming the rule it rests on, for the
+> adjudicator to accept or override; `DECISION:` stays `?` so apply still refuses. The
+> spot-checks are deliberately bare: no proposals, both labelers hidden, excerpt and agreed
+> label only.
+>
+> **Then:** `apply --run 20261027T110516Z_label`, then
+> `run_eval.py --split heldout --i-am-releasing`, then write the agreement numbers and the
+> spot-check error rate with its 95% Wilson interval into this entry (replacing the TODO
+> below) and onto HIR-70.
+>
+> **Rules the adjudication has produced so far.** Not in LABELING.md yet — the guide is not
+> edited mid-run. If they hold to the end of the queue, they go in as one clarification with
+> its own entry:
+>
+> 1. A qualification bullet that names a skill counts, even if the phrase is broad.
+> 2. A title or years-of-experience line does not — "experience *as* a software engineer" is
+>    a seniority signal, not a skill; "experience *with* ML systems" is a skill.
+> 3. An API being consumed is not `apis`; that is the `llms` criterion. `apis` means
+>    building or designing APIs.
+> 4. **Candidate, unresolved:** a posting that requires a degree and prefers a higher one
+>    (golden_036) loses the required level, because `degree` takes the highest level named
+>    and that mention carries the optional marker. Decided `ok` on the guide's letter.
+
 **Supersedes "no model pre-fill for held-out labels" (2026-10-18, above).** That rule was
 aimed at one specific failure: a draft pre-filled by the *extractor* anchors whoever labels
 it on the answer being measured, so the eval grades the extractor against itself. Hand-
