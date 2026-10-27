@@ -147,6 +147,26 @@ The 216 unmapped labels the run collected are triaged in **HIR-72**, after label
 during it: `taxonomy/skills.json` is inlined into the labeler prompt, so editing it mid-run
 changes what the labelers were asked and invalidates the cache.
 
+**Found during adjudication, both worth keeping:**
+
+- **An agreed-and-wrong, caught by the `uncertain` flag rather than the spot-check.**
+  golden_044 says "hands-on TypeScript skills; Python experience is useful." Both labelers
+  made `python` **required**; "is useful" is an inline optional marker with the force of the
+  guide's listed "is an advantage", so requirement rule 2 overrides the heading and the
+  label is `nice_to_have`. Adjudicated as an override. Agreement would have shipped this
+  silently — which is the argument for queueing every `uncertain` flag even when both
+  labelers agree, not only the disagreements.
+- **A guide gap, left as written for now.** golden_036 requires a degree and prefers a
+  higher one: "Du hast einen Abschluss in Informatik…; ein Master oder Ph.D. ist von
+  Vorteil." LABELING.md says `degree` is *the highest level named* and `nice_to_have` only
+  when that mention is marked optional, so the correct label by the guide is
+  `phd` / `nice_to_have` — a posting that does require a degree ends up labeled as not
+  requiring one. Both labelers applied the rule correctly; the rule loses the required
+  floor. Decided `ok` on the guide's letter and recorded as **clarification candidate #4**,
+  to be settled after HIR-70 with the three rules the disagreements produced (a
+  qualification bullet that names a skill counts; a title or years-of-experience line does
+  not; an API being consumed is not `apis`). LABELING.md is not edited mid-run.
+
 **Queue order.** Items are grouped by what they ask of the reviewer, in working order:
 in-scope, disagreements, uncertain, mapping, then the spot-check sample last. A spot-check
 prints the posting excerpt and the agreed label with no `A:` / `B:` lines — both labelers

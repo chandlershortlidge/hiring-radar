@@ -1040,11 +1040,6 @@ def cmd_apply(args):
     summary = json.loads((run_dir / "summary.json").read_text())
     decisions = dict(parse_queue((run_dir / "review_queue.md").read_text()))
 
-    missing = [n for n in range(1, len(items) + 1) if decisions.get(n, "?") in ("?", "")]
-    if missing:
-        raise SystemExit(f"{len(missing)} of {len(items)} items still say `?` "
-                         f"(first: {missing[:8]}). Decide them, then run apply again.")
-
     skills = {gid: {s["skill_id"]: s for s in m["accepted_skills"]} for gid, m in merged.items()}
     attrs = {gid: dict(m["accepted_attrs"]) for gid, m in merged.items()}
     adjudicated: dict[str, set] = {gid: set() for gid in merged}
@@ -1056,6 +1051,9 @@ def cmd_apply(args):
     for n, item in enumerate(items, 1):
         if item["kind"] != "scope":
             continue
+        if decisions.get(n, "?") in ("?", ""):
+            raise SystemExit(f"item {n} ({item['golden_id']} scope) still says `?`. Every "
+                             f"posting needs an in-scope answer before anything else is read.")
         try:
             keep, why = parse_scope(decisions[n])
         except ValueError as e:
@@ -1064,6 +1062,21 @@ def cmd_apply(args):
             out_of_scope[item["golden_id"]] = why
             skills.pop(item["golden_id"], None)
             attrs.pop(item["golden_id"], None)
+
+    # An out-of-scope posting's items are never read, so demanding decisions on them would
+    # be busy-work on labels that cannot reach a Golden.
+    missing = [n for n, item in enumerate(items, 1)
+               if decisions.get(n, "?") in ("?", "")
+               and item["golden_id"] not in out_of_scope]
+    if missing:
+        skipped = sum(1 for n, item in enumerate(items, 1)
+                      if decisions.get(n, "?") in ("?", "")
+                      and item["golden_id"] in out_of_scope)
+        raise SystemExit(
+            f"{len(missing)} of {len(items)} items still say `?` (first: {missing[:8]})."
+            + (f" {skipped} more are left undecided on postings you ruled out of scope, which "
+               f"is fine." if skipped else "")
+            + " Decide them, then run apply again.")
 
     for n, item in enumerate(items, 1):
         gid, decision = item["golden_id"], decisions[n]

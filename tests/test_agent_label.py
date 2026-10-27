@@ -2,6 +2,7 @@
 
 import importlib.util
 import json
+import re
 import sqlite3
 from pathlib import Path
 
@@ -877,3 +878,71 @@ def test_a_spot_check_item_hides_both_labelers(tmp_path, monkeypatch):
     dis = [(n, i) for n, i in enumerate(items, 1) if i["reason"] == "disagreement"]
     n, item = dis[0]
     assert "- A: " in al.render_item(n, item) and "- B: " in al.render_item(n, item)
+
+
+def _answer(queue, by_item):
+    """Rewrite the queue, setting item n's DECISION to by_item(n, block) for every item."""
+    out, text = [], queue.read_text()
+    head, *blocks = re.split(r"(?m)^(?=## \d+\. )", text)
+    out.append(head)
+    for b in blocks:
+        n = int(re.match(r"## (\d+)\.", b).group(1))
+        want = by_item(n, b)
+        out.append(re.sub(r"(?m)^DECISION: .*$", f"DECISION: {want}", b) if want else b)
+    queue.write_text("".join(out))
+
+
+def test_apply_ignores_undecided_items_of_an_out_of_scope_posting(tmp_path, monkeypatch, capsys):
+    goldens, run_dir = _scope_run(tmp_path, monkeypatch,
+                                  [("Acme", "Senior AI Engineer", POSTING),
+                                   ("benuta", "Marketing Manager", POSTING)])
+    items = json.loads((run_dir / "items.json").read_text())
+    gid = {n: i["golden_id"] for n, i in enumerate(items, 1)}
+    scope = {n: i["golden_id"] for n, i in enumerate(items, 1) if i["kind"] == "scope"}
+    out, keep = "golden_002", "golden_001"
+    assert set(scope.values()) == {keep, out}
+
+    queue = run_dir / "review_queue.md"
+    # the out-of-scope posting is answered `no`; none of its other items are answered at all
+    _answer(queue, lambda n, b: ("no marketing role" if scope.get(n) == out else
+                                 "yes" if n in scope else
+                                 "ok" if gid[n] == keep else "?"))
+    # only the excluded posting's own items are left undecided -- otherwise this proves nothing
+    undecided = [n for n, d in al.parse_queue(queue.read_text()) if d == "?"]
+    assert undecided and all(gid[n] == out for n in undecided)
+
+    al.main(["apply", "--run", run_dir.name])
+    assert (goldens / f"{keep}.json").exists()
+    assert not (goldens / f"{out}.json").exists()
+    assert json.loads((goldens / "excluded.json").read_text())["excluded"][0]["golden_id"] == out
+
+
+def test_apply_still_refuses_an_undecided_item_on_a_posting_that_stays(tmp_path, monkeypatch):
+    goldens, run_dir = _scope_run(tmp_path, monkeypatch,
+                                  [("Acme", "Senior AI Engineer", POSTING),
+                                   ("benuta", "Marketing Manager", POSTING)])
+    items = json.loads((run_dir / "items.json").read_text())
+    gid = {n: i["golden_id"] for n, i in enumerate(items, 1)}
+    scope = {n: i["golden_id"] for n, i in enumerate(items, 1) if i["kind"] == "scope"}
+    queue = run_dir / "review_queue.md"
+    # the posting that stays is one with items of its own; the other is ruled out
+    keep = next(gid[n] for n in sorted(gid) if n not in scope)
+    out, = set(scope.values()) - {keep}
+    first_kept = min(n for n in gid if gid[n] == keep and n not in scope)
+    _answer(queue, lambda n, b: (f"no marketing role" if scope.get(n) == out else
+                                 "yes" if n in scope else
+                                 "?" if n == first_kept else "ok"))
+    with pytest.raises(SystemExit) as e:
+        al.main(["apply", "--run", run_dir.name])
+    assert "still say `?`" in str(e.value)
+    assert not (goldens / f"{keep}.json").exists()
+
+
+def test_apply_refuses_an_undecided_scope_item(tmp_path, monkeypatch):
+    goldens, run_dir = _scope_run(tmp_path, monkeypatch, [("Acme", "Senior AI Engineer", POSTING)])
+    queue = run_dir / "review_queue.md"
+    _answer(queue, lambda n, b: "?" if n == 1 else "ok")
+    with pytest.raises(SystemExit) as e:
+        al.main(["apply", "--run", run_dir.name])
+    assert "in-scope answer" in str(e.value)
+    assert not (goldens / "golden_001.json").exists()
