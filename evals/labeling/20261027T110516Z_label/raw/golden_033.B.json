@@ -1,0 +1,50 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic coding tools\"\n    },\n    {\n      \"skill_id\": \"claude-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Claude Code\"\n    },\n    {\n      \"skill_id\": \"cursor\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cursor\"\n    },\n    {\n      \"skill_id\": \"github-copilot\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Copilot\"\n    },\n    {\n      \"skill_id\": \"full-stack-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"developing modern full-stack solutions\"\n    }\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"AI-First Engineering Intern\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Open to current undergraduate students, graduate students, and recent graduates of a Computer Science, Software Engineering, or related program.\",\n  \"notes\": \"What We're Looking For is the qualifications section; no heading or inline marker makes its skills optional.\\nAPIs and SDKs appear only in responsibilities and are excluded. ChatGPT is mentioned as a contrast, not a requested skill.\\nDegree is bachelor under the rule for studies without a specified degree level; graduate students and graduate degree do not explicitly name a master's or doctorate. Current study is accepted, but equivalent experience is not stated.\\nConfirming that AI-assisted work actually worked is not treated as an explicit request for the technical practice of testing.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "agentic coding tools"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code"
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "Copilot"
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "developing modern full-stack solutions"
+      }
+    ],
+    "unmapped": [],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "AI-First Engineering Intern",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Open to current undergraduate students, graduate students, and recent graduates of a Computer Science, Software Engineering, or related program.",
+    "notes": "What We're Looking For is the qualifications section; no heading or inline marker makes its skills optional.\nAPIs and SDKs appear only in responsibilities and are excluded. ChatGPT is mentioned as a contrast, not a requested skill.\nDegree is bachelor under the rule for studies without a specified degree level; graduate students and graduate degree do not explicitly name a master's or doctorate. Current study is accepted, but equivalent experience is not stated.\nConfirming that AI-assisted work actually worked is not treated as an explicit request for the technical practice of testing."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "412cd655dde21203efa8cb609bce85b50a48a334d9e342ed3eb6a7695b77090d",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

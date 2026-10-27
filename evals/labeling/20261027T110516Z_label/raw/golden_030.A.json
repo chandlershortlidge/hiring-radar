@@ -1,0 +1,70 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"APIs\"},\n    {\"skill_id\": \"data-modeling\", \"requirement\": \"required\", \"raw_text\": \"Datenmodelle\", \"uncertain\": true},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"nice_to_have\", \"raw_text\": \"moderner Architekturen\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Cloud-Technologien\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AI/ML\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"SAP Business AI\", \"raw_text\": \"SAP Business AI\"},\n    {\"label\": \"SAP Joule\", \"raw_text\": \"SAP Joule\"},\n    {\"label\": \"SAP BTP\", \"raw_text\": \"SAP BTP\"},\n    {\"label\": \"Prototyping\", \"raw_text\": \"Prototyping\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"SAP AI Lead Architect\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute und verhandlungssichere (C1) Deutsch-\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Abgeschlossenes Studium (Informatik, Wirtschaftsinformatik, BWL mit IT-Schwerpunkt) oder vergleichbare Qualifikation\",\n  \"uncertain\": [],\n  \"notes\": \"'Dein Skillset' is an unmarked requirements section, so its items default to required.\\nThe 'Kenntnisse moderner Architekturen, Cloud-Technologien und AI/ML sind von Vorteil' bullet carries an inline 'is an advantage' marker, so it is nice_to_have.\\n'Datenmodelle' (data models) is mapped to data-modeling as the closest fit; flagged uncertain.\\n'moderner Architekturen' is mapped to software-architecture; it is vague, so flagged uncertain.\\n'Integration' is too generic to map and is not labeled. 'AI- oder Automatisierungslösungen' is a general description and is not mapped to workflow-automation.\\nS/4HANA appears only in the responsibilities and is not labeled.\\nThe 'Schlagworte' keyword list (ABAP, HANA, Webservice, API, etc.) is SEO metadata, not a candidate requirement, so it is not labeled.\\nSAP domain knowledge (Finance, Logistik, Master Data processes) counts as domain knowledge, not skills.\\nThe degree accepts 'oder vergleichbare Qualifikation' (or comparable qualification), so degree_or_equivalent is true.\\nSeniority is stated from 'Lead Architect' in the title; the responsibility for architecture decisions supports it.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "Datenmodelle",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "nice_to_have",
+        "raw_text": "moderner Architekturen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Cloud-Technologien"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "nice_to_have",
+        "raw_text": "AI/ML"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "SAP Business AI",
+        "raw_text": "SAP Business AI"
+      },
+      {
+        "label": "SAP Joule",
+        "raw_text": "SAP Joule"
+      },
+      {
+        "label": "SAP BTP",
+        "raw_text": "SAP BTP"
+      },
+      {
+        "label": "Prototyping",
+        "raw_text": "Prototyping"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "SAP AI Lead Architect",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute und verhandlungssichere (C1) Deutsch-",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossenes Studium (Informatik, Wirtschaftsinformatik, BWL mit IT-Schwerpunkt) oder vergleichbare Qualifikation",
+    "uncertain": [],
+    "notes": "'Dein Skillset' is an unmarked requirements section, so its items default to required.\nThe 'Kenntnisse moderner Architekturen, Cloud-Technologien und AI/ML sind von Vorteil' bullet carries an inline 'is an advantage' marker, so it is nice_to_have.\n'Datenmodelle' (data models) is mapped to data-modeling as the closest fit; flagged uncertain.\n'moderner Architekturen' is mapped to software-architecture; it is vague, so flagged uncertain.\n'Integration' is too generic to map and is not labeled. 'AI- oder Automatisierungslösungen' is a general description and is not mapped to workflow-automation.\nS/4HANA appears only in the responsibilities and is not labeled.\nThe 'Schlagworte' keyword list (ABAP, HANA, Webservice, API, etc.) is SEO metadata, not a candidate requirement, so it is not labeled.\nSAP domain knowledge (Finance, Logistik, Master Data processes) counts as domain knowledge, not skills.\nThe degree accepts 'oder vergleichbare Qualifikation' (or comparable qualification), so degree_or_equivalent is true.\nSeniority is stated from 'Lead Architect' in the title; the responsibility for architecture decisions supports it."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "ffe0b5100a14eb3bb459bb76e5bf37d1aec581d647d74ffe1e990866cfd80a88",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

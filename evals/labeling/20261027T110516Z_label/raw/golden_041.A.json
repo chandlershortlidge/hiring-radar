@@ -1,0 +1,105 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"programmierst sicher mit Python\"},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"Softwarearchitektur\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"Softwarearchitektur, APIs\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"automatisierten Tests\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"Git\"},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"professionellen Softwareentwicklung\", \"uncertain\": true},\n    {\"skill_id\": \"nlp\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit NLP\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"generativer KI\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud Computing\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Docker\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Kenntnisse in CI/CD\", \"uncertain\": true},\n    {\"skill_id\": \"containerization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Container-Orchestrierung\", \"uncertain\": true},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Infrastructure as Code\", \"uncertain\": true},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"verstehst Machine Learning\"},\n    {\"skill_id\": \"data-science\", \"requirement\": \"required\", \"raw_text\": \"Machine Learning und Data Science\"}\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Applied AI Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"sehr gute Deutsch- und Englischkenntnisse\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"abgeschlossenes Studium der Mathematik, Physik, (Wirtschafts-)Informatik oder eines anderen quantitativen Studiengangs\",\n  \"uncertain\": [],\n  \"notes\": \"'sind willkommen' (are welcome) is read as the German equivalent of 'nice to have'. It is not one of the guide's listed markers, so CI/CD, Container-Orchestrierung and IaC are labeled nice_to_have and flagged for review.\\nCI/CD also appears in responsibilities. That mention is not a candidate requirement, so the profile mention (marked welcome) determines the label.\\n'Container-Orchestrierung' has no exact taxonomy entry. It is mapped to containerization (uncertain); kubernetes is not named and was not added.\\n'professionellen Softwareentwicklung' is mapped to software-engineering (uncertain). It appears inside a years-of-experience phrase.\\nFoundation Models, monitoring, frameworks and integrations appear only in responsibilities and are not labeled.\\nPython, APIs, NLP, Machine Learning and Data Science also appear in responsibilities or the contact block. raw_text quotes enough of the profile mention to identify it.\\nDegree: 'abgeschlossenes Studium' with no level is labeled bachelor. 'oder eines anderen quantitativen Studiengangs' widens the field, so degree_or_equivalent is false.\\nSeniority is stated by 'Senior' in the title. 'mehrjährige Berufserfahrung' is consistent with this.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "programmierst sicher mit Python"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Softwarearchitektur"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Softwarearchitektur, APIs"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automatisierten Tests"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "professionellen Softwareentwicklung",
+        "uncertain": true
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit NLP"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "generativer KI"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud Computing"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "Kenntnisse in CI/CD",
+        "uncertain": true
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "Container-Orchestrierung",
+        "uncertain": true
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "nice_to_have",
+        "raw_text": "Infrastructure as Code",
+        "uncertain": true
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "verstehst Machine Learning"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "Machine Learning und Data Science"
+      }
+    ],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Applied AI Engineer",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "sehr gute Deutsch- und Englischkenntnisse",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "abgeschlossenes Studium der Mathematik, Physik, (Wirtschafts-)Informatik oder eines anderen quantitativen Studiengangs",
+    "uncertain": [],
+    "notes": "'sind willkommen' (are welcome) is read as the German equivalent of 'nice to have'. It is not one of the guide's listed markers, so CI/CD, Container-Orchestrierung and IaC are labeled nice_to_have and flagged for review.\nCI/CD also appears in responsibilities. That mention is not a candidate requirement, so the profile mention (marked welcome) determines the label.\n'Container-Orchestrierung' has no exact taxonomy entry. It is mapped to containerization (uncertain); kubernetes is not named and was not added.\n'professionellen Softwareentwicklung' is mapped to software-engineering (uncertain). It appears inside a years-of-experience phrase.\nFoundation Models, monitoring, frameworks and integrations appear only in responsibilities and are not labeled.\nPython, APIs, NLP, Machine Learning and Data Science also appear in responsibilities or the contact block. raw_text quotes enough of the profile mention to identify it.\nDegree: 'abgeschlossenes Studium' with no level is labeled bachelor. 'oder eines anderen quantitativen Studiengangs' widens the field, so degree_or_equivalent is false.\nSeniority is stated by 'Senior' in the title. 'mehrjährige Berufserfahrung' is consistent with this."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "2a930ceae672139bce0620fc4f573ae0ffaa02861b57eecf5c0d114bf9ea7af2",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

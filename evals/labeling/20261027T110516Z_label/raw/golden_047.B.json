@@ -1,0 +1,157 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLMs\"},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"required\", \"raw_text\": \"Vektordatenbanken\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG-Pipelines\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"Orchestrierungs-Frameworks\"},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"LangChain\"},\n    {\"skill_id\": \"langgraph\", \"requirement\": \"required\", \"raw_text\": \"LangGraph\"},\n    {\"skill_id\": \"devops\", \"requirement\": \"required\", \"raw_text\": \"DevOps-Projekten\"},\n    {\"skill_id\": \"csharp\", \"requirement\": \"required\", \"raw_text\": \"C#\"},\n    {\"skill_id\": \"javascript\", \"requirement\": \"required\", \"raw_text\": \"JavaScript\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"Bereitstellung von ML-/KI-Modellen in Produktionsumgebungen\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud-Anbieter\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"Prompt-Engineering\"},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"Feinabstimmung\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"Backend-Technologien\"},\n    {\"skill_id\": \"node-js\", \"requirement\": \"required\", \"raw_text\": \"NodeJS\"},\n    {\"skill_id\": \"flask\", \"requirement\": \"required\", \"raw_text\": \"Flask\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"REST APIs\"},\n    {\"skill_id\": \"graphql\", \"requirement\": \"required\", \"raw_text\": \"GraphQL\"},\n    {\"skill_id\": \"fastapi\", \"requirement\": \"required\", \"raw_text\": \"FastAPI\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Microsoft Azure\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"Cloud-Anbieter wie AWS\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"Google\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \".NET Core\", \"raw_text\": \".NET Core\"},\n    {\"label\": \"Spring\", \"raw_text\": \"Spring\"},\n    {\"label\": \"Spring Boot\", \"raw_text\": \"SpringBoot\"},\n    {\"label\": \"Django\", \"raw_text\": \"Django\"}\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"(Junior)\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Mündliche und schriftliche Kommunikationsfähigkeit in Deutsch und Englisch\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Studienabschluss mit einem technischen Hintergrund, zum Beispiel in Informatik, Data Science, Künstliche Intelligenz, Wirtschaftsinformatik oder einem ähnlichen orientierten Studiengang\",\n  \"notes\": \"Qualifikationen enthält keine optionalen Marker; auch alternativ und beispielhaft genannte Technologien sind required.\\nGoogle wird im ausdrücklichen Cloud-Anbieter-Kontext als GCP gelesen; Orchestrierungs-Frameworks im Kontext generativer KI als LLM orchestration.\\nBackend-Technologien wird als ausdrücklich benannte breite Backend-Kompetenz erfasst.\\nTechnologien ausschließlich unter Aufgaben, Benefits und Unternehmensbeschreibung werden nicht erfasst; Studienrichtungen sind keine Skills.\\nDer ausdrücklich genannte Junior-Level bestimmt die Seniorität trotz der Leitungsaufgabe.\\nDer Studienabschluss ohne genanntes Niveau wird gemäß Guide als bachelor erfasst; ein ähnlicher Studiengang ist keine Erfahrung als Abschlussersatz.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "Vektordatenbanken"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG-Pipelines"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "Orchestrierungs-Frameworks"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps-Projekten"
+      },
+      {
+        "skill_id": "csharp",
+        "requirement": "required",
+        "raw_text": "C#"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "Bereitstellung von ML-/KI-Modellen in Produktionsumgebungen"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Anbieter"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt-Engineering"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "Feinabstimmung"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend-Technologien"
+      },
+      {
+        "skill_id": "node-js",
+        "requirement": "required",
+        "raw_text": "NodeJS"
+      },
+      {
+        "skill_id": "flask",
+        "requirement": "required",
+        "raw_text": "Flask"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST APIs"
+      },
+      {
+        "skill_id": "graphql",
+        "requirement": "required",
+        "raw_text": "GraphQL"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "Cloud-Anbieter wie AWS"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": ".NET Core",
+        "raw_text": ".NET Core"
+      },
+      {
+        "label": "Spring",
+        "raw_text": "Spring"
+      },
+      {
+        "label": "Spring Boot",
+        "raw_text": "SpringBoot"
+      },
+      {
+        "label": "Django",
+        "raw_text": "Django"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "(Junior)",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Mündliche und schriftliche Kommunikationsfähigkeit in Deutsch und Englisch",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Studienabschluss mit einem technischen Hintergrund, zum Beispiel in Informatik, Data Science, Künstliche Intelligenz, Wirtschaftsinformatik oder einem ähnlichen orientierten Studiengang",
+    "notes": "Qualifikationen enthält keine optionalen Marker; auch alternativ und beispielhaft genannte Technologien sind required.\nGoogle wird im ausdrücklichen Cloud-Anbieter-Kontext als GCP gelesen; Orchestrierungs-Frameworks im Kontext generativer KI als LLM orchestration.\nBackend-Technologien wird als ausdrücklich benannte breite Backend-Kompetenz erfasst.\nTechnologien ausschließlich unter Aufgaben, Benefits und Unternehmensbeschreibung werden nicht erfasst; Studienrichtungen sind keine Skills.\nDer ausdrücklich genannte Junior-Level bestimmt die Seniorität trotz der Leitungsaufgabe.\nDer Studienabschluss ohne genanntes Niveau wird gemäß Guide als bachelor erfasst; ein ähnlicher Studiengang ist keine Erfahrung als Abschlussersatz."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "91142debb1fca65b281d5a55c9895d66a60bd587f0482c608b83014b74ed87e4",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

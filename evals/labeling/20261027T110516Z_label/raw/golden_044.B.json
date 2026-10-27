@@ -1,0 +1,79 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python experience is useful\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM-powered systems\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tool calling\"\n    },\n    {\n      \"skill_id\": \"ai-infrastructure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"inference infrastructure\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation frameworks\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Agent orchestration\",\n      \"raw_text\": \"agent orchestration\"\n    },\n    {\n      \"label\": \"Context management\",\n      \"raw_text\": \"context management\"\n    },\n    {\n      \"label\": \"Sandboxed code execution\",\n      \"raw_text\": \"sandboxed code execution\"\n    },\n    {\n      \"label\": \"Failure investigation\",\n      \"raw_text\": \"failure investigation\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Lead AI Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"WHAT WE'RE LOOKING FOR is the requirements section; no heading marks an optional section.\\nRead literally, 'useful' is not one of the guide's enumerated inline optional markers, so Python and evaluation frameworks remain required; flagged for review because the wording suggests optionality.\\nAgent orchestration and context management are left unmapped rather than equated with LLM orchestration or agent state management without an explicit taxonomy match.\\nInference infrastructure is mapped to AI Infrastructure in the explicit AI/LLM context; the 'or' alternatives remain separately requested skills.\\nProcurement experience is domain knowledge, and helping engineers succeed and making sound technical decisions are not labeled as technical skills.\\nTechnologies and practices mentioned only under WHAT YOU'LL DO are excluded. Berlin does not establish a German-language requirement.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python experience is useful",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-powered systems"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool calling"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "required",
+        "raw_text": "inference infrastructure"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation frameworks",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Agent orchestration",
+        "raw_text": "agent orchestration"
+      },
+      {
+        "label": "Context management",
+        "raw_text": "context management"
+      },
+      {
+        "label": "Sandboxed code execution",
+        "raw_text": "sandboxed code execution"
+      },
+      {
+        "label": "Failure investigation",
+        "raw_text": "failure investigation"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead AI Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "WHAT WE'RE LOOKING FOR is the requirements section; no heading marks an optional section.\nRead literally, 'useful' is not one of the guide's enumerated inline optional markers, so Python and evaluation frameworks remain required; flagged for review because the wording suggests optionality.\nAgent orchestration and context management are left unmapped rather than equated with LLM orchestration or agent state management without an explicit taxonomy match.\nInference infrastructure is mapped to AI Infrastructure in the explicit AI/LLM context; the 'or' alternatives remain separately requested skills.\nProcurement experience is domain knowledge, and helping engineers succeed and making sound technical decisions are not labeled as technical skills.\nTechnologies and practices mentioned only under WHAT YOU'LL DO are excluded. Berlin does not establish a German-language requirement."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "2659d559d2393ff753e095d746eee37dfed5a4bb1cc087a3db0b140eb76065ad",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

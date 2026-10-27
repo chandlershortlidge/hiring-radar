@@ -1,0 +1,302 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"Strong engineering skills in Python and PyTorch.\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"deploying or optimizing LLM, VLM, or high-throughput transformer inference\"},\n    {\"skill_id\": \"inference-optimization\", \"requirement\": \"required\", \"raw_text\": \"optimizing LLM, VLM, or high-throughput transformer inference\"},\n    {\"skill_id\": \"vllm\", \"requirement\": \"required\", \"raw_text\": \"vLLM\"},\n    {\"skill_id\": \"sglang\", \"requirement\": \"required\", \"raw_text\": \"SGLang\"},\n    {\"skill_id\": \"tensorrt\", \"requirement\": \"required\", \"raw_text\": \"TensorRT-LLM\"},\n    {\"skill_id\": \"model-serving\", \"requirement\": \"required\", \"raw_text\": \"long-context serving\"},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"required\", \"raw_text\": \"distributed inference system architecture\"},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"designing or optimizing distributed inference system architecture\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"agentic workloads\"},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"nice_to_have\", \"raw_text\": \"tool calling\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"nice_to_have\", \"raw_text\": \"streaming APIs\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"nice_to_have\", \"raw_text\": \"multi-step orchestration\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Vision-language models\", \"raw_text\": \"VLM\"},\n    {\"label\": \"Transformer inference\", \"raw_text\": \"transformer inference\"},\n    {\"label\": \"Triton Inference Server\", \"raw_text\": \"Triton Inference Server\"},\n    {\"label\": \"NVIDIA Dynamo\", \"raw_text\": \"NVIDIA Dynamo\"},\n    {\"label\": \"Ray Serve\", \"raw_text\": \"Ray Serve\"},\n    {\"label\": \"KServe\", \"raw_text\": \"KServe\"},\n    {\"label\": \"KV cache\", \"raw_text\": \"KV cache\"},\n    {\"label\": \"Attention\", \"raw_text\": \"attention\"},\n    {\"label\": \"Memory-bandwidth bottleneck analysis\", \"raw_text\": \"transformer inference bottlenecks involving KV cache, attention, memory bandwidth\"},\n    {\"label\": \"Batching\", \"raw_text\": \"batching\"},\n    {\"label\": \"Parallelism\", \"raw_text\": \"parallelism\"},\n    {\"label\": \"Inference performance trade-off analysis\", \"raw_text\": \"quantify trade-offs among latency, throughput, quality, utilization, and cost\"},\n    {\"label\": \"Request routing\", \"raw_text\": \"request routing\"},\n    {\"label\": \"Distributed scheduling\", \"raw_text\": \"distributed scheduling\"},\n    {\"label\": \"Prefill–decode disaggregation\", \"raw_text\": \"PDD\"},\n    {\"label\": \"Multi-node inference\", \"raw_text\": \"multi-node inference\"},\n    {\"label\": \"Expert parallelism\", \"raw_text\": \"expert parallelism\"},\n    {\"label\": \"Quantization-aware training\", \"raw_text\": \"quantization-aware training\"},\n    {\"label\": \"Post-training quantization\", \"raw_text\": \"post-training quantization\"},\n    {\"label\": \"FP8\", \"raw_text\": \"FP8\"},\n    {\"label\": \"INT8\", \"raw_text\": \"INT8\"},\n    {\"label\": \"INT4\", \"raw_text\": \"INT4\"},\n    {\"label\": \"NVFP4\", \"raw_text\": \"NVFP4\"},\n    {\"label\": \"MXFP4\", \"raw_text\": \"MXFP4\"},\n    {\"label\": \"AWQ\", \"raw_text\": \"AWQ\"},\n    {\"label\": \"GPTQ\", \"raw_text\": \"GPTQ\"},\n    {\"label\": \"SmoothQuant\", \"raw_text\": \"SmoothQuant\"},\n    {\"label\": \"Knowledge distillation\", \"raw_text\": \"distillation\"},\n    {\"label\": \"Speculative decoding\", \"raw_text\": \"speculative decoding\"},\n    {\"label\": \"EAGLE\", \"raw_text\": \"EAGLE\"},\n    {\"label\": \"Medusa\", \"raw_text\": \"Medusa\"},\n    {\"label\": \"Multi-token prediction\", \"raw_text\": \"multi-token prediction\"},\n    {\"label\": \"Structured outputs\", \"raw_text\": \"structured outputs\"},\n    {\"label\": \"High-concurrency serving\", \"raw_text\": \"high concurrency\"},\n    {\"label\": \"CUDA\", \"raw_text\": \"CUDA\"},\n    {\"label\": \"Triton\", \"raw_text\": \"Triton\"},\n    {\"label\": \"Open-source contributions\", \"raw_text\": \"Contributions to open-source projects\"},\n    {\"label\": \"FlashInfer\", \"raw_text\": \"FlashInfer\"},\n    {\"label\": \"LMCache\", \"raw_text\": \"LMCache\"},\n    {\"label\": \"Ray\", \"raw_text\": \"Ray\"},\n    {\"label\": \"Cache-aware request routing\", \"raw_text\": \"cache-aware request routing\"},\n    {\"label\": \"Wide expert parallelism\", \"raw_text\": \"WideEP\"},\n    {\"label\": \"Communication bottleneck diagnosis\", \"raw_text\": \"diagnosing communication bottlenecks\"},\n    {\"label\": \"Load imbalance diagnosis\", \"raw_text\": \"diagnosing communication bottlenecks and load imbalance\"},\n    {\"label\": \"GPU communication libraries\", \"raw_text\": \"GPU communication libraries\"},\n    {\"label\": \"GPU interconnects\", \"raw_text\": \"interconnects\"},\n    {\"label\": \"NCCL\", \"raw_text\": \"NCCL\"},\n    {\"label\": \"NVLink\", \"raw_text\": \"NVLink\"},\n    {\"label\": \"InfiniBand\", \"raw_text\": \"InfiniBand\"},\n    {\"label\": \"RoCE\", \"raw_text\": \"RoCE\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Must-haves sets required status; Nice-to-haves sets optional status. Technologies appearing only in the company description, role description, or responsibilities are excluded.\\nRequired mentions win for PyTorch, vLLM, SGLang, TensorRT-LLM, KServe, PDD, and expert parallelism despite optional mentions elsewhere; repeated engine names use their shortest identifying fragments.\\nDistributed inference system architecture explicitly names both distributed systems and architecture; long-context serving is treated as model serving.\\nMulti-step orchestration is mapped provisionally to LLM orchestration because it occurs within agentic workloads; review is flagged.\\nUnmapped entries retain explicitly requested technologies and technical practices without inventing taxonomy IDs. Structured outputs are not assumed to mean structured data extraction, and Triton is kept distinct from Triton Inference Server.\\nNo German-language or degree requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "Strong engineering skills in Python and PyTorch."
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying or optimizing LLM, VLM, or high-throughput transformer inference"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "required",
+        "raw_text": "optimizing LLM, VLM, or high-throughput transformer inference"
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "required",
+        "raw_text": "vLLM"
+      },
+      {
+        "skill_id": "sglang",
+        "requirement": "required",
+        "raw_text": "SGLang"
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "required",
+        "raw_text": "TensorRT-LLM"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "required",
+        "raw_text": "long-context serving"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed inference system architecture"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "designing or optimizing distributed inference system architecture"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic workloads"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "nice_to_have",
+        "raw_text": "tool calling"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "nice_to_have",
+        "raw_text": "streaming APIs"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "nice_to_have",
+        "raw_text": "multi-step orchestration",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Vision-language models",
+        "raw_text": "VLM"
+      },
+      {
+        "label": "Transformer inference",
+        "raw_text": "transformer inference"
+      },
+      {
+        "label": "Triton Inference Server",
+        "raw_text": "Triton Inference Server"
+      },
+      {
+        "label": "NVIDIA Dynamo",
+        "raw_text": "NVIDIA Dynamo"
+      },
+      {
+        "label": "Ray Serve",
+        "raw_text": "Ray Serve"
+      },
+      {
+        "label": "KServe",
+        "raw_text": "KServe"
+      },
+      {
+        "label": "KV cache",
+        "raw_text": "KV cache"
+      },
+      {
+        "label": "Attention",
+        "raw_text": "attention"
+      },
+      {
+        "label": "Memory-bandwidth bottleneck analysis",
+        "raw_text": "transformer inference bottlenecks involving KV cache, attention, memory bandwidth"
+      },
+      {
+        "label": "Batching",
+        "raw_text": "batching"
+      },
+      {
+        "label": "Parallelism",
+        "raw_text": "parallelism"
+      },
+      {
+        "label": "Inference performance trade-off analysis",
+        "raw_text": "quantify trade-offs among latency, throughput, quality, utilization, and cost"
+      },
+      {
+        "label": "Request routing",
+        "raw_text": "request routing"
+      },
+      {
+        "label": "Distributed scheduling",
+        "raw_text": "distributed scheduling"
+      },
+      {
+        "label": "Prefill–decode disaggregation",
+        "raw_text": "PDD"
+      },
+      {
+        "label": "Multi-node inference",
+        "raw_text": "multi-node inference"
+      },
+      {
+        "label": "Expert parallelism",
+        "raw_text": "expert parallelism"
+      },
+      {
+        "label": "Quantization-aware training",
+        "raw_text": "quantization-aware training"
+      },
+      {
+        "label": "Post-training quantization",
+        "raw_text": "post-training quantization"
+      },
+      {
+        "label": "FP8",
+        "raw_text": "FP8"
+      },
+      {
+        "label": "INT8",
+        "raw_text": "INT8"
+      },
+      {
+        "label": "INT4",
+        "raw_text": "INT4"
+      },
+      {
+        "label": "NVFP4",
+        "raw_text": "NVFP4"
+      },
+      {
+        "label": "MXFP4",
+        "raw_text": "MXFP4"
+      },
+      {
+        "label": "AWQ",
+        "raw_text": "AWQ"
+      },
+      {
+        "label": "GPTQ",
+        "raw_text": "GPTQ"
+      },
+      {
+        "label": "SmoothQuant",
+        "raw_text": "SmoothQuant"
+      },
+      {
+        "label": "Knowledge distillation",
+        "raw_text": "distillation"
+      },
+      {
+        "label": "Speculative decoding",
+        "raw_text": "speculative decoding"
+      },
+      {
+        "label": "EAGLE",
+        "raw_text": "EAGLE"
+      },
+      {
+        "label": "Medusa",
+        "raw_text": "Medusa"
+      },
+      {
+        "label": "Multi-token prediction",
+        "raw_text": "multi-token prediction"
+      },
+      {
+        "label": "Structured outputs",
+        "raw_text": "structured outputs"
+      },
+      {
+        "label": "High-concurrency serving",
+        "raw_text": "high concurrency"
+      },
+      {
+        "label": "CUDA",
+        "raw_text": "CUDA"
+      },
+      {
+        "label": "Triton",
+        "raw_text": "Triton"
+      },
+      {
+        "label": "Open-source contributions",
+        "raw_text": "Contributions to open-source projects"
+      },
+      {
+        "label": "FlashInfer",
+        "raw_text": "FlashInfer"
+      },
+      {
+        "label": "LMCache",
+        "raw_text": "LMCache"
+      },
+      {
+        "label": "Ray",
+        "raw_text": "Ray"
+      },
+      {
+        "label": "Cache-aware request routing",
+        "raw_text": "cache-aware request routing"
+      },
+      {
+        "label": "Wide expert parallelism",
+        "raw_text": "WideEP"
+      },
+      {
+        "label": "Communication bottleneck diagnosis",
+        "raw_text": "diagnosing communication bottlenecks"
+      },
+      {
+        "label": "Load imbalance diagnosis",
+        "raw_text": "diagnosing communication bottlenecks and load imbalance"
+      },
+      {
+        "label": "GPU communication libraries",
+        "raw_text": "GPU communication libraries"
+      },
+      {
+        "label": "GPU interconnects",
+        "raw_text": "interconnects"
+      },
+      {
+        "label": "NCCL",
+        "raw_text": "NCCL"
+      },
+      {
+        "label": "NVLink",
+        "raw_text": "NVLink"
+      },
+      {
+        "label": "InfiniBand",
+        "raw_text": "InfiniBand"
+      },
+      {
+        "label": "RoCE",
+        "raw_text": "RoCE"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Must-haves sets required status; Nice-to-haves sets optional status. Technologies appearing only in the company description, role description, or responsibilities are excluded.\nRequired mentions win for PyTorch, vLLM, SGLang, TensorRT-LLM, KServe, PDD, and expert parallelism despite optional mentions elsewhere; repeated engine names use their shortest identifying fragments.\nDistributed inference system architecture explicitly names both distributed systems and architecture; long-context serving is treated as model serving.\nMulti-step orchestration is mapped provisionally to LLM orchestration because it occurs within agentic workloads; review is flagged.\nUnmapped entries retain explicitly requested technologies and technical practices without inventing taxonomy IDs. Structured outputs are not assumed to mean structured data extraction, and Triton is kept distinct from Triton Inference Server.\nNo German-language or degree requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "bbe3dd49f84b18b8548b6cbbc38ba23511f098f71a90df17b17c855264bdd232",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

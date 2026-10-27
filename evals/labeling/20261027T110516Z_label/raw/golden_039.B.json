@@ -1,0 +1,40 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"conversational-ai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Conversational-AI\"\n    },\n    {\n      \"skill_id\": \"explainable-ai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Explainable-AI\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Local-AI\",\n      \"raw_text\": \"Local-AI\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"AI Engineer Team Lead\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"fließendes Deutsch\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Studium Informatik\",\n  \"notes\": \"No optional section or inline optional markers; all requested skills are required.\\nLocal-AI is taken literally and left unmapped; it does not explicitly request open-source or self-hosted LLMs.\\nArchitecture development and AI solutions describe responsibilities, not candidate skill requirements.\\nStudium Informatik names no degree level and is therefore labeled bachelor per the guide.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "conversational-ai",
+        "requirement": "required",
+        "raw_text": "Conversational-AI"
+      },
+      {
+        "skill_id": "explainable-ai",
+        "requirement": "required",
+        "raw_text": "Explainable-AI"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Local-AI",
+        "raw_text": "Local-AI"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "AI Engineer Team Lead",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "fließendes Deutsch",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Studium Informatik",
+    "notes": "No optional section or inline optional markers; all requested skills are required.\nLocal-AI is taken literally and left unmapped; it does not explicitly request open-source or self-hosted LLMs.\nArchitecture development and AI solutions describe responsibilities, not candidate skill requirements.\nStudium Informatik names no degree level and is therefore labeled bachelor per the guide."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "82682841e4b2ff56e292d1a17e746fd9c575db3ce839cad6babee638e23f0fa2",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

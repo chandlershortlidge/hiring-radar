@@ -1,0 +1,73 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Microsoft Azure\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"cpp\", \"requirement\": \"required\", \"raw_text\": \"C++\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud infrastructure\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"IaC\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"required\", \"raw_text\": \"Terraform\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Kubernetes\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Agile / Scrum\", \"raw_text\": \"agile team with daily scrum-based sprints\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Cloud Software Engineer AI\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"Seniority comes from 'Senior' in the title (stated). This outranks the '3+ years' wording, which on its own would infer mid.\\nDegree is labeled null because the posting says 'a degree is not required'. A degree is mentioned only to waive it, so no degree label applies. Flagged for review.\\n'Microsoft Azure or AWS' means either platform is accepted. Both are labeled required, since neither is marked optional.\\n'cloud infrastructure solutions' maps to the broad 'cloud' skill through the 'cloud infrastructure' alias, alongside the specific skills it names.\\n'Python or C++' is an either/or choice. Both are labeled required.\\nSeveral items appear only in the responsibilities and are not labeled: continuous delivery, cloud architecture and scalability of workloads.\\n'data privacy and generative AI' appears only in the company description and is not labeled.\\n'resilient, scalable systems' and 'troubleshooting' have no taxonomy entry and were not treated as discrete skills.\\nAgile/Scrum is a practice the posting asks for but has no taxonomy id, so it goes in unmapped.\\nThe only language asked for is business-fluent English, so german is null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud infrastructure"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "IaC"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Agile / Scrum",
+        "raw_text": "agile team with daily scrum-based sprints"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Cloud Software Engineer AI",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Seniority comes from 'Senior' in the title (stated). This outranks the '3+ years' wording, which on its own would infer mid.\nDegree is labeled null because the posting says 'a degree is not required'. A degree is mentioned only to waive it, so no degree label applies. Flagged for review.\n'Microsoft Azure or AWS' means either platform is accepted. Both are labeled required, since neither is marked optional.\n'cloud infrastructure solutions' maps to the broad 'cloud' skill through the 'cloud infrastructure' alias, alongside the specific skills it names.\n'Python or C++' is an either/or choice. Both are labeled required.\nSeveral items appear only in the responsibilities and are not labeled: continuous delivery, cloud architecture and scalability of workloads.\n'data privacy and generative AI' appears only in the company description and is not labeled.\n'resilient, scalable systems' and 'troubleshooting' have no taxonomy entry and were not treated as discrete skills.\nAgile/Scrum is a practice the posting asks for but has no taxonomy id, so it goes in unmapped.\nThe only language asked for is business-fluent English, so german is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "6a481fc8051cf14dac09df434675f0ad568aac5233a6fae0176444624e6e6101",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

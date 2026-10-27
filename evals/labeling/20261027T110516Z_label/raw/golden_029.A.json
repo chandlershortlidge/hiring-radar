@@ -1,0 +1,122 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"java\", \"requirement\": \"required\", \"raw_text\": \"Java\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"csharp\", \"requirement\": \"required\", \"raw_text\": \"C#\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"Testautomatisierungstools / -frameworks\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM-APIs\"},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"KI-assistiertes Code-Authoring\", \"uncertain\": true},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agentenbasierte Testarchitekturen\", \"uncertain\": true},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"KI-Services\", \"uncertain\": true},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD-Pipelines\"},\n    {\"skill_id\": \"gitlab-ci\", \"requirement\": \"required\", \"raw_text\": \"GitLab CI\"},\n    {\"skill_id\": \"github-actions\", \"requirement\": \"required\", \"raw_text\": \"GitHub Actions\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Selenium\", \"raw_text\": \"Selenium\"},\n    {\"label\": \"Robot Framework\", \"raw_text\": \"Robot Framework\"},\n    {\"label\": \"Playwright\", \"raw_text\": \"Playwright\"},\n    {\"label\": \"Cypress\", \"raw_text\": \"Cypress\"},\n    {\"label\": \"Appium\", \"raw_text\": \"Appium\"},\n    {\"label\": \"Jenkins\", \"raw_text\": \"Jenkins\"},\n    {\"label\": \"Azure DevOps\", \"raw_text\": \"Azure DevOps\"},\n    {\"label\": \"Synthetic test data generation\", \"raw_text\": \"synthetische Testdatenerzeugung\"},\n    {\"label\": \"Self-healing locators\", \"raw_text\": \"Self-Healing Locators\"}\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute Deutschkenntnisse (mind. C1)\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Abgeschlossenes Studium in Informatik, Wirtschaftsinformatik oder vergleichbare Qualifikation\",\n  \"uncertain\": [],\n  \"notes\": \"All skills are under 'Ihr Profil', a requirements heading with no optional markers, so every skill is required.\\nThe responsibilities section mentions Testautomatisierung and LLM-based tools; these are labeled only because the profile also asks for them.\\ntesting is mapped from 'Testautomatisierungstools / -frameworks' (test automation alias); this is the German wording, so it is flagged for review.\\nllms: the 'LLM-basierter Tools' and 'LLM-APIs' mentions are collapsed into one criterion; 'LLM-APIs' is quoted because it matches the 'llm apis' alias.\\nai-developer-tooling is mapped from 'KI-assistiertes Code-Authoring'; agents is mapped from 'agentenbasierte Testarchitekturen'; both mappings are loose and flagged.\\nai-ml is mapped from 'KI-Services' (applied AI); it is a broad reading and flagged.\\nAzure DevOps is a distinct product, not the Azure cloud platform, so it is left unmapped rather than labeled azure.\\nJenkins and the named test frameworks (Selenium, Robot Framework, Playwright, Cypress, Appium) have no taxonomy entry.\\nSeniority is null: there is no level word and no years requirement; the salary range is not a basis.\\ndegree_or_equivalent is true: 'oder vergleichbare Qualifikation' matches the guide's 'or comparable qualification' wording.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "csharp",
+        "requirement": "required",
+        "raw_text": "C#"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "Testautomatisierungstools / -frameworks",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-APIs"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "KI-assistiertes Code-Authoring",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentenbasierte Testarchitekturen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "KI-Services",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Pipelines"
+      },
+      {
+        "skill_id": "gitlab-ci",
+        "requirement": "required",
+        "raw_text": "GitLab CI"
+      },
+      {
+        "skill_id": "github-actions",
+        "requirement": "required",
+        "raw_text": "GitHub Actions"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Selenium",
+        "raw_text": "Selenium"
+      },
+      {
+        "label": "Robot Framework",
+        "raw_text": "Robot Framework"
+      },
+      {
+        "label": "Playwright",
+        "raw_text": "Playwright"
+      },
+      {
+        "label": "Cypress",
+        "raw_text": "Cypress"
+      },
+      {
+        "label": "Appium",
+        "raw_text": "Appium"
+      },
+      {
+        "label": "Jenkins",
+        "raw_text": "Jenkins"
+      },
+      {
+        "label": "Azure DevOps",
+        "raw_text": "Azure DevOps"
+      },
+      {
+        "label": "Synthetic test data generation",
+        "raw_text": "synthetische Testdatenerzeugung"
+      },
+      {
+        "label": "Self-healing locators",
+        "raw_text": "Self-Healing Locators"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Deutschkenntnisse (mind. C1)",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossenes Studium in Informatik, Wirtschaftsinformatik oder vergleichbare Qualifikation",
+    "uncertain": [],
+    "notes": "All skills are under 'Ihr Profil', a requirements heading with no optional markers, so every skill is required.\nThe responsibilities section mentions Testautomatisierung and LLM-based tools; these are labeled only because the profile also asks for them.\ntesting is mapped from 'Testautomatisierungstools / -frameworks' (test automation alias); this is the German wording, so it is flagged for review.\nllms: the 'LLM-basierter Tools' and 'LLM-APIs' mentions are collapsed into one criterion; 'LLM-APIs' is quoted because it matches the 'llm apis' alias.\nai-developer-tooling is mapped from 'KI-assistiertes Code-Authoring'; agents is mapped from 'agentenbasierte Testarchitekturen'; both mappings are loose and flagged.\nai-ml is mapped from 'KI-Services' (applied AI); it is a broad reading and flagged.\nAzure DevOps is a distinct product, not the Azure cloud platform, so it is left unmapped rather than labeled azure.\nJenkins and the named test frameworks (Selenium, Robot Framework, Playwright, Cypress, Appium) have no taxonomy entry.\nSeniority is null: there is no level word and no years requirement; the salary range is not a basis.\ndegree_or_equivalent is true: 'oder vergleichbare Qualifikation' matches the guide's 'or comparable qualification' wording."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "8be926b8af39c507bde1d9c4cce73500e5426ba4b10457bc8d85facd4682b6bd",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

@@ -1,0 +1,128 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"frontend-development\", \"requirement\": \"required\", \"raw_text\": \"frontend\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"backend\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"infrastructure/cloud\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LLMs\"},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"nice_to_have\", \"raw_text\": \"embeddings\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"nice_to_have\", \"raw_text\": \"RAG pipelines\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"nice_to_have\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"TensorFlow\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"developing AI agents\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"prompting\"},\n    {\"skill_id\": \"model-selection\", \"requirement\": \"required\", \"raw_text\": \"know when to leverage which model\", \"uncertain\": true},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"tools, models and trends in AI-assisted software engineering\", \"uncertain\": true},\n    {\"skill_id\": \"claude-code\", \"requirement\": \"required\", \"raw_text\": \"Claude Code\"},\n    {\"skill_id\": \"cursor\", \"requirement\": \"required\", \"raw_text\": \"Cursor\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"design eval sets\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"tracing and observability tooling\"},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"nice_to_have\", \"raw_text\": \"vector databases\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"nice_to_have\", \"raw_text\": \"orchestration frameworks\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"context engineering\", \"raw_text\": \"context engineering\"},\n    {\"label\": \"agent memory systems\", \"raw_text\": \"memory systems\"}\n  ],\n  \"seniority\": \"senior\", \"seniority_basis\": \"stated\", \"seniority_signal\": \"Lead Product Engineer - AI\",\n  \"german\": \"required\", \"german_basis\": \"stated\", \"german_signal\": \"Full professional proficiency in German at C1 level\",\n  \"degree\": null, \"degree_requirement\": null,\n  \"degree_or_equivalent\": false, \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The AI components (LLMs, embeddings, RAG, agents, PyTorch/TensorFlow) are introduced by 'preferably', so they are nice_to_have.\\nAgents is required because a separate requirement asks for 'developing AI agents', and any required mention wins.\\n'across the stack' is not labeled full-stack-development because the posting lists the layers rather than naming full-stack. The vague 'data' layer is skipped.\\nModel selection in the requirements is phrased as 'know when to leverage which model'. The term 'model selection' itself appears only in tasks.\\nI mapped 'AI-assisted software engineering' tools to ai-developer-tooling. This is a judgment call.\\n'LLM-as-judge' is treated as part of evaluation and does not make llms required.\\n'orchestration frameworks' in the AI-tooling context is mapped to llm-orchestration. This mapping is uncertain.\\n'context engineering' has no taxonomy entry. Only the 'prompting' part maps to prompt-engineering.\\nThe bonus item 'agents' duplicates the required agents criterion and is collapsed into it.\\nThe 'Lead' title is a stated senior signal. The leadership duties support the same label.\\nNo degree is mentioned in the posting.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "frontend-development",
+        "requirement": "required",
+        "raw_text": "frontend"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "infrastructure/cloud"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "nice_to_have",
+        "raw_text": "embeddings"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "RAG pipelines"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "developing AI agents"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompting"
+      },
+      {
+        "skill_id": "model-selection",
+        "requirement": "required",
+        "raw_text": "know when to leverage which model",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "tools, models and trends in AI-assisted software engineering",
+        "uncertain": true
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code"
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "design eval sets"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "tracing and observability tooling"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "nice_to_have",
+        "raw_text": "vector databases"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "nice_to_have",
+        "raw_text": "orchestration frameworks",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "context engineering",
+        "raw_text": "context engineering"
+      },
+      {
+        "label": "agent memory systems",
+        "raw_text": "memory systems"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead Product Engineer - AI",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Full professional proficiency in German at C1 level",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The AI components (LLMs, embeddings, RAG, agents, PyTorch/TensorFlow) are introduced by 'preferably', so they are nice_to_have.\nAgents is required because a separate requirement asks for 'developing AI agents', and any required mention wins.\n'across the stack' is not labeled full-stack-development because the posting lists the layers rather than naming full-stack. The vague 'data' layer is skipped.\nModel selection in the requirements is phrased as 'know when to leverage which model'. The term 'model selection' itself appears only in tasks.\nI mapped 'AI-assisted software engineering' tools to ai-developer-tooling. This is a judgment call.\n'LLM-as-judge' is treated as part of evaluation and does not make llms required.\n'orchestration frameworks' in the AI-tooling context is mapped to llm-orchestration. This mapping is uncertain.\n'context engineering' has no taxonomy entry. Only the 'prompting' part maps to prompt-engineering.\nThe bonus item 'agents' duplicates the required agents criterion and is collapsed into it.\nThe 'Lead' title is a stated senior signal. The leadership duties support the same label.\nNo degree is mentioned in the posting."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "f72c89a7dcc5117b18e18bb503b601d00bfdbd728728bd43ee9f42d0527e42b6",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

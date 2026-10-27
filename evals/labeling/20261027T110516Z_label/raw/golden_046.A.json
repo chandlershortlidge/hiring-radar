@@ -1,0 +1,118 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"erste praktische Erfahrungen in der Softwareentwicklung\"},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"Softwarearchitekturen\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"Entwicklung oder Integration von APIs\"},\n    {\"skill_id\": \"mcp\", \"requirement\": \"required\", \"raw_text\": \"Model Context Protocol (MCP)\", \"uncertain\": true},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"Agenten-Frameworks\", \"uncertain\": true},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"Retrieval-Pipelines\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Large Language Models (LLM), AI-Agenten\", \"uncertain\": true},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Embeddings\"},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Vektordatenbanken\"},\n    {\"skill_id\": \"litellm\", \"requirement\": \"nice_to_have\", \"raw_text\": \"OpenWebUI und LiteLLM\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Container-Technologien\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Docker\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Erfahrungen mit Kubernetes sind ein Plus\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"OpenAPI\", \"raw_text\": \"OpenAPI\"},\n    {\"label\": \"OpenWebUI\", \"raw_text\": \"OpenWebUI und LiteLLM\"},\n    {\"label\": \"Authentication\", \"raw_text\": \"Authentifizierung\"},\n    {\"label\": \"OAuth2\", \"raw_text\": \"OAuth2\"},\n    {\"label\": \"Identity Management\", \"raw_text\": \"Identity Management\"}\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"erste praktische Erfahrungen in der Softwareentwicklung\",\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Studium der Informatik, Wirtschaftsinformatik oder eine vergleichbare technische Ausbildung erfolgreich abgeschlossen\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"The posting has no headings marking a section optional. 'Dein Profil' is treated as requirements, so the default is required.\\nThe OpenAPI/MCP/Agenten-Frameworks/Retrieval-Pipelines sentence ends 'oder Du hast großes Interesse, Dich ... einzuarbeiten'. That is not one of the guide's optional markers, so these are labeled required, flagged uncertain.\\nagents: 'AI-Agenten' appears under an 'Idealerweise' sentence (nice_to_have), but 'Agenten-Frameworks' is unmarked (required). Required wins, so raw_text quotes 'Agenten-Frameworks'.\\nllms: the profile mention is an interest statement followed by 'Idealerweise ... erste praktische Erfahrungen'. Labeled nice_to_have, flagged uncertain. The raw_text includes ', AI-Agenten' because the bare LLM phrase also appears in the responsibilities.\\nRetrieval-Pipelines is mapped to rag as the closest taxonomy entry; flagged uncertain.\\n'von Vorteil' is read as the 'is an advantage' marker, and 'idealerweise' as 'ideally'. Both give nice_to_have for Embeddings, Vektordatenbanken, LiteLLM, Container-Technologien and Docker.\\nThe auth/OAuth2/identity items are marked 'wünschenswert' (desirable) and are unmapped in any case.\\nCloud, backend, frontend and the earlier LiteLLM mention appear only in the responsibilities; they are not labeled from there.\\n'AI-Frameworks' and 'modernen Programmiersprachen, Frameworks' are too generic to map to a taxonomy id; left out.\\nDegree: 'oder eine vergleichbare technische Ausbildung' is read as accepting a comparable qualification in place of the degree, so degree_or_equivalent is true. This is a judgment call, flagged.\\nSeniority: the title names no level. 'erste praktische Erfahrungen' (first experience) gives junior, inferred.\\nGerman: the posting is written in German and says nothing about language requirements, so German is required, inferred.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "erste praktische Erfahrungen in der Softwareentwicklung"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Softwarearchitekturen"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Entwicklung oder Integration von APIs"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "Model Context Protocol (MCP)",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Agenten-Frameworks",
+        "uncertain": true
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "Retrieval-Pipelines",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "Large Language Models (LLM), AI-Agenten",
+        "uncertain": true
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "nice_to_have",
+        "raw_text": "Embeddings"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "nice_to_have",
+        "raw_text": "Vektordatenbanken"
+      },
+      {
+        "skill_id": "litellm",
+        "requirement": "nice_to_have",
+        "raw_text": "OpenWebUI und LiteLLM"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "Container-Technologien"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Erfahrungen mit Kubernetes sind ein Plus"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "OpenAPI",
+        "raw_text": "OpenAPI"
+      },
+      {
+        "label": "OpenWebUI",
+        "raw_text": "OpenWebUI und LiteLLM"
+      },
+      {
+        "label": "Authentication",
+        "raw_text": "Authentifizierung"
+      },
+      {
+        "label": "OAuth2",
+        "raw_text": "OAuth2"
+      },
+      {
+        "label": "Identity Management",
+        "raw_text": "Identity Management"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "erste praktische Erfahrungen in der Softwareentwicklung",
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Studium der Informatik, Wirtschaftsinformatik oder eine vergleichbare technische Ausbildung erfolgreich abgeschlossen",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "The posting has no headings marking a section optional. 'Dein Profil' is treated as requirements, so the default is required.\nThe OpenAPI/MCP/Agenten-Frameworks/Retrieval-Pipelines sentence ends 'oder Du hast großes Interesse, Dich ... einzuarbeiten'. That is not one of the guide's optional markers, so these are labeled required, flagged uncertain.\nagents: 'AI-Agenten' appears under an 'Idealerweise' sentence (nice_to_have), but 'Agenten-Frameworks' is unmarked (required). Required wins, so raw_text quotes 'Agenten-Frameworks'.\nllms: the profile mention is an interest statement followed by 'Idealerweise ... erste praktische Erfahrungen'. Labeled nice_to_have, flagged uncertain. The raw_text includes ', AI-Agenten' because the bare LLM phrase also appears in the responsibilities.\nRetrieval-Pipelines is mapped to rag as the closest taxonomy entry; flagged uncertain.\n'von Vorteil' is read as the 'is an advantage' marker, and 'idealerweise' as 'ideally'. Both give nice_to_have for Embeddings, Vektordatenbanken, LiteLLM, Container-Technologien and Docker.\nThe auth/OAuth2/identity items are marked 'wünschenswert' (desirable) and are unmapped in any case.\nCloud, backend, frontend and the earlier LiteLLM mention appear only in the responsibilities; they are not labeled from there.\n'AI-Frameworks' and 'modernen Programmiersprachen, Frameworks' are too generic to map to a taxonomy id; left out.\nDegree: 'oder eine vergleichbare technische Ausbildung' is read as accepting a comparable qualification in place of the degree, so degree_or_equivalent is true. This is a judgment call, flagged.\nSeniority: the title names no level. 'erste praktische Erfahrungen' (first experience) gives junior, inferred.\nGerman: the posting is written in German and says nothing about language requirements, so German is required, inferred."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "224fd81a9a8ec6f05f67541a478f8d10701c84b07c5df9696171a5dde09481c0",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

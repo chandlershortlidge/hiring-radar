@@ -11,6 +11,8 @@ node_modules/
 web/dist/
 scratch/
 
-# Labeling runs: raw labeler responses and the review queue (scripts/agent_label.py).
-# The Goldens `apply` writes are committed; the working files that produced them are not.
-evals/labeling/
+# Labeling runs (scripts/agent_label.py) are tracked, not ignored: picks.json, the raw
+# labeler responses, merged.json, items.json, summary.json and the adjudicated
+# review_queue.md are the provenance of every held-out Golden -- who labeled it, under
+# which prompt and taxonomy, which fields a person decided and why. They hold public job
+# postings and model output, no credentials. A run is ~900 KB.

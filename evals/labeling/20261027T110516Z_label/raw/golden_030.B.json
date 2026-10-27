@@ -1,0 +1,84 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Hands-on Erfahrung in der technischen Umsetzung von AI- oder Automatisierungslösungen\"\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Automatisierungslösungen\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"APIs\"\n    },\n    {\n      \"skill_id\": \"data-modeling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Datenmodelle\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"moderner Architekturen\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Cloud-Technologien\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"SAP\",\n      \"raw_text\": \"Erfahrung in SAP-Projekten\"\n    },\n    {\n      \"label\": \"SAP Business AI\",\n      \"raw_text\": \"SAP Business AI\"\n    },\n    {\n      \"label\": \"SAP Joule\",\n      \"raw_text\": \"SAP Joule\"\n    },\n    {\n      \"label\": \"SAP BTP\",\n      \"raw_text\": \"SAP BTP\"\n    },\n    {\n      \"label\": \"Integration\",\n      \"raw_text\": \"Integration\"\n    },\n    {\n      \"label\": \"Translation of business requirements into technical solutions\",\n      \"raw_text\": \"Übersetzung fachlicher Anforderungen in technische Lösungen\"\n    },\n    {\n      \"label\": \"Prototyping\",\n      \"raw_text\": \"Prototyping\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"SAP AI Lead Architect\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute und verhandlungssichere (C1) Deutsch- und Englischkenntnisse werden vorausgesetzt\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Abgeschlossenes Studium (Informatik, Wirtschaftsinformatik, BWL mit IT-Schwerpunkt) oder vergleichbare Qualifikation\",\n  \"notes\": \"Dein Skillset is the qualifications section; no section heading makes it optional. The inline phrase 'sind von Vorteil' makes modern architectures, cloud technologies and that AI/ML mention optional.\\nAI/ML is required overall because the earlier hands-on implementation qualification explicitly asks for AI solutions; the AI-or-automation alternatives are both retained as named skills.\\nDatenmodelle is mapped literally to data-modeling, and modern architectures to software-architecture in this technical context.\\nSAP process areas are domain knowledge and are excluded. SAP technologies without taxonomy entries are listed as unmapped.\\nResponsibilities, company descriptions and the Schlagworte search-keyword list are not treated as candidate qualifications.\\nThe unspecified completed degree maps to bachelor; 'oder vergleichbare Qualifikation' establishes an accepted equivalent.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Hands-on Erfahrung in der technischen Umsetzung von AI- oder Automatisierungslösungen"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "Automatisierungslösungen"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "Datenmodelle"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "nice_to_have",
+        "raw_text": "moderner Architekturen"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Cloud-Technologien"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "SAP",
+        "raw_text": "Erfahrung in SAP-Projekten"
+      },
+      {
+        "label": "SAP Business AI",
+        "raw_text": "SAP Business AI"
+      },
+      {
+        "label": "SAP Joule",
+        "raw_text": "SAP Joule"
+      },
+      {
+        "label": "SAP BTP",
+        "raw_text": "SAP BTP"
+      },
+      {
+        "label": "Integration",
+        "raw_text": "Integration"
+      },
+      {
+        "label": "Translation of business requirements into technical solutions",
+        "raw_text": "Übersetzung fachlicher Anforderungen in technische Lösungen"
+      },
+      {
+        "label": "Prototyping",
+        "raw_text": "Prototyping"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "SAP AI Lead Architect",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute und verhandlungssichere (C1) Deutsch- und Englischkenntnisse werden vorausgesetzt",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossenes Studium (Informatik, Wirtschaftsinformatik, BWL mit IT-Schwerpunkt) oder vergleichbare Qualifikation",
+    "notes": "Dein Skillset is the qualifications section; no section heading makes it optional. The inline phrase 'sind von Vorteil' makes modern architectures, cloud technologies and that AI/ML mention optional.\nAI/ML is required overall because the earlier hands-on implementation qualification explicitly asks for AI solutions; the AI-or-automation alternatives are both retained as named skills.\nDatenmodelle is mapped literally to data-modeling, and modern architectures to software-architecture in this technical context.\nSAP process areas are domain knowledge and are excluded. SAP technologies without taxonomy entries are listed as unmapped.\nResponsibilities, company descriptions and the Schlagworte search-keyword list are not treated as candidate qualifications.\nThe unspecified completed degree maps to bachelor; 'oder vergleichbare Qualifikation' establishes an accepted equivalent."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "ffe0b5100a14eb3bb459bb76e5bf37d1aec581d647d74ffe1e990866cfd80a88",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

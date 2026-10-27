@@ -1,0 +1,149 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong Python skills\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\"},\n    {\"skill_id\": \"computer-vision\", \"requirement\": \"required\", \"raw_text\": \"shipping computer vision\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"applied AI systems\"},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"required\", \"raw_text\": \"embeddings\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"including evaluation\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"deployment, and production support\", \"uncertain\": true},\n    {\"skill_id\": \"inference-optimization\", \"requirement\": \"required\", \"raw_text\": \"optimizing models for edge or embedded environments\", \"uncertain\": true},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Strong software engineering skills\"},\n    {\"skill_id\": \"cpp\", \"requirement\": \"required\", \"raw_text\": \"C++ production pipelines\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LLMs\"},\n    {\"skill_id\": \"onnx\", \"requirement\": \"nice_to_have\", \"raw_text\": \"ONNX\"},\n    {\"skill_id\": \"tensorrt\", \"requirement\": \"nice_to_have\", \"raw_text\": \"TensorRT\"},\n    {\"skill_id\": \"mlops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"MLOps\"},\n    {\"skill_id\": \"experiment-tracking\", \"requirement\": \"nice_to_have\", \"raw_text\": \"experiment tools\", \"uncertain\": true},\n    {\"skill_id\": \"mlflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"MLflow\"},\n    {\"skill_id\": \"weights-and-biases\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Weights & Biases\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"nice_to_have\", \"raw_text\": \"model monitoring\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"OpenVINO\", \"raw_text\": \"OpenVINO\"},\n    {\"label\": \"TFLite\", \"raw_text\": \"TFLite\"},\n    {\"label\": \"DVC\", \"raw_text\": \"DVC\"},\n    {\"label\": \"Multimodal models\", \"raw_text\": \"multimodal models\"},\n    {\"label\": \"Multimodal perception\", \"raw_text\": \"multimodal perception\"},\n    {\"label\": \"Object detection / classification / segmentation / tracking\", \"raw_text\": \"detection, classification, segmentation, tracking\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI/Computer Vision Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"MS or PhD in Computer Science, Electrical Engineering, or a related field, or equivalent practical experience\",\n  \"uncertain\": [],\n  \"notes\": \"Deep-learning is not labeled. 'similar frameworks' does not name deep learning; the phrase 'deep learning models' appears only in responsibilities.\\nai-deployment is mapped from the bare 'deployment' in the requirements and is flagged uncertain.\\ninference-optimization is mapped from 'optimizing models for edge or embedded environments'. The fit is loose (edge model optimization), so it is flagged uncertain.\\nexperiment-tracking is mapped from 'experiment tools' and is flagged uncertain.\\nai-ml is mapped from 'applied AI systems' via the 'applied ai' alias.\\nDegree names MS or PhD, so the highest level is phd. Because both are accepted, phd is the literal highest level named, not a strict PhD requirement. The 'or equivalent practical experience' wording makes degree_or_equivalent true.\\nEnglish fluency is not a skill and is not German, so German is null.\\nThe 4+ years of experience is not used for seniority because the title states Senior.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python skills"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "shipping computer vision"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "applied AI systems"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "embeddings"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "including evaluation"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deployment, and production support",
+        "uncertain": true
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "required",
+        "raw_text": "optimizing models for edge or embedded environments",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software engineering skills"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++ production pipelines"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "onnx",
+        "requirement": "nice_to_have",
+        "raw_text": "ONNX"
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorRT"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "nice_to_have",
+        "raw_text": "MLOps"
+      },
+      {
+        "skill_id": "experiment-tracking",
+        "requirement": "nice_to_have",
+        "raw_text": "experiment tools",
+        "uncertain": true
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "nice_to_have",
+        "raw_text": "MLflow"
+      },
+      {
+        "skill_id": "weights-and-biases",
+        "requirement": "nice_to_have",
+        "raw_text": "Weights & Biases"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "model monitoring"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "OpenVINO",
+        "raw_text": "OpenVINO"
+      },
+      {
+        "label": "TFLite",
+        "raw_text": "TFLite"
+      },
+      {
+        "label": "DVC",
+        "raw_text": "DVC"
+      },
+      {
+        "label": "Multimodal models",
+        "raw_text": "multimodal models"
+      },
+      {
+        "label": "Multimodal perception",
+        "raw_text": "multimodal perception"
+      },
+      {
+        "label": "Object detection / classification / segmentation / tracking",
+        "raw_text": "detection, classification, segmentation, tracking"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI/Computer Vision Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "MS or PhD in Computer Science, Electrical Engineering, or a related field, or equivalent practical experience",
+    "uncertain": [],
+    "notes": "Deep-learning is not labeled. 'similar frameworks' does not name deep learning; the phrase 'deep learning models' appears only in responsibilities.\nai-deployment is mapped from the bare 'deployment' in the requirements and is flagged uncertain.\ninference-optimization is mapped from 'optimizing models for edge or embedded environments'. The fit is loose (edge model optimization), so it is flagged uncertain.\nexperiment-tracking is mapped from 'experiment tools' and is flagged uncertain.\nai-ml is mapped from 'applied AI systems' via the 'applied ai' alias.\nDegree names MS or PhD, so the highest level is phd. Because both are accepted, phd is the literal highest level named, not a strict PhD requirement. The 'or equivalent practical experience' wording makes degree_or_equivalent true.\nEnglish fluency is not a skill and is not German, so German is null.\nThe 4+ years of experience is not used for seniority because the title states Senior."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "e798d15539a8402bc80793a28c04938cd5e5abbfd4afff782489d45bef12e961",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

@@ -1,0 +1,688 @@
+{
+  "run_id": "20261027T110516Z_label",
+  "seed": 0,
+  "provider_a": "anthropic",
+  "model_a": "claude-opus-5-5",
+  "provider_b": "openai",
+  "model_b": "gpt-6.1-sol",
+  "extractor": "claude-sonnet-5-5",
+  "spot_n": 80,
+  "spot_pool": 305,
+  "taxonomy_version": 4,
+  "n_picked": 24,
+  "n_labeled": 24,
+  "failed": [],
+  "agreement": {
+    "n_postings": 24,
+    "skills": {
+      "tp": 301,
+      "fp": 22,
+      "fn": 8,
+      "precision": 0.9318885448916409,
+      "recall": 0.9741100323624595,
+      "f1": 0.9525316455696202
+    },
+    "requirement_agreement": 0.9933554817275747,
+    "attributes": {
+      "seniority": {
+        "agreed": 24,
+        "n": 24,
+        "rate": 1.0
+      },
+      "german": {
+        "agreed": 24,
+        "n": 24,
+        "rate": 1.0
+      },
+      "degree": {
+        "agreed": 23,
+        "n": 24,
+        "rate": 0.9583333333333334
+      }
+    }
+  },
+  "accepted_skills": 243,
+  "accepted_attributes": 62,
+  "review_items": {
+    "in-scope": 24,
+    "disagreement": 31,
+    "uncertain": 65,
+    "mapping": 1,
+    "spot-check": 80
+  },
+  "spot_check": {
+    "n": 80,
+    "pool": 305,
+    "seed": 0,
+    "sample": [
+      [
+        "golden_025",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_025",
+        "skill",
+        "java"
+      ],
+      [
+        "golden_026",
+        "skill",
+        "gitops"
+      ],
+      [
+        "golden_026",
+        "skill",
+        "linux"
+      ],
+      [
+        "golden_026",
+        "skill",
+        "networking"
+      ],
+      [
+        "golden_027",
+        "skill",
+        "containerization"
+      ],
+      [
+        "golden_027",
+        "skill",
+        "devops"
+      ],
+      [
+        "golden_027",
+        "skill",
+        "evaluation"
+      ],
+      [
+        "golden_027",
+        "skill",
+        "infrastructure-as-code"
+      ],
+      [
+        "golden_027",
+        "skill",
+        "microservices"
+      ],
+      [
+        "golden_027",
+        "skill",
+        "software-engineering"
+      ],
+      [
+        "golden_027",
+        "skill",
+        "testing"
+      ],
+      [
+        "golden_028",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_028",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_028",
+        "skill",
+        "backend-development"
+      ],
+      [
+        "golden_028",
+        "skill",
+        "cloud"
+      ],
+      [
+        "golden_028",
+        "skill",
+        "grafana"
+      ],
+      [
+        "golden_028",
+        "skill",
+        "prompt-engineering"
+      ],
+      [
+        "golden_029",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_029",
+        "skill",
+        "github-actions"
+      ],
+      [
+        "golden_029",
+        "skill",
+        "gitlab-ci"
+      ],
+      [
+        "golden_029",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_030",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_031",
+        "skill",
+        "llamaindex"
+      ],
+      [
+        "golden_031",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_031",
+        "skill",
+        "machine-learning"
+      ],
+      [
+        "golden_031",
+        "skill",
+        "open-source-llms"
+      ],
+      [
+        "golden_031",
+        "skill",
+        "rag"
+      ],
+      [
+        "golden_032",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_032",
+        "skill",
+        "apis"
+      ],
+      [
+        "golden_032",
+        "skill",
+        "java"
+      ],
+      [
+        "golden_032",
+        "skill",
+        "kubernetes"
+      ],
+      [
+        "golden_032",
+        "skill",
+        "langchain"
+      ],
+      [
+        "golden_032",
+        "skill",
+        "observability"
+      ],
+      [
+        "golden_032",
+        "skill",
+        "recommender-systems"
+      ],
+      [
+        "golden_032",
+        "skill",
+        "terraform"
+      ],
+      [
+        "golden_034",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_034",
+        "skill",
+        "cloud"
+      ],
+      [
+        "golden_034",
+        "skill",
+        "cpp"
+      ],
+      [
+        "golden_034",
+        "skill",
+        "infrastructure-as-code"
+      ],
+      [
+        "golden_035",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_035",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_035",
+        "skill",
+        "pytorch"
+      ],
+      [
+        "golden_035",
+        "skill",
+        "tool-calling"
+      ],
+      [
+        "golden_035",
+        "skill",
+        "vllm"
+      ],
+      [
+        "golden_036",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_036",
+        "skill",
+        "cloud"
+      ],
+      [
+        "golden_036",
+        "skill",
+        "langchain"
+      ],
+      [
+        "golden_036",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_037",
+        "skill",
+        "azure"
+      ],
+      [
+        "golden_037",
+        "skill",
+        "gemini"
+      ],
+      [
+        "golden_039",
+        "skill",
+        "conversational-ai"
+      ],
+      [
+        "golden_040",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_040",
+        "skill",
+        "cpp"
+      ],
+      [
+        "golden_040",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_040",
+        "skill",
+        "tensorflow"
+      ],
+      [
+        "golden_041",
+        "skill",
+        "cloud"
+      ],
+      [
+        "golden_041",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_041",
+        "skill",
+        "machine-learning"
+      ],
+      [
+        "golden_041",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_043",
+        "skill",
+        "testing"
+      ],
+      [
+        "golden_044",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_044",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_044",
+        "skill",
+        "typescript"
+      ],
+      [
+        "golden_045",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_045",
+        "skill",
+        "agents"
+      ],
+      [
+        "golden_045",
+        "skill",
+        "evaluation"
+      ],
+      [
+        "golden_045",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_045",
+        "skill",
+        "observability"
+      ],
+      [
+        "golden_045",
+        "skill",
+        "vector-databases"
+      ],
+      [
+        "golden_046",
+        "skill",
+        "embeddings"
+      ],
+      [
+        "golden_046",
+        "skill",
+        "software-engineering"
+      ],
+      [
+        "golden_047",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_047",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_047",
+        "skill",
+        "apis"
+      ],
+      [
+        "golden_047",
+        "skill",
+        "cloud"
+      ],
+      [
+        "golden_047",
+        "skill",
+        "flask"
+      ],
+      [
+        "golden_047",
+        "skill",
+        "langgraph"
+      ],
+      [
+        "golden_047",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_047",
+        "skill",
+        "vector-databases"
+      ]
+    ]
+  },
+  "signal_mismatches": [
+    "golden_030 german: A 'Sehr gute und verhandlungssichere (C1) Deutsch-' vs B 'Sehr gute und verhandlungssichere (C1) Deutsch- und Englischkenntnisse werden vorausgesetzt'",
+    "golden_031 seniority: A 'Senior AI/LLM Engineer' vs B 'Senior\\xa0AI/LLM\\xa0Engineer'",
+    "golden_041 german: A 'sehr gute Deutsch- und Englischkenntnisse' vs B 'Du hast sehr gute Deutsch- und Englischkenntnisse'",
+    "golden_043 degree: A 'Ein abgeschlossenes Studium, eine vergleichbare Qualifikation oder relevante Berufserfahrung' vs B 'Ein abgeschlossenes Studium, eine vergleichbare Qualifikation oder relevante Berufserfahrung mit Bezug zu IT, Data Science, Software Engineering, Informationssicherheit oder Qualitätssicherung'",
+    "golden_045 german: A 'Full professional proficiency in German at C1 level' vs B 'Full professional proficiency in German at C1 level.'",
+    "golden_047 german: A 'Kommunikationsfähigkeit in Deutsch und Englisch' vs B 'Mündliche und schriftliche Kommunikationsfähigkeit in Deutsch und Englisch'",
+    "golden_047 degree: A 'deinen Studienabschluss mit einem technischen Hintergrund' vs B 'Studienabschluss mit einem technischen Hintergrund, zum Beispiel in Informatik, Data Science, Künstliche Intelligenz, Wirtschaftsinformatik oder einem ähnlichen orientierten Studiengang'",
+    "golden_048 degree: A 'Du hast dein Studium (BWL, Marketing, Medien, Kommunikationswissenschaften o. Ä.) erfolgreich abgeschlossen oder bringst eine vergleichbare Qualifikation mit' vs B 'Du hast dein Studium (BWL, Marketing, Medien, Kommunikationswissenschaften o. Ä.) erfolgreich abgeschlossen oder bringst eine vergleichbare Qualifikation mit.'"
+  ],
+  "unmapped": [
+    ".NET Core",
+    "AI frameworks (unspecified)",
+    "AI model training",
+    "AI platforms",
+    "AI tools in marketing",
+    "AI workflow compliance controls",
+    "AWQ",
+    "AWS AgentCore",
+    "AWS CloudWatch",
+    "AWS IAM",
+    "AWS Lambda",
+    "AWS VPC",
+    "Agent orchestration",
+    "Agile / Scrum",
+    "Agile development",
+    "Agile software development methods",
+    "Air-gapped / high-security isolated environments",
+    "Air-gapped systems",
+    "Appium",
+    "Attention",
+    "Authentication",
+    "Autonome Testausführung",
+    "Azure DevOps",
+    "Batching",
+    "Bing Ads",
+    "Bing Ads (nice to have)",
+    "Building resilient, scalable systems",
+    "CUDA",
+    "Cache-aware request routing",
+    "Classification",
+    "Cloud functions",
+    "Cohere",
+    "Communication bottleneck diagnosis",
+    "Container orchestration",
+    "Context engineering",
+    "Context management",
+    "Cost controls",
+    "Cost estimation",
+    "Cross-account integrations",
+    "Cypress",
+    "DVC",
+    "Data",
+    "Data analytics",
+    "Databases",
+    "Datadog",
+    "Detection",
+    "Distributed scheduling",
+    "Django",
+    "Document pipelines",
+    "EAGLE",
+    "Enterprise architecture",
+    "Expert parallelism",
+    "FP8",
+    "Failure investigation",
+    "File storage",
+    "FinOps",
+    "FlashInfer",
+    "Freigabeprozesse",
+    "GPTQ",
+    "GPU communication libraries",
+    "GPU interconnects",
+    "GPU workloads",
+    "Gestaltung stabiler Betriebsprozesse",
+    "Handling ambiguous or incomplete user input",
+    "High-concurrency serving",
+    "High-level programming language",
+    "High-performance computing",
+    "High-performance computing (HPC)",
+    "Hosting",
+    "INT4",
+    "INT8",
+    "Identity Management",
+    "Identity management",
+    "Inference performance trade-off analysis",
+    "Inference systems",
+    "InfiniBand",
+    "Infrastructure",
+    "Infrastructure automation",
+    "Integration",
+    "Jenkins",
+    "KI-gestützte Analyse von Testergebnissen und Logs",
+    "KI-gestützte Testfallgenerierung",
+    "KServe",
+    "KV cache",
+    "Knowledge base design",
+    "Knowledge distillation",
+    "LLM-as-judge",
+    "LMCache",
+    "Load imbalance diagnosis",
+    "Local AI (on-premise / locally run AI)",
+    "Local-AI",
+    "MXFP4",
+    "Medusa",
+    "Memory systems",
+    "Memory-bandwidth bottleneck analysis",
+    "Meta Ads",
+    "Meta Ads Manager",
+    "Meta-Werbeanzeigenmanager",
+    "Modern development processes",
+    "Multi-environment setup",
+    "Multi-node inference",
+    "Multi-step reasoning",
+    "Multi-token prediction",
+    "Multimodal models",
+    "Multimodal perception",
+    "NCCL",
+    "NVFP4",
+    "NVIDIA Dynamo",
+    "NVLink",
+    "OAuth2",
+    "Object detection / classification / segmentation / tracking",
+    "On-premise deployment",
+    "On-premises implementation",
+    "Open-source contributions",
+    "OpenAPI",
+    "OpenSearch",
+    "OpenVINO",
+    "OpenWebUI",
+    "Orchestration frameworks",
+    "Paid Social channels",
+    "Parallelism",
+    "Performance optimization",
+    "Pinecone",
+    "Pinterest",
+    "Pinterest Ads (nice to have)",
+    "Playwright",
+    "Post-deployment analysis",
+    "Post-training quantization",
+    "Prefill–decode disaggregation",
+    "Production operation of AI models",
+    "Production support",
+    "Programmierung und Automatisierung",
+    "Programming languages (unspecified)",
+    "Prototyping",
+    "Qualitätssicherung",
+    "Quantization-aware training",
+    "Railway",
+    "Ray",
+    "Ray Serve",
+    "Reddit",
+    "Reddit Ads (nice to have)",
+    "Redis",
+    "Reporting-/Attributions-Tools",
+    "Reporting/attribution tools",
+    "Request routing",
+    "Retrieval pipelines",
+    "Risikobasierte Prüfung von KI-Systemen",
+    "RoCE",
+    "Robot Framework",
+    "Ruby",
+    "S3 Vector",
+    "SAP",
+    "SAP BTP",
+    "SAP Business AI",
+    "SAP Joule",
+    "Sandboxed code execution",
+    "Scalability",
+    "Scrum",
+    "Security (general system security)",
+    "Segmentation",
+    "Selenium",
+    "Self-Healing Locators",
+    "Self-healing locators",
+    "Server-side tracking (nice to have)",
+    "Serverseitiges Tracking",
+    "SmoothQuant",
+    "Software frameworks (unspecified)",
+    "Speculative decoding",
+    "Spring",
+    "Spring Boot",
+    "Spring/Spring Boot",
+    "Stream processing",
+    "Streaming",
+    "Structured outputs",
+    "Supabase",
+    "Synthetic test data generation",
+    "Synthetische Testdatenerzeugung",
+    "System integration",
+    "TFLite",
+    "TikTok",
+    "TikTok Ads (nice to have)",
+    "Tool engineering",
+    "Tracing",
+    "Tracking",
+    "Transformer inference",
+    "Translation of business requirements into technical solutions",
+    "Triton",
+    "Triton (kernel language)",
+    "Triton Inference Server",
+    "Troubleshooting",
+    "Vision-language models",
+    "Vite",
+    "Web application development",
+    "Whole-system troubleshooting",
+    "Wide expert parallelism",
+    "WideEP",
+    "agent memory systems",
+    "batching",
+    "cache-aware request routing",
+    "context engineering",
+    "context management",
+    "distillation",
+    "distributed scheduling",
+    "expert parallelism",
+    "long-context serving",
+    "multi-node inference",
+    "multi-step orchestration",
+    "multi-token prediction",
+    "parallelism",
+    "post-training quantization",
+    "prefill-decode disaggregation",
+    "quantization-aware training",
+    "request routing",
+    "sandboxed code execution",
+    "speculative decoding",
+    "structured outputs"
+  ]
+}

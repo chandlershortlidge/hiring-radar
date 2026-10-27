@@ -1,0 +1,135 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung in der Evaluation\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"Deployment\", \"uncertain\": true},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"Prompt-, Kontext- und Tool-Engineering\"},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"Tool-Engineering\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"generativen KI-Modellen\", \"uncertain\": true},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"Backend-Entwicklung\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"mit Python\"},\n    {\"skill_id\": \"go\", \"requirement\": \"required\", \"raw_text\": \"Go\"},\n    {\"skill_id\": \"rust\", \"requirement\": \"required\", \"raw_text\": \"Rust\"},\n    {\"skill_id\": \"java\", \"requirement\": \"required\", \"raw_text\": \"Java\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"On-Prem Cloud-Techniken\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"z. B. Kubernetes\"},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"MLOps-Frameworks\"},\n    {\"skill_id\": \"mlflow\", \"requirement\": \"required\", \"raw_text\": \"MLFlow\"},\n    {\"skill_id\": \"kubeflow\", \"requirement\": \"required\", \"raw_text\": \"Kubeflow\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"Monitoring\"},\n    {\"skill_id\": \"prometheus\", \"requirement\": \"required\", \"raw_text\": \"Prometheus\"},\n    {\"skill_id\": \"grafana\", \"requirement\": \"required\", \"raw_text\": \"Grafana\"},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Fine-Tuning\"},\n    {\"skill_id\": \"model-development\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Entwicklung, Fine-Tuning und Training von KI Modellen\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Performance optimization\", \"raw_text\": \"Leistungsoptimierung\"}\n  ],\n  \"seniority\": \"senior\", \"seniority_basis\": \"stated\", \"seniority_signal\": \"Senior AI Engineer (w/m/d)\",\n  \"german\": \"required\", \"german_basis\": \"stated\", \"german_signal\": \"Verhandlungssichere Deutschkenntnisse\",\n  \"degree\": \"master\", \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false, \"degree_signal\": \"Abgeschlossenes Masterstudium der Informatik, Mathematik oder einer vergleichbaren Fachrichtung\",\n  \"uncertain\": [],\n  \"notes\": \"MCP, LangGraph, CrewAI, PydanticAI, A2A, AG-UI and GPU clusters appear only under 'Deine Aufgaben' (responsibilities). They are not labeled.\\nDevSecOps and MLOps in the company/team description are not labeled; mlops is labeled from 'MLOps-Frameworks' in the profile.\\n'ist von Vorteil' (is an advantage) marks the Fine-Tuning/Entwicklung/Training bullet as nice_to_have.\\n'Tool-Engineering von generativen KI-Modellen' is mapped to tool-calling as the closest entry; uncertain.\\n'generativen KI-Modellen' is mapped to llms via the generative ai alias; uncertain.\\n'Deployment ... von KI-Modellen' is mapped to ai-deployment using the bare word as raw_text.\\n'Leistungsoptimierung' is generic performance optimization. It is not specifically inference optimization, so it goes to unmapped.\\nModel training has no taxonomy entry; only model-development is labeled from that bullet, and it is uncertain.\\n'Mindestens 5 Jahre' would also infer senior, but the title states senior.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Erfahrung in der Evaluation"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "Deployment",
+        "uncertain": true
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt-, Kontext- und Tool-Engineering"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "Tool-Engineering",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "generativen KI-Modellen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend-Entwicklung"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "mit Python"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go"
+      },
+      {
+        "skill_id": "rust",
+        "requirement": "required",
+        "raw_text": "Rust"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "On-Prem Cloud-Techniken"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "z. B. Kubernetes"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps-Frameworks"
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "required",
+        "raw_text": "MLFlow"
+      },
+      {
+        "skill_id": "kubeflow",
+        "requirement": "required",
+        "raw_text": "Kubeflow"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring"
+      },
+      {
+        "skill_id": "prometheus",
+        "requirement": "required",
+        "raw_text": "Prometheus"
+      },
+      {
+        "skill_id": "grafana",
+        "requirement": "required",
+        "raw_text": "Grafana"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "Fine-Tuning"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "nice_to_have",
+        "raw_text": "Entwicklung, Fine-Tuning und Training von KI Modellen",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Performance optimization",
+        "raw_text": "Leistungsoptimierung"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI Engineer (w/m/d)",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Verhandlungssichere Deutschkenntnisse",
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Abgeschlossenes Masterstudium der Informatik, Mathematik oder einer vergleichbaren Fachrichtung",
+    "uncertain": [],
+    "notes": "MCP, LangGraph, CrewAI, PydanticAI, A2A, AG-UI and GPU clusters appear only under 'Deine Aufgaben' (responsibilities). They are not labeled.\nDevSecOps and MLOps in the company/team description are not labeled; mlops is labeled from 'MLOps-Frameworks' in the profile.\n'ist von Vorteil' (is an advantage) marks the Fine-Tuning/Entwicklung/Training bullet as nice_to_have.\n'Tool-Engineering von generativen KI-Modellen' is mapped to tool-calling as the closest entry; uncertain.\n'generativen KI-Modellen' is mapped to llms via the generative ai alias; uncertain.\n'Deployment ... von KI-Modellen' is mapped to ai-deployment using the bare word as raw_text.\n'Leistungsoptimierung' is generic performance optimization. It is not specifically inference optimization, so it goes to unmapped.\nModel training has no taxonomy entry; only model-development is labeled from that bullet, and it is uncertain.\n'Mindestens 5 Jahre' would also infer senior, but the title states senior."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "73915e29ec05a0b2c70a4330a1618278833cca3739c58f8b09b29ba060dcc777",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

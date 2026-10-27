@@ -1,0 +1,181 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong proficiency in Python\"},\n    {\"skill_id\": \"fastapi\", \"requirement\": \"required\", \"raw_text\": \"experience with FastAPI\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"similar backend frameworks\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM APIs\"},\n    {\"skill_id\": \"openai-api\", \"requirement\": \"required\", \"raw_text\": \"LLM APIs (e.g., OpenAI\"},\n    {\"skill_id\": \"anthropic-api\", \"requirement\": \"required\", \"raw_text\": \"Anthropic, or similar\"},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"LangChain or LlamaIndex\"},\n    {\"skill_id\": \"llamaindex\", \"requirement\": \"required\", \"raw_text\": \"LangChain or LlamaIndex\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG architectures\"},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"required\", \"raw_text\": \"embeddings, and vector databases\"},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"required\", \"raw_text\": \"vector databases (e.g.\"},\n    {\"skill_id\": \"weaviate\", \"requirement\": \"required\", \"raw_text\": \"Weaviate\"},\n    {\"skill_id\": \"pgvector\", \"requirement\": \"required\", \"raw_text\": \"pgvector\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Hands-on experience with Docker\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"containerized development environments\"},\n    {\"skill_id\": \"postgresql\", \"requirement\": \"required\", \"raw_text\": \"Experience working with PostgreSQL\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"functional and integration tests\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"evaluation frameworks for AI/LLM output quality\"},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"fine-tuning\"},\n    {\"skill_id\": \"open-source-llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"open-source LLMs\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"nice_to_have\", \"raw_text\": \"prompt engineering\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"agentic workflows\", \"uncertain\": true},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"nice_to_have\", \"raw_text\": \"distributed systems\"},\n    {\"skill_id\": \"kafka\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Kafka\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"machine learning fundamentals\"},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"nice_to_have\", \"raw_text\": \"scikit-learn\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"nice_to_have\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"TensorFlow\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Pinecone\", \"raw_text\": \"Pinecone\"},\n    {\"label\": \"Redis\", \"raw_text\": \"Redis, or similar data stores\"},\n    {\"label\": \"Streaming\", \"raw_text\": \"streaming\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI/LLM Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Responsibilities-only mentions such as vector search and LLM orchestration are not labeled, because the candidate is not asked for them.\\nI labeled backend-development from \\\"similar backend frameworks\\\". It names backend broadly, but it is borderline whether this asks for backend skill or just frames FastAPI.\\nI mapped \\\"agentic workflows\\\" to agents. That is close to the 'agentic frameworks' alias but not exact.\\nLangChain and LlamaIndex share the fragment \\\"LangChain or LlamaIndex\\\". It is unique to the requirements bullet; the responsibilities bullet reads \\\"LangChain, LlamaIndex, or similar\\\".\\nI labeled containerization because the requirements name \\\"containerized development environments\\\" explicitly, not just as an implied parent of Docker.\\nEvaluation appears in both the required and nice-to-have lists. The required mention wins.\\nStreaming has no taxonomy entry, so it is unmapped. I did not map it to event-driven-systems.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong proficiency in Python"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "experience with FastAPI"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "similar backend frameworks",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM APIs"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "required",
+        "raw_text": "LLM APIs (e.g., OpenAI"
+      },
+      {
+        "skill_id": "anthropic-api",
+        "requirement": "required",
+        "raw_text": "Anthropic, or similar"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain or LlamaIndex"
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "required",
+        "raw_text": "LangChain or LlamaIndex"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG architectures"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "embeddings, and vector databases"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector databases (e.g."
+      },
+      {
+        "skill_id": "weaviate",
+        "requirement": "required",
+        "raw_text": "Weaviate"
+      },
+      {
+        "skill_id": "pgvector",
+        "requirement": "required",
+        "raw_text": "pgvector"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Hands-on experience with Docker"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containerized development environments"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "Experience working with PostgreSQL"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "functional and integration tests"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation frameworks for AI/LLM output quality"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "open-source-llms",
+        "requirement": "nice_to_have",
+        "raw_text": "open-source LLMs"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "prompt engineering"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic workflows",
+        "uncertain": true
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "kafka",
+        "requirement": "nice_to_have",
+        "raw_text": "Kafka"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "machine learning fundamentals"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "nice_to_have",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorFlow"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Pinecone",
+        "raw_text": "Pinecone"
+      },
+      {
+        "label": "Redis",
+        "raw_text": "Redis, or similar data stores"
+      },
+      {
+        "label": "Streaming",
+        "raw_text": "streaming"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI/LLM Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Responsibilities-only mentions such as vector search and LLM orchestration are not labeled, because the candidate is not asked for them.\nI labeled backend-development from \"similar backend frameworks\". It names backend broadly, but it is borderline whether this asks for backend skill or just frames FastAPI.\nI mapped \"agentic workflows\" to agents. That is close to the 'agentic frameworks' alias but not exact.\nLangChain and LlamaIndex share the fragment \"LangChain or LlamaIndex\". It is unique to the requirements bullet; the responsibilities bullet reads \"LangChain, LlamaIndex, or similar\".\nI labeled containerization because the requirements name \"containerized development environments\" explicitly, not just as an implied parent of Docker.\nEvaluation appears in both the required and nice-to-have lists. The required mention wins.\nStreaming has no taxonomy entry, so it is unmapped. I did not map it to event-driven-systems."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "c440660fde63616a6c8839ef9481c018fc035193476b8751e35617adb328fc6f",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

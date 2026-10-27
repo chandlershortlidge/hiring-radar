@@ -1,0 +1,42 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"geeignete Tests\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"Monitoring im Betrieb\"},\n    {\"skill_id\": \"data-privacy-and-security\", \"requirement\": \"required\", \"raw_text\": \"den Schutz sensibler Daten\", \"uncertain\": true}\n  ],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Ein abgeschlossenes Studium, eine vergleichbare Qualifikation oder relevante Berufserfahrung\",\n  \"uncertain\": [],\n  \"notes\": \"The 'Was wir bieten' bullets are responsibilities, so Evaluationen, Leitplanken (guardrails), Tests and Monitoring there are not labeled from that section.\\n'Data Science' and 'Software Engineering' appear only as fields the degree or experience should relate to ('mit Bezug zu …'). Read literally as domain or field of study, so they are not labeled; a reviewer may disagree.\\n'Schutz sensibler Daten' is mapped to data-privacy-and-security as a risk area the candidate must assess; flagged uncertain.\\n'falsche Antworten' (possible hallucination-detection) and 'unerwünschte Eingaben' (possible llm-guardrails) are not labeled because neither text names a technique.\\nTesting and monitoring are taken from the 'Was du bietest' bullet that asks for them as a qualification.\\nBanking/Fintech experience and regulated IT environments are domain knowledge, not skills.\\nGerman is inferred as required: the posting is written in German and says nothing about language.\\nThe degree accepts 'vergleichbare Qualifikation oder relevante Berufserfahrung', so degree_or_equivalent is true.\\nNo seniority signal: no level or years of experience are stated.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "geeignete Tests"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring im Betrieb"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "den Schutz sensibler Daten",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Ein abgeschlossenes Studium, eine vergleichbare Qualifikation oder relevante Berufserfahrung",
+    "uncertain": [],
+    "notes": "The 'Was wir bieten' bullets are responsibilities, so Evaluationen, Leitplanken (guardrails), Tests and Monitoring there are not labeled from that section.\n'Data Science' and 'Software Engineering' appear only as fields the degree or experience should relate to ('mit Bezug zu …'). Read literally as domain or field of study, so they are not labeled; a reviewer may disagree.\n'Schutz sensibler Daten' is mapped to data-privacy-and-security as a risk area the candidate must assess; flagged uncertain.\n'falsche Antworten' (possible hallucination-detection) and 'unerwünschte Eingaben' (possible llm-guardrails) are not labeled because neither text names a technique.\nTesting and monitoring are taken from the 'Was du bietest' bullet that asks for them as a qualification.\nBanking/Fintech experience and regulated IT environments are domain knowledge, not skills.\nGerman is inferred as required: the posting is written in German and says nothing about language.\nThe degree accepts 'vergleichbare Qualifikation oder relevante Berufserfahrung', so degree_or_equivalent is true.\nNo seniority signal: no level or years of experience are stated."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "f87f866298e94e8b7d94d0a8732923742d01c16511e4de5e0a31ce07d921c3a1",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

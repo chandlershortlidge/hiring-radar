@@ -1,0 +1,78 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"KI-Tools und LLMs\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"Prompting für Reporting\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Meta Ads\", \"raw_text\": \"Meta Ads\"},\n    {\"label\": \"Paid Social channels\", \"raw_text\": \"anderen Paid-Social-Kanälen\"},\n    {\"label\": \"Meta Ads Manager\", \"raw_text\": \"Meta-Werbeanzeigenmanager\"},\n    {\"label\": \"Reporting/attribution tools\", \"raw_text\": \"Reporting-/Attributions-Tools\"},\n    {\"label\": \"Pinterest Ads (nice to have)\", \"raw_text\": \"Pinterest\"},\n    {\"label\": \"Reddit Ads (nice to have)\", \"raw_text\": \"Reddit\"},\n    {\"label\": \"TikTok Ads (nice to have)\", \"raw_text\": \"TikTok\"},\n    {\"label\": \"Bing Ads (nice to have)\", \"raw_text\": \"Bing Ads und serverseitigem Tracking ist ein Plus\"},\n    {\"label\": \"Server-side tracking (nice to have)\", \"raw_text\": \"serverseitigem Tracking\"},\n    {\"label\": \"AI tools in marketing\", \"raw_text\": \"Einsatz von KI-Tools\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Performance Marketing Manager\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Deine Deutsch- und Englischkenntnisse sind sehr gut\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Du hast dein Studium (BWL, Marketing, Medien, Kommunikationswissenschaften o. Ä.) erfolgreich abgeschlossen oder bringst eine vergleichbare Qualifikation mit\",\n  \"uncertain\": [],\n  \"notes\": \"A/B-Testing, Claude, Gemini, ChatGPT, generative KI, tracking tools and conversion APIs appear only in responsibilities, so they are not labeled.\\nThe LLMs raw_text quotes the requirement mention 'KI-Tools und LLMs', because LLMs also appears in responsibilities.\\n'Prompting für Reporting' is a parenthetical example under a must-have item; I mapped it to prompt-engineering but flagged it, since it is marketing prompting rather than engineering.\\nThe ad-platform skills (Meta, Pinterest, Reddit, TikTok, Bing Ads) have no taxonomy entry and are listed in unmapped.\\nPinterest, Reddit, TikTok, Bing Ads and server-side tracking would be nice_to_have because of 'ist ein Plus'.\\n'KI-Tools' alone was not mapped to ai-ml; the taxonomy has no generic 'AI tools' entry.\\n'vergleichbare Qualifikation' accepts an equivalent in place of the degree, so degree_or_equivalent is true.\\nGerman is required: it sits in the requirements list with no optional marker, and 'ein Plus' applies only to further languages.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "KI-Tools und LLMs"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompting für Reporting",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Meta Ads",
+        "raw_text": "Meta Ads"
+      },
+      {
+        "label": "Paid Social channels",
+        "raw_text": "anderen Paid-Social-Kanälen"
+      },
+      {
+        "label": "Meta Ads Manager",
+        "raw_text": "Meta-Werbeanzeigenmanager"
+      },
+      {
+        "label": "Reporting/attribution tools",
+        "raw_text": "Reporting-/Attributions-Tools"
+      },
+      {
+        "label": "Pinterest Ads (nice to have)",
+        "raw_text": "Pinterest"
+      },
+      {
+        "label": "Reddit Ads (nice to have)",
+        "raw_text": "Reddit"
+      },
+      {
+        "label": "TikTok Ads (nice to have)",
+        "raw_text": "TikTok"
+      },
+      {
+        "label": "Bing Ads (nice to have)",
+        "raw_text": "Bing Ads und serverseitigem Tracking ist ein Plus"
+      },
+      {
+        "label": "Server-side tracking (nice to have)",
+        "raw_text": "serverseitigem Tracking"
+      },
+      {
+        "label": "AI tools in marketing",
+        "raw_text": "Einsatz von KI-Tools"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Performance Marketing Manager",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Deine Deutsch- und Englischkenntnisse sind sehr gut",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Du hast dein Studium (BWL, Marketing, Medien, Kommunikationswissenschaften o. Ä.) erfolgreich abgeschlossen oder bringst eine vergleichbare Qualifikation mit",
+    "uncertain": [],
+    "notes": "A/B-Testing, Claude, Gemini, ChatGPT, generative KI, tracking tools and conversion APIs appear only in responsibilities, so they are not labeled.\nThe LLMs raw_text quotes the requirement mention 'KI-Tools und LLMs', because LLMs also appears in responsibilities.\n'Prompting für Reporting' is a parenthetical example under a must-have item; I mapped it to prompt-engineering but flagged it, since it is marketing prompting rather than engineering.\nThe ad-platform skills (Meta, Pinterest, Reddit, TikTok, Bing Ads) have no taxonomy entry and are listed in unmapped.\nPinterest, Reddit, TikTok, Bing Ads and server-side tracking would be nice_to_have because of 'ist ein Plus'.\n'KI-Tools' alone was not mapped to ai-ml; the taxonomy has no generic 'AI tools' entry.\n'vergleichbare Qualifikation' accepts an equivalent in place of the degree, so degree_or_equivalent is true.\nGerman is required: it sits in the requirements list with no optional marker, and 'ein Plus' applies only to further languages."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "0ee82c04aa8f0869f0fe1e712c12f50df45c9ea22dbffcaf905aa6c6450c4f97",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

@@ -1,0 +1,245 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\"skill_id\":\"agents\",\"requirement\":\"required\",\"raw_text\":\"agentic systems\"},\n    {\"skill_id\":\"vertex-ai\",\"requirement\":\"required\",\"raw_text\":\"Google Vertex AI\"},\n    {\"skill_id\":\"aws-bedrock\",\"requirement\":\"required\",\"raw_text\":\"Bedrock\"},\n    {\"skill_id\":\"langchain\",\"requirement\":\"required\",\"raw_text\":\"LangChain\"},\n    {\"skill_id\":\"langgraph\",\"requirement\":\"required\",\"raw_text\":\"LangGraph\"},\n    {\"skill_id\":\"autogen\",\"requirement\":\"required\",\"raw_text\":\"AutoGen\"},\n    {\"skill_id\":\"crewai\",\"requirement\":\"required\",\"raw_text\":\"CrewAI\"},\n    {\"skill_id\":\"cloud\",\"requirement\":\"required\",\"raw_text\":\"Cloud-native development\",\"uncertain\":true},\n    {\"skill_id\":\"aws\",\"requirement\":\"required\",\"raw_text\":\"AWS infrastructure\"},\n    {\"skill_id\":\"aws-s3\",\"requirement\":\"required\",\"raw_text\":\"S3\"},\n    {\"skill_id\":\"gcp\",\"requirement\":\"required\",\"raw_text\":\"Google Cloud Platform\"},\n    {\"skill_id\":\"terraform\",\"requirement\":\"required\",\"raw_text\":\"Terraform\"},\n    {\"skill_id\":\"kubernetes\",\"requirement\":\"required\",\"raw_text\":\"Kubernetes\"},\n    {\"skill_id\":\"python\",\"requirement\":\"required\",\"raw_text\":\"Python\"},\n    {\"skill_id\":\"java\",\"requirement\":\"required\",\"raw_text\":\"Java\"},\n    {\"skill_id\":\"backend-development\",\"requirement\":\"required\",\"raw_text\":\"backend services\"},\n    {\"skill_id\":\"apis\",\"requirement\":\"required\",\"raw_text\":\"APIs\"},\n    {\"skill_id\":\"microservices\",\"requirement\":\"required\",\"raw_text\":\"microservices\"},\n    {\"skill_id\":\"recommender-systems\",\"requirement\":\"required\",\"raw_text\":\"recommendation engines\"},\n    {\"skill_id\":\"vector-databases\",\"requirement\":\"required\",\"raw_text\":\"vector databases\"},\n    {\"skill_id\":\"observability\",\"requirement\":\"required\",\"raw_text\":\"observability\"},\n    {\"skill_id\":\"evaluation\",\"requirement\":\"required\",\"raw_text\":\"evaluation frameworks\"},\n    {\"skill_id\":\"llm-guardrails\",\"requirement\":\"required\",\"raw_text\":\"runtime guardrails\"},\n    {\"skill_id\":\"ai-developer-tooling\",\"requirement\":\"required\",\"raw_text\":\"AI-powered development tools\"},\n    {\"skill_id\":\"testing\",\"requirement\":\"required\",\"raw_text\":\"automated testing\"},\n    {\"skill_id\":\"prompt-engineering\",\"requirement\":\"required\",\"raw_text\":\"Prompt engineering\"},\n    {\"skill_id\":\"llms\",\"requirement\":\"required\",\"raw_text\":\"large language models\"},\n    {\"skill_id\":\"tool-calling\",\"requirement\":\"required\",\"raw_text\":\"tool use\"},\n    {\"skill_id\":\"rag\",\"requirement\":\"nice_to_have\",\"raw_text\":\"RAG\"},\n    {\"skill_id\":\"ai-deployment\",\"requirement\":\"nice_to_have\",\"raw_text\":\"agentic product deployments\"}\n  ],\n  \"unmapped\": [\n    {\"label\":\"AWS AgentCore\",\"raw_text\":\"AWS AgentCore\"},\n    {\"label\":\"AWS VPC\",\"raw_text\":\"VPC\"},\n    {\"label\":\"AWS Lambda\",\"raw_text\":\"Lambda\"},\n    {\"label\":\"AWS IAM\",\"raw_text\":\"IAM\"},\n    {\"label\":\"AWS CloudWatch\",\"raw_text\":\"CloudWatch\"},\n    {\"label\":\"Cross-account integrations\",\"raw_text\":\"cross-account integrations\"},\n    {\"label\":\"System integration\",\"raw_text\":\"System integration\"},\n    {\"label\":\"S3 Vector\",\"raw_text\":\"S3 Vector\"},\n    {\"label\":\"OpenSearch\",\"raw_text\":\"OpenSearch\"},\n    {\"label\":\"Multi-environment setup\",\"raw_text\":\"multi-environment setup\"},\n    {\"label\":\"AI workflow compliance controls\",\"raw_text\":\"compliance controls for AI/agentic workflows\"},\n    {\"label\":\"FinOps\",\"raw_text\":\"FinOps\"},\n    {\"label\":\"Cost estimation\",\"raw_text\":\"cost estimations\"},\n    {\"label\":\"Cost controls\",\"raw_text\":\"cost controls\"},\n    {\"label\":\"Multi-step reasoning\",\"raw_text\":\"multi-step reasoning\"},\n    {\"label\":\"Handling ambiguous or incomplete user input\",\"raw_text\":\"robust handling of ambiguous or incomplete user input\"},\n    {\"label\":\"Knowledge base design\",\"raw_text\":\"knowledge base design\"}\n  ],\n  \"seniority\":\"senior\",\n  \"seniority_basis\":\"inferred\",\n  \"seniority_signal\":\"mentoring peers\",\n  \"german\":null,\n  \"german_basis\":null,\n  \"german_signal\":null,\n  \"degree\":null,\n  \"degree_requirement\":null,\n  \"degree_or_equivalent\":false,\n  \"degree_signal\":null,\n  \"notes\":\"The opening bullets are candidate qualifications without a section heading and default to required; the inline 'Bonus' marks only the final qualification bullet optional.\\n'Ideally' makes the multi-environment setup optional; it has no matching taxonomy entry.\\nCloud-native development is provisionally mapped to cloud and flagged because the taxonomy does not explicitly list that wording.\\nMulti-step reasoning is not assumed to mean Chain-of-Thought; knowledge base design is not assumed to mean knowledge graphs.\\nResponsibilities-only technologies and practices, including MCP and workflow automation, are excluded. Mentoring duties are used only for seniority.\\nRegulated-environment experience is domain knowledge and is not labeled as a skill.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic systems"
+      },
+      {
+        "skill_id": "vertex-ai",
+        "requirement": "required",
+        "raw_text": "Google Vertex AI"
+      },
+      {
+        "skill_id": "aws-bedrock",
+        "requirement": "required",
+        "raw_text": "Bedrock"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "autogen",
+        "requirement": "required",
+        "raw_text": "AutoGen"
+      },
+      {
+        "skill_id": "crewai",
+        "requirement": "required",
+        "raw_text": "CrewAI"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-native development",
+        "uncertain": true
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS infrastructure"
+      },
+      {
+        "skill_id": "aws-s3",
+        "requirement": "required",
+        "raw_text": "S3"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google Cloud Platform"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend services"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "microservices"
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "required",
+        "raw_text": "recommendation engines"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector databases"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "observability"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation frameworks"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "runtime guardrails"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI-powered development tools"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automated testing"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt engineering"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "large language models"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic product deployments"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "AWS AgentCore",
+        "raw_text": "AWS AgentCore"
+      },
+      {
+        "label": "AWS VPC",
+        "raw_text": "VPC"
+      },
+      {
+        "label": "AWS Lambda",
+        "raw_text": "Lambda"
+      },
+      {
+        "label": "AWS IAM",
+        "raw_text": "IAM"
+      },
+      {
+        "label": "AWS CloudWatch",
+        "raw_text": "CloudWatch"
+      },
+      {
+        "label": "Cross-account integrations",
+        "raw_text": "cross-account integrations"
+      },
+      {
+        "label": "System integration",
+        "raw_text": "System integration"
+      },
+      {
+        "label": "S3 Vector",
+        "raw_text": "S3 Vector"
+      },
+      {
+        "label": "OpenSearch",
+        "raw_text": "OpenSearch"
+      },
+      {
+        "label": "Multi-environment setup",
+        "raw_text": "multi-environment setup"
+      },
+      {
+        "label": "AI workflow compliance controls",
+        "raw_text": "compliance controls for AI/agentic workflows"
+      },
+      {
+        "label": "FinOps",
+        "raw_text": "FinOps"
+      },
+      {
+        "label": "Cost estimation",
+        "raw_text": "cost estimations"
+      },
+      {
+        "label": "Cost controls",
+        "raw_text": "cost controls"
+      },
+      {
+        "label": "Multi-step reasoning",
+        "raw_text": "multi-step reasoning"
+      },
+      {
+        "label": "Handling ambiguous or incomplete user input",
+        "raw_text": "robust handling of ambiguous or incomplete user input"
+      },
+      {
+        "label": "Knowledge base design",
+        "raw_text": "knowledge base design"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "mentoring peers",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The opening bullets are candidate qualifications without a section heading and default to required; the inline 'Bonus' marks only the final qualification bullet optional.\n'Ideally' makes the multi-environment setup optional; it has no matching taxonomy entry.\nCloud-native development is provisionally mapped to cloud and flagged because the taxonomy does not explicitly list that wording.\nMulti-step reasoning is not assumed to mean Chain-of-Thought; knowledge base design is not assumed to mean knowledge graphs.\nResponsibilities-only technologies and practices, including MCP and workflow automation, are excluded. Mentoring duties are used only for seniority.\nRegulated-environment experience is domain knowledge and is not labeled as a skill."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "bcc6bb20989961fd6e7516ef218934c4ca66e05e5343d7f0fe5709bfd69c2cfa",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}
