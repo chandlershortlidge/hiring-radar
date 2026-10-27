@@ -45,6 +45,7 @@
     {"type": "join", "enabled": true, "token": "alpas", "company": "alpas"},
     {"type": "join", "enabled": true, "token": "noah-labs", "company": "Noah Labs"},
     {"type": "join", "enabled": true, "token": "ai-coustics", "company": "ai-coustics"},
-    {"type": "join", "enabled": true, "token": "limebit", "company": "Limebit"}
+    {"type": "join", "enabled": true, "token": "limebit", "company": "Limebit"},
+    {"type": "greenhouse", "enabled": true, "token": "solarisbank", "company": "Solaris"}
   ]
 }

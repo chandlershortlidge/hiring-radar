@@ -33,6 +33,9 @@ from app.taxonomy import Taxonomy
 DEFAULT_MODEL = os.environ.get("HIRING_RADAR_MODEL", "claude-sonnet-5-5")
 MAX_TOKENS = 4096
 NEW_PREFIX = "new:"
+# What the model is sent, beyond the prompt. Part of extractor_version, so changing how the
+# input is built re-extracts every job, the same as a prompt or taxonomy change.
+INPUT_FORMAT = "title-on-top"
 
 PRINCIPLES = """\
 You extract the technical skills a job description asks candidates to have.
@@ -216,12 +219,24 @@ def system_prompt(tax: Taxonomy) -> str:
 
 def extractor_version(tax: Taxonomy, model: str) -> str:
     """Changes whenever the prompt, tool schema, taxonomy, or model changes."""
-    h = hashlib.sha256((system_prompt(tax) + repr(TOOL) + model).encode()).hexdigest()
+    h = hashlib.sha256((system_prompt(tax) + repr(TOOL) + model + INPUT_FORMAT).encode()).hexdigest()
     return f"x2-{h[:10]}"
 
 
 def _norm(s: str) -> str:
     return re.sub(r"\s+", " ", s).strip().lower()
+
+
+def extraction_input(title: str | None, text: str) -> str:
+    """The text the model sees: the job title on top, then the posting.
+
+    Feed sources keep the title in its own column, so without this the model never sees
+    "Senior …" or "Werkstudent …", the main stated-seniority signal. Text that already opens
+    with the title (screenshots, pasted postings) is left as is."""
+    t = (title or "").strip()
+    if not t or _norm(t) in _norm(text[:300]):
+        return text
+    return f"{t}\n\n{text}"
 
 
 def parse_skills(items: list, tax: Taxonomy, jd_text: str) -> tuple[list[Mention], list[Proposed], list[dict]]:

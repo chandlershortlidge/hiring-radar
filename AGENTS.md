@@ -105,7 +105,7 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - SQLite, one file, schema managed by numbered migrations in `app/migrations/`.
 - React 18 + Vite frontend in `web/`, no chart library (CSS bars), served from `web/dist`
   by the same process.
-- Hosting: Railway (to come). Runs locally until then.
+- Hosting: GCP Compute Engine VM in europe-west3 (to come, HIR-29). Runs locally until then.
 
 ### Where things live
 
@@ -194,6 +194,7 @@ Three layout rules:
   for the held-out eval). Change `ACTIVE_CITIES` only on purpose (DECISIONS 2026-10-19).
   EU-remote rules live in `geo.is_remote_eu` (DECISIONS 2026-10-26).
 - `skill_mention` holds one extraction per job (the latest). Re-extraction replaces.
+  `extraction_reject` (items that failed validation) follows the same rule.
 
 ## Reporting a run
 

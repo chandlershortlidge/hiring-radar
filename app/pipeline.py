@@ -10,10 +10,11 @@ re-extract); a job is processed once per extractor_version, including jobs with 
 not raised; re-running is safe.
 """
 
+import json
 import sqlite3
 from dataclasses import dataclass, field
 
-from app.extract import Extraction, extractor_version
+from app.extract import Extraction, extraction_input, extractor_version
 from app.taxonomy import Taxonomy
 
 
@@ -36,7 +37,7 @@ def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int |
 
     Jobs stamped 'legacy' are never re-extracted: they carry the old summary as text, not
     the posting, so a fresh extraction would be worse than the labels they have."""
-    sql = ("SELECT id, description_text FROM job"
+    sql = ("SELECT id, title, description_text FROM job"
            " WHERE (extracted_version IS NULL OR extracted_version != ?) AND extracted_version IS NOT 'legacy'")
     params: list = [version]
     if job_ids:
@@ -48,6 +49,13 @@ def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int |
     return conn.execute(sql, params).fetchall()
 
 
+def _reject_fields(item) -> tuple[str | None, str | None]:
+    if not isinstance(item, dict):
+        return None, None
+    sid, raw = item.get("skill_id"), item.get("raw_text")
+    return (str(sid) if sid is not None else None), (str(raw) if raw is not None else None)
+
+
 def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction) -> None:
     with conn:
         conn.execute("DELETE FROM skill_mention WHERE job_id=?", (job_id,))  # one current extraction per job
@@ -56,6 +64,12 @@ def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction) -> N
             " VALUES (?,?,?,?,?,?)",
             [(job_id, m.skill_id, m.requirement, m.raw_text, ex.taxonomy_version, ex.extractor_version)
              for m in ex.mentions])
+        conn.execute("DELETE FROM extraction_reject WHERE job_id=?", (job_id,))
+        conn.executemany(
+            "INSERT INTO extraction_reject (job_id, reason, skill_id, raw_text, item, extractor_version)"
+            " VALUES (?,?,?,?,?,?)",
+            [(job_id, r["reason"], *_reject_fields(r["item"]), json.dumps(r["item"], ensure_ascii=False, default=str),
+              ex.extractor_version) for r in ex.rejected])
         conn.execute("DELETE FROM proposed_skill WHERE job_id=? AND status='pending'", (job_id,))
         # A label rejected once stays rejected: re-extraction must not re-queue it.
         rejected = {r[0] for r in conn.execute(
@@ -80,7 +94,7 @@ def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn, model: 
     for row in jobs_needing_extraction(conn, version, limit, job_ids):
         report.attempted += 1
         try:
-            ex = extract_fn(row["description_text"], tax, model)
+            ex = extract_fn(extraction_input(row["title"], row["description_text"]), tax, model)
         except Exception as e:  # keep going; the job stays pending for the next run
             report.failed.append((row["id"], f"{type(e).__name__}: {e}"))
             log(f"  job {row['id']}: FAILED {type(e).__name__}: {str(e)[:200]}")

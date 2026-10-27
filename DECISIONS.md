@@ -37,6 +37,44 @@ Compare mode stays Berlin vs San Francisco; "Remote (EU)" is a filter button.
 
 ---
 
+## 2026-10-21 — Host on a GCP Compute Engine VM, not Railway (HIR-29)
+
+Decision: one e2 VM in europe-west3 (Frankfurt) runs FastAPI plus the built `web/dist`
+behind Caddy, which terminates HTTPS and holds the basic-auth gate. The daily poll becomes
+a systemd timer on the same box; SQLite is backed up nightly to a GCS bucket; deploys go
+through GitHub Actions. No domain yet, so the host is an sslip.io name (the VM's IP spelled
+into a hostname), which is enough for Caddy to get a certificate. The full plan is in HIR-29.
+
+Why: this is a portfolio project, and the hands-on DevOps — running the box, the ops around
+it, and CI/CD on a major cloud — is the point. A managed PaaS hides exactly the parts worth
+learning.
+
+Rejected: **Railway** (the 2026-10-16 plan) — it works and costs about the same, but it does
+the ops for you. **Cloud Run** — the container filesystem doesn't persist between revisions,
+so SQLite would have to be replaced with a managed database. **GCP's free-tier e2-micro** —
+US regions only, and EU hosting was chosen, so this is a paid VM.
+
+This supersedes the "hosted on Railway" and "Railway cron" lines in the earlier entries
+below. Those entries stay as written; the log is a record, not a current-state document.
+
+## 2026-10-21 — The extractor sees the job title (HIR-57)
+
+`extract_pending` sent the model `description_text` only. Every feed adapter keeps the title
+in `job.title`, so for feed jobs the model never saw "Senior …", "Junior …" or "Werkstudent …",
+which LABELING.md treats as the strongest seniority signal. The dev Goldens all open with
+their title (screenshot and legacy origin), so the dev seniority score (0.82–0.85) measured
+an input production never sent.
+
+Decision: `extract.extraction_input(title, text)` puts the title on top, unless the text
+already opens with it. `INPUT_FORMAT` is part of `extractor_version`, so this re-extracts
+every job. `new_goldens.py` drafts with the same input; `source_sha256` still hashes the
+stored description, because that is the dedup key against the DB.
+
+Held-out Goldens built from feed text had no title line. golden_021 (Almedia) now opens
+with "Junior Data Scientist", and that title is its seniority signal (it was the indirect
+"Most Junior Data Scientists…" sentence). 022–024 need the same treatment from their job
+rows. This is an input-format fix, not tuning, so the held-out edits are allowed.
+
 ## 2026-10-21 — Jobs with under 400 characters of text are left out of the chart
 
 After the taxonomy v4 re-extract, four jobs had zero skills: 37 Enpal, 38 eduBITES, 39 POS
