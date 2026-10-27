@@ -28,13 +28,13 @@ def test_drafts_are_empty_heldout_and_skipped_by_the_eval(tmp_path, monkeypatch)
                                                          "source_sha256": ng.sha("x"), "expected": []}))
     db = tmp_path / "t.db"
     c = sqlite3.connect(db)
-    c.executescript("CREATE TABLE job (id INTEGER PRIMARY KEY, company TEXT, title TEXT, description_text TEXT,"
-                    " first_seen TEXT, extracted_version TEXT);"
+    c.executescript("CREATE TABLE job (id INTEGER PRIMARY KEY, company TEXT, title TEXT, city TEXT,"
+                    " seniority TEXT, description_text TEXT, first_seen TEXT, extracted_version TEXT);"
                     "CREATE TABLE job_source (job_id INTEGER, source TEXT);")
-    c.executemany("INSERT INTO job VALUES (?,?,?,?,?,?)", [
-        (1, "A", "KI Engineer", DE, "2026-10-18", None),
-        (2, "B", "AI Engineer", EN, "2026-10-18", None),
-        (3, "C", "KI Engineer", DE + " alt", "2026-10-17", "legacy")])
+    c.executemany("INSERT INTO job VALUES (?,?,?,?,?,?,?,?)", [
+        (1, "A", "KI Engineer", "Berlin", "mid", DE, "2026-10-18", None),
+        (2, "B", "AI Engineer", "Berlin", None, EN, "2026-10-18", None),
+        (3, "C", "KI Engineer", "Berlin", None, DE + " alt", "2026-10-17", "legacy")])
     c.commit(); c.close()
     monkeypatch.setattr(ng, "GOLDENS", goldens); monkeypatch.setattr(ng, "DB", db)
     ng.main(["--german", "5"])

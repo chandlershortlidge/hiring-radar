@@ -1,0 +1,626 @@
+"""Tests for scripts/agent_label.py. Every model call is mocked (AGENTS.md)."""
+
+import importlib.util
+import json
+import sqlite3
+from pathlib import Path
+
+import pytest
+
+ROOT = Path(__file__).resolve().parent.parent
+_spec = importlib.util.spec_from_file_location("agent_label", ROOT / "scripts" / "agent_label.py")
+al = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(al)
+
+from app.taxonomy import Taxonomy  # noqa: E402
+
+TAX = Taxonomy({"version": 9, "skills": [
+    {"id": "python", "display": "Python"},
+    {"id": "rag", "display": "RAG", "aliases": ["Retrieval-Augmented Generation"]},
+    {"id": "llms", "display": "LLMs"},
+    {"id": "docker", "display": "Docker"},
+]})
+
+POSTING = """Senior AI Engineer (m/f/d)
+
+Requirements:
+- Strong Python and experience with RAG pipelines
+- 6+ years of professional experience building LLM applications
+- Master's degree in computer science or equivalent experience
+- Fluent German (C1)
+
+Nice to have:
+- Docker
+"""
+
+
+def ok_answer(**over):
+    answer = {
+        "expected": [
+            {"skill_id": "python", "requirement": "required", "raw_text": "Strong Python"},
+            {"skill_id": "rag", "requirement": "required", "raw_text": "experience with RAG pipelines"},
+            {"skill_id": "docker", "requirement": "nice_to_have", "raw_text": "Docker"},
+        ],
+        "unmapped": [],
+        "seniority": "senior", "seniority_basis": "inferred",
+        "seniority_signal": "6+ years of professional experience",
+        "german": "required", "german_basis": "stated", "german_signal": "Fluent German (C1)",
+        "degree": "master", "degree_requirement": "required", "degree_or_equivalent": True,
+        "degree_signal": "Master's degree in computer science or equivalent experience",
+        "notes": "",
+    }
+    answer.update(over)
+    return answer
+
+
+# --- auto-check -------------------------------------------------------------------
+
+def test_auto_check_passes_a_clean_answer():
+    assert al.auto_check(ok_answer(), POSTING, TAX) == []
+
+
+@pytest.mark.parametrize("over, scope, needle", [
+    # raw_text must be in the posting
+    ({"expected": [{"skill_id": "python", "requirement": "required", "raw_text": "deep Python mastery"}]},
+     "skill:python", "raw_text does not appear"),
+    ({"expected": [{"skill_id": "python", "requirement": "required", "raw_text": ""}]},
+     "skill:python", "raw_text does not appear"),
+    # unknown ids, bad requirement, duplicate ids
+    ({"expected": [{"skill_id": "kubernetes", "requirement": "required", "raw_text": "Docker"}]},
+     "skill:kubernetes", "not in the taxonomy"),
+    ({"expected": [{"skill_id": "Python", "requirement": "required", "raw_text": "Strong Python"}]},
+     "skill:Python", "did it mean 'python'?"),
+    ({"expected": [{"skill_id": "python", "requirement": "must have", "raw_text": "Strong Python"}]},
+     "skill:python", "requirement is 'must have'"),
+    ({"expected": [{"skill_id": "python", "requirement": "required", "raw_text": "Strong Python"},
+                   {"skill_id": "python", "requirement": "nice_to_have", "raw_text": "Strong Python"}]},
+     "skill:python", "2 criteria for one skill_id"),
+    # signals must be verbatim
+    ({"seniority_signal": "very senior role"}, "field:seniority", "seniority_signal does not appear"),
+    ({"german_signal": "speaks German natively"}, "field:german", "german_signal does not appear"),
+    # the string "null" is called out by name, because the prompt forbids it
+    ({"seniority": "null", "seniority_basis": None, "seniority_signal": None},
+     "field:seniority", 'the string "null"'),
+    # field consistency
+    ({"german": "required", "german_basis": None, "german_signal": None},
+     "field:german", "a value needs a basis"),
+    ({"seniority": "senior", "seniority_basis": "stated", "seniority_signal": None},
+     "field:seniority", "a stated label quotes the text"),
+    ({"german": "required", "german_basis": "inferred", "german_signal": "Fluent German (C1)"},
+     "field:german", "german_signal must be null"),
+    ({"degree": None, "degree_requirement": "required", "degree_or_equivalent": False,
+      "degree_signal": None}, "field:degree", "degree is null but degree_requirement"),
+    ({"degree": None, "degree_requirement": None, "degree_or_equivalent": True, "degree_signal": None},
+     "field:degree", "degree_or_equivalent is true"),
+    ({"degree": "master", "degree_requirement": None, "degree_or_equivalent": False,
+      "degree_signal": "Master's degree in computer science or equivalent experience"},
+     "field:degree", "degree_requirement is None"),
+    ({"degree": "master", "degree_requirement": "required", "degree_or_equivalent": "yes",
+      "degree_signal": "Master's degree in computer science or equivalent experience"},
+     "field:degree", "not a boolean"),
+])
+def test_auto_check_catches(over, scope, needle):
+    problems = al.auto_check(ok_answer(**over), POSTING, TAX)
+    assert any(p["scope"] == scope and needle in p["problem"] for p in problems), problems
+
+
+def test_auto_check_rejects_a_non_list_expected():
+    problems = al.auto_check(ok_answer(expected="python, rag"), POSTING, TAX)
+    assert problems[0]["scope"] == "run"
+
+
+# --- merge ------------------------------------------------------------------------
+
+def merged_for(a, b):
+    return al.merge("golden_030", POSTING, a, b,
+                    al.auto_check(a, POSTING, TAX), al.auto_check(b, POSTING, TAX))
+
+
+def test_merge_accepts_what_both_labelers_said():
+    m = merged_for(ok_answer(), ok_answer())
+    assert [s["skill_id"] for s in m.accepted_skills] == ["docker", "python", "rag"]
+    assert sorted(m.accepted_attrs) == ["degree", "german", "seniority"]
+    assert m.review == []
+
+
+def test_merge_queues_a_requirement_disagreement_and_keeps_the_rest():
+    b = ok_answer(expected=[
+        {"skill_id": "python", "requirement": "required", "raw_text": "Strong Python"},
+        {"skill_id": "rag", "requirement": "nice_to_have", "raw_text": "experience with RAG pipelines"},
+        {"skill_id": "docker", "requirement": "nice_to_have", "raw_text": "Docker"}])
+    m = merged_for(ok_answer(), b)
+    assert [s["skill_id"] for s in m.accepted_skills] == ["docker", "python"]
+    item, = m.review
+    assert (item["kind"], item["key"], item["reason"]) == ("skill", "rag", "disagreement")
+    assert item["a"]["requirement"] == "required" and item["b"]["requirement"] == "nice_to_have"
+    assert item["decision"] == "?"
+
+
+def test_merge_queues_a_skill_only_one_labeler_gave():
+    b = ok_answer(expected=ok_answer()["expected"][:2])
+    m = merged_for(ok_answer(), b)
+    item, = m.review
+    assert item["key"] == "docker" and item["reason"] == "disagreement"
+    assert item["a"]["skill_id"] == "docker" and item["b"] is None
+
+
+def test_merge_pairs_the_same_evidence_mapped_to_different_ids():
+    a = ok_answer(expected=[{"skill_id": "rag", "requirement": "required",
+                             "raw_text": "experience with RAG pipelines"}])
+    b = ok_answer(expected=[{"skill_id": "llms", "requirement": "required",
+                             "raw_text": "experience with RAG   pipelines"}])
+    m = merged_for(a, b)
+    item, = [i for i in m.review if i["kind"] == "skill"]
+    assert item["reason"] == "mapping" and item["key"] == "rag|llms"
+    assert item["a"]["skill_id"] == "rag" and item["b"]["skill_id"] == "llms"
+
+
+def test_merge_queues_an_uncertain_flag_even_when_both_agree():
+    a = ok_answer()
+    a["expected"] = [dict(a["expected"][0], uncertain=True), *a["expected"][1:]]
+    a["uncertain"] = ["german"]
+    m = merged_for(a, ok_answer())
+    reasons = {(i["kind"], i["key"]): i["reason"] for i in m.review}
+    assert reasons == {("skill", "python"): "uncertain", ("attribute", "german"): "uncertain"}
+    assert "german" not in m.accepted_attrs and "seniority" in m.accepted_attrs
+
+
+def test_merge_queues_an_attribute_disagreement_per_field():
+    b = ok_answer(seniority="mid", seniority_basis="inferred",
+                  seniority_signal="6+ years of professional experience")
+    m = merged_for(ok_answer(), b)
+    item, = m.review
+    assert (item["kind"], item["key"], item["reason"]) == ("attribute", "seniority", "disagreement")
+    assert item["a"]["seniority"] == "senior" and item["b"]["seniority"] == "mid"
+    assert sorted(m.accepted_attrs) == ["degree", "german"]
+
+
+def test_merge_sends_a_check_failure_to_review_rather_than_dropping_it():
+    b = ok_answer(expected=[
+        {"skill_id": "python", "requirement": "required", "raw_text": "unbeatable Python skills"},
+        *ok_answer()["expected"][1:]])
+    m = merged_for(ok_answer(), b)
+    item, = m.review
+    assert item["key"] == "python" and item["reason"] == "check-failed"
+    assert any("B: raw_text does not appear" in p for p in item["problems"])
+    assert "python" not in {s["skill_id"] for s in m.accepted_skills}
+
+
+def test_merge_keeps_as_agreed_when_only_the_quoted_signal_differs():
+    b = ok_answer(seniority_signal="6+ years of professional experience building LLM applications")
+    m = merged_for(ok_answer(), b)
+    assert m.review == [] and m.accepted_attrs["seniority"]["seniority"] == "senior"
+    assert m.signal_mismatches and "golden_030 seniority" in m.signal_mismatches[0]
+
+
+# --- the same-model refusal -------------------------------------------------------
+
+def test_refuses_a_labeler_on_the_extractors_model():
+    with pytest.raises(SystemExit, match="the extractor's model"):
+        al.check_models("claude-sonnet-5-5", "gpt-5.6", extractor="claude-sonnet-5-5")
+    with pytest.raises(SystemExit, match="labeler B is"):
+        al.check_models("claude-opus-5-5", "claude-sonnet-5-5", extractor="claude-sonnet-5-5")
+
+
+def test_refuses_two_copies_of_one_model():
+    with pytest.raises(SystemExit, match="not two labelers"):
+        al.check_models("claude-opus-5-5", "claude-opus-5-5", extractor="claude-sonnet-5-5")
+
+
+def test_allows_two_different_non_extractor_models():
+    assert al.check_models("claude-opus-5-5", "gpt-5.6", extractor="claude-sonnet-5-5") is None
+
+
+# --- spot-check sampling ----------------------------------------------------------
+
+def many_merged(n_postings=6, n_skills=10):
+    out = []
+    for p in range(n_postings):
+        m = al.Merged(golden_id=f"golden_{p:03d}")
+        m.accepted_skills = [{"skill_id": f"s{i}", "requirement": "required", "raw_text": "x"}
+                             for i in range(n_skills)]
+        m.accepted_attrs = {a: {} for a in ("seniority", "german", "degree")}
+        out.append(m)
+    return out
+
+
+def test_spot_check_is_seeded_and_reproducible():
+    pool = many_merged()
+    first = al.spot_check_sample(pool, 20, seed=7)
+    assert first == al.spot_check_sample(pool, 20, seed=7)
+    assert first != al.spot_check_sample(pool, 20, seed=8)
+
+
+def test_spot_check_samples_labels_not_postings():
+    sample = al.spot_check_sample(many_merged(), 20, seed=3)
+    assert len(sample) == 20
+    assert all(kind in ("skill", "attribute") and key for _, kind, key in sample)
+    # 20 labels drawn from 6 postings must repeat postings and must not be whole postings
+    by_posting = {}
+    for gid, kind, key in sample:
+        by_posting.setdefault(gid, []).append(key)
+    assert max(len(v) for v in by_posting.values()) < 13  # a whole posting is 13 labels
+    assert len(sample) == len(set(sample))
+
+
+def test_spot_check_takes_everything_when_the_pool_is_smaller_than_asked():
+    pool = many_merged(n_postings=1, n_skills=2)
+    assert len(al.spot_check_sample(pool, 80, seed=0)) == 5  # 2 skills + 3 attributes
+
+
+def test_spot_check_pool_excludes_queued_labels():
+    b = ok_answer(expected=ok_answer()["expected"][:2])  # docker is one-sided -> queued
+    m = merged_for(ok_answer(), b)
+    keys = {key for _, kind, key in al.spot_check_sample([m], 80, seed=0) if kind == "skill"}
+    assert keys == {"python", "rag"}
+
+
+# --- applying decisions -----------------------------------------------------------
+
+def test_apply_decision_skill_words():
+    item = {"kind": "skill", "key": "rag", "reason": "disagreement",
+            "a": {"skill_id": "rag", "requirement": "required", "raw_text": "RAG"},
+            "b": {"skill_id": "rag", "requirement": "nice_to_have", "raw_text": "RAG"}}
+    assert al.apply_decision(item, "A") == ([item["a"]], None)
+    assert al.apply_decision(item, "`b`") == ([item["b"]], None)
+    assert al.apply_decision(item, "drop") == ([], None)
+    assert al.apply_decision(dict(item, key="rag|llms", reason="mapping"), "both")[0] == [item["a"], item["b"]]
+
+
+def test_apply_decision_rejects_a_word_the_item_does_not_allow():
+    item = {"kind": "skill", "key": "docker", "reason": "disagreement",
+            "a": {"skill_id": "docker", "requirement": "required", "raw_text": "Docker"}, "b": None}
+    with pytest.raises(ValueError, match="labeler B did not label"):
+        al.apply_decision(item, "B")
+    with pytest.raises(ValueError, match="needs an agreed value"):
+        al.apply_decision(item, "ok")
+    with pytest.raises(ValueError, match="not one of"):
+        al.apply_decision(item, "maybe")
+    with pytest.raises(ValueError, match="no decision"):
+        al.apply_decision(item, "?")
+
+
+def test_apply_decision_json_override():
+    item = {"kind": "skill", "key": "rag", "reason": "disagreement",
+            "a": {"skill_id": "rag", "requirement": "required", "raw_text": "RAG"}, "b": None}
+    add, group = al.apply_decision(item, '{"requirement": "nice_to_have", "raw_text": "RAG pipelines"}')
+    assert add == [{"skill_id": "rag", "requirement": "nice_to_have", "raw_text": "RAG pipelines"}]
+    assert group is None
+
+    attr = {"kind": "attribute", "key": "degree", "reason": "disagreement", "a": {}, "b": {}}
+    _, group = al.apply_decision(attr, '{"degree": "bachelor", "degree_requirement": "required",'
+                                       ' "degree_signal": "Degree in CS"}')
+    assert group == {"degree": "bachelor", "degree_requirement": "required",
+                     "degree_or_equivalent": False, "degree_signal": "Degree in CS"}
+    with pytest.raises(ValueError, match="not part of degree"):
+        al.apply_decision(attr, '{"seniority": "senior"}')
+
+
+def test_apply_decision_drop_nulls_a_whole_attribute_group():
+    item = {"kind": "attribute", "key": "german", "reason": "disagreement", "a": {}, "b": {}}
+    assert al.apply_decision(item, "drop") == (
+        [], {"german": None, "german_basis": None, "german_signal": None})
+
+
+def test_parse_queue_reads_one_decision_per_item_in_order():
+    text = al.render_queue("r1", {
+        "seed": 0, "provider_a": "anthropic", "model_a": "m-a", "provider_b": "openai",
+        "model_b": "m-b", "extractor": "m-x", "spot_n": 1, "spot_pool": 9}, [
+        {"golden_id": "golden_030", "kind": "skill", "key": "rag", "reason": "disagreement",
+         "a": {"skill_id": "rag", "requirement": "required", "raw_text": "RAG"},
+         "b": {"skill_id": "rag", "requirement": "nice_to_have", "raw_text": "RAG"},
+         "excerpt": "…RAG…", "problems": [], "decision": "?"},
+        {"golden_id": "golden_030", "kind": "attribute", "key": "german", "reason": "spot-check",
+         "a": {"german": "required"}, "b": {"german": "required"},
+         "excerpt": "…German…", "problems": [], "decision": "?"}])
+    assert al.parse_queue(text) == [(1, "?"), (2, "?")]
+    assert al.parse_queue(text.replace("DECISION: ?", "DECISION: A", 1)) == [(1, "A"), (2, "?")]
+
+
+# --- the final Golden -------------------------------------------------------------
+
+def test_final_golden_matches_the_existing_shape_plus_provenance():
+    existing = json.loads((ROOT / "evals" / "goldens" / "golden_021.json").read_text())
+    base = {"id": "golden_030", "source_sha256": "abc", "job_description": POSTING}
+    golden = al.final_golden(
+        base,
+        [{"skill_id": "rag", "requirement": "required", "raw_text": "RAG pipelines"},
+         {"skill_id": "python", "requirement": "required", "raw_text": "Strong Python"}],
+        {"seniority": {"seniority": "senior", "seniority_basis": "inferred",
+                       "seniority_signal": "6+ years of professional experience"},
+         "german": {"german": "required", "german_basis": "stated",
+                    "german_signal": "Fluent German (C1)"}},
+        labeled_by=["claude-opus-5-5", "gpt-5.6"], adjudicated=["german", "skill:rag"],
+        spot_checked=True)
+
+    assert set(existing) - set(golden) == set(), "a Golden lost a key the eval reads"
+    assert set(golden) - set(existing) == {"labeled_by", "adjudicated", "spot_checked"}
+    assert list(golden)[:2] == ["id", "split"] and golden["split"] == "heldout"
+    assert golden["labeled_by"] == ["claude-opus-5-5", "gpt-5.6"]
+    assert golden["adjudicated"] == ["german", "skill:rag"] and golden["spot_checked"] is True
+    # a person decided german but not seniority, so only attrs_reviewed is true
+    assert golden["attrs_reviewed"] is True and golden["seniority_reviewed"] is False
+    # an attribute nobody labeled is null, not missing; expected is sorted by skill_id
+    assert golden["degree"] is None and golden["degree_or_equivalent"] is False
+    assert [e["skill_id"] for e in golden["expected"]] == ["python", "rag"]
+    assert all(set(e) == {"skill_id", "requirement", "raw_text"} for e in golden["expected"])
+    assert "draft" not in golden
+
+
+# --- agreement and the Wilson interval --------------------------------------------
+
+def test_agreement_scores_b_against_a():
+    a = ok_answer()
+    b = ok_answer(expected=[
+        {"skill_id": "python", "requirement": "required", "raw_text": "Strong Python"},
+        {"skill_id": "rag", "requirement": "nice_to_have", "raw_text": "RAG pipelines"},
+        {"skill_id": "llms", "requirement": "required", "raw_text": "LLM applications"}],
+        german=None, german_basis=None, german_signal=None)
+    report = al.agreement([al.Merged(golden_id="golden_030")], {"golden_030": {"A": a, "B": b}})
+    assert report["skills"] == {"tp": 2, "fp": 1, "fn": 1, "precision": 2 / 3, "recall": 2 / 3,
+                                "f1": pytest.approx(2 / 3)}
+    assert report["requirement_agreement"] == 0.5  # python agrees, rag does not
+    assert report["attributes"]["seniority"]["rate"] == 1.0
+    assert report["attributes"]["german"]["rate"] == 0.0
+
+
+def test_wilson_interval():
+    assert al.wilson(0, 0) == (None, None)
+    lo, hi = al.wilson(0, 80)
+    assert lo == 0.0 and 0.0 < hi < 0.06          # zero errors still leaves an upper bound
+    lo, hi = al.wilson(4, 80)
+    assert lo < 0.05 < hi and 0 < lo and hi < 0.13
+    lo, hi = al.wilson(1, 1)
+    assert hi == 1.0 and lo > 0.0                  # never outside [0, 1], unlike the normal approx
+
+
+# --- prompt assembly and response parsing -----------------------------------------
+
+def test_labeler_prompt_inlines_the_guide_and_the_taxonomy_without_parents():
+    prompt = al.labeler_prompt(
+        (ROOT / "evals" / "LABELER_PROMPT.md").read_text(),
+        (ROOT / "evals" / "LABELING.md").read_text(), TAX)
+    assert "TAXONOMY (version 9)" in prompt and "rag: RAG [Retrieval-Augmented Generation]" in prompt
+    assert "## requirement: `required` or `nice_to_have`" in prompt   # the guide, verbatim
+    assert "{LABELING.md" not in prompt and "{TAXONOMY" not in prompt
+    # the taxonomy block carries ids, display names and aliases, and nothing else
+    assert "rag: RAG [Retrieval-Augmented Generation]\n" in prompt + "\n"
+    assert "parents]" not in prompt and "- parents" not in prompt
+    assert "<posting>" not in prompt                                   # the posting is the user turn
+    assert "System prompt for the independent labeler agents" not in prompt  # file docs dropped
+
+
+def test_labeler_prompt_never_carries_the_extractors_prompt():
+    from app.extract import PRINCIPLES
+    prompt = al.labeler_prompt((ROOT / "evals" / "LABELER_PROMPT.md").read_text(),
+                               (ROOT / "evals" / "LABELING.md").read_text(), TAX)
+    assert PRINCIPLES.splitlines()[0] not in prompt
+
+
+@pytest.mark.parametrize("text", [
+    '{"expected": []}',
+    'Here you go:\n```json\n{"expected": []}\n```\n',
+    'I labeled it.\n{"expected": []}\nLet me know.',
+    '{"expected": [], "notes": "the brace } is inside a string"}',
+])
+def test_parse_response_finds_the_one_object(text):
+    assert "expected" in al.parse_response(text)
+
+
+def test_parse_response_rejects_prose():
+    with pytest.raises(ValueError, match="no JSON object"):
+        al.parse_response("I cannot label this posting.")
+
+
+# --- picking ----------------------------------------------------------------------
+
+DE = ("Wir suchen eine KI-Entwicklerin für unser Team in Berlin. Du arbeitest mit Python und der "
+      "Cloud, bist für die Pipelines zuständig und bringst Erfahrung mit LLMs mit. ") * 4
+EN = ("We are looking for an AI engineer for our team in Berlin. You work with Python and the "
+      "cloud, own the pipelines and bring experience with LLMs. ") * 4
+
+
+def db_rows(tmp_path):
+    db = tmp_path / "t.db"
+    conn = sqlite3.connect(db)
+    conn.row_factory = sqlite3.Row
+    conn.executescript(
+        "CREATE TABLE job (id INTEGER PRIMARY KEY, company TEXT, title TEXT, city TEXT, seniority TEXT,"
+        " description_text TEXT, first_seen TEXT, extracted_version TEXT);"
+        "CREATE TABLE job_source (job_id INTEGER, source TEXT);")
+    jobs, sources = [], []
+    for i in range(1, 21):
+        german = i % 3 == 0
+        jobs.append((i, f"Co{i}", ["Senior AI Engineer", "Data Engineer", "ML Engineer",
+                                   "Werkstudent KI"][i % 4],
+                     "Remote (EU)" if i in (4, 9, 14) else "Berlin",
+                     [None, "junior", "mid", "senior"][i % 4],
+                     (DE if german else EN) + f" #{i}", "2026-10-20", None))
+        sources.append((i, ["greenhouse", "arbeitsagentur", "ashby", "jsearch"][i % 4]))
+    conn.executemany("INSERT INTO job VALUES (?,?,?,?,?,?,?,?)", jobs)
+    conn.executemany("INSERT INTO job_source VALUES (?,?)", sources)
+    conn.commit()
+    return al.ng.candidates(conn, set())  # the query agent_label shares with new_goldens
+
+
+def test_pick_honours_quotas_and_is_seeded(tmp_path):
+    rows = db_rows(tmp_path)
+    picks = al.pick(rows, count=8, seed=5, quotas={"remote_eu": 2, "german": 3})
+    assert len(picks) == 8
+    assert [r["id"] for r in picks] == [r["id"] for r in al.pick(rows, 8, 5, {"remote_eu": 2, "german": 3})]
+    described = [al.describe(r) for r in picks]
+    assert sum(1 for d in described if d["place"] == "Remote (EU)") >= 2
+    assert sum(1 for d in described if d["language"] == "de") >= 3
+
+
+def test_pick_spreads_across_strata_when_it_can(tmp_path):
+    rows = db_rows(tmp_path)
+    described = [al.describe(r) for r in al.pick(rows, count=8, seed=1, quotas={})]
+    assert len({d["seniority"] for d in described}) >= 3
+    assert len({d["source"] for d in described}) >= 3
+    assert len({d["role"] for d in described}) >= 3
+
+
+def test_pick_takes_a_named_source_and_seniority_quota(tmp_path):
+    rows = db_rows(tmp_path)
+    picks = al.pick(rows, count=6, seed=2,
+                    quotas={"source:jsearch": 2, "seniority:junior": 2})
+    described = [al.describe(r) for r in picks]
+    assert sum(1 for d in described if "jsearch" in d["sources"]) >= 2
+    assert sum(1 for d in described if d["seniority"] == "junior") >= 2
+
+
+def test_pick_rejects_an_unknown_quota(tmp_path):
+    with pytest.raises(ValueError, match="unknown quota"):
+        al.pick(db_rows(tmp_path), 4, 0, {"city:Paris": 1})
+
+
+def test_role_family():
+    assert al.role_family("Senior Data Engineer (m/f/d)") == "data-engineer"
+    assert al.role_family("Machine Learning Engineer") == "ml-engineer"
+    assert al.role_family("Werkstudent KI") == "ai-engineer"
+    assert al.role_family("Office Manager") == "other"
+    assert al.role_family(None) == "other"
+
+
+# --- the pipeline, end to end with a fake client ----------------------------------
+
+class FakeAnthropic:
+    """Returns one canned answer per call, in order."""
+
+    def __init__(self, answers):
+        self.answers = list(answers)
+        self.calls = []
+        self.messages = self
+
+    def create(self, **kwargs):
+        self.calls.append(kwargs)
+        body = json.dumps(self.answers.pop(0))
+        return type("R", (), {"content": [type("B", (), {"type": "text", "text": body})()]})()
+
+
+def test_label_posting_sends_only_the_prompt_and_the_posting():
+    client = FakeAnthropic([ok_answer()])
+    record = al.label_posting(POSTING, "SYSTEM", "anthropic", "claude-opus-5-5", client)
+    assert record["parsed"]["expected"][0]["skill_id"] == "python"
+    assert record["error"] is None
+    call, = client.calls
+    assert call["model"] == "claude-opus-5-5"
+    assert call["system"][0]["text"] == "SYSTEM"
+    assert call["messages"] == [{"role": "user", "content": f"<posting>\n{POSTING}\n</posting>"}]
+
+
+def test_label_posting_records_a_bad_response_instead_of_raising():
+    record = al.label_posting(POSTING, "S", "anthropic", "m", FakeAnthropic(["not json at all"]))
+    assert record["parsed"] is None and "no JSON object" in record["error"]
+
+
+def test_label_then_apply_writes_a_golden_and_reuses_the_cached_calls(tmp_path, monkeypatch, capsys):
+    goldens = tmp_path / "goldens"
+    goldens.mkdir()
+    runs = tmp_path / "labeling"
+    db = tmp_path / "t.db"
+    conn = sqlite3.connect(db)
+    conn.executescript(
+        "CREATE TABLE job (id INTEGER PRIMARY KEY, company TEXT, title TEXT, city TEXT, seniority TEXT,"
+        " description_text TEXT, first_seen TEXT, extracted_version TEXT);"
+        "CREATE TABLE job_source (job_id INTEGER, source TEXT);")
+    conn.execute("INSERT INTO job VALUES (1,'Acme','Senior AI Engineer','Berlin','senior',?,'2026-10-20',NULL)",
+                 (POSTING,))
+    conn.execute("INSERT INTO job_source VALUES (1, 'greenhouse')")
+    conn.commit()
+    conn.close()
+
+    monkeypatch.setattr(al, "GOLDENS", goldens)
+    monkeypatch.setattr(al, "RUNS", runs)
+    monkeypatch.setattr(al.ng, "DB", db)
+    monkeypatch.setattr(al.ng, "GOLDENS", goldens)
+    # Labeler B disagrees on docker's requirement, so one item needs a decision.
+    b = ok_answer(expected=[
+        *ok_answer()["expected"][:2],
+        {"skill_id": "docker", "requirement": "required", "raw_text": "Docker"}])
+    made = {}
+
+    def fake_client(provider):
+        made[provider] = FakeAnthropic([ok_answer() if provider == "anthropic" else b])
+        return made[provider]
+
+    monkeypatch.setattr(al, "make_client", fake_client)
+    monkeypatch.setitem(al.PROVIDERS, "openai", al.call_anthropic)  # the fake speaks one API
+
+    al.main(["label", "--count", "1", "--spot-check", "2", "--seed", "0",
+             "--remote-eu", "0", "--german", "0"])
+    run_dir, = list(runs.iterdir())
+    queue = run_dir / "review_queue.md"
+    items = json.loads((run_dir / "items.json").read_text())
+    assert [i["reason"] for i in items].count("disagreement") == 1
+    assert [i["reason"] for i in items].count("spot-check") == 2
+    assert "DECISION: ?" in queue.read_text()
+
+    # re-merge: the cached raw answers are reused, no client is made
+    made.clear()
+    al.main(["label", "--run", run_dir.name, "--spot-check", "2", "--seed", "0"])
+    assert made == {}
+
+    with pytest.raises(SystemExit, match="still say `?`"):
+        al.main(["apply", "--run", run_dir.name])
+
+    # once decisions exist, a re-merge would throw them away, so it refuses
+    queue.write_text(queue.read_text().replace("DECISION: ?", "DECISION: A", 1))
+    with pytest.raises(SystemExit, match="already has 1 decisions"):
+        al.main(["label", "--run", run_dir.name, "--spot-check", "2"])
+
+    queue.write_text(queue.read_text().replace("DECISION: ?", "DECISION: A").replace(
+        "DECISION: A", "DECISION: ok", 0))
+    text = queue.read_text()
+    # answer the disagreement with A and the two spot-checks with ok
+    out = []
+    for block in text.split("\n## "):
+        if "(spot-check)" in block.split("\n")[0]:
+            block = block.replace("DECISION: A", "DECISION: ok")
+        out.append(block)
+    queue.write_text("\n## ".join(out))
+
+    al.main(["apply", "--run", run_dir.name])
+    golden = json.loads((goldens / "golden_001.json").read_text())
+    assert golden["split"] == "heldout" and "draft" not in golden
+    assert {e["skill_id"] for e in golden["expected"]} == {"python", "rag", "docker"}
+    assert next(e for e in golden["expected"] if e["skill_id"] == "docker")["requirement"] == "nice_to_have"
+    assert golden["labeled_by"] == [al.DEFAULT_MODEL_A, al.DEFAULT_MODEL_B]
+    assert golden["adjudicated"] == ["skill:docker"] and golden["spot_checked"] is True
+    assert golden["job_description"].startswith("Senior AI Engineer")
+    summary = json.loads((run_dir / "summary.json").read_text())
+    assert summary["spot_check"]["errors"] == 0 and summary["spot_check"]["n"] == 2
+    assert summary["spot_check"]["wilson_95"][0] == 0.0
+    assert "Spot-check error rate" in (run_dir / "summary.md").read_text()
+
+
+def test_dry_run_makes_no_calls_and_writes_nothing(tmp_path, monkeypatch, capsys):
+    goldens = tmp_path / "goldens"
+    goldens.mkdir()
+    runs = tmp_path / "labeling"
+    rows_db = tmp_path / "t.db"
+    conn = sqlite3.connect(rows_db)
+    conn.executescript(
+        "CREATE TABLE job (id INTEGER PRIMARY KEY, company TEXT, title TEXT, city TEXT, seniority TEXT,"
+        " description_text TEXT, first_seen TEXT, extracted_version TEXT);"
+        "CREATE TABLE job_source (job_id INTEGER, source TEXT);")
+    conn.execute("INSERT INTO job VALUES (1,'Acme','Senior AI Engineer','Berlin','senior',?,'2026-10-20',NULL)",
+                 (POSTING,))
+    conn.execute("INSERT INTO job_source VALUES (1, 'greenhouse')")
+    conn.commit()
+    conn.close()
+    monkeypatch.setattr(al, "GOLDENS", goldens)
+    monkeypatch.setattr(al, "RUNS", runs)
+    monkeypatch.setattr(al.ng, "DB", rows_db)
+    monkeypatch.setattr(al.ng, "GOLDENS", goldens)
+
+    def boom(provider):
+        raise AssertionError("a dry run must not make a client")
+
+    monkeypatch.setattr(al, "make_client", boom)
+    al.main(["label", "--dry-run", "--count", "1", "--remote-eu", "0", "--german", "0"])
+    out = capsys.readouterr().out
+    assert "golden_001" in out and "Senior AI Engineer" in out
+    assert "seniority: senior=1" in out and "place: Berlin=1" in out
+    assert not runs.exists()

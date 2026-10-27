@@ -5,9 +5,12 @@ legacy imports and jobs already used as Goldens), and write one draft file per j
 evals/goldens/ with the posting text and every label empty: `expected: []`, attributes
 null, `split: "heldout"`, `draft: true`.
 
-Does NOT: call a model or pre-fill labels from the extractor. Held-out labels must come
-from the posting, not from the thing being measured; a pre-filled draft anchors the
-labeler on the model's answer. run_eval.py skips drafts until `draft` is removed.
+Does NOT: call a model, or pre-fill labels from the *extractor*. A draft pre-filled by the
+thing being measured anchors the labeler on its own answer. Labels drafted by independent
+models are a different thing and are allowed: `scripts/agent_label.py` (HIR-70) runs two
+blind labelers over the same picks, which is where held-out Goldens now come from. This
+script stays the hand-labeling path, and shares its candidate query with that one.
+run_eval.py skips drafts until `draft` is removed.
 
     uv run python scripts/new_goldens.py --german 3            # 3 German postings
     uv run python scripts/new_goldens.py --ids 41 57           # specific job ids
@@ -53,6 +56,23 @@ def existing() -> tuple[set[str], int]:
     return hashes, top
 
 
+CANDIDATE_SQL = (
+    "SELECT j.id, j.company, j.title, j.city, j.seniority, j.description_text,"
+    " EXISTS (SELECT 1 FROM job_source s WHERE s.job_id = j.id AND s.source = 'arbeitsagentur') AS ba,"
+    " (SELECT GROUP_CONCAT(s.source) FROM job_source s WHERE s.job_id = j.id) AS sources"
+    " FROM job j WHERE (j.extracted_version IS NULL OR j.extracted_version != 'legacy')"
+    " ORDER BY ba DESC, j.first_seen DESC")
+
+
+def candidates(conn, used: set[str]) -> list:
+    """Jobs eligible to become a Golden: not a legacy import, not already a Golden.
+
+    Arbeitsagentur first, then newest. Shared with scripts/agent_label.py, which needs the
+    same exclusions and re-sorts the rows itself."""
+    rows = conn.execute(CANDIDATE_SQL).fetchall()
+    return [r for r in rows if sha(r["description_text"]) not in used]
+
+
 def draft(gid: str, text: str, title: str | None = None) -> dict:
     """source_sha256 hashes the stored description (the dedup key); job_description is what
     the extractor is sent, title on top, so the eval sees the same input as production."""
@@ -79,12 +99,7 @@ def main(argv=None):
     conn = sqlite3.connect(DB)
     conn.row_factory = sqlite3.Row
     used, top = existing()
-    rows = conn.execute(
-        "SELECT j.id, j.company, j.title, j.description_text,"
-        " EXISTS (SELECT 1 FROM job_source s WHERE s.job_id = j.id AND s.source = 'arbeitsagentur') AS ba"
-        " FROM job j WHERE (j.extracted_version IS NULL OR j.extracted_version != 'legacy')"
-        " ORDER BY ba DESC, j.first_seen DESC").fetchall()
-    rows = [r for r in rows if sha(r["description_text"]) not in used]
+    rows = candidates(conn, used)
     picks = [r for r in rows if r["id"] in set(args.ids)]
     if args.german:
         picks += [r for r in rows if r["id"] not in set(args.ids) and is_german(r["description_text"])][:args.german]

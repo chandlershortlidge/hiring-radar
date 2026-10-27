@@ -5,6 +5,64 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-27 — Held-out Goldens come from two blind labelers plus human adjudication (HIR-70)
+
+**Supersedes "no model pre-fill for held-out labels" (2026-10-18, above).** That rule was
+aimed at one specific failure: a draft pre-filled by the *extractor* anchors whoever labels
+it on the answer being measured, so the eval grades the extractor against itself. Hand-
+labeling avoided that but capped the held-out split at 4 Goldens, which is too few to gate
+a release on (HIR-55). Independent models avoid the same failure without the cap.
+
+The process, `scripts/agent_label.py`:
+
+1. **Pick** ~24 postings, spread across seniority, German/English, source, role family and
+   place, including a few "Remote (EU)" ones — remote-EU extraction is unmeasured
+   (2026-10-26). Seeded, so the same database and seed pick the same postings. Shares its
+   candidate query, dedup (`source_sha256`) and `job_description` construction with
+   `scripts/new_goldens.py`, so a labeler sees byte-for-byte what the extractor receives.
+2. **Two blind labelers**, each given only `evals/LABELER_PROMPT.md` with `evals/LABELING.md`
+   and the taxonomy inlined, plus the posting. Not the extractor's `PRINCIPLES`, not its
+   output, not the other labeler's answer, not another Golden. Labeler A is a Claude model
+   other than the extractor's; labeler B is another family (OpenAI by default). **The script
+   refuses to run a labeler on the extractor's model**, rather than warning: a labeler that
+   shares the extractor's blind spots scores its mistakes as correct, which is the one
+   failure this whole process exists to prevent.
+3. **Auto-check**, deterministic: every `raw_text` and every `*_signal` found verbatim
+   (whitespace-normalised, the same rule as `parse_skills`), every `skill_id` in the
+   taxonomy, one criterion per `skill_id`, and the field-consistency rules the extractor
+   validates (a value needs its basis, `stated` needs a quote, inferred German carries none,
+   a null degree nulls its requirement and or-equivalent).
+4. **Merge.** A skill is accepted when both labelers gave the same id with the same
+   requirement; an attribute when both gave the same value and basis. Everything else goes
+   to a review queue, per field and per skill: disagreements, the same quoted phrase mapped
+   to two different ids, anything either labeler flagged `uncertain`, and every auto-check
+   failure. Nothing is dropped silently. One documented exception: when the value agrees and
+   only the quoted signal differs, A's quote is kept and the difference is recorded in
+   `summary.json` rather than queued — two correct quotes of one requirement often differ in
+   length, and the spot-check covers the rest.
+5. **Spot-check** a seeded random sample of the *accepted* labels, at the label level (one
+   skill, one attribute — not whole postings), 80 by default. This is the number that
+   matters: two labelers can agree and both be wrong, so agreement alone measures nothing
+   about correctness. `apply` reports its error rate with a 95% Wilson interval (Wilson, not
+   the normal approximation, because at 0 errors in 80 the normal interval is [0, 0]).
+6. **Apply** the decisions and write the Goldens, with provenance: `labeled_by` (both model
+   ids), `adjudicated` (the fields a person decided), `spot_checked`. `apply` refuses while
+   any item still says `?`. `seniority_reviewed` / `attrs_reviewed` keep their existing
+   meaning — a person looked at this label — so they are true only for a field a person
+   decided or spot-checked, never for one accepted on agreement.
+
+Raw labeler responses are cached per posting per labeler, so re-merging after a change to
+the merge or check rules costs nothing. Re-merging refuses to overwrite a queue that already
+holds decisions.
+
+**Never from this script:** the held-out eval. That stays `run_eval.py --split heldout
+--i-am-releasing`, at a release point (2026-10-17).
+
+Measured on the first full run: **labeler agreement TODO**, **spot-check error rate TODO**.
+Until those are filled in, the held-out split is not a release gate.
+
+---
+
 ## 2026-10-27 — LABELING.md: broad vs specific skills written down, no relabel (HIR-70)
 
 `evals/LABELING.md` is frozen, so this records the edit. Before the HIR-70 labelers run, the
@@ -285,9 +343,10 @@ that feed's own last sighting counts — a search source re-finding a job must n
 delisted board posting open. `queries.FEED_SOURCES` / `SEARCH_SOURCES`.
 
 German-language postings arrive via the Arbeitsagentur and are not represented in the
-Goldens. `scripts/new_goldens.py --german N` drafts unlabeled held-out Goldens from them
-(no model pre-fill — held-out labels must not be anchored on the extractor's answer);
-run_eval skips files marked `draft`.
+Goldens. `scripts/new_goldens.py --german N` drafts unlabeled held-out Goldens from them;
+run_eval skips files marked `draft`. The no-model-pre-fill rule stated here was superseded
+on 2026-10-27 (two blind labelers, below) — the rule it came from, that a held-out label
+must not be anchored on the extractor's own answer, still holds.
 
 ## 2026-10-18 — German and degree are per-job attributes, extracted like seniority; three is the limit
 
