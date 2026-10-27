@@ -5,6 +5,53 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-27 — Inferred seniority narrowed to years / "proven experience" / lead duty
+
+`evals/LABELING.md` is frozen, so this records the edit. **The guide now matches the
+extractor, not the other way round**, and three dev Goldens were relabeled to fit.
+
+The gap: `app/extract.py` has told the model since `ac20971` (2026-10-20) that "experienced,
+expert, advanced, autonomous, production experience" are not level signals on their own.
+LABELING.md still allowed an inferred level from "ownership or mentoring language, or the
+depth of the qualifications" — wider than the prompt, and the source of the entire dev
+seniority gap: 0.850, identical across all three repeats of
+`20261027T080458Z_dev_x2-ee524a6720`, every miss a deterministic `null` against a non-null
+gold label.
+
+**Decision: keep the strict prompt line; narrow the guide to it.** `null` is the safe error
+here — seniority is a secondary filter in the profile, so a missing level costs a job a
+place in a filtered view, while a wrong level puts it in the wrong one. A rule the extractor
+can apply from the text beats a rule that needs a judgment about "depth".
+
+Changed:
+
+- **LABELING.md**, inferred basis: years of experience, "proven experience", or lead or
+  mentoring duty — nothing else. "Ownership or mentoring language" is now just lead or
+  mentoring *duty*, and "the depth of the qualifications" is gone. Spelled out that
+  experienced / expert / advanced / autonomous / production experience / ownership language
+  are not level signals alone, and that a posting whose only level-ish phrase is one of
+  those is none, not a guess.
+- **Relabeled → `seniority: null`, basis null, signal null**: golden_004 ("Strong hands-on
+  software engineering background with experience building production-grade applications"),
+  golden_005 ("Expert knowledge on state-of-the-art AI use cases"), golden_015 ("High
+  ownership mentality"). All three keep `seniority_reviewed: true`. golden_017 keeps `mid`
+  on "Proven expertise in machine learning algorithms" — "proven experience" is still a
+  basis. golden_003, 009, 014, 016 unaffected.
+- **No prompt change, no `extractor_version` bump, no re-extraction.** The extractor already
+  behaved this way; only the labels and the guide moved.
+
+Re-scoring the stored `20261027T080458Z` predictions against the relabeled Goldens (no new
+model calls): **seniority accuracy 0.850 → 1.000, 20/20 on all three repeats**, zero
+remaining misses. That run's own `summary.json` still reports 0.850, since it records what
+was scored at the time.
+
+Supersedes HIR-71, which was filed the other way round (fix the prompt, keep the guide) and
+is closed pointing here. The nine Goldens already labeled `None` are unaffected — they were
+never the problem; `ac20971` is what made them stable (13/20 → 20/20), and it stays.
+
+HIR-70's held-out labelers read LABELING.md, so the run must use the narrowed guide: the
+labeling run started before this edit was stopped at posting 3 of 24 and restarted after it.
+
 ## 2026-10-27 — Held-out Goldens come from two blind labelers plus human adjudication (HIR-70)
 
 **Supersedes "no model pre-fill for held-out labels" (2026-10-18, above).** That rule was

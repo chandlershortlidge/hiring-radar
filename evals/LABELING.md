@@ -83,9 +83,12 @@ One label per posting: `junior`, `mid`, `senior`, or none.
 
 - **Basis `stated`**: the title or text names the level. Intern, working student, graduate,
   entry-level, "(Junior)" → junior. Lead, principal, staff, head, architect → senior.
-- **Basis `inferred`**: read from years of experience, ownership or mentoring language, or
-  the depth of the qualifications. Roughly: 0–2 years or "first experience" → junior;
-  3–5 years or "proven experience" → mid; 5+ years, lead/mentor language → senior.
+- **Basis `inferred`**: read only from years of experience, "proven experience", or lead
+  or mentoring duty. Roughly: 0–2 years or "first experience" → junior; 3–5 years or
+  "proven experience" → mid; 5+ years, or lead/mentoring duty → senior. Words like
+  experienced, expert, advanced, autonomous, production experience, and ownership language
+  are not level signals on their own, and the depth of the qualifications is not a basis:
+  a posting whose only level-ish phrase is one of those is none, not a guess.
 - **None**: no usable signal. "All levels" is none, not mid. Do not default to mid.
 - `seniority_signal` quotes the phrase the label rests on; required when stated.
 

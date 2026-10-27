@@ -1,9 +1,9 @@
 {
   "id": "golden_004",
   "split": "dev",
-  "seniority": "mid",
-  "seniority_basis": "inferred",
-  "seniority_signal": "Strong hands-on software engineering background with experience building production-grade applications",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
   "seniority_reviewed": true,
   "german": null,
   "german_basis": null,
