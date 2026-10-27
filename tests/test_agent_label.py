@@ -646,3 +646,59 @@ def test_dry_run_makes_no_calls_and_writes_nothing(tmp_path, monkeypatch, capsys
     assert "golden_001" in out and "Senior AI Engineer" in out
     assert "seniority: senior=1" in out and "place: Berlin=1" in out
     assert not runs.exists()
+
+
+def test_a_guide_edit_invalidates_the_cached_labels(tmp_path, monkeypatch):
+    """LABELING.md is inlined into the prompt, so editing it must re-call the labelers.
+
+    Without the prompt in the cache key, a --run re-merge after a guide change silently
+    reuses labels made under the old rules and scores them as if they followed the new ones.
+    """
+    goldens = tmp_path / "goldens"
+    goldens.mkdir()
+    runs = tmp_path / "labeling"
+    db = tmp_path / "t.db"
+    conn = sqlite3.connect(db)
+    conn.executescript(
+        "CREATE TABLE job (id INTEGER PRIMARY KEY, company TEXT, title TEXT, city TEXT, seniority TEXT,"
+        " description_text TEXT, first_seen TEXT, extracted_version TEXT);"
+        "CREATE TABLE job_source (job_id INTEGER, source TEXT);")
+    conn.execute("INSERT INTO job VALUES (1,'Acme','Senior AI Engineer','Berlin','senior',?,'2026-10-20',NULL)",
+                 (POSTING,))
+    conn.execute("INSERT INTO job_source VALUES (1, 'greenhouse')")
+    conn.commit()
+    conn.close()
+
+    monkeypatch.setattr(al, "GOLDENS", goldens)
+    monkeypatch.setattr(al, "RUNS", runs)
+    monkeypatch.setattr(al.ng, "DB", db)
+    monkeypatch.setattr(al.ng, "GOLDENS", goldens)
+    monkeypatch.setitem(al.PROVIDERS, "openai", al.call_anthropic)
+
+    made = {}
+
+    def fake_client(provider):
+        made[provider] = FakeAnthropic([ok_answer()])
+        return made[provider]
+
+    monkeypatch.setattr(al, "make_client", fake_client)
+    monkeypatch.setattr(al, "labeler_prompt", lambda *a, **k: "GUIDE VERSION ONE")
+
+    al.main(["label", "--count", "1", "--spot-check", "1", "--seed", "0",
+             "--remote-eu", "0", "--german", "0"])
+    run_dir, = list(runs.iterdir())
+    raw = json.loads((run_dir / "raw" / "golden_001.A.json").read_text())
+    assert raw["prompt_sha256"] == al.ng.sha("GUIDE VERSION ONE")
+
+    # same prompt -> cache hit, no client made
+    made.clear()
+    al.main(["label", "--run", run_dir.name, "--spot-check", "1", "--seed", "0"])
+    assert made == {}
+
+    # edited guide -> cache miss, labelers called again and the new hash stored
+    monkeypatch.setattr(al, "labeler_prompt", lambda *a, **k: "GUIDE VERSION TWO")
+    made.clear()
+    al.main(["label", "--run", run_dir.name, "--spot-check", "1", "--seed", "0"])
+    assert set(made) == {"anthropic", "openai"}
+    raw = json.loads((run_dir / "raw" / "golden_001.A.json").read_text())
+    assert raw["prompt_sha256"] == al.ng.sha("GUIDE VERSION TWO")

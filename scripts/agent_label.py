@@ -73,7 +73,7 @@ PROMPT_FILE = ROOT / "evals" / "LABELER_PROMPT.md"
 GUIDE_FILE = ROOT / "evals" / "LABELING.md"
 
 DEFAULT_MODEL_A = "claude-opus-5-5"
-DEFAULT_MODEL_B = "gpt-5.6"
+DEFAULT_MODEL_B = "gpt-6.1-sol"   # verified against OpenAI /v1/models, 2026-10-27
 MAX_TOKENS = 8192
 SPOT_CHECK_N = 80
 SEED = 0
@@ -717,8 +717,15 @@ def call_anthropic(client, model: str, system: str, user: str) -> str:
 def call_openai(client, model: str, system: str, user: str) -> str:
     response = client.chat.completions.create(
         model=model, response_format={"type": "json_object"},
+        max_completion_tokens=MAX_TOKENS,
         messages=[{"role": "system", "content": system}, {"role": "user", "content": user}])
-    return response.choices[0].message.content or ""
+    choice = response.choices[0]
+    # A label cut off mid-JSON must fail loudly: truncated JSON sometimes still parses
+    # (a closed array with the tail missing), and a short label would silently become a
+    # Golden that is missing skills.
+    if choice.finish_reason == "length":
+        raise RuntimeError(f"{model} hit the {MAX_TOKENS}-token output cap; label is truncated")
+    return choice.message.content or ""
 
 
 PROVIDERS = {"anthropic": call_anthropic, "openai": call_openai}
@@ -817,6 +824,7 @@ def cmd_label(args):
         (run_dir / "picks.json").write_text(json.dumps(picks, indent=2, ensure_ascii=False) + "\n")
 
     check_models(args.model_a, args.model_b)
+    prompt_sha = ng.sha(prompt)
     raw_dir = run_dir / "raw"
     raw_dir.mkdir(exist_ok=True)
     clients: dict[str, object] = {}
@@ -830,14 +838,20 @@ def cmd_label(args):
             record = None
             if path.exists():
                 cached = json.loads(path.read_text())
-                if cached.get("model") == model and cached.get("posting_sha256") == ng.sha(p["job_description"]):
+                # The prompt is part of the key: LABELING.md and the taxonomy are inlined
+                # into it, so a guide edit changes what the labeler was asked. Without this,
+                # a --run re-merge silently reuses labels made under the old rules.
+                if (cached.get("model") == model
+                        and cached.get("posting_sha256") == ng.sha(p["job_description"])
+                        and cached.get("prompt_sha256") == prompt_sha):
                     record = cached
             if record is None:
                 if provider not in clients:
                     clients[provider] = make_client(provider)
                 print(f"  labeling {p['golden_id']} with {name} ({model})", flush=True)
                 record = label_posting(p["job_description"], prompt, provider, model, clients[provider])
-                record |= {"labeler": name, "posting_sha256": ng.sha(p["job_description"])}
+                record |= {"labeler": name, "posting_sha256": ng.sha(p["job_description"]),
+                           "prompt_sha256": prompt_sha}
                 path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
             raw[p["golden_id"]][name] = record
 
