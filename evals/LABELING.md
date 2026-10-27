@@ -21,6 +21,23 @@ responsibilities or the company description is not labeled unless the candidate 
 asked for it. Concrete technologies given as examples ("e.g.", "such as", in parentheses)
 are skills in their own right.
 
+### Broad and specific skills
+
+Some taxonomy entries are broader than others (`cloud` over `aws`, `llms` over `rag`,
+`containerization` over `docker`). Label what the text names, at the level it names it:
+
+- **The text names a broad skill and specific ones → label each.** "cloud platforms (GCP,
+  AWS, or Azure)" names the broad skill and three specific ones, so it is four criteria:
+  `cloud`, `gcp`, `aws`, `azure` (golden_001).
+- **Never add a broad or parent skill the text does not ask for.** "DevOps tools (e.g.
+  Docker)" is `docker` alone — not `containerization`, which the posting never names
+  (golden_001). A specific skill does not imply its parents.
+- The broad skill's own `raw_text` must name it. If the only phrase you can quote names
+  the specific skill, the broad one is not asked for.
+
+This matches extraction rule 3 in `PRINCIPLES` (`app/extract.py`), deliberately: a Golden
+that silently adds parents would score the extractor against a rule it is not given.
+
 `skill_id` must exist in `taxonomy/skills.json`. If no entry fits, the skill belongs in
 the taxonomy first — the Golden never invents an id.
 

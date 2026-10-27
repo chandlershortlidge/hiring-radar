@@ -5,6 +5,39 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-27 — LABELING.md: broad vs specific skills written down, no relabel (HIR-70)
+
+`evals/LABELING.md` is frozen, so this records the edit. Before the HIR-70 labelers run, the
+guide had no rule for broad-vs-specific skills (`cloud` over `aws`, `llms` over `rag`,
+`containerization` over `docker`), while the extractor did (`PRINCIPLES` rule 3). A labeler
+reading only the guide could reasonably have added parents the posting never names, which
+would have scored the extractor against a rule it is not given.
+
+Added a "Broad and specific skills" subsection: label each when the text names both, never
+add a parent the text does not ask for, and the broad skill's own `raw_text` must name it.
+
+**No Golden relabel, because this documents existing practice.** Checked all 20 dev Goldens:
+every labeled broad skill is itself named in its `raw_text` (`cloud` from "cloud platforms
+(GCP, AWS, or Azure)" in golden_001), and no Golden carries a parent the posting does not
+name (golden_001 has `docker` without `containerization`). Stored eval results stay valid.
+
+Two dev Goldens are *missing* a broad label the posting does name, which the new wording
+makes visible. Left as they are, not fixed in this change:
+
+- golden_003: tech stack reads "LangGraph & related LLM orchestration tools"; `langgraph` is
+  labeled, `llm-orchestration` is not.
+- golden_013: "Serious experience using AI development tools such as Claude Code, Codex,
+  Cursor, Copilot"; the four tools are labeled, `ai-developer-tooling` is not — golden_009
+  labels `ai-developer-tooling` from the same shape of phrase, so the two disagree.
+
+Both are false negatives in the answer key, so they cost the extractor precision on a
+correct answer. Fixing them is a relabel and therefore its own release decision.
+
+(Also noted, not a labeling question: `apache-spark` has no "Spark" alias, so golden_011's
+"Spark/PySpark" resolves only by display name.)
+
+---
+
 ## 2026-10-26 — EU-remote postings are collected as the place "Remote (EU)"
 
 Chandler applies to any remote job he can take from Berlin, and /check-url rejected one
