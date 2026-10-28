@@ -139,8 +139,9 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   Writes only its own log (`url_check`, the first check per URL drives the coverage line
   in `stats`); `--add` in the CLI hands the resolved posting to `ingest_one`.
 - `app/queries.py` — read queries behind the dashboard: filters (city, seniority, German,
-  degree, requirement, window), skill document frequency with per-city counts, job list/detail,
-  proposed-skill grouping and resolution. The open-job rule lives here.
+  degree, requirement, window), skill document frequency with per-city counts,
+  related-skills co-occurrence with lift (`related_skills`, feeds `/api/skills/related`),
+  job list/detail, proposed-skill grouping and resolution. The open-job rule lives here.
 - `app/api.py` — FastAPI routes over `queries` plus the add-a-job paths (url / text /
   screenshot), which run intake + extraction for the one job added. Validates every filter
   value (422), one SQLite connection per request, model client created lazily.
