@@ -32,3 +32,44 @@ jobs:
           cache-dependency-path: web/package-lock.json
       - run: npm ci
       - run: npm run build
+
+  deploy:
+    name: Deploy to VM
+    needs: [test, build-web]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    concurrency:
+      group: deploy
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Build frontend
+        working-directory: web
+        run: npm ci && npm run build && tar -czf ../web-dist.tgz dist
+      - uses: google-github-actions/auth@v2
+        with:
+          project_id: hiring-radar-512318
+          workload_identity_provider: projects/128016795965/locations/global/workloadIdentityPools/github/providers/hiring-radar-repo
+          service_account: github-deployer@hiring-radar-512318.iam.gserviceaccount.com
+      - uses: google-github-actions/setup-gcloud@v2
+      - name: Copy frontend to VM
+        run: >
+          gcloud compute scp web-dist.tgz hiring-radar:/tmp/web-dist.tgz
+          --zone=europe-west3-a --tunnel-through-iap --quiet --strict-host-key-checking=no
+      - name: Deploy on VM
+        run: |
+          gcloud compute ssh hiring-radar --zone=europe-west3-a --tunnel-through-iap --quiet \
+            --strict-host-key-checking=no --command "
+            set -e
+            sudo -u hiring-radar -H git -C /opt/hiring-radar/app fetch origin main
+            sudo -u hiring-radar -H git -C /opt/hiring-radar/app reset --hard ${{ github.sha }}
+            sudo bash /opt/hiring-radar/app/deploy/remote-deploy.sh /tmp/web-dist.tgz
+          "
