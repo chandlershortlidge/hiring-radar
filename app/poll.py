@@ -4,7 +4,7 @@ Does: read config/feeds.json, call each adapter, hand postings to ingest, and ru
 extract_pending. Feeds that fail are logged and skipped so one bad source doesn't block
 the rest.
 
-Does NOT: schedule itself (Railway cron / crontab / `python -m app poll` does), or
+Does NOT: schedule itself (the systemd timer on the VM / `python -m app poll` does), or
 retry a failed feed within a run.
 
 Invariant: safe to run twice in a row — the second run finds everything still-listed and
@@ -66,6 +66,20 @@ def select_feeds(feeds: list[dict], only: list[str]) -> list[dict]:
     return [f for f in feeds if feed_label(f) in only]
 
 
+def _known_postings(conn: sqlite3.Connection, feed: dict) -> int:
+    """How many job_source rows this company-board feed produced before. 0 for search feeds.
+
+    A board that once yielded postings and now yields none is almost never an empty board;
+    it is usually the page format changing under the adapter (JOIN did this in October 2026),
+    which the adapter reports as "no jobs" rather than an error."""
+    token = feed.get("token")
+    if not token:
+        return 0
+    row = conn.execute("SELECT count(*) FROM job_source WHERE source=? AND url LIKE ?",
+                       (feed["type"], f"%/{token}/%")).fetchone()
+    return int(row[0]) if row else 0
+
+
 def poll_feeds(conn: sqlite3.Connection, feeds: list[dict], fetch=fetch_feed, log=print) -> Report:
     total = Report()
     for feed in feeds:
@@ -77,6 +91,9 @@ def poll_feeds(conn: sqlite3.Connection, feeds: list[dict], fetch=fetch_feed, lo
             continue
         r = ingest(conn, postings)
         log(f"{label}: {r.line()}")
+        if r.seen == 0 and (known := _known_postings(conn, feed)):
+            log(f"{label}: WARNING seen=0 but {known} postings from this board are already in the "
+                f"database; the board may have changed its page format (adapter needs checking)")
         for k in ("seen", "still_listed", "merged", "reposts", "new", "skipped_title", "skipped_city"):
             setattr(total, k, getattr(total, k) + getattr(r, k))
         total.new_job_ids += r.new_job_ids

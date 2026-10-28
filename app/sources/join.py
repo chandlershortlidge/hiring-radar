@@ -1,8 +1,12 @@
 """JOIN company boards: https://join.com/companies/<slug>
 
 No API. JOIN pages are Next.js, and each one embeds its data as JSON in
-`<script id="__NEXT_DATA__">` under `props.pageProps.initialState` (robots.txt allows
-crawling `/companies/`). Two kinds of page (shapes recorded from live pages, 2026-10-19):
+`<script id="__NEXT_DATA__">` under `props.pageProps` (robots.txt allows crawling
+`/companies/`). The key under `pageProps` differs by page and has changed once already:
+company pages used `initialState` until late October 2026 and now use `pageData`; job pages
+still use `initialState`. `page_state` accepts either, so a rename on one page type does
+not empty the feed. Two kinds of page (shapes recorded from live pages, 2026-10-19 and
+2026-10-28):
 - company page `/companies/<slug>?page=N` → `jobs.items` (title, `idParam`, `createdAt`,
   `city`, `workplaceType`, but no description) and `jobs.pagination` (`page`, `pageCount`),
   five jobs per page;
@@ -31,15 +35,25 @@ BASE = "https://join.com/companies"
 _NEXT_DATA = re.compile(r'<script id="__NEXT_DATA__"[^>]*>(.*?)</script>', re.S)
 
 
+_STATE_KEYS = ("initialState", "pageData")
+
+
 def page_state(markup: str) -> dict:
-    """A JOIN page's `initialState`, or {} when the page carries none."""
+    """A JOIN page's embedded state (`initialState` or `pageData`), or {} when it has none."""
     m = _NEXT_DATA.search(markup)
     if not m:
         return {}
     try:
-        return json.loads(m.group(1))["props"]["pageProps"]["initialState"] or {}
+        props = json.loads(m.group(1))["props"]["pageProps"]
     except (ValueError, KeyError, TypeError):
         return {}
+    if not isinstance(props, dict):
+        return {}
+    for key in _STATE_KEYS:
+        state = props.get(key)
+        if isinstance(state, dict) and state:
+            return state
+    return {}
 
 
 def listing(state: dict) -> tuple[list[str], int]:
