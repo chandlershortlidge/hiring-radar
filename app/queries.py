@@ -1,8 +1,8 @@
-"""Read queries behind the dashboard: stats, skill frequencies, job list, job detail.
+"""Read queries behind the dashboard: stats, skill frequencies, related skills, job list, job detail.
 
 Does: turn a Filters object into SQL, compute document frequency over the filtered job
-set (count of jobs mentioning each skill ÷ jobs in the set), and the open/closed status
-of a job.
+set (count of jobs mentioning each skill ÷ jobs in the set), the skills that co-occur with
+a selected one (share against the same set's baseline), and the open/closed status of a job.
 
 Does NOT: write anything, know about HTTP, or call a model. Frontend-only concerns
 (profile match, chip ordering) are computed from these results elsewhere.
@@ -53,6 +53,11 @@ _NOT_LEGACY = "(j.extracted_version IS NULL OR j.extracted_version != 'legacy')"
 # the job would only shrink every share on the chart. DECISIONS 2026-10-21.
 MIN_TEXT_CHARS = 400
 _LONG_ENOUGH = f"length(j.description_text) >= {MIN_TEXT_CHARS}"
+# related_skills: how many of the selected skill's jobs a skill must share before it is
+# worth showing (below that, one odd stack of skills reads as a 4x lift), and how many of
+# the ranked rows the panel gets. DECISIONS 2026-10-28.
+MIN_CO_JOBS = 5
+RELATED_LIMIT = 10
 
 
 def now_iso() -> str:
@@ -117,9 +122,9 @@ def job_set_clause(f: Filters, now: str, include_legacy: bool = False) -> tuple[
     return (" AND ".join(parts) or "1=1"), params
 
 
-def _mention_clause(f: Filters) -> tuple[str, list]:
+def _mention_clause(f: Filters, alias: str = "m") -> tuple[str, list]:
     if f.requirement == "required":
-        return "m.requirement = 'required'", []
+        return f"{alias}.requirement = 'required'", []
     return "1=1", []
 
 
@@ -146,6 +151,26 @@ def stats(conn: sqlite3.Connection, now: str, skills_tracked: int) -> dict:
 
 # --- skill frequencies -----------------------------------------------------------------
 
+def _skill_rows(rows, total: int, with_cities: bool = True) -> list[dict]:
+    """One row per skill from (skill_id, city, n) rows: count, pct over `total`, by_city.
+
+    The shared tail of skill_frequency and related_skills — group, sort by count desc then
+    id, divide by the denominator the caller chose. with_cities=False skips the per-city
+    breakdown (and the rows then need no city column).
+    """
+    agg: dict[str, dict] = {}
+    for r in rows:
+        s = agg.setdefault(r["skill_id"], {"skill_id": r["skill_id"], "count": 0}
+                           | ({"by_city": {}} if with_cities else {}))
+        s["count"] += r["n"]
+        if with_cities and r["city"]:
+            s["by_city"][r["city"]] = s["by_city"].get(r["city"], 0) + r["n"]
+    skills = sorted(agg.values(), key=lambda s: (-s["count"], s["skill_id"]))
+    for s in skills:
+        s["pct"] = round(100 * s["count"] / total, 1) if total else 0.0
+    return skills
+
+
 def skill_frequency(conn: sqlite3.Connection, f: Filters, now: str) -> dict:
     """{'total': n_jobs, 'skills': [{skill_id, count, pct, by_city: {city: count}}...]} sorted by count desc."""
     jc, jp = job_set_clause(f, now)
@@ -154,16 +179,57 @@ def skill_frequency(conn: sqlite3.Connection, f: Filters, now: str) -> dict:
     rows = conn.execute(
         f"SELECT m.skill_id, j.city, count(DISTINCT j.id) n FROM skill_mention m JOIN job j ON j.id = m.job_id"
         f" WHERE {jc} AND {mc} GROUP BY m.skill_id, j.city", jp + mp).fetchall()
-    agg: dict[str, dict] = {}
-    for r in rows:
-        s = agg.setdefault(r["skill_id"], {"skill_id": r["skill_id"], "count": 0, "by_city": {}})
-        s["count"] += r["n"]
-        if r["city"]:
-            s["by_city"][r["city"]] = s["by_city"].get(r["city"], 0) + r["n"]
-    skills = sorted(agg.values(), key=lambda s: (-s["count"], s["skill_id"]))
-    for s in skills:
-        s["pct"] = round(100 * s["count"] / total, 1) if total else 0.0
-    return {"total": total, "skills": skills}
+    return {"total": total, "skills": _skill_rows(rows, total)}
+
+
+def related_skills(conn: sqlite3.Connection, f: Filters, now: str) -> dict:
+    """What the jobs listing f.skill_id also list: {'selected_count', 'total', 'skills': [...]}.
+
+    Every number is over the current filter set (city, seniority, German, degree, window),
+    never over all jobs: `total` is that whole set, `selected_count` the jobs in it that
+    list the selected skill, and each row's
+
+      pct      = count / selected_count          — the share people read
+      base_pct = base count / total              — the same skill across the whole set
+      lift     = (count/selected_count) / (base/total)
+
+    Lift is what ranks the list (Python tops every raw share list; lift surfaces the
+    skills that are specific to these jobs), and it comes from the counts, never from the
+    rounded percentages. Rows seen in fewer than MIN_CO_JOBS of the selected jobs are
+    dropped — one odd stack otherwise reads as a 4x lift — and only RELATED_LIMIT survive.
+    The selected skill itself is excluded. No skill selected, or none of the filtered jobs
+    list it: no rows.
+    """
+    base = skill_frequency(conn, f, now)      # the baseline, by construction the same filter set
+    total = base["total"]
+    base_count = {s["skill_id"]: s for s in base["skills"]}
+    empty = {"selected_count": 0, "total": total, "skills": []}
+    if not f.skill_id or not total:
+        return empty
+    jc, jp = job_set_clause(f, now)
+    mc, mp = _mention_clause(f)
+    sc, sp = _mention_clause(f, "sm")
+    # The clause list_jobs uses to narrow to jobs listing one skill, under its own alias so
+    # it can sit beside the aggregate's own mention row.
+    sel = f"EXISTS (SELECT 1 FROM skill_mention sm WHERE sm.job_id = j.id AND sm.skill_id = ? AND {sc})"
+    sel_params = [f.skill_id] + sp
+    selected_count = conn.execute(f"SELECT count(*) FROM job j WHERE {jc} AND {sel}", jp + sel_params).fetchone()[0]
+    if not selected_count:
+        return empty
+    rows = conn.execute(
+        f"SELECT m.skill_id, count(DISTINCT j.id) n FROM skill_mention m JOIN job j ON j.id = m.job_id"
+        f" WHERE {jc} AND {mc} AND {sel} AND m.skill_id != ? GROUP BY m.skill_id",
+        jp + mp + sel_params + [f.skill_id]).fetchall()
+    skills = []
+    for s in _skill_rows(rows, selected_count, with_cities=False):
+        if s["count"] < MIN_CO_JOBS:
+            continue
+        b = base_count[s["skill_id"]]["count"]   # a subset's skill is always in the baseline
+        s["base_pct"] = base_count[s["skill_id"]]["pct"]
+        s["lift"] = round((s["count"] / selected_count) / (b / total), 3)
+        skills.append(s)
+    skills.sort(key=lambda s: (-s["lift"], -s["count"], s["skill_id"]))
+    return {"selected_count": selected_count, "total": total, "skills": skills[:RELATED_LIMIT]}
 
 
 def city_totals(conn: sqlite3.Connection, f: Filters, now: str) -> dict[str, int]:

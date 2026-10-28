@@ -174,3 +174,119 @@ def test_proposed_grouping_and_resolution(conn):
     assert n == 1 and q.proposed_skills(conn) == []
     with pytest.raises(ValueError):
         q.resolve_proposed(conn, [1], "accepted", None, 3)
+
+
+# --- related skills (HIR-66) -------------------------------------------------------------
+
+# skill_frequency's output on the fixture above, captured before related_skills factored
+# the group/sort/pct block out into _skill_rows. The panel must not move the chart.
+FREQ_SNAPSHOT = {
+    "default": {"total": 3, "skills": [
+        {"skill_id": "python", "count": 2, "by_city": {"Berlin": 1, "San Francisco": 1}, "pct": 66.7},
+        {"skill_id": "rag", "count": 2, "by_city": {"Berlin": 2}, "pct": 66.7},
+        {"skill_id": "aws", "count": 1, "by_city": {"San Francisco": 1}, "pct": 33.3}]},
+    "all_all": {"total": 5, "skills": [
+        {"skill_id": "python", "count": 4, "by_city": {"Berlin": 3, "San Francisco": 1}, "pct": 80.0},
+        {"skill_id": "aws", "count": 2, "by_city": {"Berlin": 1, "San Francisco": 1}, "pct": 40.0},
+        {"skill_id": "rag", "count": 2, "by_city": {"Berlin": 2}, "pct": 40.0},
+        {"skill_id": "docker", "count": 1, "by_city": {"Berlin": 1}, "pct": 20.0}]},
+    "berlin_all": {"total": 4, "skills": [
+        {"skill_id": "python", "count": 3, "by_city": {"Berlin": 3}, "pct": 75.0},
+        {"skill_id": "rag", "count": 2, "by_city": {"Berlin": 2}, "pct": 50.0},
+        {"skill_id": "docker", "count": 1, "by_city": {"Berlin": 1}, "pct": 25.0}]},
+}
+FREQ_CASES = {
+    "default": q.Filters(),
+    "all_all": q.Filters(requirement="all", window="all"),
+    "berlin_all": q.Filters(cities=("Berlin",), window="all"),
+}
+
+
+def test_skill_frequency_output_unchanged_by_the_related_skills_refactor(conn):
+    for name, f in FREQ_CASES.items():
+        assert q.skill_frequency(conn, f, NOW) == FREQ_SNAPSHOT[name], name
+
+
+# Twenty jobs, chosen so the numbers for the selected skill "python" are exact. Over the
+# whole set (window="all"): 20 jobs, 10 of them require python. Among those 10 — docker 6,
+# pytorch 5, aws 5, rag 5, kubernetes 4 (below MIN_CO_JOBS) — against baselines over all
+# 20: docker 6, pytorch 5, aws 10, rag 15. So lift = 2*count/base: docker and pytorch 2.0
+# (the sort's count tiebreak), aws 1.0, rag 0.667. Fifteen jobs are Berlin, five SF.
+RELATED_JOBS = [
+    ("Co01", "Berlin", ["python", "docker", "pytorch", "aws", "rag", "kubernetes"]),
+    ("Co02", "Berlin", ["python", "docker", "pytorch", "aws", "rag", "kubernetes"]),
+    ("Co03", "Berlin", ["python", "docker", "pytorch", "aws", "kubernetes"]),
+    ("Co04", "Berlin", ["python", "docker", "pytorch", "aws", "kubernetes"]),
+    ("Co05", "Berlin", ["python", "docker", "rag"]),
+    ("Co06", "Berlin", ["python", "pytorch", "rag"]),
+    ("Co07", "Berlin", ["rag", "aws"]),
+    ("Co08", "Berlin", ["rag", "aws"]),
+    ("Co09", "Berlin", ["rag", "aws"]),
+    ("Co10", "Berlin", ["rag", "aws"]),
+    ("Co11", "Berlin", ["rag", "aws"]),
+    ("Co12", "San Francisco", ["rag"]),
+    ("Co13", "San Francisco", ["rag"]),
+    ("Co14", "San Francisco", ["rag"]),
+    ("Co15", "San Francisco", ["rag"]),
+]
+
+
+@pytest.fixture
+def wide(conn):
+    for company, city, skills in RELATED_JOBS:
+        add(conn, company, "AI Engineer", city, "arbeitnow", ts(1), [(s, "required") for s in skills])
+    return conn
+
+
+ALL = q.Filters(window="all", skill_id="python")
+
+
+def test_related_skills_counts_shares_and_lift(wide):
+    r = q.related_skills(wide, ALL, NOW)
+    assert (r["selected_count"], r["total"]) == (10, 20)
+    by = {s["skill_id"]: s for s in r["skills"]}
+    assert "python" not in by                                    # the selected skill is excluded
+    assert "kubernetes" not in by                                # 4 co-occurring jobs, under MIN_CO_JOBS
+    assert set(by) == {"docker", "pytorch", "aws", "rag"}
+    assert (by["docker"]["count"], by["docker"]["pct"], by["docker"]["base_pct"]) == (6, 60.0, 30.0)
+    assert (by["pytorch"]["count"], by["pytorch"]["pct"], by["pytorch"]["base_pct"]) == (5, 50.0, 25.0)
+    assert (by["aws"]["count"], by["aws"]["pct"], by["aws"]["base_pct"]) == (5, 50.0, 50.0)
+    assert (by["rag"]["count"], by["rag"]["pct"], by["rag"]["base_pct"]) == (5, 50.0, 75.0)
+    # lift from the counts: (count/10) / (base/20)
+    assert [s["lift"] for s in r["skills"]] == [2.0, 2.0, 1.0, 0.667]
+    # sorted by lift desc, then count desc: docker and pytorch tie at 2.0
+    assert [s["skill_id"] for s in r["skills"]] == ["docker", "pytorch", "aws", "rag"]
+
+
+def test_related_skills_baseline_follows_the_filters(wide):
+    f = q.Filters(window="all", skill_id="python", cities=("Berlin",))
+    r = q.related_skills(wide, f, NOW)
+    assert (r["selected_count"], r["total"]) == (9, 15)     # Berlin only
+    docker = next(s for s in r["skills"] if s["skill_id"] == "docker")
+    freq = {s["skill_id"]: s for s in q.skill_frequency(wide, f, NOW)["skills"]}
+    assert docker["base_pct"] == freq["docker"]["pct"] == 40.0   # the same filter set, not all 20 jobs
+    unfiltered = next(s for s in q.related_skills(wide, ALL, NOW)["skills"] if s["skill_id"] == "docker")
+    assert unfiltered["base_pct"] == 30.0 and docker["base_pct"] != unfiltered["base_pct"]
+    # aws is in 5 of python's jobs overall but only 4 of Berlin's: the threshold follows the filter too.
+    assert "aws" not in {s["skill_id"] for s in r["skills"]}
+
+
+def test_related_skills_caps_the_list_at_ten(wide):
+    # Eight more skills, each in five of python's jobs and nowhere else: lift 2.0, count 5.
+    ids = [r[0] for r in wide.execute(
+        "SELECT job_id FROM skill_mention WHERE skill_id='python' ORDER BY job_id LIMIT 5")]
+    for n in range(8):
+        for job_id in ids:
+            wide.execute("INSERT INTO skill_mention (job_id, skill_id, requirement, raw_text,"
+                         " taxonomy_version, extractor_version) VALUES (?,?,?,?,?,?)",
+                         (job_id, f"extra{n:02d}", "required", "x", 3, "t"))
+    r = q.related_skills(wide, ALL, NOW)
+    # Twelve rows qualify; the ten with the best lift survive, so aws (1.0) and rag (0.667) go.
+    assert len(r["skills"]) == 10
+    assert [s["skill_id"] for s in r["skills"]] == ["docker"] + [f"extra{n:02d}" for n in range(8)] + ["pytorch"]
+
+
+def test_related_skills_needs_a_selected_skill_that_jobs_require(wide):
+    assert q.related_skills(wide, q.Filters(window="all"), NOW) == {"selected_count": 0, "total": 20, "skills": []}
+    r = q.related_skills(wide, q.Filters(window="all", skill_id="nothing-asks-for-this"), NOW)
+    assert r == {"selected_count": 0, "total": 20, "skills": []}

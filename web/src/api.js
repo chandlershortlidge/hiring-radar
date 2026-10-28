@@ -32,6 +32,7 @@ export const api = {
   stats: () => call("/api/stats"),
   taxonomy: () => call("/api/taxonomy"),
   skills: (f) => call(`/api/skills${qs(filterParams(f))}`),
+  relatedSkills: (f) => call(`/api/skills/related${qs({ ...filterParams(f), skill: f.skill })}`),
   jobs: (f, { sort, limit, offset }) =>
     call(`/api/jobs${qs({ ...filterParams(f), skill: f.skill, q: f.query, sort, limit, offset })}`),
   job: (id) => call(`/api/jobs/${id}`),

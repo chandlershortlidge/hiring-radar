@@ -96,6 +96,15 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
         r["city_totals"] = q.city_totals(conn, f, now_iso())
         return r
 
+    @app.get("/api/skills/related")
+    def get_related_skills(f: q.Filters = Depends(filters), conn=Depends(conn_dep)):
+        """What the jobs listing `skill` also list. Same filters as /api/skills; `skill` is required."""
+        if f.skill_id is None:
+            raise HTTPException(422, "skill is required")
+        r = q.related_skills(conn, f, now_iso())
+        r["skills"] = with_display(r["skills"])
+        return r
+
     @app.get("/api/jobs")
     def get_jobs(f: q.Filters = Depends(filters), sort: str = "newest",
                  limit: int = Query(20, ge=1, le=200), offset: int = Query(0, ge=0), conn=Depends(conn_dep)):
