@@ -38,6 +38,7 @@ jobs:
     needs: [test, build-web]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: read
       id-token: write
@@ -63,11 +64,12 @@ jobs:
       - name: Copy frontend to VM
         run: >
           gcloud compute scp web-dist.tgz hiring-radar:/tmp/web-dist.tgz
-          --zone=europe-west3-a --tunnel-through-iap --quiet --strict-host-key-checking=no
+          --zone=europe-west3-a --tunnel-through-iap --quiet --strict-host-key-checking=no --ssh-key-expire-after=30m
       - name: Deploy on VM
         run: |
           gcloud compute ssh hiring-radar --zone=europe-west3-a --tunnel-through-iap --quiet \
-            --strict-host-key-checking=no --command "
+            --strict-host-key-checking=no --ssh-key-expire-after=30m --command "
+            
             set -e
             sudo -u hiring-radar -H git -C /opt/hiring-radar/app fetch origin main
             sudo -u hiring-radar -H git -C /opt/hiring-radar/app reset --hard ${{ github.sha }}
