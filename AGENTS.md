@@ -147,7 +147,9 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `web/src/` — `App.jsx` (filters, header, stats, controls, and the one route: `/jobs/{id}`
   read from the address bar), `JobPage.jsx` (a job's own page: detail + the stored posting
   text), `SkillChart.jsx`,
-  `CompareChart.jsx`, `JobList.jsx` (rows + expanded detail with quotes), the three drawers
+  `CompareChart.jsx`, `RelatedSkills.jsx` (what the jobs requiring the selected skill also
+  require; renders only with a skill selected and computes nothing itself),
+  `JobList.jsx` (rows + expanded detail with quotes), the three drawers
   (`AddJobDrawer`, `ReviewDrawer`, `ProfileDrawer`), `profile.js` (localStorage profile +
   set-overlap coverage; the server never sees it), `api.js`, `format.js`.
 - `app/__main__.py` — the CLI (`python -m app ...`, including `serve`).
