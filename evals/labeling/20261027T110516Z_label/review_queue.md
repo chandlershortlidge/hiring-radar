@@ -364,7 +364,7 @@ PROPOSED: `B` - qualification bullet names the practice; same bullet as item 29
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 31. golden_031 - skill `ai-deployment` (disagreement)
 
@@ -377,7 +377,7 @@ PROPOSED: `B` - qualification bullet, "productionizing" names it
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 32. golden_031 - skill `backend-development` (disagreement)
 
@@ -390,7 +390,7 @@ PROPOSED: `A` - "FastAPI or similar backend frameworks" names broad and specific
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 33. golden_032 - skill `ai-deployment` (disagreement)
 
@@ -403,7 +403,7 @@ PROPOSED: `B` - qualification bullet, "agentic product deployments" names deploy
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 34. golden_033 - attribute `degree` (disagreement)
 
@@ -427,7 +427,7 @@ PROPOSED: `B` - qualification bullet names multi-step orchestration
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 36. golden_035 - skill `model-serving` (disagreement)
 
@@ -440,7 +440,7 @@ PROPOSED: `B` - parent above sglang/vllm, but allowed: the broad skill's own quo
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: {"requirement": "required", "raw_text": "at least one modern inference stack"}
 
 ## 37. golden_035 - skill `software-architecture` (disagreement)
 
@@ -453,7 +453,7 @@ PROPOSED: `B` - qualification bullet; sharing the span with `distributed-systems
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 38. golden_037 - skill `ai-deployment` (disagreement)
 
@@ -466,7 +466,7 @@ PROPOSED: `B` - qualification bullet, "brought them to production"
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 39. golden_037 - skill `apis` (disagreement)
 
@@ -479,7 +479,7 @@ PROPOSED: `drop` - an API being consumed is not `apis` (your rule 3)
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: drop
 
 ## 40. golden_037 - skill `machine-learning` (disagreement)
 
@@ -505,7 +505,7 @@ PROPOSED: `drop` - "experience as a machine learning engineer" is a years/role l
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: drop
 
 ## 42. golden_037 - skill `serverless` (disagreement)
 
