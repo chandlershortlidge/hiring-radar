@@ -114,6 +114,26 @@ def test_poll_feeds_continues_past_a_failing_feed(tmp_path):
     assert any("arbeitnow: FAILED OSError" in l for l in lines)
 
 
+def test_poll_feeds_warns_when_a_known_board_comes_back_empty(tmp_path):
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+    feed = {"type": "join", "token": "motor-ai", "company": "MOTOR Ai"}
+    posting = [Posting("join", "16835641", "https://join.com/companies/motor-ai/16835641-ai-ml-engineer",
+                       "MOTOR Ai", "AI Engineer", "Berlin", "Python please")]
+
+    lines = []
+    poll.poll_feeds(conn, [feed], fetch=lambda f: posting, log=lines.append)
+    assert not any("WARNING" in l for l in lines)  # first run, nothing to compare against
+
+    lines.clear()
+    poll.poll_feeds(conn, [feed], fetch=lambda f: [], log=lines.append)
+    assert any("join:motor-ai: WARNING seen=0 but 1 postings" in l for l in lines)
+
+    lines.clear()  # a search feed with no history stays quiet
+    poll.poll_feeds(conn, [{"type": "arbeitnow"}], fetch=lambda f: [], log=lines.append)
+    assert not any("WARNING" in l for l in lines)
+
+
 def test_load_feeds_skips_disabled(tmp_path):
     p = tmp_path / "feeds.json"
     p.write_text(json.dumps({"feeds": [{"type": "arbeitnow", "enabled": True}, {"type": "lever", "enabled": False, "token": "x"}]}))

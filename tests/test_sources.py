@@ -260,6 +260,16 @@ def test_join_page_state_reads_next_data_and_tolerates_pages_without_it():
     assert join.page_state('<script id="__NEXT_DATA__">{broken</script>') == {}
 
 
+def test_join_page_state_reads_page_data_on_company_pages():
+    # Company pages switched from `initialState` to `pageData` in October 2026; the old key is
+    # still present on job pages. An empty old key must not shadow a populated new one.
+    markup = ('<script id="__NEXT_DATA__" type="application/json">{"props": {"pageProps": '
+              '{"initialState": {}, "pageData": {"jobs": {"items": [{"idParam": "1-x"}], '
+              '"pagination": {"pageCount": 1}}}}}}</script>')
+    assert join.listing(join.page_state(markup)) == (["1-x"], 1)
+    assert join.page_state('<script id="__NEXT_DATA__">{"props": {"pageProps": {"locale": "en"}}}</script>') == {}
+
+
 def test_join_listing_gives_id_params_and_page_count():
     ids, pages = join.listing(load("join_company.json"))
     assert ids[0] == "16792067-ai-developer-llm-products-remote" and len(ids) == 3
