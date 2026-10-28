@@ -252,10 +252,11 @@ def test_related_skills_counts_shares_and_lift(wide):
     assert (by["pytorch"]["count"], by["pytorch"]["pct"], by["pytorch"]["base_pct"]) == (5, 50.0, 25.0)
     assert (by["aws"]["count"], by["aws"]["pct"], by["aws"]["base_pct"]) == (5, 50.0, 50.0)
     assert (by["rag"]["count"], by["rag"]["pct"], by["rag"]["base_pct"]) == (5, 50.0, 75.0)
-    # lift from the counts: (count/10) / (base/20)
-    assert [s["lift"] for s in r["skills"]] == [2.0, 2.0, 1.0, 0.667]
-    # sorted by lift desc, then count desc: docker and pytorch tie at 2.0
-    assert [s["skill_id"] for s in r["skills"]] == ["docker", "pytorch", "aws", "rag"]
+    # Returned by pct desc, then count desc: docker (60%) first, then the three at 50% by id.
+    assert [s["skill_id"] for s in r["skills"]] == ["docker", "aws", "pytorch", "rag"]
+    assert [s["pct"] for s in r["skills"]] == [60.0, 50.0, 50.0, 50.0]
+    # lift from the counts, (count/10) / (base/20): it selects the rows, it does not order them.
+    assert [s["lift"] for s in r["skills"]] == [2.0, 1.0, 2.0, 0.667]
 
 
 def test_related_skills_baseline_follows_the_filters(wide):
@@ -273,17 +274,21 @@ def test_related_skills_baseline_follows_the_filters(wide):
 
 def test_related_skills_caps_the_list_at_ten(wide):
     # Eight more skills, each in five of python's jobs and nowhere else: lift 2.0, count 5.
+    # Plus "zz-six", in six of them: the same lift, a higher count, the last id of the lot.
     ids = [r[0] for r in wide.execute(
-        "SELECT job_id FROM skill_mention WHERE skill_id='python' ORDER BY job_id LIMIT 5")]
-    for n in range(8):
-        for job_id in ids:
+        "SELECT job_id FROM skill_mention WHERE skill_id='python' ORDER BY job_id LIMIT 6")]
+    for skill, n_jobs in [(f"extra{n:02d}", 5) for n in range(8)] + [("zz-six", 6)]:
+        for job_id in ids[:n_jobs]:
             wide.execute("INSERT INTO skill_mention (job_id, skill_id, requirement, raw_text,"
                          " taxonomy_version, extractor_version) VALUES (?,?,?,?,?,?)",
-                         (job_id, f"extra{n:02d}", "required", "x", 3, "t"))
+                         (job_id, skill, "required", "x", 3, "t"))
     r = q.related_skills(wide, ALL, NOW)
-    # Twelve rows qualify; the ten with the best lift survive, so aws (1.0) and rag (0.667) go.
+    # Thirteen rows qualify. Eleven tie on lift at 2.0, so the selection's count tiebreak
+    # decides the last slot: zz-six (6 jobs) is in and pytorch (5, but an earlier id) is out,
+    # and aws (lift 1.0) and rag (0.667) never get close.
     assert len(r["skills"]) == 10
-    assert [s["skill_id"] for s in r["skills"]] == ["docker"] + [f"extra{n:02d}" for n in range(8)] + ["pytorch"]
+    assert [s["skill_id"] for s in r["skills"]] == ["docker", "zz-six"] + [f"extra{n:02d}" for n in range(8)]
+    assert [s["pct"] for s in r["skills"]] == [60.0, 60.0] + [50.0] * 8
 
 
 def test_related_skills_needs_a_selected_skill_that_jobs_require(wide):

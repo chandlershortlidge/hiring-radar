@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { api } from "./api.js";
 
 // What the jobs requiring the selected skill also require. The server does every bit of
-// the arithmetic — share, the baseline it is held against, lift (the sort key, not shown),
-// the under-5-jobs cutoff, the ranking, the top ten — so this fetches those rows and draws
-// them. Renders nothing until a skill is selected.
+// the arithmetic — share, the baseline it is held against, lift (which picks the ten rows
+// but is never shown), the under-5-jobs cutoff, the order they arrive in — so this fetches
+// those rows and draws them in that order. Renders nothing until a skill is selected.
 const MIN_CO_JOBS = 5;   // queries.MIN_CO_JOBS, stated in the description below
 
 export default function RelatedSkills({ filters, skillName, refreshKey }) {

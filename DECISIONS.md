@@ -16,10 +16,15 @@ skill, what else they require.
   seniority, German, degree, window) — the baseline is literally `skill_frequency`'s output
   under the same filters, so the two can't drift. A share over Berlin jobs held against a
   baseline over all jobs would make every Berlin-heavy skill look like a signal.
-- **Ranked by lift, `(cond_count/selected_count) / (base_count/total)`, computed from the
-  counts and never from the rounded percentages.** Raw share puts Python on top of every
-  list at ~80%; lift puts PyTorch (55% among ML jobs vs 21% overall) above it. Lift is
+- **Selected by lift, `(cond_count/selected_count) / (base_count/total)`, computed from the
+  counts and never from the rounded percentages.** Raw share would fill the panel with the
+  skills every job asks for; lift keeps the ones specific to these jobs — PyTorch (55% among
+  ML jobs vs 21% overall) earns a slot that Python's 80% would otherwise take. Lift is
   rounded to three decimals before sorting, so ties break deterministically on count desc.
+- **Those ten rows are then returned by share desc (pct, then count).** Lift decides who is
+  in the panel; it does not decide the reading order, because a list whose displayed numbers
+  jump around looks broken. The multiplier that justifies a row's presence is not shown
+  (below), so ordering by it would leave the visible numbers unexplained.
 - **Lift is not displayed.** The panel shows "55% · vs 21% of all jobs". For a common
   selected skill every row sits near the ceiling of 1/share, so the multiplier reads as
   noise next to two numbers people already understand.
