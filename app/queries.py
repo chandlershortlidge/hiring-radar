@@ -193,10 +193,11 @@ def related_skills(conn: sqlite3.Connection, f: Filters, now: str) -> dict:
       base_pct = base count / total              — the same skill across the whole set
       lift     = (count/selected_count) / (base/total)
 
-    Lift is what ranks the list (Python tops every raw share list; lift surfaces the
+    Lift is what *selects* the list (Python tops every raw share list; lift surfaces the
     skills that are specific to these jobs), and it comes from the counts, never from the
-    rounded percentages. Rows seen in fewer than MIN_CO_JOBS of the selected jobs are
-    dropped — one odd stack otherwise reads as a 4x lift — and only RELATED_LIMIT survive.
+    rounded percentages. The RELATED_LIMIT rows it picks are then returned by pct desc,
+    count desc, so the panel reads top-down by the number it shows. Rows seen in fewer than
+    MIN_CO_JOBS of the selected jobs are dropped — one odd stack otherwise reads as a 4x lift.
     The selected skill itself is excluded. No skill selected, or none of the filtered jobs
     list it: no rows.
     """
@@ -229,7 +230,11 @@ def related_skills(conn: sqlite3.Connection, f: Filters, now: str) -> dict:
         s["lift"] = round((s["count"] / selected_count) / (b / total), 3)
         skills.append(s)
     skills.sort(key=lambda s: (-s["lift"], -s["count"], s["skill_id"]))
-    return {"selected_count": selected_count, "total": total, "skills": skills[:RELATED_LIMIT]}
+    top = skills[:RELATED_LIMIT]
+    # Lift picks the ten; the panel then reads top-down by the number it shows. (Every row
+    # here shares the denominator selected_count, so pct ranks exactly as count does.)
+    top.sort(key=lambda s: (-s["pct"], -s["count"], s["skill_id"]))
+    return {"selected_count": selected_count, "total": total, "skills": top}
 
 
 def city_totals(conn: sqlite3.Connection, f: Filters, now: str) -> dict[str, int]:
