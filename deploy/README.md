@@ -21,7 +21,7 @@ Everything below runs on the VM unless it says otherwise.
 
 | What | Where |
 |---|---|
-| Code | `/opt/hiring-radar` |
+| Code (project root) | `/opt/hiring-radar/app` — not a git checkout; files were copied up |
 | Database | `/var/lib/hiring-radar/hiring-radar.db` |
 | Secrets (`ANTHROPIC_API_KEY` etc.) | `/etc/hiring-radar.env`, root-only, never in git |
 | API process | a systemd service on `127.0.0.1:8000`, Caddy in front |
@@ -47,12 +47,15 @@ the board changed its page format, as JOIN did in October 2026).
 ## Run the poll by hand
 
 ```
-cd /opt/hiring-radar
-sudo -u hiring-radar uv run python -m app poll --only join:motor-ai   # one feed
-sudo -u hiring-radar uv run python -m app poll                        # all feeds, with extraction
+cd /opt/hiring-radar/app
+sudo -u hiring-radar env HIRING_RADAR_DB=/var/lib/hiring-radar/hiring-radar.db \
+  uv run python -m app poll --only join:motor-ai   # one feed; drop --only for all feeds
 ```
 
-Run as the app user so the DB file keeps its owner. `--no-extract` skips the LLM step.
+`HIRING_RADAR_DB` must be set: the real path lives in `/etc/hiring-radar.env`, which systemd
+loads and a shell does not. Without it the poll creates an empty `data/hiring-radar.db` next
+to the code and reports `applied migrations: [1, …]` — that is the tell. Run as the app user
+so the DB file keeps its owner. `--no-extract` skips the LLM step.
 
 ## Service control
 
@@ -62,8 +65,19 @@ sudo systemctl status hiring-radar-poll.timer
 journalctl -u <api service> -n 100 --no-pager
 ```
 
-Normal deploys don't need this: merge to `main` → GitHub Actions builds `web/dist`, rsyncs
-code to the VM (excluding `data/`), runs `uv sync`, restarts the service, hits `/api/stats`.
+## Deploying code
+
+There is no automatic deploy yet (HIR-73). Merging to `main` changes GitHub only. To get a
+change onto the VM today, download the changed files from `main` over the old ones, then
+restart the API service if `app/` changed:
+
+```
+sudo curl -sSo /opt/hiring-radar/app/app/poll.py \
+  https://raw.githubusercontent.com/chandlershortlidge/hiring-radar/main/app/poll.py
+```
+
+(One line per changed file. Frontend changes need a `web/dist` rebuild, which the e2-micro
+can't do; build on the Mac and copy `web/dist` up.)
 
 ## Get the database onto the Mac
 
