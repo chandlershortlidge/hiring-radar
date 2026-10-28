@@ -105,7 +105,9 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - SQLite, one file, schema managed by numbered migrations in `app/migrations/`.
 - React 18 + Vite frontend in `web/`, no chart library (CSS bars), served from `web/dist`
   by the same process.
-- Hosting: GCP Compute Engine VM in europe-west3 (to come, HIR-29). Runs locally until then.
+- Hosting: one GCP Compute Engine VM in europe-west3 (HIR-29): systemd service + 07:00 poll
+  timer, Caddy for HTTPS + basic auth, nightly SQLite backup to GCS, deploy on merge to
+  `main` via GitHub Actions. How to SSH in and operate it: [deploy/README.md](deploy/README.md).
 
 ### Where things live
 
