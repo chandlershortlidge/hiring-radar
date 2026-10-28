@@ -11,9 +11,10 @@ Policy belongs in taxonomy/skills.json; the prompt stays general (AGENTS.md).
 Invariants:
   - Seniority is one of junior/mid/senior with a basis, or absent; never a guess without a
     basis, and a "stated" level always carries its quoted signal.
-  - German and degree follow the same rule: a value needs its quoted signal from the text
-    ("inferred" German — a posting written in German — is the one exception, and carries
-    no signal). Anything inconsistent collapses to "not mentioned", never to a guess.
+  - German, degree and production experience follow the same rule: a value needs its quoted
+    signal from the text ("inferred" German — a posting written in German — is the one
+    exception, and carries no signal; production has no inferred case at all). Anything
+    inconsistent collapses to "not mentioned", never to a guess.
   - Every returned mention has a skill_id that exists in the taxonomy it was run with.
   - Each skill_id appears at most once per job; if any mention is required, it is required.
   - Every mention's raw_text is found in the job text (whitespace/case-insensitive);
@@ -94,6 +95,25 @@ Also report the degree the posting asks for:
 - degree_signal is the verbatim phrase naming the degree (include the "or equivalent"
   wording if present), or null.
 
+Also report whether the posting asks the candidate for prior production experience:
+- The question is whether the candidate is asked for a record of having shipped or operated
+  software that real users depended on. Markers for "required": that experience is asked of
+  the candidate and not marked optional — "you have shipped X to production", "track record
+  of building production-grade services", "experience building and operating production
+  systems", "experience deploying production-quality software", "commercial experience in
+  production environments". In German: "Du hast bereits Produkte in den produktiven Betrieb
+  gebracht", "Erfahrung mit produktiven Anwendungen", "Erfahrung im produktiven Einsatz".
+- "nice_to_have" when that same ask is marked optional (plus, preferred, ideally, advantage,
+  bonus).
+- null when the posting does not ask the candidate for it. Work the job involves is not an
+  ask: "you will deploy models to production", "take prototypes to production", "from idea
+  to production", "von der Idee bis zum produktiven Einsatz" are responsibilities, null —
+  the same rule as for technologies that appear only in responsibilities. A standard for the
+  code rather than a record of shipping it is also null: "write production-grade code",
+  "strong Python skills, including writing production-quality code and tests".
+- production_basis is "stated" whenever a value is set; there is nothing to infer.
+- production_signal is the verbatim phrase, or null when not mentioned.
+
 Always respond by calling the record_skills tool exactly once. Do not reply with text."""
 
 SENIORITY_LEVELS = ("junior", "mid", "senior")
@@ -132,10 +152,14 @@ TOOL = {
             "degree_requirement": {"anyOf": [{"type": "string", "enum": list(REQUIREMENT_LEVELS)}, {"type": "null"}]},
             "degree_or_equivalent": {"type": "boolean"},
             "degree_signal": {"type": ["string", "null"]},
+            "production": {"anyOf": [{"type": "string", "enum": list(REQUIREMENT_LEVELS)}, {"type": "null"}]},
+            "production_basis": {"anyOf": [{"type": "string", "enum": ["stated"]}, {"type": "null"}]},
+            "production_signal": {"type": ["string", "null"]},
         },
         "required": ["skills", "seniority", "seniority_basis", "seniority_signal",
                      "german", "german_basis", "german_signal",
-                     "degree", "degree_requirement", "degree_or_equivalent", "degree_signal"],
+                     "degree", "degree_requirement", "degree_or_equivalent", "degree_signal",
+                     "production", "production_basis", "production_signal"],
         "additionalProperties": False,
     },
 }
@@ -190,11 +214,23 @@ class Degree:
 NO_DEGREE = Degree(None, None, False, None)
 
 
+@dataclass(frozen=True)
+class Production:
+    """Prior experience shipping or operating software real users depended on (HIR-69)."""
+    requirement: str | None   # required | nice_to_have | None (not asked for)
+    basis: str | None         # 'stated' or None: there is no inferred case, unlike German
+    signal: str | None        # verbatim phrase; always present when requirement is set
+
+
+NO_PRODUCTION = Production(None, None, None)
+
+
 @dataclass
 class Extraction:
     seniority: Seniority = NO_SENIORITY
     german: German = NO_GERMAN
     degree: Degree = NO_DEGREE
+    production: Production = NO_PRODUCTION
     mentions: list[Mention] = field(default_factory=list)
     proposed: list[Proposed] = field(default_factory=list)
     rejected: list[dict] = field(default_factory=list)
@@ -339,6 +375,16 @@ def parse_degree(data: dict, jd_text: str) -> Degree:
     return Degree(level, req, bool(data.get("degree_or_equivalent")), signal)
 
 
+def parse_production(data: dict, jd_text: str) -> Production:
+    """Validate the production-experience fields. The demand is always visible in the text,
+    so a requirement without a quoted signal is dropped; there is no inferred basis."""
+    req = data.get("production")
+    if req not in REQUIREMENT_LEVELS or data.get("production_basis") != "stated":
+        return NO_PRODUCTION
+    signal = _quoted(data.get("production_signal"), jd_text)
+    return Production(req, "stated", signal) if signal else NO_PRODUCTION
+
+
 def build_request(tax: Taxonomy, jd_text: str, model: str) -> dict:
     return {
         "model": model,
@@ -374,6 +420,7 @@ def extract(jd_text: str, tax: Taxonomy, client, model: str = DEFAULT_MODEL) -> 
         seniority=parse_seniority(blocks[0].input, jd_text),
         german=parse_german(blocks[0].input, jd_text),
         degree=parse_degree(blocks[0].input, jd_text),
+        production=parse_production(blocks[0].input, jd_text),
         mentions=mentions,
         proposed=proposed,
         rejected=rejected,

@@ -134,6 +134,40 @@ def test_german_and_degree_filters(conn):
     assert d["degree"] == "master" and d["degree_or_equivalent"] is True and d["german_signal"] == "German"
 
 
+def test_production_filters_stats_and_detail(conn):
+    # Acme: production required. Gamma: nice_to_have. Everything else: not asked for.
+    conn.execute("UPDATE job SET production='required', production_basis='stated',"
+                 " production_signal='You have shipped production systems' WHERE company='Acme'")
+    conn.execute("UPDATE job SET production='nice_to_have', production_basis='stated',"
+                 " production_signal='production ML is a plus' WHERE company='Gamma'")
+    names = lambda f: {j["company"] for j in q.list_jobs(conn, f, NOW)["jobs"]}
+    assert names(q.Filters(window="all", production="required")) == {"Acme"}
+    # not_required means the same for production as for German: not asked for, or optional.
+    assert names(q.Filters(window="all", production="not_required")) == {"Beta", "Gamma", "Delta", "Epsilon"}
+    assert names(q.Filters(window="all", production="none")) == {"Beta", "Delta", "Epsilon"}
+    assert names(q.Filters(window="all", production="any")) == names(q.Filters(window="all"))
+    assert q.skill_frequency(conn, q.Filters(window="all", production="required"), NOW)["total"] == 1
+    assert q.stats(conn, NOW, 1)["open_production_required"] == 1
+    jid = q.list_jobs(conn, q.Filters(window="all", query="acme"), NOW)["jobs"][0]["id"]
+    d = q.job_detail(conn, jid, NOW)
+    assert d["production"] == "required" and d["production_basis"] == "stated"
+    assert d["production_signal"] == "You have shipped production systems"
+    # the list carries the value (the row's "!" flag needs it) but not the quote
+    row = next(j for j in q.list_jobs(conn, q.Filters(window="all", query="acme"), NOW)["jobs"])
+    assert row["production"] == "required" and "production_signal" not in row
+
+
+def test_production_and_german_filters_are_independent(conn):
+    conn.execute("UPDATE job SET german='required', german_basis='stated', german_signal='German' WHERE company='Acme'")
+    conn.execute("UPDATE job SET production='required', production_basis='stated',"
+                 " production_signal='shipped production systems' WHERE company='Gamma'")
+    names = lambda f: {j["company"] for j in q.list_jobs(conn, f, NOW)["jobs"]}
+    # the headline set: no German asked for and no production experience asked for
+    assert names(q.Filters(window="all", german="not_required", production="not_required")) \
+        == {"Beta", "Delta", "Epsilon"}
+    assert names(q.Filters(window="all", german="required", production="required")) == set()
+
+
 def test_legacy_jobs_stay_out_of_the_chart_but_in_the_list(conn):
     jid = add(conn, "Zeta", "AI Engineer", "Berlin", "paste", ts(1), [("python", "required"), ("docker", "required")])
     conn.execute("UPDATE job SET extracted_version='legacy' WHERE id=?", (jid,))

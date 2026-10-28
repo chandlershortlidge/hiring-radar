@@ -43,6 +43,9 @@ export default function ProfileDrawer({ onClose, profile, save, taxonomyList }) 
         <div className="field"><label htmlFor="ger">Professional German</label>
           <select id="ger" value={p.german ? "yes" : "no"} onChange={(e) => setP({ ...p, german: e.target.value === "yes" })}>
             <option value="no">No / not yet</option><option value="yes">Yes (B2 or better)</option></select></div>
+        <div className="field"><label htmlFor="prod">Shipped software to production</label>
+          <select id="prod" value={p.production ? "yes" : "no"} onChange={(e) => setP({ ...p, production: e.target.value === "yes" })}>
+            <option value="no">No / not yet</option><option value="yes">Yes, real users depended on it</option></select></div>
       </div>
       <div className="field">
         <label htmlFor="sq">Skills you have</label>

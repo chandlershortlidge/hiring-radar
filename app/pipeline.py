@@ -77,13 +77,15 @@ def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction) -> N
         conn.executemany(
             "INSERT INTO proposed_skill (job_id, label, raw_text) VALUES (?,?,?)",
             [(job_id, p.label, p.raw_text) for p in ex.proposed if p.label.lower() not in rejected])
-        sen, ger, deg = ex.seniority, ex.german, ex.degree
+        sen, ger, deg, prod = ex.seniority, ex.german, ex.degree, ex.production
         conn.execute(
             "UPDATE job SET extracted_version=?, seniority=?, seniority_basis=?, seniority_signal=?,"
             " german=?, german_basis=?, german_signal=?,"
-            " degree=?, degree_requirement=?, degree_or_equivalent=?, degree_signal=? WHERE id=?",
+            " degree=?, degree_requirement=?, degree_or_equivalent=?, degree_signal=?,"
+            " production=?, production_basis=?, production_signal=? WHERE id=?",
             (ex.extractor_version, sen.level, sen.basis, sen.signal, ger.requirement, ger.basis, ger.signal,
-             deg.level, deg.requirement, int(deg.or_equivalent), deg.signal, job_id))
+             deg.level, deg.requirement, int(deg.or_equivalent), deg.signal,
+             prod.requirement, prod.basis, prod.signal, job_id))
 
 
 def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn, model: str,

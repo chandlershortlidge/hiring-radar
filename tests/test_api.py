@@ -69,8 +69,12 @@ def test_filter_validation(api):
     assert client.get("/api/jobs", params={"sort": "random"}).status_code == 422
     assert client.get("/api/jobs", params={"seniority": "intern"}).status_code == 422
     assert client.get("/api/jobs", params={"german": "fluent"}).status_code == 422
+    assert client.get("/api/jobs", params={"production": "shipped"}).status_code == 422
+    assert client.get("/api/jobs", params={"production": "nice_to_have"}).status_code == 422  # not one of the four keys
     assert client.get("/api/skills", params={"degree": "masters"}).status_code == 422
     assert client.get("/api/skills", params={"degree": "open", "german": "not_required"}).status_code == 200
+    assert client.get("/api/skills", params={"production": "not_required"}).status_code == 200
+    assert client.get("/api/jobs", params={"production": "required"}).status_code == 200
 
 
 def test_jobs_and_detail(api):

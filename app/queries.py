@@ -32,13 +32,22 @@ MANUAL_OPEN_DAYS = 60
 WINDOWS = ("open", "30d", "90d", "all")
 REQUIREMENTS = ("required", "all")
 SENIORITIES = ("junior", "mid", "senior")
-# Single-choice filters over the German / degree attributes. "open" on degree means a person
-# without one can still apply: no degree named, marked optional, or equivalent experience accepted.
+# Single-choice filters over the German / degree / production attributes. "open" on degree
+# means a person without one can still apply: no degree named, marked optional, or
+# equivalent experience accepted.
 GERMAN_FILTERS = {
     "any": None,
     "none": "j.german IS NULL",
     "not_required": "(j.german IS NULL OR j.german = 'nice_to_have')",
     "required": "j.german = 'required'",
+}
+# Production experience (HIR-69): German's four keys exactly, so "not_required" means the
+# same thing for both — not asked for, or asked for but marked optional.
+PRODUCTION_FILTERS = {
+    "any": None,
+    "none": "j.production IS NULL",
+    "not_required": "(j.production IS NULL OR j.production = 'nice_to_have')",
+    "required": "j.production = 'required'",
 }
 DEGREE_FILTERS = {
     "any": None,
@@ -75,6 +84,7 @@ class Filters:
     seniorities: tuple[str, ...] = ()     # () = all, including unknown
     german: str = "any"                   # key of GERMAN_FILTERS
     degree: str = "any"                   # key of DEGREE_FILTERS
+    production: str = "any"               # key of PRODUCTION_FILTERS
     requirement: str = "required"         # 'required' | 'all'
     window: str = "open"                  # 'open' | '30d' | '90d' | 'all'
     skill_id: str | None = None           # job list only
@@ -113,6 +123,8 @@ def job_set_clause(f: Filters, now: str, include_legacy: bool = False) -> tuple[
         parts.append(GERMAN_FILTERS[f.german])
     if DEGREE_FILTERS.get(f.degree):
         parts.append(DEGREE_FILTERS[f.degree])
+    if PRODUCTION_FILTERS.get(f.production):
+        parts.append(PRODUCTION_FILTERS[f.production])
     if f.window == "open":
         c, p = open_clause(now)
         parts.append(c); params += p
@@ -143,9 +155,11 @@ def stats(conn: sqlite3.Connection, now: str, skills_tracked: int) -> dict:
     too_short = conn.execute(f"SELECT count(*) FROM job j WHERE {_NOT_LEGACY} AND NOT {_LONG_ENOUGH}").fetchone()[0]
     open_german = conn.execute(f"SELECT count(*) FROM job j WHERE {oc} AND {GERMAN_FILTERS['required']}", op).fetchone()[0]
     open_degree = conn.execute(f"SELECT count(*) FROM job j WHERE {oc} AND {DEGREE_FILTERS['required']}", op).fetchone()[0]
+    open_production = conn.execute(f"SELECT count(*) FROM job j WHERE {oc} AND {PRODUCTION_FILTERS['required']}", op).fetchone()[0]
     return {"jobs": total, "open": open_total, "open_by_city": by_city, "companies": companies,
             "skills_tracked": skills_tracked, "last_updated": last, "proposed_pending": pending, "legacy": legacy, "too_short": too_short,
             "open_german_required": open_german, "open_degree_required": open_degree,
+            "open_production_required": open_production,
             "open_rule": {"feed_days": FEED_OPEN_DAYS, "manual_days": MANUAL_OPEN_DAYS}}
 
 
@@ -280,7 +294,7 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
     order = SORTS.get(sort, SORTS["newest"])
     rows = conn.execute(
         f"SELECT j.id, j.company, j.title, j.city, j.seniority, j.seniority_basis, j.first_seen, j.last_seen,"
-        f" j.repost_count, j.extracted_version, length(j.description_text) AS text_len, j.german, j.degree, j.degree_requirement, j.degree_or_equivalent"
+        f" j.repost_count, j.extracted_version, length(j.description_text) AS text_len, j.german, j.degree, j.degree_requirement, j.degree_or_equivalent, j.production"
         f" FROM job j WHERE {w} ORDER BY {order} LIMIT ? OFFSET ?",
         params + [limit, offset]).fetchall()
     ids = [r["id"] for r in rows]
@@ -318,6 +332,7 @@ def job_detail(conn: sqlite3.Connection, job_id: int, now: str) -> dict | None:
     r = conn.execute(
         "SELECT id, company, title, city, location_raw, seniority, seniority_basis, seniority_signal,"
         " german, german_basis, german_signal, degree, degree_requirement, degree_or_equivalent, degree_signal,"
+        " production, production_basis, production_signal,"
         " first_seen, last_seen, repost_count, extracted_version, description_text, length(description_text) AS text_len"
         " FROM job WHERE id = ?", (job_id,)).fetchone()
     if not r:
