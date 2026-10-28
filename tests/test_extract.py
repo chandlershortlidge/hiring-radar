@@ -306,6 +306,85 @@ def test_tool_schema_requires_german_and_degree_fields():
     assert ex.TOOL["input_schema"]["properties"]["degree_or_equivalent"] == {"type": "boolean"}
 
 
+# A requirement sentence and a responsibility sentence, so the fixture can show that only
+# the first grounds a value. The quality-expectation phrasing is here for the same reason.
+PROD_JD = ("You have shipped production systems and owned them end-to-end. "
+           "You will deploy models to production and write production-grade code. "
+           "Experience with production ML is a plus.")
+
+
+def test_production_required_with_quote():
+    pr = ex.parse_production({"production": "required", "production_basis": "stated",
+                              "production_signal": "You have shipped production systems"}, PROD_JD)
+    assert pr == ex.Production("required", "stated", "You have shipped production systems")
+
+
+def test_production_nice_to_have_with_quote():
+    pr = ex.parse_production({"production": "nice_to_have", "production_basis": "stated",
+                              "production_signal": "Experience with production ML is a plus"}, PROD_JD)
+    assert pr == ex.Production("nice_to_have", "stated", "Experience with production ML is a plus")
+
+
+def test_production_without_a_found_quote_is_not_mentioned():
+    assert ex.parse_production({"production": "required", "production_basis": "stated",
+                                "production_signal": "five years in production"}, PROD_JD) == ex.NO_PRODUCTION
+    assert ex.parse_production({"production": "required", "production_basis": "stated",
+                                "production_signal": None}, PROD_JD) == ex.NO_PRODUCTION
+
+
+def test_production_has_no_inferred_basis():
+    """Unlike German, nothing about the posting's form implies the demand: 'inferred' is invalid."""
+    assert ex.parse_production({"production": "required", "production_basis": "inferred",
+                                "production_signal": None}, PROD_JD) == ex.NO_PRODUCTION
+
+
+@pytest.mark.parametrize("data", [
+    {},
+    {"production": None, "production_basis": None, "production_signal": None},
+    {"production": "mandatory", "production_basis": "stated", "production_signal": "You have shipped production systems"},
+    {"production": "required", "production_basis": None, "production_signal": "You have shipped production systems"},
+])
+def test_production_invalid_or_absent(data):
+    assert ex.parse_production(data, PROD_JD) == ex.NO_PRODUCTION
+
+
+def test_extract_carries_production(tax):
+    tool = SimpleNamespace(type="tool_use", name="record_skills", input={
+        "skills": [item("python", "Python")], "seniority": None, "seniority_basis": None, "seniority_signal": None,
+        "german": None, "german_basis": None, "german_signal": None,
+        "degree": None, "degree_requirement": None, "degree_or_equivalent": False, "degree_signal": None,
+        "production": "required", "production_basis": "stated",
+        "production_signal": "You have shipped production systems"})
+    out = ex.extract(PROD_JD, tax, FakeClient(SimpleNamespace(stop_reason="tool_use", content=[tool], usage=None)), model="m")
+    assert out.production == ex.Production("required", "stated", "You have shipped production systems")
+
+
+def test_extraction_defaults_to_no_production(tax):
+    """A tool call with no production keys at all must not invent a value."""
+    tool = SimpleNamespace(type="tool_use", name="record_skills", input={
+        "skills": [item("python", "Python")], "seniority": None, "seniority_basis": None, "seniority_signal": None,
+        "german": None, "german_basis": None, "german_signal": None,
+        "degree": None, "degree_requirement": None, "degree_or_equivalent": False, "degree_signal": None})
+    out = ex.extract(PROD_JD, tax, FakeClient(SimpleNamespace(stop_reason="tool_use", content=[tool], usage=None)), model="m")
+    assert out.production == ex.NO_PRODUCTION
+
+
+def test_tool_schema_requires_production_fields():
+    req = set(ex.TOOL["input_schema"]["required"])
+    assert {"production", "production_basis", "production_signal"} <= req
+    # A nullable enum must be anyOf, and 'stated' is the only basis there is.
+    assert ex.TOOL["input_schema"]["properties"]["production_basis"] == {
+        "anyOf": [{"type": "string", "enum": ["stated"]}, {"type": "null"}]}
+
+
+def test_prompt_describes_production_markers_and_excludes_responsibilities():
+    """Per DECISIONS: describe the positive class, and keep responsibilities out of it."""
+    block = ex.PRINCIPLES.split("prior production experience")[1]
+    assert 'Markers for "required"' in block
+    assert "are responsibilities, null" in block
+    assert "write production-grade code" in block
+
+
 def test_prompt_keeps_degrees_and_languages_out_of_skills():
     # Rule 2 still excludes them from skills; the attribute blocks are additive.
     assert "degrees, years of experience" in ex.PRINCIPLES and "Also report the degree" in ex.PRINCIPLES
