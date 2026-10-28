@@ -5,6 +5,38 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-28 — Related skills rank by lift, against a baseline from the same filter set (HIR-66)
+
+"43% of jobs want Machine Learning" says nothing about what else those jobs want. Selecting
+a skill now opens a panel between the chart and the job list: of the jobs requiring that
+skill, what else they require.
+
+- **The baseline comes from the same filter set as the share.** `related_skills` takes its
+  `total`, its baseline counts and its conditional job set from one `job_set_clause` (city,
+  seniority, German, degree, window) — the baseline is literally `skill_frequency`'s output
+  under the same filters, so the two can't drift. A share over Berlin jobs held against a
+  baseline over all jobs would make every Berlin-heavy skill look like a signal.
+- **Ranked by lift, `(cond_count/selected_count) / (base_count/total)`, computed from the
+  counts and never from the rounded percentages.** Raw share puts Python on top of every
+  list at ~80%; lift puts PyTorch (55% among ML jobs vs 21% overall) above it. Lift is
+  rounded to three decimals before sorting, so ties break deterministically on count desc.
+- **Lift is not displayed.** The panel shows "55% · vs 21% of all jobs". For a common
+  selected skill every row sits near the ceiling of 1/share, so the multiplier reads as
+  noise next to two numbers people already understand.
+- **Hidden under 5 co-occurring jobs (`MIN_CO_JOBS`), top 10 kept (`RELATED_LIMIT`).** One
+  odd posting stacking six skills otherwise shows up as a 4x lift. Both thresholds, the
+  sort and the cap live in `queries.py`, not the UI, so pytest covers them.
+- **A separate endpoint, `GET /api/skills/related`.** `/api/skills` and `skill_frequency`
+  are untouched — selecting a skill must not move the main chart or the compare view — and
+  a regression test pins `skill_frequency`'s output against a snapshot taken before the
+  shared group/sort/pct block was factored out into `_skill_rows`. The endpoint requires
+  `skill` (422 without it); its requirement filter follows the request like everywhere
+  else, so the conditional set and the baseline always use the same mention semantics.
+- **Row click is a no-op for now.** Drilling in (jobs requiring both skills) needs `skill`
+  to become a list on the filters with AND semantics; that is a second step.
+
+---
+
 ## 2026-10-26 — EU-remote postings are collected as the place "Remote (EU)"
 
 Chandler applies to any remote job he can take from Berlin, and /check-url rejected one

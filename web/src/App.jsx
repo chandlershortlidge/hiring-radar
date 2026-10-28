@@ -6,6 +6,7 @@ import { Compare, Person, Plus, Radar } from "./icons.jsx";
 import SkillChart from "./SkillChart.jsx";
 import CompareChart from "./CompareChart.jsx";
 import JobList from "./JobList.jsx";
+import RelatedSkills from "./RelatedSkills.jsx";
 import AddJobDrawer from "./AddJobDrawer.jsx";
 import ReviewDrawer from "./ReviewDrawer.jsx";
 import ProfileDrawer from "./ProfileDrawer.jsx";
@@ -133,6 +134,8 @@ export default function App() {
             : <SkillChart data={skills} selected={filters.skill} onSelect={(id) => set({ skill: id })} profile={profile}
                 cityLabel={`${winLabel || "tracked"} jobs`} />}
         </section>
+
+        <RelatedSkills filters={filters} skillName={filters.skill ? taxName[filters.skill] || filters.skill : ""} refreshKey={refresh} />
 
         <JobList filters={filters} setFilters={setFilters} skillName={filters.skill ? taxName[filters.skill] || filters.skill : ""}
           profile={profile} taxonomy={taxName} refreshKey={refresh} openJobId={jumpTo} onOpened={() => setJumpTo(null)} onOpenPage={openPage} />
