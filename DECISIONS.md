@@ -52,6 +52,20 @@ the dev set's own phrases in the prompt buys eval points and no accuracy, so
 `test_prompt_contains_no_golden_specific_text` now also asserts the dev-Golden phrases
 these three rules were tempted to copy are absent from `PRINCIPLES`.
 
+**Candidate for the next iteration, not applied: the production object is necessary, the
+verb is not.** After the rules above, dev production accuracy is 0.933 with both decoy
+rows at zero, and the two remaining misses pull in opposite directions. golden_011
+("…data platforms or production ML would be highly relevant", gold `nice_to_have`) is
+missed 3/3 because the clause is a bare noun phrase in a list of optional extras — no
+verb, so the verb-against-object test never nominates it. golden_010 is a false positive
+in 1 of 3 runs on "you would rather ship a working automation in two weeks than a perfect
+one in six months" — the verb *ship* with no production object. One rule answers both:
+require the production object, and let it carry the demand whether or not a verb is
+attached. **Deliberately not applied.** `nice_to_have` has support 1 on dev and golden_010
+is a 1-of-3 flip, so changing the prompt for either is fitting the 20-Golden dev set, and
+the prompt is frozen for this release regardless of what the held-out run says. Both are
+written up as known misses in the dev run's `summary.md`.
+
 All of these rules are in the `PRINCIPLES` prompt rule in `app/extract.py`, so the prompt hash
 changes and stored eval results from before this entry are not comparable. `evals/LABELING.md`
 still owes its `## Production experience` section (frozen; 2026-10-16) — it must carry both
