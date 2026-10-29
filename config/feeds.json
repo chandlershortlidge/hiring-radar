@@ -42,6 +42,7 @@
     {"type": "ashby", "enabled": true, "token": "ppro", "company": "PPRO"},
     {"type": "ashby", "enabled": true, "token": "clera", "company": "Clera"},
     {"type": "ashby", "enabled": true, "token": "sensmore", "company": "Sensmore"},
+    {"type": "ashby", "enabled": true, "token": "sunday-natural", "company": "Sunday Natural"},
     {"type": "join", "enabled": true, "token": "alpas", "company": "alpas"},
     {"type": "join", "enabled": true, "token": "noah-labs", "company": "Noah Labs"},
     {"type": "join", "enabled": true, "token": "ai-coustics", "company": "ai-coustics"},
