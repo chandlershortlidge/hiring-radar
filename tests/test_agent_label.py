@@ -320,8 +320,15 @@ def test_parse_queue_reads_one_decision_per_item_in_order():
 
 # --- the final Golden -------------------------------------------------------------
 
-def test_final_golden_matches_the_existing_shape_plus_provenance():
-    existing = json.loads((ROOT / "evals" / "goldens" / "golden_021.json").read_text())
+def test_final_golden_matches_the_attribute_registry_plus_provenance():
+    # The shape is the attribute registry plus the fields the eval reads plus HIR-70
+    # provenance - not whatever one committed Golden happens to carry. Asserting against a
+    # single file coupled this test to Goldens labeled under other rules: a fourth attribute
+    # added on another branch broke it while final_golden was still correct for its own three.
+    attr_fields = {f for fields in al.ATTR_FIELDS.values() for f in fields}
+    eval_fields = {"id", "split", "source_sha256", "job_description", "expected",
+                   "seniority_reviewed", "attrs_reviewed"}
+    provenance = {"labeled_by", "adjudicated", "spot_checked"}
     base = {"id": "golden_030", "source_sha256": "abc", "job_description": POSTING}
     golden = al.final_golden(
         base,
@@ -334,8 +341,8 @@ def test_final_golden_matches_the_existing_shape_plus_provenance():
         labeled_by=["claude-opus-5-5", "gpt-5.6"], adjudicated=["german", "skill:rag"],
         spot_checked=True)
 
-    assert set(existing) - set(golden) == set(), "a Golden lost a key the eval reads"
-    assert set(golden) - set(existing) == {"labeled_by", "adjudicated", "spot_checked"}
+    assert set(golden) == attr_fields | eval_fields | provenance, (
+        "a Golden lost a key the eval reads, or gained one nothing reads")
     assert list(golden)[:2] == ["id", "split"] and golden["split"] == "heldout"
     assert golden["labeled_by"] == ["claude-opus-5-5", "gpt-5.6"]
     assert golden["adjudicated"] == ["german", "skill:rag"] and golden["spot_checked"] is True
