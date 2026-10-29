@@ -1,0 +1,57 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Tests\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Monitoring im Betrieb\"\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Schutz sensibler Daten\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Qualitätssicherung\",\n      \"raw_text\": \"Gestaltung von Qualität\"\n    },\n    {\n      \"label\": \"Freigabeprozesse\",\n      \"raw_text\": \"Freigabeprozessen\"\n    },\n    {\n      \"label\": \"Gestaltung stabiler Betriebsprozesse\",\n      \"raw_text\": \"stabilen Betriebsprozessen\"\n    },\n    {\n      \"label\": \"Risikobasierte Prüfung von KI-Systemen\",\n      \"raw_text\": \"KI-Systeme risikobasiert hinterfragen\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Ein abgeschlossenes Studium, eine vergleichbare Qualifikation oder relevante Berufserfahrung mit Bezug zu IT, Data Science, Software Engineering, Informationssicherheit oder Qualitätssicherung\",\n  \"notes\": \"„Was du bietest“ ist der Anforderungsabschnitt; es gibt keinen optionalen Qualifikationsabschnitt.\\nDie unter „Was wir bieten“ beschriebenen Tätigkeiten wurden nicht als eigenständige Qualifikationsanforderungen gewertet.\\nData Science, Software Engineering und Informationssicherheit stehen als fachlicher Bezug der Ausbildung oder alternativen Berufserfahrung, nicht als separat verlangte technische Fähigkeiten.\\nDie risikobasierte Prüfung wurde wörtlich als eigene technische Praxis erfasst; konkrete Verfahren zur Halluzinationserkennung oder zum Testen auf Verzerrungen werden nicht ausdrücklich verlangt.\\nRegulierte IT-Umfelder sowie Banking und Fintech wurden als Domänenwissen ausgeschlossen.\\nAllgemeine Erfahrung ohne Jahresangabe, nachgewiesene Erfahrung oder Führungsaufgabe liefert kein Senioritätssignal.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "Tests"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring im Betrieb"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "Schutz sensibler Daten"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Qualitätssicherung",
+        "raw_text": "Gestaltung von Qualität"
+      },
+      {
+        "label": "Freigabeprozesse",
+        "raw_text": "Freigabeprozessen"
+      },
+      {
+        "label": "Gestaltung stabiler Betriebsprozesse",
+        "raw_text": "stabilen Betriebsprozessen"
+      },
+      {
+        "label": "Risikobasierte Prüfung von KI-Systemen",
+        "raw_text": "KI-Systeme risikobasiert hinterfragen"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Ein abgeschlossenes Studium, eine vergleichbare Qualifikation oder relevante Berufserfahrung mit Bezug zu IT, Data Science, Software Engineering, Informationssicherheit oder Qualitätssicherung",
+    "notes": "„Was du bietest“ ist der Anforderungsabschnitt; es gibt keinen optionalen Qualifikationsabschnitt.\nDie unter „Was wir bieten“ beschriebenen Tätigkeiten wurden nicht als eigenständige Qualifikationsanforderungen gewertet.\nData Science, Software Engineering und Informationssicherheit stehen als fachlicher Bezug der Ausbildung oder alternativen Berufserfahrung, nicht als separat verlangte technische Fähigkeiten.\nDie risikobasierte Prüfung wurde wörtlich als eigene technische Praxis erfasst; konkrete Verfahren zur Halluzinationserkennung oder zum Testen auf Verzerrungen werden nicht ausdrücklich verlangt.\nRegulierte IT-Umfelder sowie Banking und Fintech wurden als Domänenwissen ausgeschlossen.\nAllgemeine Erfahrung ohne Jahresangabe, nachgewiesene Erfahrung oder Führungsaufgabe liefert kein Senioritätssignal."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "f87f866298e94e8b7d94d0a8732923742d01c16511e4de5e0a31ce07d921c3a1",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

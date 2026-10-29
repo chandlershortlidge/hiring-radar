@@ -1,0 +1,60 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\"},\n    {\"skill_id\": \"jax\", \"requirement\": \"required\", \"raw_text\": \"JAX\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"ML frameworks\", \"uncertain\": true},\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"required\", \"raw_text\": \"deep learning\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"High-performance computing (HPC)\", \"raw_text\": \"HPC environments\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Research Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"MSc or higher in ML, Computer Science or a related discipline, or equivalent professional experience\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"The posting is truncated mid-sentence at 'deep learning rese' (presumably 'research'). Skills after that point cannot be labeled.\\nmachine-learning is mapped from 'ML frameworks' / 'complex ML workflows' / 'large-scale ML workloads'. These may be read as a broad ML skill or as just context for the frameworks, so it is flagged.\\ndeep-learning is mapped from 'deep learning rese[arch]'. The bullet asks for research contribution experience, not a framework skill, so it is flagged.\\nHPC has no taxonomy entry, so it is listed under unmapped.\\nThe senior level is stated in the title. '5+ years' would also infer senior.\\nDegree is labeled master: 'MSc or higher' names MSc as the highest explicit level, and the 'or higher' wording is not treated as phd. It is flagged for review.\\n'or equivalent professional experience' accepts experience in place of the degree, so degree_or_equivalent is true.\\n'Software Engineering' appears only as a degree field, so it is not labeled as a skill.\\nThe responsibilities section mentions model development and inference, but these are not labeled because the requirements do not ask for them.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ML frameworks",
+        "uncertain": true
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "High-performance computing (HPC)",
+        "raw_text": "HPC environments"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Research Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "MSc or higher in ML, Computer Science or a related discipline, or equivalent professional experience",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "The posting is truncated mid-sentence at 'deep learning rese' (presumably 'research'). Skills after that point cannot be labeled.\nmachine-learning is mapped from 'ML frameworks' / 'complex ML workflows' / 'large-scale ML workloads'. These may be read as a broad ML skill or as just context for the frameworks, so it is flagged.\ndeep-learning is mapped from 'deep learning rese[arch]'. The bullet asks for research contribution experience, not a framework skill, so it is flagged.\nHPC has no taxonomy entry, so it is listed under unmapped.\nThe senior level is stated in the title. '5+ years' would also infer senior.\nDegree is labeled master: 'MSc or higher' names MSc as the highest explicit level, and the 'or higher' wording is not treated as phd. It is flagged for review.\n'or equivalent professional experience' accepts experience in place of the degree, so degree_or_equivalent is true.\n'Software Engineering' appears only as a degree field, so it is not labeled as a skill.\nThe responsibilities section mentions model development and inference, but these are not labeled because the requirements do not ask for them."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "da0fbeb13082a16da135399da3dd43051c0f6ceee9ca4f5907457ae75cfd6574",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

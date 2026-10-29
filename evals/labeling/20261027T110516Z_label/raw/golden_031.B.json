@@ -1,0 +1,178 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"productionizing LLM-powered applications\"\n    },\n    {\n      \"skill_id\": \"fastapi\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"FastAPI\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM APIs\"\n    },\n    {\n      \"skill_id\": \"openai-api\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"OpenAI\"\n    },\n    {\n      \"skill_id\": \"anthropic-api\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Anthropic\"\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangChain\"\n    },\n    {\n      \"skill_id\": \"llamaindex\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LlamaIndex\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG architectures\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"embeddings\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"vector databases\"\n    },\n    {\n      \"skill_id\": \"weaviate\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Weaviate\"\n    },\n    {\n      \"skill_id\": \"pgvector\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"pgvector\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"containerized development environments\"\n    },\n    {\n      \"skill_id\": \"postgresql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PostgreSQL\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"functional and integration tests\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation frameworks for AI/LLM output quality\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"fine-tuning\"\n    },\n    {\n      \"skill_id\": \"open-source-llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"open-source LLMs\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"prompt engineering\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agentic workflows\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distributed systems\"\n    },\n    {\n      \"skill_id\": \"kafka\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Kafka\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"machine learning fundamentals\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"scikit-learn\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"TensorFlow\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Pinecone\",\n      \"raw_text\": \"Pinecone\"\n    },\n    {\n      \"label\": \"Redis\",\n      \"raw_text\": \"Redis\"\n    },\n    {\n      \"label\": \"Stream processing\",\n      \"raw_text\": \"streaming\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI/LLM Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The opening candidate-profile sentence explicitly asks for productionizing LLM-powered applications, so AI deployment is required.\\nThe following sentence describes enjoyment of an intersection of disciplines rather than asking for software engineering or applied AI as separate qualifications; these are not independently labeled.\\nTechnologies and practices named only under responsibilities, including vector search and orchestration, are excluded.\\nAgentic workflows is interpreted literally as experience with agents, not as a separate requirement for workflow automation or multi-agent systems.\\nStreaming has no matching taxonomy entry; Kafka does not imply event-driven systems.\\nEvaluation is required because the Core Requirements mention overrides the optional evaluating-open-source-LLMs mention.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "productionizing LLM-powered applications"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM APIs"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "required",
+        "raw_text": "OpenAI"
+      },
+      {
+        "skill_id": "anthropic-api",
+        "requirement": "required",
+        "raw_text": "Anthropic"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "required",
+        "raw_text": "LlamaIndex"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG architectures"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "embeddings"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector databases"
+      },
+      {
+        "skill_id": "weaviate",
+        "requirement": "required",
+        "raw_text": "Weaviate"
+      },
+      {
+        "skill_id": "pgvector",
+        "requirement": "required",
+        "raw_text": "pgvector"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containerized development environments"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "PostgreSQL"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "functional and integration tests"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation frameworks for AI/LLM output quality"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "open-source-llms",
+        "requirement": "nice_to_have",
+        "raw_text": "open-source LLMs"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "prompt engineering"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic workflows"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "kafka",
+        "requirement": "nice_to_have",
+        "raw_text": "Kafka"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "machine learning fundamentals"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "nice_to_have",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorFlow"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Pinecone",
+        "raw_text": "Pinecone"
+      },
+      {
+        "label": "Redis",
+        "raw_text": "Redis"
+      },
+      {
+        "label": "Stream processing",
+        "raw_text": "streaming"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI/LLM Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The opening candidate-profile sentence explicitly asks for productionizing LLM-powered applications, so AI deployment is required.\nThe following sentence describes enjoyment of an intersection of disciplines rather than asking for software engineering or applied AI as separate qualifications; these are not independently labeled.\nTechnologies and practices named only under responsibilities, including vector search and orchestration, are excluded.\nAgentic workflows is interpreted literally as experience with agents, not as a separate requirement for workflow automation or multi-agent systems.\nStreaming has no matching taxonomy entry; Kafka does not imply event-driven systems.\nEvaluation is required because the Core Requirements mention overrides the optional evaluating-open-source-LLMs mention."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "c440660fde63616a6c8839ef9481c018fc035193476b8751e35617adb328fc6f",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

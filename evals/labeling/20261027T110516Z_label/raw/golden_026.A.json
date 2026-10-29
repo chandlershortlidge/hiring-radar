@@ -1,0 +1,78 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit Kubernetes\"},\n    {\"skill_id\": \"ai-infrastructure\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AI-Plattform-Infrastruktur\", \"uncertain\": true},\n    {\"skill_id\": \"linux\", \"requirement\": \"required\", \"raw_text\": \"Linux\"},\n    {\"skill_id\": \"networking\", \"requirement\": \"required\", \"raw_text\": \"Netzwerken\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"required\", \"raw_text\": \"Terraform\"},\n    {\"skill_id\": \"helm\", \"requirement\": \"required\", \"raw_text\": \"Helm\"},\n    {\"skill_id\": \"gitops\", \"requirement\": \"required\", \"raw_text\": \"GitOps\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"GPU workloads\", \"raw_text\": \"GPU-Workloads\"},\n    {\"label\": \"Troubleshooting\", \"raw_text\": \"Troubleshooting\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"(Senior) Platform Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"sehr gute Deutsch- und Englischkenntnisse\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"The heading 'Das bringst Du mit:' is a requirements section, so its items default to required.\\nai-infrastructure is nice_to_have because of the inline 'idealerweise'. The mapping is uncertain. The bullet also allows 'großes Interesse' as an alternative to experience.\\nGPU-Workloads has no taxonomy entry, so it goes in unmapped with nice_to_have context.\\nI put Troubleshooting in unmapped as a possible technical practice with no taxonomy entry. A reviewer may prefer to drop it as a soft or generic skill.\\n'Automatisierungslösungen' is a general umbrella term. I did not map it to infrastructure-as-code or workflow-automation because neither is named.\\nObservability, VMware Private AI Foundation, NVIDIA and GPU-Scheduling appear only in the responsibilities, so they are not labeled.\\n'Interesse an AI-Plattformen' asks for interest, not a skill, so it is not labeled.\\nKubernetes also appears in the title and the responsibilities. The raw_text quotes the requirement mention.\\nSeniority comes from the title '(Senior)'. The parentheses mean senior is optional, so the level is ambiguous between mid and senior. I labeled it stated senior by analogy with '(Junior)' → junior and flagged it.\\n'fundierte Erfahrung' is not a level signal on its own.\\nThe Englisch-/Deutschunterricht in the benefits is ignored for the German label.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit Kubernetes"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "nice_to_have",
+        "raw_text": "AI-Plattform-Infrastruktur",
+        "uncertain": true
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "Netzwerken"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "helm",
+        "requirement": "required",
+        "raw_text": "Helm"
+      },
+      {
+        "skill_id": "gitops",
+        "requirement": "required",
+        "raw_text": "GitOps"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "GPU workloads",
+        "raw_text": "GPU-Workloads"
+      },
+      {
+        "label": "Troubleshooting",
+        "raw_text": "Troubleshooting"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "(Senior) Platform Engineer",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "sehr gute Deutsch- und Englischkenntnisse",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The heading 'Das bringst Du mit:' is a requirements section, so its items default to required.\nai-infrastructure is nice_to_have because of the inline 'idealerweise'. The mapping is uncertain. The bullet also allows 'großes Interesse' as an alternative to experience.\nGPU-Workloads has no taxonomy entry, so it goes in unmapped with nice_to_have context.\nI put Troubleshooting in unmapped as a possible technical practice with no taxonomy entry. A reviewer may prefer to drop it as a soft or generic skill.\n'Automatisierungslösungen' is a general umbrella term. I did not map it to infrastructure-as-code or workflow-automation because neither is named.\nObservability, VMware Private AI Foundation, NVIDIA and GPU-Scheduling appear only in the responsibilities, so they are not labeled.\n'Interesse an AI-Plattformen' asks for interest, not a skill, so it is not labeled.\nKubernetes also appears in the title and the responsibilities. The raw_text quotes the requirement mention.\nSeniority comes from the title '(Senior)'. The parentheses mean senior is optional, so the level is ambiguous between mid and senior. I labeled it stated senior by analogy with '(Junior)' → junior and flagged it.\n'fundierte Erfahrung' is not a level signal on its own.\nThe Englisch-/Deutschunterricht in the benefits is ignored for the German label."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "3a9284bc2646a284e3b20f41049bf90383d4134726d0e2d725e01d91a1399cfc",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

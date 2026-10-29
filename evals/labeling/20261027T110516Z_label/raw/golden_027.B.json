@@ -1,0 +1,163 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"GenAI-Technologien\"},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"required\", \"raw_text\": \"Embeddings\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"Prompt Engineering\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"Evaluierung\"},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Software Engineering\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"Backend\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"APIs\"},\n    {\"skill_id\": \"microservices\", \"requirement\": \"required\", \"raw_text\": \"Microservices\"},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"required\", \"raw_text\": \"verteilte Systeme\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud-Plattformen\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"GCP\"},\n    {\"skill_id\": \"devops\", \"requirement\": \"required\", \"raw_text\": \"DevOps-Stacks\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"IaC\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"Container\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Kubernetes\"},\n    {\"skill_id\": \"llmops\", \"requirement\": \"required\", \"raw_text\": \"LLMOps\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"Deployment-Patterns\", \"uncertain\": true},\n    {\"skill_id\": \"model-versioning\", \"requirement\": \"required\", \"raw_text\": \"Versionierung\", \"uncertain\": true},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"Testing\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"Monitoring\"},\n    {\"skill_id\": \"cybersecurity\", \"requirement\": \"required\", \"raw_text\": \"Security\", \"uncertain\": true},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"Architekturdesign\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Scalability\", \"raw_text\": \"Skalierbarkeit\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"AI Solution Architect / Senior Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"sehr gute Deutsch- und Englischkenntnisse\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Only Dein Profil supplies candidate skill requirements; no optional qualification section is present. Technologies appearing only in the company description or responsibilities are excluded.\\nAlternatives joined by oder are each labeled required, following the guide's treatment of named alternatives.\\nDeployment-Patterns and Versionierung are provisionally mapped to AI deployment and model versioning from their LLMOps context; the text does not explicitly specify what is deployed or versioned.\\nSecurity is provisionally mapped to cybersecurity; the posting does not specify a narrower security practice.\\nSkalierbarkeit is an explicit technical qualification without a matching taxonomy entry; distributed systems is not added as its parent or substitute.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "GenAI-Technologien"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "Embeddings"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Evaluierung"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Software Engineering"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "Microservices"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "verteilte Systeme"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Plattformen"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps-Stacks"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "IaC"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "Container"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "llmops",
+        "requirement": "required",
+        "raw_text": "LLMOps"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "Deployment-Patterns",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-versioning",
+        "requirement": "required",
+        "raw_text": "Versionierung",
+        "uncertain": true
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "Testing"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "Security",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Architekturdesign"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Scalability",
+        "raw_text": "Skalierbarkeit"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "AI Solution Architect / Senior Engineer",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "sehr gute Deutsch- und Englischkenntnisse",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Only Dein Profil supplies candidate skill requirements; no optional qualification section is present. Technologies appearing only in the company description or responsibilities are excluded.\nAlternatives joined by oder are each labeled required, following the guide's treatment of named alternatives.\nDeployment-Patterns and Versionierung are provisionally mapped to AI deployment and model versioning from their LLMOps context; the text does not explicitly specify what is deployed or versioned.\nSecurity is provisionally mapped to cybersecurity; the posting does not specify a narrower security practice.\nSkalierbarkeit is an explicit technical qualification without a matching taxonomy entry; distributed systems is not added as its parent or substitute."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "061f38fd50d01883a381b99237e6f6eb6d364dd5f36b294c05f25126e0a68bf1",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

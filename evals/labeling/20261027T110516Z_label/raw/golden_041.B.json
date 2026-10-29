@@ -1,0 +1,105 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"professionellen Softwareentwicklung\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Softwarearchitektur\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"APIs, automatisierten Tests\",\n      \"uncertain\": false\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"automatisierten Tests\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Git\"\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Erfahrung mit NLP\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"generativer KI\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud Computing\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Kenntnisse in CI/CD\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Infrastructure as Code\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Du verstehst Machine Learning\"\n    },\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Data Science so gut\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Modern development processes\",\n      \"raw_text\": \"modernen Entwicklungsprozessen\"\n    },\n    {\n      \"label\": \"Container orchestration\",\n      \"raw_text\": \"Container-Orchestrierung\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Applied AI Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Du hast sehr gute Deutsch- und Englischkenntnisse\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"abgeschlossenes Studium der Mathematik, Physik, (Wirtschafts-)Informatik oder eines anderen quantitativen Studiengangs\",\n  \"notes\": \"Dein Profil supplies the candidate requirements; technologies appearing only under Deine Aufgaben are excluded.\\nThe inline wording 'sind willkommen' is interpreted as an optional marker for CI/CD, Container-Orchestrierung and Infrastructure as Code. CI/CD in responsibilities does not create a required criterion.\\nContainer orchestration and modern development processes have no matching taxonomy entries; neither Kubernetes nor DevOps is inferred.\\nSelecting and assessing suitable ML methods is read literally, without adding separate model-selection or evaluation skills.\\nThe unspecified completed degree maps to bachelor; alternative quantitative subjects widen the field rather than permit equivalent experience.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "professionellen Softwareentwicklung"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Softwarearchitektur"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs, automatisierten Tests",
+        "uncertain": false
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automatisierten Tests"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit NLP"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "generativer KI"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud Computing"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "Kenntnisse in CI/CD"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "nice_to_have",
+        "raw_text": "Infrastructure as Code"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Du verstehst Machine Learning"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "Data Science so gut"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Modern development processes",
+        "raw_text": "modernen Entwicklungsprozessen"
+      },
+      {
+        "label": "Container orchestration",
+        "raw_text": "Container-Orchestrierung"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Applied AI Engineer",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Du hast sehr gute Deutsch- und Englischkenntnisse",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "abgeschlossenes Studium der Mathematik, Physik, (Wirtschafts-)Informatik oder eines anderen quantitativen Studiengangs",
+    "notes": "Dein Profil supplies the candidate requirements; technologies appearing only under Deine Aufgaben are excluded.\nThe inline wording 'sind willkommen' is interpreted as an optional marker for CI/CD, Container-Orchestrierung and Infrastructure as Code. CI/CD in responsibilities does not create a required criterion.\nContainer orchestration and modern development processes have no matching taxonomy entries; neither Kubernetes nor DevOps is inferred.\nSelecting and assessing suitable ML methods is read literally, without adding separate model-selection or evaluation skills.\nThe unspecified completed degree maps to bachelor; alternative quantitative subjects widen the field rather than permit equivalent experience."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "2a930ceae672139bce0620fc4f573ae0ffaa02861b57eecf5c0d114bf9ea7af2",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

@@ -1,0 +1,55 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML workflows\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"High-performance computing\",\n      \"raw_text\": \"HPC environments\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Research Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"MSc or higher in ML, Computer Science or a related discipline, or equivalent professional experience\",\n  \"notes\": \"Requirements is the only candidate-qualification section; no optional section or inline optional markers appear.\\nThe final requirement is truncated; deep learning is explicitly named and labeled, but no missing text is inferred.\\nHPC is an explicit required skill without a matching taxonomy entry.\\nMSc is the highest explicitly named degree level; 'or higher' does not explicitly name a PhD.\\nDegree subject fields and technologies or practices mentioned only in responsibilities are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ML workflows"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "High-performance computing",
+        "raw_text": "HPC environments"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Research Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "MSc or higher in ML, Computer Science or a related discipline, or equivalent professional experience",
+    "notes": "Requirements is the only candidate-qualification section; no optional section or inline optional markers appear.\nThe final requirement is truncated; deep learning is explicitly named and labeled, but no missing text is inferred.\nHPC is an explicit required skill without a matching taxonomy entry.\nMSc is the highest explicitly named degree level; 'or higher' does not explicitly name a PhD.\nDegree subject fields and technologies or practices mentioned only in responsibilities are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "da0fbeb13082a16da135399da3dd43051c0f6ceee9ca4f5907457ae75cfd6574",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

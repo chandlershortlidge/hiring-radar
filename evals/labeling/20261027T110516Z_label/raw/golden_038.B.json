@@ -1,0 +1,64 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"excellent software engineering skills\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"hands-on experience with ML systems\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"javascript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Javascript\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"statistical role\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"High-level programming language\",\n      \"raw_text\": \"Deep knowledge of a high-level programming language\"\n    },\n    {\n      \"label\": \"Ruby\",\n      \"raw_text\": \"Ruby\"\n    },\n    {\n      \"label\": \"Data analytics\",\n      \"raw_text\": \"data analytics\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff Product Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"BSc in Computer Science, Maths or Statistics or related discipline\",\n  \"notes\": \"The Profile section defaults to required: its disclaimer, “These are meant to be indicative, not hard requirements.”, is not an optional heading or one of the guide's listed inline markers; this is a literal application of the precedence rules.\\nThe introductory request for hands-on ML experience conflicts with “No ML experience required.” Machine learning is provisionally included under the required-mention rule and flagged for review.\\nThe Bonus skills & attributes heading makes data analytics and statistical experience optional.\\nRuby and generic high-level programming language knowledge have no matching taxonomy entry; data analytics is not assumed to mean Data Science.\\nRails, testing, and other technologies or practices named only in responsibilities or company descriptions are excluded. Degree fields are not separately labeled as skills.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "excellent software engineering skills"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "hands-on experience with ML systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "Javascript"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "nice_to_have",
+        "raw_text": "statistical role"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "High-level programming language",
+        "raw_text": "Deep knowledge of a high-level programming language"
+      },
+      {
+        "label": "Ruby",
+        "raw_text": "Ruby"
+      },
+      {
+        "label": "Data analytics",
+        "raw_text": "data analytics"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff Product Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "BSc in Computer Science, Maths or Statistics or related discipline",
+    "notes": "The Profile section defaults to required: its disclaimer, “These are meant to be indicative, not hard requirements.”, is not an optional heading or one of the guide's listed inline markers; this is a literal application of the precedence rules.\nThe introductory request for hands-on ML experience conflicts with “No ML experience required.” Machine learning is provisionally included under the required-mention rule and flagged for review.\nThe Bonus skills & attributes heading makes data analytics and statistical experience optional.\nRuby and generic high-level programming language knowledge have no matching taxonomy entry; data analytics is not assumed to mean Data Science.\nRails, testing, and other technologies or practices named only in responsibilities or company descriptions are excluded. Degree fields are not separately labeled as skills."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "d3f662558557b1a5f1751e607646ae50131279c1429b4af6f05f3d52ed61c3b7",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

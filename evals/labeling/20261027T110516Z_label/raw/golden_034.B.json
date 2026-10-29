@@ -1,0 +1,82 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Microsoft Azure\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud infrastructure\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"IaC\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Building resilient, scalable systems\",\n      \"raw_text\": \"building resilient, scalable systems\"\n    },\n    {\n      \"label\": \"Whole-system troubleshooting\",\n      \"raw_text\": \"troubleshooting whole-system issues\"\n    },\n    {\n      \"label\": \"Agile development\",\n      \"raw_text\": \"working in an agile team\"\n    },\n    {\n      \"label\": \"Scrum\",\n      \"raw_text\": \"daily scrum-based sprints\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Cloud Software Engineer AI\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The candidate-qualification section is required; no optional qualification section or inline optional skill markers appear.\\nAlternatives (Azure or AWS; Python or C++) are each labeled required under the guide.\\nResilient/scalable system development and troubleshooting are read literally, without inferring distributed systems or testing; neither has a matching taxonomy entry.\\nAgile and Scrum are treated as technical practices requested in the qualification section, not as teamwork soft skills.\\nThe guide does not explicitly cover negated degree mentions: 'a degree is not required' is read literally as no degree qualification, so degree fields are null.\\nContinuous delivery appears only in responsibilities; data privacy and generative AI appear only in the company description and are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud infrastructure"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "IaC"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Building resilient, scalable systems",
+        "raw_text": "building resilient, scalable systems"
+      },
+      {
+        "label": "Whole-system troubleshooting",
+        "raw_text": "troubleshooting whole-system issues"
+      },
+      {
+        "label": "Agile development",
+        "raw_text": "working in an agile team"
+      },
+      {
+        "label": "Scrum",
+        "raw_text": "daily scrum-based sprints"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Cloud Software Engineer AI",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The candidate-qualification section is required; no optional qualification section or inline optional skill markers appear.\nAlternatives (Azure or AWS; Python or C++) are each labeled required under the guide.\nResilient/scalable system development and troubleshooting are read literally, without inferring distributed systems or testing; neither has a matching taxonomy entry.\nAgile and Scrum are treated as technical practices requested in the qualification section, not as teamwork soft skills.\nThe guide does not explicitly cover negated degree mentions: 'a degree is not required' is read literally as no degree qualification, so degree fields are null.\nContinuous delivery appears only in responsibilities; data privacy and generative AI appear only in the company description and are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "6a481fc8051cf14dac09df434675f0ad568aac5233a6fae0176444624e6e6101",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

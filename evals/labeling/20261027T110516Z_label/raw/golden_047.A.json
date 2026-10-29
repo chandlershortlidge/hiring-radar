@@ -1,0 +1,157 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"großen Sprachmodellen (LLMs)\"},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"required\", \"raw_text\": \"Vektordatenbanken\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG-Pipelines\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"Orchestrierungs-Frameworks\", \"uncertain\": true},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"LangChain\"},\n    {\"skill_id\": \"langgraph\", \"requirement\": \"required\", \"raw_text\": \"LangGraph\"},\n    {\"skill_id\": \"devops\", \"requirement\": \"required\", \"raw_text\": \"praktischen Erfahrung in DevOps-Projekten\", \"uncertain\": true},\n    {\"skill_id\": \"csharp\", \"requirement\": \"required\", \"raw_text\": \"C#\"},\n    {\"skill_id\": \"javascript\", \"requirement\": \"required\", \"raw_text\": \"JavaScript\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"Bereitstellung von ML-/KI-Modellen in Produktionsumgebungen\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"Prompt-Engineering\"},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"Feinabstimmung\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"Backend-Technologien\"},\n    {\"skill_id\": \"node-js\", \"requirement\": \"required\", \"raw_text\": \"NodeJS\"},\n    {\"skill_id\": \"flask\", \"requirement\": \"required\", \"raw_text\": \"Flask\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"REST APIs\"},\n    {\"skill_id\": \"graphql\", \"requirement\": \"required\", \"raw_text\": \"GraphQL\"},\n    {\"skill_id\": \"fastapi\", \"requirement\": \"required\", \"raw_text\": \"FastAPI\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Microsoft Azure\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud-Anbieter\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"wie AWS\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"AWS oder Google\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \".NET Core\", \"raw_text\": \".NET Core\"},\n    {\"label\": \"Spring/Spring Boot\", \"raw_text\": \"Spring/SpringBoot\"},\n    {\"label\": \"Django\", \"raw_text\": \"Django\"}\n  ],\n  \"seniority\": \"junior\", \"seniority_basis\": \"stated\", \"seniority_signal\": \"(Junior)\",\n  \"german\": \"required\", \"german_basis\": \"stated\", \"german_signal\": \"Kommunikationsfähigkeit in Deutsch und Englisch\",\n  \"degree\": \"bachelor\", \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false, \"degree_signal\": \"deinen Studienabschluss mit einem technischen Hintergrund\",\n  \"uncertain\": [],\n  \"notes\": \"Only the Qualifikationen section was labeled. The Aufgaben (responsibilities), Benefits and company description sections add nothing beyond it, e.g. 'Microservices' and the Generative AI and Data Science training topics in Benefits are not labeled.\\nThe word 'LLMs' also appears in the Aufgaben section. I quoted the Qualifikationen mention 'großen Sprachmodellen (LLMs)', which is the one that determines the label.\\n'Orchestrierungs-Frameworks' is mapped to llm-orchestration because it sits inside the generative-AI integration list, next to LangChain/LangGraph. Flagged uncertain.\\n'Erfahrung in DevOps-Projekten' is phrased as project experience rather than a named skill. Mapped to devops and flagged uncertain.\\n'Google' as a cloud provider is mapped to gcp. Flagged uncertain.\\n'Cloud-Anbieter' names the broad skill explicitly, so cloud is labeled alongside azure, aws and gcp.\\nThe programming languages are listed as 'one of the following' (any of them). I took the literal reading and labeled each language required.\\n'Studienabschluss' with no level given maps to bachelor. The field list ('oder einem ähnlichen orientierten Studiengang') widens the field only, so degree_or_equivalent is false.\\nGerman is labeled required: it is an unmarked item in the requirements list.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "großen Sprachmodellen (LLMs)"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "Vektordatenbanken"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG-Pipelines"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "Orchestrierungs-Frameworks",
+        "uncertain": true
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "praktischen Erfahrung in DevOps-Projekten",
+        "uncertain": true
+      },
+      {
+        "skill_id": "csharp",
+        "requirement": "required",
+        "raw_text": "C#"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "Bereitstellung von ML-/KI-Modellen in Produktionsumgebungen"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt-Engineering"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "Feinabstimmung"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend-Technologien"
+      },
+      {
+        "skill_id": "node-js",
+        "requirement": "required",
+        "raw_text": "NodeJS"
+      },
+      {
+        "skill_id": "flask",
+        "requirement": "required",
+        "raw_text": "Flask"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST APIs"
+      },
+      {
+        "skill_id": "graphql",
+        "requirement": "required",
+        "raw_text": "GraphQL"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Anbieter"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "wie AWS"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "AWS oder Google",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": ".NET Core",
+        "raw_text": ".NET Core"
+      },
+      {
+        "label": "Spring/Spring Boot",
+        "raw_text": "Spring/SpringBoot"
+      },
+      {
+        "label": "Django",
+        "raw_text": "Django"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "(Junior)",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Kommunikationsfähigkeit in Deutsch und Englisch",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "deinen Studienabschluss mit einem technischen Hintergrund",
+    "uncertain": [],
+    "notes": "Only the Qualifikationen section was labeled. The Aufgaben (responsibilities), Benefits and company description sections add nothing beyond it, e.g. 'Microservices' and the Generative AI and Data Science training topics in Benefits are not labeled.\nThe word 'LLMs' also appears in the Aufgaben section. I quoted the Qualifikationen mention 'großen Sprachmodellen (LLMs)', which is the one that determines the label.\n'Orchestrierungs-Frameworks' is mapped to llm-orchestration because it sits inside the generative-AI integration list, next to LangChain/LangGraph. Flagged uncertain.\n'Erfahrung in DevOps-Projekten' is phrased as project experience rather than a named skill. Mapped to devops and flagged uncertain.\n'Google' as a cloud provider is mapped to gcp. Flagged uncertain.\n'Cloud-Anbieter' names the broad skill explicitly, so cloud is labeled alongside azure, aws and gcp.\nThe programming languages are listed as 'one of the following' (any of them). I took the literal reading and labeled each language required.\n'Studienabschluss' with no level given maps to bachelor. The field list ('oder einem ähnlichen orientierten Studiengang') widens the field only, so degree_or_equivalent is false.\nGerman is labeled required: it is an unmarked item in the requirements list."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "91142debb1fca65b281d5a55c9895d66a60bd587f0482c608b83014b74ed87e4",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

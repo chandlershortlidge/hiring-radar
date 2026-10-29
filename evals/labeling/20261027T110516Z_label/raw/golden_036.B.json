@@ -1,0 +1,109 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI- und Machine-Learning-Lösungen\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Machine-Learning-Lösungen\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"in der Cloud umgesetzt\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GenAI-Lösungen\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI Agents/Agenten\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SciKit-Learn\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"kubeflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"KubeFlow\"\n    },\n    {\n      \"skill_id\": \"hugging-face\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"HuggingFace\"\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangChain\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Softwarelösungen konzipieren, designen\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Softwarelösungen konzipieren, designen und entwickeln\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"On-premises implementation\",\n      \"raw_text\": \"on Prem\"\n    },\n    {\n      \"label\": \"Agile software development methods\",\n      \"raw_text\": \"agile Softwareentwicklungsmethoden\"\n    },\n    {\n      \"label\": \"Enterprise architecture\",\n      \"raw_text\": \"Anforderungen moderner Enterprise-Architekturen\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI & GenAI Architect\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"verhandlungssicher auf Deutsch (mind. C1)\",\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"ein Master oder Ph.D. ist von Vorteil\",\n  \"notes\": \"Dein Skillset is a requirements section; no section heading marks skills optional. The framework and GenAI examples therefore count as required.\\nThe highest degree named is the optional Ph.D.; the preceding unspecified degree is required, but the schema permits only one degree label.\\nSoftware solution conception and design are provisionally mapped to software-architecture; enterprise architecture is retained separately as unmapped because it is not necessarily software architecture.\\nOn-premises implementation is explicitly requested but has no matching taxonomy entry.\\nThe inline idealerweise qualifies the AI/GenAI context, not the ability to design and develop software; AI and GenAI are independently required elsewhere.\\nDegree fields and industry experience are excluded as fields of study and domain knowledge. Technologies appearing only under Deine Mission are excluded.\\nSchlagworte is treated literally as search metadata, not a candidate-requirements or dedicated tech-stack section.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI- und Machine-Learning-Lösungen"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Machine-Learning-Lösungen"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "in der Cloud umgesetzt"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "GenAI-Lösungen"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "AI Agents/Agenten"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "SciKit-Learn"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "kubeflow",
+        "requirement": "required",
+        "raw_text": "KubeFlow"
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "required",
+        "raw_text": "HuggingFace"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Softwarelösungen konzipieren, designen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Softwarelösungen konzipieren, designen und entwickeln"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "On-premises implementation",
+        "raw_text": "on Prem"
+      },
+      {
+        "label": "Agile software development methods",
+        "raw_text": "agile Softwareentwicklungsmethoden"
+      },
+      {
+        "label": "Enterprise architecture",
+        "raw_text": "Anforderungen moderner Enterprise-Architekturen"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI & GenAI Architect",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "verhandlungssicher auf Deutsch (mind. C1)",
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "ein Master oder Ph.D. ist von Vorteil",
+    "notes": "Dein Skillset is a requirements section; no section heading marks skills optional. The framework and GenAI examples therefore count as required.\nThe highest degree named is the optional Ph.D.; the preceding unspecified degree is required, but the schema permits only one degree label.\nSoftware solution conception and design are provisionally mapped to software-architecture; enterprise architecture is retained separately as unmapped because it is not necessarily software architecture.\nOn-premises implementation is explicitly requested but has no matching taxonomy entry.\nThe inline idealerweise qualifies the AI/GenAI context, not the ability to design and develop software; AI and GenAI are independently required elsewhere.\nDegree fields and industry experience are excluded as fields of study and domain knowledge. Technologies appearing only under Deine Mission are excluded.\nSchlagworte is treated literally as search metadata, not a candidate-requirements or dedicated tech-stack section."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "2b993a671d8b3e61d5b4bc14c7f558690fcdc6c0c06502f79a5f82edcc7886b4",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

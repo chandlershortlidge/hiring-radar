@@ -1,0 +1,141 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Evaluation\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Deployment und dem produktiven Betrieb von KI-Modellen\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Prompt-, Kontext- und Tool-Engineering\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"generativen KI-Modellen\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Backend-Entwicklung\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Go\"\n    },\n    {\n      \"skill_id\": \"rust\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Rust\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"On-Prem Cloud-Techniken\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps-Frameworks\"\n    },\n    {\n      \"skill_id\": \"mlflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLFlow\"\n    },\n    {\n      \"skill_id\": \"kubeflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubeflow\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Monitoring\"\n    },\n    {\n      \"skill_id\": \"prometheus\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Prometheus\"\n    },\n    {\n      \"skill_id\": \"grafana\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Grafana\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Entwicklung, Fine-Tuning und Training von KI Modellen\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Fine-Tuning\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Production operation of AI models\",\n      \"raw_text\": \"produktiven Betrieb von KI-Modellen\"\n    },\n    {\n      \"label\": \"Context engineering\",\n      \"raw_text\": \"Kontext- und Tool-Engineering\"\n    },\n    {\n      \"label\": \"Tool engineering\",\n      \"raw_text\": \"Tool-Engineering\"\n    },\n    {\n      \"label\": \"Performance optimization\",\n      \"raw_text\": \"Leistungsoptimierung\"\n    },\n    {\n      \"label\": \"AI model training\",\n      \"raw_text\": \"Training von KI Modellen\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI Engineer (w/m/d)\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Verhandlungssichere Deutschkenntnisse\",\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Abgeschlossenes Masterstudium der Informatik, Mathematik oder einer vergleichbaren Fachrichtung\",\n  \"notes\": \"„Dein Profil“ enthält die Anforderungen; „ist von Vorteil“ macht Entwicklung, Fine-Tuning und Training von KI-Modellen optional.\\nTechnologien ausschließlich aus Unternehmensbeschreibung oder Aufgaben wurden nicht aufgenommen.\\nLeistungsoptimierung wird wörtlich als allgemeine Leistungsoptimierung gelesen, nicht als ausdrücklich geforderte Inferenzoptimierung.\\nKontext- und Tool-Engineering werden nicht mit Prompt Engineering beziehungsweise Tool Calling gleichgesetzt; passende eigene Taxonomieeinträge fehlen.\\nProduktiver Modellbetrieb und Modelltraining sind ausdrücklich genannt, haben aber keine exakt passenden eigenen Taxonomieeinträge.\\n„vergleichbaren Fachrichtung“ erweitert nur die Studienfachauswahl und erlaubt keinen Ersatz des Masterabschlusses durch Berufserfahrung.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Evaluation"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "Deployment und dem produktiven Betrieb von KI-Modellen"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt-, Kontext- und Tool-Engineering"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "generativen KI-Modellen"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend-Entwicklung"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go"
+      },
+      {
+        "skill_id": "rust",
+        "requirement": "required",
+        "raw_text": "Rust"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "On-Prem Cloud-Techniken"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps-Frameworks"
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "required",
+        "raw_text": "MLFlow"
+      },
+      {
+        "skill_id": "kubeflow",
+        "requirement": "required",
+        "raw_text": "Kubeflow"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring"
+      },
+      {
+        "skill_id": "prometheus",
+        "requirement": "required",
+        "raw_text": "Prometheus"
+      },
+      {
+        "skill_id": "grafana",
+        "requirement": "required",
+        "raw_text": "Grafana"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "nice_to_have",
+        "raw_text": "Entwicklung, Fine-Tuning und Training von KI Modellen"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "Fine-Tuning"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Production operation of AI models",
+        "raw_text": "produktiven Betrieb von KI-Modellen"
+      },
+      {
+        "label": "Context engineering",
+        "raw_text": "Kontext- und Tool-Engineering"
+      },
+      {
+        "label": "Tool engineering",
+        "raw_text": "Tool-Engineering"
+      },
+      {
+        "label": "Performance optimization",
+        "raw_text": "Leistungsoptimierung"
+      },
+      {
+        "label": "AI model training",
+        "raw_text": "Training von KI Modellen"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI Engineer (w/m/d)",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Verhandlungssichere Deutschkenntnisse",
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Abgeschlossenes Masterstudium der Informatik, Mathematik oder einer vergleichbaren Fachrichtung",
+    "notes": "„Dein Profil“ enthält die Anforderungen; „ist von Vorteil“ macht Entwicklung, Fine-Tuning und Training von KI-Modellen optional.\nTechnologien ausschließlich aus Unternehmensbeschreibung oder Aufgaben wurden nicht aufgenommen.\nLeistungsoptimierung wird wörtlich als allgemeine Leistungsoptimierung gelesen, nicht als ausdrücklich geforderte Inferenzoptimierung.\nKontext- und Tool-Engineering werden nicht mit Prompt Engineering beziehungsweise Tool Calling gleichgesetzt; passende eigene Taxonomieeinträge fehlen.\nProduktiver Modellbetrieb und Modelltraining sind ausdrücklich genannt, haben aber keine exakt passenden eigenen Taxonomieeinträge.\n„vergleichbaren Fachrichtung“ erweitert nur die Studienfachauswahl und erlaubt keinen Ersatz des Masterabschlusses durch Berufserfahrung."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "73915e29ec05a0b2c70a4330a1618278833cca3739c58f8b09b29ba060dcc777",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

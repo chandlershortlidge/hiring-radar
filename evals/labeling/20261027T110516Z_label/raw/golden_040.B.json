@@ -1,0 +1,171 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"computer-vision\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"computer vision\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"applied AI\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"embeddings\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deployment\"\n    },\n    {\n      \"skill_id\": \"inference-optimization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"optimizing models for edge or embedded environments\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"onnx\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"ONNX\"\n    },\n    {\n      \"skill_id\": \"tensorrt\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"TensorRT\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"MLOps\"\n    },\n    {\n      \"skill_id\": \"experiment-tracking\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"experiment tools\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"mlflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"MLflow\"\n    },\n    {\n      \"skill_id\": \"weights-and-biases\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Weights & Biases\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"model monitoring\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Detection\",\n      \"raw_text\": \"detection\"\n    },\n    {\n      \"label\": \"Classification\",\n      \"raw_text\": \"classification\"\n    },\n    {\n      \"label\": \"Segmentation\",\n      \"raw_text\": \"segmentation\"\n    },\n    {\n      \"label\": \"Tracking\",\n      \"raw_text\": \"tracking\"\n    },\n    {\n      \"label\": \"Multimodal perception\",\n      \"raw_text\": \"multimodal perception\"\n    },\n    {\n      \"label\": \"Production support\",\n      \"raw_text\": \"production support\"\n    },\n    {\n      \"label\": \"Inference systems\",\n      \"raw_text\": \"inference systems\"\n    },\n    {\n      \"label\": \"Multimodal models\",\n      \"raw_text\": \"multimodal models\"\n    },\n    {\n      \"label\": \"OpenVINO\",\n      \"raw_text\": \"OpenVINO\"\n    },\n    {\n      \"label\": \"TFLite\",\n      \"raw_text\": \"TFLite\"\n    },\n    {\n      \"label\": \"DVC\",\n      \"raw_text\": \"DVC\"\n    },\n    {\n      \"label\": \"Post-deployment analysis\",\n      \"raw_text\": \"post-deployment analysis\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI/Computer Vision Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"MS or PhD in Computer Science, Electrical Engineering, or a related field, or equivalent practical experience\",\n  \"notes\": \"Requirements items are required; Nice To Have items are optional. Technologies appearing only in the introduction or Responsibilities are excluded.\\nAlternative technologies and example tasks are each retained under the guide's examples rule.\\nEdge-model optimization is provisionally mapped to inference-optimization; the posting does not explicitly specify inference optimization.\\nExperiment tools is provisionally mapped to experiment-tracking, although tracking is not explicitly named.\\nInference systems is left unmapped rather than equated with model serving. Multimodal techniques are not treated as synonymous with LLMs.\\nThe phrase beyond model training is read literally as introducing the explicitly requested additional experience, not as a separate model-development requirement.\\nEnglish fluency and the Berlin office location do not establish a German requirement.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "computer vision"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "applied AI"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "embeddings"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deployment"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "required",
+        "raw_text": "optimizing models for edge or embedded environments",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "onnx",
+        "requirement": "nice_to_have",
+        "raw_text": "ONNX"
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorRT"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "nice_to_have",
+        "raw_text": "MLOps"
+      },
+      {
+        "skill_id": "experiment-tracking",
+        "requirement": "nice_to_have",
+        "raw_text": "experiment tools",
+        "uncertain": true
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "nice_to_have",
+        "raw_text": "MLflow"
+      },
+      {
+        "skill_id": "weights-and-biases",
+        "requirement": "nice_to_have",
+        "raw_text": "Weights & Biases"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "model monitoring"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Detection",
+        "raw_text": "detection"
+      },
+      {
+        "label": "Classification",
+        "raw_text": "classification"
+      },
+      {
+        "label": "Segmentation",
+        "raw_text": "segmentation"
+      },
+      {
+        "label": "Tracking",
+        "raw_text": "tracking"
+      },
+      {
+        "label": "Multimodal perception",
+        "raw_text": "multimodal perception"
+      },
+      {
+        "label": "Production support",
+        "raw_text": "production support"
+      },
+      {
+        "label": "Inference systems",
+        "raw_text": "inference systems"
+      },
+      {
+        "label": "Multimodal models",
+        "raw_text": "multimodal models"
+      },
+      {
+        "label": "OpenVINO",
+        "raw_text": "OpenVINO"
+      },
+      {
+        "label": "TFLite",
+        "raw_text": "TFLite"
+      },
+      {
+        "label": "DVC",
+        "raw_text": "DVC"
+      },
+      {
+        "label": "Post-deployment analysis",
+        "raw_text": "post-deployment analysis"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI/Computer Vision Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "MS or PhD in Computer Science, Electrical Engineering, or a related field, or equivalent practical experience",
+    "notes": "Requirements items are required; Nice To Have items are optional. Technologies appearing only in the introduction or Responsibilities are excluded.\nAlternative technologies and example tasks are each retained under the guide's examples rule.\nEdge-model optimization is provisionally mapped to inference-optimization; the posting does not explicitly specify inference optimization.\nExperiment tools is provisionally mapped to experiment-tracking, although tracking is not explicitly named.\nInference systems is left unmapped rather than equated with model serving. Multimodal techniques are not treated as synonymous with LLMs.\nThe phrase beyond model training is read literally as introducing the explicitly requested additional experience, not as a separate model-development requirement.\nEnglish fluency and the Berlin office location do not establish a German requirement."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "e798d15539a8402bc80793a28c04938cd5e5abbfd4afff782489d45bef12e961",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

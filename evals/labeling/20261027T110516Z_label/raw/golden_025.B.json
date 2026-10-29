@@ -1,0 +1,105 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Architektur\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Entwicklung komplexer Softwaresysteme\"\n    },\n    {\n      \"skill_id\": \"microservices\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Microservices\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"devsecops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevSecOps\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Infrastructure as Code\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"REST\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Datenpipelines\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\"\n    },\n    {\n      \"skill_id\": \"react\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"React\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"KI/ML\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Air-gapped systems\",\n      \"raw_text\": \"Systemen in hochsicheren, abgeschotteten Umgebungen (air-gapped)\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Distinguished Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Verhandlungssichere Deutsch- und Englischkenntnisse\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Studium der Informatik oder vergleichbar, oder Du überzeugst uns, dass es auch anders geht\",\n  \"notes\": \"All profile skills are required; no optional qualifications or dedicated tech-stack section appear.\\nDistinguished Engineer is read literally as an explicitly named senior level.\\nThe unspecified Studium maps to bachelor; the explicit alternative 'oder Du überzeugst uns, dass es auch anders geht' is treated as acceptance of an equivalent non-degree qualification.\\nKI/ML maps to the combined AI/ML entry without adding a separate Machine Learning criterion from the company description.\\nAir-gapped systems experience has no fitting taxonomy entry; no broader security skill is inferred.\\nTechnologies named only in the company description or responsibilities, including containerization, are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Architektur"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Entwicklung komplexer Softwaresysteme"
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "Microservices"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "devsecops",
+        "requirement": "required",
+        "raw_text": "DevSecOps"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure as Code"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "Datenpipelines"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "React"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "KI/ML"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Air-gapped systems",
+        "raw_text": "Systemen in hochsicheren, abgeschotteten Umgebungen (air-gapped)"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Distinguished Engineer",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Verhandlungssichere Deutsch- und Englischkenntnisse",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Studium der Informatik oder vergleichbar, oder Du überzeugst uns, dass es auch anders geht",
+    "notes": "All profile skills are required; no optional qualifications or dedicated tech-stack section appear.\nDistinguished Engineer is read literally as an explicitly named senior level.\nThe unspecified Studium maps to bachelor; the explicit alternative 'oder Du überzeugst uns, dass es auch anders geht' is treated as acceptance of an equivalent non-degree qualification.\nKI/ML maps to the combined AI/ML entry without adding a separate Machine Learning criterion from the company description.\nAir-gapped systems experience has no fitting taxonomy entry; no broader security skill is inferred.\nTechnologies named only in the company description or responsibilities, including containerization, are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "5b7d8e02660f3c72fd8e3f20f7ffbd962565de7b01e4d52958ec631260c530ec",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

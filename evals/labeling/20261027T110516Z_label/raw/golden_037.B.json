@@ -1,0 +1,184 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\"skill_id\":\"typescript\",\"requirement\":\"required\",\"raw_text\":\"Typescript\"},\n    {\"skill_id\":\"vector-databases\",\"requirement\":\"required\",\"raw_text\":\"Vector DB\"},\n    {\"skill_id\":\"postgresql\",\"requirement\":\"required\",\"raw_text\":\"postgress\"},\n    {\"skill_id\":\"weaviate\",\"requirement\":\"required\",\"raw_text\":\"Weaviate\"},\n    {\"skill_id\":\"aws-s3\",\"requirement\":\"required\",\"raw_text\":\"AWS S3\"},\n    {\"skill_id\":\"backend-development\",\"requirement\":\"required\",\"raw_text\":\"Backend\"},\n    {\"skill_id\":\"ai-ml\",\"requirement\":\"required\",\"raw_text\":\"applied AI\"},\n    {\"skill_id\":\"fastify\",\"requirement\":\"required\",\"raw_text\":\"Fastify\"},\n    {\"skill_id\":\"apis\",\"requirement\":\"required\",\"raw_text\":\"Fastify API\"},\n    {\"skill_id\":\"python\",\"requirement\":\"required\",\"raw_text\":\"Python\"},\n    {\"skill_id\":\"machine-learning\",\"requirement\":\"required\",\"raw_text\":\"ML Services\"},\n    {\"skill_id\":\"aws\",\"requirement\":\"required\",\"raw_text\":\"Moving to AWS\"},\n    {\"skill_id\":\"azure\",\"requirement\":\"required\",\"raw_text\":\"Azure\"},\n    {\"skill_id\":\"openai-api\",\"requirement\":\"required\",\"raw_text\":\"OpenAI\"},\n    {\"skill_id\":\"gemini\",\"requirement\":\"required\",\"raw_text\":\"Gemini\"},\n    {\"skill_id\":\"observability\",\"requirement\":\"required\",\"raw_text\":\"Obsv.\"},\n    {\"skill_id\":\"evaluation\",\"requirement\":\"required\",\"raw_text\":\"Eval.\"},\n    {\"skill_id\":\"langfuse\",\"requirement\":\"required\",\"raw_text\":\"Langfuse\"},\n    {\"skill_id\":\"llms\",\"requirement\":\"required\",\"raw_text\":\"GenAI\"},\n    {\"skill_id\":\"ai-deployment\",\"requirement\":\"required\",\"raw_text\":\"applied AI/ML use cases and brought them to production\"},\n    {\"skill_id\":\"software-engineering\",\"requirement\":\"required\",\"raw_text\":\"software engineer\"},\n    {\"skill_id\":\"ml-engineering\",\"requirement\":\"required\",\"raw_text\":\"machine learning engineer\"}\n  ],\n  \"unmapped\": [\n    {\"label\":\"Vite\",\"raw_text\":\"Vite\"},\n    {\"label\":\"Supabase\",\"raw_text\":\"Supabase\"},\n    {\"label\":\"Railway\",\"raw_text\":\"Railway\"},\n    {\"label\":\"Cohere\",\"raw_text\":\"Cohere\"},\n    {\"label\":\"Datadog\",\"raw_text\":\"Datadog\"},\n    {\"label\":\"Web application development\",\"raw_text\":\"Web-App\"},\n    {\"label\":\"Cloud functions\",\"raw_text\":\"Cloud Functions\"},\n    {\"label\":\"Databases\",\"raw_text\":\"Database\"},\n    {\"label\":\"File storage\",\"raw_text\":\"File Storage\"},\n    {\"label\":\"Document pipelines\",\"raw_text\":\"Document Pipelines\"},\n    {\"label\":\"Hosting\",\"raw_text\":\"Hosting\"},\n    {\"label\":\"Tracking\",\"raw_text\":\"Tracking\"}\n  ],\n  \"seniority\":\"mid\",\n  \"seniority_basis\":\"inferred\",\n  \"seniority_signal\":\"at least 3+ years of experience\",\n  \"german\":null,\n  \"german_basis\":null,\n  \"german_signal\":null,\n  \"degree\":null,\n  \"degree_requirement\":null,\n  \"degree_or_equivalent\":false,\n  \"degree_signal\":null,\n  \"notes\":\"Current Tech Stack is a dedicated stack section; its unmarked technologies and named technical categories are required. No section is marked optional.\\nTreat 'postgress' as a misspelling of PostgreSQL and 'Obsv.' and 'Eval.' as observability and evaluation.\\nThe guide does not specify treatment of unsupported stack-category headings; literally named technical categories are retained in unmapped rather than assigned broader or speculative taxonomy skills. In particular, document pipelines are not assumed to be ETL, file storage is not assumed to be object storage, and tracking is not assumed to mean experiment tracking.\\nProduction delivery of applied AI/ML use cases supports AI deployment. Experience as a software engineer or machine learning engineer supports the corresponding engineering skills; the alternatives remain separate required criteria under the guide.\\nOwnership language does not establish seniority; the stated minimum of 3+ years supports inferred mid-level seniority.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "Typescript"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "Vector DB"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "postgress"
+      },
+      {
+        "skill_id": "weaviate",
+        "requirement": "required",
+        "raw_text": "Weaviate"
+      },
+      {
+        "skill_id": "aws-s3",
+        "requirement": "required",
+        "raw_text": "AWS S3"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "applied AI"
+      },
+      {
+        "skill_id": "fastify",
+        "requirement": "required",
+        "raw_text": "Fastify"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Fastify API"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ML Services"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "Moving to AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "required",
+        "raw_text": "OpenAI"
+      },
+      {
+        "skill_id": "gemini",
+        "requirement": "required",
+        "raw_text": "Gemini"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Obsv."
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Eval."
+      },
+      {
+        "skill_id": "langfuse",
+        "requirement": "required",
+        "raw_text": "Langfuse"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "GenAI"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "applied AI/ML use cases and brought them to production"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineer"
+      },
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "machine learning engineer"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Vite",
+        "raw_text": "Vite"
+      },
+      {
+        "label": "Supabase",
+        "raw_text": "Supabase"
+      },
+      {
+        "label": "Railway",
+        "raw_text": "Railway"
+      },
+      {
+        "label": "Cohere",
+        "raw_text": "Cohere"
+      },
+      {
+        "label": "Datadog",
+        "raw_text": "Datadog"
+      },
+      {
+        "label": "Web application development",
+        "raw_text": "Web-App"
+      },
+      {
+        "label": "Cloud functions",
+        "raw_text": "Cloud Functions"
+      },
+      {
+        "label": "Databases",
+        "raw_text": "Database"
+      },
+      {
+        "label": "File storage",
+        "raw_text": "File Storage"
+      },
+      {
+        "label": "Document pipelines",
+        "raw_text": "Document Pipelines"
+      },
+      {
+        "label": "Hosting",
+        "raw_text": "Hosting"
+      },
+      {
+        "label": "Tracking",
+        "raw_text": "Tracking"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "at least 3+ years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Current Tech Stack is a dedicated stack section; its unmarked technologies and named technical categories are required. No section is marked optional.\nTreat 'postgress' as a misspelling of PostgreSQL and 'Obsv.' and 'Eval.' as observability and evaluation.\nThe guide does not specify treatment of unsupported stack-category headings; literally named technical categories are retained in unmapped rather than assigned broader or speculative taxonomy skills. In particular, document pipelines are not assumed to be ETL, file storage is not assumed to be object storage, and tracking is not assumed to mean experiment tracking.\nProduction delivery of applied AI/ML use cases supports AI deployment. Experience as a software engineer or machine learning engineer supports the corresponding engineering skills; the alternatives remain separate required criteria under the guide.\nOwnership language does not establish seniority; the stated minimum of 3+ years supports inferred mid-level seniority."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "ea242088cabbd5bb12dd83a76c49933256c925ee63336ef233cbfbf5b5158f60",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

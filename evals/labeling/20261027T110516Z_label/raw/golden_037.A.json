@@ -1,0 +1,144 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"Typescript\"},\n    {\"skill_id\": \"postgresql\", \"requirement\": \"required\", \"raw_text\": \"postgress\", \"uncertain\": true},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"required\", \"raw_text\": \"Vector DB\"},\n    {\"skill_id\": \"weaviate\", \"requirement\": \"required\", \"raw_text\": \"Weaviate\"},\n    {\"skill_id\": \"aws-s3\", \"requirement\": \"required\", \"raw_text\": \"AWS S3\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"Backend\", \"uncertain\": true},\n    {\"skill_id\": \"fastify\", \"requirement\": \"required\", \"raw_text\": \"Fastify\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"Moving to AWS\", \"uncertain\": true},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\"},\n    {\"skill_id\": \"openai-api\", \"requirement\": \"required\", \"raw_text\": \"OpenAI\"},\n    {\"skill_id\": \"gemini\", \"requirement\": \"required\", \"raw_text\": \"Gemini\"},\n    {\"skill_id\": \"langfuse\", \"requirement\": \"required\", \"raw_text\": \"Langfuse\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"Obsv.\", \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"Eval.\", \"uncertain\": true},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"applied AI/ML\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"GenAI\", \"uncertain\": true},\n    {\"skill_id\": \"serverless\", \"requirement\": \"required\", \"raw_text\": \"Cloud Functions\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Vite\", \"raw_text\": \"Vite\"},\n    {\"label\": \"Supabase\", \"raw_text\": \"Supabase\"},\n    {\"label\": \"Railway\", \"raw_text\": \"Railway\"},\n    {\"label\": \"Cohere\", \"raw_text\": \"Cohere\"},\n    {\"label\": \"Datadog\", \"raw_text\": \"Datadog\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"at least 3+ years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"'Current Tech Stack' section treated as tech-stack list, so its unmarked entries are labeled required (rule 3).\\n'postgress' is a misspelling of Postgres in 'Supabase (postgress)'; mapped to postgresql.\\nAWS is labeled from 'Moving to AWS' (hosting). AWS S3 alone would not imply the aws parent.\\n'Azure / OpenAI' likely means the Azure OpenAI service; labeled as azure and openai-api separately.\\n'Obsv., Eval. & Tracking' is a category label naming broad skills, so observability and evaluation are labeled and flagged. 'Tracking' is too ambiguous to map to experiment-tracking, so it is skipped.\\n'Cloud Functions' mapped to serverless and flagged.\\n'File Storage', 'Document Pipelines', 'ML Services' and 'Web-App' are not labeled; they read as descriptions of the system rather than as named skills.\\nThe 'applied AI' mention in the tech stack collapses into the ai-ml criterion quoted from the profile.\\nGenAI comes from a 'passionate about' line, so it is flagged uncertain as an asked-for skill.\\nYears of software engineering experience are not a skill and are not labeled.\\nOnly English fluency is mentioned, so German is null. No degree is mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "Typescript"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "postgress",
+        "uncertain": true
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "Vector DB"
+      },
+      {
+        "skill_id": "weaviate",
+        "requirement": "required",
+        "raw_text": "Weaviate"
+      },
+      {
+        "skill_id": "aws-s3",
+        "requirement": "required",
+        "raw_text": "AWS S3"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend",
+        "uncertain": true
+      },
+      {
+        "skill_id": "fastify",
+        "requirement": "required",
+        "raw_text": "Fastify"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "Moving to AWS",
+        "uncertain": true
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "required",
+        "raw_text": "OpenAI"
+      },
+      {
+        "skill_id": "gemini",
+        "requirement": "required",
+        "raw_text": "Gemini"
+      },
+      {
+        "skill_id": "langfuse",
+        "requirement": "required",
+        "raw_text": "Langfuse"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Obsv.",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Eval.",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "applied AI/ML"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "GenAI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "serverless",
+        "requirement": "required",
+        "raw_text": "Cloud Functions",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Vite",
+        "raw_text": "Vite"
+      },
+      {
+        "label": "Supabase",
+        "raw_text": "Supabase"
+      },
+      {
+        "label": "Railway",
+        "raw_text": "Railway"
+      },
+      {
+        "label": "Cohere",
+        "raw_text": "Cohere"
+      },
+      {
+        "label": "Datadog",
+        "raw_text": "Datadog"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "at least 3+ years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "'Current Tech Stack' section treated as tech-stack list, so its unmarked entries are labeled required (rule 3).\n'postgress' is a misspelling of Postgres in 'Supabase (postgress)'; mapped to postgresql.\nAWS is labeled from 'Moving to AWS' (hosting). AWS S3 alone would not imply the aws parent.\n'Azure / OpenAI' likely means the Azure OpenAI service; labeled as azure and openai-api separately.\n'Obsv., Eval. & Tracking' is a category label naming broad skills, so observability and evaluation are labeled and flagged. 'Tracking' is too ambiguous to map to experiment-tracking, so it is skipped.\n'Cloud Functions' mapped to serverless and flagged.\n'File Storage', 'Document Pipelines', 'ML Services' and 'Web-App' are not labeled; they read as descriptions of the system rather than as named skills.\nThe 'applied AI' mention in the tech stack collapses into the ai-ml criterion quoted from the profile.\nGenAI comes from a 'passionate about' line, so it is flagged uncertain as an asked-for skill.\nYears of software engineering experience are not a skill and are not labeled.\nOnly English fluency is mentioned, so German is null. No degree is mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "ea242088cabbd5bb12dd83a76c49933256c925ee63336ef233cbfbf5b5158f60",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

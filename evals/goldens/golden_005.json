@@ -1,9 +1,9 @@
 {
   "id": "golden_005",
   "split": "dev",
-  "seniority": "senior",
-  "seniority_basis": "inferred",
-  "seniority_signal": "Expert knowledge on state-of-the-art AI use cases, agentic applications and best practices",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
   "seniority_reviewed": true,
   "german": "nice_to_have",
   "german_basis": "stated",

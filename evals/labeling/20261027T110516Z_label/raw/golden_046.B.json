@@ -1,0 +1,131 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Softwareentwicklung\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Künstliche Intelligenz\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Large Language Models (LLM)\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI-Agenten\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Softwarearchitekturen\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Entwicklung oder Integration von APIs\"\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Model Context Protocol (MCP)\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Embeddings\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Vektordatenbanken\"\n    },\n    {\n      \"skill_id\": \"litellm\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Erste Berührungspunkte mit Embeddings, Vektordatenbanken, AI-Frameworks oder Plattformkomponenten wie OpenWebUI und LiteLLM\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Container-Technologien\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Kubernetes\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"AI platforms\",\n      \"raw_text\": \"moderne AI-Plattformen\"\n    },\n    {\n      \"label\": \"Programming languages (unspecified)\",\n      \"raw_text\": \"modernen Programmiersprachen\"\n    },\n    {\n      \"label\": \"Software frameworks (unspecified)\",\n      \"raw_text\": \"Frameworks\"\n    },\n    {\n      \"label\": \"OpenAPI\",\n      \"raw_text\": \"OpenAPI\"\n    },\n    {\n      \"label\": \"Retrieval pipelines\",\n      \"raw_text\": \"Retrieval-Pipelines\"\n    },\n    {\n      \"label\": \"AI frameworks (unspecified)\",\n      \"raw_text\": \"AI-Frameworks\"\n    },\n    {\n      \"label\": \"OpenWebUI\",\n      \"raw_text\": \"OpenWebUI\"\n    },\n    {\n      \"label\": \"Authentication\",\n      \"raw_text\": \"Authentifizierung\"\n    },\n    {\n      \"label\": \"OAuth2\",\n      \"raw_text\": \"OAuth2\"\n    },\n    {\n      \"label\": \"Identity management\",\n      \"raw_text\": \"Identity Management\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"erste praktische Erfahrungen in der Softwareentwicklung\",\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"ein Studium der Informatik, Wirtschaftsinformatik oder eine vergleichbare technische Ausbildung erfolgreich abgeschlossen\",\n  \"notes\": \"Nur „Dein Profil“ enthält Kandidatenanforderungen; Technologien ausschließlich unter „Deine Aufgaben“ wurden nicht aufgenommen.\\nInteresse an KI, LLMs und AI-Agenten sowie Vertrautheit mit beziehungsweise Lerninteresse an MCP werden wörtlich als unmarkierte Profilanforderungen behandelt; praktische Erfahrung ist dabei nicht zwingend verlangt.\\n„Retrieval-Pipelines“ wird ohne ausdrückliche Nennung von Augmented Generation nicht als RAG interpretiert und bleibt unmapped.\\nAI-Plattformen und AI-Frameworks haben keine hinreichend genaue Taxonomieentsprechung; AI Infrastructure wird nicht allein daraus abgeleitet.\\n„von Vorteil“, „wünschenswert“, „idealerweise“ und „ein Plus“ markieren die jeweiligen Kenntnisse als optional.\\nDer längere LiteLLM-Beleg unterscheidet die optionale Profilnennung von der Nennung unter Aufgaben.\\nDie vergleichbare technische Ausbildung wird als akzeptierte alternative Qualifikation zum Studium gewertet.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Softwareentwicklung"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Künstliche Intelligenz"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Large Language Models (LLM)"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "AI-Agenten"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Softwarearchitekturen"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Entwicklung oder Integration von APIs"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "Model Context Protocol (MCP)"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "nice_to_have",
+        "raw_text": "Embeddings"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "nice_to_have",
+        "raw_text": "Vektordatenbanken"
+      },
+      {
+        "skill_id": "litellm",
+        "requirement": "nice_to_have",
+        "raw_text": "Erste Berührungspunkte mit Embeddings, Vektordatenbanken, AI-Frameworks oder Plattformkomponenten wie OpenWebUI und LiteLLM"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "Container-Technologien"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "AI platforms",
+        "raw_text": "moderne AI-Plattformen"
+      },
+      {
+        "label": "Programming languages (unspecified)",
+        "raw_text": "modernen Programmiersprachen"
+      },
+      {
+        "label": "Software frameworks (unspecified)",
+        "raw_text": "Frameworks"
+      },
+      {
+        "label": "OpenAPI",
+        "raw_text": "OpenAPI"
+      },
+      {
+        "label": "Retrieval pipelines",
+        "raw_text": "Retrieval-Pipelines"
+      },
+      {
+        "label": "AI frameworks (unspecified)",
+        "raw_text": "AI-Frameworks"
+      },
+      {
+        "label": "OpenWebUI",
+        "raw_text": "OpenWebUI"
+      },
+      {
+        "label": "Authentication",
+        "raw_text": "Authentifizierung"
+      },
+      {
+        "label": "OAuth2",
+        "raw_text": "OAuth2"
+      },
+      {
+        "label": "Identity management",
+        "raw_text": "Identity Management"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "erste praktische Erfahrungen in der Softwareentwicklung",
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "ein Studium der Informatik, Wirtschaftsinformatik oder eine vergleichbare technische Ausbildung erfolgreich abgeschlossen",
+    "notes": "Nur „Dein Profil“ enthält Kandidatenanforderungen; Technologien ausschließlich unter „Deine Aufgaben“ wurden nicht aufgenommen.\nInteresse an KI, LLMs und AI-Agenten sowie Vertrautheit mit beziehungsweise Lerninteresse an MCP werden wörtlich als unmarkierte Profilanforderungen behandelt; praktische Erfahrung ist dabei nicht zwingend verlangt.\n„Retrieval-Pipelines“ wird ohne ausdrückliche Nennung von Augmented Generation nicht als RAG interpretiert und bleibt unmapped.\nAI-Plattformen und AI-Frameworks haben keine hinreichend genaue Taxonomieentsprechung; AI Infrastructure wird nicht allein daraus abgeleitet.\n„von Vorteil“, „wünschenswert“, „idealerweise“ und „ein Plus“ markieren die jeweiligen Kenntnisse als optional.\nDer längere LiteLLM-Beleg unterscheidet die optionale Profilnennung von der Nennung unter Aufgaben.\nDie vergleichbare technische Ausbildung wird als akzeptierte alternative Qualifikation zum Studium gewertet."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "224fd81a9a8ec6f05f67541a478f8d10701c84b07c5df9696171a5dde09481c0",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

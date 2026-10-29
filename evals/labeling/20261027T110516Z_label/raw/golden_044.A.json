@@ -1,0 +1,79 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"software engineering\"},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"TypeScript\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python experience is useful\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM-powered systems\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agent orchestration\", \"uncertain\": true},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"tool calling\"},\n    {\"skill_id\": \"ai-infrastructure\", \"requirement\": \"required\", \"raw_text\": \"inference infrastructure\", \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"evaluation frameworks\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"context management\", \"raw_text\": \"context management\"},\n    {\"label\": \"sandboxed code execution\", \"raw_text\": \"sandboxed code execution\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Lead AI Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Python and evaluation frameworks are marked 'useful'. That word is not in the guide's closed list of inline optional markers, so both are labeled required under a requirements heading. Flagged, because 'useful' plausibly reads as optional.\\n'is a plus' applies only to procurement experience, which is domain knowledge and not a skill. It does not extend to evaluation frameworks.\\nI could not decide between agents and llm-orchestration for 'agent orchestration' and chose agents. Flagged.\\nI mapped 'inference infrastructure' to ai-infrastructure and not to inference-optimization. Flagged.\\n'context management' and 'sandboxed code execution' have no taxonomy entry, so they are unmapped. agent-state-management was considered for context management and rejected.\\n'sandboxed code execution, inference infrastructure, or similarly demanding production systems' is a list of alternatives under the requirements heading. Each item is labeled required.\\nMemory and other items that appear only in responsibilities are not labeled.\\nSeniority is stated by the title 'Lead'; '5+ years' agrees with it.\\nThe Berlin location does not imply German, and no degree is mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python experience is useful",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-powered systems"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agent orchestration",
+        "uncertain": true
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool calling"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "required",
+        "raw_text": "inference infrastructure",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation frameworks",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "context management",
+        "raw_text": "context management"
+      },
+      {
+        "label": "sandboxed code execution",
+        "raw_text": "sandboxed code execution"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead AI Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Python and evaluation frameworks are marked 'useful'. That word is not in the guide's closed list of inline optional markers, so both are labeled required under a requirements heading. Flagged, because 'useful' plausibly reads as optional.\n'is a plus' applies only to procurement experience, which is domain knowledge and not a skill. It does not extend to evaluation frameworks.\nI could not decide between agents and llm-orchestration for 'agent orchestration' and chose agents. Flagged.\nI mapped 'inference infrastructure' to ai-infrastructure and not to inference-optimization. Flagged.\n'context management' and 'sandboxed code execution' have no taxonomy entry, so they are unmapped. agent-state-management was considered for context management and rejected.\n'sandboxed code execution, inference infrastructure, or similarly demanding production systems' is a list of alternatives under the requirements heading. Each item is labeled required.\nMemory and other items that appear only in responsibilities are not labeled.\nSeniority is stated by the title 'Lead'; '5+ years' agrees with it.\nThe Berlin location does not imply German, and no degree is mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "2659d559d2393ff753e095d746eee37dfed5a4bb1cc087a3db0b140eb76065ad",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

@@ -168,6 +168,10 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   (before 2026-10-18) and undo the repost counts they caused. `--dry-run` first.
 - `scripts/new_goldens.py` — draft unlabeled held-out Goldens from DB jobs
   (`--german N` or `--ids ...`); run_eval skips files with `"draft": true`.
+- `scripts/agent_label.py` — held-out Goldens via two blind labeler agents: pick → label A
+  and B → auto-check → merge → review queue (`label`), then your decisions → final Goldens
+  with provenance (`apply`). Refuses to label with the extractor's model. Never runs the
+  held-out eval. See DECISIONS 2026-10-27 and `evals/LABELER_PROMPT.md`.
 - `scripts/seed_from_legacy.py` — one-off that built the taxonomy and Goldens from the
   legacy repo. Kept for provenance.
 - `tests/` — pytest.

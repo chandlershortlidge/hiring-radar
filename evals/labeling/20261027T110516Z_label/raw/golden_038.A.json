@@ -1,0 +1,59 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Ruby, Python\"},\n    {\"skill_id\": \"javascript\", \"requirement\": \"required\", \"raw_text\": \"Javascript\"},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"excellent software engineering skills\", \"uncertain\": true},\n    {\"skill_id\": \"statistics\", \"requirement\": \"nice_to_have\", \"raw_text\": \"statistical role\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Ruby\", \"raw_text\": \"Ruby\"},\n    {\"label\": \"Data analytics\", \"raw_text\": \"data analytics\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff Product Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"BSc in Computer Science, Maths or Statistics or related discipline\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"The 'Profile we're looking for' heading is a requirements heading. Its preface says 'These are meant to be indicative, not hard requirements', but that phrase is not one of the guide's optional headings or inline markers. Read literally, its items are required; flagged for review.\\nRuby, Python and Javascript are given as examples of 'a high-level programming language' and labeled per the e.g. rule. The posting says any language is acceptable, which makes 'required' debatable.\\nThe python raw_text quotes the requirement mention, not the responsibilities mention ('ML Python tech stack').\\nsoftware-engineering comes from the 'No ML experience required' bullet ('bringing excellent software engineering skills'). It is a requirement-like phrase but could be read as soft framing; flagged.\\nMachine learning is not labeled: the posting says 'No ML experience required', and 'some hands-on experience with ML systems' sits in the intro, not the profile section.\\nRails appears only in responsibilities, so it is not labeled.\\nThe bonus item 'data analytics, or statistical role' is mapped to statistics as nice_to_have, uncertain because it describes a prior role rather than a skill. 'Data analytics' has no taxonomy entry, so it is unmapped.\\nThe degree is labeled required under the literal reading. The section preface 'not hard requirements' could argue for nice_to_have; flagged.\\n'10+ years' also supports senior, but the stated title 'Staff' takes precedence.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Ruby, Python"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "Javascript"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "excellent software engineering skills",
+        "uncertain": true
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "nice_to_have",
+        "raw_text": "statistical role",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Ruby",
+        "raw_text": "Ruby"
+      },
+      {
+        "label": "Data analytics",
+        "raw_text": "data analytics"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff Product Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "BSc in Computer Science, Maths or Statistics or related discipline",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "The 'Profile we're looking for' heading is a requirements heading. Its preface says 'These are meant to be indicative, not hard requirements', but that phrase is not one of the guide's optional headings or inline markers. Read literally, its items are required; flagged for review.\nRuby, Python and Javascript are given as examples of 'a high-level programming language' and labeled per the e.g. rule. The posting says any language is acceptable, which makes 'required' debatable.\nThe python raw_text quotes the requirement mention, not the responsibilities mention ('ML Python tech stack').\nsoftware-engineering comes from the 'No ML experience required' bullet ('bringing excellent software engineering skills'). It is a requirement-like phrase but could be read as soft framing; flagged.\nMachine learning is not labeled: the posting says 'No ML experience required', and 'some hands-on experience with ML systems' sits in the intro, not the profile section.\nRails appears only in responsibilities, so it is not labeled.\nThe bonus item 'data analytics, or statistical role' is mapped to statistics as nice_to_have, uncertain because it describes a prior role rather than a skill. 'Data analytics' has no taxonomy entry, so it is unmapped.\nThe degree is labeled required under the literal reading. The section preface 'not hard requirements' could argue for nice_to_have; flagged.\n'10+ years' also supports senior, but the stated title 'Staff' takes precedence."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "d3f662558557b1a5f1751e607646ae50131279c1429b4af6f05f3d52ed61c3b7",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

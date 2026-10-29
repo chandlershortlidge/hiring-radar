@@ -1,0 +1,54 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"claude-code\", \"requirement\": \"required\", \"raw_text\": \"tools like Claude Code\"},\n    {\"skill_id\": \"cursor\", \"requirement\": \"required\", \"raw_text\": \"Cursor, Copilot\"},\n    {\"skill_id\": \"github-copilot\", \"requirement\": \"required\", \"raw_text\": \"Copilot\"},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"similar agentic coding tools\", \"uncertain\": true},\n    {\"skill_id\": \"full-stack-development\", \"requirement\": \"required\", \"raw_text\": \"full-stack solutions\"}\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"AI-First Engineering Intern\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"current undergraduate students, graduate students, and recent graduates of a Computer Science, Software Engineering, or related program\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"The 'What You'll Do' section is responsibilities. Claude Code and Cursor are labeled only because the requirements section also asks for them; raw_text quotes the requirements mention.\\nI mapped 'agentic coding tools' to ai-developer-tooling (its 'coding agents' alias). The posting names this broad category alongside the specific tools, so it is labeled. Marked uncertain.\\nCopilot is read as GitHub Copilot, matching the taxonomy alias 'copilot'.\\nChatGPT appears only as a counterexample ('not just asked ChatGPT'), not as a requirement, so it is not labeled.\\nI did not label 'Real AI fluency' as ai-ml. The text defines it as using AI coding tools, which are already labeled.\\nXsolla's APIs and SDKs appear only in responsibilities, so they are not labeled. Hackathons and open-source contributions are not skills.\\nDegree: the posting is open to undergraduates, graduate students and recent graduates, and mentions 'graduate degree'. Under the guide's literal 'highest level named' rule I chose master, even though an undergraduate is sufficient. A reviewer may prefer bachelor, so degree is flagged uncertain.\\nThe degree is a bare 'Open to' mention in the requirements section, so it is labeled required. There is no 'or equivalent' wording ('or related program' widens the field only).\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "tools like Claude Code"
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor, Copilot"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "Copilot"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "similar agentic coding tools",
+        "uncertain": true
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "full-stack solutions"
+      }
+    ],
+    "unmapped": [],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "AI-First Engineering Intern",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "current undergraduate students, graduate students, and recent graduates of a Computer Science, Software Engineering, or related program",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "The 'What You'll Do' section is responsibilities. Claude Code and Cursor are labeled only because the requirements section also asks for them; raw_text quotes the requirements mention.\nI mapped 'agentic coding tools' to ai-developer-tooling (its 'coding agents' alias). The posting names this broad category alongside the specific tools, so it is labeled. Marked uncertain.\nCopilot is read as GitHub Copilot, matching the taxonomy alias 'copilot'.\nChatGPT appears only as a counterexample ('not just asked ChatGPT'), not as a requirement, so it is not labeled.\nI did not label 'Real AI fluency' as ai-ml. The text defines it as using AI coding tools, which are already labeled.\nXsolla's APIs and SDKs appear only in responsibilities, so they are not labeled. Hackathons and open-source contributions are not skills.\nDegree: the posting is open to undergraduates, graduate students and recent graduates, and mentions 'graduate degree'. Under the guide's literal 'highest level named' rule I chose master, even though an undergraduate is sufficient. A reviewer may prefer bachelor, so degree is flagged uncertain.\nThe degree is a bare 'Open to' mention in the requirements section, so it is labeled required. There is no 'or equivalent' wording ('or related program' widens the field only)."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "412cd655dde21203efa8cb609bce85b50a48a334d9e342ed3eb6a7695b77090d",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

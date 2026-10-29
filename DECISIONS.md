@@ -239,6 +239,243 @@ skill, what else they require.
 
 ---
 
+## 2026-10-27 — Inferred seniority narrowed to years / "proven experience" / lead duty
+
+`evals/LABELING.md` is frozen, so this records the edit. **The guide now matches the
+extractor, not the other way round**, and three dev Goldens were relabeled to fit.
+
+The gap: `app/extract.py` has told the model since `ac20971` (2026-10-20) that "experienced,
+expert, advanced, autonomous, production experience" are not level signals on their own.
+LABELING.md still allowed an inferred level from "ownership or mentoring language, or the
+depth of the qualifications" — wider than the prompt, and the source of the entire dev
+seniority gap: 0.850, identical across all three repeats of
+`20261027T080458Z_dev_x2-ee524a6720`, every miss a deterministic `null` against a non-null
+gold label.
+
+**Decision: keep the strict prompt line; narrow the guide to it.** `null` is the safe error
+here — seniority is a secondary filter in the profile, so a missing level costs a job a
+place in a filtered view, while a wrong level puts it in the wrong one. A rule the extractor
+can apply from the text beats a rule that needs a judgment about "depth".
+
+Changed:
+
+- **LABELING.md**, inferred basis: years of experience, "proven experience", or lead or
+  mentoring duty — nothing else. "Ownership or mentoring language" is now just lead or
+  mentoring *duty*, and "the depth of the qualifications" is gone. Spelled out that
+  experienced / expert / advanced / autonomous / production experience / ownership language
+  are not level signals alone, and that a posting whose only level-ish phrase is one of
+  those is none, not a guess.
+- **Relabeled → `seniority: null`, basis null, signal null**: golden_004 ("Strong hands-on
+  software engineering background with experience building production-grade applications"),
+  golden_005 ("Expert knowledge on state-of-the-art AI use cases"), golden_015 ("High
+  ownership mentality"). All three keep `seniority_reviewed: true`. golden_017 keeps `mid`
+  on "Proven expertise in machine learning algorithms" — "proven experience" is still a
+  basis. golden_003, 009, 014, 016 unaffected.
+- **No prompt change, no `extractor_version` bump, no re-extraction.** The extractor already
+  behaved this way; only the labels and the guide moved.
+
+Re-scoring the stored `20261027T080458Z` predictions against the relabeled Goldens (no new
+model calls): **seniority accuracy 0.850 → 1.000, 20/20 on all three repeats**, zero
+remaining misses. That run's own `summary.json` still reports 0.850, since it records what
+was scored at the time.
+
+Supersedes HIR-71, which was filed the other way round (fix the prompt, keep the guide) and
+is closed pointing here. The nine Goldens already labeled `None` are unaffected — they were
+never the problem; `ac20971` is what made them stable (13/20 → 20/20), and it stays.
+
+HIR-70's held-out labelers read LABELING.md, so the run must use the narrowed guide: the
+labeling run started before this edit was stopped at posting 3 of 24 and restarted after it.
+
+## 2026-10-27 — Held-out Goldens come from two blind labelers plus human adjudication (HIR-70)
+
+> **Handover — adjudication in progress, as of 2026-10-27.** Run
+> `evals/labeling/20261027T110516Z_label/`, tracked in git. **Do not re-merge it**
+> (`label --run …` rewrites `review_queue.md` from `items.json` and would erase every
+> decision and proposal; the queue file is the only copy). **Do not run `apply` or the
+> held-out eval** until the queue is finished.
+>
+> **Done:** 39 of 201 items. All 24 in-scope answers — golden_039 and golden_048 ruled out,
+> reasons in the queue, written to `excluded.json` on apply. 13 of 31 disagreements and 2
+> uncertain items decided.
+>
+> **Open:** 162 items — 18 disagreements, 63 uncertain, 1 mapping, 80 spot-checks. The 82
+> non-spot-check items each carry a `PROPOSED:` line naming the rule it rests on, for the
+> adjudicator to accept or override; `DECISION:` stays `?` so apply still refuses. The
+> spot-checks are deliberately bare: no proposals, both labelers hidden, excerpt and agreed
+> label only.
+>
+> **Then:** `apply --run 20261027T110516Z_label`, then
+> `run_eval.py --split heldout --i-am-releasing`, then write the agreement numbers and the
+> spot-check error rate with its 95% Wilson interval into this entry (replacing the TODO
+> below) and onto HIR-70.
+>
+> **Rules the adjudication has produced so far.** Not in LABELING.md yet — the guide is not
+> edited mid-run. If they hold to the end of the queue, they go in as one clarification with
+> its own entry:
+>
+> 1. A qualification bullet that names a skill counts, even if the phrase is broad.
+> 2. A title or years-of-experience line does not — "experience *as* a software engineer" is
+>    a seniority signal, not a skill; "experience *with* ML systems" is a skill.
+> 3. An API being consumed is not `apis`; that is the `llms` criterion. `apis` means
+>    building or designing APIs.
+> 4. **Candidate, unresolved:** a posting that requires a degree and prefers a higher one
+>    (golden_036) loses the required level, because `degree` takes the highest level named
+>    and that mention carries the optional marker. Decided `ok` on the guide's letter.
+
+**Supersedes "no model pre-fill for held-out labels" (2026-10-18, above).** That rule was
+aimed at one specific failure: a draft pre-filled by the *extractor* anchors whoever labels
+it on the answer being measured, so the eval grades the extractor against itself. Hand-
+labeling avoided that but capped the held-out split at 4 Goldens, which is too few to gate
+a release on (HIR-55). Independent models avoid the same failure without the cap.
+
+The process, `scripts/agent_label.py`:
+
+1. **Pick** ~24 postings, spread across seniority, German/English, source, role family and
+   place, including a few "Remote (EU)" ones — remote-EU extraction is unmeasured
+   (2026-10-26). Seeded, so the same database and seed pick the same postings. Shares its
+   candidate query, dedup (`source_sha256`) and `job_description` construction with
+   `scripts/new_goldens.py`, so a labeler sees byte-for-byte what the extractor receives.
+2. **Two blind labelers**, each given only `evals/LABELER_PROMPT.md` with `evals/LABELING.md`
+   and the taxonomy inlined, plus the posting. Not the extractor's `PRINCIPLES`, not its
+   output, not the other labeler's answer, not another Golden. Labeler A is a Claude model
+   other than the extractor's; labeler B is another family (OpenAI by default). **The script
+   refuses to run a labeler on the extractor's model**, rather than warning: a labeler that
+   shares the extractor's blind spots scores its mistakes as correct, which is the one
+   failure this whole process exists to prevent.
+3. **Auto-check**, deterministic: every `raw_text` and every `*_signal` found verbatim
+   (whitespace-normalised, the same rule as `parse_skills`), every `skill_id` in the
+   taxonomy, one criterion per `skill_id`, and the field-consistency rules the extractor
+   validates (a value needs its basis, `stated` needs a quote, inferred German carries none,
+   a null degree nulls its requirement and or-equivalent).
+4. **Merge.** A skill is accepted when both labelers gave the same id with the same
+   requirement; an attribute when both gave the same value and basis. Everything else goes
+   to a review queue, per field and per skill: disagreements, the same quoted phrase mapped
+   to two different ids, anything either labeler flagged `uncertain`, and every auto-check
+   failure. Nothing is dropped silently. One documented exception: when the value agrees and
+   only the quoted signal differs, A's quote is kept and the difference is recorded in
+   `summary.json` rather than queued — two correct quotes of one requirement often differ in
+   length, and the spot-check covers the rest.
+5. **Spot-check** a seeded random sample of the *accepted* labels, at the label level (one
+   skill, one attribute — not whole postings), 80 by default. This is the number that
+   matters: two labelers can agree and both be wrong, so agreement alone measures nothing
+   about correctness. `apply` reports its error rate with a 95% Wilson interval (Wilson, not
+   the normal approximation, because at 0 errors in 80 the normal interval is [0, 0]).
+6. **Scope.** The queue opens with one `in_scope` item per posting, pre-answered `yes`, so
+   leaving it alone keeps the posting. Answered `no <why>`, the posting goes to
+   `evals/goldens/excluded.json` with the reason instead of becoming a Golden, and neither
+   this script nor `new_goldens.py` picks it again (`existing()` unions both lists, and the
+   spent `golden_NNN` number is never reused). This is for a posting that cleared the title
+   and city filters but isn't the market we measure — the first run turned up benuta's
+   "Senior Performance Marketing Manager – Paid Social & AI". A recorded exclusion beats
+   deleting the file afterwards: a silent drop gets re-picked next run and leaves no trace
+   of why it is not a Golden.
+7. **Apply** the decisions and write the Goldens, with provenance: `labeled_by` (both model
+   ids), `adjudicated` (the fields a person decided), `spot_checked`. `apply` refuses while
+   any item still says `?`. `seniority_reviewed` / `attrs_reviewed` keep their existing
+   meaning — a person looked at this label — so they are true only for a field a person
+   decided or spot-checked, never for one accepted on agreement.
+
+Raw labeler responses are cached per posting per labeler, so re-merging after a change to
+the merge or check rules costs nothing. Re-merging refuses to overwrite a queue that already
+holds decisions.
+
+**Never from this script:** the held-out eval. That stays `run_eval.py --split heldout
+--i-am-releasing`, at a release point (2026-10-17).
+
+Measured on the first full run (`20261027T110516Z_label`, 24 postings, A `claude-opus-5-5`
+vs B `gpt-6.1-sol`, 0 failures): **skills P 0.932 / R 0.974 / F1 0.953** (tp 301, B-only 22,
+A-only 8), requirement 0.993 on shared ids, seniority 24/24, German 24/24, degree 23/24.
+243 skills and 62 attributes accepted on agreement; 201 queue items (24 in-scope, 31
+disagreement, 65 uncertain, 1 mapping, 80 spot-check). **Spot-check error rate TODO** until
+adjudication.
+
+That spread is the argument for insisting labeler B is a different family. A smoke run with
+two Claude models (`claude-opus-5-5` vs `claude-fable-5-1`) agreed on 43/43 skills and all 6
+attributes — F1 1.000, zero disagreements — and flagged the same 8 items uncertain. Two
+correlated labelers produce a clean number and measure nothing; the cross-family pair
+produces 31 real disagreements to adjudicate.
+Until those are filled in, the held-out split is not a release gate.
+
+**Scope calls on that run: two postings out, two kept on purpose.**
+
+- **Out**: golden_048 (benuta, "Senior Performance Marketing Manager – Paid Social & AI") — a
+  marketing role, outside the AI/data engineering scope. golden_039 (Arbeitsagentur, "AI
+  Engineer Team Lead") — 382 characters, a search-result teaser rather than a posting, below
+  the same 400-character floor `queries.MIN_TEXT_CHARS` uses to keep fragments off the chart
+  (2026-10-21). Both are recorded in `evals/goldens/excluded.json` with those reasons.
+- **Kept on purpose**: golden_030 (SAP AI Lead Architect, 5.7k characters, 2 accepted skills)
+  and golden_038 (Intercom Staff Product Engineer, 7.7k, 2 accepted skills). Both are full,
+  in-scope postings whose content is mostly outside the taxonomy — SAP BTP / Joule / Business
+  AI, inference-stack vocabulary. A held-out set holding only postings the taxonomy already
+  covers would hide the gap it exists to measure, so a low skill count is a taxonomy signal,
+  not a bad Golden. **In-scope is about the job, not about how much of it we can currently
+  label.**
+
+The 216 unmapped labels the run collected are triaged in **HIR-72**, after labeling, not
+during it: `taxonomy/skills.json` is inlined into the labeler prompt, so editing it mid-run
+changes what the labelers were asked and invalidates the cache.
+
+**Found during adjudication, both worth keeping:**
+
+- **An agreed-and-wrong, caught by the `uncertain` flag rather than the spot-check.**
+  golden_044 says "hands-on TypeScript skills; Python experience is useful." Both labelers
+  made `python` **required**; "is useful" is an inline optional marker with the force of the
+  guide's listed "is an advantage", so requirement rule 2 overrides the heading and the
+  label is `nice_to_have`. Adjudicated as an override. Agreement would have shipped this
+  silently — which is the argument for queueing every `uncertain` flag even when both
+  labelers agree, not only the disagreements.
+- **A guide gap, left as written for now.** golden_036 requires a degree and prefers a
+  higher one: "Du hast einen Abschluss in Informatik…; ein Master oder Ph.D. ist von
+  Vorteil." LABELING.md says `degree` is *the highest level named* and `nice_to_have` only
+  when that mention is marked optional, so the correct label by the guide is
+  `phd` / `nice_to_have` — a posting that does require a degree ends up labeled as not
+  requiring one. Both labelers applied the rule correctly; the rule loses the required
+  floor. Decided `ok` on the guide's letter and recorded as **clarification candidate #4**,
+  to be settled after HIR-70 with the three rules the disagreements produced (a
+  qualification bullet that names a skill counts; a title or years-of-experience line does
+  not; an API being consumed is not `apis`). LABELING.md is not edited mid-run.
+
+**Queue order.** Items are grouped by what they ask of the reviewer, in working order:
+in-scope, disagreements, uncertain, mapping, then the spot-check sample last. A spot-check
+prints the posting excerpt and the agreed label with no `A:` / `B:` lines — both labelers
+said the same thing there by construction, so showing them twice only invites agreeing with
+them. The question a spot-check asks is whether the posting supports the label.
+
+---
+
+## 2026-10-27 — LABELING.md: broad vs specific skills written down, no relabel (HIR-70)
+
+`evals/LABELING.md` is frozen, so this records the edit. Before the HIR-70 labelers run, the
+guide had no rule for broad-vs-specific skills (`cloud` over `aws`, `llms` over `rag`,
+`containerization` over `docker`), while the extractor did (`PRINCIPLES` rule 3). A labeler
+reading only the guide could reasonably have added parents the posting never names, which
+would have scored the extractor against a rule it is not given.
+
+Added a "Broad and specific skills" subsection: label each when the text names both, never
+add a parent the text does not ask for, and the broad skill's own `raw_text` must name it.
+
+**No Golden relabel, because this documents existing practice.** Checked all 20 dev Goldens:
+every labeled broad skill is itself named in its `raw_text` (`cloud` from "cloud platforms
+(GCP, AWS, or Azure)" in golden_001), and no Golden carries a parent the posting does not
+name (golden_001 has `docker` without `containerization`). Stored eval results stay valid.
+
+Two dev Goldens are *missing* a broad label the posting does name, which the new wording
+makes visible. Left as they are, not fixed in this change:
+
+- golden_003: tech stack reads "LangGraph & related LLM orchestration tools"; `langgraph` is
+  labeled, `llm-orchestration` is not.
+- golden_013: "Serious experience using AI development tools such as Claude Code, Codex,
+  Cursor, Copilot"; the four tools are labeled, `ai-developer-tooling` is not — golden_009
+  labels `ai-developer-tooling` from the same shape of phrase, so the two disagree.
+
+Both are false negatives in the answer key, so they cost the extractor precision on a
+correct answer. Fixing them is a relabel and therefore its own release decision.
+
+(Also noted, not a labeling question: `apache-spark` has no "Spark" alias, so golden_011's
+"Spark/PySpark" resolves only by display name.)
+
+---
+
 ## 2026-10-26 — EU-remote postings are collected as the place "Remote (EU)"
 
 Chandler applies to any remote job he can take from Berlin, and /check-url rejected one
@@ -486,9 +723,10 @@ that feed's own last sighting counts — a search source re-finding a job must n
 delisted board posting open. `queries.FEED_SOURCES` / `SEARCH_SOURCES`.
 
 German-language postings arrive via the Arbeitsagentur and are not represented in the
-Goldens. `scripts/new_goldens.py --german N` drafts unlabeled held-out Goldens from them
-(no model pre-fill — held-out labels must not be anchored on the extractor's answer);
-run_eval skips files marked `draft`.
+Goldens. `scripts/new_goldens.py --german N` drafts unlabeled held-out Goldens from them;
+run_eval skips files marked `draft`. The no-model-pre-fill rule stated here was superseded
+on 2026-10-27 (two blind labelers, below) — the rule it came from, that a held-out label
+must not be anchored on the extractor's own answer, still holds.
 
 ## 2026-10-18 — German and degree are per-job attributes, extracted like seniority; three is the limit
 

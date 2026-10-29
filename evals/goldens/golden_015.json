@@ -1,9 +1,9 @@
 {
   "id": "golden_015",
   "split": "dev",
-  "seniority": "mid",
-  "seniority_basis": "inferred",
-  "seniority_signal": "High ownership mentality and the ability to move quickly without sacrificing quality",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
   "seniority_reviewed": true,
   "german": "nice_to_have",
   "german_basis": "stated",

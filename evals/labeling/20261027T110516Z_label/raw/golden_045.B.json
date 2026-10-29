@@ -1,0 +1,160 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"full-stack-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep hands-on experience across the stack\"\n    },\n    {\n      \"skill_id\": \"frontend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"frontend\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"backend\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"architecting\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"embeddings\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"RAG pipelines\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"experience developing AI agents\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tools, models and trends in AI-assisted software engineering\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"prompting\"\n    },\n    {\n      \"skill_id\": \"model-selection\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"know when to leverage which model\"\n    },\n    {\n      \"skill_id\": \"claude-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Claude Code\"\n    },\n    {\n      \"skill_id\": \"cursor\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cursor\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"make evaluation a team habit\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"observability tooling\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"integrating AI into SaaS business workflows\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vector databases\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data\",\n      \"raw_text\": \"data\"\n    },\n    {\n      \"label\": \"Infrastructure\",\n      \"raw_text\": \"infrastructure\"\n    },\n    {\n      \"label\": \"Context engineering\",\n      \"raw_text\": \"context engineering\"\n    },\n    {\n      \"label\": \"LLM-as-judge\",\n      \"raw_text\": \"LLM-as-judge\"\n    },\n    {\n      \"label\": \"Tracing\",\n      \"raw_text\": \"tracing\"\n    },\n    {\n      \"label\": \"Memory systems\",\n      \"raw_text\": \"memory systems\"\n    },\n    {\n      \"label\": \"Orchestration frameworks\",\n      \"raw_text\": \"orchestration frameworks\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Lead Product Engineer - AI\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Full professional proficiency in German at C1 level.\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Requirements defaults to required; Bonus Qualifications defaults to nice_to_have. Tasks and company-description mentions alone are excluded.\\nThe inline 'preferably with AI components' makes its parenthetical technologies optional; agents remains required because a separate requirement explicitly asks for AI-agent development.\\n'Across the stack' is interpreted as full-stack development, and 'architecting' as software architecture.\\nData and infrastructure are explicitly requested but too broad to assign more specific taxonomy entries.\\nMemory systems and orchestration frameworks are left unmapped rather than assuming agent-state management or specifically LLM orchestration.\\nThe optional applied-AI experience is provisionally mapped to ai-ml and flagged for review.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "deep hands-on experience across the stack"
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "required",
+        "raw_text": "frontend"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "architecting"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "nice_to_have",
+        "raw_text": "embeddings"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "RAG pipelines"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "experience developing AI agents"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "tools, models and trends in AI-assisted software engineering"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompting"
+      },
+      {
+        "skill_id": "model-selection",
+        "requirement": "required",
+        "raw_text": "know when to leverage which model"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code"
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "make evaluation a team habit"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "observability tooling"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "nice_to_have",
+        "raw_text": "integrating AI into SaaS business workflows",
+        "uncertain": true
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "nice_to_have",
+        "raw_text": "vector databases"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data",
+        "raw_text": "data"
+      },
+      {
+        "label": "Infrastructure",
+        "raw_text": "infrastructure"
+      },
+      {
+        "label": "Context engineering",
+        "raw_text": "context engineering"
+      },
+      {
+        "label": "LLM-as-judge",
+        "raw_text": "LLM-as-judge"
+      },
+      {
+        "label": "Tracing",
+        "raw_text": "tracing"
+      },
+      {
+        "label": "Memory systems",
+        "raw_text": "memory systems"
+      },
+      {
+        "label": "Orchestration frameworks",
+        "raw_text": "orchestration frameworks"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead Product Engineer - AI",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Full professional proficiency in German at C1 level.",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Requirements defaults to required; Bonus Qualifications defaults to nice_to_have. Tasks and company-description mentions alone are excluded.\nThe inline 'preferably with AI components' makes its parenthetical technologies optional; agents remains required because a separate requirement explicitly asks for AI-agent development.\n'Across the stack' is interpreted as full-stack development, and 'architecting' as software architecture.\nData and infrastructure are explicitly requested but too broad to assign more specific taxonomy entries.\nMemory systems and orchestration frameworks are left unmapped rather than assuming agent-state management or specifically LLM orchestration.\nThe optional applied-AI experience is provisionally mapped to ai-ml and flagged for review."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "f72c89a7dcc5117b18e18bb503b601d00bfdbd728728bd43ee9f42d0527e42b6",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

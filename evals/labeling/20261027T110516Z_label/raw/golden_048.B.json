@@ -1,0 +1,73 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Einsatz von KI-Tools\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs im Marketing-Kontext\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Prompting\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Meta Ads\",\n      \"raw_text\": \"Meta Ads\"\n    },\n    {\n      \"label\": \"Meta-Werbeanzeigenmanager\",\n      \"raw_text\": \"Meta-Werbeanzeigenmanager\"\n    },\n    {\n      \"label\": \"Reporting-/Attributions-Tools\",\n      \"raw_text\": \"Reporting-/Attributions-Tools\"\n    },\n    {\n      \"label\": \"Pinterest\",\n      \"raw_text\": \"Pinterest\"\n    },\n    {\n      \"label\": \"Reddit\",\n      \"raw_text\": \"Reddit\"\n    },\n    {\n      \"label\": \"TikTok\",\n      \"raw_text\": \"TikTok\"\n    },\n    {\n      \"label\": \"Bing Ads\",\n      \"raw_text\": \"Bing Ads\"\n    },\n    {\n      \"label\": \"Serverseitiges Tracking\",\n      \"raw_text\": \"serverseitigem Tracking\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Performance Marketing Manager\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Deine Deutsch- und Englischkenntnisse sind sehr gut\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Du hast dein Studium (BWL, Marketing, Medien, Kommunikationswissenschaften o. Ä.) erfolgreich abgeschlossen oder bringst eine vergleichbare Qualifikation mit.\",\n  \"notes\": \"Stellenanforderungen / Dein Profil sets the required default; there is no optional qualifications heading.\\nPinterest, Reddit, TikTok, Bing Ads and serverseitiges Tracking are optional because their item says „ist ein Plus“; the output schema provides no requirement field for unmapped skills.\\nKI-Tools is interpreted literally as applied AI and mapped to ai-ml; Prompting maps to prompt-engineering.\\nPaid-social and marketing subject-matter experience is treated as domain knowledge, not an additional technical skill.\\nTechnologies and practices named only in Deine Aufgaben, including Claude, Gemini, ChatGPT and A/B-Testing, are excluded.\\nThe unspecified completed Studium maps to bachelor; „oder bringst eine vergleichbare Qualifikation mit“ explicitly permits an alternative qualification.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Einsatz von KI-Tools"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs im Marketing-Kontext"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompting"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Meta Ads",
+        "raw_text": "Meta Ads"
+      },
+      {
+        "label": "Meta-Werbeanzeigenmanager",
+        "raw_text": "Meta-Werbeanzeigenmanager"
+      },
+      {
+        "label": "Reporting-/Attributions-Tools",
+        "raw_text": "Reporting-/Attributions-Tools"
+      },
+      {
+        "label": "Pinterest",
+        "raw_text": "Pinterest"
+      },
+      {
+        "label": "Reddit",
+        "raw_text": "Reddit"
+      },
+      {
+        "label": "TikTok",
+        "raw_text": "TikTok"
+      },
+      {
+        "label": "Bing Ads",
+        "raw_text": "Bing Ads"
+      },
+      {
+        "label": "Serverseitiges Tracking",
+        "raw_text": "serverseitigem Tracking"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Performance Marketing Manager",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Deine Deutsch- und Englischkenntnisse sind sehr gut",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Du hast dein Studium (BWL, Marketing, Medien, Kommunikationswissenschaften o. Ä.) erfolgreich abgeschlossen oder bringst eine vergleichbare Qualifikation mit.",
+    "notes": "Stellenanforderungen / Dein Profil sets the required default; there is no optional qualifications heading.\nPinterest, Reddit, TikTok, Bing Ads and serverseitiges Tracking are optional because their item says „ist ein Plus“; the output schema provides no requirement field for unmapped skills.\nKI-Tools is interpreted literally as applied AI and mapped to ai-ml; Prompting maps to prompt-engineering.\nPaid-social and marketing subject-matter experience is treated as domain knowledge, not an additional technical skill.\nTechnologies and practices named only in Deine Aufgaben, including Claude, Gemini, ChatGPT and A/B-Testing, are excluded.\nThe unspecified completed Studium maps to bachelor; „oder bringst eine vergleichbare Qualifikation mit“ explicitly permits an alternative qualification."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "0ee82c04aa8f0869f0fe1e712c12f50df45c9ea22dbffcaf905aa6c6450c4f97",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

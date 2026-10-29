@@ -1,0 +1,41 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"conversational-ai\", \"requirement\": \"required\", \"raw_text\": \"Conversational-AI\"},\n    {\"skill_id\": \"explainable-ai\", \"requirement\": \"required\", \"raw_text\": \"Explainable-AI\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Local AI (on-premise / locally run AI)\", \"raw_text\": \"Local-AI\"}\n  ],\n  \"seniority\": \"senior\", \"seniority_basis\": \"stated\", \"seniority_signal\": \"AI Engineer Team Lead\",\n  \"german\": \"required\", \"german_basis\": \"stated\", \"german_signal\": \"fließendes Deutsch\",\n  \"degree\": \"bachelor\", \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false, \"degree_signal\": \"Studium Informatik\",\n  \"uncertain\": [],\n  \"notes\": \"The only requirement section is the 'Gesucht:' sentence. 'AI-Lösungen' and 'Architekturentwicklung' are responsibilities, so they are not labeled.\\n'Local-AI' is left unmapped. open-source-llms (alias self-hosted llms) is the closest entry, but it is narrower: local AI is not necessarily LLMs. Taxonomy candidate.\\n'Führungserfahrung' is leadership, a soft skill, so it is not labeled.\\n'Englisch' is a spoken language, so it is not a skill and not a German signal.\\nSeniority is stated as senior because the title contains 'Lead'. 'mehrjährige Führungserfahrung' also supports senior.\\n'Studium Informatik' names no level, so degree is bachelor. It is a bare mention, so it is required.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "conversational-ai",
+        "requirement": "required",
+        "raw_text": "Conversational-AI"
+      },
+      {
+        "skill_id": "explainable-ai",
+        "requirement": "required",
+        "raw_text": "Explainable-AI"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Local AI (on-premise / locally run AI)",
+        "raw_text": "Local-AI"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "AI Engineer Team Lead",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "fließendes Deutsch",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Studium Informatik",
+    "uncertain": [],
+    "notes": "The only requirement section is the 'Gesucht:' sentence. 'AI-Lösungen' and 'Architekturentwicklung' are responsibilities, so they are not labeled.\n'Local-AI' is left unmapped. open-source-llms (alias self-hosted llms) is the closest entry, but it is narrower: local AI is not necessarily LLMs. Taxonomy candidate.\n'Führungserfahrung' is leadership, a soft skill, so it is not labeled.\n'Englisch' is a spoken language, so it is not a skill and not a German signal.\nSeniority is stated as senior because the title contains 'Lead'. 'mehrjährige Führungserfahrung' also supports senior.\n'Studium Informatik' names no level, so degree is bachelor. It is a bare mention, so it is required."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "82682841e4b2ff56e292d1a17e746fd9c575db3ce839cad6babee638e23f0fa2",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}
