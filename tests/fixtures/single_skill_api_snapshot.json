@@ -1,0 +1,567 @@
+{
+  "small:jobs_python_open": {
+    "body": {
+      "jobs": [
+        {
+          "city": "San Francisco",
+          "company": "Gamma",
+          "degree": null,
+          "degree_or_equivalent": false,
+          "degree_requirement": null,
+          "first_seen": "2026-10-17T12:00:00Z",
+          "german": null,
+          "id": 2,
+          "last_seen": "2026-10-17T12:00:00Z",
+          "legacy": false,
+          "repost_count": 0,
+          "required_skills": [
+            "aws",
+            "python"
+          ],
+          "seniority": "junior",
+          "seniority_basis": "stated",
+          "skill_counts": {
+            "nice_to_have": 0,
+            "required": 2
+          },
+          "sources": [
+            {
+              "first_seen": "2026-10-17T12:00:00Z",
+              "found_via": null,
+              "last_seen": "2026-10-17T12:00:00Z",
+              "source": "greenhouse",
+              "url": null
+            }
+          ],
+          "status": "open",
+          "title": "AI Engineer",
+          "too_short": false
+        },
+        {
+          "city": "Berlin",
+          "company": "Acme",
+          "degree": null,
+          "degree_or_equivalent": false,
+          "degree_requirement": null,
+          "first_seen": "2026-10-16T12:00:00Z",
+          "german": null,
+          "id": 1,
+          "last_seen": "2026-10-16T12:00:00Z",
+          "legacy": false,
+          "repost_count": 0,
+          "required_skills": [
+            "python",
+            "rag"
+          ],
+          "seniority": "mid",
+          "seniority_basis": "stated",
+          "skill_counts": {
+            "nice_to_have": 1,
+            "required": 2
+          },
+          "sources": [
+            {
+              "first_seen": "2026-10-16T12:00:00Z",
+              "found_via": null,
+              "last_seen": "2026-10-16T12:00:00Z",
+              "source": "arbeitnow",
+              "url": null
+            }
+          ],
+          "status": "open",
+          "title": "AI Engineer",
+          "too_short": false
+        }
+      ],
+      "limit": 20,
+      "offset": 0,
+      "total": 2
+    },
+    "status": 200,
+    "url": "/api/jobs?skill=python"
+  },
+  "small:jobs_python_req_all": {
+    "body": {
+      "jobs": [
+        {
+          "city": "San Francisco",
+          "company": "Gamma",
+          "degree": null,
+          "degree_or_equivalent": false,
+          "degree_requirement": null,
+          "first_seen": "2026-10-17T12:00:00Z",
+          "german": null,
+          "id": 2,
+          "last_seen": "2026-10-17T12:00:00Z",
+          "legacy": false,
+          "repost_count": 0,
+          "required_skills": [
+            "aws",
+            "python"
+          ],
+          "seniority": "junior",
+          "seniority_basis": "stated",
+          "skill_counts": {
+            "nice_to_have": 0,
+            "required": 2
+          },
+          "sources": [
+            {
+              "first_seen": "2026-10-17T12:00:00Z",
+              "found_via": null,
+              "last_seen": "2026-10-17T12:00:00Z",
+              "source": "greenhouse",
+              "url": null
+            }
+          ],
+          "status": "open",
+          "title": "AI Engineer",
+          "too_short": false
+        },
+        {
+          "city": "Berlin",
+          "company": "Acme",
+          "degree": null,
+          "degree_or_equivalent": false,
+          "degree_requirement": null,
+          "first_seen": "2026-10-16T12:00:00Z",
+          "german": null,
+          "id": 1,
+          "last_seen": "2026-10-16T12:00:00Z",
+          "legacy": false,
+          "repost_count": 0,
+          "required_skills": [
+            "python",
+            "rag"
+          ],
+          "seniority": "mid",
+          "seniority_basis": "stated",
+          "skill_counts": {
+            "nice_to_have": 1,
+            "required": 2
+          },
+          "sources": [
+            {
+              "first_seen": "2026-10-16T12:00:00Z",
+              "found_via": null,
+              "last_seen": "2026-10-16T12:00:00Z",
+              "source": "arbeitnow",
+              "url": null
+            }
+          ],
+          "status": "open",
+          "title": "AI Engineer",
+          "too_short": false
+        }
+      ],
+      "limit": 20,
+      "offset": 0,
+      "total": 2
+    },
+    "status": 200,
+    "url": "/api/jobs?skill=python&requirement=all&window=all"
+  },
+  "small:jobs_rag_all": {
+    "body": {
+      "jobs": [
+        {
+          "city": "Berlin",
+          "company": "Acme",
+          "degree": null,
+          "degree_or_equivalent": false,
+          "degree_requirement": null,
+          "first_seen": "2026-10-16T12:00:00Z",
+          "german": null,
+          "id": 1,
+          "last_seen": "2026-10-16T12:00:00Z",
+          "legacy": false,
+          "repost_count": 0,
+          "required_skills": [
+            "python",
+            "rag"
+          ],
+          "seniority": "mid",
+          "seniority_basis": "stated",
+          "skill_counts": {
+            "nice_to_have": 1,
+            "required": 2
+          },
+          "sources": [
+            {
+              "first_seen": "2026-10-16T12:00:00Z",
+              "found_via": null,
+              "last_seen": "2026-10-16T12:00:00Z",
+              "source": "arbeitnow",
+              "url": null
+            }
+          ],
+          "status": "open",
+          "title": "AI Engineer",
+          "too_short": false
+        }
+      ],
+      "limit": 20,
+      "offset": 0,
+      "total": 1
+    },
+    "status": 200,
+    "url": "/api/jobs?skill=rag&window=all"
+  },
+  "small:related_python_all": {
+    "body": {
+      "selected_count": 2,
+      "skills": [],
+      "total": 2
+    },
+    "status": 200,
+    "url": "/api/skills/related?skill=python&window=all"
+  },
+  "small:skills_with_skill_param": {
+    "body": {
+      "city_totals": {
+        "Berlin": 1,
+        "San Francisco": 1
+      },
+      "skills": [
+        {
+          "by_city": {
+            "Berlin": 1,
+            "San Francisco": 1
+          },
+          "count": 2,
+          "display": "Python",
+          "pct": 100.0,
+          "skill_id": "python"
+        },
+        {
+          "by_city": {
+            "San Francisco": 1
+          },
+          "count": 1,
+          "display": "AWS",
+          "pct": 50.0,
+          "skill_id": "aws"
+        },
+        {
+          "by_city": {
+            "Berlin": 1
+          },
+          "count": 1,
+          "display": "RAG",
+          "pct": 50.0,
+          "skill_id": "rag"
+        }
+      ],
+      "total": 2
+    },
+    "status": 200,
+    "url": "/api/skills?skill=python"
+  },
+  "wide:jobs_python_all": {
+    "body": {
+      "jobs": [
+        {
+          "city": "Berlin",
+          "company": "Co06",
+          "degree": null,
+          "degree_or_equivalent": false,
+          "degree_requirement": null,
+          "first_seen": "2026-10-16T12:00:00Z",
+          "german": null,
+          "id": 6,
+          "last_seen": "2026-10-16T12:00:00Z",
+          "legacy": false,
+          "repost_count": 0,
+          "required_skills": [
+            "python",
+            "pytorch",
+            "rag"
+          ],
+          "seniority": null,
+          "seniority_basis": null,
+          "skill_counts": {
+            "nice_to_have": 0,
+            "required": 3
+          },
+          "sources": [
+            {
+              "first_seen": "2026-10-16T12:00:00Z",
+              "found_via": null,
+              "last_seen": "2026-10-16T12:00:00Z",
+              "source": "arbeitnow",
+              "url": null
+            }
+          ],
+          "status": "open",
+          "title": "AI Engineer",
+          "too_short": false
+        },
+        {
+          "city": "Berlin",
+          "company": "Co05",
+          "degree": null,
+          "degree_or_equivalent": false,
+          "degree_requirement": null,
+          "first_seen": "2026-10-16T12:00:00Z",
+          "german": null,
+          "id": 5,
+          "last_seen": "2026-10-16T12:00:00Z",
+          "legacy": false,
+          "repost_count": 0,
+          "required_skills": [
+            "docker",
+            "python",
+            "rag"
+          ],
+          "seniority": null,
+          "seniority_basis": null,
+          "skill_counts": {
+            "nice_to_have": 0,
+            "required": 3
+          },
+          "sources": [
+            {
+              "first_seen": "2026-10-16T12:00:00Z",
+              "found_via": null,
+              "last_seen": "2026-10-16T12:00:00Z",
+              "source": "arbeitnow",
+              "url": null
+            }
+          ],
+          "status": "open",
+          "title": "AI Engineer",
+          "too_short": false
+        },
+        {
+          "city": "Berlin",
+          "company": "Co04",
+          "degree": null,
+          "degree_or_equivalent": false,
+          "degree_requirement": null,
+          "first_seen": "2026-10-16T12:00:00Z",
+          "german": null,
+          "id": 4,
+          "last_seen": "2026-10-16T12:00:00Z",
+          "legacy": false,
+          "repost_count": 0,
+          "required_skills": [
+            "aws",
+            "docker",
+            "kubernetes",
+            "python",
+            "pytorch"
+          ],
+          "seniority": null,
+          "seniority_basis": null,
+          "skill_counts": {
+            "nice_to_have": 0,
+            "required": 5
+          },
+          "sources": [
+            {
+              "first_seen": "2026-10-16T12:00:00Z",
+              "found_via": null,
+              "last_seen": "2026-10-16T12:00:00Z",
+              "source": "arbeitnow",
+              "url": null
+            }
+          ],
+          "status": "open",
+          "title": "AI Engineer",
+          "too_short": false
+        },
+        {
+          "city": "Berlin",
+          "company": "Co03",
+          "degree": null,
+          "degree_or_equivalent": false,
+          "degree_requirement": null,
+          "first_seen": "2026-10-16T12:00:00Z",
+          "german": null,
+          "id": 3,
+          "last_seen": "2026-10-16T12:00:00Z",
+          "legacy": false,
+          "repost_count": 0,
+          "required_skills": [
+            "aws",
+            "docker",
+            "kubernetes",
+            "python",
+            "pytorch"
+          ],
+          "seniority": null,
+          "seniority_basis": null,
+          "skill_counts": {
+            "nice_to_have": 0,
+            "required": 5
+          },
+          "sources": [
+            {
+              "first_seen": "2026-10-16T12:00:00Z",
+              "found_via": null,
+              "last_seen": "2026-10-16T12:00:00Z",
+              "source": "arbeitnow",
+              "url": null
+            }
+          ],
+          "status": "open",
+          "title": "AI Engineer",
+          "too_short": false
+        },
+        {
+          "city": "Berlin",
+          "company": "Co02",
+          "degree": null,
+          "degree_or_equivalent": false,
+          "degree_requirement": null,
+          "first_seen": "2026-10-16T12:00:00Z",
+          "german": null,
+          "id": 2,
+          "last_seen": "2026-10-16T12:00:00Z",
+          "legacy": false,
+          "repost_count": 0,
+          "required_skills": [
+            "aws",
+            "docker",
+            "kubernetes",
+            "python",
+            "pytorch",
+            "rag"
+          ],
+          "seniority": null,
+          "seniority_basis": null,
+          "skill_counts": {
+            "nice_to_have": 0,
+            "required": 6
+          },
+          "sources": [
+            {
+              "first_seen": "2026-10-16T12:00:00Z",
+              "found_via": null,
+              "last_seen": "2026-10-16T12:00:00Z",
+              "source": "arbeitnow",
+              "url": null
+            }
+          ],
+          "status": "open",
+          "title": "AI Engineer",
+          "too_short": false
+        },
+        {
+          "city": "Berlin",
+          "company": "Co01",
+          "degree": null,
+          "degree_or_equivalent": false,
+          "degree_requirement": null,
+          "first_seen": "2026-10-16T12:00:00Z",
+          "german": null,
+          "id": 1,
+          "last_seen": "2026-10-16T12:00:00Z",
+          "legacy": false,
+          "repost_count": 0,
+          "required_skills": [
+            "aws",
+            "docker",
+            "kubernetes",
+            "python",
+            "pytorch",
+            "rag"
+          ],
+          "seniority": null,
+          "seniority_basis": null,
+          "skill_counts": {
+            "nice_to_have": 0,
+            "required": 6
+          },
+          "sources": [
+            {
+              "first_seen": "2026-10-16T12:00:00Z",
+              "found_via": null,
+              "last_seen": "2026-10-16T12:00:00Z",
+              "source": "arbeitnow",
+              "url": null
+            }
+          ],
+          "status": "open",
+          "title": "AI Engineer",
+          "too_short": false
+        }
+      ],
+      "limit": 50,
+      "offset": 0,
+      "total": 6
+    },
+    "status": 200,
+    "url": "/api/jobs?skill=python&window=all&limit=50"
+  },
+  "wide:related_python_all": {
+    "body": {
+      "selected_count": 6,
+      "skills": [
+        {
+          "base_pct": 33.3,
+          "count": 5,
+          "display": "Docker",
+          "lift": 2.5,
+          "pct": 83.3,
+          "skill_id": "docker"
+        },
+        {
+          "base_pct": 33.3,
+          "count": 5,
+          "display": "PyTorch",
+          "lift": 2.5,
+          "pct": 83.3,
+          "skill_id": "pytorch"
+        }
+      ],
+      "total": 15
+    },
+    "status": 200,
+    "url": "/api/skills/related?skill=python&window=all"
+  },
+  "wide:related_python_berlin": {
+    "body": {
+      "selected_count": 6,
+      "skills": [
+        {
+          "base_pct": 45.5,
+          "count": 5,
+          "display": "Docker",
+          "lift": 1.833,
+          "pct": 83.3,
+          "skill_id": "docker"
+        },
+        {
+          "base_pct": 45.5,
+          "count": 5,
+          "display": "PyTorch",
+          "lift": 1.833,
+          "pct": 83.3,
+          "skill_id": "pytorch"
+        }
+      ],
+      "total": 11
+    },
+    "status": 200,
+    "url": "/api/skills/related?skill=python&window=all&city=Berlin"
+  },
+  "wide:related_rag_all": {
+    "body": {
+      "selected_count": 13,
+      "skills": [
+        {
+          "base_pct": 60.0,
+          "count": 7,
+          "display": "AWS",
+          "lift": 0.897,
+          "pct": 53.8,
+          "skill_id": "aws"
+        }
+      ],
+      "total": 15
+    },
+    "status": 200,
+    "url": "/api/skills/related?skill=rag&window=all"
+  }
+}
