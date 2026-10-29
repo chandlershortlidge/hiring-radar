@@ -7,7 +7,7 @@ import { coverage } from "./profile.js";
 const SORTS = { newest: "Newest first", oldest: "Oldest first", reposts: "Most reposted", company: "Company A–Z" };
 const PAGE = 20;
 
-export default function JobList({ filters, setFilters, skillName, profile, taxonomy, refreshKey, openJobId, onOpened, onOpenPage }) {
+export default function JobList({ filters, setFilters, profile, taxonomy, refreshKey, openJobId, onOpened, onOpenPage }) {
   const [sort, setSort] = useState("newest");
   const [page, setPage] = useState({ jobs: [], total: 0 });
   const [open, setOpen] = useState(null);
@@ -34,11 +34,13 @@ export default function JobList({ filters, setFilters, skillName, profile, taxon
       <div className="jobs-head">
         <div className="l">
           <h2 id="jobs-title">Jobs</h2>
-          {filters.skill && (
-            <span className="chip-filter">Skill: {skillName}
-              <button type="button" aria-label="Clear skill filter" onClick={() => setFilters((f) => ({ ...f, skill: null }))}><X size={12} /></button>
+          {filters.skillIds.length > 0 && <span className="muted" style={{ fontSize: 12.5 }}>Requires</span>}
+          {filters.skillIds.map((id) => (
+            <span key={id} className="chip-filter">{taxonomy[id] || id}
+              <button type="button" aria-label={`Remove ${taxonomy[id] || id} from the skill filter`}
+                onClick={() => setFilters((f) => ({ ...f, skillIds: f.skillIds.filter((x) => x !== id) }))}><X size={12} /></button>
             </span>
-          )}
+          ))}
           <span className="muted" style={{ fontSize: 13 }}>{page.total} {filters.window === "open" ? "open" : ""} jobs · {scope}</span>
         </div>
         <div className="r">

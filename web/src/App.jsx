@@ -13,7 +13,7 @@ import ProfileDrawer from "./ProfileDrawer.jsx";
 import JobPage from "./JobPage.jsx";
 
 const WINDOWS = { open: "Currently open", "30d": "Last 30 days", "90d": "Last 90 days", all: "All" };
-const DEFAULT = { cities: [], compare: false, seniorities: [], requirement: "required", window: "open", german: "any", degree: "any", skill: null, query: "" };
+const DEFAULT = { cities: [], compare: false, seniorities: [], requirement: "required", window: "open", german: "any", degree: "any", skillIds: [], query: "" };
 
 // The only route besides "/": /jobs/{id} is a job's own page. The server returns index.html
 // for every path, so the address bar is read here, on load and whenever the back/forward
@@ -43,7 +43,19 @@ export default function App() {
   const set = (patch) => setFilters((f) => ({ ...f, ...patch }));
   const setCity = (c) => set(c === "compare" ? { compare: true, cities: [] } : { compare: false, cities: c ? [c] : [] });
   const toggleSen = (s) => set({ seniorities: filters.seniorities.includes(s) ? filters.seniorities.filter((x) => x !== s) : [...filters.seniorities, s] });
-  const viewJob = (id) => { setDrawer(null); if (pageJob) closePage(); set({ skill: null, query: "", window: "all" }); setJumpTo(id); };
+  const viewJob = (id) => { setDrawer(null); if (pageJob) closePage(); set({ skillIds: [], query: "", window: "all" }); setJumpTo(id); };
+
+  // The skill filter is a set, read as AND: the job list shows the jobs requiring every one
+  // of them. A bar click replaces the selection — clicking the only selected skill clears it —
+  // and a shift- or meta-click adds to it. A related-skills row always adds (that panel exists
+  // to be drilled into). Nothing here touches the main chart, which ignores the selection.
+  const selectSkill = (id, additive = false) => setFilters((f) => {
+    const has = f.skillIds.includes(id);
+    if (additive) return { ...f, skillIds: has ? f.skillIds.filter((x) => x !== id) : [...f.skillIds, id] };
+    return { ...f, skillIds: has && f.skillIds.length === 1 ? [] : [id] };
+  });
+  const addSkill = (id) => setFilters((f) => (f.skillIds.includes(id) ? f : { ...f, skillIds: [...f.skillIds, id] }));
+  const skillNames = filters.skillIds.map((id) => taxName[id] || id);
 
   const cityLabel = filters.compare ? `${CITIES.join(" + ")}` : filters.cities.length ? filters.cities.join(" + ") : PLACES.join(" + ");
   const winLabel = filters.window === "open" ? "currently open" : filters.window === "all" ? "" : `from the last ${filters.window.replace("d", " days")}`;
@@ -129,15 +141,15 @@ export default function App() {
             </div>
           </div>
           {filters.compare
-            ? <CompareChart data={skills} selected={filters.skill} onSelect={(id) => set({ skill: id })}
-                onSelectCity={(id, city) => set({ skill: id, compare: false, cities: [city] })} />
-            : <SkillChart data={skills} selected={filters.skill} onSelect={(id) => set({ skill: id })} profile={profile}
+            ? <CompareChart data={skills} selected={filters.skillIds} onSelect={selectSkill}
+                onSelectCity={(id, city) => set({ skillIds: [id], compare: false, cities: [city] })} />
+            : <SkillChart data={skills} selected={filters.skillIds} onSelect={selectSkill} profile={profile}
                 cityLabel={`${winLabel || "tracked"} jobs`} />}
         </section>
 
-        <RelatedSkills filters={filters} skillName={filters.skill ? taxName[filters.skill] || filters.skill : ""} refreshKey={refresh} />
+        <RelatedSkills filters={filters} skillNames={skillNames} onAdd={addSkill} refreshKey={refresh} />
 
-        <JobList filters={filters} setFilters={setFilters} skillName={filters.skill ? taxName[filters.skill] || filters.skill : ""}
+        <JobList filters={filters} setFilters={setFilters}
           profile={profile} taxonomy={taxName} refreshKey={refresh} openJobId={jumpTo} onOpened={() => setJumpTo(null)} onOpenPage={openPage} />
       </main>}
 

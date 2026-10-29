@@ -56,8 +56,9 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
 .related-head h2 { margin: 0; font-size: 15px; font-weight: 600; }
 .related-head p { margin: 4px 0 0; color: var(--ink-2); font-size: 12.5px; max-width: 70ch; }
 .related-list { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; }
-.related-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 7px 0; border-top: 1px solid var(--line-2); }
-.related-row:first-child { border-top: 0; }
+.related-row { width: 100%; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 7px 0; border: 0; border-top: 1px solid var(--line-2); background: transparent; text-align: left; cursor: pointer; }
+.related-list li:first-child .related-row { border-top: 0; }
+.related-row:hover .name, .related-row:focus-visible .name { text-decoration: underline; }
 .related-row .name { font-size: 13px; }
 .related-row .share { font: 12.5px var(--mono); color: var(--ink); white-space: nowrap; }
 

@@ -5,6 +5,10 @@ const PAGE = 15;
 
 // One bar per skill: share of the filtered job set listing it. With a profile, the bar
 // is drawn solid for skills the person has and hatched for the ones they don't.
+//
+// `selected` is the set of selected skill ids (AND, several at a time). A click reports
+// whether it was additive — shift or meta held — and App decides replace vs add; this
+// component only draws the selection it is given.
 export default function SkillChart({ data, selected, onSelect, profile, cityLabel }) {
   const [shown, setShown] = useState(PAGE);
   const [hover, setHover] = useState(null);
@@ -27,14 +31,14 @@ export default function SkillChart({ data, selected, onSelect, profile, cityLabe
       {skills.slice(0, shown).map((s, i) => {
         const p = pct(s.count, total);
         const w = `${Math.min(100, (p / max) * 100)}%`;
-        const sel = selected === s.skill_id;
-        const dim = selected && !sel;
+        const sel = selected.includes(s.skill_id);
+        const dim = selected.length > 0 && !sel;
         const cities = Object.entries(s.by_city || {});
         const cls = profile ? (have.has(s.skill_id) ? "have" : "gap") : "";
         return (
           <button key={s.skill_id} type="button" className={`bar-row${dim ? " dimmed" : ""}`} aria-pressed={sel}
-            aria-label={`${s.display}, ${s.count} jobs, ${pctInt(s.count, total)}%. Filter job list`}
-            onClick={() => onSelect(sel ? null : s.skill_id)}
+            aria-label={`${s.display}, ${s.count} jobs, ${pctInt(s.count, total)}%. ${sel ? "Remove from" : "Filter"} job list`}
+            onClick={(e) => onSelect(s.skill_id, e.shiftKey || e.metaKey)}
             onMouseEnter={() => setHover(s.skill_id)} onMouseLeave={() => setHover(null)}
             onFocus={() => setHover(s.skill_id)} onBlur={() => setHover(null)}>
             <span className="name"><span className="rank">{i + 1}</span><span>{s.display}</span></span>
@@ -58,12 +62,15 @@ export default function SkillChart({ data, selected, onSelect, profile, cityLabe
           <span>{Math.min(shown, skills.length)} of {skills.length} skills with at least one mention</span>
         </div>
         <div>
-          {profile ? (
+          {profile && (
             <>
               <span className="legend"><i style={{ background: "var(--ink)" }} /> in your profile</span>
               <span className="legend"><i className="fill gap" style={{ height: 10 }} /> not yet</span>
             </>
-          ) : <span>Click a bar to filter the jobs below · hover for % and cities</span>}
+          )}
+          {/* How to select stays visible with a profile set too: the legend used to take the
+              whole footer, which hid the one place that says a second skill can be added. */}
+          <span>Click a bar to filter the jobs below · ⇧- or ⌘-click to add a skill{profile ? "" : " · hover for % and cities"}</span>
         </div>
       </div>
     </div>
