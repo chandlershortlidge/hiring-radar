@@ -95,22 +95,31 @@ Also report the degree the posting asks for:
 - degree_signal is the verbatim phrase naming the degree (include the "or equivalent"
   wording if present), or null.
 
-Also report whether the posting asks the candidate for prior production experience:
-- The question is whether the candidate is asked for a record of having shipped or operated
-  software that real users depended on. Markers for "required": that experience is asked of
-  the candidate and not marked optional — "you have shipped X to production", "track record
-  of building production-grade services", "experience building and operating production
-  systems", "experience deploying production-quality software", "commercial experience in
-  production environments". In German: "Du hast bereits Produkte in den produktiven Betrieb
-  gebracht", "Erfahrung mit produktiven Anwendungen", "Erfahrung im produktiven Einsatz".
-- "nice_to_have" when that same ask is marked optional (plus, preferred, ideally, advantage,
-  bonus).
+Also report whether the posting demands production work of the candidate:
+- The question is whether the candidate is asked to ship, operate, deploy or run software
+  that real users depend on. **The verb carries the demand, not the tense**: a past record
+  ("you have shipped X to production"), a present ability ("able to take a service to
+  production"), and a stated expectation all count equally. Markers for "required": that
+  demand is made of the candidate and not marked optional — "track record of building and
+  running production systems", "experience building and operating production systems",
+  "commercial experience in production environments". In German: "Du hast bereits Produkte
+  in den produktiven Betrieb gebracht", "Erfahrung mit produktiven Anwendungen",
+  "Erfahrung im produktiven Einsatz".
+- "nice_to_have" when that same demand is marked optional (plus, preferred, ideally,
+  advantage, bonus).
 - null when the posting does not ask the candidate for it. Work the job involves is not an
   ask: "you will deploy models to production", "take prototypes to production", "from idea
   to production", "von der Idee bis zum produktiven Einsatz" are responsibilities, null —
-  the same rule as for technologies that appear only in responsibilities. A standard for the
-  code rather than a record of shipping it is also null: "write production-grade code",
-  "strong Python skills, including writing production-quality code and tests".
+  the same rule as for technologies that appear only in responsibilities.
+- A bar on the code itself, with no demand to ship or run it, is null:
+  "write production-grade code", "strong Python skills, including writing
+  production-quality code and tests". Test the verb — ship, operate, deploy or run in
+  production is "required"; write, or code to a production standard, is null. One posting
+  often carries both a clause apart; label the shipping clause, ignore the quality clause.
+- A demand scoped to one seniority level in a posting open to several levels is null: a
+  bullet prefixed with a level heading, in a posting whose title or requirements invite
+  more than one level, is not a job-wide demand, because the track open to a junior does
+  not carry it. A demand that every candidate the posting invites must meet is "required".
 - production_basis is "stated" whenever a value is set; there is nothing to infer.
 - production_signal is the verbatim phrase, or null when not mentioned.
 
@@ -216,7 +225,7 @@ NO_DEGREE = Degree(None, None, False, None)
 
 @dataclass(frozen=True)
 class Production:
-    """Prior experience shipping or operating software real users depended on (HIR-69)."""
+    """A demand to ship or operate software real users depend on (HIR-69)."""
     requirement: str | None   # required | nice_to_have | None (not asked for)
     basis: str | None         # 'stated' or None: there is no inferred case, unlike German
     signal: str | None        # verbatim phrase; always present when requirement is set

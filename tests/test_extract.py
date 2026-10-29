@@ -379,10 +379,26 @@ def test_tool_schema_requires_production_fields():
 
 def test_prompt_describes_production_markers_and_excludes_responsibilities():
     """Per DECISIONS: describe the positive class, and keep responsibilities out of it."""
-    block = ex.PRINCIPLES.split("prior production experience")[1]
+    block = ex.PRINCIPLES.split("demands production work of the candidate")[1]
     assert 'Markers for "required"' in block
     assert "are responsibilities, null" in block
     assert "write production-grade code" in block
+
+
+def test_prompt_makes_the_verb_not_the_tense_the_production_test():
+    """DECISIONS 2026-10-29: a present ability is the same demand as a past record."""
+    block = ex.PRINCIPLES.split("demands production work of the candidate")[1]
+    assert "The verb carries the demand, not the tense" in block
+    assert "a present ability" in block
+    # the quality-bar class is still excluded, and the verb is what separates them
+    assert "Test the verb" in block
+
+
+def test_prompt_excludes_a_demand_scoped_to_one_seniority_level():
+    """DECISIONS 2026-10-29: golden_006 - a level-scoped demand is not job-wide."""
+    block = ex.PRINCIPLES.split("demands production work of the candidate")[1]
+    assert "scoped to one seniority level" in block
+    assert "not a job-wide demand" in block
 
 
 def test_prompt_keeps_degrees_and_languages_out_of_skills():

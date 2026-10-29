@@ -5,34 +5,70 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-29 — Production experience: the verb, not the tense; a level-scoped demand is not job-wide (HIR-69)
+
+Two rules settled at the Goldens checkpoint. They revise the rule bullets in the 2026-10-28
+entry, which stands otherwise.
+
+**The verb carries the demand, not the tense.** The 2026-10-28 wording asked for "a record
+of having shipped", which read "able to ship production-quality agentic systems, not just
+prototypes" (golden_019) as a quality bar and labeled it not mentioned. Wrong: the posting
+is demanding that the candidate ship to production, and a modal demand is the same demand
+as a past-tense one. `required` now covers ship / operate / deploy / run in production in
+any tense or modality; only a bar on the code itself — "write production-grade code",
+"writing production-quality code and tests" — stays not mentioned. golden_019 is `required`.
+
+**A demand scoped to one seniority level is not job-wide.** golden_006 is open to "all
+levels" and asks for "several years of practical experience in the design and operation of
+productive AI systems" only under a "Senior Level:" heading. Labeling the posting `required`
+hides it from a junior filtering on production-not-required, which is the opposite of what
+that filter is for — the junior track of that posting carries no such demand. golden_006 is
+not mentioned.
+
+Both rules are in the `PRINCIPLES` prompt rule in `app/extract.py`, so the prompt hash
+changes and stored eval results from before this entry are not comparable. `evals/LABELING.md`
+still owes its `## Production experience` section (frozen; 2026-10-16) — it must carry both
+rules when it is written, with the relabeling, as a release decision.
+
+---
+
 ## 2026-10-28 — Production experience is a fourth per-job attribute, not a skill (HIR-69)
 
-Does the posting ask the candidate for **prior experience shipping or operating software
-that real users depended on?** `required | nice_to_have | not mentioned`, with a quoted
-signal — the German shape, in migration 013.
+Does the posting **demand production work of the candidate — shipping or operating
+software that real users depend on?** `required | nice_to_have | not mentioned`, with a
+quoted signal — the German shape, in migration 013.
 
 Not a skill: the taxonomy excludes work practices, and "production" or "produktiv" appears
 in 168 of 243 stored descriptions, so as a skill it would sit atop every chart and measure
 nothing. This is the first entry of HIR-59's role-demands vocabulary and answers HIR-35 for
 this one practice.
 
-- `required`: the candidate is asked for the experience and it is not marked optional —
-  "you have shipped production systems", "track record of building production-grade backend
-  services", "experience building and operating production-grade software", "commercial
-  software engineering experience in production environments".
-- `nice_to_have`: that same ask marked optional — "experience with production ML is a plus",
-  "ideally…".
+Rule bullets revised 2026-10-29 — see that entry for what changed and why.
+
+- **The line is the verb, not the tense.** A demand to ship, operate, deploy or run
+  software in production is `required` in any tense or modality — "you have shipped
+  production systems", "experience shipping production services", "able to ship
+  production-quality agentic systems", "track record of building and running production
+  services", "commercial software engineering experience in production environments". A
+  past record, a present ability and a stated expectation are the same demand.
+- `nice_to_have`: that same demand marked optional — "experience with production ML is a
+  plus", "ideally…".
 - **Not mentioned** when the posting never asks the candidate for it. Most mentions of the
   word are responsibilities ("you'll deploy models to production", "turn prototypes into
-  production-ready systems"), and PRINCIPLES rule 1 already excludes responsibilities for
-  technologies — the same rule applies here.
-- **A quality expectation of the work is not the demand**: "write production-grade code",
+  production-ready systems", "from idea to production"), and PRINCIPLES rule 1 already
+  excludes responsibilities for technologies — the same rule applies here.
+- **A quality bar on the code itself is not the demand**: "write production-grade code",
   "strong Python skills, including writing production-quality code and tests" → not
-  mentioned. The attribute measures a record of having shipped, not a bar for the code to
-  be written. The grammar separates them: a track record *of building* production-grade
-  services is `required`; Python skills *including writing* production-quality code is not.
-  Decided rather than left open because the corpus has both readings one clause apart, and
-  the wide reading drifts back toward "writes good code", which almost every posting wants.
+  mentioned. The attribute measures a demand to ship or run the software, not a standard
+  for the code to be written. The verb is the test: *ship*, *operate*, *deploy*, *run* →
+  `required`; *write*, *code to* a production standard → not mentioned. The corpus carries
+  both one clause apart — golden_018 has each — so the verb decides, not the tense.
+- **A demand scoped to one seniority level is not a job-wide demand.** A posting open to
+  several levels that asks for production experience only under a level heading
+  ("Senior Level: several years … in the design and operation of productive AI systems")
+  is not mentioned: the track the posting opens to a junior carries no such demand, and
+  `production=not_required` has to keep showing that posting to a junior. golden_006 is the
+  reference case.
 - German postings: `required` on "Du hast bereits Produkte … in den produktiven Betrieb
   gebracht", "Erfahrung mit produktiven AI-Anwendungen, nicht nur Prototypen". Not mentioned
   on the common "von der Idee bis zum produktiven Einsatz" responsibility phrasing.
