@@ -2,7 +2,7 @@
 
 Does: turn a Filters object into SQL, compute document frequency over the filtered job
 set (count of jobs mentioning each skill ÷ jobs in the set), the skills that co-occur with
-a selected one (share against the same set's baseline), and the open/closed status of a job.
+the selected ones (share against the same set's baseline), and the open/closed status of a job.
 
 Does NOT: write anything, know about HTTP, or call a model. Frontend-only concerns
 (profile match, chip ordering) are computed from these results elsewhere.
@@ -87,7 +87,9 @@ class Filters:
     production: str = "any"               # key of PRODUCTION_FILTERS
     requirement: str = "required"         # 'required' | 'all'
     window: str = "open"                  # 'open' | '30d' | '90d' | 'all'
-    skill_id: str | None = None           # job list only
+    # Job list and related panel only, never the chart. Several ids mean AND: the jobs
+    # that list every one of them. () = no skill filter.
+    skill_ids: tuple[str, ...] = ()
     query: str = ""                       # job list only: company/title substring
 
 
@@ -138,6 +140,23 @@ def _mention_clause(f: Filters, alias: str = "m") -> tuple[str, list]:
     if f.requirement == "required":
         return f"{alias}.requirement = 'required'", []
     return "1=1", []
+
+
+def _skills_clause(f: Filters, prefix: str = "sm") -> tuple[str, list]:
+    """SQL (over alias j) true for the jobs that list *every* skill in f.skill_ids.
+
+    One EXISTS per selected skill, ANDed: a skill set of two is read as "and", not "or".
+    Each subquery gets its own alias, so the requirement filter applies per skill and the
+    clause can sit beside an aggregate's own mention row. No skills selected: "1=1".
+    """
+    parts, params = [], []
+    for i, sid in enumerate(f.skill_ids):
+        a = f"{prefix}{i}"
+        mc, mp = _mention_clause(f, a)
+        parts.append(f"EXISTS (SELECT 1 FROM skill_mention {a}"
+                     f" WHERE {a}.job_id = j.id AND {a}.skill_id = ? AND {mc})")
+        params += [sid] + mp
+    return (" AND ".join(parts) or "1=1"), params
 
 
 # --- stats ------------------------------------------------------------------------------
@@ -197,7 +216,10 @@ def skill_frequency(conn: sqlite3.Connection, f: Filters, now: str) -> dict:
 
 
 def related_skills(conn: sqlite3.Connection, f: Filters, now: str) -> dict:
-    """What the jobs listing f.skill_id also list: {'selected_count', 'total', 'skills': [...]}.
+    """What the jobs listing every skill in f.skill_ids also list.
+
+    Returns {'selected_count', 'total', 'skills': [...]}; with one skill selected the
+    answer is identical to the single-skill version this grew out of.
 
     Every number is over the current filter set (city, seniority, German, degree, window),
     never over all jobs: `total` is that whole set, `selected_count` the jobs in it that
@@ -212,29 +234,29 @@ def related_skills(conn: sqlite3.Connection, f: Filters, now: str) -> dict:
     rounded percentages. The RELATED_LIMIT rows it picks are then returned by pct desc,
     count desc, so the panel reads top-down by the number it shows. Rows seen in fewer than
     MIN_CO_JOBS of the selected jobs are dropped — one odd stack otherwise reads as a 4x lift.
-    The selected skill itself is excluded. No skill selected, or none of the filtered jobs
-    list it: no rows.
+    Every selected skill is excluded from the rows. No skill selected, or no job in the
+    filter set listing all of them: no rows. Several skills are ANDed (`_skills_clause`),
+    so `selected_count` shrinks as skills are added and MIN_CO_JOBS prunes the rows
+    faster; `selected_count > 0` with no rows is that pruning, and the UI says so.
     """
     base = skill_frequency(conn, f, now)      # the baseline, by construction the same filter set
     total = base["total"]
     base_count = {s["skill_id"]: s for s in base["skills"]}
     empty = {"selected_count": 0, "total": total, "skills": []}
-    if not f.skill_id or not total:
+    if not f.skill_ids or not total:
         return empty
     jc, jp = job_set_clause(f, now)
     mc, mp = _mention_clause(f)
-    sc, sp = _mention_clause(f, "sm")
-    # The clause list_jobs uses to narrow to jobs listing one skill, under its own alias so
-    # it can sit beside the aggregate's own mention row.
-    sel = f"EXISTS (SELECT 1 FROM skill_mention sm WHERE sm.job_id = j.id AND sm.skill_id = ? AND {sc})"
-    sel_params = [f.skill_id] + sp
+    # The same clause list_jobs uses to narrow to the jobs listing every selected skill.
+    sel, sel_params = _skills_clause(f)
     selected_count = conn.execute(f"SELECT count(*) FROM job j WHERE {jc} AND {sel}", jp + sel_params).fetchone()[0]
     if not selected_count:
         return empty
+    excl = f"m.skill_id NOT IN ({','.join('?' * len(f.skill_ids))})"
     rows = conn.execute(
         f"SELECT m.skill_id, count(DISTINCT j.id) n FROM skill_mention m JOIN job j ON j.id = m.job_id"
-        f" WHERE {jc} AND {mc} AND {sel} AND m.skill_id != ? GROUP BY m.skill_id",
-        jp + mp + sel_params + [f.skill_id]).fetchall()
+        f" WHERE {jc} AND {mc} AND {sel} AND {excl} GROUP BY m.skill_id",
+        jp + mp + sel_params + list(f.skill_ids)).fetchall()
     skills = []
     for s in _skill_rows(rows, selected_count, with_cities=False):
         if s["count"] < MIN_CO_JOBS:
@@ -281,10 +303,10 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
     jc, jp = job_set_clause(f, now, include_legacy=True)
     params = list(jp)
     where = [jc]
-    if f.skill_id:
-        mc, mp = _mention_clause(f)
-        where.append(f"EXISTS (SELECT 1 FROM skill_mention m WHERE m.job_id = j.id AND m.skill_id = ? AND {mc})")
-        params += [f.skill_id] + mp
+    if f.skill_ids:
+        sc, sp = _skills_clause(f, "m")      # every selected skill, ANDed
+        where.append(sc)
+        params += sp
     if f.query.strip():
         q = f"%{f.query.strip().lower()}%"
         where.append("(lower(j.company) LIKE ? OR lower(j.title) LIKE ?)")

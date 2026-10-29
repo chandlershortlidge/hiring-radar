@@ -1,3 +1,5 @@
+import json
+from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
@@ -6,10 +8,11 @@ from fastapi.testclient import TestClient
 from app import db
 from app.api import create_app
 from app.taxonomy import Taxonomy
-from tests.test_queries import NOW, add, ts
+from tests.test_queries import NOW, RELATED_JOBS, add, ts
 
 TAX = Taxonomy({"version": 3, "skills": [
-    {"id": "python", "display": "Python"}, {"id": "rag", "display": "RAG", "parents": ["llms"]},
+    {"id": "python", "display": "Python"},
+    {"id": "rag", "display": "RAG", "aliases": ["Retrieval Augmented Generation"], "parents": ["llms"]},
     {"id": "llms", "display": "LLMs"}, {"id": "aws", "display": "AWS"}, {"id": "docker", "display": "Docker"},
     {"id": "rust-lang", "display": "Rust"}]})
 
@@ -92,7 +95,11 @@ def test_jobs_and_detail(api):
 def test_taxonomy_endpoint(api):
     client, _ = api
     t = client.get("/api/taxonomy").json()
-    assert t["version"] == 3 and {"id": "rag", "display": "RAG", "parents": ["llms"]} in t["skills"]
+    # aliases ride along: the chart's filter box matches on them (HIR-67A).
+    assert t["version"] == 3 and {"id": "rag", "display": "RAG",
+                                  "aliases": ["Retrieval Augmented Generation"],
+                                  "parents": ["llms"]} in t["skills"]
+    assert {"id": "python", "display": "Python", "aliases": [], "parents": []} in t["skills"]
 
 
 def test_proposed_resolve(api):
@@ -139,3 +146,77 @@ def test_add_url_exists_path(api, monkeypatch):
     monkeypatch.setattr("app.api.log_check", lambda *a, **k: None)
     r = client.post("/api/add/url", json={"url": "https://x"}).json()
     assert r["outcome"] == "exists" and r["job_id"] == 1
+
+
+# --- several skills at once (HIR-75) -----------------------------------------------------
+
+# The 15-job set from tests/test_queries.py, with a taxonomy of its own so the snapshot
+# below answers for the code and not for taxonomy/skills.json.
+WIDE_TAX = Taxonomy({"version": 3, "skills": [
+    {"id": "python", "display": "Python"}, {"id": "docker", "display": "Docker"},
+    {"id": "pytorch", "display": "PyTorch"}, {"id": "aws", "display": "AWS"},
+    {"id": "rag", "display": "RAG"}, {"id": "kubernetes", "display": "Kubernetes"}]})
+
+
+@pytest.fixture
+def wide_api(tmp_path, monkeypatch):
+    path = tmp_path / "wide.db"
+    c = db.connect(path)
+    db.migrate(c)
+    for company, city, skills in RELATED_JOBS:
+        add(c, company, "AI Engineer", city, "arbeitnow", ts(1), [(s, "required") for s in skills])
+    c.close()
+    monkeypatch.setattr("app.queries.now_iso", lambda: NOW)
+    monkeypatch.setattr("app.api.now_iso", lambda: NOW)
+    return TestClient(create_app(path, WIDE_TAX, client_factory=lambda: FakeClient()))
+
+
+def test_repeated_skill_params_are_anded(wide_api):
+    companies = lambda **p: {j["company"] for j in wide_api.get(
+        "/api/jobs", params={"window": "all", "limit": 50, **p}).json()["jobs"]}
+    assert companies(skill="python") == {f"Co{n:02d}" for n in range(1, 7)}
+    assert companies(skill=["python", "docker"]) == {f"Co{n:02d}" for n in range(1, 6)}
+    assert companies(skill=["python", "docker", "kubernetes"]) == {f"Co{n:02d}" for n in range(1, 5)}
+    assert companies(skill=["docker", "rag"]) == {"Co01", "Co02", "Co05"}
+    # A skill sent twice is the same query as once: the dedup keeps the clause list clean.
+    assert companies(skill=["python", "python"]) == companies(skill="python")
+
+
+def test_related_skills_over_a_skill_set(wide_api):
+    r = wide_api.get("/api/skills/related", params={"window": "all", "skill": ["python", "docker"]}).json()
+    assert (r["selected_count"], r["total"]) == (5, 15)
+    assert "python" not in {s["skill_id"] for s in r["skills"]}
+    assert "docker" not in {s["skill_id"] for s in r["skills"]}
+    # Five jobs require both; pytorch is in four of them, under MIN_CO_JOBS, so the list is
+    # pruned to nothing. selected_count is what tells the panel to say that rather than
+    # "no jobs require these".
+    assert r["skills"] == [] and r["selected_count"] > 0
+
+
+def test_skill_validation_over_a_list(api):
+    client, _ = api
+    assert client.get("/api/jobs", params={"skill": ["python", "rag"]}).status_code == 200
+    r = client.get("/api/jobs", params={"skill": ["python", "cobol"]})
+    assert r.status_code == 422 and r.json()["detail"] == "unknown skill 'cobol'"
+    assert client.get("/api/skills/related", params={"skill": ["rag", "cobol"]}).status_code == 422
+    # The related panel still needs at least one skill.
+    r = client.get("/api/skills/related", params={"window": "all"})
+    assert r.status_code == 422 and r.json()["detail"] == "skill is required"
+
+
+# Captured by replaying these URLs against the tree as it stood just before HIR-75 (that is,
+# with HIR-69's production field already on the job rows): with one `skill=` the responses
+# must be identical, field for field, to what the single-skill `Filters.skill_id` produced.
+# Regenerate it the same way — against the last commit before the change under test — rather
+# than from the current code, or it stops being a before/after.
+SNAPSHOT = json.loads((Path(__file__).parent / "fixtures" / "single_skill_api_snapshot.json").read_text())
+
+
+def test_single_skill_responses_are_unchanged(api, wide_api):
+    clients = {"small": api[0], "wide": wide_api}
+    assert len(SNAPSHOT) == 9
+    for key, case in SNAPSHOT.items():
+        dataset, _ = key.split(":", 1)
+        r = clients[dataset].get(case["url"])
+        assert r.status_code == case["status"], key
+        assert r.json() == case["body"], key

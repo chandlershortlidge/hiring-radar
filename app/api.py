@@ -61,7 +61,7 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
     def filters(city: list[str] = Query(default=[]), seniority: list[str] = Query(default=[]),
                 requirement: str = "required", window: str = "open", german: str = "any", degree: str = "any",
                 production: str = "any",
-                skill: str | None = None, q_: str = Query(default="", alias="q")) -> q.Filters:
+                skill: list[str] = Query(default=[]), q_: str = Query(default="", alias="q")) -> q.Filters:
         for s in seniority:
             if s not in q.SENIORITIES:
                 raise HTTPException(422, f"bad seniority {s!r}")
@@ -75,11 +75,14 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
             raise HTTPException(422, f"bad degree {degree!r}")
         if production not in q.PRODUCTION_FILTERS:
             raise HTTPException(422, f"bad production {production!r}")
-        if skill is not None and skill not in tax.skills:
-            raise HTTPException(422, f"unknown skill {skill!r}")
+        for s in skill:
+            if s not in tax.skills:
+                raise HTTPException(422, f"unknown skill {s!r}")
+        # Repeated `skill=` params mean AND. Deduplicated, order kept, so a skill sent
+        # twice does not add a redundant EXISTS clause.
         return q.Filters(cities=tuple(city), seniorities=tuple(seniority), requirement=requirement,
                          window=window, german=german, degree=degree, production=production,
-                         skill_id=skill, query=q_)
+                         skill_ids=tuple(dict.fromkeys(skill)), query=q_)
 
     def with_display(skills: list[dict]) -> list[dict]:
         for s in skills:
@@ -102,8 +105,9 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
 
     @app.get("/api/skills/related")
     def get_related_skills(f: q.Filters = Depends(filters), conn=Depends(conn_dep)):
-        """What the jobs listing `skill` also list. Same filters as /api/skills; `skill` is required."""
-        if f.skill_id is None:
+        """What the jobs listing every `skill` also list. Same filters as /api/skills;
+        at least one `skill` is required, and several mean AND."""
+        if not f.skill_ids:
             raise HTTPException(422, "skill is required")
         r = q.related_skills(conn, f, now_iso())
         r["skills"] = with_display(r["skills"])
@@ -127,7 +131,8 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
     @app.get("/api/taxonomy")
     def get_taxonomy():
         return {"version": tax.version, "skills": [
-            {"id": s.id, "display": s.display, "parents": list(s.parents)} for s in sorted(tax.skills.values(), key=lambda s: s.id)]}
+            {"id": s.id, "display": s.display, "aliases": list(s.aliases), "parents": list(s.parents)}
+            for s in sorted(tax.skills.values(), key=lambda s: s.id)]}
 
     @app.get("/api/proposed")
     def get_proposed(status: str = "pending", conn=Depends(conn_dep)):

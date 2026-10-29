@@ -17,6 +17,9 @@ export const sourceCode = (s) => (SOURCE_CODES[s] || [s.toUpperCase().slice(0, 3
 export const CITIES = ["Berlin", "San Francisco"];
 export const PLACES = ["Berlin", "Remote (EU)", "San Francisco"];
 export const SENIORITIES = ["junior", "mid", "senior"];
+// "A", "A and B", "A, B and C" — for the sentences that name the selected skills.
+export const listAnd = (xs) => (xs.length < 2 ? xs[0] || "" : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
+
 export const cap = (s) => (s ? s[0].toUpperCase() + s.slice(1) : s);
 
 export function timeAgo(iso, now = Date.now()) {
