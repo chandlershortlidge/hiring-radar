@@ -1,0 +1,16 @@
+{
+  "golden_id": "golden_023",
+  "labeler": "A",
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "prompt_sha": "d3440ff6a7e542e43381d999d90df5e5f34152cc3aee584a98c727207d093fab",
+  "rules_sha": "9ccf26aac331222bb075ee290b17ef81463e80d6353eee5b1b96c3bbf78d6419",
+  "raw": "```json\n{\n  \"production\": null,\n  \"production_signal\": null,\n  \"why\": \"Every production mention is a responsibility (rule 1 exclusion). 'Expert:in für ... das Deployment von Machine-Learning-Modellen' describes the role, and the knowledge-of-production rule (golden_005) does not count expertise as a demand to have shipped or run systems. There is no requirements section.\",\n  \"uncertain\": true\n}\n```",
+  "parsed": {
+    "production": null,
+    "production_signal": null,
+    "why": "Every production mention is a responsibility (rule 1 exclusion). 'Expert:in für ... das Deployment von Machine-Learning-Modellen' describes the role, and the knowledge-of-production rule (golden_005) does not count expertise as a demand to have shipped or run systems. There is no requirements section.",
+    "uncertain": true
+  },
+  "error": null
+}

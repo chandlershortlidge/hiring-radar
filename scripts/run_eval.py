@@ -53,6 +53,25 @@ def render_md(meta, agg, runs) -> str:
     for m, v in agg.items():
         lines.append(f"| {m} | {fmt(v['mean'])} | {fmt(v['min'])} | {fmt(v['max'])} |")
     first = runs[0]
+
+    # Production experience (HIR-69): per-class P/R and the confusion matrix, run 1.
+    pc = first.summary.get("production_per_class") or {}
+    if pc:
+        lines += ["", "## Production experience, run 1", "",
+                  "| class | support | precision | recall |", "|---|---|---|---|"]
+        for cls in ("required", "nice_to_have", "none"):
+            r = pc.get(cls, {})
+            lines.append(f"| {cls} | {r.get('support', 0)} | {fmt(r.get('precision'))} | {fmt(r.get('recall'))} |")
+        conf = first.summary.get("production_confusion") or {}
+        cols = ["required", "nice_to_have", "none"]
+        lines += ["", "Confusion (rows = gold, cols = predicted):", "",
+                  "| gold \\ pred | " + " | ".join(cols) + " |", "|---|" + "---|" * len(cols)]
+        for g in cols:
+            lines.append(f"| {g} | " + " | ".join(str(conf.get(g, {}).get(c, 0)) for c in cols) + " |")
+        lines += ["", f"Signal agreement where the class was right: "
+                      f"{fmt(first.summary.get('production_signal_agreement'))} "
+                      f"over {first.summary.get('production_signal_n', 0)} Goldens."]
+
     lines += ["", f"Errors in run 1: {first.summary['n_errors']}", "",
               "## Top 10 skills, run 1", "", "| # | gold | predicted |", "|---|---|---|"]
     for i, (g, p) in enumerate(zip(first.summary["gold_top"], first.summary["pred_top"]), 1):

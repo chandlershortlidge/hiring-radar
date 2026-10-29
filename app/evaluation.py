@@ -2,7 +2,9 @@
 
 Does: per-Golden set comparison on skill ids, micro-averaged precision/recall/F1,
 requirement accuracy on matched skills, seniority accuracy over Goldens that carry a
-seniority label, and rank agreement between predicted and gold
+seniority label, per-class precision/recall and a confusion matrix for production
+experience (plus signal agreement, so a right class off the wrong clause shows), and rank
+agreement between predicted and gold
 skill frequencies across the suite (the chart is a frequency ranking, so we measure it
 directly). Runs a suite N times and summarizes mean and spread.
 
@@ -34,12 +36,17 @@ class GoldenScore:
     # (None) is a label like any other. Each is a tuple so a mismatch in any part counts.
     german: tuple | None = None             # (expected, predicted) or None = unlabeled
     degree: tuple | None = None             # ((level, or_equivalent), (level, or_equivalent)) or None
+    # Production: same shape as German, plus the quoted signals so a right class reached
+    # through the wrong clause is visible (HIR-69).
+    production: tuple | None = None         # (expected, predicted) or None = unlabeled
+    production_signal: tuple | None = None  # (expected_signal, predicted_signal)
 
 
 def score_golden(golden_id: str, expected: list[dict], predicted: list[dict],
                  seniority_expected: str | None = None, seniority_predicted: str | None = None,
                  german: tuple | None = None, degree: tuple | None = None,
-                 seniority_labeled: bool | None = None) -> GoldenScore:
+                 seniority_labeled: bool | None = None, production: tuple | None = None,
+                 production_signal: tuple | None = None) -> GoldenScore:
     exp = {e["skill_id"]: e["requirement"] for e in expected}
     pred = {p["skill_id"]: p["requirement"] for p in predicted}
     tp = sorted(exp.keys() & pred.keys())
@@ -54,6 +61,8 @@ def score_golden(golden_id: str, expected: list[dict], predicted: list[dict],
         seniority_labeled=seniority_expected is not None if seniority_labeled is None else seniority_labeled,
         german=german,
         degree=degree,
+        production=production,
+        production_signal=production_signal,
     )
 
 
@@ -90,6 +99,33 @@ def top_k(freq: Counter, k: int) -> list[str]:
     return [s for s, _ in sorted(freq.items(), key=lambda kv: (-kv[1], kv[0]))[:k]]
 
 
+PRODUCTION_CLASSES = ("required", "nice_to_have", None)
+
+
+def _label(c: str | None) -> str:
+    return c if c else "none"
+
+
+def per_class(pairs: list[tuple]) -> dict:
+    """Per-class precision/recall over (expected, predicted) pairs. None is a class of its
+    own ("none"), not an abstention, so every Golden lands in exactly one row."""
+    out = {}
+    for c in PRODUCTION_CLASSES:
+        tp = sum(1 for e, pr in pairs if e == c and pr == c)
+        fp = sum(1 for e, pr in pairs if e != c and pr == c)
+        fn = sum(1 for e, pr in pairs if e == c and pr != c)
+        out[_label(c)] = {"support": tp + fn, "tp": tp, "fp": fp, "fn": fn,
+                          "precision": tp / (tp + fp) if tp + fp else None,
+                          "recall": tp / (tp + fn) if tp + fn else None}
+    return out
+
+
+def confusion(pairs: list[tuple]) -> dict:
+    """{expected: {predicted: n}}, every cell present so an empty one reads as zero."""
+    return {_label(e): {_label(pr): sum(1 for a, b in pairs if a == e and b == pr)
+                        for pr in PRODUCTION_CLASSES} for e in PRODUCTION_CLASSES}
+
+
 def summarize(scores: list[GoldenScore], expected_by_id: dict[str, list[dict]],
               predicted_by_id: dict[str, list[dict]], k: int = 10) -> dict:
     tp = sum(len(s.tp) for s in scores)
@@ -107,6 +143,13 @@ def summarize(scores: list[GoldenScore], expected_by_id: dict[str, list[dict]],
     ger_acc = sum(1 for e, p in ger if e == p) / len(ger) if ger else None
     deg = [s.degree for s in scores if s.degree is not None]
     deg_acc = sum(1 for e, p in deg if e == p) / len(deg) if deg else None
+    prod = [s.production for s in scores if s.production is not None]
+    prod_acc = sum(1 for e, p in prod if e == p) / len(prod) if prod else None
+    # A right class off the wrong clause is not a win: count signal agreement separately,
+    # over the Goldens where both sides set a class (HIR-69).
+    sig = [s.production_signal for s in scores
+           if s.production is not None and s.production[0] == s.production[1] and s.production[0] is not None]
+    sig_ok = sum(1 for e, p in sig if e and p and (e in p or p in e)) if sig else 0
 
     gold_freq = Counter(e["skill_id"] for es in expected_by_id.values() for e in es)
     pred_freq = Counter(p["skill_id"] for ps in predicted_by_id.values() for p in ps)
@@ -124,6 +167,11 @@ def summarize(scores: list[GoldenScore], expected_by_id: dict[str, list[dict]],
         "seniority_n": len(labeled),
         "german_accuracy": ger_acc, "german_n": len(ger),
         "degree_accuracy": deg_acc, "degree_n": len(deg),
+        "production_accuracy": prod_acc, "production_n": len(prod),
+        "production_per_class": per_class(prod),
+        "production_confusion": confusion(prod),
+        "production_signal_agreement": sig_ok / len(sig) if sig else None,
+        "production_signal_n": len(sig),
         "rank_spearman": rho,
         f"top{k}_overlap": len(set(gold_top) & set(pred_top)) / k if gold_top else None,
         "gold_top": gold_top, "pred_top": pred_top,
@@ -148,6 +196,7 @@ def run_once(goldens: list[dict], extract_fn) -> RunResult:
             sen = getattr(ex, "seniority", None)
             ger = getattr(ex, "german", None)
             deg = getattr(ex, "degree", None)
+            prod = getattr(ex, "production", None)
             predictions[g["id"]] = {
                 "mentions": pred,
                 "proposed": [vars(p) for p in ex.proposed],
@@ -155,6 +204,7 @@ def run_once(goldens: list[dict], extract_fn) -> RunResult:
                 "seniority": vars(sen) if sen else None,
                 "german": vars(ger) if ger else None,
                 "degree": vars(deg) if deg else None,
+                "production": vars(prod) if prod else None,
                 "usage": getattr(ex, "usage", {}),
             }
             s = score_golden(g["id"], g["expected"], pred,
@@ -163,21 +213,25 @@ def run_once(goldens: list[dict], extract_fn) -> RunResult:
                              seniority_labeled="seniority" in g,
                              german=(g["german"], ger.requirement if ger else None) if "german" in g else None,
                              degree=((g["degree"], bool(g.get("degree_or_equivalent"))),
-                                     (deg.level, deg.or_equivalent) if deg else (None, False)) if "degree" in g else None)
+                                     (deg.level, deg.or_equivalent) if deg else (None, False)) if "degree" in g else None,
+                             production=(g["production"], prod.requirement if prod else None) if "production" in g else None,
+                             production_signal=(g.get("production_signal"), prod.signal if prod else None) if "production" in g else None)
         except Exception as e:  # one bad Golden must not hide the rest of the run
             pred = []
             predictions[g["id"]] = {"error": f"{type(e).__name__}: {e}"}
             s = GoldenScore(g["id"], [], [], sorted(x["skill_id"] for x in g["expected"]), 0, error=str(e),
                             seniority_expected=g.get("seniority"), seniority_labeled="seniority" in g,
                             german=(g["german"], None) if "german" in g else None,
-                            degree=((g["degree"], bool(g.get("degree_or_equivalent"))), (None, False)) if "degree" in g else None)
+                            degree=((g["degree"], bool(g.get("degree_or_equivalent"))), (None, False)) if "degree" in g else None,
+                            production=(g["production"], None) if "production" in g else None,
+                            production_signal=(g.get("production_signal"), None) if "production" in g else None)
         predicted_by_id[g["id"]] = pred
         scores.append(s)
     return RunResult(summarize(scores, expected_by_id, predicted_by_id), scores, predictions)
 
 
 METRICS = ("precision", "recall", "f1", "requirement_accuracy", "seniority_accuracy", "german_accuracy", "degree_accuracy",
-           "rank_spearman", "top10_overlap")
+           "production_accuracy", "production_signal_agreement", "rank_spearman", "top10_overlap")
 
 
 def across_runs(runs: list[RunResult]) -> dict:

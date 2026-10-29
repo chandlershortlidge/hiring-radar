@@ -174,7 +174,11 @@ def test_extract_raises_when_the_model_answers_with_text_instead_of_calling_the_
 
 def test_prompt_contains_no_golden_specific_text(tax):
     # Guard for the AGENTS.md rule: no JD wording copied into the prompt.
-    for phrase in ("Agentic Coding Patterns", "Golden", "full-stack competence", "Elasticsearch, pgvector"):
+    # The production phrases below are dev-Golden wording we deliberately did not copy
+    # when the rules they illustrate went into the prompt (DECISIONS 2026-10-29).
+    for phrase in ("Agentic Coding Patterns", "Golden", "full-stack competence", "Elasticsearch, pgvector",
+                   "structured operation", "production-quality agentic systems", "highly relevant",
+                   "production-oriented LLM workflows", "production-grade applications"):
         assert phrase not in ex.PRINCIPLES
 
 
@@ -379,10 +383,48 @@ def test_tool_schema_requires_production_fields():
 
 def test_prompt_describes_production_markers_and_excludes_responsibilities():
     """Per DECISIONS: describe the positive class, and keep responsibilities out of it."""
-    block = ex.PRINCIPLES.split("prior production experience")[1]
+    block = ex.PRINCIPLES.split("demands production work of the candidate")[1]
     assert 'Markers for "required"' in block
     assert "are responsibilities, null" in block
     assert "write production-grade code" in block
+
+
+def test_prompt_makes_the_verb_not_the_tense_the_production_test():
+    """DECISIONS 2026-10-29: a present ability is the same demand as a past record."""
+    block = ex.PRINCIPLES.split("demands production work of the candidate")[1]
+    assert "The verb carries the demand, not the tense" in block
+    assert "a present ability" in block
+    # the quality-bar class is still excluded, and the verb is what separates them
+    assert "Test the verb" in block
+
+
+def test_prompt_excludes_a_demand_scoped_to_one_seniority_level():
+    """DECISIONS 2026-10-29: golden_006 - a level-scoped demand is not job-wide."""
+    block = ex.PRINCIPLES.split("demands production work of the candidate")[1]
+    assert "scoped to one seniority level" in block
+    assert "not a job-wide demand" in block
+
+
+def test_prompt_counts_building_alone_as_a_production_demand():
+    """DECISIONS 2026-10-29: build is a demand verb, and a hyphenated object is still
+    production (golden_004, golden_012 were missed when the list stopped at ship/run)."""
+    block = ex.PRINCIPLES.split("demands production work of the candidate")[1]
+    assert "build / ship / operate / deploy / run" in block
+    assert "Building alone is enough" in block
+    assert "does not weaken" in block
+
+
+def test_prompt_treats_knowing_about_production_as_a_knowledge_bar():
+    """DECISIONS 2026-10-29: golden_006's unscoped MLOps-knowledge bullet is not a demand."""
+    block = ex.PRINCIPLES.split("demands production work of the candidate")[1]
+    assert "knowledge bar, not a demand to have done it" in block
+
+
+def test_prompt_allows_soft_optional_phrasing_for_nice_to_have():
+    """DECISIONS 2026-10-29: the category, not golden_011's wording."""
+    block = ex.PRINCIPLES.split("demands production work of the candidate")[1]
+    assert "soft phrasing" in block
+    assert "relevant, welcome, helpful" in block
 
 
 def test_prompt_keeps_degrees_and_languages_out_of_skills():
