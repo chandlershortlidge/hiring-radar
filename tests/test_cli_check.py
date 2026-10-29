@@ -62,3 +62,32 @@ def test_add_refuses_a_posting_with_no_readable_text(tmp_path, monkeypatch, caps
     monkeypatch.setattr(cli, "ingest_one", lambda *a, **k: (_ for _ in ()).throw(AssertionError("ingested")))
     cli.main(["check", empty.url, "--add"])
     assert "add: refused — only 0 characters" in capsys.readouterr().out
+
+
+def test_add_extracts_only_the_job_it_added(tmp_path, monkeypatch, capsys):
+    """A pending queue (e.g. after an extractor version bump) must not be drained by an add."""
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+    page = Posting("url", "", "https://acme.com/j/2", "Acme", "AI Engineer", "Berlin", "Python and RAG. " * 40)
+    r = CheckResult(url=page.url, verdict="not_found", how="", diagnosis="not a hosted ATS page", posting=page)
+    calls = []
+    monkeypatch.setattr(cli, "open_db", lambda: conn)
+    monkeypatch.setattr(cli, "check_url", lambda *a, **k: r)
+    monkeypatch.setattr(cli, "log_check", lambda *a, **k: None)
+    monkeypatch.setattr(cli, "ingest_one", lambda *a, **k: "new:248")
+    monkeypatch.setattr(cli, "run_extraction", lambda conn, limit=None, job_ids=None: calls.append(job_ids))
+    cli.main(["check", page.url, "--add"])
+    assert calls == [[248]]
+
+
+def test_add_text_extracts_only_the_job_it_added(tmp_path, monkeypatch):
+    import io
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+    calls = []
+    monkeypatch.setattr(cli.sys, "stdin", io.StringIO("Python and RAG. " * 40))
+    monkeypatch.setattr(cli, "open_db", lambda: conn)
+    monkeypatch.setattr(cli, "ingest_one", lambda *a, **k: "new:7")
+    monkeypatch.setattr(cli, "run_extraction", lambda conn, limit=None, job_ids=None: calls.append(job_ids))
+    cli.main(["add-text", "--company", "Acme", "--title", "AI Engineer"])
+    assert calls == [[7]]
