@@ -5,6 +5,80 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-29 — Production experience joins the HIR-70 labeling: a production-only pass, no restart (HIR-85)
+
+HIR-69 made production experience a fourth per-job attribute while HIR-70's held-out
+labeling was mid-flight, so `scripts/agent_label.py` still labels three. The merge of main
+into HIR-70 surfaced it as a red test, not a conflict: the Goldens had gained `production_*`
+keys and the shape test read `golden_021.json` as its oracle. PR #24 fixed the oracle only
+(it now builds the expected key set from `ATTR_FIELDS`); this entry records the plan for the
+attribute itself. Nothing in the script has changed yet.
+
+**(a) Four constants, one function, and an attribute scope.** `ATTRS` gains `"production"`,
+which alone drives the agreement loop, the summary counters and `final_golden`'s field loop,
+since all three iterate it. `ATTR_FIELDS["production"]` is
+`("production", "production_basis", "production_signal")` — no `_or_equivalent`, so
+`degree`'s special cases in `apply_decision` stay untouched. `ATTR_KEYS["production"]` is
+`("production", "production_basis")`, following `german`: the value and its basis are
+compared, the signal is checked verbatim but never compared, because two correct quotes of
+the same requirement differ in length. `final_golden` gains `production_reviewed` as its own
+flag beside `seniority_reviewed` rather than joining the `{german, degree}` set behind
+`attrs_reviewed` — the dev Goldens already carry it as a separate flag. The labeler prompt
+takes the production rules from this log's 2026-10-28 rule bullets as revised by the
+2026-10-29 entry, which is what HIR-69's `rules_sha` hashes, not fresh wording: policy lives
+in the recorded rules, not in a prompt rewritten from memory.
+
+A fifth change makes (c) possible at all: **an attribute scope**, so a run can label
+production alone. `label_heldout_production.py` says outright that `agent_label.py` "cannot
+scope to one attribute", and without it the only way to add production to an existing Golden
+is to re-label everything.
+
+**(b) HIR-70's provenance shape is canonical, and the four old Goldens are not back-filled.**
+The two shapes differ in scope, not format. `labeled_by` / `adjudicated` / `spot_checked`
+are whole-Golden facts; main's `production_labeled_by` is a per-attribute string that also
+carries a run id, an "A flagged uncertain" note and production's own `rules_sha` /
+`prompt_sha` — none of which the trio has a slot for. So provenance becomes
+per-attribute-capable where an attribute was labeled in a different run from the rest of its
+Golden, rather than flattened into one list.
+
+- **What we rejected:** migrating `golden_021`–`024`'s `production_labeled_by` into the trio.
+  Those four predate HIR-70's process and have no `labeled_by`, `adjudicated` or
+  `spot_checked` today. A whole-Golden `labeled_by` written from a string that only ever
+  described production would assert provenance for skills, seniority, German and degree that
+  nobody recorded — a quiet edit to the answer key, which is the thing this log exists to
+  prevent. They keep their per-attribute record as it stands.
+- The 20 dev Goldens carry `production_reviewed` but no `production_labeled_by`; they need
+  nothing here.
+
+**(c) A production-only pass over the same 24 postings. No restart.** HIR-70's labeling
+calls are already spent — `20261027T110516Z_label/summary.json` reports `n_labeled` 24/24,
+`failed: []` — and what is in flight is human adjudication of a 201-item queue. Restarting
+costs the same 48 labeler calls and additionally throws that adjudication away.
+
+- **Cost is identical either way: 24 postings × 2 labelers = 48 calls.** The `extractor`
+  model is recorded but never called; `check_models` uses it only to refuse a labeler that
+  shares the extractor's blind spots. A restart buys nothing in calls.
+- **The other three attributes are not re-labeled.** Agreement was seniority 1.000, German
+  1.000, degree 0.958 (23/24), and each attribute is judged on its own `ATTR_KEYS`, so a
+  fourth one changes nothing either labeler saw for the first three.
+- **Precedent, not a new shape:** HIR-69 already ran exactly this pass over the four
+  existing held-out Goldens (`20261029T153540Z_heldout_production`, 4 × 2 = 8 calls, same
+  `claude-opus-5-5` / `gpt-6.1-sol` pair): 3 agreed, 1 disagreed, 3 uncertain.
+- **The pass runs through the extended `agent_label.py`, not by widening the one-off.**
+  `scripts/label_heldout_production.py` hardcodes `GOLDEN_IDS` to `golden_021`-`024` and
+  borrows only the independence rules; its docstring already assigns the general tool to
+  HIR-70. Widening it would fork the labeling pipeline in two.
+- **Expect ~15–25 new queue items,** scaling that run's 1 disagreement and 3 uncertain to 24
+  postings, minus the overlap between the two buckets. A spot-check over production at the
+  main run's 80/305 rate costs no model calls - it samples items both labelers already
+  agreed on for a person to re-check - and would add roughly 6 more items to adjudicate.
+- The four existing held-out Goldens already have production labels and are not re-run.
+
+A guard is already in place for the work: adding `production` to `ATTR_FIELDS` without
+wiring it into `final_golden` fails the shape test in `tests/test_agent_label.py`.
+
+---
+
 ## 2026-10-29 — Production experience: the verb, not the tense; a level-scoped demand is not job-wide (HIR-69)
 
 Two rules settled at the Goldens checkpoint. They revise the rule bullets in the 2026-10-28
