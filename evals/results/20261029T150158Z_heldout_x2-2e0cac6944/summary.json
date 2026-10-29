@@ -1,0 +1,351 @@
+{
+  "meta": {
+    "run_id": "20261029T150158Z_heldout_x2-2e0cac6944",
+    "split": "heldout",
+    "n_goldens": 4,
+    "repeats": 3,
+    "model": "claude-sonnet-5-5",
+    "extractor_version": "x2-2e0cac6944",
+    "taxonomy_version": 4
+  },
+  "aggregate": {
+    "precision": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n": 3
+    },
+    "recall": {
+      "mean": 0.9239766081871345,
+      "min": 0.9122807017543859,
+      "max": 0.9298245614035088,
+      "n": 3
+    },
+    "f1": {
+      "mean": 0.9604670558798999,
+      "min": 0.9541284403669724,
+      "max": 0.9636363636363636,
+      "n": 3
+    },
+    "requirement_accuracy": {
+      "mean": 0.9683115626511852,
+      "min": 0.9615384615384616,
+      "max": 0.9811320754716981,
+      "n": 3
+    },
+    "seniority_accuracy": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n": 3
+    },
+    "german_accuracy": {
+      "mean": 0.75,
+      "min": 0.75,
+      "max": 0.75,
+      "n": 3
+    },
+    "degree_accuracy": {
+      "mean": 0.75,
+      "min": 0.75,
+      "max": 0.75,
+      "n": 3
+    },
+    "production_accuracy": {
+      "mean": null,
+      "min": null,
+      "max": null,
+      "n": 0
+    },
+    "production_signal_agreement": {
+      "mean": null,
+      "min": null,
+      "max": null,
+      "n": 0
+    },
+    "rank_spearman": {
+      "mean": 0.7622712257626046,
+      "min": 0.752241657562138,
+      "max": 0.7672860098628379,
+      "n": 3
+    },
+    "top10_overlap": {
+      "mean": 0.8000000000000002,
+      "min": 0.8,
+      "max": 0.8,
+      "n": 3
+    }
+  },
+  "runs": [
+    {
+      "n_goldens": 4,
+      "n_errors": 0,
+      "tp": 53,
+      "fp": 0,
+      "fn": 4,
+      "precision": 1.0,
+      "recall": 0.9298245614035088,
+      "f1": 0.9636363636363636,
+      "requirement_accuracy": 0.9622641509433962,
+      "seniority_accuracy": 1.0,
+      "seniority_n": 4,
+      "german_accuracy": 0.75,
+      "german_n": 4,
+      "degree_accuracy": 0.75,
+      "degree_n": 4,
+      "production_accuracy": null,
+      "production_n": 0,
+      "production_per_class": {
+        "required": {
+          "support": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nice_to_have": {
+          "support": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "none": {
+          "support": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        }
+      },
+      "production_confusion": {
+        "required": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 0
+        },
+        "nice_to_have": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 0
+        },
+        "none": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 0
+        }
+      },
+      "production_signal_agreement": null,
+      "production_signal_n": 0,
+      "rank_spearman": 0.7672860098628379,
+      "top10_overlap": 0.8,
+      "gold_top": [
+        "python",
+        "sql",
+        "ai-deployment",
+        "airflow",
+        "aws",
+        "data-pipelines",
+        "docker",
+        "gcp",
+        "git",
+        "kubernetes"
+      ],
+      "pred_top": [
+        "python",
+        "sql",
+        "airflow",
+        "aws",
+        "docker",
+        "gcp",
+        "git",
+        "kubernetes",
+        "machine-learning",
+        "nosql"
+      ]
+    },
+    {
+      "n_goldens": 4,
+      "n_errors": 0,
+      "tp": 53,
+      "fp": 0,
+      "fn": 4,
+      "precision": 1.0,
+      "recall": 0.9298245614035088,
+      "f1": 0.9636363636363636,
+      "requirement_accuracy": 0.9811320754716981,
+      "seniority_accuracy": 1.0,
+      "seniority_n": 4,
+      "german_accuracy": 0.75,
+      "german_n": 4,
+      "degree_accuracy": 0.75,
+      "degree_n": 4,
+      "production_accuracy": null,
+      "production_n": 0,
+      "production_per_class": {
+        "required": {
+          "support": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nice_to_have": {
+          "support": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "none": {
+          "support": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        }
+      },
+      "production_confusion": {
+        "required": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 0
+        },
+        "nice_to_have": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 0
+        },
+        "none": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 0
+        }
+      },
+      "production_signal_agreement": null,
+      "production_signal_n": 0,
+      "rank_spearman": 0.7672860098628379,
+      "top10_overlap": 0.8,
+      "gold_top": [
+        "python",
+        "sql",
+        "ai-deployment",
+        "airflow",
+        "aws",
+        "data-pipelines",
+        "docker",
+        "gcp",
+        "git",
+        "kubernetes"
+      ],
+      "pred_top": [
+        "python",
+        "sql",
+        "airflow",
+        "aws",
+        "docker",
+        "gcp",
+        "git",
+        "kubernetes",
+        "machine-learning",
+        "nosql"
+      ]
+    },
+    {
+      "n_goldens": 4,
+      "n_errors": 0,
+      "tp": 52,
+      "fp": 0,
+      "fn": 5,
+      "precision": 1.0,
+      "recall": 0.9122807017543859,
+      "f1": 0.9541284403669724,
+      "requirement_accuracy": 0.9615384615384616,
+      "seniority_accuracy": 1.0,
+      "seniority_n": 4,
+      "german_accuracy": 0.75,
+      "german_n": 4,
+      "degree_accuracy": 0.75,
+      "degree_n": 4,
+      "production_accuracy": null,
+      "production_n": 0,
+      "production_per_class": {
+        "required": {
+          "support": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nice_to_have": {
+          "support": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "none": {
+          "support": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        }
+      },
+      "production_confusion": {
+        "required": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 0
+        },
+        "nice_to_have": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 0
+        },
+        "none": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 0
+        }
+      },
+      "production_signal_agreement": null,
+      "production_signal_n": 0,
+      "rank_spearman": 0.752241657562138,
+      "top10_overlap": 0.8,
+      "gold_top": [
+        "python",
+        "sql",
+        "ai-deployment",
+        "airflow",
+        "aws",
+        "data-pipelines",
+        "docker",
+        "gcp",
+        "git",
+        "kubernetes"
+      ],
+      "pred_top": [
+        "python",
+        "sql",
+        "airflow",
+        "aws",
+        "docker",
+        "gcp",
+        "git",
+        "kubernetes",
+        "machine-learning",
+        "nosql"
+      ]
+    }
+  ]
+}

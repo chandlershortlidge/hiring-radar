@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { api } from "./api.js";
 import { Down, Ext, Repost, Search, Up, X } from "./icons.jsx";
-import { DEGREE_RANK, cap, dateShort, degreeLine, germanLine, sourceCode, timeAgo } from "./format.js";
+import { DEGREE_RANK, cap, dateShort, degreeLine, germanLine, productionLine, sourceCode, timeAgo } from "./format.js";
 import { coverage } from "./profile.js";
+import AddSkillChip from "./AddSkillChip.jsx";
 
 const SORTS = { newest: "Newest first", oldest: "Oldest first", reposts: "Most reposted", company: "Company A–Z" };
 const PAGE = 20;
 
-export default function JobList({ filters, setFilters, skillName, profile, taxonomy, refreshKey, openJobId, onOpened, onOpenPage }) {
+export default function JobList({ filters, setFilters, profile, taxonomy, refreshKey, openJobId, onOpened, onOpenPage,
+  taxonomyRows = [], aliases = {}, suggestions = [], onAddSkill }) {
   const [sort, setSort] = useState("newest");
   const [page, setPage] = useState({ jobs: [], total: 0 });
   const [open, setOpen] = useState(null);
@@ -34,11 +36,15 @@ export default function JobList({ filters, setFilters, skillName, profile, taxon
       <div className="jobs-head">
         <div className="l">
           <h2 id="jobs-title">Jobs</h2>
-          {filters.skill && (
-            <span className="chip-filter">Skill: {skillName}
-              <button type="button" aria-label="Clear skill filter" onClick={() => setFilters((f) => ({ ...f, skill: null }))}><X size={12} /></button>
+          {filters.skillIds.length > 0 && <span className="muted" style={{ fontSize: 12.5 }}>Requires</span>}
+          {filters.skillIds.map((id) => (
+            <span key={id} className="chip-filter">{taxonomy[id] || id}
+              <button type="button" aria-label={`Remove ${taxonomy[id] || id} from the skill filter`}
+                onClick={() => setFilters((f) => ({ ...f, skillIds: f.skillIds.filter((x) => x !== id) }))}><X size={12} /></button>
             </span>
-          )}
+          ))}
+          <AddSkillChip selected={filters.skillIds} suggestions={suggestions} taxonomy={taxonomyRows}
+            aliases={aliases} onAdd={onAddSkill} />
           <span className="muted" style={{ fontSize: 13 }}>{page.total} {filters.window === "open" ? "open" : ""} jobs · {scope}</span>
         </div>
         <div className="r">
@@ -70,12 +76,13 @@ function Row({ job: j, open, onToggle, profile, taxonomy, onOpenPage }) {
   const [detail, setDetail] = useState(null);
   useEffect(() => { if (open && !detail) api.job(j.id).then(setDetail); }, [open, detail, j.id]);
   const cov = profile ? coverage(profile, (j.required_skills || []).map((id) => ({ skill_id: id, requirement: "required" }))) : null;
+  const miss = misses(profile, j);
   return (
     <>
       <div className={`row${open ? " open-row" : ""}${j.legacy || j.too_short ? " legacy" : ""}`} onClick={onToggle} role="button" tabIndex={0} aria-expanded={open}
         onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onToggle(); } }}>
         <span className="co">{j.company}{j.legacy && <span className="src" style={{ marginLeft: 6 }} title="Imported from the old project with its skills; not in the chart">legacy</span>}{j.too_short && <span className="src" style={{ marginLeft: 6 }} title="Only a fragment of the posting was stored; not in the chart">short</span>}</span>
-        <span className="ti">{profile && (flag(profile, "german", j) === "miss" || flag(profile, "degree", j) === "miss") && <span className="fit miss" title={[flag(profile, "german", j) === "miss" && "needs German", flag(profile, "degree", j) === "miss" && "needs a degree you don't list"].filter(Boolean).join(" · ")}>!</span>}{cov && <span className={`fit${cov.covered === cov.total ? " full" : ""}`} title={`You cover ${cov.covered} of ${cov.total} required skills`}>{cov.covered}/{cov.total}</span>}{j.title}{j.seniority && <span className="dim" style={{ marginLeft: 8, fontSize: 12 }}>{cap(j.seniority)}</span>}</span>
+        <span className="ti">{miss.length > 0 && <span className="fit miss" title={miss.map((w) => MISS_LABELS[w]).join(" · ")}>!</span>}{cov && <span className={`fit${cov.covered === cov.total ? " full" : ""}`} title={`You cover ${cov.covered} of ${cov.total} required skills`}>{cov.covered}/{cov.total}</span>}{j.title}{j.seniority && <span className="dim" style={{ marginLeft: 8, fontSize: 12 }}>{cap(j.seniority)}</span>}</span>
         <span className="ci muted">{j.city || "—"}</span>
         <span className="fs muted" style={{ fontSize: 13 }}>{timeAgo(j.first_seen)}</span>
         <span className="st">
@@ -95,9 +102,18 @@ function Row({ job: j, open, onToggle, profile, taxonomy, onOpenPage }) {
 function flag(profile, what, j) {
   if (!profile) return "";
   if (what === "german") return j.german === "required" && !profile.german ? "miss" : "ok";
+  if (what === "production") return j.production === "required" && !profile.production ? "miss" : "ok";
   const hard = j.degree_requirement === "required" && !j.degree_or_equivalent;
   return hard && DEGREE_RANK[profile.degree || ""] < DEGREE_RANK[j.degree] ? "miss" : "ok";
 }
+
+// The hard asks a profile can fail, and how the row's "!" tooltip names each one.
+const MISS_LABELS = {
+  german: "needs German",
+  production: "needs production experience you don't claim",
+  degree: "needs a degree you don't list",
+};
+const misses = (profile, j) => Object.keys(MISS_LABELS).filter((w) => flag(profile, w, j) === "miss");
 
 // Also rendered by JobPage, which passes no onOpenPage: it is already the page, and its header
 // carries the original-posting link, so neither link is repeated here.
@@ -134,10 +150,11 @@ export function Detail({ job, d, profile, taxonomy, cov, onOpenPage }) {
       {cov && (
         <div className="cover">You cover <b>{cov.covered} of {cov.total}</b> required skills{cov.missing.length ? ` · missing: ${cov.missing.map((id) => taxonomy[id] || id).join(", ")}` : " · full match"}.</div>
       )}
-      {(d.german || d.degree) && (
+      {(d.german || d.degree || d.production) && (
         <div className="cover attrs">
           {d.german && <span className={flag(profile, "german", d)}>{germanLine(d)}{d.german_signal && <span className="dim"> · “{d.german_signal}”</span>}</span>}
           {d.degree && <span className={flag(profile, "degree", d)}>{degreeLine(d)}{d.degree_signal && <span className="dim"> · “{d.degree_signal}”</span>}</span>}
+          {d.production && <span className={flag(profile, "production", d)}>{productionLine(d)}{d.production_signal && <span className="dim"> · “{d.production_signal}”</span>}</span>}
         </div>
       )}
       {d.too_short && (

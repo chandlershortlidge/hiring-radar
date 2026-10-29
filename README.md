@@ -63,8 +63,8 @@ needs LinkedIn. Those were in the predecessor and were cut deliberately
 
 **Status:** working locally — intake, extraction, evaluation, and dashboard all run. 44
 job-board feeds are polled. Collection is Berlin-only until the held-out evaluation
-passes; the city-comparison view is built and waiting on a second city. Hosting on
-Railway is still to come.
+passes; the city-comparison view is built and waiting on a second city. Runs 24/7 on a
+GCP VM with a daily 07:00 poll; ops runbook in [deploy/README.md](deploy/README.md).
 
 This is a rebuild of
 [job-skills-dashboard](https://github.com/chandlershortlidge/job-skills-dashboard), a

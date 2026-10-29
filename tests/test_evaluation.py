@@ -146,3 +146,30 @@ def test_seniority_none_label_is_scored_when_the_key_is_present():
 
     s = ev.run_once(goldens, fake).summary
     assert s["seniority_n"] == 2 and s["seniority_accuracy"] == pytest.approx(0.5)  # g2 guessed a level
+
+
+def test_production_is_scored_per_class_with_a_confusion_matrix():
+    """HIR-69: "none" is a class, so every Golden lands in exactly one row."""
+    pairs = [("required", "required"), ("required", None), (None, "required"),
+             (None, None), ("nice_to_have", "nice_to_have")]
+    pc = ev.per_class(pairs)
+    assert pc["required"] == {"support": 2, "tp": 1, "fp": 1, "fn": 1, "precision": 0.5, "recall": 0.5}
+    assert pc["none"]["support"] == 2 and pc["none"]["recall"] == 0.5
+    assert pc["nice_to_have"]["precision"] == 1.0
+    conf = ev.confusion(pairs)
+    assert conf["required"]["none"] == 1 and conf["none"]["required"] == 1
+    assert sum(v for row in conf.values() for v in row.values()) == len(pairs)
+
+
+def test_a_right_class_off_the_wrong_clause_is_not_signal_agreement():
+    """HIR-69: the class can be right while the quoted clause is the wrong one."""
+    good = ev.score_golden("g1", [], [], production=("required", "required"),
+                                   production_signal=("experience shipping production services",
+                                                      "some experience shipping production services"))
+    bad = ev.score_golden("g2", [], [], production=("required", "required"),
+                                  production_signal=("experience shipping production services",
+                                                     "writing production-quality code and tests"))
+    s = ev.summarize([good, bad], {"g1": [], "g2": []}, {"g1": [], "g2": []})
+    assert s["production_accuracy"] == 1.0          # both classes right
+    assert s["production_signal_n"] == 2
+    assert s["production_signal_agreement"] == 0.5  # only one quotes the right clause

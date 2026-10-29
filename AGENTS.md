@@ -105,7 +105,9 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - SQLite, one file, schema managed by numbered migrations in `app/migrations/`.
 - React 18 + Vite frontend in `web/`, no chart library (CSS bars), served from `web/dist`
   by the same process.
-- Hosting: GCP Compute Engine VM in europe-west3 (to come, HIR-29). Runs locally until then.
+- Hosting: one GCP Compute Engine VM in europe-west3 (HIR-29): systemd service + 07:00 poll
+  timer, Caddy for HTTPS + basic auth, nightly SQLite backup to GCS, deploy on merge to
+  `main` via GitHub Actions. How to SSH in and operate it: [deploy/README.md](deploy/README.md).
 
 ### Where things live
 
@@ -115,9 +117,10 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `app/transcribe.py` — stage 1: screenshot bytes → verbatim transcript (vision call).
   Only screenshots go through it; feeds and pastes are already text.
 - `app/extract.py` — stage 2: JD text → skill mentions (taxonomy ids), proposed new
-  skills, rejected items, and three per-job attributes, each with a quoted signal or none:
+  skills, rejected items, and four per-job attributes, each with a quoted signal or none:
   seniority (junior/mid/senior), German (required/nice_to_have), degree (level,
-  requirement, or-equivalent-experience). One tool call. Model client is injected.
+  requirement, or-equivalent-experience), production experience
+  (required/nice_to_have — prior shipping, never a responsibility). One tool call. Model client is injected.
 - `app/evaluation.py` — scoring (micro P/R/F1, requirement accuracy, rank agreement)
   and the suite runner. `scripts/run_eval.py` — live CLI around it.
 - `app/sources/` — one adapter per feed (`greenhouse`, `lever`, `ashby`, `join`, `arbeitnow`,
@@ -137,15 +140,18 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   Writes only its own log (`url_check`, the first check per URL drives the coverage line
   in `stats`); `--add` in the CLI hands the resolved posting to `ingest_one`.
 - `app/queries.py` — read queries behind the dashboard: filters (city, seniority, German,
-  degree, requirement, window), skill document frequency with per-city counts, job list/detail,
-  proposed-skill grouping and resolution. The open-job rule lives here.
+  degree, production, requirement, window), skill document frequency with per-city counts,
+  related-skills co-occurrence with lift (`related_skills`, feeds `/api/skills/related`),
+  job list/detail, proposed-skill grouping and resolution. The open-job rule lives here.
 - `app/api.py` — FastAPI routes over `queries` plus the add-a-job paths (url / text /
   screenshot), which run intake + extraction for the one job added. Validates every filter
   value (422), one SQLite connection per request, model client created lazily.
 - `web/src/` — `App.jsx` (filters, header, stats, controls, and the one route: `/jobs/{id}`
   read from the address bar), `JobPage.jsx` (a job's own page: detail + the stored posting
   text), `SkillChart.jsx`,
-  `CompareChart.jsx`, `JobList.jsx` (rows + expanded detail with quotes), the three drawers
+  `CompareChart.jsx`, `RelatedSkills.jsx` (what the jobs requiring the selected skill also
+  require; renders only with a skill selected and computes nothing itself),
+  `JobList.jsx` (rows + expanded detail with quotes), the three drawers
   (`AddJobDrawer`, `ReviewDrawer`, `ProfileDrawer`), `profile.js` (localStorage profile +
   set-overlap coverage; the server never sees it), `api.js`, `format.js`.
 - `app/__main__.py` — the CLI (`python -m app ...`, including `serve`).

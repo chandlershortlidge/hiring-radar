@@ -95,7 +95,7 @@ def test_list_jobs_filters_search_sort_and_status(conn):
     assert r["total"] == 5 and [j["company"] for j in r["jobs"]][:2] == ["Gamma", "Acme"]  # newest first
     statuses = {j["company"]: j["status"] for j in r["jobs"]}
     assert statuses == {"Acme": "open", "Beta": "closed", "Gamma": "open", "Delta": "open", "Epsilon": "closed"}
-    r = q.list_jobs(conn, q.Filters(window="all", skill_id="rag"), NOW)
+    r = q.list_jobs(conn, q.Filters(window="all", skill_ids=("rag",)), NOW)
     assert {j["company"] for j in r["jobs"]} == {"Acme", "Delta"}
     r = q.list_jobs(conn, q.Filters(window="all", query="ml eng"), NOW)
     assert [j["company"] for j in r["jobs"]] == ["Beta"]
@@ -132,6 +132,40 @@ def test_german_and_degree_filters(conn):
     assert s["open_german_required"] == 1 and s["open_degree_required"] == 1
     d = q.job_detail(conn, q.list_jobs(conn, q.Filters(window="all", query="acme"), NOW)["jobs"][0]["id"], NOW)
     assert d["degree"] == "master" and d["degree_or_equivalent"] is True and d["german_signal"] == "German"
+
+
+def test_production_filters_stats_and_detail(conn):
+    # Acme: production required. Gamma: nice_to_have. Everything else: not asked for.
+    conn.execute("UPDATE job SET production='required', production_basis='stated',"
+                 " production_signal='You have shipped production systems' WHERE company='Acme'")
+    conn.execute("UPDATE job SET production='nice_to_have', production_basis='stated',"
+                 " production_signal='production ML is a plus' WHERE company='Gamma'")
+    names = lambda f: {j["company"] for j in q.list_jobs(conn, f, NOW)["jobs"]}
+    assert names(q.Filters(window="all", production="required")) == {"Acme"}
+    # not_required means the same for production as for German: not asked for, or optional.
+    assert names(q.Filters(window="all", production="not_required")) == {"Beta", "Gamma", "Delta", "Epsilon"}
+    assert names(q.Filters(window="all", production="none")) == {"Beta", "Delta", "Epsilon"}
+    assert names(q.Filters(window="all", production="any")) == names(q.Filters(window="all"))
+    assert q.skill_frequency(conn, q.Filters(window="all", production="required"), NOW)["total"] == 1
+    assert q.stats(conn, NOW, 1)["open_production_required"] == 1
+    jid = q.list_jobs(conn, q.Filters(window="all", query="acme"), NOW)["jobs"][0]["id"]
+    d = q.job_detail(conn, jid, NOW)
+    assert d["production"] == "required" and d["production_basis"] == "stated"
+    assert d["production_signal"] == "You have shipped production systems"
+    # the list carries the value (the row's "!" flag needs it) but not the quote
+    row = next(j for j in q.list_jobs(conn, q.Filters(window="all", query="acme"), NOW)["jobs"])
+    assert row["production"] == "required" and "production_signal" not in row
+
+
+def test_production_and_german_filters_are_independent(conn):
+    conn.execute("UPDATE job SET german='required', german_basis='stated', german_signal='German' WHERE company='Acme'")
+    conn.execute("UPDATE job SET production='required', production_basis='stated',"
+                 " production_signal='shipped production systems' WHERE company='Gamma'")
+    names = lambda f: {j["company"] for j in q.list_jobs(conn, f, NOW)["jobs"]}
+    # the headline set: no German asked for and no production experience asked for
+    assert names(q.Filters(window="all", german="not_required", production="not_required")) \
+        == {"Beta", "Delta", "Epsilon"}
+    assert names(q.Filters(window="all", german="required", production="required")) == set()
 
 
 def test_legacy_jobs_stay_out_of_the_chart_but_in_the_list(conn):
@@ -174,3 +208,204 @@ def test_proposed_grouping_and_resolution(conn):
     assert n == 1 and q.proposed_skills(conn) == []
     with pytest.raises(ValueError):
         q.resolve_proposed(conn, [1], "accepted", None, 3)
+
+
+# --- related skills (HIR-66) -------------------------------------------------------------
+
+# skill_frequency's output on the fixture above, captured before related_skills factored
+# the group/sort/pct block out into _skill_rows. The panel must not move the chart.
+FREQ_SNAPSHOT = {
+    "default": {"total": 3, "skills": [
+        {"skill_id": "python", "count": 2, "by_city": {"Berlin": 1, "San Francisco": 1}, "pct": 66.7},
+        {"skill_id": "rag", "count": 2, "by_city": {"Berlin": 2}, "pct": 66.7},
+        {"skill_id": "aws", "count": 1, "by_city": {"San Francisco": 1}, "pct": 33.3}]},
+    "all_all": {"total": 5, "skills": [
+        {"skill_id": "python", "count": 4, "by_city": {"Berlin": 3, "San Francisco": 1}, "pct": 80.0},
+        {"skill_id": "aws", "count": 2, "by_city": {"Berlin": 1, "San Francisco": 1}, "pct": 40.0},
+        {"skill_id": "rag", "count": 2, "by_city": {"Berlin": 2}, "pct": 40.0},
+        {"skill_id": "docker", "count": 1, "by_city": {"Berlin": 1}, "pct": 20.0}]},
+    "berlin_all": {"total": 4, "skills": [
+        {"skill_id": "python", "count": 3, "by_city": {"Berlin": 3}, "pct": 75.0},
+        {"skill_id": "rag", "count": 2, "by_city": {"Berlin": 2}, "pct": 50.0},
+        {"skill_id": "docker", "count": 1, "by_city": {"Berlin": 1}, "pct": 25.0}]},
+}
+FREQ_CASES = {
+    "default": q.Filters(),
+    "all_all": q.Filters(requirement="all", window="all"),
+    "berlin_all": q.Filters(cities=("Berlin",), window="all"),
+}
+
+
+def test_skill_frequency_output_unchanged_by_the_related_skills_refactor(conn):
+    for name, f in FREQ_CASES.items():
+        assert q.skill_frequency(conn, f, NOW) == FREQ_SNAPSHOT[name], name
+
+
+# Twenty jobs, chosen so the numbers for the selected skill "python" are exact. Over the
+# whole set (window="all"): 20 jobs, 10 of them require python. Among those 10 — docker 6,
+# pytorch 5, aws 5, rag 5, kubernetes 4 (below MIN_CO_JOBS) — against baselines over all
+# 20: docker 6, pytorch 5, aws 10, rag 15. So lift = 2*count/base: docker and pytorch 2.0
+# (the sort's count tiebreak), aws 1.0, rag 0.667. Fifteen jobs are Berlin, five SF.
+RELATED_JOBS = [
+    ("Co01", "Berlin", ["python", "docker", "pytorch", "aws", "rag", "kubernetes"]),
+    ("Co02", "Berlin", ["python", "docker", "pytorch", "aws", "rag", "kubernetes"]),
+    ("Co03", "Berlin", ["python", "docker", "pytorch", "aws", "kubernetes"]),
+    ("Co04", "Berlin", ["python", "docker", "pytorch", "aws", "kubernetes"]),
+    ("Co05", "Berlin", ["python", "docker", "rag"]),
+    ("Co06", "Berlin", ["python", "pytorch", "rag"]),
+    ("Co07", "Berlin", ["rag", "aws"]),
+    ("Co08", "Berlin", ["rag", "aws"]),
+    ("Co09", "Berlin", ["rag", "aws"]),
+    ("Co10", "Berlin", ["rag", "aws"]),
+    ("Co11", "Berlin", ["rag", "aws"]),
+    ("Co12", "San Francisco", ["rag"]),
+    ("Co13", "San Francisco", ["rag"]),
+    ("Co14", "San Francisco", ["rag"]),
+    ("Co15", "San Francisco", ["rag"]),
+]
+
+
+@pytest.fixture
+def wide(conn):
+    for company, city, skills in RELATED_JOBS:
+        add(conn, company, "AI Engineer", city, "arbeitnow", ts(1), [(s, "required") for s in skills])
+    return conn
+
+
+ALL = q.Filters(window="all", skill_ids=("python",))
+
+
+def test_related_skills_counts_shares_and_lift(wide):
+    r = q.related_skills(wide, ALL, NOW)
+    assert (r["selected_count"], r["total"]) == (10, 20)
+    by = {s["skill_id"]: s for s in r["skills"]}
+    assert "python" not in by                                    # the selected skill is excluded
+    assert "kubernetes" not in by                                # 4 co-occurring jobs, under MIN_CO_JOBS
+    assert set(by) == {"docker", "pytorch", "aws", "rag"}
+    assert (by["docker"]["count"], by["docker"]["pct"], by["docker"]["base_pct"]) == (6, 60.0, 30.0)
+    assert (by["pytorch"]["count"], by["pytorch"]["pct"], by["pytorch"]["base_pct"]) == (5, 50.0, 25.0)
+    assert (by["aws"]["count"], by["aws"]["pct"], by["aws"]["base_pct"]) == (5, 50.0, 50.0)
+    assert (by["rag"]["count"], by["rag"]["pct"], by["rag"]["base_pct"]) == (5, 50.0, 75.0)
+    # Returned by pct desc, then count desc: docker (60%) first, then the three at 50% by id.
+    assert [s["skill_id"] for s in r["skills"]] == ["docker", "aws", "pytorch", "rag"]
+    assert [s["pct"] for s in r["skills"]] == [60.0, 50.0, 50.0, 50.0]
+    # lift from the counts, (count/10) / (base/20): it selects the rows, it does not order them.
+    assert [s["lift"] for s in r["skills"]] == [2.0, 1.0, 2.0, 0.667]
+
+
+def test_related_skills_baseline_follows_the_filters(wide):
+    f = q.Filters(window="all", skill_ids=("python",), cities=("Berlin",))
+    r = q.related_skills(wide, f, NOW)
+    assert (r["selected_count"], r["total"]) == (9, 15)     # Berlin only
+    docker = next(s for s in r["skills"] if s["skill_id"] == "docker")
+    freq = {s["skill_id"]: s for s in q.skill_frequency(wide, f, NOW)["skills"]}
+    assert docker["base_pct"] == freq["docker"]["pct"] == 40.0   # the same filter set, not all 20 jobs
+    unfiltered = next(s for s in q.related_skills(wide, ALL, NOW)["skills"] if s["skill_id"] == "docker")
+    assert unfiltered["base_pct"] == 30.0 and docker["base_pct"] != unfiltered["base_pct"]
+    # aws is in 5 of python's jobs overall but only 4 of Berlin's: the threshold follows the filter too.
+    assert "aws" not in {s["skill_id"] for s in r["skills"]}
+
+
+def test_related_skills_caps_the_list_at_ten(wide):
+    # Eight more skills, each in five of python's jobs and nowhere else: lift 2.0, count 5.
+    # Plus "zz-six", in six of them: the same lift, a higher count, the last id of the lot.
+    ids = [r[0] for r in wide.execute(
+        "SELECT job_id FROM skill_mention WHERE skill_id='python' ORDER BY job_id LIMIT 6")]
+    for skill, n_jobs in [(f"extra{n:02d}", 5) for n in range(8)] + [("zz-six", 6)]:
+        for job_id in ids[:n_jobs]:
+            wide.execute("INSERT INTO skill_mention (job_id, skill_id, requirement, raw_text,"
+                         " taxonomy_version, extractor_version) VALUES (?,?,?,?,?,?)",
+                         (job_id, skill, "required", "x", 3, "t"))
+    r = q.related_skills(wide, ALL, NOW)
+    # Thirteen rows qualify. Eleven tie on lift at 2.0, so the selection's count tiebreak
+    # decides the last slot: zz-six (6 jobs) is in and pytorch (5, but an earlier id) is out,
+    # and aws (lift 1.0) and rag (0.667) never get close.
+    assert len(r["skills"]) == 10
+    assert [s["skill_id"] for s in r["skills"]] == ["docker", "zz-six"] + [f"extra{n:02d}" for n in range(8)]
+    assert [s["pct"] for s in r["skills"]] == [60.0, 60.0] + [50.0] * 8
+
+
+def test_related_skills_needs_a_selected_skill_that_jobs_require(wide):
+    assert q.related_skills(wide, q.Filters(window="all"), NOW) == {"selected_count": 0, "total": 20, "skills": []}
+    r = q.related_skills(wide, q.Filters(window="all", skill_ids=("nothing-asks-for-this",)), NOW)
+    assert r == {"selected_count": 0, "total": 20, "skills": []}
+
+
+# --- several skills at once, ANDed (HIR-75) ----------------------------------------------
+
+def test_list_jobs_ands_the_selected_skills(conn):
+    """Two skills means both, not either: only the job carrying each one is listed."""
+    by_skills = lambda *ids: {j["company"] for j in q.list_jobs(
+        conn, q.Filters(window="all", skill_ids=ids), NOW)["jobs"]}
+    assert by_skills("python") == {"Acme", "Beta", "Gamma", "Epsilon"}
+    assert by_skills("docker") == {"Beta"}
+    assert by_skills("python", "docker") == {"Beta"}          # Beta alone has both
+    assert by_skills("python", "rag") == {"Acme"}
+    assert by_skills("docker", "rag") == set()                # no job has both
+    assert by_skills("python", "rag", "aws") == set()          # aws is nice-to-have on Acme
+
+
+def test_list_jobs_skill_set_follows_the_requirement_filter(conn):
+    """"Required + nice-to-have" widens an AND the same way it widens a single skill."""
+    f = q.Filters(window="all", requirement="all", skill_ids=("python", "aws"))
+    assert {j["company"] for j in q.list_jobs(conn, f, NOW)["jobs"]} == {"Acme", "Gamma"}
+    strict = q.Filters(window="all", skill_ids=("python", "aws"))
+    assert {j["company"] for j in q.list_jobs(conn, strict, NOW)["jobs"]} == {"Gamma"}
+
+
+def test_list_jobs_and_semantics_on_the_wide_set(wide):
+    f = q.Filters(window="all", skill_ids=("python", "docker"))
+    got = {j["company"] for j in q.list_jobs(wide, f, NOW, limit=50)["jobs"]}
+    assert got == {"Beta", "Co01", "Co02", "Co03", "Co04", "Co05"}
+    both = q.list_jobs(wide, f, NOW, limit=50)["total"]
+    python_only = q.list_jobs(wide, q.Filters(window="all", skill_ids=("python",)), NOW, limit=50)["total"]
+    assert both == 6 < python_only == 10        # adding a skill can only narrow the list
+
+
+# Fifteen jobs, built so the numbers for the pair (python, docker) are exact. Over the whole
+# set: 10 require python, 8 require docker, 8 require both. Among those 8, pytorch is in 6
+# (at or over MIN_CO_JOBS, so it survives); its baseline is 13 of the 15.
+PAIR_JOBS = ([("python", "docker", "pytorch")] * 6 + [("python", "docker")] * 2
+             + [("python", "pytorch")] * 2 + [("pytorch",)] * 5)
+
+
+@pytest.fixture
+def pair(tmp_path):
+    c = db.connect(tmp_path / "pair.db")
+    db.migrate(c)
+    for n, skills in enumerate(PAIR_JOBS, start=1):
+        add(c, f"Pa{n:02d}", "AI Engineer", "Berlin", "arbeitnow", ts(1), [(s, "required") for s in skills])
+    return c
+
+
+def test_related_skills_excludes_every_selected_skill(pair):
+    one = q.related_skills(pair, q.Filters(window="all", skill_ids=("python",)), NOW)
+    assert (one["selected_count"], one["total"]) == (10, 15)
+    assert {s["skill_id"] for s in one["skills"]} == {"docker", "pytorch"}   # docker is a row...
+
+    both = q.related_skills(pair, q.Filters(window="all", skill_ids=("python", "docker")), NOW)
+    assert (both["selected_count"], both["total"]) == (8, 15)
+    assert {s["skill_id"] for s in both["skills"]} == {"pytorch"}            # ...until it is selected
+    row = both["skills"][0]
+    assert (row["count"], row["pct"], row["base_pct"]) == (6, 75.0, 86.7)
+    assert row["lift"] == 0.865            # (6/8) / (13/15), from the counts
+
+
+def test_related_skills_conditional_set_is_the_jobs_requiring_all_of_them(pair):
+    """`selected_count` is the AND, so it can only shrink as skills are added."""
+    counts = [q.related_skills(pair, q.Filters(window="all", skill_ids=ids), NOW)["selected_count"]
+              for ids in [("python",), ("python", "docker"), ("python", "docker", "pytorch")]]
+    assert counts == [10, 8, 6]
+    # The baseline is the whole filter set either way, never the conditional one.
+    assert {r["total"] for r in [q.related_skills(pair, q.Filters(window="all", skill_ids=ids), NOW)
+                                 for ids in [("python",), ("python", "docker")]]} == {15}
+
+
+def test_related_skills_empty_list_distinguishes_pruned_from_no_such_jobs(wide):
+    """The two empty answers the panel has to word differently."""
+    # Six jobs require both, but nothing else reaches MIN_CO_JOBS among them: a pruned list.
+    pruned = q.related_skills(wide, q.Filters(window="all", skill_ids=("python", "docker")), NOW)
+    assert pruned["selected_count"] == 6 and pruned["skills"] == []
+    # No job requires all of them: nothing to say anything about.
+    none = q.related_skills(wide, q.Filters(window="all", skill_ids=("python", "nothing-asks-for-this")), NOW)
+    assert none == {"selected_count": 0, "total": 20, "skills": []}

@@ -25,6 +25,7 @@ export const filterParams = (f) => ({
   requirement: f.requirement,
   window: f.window,
   german: f.german,
+  production: f.production,
   degree: f.degree,
 });
 
@@ -32,8 +33,9 @@ export const api = {
   stats: () => call("/api/stats"),
   taxonomy: () => call("/api/taxonomy"),
   skills: (f) => call(`/api/skills${qs(filterParams(f))}`),
+  relatedSkills: (f) => call(`/api/skills/related${qs({ ...filterParams(f), skill: f.skillIds })}`),
   jobs: (f, { sort, limit, offset }) =>
-    call(`/api/jobs${qs({ ...filterParams(f), skill: f.skill, q: f.query, sort, limit, offset })}`),
+    call(`/api/jobs${qs({ ...filterParams(f), skill: f.skillIds, q: f.query, sort, limit, offset })}`),
   job: (id) => call(`/api/jobs/${id}`),
   proposed: () => call("/api/proposed"),
   resolve: (ids, status, resolved_skill_id) =>

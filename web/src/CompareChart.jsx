@@ -6,6 +6,8 @@ const SORTS = { combined: "Combined share", a: `${CITIES[0]} share`, b: `${CITIE
 
 // Two bars per skill (one per city, each as % of that city's job set) plus a diverging
 // gap bar. Needs both cities to have jobs; otherwise says so instead of drawing one side empty.
+// `selected` is the set of selected skill ids; a name click reports whether it was additive
+// (shift or meta), exactly as SkillChart does.
 export default function CompareChart({ data, selected, onSelect, onSelectCity }) {
   const [shown, setShown] = useState(PAGE);
   const [sort, setSort] = useState("combined");
@@ -46,8 +48,8 @@ export default function CompareChart({ data, selected, onSelect, onSelectCity })
         <div className="cty"><span><b>Gap</b> <span className="dim">pts</span></span><div className="axis"><span style={{ left: 0 }}>◂ {A}</span><span style={{ left: "100%" }}>SF ▸</span></div></div>
       </div>
       {rows.slice(0, shown).map((r, i) => (
-        <div key={r.id} className={`cmp-row${selected === r.id ? " sel" : ""}`}>
-          <button type="button" className="name" onClick={() => onSelect(selected === r.id ? null : r.id)} aria-label={`${r.name}: ${A} ${r.ap}%, ${B} ${r.bp}%. Filter job list`}>
+        <div key={r.id} className={`cmp-row${selected.includes(r.id) ? " sel" : ""}`}>
+          <button type="button" className="name" onClick={(e) => onSelect(r.id, e.shiftKey || e.metaKey)} aria-label={`${r.name}: ${A} ${r.ap}%, ${B} ${r.bp}%. Filter job list`}>
             <span className="rank">{i + 1}</span>{r.name}
           </button>
           <button type="button" className="cb track" onClick={() => onSelectCity(r.id, A)} aria-label={`${r.name} in ${A}, ${r.ap}%`}>
@@ -68,7 +70,7 @@ export default function CompareChart({ data, selected, onSelect, onSelectCity })
           {shown < rows.length && <button type="button" className="btn" onClick={() => setShown(shown + PAGE)}>Show {Math.min(PAGE, rows.length - shown)} more</button>}
           <span>{Math.min(shown, rows.length)} of {rows.length} skills</span>
         </div>
-        <div><span>Click a skill to filter jobs · click one city's bar for skill + city</span></div>
+        <div><span>Click a skill to filter jobs · ⇧- or ⌘-click to add a skill · click one city's bar for skill + city</span></div>
       </div>
     </div>
   );

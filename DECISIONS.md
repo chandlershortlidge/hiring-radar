@@ -5,6 +5,240 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-29 — Production experience: the verb, not the tense; a level-scoped demand is not job-wide (HIR-69)
+
+Two rules settled at the Goldens checkpoint. They revise the rule bullets in the 2026-10-28
+entry, which stands otherwise.
+
+**The verb carries the demand, not the tense.** The 2026-10-28 wording asked for "a record
+of having shipped", which read "able to ship production-quality agentic systems, not just
+prototypes" (golden_019) as a quality bar and labeled it not mentioned. Wrong: the posting
+is demanding that the candidate ship to production, and a modal demand is the same demand
+as a past-tense one. `required` now covers ship / operate / deploy / run in production in
+any tense or modality; only a bar on the code itself — "write production-grade code",
+"writing production-quality code and tests" — stays not mentioned. golden_019 is `required`.
+
+**A demand scoped to one seniority level is not job-wide.** golden_006 is open to "all
+levels" and asks for "several years of practical experience in the design and operation of
+productive AI systems" only under a "Senior Level:" heading. Labeling the posting `required`
+hides it from a junior filtering on production-not-required, which is the opposite of what
+that filter is for — the junior track of that posting carries no such demand. golden_006 is
+not mentioned.
+
+**Building is a demand verb.** The first eval run after the two rules above missed
+golden_004 and golden_012 — both gold `required` on "experience building production-grade
+applications" / "practical experience building production-oriented LLM workflows" —
+because the prompt's verb test listed only ship / operate / deploy / run. State the rule
+as the verb against its object: **build / ship / operate / deploy / run** production
+systems, services, applications, pipelines or workflows is `required`; *write*
+production-quality code is not mentioned. A hyphenated modifier on the object does not
+weaken the demand — production-grade, production-ready and production-oriented software is
+production software. golden_012 stays `required`: "practical experience building" is a
+track record, and the gold does not move to match the model.
+
+**Knowing about production is a knowledge bar.** golden_006 carries a *second* production
+clause with no level heading — knowledge of MLOps and of how AI models are operated in
+production — and the model read it as a demand in 2 of 3 runs. It is not one: asking what a
+candidate knows of production is not asking what they have built or run, so it is not
+mentioned. Consistent with golden_005, whose "deep knowledge of … deployment and
+monitoring" is also not mentioned. golden_006 therefore rests on two rules, this one and
+the level-scoping one above; either alone would leave the other clause unaccounted for.
+
+**Optional markers are a category, not a word list.** golden_011's "production ML would be
+highly relevant" is `nice_to_have` and was missed 3/3 because the prompt listed only
+plus / preferred / ideally / advantage / bonus. The fix is the category — soft phrasing
+that frames the demand as welcome rather than expected — not golden_011's wording. Putting
+the dev set's own phrases in the prompt buys eval points and no accuracy, so
+`test_prompt_contains_no_golden_specific_text` now also asserts the dev-Golden phrases
+these three rules were tempted to copy are absent from `PRINCIPLES`.
+
+**Candidate for the next iteration, not applied: the production object is necessary, the
+verb is not.** After the rules above, dev production accuracy is 0.933 with both decoy
+rows at zero, and the two remaining misses pull in opposite directions. golden_011
+("…data platforms or production ML would be highly relevant", gold `nice_to_have`) is
+missed 3/3 because the clause is a bare noun phrase in a list of optional extras — no
+verb, so the verb-against-object test never nominates it. golden_010 is a false positive
+in 1 of 3 runs on "you would rather ship a working automation in two weeks than a perfect
+one in six months" — the verb *ship* with no production object. One rule answers both:
+require the production object, and let it carry the demand whether or not a verb is
+attached. **Deliberately not applied.** `nice_to_have` has support 1 on dev and golden_010
+is a 1-of-3 flip, so changing the prompt for either is fitting the 20-Golden dev set, and
+the prompt is frozen for this release regardless of what the held-out run says. Both are
+written up as known misses in the dev run's `summary.md`.
+
+**The held-out relabel uses these rule bullets directly, and `evals/LABELING.md`'s
+`## Production experience` section is deferred.** The guide is the usual source for a
+labeler, but HIR-70's adjudication run (`evals/labeling/20261027T110516Z_label/`, on
+`chandlershortlidge/hir-70-held-out-goldens-via-independent-agent-labeling-2-blind`) inlines
+LABELING.md into its labeler prompt and keys its cached labels on that prompt's hash, so
+editing the guide mid-run invalidates every label it has cached — a restart that run has
+already paid for once. The section goes in once that queue closes, with the relabel, as the
+release decision the 2026-10-16 freeze requires. Until then `scripts/label_heldout_production.py`
+sends golden_021-024's labelers the 2026-10-28 definition and rule bullets verbatim and
+nothing from `app/extract.py`. Labeling golden_021-024 for production is HIR-69's gap:
+they were labeled at the freeze, before this attribute existed, so the held-out split
+scores seniority, German and degree but not production.
+
+All of these rules are in the `PRINCIPLES` prompt rule in `app/extract.py`, so the prompt hash
+changes and stored eval results from before this entry are not comparable. `evals/LABELING.md`
+still owes its `## Production experience` section (frozen; 2026-10-16) — it must carry both
+rules when it is written, with the relabeling, as a release decision.
+
+---
+
+## 2026-10-29 — The skill filter is a set, read as AND (HIR-75); the chart gets a find box (HIR-67A)
+
+HIR-66 left the related-skills rows unclickable because drilling in ("jobs requiring both")
+needed the skill filter to hold more than one id. It does now.
+
+- **Several skills mean AND, never OR.** The question the panel asks is what jobs wanting
+  *both* X and Y also want; an OR would answer a question nobody asked and would make
+  `selected_count` grow as skills were added, which reads as the opposite of narrowing.
+  `Filters.skill_id` became `skill_ids`, and the API takes repeated `skill=` params, the
+  convention `city` and `seniority` already use.
+- **One `EXISTS` per selected skill, each under its own alias** (`_skills_clause`), so
+  "required only" vs "required + nice-to-have" still applies per skill rather than being
+  smuggled in once. The clause is shared by `list_jobs` and `related_skills`, so the panel
+  and the list can never disagree about which jobs are in the conditional set.
+- **The baseline stays the whole filter set.** Only the conditional set narrows as skills
+  are added. Holding the share against a baseline that narrowed with it would drive every
+  lift towards 1 and empty the panel of meaning.
+- **MIN_CO_JOBS prunes harder with every skill added, and that is correct.** Five jobs is
+  the point below which one odd stack of skills reads as a signal (2026-10-28); that does
+  not get weaker because the selection got more specific. So the panel has two empty
+  answers and words them differently: no job requires them together, or some do but
+  nothing else recurs in at least five of them.
+- **No new field on the response to say which.** `selected_count` already tells them
+  apart, and adding a key would have changed the single-skill response. That response is
+  pinned: `tests/fixtures/single_skill_api_snapshot.json` holds nine responses captured
+  from the pre-change code, replayed as a test, so a single `skill=` answers field for
+  field as it did before.
+- **A chart click replaces the selection; shift- or meta-click adds; a related row always
+  adds.** Swapping the skill you are looking at is the common move and keeps its plain
+  click. Adding is deliberate, and the related panel is the place you go *to* add, so its
+  rows need no modifier. The hint under the chart says so — and it now stays visible when
+  a profile is set, where the legend used to take the whole line and hide it.
+- **The main chart still ignores the selection**, as in HIR-66. Selecting skills moves the
+  job list and the panel, never the bars.
+- **No URL sync.** A shareable link to a filter set is a separate piece of work.
+- **The find box above the chart (HIR-67A part A) is display only.** It narrows rows by
+  display name or any alias — which is why `/api/taxonomy` now carries aliases — and it
+  filters *before* the show-15 cut, so typing a name surfaces a skill that would otherwise
+  sit past it. It never touches the selection and issues no request. Ranks and the axis
+  keep the values they have in the whole chart: a filtered row still says where it sits
+  overall, and bar widths do not jump while typing. Full-text search over postings
+  (HIR-67 part B, FTS5) is not part of this.
+
+---
+
+## 2026-10-28 — Production experience is a fourth per-job attribute, not a skill (HIR-69)
+
+Does the posting **demand production work of the candidate — shipping or operating
+software that real users depend on?** `required | nice_to_have | not mentioned`, with a
+quoted signal — the German shape, in migration 013.
+
+Not a skill: the taxonomy excludes work practices, and "production" or "produktiv" appears
+in 168 of 243 stored descriptions, so as a skill it would sit atop every chart and measure
+nothing. This is the first entry of HIR-59's role-demands vocabulary and answers HIR-35 for
+this one practice.
+
+Rule bullets revised 2026-10-29 — see that entry for what changed and why.
+
+- **The line is the verb, not the tense.** A demand to build, ship, operate, deploy or run
+  software in production is `required` in any tense or modality — "you have shipped
+  production systems", "experience building production AI systems", "able to ship
+  production-quality agentic systems", "track record of building and running production
+  services", "commercial software engineering experience in production environments". A
+  past record, a present ability and a stated expectation are the same demand; *build*
+  alone carries it; and a hyphenated modifier on the object (production-grade,
+  production-ready, production-oriented) does not weaken it.
+- `nice_to_have`: that same demand marked optional. The marker may be explicit —
+  "experience with production ML is a plus", "ideally…" — or soft phrasing that frames the
+  demand as welcome rather than expected ("production ML would be highly relevant",
+  golden_011).
+- **Not mentioned** when the posting never asks the candidate for it. Most mentions of the
+  word are responsibilities ("you'll deploy models to production", "turn prototypes into
+  production-ready systems", "from idea to production"), and PRINCIPLES rule 1 already
+  excludes responsibilities for technologies — the same rule applies here.
+- **A quality bar on the code itself is not the demand**: "write production-grade code",
+  "strong Python skills, including writing production-quality code and tests" → not
+  mentioned. The attribute measures a demand to ship or run the software, not a standard
+  for the code to be written. The verb is the test: *build*, *ship*, *operate*, *deploy*,
+  *run* → `required`; *write*, *code to* a production standard → not mentioned. The corpus carries
+  both one clause apart — golden_018 has each — so the verb decides, not the tense.
+- **Knowledge of production is not a demand to have done production work.** "Knowledge of
+  MLOps and the structured operation of AI models in production environments" (golden_006),
+  "deep knowledge of … deployment and monitoring" (golden_005) → not mentioned. What the
+  candidate is asked to *know about* is not what they are asked to have built or run.
+- **A demand scoped to one seniority level is not a job-wide demand.** A posting open to
+  several levels that asks for production experience only under a level heading
+  ("Senior Level: several years … in the design and operation of productive AI systems")
+  is not mentioned: the track the posting opens to a junior carries no such demand, and
+  `production=not_required` has to keep showing that posting to a junior. golden_006 is the
+  reference case.
+- German postings: `required` on "Du hast bereits Produkte … in den produktiven Betrieb
+  gebracht", "Erfahrung mit produktiven AI-Anwendungen, nicht nur Prototypen". Not mentioned
+  on the common "von der Idee bis zum produktiven Einsatz" responsibility phrasing.
+- **No `inferred` basis.** `production_basis` only ever holds `stated`: unlike German,
+  nothing about the posting's own form implies the demand. The validation rule is otherwise
+  German's — a value whose quoted signal is not found in the text collapses to not
+  mentioned.
+
+Amends the 2026-10-18 rule "three is the limit": column groups on `job` stay the pattern
+through four demands. The fifth demand migrates all four groups into `job_requirement` in
+one migration before it is added.
+
+Filters mirror German's four keys exactly (`any | none | not_required | required`), because
+`not_required` — not mentioned *or* nice_to_have — is the key the dashboard's headline set
+needs and the ticket's proposed `nice_to_have`-only key is not asked for anywhere.
+
+Why it matters: junior + German not required + production not required ≈ "jobs you can get
+today", the set HIR-51's ranking should start from, and the number the Advisor (HIR-63)
+needs to say how many doors a first production project opens.
+
+Goldens, eval scoring and re-extraction are a separate change; `evals/LABELING.md` is frozen
+and gains its `## Production experience` section there, with the relabeling, as a release
+decision (2026-10-16).
+
+---
+
+## 2026-10-28 — Related skills rank by lift, against a baseline from the same filter set (HIR-66)
+
+"43% of jobs want Machine Learning" says nothing about what else those jobs want. Selecting
+a skill now opens a panel between the chart and the job list: of the jobs requiring that
+skill, what else they require.
+
+- **The baseline comes from the same filter set as the share.** `related_skills` takes its
+  `total`, its baseline counts and its conditional job set from one `job_set_clause` (city,
+  seniority, German, degree, window) — the baseline is literally `skill_frequency`'s output
+  under the same filters, so the two can't drift. A share over Berlin jobs held against a
+  baseline over all jobs would make every Berlin-heavy skill look like a signal.
+- **Selected by lift, `(cond_count/selected_count) / (base_count/total)`, computed from the
+  counts and never from the rounded percentages.** Raw share would fill the panel with the
+  skills every job asks for; lift keeps the ones specific to these jobs — PyTorch (55% among
+  ML jobs vs 21% overall) earns a slot that Python's 80% would otherwise take. Lift is
+  rounded to three decimals before sorting, so ties break deterministically on count desc.
+- **Those ten rows are then returned by share desc (pct, then count).** Lift decides who is
+  in the panel; it does not decide the reading order, because a list whose displayed numbers
+  jump around looks broken. The multiplier that justifies a row's presence is not shown
+  (below), so ordering by it would leave the visible numbers unexplained.
+- **Lift is not displayed.** The panel shows "55% · vs 21% of all jobs". For a common
+  selected skill every row sits near the ceiling of 1/share, so the multiplier reads as
+  noise next to two numbers people already understand.
+- **Hidden under 5 co-occurring jobs (`MIN_CO_JOBS`), top 10 kept (`RELATED_LIMIT`).** One
+  odd posting stacking six skills otherwise shows up as a 4x lift. Both thresholds, the
+  sort and the cap live in `queries.py`, not the UI, so pytest covers them.
+- **A separate endpoint, `GET /api/skills/related`.** `/api/skills` and `skill_frequency`
+  are untouched — selecting a skill must not move the main chart or the compare view — and
+  a regression test pins `skill_frequency`'s output against a snapshot taken before the
+  shared group/sort/pct block was factored out into `_skill_rows`. The endpoint requires
+  `skill` (422 without it); its requirement filter follows the request like everywhere
+  else, so the conditional set and the baseline always use the same mention semantics.
+- **Row click is a no-op for now.** Drilling in (jobs requiring both skills) needs `skill`
+  to become a list on the filters with AND semantics; that is a second step.
+
+---
+
 ## 2026-10-27 — Inferred seniority narrowed to years / "proven experience" / lead duty
 
 `evals/LABELING.md` is frozen, so this records the edit. **The guide now matches the

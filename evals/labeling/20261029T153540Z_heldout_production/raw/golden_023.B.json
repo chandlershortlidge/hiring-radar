@@ -1,0 +1,16 @@
+{
+  "golden_id": "golden_023",
+  "labeler": "B",
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "prompt_sha": "d3440ff6a7e542e43381d999d90df5e5f34152cc3aee584a98c727207d093fab",
+  "rules_sha": "9ccf26aac331222bb075ee290b17ef81463e80d6353eee5b1b96c3bbf78d6419",
+  "raw": "{\n  \"production\": null,\n  \"production_signal\": null,\n  \"why\": \"Die Aussagen zu Implementierung, Deployment und Bereitstellung stehen unter „Was du bei uns bewegen kannst“ und beschreiben Verantwortlichkeiten; diese zählen nach der Verantwortlichkeiten-Regel nicht als Produktionsanforderung an Kandidat:innen.\",\n  \"uncertain\": false\n}",
+  "parsed": {
+    "production": null,
+    "production_signal": null,
+    "why": "Die Aussagen zu Implementierung, Deployment und Bereitstellung stehen unter „Was du bei uns bewegen kannst“ und beschreiben Verantwortlichkeiten; diese zählen nach der Verantwortlichkeiten-Regel nicht als Produktionsanforderung an Kandidat:innen.",
+    "uncertain": false
+  },
+  "error": null
+}
