@@ -25,6 +25,7 @@ export const filterParams = (f) => ({
   requirement: f.requirement,
   window: f.window,
   german: f.german,
+  production: f.production,
   degree: f.degree,
 });
 

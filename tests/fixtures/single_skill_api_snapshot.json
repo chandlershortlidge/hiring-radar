@@ -13,6 +13,7 @@
           "id": 2,
           "last_seen": "2026-10-17T12:00:00Z",
           "legacy": false,
+          "production": null,
           "repost_count": 0,
           "required_skills": [
             "aws",
@@ -48,6 +49,7 @@
           "id": 1,
           "last_seen": "2026-10-16T12:00:00Z",
           "legacy": false,
+          "production": null,
           "repost_count": 0,
           "required_skills": [
             "python",
@@ -94,6 +96,7 @@
           "id": 2,
           "last_seen": "2026-10-17T12:00:00Z",
           "legacy": false,
+          "production": null,
           "repost_count": 0,
           "required_skills": [
             "aws",
@@ -129,6 +132,7 @@
           "id": 1,
           "last_seen": "2026-10-16T12:00:00Z",
           "legacy": false,
+          "production": null,
           "repost_count": 0,
           "required_skills": [
             "python",
@@ -175,6 +179,7 @@
           "id": 1,
           "last_seen": "2026-10-16T12:00:00Z",
           "legacy": false,
+          "production": null,
           "repost_count": 0,
           "required_skills": [
             "python",
@@ -271,6 +276,7 @@
           "id": 6,
           "last_seen": "2026-10-16T12:00:00Z",
           "legacy": false,
+          "production": null,
           "repost_count": 0,
           "required_skills": [
             "python",
@@ -307,6 +313,7 @@
           "id": 5,
           "last_seen": "2026-10-16T12:00:00Z",
           "legacy": false,
+          "production": null,
           "repost_count": 0,
           "required_skills": [
             "docker",
@@ -343,6 +350,7 @@
           "id": 4,
           "last_seen": "2026-10-16T12:00:00Z",
           "legacy": false,
+          "production": null,
           "repost_count": 0,
           "required_skills": [
             "aws",
@@ -381,6 +389,7 @@
           "id": 3,
           "last_seen": "2026-10-16T12:00:00Z",
           "legacy": false,
+          "production": null,
           "repost_count": 0,
           "required_skills": [
             "aws",
@@ -419,6 +428,7 @@
           "id": 2,
           "last_seen": "2026-10-16T12:00:00Z",
           "legacy": false,
+          "production": null,
           "repost_count": 0,
           "required_skills": [
             "aws",
@@ -458,6 +468,7 @@
           "id": 1,
           "last_seen": "2026-10-16T12:00:00Z",
           "legacy": false,
+          "production": null,
           "repost_count": 0,
           "required_skills": [
             "aws",

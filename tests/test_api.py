@@ -72,8 +72,12 @@ def test_filter_validation(api):
     assert client.get("/api/jobs", params={"sort": "random"}).status_code == 422
     assert client.get("/api/jobs", params={"seniority": "intern"}).status_code == 422
     assert client.get("/api/jobs", params={"german": "fluent"}).status_code == 422
+    assert client.get("/api/jobs", params={"production": "shipped"}).status_code == 422
+    assert client.get("/api/jobs", params={"production": "nice_to_have"}).status_code == 422  # not one of the four keys
     assert client.get("/api/skills", params={"degree": "masters"}).status_code == 422
     assert client.get("/api/skills", params={"degree": "open", "german": "not_required"}).status_code == 200
+    assert client.get("/api/skills", params={"production": "not_required"}).status_code == 200
+    assert client.get("/api/jobs", params={"production": "required"}).status_code == 200
 
 
 def test_jobs_and_detail(api):
@@ -200,9 +204,11 @@ def test_skill_validation_over_a_list(api):
     assert r.status_code == 422 and r.json()["detail"] == "skill is required"
 
 
-# Captured from the pre-HIR-75 code (scripts in the HIR-75 session, committed as a fixture):
-# with one `skill=` the responses must be identical, field for field, to what the
-# single-skill `Filters.skill_id` produced.
+# Captured by replaying these URLs against the tree as it stood just before HIR-75 (that is,
+# with HIR-69's production field already on the job rows): with one `skill=` the responses
+# must be identical, field for field, to what the single-skill `Filters.skill_id` produced.
+# Regenerate it the same way — against the last commit before the change under test — rather
+# than from the current code, or it stops being a before/after.
 SNAPSHOT = json.loads((Path(__file__).parent / "fixtures" / "single_skill_api_snapshot.json").read_text())
 
 

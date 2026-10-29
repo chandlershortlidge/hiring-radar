@@ -60,6 +60,7 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
 
     def filters(city: list[str] = Query(default=[]), seniority: list[str] = Query(default=[]),
                 requirement: str = "required", window: str = "open", german: str = "any", degree: str = "any",
+                production: str = "any",
                 skill: list[str] = Query(default=[]), q_: str = Query(default="", alias="q")) -> q.Filters:
         for s in seniority:
             if s not in q.SENIORITIES:
@@ -72,13 +73,15 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
             raise HTTPException(422, f"bad german {german!r}")
         if degree not in q.DEGREE_FILTERS:
             raise HTTPException(422, f"bad degree {degree!r}")
+        if production not in q.PRODUCTION_FILTERS:
+            raise HTTPException(422, f"bad production {production!r}")
         for s in skill:
             if s not in tax.skills:
                 raise HTTPException(422, f"unknown skill {s!r}")
         # Repeated `skill=` params mean AND. Deduplicated, order kept, so a skill sent
         # twice does not add a redundant EXISTS clause.
         return q.Filters(cities=tuple(city), seniorities=tuple(seniority), requirement=requirement,
-                         window=window, german=german, degree=degree,
+                         window=window, german=german, degree=degree, production=production,
                          skill_ids=tuple(dict.fromkeys(skill)), query=q_)
 
     def with_display(skills: list[dict]) -> list[dict]:

@@ -50,6 +50,7 @@ export const pctInt = (n, d) => (d ? Math.round((n / d) * 100) : 0);
 export const axisMax = (maxPct) => Math.min(100, Math.max(20, Math.ceil((maxPct || 0) / 20) * 20));
 
 export const GERMAN_FILTERS = { any: "Any", not_required: "Not required", none: "Not mentioned", required: "Required" };
+export const PRODUCTION_FILTERS = { any: "Any", not_required: "Not required", none: "Not asked for", required: "Required" };
 export const DEGREE_FILTERS = { any: "Any", open: "Open without one", none: "Not mentioned", required: "Degree required" };
 export const DEGREE_NAMES = { bachelor: "Bachelor's", master: "Master's", phd: "PhD" };
 export const DEGREE_RANK = { "": 0, bachelor: 1, master: 2, phd: 3 };
@@ -64,4 +65,10 @@ export function degreeLine(j) {
 export function germanLine(j) {
   if (!j.german) return null;
   return j.german === "required" ? (j.german_basis === "inferred" ? "German (posting written in German)" : "German required") : "German a plus";
+}
+// One line describing a job's production-experience ask. Unlike German there is no
+// inferred basis, so the value alone decides the wording.
+export function productionLine(j) {
+  if (!j.production) return null;
+  return j.production === "required" ? "Production experience required" : "Production experience a plus";
 }

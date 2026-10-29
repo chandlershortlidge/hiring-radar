@@ -50,6 +50,26 @@ def test_extraction_stores_german_and_degree_on_the_job(conn):
     assert tuple(row) == ("required", "inferred", None, "master", "required", 1, "M.Sc.")
 
 
+def test_extraction_stores_production_on_the_job(conn):
+    from app.extract import Production
+    def fn(text, tax, model):
+        return Extraction(mentions=[], production=Production("required", "stated", "shipped to production"),
+                          extractor_version=extractor_version(tax, model), taxonomy_version=tax.version)
+    pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None)
+    row = conn.execute("SELECT production, production_basis, production_signal FROM job WHERE id=1").fetchone()
+    assert tuple(row) == ("required", "stated", "shipped to production")
+
+
+def test_extraction_clears_production_when_not_asked_for(conn):
+    """Re-extraction overwrites, so a job that loses the demand must go back to NULL."""
+    conn.execute("UPDATE job SET production='required', production_basis='stated', production_signal='x' WHERE id=1")
+    def fn(text, tax, model):
+        return Extraction(mentions=[], extractor_version=extractor_version(tax, model), taxonomy_version=tax.version)
+    pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None)
+    row = conn.execute("SELECT production, production_basis, production_signal FROM job WHERE id=1").fetchone()
+    assert tuple(row) == (None, None, None)
+
+
 def test_legacy_stamped_jobs_are_never_re_extracted(conn):
     conn.execute("UPDATE job SET extracted_version='legacy' WHERE id=1")
     r = pipeline.extract_pending(conn, TAX, fake_extract([Mention("python", "required", "Python")]), "m", log=lambda *_: None)

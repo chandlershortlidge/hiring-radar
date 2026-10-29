@@ -50,6 +50,60 @@ needed the skill filter to hold more than one id. It does now.
 
 ---
 
+## 2026-10-28 — Production experience is a fourth per-job attribute, not a skill (HIR-69)
+
+Does the posting ask the candidate for **prior experience shipping or operating software
+that real users depended on?** `required | nice_to_have | not mentioned`, with a quoted
+signal — the German shape, in migration 013.
+
+Not a skill: the taxonomy excludes work practices, and "production" or "produktiv" appears
+in 168 of 243 stored descriptions, so as a skill it would sit atop every chart and measure
+nothing. This is the first entry of HIR-59's role-demands vocabulary and answers HIR-35 for
+this one practice.
+
+- `required`: the candidate is asked for the experience and it is not marked optional —
+  "you have shipped production systems", "track record of building production-grade backend
+  services", "experience building and operating production-grade software", "commercial
+  software engineering experience in production environments".
+- `nice_to_have`: that same ask marked optional — "experience with production ML is a plus",
+  "ideally…".
+- **Not mentioned** when the posting never asks the candidate for it. Most mentions of the
+  word are responsibilities ("you'll deploy models to production", "turn prototypes into
+  production-ready systems"), and PRINCIPLES rule 1 already excludes responsibilities for
+  technologies — the same rule applies here.
+- **A quality expectation of the work is not the demand**: "write production-grade code",
+  "strong Python skills, including writing production-quality code and tests" → not
+  mentioned. The attribute measures a record of having shipped, not a bar for the code to
+  be written. The grammar separates them: a track record *of building* production-grade
+  services is `required`; Python skills *including writing* production-quality code is not.
+  Decided rather than left open because the corpus has both readings one clause apart, and
+  the wide reading drifts back toward "writes good code", which almost every posting wants.
+- German postings: `required` on "Du hast bereits Produkte … in den produktiven Betrieb
+  gebracht", "Erfahrung mit produktiven AI-Anwendungen, nicht nur Prototypen". Not mentioned
+  on the common "von der Idee bis zum produktiven Einsatz" responsibility phrasing.
+- **No `inferred` basis.** `production_basis` only ever holds `stated`: unlike German,
+  nothing about the posting's own form implies the demand. The validation rule is otherwise
+  German's — a value whose quoted signal is not found in the text collapses to not
+  mentioned.
+
+Amends the 2026-10-18 rule "three is the limit": column groups on `job` stay the pattern
+through four demands. The fifth demand migrates all four groups into `job_requirement` in
+one migration before it is added.
+
+Filters mirror German's four keys exactly (`any | none | not_required | required`), because
+`not_required` — not mentioned *or* nice_to_have — is the key the dashboard's headline set
+needs and the ticket's proposed `nice_to_have`-only key is not asked for anywhere.
+
+Why it matters: junior + German not required + production not required ≈ "jobs you can get
+today", the set HIR-51's ranking should start from, and the number the Advisor (HIR-63)
+needs to say how many doors a first production project opens.
+
+Goldens, eval scoring and re-extraction are a separate change; `evals/LABELING.md` is frozen
+and gains its `## Production experience` section there, with the relabeling, as a release
+decision (2026-10-16).
+
+---
+
 ## 2026-10-28 — Related skills rank by lift, against a baseline from the same filter set (HIR-66)
 
 "43% of jobs want Machine Learning" says nothing about what else those jobs want. Selecting
