@@ -5,6 +5,51 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-29 — The skill filter is a set, read as AND (HIR-75); the chart gets a find box (HIR-67A)
+
+HIR-66 left the related-skills rows unclickable because drilling in ("jobs requiring both")
+needed the skill filter to hold more than one id. It does now.
+
+- **Several skills mean AND, never OR.** The question the panel asks is what jobs wanting
+  *both* X and Y also want; an OR would answer a question nobody asked and would make
+  `selected_count` grow as skills were added, which reads as the opposite of narrowing.
+  `Filters.skill_id` became `skill_ids`, and the API takes repeated `skill=` params, the
+  convention `city` and `seniority` already use.
+- **One `EXISTS` per selected skill, each under its own alias** (`_skills_clause`), so
+  "required only" vs "required + nice-to-have" still applies per skill rather than being
+  smuggled in once. The clause is shared by `list_jobs` and `related_skills`, so the panel
+  and the list can never disagree about which jobs are in the conditional set.
+- **The baseline stays the whole filter set.** Only the conditional set narrows as skills
+  are added. Holding the share against a baseline that narrowed with it would drive every
+  lift towards 1 and empty the panel of meaning.
+- **MIN_CO_JOBS prunes harder with every skill added, and that is correct.** Five jobs is
+  the point below which one odd stack of skills reads as a signal (2026-10-28); that does
+  not get weaker because the selection got more specific. So the panel has two empty
+  answers and words them differently: no job requires them together, or some do but
+  nothing else recurs in at least five of them.
+- **No new field on the response to say which.** `selected_count` already tells them
+  apart, and adding a key would have changed the single-skill response. That response is
+  pinned: `tests/fixtures/single_skill_api_snapshot.json` holds nine responses captured
+  from the pre-change code, replayed as a test, so a single `skill=` answers field for
+  field as it did before.
+- **A chart click replaces the selection; shift- or meta-click adds; a related row always
+  adds.** Swapping the skill you are looking at is the common move and keeps its plain
+  click. Adding is deliberate, and the related panel is the place you go *to* add, so its
+  rows need no modifier. The hint under the chart says so — and it now stays visible when
+  a profile is set, where the legend used to take the whole line and hide it.
+- **The main chart still ignores the selection**, as in HIR-66. Selecting skills moves the
+  job list and the panel, never the bars.
+- **No URL sync.** A shareable link to a filter set is a separate piece of work.
+- **The find box above the chart (HIR-67A part A) is display only.** It narrows rows by
+  display name or any alias — which is why `/api/taxonomy` now carries aliases — and it
+  filters *before* the show-15 cut, so typing a name surfaces a skill that would otherwise
+  sit past it. It never touches the selection and issues no request. Ranks and the axis
+  keep the values they have in the whole chart: a filtered row still says where it sits
+  overall, and bar widths do not jump while typing. Full-text search over postings
+  (HIR-67 part B, FTS5) is not part of this.
+
+---
+
 ## 2026-10-28 — Related skills rank by lift, against a baseline from the same filter set (HIR-66)
 
 "43% of jobs want Machine Learning" says nothing about what else those jobs want. Selecting

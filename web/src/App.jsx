@@ -40,6 +40,8 @@ export default function App() {
   useEffect(() => { let live = true; api.skills(filters).then((r) => { if (live) setSkills(r); }); return () => { live = false; }; }, [filters, refresh]);
 
   const taxName = useMemo(() => Object.fromEntries(tax.skills.map((s) => [s.id, s.display])), [tax]);
+  // For the chart's find box: it matches a skill's aliases as well as its display name.
+  const taxAliases = useMemo(() => Object.fromEntries(tax.skills.map((s) => [s.id, s.aliases || []])), [tax]);
   const set = (patch) => setFilters((f) => ({ ...f, ...patch }));
   const setCity = (c) => set(c === "compare" ? { compare: true, cities: [] } : { compare: false, cities: c ? [c] : [] });
   const toggleSen = (s) => set({ seniorities: filters.seniorities.includes(s) ? filters.seniorities.filter((x) => x !== s) : [...filters.seniorities, s] });
@@ -144,7 +146,7 @@ export default function App() {
             ? <CompareChart data={skills} selected={filters.skillIds} onSelect={selectSkill}
                 onSelectCity={(id, city) => set({ skillIds: [id], compare: false, cities: [city] })} />
             : <SkillChart data={skills} selected={filters.skillIds} onSelect={selectSkill} profile={profile}
-                cityLabel={`${winLabel || "tracked"} jobs`} />}
+                cityLabel={`${winLabel || "tracked"} jobs`} aliases={taxAliases} />}
         </section>
 
         <RelatedSkills filters={filters} skillNames={skillNames} onAdd={addSkill} refreshKey={refresh} />

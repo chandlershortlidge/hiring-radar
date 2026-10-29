@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
 import { axisMax, pct, pctInt } from "./format.js";
+import { Search } from "./icons.jsx";
 
 const PAGE = 15;
 
@@ -9,26 +10,48 @@ const PAGE = 15;
 // `selected` is the set of selected skill ids (AND, several at a time). A click reports
 // whether it was additive — shift or meta held — and App decides replace vs add; this
 // component only draws the selection it is given.
-export default function SkillChart({ data, selected, onSelect, profile, cityLabel }) {
+//
+// The find box (HIR-67A) narrows the rows by display name or any taxonomy alias, before
+// the "show 15 / show more" cut, so a skill that would sit past the cut becomes visible by
+// typing its name. It is pure display: it never changes the selection and never asks the
+// server for anything. Ranks and the axis keep the values they have in the whole chart, so
+// a filtered row still says where it sits overall and bar widths do not jump while typing.
+export default function SkillChart({ data, selected, onSelect, profile, cityLabel, aliases = {} }) {
   const [shown, setShown] = useState(PAGE);
   const [hover, setHover] = useState(null);
+  const [find, setFind] = useState("");
   const total = data?.total || 0;
   const skills = data?.skills || [];
   const max = useMemo(() => axisMax(skills.length ? pct(skills[0].count, total) : 0), [skills, total]);
   const ticks = [0, 0.25, 0.5, 0.75, 1].map((t) => Math.round(max * t));
   const have = new Set(profile?.skills || []);
+  const rank = useMemo(() => Object.fromEntries(skills.map((s, i) => [s.skill_id, i + 1])), [skills]);
+  const rows = useMemo(() => {
+    const q = find.trim().toLowerCase();
+    if (!q) return skills;
+    return skills.filter((s) => s.display.toLowerCase().includes(q)
+      || (aliases[s.skill_id] || []).some((a) => a.toLowerCase().includes(q)));
+  }, [skills, aliases, find]);
 
   if (!total) return <div className="empty">No jobs match these filters yet.</div>;
 
   return (
     <div className="bars" style={{ "--tick": "25%" }}>
+      <div className="chart-find">
+        <label htmlFor="skill-find" className="sr">Find a skill in the chart</label>
+        <div className="search"><Search stroke="#6B6B6B" />
+          <input id="skill-find" type="search" className="inp" placeholder="Find a skill (name or alias)"
+            value={find} onChange={(e) => setFind(e.target.value)} />
+        </div>
+        {find.trim() && <span className="muted">{rows.length} of {skills.length} skills match “{find.trim()}”</span>}
+      </div>
       <div className="bars-head">
         <span>Skill</span>
         <div className="axis">
           {ticks.map((t, i) => <span key={i} style={{ left: `${i * 25}%` }}>{t}%{i === 4 ? " of jobs" : ""}</span>)}
         </div>
       </div>
-      {skills.slice(0, shown).map((s, i) => {
+      {rows.slice(0, shown).map((s) => {
         const p = pct(s.count, total);
         const w = `${Math.min(100, (p / max) * 100)}%`;
         const sel = selected.includes(s.skill_id);
@@ -41,7 +64,7 @@ export default function SkillChart({ data, selected, onSelect, profile, cityLabe
             onClick={(e) => onSelect(s.skill_id, e.shiftKey || e.metaKey)}
             onMouseEnter={() => setHover(s.skill_id)} onMouseLeave={() => setHover(null)}
             onFocus={() => setHover(s.skill_id)} onBlur={() => setHover(null)}>
-            <span className="name"><span className="rank">{i + 1}</span><span>{s.display}</span></span>
+            <span className="name"><span className="rank">{rank[s.skill_id]}</span><span>{s.display}</span></span>
             <span className="track">
               <span className={`fill ${dim && !profile ? "dimmed" : cls}`} style={{ width: w }} />
               <span className="n">{s.count} <span className="pct">{pctInt(s.count, total)}%</span></span>
@@ -56,10 +79,11 @@ export default function SkillChart({ data, selected, onSelect, profile, cityLabe
           </button>
         );
       })}
+      {!rows.length && <div className="empty">No skill in the chart matches “{find.trim()}”.</div>}
       <div className="bars-foot">
         <div>
-          {shown < skills.length && <button type="button" className="btn" onClick={() => setShown(shown + PAGE)}>Show {Math.min(PAGE, skills.length - shown)} more</button>}
-          <span>{Math.min(shown, skills.length)} of {skills.length} skills with at least one mention</span>
+          {shown < rows.length && <button type="button" className="btn" onClick={() => setShown(shown + PAGE)}>Show {Math.min(PAGE, rows.length - shown)} more</button>}
+          <span>{Math.min(shown, rows.length)} of {rows.length} skills{find.trim() ? " matching" : " with at least one mention"}</span>
         </div>
         <div>
           {profile && (

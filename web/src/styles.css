@@ -96,6 +96,8 @@ select.sel { padding-right: 28px; }
 .n .pct { color: var(--ink-3); font-weight: 400; }
 .tip { position: absolute; top: -12px; left: var(--x); display: flex; flex-direction: column; gap: 3px; padding: 8px 10px; background: var(--ink); color: #fff; border-radius: 6px; font-size: 12px; line-height: 1.35; white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,.18); z-index: 2; pointer-events: none; }
 .tip b { font-weight: 600; } .tip .c { color: #d0d0d0; }
+.chart-find { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding-bottom: 10px; }
+.chart-find .muted { font-size: 12.5px; }
 .bars-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 4px; border-top: 1px solid var(--line-2); color: var(--ink-2); font-size: 12.5px; }
 .bars-foot > div { display: flex; align-items: center; gap: 10px; }
 .legend { display: inline-flex; align-items: center; gap: 6px; }
