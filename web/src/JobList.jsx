@@ -3,11 +3,13 @@ import { api } from "./api.js";
 import { Down, Ext, Repost, Search, Up, X } from "./icons.jsx";
 import { DEGREE_RANK, cap, dateShort, degreeLine, germanLine, productionLine, sourceCode, timeAgo } from "./format.js";
 import { coverage } from "./profile.js";
+import AddSkillChip from "./AddSkillChip.jsx";
 
 const SORTS = { newest: "Newest first", oldest: "Oldest first", reposts: "Most reposted", company: "Company A–Z" };
 const PAGE = 20;
 
-export default function JobList({ filters, setFilters, profile, taxonomy, refreshKey, openJobId, onOpened, onOpenPage }) {
+export default function JobList({ filters, setFilters, profile, taxonomy, refreshKey, openJobId, onOpened, onOpenPage,
+  taxonomyRows = [], aliases = {}, suggestions = [], onAddSkill }) {
   const [sort, setSort] = useState("newest");
   const [page, setPage] = useState({ jobs: [], total: 0 });
   const [open, setOpen] = useState(null);
@@ -41,6 +43,8 @@ export default function JobList({ filters, setFilters, profile, taxonomy, refres
                 onClick={() => setFilters((f) => ({ ...f, skillIds: f.skillIds.filter((x) => x !== id) }))}><X size={12} /></button>
             </span>
           ))}
+          <AddSkillChip selected={filters.skillIds} suggestions={suggestions} taxonomy={taxonomyRows}
+            aliases={aliases} onAdd={onAddSkill} />
           <span className="muted" style={{ fontSize: 13 }}>{page.total} {filters.window === "open" ? "open" : ""} jobs · {scope}</span>
         </div>
         <div className="r">
