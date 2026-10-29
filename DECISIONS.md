@@ -25,7 +25,34 @@ hides it from a junior filtering on production-not-required, which is the opposi
 that filter is for — the junior track of that posting carries no such demand. golden_006 is
 not mentioned.
 
-Both rules are in the `PRINCIPLES` prompt rule in `app/extract.py`, so the prompt hash
+**Building is a demand verb.** The first eval run after the two rules above missed
+golden_004 and golden_012 — both gold `required` on "experience building production-grade
+applications" / "practical experience building production-oriented LLM workflows" —
+because the prompt's verb test listed only ship / operate / deploy / run. State the rule
+as the verb against its object: **build / ship / operate / deploy / run** production
+systems, services, applications, pipelines or workflows is `required`; *write*
+production-quality code is not mentioned. A hyphenated modifier on the object does not
+weaken the demand — production-grade, production-ready and production-oriented software is
+production software. golden_012 stays `required`: "practical experience building" is a
+track record, and the gold does not move to match the model.
+
+**Knowing about production is a knowledge bar.** golden_006 carries a *second* production
+clause with no level heading — knowledge of MLOps and of how AI models are operated in
+production — and the model read it as a demand in 2 of 3 runs. It is not one: asking what a
+candidate knows of production is not asking what they have built or run, so it is not
+mentioned. Consistent with golden_005, whose "deep knowledge of … deployment and
+monitoring" is also not mentioned. golden_006 therefore rests on two rules, this one and
+the level-scoping one above; either alone would leave the other clause unaccounted for.
+
+**Optional markers are a category, not a word list.** golden_011's "production ML would be
+highly relevant" is `nice_to_have` and was missed 3/3 because the prompt listed only
+plus / preferred / ideally / advantage / bonus. The fix is the category — soft phrasing
+that frames the demand as welcome rather than expected — not golden_011's wording. Putting
+the dev set's own phrases in the prompt buys eval points and no accuracy, so
+`test_prompt_contains_no_golden_specific_text` now also asserts the dev-Golden phrases
+these three rules were tempted to copy are absent from `PRINCIPLES`.
+
+All of these rules are in the `PRINCIPLES` prompt rule in `app/extract.py`, so the prompt hash
 changes and stored eval results from before this entry are not comparable. `evals/LABELING.md`
 still owes its `## Production experience` section (frozen; 2026-10-16) — it must carry both
 rules when it is written, with the relabeling, as a release decision.
@@ -45,14 +72,18 @@ this one practice.
 
 Rule bullets revised 2026-10-29 — see that entry for what changed and why.
 
-- **The line is the verb, not the tense.** A demand to ship, operate, deploy or run
+- **The line is the verb, not the tense.** A demand to build, ship, operate, deploy or run
   software in production is `required` in any tense or modality — "you have shipped
-  production systems", "experience shipping production services", "able to ship
+  production systems", "experience building production AI systems", "able to ship
   production-quality agentic systems", "track record of building and running production
   services", "commercial software engineering experience in production environments". A
-  past record, a present ability and a stated expectation are the same demand.
-- `nice_to_have`: that same demand marked optional — "experience with production ML is a
-  plus", "ideally…".
+  past record, a present ability and a stated expectation are the same demand; *build*
+  alone carries it; and a hyphenated modifier on the object (production-grade,
+  production-ready, production-oriented) does not weaken it.
+- `nice_to_have`: that same demand marked optional. The marker may be explicit —
+  "experience with production ML is a plus", "ideally…" — or soft phrasing that frames the
+  demand as welcome rather than expected ("production ML would be highly relevant",
+  golden_011).
 - **Not mentioned** when the posting never asks the candidate for it. Most mentions of the
   word are responsibilities ("you'll deploy models to production", "turn prototypes into
   production-ready systems", "from idea to production"), and PRINCIPLES rule 1 already
@@ -60,9 +91,13 @@ Rule bullets revised 2026-10-29 — see that entry for what changed and why.
 - **A quality bar on the code itself is not the demand**: "write production-grade code",
   "strong Python skills, including writing production-quality code and tests" → not
   mentioned. The attribute measures a demand to ship or run the software, not a standard
-  for the code to be written. The verb is the test: *ship*, *operate*, *deploy*, *run* →
-  `required`; *write*, *code to* a production standard → not mentioned. The corpus carries
+  for the code to be written. The verb is the test: *build*, *ship*, *operate*, *deploy*,
+  *run* → `required`; *write*, *code to* a production standard → not mentioned. The corpus carries
   both one clause apart — golden_018 has each — so the verb decides, not the tense.
+- **Knowledge of production is not a demand to have done production work.** "Knowledge of
+  MLOps and the structured operation of AI models in production environments" (golden_006),
+  "deep knowledge of … deployment and monitoring" (golden_005) → not mentioned. What the
+  candidate is asked to *know about* is not what they are asked to have built or run.
 - **A demand scoped to one seniority level is not a job-wide demand.** A posting open to
   several levels that asks for production experience only under a level heading
   ("Senior Level: several years … in the design and operation of productive AI systems")
