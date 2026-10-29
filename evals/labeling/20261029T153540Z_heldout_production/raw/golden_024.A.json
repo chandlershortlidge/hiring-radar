@@ -1,0 +1,16 @@
+{
+  "golden_id": "golden_024",
+  "labeler": "A",
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "prompt_sha": "d3440ff6a7e542e43381d999d90df5e5f34152cc3aee584a98c727207d093fab",
+  "rules_sha": "9ccf26aac331222bb075ee290b17ef81463e80d6353eee5b1b96c3bbf78d6419",
+  "raw": "```json\n{\n  \"production\": \"nice_to_have\",\n  \"production_signal\": \"Erfahrung mit dem Betrieb, der Überwachung oder der Fehlerbehebung bei einem ML-Modell oder einer Datenpipeline.\",\n  \"why\": \"Operating ('Betrieb') an ML model or pipeline is the operate/run demand, and it sits under 'Was du idealerweise noch mitbringst', so it is optional. The must-haves only ask for 'Interesse daran zu lernen' and first development experience, and the production phrases under 'Was dich erwartet' are responsibilities.\",\n  \"uncertain\": true\n}\n```",
+  "parsed": {
+    "production": "nice_to_have",
+    "production_signal": "Erfahrung mit dem Betrieb, der Überwachung oder der Fehlerbehebung bei einem ML-Modell oder einer Datenpipeline.",
+    "why": "Operating ('Betrieb') an ML model or pipeline is the operate/run demand, and it sits under 'Was du idealerweise noch mitbringst', so it is optional. The must-haves only ask for 'Interesse daran zu lernen' and first development experience, and the production phrases under 'Was dich erwartet' are responsibilities.",
+    "uncertain": true
+  },
+  "error": null
+}

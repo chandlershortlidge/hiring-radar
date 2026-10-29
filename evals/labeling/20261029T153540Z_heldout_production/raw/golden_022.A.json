@@ -1,0 +1,16 @@
+{
+  "golden_id": "golden_022",
+  "labeler": "A",
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "prompt_sha": "d3440ff6a7e542e43381d999d90df5e5f34152cc3aee584a98c727207d093fab",
+  "rules_sha": "9ccf26aac331222bb075ee290b17ef81463e80d6353eee5b1b96c3bbf78d6419",
+  "raw": "```json\n{\n  \"production\": null,\n  \"production_signal\": null,\n  \"why\": \"The only production mention, 'der Weg vom Prototyp in die Produktion', is a responsibility (excluded per PRINCIPLES rule 1). The qualifications ask only for 'Erste praktische Erfahrung' and tool skills, with no demand to ship or operate software.\",\n  \"uncertain\": false\n}\n```",
+  "parsed": {
+    "production": null,
+    "production_signal": null,
+    "why": "The only production mention, 'der Weg vom Prototyp in die Produktion', is a responsibility (excluded per PRINCIPLES rule 1). The qualifications ask only for 'Erste praktische Erfahrung' and tool skills, with no demand to ship or operate software.",
+    "uncertain": false
+  },
+  "error": null
+}

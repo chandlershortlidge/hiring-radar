@@ -66,6 +66,19 @@ is a 1-of-3 flip, so changing the prompt for either is fitting the 20-Golden dev
 the prompt is frozen for this release regardless of what the held-out run says. Both are
 written up as known misses in the dev run's `summary.md`.
 
+**The held-out relabel uses these rule bullets directly, and `evals/LABELING.md`'s
+`## Production experience` section is deferred.** The guide is the usual source for a
+labeler, but HIR-70's adjudication run (`evals/labeling/20261027T110516Z_label/`, on
+`chandlershortlidge/hir-70-held-out-goldens-via-independent-agent-labeling-2-blind`) inlines
+LABELING.md into its labeler prompt and keys its cached labels on that prompt's hash, so
+editing the guide mid-run invalidates every label it has cached — a restart that run has
+already paid for once. The section goes in once that queue closes, with the relabel, as the
+release decision the 2026-10-16 freeze requires. Until then `scripts/label_heldout_production.py`
+sends golden_021-024's labelers the 2026-10-28 definition and rule bullets verbatim and
+nothing from `app/extract.py`. Labeling golden_021-024 for production is HIR-69's gap:
+they were labeled at the freeze, before this attribute existed, so the held-out split
+scores seniority, German and degree but not production.
+
 All of these rules are in the `PRINCIPLES` prompt rule in `app/extract.py`, so the prompt hash
 changes and stored eval results from before this entry are not comparable. `evals/LABELING.md`
 still owes its `## Production experience` section (frozen; 2026-10-16) — it must carry both

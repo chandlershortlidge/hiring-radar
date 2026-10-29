@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "run_id": "20261029T153540Z_heldout_production",
+    "provider_a": "anthropic",
+    "model_a": "claude-opus-5-5",
+    "provider_b": "openai",
+    "model_b": "gpt-6.1-sol",
+    "extractor_model": "claude-sonnet-5-5",
+    "rules_sha": "9ccf26aac331222bb075ee290b17ef81463e80d6353eee5b1b96c3bbf78d6419",
+    "prompt_sha": "d3440ff6a7e542e43381d999d90df5e5f34152cc3aee584a98c727207d093fab",
+    "golden_ids": [
+      "golden_021",
+      "golden_022",
+      "golden_023",
+      "golden_024"
+    ],
+    "agreed": 3,
+    "disagreed": 1,
+    "auto_check_failures": 0,
+    "uncertain": 3
+  },
+  "rows": [
+    {
+      "golden_id": "golden_021",
+      "a_class": null,
+      "a_signal": null,
+      "a_why": "Every production mention ('models that run in production', 'from first idea to production') is a responsibility, so it is not mentioned under PRINCIPLES rule 1. The bonus 'a system you built and fixed yourself when it broke' never says production or real users, so on a literal reading it is not a production demand.",
+      "a_uncertain": true,
+      "a_error": null,
+      "a_problems": [],
+      "b_class": null,
+      "b_signal": null,
+      "b_why": "The responsibilities exclusion applies: production work describes what the hire will do, while shipped ML experience describes existing teammates; no candidate qualification demands production work.",
+      "b_uncertain": false,
+      "b_error": null,
+      "b_problems": [],
+      "buckets": [
+        "agree",
+        "uncertain"
+      ],
+      "state": "agree · uncertain"
+    },
+    {
+      "golden_id": "golden_022",
+      "a_class": null,
+      "a_signal": null,
+      "a_why": "The only production mention, 'der Weg vom Prototyp in die Produktion', is a responsibility (excluded per PRINCIPLES rule 1). The qualifications ask only for 'Erste praktische Erfahrung' and tool skills, with no demand to ship or operate software.",
+      "a_uncertain": false,
+      "a_error": null,
+      "a_problems": [],
+      "b_class": null,
+      "b_signal": null,
+      "b_why": "Die Produktionsnennung unter „Aufgaben“ ist eine Verantwortung; nach der Verantwortlichkeiten-Regel ist sie keine Anforderung an Produktionserfahrung der Kandidat:innen.",
+      "b_uncertain": false,
+      "b_error": null,
+      "b_problems": [],
+      "buckets": [
+        "agree"
+      ],
+      "state": "agree"
+    },
+    {
+      "golden_id": "golden_023",
+      "a_class": null,
+      "a_signal": null,
+      "a_why": "Every production mention is a responsibility (rule 1 exclusion). 'Expert:in für ... das Deployment von Machine-Learning-Modellen' describes the role, and the knowledge-of-production rule (golden_005) does not count expertise as a demand to have shipped or run systems. There is no requirements section.",
+      "a_uncertain": true,
+      "a_error": null,
+      "a_problems": [],
+      "b_class": null,
+      "b_signal": null,
+      "b_why": "Die Aussagen zu Implementierung, Deployment und Bereitstellung stehen unter „Was du bei uns bewegen kannst“ und beschreiben Verantwortlichkeiten; diese zählen nach der Verantwortlichkeiten-Regel nicht als Produktionsanforderung an Kandidat:innen.",
+      "b_uncertain": false,
+      "b_error": null,
+      "b_problems": [],
+      "buckets": [
+        "agree",
+        "uncertain"
+      ],
+      "state": "agree · uncertain"
+    },
+    {
+      "golden_id": "golden_024",
+      "a_class": "nice_to_have",
+      "a_signal": "Erfahrung mit dem Betrieb, der Überwachung oder der Fehlerbehebung bei einem ML-Modell oder einer Datenpipeline.",
+      "a_why": "Operating ('Betrieb') an ML model or pipeline is the operate/run demand, and it sits under 'Was du idealerweise noch mitbringst', so it is optional. The must-haves only ask for 'Interesse daran zu lernen' and first development experience, and the production phrases under 'Was dich erwartet' are responsibilities.",
+      "a_uncertain": true,
+      "a_error": null,
+      "a_problems": [],
+      "b_class": null,
+      "b_signal": null,
+      "b_why": "Wörtliche Auslegung: Die optionale Betriebserfahrung nennt keinen produktiven Einsatz; Interesse am Lernen ist keine Betriebserfahrung, und die ausdrücklichen Produktionsbezüge stehen unter Verantwortlichkeiten.",
+      "b_uncertain": true,
+      "b_error": null,
+      "b_problems": [],
+      "buckets": [
+        "disagree",
+        "uncertain"
+      ],
+      "state": "DISAGREE · uncertain"
+    }
+  ]
+}
