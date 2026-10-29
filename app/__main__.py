@@ -49,10 +49,13 @@ def open_db():
     return conn
 
 
-def run_extraction(conn, limit=None):
+def run_extraction(conn, limit=None, job_ids=None):
+    """Extract pending jobs; `job_ids` narrows to those jobs. The add commands pass the one job
+    they added, so adding a posting never triggers a full re-extract after a version bump."""
     tax = Taxonomy.load()
     client = make_client()
-    report = extract_pending(conn, tax, lambda text, t, m: extract(text, t, client, m), DEFAULT_MODEL, limit)
+    report = extract_pending(conn, tax, lambda text, t, m: extract(text, t, client, m), DEFAULT_MODEL, limit,
+                             job_ids=job_ids)
     print(report.line())
     return report
 
@@ -84,7 +87,7 @@ def cmd_add_text(args):
     outcome = ingest_one(conn, p, now_iso(), require_city=False, found_via=args.found_via, trust_title=True)
     print(outcome)
     if outcome.startswith("new:") and not args.no_extract:
-        run_extraction(conn)
+        run_extraction(conn, job_ids=[int(outcome[4:])])
 
 
 def cmd_add_screenshot(args):
@@ -104,7 +107,7 @@ def cmd_add_screenshot(args):
     if job_id:
         store_screenshot(conn, job_id, data, t.sha256, t.media_type)
         if not args.no_extract:
-            run_extraction(conn)
+            run_extraction(conn, job_ids=[job_id])
 
 
 def check_urls_from(args) -> list[str]:
@@ -158,7 +161,7 @@ def check_one(conn, url, feeds, args):
                          found_via=args.found_via, trust_title=True)
     print(f"add: {outcome}")
     if outcome.startswith("new:") and not args.no_extract:
-        run_extraction(conn)
+        run_extraction(conn, job_ids=[int(outcome[4:])])
 
 
 def cmd_stats(args):
