@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { api } from "./api.js";
-import { CITIES, PLACES, DEGREE_FILTERS, GERMAN_FILTERS, PRODUCTION_FILTERS, SENIORITIES, cap, dateTime, timeAgo } from "./format.js";
+import { CITIES, PLACES, DEGREE_FILTERS, GERMAN_FILTERS, PRODUCTION_FILTERS, SENIORITIES, cap, dateTime, pctInt, timeAgo } from "./format.js";
 import { useProfile } from "./profile.js";
 import { Compare, Person, Plus, Radar } from "./icons.jsx";
 import SkillChart from "./SkillChart.jsx";
@@ -25,6 +25,7 @@ export default function App() {
   const [stats, setStats] = useState(null);
   const [skills, setSkills] = useState(null);
   const [tax, setTax] = useState({ version: 0, skills: [] });
+  const [related, setRelated] = useState(null);
   const [drawer, setDrawer] = useState(null); // 'add' | 'review' | 'profile'
   const [refresh, setRefresh] = useState(0);
   const [jumpTo, setJumpTo] = useState(null);
@@ -38,10 +39,25 @@ export default function App() {
   const reload = useCallback(() => { api.stats().then(setStats); setRefresh((n) => n + 1); }, []);
   useEffect(() => { api.taxonomy().then(setTax); reload(); }, [reload]);
   useEffect(() => { let live = true; api.skills(filters).then((r) => { if (live) setSkills(r); }); return () => { live = false; }; }, [filters, refresh]);
+  // The related-skills rows, fetched here and not in the panel: the panel draws them and the
+  // chip row's add-skill popover suggests them, both from this one request and in its order.
+  useEffect(() => {
+    if (!filters.skillIds.length) { setRelated(null); return; }
+    let live = true;
+    api.relatedSkills(filters).then((r) => { if (live) setRelated(r); });
+    return () => { live = false; };
+  }, [filters, refresh]);
 
   const taxName = useMemo(() => Object.fromEntries(tax.skills.map((s) => [s.id, s.display])), [tax]);
   // For the chart's find box: it matches a skill's aliases as well as its display name.
   const taxAliases = useMemo(() => Object.fromEntries(tax.skills.map((s) => [s.id, s.aliases || []])), [tax]);
+  // What the add-skill popover types over, and what it offers before anything is typed: the
+  // related rows once a skill is selected, the chart's own rows (document frequency) before.
+  const taxRows = useMemo(() => tax.skills.map((s) => ({ skill_id: s.id, display: s.display })), [tax]);
+  const skillSuggestions = useMemo(() => (filters.skillIds.length
+    ? (related?.skills || []).map((s) => ({ skill_id: s.skill_id, display: s.display, note: `${Math.round(s.pct)}% · vs ${Math.round(s.base_pct)}% of all jobs` }))
+    : (skills?.skills || []).map((s) => ({ skill_id: s.skill_id, display: s.display, note: `${pctInt(s.count, skills.total)}% of jobs` }))),
+  [filters.skillIds, related, skills]);
   const set = (patch) => setFilters((f) => ({ ...f, ...patch }));
   const setCity = (c) => set(c === "compare" ? { compare: true, cities: [] } : { compare: false, cities: c ? [c] : [] });
   const toggleSen = (s) => set({ seniorities: filters.seniorities.includes(s) ? filters.seniorities.filter((x) => x !== s) : [...filters.seniorities, s] });
@@ -156,10 +172,11 @@ export default function App() {
                 cityLabel={`${winLabel || "tracked"} jobs`} aliases={taxAliases} />}
         </section>
 
-        <RelatedSkills filters={filters} skillNames={skillNames} onAdd={addSkill} refreshKey={refresh} />
+        <RelatedSkills filters={filters} skillNames={skillNames} onAdd={addSkill} data={related} />
 
         <JobList filters={filters} setFilters={setFilters}
-          profile={profile} taxonomy={taxName} refreshKey={refresh} openJobId={jumpTo} onOpened={() => setJumpTo(null)} onOpenPage={openPage} />
+          profile={profile} taxonomy={taxName} refreshKey={refresh} openJobId={jumpTo} onOpened={() => setJumpTo(null)} onOpenPage={openPage}
+          taxonomyRows={taxRows} aliases={taxAliases} suggestions={skillSuggestions} onAddSkill={addSkill} />
       </main>}
 
       {drawer === "add" && <AddJobDrawer onClose={() => setDrawer(null)} onAdded={reload} onViewJob={viewJob} />}

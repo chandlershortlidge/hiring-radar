@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { axisMax, pct, pctInt } from "./format.js";
 import { Search } from "./icons.jsx";
+import { filterSkills } from "./skillMatch.js";
 
 const PAGE = 15;
 
@@ -11,7 +12,8 @@ const PAGE = 15;
 // whether it was additive — shift or meta held — and App decides replace vs add; this
 // component only draws the selection it is given.
 //
-// The find box (HIR-67A) narrows the rows by display name or any taxonomy alias, before
+// The find box (HIR-67A) narrows the rows by display name or any taxonomy alias (the match
+// itself lives in skillMatch.js, shared with the chip row's add-skill popover), before
 // the "show 15 / show more" cut, so a skill that would sit past the cut becomes visible by
 // typing its name. It is pure display: it never changes the selection and never asks the
 // server for anything. Ranks and the axis keep the values they have in the whole chart, so
@@ -26,12 +28,7 @@ export default function SkillChart({ data, selected, onSelect, profile, cityLabe
   const ticks = [0, 0.25, 0.5, 0.75, 1].map((t) => Math.round(max * t));
   const have = new Set(profile?.skills || []);
   const rank = useMemo(() => Object.fromEntries(skills.map((s, i) => [s.skill_id, i + 1])), [skills]);
-  const rows = useMemo(() => {
-    const q = find.trim().toLowerCase();
-    if (!q) return skills;
-    return skills.filter((s) => s.display.toLowerCase().includes(q)
-      || (aliases[s.skill_id] || []).some((a) => a.toLowerCase().includes(q)));
-  }, [skills, aliases, find]);
+  const rows = useMemo(() => filterSkills(skills, aliases, find), [skills, aliases, find]);
 
   if (!total) return <div className="empty">No jobs match these filters yet.</div>;
 
