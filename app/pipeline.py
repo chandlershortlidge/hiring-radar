@@ -7,9 +7,13 @@ Does NOT: fetch postings, dedup, or decide which taxonomy/model to use (passed i
 
 Invariants: a job holds exactly one extraction (the latest; older rows are replaced on
 re-extract); a job is processed once per extractor_version, including jobs with zero skills; a failed extraction leaves the job unstamped and no partial rows, and is reported,
-not raised; re-running is safe.
+not raised; re-running is safe. Only one extraction runs per database at a time: a second
+run (a poll started while an add is extracting, say) skips instead of paying for the same jobs
+twice, and its jobs stay pending for the next run.
 """
 
+import contextlib
+import fcntl
 import json
 import sqlite3
 from dataclasses import dataclass, field
@@ -25,10 +29,35 @@ class ExtractReport:
     failed: list[tuple[int, str]] = field(default_factory=list)
     mentions: int = 0
     proposed: int = 0
+    skipped_busy: bool = False
 
     def line(self) -> str:
+        if self.skipped_busy:
+            return "extract: skipped, another extraction is running on this database (jobs stay pending)"
         return (f"extracted={self.succeeded}/{self.attempted} mentions={self.mentions} "
                 f"proposed={self.proposed} failed={len(self.failed)}")
+
+
+@contextlib.contextmanager
+def _extraction_lock(conn: sqlite3.Connection):
+    """Yield True if this process holds the database's extraction lock, False if another does.
+
+    A lock file next to the database file, held with flock, so it is released when the
+    process exits even after a crash. In-memory databases have no file and are never locked."""
+    path = next((r[2] for r in conn.execute("PRAGMA database_list") if r[1] == "main"), "")
+    if not path:
+        yield True
+        return
+    with open(path + ".extract.lock", "w") as fh:
+        try:
+            fcntl.flock(fh, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            yield False
+            return
+        try:
+            yield True
+        finally:
+            fcntl.flock(fh, fcntl.LOCK_UN)
 
 
 def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int | None = None,
@@ -91,6 +120,14 @@ def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction) -> N
 def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn, model: str,
                     limit: int | None = None, log=print, job_ids: list[int] | None = None) -> ExtractReport:
     """extract_fn(text, tax, model) -> Extraction. Injected so tests never hit the API."""
+    with _extraction_lock(conn) as held:
+        if not held:
+            log("  extract: another extraction is running on this database; skipping")
+            return ExtractReport(skipped_busy=True)
+        return _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids)
+
+
+def _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids) -> ExtractReport:
     version = extractor_version(tax, model)
     report = ExtractReport()
     for row in jobs_needing_extraction(conn, version, limit, job_ids):
