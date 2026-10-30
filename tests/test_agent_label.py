@@ -1445,3 +1445,28 @@ def test_apply_counts_a_wrong_human_sample_label_as_an_error(tmp_path, monkeypat
     golden = json.loads((al.GOLDENS / "golden_001.json").read_text())
     assert golden["adjudicated"] and all(
         f.startswith("skill:") or f in al.ATTRS for f in golden["adjudicated"])
+
+
+def test_verdicts_agree_on_the_outcome_not_the_word():
+    """`ok` takes A's value on an item both labelers agreed on, so `A` and `ok` are one
+    decision. Comparing words made those look like judge-vs-proposer disagreements."""
+    agreed = {"skill_id": "docker", "requirement": "nice_to_have", "raw_text": "Docker"}
+    item = {"golden_id": "golden_001", "kind": "skill", "key": "docker", "reason": "uncertain",
+            "a": agreed, "b": dict(agreed), "problems": []}
+    assert al.verdicts_agree(item, "A", "ok")
+    assert al.verdicts_agree(item, "ok", "A")
+    assert al.verdicts_agree(item, "B", "ok")       # b is the same value here
+    assert not al.verdicts_agree(item, "ok", "drop")
+    # the same value written out by hand is still the same decision
+    assert al.verdicts_agree(item, "ok", dict(agreed))
+    # B quoting the requirement differently is a different outcome
+    item["b"] = {**agreed, "raw_text": "Docker in production"}
+    assert not al.verdicts_agree(item, "B", "ok")
+
+
+def test_verdicts_agree_falls_back_to_the_word_for_a_verdict_it_cannot_apply():
+    item = {"golden_id": "golden_001", "kind": "skill", "key": "docker", "reason": "disagreement",
+            "a": None, "b": {"skill_id": "docker", "requirement": "required", "raw_text": "Docker"},
+            "problems": []}
+    assert al.verdicts_agree(item, "A", "A")        # neither applies: A did not label it
+    assert not al.verdicts_agree(item, "A", "B")

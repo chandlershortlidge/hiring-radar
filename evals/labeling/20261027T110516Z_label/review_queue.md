@@ -861,7 +861,7 @@ PROPOSED: `A` - "KI-Services" is the shorter of two phrases that each support it
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 70. golden_029 - skill `testing` (uncertain)
 
@@ -1030,7 +1030,7 @@ PROPOSED: `A` - shortest phrase that supports deployment; B's quote is the whole
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 83. golden_035 - skill `apis` (uncertain)
 
@@ -1110,7 +1110,7 @@ PROPOSED: `A` - "Enterprise-Architekturen" names architecture; B's quote is the 
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 89. golden_036 - skill `software-engineering` (uncertain)
 
@@ -1448,7 +1448,7 @@ PROPOSED: `A` - same values both sides; A's signal is the same span without the 
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 115. golden_046 - skill `agents` (uncertain)
 
@@ -1500,7 +1500,7 @@ PROPOSED: `B` - "Google" alone; A's quote also names AWS, which is its own crite
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 119. golden_047 - skill `llm-orchestration` (uncertain)
 

@@ -872,6 +872,26 @@ def by_field(rows: list[tuple[str, bool]]) -> dict:
     return out
 
 
+def verdicts_agree(item: dict, proposed: str, verdict) -> bool:
+    """Whether two verdicts settle this item the same way.
+
+    Not the same as writing the same word. On an item both labelers agreed on, `ok` resolves
+    to A's value, so `A` and `ok` are one decision and `B` differs only where the quote does.
+    Comparing the words sent those to a person as disagreements for nothing - so the outcomes
+    are compared, and the words only as a fallback when a verdict cannot be applied (a hedged
+    proposal, say).
+    """
+    if verdict_matches(proposed, verdict):
+        return True
+    try:
+        left = apply_decision(item, proposed)
+        right = apply_decision(item, verdict_text(verdict))
+    except (ValueError, json.JSONDecodeError):
+        return False
+    key = lambda out: (sorted(json.dumps(s, sort_keys=True) for s in out[0]), out[1])
+    return key(left) == key(right)
+
+
 def write_decisions(text: str, new: dict[int, str]) -> str:
     """Fill in the `?` on the given items' DECISION lines, leaving the rest byte-identical.
 
@@ -1558,11 +1578,12 @@ def cmd_judge(args):
         except (ValueError, json.JSONDecodeError) as e:
             unusable.append(f"{where}: judge said {text!r}, which this item does not allow ({e})")
             continue
-        if verdict_matches(proposed, record["decision"]):
+        if verdicts_agree(item, proposed, record["decision"]):
             agreed[n] = {"n": n, "golden_id": item["golden_id"], "kind": item["kind"],
                          "key": item["key"], "reason": item["reason"], "mode": "judge",
                          "by": "model", "model": args.model, "proposed": proposed,
-                         "decision": text, "why": record["why"]}
+                         "decision": proposed if not proposed.startswith("{") else text,
+                         "judge_said": text, "why": record["why"]}
         else:
             disagreed.append((n, item, proposed, text, record["why"]))
 
