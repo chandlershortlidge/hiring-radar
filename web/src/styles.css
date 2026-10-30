@@ -106,6 +106,34 @@ select.sel { padding-right: 28px; }
 .legend { display: inline-flex; align-items: center; gap: 6px; }
 .legend i { width: 14px; height: 10px; display: inline-block; border-radius: 2px; }
 
+/* skill tree (HIR-81). Every coordinate comes from the server; this only styles it. */
+.tree { display: flex; flex-direction: column; gap: 16px; }
+.tree-svg { width: 100%; height: auto; overflow: visible; }
+/* Strokes stay a constant screen width whatever the viewBox scales to; the font sizes
+   are set on the elements, because they do have to scale with it. */
+.tree-edge, .tree-node .ring { vector-effect: non-scaling-stroke; }
+.tree-edge { fill: none; stroke: var(--line-3); stroke-width: 1.25; }
+.tree-edge.lit { stroke: var(--ink); stroke-width: 2; }
+.tree-hub { fill: var(--ink); }
+.tree-hub-n { fill: #fff; font-family: var(--mono); font-weight: 600; }
+.tree-hub-l { fill: #cfcfcf; font-family: var(--sans); }
+.tree-node { cursor: pointer; }
+.tree-node .ring { fill: var(--paper); stroke: var(--ink-3); stroke-width: 1.5; }
+.tree-node .core { fill: var(--bar); }
+.tree-node .label { fill: var(--ink); font-family: var(--sans); }
+.tree-node .nums { fill: var(--ink-3); font-family: var(--mono); }
+.tree-node:hover .ring, .tree-node.lit .ring { stroke: var(--ink); stroke-width: 2; }
+.tree-node:hover .label, .tree-node:focus-visible .label { font-weight: 600; text-decoration: underline; }
+.tree-node.on .ring { stroke: var(--ink); stroke-width: 3; }
+.tree-node.on .label { font-weight: 600; }
+.tree-node.dimmed .ring { stroke: var(--bar-dim); }
+.tree-node.dimmed .core { fill: var(--bar-dim); }
+.tree-node.dimmed .label, .tree-node.dimmed .nums { fill: var(--line-3); }
+.tree-node:focus { outline: none; }
+.tree-node:focus-visible .ring { stroke: var(--ink); stroke-width: 3; }
+.legend .lg-ring { fill: var(--paper); stroke: var(--ink-3); stroke-width: 1.5; }
+.legend .lg-core { fill: var(--bar); }
+
 /* compare */
 .cmp-head, .cmp-row { display: grid; grid-template-columns: 172px minmax(0,1fr) minmax(0,1fr) 120px; padding-right: 36px; gap: 16px; align-items: center; }
 .cmp-head { padding-bottom: 6px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--ink-2); }
