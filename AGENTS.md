@@ -48,7 +48,11 @@ template first, then synced into projects while preserving the project-specific 
 
 ## Starting a session
 
-**This is the first action of every session, before reading any code, docs or diff.**
+**This is the first action of every session that will commit, before reading any code,
+docs or diff.** A session that only reads or answers a question skips it and stays where
+it is. If such a session turns into a change — and they do — stop and run this *before the
+first edit*, not before the first commit: the switch is free while there is nothing to
+carry.
 
 1. **Which ticket is this session for?** If the prompt does not name one, ask — before
    anything else. Do not infer it from the branch the terminal is on, from uncommitted

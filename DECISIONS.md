@@ -38,9 +38,15 @@ how all three wrong-branch commits happened. A branch is now chosen, never inher
 
 Ordering it first is the point, not decoration. An agent that reads the code before fixing
 the branch has already spent the part of the session where switching is free — by the time
-the hook says no, there is a diff to move, and moving it is where the mistakes live. The
-cost is a question at the top of sessions whose prompt omits the ticket; that is cheaper
-than the HIR-70 merge.
+the hook says no, there is a diff to move, and moving it is where the mistakes live.
+
+**Scoped to sessions that will commit.** The first version said "every session", which
+charges a ticket question to anyone who only wanted a question answered — a cost paid on
+the sessions the rule was never about. A read-only session now stays where it is. The seam
+that creates is the session that starts as a question and becomes a change; the rule names
+it and puts the switch *before the first edit* rather than before the first commit, which
+is the same free moment the ordering above is protecting. The hook still refuses the commit
+if that is missed, so the narrowing costs a backstop, not the guard.
 
 **Not chosen.** A commit-msg hook parsing the ticket out of the message: it fires after the
 message is written, catches nothing about where the commit lands, and would push the id into
