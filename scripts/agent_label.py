@@ -660,22 +660,24 @@ def apply_decision(item: dict, decision: str):
 
 def final_golden(base: dict, skills: list[dict], attrs: dict,
                  labeled_by: list[str], adjudicated: dict[str, str], spot_checked: bool,
-                 third_labeler: str | None = None) -> dict:
+                 third_labeler: str | None = None, reviewed: set[str] | None = None) -> dict:
     """A Golden in the shape evals/goldens/ already uses, plus HIR-70 provenance.
 
-    `adjudicated` maps each decided field to who decided it, "human" or "model". `*_reviewed`
-    keeps its existing meaning - a person looked at this label - so it is true only for a
-    field a person decided or spot-checked, never for one a model ruled on and never for one
-    accepted on agreement.
+    `adjudicated` maps each decided field to who decided it, "human" or "model". `reviewed`
+    is the fields a person looked at, which is the wider set: it also holds a field a person
+    spot-checked and confirmed, where there was nothing to decide. `*_reviewed` keeps its
+    meaning - a person looked at this label - so it follows `reviewed`, and is never true for
+    a field only a model ruled on or one accepted on agreement.
     """
+    reviewed = set() if reviewed is None else reviewed
     out = {"id": base["id"], "split": "heldout"}
     for attr in ATTRS:
         group = attrs.get(attr) or {f: None for f in ATTR_FIELDS[attr]}
         for f in ATTR_FIELDS[attr]:
             out[f] = group.get(f) if f != "degree_or_equivalent" else bool(group.get(f))
         if attr == "seniority":
-            out["seniority_reviewed"] = adjudicated.get("seniority") == "human"
-    out["attrs_reviewed"] = any(adjudicated.get(f) == "human" for f in ("german", "degree"))
+            out["seniority_reviewed"] = "seniority" in reviewed
+    out["attrs_reviewed"] = bool({"german", "degree"} & reviewed)
     out["source_sha256"] = base["source_sha256"]
     out["labeled_by"] = labeled_by
     if third_labeler:
@@ -1340,6 +1342,9 @@ def cmd_apply(args):
     skills = {gid: {s["skill_id"]: s for s in m["accepted_skills"]} for gid, m in merged.items()}
     attrs = {gid: dict(m["accepted_attrs"]) for gid, m in merged.items()}
     adjudicated: dict[str, dict[str, str]] = {gid: {} for gid in merged}
+    # Wider than `adjudicated`: a field a person spot-checked and confirmed had nothing to
+    # decide, but a person did read it, which is what `*_reviewed` records.
+    reviewed: dict[str, set] = {gid: set() for gid in merged}
     spot_errors, spot_wrong, spot_n = 0, [], 0
     # Who decided what. An item the judge or the third labeler settled is a model decision, so
     # it must not set `*_reviewed`; the human sample is the one a person actually read.
@@ -1406,19 +1411,19 @@ def cmd_apply(args):
             elif counts:
                 spot_errors += 1
                 spot_wrong.append(f"{gid} {item['kind']} `{item['key']}` -> {decision}")
+        who = "model" if n in by_model and n not in human_sample else "human"
+        field = f"skill:{item['key']}" if item["kind"] == "skill" else item["key"]
         if item["kind"] == "skill":
             for sid in item["key"].split("|"):
                 skills[gid].pop(sid, None)
             for s in add:
                 skills[gid][s["skill_id"]] = s
-            if not confirmed:
-                adjudicated[gid][f"skill:{item['key']}"] = (
-                    "model" if n in by_model and n not in human_sample else "human")
         else:
             attrs[gid][item["key"]] = group
-            if not confirmed:
-                adjudicated[gid][item["key"]] = (
-                    "model" if n in by_model and n not in human_sample else "human")
+        if not confirmed:
+            adjudicated[gid][field] = who
+        if who == "human":
+            reviewed[gid].add(field)
 
     labeled_by = [summary["model_a"], summary["model_b"]]
     spot_by_gid: dict[str, bool] = {}
@@ -1453,7 +1458,8 @@ def cmd_apply(args):
     for gid in sorted(skills):
         golden = final_golden({**picks[gid], "id": gid}, list(skills[gid].values()),
                               attrs.get(gid, {}), labeled_by, adjudicated[gid],
-                              spot_by_gid.get(gid, False), third_by_gid.get(gid))
+                              spot_by_gid.get(gid, False), third_by_gid.get(gid),
+                              reviewed[gid])
         path = GOLDENS / f"{gid}.json"
         if not args.dry_run:
             path.write_text(json.dumps(golden, indent=2, ensure_ascii=False) + "\n")

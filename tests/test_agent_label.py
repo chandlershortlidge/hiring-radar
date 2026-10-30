@@ -339,7 +339,8 @@ def test_final_golden_matches_the_attribute_registry_plus_provenance():
          "german": {"german": "required", "german_basis": "stated",
                     "german_signal": "Fluent German (C1)"}},
         labeled_by=["claude-opus-5-5", "gpt-5.6"],
-        adjudicated={"german": "human", "skill:rag": "human"}, spot_checked=True)
+        adjudicated={"german": "human", "skill:rag": "human"}, spot_checked=True,
+        reviewed={"german", "skill:rag"})
 
     assert set(golden) == attr_fields | eval_fields | provenance, (
         "a Golden lost a key the eval reads, or gained one nothing reads")
@@ -367,7 +368,7 @@ def test_final_golden_keeps_reviewed_false_for_a_field_a_model_decided():
                                  "seniority_signal": "Senior AI Engineer"}},
         labeled_by=["a", "b"],
         adjudicated={"german": "model", "seniority": "model", "skill:rag": "model"},
-        spot_checked=False, third_labeler="gemini-4-argon")
+        spot_checked=False, third_labeler="gemini-4-argon", reviewed=set())
 
     assert golden["adjudicated"] == [] and golden["spot_checked"] is False
     assert golden["adjudicated_by_model"] == ["german", "seniority", "skill:rag"]
@@ -1056,7 +1057,7 @@ def test_judge_question_shows_both_labelers_the_proposal_and_the_options():
     assert "python" not in q.lower().split("posting-excerpt")[0]
 
 
-def judge_run(tmp_path, monkeypatch, proposal="`B` - the heading says required"):
+def judge_run(tmp_path, monkeypatch, proposal="`B` - the heading says required", spot=2):
     """A one-posting run whose single disagreement carries a proposal, ready to judge."""
     goldens = tmp_path / "goldens"
     goldens.mkdir()
@@ -1082,7 +1083,7 @@ def judge_run(tmp_path, monkeypatch, proposal="`B` - the heading says required")
     monkeypatch.setattr(al, "make_client", lambda provider: FakeAnthropic(
         [ok_answer() if provider == "anthropic" else b]))
     monkeypatch.setitem(al.PROVIDERS, "openai", al.call_anthropic)
-    al.main(["label", "--count", "1", "--spot-check", "2", "--seed", "0",
+    al.main(["label", "--count", "1", "--spot-check", str(spot), "--seed", "0",
              "--remote-eu", "0", "--german", "0"])
     run_dir, = list(runs.iterdir())
     queue = run_dir / "review_queue.md"
@@ -1472,3 +1473,39 @@ def test_verdicts_agree_falls_back_to_the_word_for_a_verdict_it_cannot_apply():
             "problems": []}
     assert al.verdicts_agree(item, "A", "A")        # neither applies: A did not label it
     assert not al.verdicts_agree(item, "A", "B")
+
+
+def test_final_golden_counts_a_confirmed_spot_check_as_reviewed():
+    """DECISIONS: `*_reviewed` is true for a field a person decided *or spot-checked*. A
+    confirmed spot-check adjudicates nothing - there was nothing to change - but a person
+    did read it."""
+    base = {"id": "golden_034", "source_sha256": "abc", "job_description": POSTING}
+    golden = al.final_golden(
+        base, [], {"seniority": {"seniority": "senior", "seniority_basis": "stated",
+                                 "seniority_signal": "Senior AI Engineer"}},
+        labeled_by=["a", "b"], adjudicated={}, spot_checked=True,
+        reviewed={"seniority"})
+    assert golden["seniority_reviewed"] is True
+    assert golden["adjudicated"] == [], "confirming a label does not adjudicate it"
+    assert golden["attrs_reviewed"] is False
+
+
+def test_apply_marks_an_attribute_a_person_confirmed_as_reviewed(tmp_path, monkeypatch):
+    """End to end: the flag follows what a person read, not what they changed."""
+    run_dir, queue, _ = judge_run(tmp_path, monkeypatch, spot=5)   # 2 skills + 3 attributes
+    judge_client(monkeypatch, {"decision": "B", "why": "rule 3"})
+    al.main(["judge", "--run", run_dir.name, "--model", "judge-model"])
+    third_client(monkeypatch, ok_answer())
+    al.main(["third", "--run", run_dir.name, "--model", "third-model"])
+    al.main(["sample", "--run", run_dir.name, "--n", "99", "--seed", "0"])   # the whole pool
+    items = json.loads((run_dir / "items.json").read_text())
+    chosen = json.loads((run_dir / "adjudication.json").read_text())["human_sample"]["items"]
+    queue.write_text(al.write_decisions(queue.read_text(), {n: "ok" for n in chosen}))
+
+    al.main(["apply", "--run", run_dir.name])
+    golden = json.loads((al.GOLDENS / "golden_001.json").read_text())
+    sampled = {items[n - 1]["key"] for n in chosen if items[n - 1]["kind"] == "attribute"}
+    assert sampled, "this fixture should sample at least one attribute"
+    assert golden["seniority_reviewed"] is ("seniority" in sampled)
+    assert golden["attrs_reviewed"] is bool({"german", "degree"} & sampled)
+    assert golden["adjudicated"] == [], "every sampled label was confirmed, not changed"
