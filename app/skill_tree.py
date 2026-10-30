@@ -93,8 +93,10 @@ def _pick_parents(order: list[str], mentioned: Counter, co: Counter,
     `order` is the nodes by prevalence desc, id asc. A candidate parent has to be
     *strictly* more prevalent than the child — equally common skills have equal
     conditional probabilities in both directions, so neither can claim to lead to the
-    other — and among the candidates the winner is the one the child's jobs ask for most
-    often. Since a parent is always strictly more prevalent, no cycle can close.
+    other — and it has to be one the child's jobs ask for at least min_conditional of the
+    time. Among those, the winner is the *least* prevalent: the nearest gateway above the
+    child rather than the trunk far above it. A tie goes to the candidate the child's jobs
+    ask for most often. Since a parent is always strictly more prevalent, no cycle can close.
     """
     parents: dict[str, tuple[str, float]] = {}
     for i, child in enumerate(order):
