@@ -306,3 +306,10 @@ or a bad chart:
 A clean run is one headline. Silence on failures is not cleanliness.
 
 <!-- END PROJECT -->
+
+### Skills
+
+`.claude/skills/` holds the repeatable procedures. `/work-issue HIR-n` takes a Linear
+issue to a PR; `/check-url` audits feed coverage for careers-page URLs. When a procedure
+has been typed into a session twice, it belongs here; when one fails, fix the skill, not
+the conversation.
