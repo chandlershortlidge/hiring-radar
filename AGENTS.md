@@ -46,6 +46,63 @@ template first, then synced into projects while preserving the project-specific 
 
 <!-- BEGIN PROJECT -->
 
+## Starting a session
+
+**This is the first action of every session that will commit, before reading any code,
+docs or diff.** A session that only reads or answers a question skips it and stays where
+it is. If such a session turns into a change — and they do — stop and run this *before the
+first edit*, not before the first commit: the switch is free while there is nothing to
+carry.
+
+1. **Which ticket is this session for?** If the prompt does not name one, ask — before
+   anything else. Do not infer it from the branch the terminal is on, from uncommitted
+   changes, or from what looks half-finished.
+
+2. **Get onto that ticket's branch.** Never inherit whatever branch the terminal happens
+   to be on. A terminal left on another ticket's branch, or on `main`, is the ordinary
+   case between sessions, not a hint about what to work on.
+
+   ```bash
+   # work not started yet
+   git switch main && git pull
+   git switch -c chandlershortlidge/<ticket>-<slug>      # e.g. .../hir-88-git-hygiene
+
+   # work already has a branch
+   git switch chandlershortlidge/<ticket>-<slug>
+   ```
+
+   If the tree has uncommitted changes, `git switch main` either refuses or carries them
+   onto the new branch. Stop and ask whose they are; do not stash, commit or discard them
+   to get moving.
+
+3. **Write the id to `TICKET`.**
+
+   ```bash
+   echo HIR-NN > TICKET
+   ```
+
+   `TICKET` is gitignored and does not travel with a switch or a merge, so a stale id left
+   by the previous session is normal — rewrite it every time rather than trusting it.
+
+Once per clone, so `.githooks/pre-commit` actually runs:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+Then, for the rest of the session:
+
+- **One ticket per branch.** `TICKET` holds one id and the branch name contains it; the
+  hook checks both on every commit.
+- **If the branch and the ticket disagree, stop and ask.** Do not rewrite `TICKET` to
+  match the branch, and do not switch branches to make it fit — which of the two is wrong
+  is the person's call.
+- **Never commit to main.** The hook refuses it; do not reach for `--no-verify`.
+- **A branch open more than two days gets split or merged**, not carried. If the work has
+  grown past its ticket, say so and propose the split.
+
+---
+
 ## What this project is
 
 **hiring-radar** — answers one question: *what skills is the AI-engineering job market

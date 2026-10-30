@@ -5,6 +5,66 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-30 — The repo guards the branch, not the memory of it (HIR-88)
+
+Three commits landed on the wrong branch this week. The expensive one was the HIR-70 /
+HIR-85 tangle: HIR-69 made production experience a fourth per-job attribute while HIR-70's
+held-out labeling was still mid-flight, and work for the two moved between branches that
+looked interchangeable because every branch here is `chandlershortlidge/hir-NN-...`. The
+cost was not a lost commit — it was that a merge of main into HIR-70 surfaced the overlap
+as a red test rather than a conflict (DECISIONS 2026-10-29, HIR-85), so the question "which
+ticket is this change for?" got answered after the fact, by reading a diff.
+
+**The guard is a hook, and the hook reads a file, not the branch name.** `.githooks/pre-commit`
+refuses a commit on `main`/`master`, requires a `TICKET` file at the repo root, and refuses
+if the current branch name does not contain the id in `TICKET` (case-insensitively, since
+branch names are lowercase and issue ids are not). `TICKET` is gitignored: it is a statement
+about the working copy, not about the history, and it must not travel in a merge.
+
+Why a separate file at all, when the branch name already carries the id: a name only says
+what the branch was created for. `TICKET` is written deliberately at the start of a session,
+so the check compares an intention against a branch instead of comparing a branch to itself.
+A mismatch is exactly the case that cost us this week, and the hook's message says to stop
+and decide rather than offering a fix — rewriting `TICKET` to match the branch would pass
+the check and lose the signal.
+
+**The hook is the backstop; the first action of the session is the fix.** AGENTS.md opens
+with it, ahead of everything else in the project block: ask which ticket this session is
+for if the prompt does not name one, switch to that ticket's branch — freshly cut from an
+up-to-date main, or the existing one — and only then write the id to `TICKET`. The rule it
+replaces is "never inherit whatever branch the terminal is on": between sessions the
+terminal is left wherever the last one ended, and reading that as a statement of intent is
+how all three wrong-branch commits happened. A branch is now chosen, never inherited.
+
+Ordering it first is the point, not decoration. An agent that reads the code before fixing
+the branch has already spent the part of the session where switching is free — by the time
+the hook says no, there is a diff to move, and moving it is where the mistakes live.
+
+**Scoped to sessions that will commit.** The first version said "every session", which
+charges a ticket question to anyone who only wanted a question answered — a cost paid on
+the sessions the rule was never about. A read-only session now stays where it is. The seam
+that creates is the session that starts as a question and becomes a change; the rule names
+it and puts the switch *before the first edit* rather than before the first commit, which
+is the same free moment the ordering above is protecting. The hook still refuses the commit
+if that is missed, so the narrowing costs a backstop, not the guard.
+
+**Not chosen.** A commit-msg hook parsing the ticket out of the message: it fires after the
+message is written, catches nothing about where the commit lands, and would push the id into
+every subject line. A `prepare-commit-msg` hook that fills the id in: helpful, but it makes
+a wrong branch easier to commit to, not harder. A CI check on the PR: too late — by then the
+commits exist on the branch they shouldn't be on.
+
+**The hook is advisory by construction.** Git will not run hooks a repository ships, so
+`git config core.hooksPath .githooks` is a one-time step per clone (README, AGENTS.md), and
+`--no-verify` still bypasses it. That is accepted: the goal is to make the wrong branch
+noisy, not impossible.
+
+Alongside it, `.github/pull_request_template.md` with three headings — Testing, Risk, How
+to revert. Same reasoning at the other end of the branch: the facts a reviewer needs are the
+ones the author has and forgets to write down.
+
+---
+
 ## 2026-10-30 — The skill tree reads the conditional asymmetry the other way round, and a parent is the nearest gateway, not the trunk (HIR-81)
 
 v1 of the skill tree is a static SVG with a radial layout computed live from the
