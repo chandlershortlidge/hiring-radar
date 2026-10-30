@@ -362,11 +362,10 @@ labeling run started before this edit was stopped at posting 3 of 24 and restart
 
 ## 2026-10-27 — Held-out Goldens come from two blind labelers plus human adjudication (HIR-70)
 
-> **Handover — adjudication by model, human review of the disagreements, as of 2026-10-30.**
-> Run `evals/labeling/20261027T110516Z_label/`, tracked in git. **Do not re-merge it**
-> (`label --run …` rewrites `review_queue.md` from `items.json` and would erase every
-> decision and proposal; the queue file is the only copy). **Do not run `apply` or the
-> held-out eval** until the queue is finished.
+> **Finished 2026-10-30: adjudication by model, a person on what the models could not
+> settle.** Run `evals/labeling/20261027T110516Z_label/`, tracked in git. **Do not re-merge
+> it** (`label --run …` rewrites `review_queue.md` from `items.json` and would erase every
+> decision; the queue file is the only copy). Applied; 22 Goldens written.
 >
 > Hand-adjudicating 201 items was abandoned after 49 of them: too slow to finish. The rest
 > is decided by model, with a person reading only what the models cannot settle between
@@ -405,16 +404,19 @@ labeling run started before this edit was stopped at posting 3 of 24 and restart
 > pool is the labels two models already agreed on, so it says the easy cases are solid, not
 > that the answer key is right. The hard cases went to the queue.
 >
-> **Open:** item 174 only (golden_040 `german`, a null value a person is confirming). The
-> other three `?` sit on the two out-of-scope postings, which `apply` skips. The 15
-> spot-check labels came back 14 `ok` and one pending; the judge-vs-proposal disagreements
-> are decided — judge taken on 8, proposal on 7, and on the six that differed only in the
-> quote the shorter quote won three times.
+> **Settled by a person:** all 15 spot-check labels came back `ok`. Of the 21
+> judge-vs-proposal splits, the judge was taken on 8, the proposal on 7, and on the six that
+> differed only in the quote the shorter quote won three times — `Architektur` alone does not
+> name *software* architecture, `deployment` alone does not name *AI* deployment, and
+> `ML workflows` is a character shorter than `ML frameworks` but sits in the responsibilities
+> list, where rule 4 says it does not count. The three items still `?` sit on the two
+> out-of-scope postings, which `apply` skips.
 >
-> **Then:** `apply --run 20261027T110516Z_label`, then
-> `run_eval.py --split heldout --i-am-releasing`, then write the agreement numbers and the
-> spot-check error rate with its 95% Wilson interval into this entry (replacing the TODO
-> below) and onto HIR-70.
+> **One label split off from the stack five.** golden_037 `llms` was grouped with the six
+> tech-stack labels but is not one: its quote, "GenAI", comes from the candidate profile
+> ("You are passionate about the potential of GenAI"), so requirement rule 3 does not reach
+> it, and by rule 5 GenAI does not name LLMs while "passionate about" is not a skill demand.
+> Dropped. The other five keep the agreed label.
 >
 > **The five rules sit under LABELING.md, not beside it.** Where a rule the adjudication
 > produced and the frozen guide disagree, the guide wins. The judge dropped six of
@@ -516,15 +518,81 @@ Measured on the first full run (`20261027T110516Z_label`, 24 postings, A `claude
 vs B `gpt-6.1-sol`, 0 failures): **skills P 0.932 / R 0.974 / F1 0.953** (tp 301, B-only 22,
 A-only 8), requirement 0.993 on shared ids, seniority 24/24, German 24/24, degree 23/24.
 243 skills and 62 attributes accepted on agreement; 201 queue items (24 in-scope, 31
-disagreement, 65 uncertain, 1 mapping, 80 spot-check). **Spot-check error rate TODO** until the
-human sample is answered (n=15 of the three-way-agreed labels; see the handover above).
+disagreement, 65 uncertain, 1 mapping, 80 spot-check). **Spot-check error rate 0 of 15 labels, 95%
+Wilson [0.000, 0.204]** — the human sample drawn seeded from the three-way-agreed pool.
+
+### The numbers this process produced (2026-10-30)
+
+Run `20261027T110516Z_label`, 24 postings, A `claude-opus-5-5` vs B `gpt-6.1-sol`, judge and
+third labeler `gemini-4-argon`, extractor `claude-sonnet-5-5` (never a labeler).
+
+| what it measures | result |
+|---|---|
+| labeler agreement, A vs B, skills | P 0.932 / R 0.974 / F1 0.953 (tp 301, B-only 22, A-only 8) |
+| labeler agreement, requirement on shared ids | 0.993 |
+| labeler agreement, attributes | seniority 24/24, German 24/24, degree 23/24 |
+| third labeler vs the agreed labels | **0 of 79 differed**, Wilson 95% [0.000, 0.046] |
+| human spot-check of the three-way-agreed labels | **0 errors of 15**, Wilson 95% [0.000, 0.204] |
+| adjudication split, fields | **45 decided by a person, 50 by a model** |
+
+Each number answers a different question, and the weakest one is the one that counts.
+Agreement measures whether two readers coincide, not whether they are right. The third
+labeler's 0/79 is drawn from the pool two models already agreed on — the easy cases by
+construction, since every hard one was queued — so it bounds how often three independent
+readers of an easy label all err, not how good the answer key is. The spot-check's 0/15 is
+the only number where a person read the posting, and its interval is wide: 15 labels cannot
+rule out a 20% error rate. Treat the key as good enough to gate a release and not as
+settled; the interval narrows only by a person reading more labels.
+
+### Held-out eval at the release point
+
+`run_eval.py --split heldout --i-am-releasing --repeats 3`, run `20261030T123219Z_heldout`,
+26 Goldens (the 22 new plus the 4 hand-labeled), extractor `x2-2e0cac6944`, taxonomy v4,
+0 errors. Next to the dev run on the same extractor and taxonomy (`20261029T122622Z_dev`,
+20 Goldens, 3 repeats), means over three repeats:
+
+| metric | held-out (26) | dev (20) |
+|---|---|---|
+| precision | **0.952** | 0.881 |
+| recall | **0.888** | 0.967 |
+| F1 | 0.919 | 0.922 |
+| requirement accuracy | 0.968 | 0.989 |
+| seniority accuracy | 0.962 | 0.817 |
+| German accuracy | 0.962 | 1.000 |
+| degree accuracy | 0.949 | 0.950 |
+| rank Spearman | 0.933 | 0.914 |
+| top-10 overlap | 0.667 | 0.800 |
+
+**F1 holds across the split (0.919 vs 0.922), but the two halves swap.** Held-out precision
+is 7 points higher and recall 8 points lower. That is what the two answer keys are: the
+agent-labeled held-out key is more generous than the hand-labeled dev key — 315 skills over
+22 postings, about 14 each — so the extractor's own output is a subset of it more often, and
+what it misses is what the key adds.
+
+**The misses name the adjudication's own decisions.** The three most-missed skills over the
+three repeats are `ai-deployment` (19), `ai-ml` (18) and `software-engineering` (16) — the
+broad, inferred-from-a-phrase labels the queue argued about most, including golden_037's
+tech-stack labels kept on requirement rule 3 against the judge's `drop`. Recall on the
+held-out split is therefore partly a measure of a labeling policy the extractor was never
+given: the labelers were asked to label what the text names, the extractor is told not to
+add parents, and the gap shows up as recall. **No prompt or taxonomy change on the strength
+of this run** — a held-out result is not a tuning signal (2026-10-17), and whether that
+policy gap is the key's fault or the prompt's is its own decision, with HIR-72's unmapped
+triage next to it.
+
+**`production_accuracy` 1.000 is not a result.** Only 4 of the 26 held-out Goldens carry a
+production label at all (support: 1 `nice_to_have`, 3 `none`, 0 `required`), all four from
+the hand-labeled originals. The agent labelers were not asked for that attribute, so it is
+effectively unmeasured on this split.
 
 That spread is the argument for insisting labeler B is a different family. A smoke run with
 two Claude models (`claude-opus-5-5` vs `claude-fable-5-1`) agreed on 43/43 skills and all 6
 attributes — F1 1.000, zero disagreements — and flagged the same 8 items uncertain. Two
 correlated labelers produce a clean number and measure nothing; the cross-family pair
 produces 31 real disagreements to adjudicate.
-Until those are filled in, the held-out split is not a release gate.
+
+With those adjudicated and the spot-check recorded, **the held-out split is a release gate**
+(HIR-55): 26 Goldens, provenance per label, and an error rate with an interval on it.
 
 **Scope calls on that run: two postings out, two kept on purpose.**
 
