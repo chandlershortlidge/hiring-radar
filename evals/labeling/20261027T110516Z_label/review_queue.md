@@ -1175,7 +1175,7 @@ PROPOSED: `ok` - "GenAI" is the posting's word for LLMs
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ok
+DECISION: drop
 
 ## 94. golden_037 - skill `observability` (uncertain)
 
@@ -2069,7 +2069,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 175. golden_040 - skill `cpp` (spot-check)
 
