@@ -328,7 +328,7 @@ def test_final_golden_matches_the_attribute_registry_plus_provenance():
     attr_fields = {f for fields in al.ATTR_FIELDS.values() for f in fields}
     eval_fields = {"id", "split", "source_sha256", "job_description", "expected",
                    "seniority_reviewed", "attrs_reviewed"}
-    provenance = {"labeled_by", "adjudicated", "spot_checked"}
+    provenance = {"labeled_by", "adjudicated", "adjudicated_by_model", "spot_checked"}
     base = {"id": "golden_030", "source_sha256": "abc", "job_description": POSTING}
     golden = al.final_golden(
         base,
@@ -338,14 +338,15 @@ def test_final_golden_matches_the_attribute_registry_plus_provenance():
                        "seniority_signal": "6+ years of professional experience"},
          "german": {"german": "required", "german_basis": "stated",
                     "german_signal": "Fluent German (C1)"}},
-        labeled_by=["claude-opus-5-5", "gpt-5.6"], adjudicated=["german", "skill:rag"],
-        spot_checked=True)
+        labeled_by=["claude-opus-5-5", "gpt-5.6"],
+        adjudicated={"german": "human", "skill:rag": "human"}, spot_checked=True)
 
     assert set(golden) == attr_fields | eval_fields | provenance, (
         "a Golden lost a key the eval reads, or gained one nothing reads")
     assert list(golden)[:2] == ["id", "split"] and golden["split"] == "heldout"
     assert golden["labeled_by"] == ["claude-opus-5-5", "gpt-5.6"]
     assert golden["adjudicated"] == ["german", "skill:rag"] and golden["spot_checked"] is True
+    assert golden["adjudicated_by_model"] == []
     # a person decided german but not seniority, so only attrs_reviewed is true
     assert golden["attrs_reviewed"] is True and golden["seniority_reviewed"] is False
     # an attribute nobody labeled is null, not missing; expected is sorted by skill_id
@@ -353,6 +354,25 @@ def test_final_golden_matches_the_attribute_registry_plus_provenance():
     assert [e["skill_id"] for e in golden["expected"]] == ["python", "rag"]
     assert all(set(e) == {"skill_id", "requirement", "raw_text"} for e in golden["expected"])
     assert "draft" not in golden
+
+
+def test_final_golden_keeps_reviewed_false_for_a_field_a_model_decided():
+    """`*_reviewed` means a person looked at this label. A judge agreeing with a proposal is
+    recorded, and reported, but it is not a person reading the posting."""
+    base = {"id": "golden_030", "source_sha256": "abc", "job_description": POSTING}
+    golden = al.final_golden(
+        base, [], {"german": {"german": "required", "german_basis": "stated",
+                              "german_signal": "Fluent German (C1)"},
+                   "seniority": {"seniority": "senior", "seniority_basis": "stated",
+                                 "seniority_signal": "Senior AI Engineer"}},
+        labeled_by=["a", "b"],
+        adjudicated={"german": "model", "seniority": "model", "skill:rag": "model"},
+        spot_checked=False, third_labeler="gemini-4-argon")
+
+    assert golden["adjudicated"] == [] and golden["spot_checked"] is False
+    assert golden["adjudicated_by_model"] == ["german", "seniority", "skill:rag"]
+    assert golden["attrs_reviewed"] is False and golden["seniority_reviewed"] is False
+    assert golden["third_labeler"] == "gemini-4-argon"
 
 
 # --- agreement and the Wilson interval --------------------------------------------
@@ -1315,3 +1335,113 @@ def test_third_refuses_a_model_that_labeled_the_run(tmp_path, monkeypatch):
     third_client(monkeypatch)
     with pytest.raises(SystemExit, match="which labeled this run"):
         al.main(["third", "--run", run_dir.name, "--model", al.DEFAULT_MODEL_A])
+
+
+# --- the human sample, and who apply says decided what ----------------------------
+
+def test_human_sample_pick_is_seeded_and_reproducible():
+    pool = list(range(100, 140))
+    first = al.human_sample_pick(pool, 15, 0)
+    assert first == al.human_sample_pick(pool, 15, 0)
+    assert first != al.human_sample_pick(pool, 15, 1)
+    assert len(first) == 15 and set(first) <= set(pool) and first == sorted(first)
+
+
+def test_human_sample_pick_takes_everything_when_the_pool_is_smaller_than_asked():
+    assert al.human_sample_pick([3, 1, 2], 15, 0) == [1, 2, 3]
+
+
+def test_reset_decisions_puts_only_the_chosen_items_back_to_question():
+    queue = ("## 1. g - skill `a` (spot-check)\n\nDECISION: ok\n\n"
+             "## 2. g - skill `b` (spot-check)\n\nDECISION: ok\n")
+    out = al.reset_decisions(queue, [2])
+    assert dict(al.parse_queue(out)) == {1: "ok", 2: "?"}
+
+
+def full_pass(tmp_path, monkeypatch, n=1):
+    """judge, then third, then sample: one run carried to the point a person answers."""
+    run_dir, queue, disagreement = judge_run(tmp_path, monkeypatch)
+    judge_client(monkeypatch, {"decision": "B", "why": "rule 3"})
+    al.main(["judge", "--run", run_dir.name, "--model", "judge-model"])
+    third_client(monkeypatch, ok_answer())
+    al.main(["third", "--run", run_dir.name, "--model", "third-model"])
+    al.main(["sample", "--run", run_dir.name, "--n", str(n), "--seed", "0"])
+    return run_dir, queue, disagreement
+
+
+def test_sample_draws_from_the_three_way_agreed_labels_and_hands_them_back(tmp_path, monkeypatch, capsys):
+    run_dir, queue, _ = full_pass(tmp_path, monkeypatch)
+    adj = json.loads((run_dir / "adjudication.json").read_text())
+    chosen = adj["human_sample"]["items"]
+    spots = spot_numbers(run_dir)
+
+    assert len(chosen) == 1 and chosen[0] in spots
+    assert adj["human_sample"] == {"n": 1, "asked": 1, "seed": 0, "pool": 2, "items": chosen}
+    decisions = dict(al.parse_queue(queue.read_text()))
+    assert decisions[chosen[0]] == "?", "a sampled label waits for a person"
+    other, = [n for n in spots if n != chosen[0]]
+    assert decisions[other] == "ok", "the rest keep the third labeler's confirmation"
+    # the sampled item stops being a model decision
+    assert adj["items"][str(chosen[0])]["by"] == "human"
+    assert adj["items"][str(chosen[0])]["third_agreed"] is True
+    # still a three-way-agreed label, so a redraw can still see it in the pool
+    assert adj["items"][str(chosen[0])]["mode"] == "third"
+    assert adj["items"][str(other)]["by"] == "model"
+    out = capsys.readouterr().out
+    assert "human spot-check: 1 of 2 three-way-agreed labels, seed 0" in out
+    assert "agreed label:" in out and "> " in out
+
+
+def test_sample_refuses_to_redraw_over_an_existing_sample(tmp_path, monkeypatch):
+    run_dir, queue, _ = full_pass(tmp_path, monkeypatch)
+    with pytest.raises(SystemExit, match="already has a human sample"):
+        al.main(["sample", "--run", run_dir.name, "--n", "1"])
+    al.main(["sample", "--run", run_dir.name, "--n", "2", "--force"])
+    assert json.loads((run_dir / "adjudication.json").read_text())["human_sample"]["n"] == 2
+
+
+def test_sample_needs_the_third_pass_first(tmp_path, monkeypatch):
+    run_dir, queue, _ = judge_run(tmp_path, monkeypatch)
+    with pytest.raises(SystemExit, match="no three-way-agreed labels"):
+        al.main(["sample", "--run", run_dir.name])
+
+
+def test_apply_counts_the_error_rate_over_the_human_sample_and_names_who_decided(
+        tmp_path, monkeypatch, capsys):
+    run_dir, queue, disagreement = full_pass(tmp_path, monkeypatch)
+    chosen = json.loads((run_dir / "adjudication.json").read_text())["human_sample"]["items"]
+    # the person answers their one sampled label
+    queue.write_text(al.write_decisions(queue.read_text(), {chosen[0]: "ok"}))
+
+    al.main(["apply", "--run", run_dir.name])
+    golden = json.loads((al.GOLDENS / "golden_001.json").read_text())
+
+    # the judge decided the docker disagreement, so it is recorded as a model decision
+    assert golden["adjudicated_by_model"] == ["skill:docker"]
+    assert golden["adjudicated"] == []
+    assert golden["seniority_reviewed"] is False and golden["attrs_reviewed"] is False
+    assert golden["third_labeler"] == "third-model"
+    assert golden["spot_checked"] is True
+    # B's label won the disagreement, as the judge ruled
+    assert next(e for e in golden["expected"] if e["skill_id"] == "docker")["requirement"] == "required"
+
+    summary = json.loads((run_dir / "summary.json").read_text())
+    spot = summary["spot_check"]
+    assert spot["n"] == 1 and spot["errors"] == 0, "the denominator is the human sample"
+    assert spot["human_sample"] == chosen
+    assert spot["wilson_95"][1] > 0.5, "one label is one label; the interval should say so"
+
+
+def test_apply_counts_a_wrong_human_sample_label_as_an_error(tmp_path, monkeypatch):
+    run_dir, queue, _ = full_pass(tmp_path, monkeypatch, n=2)
+    chosen = json.loads((run_dir / "adjudication.json").read_text())["human_sample"]["items"]
+    queue.write_text(al.write_decisions(queue.read_text(),
+                                        {chosen[0]: "drop", chosen[1]: "ok"}))
+    al.main(["apply", "--run", run_dir.name])
+    spot = json.loads((run_dir / "summary.json").read_text())["spot_check"]
+    assert spot["n"] == 2 and spot["errors"] == 1 and spot["rate"] == 0.5
+    assert spot["wrong"] and "-> drop" in spot["wrong"][0]
+    # a sampled label a person changed is adjudicated by that person, not by a model
+    golden = json.loads((al.GOLDENS / "golden_001.json").read_text())
+    assert golden["adjudicated"] and all(
+        f.startswith("skill:") or f in al.ATTRS for f in golden["adjudicated"])
