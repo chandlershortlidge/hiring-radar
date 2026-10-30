@@ -55,7 +55,7 @@ def read_csv(path: Path) -> list[dict]:
 
 def goldens_by_sha() -> dict[str, dict]:
     out = {}
-    for p in (ROOT / "evals/goldens").glob("*.json"):
+    for p in (ROOT / "evals/goldens").glob("golden_*.json"):
         g = json.loads(p.read_text())
         out[g["source_sha256"]] = g
     return out

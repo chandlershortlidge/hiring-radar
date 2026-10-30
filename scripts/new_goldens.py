@@ -34,7 +34,6 @@ sys.path.insert(0, str(ROOT))
 
 from app.extract import extraction_input  # noqa: E402
 GOLDENS = ROOT / "evals" / "goldens"
-EXCLUDED = GOLDENS / "excluded.json"
 DB = Path(os.environ.get("HIRING_RADAR_DB", ROOT / "data" / "hiring-radar.db"))
 
 _DE = re.compile(r"\b(und|der|die|das|wir|mit|für|oder|sie|ihre|eine|bei|von|zu|auf|deine?|ist)\b", re.I)
@@ -51,14 +50,20 @@ def sha(text: str) -> str:
     return hashlib.sha256(text.encode()).hexdigest()
 
 
+def excluded_path() -> Path:
+    """Where the out-of-scope list lives. Derived from GOLDENS when it is asked for,
+    not bound at import, so redirecting GOLDENS redirects this with it."""
+    return GOLDENS / "excluded.json"
+
+
 def excluded() -> list[dict]:
     """Postings a person ruled out of scope at adjudication (evals/goldens/excluded.json).
 
     Kept as a record rather than a deletion: a posting dropped silently gets re-picked by
     the next run, and nobody can see why it is not a Golden."""
-    if not EXCLUDED.exists():
+    if not excluded_path().exists():
         return []
-    return json.loads(EXCLUDED.read_text())["excluded"]
+    return json.loads(excluded_path().read_text())["excluded"]
 
 
 def existing() -> tuple[set[str], int]:

@@ -1441,7 +1441,8 @@ def cmd_apply(args):
             third_by_gid[gid] = json.loads(path.read_text()).get("model")
 
     if out_of_scope and not args.dry_run:
-        record = json.loads(ng.EXCLUDED.read_text()) if ng.EXCLUDED.exists() else {"excluded": []}
+        excluded = ng.excluded_path()
+        record = json.loads(excluded.read_text()) if excluded.exists() else {"excluded": []}
         known = {e["source_sha256"] for e in record["excluded"]}
         for gid, why in sorted(out_of_scope.items()):
             pk = picks[gid]
@@ -1452,7 +1453,7 @@ def cmd_apply(args):
                 "company": pk["company"], "title": pk["title"],
                 "reason": why, "excluded_on": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
                 "run": args.run, "labeled_by": [summary["model_a"], summary["model_b"]]})
-        ng.EXCLUDED.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
+        excluded.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
 
     written = []
     for gid in sorted(skills):
@@ -1478,7 +1479,7 @@ def cmd_apply(args):
     print(("(dry run) " if args.dry_run else "") + f"{len(written)} Goldens:")
     print("\n".join("  " + w for w in written))
     if out_of_scope:
-        print(f"\n{len(out_of_scope)} ruled out of scope -> {ng.EXCLUDED}:")
+        print(f"\n{len(out_of_scope)} ruled out of scope -> {ng.excluded_path()}:")
         for gid, why in sorted(out_of_scope.items()):
             print(f"  {gid}  {picks[gid]['company']} · {picks[gid]['title']}"
                   f"{'  — ' + why if why else ''}")

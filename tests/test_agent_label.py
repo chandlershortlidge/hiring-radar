@@ -778,7 +778,6 @@ def _scope_run(tmp_path, monkeypatch, postings, answers=None):
     monkeypatch.setattr(al, "RUNS", runs)
     monkeypatch.setattr(al.ng, "DB", db)
     monkeypatch.setattr(al.ng, "GOLDENS", goldens)
-    monkeypatch.setattr(al.ng, "EXCLUDED", goldens / "excluded.json")
     answers = answers or {}
     monkeypatch.setattr(al, "make_client", lambda provider: FakeAnthropic(
         [answers.get(provider, ok_answer())] * len(postings)))
@@ -841,7 +840,6 @@ def test_an_excluded_posting_is_never_picked_again(tmp_path, monkeypatch):
     goldens = tmp_path / "goldens"
     goldens.mkdir()
     monkeypatch.setattr(al.ng, "GOLDENS", goldens)
-    monkeypatch.setattr(al.ng, "EXCLUDED", goldens / "excluded.json")
 
     assert al.ng.existing() == (set(), 0)
 

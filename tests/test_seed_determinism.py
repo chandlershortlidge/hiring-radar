@@ -20,7 +20,7 @@ LEGACY = Path(os.environ.get("LEGACY_REPO", ROOT.parent / "job-skills-dashboard"
 
 def _real_digest() -> str:
     h = hashlib.sha256()
-    for p in [ROOT / "taxonomy/skills.json", *sorted((ROOT / "evals/goldens").glob("*.json"))]:
+    for p in [ROOT / "taxonomy/skills.json", *sorted((ROOT / "evals/goldens").glob("golden_*.json"))]:
         h.update(p.read_bytes())
     return h.hexdigest()
 
@@ -32,7 +32,7 @@ def _run_in(tmp: Path) -> str:
     subprocess.run([sys.executable, str(scripts / "seed_from_legacy.py"), str(LEGACY)],
                    check=True, capture_output=True, env={**os.environ, "PYTHONHASHSEED": "random"})
     h = hashlib.sha256()
-    for p in [tmp / "taxonomy/skills.json", *sorted((tmp / "evals/goldens").glob("*.json"))]:
+    for p in [tmp / "taxonomy/skills.json", *sorted((tmp / "evals/goldens").glob("golden_*.json"))]:
         h.update(p.read_bytes())
     return h.hexdigest()
 
