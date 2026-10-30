@@ -74,6 +74,10 @@ GUIDE_FILE = ROOT / "evals" / "LABELING.md"
 
 DEFAULT_MODEL_A = "claude-opus-5-5"
 DEFAULT_MODEL_B = "gpt-6.1-sol"   # verified against OpenAI /v1/models, 2026-10-27
+DEFAULT_MODEL_C = "gemini-4-argon"  # verified against Google /v1beta/models, 2026-10-30
+# Gemini speaks the OpenAI chat API here, so call_openai is reused rather than adding a
+# second SDK. Verified live against gemini-4-argon, 2026-10-30.
+GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
 MAX_TOKENS = 8192
 SPOT_CHECK_N = 80
 SEED = 0
@@ -680,6 +684,198 @@ def final_golden(base: dict, skills: list[dict], attrs: dict,
     return out
 
 
+# --- judge: one item, a third model, the rules the adjudication settled on -----------
+
+# The five rules the human adjudication applied, in priority order (DECISIONS 2026-10-27,
+# HIR-70 handover). They are given to the judge verbatim, as the only policy it may use:
+# the taxonomy is not re-litigated here, and LABELING.md is not edited mid-run.
+JUDGE_RULES = """\
+1. A qualification bullet or sentence that names a skill counts; a job title or a
+   years-of-experience line ("experience as a software engineer") does not.
+2. An API being consumed is not the `apis` skill. `apis` means building or designing APIs.
+3. Any required mention wins; raw_text quotes the determining mention.
+4. Responsibilities do not count unless the candidate is also asked for it.
+5. Do not add a broad or parent skill the text does not name."""
+
+JUDGE_SYSTEM = f"""You adjudicate one item from a review queue of job-posting skill labels.
+
+Two labelers read the same posting independently. Where they disagreed, or where one of
+them flagged itself uncertain, the item comes to you with both answers and a proposed
+decision from an earlier reviewer. Your job is to rule on that one item.
+
+The rules, in priority order. Rule 1 beats rule 2, and so on:
+
+{JUDGE_RULES}
+
+Answer with one JSON object and nothing else:
+
+{{"decision": <your ruling>, "why": "<one sentence, citing the rule number you applied>"}}
+
+`decision` must be one of the options printed with the item:
+
+- "A" or "B" - that labeler's version of this skill or attribute is right.
+- "both" - both skill ids belong in the answer key (only offered for two ids on one phrase).
+- "drop" - this skill does not belong in the answer key, or this attribute is null here.
+- "ok" - the agreed value printed with the item is right as it stands.
+- A JSON object, to write the value yourself, e.g.
+  {{"requirement": "nice_to_have", "raw_text": "ideally Kubernetes"}} for a skill or
+  {{"seniority": null, "seniority_basis": null, "seniority_signal": null}} for an attribute.
+  Every raw_text or signal you write must appear in the posting word for word.
+
+Rule on what the posting supports, not on what the proposal says. Agreeing with the
+proposal because it is there is worth nothing; the whole point of asking you is that you
+are a third reader."""
+
+
+def heading_above(posting: str, at: int) -> str:
+    """The nearest line above `at` that looks like a section heading, or "".
+
+    Rules 1 and 4 turn on which section a phrase sits in - a requirements bullet counts, the
+    same words under "Responsibilities" do not - and a window of characters often cuts the
+    heading off. A heading here is the last short, non-bullet, non-empty line above the
+    quote, which is what these postings' headings look like ("Core Requirements",
+    "Nice-to-haves", "Dein Profil", "**Deine Benefits**").
+    """
+    for line in reversed(posting[:at].splitlines()):
+        s = line.strip().strip("*#").strip()
+        if not s or s.startswith(("-", "*", "•", "·")) or len(s) > 80:
+            continue
+        return s
+    return ""
+
+
+def wide_excerpt(posting: str, quote, width: int = 600) -> str:
+    """A generous window around a quote, with the heading above it, for the judge.
+
+    The queue's 140-character excerpt is too narrow to tell a qualification bullet from a
+    responsibility. Not the whole posting either: a judge handed everything starts labeling
+    the posting instead of ruling on the item in front of it.
+    """
+    pattern = r"\s+".join(re.escape(w) for w in str(quote).split()) if quote else None
+    m = re.search(pattern, posting, flags=re.I) if pattern else None
+    if m is None:
+        head = " ".join(posting.split())[:width]
+        return f"(quote not located in the posting)\n{head}..."
+    a, b = max(0, m.start() - width), min(len(posting), m.end() + width)
+    head = heading_above(posting, m.start())
+    body = " ".join(posting[a:b].split())
+    return (f"section heading above the quote: {head}\n" if head else "") + \
+        ("..." if a > 0 else "") + body + ("..." if b < len(posting) else "")
+
+
+def judge_question(item: dict, posting: str, proposed: str, reason: str) -> str:
+    """The one item as the judge sees it: context, both labelers, the proposal, the options."""
+    quote = (item.get("a") or item.get("b") or {}).get("raw_text") if item["kind"] == "skill" \
+        else (item.get("a") or item.get("b") or {}).get(f"{item['key']}_signal")
+    lines = [f"posting: {item['golden_id']}",
+             f"item: {item['kind']} `{item['key']}` ({item['reason']})", "",
+             "<posting-excerpt>", wide_excerpt(posting, quote), "</posting-excerpt>", ""]
+    if item["reason"] == "uncertain":
+        # Both labelers said the same thing; one of them flagged itself unsure.
+        lines.append("- agreed label: " + fmt_value(item["kind"], item.get("a") or item.get("b")))
+    else:
+        for side in ("a", "b"):
+            value = item.get(side)
+            label = "A" if side == "a" else "B"
+            lines.append(f"- {label}: " + (fmt_value(item["kind"], value) if value
+                                           else "(did not label this)"))
+    if item["problems"]:
+        lines += ["", "auto-check problems:"] + [f"- {p}" for p in item["problems"]]
+    lines += ["", f"options: {DECISIONS[item['reason']]}", "",
+              f"proposed decision: {proposed}",
+              f"proposer's reason: {reason or '(none given)'}"]
+    return "\n".join(lines)
+
+
+def parse_proposal(line: str) -> tuple[str, str]:
+    """A `PROPOSED:` line as (verdict, reason). The verdict is a word or a JSON object."""
+    s = line.strip()
+    if s.startswith("{"):
+        obj, end = json.JSONDecoder().raw_decode(s)
+        return json.dumps(obj, ensure_ascii=False, sort_keys=True), s[end:].lstrip(" -–—")
+    m = re.match(r"`?([A-Za-z?]+)`?\s*[-–—:]?\s*(.*)$", s, flags=re.S)
+    if not m:
+        raise ValueError(f"cannot read a verdict from {line!r}")
+    return m.group(1), m.group(2).strip()
+
+
+def parse_proposals(text: str) -> dict[int, tuple[str, str]]:
+    """Every `PROPOSED:` line in the queue, by item number. Written by hand, so a line that
+    cannot be read is reported rather than guessed at.
+
+    Scoped to one item's block on purpose. Most items have no proposal (every scope item and
+    every spot-check), and a pattern that scanned forward from an item's heading would hand
+    that item the next item's proposal - a judge ruling on the wrong proposal.
+    """
+    out: dict[int, tuple[str, str]] = {}
+    for block in re.split(r"(?=^##\s+\d+\.)", text, flags=re.M):
+        head = re.match(r"^##\s+(\d+)\.", block)
+        if not head:
+            continue
+        m = re.search(r"^PROPOSED:[ \t]*(.*?)[ \t]*$", block, flags=re.M)
+        if m:
+            out[int(head.group(1))] = parse_proposal(m.group(1))
+    return out
+
+
+def verdict_text(verdict) -> str:
+    """A verdict as it would be written on a DECISION line."""
+    if isinstance(verdict, dict):
+        return json.dumps(verdict, ensure_ascii=False)
+    return str(verdict).strip()
+
+
+def verdict_matches(proposed: str, verdict) -> bool:
+    """Whether a judge's ruling is the proposed one. Words compare case-insensitively without
+    backticks; an object compares by value, so key order and spacing do not matter."""
+    if isinstance(verdict, dict):
+        if not proposed.startswith("{"):
+            return False
+        return json.loads(proposed) == verdict
+    if proposed.startswith("{"):
+        return False
+    return str(verdict).strip().strip("`").lower() == proposed.strip().strip("`").lower()
+
+
+def write_decisions(text: str, new: dict[int, str]) -> str:
+    """Fill in the `?` on the given items' DECISION lines, leaving the rest byte-identical.
+
+    review_queue.md is the only record of the decisions already made - a re-merge rewrites it
+    from items.json - so decisions are edited into it rather than re-rendered, and an item
+    that already carries a decision is never overwritten.
+    """
+    todo = dict(new)
+    out, last = [], 0
+    for m in re.finditer(r"^##\s+(\d+)\..*?^DECISION:[ \t]*(.*?)[ \t]*$", text, flags=re.M | re.S):
+        n = int(m.group(1))
+        if n not in todo:
+            continue
+        if m.group(2).strip() not in ("?", ""):
+            raise ValueError(f"item {n} already says {m.group(2)!r}; refusing to overwrite it")
+        out += [text[last:m.start(2)], todo.pop(n)]
+        last = m.end(2)
+    if todo:
+        raise ValueError(f"items not found in the queue: {sorted(todo)}")
+    out.append(text[last:])
+    return "".join(out)
+
+
+def out_of_scope_goldens(items: list[dict], decisions: dict[int, str]) -> set[str]:
+    """The postings ruled out of scope. Their other items never reach a Golden, so neither the
+    judge nor the third labeler should spend a call on them."""
+    out = set()
+    for n, item in enumerate(items, 1):
+        if item["kind"] != "scope":
+            continue
+        try:
+            keep, _ = parse_scope(decisions.get(n, "yes"))
+        except ValueError:
+            continue
+        if not keep:
+            out.add(item["golden_id"])
+    return out
+
+
 # --- picking ----------------------------------------------------------------------
 
 def describe(row) -> dict:
@@ -780,7 +976,7 @@ def call_openai(client, model: str, system: str, user: str) -> str:
     return choice.message.content or ""
 
 
-PROVIDERS = {"anthropic": call_anthropic, "openai": call_openai}
+PROVIDERS = {"anthropic": call_anthropic, "openai": call_openai, "google": call_openai}
 
 
 def make_client(provider: str):
@@ -790,6 +986,12 @@ def make_client(provider: str):
     if provider == "openai":
         import openai
         return openai.OpenAI()
+    if provider == "google":
+        import openai
+        key = os.environ.get("GEMINI_API_KEY")
+        if not key:
+            raise SystemExit("GEMINI_API_KEY is not set; it belongs in .env")
+        return openai.OpenAI(api_key=key, base_url=GEMINI_BASE_URL)
     raise ValueError(f"unknown provider {provider!r}; use one of {sorted(PROVIDERS)}")
 
 
@@ -805,6 +1007,24 @@ def check_models(model_a: str, model_b: str, extractor: str = EXTRACTOR_MODEL):
                 f"or change HIRING_RADAR_MODEL.")
     if model_a == model_b:
         raise SystemExit(f"both labelers are {model_a!r}; two copies of one model are not two labelers.")
+
+
+def check_extra_model(role: str, model: str, labelers: list[str],
+                      extractor: str = EXTRACTOR_MODEL):
+    """Refuse a judge or third labeler that already has a stake in the answer.
+
+    The extractor is the thing being measured. A labeler from this run would be ruling on its
+    own label - the correlated-labeler failure the two-Claude smoke run showed (HIR-70): two
+    models that share their blind spots produce a clean number and measure nothing.
+    """
+    if model == extractor:
+        raise SystemExit(
+            f"the {role} is {model!r}, the extractor's model. The {role} must not be the thing "
+            f"being measured (HIR-70). Pass another model, or change HIRING_RADAR_MODEL.")
+    if model in labelers:
+        raise SystemExit(
+            f"the {role} is {model!r}, which labeled this run. A model cannot rule on its own "
+            f"label; pick one that is neither labeler ({', '.join(labelers)}).")
 
 
 def label_posting(posting: str, system: str, provider: str, model: str, client) -> dict:
@@ -1164,11 +1384,150 @@ def cmd_apply(args):
               f"uv run python scripts/run_eval.py --split heldout --i-am-releasing")
 
 
+def load_run(run: str):
+    """The files a post-label command reads. Decisions come from review_queue.md, never from
+    items.json: the queue is where they are written, and items.json still says `?`."""
+    run_dir = RUNS / run
+    if not run_dir.exists():
+        raise SystemExit(f"no such run: {run_dir}")
+    items = json.loads((run_dir / "items.json").read_text())
+    picks = {p["golden_id"]: p for p in json.loads((run_dir / "picks.json").read_text())}
+    summary = json.loads((run_dir / "summary.json").read_text())
+    queue_text = (run_dir / "review_queue.md").read_text()
+    return run_dir, items, picks, summary, queue_text
+
+
+def load_adjudication(run_dir: Path) -> dict:
+    path = run_dir / "adjudication.json"
+    if path.exists():
+        return json.loads(path.read_text())
+    return {"run": run_dir.name, "items": {}, "human_sample": None}
+
+
+def save_adjudication(run_dir: Path, data: dict):
+    (run_dir / "adjudication.json").write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
+
+
+def cmd_judge(args):
+    """A third model rules on every undecided queue item that carries a proposal.
+
+    Where the judge and the proposal agree, the decision is recorded with `by: "model"`, so
+    apply can keep `*_reviewed` false: a model agreeing with a model is not a person looking
+    at the label. Where they disagree the item stays `?` and is printed for a person.
+    """
+    run_dir, items, picks, summary, queue_text = load_run(args.run)
+    decisions = dict(parse_queue(queue_text))
+    proposals = parse_proposals(queue_text)
+    check_extra_model("judge", args.model, [summary["model_a"], summary["model_b"]])
+    skip = out_of_scope_goldens(items, decisions)
+
+    targets, no_proposal = [], []
+    for n, item in enumerate(items, 1):
+        if item["kind"] == "scope" or item["reason"] == "spot-check":
+            continue
+        if item["golden_id"] in skip or decisions.get(n, "?") not in ("?", ""):
+            continue
+        if args.items and n not in args.items:
+            continue
+        (targets if n in proposals else no_proposal).append((n, item))
+
+    print(f"{len(targets)} undecided items with a proposal, judge `{args.model}` ({args.provider})")
+    if no_proposal:
+        print(f"  {len(no_proposal)} undecided items carry no PROPOSED line and are left alone: "
+              + ", ".join(str(n) for n, _ in no_proposal))
+    if args.dry_run or not targets:
+        return
+
+    cache = run_dir / "judge"
+    cache.mkdir(exist_ok=True)
+    client, agreed, disagreed, unusable = None, {}, [], []
+    for n, item in targets:
+        proposed, reason = proposals[n]
+        question = judge_question(item, picks[item["golden_id"]]["job_description"], proposed, reason)
+        key = ng.sha(JUDGE_SYSTEM + "\n" + question + "\n" + args.model)
+        path = cache / f"{n:03d}.json"
+        record = None
+        if path.exists():
+            cached = json.loads(path.read_text())
+            if cached.get("key_sha256") == key:
+                record = cached
+        if record is None:
+            if client is None:
+                client = make_client(args.provider)
+            print(f"  judging {n:>3} {item['golden_id']} {item['kind']} `{item['key']}`", flush=True)
+            raw = PROVIDERS[args.provider](client, args.model, JUDGE_SYSTEM, question)
+            record = {"item": n, "golden_id": item["golden_id"], "kind": item["kind"],
+                      "key": item["key"], "reason": item["reason"], "provider": args.provider,
+                      "model": args.model, "proposed": proposed, "key_sha256": key, "raw": raw,
+                      "decision": None, "why": None, "error": None}
+            try:
+                parsed = parse_response(raw)
+                record["decision"] = parsed.get("decision")
+                record["why"] = parsed.get("why")
+            except (ValueError, json.JSONDecodeError) as e:
+                record["error"] = f"{type(e).__name__}: {e}"
+            path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
+
+        where = f"{n:>3} {item['golden_id']} {item['kind']} `{item['key']}`"
+        if record["error"] or record["decision"] in (None, ""):
+            unusable.append(f"{where}: {record['error'] or 'no decision in the response'}")
+            continue
+        text = verdict_text(record["decision"])
+        try:
+            # A verdict the item does not allow is not a disagreement, it is a bad answer.
+            apply_decision(item, text)
+        except (ValueError, json.JSONDecodeError) as e:
+            unusable.append(f"{where}: judge said {text!r}, which this item does not allow ({e})")
+            continue
+        if verdict_matches(proposed, record["decision"]):
+            agreed[n] = {"n": n, "golden_id": item["golden_id"], "kind": item["kind"],
+                         "key": item["key"], "reason": item["reason"], "mode": "judge",
+                         "by": "model", "model": args.model, "proposed": proposed,
+                         "decision": text, "why": record["why"]}
+        else:
+            disagreed.append((n, item, proposed, text, record["why"]))
+
+    if agreed:
+        (run_dir / "review_queue.md").write_text(
+            write_decisions(queue_text, {n: v["decision"] for n, v in agreed.items()}))
+        adj = load_adjudication(run_dir)
+        adj["judge"] = {"model": args.model, "provider": args.provider,
+                        "ruled": len(targets), "agreed": len(agreed),
+                        "disagreed": len(disagreed), "unusable": len(unusable),
+                        "rules": JUDGE_RULES}
+        adj["items"].update({str(n): v for n, v in agreed.items()})
+        save_adjudication(run_dir, adj)
+
+    print(f"\njudge agreed with the proposal on {len(agreed)}/{len(targets)} items "
+          f"-> recorded with by=model")
+    if disagreed:
+        print(f"\n{len(disagreed)} left at `?` for you - judge disagreed with the proposal:")
+        for n, item, proposed, got, why in disagreed:
+            print(f"\n  [{n}] {item['golden_id']} {item['kind']} `{item['key']}` ({item['reason']})")
+            print(f"      proposed: {proposed}   judge: {got}")
+            print(f"      judge's reason: {why or '(none given)'}")
+    if unusable:
+        print(f"\n{len(unusable)} left at `?` - the judge's answer could not be used:")
+        for u in unusable:
+            print("  " + u)
+
+
 def kv(text: str) -> tuple[str, int]:
     key, _, n = text.partition("=")
     if not n.isdigit():
         raise argparse.ArgumentTypeError(f"expected NAME=N, got {text!r}")
     return key, int(n)
+
+
+def item_range(text: str) -> set[int]:
+    """`30-121` or `30,33,41` as a set of item numbers."""
+    out: set[int] = set()
+    for part in text.split(","):
+        lo, dash, hi = part.partition("-")
+        if not lo.strip().isdigit() or (dash and not hi.strip().isdigit()):
+            raise argparse.ArgumentTypeError(f"expected N or N-M, got {part!r}")
+        out |= set(range(int(lo), int(hi or lo) + 1))
+    return out
 
 
 def main(argv=None):
@@ -1201,6 +1560,14 @@ def main(argv=None):
     app.add_argument("--run", required=True)
     app.add_argument("--dry-run", action="store_true")
     app.set_defaults(fn=cmd_apply)
+
+    jud = sub.add_parser("judge", help="a third model rules on the undecided items that carry a proposal")
+    jud.add_argument("--run", required=True)
+    jud.add_argument("--provider", default="google", choices=sorted(PROVIDERS))
+    jud.add_argument("--model", default=DEFAULT_MODEL_C, help=f"the judge (default {DEFAULT_MODEL_C})")
+    jud.add_argument("--items", type=item_range, help="only these item numbers, e.g. 30-121")
+    jud.add_argument("--dry-run", action="store_true", help="list what would be judged and stop")
+    jud.set_defaults(fn=cmd_judge)
 
     args = ap.parse_args(argv)
     return args.fn(args)

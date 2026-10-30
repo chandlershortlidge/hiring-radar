@@ -953,3 +953,217 @@ def test_apply_refuses_an_undecided_scope_item(tmp_path, monkeypatch):
         al.main(["apply", "--run", run_dir.name])
     assert "in-scope answer" in str(e.value)
     assert not (goldens / "golden_001.json").exists()
+
+
+# --- judge: a third model rules on the items a proposal was written for -----------
+
+def test_parse_proposal_reads_a_word_and_a_json_verdict():
+    assert al.parse_proposal("`B` - qualification bullet names it") == (
+        "B", "qualification bullet names it")
+    assert al.parse_proposal("drop") == ("drop", "")
+    verdict, why = al.parse_proposal('{"requirement": "nice_to_have"} - "is useful" is optional')
+    assert json.loads(verdict) == {"requirement": "nice_to_have"}
+    assert why.startswith('"is useful"')
+
+
+def test_parse_proposals_scopes_each_proposal_to_its_own_item():
+    """A proposal belongs to the item it is written under. Most items have none - every scope
+    item, every spot-check - and scanning forward would hand item 1 item 2's proposal."""
+    queue = (
+        "## 1. golden_001 - scope `in_scope` (in-scope)\n\nDECISION: yes\n\n"
+        "## 2. golden_001 - skill `docker` (disagreement)\n\nPROPOSED: `A` - first\n\nDECISION: ?\n\n"
+        "## 3. golden_001 - skill `rag` (uncertain)\n\nDECISION: ?\n\n"
+        "## 4. golden_001 - skill `llms` (disagreement)\n\nPROPOSED: `drop` - second\n\nDECISION: ?\n")
+    assert al.parse_proposals(queue) == {2: ("A", "first"), 4: ("drop", "second")}
+
+
+@pytest.mark.parametrize("proposed, verdict, same", [
+    ("B", "B", True), ("B", "`b`", True), ("B", " B ", True), ("B", "A", False),
+    ("drop", "ok", False), ("B", {"requirement": "required"}, False),
+    ('{"requirement": "required", "raw_text": "x"}', {"raw_text": "x", "requirement": "required"}, True),
+    ('{"requirement": "required"}', {"requirement": "nice_to_have"}, False),
+])
+def test_verdict_matches(proposed, verdict, same):
+    assert al.verdict_matches(proposed, verdict) is same
+
+
+def test_write_decisions_fills_only_the_items_asked_for():
+    queue = ("## 1. g - skill `a` (disagreement)\n\nDECISION: ?\n\n"
+             "## 2. g - skill `b` (disagreement)\n\nDECISION: ?\n")
+    out = al.write_decisions(queue, {2: "drop"})
+    assert "## 1. g - skill `a` (disagreement)\n\nDECISION: ?" in out
+    assert out.endswith("DECISION: drop\n")
+
+
+def test_write_decisions_refuses_to_overwrite_a_decision_already_made():
+    queue = "## 1. g - skill `a` (disagreement)\n\nDECISION: B\n"
+    with pytest.raises(ValueError, match="already says 'B'"):
+        al.write_decisions(queue, {1: "drop"})
+    with pytest.raises(ValueError, match="not found in the queue"):
+        al.write_decisions(queue, {9: "drop"})
+
+
+def test_check_extra_model_refuses_the_extractor_and_either_labeler():
+    with pytest.raises(SystemExit, match="the extractor's model"):
+        al.check_extra_model("judge", "m-extractor", ["a", "b"], extractor="m-extractor")
+    with pytest.raises(SystemExit, match="which labeled this run"):
+        al.check_extra_model("judge", "b", ["a", "b"], extractor="m-extractor")
+    al.check_extra_model("judge", "c", ["a", "b"], extractor="m-extractor")
+
+
+def test_heading_above_finds_the_section_and_skips_bullets():
+    posting = "Role\n\nCore Requirements\n\n- Strong Python\n- Docker in production\n"
+    assert al.heading_above(posting, posting.index("Docker")) == "Core Requirements"
+
+
+def test_wide_excerpt_carries_the_heading_and_marks_the_truncation():
+    posting = "Role\n\nNice-to-haves\n\n- " + ("filler " * 200) + "Docker in production\n"
+    out = al.wide_excerpt(posting, "Docker in production", width=60)
+    assert "section heading above the quote: Nice-to-haves" in out
+    assert out.startswith("section heading") and "..." in out
+    assert "Docker in production" in out
+
+
+def test_judge_question_shows_both_labelers_the_proposal_and_the_options():
+    item = {"golden_id": "golden_001", "kind": "skill", "key": "docker", "reason": "disagreement",
+            "a": {"skill_id": "docker", "requirement": "nice_to_have", "raw_text": "Docker"},
+            "b": None, "problems": []}
+    q = al.judge_question(item, POSTING, "A", "nice-to-have heading")
+    assert "- A: `docker` · nice_to_have" in q and "- B: (did not label this)" in q
+    assert "proposed decision: A" in q and "proposer's reason: nice-to-have heading" in q
+    assert al.DECISIONS["disagreement"] in q
+    # the judge rules on one item; it is never handed the other labels or the taxonomy
+    assert "python" not in q.lower().split("posting-excerpt")[0]
+
+
+def judge_run(tmp_path, monkeypatch, proposal="`B` - the heading says required"):
+    """A one-posting run whose single disagreement carries a proposal, ready to judge."""
+    goldens = tmp_path / "goldens"
+    goldens.mkdir()
+    runs = tmp_path / "labeling"
+    db = tmp_path / "t.db"
+    conn = sqlite3.connect(db)
+    conn.executescript(
+        "CREATE TABLE job (id INTEGER PRIMARY KEY, company TEXT, title TEXT, city TEXT, seniority TEXT,"
+        " description_text TEXT, first_seen TEXT, extracted_version TEXT);"
+        "CREATE TABLE job_source (job_id INTEGER, source TEXT);")
+    conn.execute("INSERT INTO job VALUES (1,'Acme','Senior AI Engineer','Berlin','senior',?,'2026-10-20',NULL)",
+                 (POSTING,))
+    conn.execute("INSERT INTO job_source VALUES (1, 'greenhouse')")
+    conn.commit()
+    conn.close()
+    monkeypatch.setattr(al, "GOLDENS", goldens)
+    monkeypatch.setattr(al, "RUNS", runs)
+    monkeypatch.setattr(al.ng, "DB", db)
+    monkeypatch.setattr(al.ng, "GOLDENS", goldens)
+    b = ok_answer(expected=[
+        *ok_answer()["expected"][:2],
+        {"skill_id": "docker", "requirement": "required", "raw_text": "Docker"}])
+    monkeypatch.setattr(al, "make_client", lambda provider: FakeAnthropic(
+        [ok_answer() if provider == "anthropic" else b]))
+    monkeypatch.setitem(al.PROVIDERS, "openai", al.call_anthropic)
+    al.main(["label", "--count", "1", "--spot-check", "2", "--seed", "0",
+             "--remote-eu", "0", "--german", "0"])
+    run_dir, = list(runs.iterdir())
+    queue = run_dir / "review_queue.md"
+    text = queue.read_text()
+    # the proposal a reviewer wrote by hand, on the one disagreement
+    n = next(i for i, item in enumerate(json.loads((run_dir / "items.json").read_text()), 1)
+             if item["reason"] == "disagreement")
+    blocks = re.split(r"(?=^## \d+\.)", text, flags=re.M)
+    for i, block in enumerate(blocks):
+        if block.startswith(f"## {n}."):
+            blocks[i] = block.replace("DECISION: ?", f"PROPOSED: {proposal}\n\nDECISION: ?")
+    queue.write_text("".join(blocks))
+    return run_dir, queue, n
+
+
+def judge_client(monkeypatch, *answers):
+    """A fake judge. Speaks the one API the FakeAnthropic double implements."""
+    client = FakeAnthropic(list(answers))
+    monkeypatch.setattr(al, "make_client", lambda provider: client)
+    monkeypatch.setitem(al.PROVIDERS, "google", al.call_anthropic)
+    return client
+
+
+def test_judge_records_its_agreement_with_the_proposal_as_a_model_decision(tmp_path, monkeypatch, capsys):
+    run_dir, queue, n = judge_run(tmp_path, monkeypatch)
+    client = judge_client(monkeypatch, {"decision": "B", "why": "rule 3: the required mention wins"})
+    al.main(["judge", "--run", run_dir.name, "--model", "judge-model"])
+
+    assert f"## {n}." in queue.read_text()
+    decisions = dict(al.parse_queue(queue.read_text()))
+    assert decisions[n] == "B"
+    # the spot-checks and the scope item are not the judge's business
+    assert len(client.calls) == 1
+    adj = json.loads((run_dir / "adjudication.json").read_text())
+    assert adj["items"][str(n)]["by"] == "model"
+    assert adj["items"][str(n)]["model"] == "judge-model"
+    assert adj["items"][str(n)]["decision"] == "B"
+    assert adj["judge"]["agreed"] == 1 and adj["judge"]["disagreed"] == 0
+    assert "rules" in adj["judge"]
+    assert "agreed with the proposal on 1/1" in capsys.readouterr().out
+
+
+def test_judge_leaves_a_disagreement_undecided_and_prints_it(tmp_path, monkeypatch, capsys):
+    run_dir, queue, n = judge_run(tmp_path, monkeypatch)
+    judge_client(monkeypatch, {"decision": "A", "why": "rule 1: the bullet is nice-to-have"})
+    al.main(["judge", "--run", run_dir.name, "--model", "judge-model"])
+
+    assert dict(al.parse_queue(queue.read_text()))[n] == "?"
+    assert not (run_dir / "adjudication.json").exists()
+    out = capsys.readouterr().out
+    assert "1 left at `?` for you" in out
+    assert "proposed: B   judge: A" in out
+    assert "rule 1" in out
+
+
+def test_judge_refuses_a_verdict_the_item_does_not_allow(tmp_path, monkeypatch, capsys):
+    run_dir, queue, n = judge_run(tmp_path, monkeypatch)
+    judge_client(monkeypatch, {"decision": "maybe", "why": "unsure"})
+    al.main(["judge", "--run", run_dir.name, "--model", "judge-model"])
+    assert dict(al.parse_queue(queue.read_text()))[n] == "?"
+    out = capsys.readouterr().out
+    assert "could not be used" in out and "does not allow" in out
+
+
+def test_judge_reuses_its_cached_ruling(tmp_path, monkeypatch):
+    run_dir, queue, n = judge_run(tmp_path, monkeypatch)
+    judge_client(monkeypatch, {"decision": "A", "why": "no"})
+    al.main(["judge", "--run", run_dir.name, "--model", "judge-model"])
+    assert (run_dir / "judge" / f"{n:03d}.json").exists()
+    second = judge_client(monkeypatch)   # no answers left: a second call would raise
+    al.main(["judge", "--run", run_dir.name, "--model", "judge-model"])
+    assert second.calls == []
+
+
+def test_judge_skips_an_item_on_a_posting_ruled_out_of_scope(tmp_path, monkeypatch, capsys):
+    run_dir, queue, n = judge_run(tmp_path, monkeypatch)
+    queue.write_text(queue.read_text().replace("DECISION: yes", "DECISION: no marketing role"))
+    client = judge_client(monkeypatch)
+    al.main(["judge", "--run", run_dir.name, "--model", "judge-model"])
+    assert client.calls == []
+    assert "0 undecided items with a proposal" in capsys.readouterr().out
+
+
+def test_judge_dry_run_makes_no_calls(tmp_path, monkeypatch, capsys):
+    run_dir, queue, n = judge_run(tmp_path, monkeypatch)
+    client = judge_client(monkeypatch)
+    al.main(["judge", "--run", run_dir.name, "--model", "judge-model", "--dry-run"])
+    assert client.calls == [] and dict(al.parse_queue(queue.read_text()))[n] == "?"
+    assert "1 undecided items with a proposal" in capsys.readouterr().out
+
+
+def test_judge_refuses_a_model_that_labeled_the_run(tmp_path, monkeypatch):
+    run_dir, queue, n = judge_run(tmp_path, monkeypatch)
+    judge_client(monkeypatch)
+    with pytest.raises(SystemExit, match="which labeled this run"):
+        al.main(["judge", "--run", run_dir.name, "--model", al.DEFAULT_MODEL_B])
+
+
+def test_item_range():
+    assert al.item_range("30-33") == {30, 31, 32, 33}
+    assert al.item_range("30,41") == {30, 41}
+    assert al.item_range("5") == {5}
+    with pytest.raises(Exception):
+        al.item_range("30-")
