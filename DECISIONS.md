@@ -5,7 +5,7 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
-## 2026-10-31 — The skill tree, made readable: names only, three hues, branches by greedy split (HIR-81)
+## 2026-10-30 — The skill tree, made readable: names only, three hues, branches by greedy split (HIR-81)
 
 The tree shipped correct and unusable. Four decisions from the follow-up.
 
@@ -166,9 +166,10 @@ python → llms → agents → rag → prompt-engineering → tool-calling.
 
 **Both shares on every node, so the tree ignores the requirement filter.** Each node
 carries mentioned % and required % over the same denominator (Leoson's Snowflake
-observation: 17% mentioned, 3% required). *Superseded 2026-10-31 on where they are shown:
-the numbers moved to a hover/focus tooltip and the ring/core encoding carries the gap on
-the drawing. The rule that both are reported, over one denominator, stands.* There is
+observation: 17% mentioned, 3% required). *Superseded later the same day by "The skill
+tree, made readable" at the top of this log, on where they are shown: the numbers moved to
+a hover/focus tooltip and the ring/core encoding carries the gap on the drawing. The rule
+that both are reported, over one denominator, stands.* There is
 therefore nothing for `requirement` to choose, and `/api/skills/tree` ignores it along with
 the skill selection — the tree maps the whole filtered market, and selecting a skill only
 highlights it. Every other filter (city, seniority, German, degree, production, window)

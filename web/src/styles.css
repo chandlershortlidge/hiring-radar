@@ -112,7 +112,8 @@ select.sel { padding-right: 28px; }
    A tree shows every branch at once, so it is an all-pairs form: validate_palette.js
    passes 3 slots in both modes and fails 4 on the normal-vision floor. Every other branch
    and the whole trunk stay ink. Dark steps, validated and waiting for a dark mode the app
-   does not have yet: #3987e5 / #d95926 / #199e70 on #1a1a19. DECISIONS 2026-10-31. */
+   does not have yet: #3987e5 / #d95926 / #199e70 on #1a1a19.
+   DECISIONS 2026-10-30, "The skill tree, made readable". */
 .tree { display: flex; flex-direction: column; gap: 16px; }
 .tree-svg { width: 100%; height: auto; overflow: visible; }
 .tree-edge { fill: none; stroke: var(--line-3); stroke-width: 1.25; }

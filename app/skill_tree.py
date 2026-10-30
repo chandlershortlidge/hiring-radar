@@ -75,7 +75,7 @@ MAX_LABEL_STEPS = 14
 # the trunk and stay neutral. Only BRANCH_HUES of them can be coloured: a tree shows every
 # branch at once, and the dataviz palette validates at most three hues for an all-pairs
 # form (four fail the normal-vision floor). The rest stay neutral — the skill's own "past
-# three, fold to Other" rule. See DECISIONS 2026-10-31.
+# three, fold to Other" rule. See DECISIONS 2026-10-30, "The skill tree, made readable".
 TRUNK_SHARE = 0.5
 BRANCH_HUES = 3
 # A lone leaf never takes a hue off a real lobe, however the sizes tie.

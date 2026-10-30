@@ -96,7 +96,9 @@ Then, for the rest of the session:
   hook checks both on every commit.
 - **If the branch and the ticket disagree, stop and ask.** Do not rewrite `TICKET` to
   match the branch, and do not switch branches to make it fit — which of the two is wrong
-  is the person's call.
+  is the person's call. This applies once step 3 has been done this session. If you
+  skipped step 3 and the ticket was named in the prompt, do step 3 now; that isn't
+  rewriting `TICKET` to match the branch.
 - **Never commit to main.** The hook refuses it; do not reach for `--no-verify`.
 - **A branch open more than two days gets split or merged**, not carried. If the work has
   grown past its ticket, say so and propose the split.
@@ -201,8 +203,8 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   its own jobs still nearly always ask for), which branch each reads as part of, and every
   coordinate of the layout down to where each label goes. Pure `build_tree` plus a thin
   `fetch_jobs`; display names are passed *in*, because a label's width decides the layout.
-  Ignores the `requirement` and skill filters on purpose — see DECISIONS 2026-10-30 and
-  2026-10-31.
+  Ignores the `requirement` and skill filters on purpose — see the two DECISIONS entries
+  of 2026-10-30, "reads the conditional asymmetry" and "made readable".
 - `app/queries.py` — read queries behind the dashboard: filters (city, seniority, German,
   degree, production, requirement, window), skill document frequency with per-city counts,
   related-skills co-occurrence with lift (`related_skills`, feeds `/api/skills/related`),
