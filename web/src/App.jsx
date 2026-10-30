@@ -7,6 +7,7 @@ import SkillChart from "./SkillChart.jsx";
 import CompareChart from "./CompareChart.jsx";
 import JobList from "./JobList.jsx";
 import RelatedSkills from "./RelatedSkills.jsx";
+import SkillTree from "./SkillTree.jsx";
 import AddJobDrawer from "./AddJobDrawer.jsx";
 import ReviewDrawer from "./ReviewDrawer.jsx";
 import ProfileDrawer from "./ProfileDrawer.jsx";
@@ -26,6 +27,7 @@ export default function App() {
   const [skills, setSkills] = useState(null);
   const [tax, setTax] = useState({ version: 0, skills: [] });
   const [related, setRelated] = useState(null);
+  const [tree, setTree] = useState(null);
   const [drawer, setDrawer] = useState(null); // 'add' | 'review' | 'profile'
   const [refresh, setRefresh] = useState(0);
   const [jumpTo, setJumpTo] = useState(null);
@@ -39,6 +41,7 @@ export default function App() {
   const reload = useCallback(() => { api.stats().then(setStats); setRefresh((n) => n + 1); }, []);
   useEffect(() => { api.taxonomy().then(setTax); reload(); }, [reload]);
   useEffect(() => { let live = true; api.skills(filters).then((r) => { if (live) setSkills(r); }); return () => { live = false; }; }, [filters, refresh]);
+  useEffect(() => { let live = true; setTree(null); api.skillTree(filters).then((r) => { if (live) setTree(r); }); return () => { live = false; }; }, [filters, refresh]);
   // The related-skills rows, fetched here and not in the panel: the panel draws them and the
   // chip row's add-skill popover suggests them, both from this one request and in its order.
   useEffect(() => {
@@ -170,6 +173,21 @@ export default function App() {
                 onSelectCity={(id, city) => set({ skillIds: [id], compare: false, cities: [city] })} />
             : <SkillChart data={skills} selected={filters.skillIds} onSelect={selectSkill} profile={profile}
                 cityLabel={`${winLabel || "tracked"} jobs`} aliases={taxAliases} />}
+        </section>
+
+        <section className="card chart" aria-labelledby="tree-title">
+          <div>
+            <h2 id="tree-title">The skill tree: what leads to what</h2>
+            <p className="lede">
+              The same {skills?.total ?? "…"} {winLabel} jobs, drawn as the market’s own
+              specialization paths · {cityLabel}{senLabel}. The skills in most postings sit
+              near the centre; an edge means the outer skill’s jobs nearly always ask for
+              the inner one too. Each skill carries both numbers, because the gap between
+              them is the point: mentioned often but required rarely is a résumé keyword,
+              not a gate. Required-only and the skill selection do not change this map.
+            </p>
+          </div>
+          <SkillTree data={tree} selected={filters.skillIds} onSelect={selectSkill} />
         </section>
 
         <RelatedSkills filters={filters} skillNames={skillNames} onAdd={addSkill} data={related} />
