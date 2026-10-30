@@ -1,0 +1,71 @@
+{
+  "id": "golden_026",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "(Senior) Platform Engineer",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "sehr gute Deutsch- und Englischkenntnisse",
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": false,
+  "source_sha256": "8353a3dc0aae70bd60a397b5adb2fb5c02c736169aafd4b2541a7088c6e9844e",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [],
+  "adjudicated_by_model": [
+    "seniority",
+    "skill:ai-infrastructure"
+  ],
+  "spot_checked": false,
+  "job_description": "(Senior) Platform Engineer - Kubernetes, Private AI  (m/w/d),Bielefeld,Augsburg,Ol...\n\nIT, die verbindet. Kultur, die bleibt. Wir sind OEDIV - Partner für IT-Infrastruktur und Managed Services im deutschen Mittelstand. Seit 30 Jahren leben wir echte Verbindung indem wir unsere Kunden mit tiefem technischen Know-how, viel Flexibilität und echtem Teamgeist begleiten. Unsere Schwerpunkte: Microsoft- und SAP-Technologien, Security, Data & AI betrieben auf stabiler, skalierbarer Infrastruktur. Als Teil der Oetker-Gruppe stehen wir für Verlässlichkeit, Qualität und langfristige Partnerschaften - mit unseren Kunden genauso wie mit unseren Mitarbeitenden. Bei uns findest du nicht nur spannende Projekte, sondern ein Umfeld, in dem du wirklich etwas bewegen kannst. Auf Augenhöhe. Im Team. Mit dir. Das sind Deine Aufgaben: Du entwirfst, betreibst und skalierst eine produktive Kubernetes-Plattform Du baust eine Private-AI-Plattform mit Hilfe von VMware Private AI Foundation und NVIDIA auf und entwickelst sie weiter Du integrierst Kubernetes mit NVIDIA AI-Workloads und GPU-Scheduling Du treibst Best Practices für Observability, Zuverlässigkeit und Performance voran Du gestaltest die Plattformarchitektur und arbeitest eng mit Anwendungs- und Datenteams zusammen Das bringst Du mit: Du verfügst über fundierte Erfahrung mit Kubernetes im produktiven Einsatz Du hast idealerweise erste Berührungspunkte mit AI-Plattform-Infrastruktur / GPU-Workloads oder großes Interesse, dich in diese Themen einzuarbeiten Du besitzt solide Kenntnisse in Linux, Netzwerken und Troubleshooting Du denkst in Automatisierungslösungen wie Terraform, Helm, GitOps und CI/CD Du fühlst dich in dynamischen Greenfield-Umgebungen wohl und hast Interesse an AI-Plattformen Du verfügst über Kommunkationsstärke, ein sicheres Auftreten sowie sehr gute Deutsch- und Englischkenntnisse Das erwartet Dich: Eine gelebte Du-Kultur und ein unternehmensweites Wir-Gefühl Regelmäßige After-Work Events und Betriebsfeste Individuelles Onboarding für neue Mitarbeitende mit übergreifenden Welcome-Veranstaltungen und einer Rechenzentrumsführung   Vielfältige Karriere- und Weiterbildungsmöglichkeiten sowie externer Englisch- und Deutschunterricht JobRad und Fahrradstellplätze, ein subventioniertes Deutschland- und regionales JobTicket sowie eine sehr gute Anbindung an die Autobahn mit kostenlosem Parkhaus Corporate Benefits und Vergünstigungen im Dr. Oetker Shop Verschiedene Gesundheitsmaßnahmen (bspw. Mental Health First Aid Programm) und eine ergonomische Arbeitsplatzausstattung in einer hochmodernen Arbeitsumgebung sowie klimatisierten Büros Durch unser bezuschusstes Firmenfitness-Programm über Hansefit erhältst Du Zugang zu einer großen Auswahl an Sport-, Fitness- und Wellnessangeboten Barrierefreie Arbeitsumgebung in Bielefeld (Behindertentoilette, breite Gänge und Türen, Behindertenparklätze, ebenerdiges Gebäude, Fahrstühle) Rundumversorgung für das leibliche Wohl: Kostenlose Kaffeespezialitäten, gekühltes Wasser und frisches Obst sowie ein eigenes Restaurant inklusive Frühstücksangebot am Hauptstandort Bielefeld Für unsere weiteren Standorte den ,,Pluxee Restaurant Pass\" mit einem flächendeckenden Partnernetzwerk Ein attraktives Gehaltspaket inkl. betrieblicher und tariflicher Altersvorsorge sowie Urlaubs- und Weihnachtsgeld Eine unbefristete Anstellung mit einer tariflichen 37h-Woche, außertariflich sind es 40h 30 Urlaubstage, tarifliche Sonderurlaubstage sowie zusätzlichen Urlaub am 24.12. und 31.12. 12 Tage im Monat mobiles Arbeiten, flexible Arbeitszeitgestaltung mit Gleitzeitkonto und verschiedenen Teilzeitmodellen Der Hauptsitz von OEDIV ist Bielefeld und daher Dein Arbeitsort. Aber auch ein Arbeiten an unseren Co-Working Spaces in Oldenburg, Berlin, Frankfurt am Main, Köln oder Augsburg sind möglich. Eintrittsdatum: ab sofort Möchtest du die Vielfalt der Oetker-Gruppe erleben? Dann klicke Dich über den Button \"Jetzt bewerben\" schnell und einfach zu uns! OEDIV KG Selina Patzke www.oediv.de/karriere",
+  "expected": [
+    {
+      "skill_id": "ai-infrastructure",
+      "requirement": "nice_to_have",
+      "raw_text": "AI-Plattform-Infrastruktur"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD"
+    },
+    {
+      "skill_id": "gitops",
+      "requirement": "required",
+      "raw_text": "GitOps"
+    },
+    {
+      "skill_id": "helm",
+      "requirement": "required",
+      "raw_text": "Helm"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Erfahrung mit Kubernetes"
+    },
+    {
+      "skill_id": "linux",
+      "requirement": "required",
+      "raw_text": "Linux"
+    },
+    {
+      "skill_id": "networking",
+      "requirement": "required",
+      "raw_text": "Netzwerken"
+    },
+    {
+      "skill_id": "terraform",
+      "requirement": "required",
+      "raw_text": "Terraform"
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "id": "golden_040",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Senior AI/Computer Vision Engineer",
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": "phd",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "MS or PhD in Computer Science, Electrical Engineering, or a related field, or equivalent practical experience",
+  "attrs_reviewed": true,
+  "source_sha256": "76777d7b5d63061d1e19b704a3e004cbcef6ad4f56ecca3f8f08d38ac1fcd099",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:ai-deployment"
+  ],
+  "adjudicated_by_model": [
+    "skill:experiment-tracking",
+    "skill:inference-optimization"
+  ],
+  "spot_checked": true,
+  "job_description": "Senior AI/Computer Vision Engineer\n\nAbout Ubiquiti\n\nAt Ubiquiti Inc., we create technology platforms for Businesses, Smart Homes, and Internet Service Providers, driven by our goal to connect everyone, everywhere. To date, Ubiquiti has shipped over 100 million devices worldwide, from ISP networking products to next generation of IT solutions. Our growth is made possible by the dedicated team of hundreds behind the scenes. From software developers and product managers to designers and strategists, Team UI is driven to achieve our common goal: Rethinking IT. At Ubiquiti, you’ll heighten your potential and broaden your horizons - all while shaping the future of connectivity.\n\nWe’re looking for a Senior AI/Computer Vision Engineer to build AI systems end to end, from defining the problem and data requirements to training models, validating them, deploying on edge devices, and integrating them into C++ pipelines.\n\nThis is a hands-on engineering role for someone who can take applied AI projects from concept to production and is comfortable working across modeling, evaluation, deployment, and system integration.\n\nResponsibilities\n\n• Own AI and computer vision projects end to end, from technical definition to production deployment;\n• Translate product needs into system, data, model, and evaluation requirements;\n• Define data collection, annotation, and validation strategies;\n• Train and optimize deep learning models for real-world vision and multimodal applications;\n• Build testing, benchmarking, and failure analysis workflows;\n• Optimize models for edge devices with attention to latency, memory, throughput, and accuracy tradeoffs;\n• Integrate models into production inference systems, including C++ edge pipelines;\n• Work closely with software and product teams to ship reliable AI features at scale.\n\nRequirements\n\n• MS or PhD in Computer Science, Electrical Engineering, or a related field, or equivalent practical experience;\n• Strong Python skills;\n• Solid experience with PyTorch, TensorFlow, or similar frameworks;\n• 4+ years of experience building and shipping computer vision and/or applied AI systems;\n• Hands-on experience with tasks such as detection, classification, segmentation, tracking, embeddings, or multimodal perception;\n• Experience beyond model training, including evaluation, deployment, and production support;\n• Experience optimizing models for edge or embedded environments;\n• Strong software engineering skills, including C++ production pipelines or inference systems;\n• Fluent in English.\n\nNice To Have\n\n• Experience with LLMs or multimodal models in production;\n• Experience with ONNX, TensorRT, OpenVINO, or TFLite;\n• Experience with MLOps and experiment tools such as MLflow, Weights & Biases, or DVC;\n• Familiarity with model monitoring and post-deployment analysis.\n\nBenefits\n\n• International work environment and work with global development teams;\n• Ability to deliver software that is used by millions of people across the globe;\n• Opportunity to leverage and integrate modern AI tools into product development;\n• Access to all Ubiquiti products;\n• Hybrid approach - office in Berlin (city centre);\n• Flexible work hours;\n• Compensation package matching global standards, including competitive salary depending on your qualification and background (starting from 6000 up to 10000 Euro gross monthly).",
+  "expected": [
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "deployment, and production support"
+    },
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "applied AI systems"
+    },
+    {
+      "skill_id": "computer-vision",
+      "requirement": "required",
+      "raw_text": "shipping computer vision"
+    },
+    {
+      "skill_id": "cpp",
+      "requirement": "required",
+      "raw_text": "C++ production pipelines"
+    },
+    {
+      "skill_id": "embeddings",
+      "requirement": "required",
+      "raw_text": "embeddings"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "including evaluation"
+    },
+    {
+      "skill_id": "experiment-tracking",
+      "requirement": "nice_to_have",
+      "raw_text": "experiment tools"
+    },
+    {
+      "skill_id": "inference-optimization",
+      "requirement": "required",
+      "raw_text": "optimizing models for edge or embedded environments"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "nice_to_have",
+      "raw_text": "LLMs"
+    },
+    {
+      "skill_id": "mlflow",
+      "requirement": "nice_to_have",
+      "raw_text": "MLflow"
+    },
+    {
+      "skill_id": "mlops",
+      "requirement": "nice_to_have",
+      "raw_text": "MLOps"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "nice_to_have",
+      "raw_text": "model monitoring"
+    },
+    {
+      "skill_id": "onnx",
+      "requirement": "nice_to_have",
+      "raw_text": "ONNX"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Strong Python skills"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Strong software engineering skills"
+    },
+    {
+      "skill_id": "tensorflow",
+      "requirement": "required",
+      "raw_text": "TensorFlow"
+    },
+    {
+      "skill_id": "tensorrt",
+      "requirement": "nice_to_have",
+      "raw_text": "TensorRT"
+    },
+    {
+      "skill_id": "weights-and-biases",
+      "requirement": "nice_to_have",
+      "raw_text": "Weights & Biases"
+    }
+  ]
+}

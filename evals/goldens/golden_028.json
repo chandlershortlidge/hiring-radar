@@ -1,0 +1,129 @@
+{
+  "id": "golden_028",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Senior AI Engineer (w/m/d)",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Verhandlungssichere Deutschkenntnisse",
+  "degree": "master",
+  "degree_requirement": "required",
+  "degree_or_equivalent": false,
+  "degree_signal": "Abgeschlossenes Masterstudium der Informatik, Mathematik oder einer vergleichbaren Fachrichtung",
+  "attrs_reviewed": false,
+  "source_sha256": "73915e29ec05a0b2c70a4330a1618278833cca3739c58f8b09b29ba060dcc777",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:ai-deployment",
+    "skill:llms",
+    "skill:tool-calling"
+  ],
+  "adjudicated_by_model": [
+    "skill:model-development"
+  ],
+  "spot_checked": true,
+  "job_description": "Sorge gemeinsam mit uns für die digitale Zukunftsfähigkeit der Bundeswehr.\n\nSenior AI Engineer (w/m/d)\n\nab sofort und in Vollzeit bundesweit an einem BWI Standort.\n\nAls primärer Digitalisierungspartner der Bundeswehr erbringen wir stabile, sichere und effiziente IT-Services im In- und Ausland, vom Grundbetrieb bis in den einsatznahen Bereich und tragen so zur kontinuierlichen Erhöhung der Führungs- und Einsatzfähigkeit der Bundeswehr bei. Mit über 8.000 Kolleg*innen betreiben und modernisieren wir eine der größten und komplexesten IT-Infrastrukturen in Deutschland. Wir suchen verantwortungsvolle IT-Spezialist*innen, die die Bundeswehr-IT aus Überzeugung in herausfordernden Digitalisierungsvorhaben weiterentwickeln und so einen Beitrag zur Sicherheit Deutschlands leisten wollen.\n\nWir im Technology Engineering Team sind als Teil vom Chief Technology Office (CTO) mitverantwortlich für die strategische Erneuerung des Leistungsportfolios der BWI. Unser Auftrag ist es eine KI-Service Plattform zu entwickeln und zu betreiben, über welche Mitarbeitende der BWI Zugriff auf modernste KI-Technologie erhalten. Hierzu verbinden wir Innovation und Forschung zur Künstlichen Intelligenz mit Best Practices aus DevSecOps und MLOps. Aktuell bauen wir ein starkes Team mit Expertise in unterschiedlichen Bereichen der KI-Entwicklung auf.\nWerde auch Du Teil unseres Teams und unterstütze uns auf unserer gemeinsamen Mission!\n\nDein Profil:\n\n-\n\nAbgeschlossenes Masterstudium der Informatik, Mathematik oder einer vergleichbaren Fachrichtung\n\n-\n\nMindestens 5 Jahre relevante Berufserfahrung nach Abschluss des Studiums zwingend erforderlich\n\n-\n\nErfahrung in der Evaluation, Deployment und dem produktiven Betrieb von KI-Modellen\n\n-\n\nErfahrung im Prompt-, Kontext- und Tool-Engineering von generativen KI-Modellen\n\n-\n\nErfahrung in der Backend-Entwicklung mit Python, Go, Rust oder Java\n\n-\n\nErfahrung mit On-Prem Cloud-Techniken (z. B. Kubernetes) und MLOps-Frameworks (MLFlow, Kubeflow)\n\n-\n\nExpertise in Leistungsoptimierung und Monitoring (z. B. Prometheus, Grafana)\n\n-\n\nFähigkeit, technische Konzepte eigenständig zu entwickeln, zu bewerten und gegenüber (technischen und nicht-technischen) Stakeholdern zu vertreten\n\n-\n\nErfahrung in der Entwicklung, Fine-Tuning und Training von KI Modellen ist von Vorteil\n\n-\n\nVerhandlungssichere Deutschkenntnisse sowie sehr gute Englischkenntnisse in Wort und Schrift\n\nDeine Aufgaben:\n\n-\n\nDesign, Entwicklung und Betrieb einer zentralen KI-Plattform\n\n-\n\nIntegration, Bereitstellung und Optimierung von KI-Modellen über standardisierte Inferenz-APIs\n\n-\n\nAuswahl, Evaluation und Benchmarking von KI-Modellen unter Berücksichtigung von Anwendungsanforderungen\n\n-\n\nSicherstellung der Skalierbarkeit, Sicherheit, Zuverlässigkeit und Performance der Inferenz-APIs unter Last (z. B. Caching, Rate Limiting)\n\n-\n\nBereitstellung von Funktionalitäten und Werkzeugen für Chat-Bots und Agenten über MCP, A2A und AG-UI\n\n-\n\nImplementierung und Integration LLM-basierter Agenten mithilfe gängiger Python-Frameworks (z.B. LangGraph, CrewAI, PydanticAI)\n\n-\n\nZusammenarbeit mit MLOps Engineers bei der Integration von KI-Modellen und -Services in unsere Infrastruktur (z.B. GPU-Cluster, Kubernetes)\n\n-\n\nDokumentation und Support für interne sowie externe Entwickler\n\nWir bieten:\n\n- Durch abwechslungsreiche und gesellschaftlich relevante Aufgaben gewährleisten wir den reibungslosen IT-Betrieb und die Digitalisierung der Bundeswehr\n- Das Ziel eint uns. Dabei sind für uns ein wertschätzender Umgang miteinander sowie ein großer Teamgeist elementar\n- Wir bieten 30 Tage Jahresurlaub, 1 Brauchtumstag plus Optionen auf individuelle Anpassungen\n- Über unsere Benefit-App erhält man ein monatliches Guthaben und kann sich zusätzlich Steuervergünstigungen auf Tickets für den ÖPNV sichern\n- Wir ermöglichen Flexibilität, um Beruf und Privatleben in Einklang zu bringen, etwa durch mobiles Arbeiten oder Vertrauensarbeitszeit\n- Wir unterstützen die berufliche und persönliche Weiterbildung durch individuelle Maßnahmen sowie einen kostenfreien Zugriff auf LinkedIn Learning\n- Unser Jobradangebot ermöglicht das Leasing von bis zu 2 Fahrrädern\n- Die Einstiegsvergütung liegt im Regelfall zwischen 87.700 € und 113.150 € brutto p.a. Die konkrete Höhe wird basierend auf Kriterien wie z.B. Qualifikation, Verantwortungsbereich und den Anforderungen der Position festgelegt. Gerechtfertigte Abweichungen sind im Einzelfall möglich\n\nSag's gerne weiter!\n\nFrankfurt, Hamburg, München, Nürnberg, Ulm, Berlin, Bonn, Leipzig",
+  "expected": [
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "Deployment und dem produktiven Betrieb von KI-Modellen"
+    },
+    {
+      "skill_id": "backend-development",
+      "requirement": "required",
+      "raw_text": "Backend-Entwicklung"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "On-Prem Cloud-Techniken"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "Erfahrung in der Evaluation"
+    },
+    {
+      "skill_id": "fine-tuning",
+      "requirement": "nice_to_have",
+      "raw_text": "Fine-Tuning"
+    },
+    {
+      "skill_id": "go",
+      "requirement": "required",
+      "raw_text": "Go"
+    },
+    {
+      "skill_id": "grafana",
+      "requirement": "required",
+      "raw_text": "Grafana"
+    },
+    {
+      "skill_id": "java",
+      "requirement": "required",
+      "raw_text": "Java"
+    },
+    {
+      "skill_id": "kubeflow",
+      "requirement": "required",
+      "raw_text": "Kubeflow"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "z. B. Kubernetes"
+    },
+    {
+      "skill_id": "mlflow",
+      "requirement": "required",
+      "raw_text": "MLFlow"
+    },
+    {
+      "skill_id": "mlops",
+      "requirement": "required",
+      "raw_text": "MLOps-Frameworks"
+    },
+    {
+      "skill_id": "model-development",
+      "requirement": "nice_to_have",
+      "raw_text": "Entwicklung, Fine-Tuning und Training von KI Modellen"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "Monitoring"
+    },
+    {
+      "skill_id": "prometheus",
+      "requirement": "required",
+      "raw_text": "Prometheus"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "Prompt-, Kontext- und Tool-Engineering"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "mit Python"
+    },
+    {
+      "skill_id": "rust",
+      "requirement": "required",
+      "raw_text": "Rust"
+    },
+    {
+      "skill_id": "tool-calling",
+      "requirement": "required",
+      "raw_text": "Tool-Engineering"
+    }
+  ]
+}

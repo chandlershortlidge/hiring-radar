@@ -1,0 +1,104 @@
+{
+  "id": "golden_036",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Senior AI & GenAI Architect",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "verhandlungssicher auf Deutsch (mind. C1)",
+  "degree": "phd",
+  "degree_requirement": "nice_to_have",
+  "degree_or_equivalent": false,
+  "degree_signal": "ein Master oder Ph.D. ist von Vorteil",
+  "attrs_reviewed": true,
+  "source_sha256": "c4b5954895f0f0d1b2116fa5bf5f11d168d21aabe0dd71c966be15ee112721b6",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "degree"
+  ],
+  "adjudicated_by_model": [
+    "skill:ai-ml",
+    "skill:software-architecture",
+    "skill:software-engineering"
+  ],
+  "spot_checked": true,
+  "job_description": "NTT DATA Deutschland SE: Senior AI & GenAI Architect (w/m/x)\n\nWir sind Teil von NTT DATA, einem führenden Anbieter von Unternehmens- und Technologiedienstleistungen, KI und digitaler Infrastruktur mit einem Umsatz von über 30 Mrd. $. Als Global Top Employer betreut NTT DATA 75 % der Fortune Global 100-Unternehmen und entwickelt mit Expert:innen in über 70 Ländern gemeinsam innovative Lösungen, die dazu inspirieren, Neues zu wagen und Erfolge sichtbar zu machen. In der DACH-Region sind wir an 15 Standorten in Deutschland, Österreich und der Schweiz vertreten.\n\n**Make this the place where _you_ grow**\n\nAls Senior AI & GenAI Architect (w/m/x) entwickelst du innovative Lösungen, übernimmst technische Verantwortung und berätst unsere Kunden strategisch. Dabei bringst du deine langjährige praktische AI-Erfahrung und dein Branchenwissen aus Financial Services und/oder Manufacturing ein. Gemeinsam mit internationalen Teams entwickelst du AI- und GenAI-Lösungen, die nicht beim Proof of Concept enden, sondern nachhaltig Mehrwert schaffen.\n\n#LI-DS1\n\n**Deine Benefits**\n\n- Flexible Arbeitszeiten mit Gleitzeitregelung und Reisezeit ist Arbeitszeit\n- Home-Office Möglichkeit sowie Vereinbarung mit Vergütungszuschuss inkl. Arbeitsplatzausstattung möglich\n- 30 Tage Urlaub, zusätzlich sind der 24.12. und 31.12. arbeitsfreie Tage\n- Sabbatical bis zu einem Jahr möglich\n- Remote Work sowie mobiles Arbeiten im EU-Ausland möglich\n- Attraktive Benefit- und Entgeltoptimierungsprogramme: betriebliche Altersvorsorge, JobRad, Jobticket, exklusive Rabatte über Corporate Benefits und vieles mehr\n- Umfangreiche Gesundheits- und Vorsorgeangebote: verlängerte Entgeltfortzahlung im Krankheitsfall, Betriebsärztliche Betreuung, Unfallversicherung auch für Freizeitunfälle weltweit, Familienservice\n- Interne und externe Weiterbildungsmöglichkeiten in der NTT DATA Academy mit fachlichen Trainings, Zertifizierungsangeboten, Soft-Skill-Schulungen, Udemy Zugang\n- Diverse Communities und Initiativen (zu Diversity, Equity & Inclusion, ESG und mehr) mit Wissensaustausch auf Augenhöhe\n- Teamorientierte Unternehmenskultur mit viel Gestaltungsspielraum\n\n**Deine Mission**\n\n- Du entwickelst innovative AI-Lösungen und gestaltest skalierbare und praxisnahe Systeme, die unseren internationalen Kunden echten und messbaren Mehrwert bieten.\n- Du übernimmst die technische End-to-End-Verantwortung für den gesamten Lebenszyklus unserer AI-Lösungen – von der ersten Idee über Entwicklung und Implementierung bis zur finalen Umsetzung und kontinuierlichen Optimierung.\n- Du berätst unsere Kunden zu AI-Technologien und -Anwendungen, übersetzt ihre fachlichen und technologischen Anforderungen in individuelle Lösungen und agierst dabei als kompetenter technischer Ansprechpartner.\n- Du konzipierst und designst komplexe E2E AI- und GenAI-Lösungen mit modernen Open-Source- und Cloud-Native-Technologien und orchestrierst MLOps und LLMOps für den zuverlässigen Einsatz in produktiven Systemen.\n- Du arbeitest eng mit internationalen Teams zusammen, führst Kundenworkshops durch und unterstützt sowohl unsere Kunden als auch deine Teammitglieder mit deinem technischen Know-how.\n- Du evaluierst und empfiehlst neue AI-Technologien und Frameworks, bewertest deren Einsatzmöglichkeiten und bringst deine Expertise in Kundenprojekte und die Weiterentwicklung unserer Lösungen ein.\n- Du unterstützt mit deiner technischen und fachlichen Expertise bei Angeboten und Kundenworkshops und hilfst dabei, aus neuen AI-Möglichkeiten konkrete und realisierbare Lösungen für unsere Kunden zu entwickeln.\n\n**Dein Skillset**\n\n- Du hast einen Abschluss in Informatik, Data Science, Künstlicher Intelligenz, Mathematik oder einem verwandten Bereich; ein Master oder Ph.D. ist von Vorteil.\n- Du bringst mindestens 5 Jahre praktische Berufserfahrung in der Entwicklung und Implementierung von AI- und Machine-Learning-Lösungen mit und hast entsprechende Lösungen sowohl on Prem als auch in der Cloud umgesetzt.\n- Du verfügst zwingend über praktische Industrieerfahrung in Financial Services (FIS) und/oder Manufacturing, bspw. Energy & Utilities, Pharma, Industrial Machinery etc.\n- Du hast mindestens 1 Jahr praktische Erfahrung in der Entwicklung von GenAI-Lösungen, beispielsweise mit RAG oder AI Agents/Agenten, und kennst die Anforderungen an deren produktiven Einsatz.\n- Du verfügst über nachgewiesene technische Kenntnisse in relevanten Programmiersprachen, insbesondere Python, und praktische Erfahrung mit AI- und GenAI-Frameworks wie SciKit-Learn, PyTorch, KubeFlow, HuggingFace, LangChain oder vergleichbaren Technologien.\n- Du kannst Softwarelösungen konzipieren, designen und entwickeln, idealerweise im AI-/GenAI-Umfeld, und kennst agile Softwareentwicklungsmethoden sowie die Anforderungen moderner Enterprise-Architekturen.\n- Du arbeitest selbstständig und kooperativ in internationalen Teams, kommunizierst verhandlungssicher auf Deutsch (mind. C1) und Englisch und überzeugst mit effizientem Zeitmanagement sowie ausgeprägten Problemlösungsfähigkeiten.\n\nMit uns hast du unzählige Möglichkeiten, groß zu denken, mutig zu handeln und Verantwortung zu übernehmen. Gestalte deine Zukunft in einer Kultur, die Zugehörigkeit lebt und dir Raum für Lernen und Networking gibt.\n\nVielfalt ist ein unverzichtbarer Teil unseres Erfolges und unserer Unternehmenskultur. Frei von Vorurteilen im Hinblick auf Geschlecht, genderuelle Orientierung, Alter, ethnische und soziale Herkunft, Religion oder Behinderung freuen wir uns dich kennenzulernen. Menschen mit Schwerbehinderung werden bei gleicher Eignung bevorzugt.\n\nInteressiert? Wir freuen uns auf Deine Online-Bewerbung!\n\nSchlagworte: Technical Consulting, Python, Netzwerkmanagement, Webservice, webservice, AI, network, KI, Machine-learning, Software-Design, Wireless, IDE, Software-architekt, API, WLAN, IT-architekt, Empfehlungsbund\nQuelle/Bewerbung via: [https://www.empfehlungsbund.de/jobs/305633/senior-ai-und-genai-architect-w-strich-m-strich-x](https://www.empfehlungsbund.de/jobs/305633/senior-ai-und-genai-architect-w-strich-m-strich-x#apply_form)\n\n#### Kurzinfo zum Unternehmen\n\nBei NTT DATA arbeiten wir an einer Zukunft, in der Technologie unsere Welt einfacher, besser und lebenswerter macht: Die human-centered connected future. Dafür braucht es Menschen, die bereit sind, unbekannte Pfade zu betreten. Die bereit sind, die digitale Zukunft in die Hand zu nehmen: Profis mit Pioniergeist – Menschen wie dich!\n\nNTT DATA – ein Teil der NTT Group – ist Trusted Global Innovator von Business- und IT-Lösungen mit Hauptsitz in Tokio. Wir unterstützen unsere Kunden bei ihrer Transformation durch Consulting, Branchenlösungen, Business Process Services, Digital- und IT-Modernisierung und Managed Services. Mit NTT DATA können Kunden und die Gesellschaft selbstbewusst in die digitale Zukunft gehen. Wir setzen uns für den langfristigen Erfolg unserer Kunden ein und kombinieren globale Präsenz mit lokaler Kundenbetreuung in über 50 Ländern.\n\nNTT DATA bietet dir viele Möglichkeiten, dich weiterzuentwickeln und deinen Karriereweg zu gehen. Werte wie Gleichberechtigung, Gemeinschaft und Lebensqualität sind fest in unserer Kultur verankert und werden stetig weiterentwickelt.",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "AI Agents/Agenten"
+    },
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "AI- und Machine-Learning-Lösungen"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "in der Cloud"
+    },
+    {
+      "skill_id": "hugging-face",
+      "requirement": "required",
+      "raw_text": "HuggingFace"
+    },
+    {
+      "skill_id": "kubeflow",
+      "requirement": "required",
+      "raw_text": "KubeFlow"
+    },
+    {
+      "skill_id": "langchain",
+      "requirement": "required",
+      "raw_text": "LangChain"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Entwicklung von GenAI-Lösungen"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "Machine-Learning-Lösungen"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "insbesondere Python"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG"
+    },
+    {
+      "skill_id": "scikit-learn",
+      "requirement": "required",
+      "raw_text": "SciKit-Learn"
+    },
+    {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "Anforderungen moderner Enterprise-Architekturen"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Softwarelösungen konzipieren, designen und entwickeln"
+    }
+  ]
+}

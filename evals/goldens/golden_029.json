@@ -1,0 +1,90 @@
+{
+  "id": "golden_029",
+  "split": "heldout",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Sehr gute Deutschkenntnisse (mind. C1)",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Abgeschlossenes Studium in Informatik, Wirtschaftsinformatik oder vergleichbare Qualifikation",
+  "attrs_reviewed": false,
+  "source_sha256": "8be926b8af39c507bde1d9c4cce73500e5426ba4b10457bc8d85facd4682b6bd",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:apis"
+  ],
+  "adjudicated_by_model": [
+    "skill:agents|agent-architecture",
+    "skill:ai-developer-tooling",
+    "skill:ai-ml",
+    "skill:testing"
+  ],
+  "spot_checked": false,
+  "job_description": "# Qualitätsingenieur KI-Fokus / Quality Engineer (AI-augmented) (m/w/d) IT-Consulting\n\n## Hybrid für unsere Standorte Berlin, Dresden, Düsseldorf, Frankfurt, Hamburg, Karlsruhe, Kassel, Köln, Mannheim, München und Stuttgart\n\n## Über uns\n\n\\*\\*PTA in Kürze?\\*\\* Authentisch, vielseitig, flexibel.\n\nGegründet 1969 zählt die PTA GmbH zu Deutschlands ältesten, familiengeführten IT- und Unternehmensberatungen. An insgesamt 13 Standorten in Deutschland, der Schweiz und Spanien unterstützen wir unsere Kunden bei der Umsetzung von IT- und Organisationsprojekten – über alle Branchen und Technologien hinweg. Immer finanz- und herstellerunabhängig. Dabei integrieren wir KI-basierte Werkzeuge dort, wo sie echten Mehrwert stiften – mit fachlicher Sorgfalt, kritischem Blick und der Überzeugung, dass technologische Weiterentwicklung Teil unseres Beratungsalltags ist.\n\nWir setzen auf flache Hierarchien und die Organisation in Business Units mit dem Ziel einer fachlich-technischen Spezialisierung sowie einer zielgerichteten Weiterentwicklung unserer Mitarbeitenden. Durch ein hybrides Arbeitskonzept – remote, vor Ort beim Kunden und im Büro - sowie ein flexibles Arbeitszeitmodell unterstützen wir die Balance zwischen Arbeit und Freizeit. \n\n\\*\\*Neugierig auf unsere Projekte?\\*\\* Wir können auf über 4000 erfolgreiche IT-Projekte zurückschauen – alle einsehbar in unserer Projektdatenbank auf [www.pta.de](https://www.pta.de/).\n\n### Ihre Aufgaben\n\nDie Kompetenzbereiche der Business Unit Quality Assurance sind vielfältig. Wir unterstützen unsere Kunden in der Testautomatisierung, im Softwaretest und Testmanagement. Die Beratung von ALM-Tools, Coaching sowie Unterstützung bei der Methodenoptimierung runden das Leistungsportfolio der Business Unit ab.\n\nAls Qualitätsingenieur mit KI-Fokus verantworten Sie die Konzeption und Weiterentwicklung automatisierter Testlandschaften und setzen KI-Werkzeuge gezielt ein, um Softwarequalität messbar und nachhaltig zu verbessern. Zu Ihren Hauptaufgaben gehören:\n\n- \\*\\*Testautomatisierung:\\*\\* Sie konzipieren und realisieren Testautomatisierungslösungen auf Basis etablierter Frameworks und integrieren KI-gestützte Funktionalitäten, z. B. zur automatisierten Generierung von Testfällen, Testcode und Testdaten sowie zur Analyse und nutzen dafür sowohl gängige Tools und Frameworks als auch kundenspezifische Automatisierungslösungen.\n- \\*\\*Testdurchführung:\\*\\* Sie führen automatisierte Tests durch und analysieren die Testergebnisse mit Hilfe von LLM-basierten Tools.\n- \\*\\*Auswahl Testwerkzeuge:\\*\\* Sie wählen je nach Anforderung geeignete Testtools und -frameworks aus.\n- \\*\\*Zusammenarbeit:\\*\\* Sie arbeiten eng mit Entwicklern, Testern und anderen Stakeholdern der Kunden zusammen, um sicherzustellen, dass die automatisierten Tests zum Erfolg der Kundenprojekte beitragen.\n\n### Ihr Profil\n\n**Al**s **Qualitätsingenieur KI-Fokus sollten Sie mitbringen:**\n\n- Abgeschlossenes Studium in Informatik, Wirtschaftsinformatik oder vergleichbare Qualifikation\n- Fundierte Programmier- und Automatisierungskenntnisse in Java, Python oder C# mit gängigen Testautomatisierungstools / -frameworks wie Selenium, Robot Framework, Playwright, Cypress oder Appium\n- Praktische Erfahrung im Einsatz LLM-basierter Tools zur Testunterstützung, darunter KI-gestützte Testfallgenerierung, KI-assistiertes Code-Authoring und synthetische Testdatenerzeugung\n- Erfahrung in der Integration von LLM-APIs und KI-Services in Testframeworks sowie im Aufbau KI-nativer Testlösungen wie Self-Healing Locators, autonome Testausführung und agentenbasierte Testarchitekturen\n- Erfahrung in der nahtlosen Integration automatisierter Tests in CI/CD-Pipelines gängiger Plattformen wie Jenkins, GitLab CI, GitHub Actions und Azure DevOps\n- Kenntnisse im Einsatz von KI zur Analyse von Testergebnissen und Logs, um Fehlerursachen schneller zu identifizieren, Tests gezielt zu priorisieren und Testlücken systematisch zu schließen\n- Eine prinzipielle Reisebereitschaft (3 Tage/Woche), abhängig von der Kundensituation\n- Sehr gute Deutschkenntnisse (mind. C1) sowie gute Englischkenntnisse (mind. B2) in Wort und Schrift\n\n### Warum zur PTA?\n\n- \\*\\*Flexibles Arbeitszeitmodell:\\*\\* Bei uns können Sie sich Ihre Arbeitszeit nicht nur flexibel einteilen. Sie entscheiden selbst, was Sie mit jeder zusätzlich geleisteten Arbeitsstunde machen möchten: ausbezahlen, in Freizeit ausgleichen oder als Puffer in den nächsten Arbeitsmonat übertragen.\n- \\*\\*Maßgeschneiderte Weiterentwicklung:\\*\\* Ihre (Weiter-)Entwicklung bei uns erfolgt sowohl projekt- als auch stärkenorientiert – maßgeschneidert und individuell. Hierfür setzen wir auf einen Mix aus digitalen und analogen Lernformaten. Durch Kooperationen mit Lernplattformen können unsere Mitarbeitenden Unternehmenslizenzen nutzen.\n- \\*\\*Agile Führung:\\*\\* Wir haben sehr flache Hierarchien und setzen auf eigenverantwortliches Arbeiten. Dafür geben wir Ihnen den notwendigen Gestaltungsspielraum, um sich selbst zu steuern und Ihre Projekte zum Erfolg zu führen.\n- Faire Gehaltsstruktur: Je nach Erfahrung und Qualifikation bieten wir Ihnen ein Jahresgehalt zwischen 50.000 und 55.000 Euro mit weiterer Entwicklungsperspektive.\n- \\*\\*„Klassiker“ und mehr:\\*\\* Ihr Kind ist krank? Kein Problem. Wir bieten den Eltern unter uns zusätzliche Kinderkranktage. Natürlich unterstützen wir auch die „Klassiker“ unter den Benefits: Von Mobile Office, über vermögenswirksame Leistungen und eine zusätzliche Unterstützung zur Altersvorsorge bis hin zu Sonderurlauben und dem BusinessBike.\n\n### Kontakt\n\nBitte bewerben Sie sich ausschließlich online über unsere Homepage. Für den Fall, dass Sie einen barrierefreien Alternativweg benötigen, kontaktieren Sie uns unter [karriere@pta-gruppe.com](https://mailto:karriere@pta-gruppe.com).\n\nFür weitere Fragen erreichen Sie uns ebenfalls unter: [karriere@pta-gruppe.com](https://mailto:karriere@pta-gruppe.com)\n\nKatharina Wonka beantwortet Ihre Fragen gerne.\n\n\\*Sämtliche Bezeichnungen in dieser Anzeige richten sich an alle Geschlechter",
+  "expected": [
+    {
+      "skill_id": "agent-architecture",
+      "requirement": "required",
+      "raw_text": "agentenbasierte Testarchitekturen"
+    },
+    {
+      "skill_id": "ai-developer-tooling",
+      "requirement": "required",
+      "raw_text": "KI-assistiertes Code-Authoring"
+    },
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "KI-Services"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD-Pipelines"
+    },
+    {
+      "skill_id": "csharp",
+      "requirement": "required",
+      "raw_text": "C#"
+    },
+    {
+      "skill_id": "github-actions",
+      "requirement": "required",
+      "raw_text": "GitHub Actions"
+    },
+    {
+      "skill_id": "gitlab-ci",
+      "requirement": "required",
+      "raw_text": "GitLab CI"
+    },
+    {
+      "skill_id": "java",
+      "requirement": "required",
+      "raw_text": "Java"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "LLM-APIs"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "Testautomatisierungstools / -frameworks"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "golden_043",
+  "split": "heldout",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "inferred",
+  "german_signal": null,
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Ein abgeschlossenes Studium, eine vergleichbare Qualifikation oder relevante Berufserfahrung",
+  "attrs_reviewed": false,
+  "source_sha256": "a64194ca2dde8a01f356cbfc983796bec7cc83b6128f6234b5744793c74d97fc",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:data-privacy-and-security"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked": false,
+  "job_description": "AI Reliability & Quality Engineer (m/w/d)\n\n## Was wir bieten\n\nQualität ist für Dich mehr als ein Häkchen am Ende eines Projekts? Du möchtest dazu beitragen, dass KI-Lösungen im Alltag verlässlich, sicher und nachvollziehbar funktionieren und dass Teams ihnen mit gutem Gefühl vertrauen können?\n\nDann werde Teil unseres KI-nativen Entwicklungsteams. Als KI Reliability & Quality Engineer (m/w/d) schaffst Du gemeinsam mit uns die Grundlagen dafür, dass innovative KI-Anwendungen effizient vorankommen und zugleich verantwortungsvoll, transparent und stabil eingesetzt werden. Am Merantix AI Campus arbeitest Du in einem kreativen Umfeld und kannst die dortigen Angebote aktiv nutzen.\n\n- Sicherung eines zuverlässigen, sicheren und nachvollziehbaren Einsatz von KI-Systemen, Sprachmodellen und agentischen Abläufen und das von der Entwicklung bis in den Betrieb\n- Entwickelung praxisnaher Vorgehensweisen, um Qualität sichtbar und bewertbar zu machen, z. B. durch Tests, Evaluationen, Leitplanken, Monitoring und klare Abläufe bei Auffälligkeiten\n- Unterstützung des Teams bei Entscheidungen, wann KI-Lösungen eigenständig handeln dürfen, welche Kontrollen sinnvoll sind und welche Nachweise vor einer Freigabe erforderlich sind\n- Übersetztung von Sicherheits-, Compliance- und Qualitätsanforderungen in verständliche Regeln, Kriterien und Signale für einen verantwortungsvollen Betrieb\n- Du arbeitest eng mit Forward Deployed Architekt\\*innen, Forward Deployed Engineers (m/w/d) sowie Security- und Compliance-Ansprechpersonen zusammen, damit Qualität von Beginn an mitgedacht wird\n\n## Was du bietest\n\n- Ein abgeschlossenes Studium, eine vergleichbare Qualifikation oder relevante Berufserfahrung mit Bezug zu IT, Data Science, Software Engineering, Informationssicherheit oder Qualitätssicherung\n- Erfahrung in der Gestaltung von Qualität, Freigabeprozessen und stabilen Betriebsprozessen von Software-, KI- oder datengetriebenen Lösungen und bringst idealerweise Erfahrung in regulierten IT-Umfeldern mit\n- Du kannst Qualität in messbare Maßnahmen übersetzen, z. B. durch geeignete Tests, nachvollziehbare Ergebnisse, Monitoring im Betrieb und klaren Handlungsanweisungen\n- Du kannst KI-Systeme risikobasiert hinterfragen, etwa im Hinblick auf falsche Antworten, verzerrte Ergebnisse, unerwünschte Eingaben oder den Schutz sensibler Daten\n- Erfahrung in Banking- oder Fintech-Umfelder ist wünschenswert, in dem du regulatorische Anforderungen in praktikable Qualitäts- und Betriebsprozesse übersetzen kannst\n- Klare, kooperative und nachvollziehbare Kommunikationsfährigkeit zu Qualitäts- und Risikoabwägungen, auch bei unterschiedlichen Perspektiven im Team oder mit Stakeholder\\*innen\n- Mobiles Arbeiten ist bei uns ganz selbstverständlich, genauso wie die mehrheitliche Anwesenheit vor Ort.\n- Auch vielfältige Bildungshintergründe und Arbeitserfahrungen sind bei uns willkommen. Wir sind aufgeschlossen gegenüber Talenten, deren Lebenslauf auf den ersten Blick nicht hundertprozentig zu den Anforderungen in unserer Stellenanzeige passt. Wir bieten die passenden Rahmenbedingungen, ihre individuellen Potenziale vollumfänglich zu entfalten.\n\n## Unseren Benefits:\n\n- Arbeitsmodelle\n\n- Hybrides Arbeiten (mobil und vor Ort)\n- Flexible Arbeitszeiten\n- Variable Teilzeitmodelle\n- Moderne Arbeitswelten\n- Mobilität\n\n- Zentrale Lage mit sehr guter Verkehrsanbindung\n- Kostenfreies Jobticket\n- Fahrrad Leasing\n- E-Tankstelle\n- Kulinarik\n\n- Bezuschusstes Mittagessen\n- Freie Getränke\n- Betriebsrestaurants\n- Kaffeebars\n- Sozialleistungen\n\n- Betriebliche Altersvorsorge\n- Vermögenswirksame Leistungen\n- Mitarbeiterkonditionen im Rahmen des Genossenschaftlichen Finanzverbundes\n- Kinderbetreuungszuschuss\n- Fitness & Gesundheit\n\n- Zuschuss zu Fitnessstudios\n- Interne Sportangebote\n- Gesundheitsvorsorge\n- Und Vieles mehr\n\n- Erstklassige IT Ausstattung\n- Zeitgemäße IT-Infrastruktur\n- Weiterbildungsangebote\n- Karriereperspektiven\n\nDie abgebildeten Leistungen können je nach Gesellschaft und Standort variieren.",
+  "expected": [
+    {
+      "skill_id": "data-privacy-and-security",
+      "requirement": "required",
+      "raw_text": "Schutz sensibler Daten"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "Monitoring im Betrieb"
+    },
+    {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "geeignete Tests"
+    }
+  ]
+}

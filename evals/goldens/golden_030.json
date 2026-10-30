@@ -1,0 +1,64 @@
+{
+  "id": "golden_030",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "SAP AI Lead Architect",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Sehr gute und verhandlungssichere (C1) Deutsch-",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Abgeschlossenes Studium (Informatik, Wirtschaftsinformatik, BWL mit IT-Schwerpunkt) oder vergleichbare Qualifikation",
+  "attrs_reviewed": false,
+  "source_sha256": "e70f4b94ebb3dad8265c967d67f7bc9e0c470b88010bea0852f4e23a2265ce3e",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:ai-ml",
+    "skill:workflow-automation"
+  ],
+  "adjudicated_by_model": [
+    "skill:data-modeling",
+    "skill:software-architecture"
+  ],
+  "spot_checked": false,
+  "job_description": "NTT DATA Deutschland SE: SAP AI Lead Architect (w/m/x)\n\nWir sind Teil von NTT DATA, einem führenden Anbieter von Unternehmens- und Technologiedienstleistungen, KI und digitaler Infrastruktur mit einem Umsatz von über 30 Mrd. $. Als Global Top Employer betreut NTT DATA 75 % der Fortune Global 100-Unternehmen und entwickelt mit Expert:innen in über 70 Ländern gemeinsam innovative Lösungen, die dazu inspirieren, Neues zu wagen und Erfolge sichtbar zu machen. In der DACH-Region sind wir an 15 Standorten in Deutschland, Österreich und der Schweiz vertreten.\n**Make this the place where _you_ grow**\n\n**#LI-DS1**\n\n**Deine Benefits**  \n\n- Flexible Arbeitszeiten mit Gleitzeitregelung und Reisezeit ist Arbeitszeit   \n\n- 30 Tage Urlaub, zusätzlich sind der 24.12. und 31.12. arbeitsfreie Tage \n\n- Sabbatical bis zu einem Jahr möglich \n\n- Remote Work sowie mobiles Arbeiten im EU-Ausland möglich \n\n- Attraktive Benefit- und Entgeltoptimierungsprogramme: betriebliche Altersvorsorge, JobRad, Jobticket, exklusive Rabatte über Corporate Benefits und vieles mehr \n\n- Umfangreiche Gesundheits- und Vorsorgeangebote: verlängerte Entgeltfortzahlung im Krankheitsfall, Betriebsärztliche Betreuung, Unfallversicherung auch für Freizeitunfälle weltweit, Familienservice \n\n- Interne und externe Weiterbildungsmöglichkeiten in der NTT DATA Academy mit fachlichen Trainings, Zertifizierungsangeboten, Soft-Skill-Schulungen, Udemy Zugang \n\n- Abwechslungsreiche Corporate Volunteering Möglichkeiten, diverse Communitites und Initiativen (zu Diversity, Equity & Inclusion, Sustainability und mehr) mit Wissensaustausch auf Augenhöhe \n\n- Teamorientierte Unternehmenskultur mit viel Gestaltungsspielraum \n\n**Deine Mission**  \n\n- Einsatz modernster AI-Technologie, um Projekte und Geschäftsprozesse unserer Kunden auf ein neues Level zu heben – im operativen Projekteinsatz!\n\n- Konzeption und Implementierung innovativer Lösungen zur Effizienzsteigerung in modernen SAP-Systemlandschaften (z. B. S/4HANA, SAP BTP)\n\n- Analyse von End-to-End-Geschäftsprozessen im SAP-Umfeld sowie gezielte Identifikation von Potenzialen für Automatisierung und Optimierung durch AI; enge Zusammenarbeit mit Fachbereichen und Prozessberater:innen zur Überführung von Anforderungen in technische Lösungen\n- Arbeit in internationalen Teams mit Zugang zu den Erfahrungen der SAP Global Practice und globalen AI Teams\n\n- **Übernahme von Verantwortung** in Projektteams für Architekturentscheidungen und interne Weiterentwicklung des Themas AI\n\n**Dein Skillset**  \n\n- Abgeschlossenes Studium (Informatik, Wirtschaftsinformatik, BWL mit IT-Schwerpunkt) oder vergleichbare Qualifikation\n- Fundiertes Wissen in SAP Business AI (inkl. SAP Joule) sowie Erfahrung in SAP-Projekten\n- Hands-on Erfahrung in der technischen Umsetzung von AI- oder Automatisierungslösungen im SAP-Umfeld (z. B. SAP BTP, APIs, Integration, Datenmodelle)\n- Gutes Verständnis von SAP-Prozessen (z. B. Finance, Logistik, Master Data) sowie deren Optimierungspotenzial durch AI\n\n- Erfahrung in der Übersetzung fachlicher Anforderungen in technische Lösungen inkl. Prototyping\n- Kenntnisse moderner Architekturen, Cloud-Technologien und AI/ML sind von Vorteil\n- Als struktuierter Teamplayer (w/m/x) mit enormer Eigeninitative sowie analytischer und lösungsorientierter Arbeitsweise, verfügst du über ein ausgeprägtes Kommunikationsgeschick\n- Sehr gute und verhandlungssichere (C1) Deutsch- und Englischkenntnisse werden vorausgesetzt\n\nMit uns hast du unzählige Möglichkeiten, groß zu denken, mutig zu handeln und Verantwortung zu übernehmen. Gestalte deine Zukunft in einer Kultur, die Zugehörigkeit lebt und dir Raum für Lernen und Networking gibt.\nVielfalt ist ein unverzichtbarer Teil unseres Erfolges und unserer Unternehmenskultur. Frei von Vorurteilen im Hinblick auf Geschlecht, genderuelle Orientierung, Alter, ethnische und soziale Herkunft, Religion oder Behinderung freuen wir uns dich kennenzulernen. Menschen mit Schwerbehinderung werden bei gleicher Eignung bevorzugt.\nInteressiert? Wir freuen uns auf Deine Online-Bewerbung!\n\nSchlagworte: SAP Analytics Technisch Funktional, Informatik, SAP, Netzwerkmanagement, ABAP, Hybris, Webservice, webservice, AI, network, KI, Wirtschaftsinformatik, Informatiker, Software-Design, Wireless, informatics, Software-architekt, API, HANA, WLAN, Empfehlungsbund\nQuelle/Bewerbung via: [https://www.empfehlungsbund.de/jobs/307040/sap-ai-lead-architect-w-strich-m-strich-x](https://www.empfehlungsbund.de/jobs/307040/sap-ai-lead-architect-w-strich-m-strich-x#apply_form)\n\n#### Kurzinfo zum Unternehmen\n\nBei NTT DATA arbeiten wir an einer Zukunft, in der Technologie unsere Welt einfacher, besser und lebenswerter macht: Die human-centered connected future. Dafür braucht es Menschen, die bereit sind, unbekannte Pfade zu betreten. Die bereit sind, die digitale Zukunft in die Hand zu nehmen: Profis mit Pioniergeist – Menschen wie dich!\n\nNTT DATA – ein Teil der NTT Group – ist Trusted Global Innovator von Business- und IT-Lösungen mit Hauptsitz in Tokio. Wir unterstützen unsere Kunden bei ihrer Transformation durch Consulting, Branchenlösungen, Business Process Services, Digital- und IT-Modernisierung und Managed Services. Mit NTT DATA können Kunden und die Gesellschaft selbstbewusst in die digitale Zukunft gehen. Wir setzen uns für den langfristigen Erfolg unserer Kunden ein und kombinieren globale Präsenz mit lokaler Kundenbetreuung in über 50 Ländern.\n\nNTT DATA bietet dir viele Möglichkeiten, dich weiterzuentwickeln und deinen Karriereweg zu gehen. Werte wie Gleichberechtigung, Gemeinschaft und Lebensqualität sind fest in unserer Kultur verankert und werden stetig weiterentwickelt.",
+  "expected": [
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "Hands-on Erfahrung in der technischen Umsetzung von AI- oder Automatisierungslösungen"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "APIs"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "nice_to_have",
+      "raw_text": "Cloud-Technologien"
+    },
+    {
+      "skill_id": "data-modeling",
+      "requirement": "required",
+      "raw_text": "Datenmodelle"
+    },
+    {
+      "skill_id": "software-architecture",
+      "requirement": "nice_to_have",
+      "raw_text": "moderner Architekturen"
+    },
+    {
+      "skill_id": "workflow-automation",
+      "requirement": "required",
+      "raw_text": "Automatisierungslösungen"
+    }
+  ]
+}

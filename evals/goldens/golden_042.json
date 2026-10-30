@@ -1,0 +1,57 @@
+{
+  "id": "golden_042",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Senior Machine Learning Research Engineer",
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": "master",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "MSc or higher in ML, Computer Science or a related discipline, or equivalent professional experience",
+  "attrs_reviewed": false,
+  "source_sha256": "7ef6343a23c635f3b9084211683eb4b41e06f869d1972e0f40408445026d8857",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:machine-learning"
+  ],
+  "adjudicated_by_model": [
+    "degree",
+    "skill:deep-learning"
+  ],
+  "spot_checked": false,
+  "job_description": "Senior Machine Learning Research Engineer\n\nOur client is a non-profit organisation advancing research and technical solutions for safe-by-design AI systems. They are seeking a Senior Machine Learning Research Developer to join a highly technical team working at the forefront of ML research and development.\n\nYou will work closely with ML researchers and engineers to solve challenging training and inference problems involving large-scale models. You will translate research concepts into robust implementations, build infrastructure for complex experiments and optimise workflows for high-performance computing environments.\n\nThis role sits at the intersection of machine learning research, software engineering and high-performance computing, with direct impact on the development and evaluation of advanced AI systems.\n\nKey Responsibilities\n\n• Partner with ML researchers to accelerate research, model training and inference.\n\n• Implement novel ML models, architectures and simulated environments.\n\n• Design workflows for experiments ranging from small-scale research to large-scale projects.\n\n• Develop tools, libraries and infrastructure to optimise compute resources.\n\n• Improve the efficiency, scalability and reproducibility of ML workflows.\n\n• Translate research concepts into reliable, production-quality implementations.\n\n• Establish and maintain best practices for model development and experimentation.\n\n• Identify training and inference bottlenecks and develop solutions.\n\n• Collaborate across research, engineering and infrastructure teams.\n\nRequirements\n\n• Degree in Computer Science, Computer Engineering, Software Engineering or a related field.\n\n• MSc or higher in ML, Computer Science or a related discipline, or equivalent professional experience.\n\n• 5+ years' industry experience designing and implementing complex ML workflows.\n\n• Strong hands-on experience with HPC environments and large-scale ML workloads.\n\n• Extensive experience with ML frameworks such as PyTorch, TensorFlow or JAX.\n\n• Experience contributing to high-quality deep learning rese",
+  "expected": [
+    {
+      "skill_id": "deep-learning",
+      "requirement": "required",
+      "raw_text": "deep learning"
+    },
+    {
+      "skill_id": "jax",
+      "requirement": "required",
+      "raw_text": "JAX"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "ML frameworks"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    {
+      "skill_id": "tensorflow",
+      "requirement": "required",
+      "raw_text": "TensorFlow"
+    }
+  ]
+}

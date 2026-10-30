@@ -1,0 +1,113 @@
+{
+  "id": "golden_035",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Senior Machine Learning Engineer",
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": false,
+  "source_sha256": "d73c05e01759ce9d0ddd08e9ca22ac2f98f3dcdb917c99cc5a963c36c7a81857",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:llm-orchestration",
+    "skill:model-serving",
+    "skill:software-architecture"
+  ],
+  "adjudicated_by_model": [
+    "skill:agents",
+    "skill:ai-deployment",
+    "skill:apis",
+    "skill:distributed-systems",
+    "skill:inference-optimization"
+  ],
+  "spot_checked": false,
+  "job_description": "Senior Machine Learning Engineer, LLM Inference Optimization\n\nAbout Nebius:\n\nNebius is leading a new era in cloud infrastructure for the global AI economy. We are building a full-stack AI cloud platform that supports developers and enterprises from data and model training through to production deployment, without the cost and complexity of building large in-house AI/ML infrastructure.\n\nBuilt by engineers, for engineers. From large-scale GPU orchestration to inference optimization, we own the hard problems across compute, storage, networking and applied AI.\n\nListed on Nasdaq (NBIS) and headquartered in Amsterdam, we have a global footprint with R&D hubs across Europe, the UK, North America and Israel. Our team of 1,500+ includes hundreds of engineers with deep expertise across hardware, software and AI R&D.\n\nThe role\n\nAs a Senior Machine Learning Engineer on the Applied AI team at Nebius Token Factory, you will own model and endpoint optimization from model artifacts through production deployment. Your work will span model internals, quantization and model compression, speculative decoding, KV-cache optimization, inference engines, serving architecture, and benchmarking to improve latency, throughput, memory efficiency, GPU utilization, and cost per token while preserving quality and reliability.\n\nYou will work with kernel and platform engineers to investigate serving problems, compare configurations, and resolve performance and quality regressions. You will evaluate model- and engine-level optimizations together with distributed inference designs, including request routing, scheduling, prefill/decode coordination, and multi-node GPU execution. Your improvements will be validated through reproducible benchmarks and safe production rollouts under real-world workloads.\n\nYour responsibilities\n\n- Own optimization projects for specific model families, customer endpoints, or serving backends.\n\n- Compare inference engines and recommend serving configurations suited to individual workloads.\n\n- Diagnose model-quality and performance regressions during production rollouts.\n\n- Improve LLM and VLM endpoint latency, throughput, memory efficiency, GPU utilization, quality, and cost per token.\n\n- Deploy, configure, benchmark, and extend engines such as vLLM, SGLang, TensorRT-LLM, Triton Inference Server, and NVIDIA Dynamo.\n\n- Develop production model-compression workflows covering quantization, quantization-aware training, distillation, low-bit serving, and accuracy recovery.\n\n- Implement or integrate speculative decoding, draft-model approaches, KV-cache optimization, prefix caching, chunked prefill, continuous batching, and disaggregated prefill/decode serving. For prefill–decode disaggregation (PDD), evaluate KV-cache transfer, worker placement, and capacity balancing to determine which workloads benefit from the architecture.\n\n- Design and improve LLM request routers and scheduling policies that balance worker utilization, queueing, request characteristics, and KV-cache locality while meeting latency and reliability targets.\n\n- Scale dense and mixture-of-experts inference across multiple GPU nodes. Select and tune tensor, pipeline, data, and expert parallelism—including wide expert parallelism (WideEP)—with attention to hardware topology, expert load balance, and communication overhead.\n\n- Build reproducible benchmark harnesses measuring TTFT, TPOT, tokens per second per GPU, p95/p99 latency, GPU memory, reliability, and cost per token. Validate architecture choices under representative traffic and consistent GPU budgets.\n\n- Collaborate with GPU kernel and platform engineers to trace bottlenecks across model code, kernels, runtime, scheduler, gateway, and cluster layers.\n\n- Produce design documents, performance reports, rollout plans, and customer-facing technical explanations.\n\nMust-haves\n\n- Strong engineering skills in Python and PyTorch.\n\n- Hands-on experience deploying or optimizing LLM, VLM, or high-throughput transformer inference.\n\n- Practical knowledge of at least one modern inference stack, such as vLLM, SGLang, TensorRT-LLM, Triton Inference Server, NVIDIA Dynamo, Ray Serve, KServe, or an equivalent internal system.\n\n- A strong understanding of transformer inference bottlenecks involving KV cache, attention, memory bandwidth, batching, parallelism, and long-context serving.\n\n- Ability to quantify trade-offs among latency, throughput, quality, utilization, and cost.\n\n- Experience designing or optimizing distributed inference system architecture, with hands-on work in one or more areas such as request routing, distributed scheduling, PDD, multi-node inference, or expert parallelism.\n\n- Strong communication and collaboration skills across research, kernel, infrastructure, product, and customer teams.\n\nNice-to-haves\n\n- Experience with quantization-aware training, post-training quantization, FP8, INT8, INT4, NVFP4, MXFP4, AWQ, GPTQ, or SmoothQuant.\n\n- Experience with distillation, speculative decoding, EAGLE, Medusa, multi-token prediction, or related inference acceleration methods.\n\n- Experience supporting agentic workloads involving tool calling, structured outputs, streaming APIs, high concurrency, and multi-step orchestration.\n\n- Familiarity with CUDA or Triton; the role does not require kernel engineering to be the candidate’s primary specialization.\n\n- Contributions to open-source projects such as vLLM, SGLang, TensorRT-LLM, FlashInfer, LMCache, PyTorch, Triton, Ray, or KServe.\n\n- Implementation experience with cache-aware request routing, PDD, or WideEP, including diagnosing communication bottlenecks and load imbalance.\n\n- Familiarity with GPU communication libraries and interconnects, such as NCCL, NVLink, InfiniBand, or RoCE.\n\nBenefits & Perks:\n\n- Competitive compensation\n\n- Career growth and learning opportunities\n\n- Flexibility and ownership\n\n- Collaborative and innovative culture\n\n- Opportunity to work on impactful AI projects\n\n- International environment and talented teams\n\nWhat's it like to work at Nebius:\n\nFast moving - Bold thinking - Constant growth - Meaningful impact - Trust and real ownership - Opportunity to shape the future of AI \n\nEqual Opportunity Statement:\n\nNebius is an equal opportunity employer. We are committed to fostering an inclusive and diverse workplace and to providing equal employment opportunities in all aspects of employment. We do not discriminate on the basis of race, color, religion, sex (including pregnancy), national origin, ancestry, age, disability, genetic information, marital status, veteran status, sexual orientation, gender identity or expression, or any other characteristic protected by applicable law.\n\nApplicants must be authorized to work in the country in which they apply and will be required to provide proof of employment eligibility as a condition of hire. \n\nIf you need accommodations during the application process, please let us know.",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "nice_to_have",
+      "raw_text": "agentic workloads"
+    },
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "deploying or optimizing LLM"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "nice_to_have",
+      "raw_text": "streaming APIs"
+    },
+    {
+      "skill_id": "distributed-systems",
+      "requirement": "required",
+      "raw_text": "distributed inference system architecture"
+    },
+    {
+      "skill_id": "inference-optimization",
+      "requirement": "required",
+      "raw_text": "optimizing LLM, VLM, or high-throughput transformer inference"
+    },
+    {
+      "skill_id": "llm-orchestration",
+      "requirement": "nice_to_have",
+      "raw_text": "multi-step orchestration"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "deploying or optimizing LLM"
+    },
+    {
+      "skill_id": "model-serving",
+      "requirement": "required",
+      "raw_text": "at least one modern inference stack"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "Python and PyTorch"
+    },
+    {
+      "skill_id": "sglang",
+      "requirement": "required",
+      "raw_text": "inference stack, such as vLLM, SGLang"
+    },
+    {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "designing or optimizing distributed inference system architecture"
+    },
+    {
+      "skill_id": "tensorrt",
+      "requirement": "required",
+      "raw_text": "TensorRT-LLM, Triton Inference Server, NVIDIA Dynamo, Ray Serve"
+    },
+    {
+      "skill_id": "tool-calling",
+      "requirement": "nice_to_have",
+      "raw_text": "tool calling"
+    },
+    {
+      "skill_id": "vllm",
+      "requirement": "required",
+      "raw_text": "inference stack, such as vLLM"
+    }
+  ]
+}

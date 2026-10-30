@@ -1,0 +1,69 @@
+{
+  "id": "golden_044",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Lead AI Engineer",
+  "seniority_reviewed": true,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": false,
+  "source_sha256": "8d810e7e452aefa669c53933663b7a21cb9b89caf3472deb1a89da450304fbb0",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:agents",
+    "skill:evaluation",
+    "skill:python"
+  ],
+  "adjudicated_by_model": [
+    "skill:ai-infrastructure"
+  ],
+  "spot_checked": true,
+  "job_description": "Lead AI Engineer, Agents & Infrastructure\n\nABOUT THE ROLE\n\nAs Lead AI Engineer, you will own the platform that makes AI agents capable, reliable, and increasingly autonomous. Working closely with technical and product teammates, you will turn advances in AI into dependable capabilities for a procurement technology platform.\n\n\nWHAT YOU'LL DO\n\n - Build agent orchestration, context management, memory, and programmatic tool calling.\n\n - Enable agents to perform useful work through sandboxed code execution and permission-aware access to data.\n\n - Develop evaluations for multi-turn workflows so agent quality and reliability can be measured.\n\n - Integrate models and build inference infrastructure to make AI practical at scale.\n\n - Create shared foundations that help product engineers deliver agent-powered features.\n\n\nWHAT WE'RE LOOKING FOR\n\n - Typically 5+ years of software engineering experience, with strong engineering fundamentals and hands-on TypeScript skills; Python experience is useful.\n\n - Experience shipping LLM-powered systems to real customers and owning them after launch.\n\n - Deep hands-on experience with agent orchestration, tool calling, and context management.\n\n - Experience with sandboxed code execution, inference infrastructure, or similarly demanding production systems.\n\n - Ability to evaluate system quality beyond demos, make sound technical decisions, and help other engineers succeed.\n\n - Familiarity with evaluation frameworks and failure investigation is useful; procurement experience is a plus.\n\n\nCOMPENSATION & BENEFITS\n\nCompetitive salary and meaningful equity are offered. Salary range was not specified. Visa sponsorship is not available.\n\n\nLOCATION\n\nThis is an on-site role in Berlin, Germany.",
+  "expected": [
+    {
+      "skill_id": "ai-infrastructure",
+      "requirement": "required",
+      "raw_text": "inference infrastructure"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "nice_to_have",
+      "raw_text": "evaluation frameworks"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "LLM-powered systems"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "nice_to_have",
+      "raw_text": "Python experience is useful"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "software engineering"
+    },
+    {
+      "skill_id": "tool-calling",
+      "requirement": "required",
+      "raw_text": "tool calling"
+    },
+    {
+      "skill_id": "typescript",
+      "requirement": "required",
+      "raw_text": "TypeScript"
+    }
+  ]
+}

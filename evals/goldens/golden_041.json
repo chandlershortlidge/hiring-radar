@@ -1,0 +1,108 @@
+{
+  "id": "golden_041",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Senior Applied AI Engineer",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "sehr gute Deutsch- und Englischkenntnisse",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": false,
+  "degree_signal": "abgeschlossenes Studium der Mathematik, Physik, (Wirtschafts-)Informatik oder eines anderen quantitativen Studiengangs",
+  "attrs_reviewed": false,
+  "source_sha256": "e9c2adc89f72f4bc67e8fd8d540427dc7850097f065ba5fca4484a33d114e714",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [],
+  "adjudicated_by_model": [
+    "skill:ci-cd",
+    "skill:containerization",
+    "skill:infrastructure-as-code",
+    "skill:software-engineering"
+  ],
+  "spot_checked": false,
+  "job_description": "Senior Applied AI Engineer\n\nWir finanzieren, was Menschen im Alltag brauchen - zum Beispiel erneuerbare Energien, bezahlbaren Wohnraum, Kitas, Schulen und Krankenhäuser. Dazu gehören auch Bürgerbeteiligungen und die heimische Landwirtschaft. Unseren zahlreichen Privatkund*innen bieten wir modernes Banking zu fairen Konditionen.\nWir investieren in das, was uns voranbringt - auch in die Art, wie wir zusammenarbeiten. Auf unserem Weg zu einer Kultur, in der wir einfach, unternehmerisch und wirksam denken und handeln, suchen wir Menschen, die Verantwortung übernehmen, Komplexes einfacher machen, Entscheidungen voranbringen und gemeinsam mit anderen Lösungen ins Ziel bringen.\nKlingt nach dir? Dann gestalte mit uns die DKB.\n\nDeine Aufgaben\n\n* Du konzipierst und entwickelst robuste, skalierbare Softwarelösungen auf Basis von Foundation Models und klassischem Machine Learning\n* Du setzt GenAI- und NLP-Anwendungen technisch um - von der Anbindung von Modellen und Datenquellen bis zu APIs, Benutzeroberflächen und Integrationen in bestehende Systeme\n* Du übernimmst die technische End-to-End-Verantwortung: vom Proof of Concept über Architektur und Implementierung bis zum produktiven Betrieb\n* Du entwickelst wartbaren, gut getesteten Python-Code und etablierst passende Praktiken für Codequalität, CI/CD, Monitoring und den sicheren Betrieb von KI-Anwendungen\n* Du evaluierst Modelle, Frameworks und Entwicklungsansätze und überführst geeignete neue Technologien in tragfähige Lösungen\n* Du bringst deine Erfahrung in technische Entscheidungen ein und unterstützt Kolleg*innen durch Reviews, Wissensaustausch und gemeinsames Arbeiten an der Codebasis\n* Du erweiterst deine Kenntnisse fortlaufend und entwickelst eigene Ideen und neue Einsatzgebiete für generative KI\n\nDein Profil\n\n* Du hast ein abgeschlossenes Studium der Mathematik, Physik, (Wirtschafts-)Informatik oder eines anderen quantitativen Studiengangs\n* Du verfügst über mehrjährige Berufserfahrung in der professionellen Softwareentwicklung und hast bereits produktive Anwendungen entwickelt und betrieben\n* Du programmierst sicher mit Python und kennst dich mit Softwarearchitektur, APIs, automatisierten Tests, Git und modernen Entwicklungsprozessen aus\n* Du hast fundierte Erfahrung mit NLP und generativer KI und kannst Modelle und Frameworks nicht nur anwenden, sondern sinnvoll in Softwarelösungen integrieren\n* Du bringst praktische Erfahrung mit Cloud Computing und Docker mit; Kenntnisse in CI/CD, Container-Orchestrierung oder Infrastructure as Code sind willkommen\n* Du verstehst Machine Learning und Data Science so gut, dass du geeignete Verfahren auswählen, bewerten und in robuste Anwendungen überführen kannst\n* Du denkst analytisch, arbeitest strukturiert und kommunizierst technische Zusammenhänge prägnant\n* Du hast sehr gute Deutsch- und Englischkenntnisse\n\nDie DKB steht für Vielfalt und Chancengerechtigkeit. Egal, woher du kommst, wie alt du bist, welches Geschlecht, welche Genderidentität, sexuelle Orientierung oder Religion du hast, ob mit oder ohne Behinderung - wir freuen uns auf deine Bewerbung!\n\nBenefits\n* flexibles und mobiles Arbeiten - temporär auch im EU-Ausland\n* spannende und vielfältige Aufgaben mit tollem Teamspirit\n* Weiterbildung und zukunftsrelevante Qualifizierung\n* individuelle Entwicklungs- und Karrierewege\n* 30+ Urlaubstage\n* Duz-Kultur/ kein Dresscode\n* Angebote zum Gesundbleiben\n* Fahrtkostenzuschuss (ÖPNV), JobRad oder Pluxee Benefits Card\n* Extras wie Vermögenswirksame Leistungen\n\nImmer für dich ansprechbar\nDr. Jacob Langner\nTeam Data Science\njacob.langner@dkb.de\nDeutsche Kreditbank AG\nDu möchtest mehr zur DKB erfahren?\nDann schau auf unserer Karriereseite vorbei.",
+  "expected": [
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "Softwarearchitektur, APIs"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "nice_to_have",
+      "raw_text": "Kenntnisse in CI/CD"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Cloud Computing"
+    },
+    {
+      "skill_id": "containerization",
+      "requirement": "nice_to_have",
+      "raw_text": "Container-Orchestrierung"
+    },
+    {
+      "skill_id": "data-science",
+      "requirement": "required",
+      "raw_text": "Machine Learning und Data Science"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Docker"
+    },
+    {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "Git"
+    },
+    {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "nice_to_have",
+      "raw_text": "Infrastructure as Code"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "generativer KI"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "verstehst Machine Learning"
+    },
+    {
+      "skill_id": "nlp",
+      "requirement": "required",
+      "raw_text": "Erfahrung mit NLP"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "programmierst sicher mit Python"
+    },
+    {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "Softwarearchitektur"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "professionellen Softwareentwicklung"
+    },
+    {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "automatisierten Tests"
+    }
+  ]
+}

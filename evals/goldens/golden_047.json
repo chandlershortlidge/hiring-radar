@@ -1,0 +1,148 @@
+{
+  "id": "golden_047",
+  "split": "heldout",
+  "seniority": "junior",
+  "seniority_basis": "stated",
+  "seniority_signal": "(Junior)",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Kommunikationsfähigkeit in Deutsch und Englisch",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": false,
+  "degree_signal": "deinen Studienabschluss mit einem technischen Hintergrund",
+  "attrs_reviewed": false,
+  "source_sha256": "94bb7c9de8d3b63a2ce9ccd6a349f820e80ca88fa1a82efcb5f8879af82c86db",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:devops"
+  ],
+  "adjudicated_by_model": [
+    "skill:gcp",
+    "skill:llm-orchestration"
+  ],
+  "spot_checked": false,
+  "job_description": "(Junior) Agentic AI Software Engineer\n\nAufgaben\nDu unterstützt unsere Kunden bei der Konzeption und Entwicklung und Bereitstellung intelligenter, produktionsreifer Systeme, die große Sprachmodelle (LLMs), autonome Agenten und skalierbare Cloud-Architekturen (AWS, GCP oder Azure) nutzen, sowie bei robuster Orchestrierungs- und Abruf-Pipelines für skalierbare KI-Anwendungen.\nEntwicklung und Betrieb agentenbasierter KI-Systeme, einschließlich mehrstufiger Workflows, Tool-Integration und Komponenten zur autonomen Entscheidungsfindung\nLeitung der End-to-End-Implementierung KI-gesteuerter Funktionen, vom Prototyping (PoC) bis zur Produktionsbereitstellung\nAls Agentic AI Software Engineers entwickelst du modernste Backend-Komponenten, Microservices und Cloud-Infrastrukturen in einem vielfältigen DevOps-Projektumfeld\nIm direkten Austausch mit unseren Kunden und anderen Stakeholdern setzt du konkrete und komplexe Geschäftsanforderungen in produktionsfertige Anwendungen und Cloud-Infrastrukturen\nDurch die Einführung von Best Practices trägst du aktiv zur Optimierung der Entwicklungsstandards, Tools und Prozesse unserer Kunden bei\nDamit wir unseren Kunden immer die besten Lösungen anbieten können, behältst du ein Auge auf neue und innovative Technologien\nBenefits\nRegelmäßige und systematische (externe und interne) Weiterbildungsmöglichkeiten in den Bereichen Generative AI, LLM-Entwicklung, Cloud-Architektur und Data Science\nArbeit in einer offenen, flachen Umgebung, innerhalb eines breiten Reply-Netzwerks zum Wissensaustausch\nPreisgekrönte Büroräume in der Münchner Innenstadt mit Zugang zur Stammstrecke\nFahrkarte für öffentliche Verkehrsmittel mit Deutschlandticket\nBeteiligung an deinen sportlichen Aktivitäten über den EGYM Wellpass und weitere Benefits der Reply Gruppe\nFlexible Arbeitsumgebung zwischen Kunden, Reply-Büro und Remote-Arbeit\nQualifikationen\nWir freuen uns auf deinen Studienabschluss mit einem technischen Hintergrund, zum Beispiel in Informatik, Data Science, Künstliche Intelligenz, Wirtschaftsinformatik oder einem ähnlichen orientierten Studiengang\nErfahrung in der Integration generativer KI-Lösungen (LLMs, Vektordatenbanken, RAG-Pipelines, Orchestrierungs-Frameworks wie LangChain/LangGraph) in Unternehmensumgebungen\nDank deiner praktischen Erfahrung in DevOps-Projekten verfügst du über Kenntnisse in einer der folgenden Programmiersprachen:.NET Core, C#, JavaScript oder Python\nPraktische Erfahrung bei der Bereitstellung von ML-/KI-Modellen in Produktionsumgebungen (vor Ort oder in der Cloud).\nErfahrung mit großen Sprachmodellen (LLMs), Prompt-Engineering, Feinabstimmung und der Integration generativer KI in konkrete Lösungen.\nAußerdem konntest du bereits praktische Erfahrungen mit Backend-Technologien wie NodeJS, Spring/SpringBoot, Flask/Django, REST APIs oder GraphQL, FastAPI sammeln\nDu hattest bereits Berührungspunkte mit Microsoft Azure oder einem anderen Cloud-Anbieter wie AWS oder Google\nMündliche und schriftliche Kommunikationsfähigkeit in Deutsch und Englisch und die Bereitschaft national zu reisen\nFähigkeit, analytische Ergebnisse überzeugend zu kommunizieren und dem Management zu präsentieren\nÜber Machine Learning Reply:\nMachine Learning Reply bietet maßgeschneiderte End-to-End-Lösungen im Data-Science-Bereich an, die den gesamten Projektlebenszyklus abdecken – von der initialen Strategieberatung über die Datenarchitektur und Infrastrukturthemen bis hin zur Datenverarbeitung und Qualitätssicherung unter Verwendung von Machine-Learning-Algorithmen. Machine Learning Reply verfügt über umfassende Expertise im Bereich der Datenwissenschaft in allen Schlüsselindustrien der deutschen HDAX-Unternehmen. Machine Learning Reply befähigt seine Kunden, neue datenbasierte Geschäftsmodelle erfolgreich einzuführen sowie bereits bestehende Prozesse und Produkte zu optimieren – mit einem Schwerpunkt auf Open-Source- und Cloud-Technologien. Mit dem Machine Learning Incubator bietet das Unternehmen ein Programm zur Ausbildung der nächsten Generation von Entscheidungsträgern, Data Scientists und Entwicklern an.",
+  "expected": [
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "Bereitstellung von ML-/KI-Modellen in Produktionsumgebungen"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "REST APIs"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "wie AWS"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Microsoft Azure"
+    },
+    {
+      "skill_id": "backend-development",
+      "requirement": "required",
+      "raw_text": "Backend-Technologien"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Cloud-Anbieter"
+    },
+    {
+      "skill_id": "csharp",
+      "requirement": "required",
+      "raw_text": "C#"
+    },
+    {
+      "skill_id": "devops",
+      "requirement": "required",
+      "raw_text": "DevOps-Projekten"
+    },
+    {
+      "skill_id": "fastapi",
+      "requirement": "required",
+      "raw_text": "FastAPI"
+    },
+    {
+      "skill_id": "fine-tuning",
+      "requirement": "required",
+      "raw_text": "Feinabstimmung"
+    },
+    {
+      "skill_id": "flask",
+      "requirement": "required",
+      "raw_text": "Flask"
+    },
+    {
+      "skill_id": "gcp",
+      "requirement": "required",
+      "raw_text": "Google"
+    },
+    {
+      "skill_id": "graphql",
+      "requirement": "required",
+      "raw_text": "GraphQL"
+    },
+    {
+      "skill_id": "javascript",
+      "requirement": "required",
+      "raw_text": "JavaScript"
+    },
+    {
+      "skill_id": "langchain",
+      "requirement": "required",
+      "raw_text": "LangChain"
+    },
+    {
+      "skill_id": "langgraph",
+      "requirement": "required",
+      "raw_text": "LangGraph"
+    },
+    {
+      "skill_id": "llm-orchestration",
+      "requirement": "required",
+      "raw_text": "Orchestrierungs-Frameworks"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "großen Sprachmodellen (LLMs)"
+    },
+    {
+      "skill_id": "node-js",
+      "requirement": "required",
+      "raw_text": "NodeJS"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "Prompt-Engineering"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG-Pipelines"
+    },
+    {
+      "skill_id": "vector-databases",
+      "requirement": "required",
+      "raw_text": "Vektordatenbanken"
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+  "id": "golden_045",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Lead Product Engineer - AI",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Full professional proficiency in German at C1 level",
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": false,
+  "source_sha256": "285df4cfcea3065100b41dbc42c9c4da46279246070bb9838627006ae92bf7a4",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:model-selection",
+    "skill:software-architecture",
+    "skill:software-engineering"
+  ],
+  "adjudicated_by_model": [
+    "skill:ai-developer-tooling",
+    "skill:ai-ml",
+    "skill:full-stack-development",
+    "skill:llm-orchestration"
+  ],
+  "spot_checked": true,
+  "job_description": "Lead Product Engineer - AI\n\n↳ Alternative locations: Barcelona, Frankfurt a.M., Leipzig, Sevilla\n\nVicoland gives the professional services market a new dimension: Virtual Companies – \"Vicos\". We invented Vicos as a new type of supplier, more efficient than traditional professional services firms (consultancies, system integrators, agencies etc.). We have received 20 million € in round A financing.\n\nVicos may consist of freelancers, SMEs and AI agents. They organize through our AI-driven SaaS platform to act like real companies, competing successfully for large enterprise projects, e g. ERP introductions or AI transformations. Vicos have proven to be more cost-efficient and to deliver better quality than traditional companies.\n\nAlready, 120+ Vicos with thousands of freelancers work on projects for enterprise clients like BASF, Miele, Siemens or Daimler and many SME. Forbes and Forrester have named Vicoland as a leading force transforming the market.\n\nOur certified platform is key to our success. It provides the full digital infrastructure which makes Vicos come true as a new form to organize human labor and human-agentic interaction. It covers end-to-end all essential areas: marketing, finance, legal, and organization.\n\nGiven its ambitious and transformative purpose, our platform is highly complex (though easy use). Developing it further takes engineers who combine technical excellence, pragmatic judgement and entrepreneurial spirit. The Lead Product Engineer - AI we are looking for embodies these qualities in their leadership. They are up for making a major contribution to our company and to our society.\n\nTasks\n\n-\nYou will lead, grow and enable a team of (forward deployed) engineers: make every engineer successful in their role and hire new ones who strengthen the team.\n\n-\nYou will be the only (and main) lead for the engineering team, with career option to progress to CTO\n\n-\nOwn the technical direction and technology decisions for Vicoland. Set the architecture across the stack, from frontend to infrastructure, and make sure what we build is scalable, robust and maintainable.\n\n-\nStay hands-on: contribute features yourself end-2-end by understanding business needs, coding, building prototypes, and for all that using AI to aggressively ship high-quality software alongside your team.\n\n-\nTranslate business needs into technical roadmaps in close cooperation with Business Development, Product and other stakeholders. Prioritize, scope and make trade-offs explicit.\n\n-\nEnsure each team member can work end-to-end: concept & design, development, QA, deployment and production monitoring, with clear engineering standards and quality gates.\n\n-\nContinuously improve how we build with AI: best practices for context engineering, model selection, evaluation, tracing and observability, so that quality is measured, not assumed.\n\n-\nRun architectural discussions, code reviews and retrospectives; create a culture of ownership, constructive challenge and continuous learning.\n\n-\nAct as a sparring partner to the Chief Product Officer and the business leadership team on technology strategy, build-vs-buy decisions and team setup.\n\nRequirements\n\n-\nHave proven people leadership experience: you have led an engineering team (ideally 3+ engineers), including hiring, performance evaluations, career development and coaching.\n\n-\nHave excelled somewhere through an impactful technical contribution, one which we can talk about, and still enjoy writing code yourself.\n\n-\nHave deep hands-on experience across the stack (frontend, backend, data, infrastructure/cloud) and a track record of architecting and shipping production-grade software, preferably with AI components (LLMs, embeddings, RAG pipelines, autonomous agents, PyTorch/TensorFlow).\n\n-\nStrong product sense: You’ve owned a feature or product area end-to-end: talked to users, decided what to build, designed it, and measured whether it worked\n\n-\nHave experience developing AI agents and integrating them into business workflows.\n\n-\nBe on top of the latest tools, models and trends in AI-assisted software engineering. You are excellent at context engineering (incl. prompting), know when to leverage which model, and have first-hand experience with Claude Code or Cursor, and you know how to roll these practices out across a team.\n\n-\nKnow how to evaluate what gets built. You can design eval sets, work with LLM-as-judge or ground-truth data, use tracing and observability tooling to find and fix regressions, and make evaluation a team habit.\n\n-\nBalance autonomy and alignment: you drive your team from idea to finished product independently, while knowing when to involve, align with or escalate to others.\n\n-\nHave the ability to thoughtfully challenge ideas and drive constructive discussions with users, engineers, product, and business leadership.\n\n-\nLead with humility: you create psychological safety, give and receive honest feedback, and measure your success by the success of your team.\n\n-\nReside within ±3 hours of Central European Time (to enable effective collaboration), at best in one of our office locations in Barcelona, Berlin, Frankfurt, Leipzig, and Sevilla.\n\n-\nFull professional proficiency in English at C2 level.\n\n-\nFull professional proficiency in German at C1 level.\n\nBonus Qualifications\n\n-\nExperience building or scaling an engineering team in a startup or scale-up environment.\n\n-\nPrior experience integrating AI into SaaS business workflows, ideally in a client-facing or forward-deployed setup.\n\n-\nFamiliarity with the modern AI-tooling ecosystem (agents, memory systems, vector databases, orchestration frameworks).\n\n-\nExperience working with distributed or multi-location teams.\n\nBenefits\n\n-\nYou’ll work in an international, closely knit team of high‑performers and entrepreneurial spirits.\n\n-\nRemote‑friendly + flexible work hours.\n\n-\nExcellent compensation + participation in the company through our ESOP.\n\n-\nGrowth mindset: Hard skills are important — but mindset matters more. If you meet most of the requirements and you’re hungry to learn, apply anyway.\n\nIf you’re a high‑impact tech lead who thrives on autonomy, drives real results, and is passionate about applying AI to change how teams work - let’s talk. Even if you don’t check every bullet above, but you bring exceptional drive, creativity, and a growth mindset, please apply. We believe the right mindset counts more than checkboxes.",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "developing AI agents"
+    },
+    {
+      "skill_id": "ai-developer-tooling",
+      "requirement": "required",
+      "raw_text": "tools, models and trends in AI-assisted software engineering"
+    },
+    {
+      "skill_id": "ai-ml",
+      "requirement": "nice_to_have",
+      "raw_text": "integrating AI into SaaS business workflows"
+    },
+    {
+      "skill_id": "backend-development",
+      "requirement": "required",
+      "raw_text": "backend"
+    },
+    {
+      "skill_id": "claude-code",
+      "requirement": "required",
+      "raw_text": "Claude Code"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "infrastructure/cloud"
+    },
+    {
+      "skill_id": "cursor",
+      "requirement": "required",
+      "raw_text": "Cursor"
+    },
+    {
+      "skill_id": "embeddings",
+      "requirement": "nice_to_have",
+      "raw_text": "embeddings"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "design eval sets"
+    },
+    {
+      "skill_id": "frontend-development",
+      "requirement": "required",
+      "raw_text": "frontend"
+    },
+    {
+      "skill_id": "full-stack-development",
+      "requirement": "required",
+      "raw_text": "deep hands-on experience across the stack"
+    },
+    {
+      "skill_id": "llm-orchestration",
+      "requirement": "nice_to_have",
+      "raw_text": "orchestration frameworks"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "nice_to_have",
+      "raw_text": "LLMs"
+    },
+    {
+      "skill_id": "model-selection",
+      "requirement": "required",
+      "raw_text": "know when to leverage which model"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "tracing and observability tooling"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "prompting"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "nice_to_have",
+      "raw_text": "PyTorch"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "nice_to_have",
+      "raw_text": "RAG pipelines"
+    },
+    {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "architecting"
+    },
+    {
+      "skill_id": "tensorflow",
+      "requirement": "nice_to_have",
+      "raw_text": "TensorFlow"
+    },
+    {
+      "skill_id": "vector-databases",
+      "requirement": "nice_to_have",
+      "raw_text": "vector databases"
+    }
+  ]
+}

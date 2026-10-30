@@ -1,0 +1,70 @@
+{
+  "id": "golden_034",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Senior Cloud Software Engineer AI",
+  "seniority_reviewed": true,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": false,
+  "source_sha256": "6a481fc8051cf14dac09df434675f0ad568aac5233a6fae0176444624e6e6101",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [],
+  "adjudicated_by_model": [
+    "degree"
+  ],
+  "spot_checked": true,
+  "job_description": "WHO ARE WE LOOKING FOR:\n\nWe are looking for an experienced Senior Cloud Software Engineer AI (m/f/d) for our team working on the productization of our prize-winning redaction pipeline. You will work on the design, development, and operations for the cloud and on-premise product variants.\n\nYOUR ROLE AND RESPONSIBILITIES:\n\n- Together with the team, you will participate in the design and continuous improvement of the existing cloud landscape.\n\n- You are responsible for the scalability of compute-intensive workloads.\n\n- You guide the team in cloud architecture decisions.\n\n- You work across teams to improve problem visibility and translate issues into concrete solutions.\n\n- You reduce cycle times and introduce continuous delivery.\n\n- You steer technical projects from conception through implementation and ensure handover to operations during the testing phase.\n\nIN ORDER FOR YOU TO BE SUCCESSFUL, YOU BRING:\n\n- You have 3+ years of professional experience building resilient, scalable systems and troubleshooting whole-system issues—a degree is not required, but proven experience is.\n\n- You have several years of experience with Microsoft Azure or AWS and associated services.\n\n- You have solid expertise in at least one programming language, either Python or C++.\n\n- You have several years of experience implementing cloud infrastructure solutions, specifically IaC with Terraform and Kubernetes.\n\n- You enjoy working in an agile team with daily scrum-based sprints and consider yourself a good team player.\n\n- You have business-fluent English skills.\n\nWHAT WE OFFER:\n\n- Friendly cooperation at eye level—We live and breathe flat hierarchies with a positive feedback culture.\n\n- Innovation where it matters—A challenging position in a company that is changing the world of video data: Withyouwe will make history.\n\n- Creative and entrepreneurial playground - Get a chance to be your own master, define your own tasks, actively contribute and implement your ideas. Grow yourself and grow the success of the company with direct influence from day one.\n\n- Team spirit celebrates diversity—Numerous events to get to know the teams and meet our great visionaries.\n\n- Flexible working hours - Trust-based and goal-oriented working culture.\n\n- Benefits to smooth your ride in life - Public transport ticket with a 50% subsidy and a huge discount on Urban Sports Club memberships.\n\n- Boost your learning—we’ll fund it - We offer a generous learning budget so you can improve your skills.\n\n- Loft-office in central Berlin - With free drinks and a large balcony with barbecue.\n\nWHY YOU SHOULD WORK HERE:\n\nWe are a diverse, ambitious team with a great passion for data privacy and generative AI. Our office is in the heart of Berlin, one of the coolest, most vibrant cities worldwide. We enjoy teamwork and celebrating successes together. If you are looking for a new challenge with real impact from day one, check out our job openings and apply today!\n\nFind more English Speaking Jobs in Germany on Arbeitnow",
+  "expected": [
+    {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "AWS"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Microsoft Azure"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "cloud infrastructure"
+    },
+    {
+      "skill_id": "cpp",
+      "requirement": "required",
+      "raw_text": "C++"
+    },
+    {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "required",
+      "raw_text": "IaC"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "terraform",
+      "requirement": "required",
+      "raw_text": "Terraform"
+    }
+  ]
+}

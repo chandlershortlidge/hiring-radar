@@ -1,0 +1,132 @@
+{
+  "id": "golden_037",
+  "split": "heldout",
+  "seniority": "mid",
+  "seniority_basis": "inferred",
+  "seniority_signal": "at least 3+ years of experience",
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": false,
+  "source_sha256": "ea242088cabbd5bb12dd83a76c49933256c925ee63336ef233cbfbf5b5158f60",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:ai-deployment",
+    "skill:apis",
+    "skill:aws",
+    "skill:backend-development",
+    "skill:evaluation",
+    "skill:llms",
+    "skill:machine-learning",
+    "skill:ml-engineering",
+    "skill:observability",
+    "skill:postgresql",
+    "skill:serverless"
+  ],
+  "adjudicated_by_model": [
+    "skill:software-engineering"
+  ],
+  "spot_checked": true,
+  "job_description": "AI Engineer\nKuro • Berlin, Germany (On-site)\n\nCurrent Tech Stack\nIt is still day 0 for Kuro. Therefore we are highly pragmatic with our tool choices. We believe in keeping it simple and moving quickly. You significantly help shape our tech stack decisions.\n- Web-App: Typescript / Vite\n- Cloud Functions: Supabase\n- Database / Vector DB and File Storage: Supabase (postgress) / Weaviate / AWS S3\n- Backend (Document Pipelines & applied AI): Fastify API / TS + Python for ML Services\n- Hosting: Railway (Moving to AWS)\n- AI: Azure / OpenAI, Gemini, Cohere\n- Obsv., Eval. & Tracking: Langfuse, Datadog\n\nYour profile\n- You thrive working in a small and accountable team with a lot of ownership\n- You love 0 to 1 phase\n- You want to take full ownership in solving customer problems by designing and implementing features\n- You are passionate about the potential of GenAI, a strong believer in its transformative power, and eager to explore how it can be applied to solve real-world challenges in the construction industry\n- You've build applied AI/ML use cases and brought them to production\n- You have at least 3+ years of experience as a software engineer, machine learning engineer or AI i in a fast paced environment\n- You are fluent in English\n- You are happy to work onsite at our office (Berlin Mitte) on a daily basis\n- You have impressive achievements from previous careers and from side projects — we're excited to hear about these!\n\nWhy Kuro\nYou are joining Kuro at the moment it matters most. The product is live, customers are paying but their journey with Kuro is only beginning and you can shape it from the get-go.\nThis is your chance to join extremely early and help build one of Kuro core functions but also build an extremely rare profile on how to guide enterprise users through this platform shift. There is no playbook, the world is changing at an unprecedented speed and you can shape how one of the most critical industries around the globe wins in this new era.\n\nThe process\n- Talent Acquisition Call — Intro, logistics & fit (30 min)\n- Impact Call — Deep dive with Lea & Get to know Product (30 min)\n- Challenge — A time-boxed business challenge (≤4 hours)\n- Challenge review and deep dive (60 minutes)\n- On-site Day — Meet the team and lunch/dinner\n-Culture Interview (30 Min)\n-Meet several team members\n-Go for lunch with the team\n- Decision",
+  "expected": [
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "applied AI/ML use cases and brought them to production"
+    },
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "applied AI/ML"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "Moving to AWS"
+    },
+    {
+      "skill_id": "aws-s3",
+      "requirement": "required",
+      "raw_text": "AWS S3"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Azure"
+    },
+    {
+      "skill_id": "backend-development",
+      "requirement": "required",
+      "raw_text": "Backend"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "Eval."
+    },
+    {
+      "skill_id": "fastify",
+      "requirement": "required",
+      "raw_text": "Fastify"
+    },
+    {
+      "skill_id": "gemini",
+      "requirement": "required",
+      "raw_text": "Gemini"
+    },
+    {
+      "skill_id": "langfuse",
+      "requirement": "required",
+      "raw_text": "Langfuse"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "Obsv."
+    },
+    {
+      "skill_id": "openai-api",
+      "requirement": "required",
+      "raw_text": "OpenAI"
+    },
+    {
+      "skill_id": "postgresql",
+      "requirement": "required",
+      "raw_text": "postgress"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "serverless",
+      "requirement": "required",
+      "raw_text": "Cloud Functions"
+    },
+    {
+      "skill_id": "typescript",
+      "requirement": "required",
+      "raw_text": "Typescript"
+    },
+    {
+      "skill_id": "vector-databases",
+      "requirement": "required",
+      "raw_text": "Vector DB"
+    },
+    {
+      "skill_id": "weaviate",
+      "requirement": "required",
+      "raw_text": "Weaviate"
+    }
+  ]
+}

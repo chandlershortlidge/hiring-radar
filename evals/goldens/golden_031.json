@@ -1,0 +1,178 @@
+{
+  "id": "golden_031",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Senior AI/LLM Engineer",
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": false,
+  "source_sha256": "c440660fde63616a6c8839ef9481c018fc035193476b8751e35617adb328fc6f",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:ai-deployment",
+    "skill:backend-development"
+  ],
+  "adjudicated_by_model": [
+    "skill:agents"
+  ],
+  "spot_checked": true,
+  "job_description": "Senior AI/LLM Engineer (Python) - Remote\n\nKake is a remote-first company and a people-first global community of senior engineers. Kake engineers are behind some of the world’s most innovative products (Brands you’ve heard!), from Fortune 500 to fast-growing companies. We believe it’s not where your table is, but what you bring to the table that matters. Our community spans 45,000+ engineers across 55+ countries; join a culture where great people stay, grow, and thrive (and love eating kake!).\n\nSenior AI/LLM Engineers with strong Python experience, skilled in designing, building, and productionizing LLM-powered applications and AI systems at scale. It's a great fit for people who enjoy working at the intersection of software engineering and applied AI, and who take ownership from prototyping through production deployment.\n\nWhat you’ll build and own\n\n- Design, build, and deploy LLM-powered features and applications using Python.\n\n- Develop and maintain backend services and APIs (e.g., FastAPI) that expose AI/LLM capabilities to other systems.\n\n- Build and optimize RAG pipelines, including embeddings, vector search, and retrieval strategies.\n\n- Design, test, and iterate on prompts, agents, and orchestration flows using frameworks such as LangChain, LlamaIndex, or similar.\n\n- Integrate with LLM providers and APIs (e.g., OpenAI, Anthropic, open-source models) and manage tradeoffs around cost, latency, and quality.\n\n- Evaluate model outputs systematically, building tooling and metrics to test accuracy, safety, and regression across iterations.\n\n- Work with containerized environments and data infrastructure (e.g., PostgreSQL, Redis, vector databases) to support reliable AI systems in production.\n\n- Collaborate with cross-functional stakeholders to translate ambiguous product needs into technically sound AI solutions.\n\nCore Requirements \n\n- Strong proficiency in Python and experience with FastAPI or similar backend frameworks.\n\n- Experience working with LLM APIs (e.g., OpenAI, Anthropic, or similar) and frameworks such as LangChain or LlamaIndex.\n\n- Experience with RAG architectures, embeddings, and vector databases (e.g., Pinecone, Weaviate, pgvector, or similar).\n\n- Hands-on experience with Docker and containerized development environments.\n\n- Experience working with PostgreSQL, Redis, or similar data stores.\n\n- Strong experience writing functional and integration tests, including evaluation frameworks for AI/LLM output quality.\n\n- Excellent written and verbal communication skills in English.\n\n- Ability to work independently in a remote, fast-paced environment.\n\nNice-to-Have\n\n- Experience fine-tuning or evaluating open-source LLMs.\n\n- Familiarity with prompt engineering best practices and agentic workflows.\n\n- Experience with distributed systems, streaming (e.g., Kafka), or large-scale applications.\n\n- Background in machine learning fundamentals (e.g., scikit-learn, PyTorch, or TensorFlow).\n\n- Comfortable working flexible hours to overlap with distributed teams across different time zones.\n\nAdditional\n\n- US Timezone Overlap: 5h–6h daily PST\n\nWhy Join Kake?\n\nThe icing on the Kake:\n\n- 💰 Competitive Pay in USD: Work globally, get paid globally.\n\n- 🌎 Fully Remote: Simply put, we trust you.\n\n- 💜 Better Me Fund: We invest in your personal growth and passions.\n\n- 🎂 Compassion is Badass: Join a community that invests in social good.\n\nReady for your piece of the Kake? Apply now!\n\nQuick note: Due to the high volume of applications, only shortlisted candidates will be contacted.",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "nice_to_have",
+      "raw_text": "agentic workflows"
+    },
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "productionizing LLM-powered applications"
+    },
+    {
+      "skill_id": "anthropic-api",
+      "requirement": "required",
+      "raw_text": "Anthropic, or similar"
+    },
+    {
+      "skill_id": "backend-development",
+      "requirement": "required",
+      "raw_text": "similar backend frameworks"
+    },
+    {
+      "skill_id": "containerization",
+      "requirement": "required",
+      "raw_text": "containerized development environments"
+    },
+    {
+      "skill_id": "distributed-systems",
+      "requirement": "nice_to_have",
+      "raw_text": "distributed systems"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Hands-on experience with Docker"
+    },
+    {
+      "skill_id": "embeddings",
+      "requirement": "required",
+      "raw_text": "embeddings, and vector databases"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "evaluation frameworks for AI/LLM output quality"
+    },
+    {
+      "skill_id": "fastapi",
+      "requirement": "required",
+      "raw_text": "experience with FastAPI"
+    },
+    {
+      "skill_id": "fine-tuning",
+      "requirement": "nice_to_have",
+      "raw_text": "fine-tuning"
+    },
+    {
+      "skill_id": "kafka",
+      "requirement": "nice_to_have",
+      "raw_text": "Kafka"
+    },
+    {
+      "skill_id": "langchain",
+      "requirement": "required",
+      "raw_text": "LangChain or LlamaIndex"
+    },
+    {
+      "skill_id": "llamaindex",
+      "requirement": "required",
+      "raw_text": "LangChain or LlamaIndex"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "LLM APIs"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "nice_to_have",
+      "raw_text": "machine learning fundamentals"
+    },
+    {
+      "skill_id": "open-source-llms",
+      "requirement": "nice_to_have",
+      "raw_text": "open-source LLMs"
+    },
+    {
+      "skill_id": "openai-api",
+      "requirement": "required",
+      "raw_text": "LLM APIs (e.g., OpenAI"
+    },
+    {
+      "skill_id": "pgvector",
+      "requirement": "required",
+      "raw_text": "pgvector"
+    },
+    {
+      "skill_id": "postgresql",
+      "requirement": "required",
+      "raw_text": "Experience working with PostgreSQL"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "nice_to_have",
+      "raw_text": "prompt engineering"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Strong proficiency in Python"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "nice_to_have",
+      "raw_text": "PyTorch"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG architectures"
+    },
+    {
+      "skill_id": "scikit-learn",
+      "requirement": "nice_to_have",
+      "raw_text": "scikit-learn"
+    },
+    {
+      "skill_id": "tensorflow",
+      "requirement": "nice_to_have",
+      "raw_text": "TensorFlow"
+    },
+    {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "functional and integration tests"
+    },
+    {
+      "skill_id": "vector-databases",
+      "requirement": "required",
+      "raw_text": "vector databases (e.g."
+    },
+    {
+      "skill_id": "weaviate",
+      "requirement": "required",
+      "raw_text": "Weaviate"
+    }
+  ]
+}
