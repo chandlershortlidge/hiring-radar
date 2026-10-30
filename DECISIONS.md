@@ -28,6 +28,20 @@ A mismatch is exactly the case that cost us this week, and the hook's message sa
 and decide rather than offering a fix — rewriting `TICKET` to match the branch would pass
 the check and lose the signal.
 
+**The hook is the backstop; the first action of the session is the fix.** AGENTS.md opens
+with it, ahead of everything else in the project block: ask which ticket this session is
+for if the prompt does not name one, switch to that ticket's branch — freshly cut from an
+up-to-date main, or the existing one — and only then write the id to `TICKET`. The rule it
+replaces is "never inherit whatever branch the terminal is on": between sessions the
+terminal is left wherever the last one ended, and reading that as a statement of intent is
+how all three wrong-branch commits happened. A branch is now chosen, never inherited.
+
+Ordering it first is the point, not decoration. An agent that reads the code before fixing
+the branch has already spent the part of the session where switching is free — by the time
+the hook says no, there is a diff to move, and moving it is where the mistakes live. The
+cost is a question at the top of sessions whose prompt omits the ticket; that is cheaper
+than the HIR-70 merge.
+
 **Not chosen.** A commit-msg hook parsing the ticket out of the message: it fires after the
 message is written, catches nothing about where the commit lands, and would push the id into
 every subject line. A `prepare-commit-msg` hook that fills the id in: helpful, but it makes
