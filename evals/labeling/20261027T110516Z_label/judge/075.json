@@ -1,0 +1,15 @@
+{
+  "item": 75,
+  "golden_id": "golden_032",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "9e78efa4142d0a1801ac658ae5f74fa266afb1a399379c550ee252092d026ec4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"By Rule 1, the qualification bullet asks for hands-on experience with 'agentic systems' and 'integrating agents'.\"}",
+  "decision": "ok",
+  "why": "By Rule 1, the qualification bullet asks for hands-on experience with 'agentic systems' and 'integrating agents'.",
+  "error": null
+}

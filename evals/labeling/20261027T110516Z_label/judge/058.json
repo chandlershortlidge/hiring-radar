@@ -1,0 +1,15 @@
+{
+  "item": 58,
+  "golden_id": "golden_025",
+  "kind": "skill",
+  "key": "apis",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "e947af5569f45091132ee3db824b59b491700a35b8fafd92da726cc6e7eb17c9",
+  "raw": "{\"decision\": \"ok\", \"why\": \"By Rule 1 and Rule 2, requiring deep knowledge of 'REST' alongside Microservices and backend architecture in a qualification bullet counts as the `apis` skill.\"}",
+  "decision": "ok",
+  "why": "By Rule 1 and Rule 2, requiring deep knowledge of 'REST' alongside Microservices and backend architecture in a qualification bullet counts as the `apis` skill.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 104,
+  "golden_id": "golden_041",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "5fb3f19bad7ee69ae64ad197d826ce80a628868e099ae9a7362a5dac40dc4909",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet that names the skill ('professionellen Softwareentwicklung') counts rather than being just a job title.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet that names the skill ('professionellen Softwareentwicklung') counts rather than being just a job title.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 94,
+  "golden_id": "golden_037",
+  "kind": "skill",
+  "key": "observability",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "7b346d2bae6e9968fec633de4cd37fb86e4f699d3f47ad717a0b33ba034908b1",
+  "raw": "{\"decision\": \"drop\", \"why\": \"By rules 1 and 4, 'Obsv.' appears only in the 'Current Tech Stack' list rather than in a qualification asking the candidate for the skill.\"}",
+  "decision": "drop",
+  "why": "By rules 1 and 4, 'Obsv.' appears only in the 'Current Tech Stack' list rather than in a qualification asking the candidate for the skill.",
+  "error": null
+}

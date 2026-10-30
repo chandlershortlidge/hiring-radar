@@ -1,0 +1,15 @@
+{
+  "item": 56,
+  "golden_id": "golden_025",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "04214382e6be91ab7e2ac6b673b843402cf0ae933801a294fb4ae52b2f73f2c7",
+  "raw": "{\"decision\": \"ok\", \"why\": \"By Rule 1 and Rule 3, the qualification bullet under 'Dein Profil' requires a 'Studium der Informatik' (defaulting to bachelor) with an explicit equivalence clause ('oder vergleichbar, oder Du überzeugst uns, dass es auch anders geht').\"}",
+  "decision": "ok",
+  "why": "By Rule 1 and Rule 3, the qualification bullet under 'Dein Profil' requires a 'Studium der Informatik' (defaulting to bachelor) with an explicit equivalence clause ('oder vergleichbar, oder Du überzeugst uns, dass es auch anders geht').",
+  "error": null
+}

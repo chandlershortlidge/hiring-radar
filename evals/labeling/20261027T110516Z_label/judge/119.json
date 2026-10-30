@@ -1,0 +1,15 @@
+{
+  "item": 119,
+  "golden_id": "golden_047",
+  "kind": "skill",
+  "key": "llm-orchestration",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "3eba5368a0d9c8c02de92d159bdd2101c3602641fe6124db648b7674d954d201",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Rule 1 and Rule 3: 'Orchestrierungs-Frameworks' in the context of generative AI solutions directly names LLM orchestration as a required qualification.\"}",
+  "decision": "ok",
+  "why": "Rule 1 and Rule 3: 'Orchestrierungs-Frameworks' in the context of generative AI solutions directly names LLM orchestration as a required qualification.",
+  "error": null
+}

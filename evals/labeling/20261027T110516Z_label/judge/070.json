@@ -1,0 +1,15 @@
+{
+  "item": 70,
+  "golden_id": "golden_029",
+  "kind": "skill",
+  "key": "testing",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "140208f3a3ae3589b5b74c7e12f12c7bbd7abfaa8c976bf8aba0903e9a190318",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Rule 1: A qualification bullet explicitly requires knowledge of 'Testautomatisierungstools / -frameworks', which directly corresponds to the `testing` skill.\"}",
+  "decision": "ok",
+  "why": "Rule 1: A qualification bullet explicitly requires knowledge of 'Testautomatisierungstools / -frameworks', which directly corresponds to the `testing` skill.",
+  "error": null
+}

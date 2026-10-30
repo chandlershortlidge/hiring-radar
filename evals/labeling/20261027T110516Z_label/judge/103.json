@@ -1,0 +1,15 @@
+{
+  "item": 103,
+  "golden_id": "golden_041",
+  "kind": "skill",
+  "key": "infrastructure-as-code",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "514119cd7184f952dadc38c9a2faf2dc22a159437bcef5dd4b3b538628818cfd",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Rule 1 applies because 'Infrastructure as Code' is explicitly named in a qualification bullet as a welcome (nice-to-have) skill.\"}",
+  "decision": "ok",
+  "why": "Rule 1 applies because 'Infrastructure as Code' is explicitly named in a qualification bullet as a welcome (nice-to-have) skill.",
+  "error": null
+}

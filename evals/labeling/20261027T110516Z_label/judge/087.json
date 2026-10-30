@@ -1,0 +1,15 @@
+{
+  "item": 87,
+  "golden_id": "golden_036",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "a7bd12f4fe302773230bbcf816d781a1ba2d9a0403927bd41ad1a111063a9a39",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the qualification bullet explicitly requires experience in developing and implementing 'AI- und Machine-Learning-Lösungen'.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the qualification bullet explicitly requires experience in developing and implementing 'AI- und Machine-Learning-Lösungen'.",
+  "error": null
+}

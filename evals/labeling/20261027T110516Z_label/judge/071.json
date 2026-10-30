@@ -1,0 +1,15 @@
+{
+  "item": 71,
+  "golden_id": "golden_030",
+  "kind": "skill",
+  "key": "data-modeling",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "e171be35d9ac63b0dfa864c59626d5fb0544d4092c6a0e092c59724d5ec01eb1",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification bullet under 'Dein Skillset' explicitly asks for hands-on experience with data models ('Datenmodelle').\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification bullet under 'Dein Skillset' explicitly asks for hands-on experience with data models ('Datenmodelle').",
+  "error": null
+}

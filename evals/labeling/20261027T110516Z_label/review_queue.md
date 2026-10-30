@@ -531,7 +531,7 @@ PROPOSED: `drop` - "experience as a software engineer", same role line as item 4
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: drop
 
 ## 44. golden_038 - skill `machine-learning` (disagreement)
 
@@ -555,7 +555,7 @@ PROPOSED: `A` - the text names "Container-Orchestrierung", so the broad quote na
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 46. golden_044 - skill `agents` (disagreement)
 
@@ -581,7 +581,7 @@ PROPOSED: `B` - Bonus Qualifications bullet, so nice_to_have; no required `ai-ml
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 48. golden_045 - skill `full-stack-development` (disagreement)
 
@@ -594,7 +594,7 @@ PROPOSED: `B` - qualification bullet names hands-on experience across the stack
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 49. golden_045 - skill `llm-orchestration` (disagreement)
 
@@ -607,7 +607,7 @@ PROPOSED: `A` - Bonus Qualifications bullet names "orchestration frameworks", so
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 50. golden_045 - skill `software-architecture` (disagreement)
 
@@ -666,7 +666,7 @@ PROPOSED: `A` - qualification sentence names "Retrieval-Pipelines"
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 55. golden_048 - skill `ai-ml` (disagreement)
 
@@ -692,7 +692,7 @@ PROPOSED: `ok` - degree named with no level -> bachelor; "oder vergleichbar" -> 
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 57. golden_025 - attribute `seniority` (uncertain)
 
@@ -705,7 +705,7 @@ PROPOSED: `ok` - the title names the level. "Distinguished Engineer" is not in t
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 58. golden_025 - skill `apis` (uncertain)
 
@@ -718,7 +718,7 @@ PROPOSED: `ok` - "REST" is a named technology in a requirements list
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 59. golden_025 - skill `software-architecture` (uncertain)
 
@@ -744,7 +744,7 @@ PROPOSED: `ok` - "(Senior)" in the title, basis stated
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 61. golden_026 - skill `ai-infrastructure` (uncertain)
 
@@ -757,7 +757,7 @@ PROPOSED: `ok` - named in an optional section, so nice_to_have
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 62. golden_027 - skill `ai-deployment` (uncertain)
 
@@ -770,7 +770,7 @@ PROPOSED: `ok` - "Deployment-Patterns" names it in a requirements list
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 63. golden_027 - skill `model-versioning` (uncertain)
 
@@ -783,7 +783,7 @@ PROPOSED: `ok` - "Versionierung" names model versioning in a list of MLOps pract
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 64. golden_027 - skill `software-architecture` (uncertain)
 
@@ -796,7 +796,7 @@ PROPOSED: `ok` - "Architekturdesign" names it
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 65. golden_028 - skill `ai-deployment` (uncertain)
 
@@ -835,7 +835,7 @@ PROPOSED: `ok` - `fine-tuning` is already a separate accepted criterion, so the 
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 68. golden_029 - skill `ai-developer-tooling` (uncertain)
 
@@ -848,7 +848,7 @@ PROPOSED: `ok` - "KI-assistiertes Code-Authoring" names AI coding tooling
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 69. golden_029 - skill `ai-ml` (uncertain)
 
@@ -874,7 +874,7 @@ PROPOSED: `ok` - names test automation tooling in a requirements list
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 71. golden_030 - skill `data-modeling` (uncertain)
 
@@ -887,7 +887,7 @@ PROPOSED: `ok` - "Datenmodelle" names data modeling
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 72. golden_030 - skill `software-architecture` (uncertain)
 
@@ -900,7 +900,7 @@ PROPOSED: `ok` - "von Vorteil" on the bullet -> nice_to_have, requirement rule 2
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 73. golden_031 - skill `agents` (uncertain)
 
@@ -913,7 +913,7 @@ PROPOSED: `ok` - "agentic workflows" under an optional heading
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 74. golden_032 - attribute `seniority` (uncertain)
 
@@ -926,7 +926,7 @@ PROPOSED: `ok` - "mentoring peers" is lead/mentoring duty, a valid inferred basi
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 75. golden_032 - skill `agents` (uncertain)
 
@@ -939,7 +939,7 @@ PROPOSED: `ok` - "agentic systems" names it
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 76. golden_032 - skill `cloud` (uncertain)
 
@@ -952,7 +952,7 @@ PROPOSED: `ok` - "Cloud-native development" names cloud
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 77. golden_032 - skill `llm-guardrails` (uncertain)
 
@@ -965,7 +965,7 @@ PROPOSED: `ok` - "runtime guardrails" names it
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 78. golden_032 - skill `testing` (uncertain)
 
@@ -978,7 +978,7 @@ PROPOSED: `ok` - "automated testing" names it
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 79. golden_033 - skill `ai-developer-tooling` (uncertain)
 
@@ -1004,7 +1004,7 @@ PROPOSED: `ok` - the posting mentions no degree, so null is right
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 81. golden_035 - skill `agents` (uncertain)
 
@@ -1017,7 +1017,7 @@ PROPOSED: `ok` - "agentic workloads" under an optional heading
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 82. golden_035 - skill `ai-deployment` (uncertain)
 
@@ -1043,7 +1043,7 @@ PROPOSED: `ok` - "streaming APIs" named, optional marker on the bullet
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 84. golden_035 - skill `distributed-systems` (uncertain)
 
@@ -1056,7 +1056,7 @@ PROPOSED: `ok` - "distributed inference system architecture" names it
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 85. golden_035 - skill `inference-optimization` (uncertain)
 
@@ -1069,7 +1069,7 @@ PROPOSED: `ok` - names inference optimization directly
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 86. golden_036 - attribute `degree` (uncertain)
 
@@ -1097,7 +1097,7 @@ PROPOSED: `ok` - "AI- und Machine-Learning-Lösungen" names it
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 88. golden_036 - skill `software-architecture` (uncertain)
 
@@ -1123,7 +1123,7 @@ PROPOSED: `ok` - a qualification bullet naming the practice, the clean form of y
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 90. golden_037 - skill `aws` (uncertain)
 
@@ -1214,7 +1214,7 @@ PROPOSED: `ok` - "BSc" names bachelor, no equivalence offered
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 97. golden_038 - skill `software-engineering` (uncertain)
 
@@ -1227,7 +1227,7 @@ PROPOSED: `ok` - "excellent software engineering skills", a qualification bullet
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 98. golden_038 - skill `statistics` (uncertain)
 
@@ -1266,7 +1266,7 @@ PROPOSED: `ok` - "experiment tools" under an optional heading
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 101. golden_040 - skill `inference-optimization` (uncertain)
 
@@ -1279,7 +1279,7 @@ PROPOSED: `ok` - names optimization for edge and embedded targets
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 102. golden_041 - skill `ci-cd` (uncertain)
 
@@ -1292,7 +1292,7 @@ PROPOSED: `ok` - "von Vorteil" section -> nice_to_have. raw_text could trim to "
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 103. golden_041 - skill `infrastructure-as-code` (uncertain)
 
@@ -1305,7 +1305,7 @@ PROPOSED: `ok` - "Infrastructure as Code" named, optional section
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 104. golden_041 - skill `software-engineering` (uncertain)
 
@@ -1318,7 +1318,7 @@ PROPOSED: `ok` - "professionellen Softwareentwicklung" names the practice
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 105. golden_042 - attribute `degree` (uncertain)
 
@@ -1331,7 +1331,7 @@ PROPOSED: `ok` - "MSc or higher" -> master, "or equivalent professional experien
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 106. golden_042 - skill `deep-learning` (uncertain)
 
@@ -1344,7 +1344,7 @@ PROPOSED: `ok` - "deep learning" named
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 107. golden_042 - skill `machine-learning` (uncertain)
 
@@ -1383,7 +1383,7 @@ PROPOSED: `ok` - "inference infrastructure" names it
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 110. golden_044 - skill `evaluation` (uncertain)
 
@@ -1422,7 +1422,7 @@ PROPOSED: `ok` - this is the bullet item 51 also quotes, and this is the skill i
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 113. golden_045 - skill `model-selection` (uncertain)
 
@@ -1513,7 +1513,7 @@ PROPOSED: `ok` - "Orchestrierungs-Frameworks" names it
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 120. golden_048 - skill `prompt-engineering` (uncertain)
 
@@ -1539,7 +1539,7 @@ PROPOSED: `B` - the phrase names agent-based test *architectures*, and a specifi
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 122. golden_025 - attribute `german` (spot-check)
 

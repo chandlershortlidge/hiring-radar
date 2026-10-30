@@ -1,0 +1,15 @@
+{
+  "item": 114,
+  "golden_id": "golden_046",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "bcd0ec2775d2bac0b59e1b00e2cd38c24152274e6b73be47614f15b10b4de31d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the qualification sentence explicitly requires a completed university degree ('Studium der Informatik, Wirtschaftsinformatik') or equivalent technical training ('oder eine vergleichbare technische Ausbildung').\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the qualification sentence explicitly requires a completed university degree ('Studium der Informatik, Wirtschaftsinformatik') or equivalent technical training ('oder eine vergleichbare technische Ausbildung').",
+  "error": null
+}

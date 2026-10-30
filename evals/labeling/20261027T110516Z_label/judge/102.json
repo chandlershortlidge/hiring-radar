@@ -1,0 +1,15 @@
+{
+  "item": 102,
+  "golden_id": "golden_041",
+  "kind": "skill",
+  "key": "ci-cd",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "fef132f5b9ca14e416d3299c8cf4abfa9e647954f67f7d7629b2adbddf0bd9c5",
+  "raw": "{\"decision\": \"ok\", \"why\": \"By Rule 1, the qualification bullet names CI/CD and specifies that knowledge in it is welcome ('sind willkommen'), making it nice_to_have.\"}",
+  "decision": "ok",
+  "why": "By Rule 1, the qualification bullet names CI/CD and specifies that knowledge in it is welcome ('sind willkommen'), making it nice_to_have.",
+  "error": null
+}

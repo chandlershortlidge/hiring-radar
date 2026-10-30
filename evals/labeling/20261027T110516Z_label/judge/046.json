@@ -1,0 +1,15 @@
+{
+  "item": 46,
+  "golden_id": "golden_044",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "65a929493c03a25315d0949aa23d1a43d8cec961e3de49e83de5e0676a2bc3e2",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Per Rules 1 and 4, mentions in the job title and 'WHAT YOU'LL DO' responsibilities section do not count unless the skill is also asked for in the qualifications.\"}",
+  "decision": "drop",
+  "why": "Per Rules 1 and 4, mentions in the job title and 'WHAT YOU'LL DO' responsibilities section do not count unless the skill is also asked for in the qualifications.",
+  "error": null
+}

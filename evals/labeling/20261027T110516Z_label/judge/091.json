@@ -1,0 +1,15 @@
+{
+  "item": 91,
+  "golden_id": "golden_037",
+  "kind": "skill",
+  "key": "backend-development",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "e15a138dbfd79dd6e5bcccc3d849d9fd4f29c2f20ae15182bcff009373ed4a6c",
+  "raw": "{\"decision\": \"drop\", \"why\": \"By rules 1 and 4, 'Backend' only appears as a category heading in the company's current tech stack description, not as a qualification asked of the candidate.\"}",
+  "decision": "drop",
+  "why": "By rules 1 and 4, 'Backend' only appears as a category heading in the company's current tech stack description, not as a qualification asked of the candidate.",
+  "error": null
+}

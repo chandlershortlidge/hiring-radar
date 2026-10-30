@@ -1,0 +1,15 @@
+{
+  "item": 60,
+  "golden_id": "golden_026",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "d36ac4c0abc0bf56fcc42542fb43a45c7657755ba66c603512ee943a1dce4c58",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Per Rule 3, the job title explicitly states '(Senior) Platform Engineer', supporting the agreed senior seniority attribute and verbatim signal.\"}",
+  "decision": "ok",
+  "why": "Per Rule 3, the job title explicitly states '(Senior) Platform Engineer', supporting the agreed senior seniority attribute and verbatim signal.",
+  "error": null
+}

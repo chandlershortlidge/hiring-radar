@@ -1,0 +1,15 @@
+{
+  "item": 82,
+  "golden_id": "golden_035",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "24f0fee54a40f1d5b97da3cbed31be038247ff66f96c20b539a053ad3597ce7a",
+  "raw": "{\"decision\": \"ok\", \"why\": \"By Rule 1 and Rule 3, the qualification bullet under 'Must-haves' asking for experience 'deploying or optimizing LLM' directly requires the `ai-deployment` skill.\"}",
+  "decision": "ok",
+  "why": "By Rule 1 and Rule 3, the qualification bullet under 'Must-haves' asking for experience 'deploying or optimizing LLM' directly requires the `ai-deployment` skill.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 109,
+  "golden_id": "golden_044",
+  "kind": "skill",
+  "key": "ai-infrastructure",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "d86835f4bb579aa7c96d0f2aa83ebcc7ec6bfcf112eaad4b6a24a48abeb42d47",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Per rule 1, 'inference infrastructure' is explicitly named in a qualification bullet under 'WHAT WE'RE LOOKING FOR'.\"}",
+  "decision": "ok",
+  "why": "Per rule 1, 'inference infrastructure' is explicitly named in a qualification bullet under 'WHAT WE'RE LOOKING FOR'.",
+  "error": null
+}

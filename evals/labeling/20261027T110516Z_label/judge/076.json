@@ -1,0 +1,15 @@
+{
+  "item": 76,
+  "golden_id": "golden_032",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "431b33e2a33182886ed0c45b8bec843c95ddf36f4a8f8a20953c53216c81718c",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Rule 1: A qualification bullet explicitly names 'Cloud-native development', which supports the `cloud` skill.\"}",
+  "decision": "ok",
+  "why": "Rule 1: A qualification bullet explicitly names 'Cloud-native development', which supports the `cloud` skill.",
+  "error": null
+}

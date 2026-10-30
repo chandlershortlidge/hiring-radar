@@ -1,0 +1,15 @@
+{
+  "item": 45,
+  "golden_id": "golden_041",
+  "kind": "skill",
+  "key": "containerization",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "f294e78fbfe4a623a2f3c91bf77636aba1c24c3b922dd9ee5fb3910e39eef742",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1, the qualification bullet explicitly asks for 'Container-Orchestrierung' as a nice-to-have skill ('sind willkommen').\"}",
+  "decision": "A",
+  "why": "Under Rule 1, the qualification bullet explicitly asks for 'Container-Orchestrierung' as a nice-to-have skill ('sind willkommen').",
+  "error": null
+}

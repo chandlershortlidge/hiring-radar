@@ -1,0 +1,15 @@
+{
+  "item": 93,
+  "golden_id": "golden_037",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "8faabe520e76b395dbf9e2ccf5f55383257acac946cee59add29678663779e0d",
+  "raw": "{\"decision\": \"drop\", \"why\": \"By Rule 5 and Rule 4, 'GenAI' is a broader concept than LLMs (and here only asked for as passion rather than a skill), while the specific LLM providers in the tech stack are not requested in the candidate profile.\"}",
+  "decision": "drop",
+  "why": "By Rule 5 and Rule 4, 'GenAI' is a broader concept than LLMs (and here only asked for as passion rather than a skill), while the specific LLM providers in the tech stack are not requested in the candidate profile.",
+  "error": null
+}

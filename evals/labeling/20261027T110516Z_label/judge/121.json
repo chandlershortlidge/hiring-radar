@@ -1,0 +1,15 @@
+{
+  "item": 121,
+  "golden_id": "golden_029",
+  "kind": "skill",
+  "key": "agents|agent-architecture",
+  "reason": "mapping",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "8ad4a6a54a9fd54c0a8941b6cf8bb06e9987e9acdb76fb2c1ade82c5fad5ee05",
+  "raw": "{\"decision\": \"B\", \"why\": \"Per rules 1 and 5, the qualification specifically asks for 'agentenbasierte Testarchitekturen' (`agent-architecture`), so we map to the specific skill without adding the broader parent `agents` skill.\"}",
+  "decision": "B",
+  "why": "Per rules 1 and 5, the qualification specifically asks for 'agentenbasierte Testarchitekturen' (`agent-architecture`), so we map to the specific skill without adding the broader parent `agents` skill.",
+  "error": null
+}

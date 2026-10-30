@@ -1,0 +1,15 @@
+{
+  "item": 90,
+  "golden_id": "golden_037",
+  "kind": "skill",
+  "key": "aws",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "d4ac1d3b2ffc5658bf1a247bf5fec3fcb126206c038563d7a567c1c5705c2a3f",
+  "raw": "{\"decision\": \"drop\", \"why\": \"By rules 1 and 4, a mention in a 'Current Tech Stack' list (especially a future migration plan like 'Moving to AWS') does not count as a qualification asked of the candidate.\"}",
+  "decision": "drop",
+  "why": "By rules 1 and 4, a mention in a 'Current Tech Stack' list (especially a future migration plan like 'Moving to AWS') does not count as a qualification asked of the candidate.",
+  "error": null
+}

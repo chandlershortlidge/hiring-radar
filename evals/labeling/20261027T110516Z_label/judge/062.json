@@ -1,0 +1,15 @@
+{
+  "item": 62,
+  "golden_id": "golden_027",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "77288fca55010332c1a55507b6c501a45644eab44c1f30c2dbf1b72b7bc630ee",
+  "raw": "{\"decision\": \"ok\", \"why\": \"By Rule 1, a qualification bullet under 'Dein Profil' explicitly names 'Deployment-Patterns' in the context of LLMOps for productive AI systems.\"}",
+  "decision": "ok",
+  "why": "By Rule 1, a qualification bullet under 'Dein Profil' explicitly names 'Deployment-Patterns' in the context of LLMOps for productive AI systems.",
+  "error": null
+}

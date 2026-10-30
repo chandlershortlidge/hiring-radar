@@ -1,0 +1,15 @@
+{
+  "item": 107,
+  "golden_id": "golden_042",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "3ef0ceaca7146697331d4e6720326903d00ae0d55a3bd277b0c460c37f851607",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Per Rule 1 and Rule 3, the agreed required mention in the qualification bullet counts and is valid as stands.\"}",
+  "decision": "ok",
+  "why": "Per Rule 1 and Rule 3, the agreed required mention in the qualification bullet counts and is valid as stands.",
+  "error": null
+}

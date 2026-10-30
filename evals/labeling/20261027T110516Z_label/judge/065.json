@@ -1,0 +1,18 @@
+{
+  "item": 65,
+  "golden_id": "golden_028",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "937c5106d5bb7866634dfc4eff0e31e687970f7fe9bc300cdbbf00d8b3513780",
+  "raw": "{\"decision\": {\"requirement\": \"required\", \"raw_text\": \"Deployment und dem produktiven Betrieb von KI-Modellen\"}, \"why\": \"By Rule 1 and Rule 3, a qualification bullet asks for 'Deployment und dem produktiven Betrieb von KI-Modellen', and the full phrase is needed to show it is AI deployment rather than generic software deployment.\"}",
+  "decision": {
+    "requirement": "required",
+    "raw_text": "Deployment und dem produktiven Betrieb von KI-Modellen"
+  },
+  "why": "By Rule 1 and Rule 3, a qualification bullet asks for 'Deployment und dem produktiven Betrieb von KI-Modellen', and the full phrase is needed to show it is AI deployment rather than generic software deployment.",
+  "error": null
+}

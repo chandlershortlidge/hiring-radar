@@ -1,0 +1,15 @@
+{
+  "item": 83,
+  "golden_id": "golden_035",
+  "kind": "skill",
+  "key": "apis",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "ef9b7dd6909b76b82cc579bb4fbc0d606a9e2f7d3d1e67ca82e22d6d9256b2a6",
+  "raw": "{\"decision\": \"ok\", \"why\": \"By Rule 1 and Rule 2, supporting inference workloads that serve streaming APIs counts as building/supporting APIs under the Nice-to-haves section.\"}",
+  "decision": "ok",
+  "why": "By Rule 1 and Rule 2, supporting inference workloads that serve streaming APIs counts as building/supporting APIs under the Nice-to-haves section.",
+  "error": null
+}

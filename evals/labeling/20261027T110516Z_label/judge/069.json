@@ -1,0 +1,15 @@
+{
+  "item": 69,
+  "golden_id": "golden_029",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "ec80adc132cb71ea1647b2a0522c19e14b0ca85d99bf72dcb39b8185bc44d6da",
+  "raw": "{\"decision\": \"ok\", \"why\": \"By Rule 1, the qualification bullets explicitly require AI skills, including 'KI-Services' and 'Einsatz von KI', so the agreed label is valid.\"}",
+  "decision": "ok",
+  "why": "By Rule 1, the qualification bullets explicitly require AI skills, including 'KI-Services' and 'Einsatz von KI', so the agreed label is valid.",
+  "error": null
+}

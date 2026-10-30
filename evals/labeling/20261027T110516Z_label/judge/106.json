@@ -1,0 +1,15 @@
+{
+  "item": 106,
+  "golden_id": "golden_042",
+  "kind": "skill",
+  "key": "deep-learning",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "03f24634adc9f44059f01fe462912aee13d4972347cf9b7145a67b1bdf50a008",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'deep learning' is explicitly named in a qualification bullet under the Requirements section.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'deep learning' is explicitly named in a qualification bullet under the Requirements section.",
+  "error": null
+}

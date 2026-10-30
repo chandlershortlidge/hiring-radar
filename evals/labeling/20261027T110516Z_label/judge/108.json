@@ -1,0 +1,15 @@
+{
+  "item": 108,
+  "golden_id": "golden_043",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "c861f94e963de62d7ebb4939742f668620c34aa4f1fc2d7e07d34d282e363c47",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet that names the protection of sensitive data ('den Schutz sensibler Daten') counts as a required skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet that names the protection of sensitive data ('den Schutz sensibler Daten') counts as a required skill.",
+  "error": null
+}

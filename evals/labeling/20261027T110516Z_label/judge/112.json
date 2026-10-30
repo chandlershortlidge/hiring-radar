@@ -1,0 +1,15 @@
+{
+  "item": 112,
+  "golden_id": "golden_045",
+  "kind": "skill",
+  "key": "ai-developer-tooling",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "4876ddddf9c164c214984149d516a1285c5dfb35eb66c188d9881126a2e0e1c3",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The qualification bullet requires candidates to be on top of 'tools, models and trends in AI-assisted software engineering', which directly names the skill (Rule 1).\"}",
+  "decision": "ok",
+  "why": "The qualification bullet requires candidates to be on top of 'tools, models and trends in AI-assisted software engineering', which directly names the skill (Rule 1).",
+  "error": null
+}

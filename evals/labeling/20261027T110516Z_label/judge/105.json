@@ -1,0 +1,15 @@
+{
+  "item": 105,
+  "golden_id": "golden_042",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "8132fbfe6dd466cdb91346614d4f0fee132df8adbfa3d7f5a0dcf71489a8e2c7",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 3, the required qualification bullet 'MSc or higher in ML, Computer Science or a related discipline, or equivalent professional experience' directly establishes a required Master's degree with an equivalent experience option.\"}",
+  "decision": "ok",
+  "why": "Under Rule 3, the required qualification bullet 'MSc or higher in ML, Computer Science or a related discipline, or equivalent professional experience' directly establishes a required Master's degree with an equivalent experience option.",
+  "error": null
+}

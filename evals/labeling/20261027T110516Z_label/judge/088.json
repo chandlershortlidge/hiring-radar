@@ -1,0 +1,15 @@
+{
+  "item": 88,
+  "golden_id": "golden_036",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "1b7de7a33d5fa1be6b435f1db79e0237c99fd52e506826b3e1e4df4ad672554a",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification section explicitly requires knowledge of 'Anforderungen moderner Enterprise-Architekturen', which directly supports the agreed `software-architecture` label.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification section explicitly requires knowledge of 'Anforderungen moderner Enterprise-Architekturen', which directly supports the agreed `software-architecture` label.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 57,
+  "golden_id": "golden_025",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "8007ee7a9c0a944b18673317fc582719fe9aa2fda07e8218110cb321a29ab501",
+  "raw": "{\"decision\": \"ok\", \"why\": \"\\\"Distinguished Engineer\\\" in the job title explicitly states a senior/principal-level engineering tier (Rule 3).\"}",
+  "decision": "ok",
+  "why": "\"Distinguished Engineer\" in the job title explicitly states a senior/principal-level engineering tier (Rule 3).",
+  "error": null
+}

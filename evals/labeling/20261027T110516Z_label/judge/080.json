@@ -1,0 +1,15 @@
+{
+  "item": 80,
+  "golden_id": "golden_034",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "778377b5caac89c40bd9bfee235d28cca9b6802274ef0312fe14ad89faba7fc3",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a requirement must be named in the qualifications, and the posting mentions no degree.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a requirement must be named in the qualifications, and the posting mentions no degree.",
+  "error": null
+}

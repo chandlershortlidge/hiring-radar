@@ -1,0 +1,15 @@
+{
+  "item": 72,
+  "golden_id": "golden_030",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "a69526aaf33479c822b12b1606234adfabf4d5c1393eea43e5fe3aca099ea358",
+  "raw": "{\"decision\": \"ok\", \"why\": \"By Rule 1, a qualification bullet explicitly naming 'Kenntnisse moderner Architekturen ... sind von Vorteil' counts as a nice-to-have skill.\"}",
+  "decision": "ok",
+  "why": "By Rule 1, a qualification bullet explicitly naming 'Kenntnisse moderner Architekturen ... sind von Vorteil' counts as a nice-to-have skill.",
+  "error": null
+}
