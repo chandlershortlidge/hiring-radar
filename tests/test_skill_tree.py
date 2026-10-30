@@ -3,7 +3,8 @@ import math
 import pytest
 
 from app import db, queries as q
-from app.skill_tree import (MIN_JOBS, PAD, RING, build_tree, fetch_jobs, skill_tree)
+from app.skill_tree import (BRANCH_HUES, LINE_H, MIN_BAND, MIN_JOBS, PAD, RING,
+                            _text_width, build_tree, fetch_jobs, skill_tree)
 from tests.test_queries import NOW, RELATED_JOBS, add, ts
 
 
@@ -169,8 +170,177 @@ def test_the_same_corpus_always_draws_the_same_picture():
 
 
 def test_an_empty_job_set_has_no_tree():
-    assert tree([], total=0) == {"total": 0, "size": 2 * (RING + PAD),
-                                 "centre": {"x": RING + PAD, "y": RING + PAD}, "nodes": [], "edges": []}
+    t = tree([], total=0)
+    assert (t["total"], t["nodes"], t["edges"]) == (0, [], [])
+    assert t["size"] == 2 * (RING + PAD) and t["centre"] == {"x": RING + PAD, "y": RING + PAD}
+
+
+# --- branches ---------------------------------------------------------------------------
+
+def wide_corpus():
+    """One trunk with three lobes of 6 / 3 / 2 nodes and two lone leaves hanging off it."""
+    rows = []
+    rows += [["t", "cloud", f"c{i}"] for i in range(1, 6) for _ in range(8 - i)]
+    rows += [["t", "agents", f"a{i}"] for i in (1, 2) for _ in range(7)]
+    rows += [["t", "apis", "api1"] for _ in range(6)] + [["t", "apis"] for _ in range(3)]
+    rows += [["t", "solo"] for _ in range(6)]
+    rows += [["t", "lonely"] for _ in range(5)]
+    rows += [["t"]] * 40
+    return corpus(rows)
+
+
+def test_a_branch_is_a_lobe_not_a_root():
+    """The tree has one root holding everything, so a hue per root would paint the whole
+    picture one colour. The biggest branch is split until none holds half the nodes, and
+    the heads that were split become trunk — neutral, with no branch of their own."""
+    by = nodes_by_id(tree(wide_corpus()))
+    assert by["t"]["branch"] is None and by["t"]["branch_index"] is None   # the trunk
+    assert by["cloud"]["branch"] == "cloud"
+    assert by["c1"]["branch"] == "cloud"          # a descendant inherits its branch
+    assert by["agents"]["branch"] == "agents" and by["a1"]["branch"] == "agents"
+    assert by["solo"]["branch"] == "solo"
+
+
+def test_only_the_largest_branches_are_coloured():
+    by = nodes_by_id(tree(wide_corpus()))
+    hues = {n["branch"]: n["branch_index"] for n in by.values() if n["branch_index"] is not None}
+    assert len(hues) == BRANCH_HUES
+    assert [h for h, i in sorted(hues.items(), key=lambda kv: kv[1])] == ["cloud", "agents", "apis"]
+    # A lone leaf never takes a hue off a real lobe, however the sizes fall.
+    assert by["solo"]["branch_index"] is None and by["lonely"]["branch_index"] is None
+    # Hue follows the branch head, so every node of a lobe carries the same one.
+    assert {by[n]["branch_index"] for n in ("cloud", "c1", "c3")} == {0}
+
+
+def test_a_straight_chain_has_at_most_one_branch():
+    """Splitting stops as soon as no branch holds half the tree, so a chain gives up its
+    head nodes to the trunk one at a time and what is left is a single tail — one hue at
+    most, never three."""
+    by = nodes_by_id(tree(CHAIN))
+    hues = {n["branch_index"] for n in by.values()} - {None}
+    assert len(hues) <= 1
+    assert by["python"]["branch"] is None and by["llms"]["branch"] is None   # trunk
+
+
+def test_the_ring_always_shows_a_band_where_a_gap_exists():
+    by = nodes_by_id(tree(CHAIN))
+    # snowflake is mentioned 6 and required 1: a wide band, the whole point of the encoding.
+    assert by["snowflake"]["core_r"] < by["snowflake"]["r"] * 0.5
+    # python is required every time it is mentioned: a solid circle, not a faked band.
+    assert by["python"]["core_r"] == by["python"]["r"]
+    # rag is required in 10 of 10 as well; llms likewise — but a node with any gap at all
+    # keeps a visible band even when the ratio is close to one.
+    jobs = corpus([["a", "b"]] * 19 + [["a", ("b", "nice_to_have")]])
+    t = tree(jobs)
+    b = nodes_by_id(t)["b"]
+    # 19 of 20 would be a hairline at true scale; MIN_BAND holds it open instead. The
+    # constant is in reference units, so it is compared against the box's own scale.
+    assert b["r"] - b["core_r"] == pytest.approx(MIN_BAND * t["size"] / 1000, abs=0.2)
+
+
+def test_a_node_is_sized_by_how_many_jobs_mention_it():
+    by = nodes_by_id(tree(CHAIN))
+    assert by["python"]["r"] > by["llms"]["r"] > by["rag"]["r"] > by["snowflake"]["r"]
+
+
+# --- labels -----------------------------------------------------------------------------
+
+def thirty_node_corpus():
+    """A deterministic 30-node tree with real skill names, so the label test is run against
+    the kind of width the dashboard actually draws — the longest names are the ones that
+    collide. Each skill is nested under the one before it in its lobe, so every lobe is a
+    chain off the trunk and the whole thing fills the circle."""
+    lobes = [
+        ["Machine Learning", "PyTorch", "TensorFlow", "scikit-learn", "Deep Learning"],
+        ["Cloud", "Amazon Web Services", "Microsoft Azure", "Google Cloud Platform"],
+        ["Docker", "Kubernetes", "Containerization", "Infrastructure as Code"],
+        ["Agents", "Retrieval Augmented Generation", "LangChain", "Vector Databases"],
+        ["Evaluation", "Observability", "Prompt engineering", "Model Context Protocol"],
+        ["APIs", "Software Architecture", "Backend development", "TypeScript"],
+        ["CI/CD", "Testing", "Git", "Data pipelines"],
+    ]
+    rows = []
+    for lobe in lobes:
+        for i in range(len(lobe)):
+            # the first i+1 of the lobe together, often enough to nest them in order
+            rows += [["Python"] + lobe[:i + 1]] * (9 - i)
+    rows += [["Python"]] * 60
+    return corpus(rows)
+
+
+def boxes(t):
+    """Every label's box, the way _place_labels measured it."""
+    out = {}
+    for n in t["nodes"]:
+        w = _text_width(n["display"], t["font"])
+        h = t["font"] * LINE_H
+        x0 = n["label_x"] if n["label_anchor"] == "start" else n["label_x"] - w
+        cy = n["label_y"] - t["font"] * 0.35
+        out[n["skill_id"]] = (x0, cy - h / 2, x0 + w, cy + h / 2)
+    return out
+
+
+def test_no_two_labels_overlap_at_thirty_nodes():
+    t = tree(thirty_node_corpus())
+    assert len(t["nodes"]) == 30
+    assert all(n["label_placed"] for n in t["nodes"]), \
+        [n["skill_id"] for n in t["nodes"] if not n["label_placed"]]
+    b = boxes(t)
+    ids = sorted(b)
+    for i, a in enumerate(ids):
+        for c in ids[i + 1:]:
+            ax0, ay0, ax1, ay1 = b[a]
+            cx0, cy0, cx1, cy1 = b[c]
+            assert not (ax0 < cx1 and cx0 < ax1 and ay0 < cy1 and cy0 < ay1), f"{a} overlaps {c}"
+
+
+def test_a_label_never_sits_on_a_node_or_leaves_the_box():
+    t = tree(thirty_node_corpus())
+    b = boxes(t)
+    for n in t["nodes"]:
+        x0, y0, x1, y1 = b[n["skill_id"]]
+        assert 0 <= x0 and x1 <= t["size"] and 0 <= y0 and y1 <= t["size"]
+        for other in t["nodes"]:      # including its own node: a name never covers a circle
+            ox0, oy0 = other["x"] - other["r"], other["y"] - other["r"]
+            ox1, oy1 = other["x"] + other["r"], other["y"] + other["r"]
+            assert not (x0 < ox1 and ox0 < x1 and y0 < oy1 and oy0 < y1), \
+                f"{n['skill_id']}'s label sits on {other['skill_id']}"
+
+
+def test_a_label_that_moved_gets_a_leader_line_and_one_that_did_not_does_not():
+    t = tree(thirty_node_corpus())
+    moved = [n for n in t["nodes"] if n["leader"]]
+    assert moved, "the fixture is meant to be crowded enough that something moves"
+    for n in t["nodes"]:
+        on_its_own_row = abs(n["label_y"] - t["font"] * 0.35 - n["y"]) <= 1
+        natural_side = "start" if n["x"] >= t["centre"]["x"] else "end"
+        if n["leader"] is None:
+            assert on_its_own_row and n["label_anchor"] == natural_side
+
+
+def test_label_placement_is_deterministic():
+    a, b = tree(thirty_node_corpus()), tree(list(reversed(thirty_node_corpus())))
+    assert [(n["skill_id"], n["label_x"], n["label_y"]) for n in a["nodes"]] == \
+           [(n["skill_id"], n["label_x"], n["label_y"]) for n in b["nodes"]]
+
+
+def test_the_width_estimate_is_conservative():
+    """It has to over-estimate: the browser's metrics are not available here, and a label
+    that fits by this measure is what makes the no-overlap test a guarantee."""
+    # IBM Plex Sans averages near 0.5 em across mixed text; the estimate must sit above a
+    # safe floor for every label the dashboard draws, not just on average.
+    for name in ("Infrastructure as Code", "Retrieval Augmented Generation", "MLOps", "Git"):
+        assert _text_width(name, 13) >= 0.45 * 13 * len(name), name
+    assert _text_width("MMMM", 13) > _text_width("iiii", 13) * 2
+    assert _text_width("", 13) == 0
+    assert _text_width("abc", 26) == 2 * _text_width("abc", 13)      # linear in the size
+
+
+def test_display_names_are_used_for_the_label_and_its_width():
+    t = build_tree(20, CHAIN, {"python": "Python", "llms": "LLMs"})
+    by = nodes_by_id(t)
+    assert by["python"]["display"] == "Python"
+    assert by["rag"]["display"] == "rag"          # missing ids fall back to the id
 
 
 # --- the I/O half -----------------------------------------------------------------------
