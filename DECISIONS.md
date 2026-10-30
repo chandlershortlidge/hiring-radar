@@ -65,6 +65,55 @@ ones the author has and forgets to write down.
 
 ---
 
+## 2026-10-30 — The skill tree reads the conditional asymmetry the other way round, and a parent is the nearest gateway, not the trunk (HIR-81)
+
+v1 of the skill tree is a static SVG with a radial layout computed live from the
+co-occurrence of the filtered job set: `app/skill_tree.py` does every count and every
+coordinate, `web/src/SkillTree.jsx` only draws them. Three decisions in it are worth
+recording, because two of them contradict the issue and the third was tried and reverted.
+
+**Direction: the more prevalent skill is the parent.** HIR-81 gives two rules — depth is
+prevalence, and direction is the conditional-probability asymmetry — and its worked example
+reads the asymmetry so that the *rarer* skill is the parent ("P(observability | evaluation)
+high and P(evaluation | observability) low, so evaluation is the parent" — which means
+observability is the more common of the two). Taken literally that puts Snowflake above
+Python and there is no trunk at all, so the two rules cannot both hold. Depth-is-prevalence
+is the one that carries the picture, so the asymmetry is read the other way: a parent is
+always *strictly* more prevalent than its child. This also makes the graph a forest for
+free — an edge can never close a cycle — and means two equally common skills are never
+parent and child, because neither direction has an asymmetry to read.
+
+**A parent is the least prevalent skill that still qualifies, not the most.** Taking the
+most prevalent qualifying parent — the obvious reading of "high conditional probability" —
+makes every node a direct child of Python, because almost everything co-occurs with Python:
+a two-ring star, the hairball the issue wanted avoided, just drawn radially. Taking the
+*least* prevalent skill that the child's jobs still ask for at least `MIN_CONDITIONAL`
+(0.6) of the time gives the specialization paths that are the point:
+python → llms → agents → rag → prompt-engineering → tool-calling.
+
+**Both shares on every node, so the tree ignores the requirement filter.** Each node
+carries mentioned % and required % over the same denominator, visible on the node rather
+than in a tooltip (Leoson's Snowflake observation: 17% mentioned, 3% required). There is
+therefore nothing for `requirement` to choose, and `/api/skills/tree` ignores it along with
+the skill selection — the tree maps the whole filtered market, and selecting a skill only
+highlights it. Every other filter (city, seniority, German, degree, production, window)
+still narrows the job set the tree is drawn over.
+
+**Tried and reverted: equalizing arc length instead of angle.** Giving each leaf a slice of
+1/depth rather than a flat one makes every leaf's *arc* equal — an inner ring is shorter,
+so an equal angle near the centre buys less room. It reads worse: it squeezes exactly the
+long deep branches that carry the picture. Equal angular slices stayed. Label crowding was
+instead handled by capping the drawing at `MAX_NODES` = 30; what still overlaps is a branch
+whose child sits at nearly its own angle one ring out (Machine Learning and PyTorch). The
+fix for that is a de-collision pass with leader lines, which v1 does not need; pulling a
+branch's label back along its own spoke was tried and is not it — the label slides across
+the node it names.
+
+The personal overlay (your skills lit up, the shortest path to a target cluster) waits for
+HIR-14, as HIR-81 says.
+
+---
+
 ## 2026-10-29 — Production experience joins the HIR-70 labeling: a production-only pass, no restart (HIR-85)
 
 HIR-69 made production experience a fourth per-job attribute while HIR-70's held-out

@@ -196,6 +196,11 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   feed could have stored it (board not polled, filter would drop it, not an ATS page).
   Writes only its own log (`url_check`, the first check per URL drives the coverage line
   in `stats`); `--add` in the CLI hands the resolved posting to `ingest_one`.
+- `app/skill_tree.py` — the radial skill tree (`/api/skills/tree`): mentioned and required
+  counts per skill over the filtered job set, a parent for each (the least prevalent skill
+  its own jobs still nearly always ask for), and every coordinate of the layout. Pure
+  `build_tree` plus a thin `fetch_jobs`. Ignores the `requirement` and skill filters on
+  purpose — see DECISIONS 2026-10-30.
 - `app/queries.py` — read queries behind the dashboard: filters (city, seniority, German,
   degree, production, requirement, window), skill document frequency with per-city counts,
   related-skills co-occurrence with lift (`related_skills`, feeds `/api/skills/related`),
@@ -206,7 +211,8 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `web/src/` — `App.jsx` (filters, header, stats, controls, and the one route: `/jobs/{id}`
   read from the address bar), `JobPage.jsx` (a job's own page: detail + the stored posting
   text), `SkillChart.jsx`,
-  `CompareChart.jsx`, `RelatedSkills.jsx` (what the jobs requiring the selected skill also
+  `CompareChart.jsx`, `SkillTree.jsx` (draws `/api/skills/tree`; does no layout arithmetic
+  of its own), `RelatedSkills.jsx` (what the jobs requiring the selected skill also
   require; renders only with a skill selected and computes nothing itself),
   `JobList.jsx` (rows + expanded detail with quotes), the three drawers
   (`AddJobDrawer`, `ReviewDrawer`, `ProfileDrawer`), `profile.js` (localStorage profile +
