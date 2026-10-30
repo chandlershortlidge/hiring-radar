@@ -648,9 +648,10 @@
       "key": "containerization",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "third_agreed": true
     },
     "128": {
       "n": 128,
@@ -780,9 +781,10 @@
       "key": "prompt-engineering",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "third_agreed": true
     },
     "140": {
       "n": 140,
@@ -890,9 +892,10 @@
       "key": "rag",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "third_agreed": true
     },
     "150": {
       "n": 150,
@@ -956,9 +959,10 @@
       "key": "observability",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "third_agreed": true
     },
     "156": {
       "n": 156,
@@ -989,9 +993,10 @@
       "key": "seniority",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "third_agreed": true
     },
     "159": {
       "n": 159,
@@ -1011,9 +1016,10 @@
       "key": "cpp",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "third_agreed": true
     },
     "161": {
       "n": 161,
@@ -1088,9 +1094,10 @@
       "key": "german",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "third_agreed": true
     },
     "168": {
       "n": 168,
@@ -1132,9 +1139,10 @@
       "key": "azure",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "third_agreed": true
     },
     "172": {
       "n": 172,
@@ -1154,9 +1162,10 @@
       "key": "german",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "third_agreed": true
     },
     "175": {
       "n": 175,
@@ -1176,9 +1185,10 @@
       "key": "llms",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "third_agreed": true
     },
     "177": {
       "n": 177,
@@ -1264,9 +1274,10 @@
       "key": "seniority",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "third_agreed": true
     },
     "185": {
       "n": 185,
@@ -1275,9 +1286,10 @@
       "key": "typescript",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "third_agreed": true
     },
     "186": {
       "n": 186,
@@ -1297,9 +1309,10 @@
       "key": "agents",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "third_agreed": true
     },
     "188": {
       "n": 188,
@@ -1308,9 +1321,10 @@
       "key": "evaluation",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "third_agreed": true
     },
     "189": {
       "n": 189,
@@ -1319,9 +1333,10 @@
       "key": "llms",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "third_agreed": true
     },
     "190": {
       "n": 190,
@@ -1456,7 +1471,29 @@
       "decision": "ok"
     }
   },
-  "human_sample": null,
+  "human_sample": {
+    "n": 15,
+    "asked": 15,
+    "seed": 0,
+    "pool": 79,
+    "items": [
+      127,
+      139,
+      149,
+      155,
+      158,
+      160,
+      167,
+      171,
+      174,
+      176,
+      184,
+      185,
+      187,
+      188,
+      189
+    ]
+  },
   "judge": {
     "model": "gemini-4-argon",
     "provider": "google",

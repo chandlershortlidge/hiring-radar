@@ -1599,7 +1599,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: ?
 
 ## 128. golden_027 - skill `devops` (spot-check)
 
@@ -1719,7 +1719,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: ?
 
 ## 140. golden_029 - attribute `degree` (spot-check)
 
@@ -1819,7 +1819,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: ?
 
 ## 150. golden_032 - attribute `german` (spot-check)
 
@@ -1879,7 +1879,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: ?
 
 ## 156. golden_032 - skill `recommender-systems` (spot-check)
 
@@ -1909,7 +1909,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: ?
 
 ## 159. golden_034 - skill `cloud` (spot-check)
 
@@ -1929,7 +1929,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: ?
 
 ## 161. golden_034 - skill `infrastructure-as-code` (spot-check)
 
@@ -1999,7 +1999,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: ?
 
 ## 168. golden_036 - skill `cloud` (spot-check)
 
@@ -2039,7 +2039,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: ?
 
 ## 172. golden_037 - skill `gemini` (spot-check)
 
@@ -2069,7 +2069,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: ?
 
 ## 175. golden_040 - skill `cpp` (spot-check)
 
@@ -2089,7 +2089,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: ?
 
 ## 177. golden_040 - skill `tensorflow` (spot-check)
 
@@ -2169,7 +2169,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: ?
 
 ## 185. golden_044 - skill `typescript` (spot-check)
 
@@ -2179,7 +2179,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: ?
 
 ## 186. golden_045 - attribute `german` (spot-check)
 
@@ -2199,7 +2199,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: ?
 
 ## 188. golden_045 - skill `evaluation` (spot-check)
 
@@ -2209,7 +2209,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: ?
 
 ## 189. golden_045 - skill `llms` (spot-check)
 
@@ -2219,7 +2219,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: ?
 
 ## 190. golden_045 - skill `observability` (spot-check)
 
