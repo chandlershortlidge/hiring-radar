@@ -396,14 +396,16 @@ labeling run started before this edit was stopped at posting 3 of 24 and restart
 > so they stay false for anything only a model touched. `apply` counts the spot-check error
 > rate over the human sample, not over every agreed label.
 >
-> **Measured.** judge: ruled 70, agreed with the proposal on **45** (38 uncertain, 6
-> disagreements, 1 mapping), **25** left for a person, 0 unusable verdicts. third labeler:
+> **Measured.** judge: ruled 70, agreed with the proposal on **50**, **20** left for a
+> person, 0 unusable verdicts. Agreement is judged on the outcome, not the verdict word: on
+> an item both labelers agreed on, `ok` resolves to A's value, so `A` and `ok` are one
+> decision — comparing words made five of those look like disagreements. third labeler:
 > **0 of 79** agreed labels differed (Wilson 95% [0.000, 0.046]) — 63 skills, 8 German, 4
 > seniority, 4 degree, 19 postings, 0 failures. Read that 0 for what it is: the accepted
 > pool is the labels two models already agreed on, so it says the easy cases are solid, not
 > that the answer key is right. The hard cases went to the queue.
 >
-> **Open:** the 15 human spot-check labels, and the 25 judge-vs-proposal disagreements.
+> **Open:** the 15 human spot-check labels, and the 20 judge-vs-proposal disagreements.
 >
 > **Then:** `apply --run 20261027T110516Z_label`, then
 > `run_eval.py --split heldout --i-am-releasing`, then write the agreement numbers and the
