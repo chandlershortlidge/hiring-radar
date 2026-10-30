@@ -1120,8 +1120,10 @@ def test_judge_records_its_agreement_with_the_proposal_as_a_model_decision(tmp_p
     assert adj["items"][str(n)]["by"] == "model"
     assert adj["items"][str(n)]["model"] == "judge-model"
     assert adj["items"][str(n)]["decision"] == "B"
-    assert adj["judge"]["agreed"] == 1 and adj["judge"]["disagreed"] == 0
-    assert "rules" in adj["judge"]
+    assert adj["judge"]["agreed"] == 1 and adj["judge"]["open"] == 0
+    assert adj["judge"]["ruled"] == 1 and "rules" in adj["judge"]
+    assert adj["judge_passes"] == [{"model": "judge-model", "provider": "google", "ruled": 1,
+                                   "agreed": 1, "disagreed": 0, "unusable": 0}]
     assert "agreed with the proposal on 1/1" in capsys.readouterr().out
 
 

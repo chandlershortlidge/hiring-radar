@@ -1567,10 +1567,9 @@
   "judge": {
     "model": "gemini-4-argon",
     "provider": "google",
-    "ruled": 25,
-    "agreed": 5,
-    "disagreed": 20,
-    "unusable": 0,
+    "ruled": 70,
+    "agreed": 50,
+    "open": 20,
     "rules": "1. A qualification bullet or sentence that names a skill counts; a job title or a\n   years-of-experience line (\"experience as a software engineer\") does not.\n2. An API being consumed is not the `apis` skill. `apis` means building or designing APIs.\n3. Any required mention wins; raw_text quotes the determining mention.\n4. Responsibilities do not count unless the candidate is also asked for it.\n5. Do not add a broad or parent skill the text does not name."
   },
   "third_labeler": {
@@ -1610,5 +1609,23 @@
         "rate": 0.0
       }
     }
-  }
+  },
+  "judge_passes": [
+    {
+      "model": "gemini-4-argon",
+      "provider": "google",
+      "ruled": 70,
+      "agreed": 45,
+      "disagreed": 25,
+      "unusable": 0
+    },
+    {
+      "model": "gemini-4-argon",
+      "provider": "google",
+      "ruled": 25,
+      "agreed": 5,
+      "disagreed": 20,
+      "unusable": 0
+    }
+  ]
 }

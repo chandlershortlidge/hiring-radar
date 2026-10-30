@@ -1591,11 +1591,17 @@ def cmd_judge(args):
         (run_dir / "review_queue.md").write_text(
             write_decisions(queue_text, {n: v["decision"] for n, v in agreed.items()}))
         adj = load_adjudication(run_dir)
-        adj["judge"] = {"model": args.model, "provider": args.provider,
-                        "ruled": len(targets), "agreed": len(agreed),
-                        "disagreed": len(disagreed), "unusable": len(unusable),
-                        "rules": JUDGE_RULES}
         adj["items"].update({str(n): v for n, v in agreed.items()})
+        # A second pass re-rules whatever is still `?`, so the totals are counted from the
+        # items themselves; a per-pass record keeps what each run did.
+        adj.setdefault("judge_passes", []).append(
+            {"model": args.model, "provider": args.provider, "ruled": len(targets),
+             "agreed": len(agreed), "disagreed": len(disagreed), "unusable": len(unusable)})
+        settled = sum(1 for v in adj["items"].values() if v.get("mode") == "judge")
+        adj["judge"] = {"model": args.model, "provider": args.provider,
+                        "ruled": settled + len(disagreed) + len(unusable),
+                        "agreed": settled, "open": len(disagreed) + len(unusable),
+                        "rules": JUDGE_RULES}
         save_adjudication(run_dir, adj)
 
     print(f"\njudge agreed with the proposal on {len(agreed)}/{len(targets)} items "
