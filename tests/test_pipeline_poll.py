@@ -215,3 +215,21 @@ def test_store_extraction_keeps_rejects_and_replaces_them_on_re_extract(conn):
 
     pipeline.store_extraction(conn, job_id, Extraction(extractor_version=v, taxonomy_version=TAX.version))
     assert conn.execute("SELECT count(*) FROM extraction_reject WHERE job_id=?", (job_id,)).fetchone()[0] == 0
+
+
+def test_a_second_extraction_on_the_same_database_skips(conn, tmp_path):
+    import fcntl
+    path = next(r[2] for r in conn.execute("PRAGMA database_list") if r[1] == "main")
+    called = []
+
+    def fn(text, tax, model):
+        called.append(text)
+        return fake_extract([])(text, tax, model)
+
+    with open(path + ".extract.lock", "w") as fh:  # another run holds the lock
+        fcntl.flock(fh, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        r = pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None)
+    assert r.skipped_busy and r.attempted == 0 and not called
+    assert "skipped" in r.line()
+    # released: the next run extracts the pending jobs
+    assert pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None).attempted == 3
