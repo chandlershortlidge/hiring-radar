@@ -1167,3 +1167,151 @@ def test_item_range():
     assert al.item_range("5") == {5}
     with pytest.raises(Exception):
         al.item_range("30-")
+
+
+# --- third labeler over the agreed labels -----------------------------------------
+
+def skill_item(**over):
+    item = {"golden_id": "golden_001", "kind": "skill", "key": "docker", "reason": "spot-check",
+            "a": {"skill_id": "docker", "requirement": "nice_to_have", "raw_text": "Docker"},
+            "b": None, "problems": []}
+    item.update(over)
+    return item
+
+
+def test_third_agrees_on_a_skill_by_id_and_requirement():
+    agrees, mine = al.third_agrees(skill_item(), ok_answer())
+    assert agrees and mine["skill_id"] == "docker"
+
+
+def test_third_differs_when_the_requirement_differs():
+    answer = ok_answer(expected=[{"skill_id": "docker", "requirement": "required",
+                                  "raw_text": "Docker"}])
+    agrees, mine = al.third_agrees(skill_item(), answer)
+    assert not agrees and mine["requirement"] == "required"
+
+
+def test_third_differs_when_it_did_not_label_the_skill_at_all():
+    agrees, mine = al.third_agrees(skill_item(), ok_answer(expected=[]))
+    assert not agrees and mine is None
+
+
+def test_third_ignores_a_differently_quoted_signal_on_an_attribute():
+    """The same rule merge uses for A against B: two correct quotes of one requirement often
+    differ in length, so only the value and its basis are compared."""
+    item = {"golden_id": "golden_001", "kind": "attribute", "key": "german", "reason": "spot-check",
+            "a": {"german": "required", "german_basis": "stated",
+                  "german_signal": "Fluent German (C1)"}, "b": None, "problems": []}
+    agrees, _ = al.third_agrees(item, ok_answer(german_signal="Fluent German"))
+    assert agrees
+    agrees, mine = al.third_agrees(item, ok_answer(german="nice_to_have"))
+    assert not agrees and mine["german"] == "nice_to_have"
+
+
+def test_by_field_counts_each_field_separately():
+    out = al.by_field([("skill", True), ("skill", False), ("german", True)])
+    assert out["skill"] == {"n": 2, "agreed": 1, "differed": 1, "rate": 0.5}
+    assert out["german"]["rate"] == 0.0
+
+
+def third_client(monkeypatch, *answers):
+    client = FakeAnthropic(list(answers))
+    monkeypatch.setattr(al, "make_client", lambda provider: client)
+    monkeypatch.setitem(al.PROVIDERS, "google", al.call_anthropic)
+    return client
+
+
+def spot_numbers(run_dir):
+    return [n for n, i in enumerate(json.loads((run_dir / "items.json").read_text()), 1)
+            if i["reason"] == "spot-check"]
+
+
+def test_third_records_ok_where_all_three_labelers_agree(tmp_path, monkeypatch, capsys):
+    run_dir, queue, _ = judge_run(tmp_path, monkeypatch)
+    third_client(monkeypatch, ok_answer())
+    al.main(["third", "--run", run_dir.name, "--model", "third-model"])
+
+    decisions = dict(al.parse_queue(queue.read_text()))
+    spots = spot_numbers(run_dir)
+    assert [decisions[n] for n in spots] == ["ok"] * len(spots)
+    check = json.loads((run_dir / "third_check.json").read_text())
+    assert check["n_items"] == len(spots) and check["differed"] == 0
+    assert check["model"] == "third-model" and check["failed"] == []
+    adj = json.loads((run_dir / "adjudication.json").read_text())
+    assert all(adj["items"][str(n)] == {"n": n, "golden_id": "golden_001",
+                                       "kind": adj["items"][str(n)]["kind"],
+                                       "key": adj["items"][str(n)]["key"],
+                                       "reason": "spot-check", "mode": "third", "by": "model",
+                                       "model": "third-model", "decision": "ok"} for n in spots)
+    assert adj["third_labeler"]["differed"] == 0
+    out = capsys.readouterr().out
+    assert "third labeler differed on 0/2" in out
+    assert "recorded `ok` on three-way agreement" in out
+
+
+def test_third_leaves_a_difference_undecided_and_prints_both_sides(tmp_path, monkeypatch, capsys):
+    run_dir, queue, _ = judge_run(tmp_path, monkeypatch)
+    # a third labeler that labels nothing and nulls every attribute differs on every item
+    third_client(monkeypatch, ok_answer(
+        expected=[], seniority=None, seniority_basis=None, seniority_signal=None,
+        german=None, german_basis=None, german_signal=None,
+        degree=None, degree_requirement=None, degree_or_equivalent=False, degree_signal=None))
+    al.main(["third", "--run", run_dir.name, "--model", "third-model"])
+
+    decisions = dict(al.parse_queue(queue.read_text()))
+    assert [decisions[n] for n in spot_numbers(run_dir)] == ["?", "?"]
+    check = json.loads((run_dir / "third_check.json").read_text())
+    assert check["differed"] == 2 and check["rate"] == 1.0
+    assert not (run_dir / "adjudication.json").exists()
+    out = capsys.readouterr().out
+    assert "2 left at `?` for you" in out
+    assert "agreed by A and B:" in out and "third labeler:" in out
+
+
+def test_third_no_record_reports_without_touching_the_queue(tmp_path, monkeypatch):
+    run_dir, queue, _ = judge_run(tmp_path, monkeypatch)
+    before = queue.read_text()
+    third_client(monkeypatch, ok_answer())
+    al.main(["third", "--run", run_dir.name, "--model", "third-model", "--no-record"])
+    assert queue.read_text() == before
+    assert json.loads((run_dir / "third_check.json").read_text())["agreed"] == 2
+    assert not (run_dir / "adjudication.json").exists()
+
+
+def test_third_refuses_when_the_guide_changed_since_the_run(tmp_path, monkeypatch):
+    """A third labeler asked a different question is not a check on A and B; its
+    disagreements would be indistinguishable from a rule change."""
+    run_dir, queue, _ = judge_run(tmp_path, monkeypatch)
+    client = third_client(monkeypatch, ok_answer())
+    monkeypatch.setattr(al, "labeler_prompt", lambda *a, **k: "A DIFFERENT GUIDE")
+    with pytest.raises(SystemExit, match="labeler prompt has changed"):
+        al.main(["third", "--run", run_dir.name, "--model", "third-model"])
+    assert client.calls == []
+
+
+def test_third_reuses_the_cached_label(tmp_path, monkeypatch):
+    run_dir, queue, _ = judge_run(tmp_path, monkeypatch)
+    third_client(monkeypatch, ok_answer())
+    al.main(["third", "--run", run_dir.name, "--model", "third-model", "--no-record"])
+    assert (run_dir / "raw" / "golden_001.C.json").exists()
+    second = third_client(monkeypatch)   # no answers left: another call would raise
+    al.main(["third", "--run", run_dir.name, "--model", "third-model", "--no-record"])
+    assert second.calls == []
+
+
+def test_third_reports_a_labeler_that_returned_no_usable_json(tmp_path, monkeypatch, capsys):
+    run_dir, queue, _ = judge_run(tmp_path, monkeypatch)
+    third_client(monkeypatch, "not json at all")
+    al.main(["third", "--run", run_dir.name, "--model", "third-model"])
+    check = json.loads((run_dir / "third_check.json").read_text())
+    assert check["failed"] and check["n_items"] == 0
+    assert check["not_compared"] == spot_numbers(run_dir)
+    assert [dict(al.parse_queue(queue.read_text()))[n] for n in spot_numbers(run_dir)] == ["?", "?"]
+    assert "FAILED" in capsys.readouterr().out
+
+
+def test_third_refuses_a_model_that_labeled_the_run(tmp_path, monkeypatch):
+    run_dir, queue, _ = judge_run(tmp_path, monkeypatch)
+    third_client(monkeypatch)
+    with pytest.raises(SystemExit, match="which labeled this run"):
+        al.main(["third", "--run", run_dir.name, "--model", al.DEFAULT_MODEL_A])

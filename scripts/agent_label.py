@@ -837,6 +837,35 @@ def verdict_matches(proposed: str, verdict) -> bool:
     return str(verdict).strip().strip("`").lower() == proposed.strip().strip("`").lower()
 
 
+def third_agrees(item: dict, parsed: dict) -> tuple[bool, dict | None]:
+    """Whether a third labeler's answer carries this item's agreed label, and what it said.
+
+    Agreement is judged exactly as merge judges A against B - a skill by id and requirement,
+    an attribute by the fields in ATTR_KEYS - so a different quote of the same requirement is
+    not counted as a disagreement. Returns (agrees, the third labeler's version or None).
+    """
+    agreed = item.get("a") or item.get("b")
+    if item["kind"] == "skill":
+        mine = skills_by_id(parsed).get(item["key"])
+        if mine is None:
+            return False, None
+        return mine["requirement"] == agreed["requirement"], mine
+    mine = attr_group(parsed, item["key"])
+    return all(mine.get(k) == agreed.get(k) for k in ATTR_KEYS[item["key"]]), mine
+
+
+def by_field(rows: list[tuple[str, bool]]) -> dict:
+    """Agreement counted per field, where a field is `skill` or one attribute name."""
+    out: dict[str, dict] = {}
+    for field_name, agrees in rows:
+        slot = out.setdefault(field_name, {"n": 0, "agreed": 0, "differed": 0})
+        slot["n"] += 1
+        slot["agreed" if agrees else "differed"] += 1
+    for slot in out.values():
+        slot["rate"] = slot["differed"] / slot["n"] if slot["n"] else None
+    return out
+
+
 def write_decisions(text: str, new: dict[int, str]) -> str:
     """Fill in the `?` on the given items' DECISION lines, leaving the rest byte-identical.
 
@@ -1519,6 +1548,136 @@ def kv(text: str) -> tuple[str, int]:
     return key, int(n)
 
 
+def cmd_third(args):
+    """A blind third labeler over the postings behind the agreed spot-check labels.
+
+    Same prompt as A and B, the whole posting, no sight of their answers - so where it lands
+    on the same label, three independent readers agree, and where it does not, a person
+    looks. This is a labeler check, not the human spot-check: a third model agreeing is still
+    not a person reading the posting, so the labels it confirms stay `*_reviewed: false`.
+    """
+    run_dir, items, picks, summary, queue_text = load_run(args.run)
+    decisions = dict(parse_queue(queue_text))
+    check_extra_model("third labeler", args.model, [summary["model_a"], summary["model_b"]])
+    skip = out_of_scope_goldens(items, decisions)
+
+    tax = Taxonomy.load()
+    prompt = labeler_prompt(PROMPT_FILE.read_text(), GUIDE_FILE.read_text(), tax)
+    prompt_sha = ng.sha(prompt)
+    raw_dir = run_dir / "raw"
+
+    targets = []
+    for n, item in enumerate(items, 1):
+        if item["reason"] != "spot-check" or item["golden_id"] in skip:
+            continue
+        if decisions.get(n, "?") not in ("?", "") or (args.items and n not in args.items):
+            continue
+        targets.append((n, item))
+    needed = sorted({item["golden_id"] for _, item in targets})
+    print(f"{len(targets)} agreed spot-check labels over {len(needed)} postings; "
+          f"third labeler `{args.model}` ({args.provider})")
+    if not targets:
+        return
+
+    # The comparison only means anything if C is asked what A and B were asked. LABELING.md
+    # and the taxonomy are inlined into the prompt, so an edit since the run would make a
+    # disagreement here indistinguishable from a rule change.
+    for gid in needed:
+        was = json.loads((raw_dir / f"{gid}.A.json").read_text()).get("prompt_sha256")
+        if was != prompt_sha:
+            raise SystemExit(
+                f"the labeler prompt has changed since this run ({gid}: {was} -> {prompt_sha}). "
+                f"A third labeler asked a different question cannot be compared with A and B; "
+                f"check out the LABELING.md and taxonomy/skills.json of the run first.")
+    if args.dry_run:
+        return
+
+    client, failed, problems = None, [], []
+    parsed_by_gid: dict[str, dict] = {}
+    for gid in needed:
+        path = raw_dir / f"{gid}.C.json"
+        record = None
+        if path.exists():
+            cached = json.loads(path.read_text())
+            if (cached.get("model") == args.model
+                    and cached.get("posting_sha256") == ng.sha(picks[gid]["job_description"])
+                    and cached.get("prompt_sha256") == prompt_sha):
+                record = cached
+        if record is None:
+            if client is None:
+                client = make_client(args.provider)
+            print(f"  labeling {gid} with C ({args.model})", flush=True)
+            record = label_posting(picks[gid]["job_description"], prompt,
+                                   args.provider, args.model, client)
+            record |= {"labeler": "C", "posting_sha256": ng.sha(picks[gid]["job_description"]),
+                       "prompt_sha256": prompt_sha}
+            path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
+        if record.get("error"):
+            failed.append(f"{gid}: {record['error']}")
+            continue
+        parsed_by_gid[gid] = record["parsed"]
+        for p in auto_check(record["parsed"], picks[gid]["job_description"], tax):
+            problems.append(f"{gid}: {p['problem'] if isinstance(p, dict) else p}")
+
+    rows, agreed, differences, unlabeled = [], {}, [], []
+    for n, item in targets:
+        parsed = parsed_by_gid.get(item["golden_id"])
+        if parsed is None:
+            unlabeled.append(n)
+            continue
+        agrees, mine = third_agrees(item, parsed)
+        rows.append(("skill" if item["kind"] == "skill" else item["key"], agrees))
+        if agrees:
+            agreed[n] = {"n": n, "golden_id": item["golden_id"], "kind": item["kind"],
+                         "key": item["key"], "reason": item["reason"], "mode": "third",
+                         "by": "model", "model": args.model, "decision": "ok"}
+        else:
+            differences.append({"n": n, "golden_id": item["golden_id"], "kind": item["kind"],
+                                "key": item["key"],
+                                "agreed": item.get("a") or item.get("b"), "third": mine})
+
+    check = {"model": args.model, "provider": args.provider, "prompt_sha256": prompt_sha,
+             "n_items": len(rows), "agreed": len(agreed), "differed": len(differences),
+             "rate": len(differences) / len(rows) if rows else None,
+             "wilson_95": list(wilson(len(differences), len(rows))) if rows else None,
+             "by_field": by_field(rows), "differences": differences,
+             "auto_check_problems": problems, "failed": failed,
+             "not_compared": unlabeled}
+    (run_dir / "third_check.json").write_text(json.dumps(check, indent=2, ensure_ascii=False) + "\n")
+
+    if agreed and not args.no_record:
+        (run_dir / "review_queue.md").write_text(
+            write_decisions(queue_text, {n: "ok" for n in agreed}))
+        adj = load_adjudication(run_dir)
+        adj["third_labeler"] = {k: check[k] for k in
+                                ("model", "provider", "n_items", "agreed", "differed", "rate",
+                                 "wilson_95", "by_field")}
+        adj["items"].update({str(n): v for n, v in agreed.items()})
+        save_adjudication(run_dir, adj)
+
+    lo, hi = check["wilson_95"] or (0.0, 0.0)
+    rate = "\u2014" if check["rate"] is None else f"{check['rate']:.3f}"
+    print(f"\nthird labeler differed on {len(differences)}/{len(rows)} agreed labels "
+          f"({rate}, Wilson 95% [{lo:.3f}, {hi:.3f}])")
+    print(f"{'field':<12}{'n':>5}{'agreed':>8}{'differed':>10}{'rate':>8}")
+    for name, slot in sorted(check["by_field"].items()):
+        print(f"{name:<12}{slot['n']:>5}{slot['agreed']:>8}{slot['differed']:>10}"
+              f"{slot['rate']:>8.3f}")
+    if differences:
+        print(f"\n{len(differences)} left at `?` for you:")
+        for d in differences:
+            third = "(did not label this)" if d["third"] is None else fmt_value(d["kind"], d["third"])
+            print(f"\n  [{d['n']}] {d['golden_id']} {d['kind']} `{d['key']}`")
+            print(f"      agreed by A and B: {fmt_value(d['kind'], d['agreed'])}")
+            print(f"      third labeler:     {third}")
+    if not args.no_record:
+        print(f"\n{len(agreed)} recorded `ok` on three-way agreement (by=model, not a human "
+              f"spot-check).")
+    for label, rows_ in (("FAILED", failed), ("auto-check problems", problems)):
+        if rows_:
+            print(f"\n{label}:\n" + "\n".join("  " + r for r in rows_))
+
+
 def item_range(text: str) -> set[int]:
     """`30-121` or `30,33,41` as a set of item numbers."""
     out: set[int] = set()
@@ -1568,6 +1727,17 @@ def main(argv=None):
     jud.add_argument("--items", type=item_range, help="only these item numbers, e.g. 30-121")
     jud.add_argument("--dry-run", action="store_true", help="list what would be judged and stop")
     jud.set_defaults(fn=cmd_judge)
+
+    thi = sub.add_parser("third", help="a blind third labeler over the agreed spot-check labels")
+    thi.add_argument("--run", required=True)
+    thi.add_argument("--provider", default="google", choices=sorted(PROVIDERS))
+    thi.add_argument("--model", default=DEFAULT_MODEL_C,
+                     help=f"the third labeler (default {DEFAULT_MODEL_C})")
+    thi.add_argument("--items", type=item_range, help="only these item numbers")
+    thi.add_argument("--no-record", action="store_true",
+                     help="report the comparison without writing `ok` on three-way agreement")
+    thi.add_argument("--dry-run", action="store_true", help="list what would be labeled and stop")
+    thi.set_defaults(fn=cmd_third)
 
     args = ap.parse_args(argv)
     return args.fn(args)
