@@ -1,0 +1,79 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"APIs\"\n    },\n    {\n      \"skill_id\": \"data-modeling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Datenmodelle\"\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Automatisierungslösungen\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"moderner Architekturen\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Cloud-Technologien\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI/ML\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"SAP Business AI\",\n      \"raw_text\": \"SAP Business AI\"\n    },\n    {\n      \"label\": \"SAP Joule\",\n      \"raw_text\": \"SAP Joule\"\n    },\n    {\n      \"label\": \"SAP\",\n      \"raw_text\": \"SAP-Projekten\"\n    },\n    {\n      \"label\": \"SAP BTP\",\n      \"raw_text\": \"SAP BTP\"\n    },\n    {\n      \"label\": \"Prototyping\",\n      \"raw_text\": \"Prototyping\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"SAP AI Lead Architect (w/m/x)\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute und verhandlungssichere (C1) Deutsch- und Englischkenntnisse werden vorausgesetzt\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Abgeschlossenes Studium (Informatik, Wirtschaftsinformatik, BWL mit IT-Schwerpunkt) oder vergleichbare Qualifikation\",\n  \"uncertain\": [],\n  \"notes\": \"Skipped 'Schlagworte' (job board SEO tags at the footer) as they are not a candidate requirements or tech-stack section.\\n'Automatisierungslösungen' and 'Integration' mapped tentatively to workflow-automation (marked uncertain).\\n'moderner Architekturen' mapped to software-architecture (marked uncertain) with nice_to_have due to inline marker 'sind von Vorteil'.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "Datenmodelle"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "Automatisierungslösungen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "nice_to_have",
+        "raw_text": "moderner Architekturen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Cloud-Technologien"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "nice_to_have",
+        "raw_text": "AI/ML"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "SAP Business AI",
+        "raw_text": "SAP Business AI"
+      },
+      {
+        "label": "SAP Joule",
+        "raw_text": "SAP Joule"
+      },
+      {
+        "label": "SAP",
+        "raw_text": "SAP-Projekten"
+      },
+      {
+        "label": "SAP BTP",
+        "raw_text": "SAP BTP"
+      },
+      {
+        "label": "Prototyping",
+        "raw_text": "Prototyping"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "SAP AI Lead Architect (w/m/x)",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute und verhandlungssichere (C1) Deutsch- und Englischkenntnisse werden vorausgesetzt",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossenes Studium (Informatik, Wirtschaftsinformatik, BWL mit IT-Schwerpunkt) oder vergleichbare Qualifikation",
+    "uncertain": [],
+    "notes": "Skipped 'Schlagworte' (job board SEO tags at the footer) as they are not a candidate requirements or tech-stack section.\n'Automatisierungslösungen' and 'Integration' mapped tentatively to workflow-automation (marked uncertain).\n'moderner Architekturen' mapped to software-architecture (marked uncertain) with nice_to_have due to inline marker 'sind von Vorteil'."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "ffe0b5100a14eb3bb459bb76e5bf37d1aec581d647d74ffe1e990866cfd80a88",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

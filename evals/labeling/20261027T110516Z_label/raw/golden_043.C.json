@@ -1,0 +1,54 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Tests\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Monitoring im Betrieb\"\n    },\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Data Science\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Software Engineering\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Schutz sensibler Daten\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Ein abgeschlossenes Studium, eine vergleichbare Qualifikation oder relevante Berufserfahrung\",\n  \"uncertain\": [],\n  \"notes\": \"The first section ('Was wir bieten') lists job responsibilities (including mentions of Sprachmodellen, agentischen Abläufen, Evaluationen, Leitplanken), which are skipped per the guide since they are not in the requirements section ('Was du bietest'). 'Data Science' and 'Software Engineering' appear in the degree/experience bullet ('Studium, eine vergleichbare Qualifikation oder relevante Berufserfahrung mit Bezug zu...') and 'Schutz sensibler Daten' appears as a risk factor to question; all three are marked uncertain.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "Tests"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring im Betrieb"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "Data Science",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Software Engineering",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "Schutz sensibler Daten",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Ein abgeschlossenes Studium, eine vergleichbare Qualifikation oder relevante Berufserfahrung",
+    "uncertain": [],
+    "notes": "The first section ('Was wir bieten') lists job responsibilities (including mentions of Sprachmodellen, agentischen Abläufen, Evaluationen, Leitplanken), which are skipped per the guide since they are not in the requirements section ('Was du bietest'). 'Data Science' and 'Software Engineering' appear in the degree/experience bullet ('Studium, eine vergleichbare Qualifikation oder relevante Berufserfahrung mit Bezug zu...') and 'Schutz sensibler Daten' appears as a risk factor to question; all three are marked uncertain."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "f87f866298e94e8b7d94d0a8732923742d01c16511e4de5e0a31ce07d921c3a1",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

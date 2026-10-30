@@ -1,0 +1,118 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Erfahrungen in der Softwareentwicklung\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Künstliche Intelligenz\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Large Language Models (LLM)\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI-Agenten\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Softwarearchitekturen\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Entwicklung oder Integration von APIs\"\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Model Context Protocol (MCP)\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Retrieval-Pipelines\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Embeddings\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Vektordatenbanken\"\n    },\n    {\n      \"skill_id\": \"litellm\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LiteLLM\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Container-Technologien\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Kubernetes\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"OpenAPI\",\n      \"raw_text\": \"OpenAPI\"\n    },\n    {\n      \"label\": \"OpenWebUI\",\n      \"raw_text\": \"OpenWebUI\"\n    },\n    {\n      \"label\": \"OAuth2\",\n      \"raw_text\": \"OAuth2\"\n    },\n    {\n      \"label\": \"Identity Management\",\n      \"raw_text\": \"Identity Management\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"erste praktische Erfahrungen in der Softwareentwicklung\",\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Studium der Informatik, Wirtschaftsinformatik oder eine vergleichbare technische Ausbildung erfolgreich abgeschlossen\",\n  \"uncertain\": [],\n  \"notes\": \"AI, LLMs, and AI-Agenten in 'Dein Profil' are framed as 'Du interessierst Dich für... Idealerweise konntest Du in diesem Umfeld bereits erste praktische Erfahrungen sammeln', so labeled as nice_to_have (uncertain). OpenAPI, MCP, Agenten-Frameworks, and Retrieval-Pipelines are framed with '...oder Du hast großes Interesse, Dich strukturiert in diese Themen einzuarbeiten', making prior knowledge optional (nice_to_have, uncertain). Cloud, Backend-Services, and Frontend appear only in 'Deine Aufgaben' (responsibilities) and not in 'Dein Profil', so they are omitted per the guide.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Erfahrungen in der Softwareentwicklung"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "nice_to_have",
+        "raw_text": "Künstliche Intelligenz",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "Large Language Models (LLM)",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "AI-Agenten",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Softwarearchitekturen"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Entwicklung oder Integration von APIs"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "nice_to_have",
+        "raw_text": "Model Context Protocol (MCP)",
+        "uncertain": true
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "Retrieval-Pipelines",
+        "uncertain": true
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "nice_to_have",
+        "raw_text": "Embeddings"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "nice_to_have",
+        "raw_text": "Vektordatenbanken"
+      },
+      {
+        "skill_id": "litellm",
+        "requirement": "nice_to_have",
+        "raw_text": "LiteLLM"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "Container-Technologien"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "OpenAPI",
+        "raw_text": "OpenAPI"
+      },
+      {
+        "label": "OpenWebUI",
+        "raw_text": "OpenWebUI"
+      },
+      {
+        "label": "OAuth2",
+        "raw_text": "OAuth2"
+      },
+      {
+        "label": "Identity Management",
+        "raw_text": "Identity Management"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "erste praktische Erfahrungen in der Softwareentwicklung",
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Studium der Informatik, Wirtschaftsinformatik oder eine vergleichbare technische Ausbildung erfolgreich abgeschlossen",
+    "uncertain": [],
+    "notes": "AI, LLMs, and AI-Agenten in 'Dein Profil' are framed as 'Du interessierst Dich für... Idealerweise konntest Du in diesem Umfeld bereits erste praktische Erfahrungen sammeln', so labeled as nice_to_have (uncertain). OpenAPI, MCP, Agenten-Frameworks, and Retrieval-Pipelines are framed with '...oder Du hast großes Interesse, Dich strukturiert in diese Themen einzuarbeiten', making prior knowledge optional (nice_to_have, uncertain). Cloud, Backend-Services, and Frontend appear only in 'Deine Aufgaben' (responsibilities) and not in 'Dein Profil', so they are omitted per the guide."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "224fd81a9a8ec6f05f67541a478f8d10701c84b07c5df9696171a5dde09481c0",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}
