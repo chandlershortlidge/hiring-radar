@@ -407,9 +407,9 @@ labeling run started before this edit was stopped at posting 3 of 24 and restart
 >
 > **Open:** item 174 only (golden_040 `german`, a null value a person is confirming). The
 > other three `?` sit on the two out-of-scope postings, which `apply` skips. The 15
-> spot-check labels came back 14 `ok` and one pending; the 20 judge-vs-proposal
-> disagreements are decided — judge taken on 11, proposal on 7, a shorter quote chosen on
-> the rest.
+> spot-check labels came back 14 `ok` and one pending; the judge-vs-proposal disagreements
+> are decided — judge taken on 8, proposal on 7, and on the six that differed only in the
+> quote the shorter quote won three times.
 >
 > **Then:** `apply --run 20261027T110516Z_label`, then
 > `run_eval.py --split heldout --i-am-releasing`, then write the agreement numbers and the
