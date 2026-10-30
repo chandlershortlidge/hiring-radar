@@ -568,7 +568,7 @@ PROPOSED: `A` - qualification bullet names "agent orchestration"
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: drop
 
 ## 47. golden_045 - skill `ai-ml` (disagreement)
 
@@ -731,7 +731,7 @@ PROPOSED: `B` - shortest verbatim phrase that supports the skill; A's quote is t
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 60. golden_026 - attribute `seniority` (uncertain)
 
@@ -809,7 +809,7 @@ PROPOSED: `A` - shortest phrase that supports the skill
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: {"requirement": "required", "raw_text": "Deployment und dem produktiven Betrieb von KI-Modellen"}
 
 ## 66. golden_028 - skill `llms` (uncertain)
 
@@ -822,7 +822,7 @@ PROPOSED: `ok` - "generativen KI-Modellen" is the posting's word for LLMs
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: drop
 
 ## 67. golden_028 - skill `model-development` (uncertain)
 
@@ -991,7 +991,7 @@ PROPOSED: `B` - shortest phrase; A carries "similar" from the sentence
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 80. golden_034 - attribute `degree` (uncertain)
 
@@ -1136,7 +1136,7 @@ PROPOSED: `ok` - AWS is named in the tech-stack list, requirement rule 3. "Movin
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 91. golden_037 - skill `backend-development` (uncertain)
 
@@ -1149,7 +1149,7 @@ PROPOSED: `ok` - "Backend" heads a stack line
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 92. golden_037 - skill `evaluation` (uncertain)
 
@@ -1162,7 +1162,7 @@ PROPOSED: `ok` - "Eval." is the posting's own abbreviation in the stack list; ra
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 93. golden_037 - skill `llms` (uncertain)
 
@@ -1175,7 +1175,7 @@ PROPOSED: `ok` - "GenAI" is the posting's word for LLMs
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 94. golden_037 - skill `observability` (uncertain)
 
@@ -1188,7 +1188,7 @@ PROPOSED: `ok` - "Obsv." abbreviated in the stack list, same as item 92
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 95. golden_037 - skill `postgresql` (uncertain)
 
@@ -1201,7 +1201,7 @@ PROPOSED: `ok` - "postgress" is the posting's typo; raw_text is verbatim, the sk
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 96. golden_038 - attribute `degree` (uncertain)
 
@@ -1240,7 +1240,7 @@ PROPOSED: `ok` - "statistical role" under an optional heading
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: drop
 
 ## 99. golden_040 - skill `ai-deployment` (uncertain)
 
@@ -1253,7 +1253,7 @@ PROPOSED: `B` - shortest phrase; A's quote carries "production support" too
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 100. golden_040 - skill `experiment-tracking` (uncertain)
 
@@ -1357,7 +1357,7 @@ PROPOSED: `B` - "ML workflows" is shorter and sits in the 5+ years requirement b
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 108. golden_043 - skill `data-privacy-and-security` (uncertain)
 
@@ -1370,7 +1370,7 @@ PROPOSED: `B` - shortest phrase; A carries the article
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 109. golden_044 - skill `ai-infrastructure` (uncertain)
 
@@ -1396,7 +1396,7 @@ PROPOSED: `ok` - "evaluation frameworks" names it
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: {"requirement": "nice_to_have", "raw_text": "evaluation frameworks"}
 
 ## 111. golden_044 - skill `python` (uncertain)
 
@@ -1435,7 +1435,7 @@ PROPOSED: `ok` - "know when to leverage which model" names model selection
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 114. golden_046 - attribute `degree` (uncertain)
 
@@ -1461,7 +1461,7 @@ PROPOSED: `B` - "AI-Agenten" is the shorter phrase naming agents; A's "Agenten-F
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: {"requirement": "nice_to_have", "raw_text": "AI-Agenten"}
 
 ## 116. golden_046 - skill `mcp` (uncertain)
 
@@ -1474,7 +1474,7 @@ PROPOSED: `ok` - "Model Context Protocol (MCP)" named
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: {"requirement": "nice_to_have", "raw_text": "Begriffe wie OpenAPI, Model Context Protocol (MCP), Agenten-Frameworks oder Retrieval-Pipelines sind für Dich keine Fremdwörter oder Du hast großes Interesse, Dich strukturiert in diese Themen einzuarbeiten."}
 
 ## 117. golden_047 - skill `devops` (uncertain)
 
@@ -1487,7 +1487,7 @@ PROPOSED: `B` - shortest phrase that supports DevOps
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 118. golden_047 - skill `gcp` (uncertain)
 
@@ -1599,7 +1599,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 128. golden_027 - skill `devops` (spot-check)
 
@@ -1719,7 +1719,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 140. golden_029 - attribute `degree` (spot-check)
 
@@ -1819,7 +1819,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 150. golden_032 - attribute `german` (spot-check)
 
@@ -1879,7 +1879,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 156. golden_032 - skill `recommender-systems` (spot-check)
 
@@ -1909,7 +1909,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 159. golden_034 - skill `cloud` (spot-check)
 
@@ -1929,7 +1929,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 161. golden_034 - skill `infrastructure-as-code` (spot-check)
 
@@ -1999,7 +1999,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 168. golden_036 - skill `cloud` (spot-check)
 
@@ -2039,7 +2039,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 172. golden_037 - skill `gemini` (spot-check)
 
@@ -2089,7 +2089,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 177. golden_040 - skill `tensorflow` (spot-check)
 
@@ -2169,7 +2169,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 185. golden_044 - skill `typescript` (spot-check)
 
@@ -2179,7 +2179,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 186. golden_045 - attribute `german` (spot-check)
 
@@ -2199,7 +2199,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 188. golden_045 - skill `evaluation` (spot-check)
 
@@ -2209,7 +2209,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 189. golden_045 - skill `llms` (spot-check)
 
@@ -2219,7 +2219,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 190. golden_045 - skill `observability` (spot-check)
 

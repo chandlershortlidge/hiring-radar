@@ -405,12 +405,25 @@ labeling run started before this edit was stopped at posting 3 of 24 and restart
 > pool is the labels two models already agreed on, so it says the easy cases are solid, not
 > that the answer key is right. The hard cases went to the queue.
 >
-> **Open:** the 15 human spot-check labels, and the 20 judge-vs-proposal disagreements.
+> **Open:** item 174 only (golden_040 `german`, a null value a person is confirming). The
+> other three `?` sit on the two out-of-scope postings, which `apply` skips. The 15
+> spot-check labels came back 14 `ok` and one pending; the 20 judge-vs-proposal
+> disagreements are decided — judge taken on 11, proposal on 7, a shorter quote chosen on
+> the rest.
 >
 > **Then:** `apply --run 20261027T110516Z_label`, then
 > `run_eval.py --split heldout --i-am-releasing`, then write the agreement numbers and the
 > spot-check error rate with its 95% Wilson interval into this entry (replacing the TODO
 > below) and onto HIR-70.
+>
+> **The five rules sit under LABELING.md, not beside it.** Where a rule the adjudication
+> produced and the frozen guide disagree, the guide wins. The judge dropped six of
+> golden_037's labels (`aws`, `backend-development`, `evaluation`, `llms`, `observability`,
+> `postgresql`) on its rules 1 and 4, for sitting in a "Current Tech Stack" list rather than
+> a qualification bullet — but the guide's requirement rule 3 makes an unmarked tech-stack
+> entry `required`, and the five rules do not override a frozen guide. Items 90-95 keep the
+> agreed label. The judge is not told that precedence, so a verdict leaning on rules 1 or 4
+> against a plain stack entry is one to check rather than take.
 >
 > **Rules the adjudication produced, and that the judge was given verbatim.** Not in
 > LABELING.md yet — the guide is not edited mid-run. They go in as one clarification with
