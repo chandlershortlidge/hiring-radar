@@ -1,0 +1,15 @@
+{
+  "item": 100,
+  "golden_id": "golden_040",
+  "kind": "skill",
+  "key": "experiment-tracking",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "e426948f2b3bd61efaa0ba7519535f68fb620d161d6ca3e5e4ace5f47f8761a4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification bullet under 'Nice To Have' explicitly asks for experience with 'experiment tools' (alongside MLflow and Weights & Biases).\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification bullet under 'Nice To Have' explicitly asks for experience with 'experiment tools' (alongside MLflow and Weights & Biases).",
+  "error": null
+}

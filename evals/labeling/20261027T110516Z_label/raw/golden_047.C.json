@@ -1,0 +1,155 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Erfahrung mit großen Sprachmodellen (LLMs)\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Vektordatenbanken\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG-Pipelines\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Orchestrierungs-Frameworks\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangChain\"\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangGraph\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"praktischen Erfahrung in DevOps-Projekten\"\n    },\n    {\n      \"skill_id\": \"csharp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C#\"\n    },\n    {\n      \"skill_id\": \"javascript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JavaScript\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Bereitstellung von ML-/KI-Modellen in Produktionsumgebungen\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud-Anbieter\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Prompt-Engineering\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Feinabstimmung\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Backend-Technologien\"\n    },\n    {\n      \"skill_id\": \"node-js\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"NodeJS\"\n    },\n    {\n      \"skill_id\": \"flask\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Flask\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"REST APIs\"\n    },\n    {\n      \"skill_id\": \"graphql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GraphQL\"\n    },\n    {\n      \"skill_id\": \"fastapi\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"FastAPI\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Microsoft Azure\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Google\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \".NET Core\",\n      \"raw_text\": \".NET Core\"\n    },\n    {\n      \"label\": \"Spring/SpringBoot\",\n      \"raw_text\": \"Spring/SpringBoot\"\n    },\n    {\n      \"label\": \"Django\",\n      \"raw_text\": \"Django\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"(Junior) Agentic AI Software Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Mündliche und schriftliche Kommunikationsfähigkeit in Deutsch\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Wir freuen uns auf deinen Studienabschluss mit einem technischen Hintergrund, zum Beispiel in Informatik, Data Science, Künstliche Intelligenz, Wirtschaftsinformatik oder einem ähnlichen orientierten Studiengang\",\n  \"uncertain\": [],\n  \"notes\": \"Mapped 'Orchestrierungs-Frameworks' in the generative AI context to llm-orchestration (flagged uncertain). Mapped 'Google' in 'Cloud-Anbieter wie AWS oder Google' to gcp. Agents and microservices appear only in Aufgaben (responsibilities) and were excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit großen Sprachmodellen (LLMs)"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "Vektordatenbanken"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG-Pipelines"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "Orchestrierungs-Frameworks",
+        "uncertain": true
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "praktischen Erfahrung in DevOps-Projekten"
+      },
+      {
+        "skill_id": "csharp",
+        "requirement": "required",
+        "raw_text": "C#"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "Bereitstellung von ML-/KI-Modellen in Produktionsumgebungen"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Anbieter"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt-Engineering"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "Feinabstimmung"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend-Technologien"
+      },
+      {
+        "skill_id": "node-js",
+        "requirement": "required",
+        "raw_text": "NodeJS"
+      },
+      {
+        "skill_id": "flask",
+        "requirement": "required",
+        "raw_text": "Flask"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST APIs"
+      },
+      {
+        "skill_id": "graphql",
+        "requirement": "required",
+        "raw_text": "GraphQL"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": ".NET Core",
+        "raw_text": ".NET Core"
+      },
+      {
+        "label": "Spring/SpringBoot",
+        "raw_text": "Spring/SpringBoot"
+      },
+      {
+        "label": "Django",
+        "raw_text": "Django"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "(Junior) Agentic AI Software Engineer",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Mündliche und schriftliche Kommunikationsfähigkeit in Deutsch",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Wir freuen uns auf deinen Studienabschluss mit einem technischen Hintergrund, zum Beispiel in Informatik, Data Science, Künstliche Intelligenz, Wirtschaftsinformatik oder einem ähnlichen orientierten Studiengang",
+    "uncertain": [],
+    "notes": "Mapped 'Orchestrierungs-Frameworks' in the generative AI context to llm-orchestration (flagged uncertain). Mapped 'Google' in 'Cloud-Anbieter wie AWS oder Google' to gcp. Agents and microservices appear only in Aufgaben (responsibilities) and were excluded."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "91142debb1fca65b281d5a55c9895d66a60bd587f0482c608b83014b74ed87e4",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

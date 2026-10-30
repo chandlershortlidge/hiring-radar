@@ -1,0 +1,55 @@
+{
+  "id": "golden_033",
+  "split": "heldout",
+  "seniority": "junior",
+  "seniority_basis": "stated",
+  "seniority_signal": "AI-First Engineering Intern",
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": false,
+  "degree_signal": "Open to current undergraduate students, graduate students, and recent graduates of a Computer Science, Software Engineering, or related program.",
+  "attrs_reviewed": true,
+  "source_sha256": "412cd655dde21203efa8cb609bce85b50a48a334d9e342ed3eb6a7695b77090d",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "degree",
+    "skill:ai-developer-tooling"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked": false,
+  "job_description": "AI-First Engineering Intern\nXsolla • Berlin, Berlin, Germany (Remote)\n\nThis isn't a shadow-and-observe internship. You'll ship code that goes to customers – internal teams or external players and game developers – working closely with senior engineers and fellow interns across our global regions.\n\nWho You'll Work With\n\nYou won't be isolated on an intern-only project island. You'll work closely with senior engineers who are actively rebuilding how we write software, and you'll be part of a global cohort of interns building in parallel across our regions. That combination is the point: senior engineers give you a bar for what production-grade, customer-facing code looks like, and your fellow interns give you a peer group to trade ideas, code, and AI workflows every week.\n\nWhat You'll Do\n\n- Partner and collaborate with senior engineers to identify where AI tooling and integrations can remove friction, and build the fix.\n- Build applications and integrations on top of Xsolla's APIs and SDKs that show internal teams how to move faster using AI-assisted development.\n- Ship work that matters. What you build is expected to reach real users – whether that's an internal tool an engineering team adopts or a customer-facing integration – not a throwaway exercise that gets shelved after your internship ends.\n- Use agentic coding tools (Claude Code, Cursor, or similar) as your default way of working – not a novelty you reach for occasionally.\n- Share what you build. We run weekly 30-second lightning-talk demos where everyone shows how they used AI to solve something that week – you'll be expected to bring something real.\n- Work with minimal process. You'll get context, a problem, and a mentor – the rest is on you to figure out and build.\n- Learn from and collaborate with both directions: senior engineers who'll mentor you on production-grade practices, and fellow interns across markets you'll trade ideas and code with at the weekly demos.\n\nWhat We're Looking For\n\nYou build things because you want to, and that you already use AI to do it faster.\n\n- Genuine passion for building. You have side projects, hackathon entries, open-source contributions, or something you shipped just because you were curious. You didn't need an assignment to make it happen.\n- Real AI fluency. You've actually used tools like Claude Code, Cursor, Copilot, or similar agentic coding tools to build something – not just asked ChatGPT to explain a concept. You should be able to explain how you used AI to get there and how you confirmed it actually worked – not someone who fires off a prompt and hopes for the best.\n- Bias toward action. Given an ambiguous problem, you start building before you ask for a spec.\n- Comfort with developing modern full-stack solutions – we care more about how fast you learn than what you already know cold.\n- Open to current undergraduate students, graduate students, and recent graduates of a Computer Science, Software Engineering, or related program. If you're pursuing a graduate degree and don't mind taking on an internship-level role to get hands-on with AI, we want to hear from you.",
+  "expected": [
+    {
+      "skill_id": "ai-developer-tooling",
+      "requirement": "required",
+      "raw_text": "agentic coding tools"
+    },
+    {
+      "skill_id": "claude-code",
+      "requirement": "required",
+      "raw_text": "tools like Claude Code"
+    },
+    {
+      "skill_id": "cursor",
+      "requirement": "required",
+      "raw_text": "Cursor, Copilot"
+    },
+    {
+      "skill_id": "full-stack-development",
+      "requirement": "required",
+      "raw_text": "full-stack solutions"
+    },
+    {
+      "skill_id": "github-copilot",
+      "requirement": "required",
+      "raw_text": "Copilot"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "item": 68,
+  "golden_id": "golden_029",
+  "kind": "skill",
+  "key": "ai-developer-tooling",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "efd672c396148bd462083285775dfdc471fa749674b1b6c372417b0c3e7e6ed1",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification bullet explicitly asks for practical experience with 'KI-assistiertes Code-Authoring', which directly corresponds to AI developer tooling.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification bullet explicitly asks for practical experience with 'KI-assistiertes Code-Authoring', which directly corresponds to AI developer tooling.",
+  "error": null
+}

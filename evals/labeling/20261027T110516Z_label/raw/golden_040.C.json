@@ -1,0 +1,139 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"computer-vision\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"computer vision\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"applied AI\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"embeddings\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience beyond model training, including evaluation, deployment\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"onnx\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"ONNX\"\n    },\n    {\n      \"skill_id\": \"tensorrt\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"TensorRT\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"MLOps\"\n    },\n    {\n      \"skill_id\": \"experiment-tracking\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"experiment tools\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"mlflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"MLflow\"\n    },\n    {\n      \"skill_id\": \"weights-and-biases\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Weights & Biases\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"model monitoring\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"OpenVINO\",\n      \"raw_text\": \"OpenVINO\"\n    },\n    {\n      \"label\": \"TFLite\",\n      \"raw_text\": \"TFLite\"\n    },\n    {\n      \"label\": \"DVC\",\n      \"raw_text\": \"DVC\"\n    },\n    {\n      \"label\": \"Edge / Embedded Model Optimization\",\n      \"raw_text\": \"optimizing models for edge or embedded environments\"\n    },\n    {\n      \"label\": \"Multimodal Models\",\n      \"raw_text\": \"multimodal models\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI/Computer Vision Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"MS or PhD in Computer Science, Electrical Engineering, or a related field, or equivalent practical experience\",\n  \"uncertain\": [],\n  \"notes\": \"Mapped 'deployment' in 'Experience beyond model training, including evaluation, deployment' to ai-deployment (marked uncertain as exact alias is model deployment). Mapped 'experiment tools' to experiment-tracking (marked uncertain). Highest degree mentioned in 'MS or PhD' is phd.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "computer vision"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "applied AI"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "embeddings"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "Experience beyond model training, including evaluation, deployment",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "onnx",
+        "requirement": "nice_to_have",
+        "raw_text": "ONNX"
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorRT"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "nice_to_have",
+        "raw_text": "MLOps"
+      },
+      {
+        "skill_id": "experiment-tracking",
+        "requirement": "nice_to_have",
+        "raw_text": "experiment tools",
+        "uncertain": true
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "nice_to_have",
+        "raw_text": "MLflow"
+      },
+      {
+        "skill_id": "weights-and-biases",
+        "requirement": "nice_to_have",
+        "raw_text": "Weights & Biases"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "model monitoring"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "OpenVINO",
+        "raw_text": "OpenVINO"
+      },
+      {
+        "label": "TFLite",
+        "raw_text": "TFLite"
+      },
+      {
+        "label": "DVC",
+        "raw_text": "DVC"
+      },
+      {
+        "label": "Edge / Embedded Model Optimization",
+        "raw_text": "optimizing models for edge or embedded environments"
+      },
+      {
+        "label": "Multimodal Models",
+        "raw_text": "multimodal models"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI/Computer Vision Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "MS or PhD in Computer Science, Electrical Engineering, or a related field, or equivalent practical experience",
+    "uncertain": [],
+    "notes": "Mapped 'deployment' in 'Experience beyond model training, including evaluation, deployment' to ai-deployment (marked uncertain as exact alias is model deployment). Mapped 'experiment tools' to experiment-tracking (marked uncertain). Highest degree mentioned in 'MS or PhD' is phd."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "e798d15539a8402bc80793a28c04938cd5e5abbfd4afff782489d45bef12e961",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

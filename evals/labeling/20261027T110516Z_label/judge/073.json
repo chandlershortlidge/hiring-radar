@@ -1,0 +1,15 @@
+{
+  "item": 73,
+  "golden_id": "golden_031",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "c05774f8b2228433ce2cf9be1bb8d05bacd31374d4019e054290d7966669f65b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"By Rule 1, a qualification bullet under the 'Nice-to-Have' section explicitly names 'agentic workflows', which correctly maps to the `agents` skill as nice_to_have.\"}",
+  "decision": "ok",
+  "why": "By Rule 1, a qualification bullet under the 'Nice-to-Have' section explicitly names 'agentic workflows', which correctly maps to the `agents` skill as nice_to_have.",
+  "error": null
+}

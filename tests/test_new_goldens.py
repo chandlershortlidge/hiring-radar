@@ -49,3 +49,21 @@ def test_draft_puts_the_title_on_top_but_hashes_the_stored_text():
     d = ng.draft("golden_099", "Python and RAG", "Senior AI Engineer")
     assert d["job_description"] == "Senior AI Engineer\n\nPython and RAG"
     assert d["source_sha256"] == ng.sha("Python and RAG")
+
+
+def test_a_non_golden_file_in_the_goldens_directory_is_not_read_as_a_golden(tmp_path, monkeypatch):
+    """evals/goldens also holds excluded.json, which agent_label's apply writes. Globbing
+    *.json there read it as a Golden and broke every eval run, dev split included."""
+    goldens = tmp_path / "evals" / "goldens"
+    goldens.mkdir(parents=True)
+    (goldens / "golden_001.json").write_text(json.dumps(
+        {"id": "golden_001", "split": "heldout", "job_description": "x",
+         "source_sha256": ng.sha("x"), "expected": []}))
+    (goldens / "excluded.json").write_text(json.dumps(
+        {"excluded": [{"golden_id": "golden_002", "source_sha256": "abc"}]}))
+    monkeypatch.setattr(re_, "ROOT", tmp_path)
+    assert [g["id"] for g in re_.load_goldens("heldout")] == ["golden_001"]
+    # and the excluded list still keeps its posting and its spent number out of the next pick
+    monkeypatch.setattr(ng, "GOLDENS", goldens)
+    hashes, top = ng.existing()
+    assert "abc" in hashes and top == 2

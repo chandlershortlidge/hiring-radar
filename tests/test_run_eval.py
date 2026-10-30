@@ -25,7 +25,7 @@ def test_missing_api_key_exits_before_any_call(monkeypatch):
 
 def _one_golden(tmp_path):
     (tmp_path / "evals/goldens").mkdir(parents=True)
-    (tmp_path / "evals/goldens/g1.json").write_text(json.dumps({
+    (tmp_path / "evals/goldens/golden_001.json").write_text(json.dumps({
         "id": "g1", "split": "dev", "source_sha256": "x", "job_description": "Python",
         "expected": [{"skill_id": "python", "requirement": "required", "raw_text": "Python"}]}))
 
@@ -49,7 +49,7 @@ def test_full_run_writes_results_with_mocked_model(monkeypatch, tmp_path):
     monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
     monkeypatch.setattr(run_eval, "ROOT", tmp_path)
     (tmp_path / "evals/goldens").mkdir(parents=True)
-    (tmp_path / "evals/goldens/g1.json").write_text(json.dumps({
+    (tmp_path / "evals/goldens/golden_001.json").write_text(json.dumps({
         "id": "g1", "split": "dev", "source_sha256": "x", "job_description": "Python and LangChain",
         "expected": [{"skill_id": "python", "requirement": "required", "raw_text": "Python"},
                      {"skill_id": "langchain", "requirement": "required", "raw_text": "LangChain"}]}))

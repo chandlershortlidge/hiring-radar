@@ -1,0 +1,15 @@
+{
+  "item": 99,
+  "golden_id": "golden_040",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "67d979d8617f4508ab352759d49ac576ff524f1f2ad0e88e157ea5d95ab265b2",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The qualification bullet directly names deployment and production support beyond model training as required experience (Rules 1 and 3).\"}",
+  "decision": "ok",
+  "why": "The qualification bullet directly names deployment and production support beyond model training as required experience (Rules 1 and 3).",
+  "error": null
+}

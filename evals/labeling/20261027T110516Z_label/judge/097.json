@@ -1,0 +1,15 @@
+{
+  "item": 97,
+  "golden_id": "golden_038",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "42bdb056150bc3698469b83a5b163de1aa7da85f0b085ce448791eb43d3e9792",
+  "raw": "{\"decision\": \"ok\", \"why\": \"By Rule 1, the qualification bullet explicitly asks for 'excellent software engineering skills', which counts as a required skill rather than a job title.\"}",
+  "decision": "ok",
+  "why": "By Rule 1, the qualification bullet explicitly asks for 'excellent software engineering skills', which counts as a required skill rather than a job title.",
+  "error": null
+}

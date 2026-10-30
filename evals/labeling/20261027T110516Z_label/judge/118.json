@@ -1,0 +1,18 @@
+{
+  "item": 118,
+  "golden_id": "golden_047",
+  "kind": "skill",
+  "key": "gcp",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "5889f13e13c1e5cf2ddfef3b69c9e29de1d736d7859f3dea8a3d70eb6ca53533",
+  "raw": "{\"decision\": {\"requirement\": \"required\", \"raw_text\": \"Google\"}, \"why\": \"By Rule 1 and Rule 3, the qualification asks for experience with a cloud provider like Google (GCP), and raw_text should quote only the determining mention.\"}",
+  "decision": {
+    "requirement": "required",
+    "raw_text": "Google"
+  },
+  "why": "By Rule 1 and Rule 3, the qualification asks for experience with a cloud provider like Google (GCP), and raw_text should quote only the determining mention.",
+  "error": null
+}

@@ -1,0 +1,164 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM\"\n    },\n    {\n      \"skill_id\": \"inference-optimization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"optimizing LLM, VLM, or high-throughput transformer\\u00a0inference\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying or optimizing LLM, VLM, or high-throughput transformer\\u00a0inference\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"vllm\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"such as vLLM\"\n    },\n    {\n      \"skill_id\": \"sglang\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SGLang, TensorRT-LLM, Triton Inference Server\"\n    },\n    {\n      \"skill_id\": \"tensorrt\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorRT-LLM, Triton Inference Server\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed inference system architecture\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agentic workloads\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"tool calling\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"streaming APIs\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"multi-step orchestration\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"VLM (Vision-Language Models)\",\n      \"raw_text\": \"VLM\"\n    },\n    {\n      \"label\": \"Triton Inference Server\",\n      \"raw_text\": \"Triton Inference Server\"\n    },\n    {\n      \"label\": \"NVIDIA Dynamo\",\n      \"raw_text\": \"NVIDIA Dynamo\"\n    },\n    {\n      \"label\": \"Ray Serve\",\n      \"raw_text\": \"Ray Serve\"\n    },\n    {\n      \"label\": \"KServe\",\n      \"raw_text\": \"KServe\"\n    },\n    {\n      \"label\": \"Quantization (QAT, PTQ, FP8, INT8, INT4, NVFP4, MXFP4, AWQ, GPTQ, SmoothQuant)\",\n      \"raw_text\": \"quantization-aware training, post-training quantization, FP8, INT8, INT4, NVFP4, MXFP4, AWQ, GPTQ, or\\u00a0SmoothQuant\"\n    },\n    {\n      \"label\": \"Distillation\",\n      \"raw_text\": \"distillation\"\n    },\n    {\n      \"label\": \"Speculative decoding (EAGLE, Medusa, multi-token prediction)\",\n      \"raw_text\": \"speculative decoding, EAGLE, Medusa, multi-token prediction\"\n    },\n    {\n      \"label\": \"CUDA\",\n      \"raw_text\": \"CUDA\"\n    },\n    {\n      \"label\": \"Triton (kernel language)\",\n      \"raw_text\": \"Triton\"\n    },\n    {\n      \"label\": \"FlashInfer\",\n      \"raw_text\": \"FlashInfer\"\n    },\n    {\n      \"label\": \"LMCache\",\n      \"raw_text\": \"LMCache\"\n    },\n    {\n      \"label\": \"Ray\",\n      \"raw_text\": \"Ray\"\n    },\n    {\n      \"label\": \"NCCL\",\n      \"raw_text\": \"NCCL\"\n    },\n    {\n      \"label\": \"NVLink\",\n      \"raw_text\": \"NVLink\"\n    },\n    {\n      \"label\": \"InfiniBand\",\n      \"raw_text\": \"InfiniBand\"\n    },\n    {\n      \"label\": \"RoCE\",\n      \"raw_text\": \"RoCE\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Flagged ai-deployment ('deploying ... LLM ... inference'), distributed-systems ('distributed inference system architecture'), agents ('agentic workloads'), and llm-orchestration ('multi-step orchestration' in agentic context) as uncertain because the phrasing is borderline with the taxonomy aliases. Many specialized LLM inference and quantization tools/techniques are unmapped.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "required",
+        "raw_text": "optimizing LLM, VLM, or high-throughput transformer inference"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying or optimizing LLM, VLM, or high-throughput transformer inference",
+        "uncertain": true
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "required",
+        "raw_text": "such as vLLM"
+      },
+      {
+        "skill_id": "sglang",
+        "requirement": "required",
+        "raw_text": "SGLang, TensorRT-LLM, Triton Inference Server"
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "required",
+        "raw_text": "TensorRT-LLM, Triton Inference Server"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed inference system architecture",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic workloads",
+        "uncertain": true
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "nice_to_have",
+        "raw_text": "tool calling"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "nice_to_have",
+        "raw_text": "streaming APIs"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "nice_to_have",
+        "raw_text": "multi-step orchestration",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "VLM (Vision-Language Models)",
+        "raw_text": "VLM"
+      },
+      {
+        "label": "Triton Inference Server",
+        "raw_text": "Triton Inference Server"
+      },
+      {
+        "label": "NVIDIA Dynamo",
+        "raw_text": "NVIDIA Dynamo"
+      },
+      {
+        "label": "Ray Serve",
+        "raw_text": "Ray Serve"
+      },
+      {
+        "label": "KServe",
+        "raw_text": "KServe"
+      },
+      {
+        "label": "Quantization (QAT, PTQ, FP8, INT8, INT4, NVFP4, MXFP4, AWQ, GPTQ, SmoothQuant)",
+        "raw_text": "quantization-aware training, post-training quantization, FP8, INT8, INT4, NVFP4, MXFP4, AWQ, GPTQ, or SmoothQuant"
+      },
+      {
+        "label": "Distillation",
+        "raw_text": "distillation"
+      },
+      {
+        "label": "Speculative decoding (EAGLE, Medusa, multi-token prediction)",
+        "raw_text": "speculative decoding, EAGLE, Medusa, multi-token prediction"
+      },
+      {
+        "label": "CUDA",
+        "raw_text": "CUDA"
+      },
+      {
+        "label": "Triton (kernel language)",
+        "raw_text": "Triton"
+      },
+      {
+        "label": "FlashInfer",
+        "raw_text": "FlashInfer"
+      },
+      {
+        "label": "LMCache",
+        "raw_text": "LMCache"
+      },
+      {
+        "label": "Ray",
+        "raw_text": "Ray"
+      },
+      {
+        "label": "NCCL",
+        "raw_text": "NCCL"
+      },
+      {
+        "label": "NVLink",
+        "raw_text": "NVLink"
+      },
+      {
+        "label": "InfiniBand",
+        "raw_text": "InfiniBand"
+      },
+      {
+        "label": "RoCE",
+        "raw_text": "RoCE"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Flagged ai-deployment ('deploying ... LLM ... inference'), distributed-systems ('distributed inference system architecture'), agents ('agentic workloads'), and llm-orchestration ('multi-step orchestration' in agentic context) as uncertain because the phrasing is borderline with the taxonomy aliases. Many specialized LLM inference and quantization tools/techniques are unmapped."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "bbe3dd49f84b18b8548b6cbbc38ba23511f098f71a90df17b17c855264bdd232",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

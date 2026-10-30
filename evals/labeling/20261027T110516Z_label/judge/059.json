@@ -1,0 +1,15 @@
+{
+  "item": 59,
+  "golden_id": "golden_025",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "fe6d2e79ac9b7b54e0840be17931123c6af303dd3c40a03679c67293e2da9c1c",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rules 1 and 3, the qualification bullet 'Architektur und Entwicklung komplexer Softwaresysteme' under 'Dein Profil' directly requires software architecture experience.\"}",
+  "decision": "ok",
+  "why": "Under Rules 1 and 3, the qualification bullet 'Architektur und Entwicklung komplexer Softwaresysteme' under 'Dein Profil' directly requires software architecture experience.",
+  "error": null
+}

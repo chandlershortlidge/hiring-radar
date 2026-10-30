@@ -1,0 +1,15 @@
+{
+  "item": 77,
+  "golden_id": "golden_032",
+  "kind": "skill",
+  "key": "llm-guardrails",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "e9bd5dec85a4c2c45ea0aaf0f2ddd29e7dc336f745864b06b5ef5d5278a06c8b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification bullet asks for familiarity with implementing 'runtime guardrails' for AI/agentic workflows, which directly names the skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification bullet asks for familiarity with implementing 'runtime guardrails' for AI/agentic workflows, which directly names the skill.",
+  "error": null
+}

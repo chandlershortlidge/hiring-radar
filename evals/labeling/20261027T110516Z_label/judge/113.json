@@ -1,0 +1,15 @@
+{
+  "item": 113,
+  "golden_id": "golden_045",
+  "kind": "skill",
+  "key": "model-selection",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "9e5b9a9bce32af4b8c9e06f575823ddb6dfa52f171f991f934f9c0c4ec7c3638",
+  "raw": "{\"decision\": \"drop\", \"why\": \"By Rule 5, 'know when to leverage which model' in the context of AI-assisted coding tools like Cursor does not explicitly name the ML skill of model selection.\"}",
+  "decision": "drop",
+  "why": "By Rule 5, 'know when to leverage which model' in the context of AI-assisted coding tools like Cursor does not explicitly name the ML skill of model selection.",
+  "error": null
+}

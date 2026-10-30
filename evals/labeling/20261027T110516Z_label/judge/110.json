@@ -1,0 +1,18 @@
+{
+  "item": 110,
+  "golden_id": "golden_044",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "a75cef03e4c66e08f97a43bf11b1b4421041bd1535bf3251ebf8e548b7853891",
+  "raw": "{\"decision\": {\"requirement\": \"nice_to_have\", \"raw_text\": \"evaluation frameworks\"}, \"why\": \"Per rule 1, the qualification bullet explicitly names 'evaluation frameworks' as 'useful', making it a nice-to-have skill.\"}",
+  "decision": {
+    "requirement": "nice_to_have",
+    "raw_text": "evaluation frameworks"
+  },
+  "why": "Per rule 1, the qualification bullet explicitly names 'evaluation frameworks' as 'useful', making it a nice-to-have skill.",
+  "error": null
+}

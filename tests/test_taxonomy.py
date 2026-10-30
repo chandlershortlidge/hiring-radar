@@ -49,7 +49,7 @@ def test_ancestors_are_transitive():
 
 def test_committed_taxonomy_loads_and_covers_every_golden_label():
     t = Taxonomy.load()
-    for p in sorted((ROOT / "evals/goldens").glob("*.json")):
+    for p in sorted((ROOT / "evals/goldens").glob("golden_*.json")):
         g = json.loads(p.read_text())
         for e in g["expected"]:
             assert e["skill_id"] in t.skills, f"{p.name}: {e['skill_id']} not in taxonomy"
@@ -58,7 +58,7 @@ def test_committed_taxonomy_loads_and_covers_every_golden_label():
 def test_every_golden_has_a_valid_seniority_label():
     # None ("no usable signal", LABELING.md) is a label; a level needs a basis, a stated
     # level needs a signal, and a signal must be quoted from the posting.
-    for p in sorted((ROOT / "evals/goldens").glob("*.json")):
+    for p in sorted((ROOT / "evals/goldens").glob("golden_*.json")):
         g = json.loads(p.read_text())
         if g.get("draft"):
             continue

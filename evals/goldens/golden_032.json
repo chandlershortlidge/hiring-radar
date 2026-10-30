@@ -1,0 +1,186 @@
+{
+  "id": "golden_032",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "inferred",
+  "seniority_signal": "mentoring peers",
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": false,
+  "source_sha256": "bcc6bb20989961fd6e7516ef218934c4ca66e05e5343d7f0fe5709bfd69c2cfa",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:ai-deployment"
+  ],
+  "adjudicated_by_model": [
+    "seniority",
+    "skill:agents",
+    "skill:cloud",
+    "skill:llm-guardrails",
+    "skill:testing"
+  ],
+  "spot_checked": true,
+  "job_description": "AI Systems Engineer (d/f/m)\nmobile.de • Berlin, Berlin, Germany (Hybrid)\n\n- Agentic platform engineering: Hands-on experience designing, developing, and operating agentic systems using frameworks such as AWS AgentCore, Google Vertex AI, Bedrock, LangChain, LangGraph, AutoGen, CrewAI or similar.\n- Cloud-native development: Proficient in AWS infrastructure (VPC, Lambda, S3, IAM, CloudWatch) or their Google Cloud Platform equivalents, with experience in cross-account integrations, Terraform, and Kubernetes.\n- Programming expertise: Strong coding skills in Python and/or Java, with a track record of building production-grade backend services and APIs.\n- System integration: Experience integrating agents with microservices, recommendation engines, and vector databases (e.g., S3 Vector, OpenSearch), ideally in a multi-environment setup.\n- Observability, evaluation and compliance: Familiarity with implementing observability, evaluation frameworks (for agents and prompts), runtime guardrails, and compliance controls for AI/agentic workflows.\n- FinOps: Ability to provide reliable cost estimations and ensure effective cost controls\n- AI adoption and literacy: Demonstrated use of AI-powered development tools (e.g., code assistants, automated testing), and a commitment to responsible and innovative AI adoption.\n- Prompt engineering: Demonstrated ability to design, refine, and optimize prompts for large language models and agentic workflows, including multi-step reasoning, tool use, and robust handling of ambiguous or incomplete user input.\n- Bonus: Experience with RAG (retrieval-augmented generation), knowledge base design, and secure, scalable agentic product deployments in regulated environments.\n\nJob responsibilities\n\n- Design, build, and evolve agentic platforms: Architect and implement robust, scalable agent-based systems on AWS AgentCore & Bedrock and/or Google Vertex AI Agent Engine, and modern cloud-native infrastructure.\n- Drive AI-first engineering: Champion the adoption of agentic and generative AI technologies across the product lifecycle, leveraging frameworks like LangChain and LangGraph for tool orchestration and intelligent workflow automation.\n- Integrate and optimize multi-system workflows: Develop and maintain integrations between agentic platforms, K8s services (via MCP Server), and recommendation engines, ensuring secure, efficient, and observable cross-environment operations.\n- Enable secure, compliant, and observable AI: Embed strong runtime policy enforcement, guardrails, and observability into agentic workflows—ensuring compliance with regulatory, privacy, and ethical standards (including the EU AI Act).\n- Own end-to-end delivery: Lead the full lifecycle of agentic solutions, from ideation and prototyping to production deployment and monitoring, with a strong focus on measurable impact and continuous improvement.\n- Collaborate and inspire: Work closely with cross-functional teams (Product, Data, Platform, Legal, Privacy) to deliver value and foster a culture of AI literacy, knowledge sharing, and responsible innovation.\n- Stay ahead of the curve: Continuously scout, evaluate, and introduce new agentic and AI technologies, sharing best practices and mentoring peers to accelerate company-wide AI adoption.",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "agentic systems"
+    },
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "nice_to_have",
+      "raw_text": "agentic product deployments"
+    },
+    {
+      "skill_id": "ai-developer-tooling",
+      "requirement": "required",
+      "raw_text": "AI-powered development tools"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "APIs"
+    },
+    {
+      "skill_id": "autogen",
+      "requirement": "required",
+      "raw_text": "AutoGen"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "AWS infrastructure"
+    },
+    {
+      "skill_id": "aws-bedrock",
+      "requirement": "required",
+      "raw_text": "Bedrock"
+    },
+    {
+      "skill_id": "aws-s3",
+      "requirement": "required",
+      "raw_text": "S3"
+    },
+    {
+      "skill_id": "backend-development",
+      "requirement": "required",
+      "raw_text": "backend services"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Cloud-native development"
+    },
+    {
+      "skill_id": "crewai",
+      "requirement": "required",
+      "raw_text": "CrewAI"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "evaluation frameworks"
+    },
+    {
+      "skill_id": "gcp",
+      "requirement": "required",
+      "raw_text": "Google Cloud Platform"
+    },
+    {
+      "skill_id": "java",
+      "requirement": "required",
+      "raw_text": "Java"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes"
+    },
+    {
+      "skill_id": "langchain",
+      "requirement": "required",
+      "raw_text": "LangChain"
+    },
+    {
+      "skill_id": "langgraph",
+      "requirement": "required",
+      "raw_text": "LangGraph"
+    },
+    {
+      "skill_id": "llm-guardrails",
+      "requirement": "required",
+      "raw_text": "runtime guardrails"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "large language models"
+    },
+    {
+      "skill_id": "microservices",
+      "requirement": "required",
+      "raw_text": "microservices"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "implementing observability"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "Prompt engineering"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "nice_to_have",
+      "raw_text": "RAG (retrieval-augmented generation)"
+    },
+    {
+      "skill_id": "recommender-systems",
+      "requirement": "required",
+      "raw_text": "recommendation engines"
+    },
+    {
+      "skill_id": "terraform",
+      "requirement": "required",
+      "raw_text": "Terraform"
+    },
+    {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "automated testing"
+    },
+    {
+      "skill_id": "tool-calling",
+      "requirement": "required",
+      "raw_text": "tool use"
+    },
+    {
+      "skill_id": "vector-databases",
+      "requirement": "required",
+      "raw_text": "vector databases"
+    },
+    {
+      "skill_id": "vertex-ai",
+      "requirement": "required",
+      "raw_text": "Google Vertex AI"
+    }
+  ]
+}

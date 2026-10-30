@@ -1,0 +1,105 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI- und Machine-Learning-Lösungen\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Machine-Learning-Lösungen\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"in der Cloud\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GenAI-Lösungen\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI Agents/Agenten\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SciKit-Learn\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"kubeflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"KubeFlow\"\n    },\n    {\n      \"skill_id\": \"hugging-face\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"HuggingFace\"\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangChain\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Softwarelösungen konzipieren, designen und entwickeln\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Enterprise-Architekturen\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Agile\",\n      \"raw_text\": \"agile Softwareentwicklungsmethoden\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI & GenAI Architect (w/m/x)\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"verhandlungssicher auf Deutsch (mind. C1)\",\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Du hast einen Abschluss in Informatik, Data Science, Künstlicher Intelligenz, Mathematik oder einem verwandten Bereich; ein Master oder Ph.D. ist von Vorteil.\",\n  \"uncertain\": [\n    \"degree\"\n  ],\n  \"notes\": \"MLOps and LLMOps appear only in the responsibilities section ('Deine Mission'), so they are excluded per the labeling guide.\\nJob board footer tags ('Schlagworte: ...') are metadata rather than candidate requirements and are excluded.\\n'Abschluss' (bachelor) is required while 'Master oder Ph.D.' is nice_to_have ('ist von Vorteil'); per the guide, highest level named is phd and its requirement is nice_to_have, flagged uncertain due to mixed requirement levels.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI- und Machine-Learning-Lösungen"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Machine-Learning-Lösungen"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "in der Cloud"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "GenAI-Lösungen"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "AI Agents/Agenten"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "SciKit-Learn"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "kubeflow",
+        "requirement": "required",
+        "raw_text": "KubeFlow"
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "required",
+        "raw_text": "HuggingFace"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Softwarelösungen konzipieren, designen und entwickeln",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Enterprise-Architekturen",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Agile",
+        "raw_text": "agile Softwareentwicklungsmethoden"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI & GenAI Architect (w/m/x)",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "verhandlungssicher auf Deutsch (mind. C1)",
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Du hast einen Abschluss in Informatik, Data Science, Künstlicher Intelligenz, Mathematik oder einem verwandten Bereich; ein Master oder Ph.D. ist von Vorteil.",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "MLOps and LLMOps appear only in the responsibilities section ('Deine Mission'), so they are excluded per the labeling guide.\nJob board footer tags ('Schlagworte: ...') are metadata rather than candidate requirements and are excluded.\n'Abschluss' (bachelor) is required while 'Master oder Ph.D.' is nice_to_have ('ist von Vorteil'); per the guide, highest level named is phd and its requirement is nice_to_have, flagged uncertain due to mixed requirement levels."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "2b993a671d8b3e61d5b4bc14c7f558690fcdc6c0c06502f79a5f82edcc7886b4",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

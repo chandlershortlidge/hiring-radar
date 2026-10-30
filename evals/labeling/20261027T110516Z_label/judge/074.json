@@ -1,0 +1,15 @@
+{
+  "item": 74,
+  "golden_id": "golden_032",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "019017216b34905b323612a05ab3bc1e14c9b99a041b3580daaea08e3e70b4e0",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting explicitly lists \\\"mentoring peers\\\" and leading end-to-end delivery in the responsibilities, which supports an inferred senior level.\"}",
+  "decision": "ok",
+  "why": "The posting explicitly lists \"mentoring peers\" and leading end-to-end delivery in the responsibilities, which supports an inferred senior level.",
+  "error": null
+}

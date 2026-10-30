@@ -1,0 +1,15 @@
+{
+  "item": 64,
+  "golden_id": "golden_027",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "6ab6b33cfb3b42b6c2c9d8417be9a6a0b7723f88577e59905cc551f19922a6d3",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Rule 1: 'Architekturdesign' is explicitly named as a required qualification in the 'Dein Profil' section.\"}",
+  "decision": "ok",
+  "why": "Rule 1: 'Architekturdesign' is explicitly named as a required qualification in the 'Dein Profil' section.",
+  "error": null
+}

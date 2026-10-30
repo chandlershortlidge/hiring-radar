@@ -1,0 +1,30 @@
+{
+  "excluded": [
+    {
+      "golden_id": "golden_039",
+      "source_sha256": "9f335840f991b6ce44c63c89b013317315b73c8dc13ed6e29898d3799d24f40d",
+      "company": "EXXETA AG",
+      "title": "AI Engineer Team Lead (all genders)",
+      "reason": "summary blurb under 400 chars, same threshold as the chart exclusion (6d3dcb4); too little to extract to measure anything",
+      "excluded_on": "2026-10-30",
+      "run": "20261027T110516Z_label",
+      "labeled_by": [
+        "claude-opus-5-5",
+        "gpt-6.1-sol"
+      ]
+    },
+    {
+      "golden_id": "golden_048",
+      "source_sha256": "5f5de866ddec570d8152495f2aed376d9491f76e4303e9e3e5dc418193e225e2",
+      "company": "benuta GmbH",
+      "title": "Senior Performance Marketing Manager – Paid Social & AI (m/w/d)",
+      "reason": "marketing role, outside the AI/data engineering scope",
+      "excluded_on": "2026-10-30",
+      "run": "20261027T110516Z_label",
+      "labeled_by": [
+        "claude-opus-5-5",
+        "gpt-6.1-sol"
+      ]
+    }
+  ]
+}

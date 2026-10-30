@@ -1,0 +1,15 @@
+{
+  "item": 95,
+  "golden_id": "golden_037",
+  "kind": "skill",
+  "key": "postgresql",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "5491941ac5e503f04917bda124e4ba636cf9a12e4150b41466260fb5ccdcf587",
+  "raw": "{\"decision\": \"drop\", \"why\": \"By rules 1 and 4, a 'Current Tech Stack' list describes the company's environment rather than a qualification the candidate is asked to have.\"}",
+  "decision": "drop",
+  "why": "By rules 1 and 4, a 'Current Tech Stack' list describes the company's environment rather than a qualification the candidate is asked to have.",
+  "error": null
+}

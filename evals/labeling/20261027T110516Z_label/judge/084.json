@@ -1,0 +1,15 @@
+{
+  "item": 84,
+  "golden_id": "golden_035",
+  "kind": "skill",
+  "key": "distributed-systems",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "a713a5adb7c79a9687573276bb5e1aa1a1d4ae3d018a4c3bf6d48cf94d059062",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a Must-haves qualification bullet explicitly asks for experience with 'distributed inference system architecture', which directly supports the distributed-systems skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a Must-haves qualification bullet explicitly asks for experience with 'distributed inference system architecture', which directly supports the distributed-systems skill.",
+  "error": null
+}

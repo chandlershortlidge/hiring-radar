@@ -51,7 +51,7 @@
     "spot-check": 80
   },
   "spot_check": {
-    "n": 80,
+    "n": 15,
     "pool": 305,
     "seed": 0,
     "sample": [
@@ -455,6 +455,30 @@
         "skill",
         "vector-databases"
       ]
+    ],
+    "errors": 0,
+    "rate": 0.0,
+    "wilson_95": [
+      0.0,
+      0.20388330103584862
+    ],
+    "wrong": [],
+    "human_sample": [
+      127,
+      139,
+      149,
+      155,
+      158,
+      160,
+      167,
+      171,
+      174,
+      176,
+      184,
+      185,
+      187,
+      188,
+      189
     ]
   },
   "signal_mismatches": [

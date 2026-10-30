@@ -1,0 +1,164 @@
+{
+  "id": "golden_027",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "AI Solution Architect / Senior Engineer",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "sehr gute Deutsch- und Englischkenntnisse",
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": false,
+  "source_sha256": "8978047813a3537c6d4d5cfd01f4f502dac179880c62a538a3c32b498cee4687",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:cybersecurity"
+  ],
+  "adjudicated_by_model": [
+    "skill:ai-deployment",
+    "skill:model-versioning",
+    "skill:software-architecture"
+  ],
+  "spot_checked": true,
+  "job_description": "AI Solution Architect / Senior Engineer Financial Services (w/m/d)\n\nCapgemini ist ein globaler Partner für die KI-gestützte Geschäfts- sowie Technologietransformation. Das Unternehmen schafft messbaren Mehrwert für seine Kunden, indem es die Zukunft von Organisationen gestaltet und im Zusammenspiel von KI, Technologie sowie dem Mensch Realität werden lässt. Seit fast 60 Jahren steht Capgemini für Verantwortung wie auch Vielfalt und beschäftigt über 420.000 Mitarbeitende in mehr als 50 Ländern. Das End-to-End-Leistungsspektrum gründet auf einer umfangreichen Branchenexpertise, einem starken Partner-Ökosystem sowie Kompetenzen in den Bereichen Strategie, Technologie, Design, Engineering und Operations. Die Gruppe erzielte 2025 einen weltweiten Umsatz von 22,5 Milliarden Euro.\nDeine Rolle\n\nIm Umfeld Financial Services (Banking & Insurance) bauen wir unsere Kompetenzen im Bereich Generative AI, Agentic AI und moderne Cloud-Plattformen weiter aus. Dafür suchen wir technologische Expert\\*innen, die Freude daran haben, neue AI-Lösungen von der Idee bis in den produktiven Betrieb umzusetzen - eingebettet in bestehende Plattformen, Cloud- und Integrationslandschaften.\nDiese Stelle ist in Vollzeit sowie in Teilzeit zu besetzen.\nAls AI Solution Architect / Senior Engineer (w/m/d) entwickelst und betreibst du moderne AI-Lösungen entlang des gesamten Lifecycles:\n\n* Du definierst und implementierst technische Best Practices für sichere, performante und kosteneffiziente AI-Architekturen entlang des SDLC.\n* Du konzipierst, entwickelst und betreibst GenAI- und Agentic-AI-Lösungen und integrierst diese in Cloud- und Plattformlandschaften.\n* Du arbeitest hands-on in der Umsetzung: AI Engineering, Backend / API-Entwicklung sowie Cloud- / Platform Engineering.\n* Du unterstützt Presales‑ und Angebotsphasen (z. B. Lösungsarchitekturen, technische Konzepte, Demos, Storytelling).\n\nDein Profil\n\n* Fundierte Erfahrung in GenAI-Technologien (LLM APIs, Embeddings, RAG, Prompt Engineering, Evaluierung)\n* Starker Hintergrund in Software Engineering mit Fokus auf Backend, APIs, Microservices oder verteilte Systeme\n* Praxiserfahrung mit Cloud-Plattformen (AWS, Azure oder GCP) sowie modernen DevOps-Stacks (CI/CD, IaC, Container, Kubernetes)\n* Know-how in LLMOps (Deployment-Patterns, Versionierung, Testing, Monitoring) für produktive AI-Systeme sowie gutes Verständnis von Security, Skalierbarkeit und Architekturdesign in komplexen, regulierten Umgebungen\n* Projektabhängige Reisebereitschaft sowie sehr gute Deutsch- und Englischkenntnisse\n\nWas du bei uns schätzen wirst\n\n* Wir legen großen Wert auf die Vereinbarkeit von Arbeit und Privatleben. Deshalb hast du bei uns die Möglichkeit, hybrid aus dem Office, von zu Hause oder an anderen Capgemini Standorten in Deutschland zu arbeiten. Gleichzeitig bietet Capgemini dir flexible Arbeitszeitmodelle.\n* Wir bieten dir vielfältige Möglichkeiten zur Weiterentwicklung: Unser Karrieremodell ermöglicht es dir, deine Karriere so zu lenken, wie es für dich am besten ist und unsere Leadership Programme unterstützen dich dabei. Mit zahlreichen Angeboten auf unserer Lernplattform hast du zudem jederzeit die Möglichkeit, deine Skills auszubauen oder dir neue anzueignen.\n* Unsere Communitys: Wir bieten dir aktive Mitarbeiternetzwerke, in denen du dich sowohl fachlich als auch persönlich mit Kolleg\\*innen aus aller Welt austauschen kannst. Zudem fördern unsere Communitys Vielfalt, Diversität und Inklusion am Arbeitsplatz.\n\nDeine Benefits\n\n* Flexible Arbeitszeit- und Auszeitmodelle\n* Mobiles Arbeiten - auch hybrid von Zuhause aus\n* Jobfahrrad-Programm\n* Mobilitätsbudget\n* Vielfältiges Weiterbildungsangebot\n* Internationales Netzwerk\n* Kooperation mit dem pme Familienservice\n* Deferred Compensation - im Alter gut abgesichert\n* Verlängerte Entgeltfortzahlung im Krankheitsfall\n* Gesundheitsangebote\n* Attraktiver Arbeitsplatz für Menschen mit Handicap\n* Kontakthalteprogramm fareWelcome!\n* Work-life-balance\n* Mitarbeiterrabatte\n* Team- und Sportevents\n\nSämtliche in der Anzeige genannten Nebenleistungen geben lediglich einen ersten Überblick ohne Anerkennung einer Rechtspflicht. Sie richten sich nach den jeweils gültigen Betriebsvereinbarungen, Policies, betrieblichen Regelungen und Anspruchsvoraussetzungen zum Zeitpunkt des Eintritts in das Unternehmen.\n\nBewirb dich jetzt\n\nFür den ersten Schritt in Richtung Zukunft brauchst du nur drei Minuten Zeit und deinen aktuellen Lebenslauf.\nBitte sende keine Bewerbungen per E‑Mail. Bewerbungen werden ausschließlich über unser Online‑Bewerbungssystem entgegengenommen. Eingehende Bewerbungen per E‑Mail werden aus Datenschutzgründen ungelesen gelöscht. Bei Fragen steht dir Alissa Türck unter fs.career.de@capgemini.com zur Seite.\nDiese Anzeige ist online, solange die Stelle verfügbar ist.\nCapgemini lebt Vielfalt am Arbeitsplatz. Diversität sorgt in unserem Unternehmen für Inspiration und Innovation. Wir freuen uns besonders über Bewerbungen von qualifizierten Talenten, unabhängig von Herkunft, Nationalität, Geschlecht, Hautfarbe, ethnischer und sozialer Herkunft, Religion, Alter, Behinderung, sexueller Orientierung und Lebensphase.\n\nMehr Infos\n\nErfahre hier mehr zu unserem Bewerbungsprozess und erhalte Tipps für deine Bewerbung. Steig jetzt bei Capgemini ein und profitiere von unseren zahlreichen Benefits. Mehr Informationen zu den IT-Berufsfeldern bei Capgemini und unseren Standorten in Deutschland findest du auf unserer Karriereseite: capgemini.de/karriere\nInformiere dich aufglassdoor und kununu, wie unsere Mitarbeiter\\*innen Capgemini als Arbeitgeber bewerten.",
+  "expected": [
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "Deployment-Patterns"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "APIs, Microservices"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "AWS"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Azure"
+    },
+    {
+      "skill_id": "backend-development",
+      "requirement": "required",
+      "raw_text": "Backend"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Cloud-Plattformen"
+    },
+    {
+      "skill_id": "containerization",
+      "requirement": "required",
+      "raw_text": "Container"
+    },
+    {
+      "skill_id": "cybersecurity",
+      "requirement": "required",
+      "raw_text": "Security"
+    },
+    {
+      "skill_id": "devops",
+      "requirement": "required",
+      "raw_text": "DevOps-Stacks"
+    },
+    {
+      "skill_id": "distributed-systems",
+      "requirement": "required",
+      "raw_text": "verteilte Systeme"
+    },
+    {
+      "skill_id": "embeddings",
+      "requirement": "required",
+      "raw_text": "Embeddings"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "Evaluierung"
+    },
+    {
+      "skill_id": "gcp",
+      "requirement": "required",
+      "raw_text": "GCP"
+    },
+    {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "required",
+      "raw_text": "IaC"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes"
+    },
+    {
+      "skill_id": "llmops",
+      "requirement": "required",
+      "raw_text": "LLMOps"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "LLM APIs"
+    },
+    {
+      "skill_id": "microservices",
+      "requirement": "required",
+      "raw_text": "Microservices"
+    },
+    {
+      "skill_id": "model-versioning",
+      "requirement": "required",
+      "raw_text": "Versionierung"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "Monitoring"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "Prompt Engineering"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG"
+    },
+    {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "Architekturdesign"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Software Engineering"
+    },
+    {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "Testing"
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "item": 116,
+  "golden_id": "golden_046",
+  "kind": "skill",
+  "key": "mcp",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "b33bb287355aacde9e4d1a27bfb259b53d5ead8acc224e4d31b0a1c04a4060f6",
+  "raw": "{\"decision\": {\"requirement\": \"nice_to_have\", \"raw_text\": \"Begriffe wie OpenAPI, Model Context Protocol (MCP), Agenten-Frameworks oder Retrieval-Pipelines sind für Dich keine Fremdwörter oder Du hast großes Interesse, Dich strukturiert in diese Themen einzuarbeiten.\"}, \"why\": \"Under Rule 1, a qualification sentence explicitly names Model Context Protocol (MCP), and the 'or you have great interest to familiarize yourself' framing makes it nice-to-have rather than required.\"}",
+  "decision": {
+    "requirement": "nice_to_have",
+    "raw_text": "Begriffe wie OpenAPI, Model Context Protocol (MCP), Agenten-Frameworks oder Retrieval-Pipelines sind für Dich keine Fremdwörter oder Du hast großes Interesse, Dich strukturiert in diese Themen einzuarbeiten."
+  },
+  "why": "Under Rule 1, a qualification sentence explicitly names Model Context Protocol (MCP), and the 'or you have great interest to familiarize yourself' framing makes it nice-to-have rather than required.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 85,
+  "golden_id": "golden_035",
+  "kind": "skill",
+  "key": "inference-optimization",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "ab5ef9c1a399552afa7cf3cf272207dc80e6cf2332293439042aa662f6b632f8",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the 'Must-haves' qualification bullet explicitly requires experience 'optimizing LLM, VLM, or high-throughput transformer inference'.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the 'Must-haves' qualification bullet explicitly requires experience 'optimizing LLM, VLM, or high-throughput transformer inference'.",
+  "error": null
+}

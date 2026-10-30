@@ -1,0 +1,15 @@
+{
+  "item": 66,
+  "golden_id": "golden_028",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "1ae4df8c93ab32c055d6edc40de6605eaff93c504f0d532da1d1cd2ac1153e55",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Per Rule 5, the posting names 'generativen KI-Modellen' (generative AI models), which is broader than and does not explicitly name large language models (`llms`).\"}",
+  "decision": "drop",
+  "why": "Per Rule 5, the posting names 'generativen KI-Modellen' (generative AI models), which is broader than and does not explicitly name large language models (`llms`).",
+  "error": null
+}

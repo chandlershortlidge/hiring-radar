@@ -5,6 +5,80 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-29 — Production experience joins the HIR-70 labeling: a production-only pass, no restart (HIR-85)
+
+HIR-69 made production experience a fourth per-job attribute while HIR-70's held-out
+labeling was mid-flight, so `scripts/agent_label.py` still labels three. The merge of main
+into HIR-70 surfaced it as a red test, not a conflict: the Goldens had gained `production_*`
+keys and the shape test read `golden_021.json` as its oracle. PR #24 fixed the oracle only
+(it now builds the expected key set from `ATTR_FIELDS`); this entry records the plan for the
+attribute itself. Nothing in the script has changed yet.
+
+**(a) Four constants, one function, and an attribute scope.** `ATTRS` gains `"production"`,
+which alone drives the agreement loop, the summary counters and `final_golden`'s field loop,
+since all three iterate it. `ATTR_FIELDS["production"]` is
+`("production", "production_basis", "production_signal")` — no `_or_equivalent`, so
+`degree`'s special cases in `apply_decision` stay untouched. `ATTR_KEYS["production"]` is
+`("production", "production_basis")`, following `german`: the value and its basis are
+compared, the signal is checked verbatim but never compared, because two correct quotes of
+the same requirement differ in length. `final_golden` gains `production_reviewed` as its own
+flag beside `seniority_reviewed` rather than joining the `{german, degree}` set behind
+`attrs_reviewed` — the dev Goldens already carry it as a separate flag. The labeler prompt
+takes the production rules from this log's 2026-10-28 rule bullets as revised by the
+2026-10-29 entry, which is what HIR-69's `rules_sha` hashes, not fresh wording: policy lives
+in the recorded rules, not in a prompt rewritten from memory.
+
+A fifth change makes (c) possible at all: **an attribute scope**, so a run can label
+production alone. `label_heldout_production.py` says outright that `agent_label.py` "cannot
+scope to one attribute", and without it the only way to add production to an existing Golden
+is to re-label everything.
+
+**(b) HIR-70's provenance shape is canonical, and the four old Goldens are not back-filled.**
+The two shapes differ in scope, not format. `labeled_by` / `adjudicated` / `spot_checked`
+are whole-Golden facts; main's `production_labeled_by` is a per-attribute string that also
+carries a run id, an "A flagged uncertain" note and production's own `rules_sha` /
+`prompt_sha` — none of which the trio has a slot for. So provenance becomes
+per-attribute-capable where an attribute was labeled in a different run from the rest of its
+Golden, rather than flattened into one list.
+
+- **What we rejected:** migrating `golden_021`–`024`'s `production_labeled_by` into the trio.
+  Those four predate HIR-70's process and have no `labeled_by`, `adjudicated` or
+  `spot_checked` today. A whole-Golden `labeled_by` written from a string that only ever
+  described production would assert provenance for skills, seniority, German and degree that
+  nobody recorded — a quiet edit to the answer key, which is the thing this log exists to
+  prevent. They keep their per-attribute record as it stands.
+- The 20 dev Goldens carry `production_reviewed` but no `production_labeled_by`; they need
+  nothing here.
+
+**(c) A production-only pass over the same 24 postings. No restart.** HIR-70's labeling
+calls are already spent — `20261027T110516Z_label/summary.json` reports `n_labeled` 24/24,
+`failed: []` — and what is in flight is human adjudication of a 201-item queue. Restarting
+costs the same 48 labeler calls and additionally throws that adjudication away.
+
+- **Cost is identical either way: 24 postings × 2 labelers = 48 calls.** The `extractor`
+  model is recorded but never called; `check_models` uses it only to refuse a labeler that
+  shares the extractor's blind spots. A restart buys nothing in calls.
+- **The other three attributes are not re-labeled.** Agreement was seniority 1.000, German
+  1.000, degree 0.958 (23/24), and each attribute is judged on its own `ATTR_KEYS`, so a
+  fourth one changes nothing either labeler saw for the first three.
+- **Precedent, not a new shape:** HIR-69 already ran exactly this pass over the four
+  existing held-out Goldens (`20261029T153540Z_heldout_production`, 4 × 2 = 8 calls, same
+  `claude-opus-5-5` / `gpt-6.1-sol` pair): 3 agreed, 1 disagreed, 3 uncertain.
+- **The pass runs through the extended `agent_label.py`, not by widening the one-off.**
+  `scripts/label_heldout_production.py` hardcodes `GOLDEN_IDS` to `golden_021`-`024` and
+  borrows only the independence rules; its docstring already assigns the general tool to
+  HIR-70. Widening it would fork the labeling pipeline in two.
+- **Expect ~15–25 new queue items,** scaling that run's 1 disagreement and 3 uncertain to 24
+  postings, minus the overlap between the two buckets. A spot-check over production at the
+  main run's 80/305 rate costs no model calls - it samples items both labelers already
+  agreed on for a person to re-check - and would add roughly 6 more items to adjudicate.
+- The four existing held-out Goldens already have production labels and are not re-run.
+
+A guard is already in place for the work: adding `production` to `ATTR_FIELDS` without
+wiring it into `final_golden` fails the shape test in `tests/test_agent_label.py`.
+
+---
+
 ## 2026-10-29 — Production experience: the verb, not the tense; a level-scoped demand is not job-wide (HIR-69)
 
 Two rules settled at the Goldens checkpoint. They revise the rule bullets in the 2026-10-28
@@ -288,39 +362,89 @@ labeling run started before this edit was stopped at posting 3 of 24 and restart
 
 ## 2026-10-27 — Held-out Goldens come from two blind labelers plus human adjudication (HIR-70)
 
-> **Handover — adjudication in progress, as of 2026-10-27.** Run
-> `evals/labeling/20261027T110516Z_label/`, tracked in git. **Do not re-merge it**
-> (`label --run …` rewrites `review_queue.md` from `items.json` and would erase every
-> decision and proposal; the queue file is the only copy). **Do not run `apply` or the
-> held-out eval** until the queue is finished.
+> **Finished 2026-10-30: adjudication by model, a person on what the models could not
+> settle.** Run `evals/labeling/20261027T110516Z_label/`, tracked in git. **Do not re-merge
+> it** (`label --run …` rewrites `review_queue.md` from `items.json` and would erase every
+> decision; the queue file is the only copy). Applied; 22 Goldens written.
 >
-> **Done:** 39 of 201 items. All 24 in-scope answers — golden_039 and golden_048 ruled out,
-> reasons in the queue, written to `excluded.json` on apply. 13 of 31 disagreements and 2
-> uncertain items decided.
+> Hand-adjudicating 201 items was abandoned after 49 of them: too slow to finish. The rest
+> is decided by model, with a person reading only what the models cannot settle between
+> them, plus a seeded sample. Three new subcommands, each refusing any model that is the
+> extractor or a labeler in this run:
 >
-> **Open:** 162 items — 18 disagreements, 63 uncertain, 1 mapping, 80 spot-checks. The 82
-> non-spot-check items each carry a `PROPOSED:` line naming the rule it rests on, for the
-> adjudicator to accept or override; `DECISION:` stays `?` so apply still refuses. The
-> spot-checks are deliberately bare: no proposals, both labelers hidden, excerpt and agreed
-> label only.
+> - **`judge`** — for every undecided item carrying a `PROPOSED:` line, a third model rules
+>   on it given the posting excerpt (with the section heading above the quote), both
+>   labelers, the proposal and its reason, and the five rules below. Agreement with the
+>   proposal is recorded with `by: "model"`; disagreement leaves the item `?` for a person.
+>   `gemini-4-argon`, a third family — not `gpt-6.1-sol`, which is labeler B and would have
+>   been ruling on its own label on every A-vs-B item.
+> - **`third`** — a blind third labeler over the postings behind the agreed spot-check
+>   labels: same prompt, same posting bytes, no sight of A and B. Compared on merge's own
+>   rule (a skill by id and requirement, an attribute by value and basis). Where all three
+>   agree the item is recorded `ok`, again `by: "model"`; where it differs, `?`. It refuses
+>   to run if the labeler prompt has changed since the run, since a disagreement under an
+>   edited guide cannot be told apart from a rule change.
+> - **`sample`** — the human spot-check, drawn seeded from the three-way-agreed labels and
+>   put back to `?` so `apply` cannot pass without it. n=15 of 79, seed 0 — 19% of the
+>   agreed pool, the 15–20% HIR-70 asked for.
 >
-> **Then:** `apply --run 20261027T110516Z_label`, then
-> `run_eval.py --split heldout --i-am-releasing`, then write the agreement numbers and the
-> spot-check error rate with its 95% Wilson interval into this entry (replacing the TODO
-> below) and onto HIR-70.
+> **What a model decided is recorded as such.** A Golden carries `adjudicated` (fields a
+> person decided) and `adjudicated_by_model` (fields the judge or the third labeler
+> settled) separately, plus `third_labeler` where one read the posting.
+> `seniority_reviewed` / `attrs_reviewed` keep their meaning — a person looked at this —
+> so they stay false for anything only a model touched. `apply` counts the spot-check error
+> rate over the human sample, not over every agreed label.
 >
-> **Rules the adjudication has produced so far.** Not in LABELING.md yet — the guide is not
-> edited mid-run. If they hold to the end of the queue, they go in as one clarification with
+> **Measured.** judge: ruled 70, agreed with the proposal on **50**, **20** left for a
+> person, 0 unusable verdicts. Agreement is judged on the outcome, not the verdict word: on
+> an item both labelers agreed on, `ok` resolves to A's value, so `A` and `ok` are one
+> decision — comparing words made five of those look like disagreements. third labeler:
+> **0 of 79** agreed labels differed (Wilson 95% [0.000, 0.046]) — 63 skills, 8 German, 4
+> seniority, 4 degree, 19 postings, 0 failures. Read that 0 for what it is: the accepted
+> pool is the labels two models already agreed on, so it says the easy cases are solid, not
+> that the answer key is right. The hard cases went to the queue.
+>
+> **Settled by a person:** all 15 spot-check labels came back `ok`. Of the 21
+> judge-vs-proposal splits, the judge was taken on 8, the proposal on 7, and on the six that
+> differed only in the quote the shorter quote won three times — `Architektur` alone does not
+> name *software* architecture, `deployment` alone does not name *AI* deployment, and
+> `ML workflows` is a character shorter than `ML frameworks` but sits in the responsibilities
+> list, where rule 4 says it does not count. The three items still `?` sit on the two
+> out-of-scope postings, which `apply` skips.
+>
+> **One label split off from the stack five.** golden_037 `llms` was grouped with the six
+> tech-stack labels but is not one: its quote, "GenAI", comes from the candidate profile
+> ("You are passionate about the potential of GenAI"), so requirement rule 3 does not reach
+> it, and by rule 5 GenAI does not name LLMs while "passionate about" is not a skill demand.
+> Dropped. The other five keep the agreed label.
+>
+> **The five rules sit under LABELING.md, not beside it.** Where a rule the adjudication
+> produced and the frozen guide disagree, the guide wins. The judge dropped six of
+> golden_037's labels (`aws`, `backend-development`, `evaluation`, `llms`, `observability`,
+> `postgresql`) on its rules 1 and 4, for sitting in a "Current Tech Stack" list rather than
+> a qualification bullet — but the guide's requirement rule 3 makes an unmarked tech-stack
+> entry `required`, and the five rules do not override a frozen guide. Items 90-95 keep the
+> agreed label. The judge is not told that precedence, so a verdict leaning on rules 1 or 4
+> against a plain stack entry is one to check rather than take.
+>
+> **Rules the adjudication produced, and that the judge was given verbatim.** Not in
+> LABELING.md yet — the guide is not edited mid-run. They go in as one clarification with
 > its own entry:
 >
-> 1. A qualification bullet that names a skill counts, even if the phrase is broad.
+> 1. A qualification bullet or sentence that names a skill counts, even if the phrase is
+>    broad.
 > 2. A title or years-of-experience line does not — "experience *as* a software engineer" is
 >    a seniority signal, not a skill; "experience *with* ML systems" is a skill.
 > 3. An API being consumed is not `apis`; that is the `llms` criterion. `apis` means
 >    building or designing APIs.
-> 4. **Candidate, unresolved:** a posting that requires a degree and prefers a higher one
->    (golden_036) loses the required level, because `degree` takes the highest level named
->    and that mention carries the optional marker. Decided `ok` on the guide's letter.
+> 4. Any required mention wins; `raw_text` quotes the determining mention.
+> 5. Responsibilities do not count unless the candidate is also asked for it, and a broad or
+>    parent skill the text does not name is not added.
+>
+> **Still unresolved, carried from the hand pass:** a posting that requires a degree and
+> prefers a higher one (golden_036) loses the required level, because `degree` takes the
+> highest level named and that mention carries the optional marker. Decided `ok` on the
+> guide's letter.
 
 **Supersedes "no model pre-fill for held-out labels" (2026-10-18, above).** That rule was
 aimed at one specific failure: a draft pre-filled by the *extractor* anchors whoever labels
@@ -375,6 +499,14 @@ The process, `scripts/agent_label.py`:
    meaning — a person looked at this label — so they are true only for a field a person
    decided or spot-checked, never for one accepted on agreement.
 
+**Added 2026-10-30, after the hand pass stalled at 49 of 201 items:** `judge`, `third` and
+`sample`, described in the handover above. The two-labeler core is unchanged. What changed is
+who settles the queue: a third model rules on each proposal, a third labeler re-reads the
+postings behind the agreed labels, and a person reads only the items the models split on
+plus a seeded 15 of the agreed ones. The guard that made this safe to automate is the same
+one `check_models` already enforced for A and B — `check_extra_model` refuses a judge or
+third labeler that is the extractor or either labeler in the run.
+
 Raw labeler responses are cached per posting per labeler, so re-merging after a change to
 the merge or check rules costs nothing. Re-merging refuses to overwrite a queue that already
 holds decisions.
@@ -386,15 +518,81 @@ Measured on the first full run (`20261027T110516Z_label`, 24 postings, A `claude
 vs B `gpt-6.1-sol`, 0 failures): **skills P 0.932 / R 0.974 / F1 0.953** (tp 301, B-only 22,
 A-only 8), requirement 0.993 on shared ids, seniority 24/24, German 24/24, degree 23/24.
 243 skills and 62 attributes accepted on agreement; 201 queue items (24 in-scope, 31
-disagreement, 65 uncertain, 1 mapping, 80 spot-check). **Spot-check error rate TODO** until
-adjudication.
+disagreement, 65 uncertain, 1 mapping, 80 spot-check). **Spot-check error rate 0 of 15 labels, 95%
+Wilson [0.000, 0.204]** — the human sample drawn seeded from the three-way-agreed pool.
+
+### The numbers this process produced (2026-10-30)
+
+Run `20261027T110516Z_label`, 24 postings, A `claude-opus-5-5` vs B `gpt-6.1-sol`, judge and
+third labeler `gemini-4-argon`, extractor `claude-sonnet-5-5` (never a labeler).
+
+| what it measures | result |
+|---|---|
+| labeler agreement, A vs B, skills | P 0.932 / R 0.974 / F1 0.953 (tp 301, B-only 22, A-only 8) |
+| labeler agreement, requirement on shared ids | 0.993 |
+| labeler agreement, attributes | seniority 24/24, German 24/24, degree 23/24 |
+| third labeler vs the agreed labels | **0 of 79 differed**, Wilson 95% [0.000, 0.046] |
+| human spot-check of the three-way-agreed labels | **0 errors of 15**, Wilson 95% [0.000, 0.204] |
+| adjudication split, fields | **45 decided by a person, 50 by a model** |
+
+Each number answers a different question, and the weakest one is the one that counts.
+Agreement measures whether two readers coincide, not whether they are right. The third
+labeler's 0/79 is drawn from the pool two models already agreed on — the easy cases by
+construction, since every hard one was queued — so it bounds how often three independent
+readers of an easy label all err, not how good the answer key is. The spot-check's 0/15 is
+the only number where a person read the posting, and its interval is wide: 15 labels cannot
+rule out a 20% error rate. Treat the key as good enough to gate a release and not as
+settled; the interval narrows only by a person reading more labels.
+
+### Held-out eval at the release point
+
+`run_eval.py --split heldout --i-am-releasing --repeats 3`, run `20261030T123219Z_heldout`,
+26 Goldens (the 22 new plus the 4 hand-labeled), extractor `x2-2e0cac6944`, taxonomy v4,
+0 errors. Next to the dev run on the same extractor and taxonomy (`20261029T122622Z_dev`,
+20 Goldens, 3 repeats), means over three repeats:
+
+| metric | held-out (26) | dev (20) |
+|---|---|---|
+| precision | **0.952** | 0.881 |
+| recall | **0.888** | 0.967 |
+| F1 | 0.919 | 0.922 |
+| requirement accuracy | 0.968 | 0.989 |
+| seniority accuracy | 0.962 | 0.817 |
+| German accuracy | 0.962 | 1.000 |
+| degree accuracy | 0.949 | 0.950 |
+| rank Spearman | 0.933 | 0.914 |
+| top-10 overlap | 0.667 | 0.800 |
+
+**F1 holds across the split (0.919 vs 0.922), but the two halves swap.** Held-out precision
+is 7 points higher and recall 8 points lower. That is what the two answer keys are: the
+agent-labeled held-out key is more generous than the hand-labeled dev key — 315 skills over
+22 postings, about 14 each — so the extractor's own output is a subset of it more often, and
+what it misses is what the key adds.
+
+**The misses name the adjudication's own decisions.** The three most-missed skills over the
+three repeats are `ai-deployment` (19), `ai-ml` (18) and `software-engineering` (16) — the
+broad, inferred-from-a-phrase labels the queue argued about most, including golden_037's
+tech-stack labels kept on requirement rule 3 against the judge's `drop`. Recall on the
+held-out split is therefore partly a measure of a labeling policy the extractor was never
+given: the labelers were asked to label what the text names, the extractor is told not to
+add parents, and the gap shows up as recall. **No prompt or taxonomy change on the strength
+of this run** — a held-out result is not a tuning signal (2026-10-17), and whether that
+policy gap is the key's fault or the prompt's is its own decision, with HIR-72's unmapped
+triage next to it.
+
+**`production_accuracy` 1.000 is not a result.** Only 4 of the 26 held-out Goldens carry a
+production label at all (support: 1 `nice_to_have`, 3 `none`, 0 `required`), all four from
+the hand-labeled originals. The agent labelers were not asked for that attribute, so it is
+effectively unmeasured on this split.
 
 That spread is the argument for insisting labeler B is a different family. A smoke run with
 two Claude models (`claude-opus-5-5` vs `claude-fable-5-1`) agreed on 43/43 skills and all 6
 attributes — F1 1.000, zero disagreements — and flagged the same 8 items uncertain. Two
 correlated labelers produce a clean number and measure nothing; the cross-family pair
 produces 31 real disagreements to adjudicate.
-Until those are filled in, the held-out split is not a release gate.
+
+With those adjudicated and the spot-check recorded, **the held-out split is a release gate**
+(HIR-55): 26 Goldens, provenance per label, and an error rate with an interval on it.
 
 **Scope calls on that run: two postings out, two kept on purpose.**
 

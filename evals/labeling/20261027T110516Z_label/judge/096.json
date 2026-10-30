@@ -1,0 +1,15 @@
+{
+  "item": 96,
+  "golden_id": "golden_038",
+  "kind": "attribute",
+  "key": "degree",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "630317ba6c3204992a58691133dab621aafca5df57e3880e4e0c9a31c7e3237a",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the qualification bullet explicitly asks for a 'BSc in Computer Science, Maths or Statistics or related discipline' in the primary qualifications section (above 'Bonus skills & attributes'), with no mention of equivalent experience.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the qualification bullet explicitly asks for a 'BSc in Computer Science, Maths or Statistics or related discipline' in the primary qualifications section (above 'Bonus skills & attributes'), with no mention of equivalent experience.",
+  "error": null
+}

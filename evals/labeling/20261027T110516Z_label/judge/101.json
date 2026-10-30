@@ -1,0 +1,15 @@
+{
+  "item": 101,
+  "golden_id": "golden_040",
+  "kind": "skill",
+  "key": "inference-optimization",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "b9e44648786ef08db76b961d478bf84e8fbe184a513e728e2fd31696a1ae0e9d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Rule 1 applies because a qualification bullet under Requirements explicitly asks for experience 'optimizing models for edge or embedded environments', which directly maps to inference optimization.\"}",
+  "decision": "ok",
+  "why": "Rule 1 applies because a qualification bullet under Requirements explicitly asks for experience 'optimizing models for edge or embedded environments', which directly maps to inference optimization.",
+  "error": null
+}

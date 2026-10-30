@@ -74,6 +74,10 @@ GUIDE_FILE = ROOT / "evals" / "LABELING.md"
 
 DEFAULT_MODEL_A = "claude-opus-5-5"
 DEFAULT_MODEL_B = "gpt-6.1-sol"   # verified against OpenAI /v1/models, 2026-10-27
+DEFAULT_MODEL_C = "gemini-4-argon"  # verified against Google /v1beta/models, 2026-10-30
+# Gemini speaks the OpenAI chat API here, so call_openai is reused rather than adding a
+# second SDK. Verified live against gemini-4-argon, 2026-10-30.
+GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
 MAX_TOKENS = 8192
 SPOT_CHECK_N = 80
 SEED = 0
@@ -655,28 +659,299 @@ def apply_decision(item: dict, decision: str):
 
 
 def final_golden(base: dict, skills: list[dict], attrs: dict,
-                 labeled_by: list[str], adjudicated: list[str], spot_checked: bool) -> dict:
+                 labeled_by: list[str], adjudicated: dict[str, str], spot_checked: bool,
+                 third_labeler: str | None = None, reviewed: set[str] | None = None) -> dict:
     """A Golden in the shape evals/goldens/ already uses, plus HIR-70 provenance.
 
-    `*_reviewed` keeps its existing meaning - a person looked at this label - so it is true
-    only for a field a person decided or spot-checked, not for one accepted on agreement.
+    `adjudicated` maps each decided field to who decided it, "human" or "model". `reviewed`
+    is the fields a person looked at, which is the wider set: it also holds a field a person
+    spot-checked and confirmed, where there was nothing to decide. `*_reviewed` keeps its
+    meaning - a person looked at this label - so it follows `reviewed`, and is never true for
+    a field only a model ruled on or one accepted on agreement.
     """
+    reviewed = set() if reviewed is None else reviewed
     out = {"id": base["id"], "split": "heldout"}
     for attr in ATTRS:
         group = attrs.get(attr) or {f: None for f in ATTR_FIELDS[attr]}
         for f in ATTR_FIELDS[attr]:
             out[f] = group.get(f) if f != "degree_or_equivalent" else bool(group.get(f))
         if attr == "seniority":
-            out["seniority_reviewed"] = "seniority" in adjudicated
-    out["attrs_reviewed"] = bool({"german", "degree"} & set(adjudicated))
+            out["seniority_reviewed"] = "seniority" in reviewed
+    out["attrs_reviewed"] = bool({"german", "degree"} & reviewed)
     out["source_sha256"] = base["source_sha256"]
     out["labeled_by"] = labeled_by
-    out["adjudicated"] = sorted(adjudicated)
+    if third_labeler:
+        out["third_labeler"] = third_labeler
+    out["adjudicated"] = sorted(f for f, by in adjudicated.items() if by == "human")
+    out["adjudicated_by_model"] = sorted(f for f, by in adjudicated.items() if by == "model")
     out["spot_checked"] = spot_checked
     out["job_description"] = base["job_description"]
     out["expected"] = [{"skill_id": s["skill_id"], "requirement": s["requirement"],
                         "raw_text": s["raw_text"]}
                        for s in sorted(skills, key=lambda s: s["skill_id"])]
+    return out
+
+
+# --- judge: one item, a third model, the rules the adjudication settled on -----------
+
+# The five rules the human adjudication applied, in priority order (DECISIONS 2026-10-27,
+# HIR-70 handover). They are given to the judge verbatim, as the only policy it may use:
+# the taxonomy is not re-litigated here, and LABELING.md is not edited mid-run.
+JUDGE_RULES = """\
+1. A qualification bullet or sentence that names a skill counts; a job title or a
+   years-of-experience line ("experience as a software engineer") does not.
+2. An API being consumed is not the `apis` skill. `apis` means building or designing APIs.
+3. Any required mention wins; raw_text quotes the determining mention.
+4. Responsibilities do not count unless the candidate is also asked for it.
+5. Do not add a broad or parent skill the text does not name."""
+
+JUDGE_SYSTEM = f"""You adjudicate one item from a review queue of job-posting skill labels.
+
+Two labelers read the same posting independently. Where they disagreed, or where one of
+them flagged itself uncertain, the item comes to you with both answers and a proposed
+decision from an earlier reviewer. Your job is to rule on that one item.
+
+The rules, in priority order. Rule 1 beats rule 2, and so on:
+
+{JUDGE_RULES}
+
+Answer with one JSON object and nothing else:
+
+{{"decision": <your ruling>, "why": "<one sentence, citing the rule number you applied>"}}
+
+`decision` must be one of the options printed with the item:
+
+- "A" or "B" - that labeler's version of this skill or attribute is right.
+- "both" - both skill ids belong in the answer key (only offered for two ids on one phrase).
+- "drop" - this skill does not belong in the answer key, or this attribute is null here.
+- "ok" - the agreed value printed with the item is right as it stands.
+- A JSON object, to write the value yourself, e.g.
+  {{"requirement": "nice_to_have", "raw_text": "ideally Kubernetes"}} for a skill or
+  {{"seniority": null, "seniority_basis": null, "seniority_signal": null}} for an attribute.
+  Every raw_text or signal you write must appear in the posting word for word.
+
+Rule on what the posting supports, not on what the proposal says. Agreeing with the
+proposal because it is there is worth nothing; the whole point of asking you is that you
+are a third reader."""
+
+
+def heading_above(posting: str, at: int) -> str:
+    """The nearest line above `at` that looks like a section heading, or "".
+
+    Rules 1 and 4 turn on which section a phrase sits in - a requirements bullet counts, the
+    same words under "Responsibilities" do not - and a window of characters often cuts the
+    heading off. A heading here is the last short, non-bullet, non-empty line above the
+    quote, which is what these postings' headings look like ("Core Requirements",
+    "Nice-to-haves", "Dein Profil", "**Deine Benefits**").
+    """
+    for line in reversed(posting[:at].splitlines()):
+        s = line.strip().strip("*#").strip()
+        if not s or s.startswith(("-", "*", "•", "·")) or len(s) > 80:
+            continue
+        return s
+    return ""
+
+
+def wide_excerpt(posting: str, quote, width: int = 600) -> str:
+    """A generous window around a quote, with the heading above it, for the judge.
+
+    The queue's 140-character excerpt is too narrow to tell a qualification bullet from a
+    responsibility. Not the whole posting either: a judge handed everything starts labeling
+    the posting instead of ruling on the item in front of it.
+    """
+    pattern = r"\s+".join(re.escape(w) for w in str(quote).split()) if quote else None
+    m = re.search(pattern, posting, flags=re.I) if pattern else None
+    if m is None:
+        head = " ".join(posting.split())[:width]
+        return f"(quote not located in the posting)\n{head}..."
+    a, b = max(0, m.start() - width), min(len(posting), m.end() + width)
+    head = heading_above(posting, m.start())
+    body = " ".join(posting[a:b].split())
+    return (f"section heading above the quote: {head}\n" if head else "") + \
+        ("..." if a > 0 else "") + body + ("..." if b < len(posting) else "")
+
+
+def judge_question(item: dict, posting: str, proposed: str, reason: str) -> str:
+    """The one item as the judge sees it: context, both labelers, the proposal, the options."""
+    quote = (item.get("a") or item.get("b") or {}).get("raw_text") if item["kind"] == "skill" \
+        else (item.get("a") or item.get("b") or {}).get(f"{item['key']}_signal")
+    lines = [f"posting: {item['golden_id']}",
+             f"item: {item['kind']} `{item['key']}` ({item['reason']})", "",
+             "<posting-excerpt>", wide_excerpt(posting, quote), "</posting-excerpt>", ""]
+    if item["reason"] == "uncertain":
+        # Both labelers said the same thing; one of them flagged itself unsure.
+        lines.append("- agreed label: " + fmt_value(item["kind"], item.get("a") or item.get("b")))
+    else:
+        for side in ("a", "b"):
+            value = item.get(side)
+            label = "A" if side == "a" else "B"
+            lines.append(f"- {label}: " + (fmt_value(item["kind"], value) if value
+                                           else "(did not label this)"))
+    if item["problems"]:
+        lines += ["", "auto-check problems:"] + [f"- {p}" for p in item["problems"]]
+    lines += ["", f"options: {DECISIONS[item['reason']]}", "",
+              f"proposed decision: {proposed}",
+              f"proposer's reason: {reason or '(none given)'}"]
+    return "\n".join(lines)
+
+
+def parse_proposal(line: str) -> tuple[str, str]:
+    """A `PROPOSED:` line as (verdict, reason). The verdict is a word or a JSON object."""
+    s = line.strip()
+    if s.startswith("{"):
+        obj, end = json.JSONDecoder().raw_decode(s)
+        return json.dumps(obj, ensure_ascii=False, sort_keys=True), s[end:].lstrip(" -–—")
+    m = re.match(r"`?([A-Za-z?]+)`?\s*[-–—:]?\s*(.*)$", s, flags=re.S)
+    if not m:
+        raise ValueError(f"cannot read a verdict from {line!r}")
+    return m.group(1), m.group(2).strip()
+
+
+def parse_proposals(text: str) -> dict[int, tuple[str, str]]:
+    """Every `PROPOSED:` line in the queue, by item number. Written by hand, so a line that
+    cannot be read is reported rather than guessed at.
+
+    Scoped to one item's block on purpose. Most items have no proposal (every scope item and
+    every spot-check), and a pattern that scanned forward from an item's heading would hand
+    that item the next item's proposal - a judge ruling on the wrong proposal.
+    """
+    out: dict[int, tuple[str, str]] = {}
+    for block in re.split(r"(?=^##\s+\d+\.)", text, flags=re.M):
+        head = re.match(r"^##\s+(\d+)\.", block)
+        if not head:
+            continue
+        m = re.search(r"^PROPOSED:[ \t]*(.*?)[ \t]*$", block, flags=re.M)
+        if m:
+            out[int(head.group(1))] = parse_proposal(m.group(1))
+    return out
+
+
+def verdict_text(verdict) -> str:
+    """A verdict as it would be written on a DECISION line."""
+    if isinstance(verdict, dict):
+        return json.dumps(verdict, ensure_ascii=False)
+    return str(verdict).strip()
+
+
+def verdict_matches(proposed: str, verdict) -> bool:
+    """Whether a judge's ruling is the proposed one. Words compare case-insensitively without
+    backticks; an object compares by value, so key order and spacing do not matter."""
+    if isinstance(verdict, dict):
+        if not proposed.startswith("{"):
+            return False
+        return json.loads(proposed) == verdict
+    if proposed.startswith("{"):
+        return False
+    return str(verdict).strip().strip("`").lower() == proposed.strip().strip("`").lower()
+
+
+def third_agrees(item: dict, parsed: dict) -> tuple[bool, dict | None]:
+    """Whether a third labeler's answer carries this item's agreed label, and what it said.
+
+    Agreement is judged exactly as merge judges A against B - a skill by id and requirement,
+    an attribute by the fields in ATTR_KEYS - so a different quote of the same requirement is
+    not counted as a disagreement. Returns (agrees, the third labeler's version or None).
+    """
+    agreed = item.get("a") or item.get("b")
+    if item["kind"] == "skill":
+        mine = skills_by_id(parsed).get(item["key"])
+        if mine is None:
+            return False, None
+        return mine["requirement"] == agreed["requirement"], mine
+    mine = attr_group(parsed, item["key"])
+    return all(mine.get(k) == agreed.get(k) for k in ATTR_KEYS[item["key"]]), mine
+
+
+def by_field(rows: list[tuple[str, bool]]) -> dict:
+    """Agreement counted per field, where a field is `skill` or one attribute name."""
+    out: dict[str, dict] = {}
+    for field_name, agrees in rows:
+        slot = out.setdefault(field_name, {"n": 0, "agreed": 0, "differed": 0})
+        slot["n"] += 1
+        slot["agreed" if agrees else "differed"] += 1
+    for slot in out.values():
+        slot["rate"] = slot["differed"] / slot["n"] if slot["n"] else None
+    return out
+
+
+def verdicts_agree(item: dict, proposed: str, verdict) -> bool:
+    """Whether two verdicts settle this item the same way.
+
+    Not the same as writing the same word. On an item both labelers agreed on, `ok` resolves
+    to A's value, so `A` and `ok` are one decision and `B` differs only where the quote does.
+    Comparing the words sent those to a person as disagreements for nothing - so the outcomes
+    are compared, and the words only as a fallback when a verdict cannot be applied (a hedged
+    proposal, say).
+    """
+    if verdict_matches(proposed, verdict):
+        return True
+    try:
+        left = apply_decision(item, proposed)
+        right = apply_decision(item, verdict_text(verdict))
+    except (ValueError, json.JSONDecodeError):
+        return False
+    key = lambda out: (sorted(json.dumps(s, sort_keys=True) for s in out[0]), out[1])
+    return key(left) == key(right)
+
+
+def write_decisions(text: str, new: dict[int, str]) -> str:
+    """Fill in the `?` on the given items' DECISION lines, leaving the rest byte-identical.
+
+    review_queue.md is the only record of the decisions already made - a re-merge rewrites it
+    from items.json - so decisions are edited into it rather than re-rendered, and an item
+    that already carries a decision is never overwritten.
+    """
+    todo = dict(new)
+    out, last = [], 0
+    for m in re.finditer(r"^##\s+(\d+)\..*?^DECISION:[ \t]*(.*?)[ \t]*$", text, flags=re.M | re.S):
+        n = int(m.group(1))
+        if n not in todo:
+            continue
+        if m.group(2).strip() not in ("?", ""):
+            raise ValueError(f"item {n} already says {m.group(2)!r}; refusing to overwrite it")
+        out += [text[last:m.start(2)], todo.pop(n)]
+        last = m.end(2)
+    if todo:
+        raise ValueError(f"items not found in the queue: {sorted(todo)}")
+    out.append(text[last:])
+    return "".join(out)
+
+
+def reset_decisions(text: str, numbers) -> str:
+    """Put the given items' DECISION lines back to `?`, so a person has to answer them."""
+    want = set(numbers)
+    out, last = [], 0
+    for m in re.finditer(r"^##\s+(\d+)\..*?^DECISION:[ \t]*(.*?)[ \t]*$", text, flags=re.M | re.S):
+        if int(m.group(1)) not in want:
+            continue
+        out += [text[last:m.start(2)], "?"]
+        last = m.end(2)
+    out.append(text[last:])
+    return "".join(out)
+
+
+def human_sample_pick(pool: list[int], n: int, seed: int) -> list[int]:
+    """The labels a person checks by hand, seeded so the sample is reproducible from the
+    record rather than from whoever ran it."""
+    pool = sorted(pool)
+    if n >= len(pool):
+        return pool
+    return sorted(random.Random(seed).sample(pool, n))
+
+
+def out_of_scope_goldens(items: list[dict], decisions: dict[int, str]) -> set[str]:
+    """The postings ruled out of scope. Their other items never reach a Golden, so neither the
+    judge nor the third labeler should spend a call on them."""
+    out = set()
+    for n, item in enumerate(items, 1):
+        if item["kind"] != "scope":
+            continue
+        try:
+            keep, _ = parse_scope(decisions.get(n, "yes"))
+        except ValueError:
+            continue
+        if not keep:
+            out.add(item["golden_id"])
     return out
 
 
@@ -780,7 +1055,7 @@ def call_openai(client, model: str, system: str, user: str) -> str:
     return choice.message.content or ""
 
 
-PROVIDERS = {"anthropic": call_anthropic, "openai": call_openai}
+PROVIDERS = {"anthropic": call_anthropic, "openai": call_openai, "google": call_openai}
 
 
 def make_client(provider: str):
@@ -790,6 +1065,12 @@ def make_client(provider: str):
     if provider == "openai":
         import openai
         return openai.OpenAI()
+    if provider == "google":
+        import openai
+        key = os.environ.get("GEMINI_API_KEY")
+        if not key:
+            raise SystemExit("GEMINI_API_KEY is not set; it belongs in .env")
+        return openai.OpenAI(api_key=key, base_url=GEMINI_BASE_URL)
     raise ValueError(f"unknown provider {provider!r}; use one of {sorted(PROVIDERS)}")
 
 
@@ -805,6 +1086,24 @@ def check_models(model_a: str, model_b: str, extractor: str = EXTRACTOR_MODEL):
                 f"or change HIRING_RADAR_MODEL.")
     if model_a == model_b:
         raise SystemExit(f"both labelers are {model_a!r}; two copies of one model are not two labelers.")
+
+
+def check_extra_model(role: str, model: str, labelers: list[str],
+                      extractor: str = EXTRACTOR_MODEL):
+    """Refuse a judge or third labeler that already has a stake in the answer.
+
+    The extractor is the thing being measured. A labeler from this run would be ruling on its
+    own label - the correlated-labeler failure the two-Claude smoke run showed (HIR-70): two
+    models that share their blind spots produce a clean number and measure nothing.
+    """
+    if model == extractor:
+        raise SystemExit(
+            f"the {role} is {model!r}, the extractor's model. The {role} must not be the thing "
+            f"being measured (HIR-70). Pass another model, or change HIRING_RADAR_MODEL.")
+    if model in labelers:
+        raise SystemExit(
+            f"the {role} is {model!r}, which labeled this run. A model cannot rule on its own "
+            f"label; pick one that is neither labeler ({', '.join(labelers)}).")
 
 
 def label_posting(posting: str, system: str, provider: str, model: str, client) -> dict:
@@ -1042,8 +1341,16 @@ def cmd_apply(args):
 
     skills = {gid: {s["skill_id"]: s for s in m["accepted_skills"]} for gid, m in merged.items()}
     attrs = {gid: dict(m["accepted_attrs"]) for gid, m in merged.items()}
-    adjudicated: dict[str, set] = {gid: set() for gid in merged}
+    adjudicated: dict[str, dict[str, str]] = {gid: {} for gid in merged}
+    # Wider than `adjudicated`: a field a person spot-checked and confirmed had nothing to
+    # decide, but a person did read it, which is what `*_reviewed` records.
+    reviewed: dict[str, set] = {gid: set() for gid in merged}
     spot_errors, spot_wrong, spot_n = 0, [], 0
+    # Who decided what. An item the judge or the third labeler settled is a model decision, so
+    # it must not set `*_reviewed`; the human sample is the one a person actually read.
+    record = load_adjudication(run_dir)
+    by_model = {int(n) for n, v in record.get("items", {}).items() if v.get("by") == "model"}
+    human_sample = set((record.get("human_sample") or {}).get("items") or [])
 
     # Scope first: a posting ruled out of scope is not a Golden, so none of its other
     # decisions matter and its spot-checks must not count toward the error rate.
@@ -1094,31 +1401,48 @@ def cmd_apply(args):
         # spot-check that changed something counts as both an error and an adjudication.
         confirmed = False
         if item["reason"] == "spot-check":
-            spot_n += 1
+            # The error rate is the human sample's, where one exists: a label a third model
+            # confirmed is not evidence about the answer key that a person reading it is.
+            counts = n in human_sample if human_sample else True
+            if counts:
+                spot_n += 1
             if decision.strip().strip("`").lower() == "ok":
                 confirmed = True
-            else:
+            elif counts:
                 spot_errors += 1
                 spot_wrong.append(f"{gid} {item['kind']} `{item['key']}` -> {decision}")
+        who = "model" if n in by_model and n not in human_sample else "human"
+        field = f"skill:{item['key']}" if item["kind"] == "skill" else item["key"]
         if item["kind"] == "skill":
             for sid in item["key"].split("|"):
                 skills[gid].pop(sid, None)
             for s in add:
                 skills[gid][s["skill_id"]] = s
-            if not confirmed:
-                adjudicated[gid].add(f"skill:{item['key']}")
         else:
             attrs[gid][item["key"]] = group
-            if not confirmed:
-                adjudicated[gid].add(item["key"])
+        if not confirmed:
+            adjudicated[gid][field] = who
+        if who == "human":
+            reviewed[gid].add(field)
 
     labeled_by = [summary["model_a"], summary["model_b"]]
     spot_by_gid: dict[str, bool] = {}
-    for gid, _, _ in (tuple(s) for s in summary["spot_check"]["sample"]):
-        spot_by_gid[gid] = True
+    if human_sample:
+        for n in human_sample:
+            spot_by_gid[items[n - 1]["golden_id"]] = True
+    else:
+        for gid, _, _ in (tuple(s) for s in summary["spot_check"]["sample"]):
+            spot_by_gid[gid] = True
+    # A posting the third labeler read carries its model id, so a Golden says who read it.
+    third_by_gid = {}
+    for gid in skills:
+        path = run_dir / "raw" / f"{gid}.C.json"
+        if path.exists():
+            third_by_gid[gid] = json.loads(path.read_text()).get("model")
 
     if out_of_scope and not args.dry_run:
-        record = json.loads(ng.EXCLUDED.read_text()) if ng.EXCLUDED.exists() else {"excluded": []}
+        excluded = ng.excluded_path()
+        record = json.loads(excluded.read_text()) if excluded.exists() else {"excluded": []}
         known = {e["source_sha256"] for e in record["excluded"]}
         for gid, why in sorted(out_of_scope.items()):
             pk = picks[gid]
@@ -1129,13 +1453,14 @@ def cmd_apply(args):
                 "company": pk["company"], "title": pk["title"],
                 "reason": why, "excluded_on": datetime.now(timezone.utc).strftime("%Y-%m-%d"),
                 "run": args.run, "labeled_by": [summary["model_a"], summary["model_b"]]})
-        ng.EXCLUDED.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
+        excluded.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
 
     written = []
     for gid in sorted(skills):
         golden = final_golden({**picks[gid], "id": gid}, list(skills[gid].values()),
-                              attrs.get(gid, {}), labeled_by, sorted(adjudicated[gid]),
-                              spot_by_gid.get(gid, False))
+                              attrs.get(gid, {}), labeled_by, adjudicated[gid],
+                              spot_by_gid.get(gid, False), third_by_gid.get(gid),
+                              reviewed[gid])
         path = GOLDENS / f"{gid}.json"
         if not args.dry_run:
             path.write_text(json.dumps(golden, indent=2, ensure_ascii=False) + "\n")
@@ -1145,7 +1470,8 @@ def cmd_apply(args):
 
     lo, hi = wilson(spot_errors, spot_n)
     spot = {"n": spot_n, "errors": spot_errors, "rate": spot_errors / spot_n if spot_n else None,
-            "wilson_95": [lo, hi], "wrong": spot_wrong}
+            "wilson_95": [lo, hi], "wrong": spot_wrong,
+            "human_sample": sorted(human_sample) or None}
     summary["spot_check"] |= spot
     if not args.dry_run:
         (run_dir / "summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n")
@@ -1153,7 +1479,7 @@ def cmd_apply(args):
     print(("(dry run) " if args.dry_run else "") + f"{len(written)} Goldens:")
     print("\n".join("  " + w for w in written))
     if out_of_scope:
-        print(f"\n{len(out_of_scope)} ruled out of scope -> {ng.EXCLUDED}:")
+        print(f"\n{len(out_of_scope)} ruled out of scope -> {ng.excluded_path()}:")
         for gid, why in sorted(out_of_scope.items()):
             print(f"  {gid}  {picks[gid]['company']} · {picks[gid]['title']}"
                   f"{'  — ' + why if why else ''}")
@@ -1164,11 +1490,332 @@ def cmd_apply(args):
               f"uv run python scripts/run_eval.py --split heldout --i-am-releasing")
 
 
+def load_run(run: str):
+    """The files a post-label command reads. Decisions come from review_queue.md, never from
+    items.json: the queue is where they are written, and items.json still says `?`."""
+    run_dir = RUNS / run
+    if not run_dir.exists():
+        raise SystemExit(f"no such run: {run_dir}")
+    items = json.loads((run_dir / "items.json").read_text())
+    picks = {p["golden_id"]: p for p in json.loads((run_dir / "picks.json").read_text())}
+    summary = json.loads((run_dir / "summary.json").read_text())
+    queue_text = (run_dir / "review_queue.md").read_text()
+    return run_dir, items, picks, summary, queue_text
+
+
+def load_adjudication(run_dir: Path) -> dict:
+    path = run_dir / "adjudication.json"
+    if path.exists():
+        return json.loads(path.read_text())
+    return {"run": run_dir.name, "items": {}, "human_sample": None}
+
+
+def save_adjudication(run_dir: Path, data: dict):
+    (run_dir / "adjudication.json").write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n")
+
+
+def cmd_judge(args):
+    """A third model rules on every undecided queue item that carries a proposal.
+
+    Where the judge and the proposal agree, the decision is recorded with `by: "model"`, so
+    apply can keep `*_reviewed` false: a model agreeing with a model is not a person looking
+    at the label. Where they disagree the item stays `?` and is printed for a person.
+    """
+    run_dir, items, picks, summary, queue_text = load_run(args.run)
+    decisions = dict(parse_queue(queue_text))
+    proposals = parse_proposals(queue_text)
+    check_extra_model("judge", args.model, [summary["model_a"], summary["model_b"]])
+    skip = out_of_scope_goldens(items, decisions)
+
+    targets, no_proposal = [], []
+    for n, item in enumerate(items, 1):
+        if item["kind"] == "scope" or item["reason"] == "spot-check":
+            continue
+        if item["golden_id"] in skip or decisions.get(n, "?") not in ("?", ""):
+            continue
+        if args.items and n not in args.items:
+            continue
+        (targets if n in proposals else no_proposal).append((n, item))
+
+    print(f"{len(targets)} undecided items with a proposal, judge `{args.model}` ({args.provider})")
+    if no_proposal:
+        print(f"  {len(no_proposal)} undecided items carry no PROPOSED line and are left alone: "
+              + ", ".join(str(n) for n, _ in no_proposal))
+    if args.dry_run or not targets:
+        return
+
+    cache = run_dir / "judge"
+    cache.mkdir(exist_ok=True)
+    client, agreed, disagreed, unusable = None, {}, [], []
+    for n, item in targets:
+        proposed, reason = proposals[n]
+        question = judge_question(item, picks[item["golden_id"]]["job_description"], proposed, reason)
+        key = ng.sha(JUDGE_SYSTEM + "\n" + question + "\n" + args.model)
+        path = cache / f"{n:03d}.json"
+        record = None
+        if path.exists():
+            cached = json.loads(path.read_text())
+            if cached.get("key_sha256") == key:
+                record = cached
+        if record is None:
+            if client is None:
+                client = make_client(args.provider)
+            print(f"  judging {n:>3} {item['golden_id']} {item['kind']} `{item['key']}`", flush=True)
+            raw = PROVIDERS[args.provider](client, args.model, JUDGE_SYSTEM, question)
+            record = {"item": n, "golden_id": item["golden_id"], "kind": item["kind"],
+                      "key": item["key"], "reason": item["reason"], "provider": args.provider,
+                      "model": args.model, "proposed": proposed, "key_sha256": key, "raw": raw,
+                      "decision": None, "why": None, "error": None}
+            try:
+                parsed = parse_response(raw)
+                record["decision"] = parsed.get("decision")
+                record["why"] = parsed.get("why")
+            except (ValueError, json.JSONDecodeError) as e:
+                record["error"] = f"{type(e).__name__}: {e}"
+            path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
+
+        where = f"{n:>3} {item['golden_id']} {item['kind']} `{item['key']}`"
+        if record["error"] or record["decision"] in (None, ""):
+            unusable.append(f"{where}: {record['error'] or 'no decision in the response'}")
+            continue
+        text = verdict_text(record["decision"])
+        try:
+            # A verdict the item does not allow is not a disagreement, it is a bad answer.
+            apply_decision(item, text)
+        except (ValueError, json.JSONDecodeError) as e:
+            unusable.append(f"{where}: judge said {text!r}, which this item does not allow ({e})")
+            continue
+        if verdicts_agree(item, proposed, record["decision"]):
+            agreed[n] = {"n": n, "golden_id": item["golden_id"], "kind": item["kind"],
+                         "key": item["key"], "reason": item["reason"], "mode": "judge",
+                         "by": "model", "model": args.model, "proposed": proposed,
+                         "decision": proposed if not proposed.startswith("{") else text,
+                         "judge_said": text, "why": record["why"]}
+        else:
+            disagreed.append((n, item, proposed, text, record["why"]))
+
+    if agreed:
+        (run_dir / "review_queue.md").write_text(
+            write_decisions(queue_text, {n: v["decision"] for n, v in agreed.items()}))
+        adj = load_adjudication(run_dir)
+        adj["items"].update({str(n): v for n, v in agreed.items()})
+        # A second pass re-rules whatever is still `?`, so the totals are counted from the
+        # items themselves; a per-pass record keeps what each run did.
+        adj.setdefault("judge_passes", []).append(
+            {"model": args.model, "provider": args.provider, "ruled": len(targets),
+             "agreed": len(agreed), "disagreed": len(disagreed), "unusable": len(unusable)})
+        settled = sum(1 for v in adj["items"].values() if v.get("mode") == "judge")
+        adj["judge"] = {"model": args.model, "provider": args.provider,
+                        "ruled": settled + len(disagreed) + len(unusable),
+                        "agreed": settled, "open": len(disagreed) + len(unusable),
+                        "rules": JUDGE_RULES}
+        save_adjudication(run_dir, adj)
+
+    print(f"\njudge agreed with the proposal on {len(agreed)}/{len(targets)} items "
+          f"-> recorded with by=model")
+    if disagreed:
+        print(f"\n{len(disagreed)} left at `?` for you - judge disagreed with the proposal:")
+        for n, item, proposed, got, why in disagreed:
+            print(f"\n  [{n}] {item['golden_id']} {item['kind']} `{item['key']}` ({item['reason']})")
+            print(f"      proposed: {proposed}   judge: {got}")
+            print(f"      judge's reason: {why or '(none given)'}")
+    if unusable:
+        print(f"\n{len(unusable)} left at `?` - the judge's answer could not be used:")
+        for u in unusable:
+            print("  " + u)
+
+
 def kv(text: str) -> tuple[str, int]:
     key, _, n = text.partition("=")
     if not n.isdigit():
         raise argparse.ArgumentTypeError(f"expected NAME=N, got {text!r}")
     return key, int(n)
+
+
+def cmd_third(args):
+    """A blind third labeler over the postings behind the agreed spot-check labels.
+
+    Same prompt as A and B, the whole posting, no sight of their answers - so where it lands
+    on the same label, three independent readers agree, and where it does not, a person
+    looks. This is a labeler check, not the human spot-check: a third model agreeing is still
+    not a person reading the posting, so the labels it confirms stay `*_reviewed: false`.
+    """
+    run_dir, items, picks, summary, queue_text = load_run(args.run)
+    decisions = dict(parse_queue(queue_text))
+    check_extra_model("third labeler", args.model, [summary["model_a"], summary["model_b"]])
+    skip = out_of_scope_goldens(items, decisions)
+
+    tax = Taxonomy.load()
+    prompt = labeler_prompt(PROMPT_FILE.read_text(), GUIDE_FILE.read_text(), tax)
+    prompt_sha = ng.sha(prompt)
+    raw_dir = run_dir / "raw"
+
+    targets = []
+    for n, item in enumerate(items, 1):
+        if item["reason"] != "spot-check" or item["golden_id"] in skip:
+            continue
+        if decisions.get(n, "?") not in ("?", "") or (args.items and n not in args.items):
+            continue
+        targets.append((n, item))
+    needed = sorted({item["golden_id"] for _, item in targets})
+    print(f"{len(targets)} agreed spot-check labels over {len(needed)} postings; "
+          f"third labeler `{args.model}` ({args.provider})")
+    if not targets:
+        return
+
+    # The comparison only means anything if C is asked what A and B were asked. LABELING.md
+    # and the taxonomy are inlined into the prompt, so an edit since the run would make a
+    # disagreement here indistinguishable from a rule change.
+    for gid in needed:
+        was = json.loads((raw_dir / f"{gid}.A.json").read_text()).get("prompt_sha256")
+        if was != prompt_sha:
+            raise SystemExit(
+                f"the labeler prompt has changed since this run ({gid}: {was} -> {prompt_sha}). "
+                f"A third labeler asked a different question cannot be compared with A and B; "
+                f"check out the LABELING.md and taxonomy/skills.json of the run first.")
+    if args.dry_run:
+        return
+
+    client, failed, problems = None, [], []
+    parsed_by_gid: dict[str, dict] = {}
+    for gid in needed:
+        path = raw_dir / f"{gid}.C.json"
+        record = None
+        if path.exists():
+            cached = json.loads(path.read_text())
+            if (cached.get("model") == args.model
+                    and cached.get("posting_sha256") == ng.sha(picks[gid]["job_description"])
+                    and cached.get("prompt_sha256") == prompt_sha):
+                record = cached
+        if record is None:
+            if client is None:
+                client = make_client(args.provider)
+            print(f"  labeling {gid} with C ({args.model})", flush=True)
+            record = label_posting(picks[gid]["job_description"], prompt,
+                                   args.provider, args.model, client)
+            record |= {"labeler": "C", "posting_sha256": ng.sha(picks[gid]["job_description"]),
+                       "prompt_sha256": prompt_sha}
+            path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
+        if record.get("error"):
+            failed.append(f"{gid}: {record['error']}")
+            continue
+        parsed_by_gid[gid] = record["parsed"]
+        for p in auto_check(record["parsed"], picks[gid]["job_description"], tax):
+            problems.append(f"{gid}: {p['problem'] if isinstance(p, dict) else p}")
+
+    rows, agreed, differences, unlabeled = [], {}, [], []
+    for n, item in targets:
+        parsed = parsed_by_gid.get(item["golden_id"])
+        if parsed is None:
+            unlabeled.append(n)
+            continue
+        agrees, mine = third_agrees(item, parsed)
+        rows.append(("skill" if item["kind"] == "skill" else item["key"], agrees))
+        if agrees:
+            agreed[n] = {"n": n, "golden_id": item["golden_id"], "kind": item["kind"],
+                         "key": item["key"], "reason": item["reason"], "mode": "third",
+                         "by": "model", "model": args.model, "decision": "ok"}
+        else:
+            differences.append({"n": n, "golden_id": item["golden_id"], "kind": item["kind"],
+                                "key": item["key"],
+                                "agreed": item.get("a") or item.get("b"), "third": mine})
+
+    check = {"model": args.model, "provider": args.provider, "prompt_sha256": prompt_sha,
+             "n_items": len(rows), "agreed": len(agreed), "differed": len(differences),
+             "rate": len(differences) / len(rows) if rows else None,
+             "wilson_95": list(wilson(len(differences), len(rows))) if rows else None,
+             "by_field": by_field(rows), "differences": differences,
+             "auto_check_problems": problems, "failed": failed,
+             "not_compared": unlabeled}
+    (run_dir / "third_check.json").write_text(json.dumps(check, indent=2, ensure_ascii=False) + "\n")
+
+    if agreed and not args.no_record:
+        (run_dir / "review_queue.md").write_text(
+            write_decisions(queue_text, {n: "ok" for n in agreed}))
+        adj = load_adjudication(run_dir)
+        adj["third_labeler"] = {k: check[k] for k in
+                                ("model", "provider", "n_items", "agreed", "differed", "rate",
+                                 "wilson_95", "by_field")}
+        adj["items"].update({str(n): v for n, v in agreed.items()})
+        save_adjudication(run_dir, adj)
+
+    lo, hi = check["wilson_95"] or (0.0, 0.0)
+    rate = "\u2014" if check["rate"] is None else f"{check['rate']:.3f}"
+    print(f"\nthird labeler differed on {len(differences)}/{len(rows)} agreed labels "
+          f"({rate}, Wilson 95% [{lo:.3f}, {hi:.3f}])")
+    print(f"{'field':<12}{'n':>5}{'agreed':>8}{'differed':>10}{'rate':>8}")
+    for name, slot in sorted(check["by_field"].items()):
+        print(f"{name:<12}{slot['n']:>5}{slot['agreed']:>8}{slot['differed']:>10}"
+              f"{slot['rate']:>8.3f}")
+    if differences:
+        print(f"\n{len(differences)} left at `?` for you:")
+        for d in differences:
+            third = "(did not label this)" if d["third"] is None else fmt_value(d["kind"], d["third"])
+            print(f"\n  [{d['n']}] {d['golden_id']} {d['kind']} `{d['key']}`")
+            print(f"      agreed by A and B: {fmt_value(d['kind'], d['agreed'])}")
+            print(f"      third labeler:     {third}")
+    if not args.no_record:
+        print(f"\n{len(agreed)} recorded `ok` on three-way agreement (by=model, not a human "
+              f"spot-check).")
+    for label, rows_ in (("FAILED", failed), ("auto-check problems", problems)):
+        if rows_:
+            print(f"\n{label}:\n" + "\n".join("  " + r for r in rows_))
+
+
+def cmd_sample(args):
+    """Draw the human spot-check from the labels all three labelers agreed on.
+
+    This is the number that matters, and the only one a person's attention buys: three models
+    agreeing is still three models. The sample is seeded, its items go back to `?` so apply
+    cannot pass without them, and they are recorded as the human sample so the error rate is
+    reported over the sample, not over every agreed label.
+    """
+    run_dir, items, picks, summary, queue_text = load_run(args.run)
+    adj = load_adjudication(run_dir)
+    pool = [int(n) for n, v in adj.get("items", {}).items() if v.get("mode") == "third"]
+    if not pool:
+        raise SystemExit(f"no three-way-agreed labels in {run_dir / 'adjudication.json'}; "
+                         f"run `third --run {args.run}` first.")
+    if adj.get("human_sample") and not args.force:
+        picked = adj["human_sample"]["items"]
+        raise SystemExit(f"this run already has a human sample of {len(picked)} "
+                         f"(seed {adj['human_sample']['seed']}): {picked}. "
+                         f"Pass --force to draw a new one.")
+
+    chosen = human_sample_pick(pool, args.n, args.seed)
+    by_n = {n: item for n, item in enumerate(items, 1)}
+    if not args.dry_run:
+        (run_dir / "review_queue.md").write_text(reset_decisions(queue_text, chosen))
+        adj["human_sample"] = {"n": len(chosen), "asked": args.n, "seed": args.seed,
+                               "pool": len(pool), "items": chosen}
+        for n in chosen:
+            # No longer a model's call: a person is about to read the posting for this one.
+            # `mode` stays "third" - the label is still one all three agreed on, and it is what
+            # the pool is drawn from, so a redraw must still see it.
+            adj["items"][str(n)] |= {"by": "human", "third_agreed": True, "decision": None}
+        save_adjudication(run_dir, adj)
+
+    print(f"human spot-check: {len(chosen)} of {len(pool)} three-way-agreed labels, "
+          f"seed {args.seed}\n")
+    for n in chosen:
+        item = by_n[n]
+        print(f"[{n}] {item['golden_id']} - {item['kind']} `{item['key']}`")
+        print(f"    > {item['excerpt']}")
+        print(f"    agreed label: {fmt_value(item['kind'], item.get('a') or item.get('b'))}\n")
+    if not args.dry_run:
+        print(f"These {len(chosen)} are back at `?` in {run_dir / 'review_queue.md'}; "
+              f"answer each one `ok` or what it should be.")
+
+
+def item_range(text: str) -> set[int]:
+    """`30-121` or `30,33,41` as a set of item numbers."""
+    out: set[int] = set()
+    for part in text.split(","):
+        lo, dash, hi = part.partition("-")
+        if not lo.strip().isdigit() or (dash and not hi.strip().isdigit()):
+            raise argparse.ArgumentTypeError(f"expected N or N-M, got {part!r}")
+        out |= set(range(int(lo), int(hi or lo) + 1))
+    return out
 
 
 def main(argv=None):
@@ -1201,6 +1848,33 @@ def main(argv=None):
     app.add_argument("--run", required=True)
     app.add_argument("--dry-run", action="store_true")
     app.set_defaults(fn=cmd_apply)
+
+    jud = sub.add_parser("judge", help="a third model rules on the undecided items that carry a proposal")
+    jud.add_argument("--run", required=True)
+    jud.add_argument("--provider", default="google", choices=sorted(PROVIDERS))
+    jud.add_argument("--model", default=DEFAULT_MODEL_C, help=f"the judge (default {DEFAULT_MODEL_C})")
+    jud.add_argument("--items", type=item_range, help="only these item numbers, e.g. 30-121")
+    jud.add_argument("--dry-run", action="store_true", help="list what would be judged and stop")
+    jud.set_defaults(fn=cmd_judge)
+
+    thi = sub.add_parser("third", help="a blind third labeler over the agreed spot-check labels")
+    thi.add_argument("--run", required=True)
+    thi.add_argument("--provider", default="google", choices=sorted(PROVIDERS))
+    thi.add_argument("--model", default=DEFAULT_MODEL_C,
+                     help=f"the third labeler (default {DEFAULT_MODEL_C})")
+    thi.add_argument("--items", type=item_range, help="only these item numbers")
+    thi.add_argument("--no-record", action="store_true",
+                     help="report the comparison without writing `ok` on three-way agreement")
+    thi.add_argument("--dry-run", action="store_true", help="list what would be labeled and stop")
+    thi.set_defaults(fn=cmd_third)
+
+    smp = sub.add_parser("sample", help="draw the human spot-check from the three-way-agreed labels")
+    smp.add_argument("--run", required=True)
+    smp.add_argument("--n", type=int, default=15, help="labels for a person to check (default 15)")
+    smp.add_argument("--seed", type=int, default=SEED, help=f"seeds the sample (default {SEED})")
+    smp.add_argument("--force", action="store_true", help="draw a new sample over an existing one")
+    smp.add_argument("--dry-run", action="store_true", help="print the sample without recording it")
+    smp.set_defaults(fn=cmd_sample)
 
     args = ap.parse_args(argv)
     return args.fn(args)

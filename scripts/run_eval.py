@@ -34,7 +34,8 @@ from app.taxonomy import Taxonomy  # noqa: E402
 
 def load_goldens(split: str) -> list[dict]:
     out = []
-    for p in sorted((ROOT / "evals/goldens").glob("*.json")):
+    # golden_*.json, not *.json: the directory also holds excluded.json (agent_label apply)
+    for p in sorted((ROOT / "evals/goldens").glob("golden_*.json")):
         g = json.loads(p.read_text())
         if g["split"] == split and not g.get("draft"):  # drafts are unlabeled (scripts/new_goldens.py)
             out.append(g)

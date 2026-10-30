@@ -1,0 +1,82 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Python experience is useful\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM-powered systems\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agent orchestration\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tool calling\"\n    },\n    {\n      \"skill_id\": \"agent-state-management\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"context management\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"ai-infrastructure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"inference infrastructure\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Familiarity with evaluation frameworks and failure investigation is useful\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Agent orchestration\",\n      \"raw_text\": \"agent orchestration\"\n    },\n    {\n      \"label\": \"Sandboxed code execution\",\n      \"raw_text\": \"sandboxed code execution\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Lead AI Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"\\\"is useful\\\" treated as an inline nice_to_have marker for Python and evaluation frameworks.\\n\\\"agent orchestration\\\" mapped to `agents` and also placed in unmapped as there is no specific `agent-orchestration` entry (only `llm-orchestration`).\\n\\\"context management\\\" in the context of agents mapped to `agent-state-management` (flagged uncertain).\\n\\\"inference infrastructure\\\" mapped to `ai-infrastructure` (flagged uncertain).\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Python experience is useful"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-powered systems"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agent orchestration"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool calling"
+      },
+      {
+        "skill_id": "agent-state-management",
+        "requirement": "required",
+        "raw_text": "context management",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "required",
+        "raw_text": "inference infrastructure",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "Familiarity with evaluation frameworks and failure investigation is useful"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Agent orchestration",
+        "raw_text": "agent orchestration"
+      },
+      {
+        "label": "Sandboxed code execution",
+        "raw_text": "sandboxed code execution"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead AI Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "\"is useful\" treated as an inline nice_to_have marker for Python and evaluation frameworks.\n\"agent orchestration\" mapped to `agents` and also placed in unmapped as there is no specific `agent-orchestration` entry (only `llm-orchestration`).\n\"context management\" in the context of agents mapped to `agent-state-management` (flagged uncertain).\n\"inference infrastructure\" mapped to `ai-infrastructure` (flagged uncertain)."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "2659d559d2393ff753e095d746eee37dfed5a4bb1cc087a3db0b140eb76065ad",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

@@ -1,0 +1,163 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Typescript\"\n    },\n    {\n      \"skill_id\": \"serverless\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud Functions\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Vector DB\"\n    },\n    {\n      \"skill_id\": \"postgresql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"postgress\"\n    },\n    {\n      \"skill_id\": \"weaviate\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Weaviate\"\n    },\n    {\n      \"skill_id\": \"aws-s3\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS S3\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Backend\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"applied AI/ML\"\n    },\n    {\n      \"skill_id\": \"fastify\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Fastify\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Fastify API\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Moving to AWS\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure\"\n    },\n    {\n      \"skill_id\": \"openai-api\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"OpenAI\"\n    },\n    {\n      \"skill_id\": \"gemini\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Gemini\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Obsv.\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Eval.\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"langfuse\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Langfuse\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GenAI\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineer\"\n    },\n    {\n      \"skill_id\": \"ml-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning engineer\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Vite\",\n      \"raw_text\": \"Vite\"\n    },\n    {\n      \"label\": \"Supabase\",\n      \"raw_text\": \"Supabase\"\n    },\n    {\n      \"label\": \"Document Pipelines\",\n      \"raw_text\": \"Document Pipelines\"\n    },\n    {\n      \"label\": \"Railway\",\n      \"raw_text\": \"Railway\"\n    },\n    {\n      \"label\": \"Cohere\",\n      \"raw_text\": \"Cohere\"\n    },\n    {\n      \"label\": \"Datadog\",\n      \"raw_text\": \"Datadog\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Tech stack category labels ('Backend', 'Cloud Functions', 'Obsv., Eval. & Tracking') and 'Moving to AWS' are marked uncertain as to whether they count as standalone skill requirements vs. structural labels.\\n'GenAI' is mentioned under 'passionate about the potential of GenAI', marked uncertain as a skill requirement.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "Typescript"
+      },
+      {
+        "skill_id": "serverless",
+        "requirement": "required",
+        "raw_text": "Cloud Functions",
+        "uncertain": true
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "Vector DB"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "postgress"
+      },
+      {
+        "skill_id": "weaviate",
+        "requirement": "required",
+        "raw_text": "Weaviate"
+      },
+      {
+        "skill_id": "aws-s3",
+        "requirement": "required",
+        "raw_text": "AWS S3"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "applied AI/ML"
+      },
+      {
+        "skill_id": "fastify",
+        "requirement": "required",
+        "raw_text": "Fastify"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Fastify API",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "Moving to AWS",
+        "uncertain": true
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "required",
+        "raw_text": "OpenAI"
+      },
+      {
+        "skill_id": "gemini",
+        "requirement": "required",
+        "raw_text": "Gemini"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Obsv.",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Eval.",
+        "uncertain": true
+      },
+      {
+        "skill_id": "langfuse",
+        "requirement": "required",
+        "raw_text": "Langfuse"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "GenAI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineer"
+      },
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "machine learning engineer"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Vite",
+        "raw_text": "Vite"
+      },
+      {
+        "label": "Supabase",
+        "raw_text": "Supabase"
+      },
+      {
+        "label": "Document Pipelines",
+        "raw_text": "Document Pipelines"
+      },
+      {
+        "label": "Railway",
+        "raw_text": "Railway"
+      },
+      {
+        "label": "Cohere",
+        "raw_text": "Cohere"
+      },
+      {
+        "label": "Datadog",
+        "raw_text": "Datadog"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Tech stack category labels ('Backend', 'Cloud Functions', 'Obsv., Eval. & Tracking') and 'Moving to AWS' are marked uncertain as to whether they count as standalone skill requirements vs. structural labels.\n'GenAI' is mentioned under 'passionate about the potential of GenAI', marked uncertain as a skill requirement."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "ea242088cabbd5bb12dd83a76c49933256c925ee63336ef233cbfbf5b5158f60",
+  "prompt_sha256": "5e8d186bad5a310ff97bc81aa159eefb1fe7f10be30f9433a72e1aaee5c1e5b1"
+}

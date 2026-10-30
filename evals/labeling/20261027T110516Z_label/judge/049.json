@@ -1,0 +1,15 @@
+{
+  "item": 49,
+  "golden_id": "golden_045",
+  "kind": "skill",
+  "key": "llm-orchestration",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "bd91d97d9784cce96082fcf3eba59a50d74cac3a8aefc97150a27eb58750950c",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1, a bonus qualification bullet explicitly naming 'orchestration frameworks' within the modern AI-tooling ecosystem counts as a nice-to-have skill.\"}",
+  "decision": "A",
+  "why": "Under Rule 1, a bonus qualification bullet explicitly naming 'orchestration frameworks' within the modern AI-tooling ecosystem counts as a nice-to-have skill.",
+  "error": null
+}

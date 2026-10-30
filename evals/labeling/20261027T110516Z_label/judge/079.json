@@ -1,0 +1,15 @@
+{
+  "item": 79,
+  "golden_id": "golden_033",
+  "kind": "skill",
+  "key": "ai-developer-tooling",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "fabef92894b1b8f292a5f8a7998c099187ec899db83c7200d2751c0e24851312",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet explicitly asks for experience with 'Claude Code, Cursor, Copilot, or similar agentic coding tools', so the agreed label and required status are correct.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet explicitly asks for experience with 'Claude Code, Cursor, Copilot, or similar agentic coding tools', so the agreed label and required status are correct.",
+  "error": null
+}

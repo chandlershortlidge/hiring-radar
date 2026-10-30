@@ -1,0 +1,15 @@
+{
+  "item": 117,
+  "golden_id": "golden_047",
+  "kind": "skill",
+  "key": "devops",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "ebd47428de11480352b9284c05da0cc6d2a9ef1ca008dede5a1e2650292a9251",
+  "raw": "{\"decision\": \"ok\", \"why\": \"By Rule 1 and Rule 3, the qualification sentence explicitly requires practical experience in DevOps projects, making the agreed label and quote accurate.\"}",
+  "decision": "ok",
+  "why": "By Rule 1 and Rule 3, the qualification sentence explicitly requires practical experience in DevOps projects, making the agreed label and quote accurate.",
+  "error": null
+}

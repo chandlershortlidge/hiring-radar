@@ -1,0 +1,15 @@
+{
+  "item": 54,
+  "golden_id": "golden_046",
+  "kind": "skill",
+  "key": "rag",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "1439a5b4d21e16466060a347f59a3f1cd8f2893cbeb7a680e0b096527e0d8a75",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1, a qualification sentence in the profile section explicitly asks for familiarity with 'Retrieval-Pipelines' in an LLM context.\"}",
+  "decision": "A",
+  "why": "Under Rule 1, a qualification sentence in the profile section explicitly asks for familiarity with 'Retrieval-Pipelines' in an LLM context.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 48,
+  "golden_id": "golden_045",
+  "kind": "skill",
+  "key": "full-stack-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "fab33d9411eb5067e4991ce767a185727bdbd301fd3c4ec9cb963a27fedf5818",
+  "raw": "{\"decision\": \"B\", \"why\": \"Rule 1: A qualification bullet explicitly requires 'deep hands-on experience across the stack', which corresponds to full-stack development.\"}",
+  "decision": "B",
+  "why": "Rule 1: A qualification bullet explicitly requires 'deep hands-on experience across the stack', which corresponds to full-stack development.",
+  "error": null
+}

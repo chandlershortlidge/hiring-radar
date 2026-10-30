@@ -1,0 +1,15 @@
+{
+  "item": 78,
+  "golden_id": "golden_032",
+  "kind": "skill",
+  "key": "testing",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "6b9c41b3607b98fae8c70af2f1a899332af4d530e12a6d1273806f22638944d5",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Rule 1 and Rule 3 apply because a qualification bullet explicitly asks for demonstrated use of 'automated testing'.\"}",
+  "decision": "ok",
+  "why": "Rule 1 and Rule 3 apply because a qualification bullet explicitly asks for demonstrated use of 'automated testing'.",
+  "error": null
+}

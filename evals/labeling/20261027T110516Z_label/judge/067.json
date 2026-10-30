@@ -1,0 +1,15 @@
+{
+  "item": 67,
+  "golden_id": "golden_028",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "d1cecb1ec2334522578d4cb59a2874c3288d39c352c867beb01397b056c3a8c4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification bullet explicitly names 'Entwicklung, Fine-Tuning und Training von KI Modellen' as an advantage (nice_to_have).\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification bullet explicitly names 'Entwicklung, Fine-Tuning und Training von KI Modellen' as an advantage (nice_to_have).",
+  "error": null
+}

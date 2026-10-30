@@ -1,0 +1,110 @@
+{
+  "id": "golden_025",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Distinguished Engineer",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Verhandlungssichere Deutsch- und Englischkenntnisse",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Studium der Informatik oder vergleichbar, oder Du überzeugst uns, dass es auch anders geht",
+  "attrs_reviewed": false,
+  "source_sha256": "8e1e4a0381afb457e319c0f101d0be34b2b7e9edfb2e55df3b6a90e1c266e94a",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:software-architecture",
+    "skill:software-engineering"
+  ],
+  "adjudicated_by_model": [
+    "degree",
+    "seniority",
+    "skill:apis"
+  ],
+  "spot_checked": false,
+  "job_description": "Distinguished Engineer – Software & AI Products (w/m/d)\n\n**Ab sofort in Berlin, Hannover, Bonn**\n\nDeine Familie, Deine Freunde und Du verlassen sich rund um die Uhr auf Rettungskräfte und Einrichtungen der Regierung. \n\nEure Helferinnen und Helfer sorgen 24/7 für Eure Sicherheit und wir sorgen mit Leidenschaft und Einsatz rund um die Uhr dafür, dass sie es können! \n\nWir betreiben seit über 10 Jahren Kommunikations-Netzwerke für den Digitalfunk BOS und die Netze des Bundes. \n\nUnser Motto: helfen helfen! Sei dabei!\n\nWir wachsen mit unseren Aufgaben und suchen Dich als:\n\n**Distinguished Engineer – Software & AI Products (w/m/d)**\n\nIn unseren Teams Software Engineering und DevSecOps entwickeln und betreiben wir einen umfangreichen Software-Stack für kritische Kommunikationsnetze, basierend auf Microservices-Architekturen, Cloud-basierten Plattformen und containerisierten Lösungen. Im Fokus stehen die Verarbeitung großer Datenmengen und die Integration von KI und Machine Learning in unsere Produkte.\n\nAls Distinguished Engineer bist Du die technische Instanz zwischen Engineering und Unternehmensführung: Du schreibst nicht selbst den Code, verstehst ihn aber im Detail und vertrittst technische Strategien überzeugend vor der obersten Führungsebene.\n\n**Deine Verantwortung** \n\n- Du treibst die Entwicklung von Microservices-Architekturen, Cloud-basierten Plattformen und containerisierten Lösungen voran und verantwortest die technologische Roadmap.\n- Du gestaltest skalierbare, hochverfügbare und sichere Systeme für heterogene Datenquellen und die Integration von KI/ML-Lösungen.\n- Du bereitest strategische Technologieentscheidungen (z. B. Architektur, Make-or-Buy, Partner) vor und vertrittst sie gegenüber den Entscheidern.\n- Du bereitest komplexe Zusammenhänge als Entscheidungsvorlagen für die Unternehmensführung auf und bewertest Investitionen und Risiken.\n- Du förderst eine Kultur der technischen Exzellenz in der ALDB.\n\n**Dein Profil**\n\n- Studium der Informatik oder vergleichbar, oder Du überzeugst uns, dass es auch anders geht\n- Fundierte Erfahrung in Architektur und Entwicklung komplexer Softwaresysteme sowie in einer technischen Führungsrolle\n- Tiefgreifende Kenntnisse in Microservices, Kubernetes, Cloud, CI/CD, DevSecOps, Infrastructure as Code, REST, Datenpipelines sowie gängigen Technologien wie Java, Python, TypeScript und React\n- Gute Kenntnisse im Bereich KI/ML und Erfahrung mit Systemen in hochsicheren, abgeschotteten Umgebungen (air-gapped)\n- Strategisches Denken, wirtschaftliches Verständnis und souveränes Auftreten auf oberster Führungsebene\n- Verhandlungssichere Deutsch- und Englischkenntnisse\n\n**Deine Benefits**\n\n- **Sicherer Arbeitsplatz**: Gesellschaftlich relevante Mission · Überdurchschnittliches Gehalt · Betriebliche Altersvorsorge · Interessante Herausforderungen \n- **Work-Life-Balance**: Flexible und mobile Arbeits-Modelle, die zu Deinem Leben passen\n- **Attraktive Zusatzleistungen**: Job-Rad · Job-Ticket · Firmenfitness · u. v. m.\n- **Langfristige Perspektive**: Zahlreiche Chancen für Deine persönliche Entwicklung · Regelmäßige Trainings · Zukunftsorientiertes Umfeld \n- **Angenehme Arbeitsatmosphäre**: Tolle Kolleginnen und Kollegen · Offene Kommunikation · Hervorragendes Arbeitsklima und Teamgeist \n\n**Deine Karriere@ALDB:**\n\nBewirb Dich jetzt per E-Mail (Lebenslauf - in deutscher Sprache - sowie relevante Zeugnisse) an: [**bewerbung@aldb.org**](https://mailto:bewerbung@aldb.org)\n\nBei Fragen vorab ruf gerne an. Wir freuen uns auf das erste Gespräch mit Dir!\n\n**ALDB GmbH • Personalabteilung**\nTel.: 030 565555-12322 • Fehrbelliner Platz 3 • 10707 Berlin • www.aldb.org",
+  "expected": [
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "Kenntnisse im Bereich KI/ML"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "REST"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Cloud"
+    },
+    {
+      "skill_id": "data-pipelines",
+      "requirement": "required",
+      "raw_text": "Datenpipelines"
+    },
+    {
+      "skill_id": "devsecops",
+      "requirement": "required",
+      "raw_text": "DevSecOps"
+    },
+    {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "required",
+      "raw_text": "Infrastructure as Code"
+    },
+    {
+      "skill_id": "java",
+      "requirement": "required",
+      "raw_text": "Java"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes"
+    },
+    {
+      "skill_id": "microservices",
+      "requirement": "required",
+      "raw_text": "Microservices"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "react",
+      "requirement": "required",
+      "raw_text": "React"
+    },
+    {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "Architektur und Entwicklung komplexer Softwaresysteme"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Entwicklung komplexer Softwaresysteme"
+    },
+    {
+      "skill_id": "typescript",
+      "requirement": "required",
+      "raw_text": "TypeScript"
+    }
+  ]
+}

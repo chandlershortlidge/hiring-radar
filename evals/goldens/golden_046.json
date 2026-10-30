@@ -1,0 +1,106 @@
+{
+  "id": "golden_046",
+  "split": "heldout",
+  "seniority": "junior",
+  "seniority_basis": "inferred",
+  "seniority_signal": "erste praktische Erfahrungen in der Softwareentwicklung",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "inferred",
+  "german_signal": null,
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Studium der Informatik, Wirtschaftsinformatik oder eine vergleichbare technische Ausbildung erfolgreich abgeschlossen",
+  "attrs_reviewed": false,
+  "source_sha256": "975e66f8ac66b0409fe88909e028307153b53f6f40c55a2d98abdd324570c4f3",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:agents",
+    "skill:ai-ml",
+    "skill:llms",
+    "skill:mcp"
+  ],
+  "adjudicated_by_model": [
+    "degree",
+    "skill:rag"
+  ],
+  "spot_checked": false,
+  "job_description": "AI Engineer Inbound SCM\n\nAls eigenfinanziertes Familienunternehmen sind wir weit mehr als ein Filialnetz mit rund 4.700 Standorten in über 30 Ländern, mehr als 8,9 Milliarden Euro Jahresumsatz und einem der erfolgreichsten Online-Shops für Schuhe in Europa. Deichmann ist Wegbereiter, Förderer und Arbeitgeber von ca. 50.000 engagierten Mitarbeiterinnen und Mitarbeitern weltweit. Als nachhaltig expandierendes Unternehmen sind wir seit mehreren Jahrzehnten in der Lage, unseren Mitarbeitern einen sicheren Arbeitsplatz zu bieten.\nDeine Aufgaben:\nDu entwickelst Software- und KI-Lösungen zur Optimierung und Automatisierung unserer Inbound-Supply-Chain- und Logistikprozesse. Dabei arbeitest Du sowohl an klassischen Entwicklungsaufgaben als auch an modernen AI-Anwendungen und unterstützt den Aufbau technischer Grundlagen, die künftig für unterschiedliche Use Cases genutzt werden können.\nEin wesentlicher Bestandteil Deiner Aufgabe ist die Mitgestaltung einer modernen AI-Plattform, deren Architektur, technologische Standards und Betriebsmodell aktuell entstehen. Du bringst Deine Ideen in technische Entscheidungen ein, unterstützt bei der Auswahl geeigneter Technologien und entwickelst gemeinsam mit dem Team nachhaltige Lösungsansätze.\nDu entwickelst, erweiterst und betreibst Backend-Services, Schnittstellen, Integrationskomponenten und gegebenenfalls Frontend- oder UI-Anpassungen. Dazu gehört auch die Anbindung interner und externer Systeme, Datenquellen, APIs und Services, um durchgängige digitale Prozesse innerhalb der Inbound-Logistik zu ermöglichen.\nIm AI-Kontext konzipierst und implementierst Du Lösungen auf Basis moderner Large Language Models (LLM), Agenten und Retrieval-gestützter Systeme. Zudem passt Du Plattformkomponenten wie OpenWebUI, LiteLLM oder vergleichbare Lösungen an unsere Anforderungen an und entwickelst diese sukzessive weiter.\nDu arbeitest eng mit den Fachbereichen Supply Chain Management, Logistik und IT zusammen, nimmst Anforderungen auf, strukturierst technische Fragestellungen und überführst diese in robuste, wartbare und nutzerorientierte Lösungen. Gleichzeitig evaluierst Du neue Technologien, Frameworks und AI-Trends und unterstützt damit die kontinuierliche Weiterentwicklung unserer Plattform- und Softwarearchitektur.\nDarüber hinaus wirkst Du am Aufbau einer stabilen, sicheren und skalierbaren Betriebsumgebung mit, beispielsweise auf Basis moderner Container- und Cloud-Technologien. Dabei achtest Du auf Qualität, Nachvollziehbarkeit, Wiederverwendbarkeit und einen professionellen Entwicklungs- und Betriebsprozess.\nDein Profil:\nDu hast ein Studium der Informatik, Wirtschaftsinformatik oder eine vergleichbare technische Ausbildung erfolgreich abgeschlossen und bringst erste praktische Erfahrungen in der Softwareentwicklung mit. Wichtig ist uns vor allem, dass Du Freude daran hast, moderne technische Lösungen zu entwickeln und Dich aktiv in neue Themen einzuarbeiten.\nDu interessierst Dich für aktuelle Entwicklungen rund um Künstliche Intelligenz, Large Language Models (LLM), AI-Agenten und moderne AI-Plattformen. Idealerweise konntest Du in diesem Umfeld bereits erste praktische Erfahrungen sammeln oder hast Dich eigenständig mit entsprechenden Konzepten, Frameworks oder Prototypen beschäftigt.\nDu hast bereits mit modernen Programmiersprachen, Frameworks oder Softwarearchitekturen gearbeitet und bringst erste Erfahrungen in der Entwicklung oder Integration von APIs und Services mit. Begriffe wie OpenAPI, Model Context Protocol (MCP), Agenten-Frameworks oder Retrieval-Pipelines sind für Dich keine Fremdwörter oder Du hast großes Interesse, Dich strukturiert in diese Themen einzuarbeiten.\nErste Berührungspunkte mit Embeddings, Vektordatenbanken, AI-Frameworks oder Plattformkomponenten wie OpenWebUI und LiteLLM sind von Vorteil, aber keine zwingende Voraussetzung. Ebenso sind Kenntnisse in den Bereichen Authentifizierung, OAuth2 oder Identity Management wünschenswert, können aber gemeinsam weiter vertieft werden.\nDu bringst idealerweise erste Kenntnisse im Umgang mit Container-Technologien wie Docker mit; Erfahrungen mit Kubernetes sind ein Plus. Entscheidend ist, dass Du technische Zusammenhänge schnell erfassen, pragmatische Lösungen entwickeln und diese gemeinsam mit dem Team weiterentwickeln möchtest.\nDu arbeitest analytisch, strukturiert und eigenverantwortlich, kommunizierst technische Sachverhalte verständlich und hast Freude daran, neue Themen in einem noch entstehenden Umfeld mitzugestalten. Teamfähigkeit, Neugierde und Begeisterung für innovative Technologien runden Dein Profil ab.\nBenefits:\n30 Tage Urlaub\nFlexible Arbeitszeiten\nTageweise mobiles Arbeiten\nErmäßigtes DeutschlandTicket Job\nBetriebliche Altersvorsorge\nKitaplätze\nBistro\nPersonalrabatt\nUnterstützungskasse\nSeminare & Fortbildun",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "nice_to_have",
+      "raw_text": "AI-Agenten"
+    },
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "Künstliche Intelligenz"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "Entwicklung oder Integration von APIs"
+    },
+    {
+      "skill_id": "containerization",
+      "requirement": "nice_to_have",
+      "raw_text": "Container-Technologien"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "nice_to_have",
+      "raw_text": "Docker"
+    },
+    {
+      "skill_id": "embeddings",
+      "requirement": "nice_to_have",
+      "raw_text": "Embeddings"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "nice_to_have",
+      "raw_text": "Erfahrungen mit Kubernetes sind ein Plus"
+    },
+    {
+      "skill_id": "litellm",
+      "requirement": "nice_to_have",
+      "raw_text": "OpenWebUI und LiteLLM"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Large Language Models (LLM)"
+    },
+    {
+      "skill_id": "mcp",
+      "requirement": "nice_to_have",
+      "raw_text": "Begriffe wie OpenAPI, Model Context Protocol (MCP), Agenten-Frameworks oder Retrieval-Pipelines sind für Dich keine Fremdwörter oder Du hast großes Interesse, Dich strukturiert in diese Themen einzuarbeiten."
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "Retrieval-Pipelines"
+    },
+    {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "Softwarearchitekturen"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "erste praktische Erfahrungen in der Softwareentwicklung"
+    },
+    {
+      "skill_id": "vector-databases",
+      "requirement": "nice_to_have",
+      "raw_text": "Vektordatenbanken"
+    }
+  ]
+}

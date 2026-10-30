@@ -1,0 +1,15 @@
+{
+  "item": 47,
+  "golden_id": "golden_045",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "f99a6c793ef16c72e7855d6fd658590b85c96500b05afe62d7df50cb123caa1f",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the qualification bullet under Bonus Qualifications explicitly names AI experience ('integrating AI into SaaS business workflows'), making it a valid nice-to-have skill.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the qualification bullet under Bonus Qualifications explicitly names AI experience ('integrating AI into SaaS business workflows'), making it a valid nice-to-have skill.",
+  "error": null
+}

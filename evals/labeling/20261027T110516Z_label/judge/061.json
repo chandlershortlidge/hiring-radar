@@ -1,0 +1,15 @@
+{
+  "item": 61,
+  "golden_id": "golden_026",
+  "kind": "skill",
+  "key": "ai-infrastructure",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "6624a439db4a0ce89b77ff9017b963eac3adb9a22035d816e4c9f496af90b652",
+  "raw": "{\"decision\": \"ok\", \"why\": \"By Rule 1, a qualification bullet explicitly names 'AI-Plattform-Infrastruktur' as an ideal ('idealerweise') skill, making the nice-to-have label correct.\"}",
+  "decision": "ok",
+  "why": "By Rule 1, a qualification bullet explicitly names 'AI-Plattform-Infrastruktur' as an ideal ('idealerweise') skill, making the nice-to-have label correct.",
+  "error": null
+}

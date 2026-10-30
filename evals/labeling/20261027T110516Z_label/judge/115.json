@@ -1,0 +1,18 @@
+{
+  "item": 115,
+  "golden_id": "golden_046",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "754adafb884259f65421e3a6144893fea5bb7e28bd378c26e38df73c0cdd60d1",
+  "raw": "{\"decision\": {\"requirement\": \"nice_to_have\", \"raw_text\": \"AI-Agenten\"}, \"why\": \"Under Rule 1, practical experience with 'AI-Agenten' is explicitly framed as nice-to-have ('Idealerweise konntest Du in diesem Umfeld bereits erste praktische Erfahrungen sammeln'), while the other mention ('Agenten-Frameworks') allows mere interest to learn instead of actual knowledge.\"}",
+  "decision": {
+    "requirement": "nice_to_have",
+    "raw_text": "AI-Agenten"
+  },
+  "why": "Under Rule 1, practical experience with 'AI-Agenten' is explicitly framed as nice-to-have ('Idealerweise konntest Du in diesem Umfeld bereits erste praktische Erfahrungen sammeln'), while the other mention ('Agenten-Frameworks') allows mere interest to learn instead of actual knowledge.",
+  "error": null
+}

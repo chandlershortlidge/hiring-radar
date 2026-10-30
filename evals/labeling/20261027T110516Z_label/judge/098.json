@@ -1,0 +1,15 @@
+{
+  "item": 98,
+  "golden_id": "golden_038",
+  "kind": "skill",
+  "key": "statistics",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "0a0455ba8ef539f52e0bce7ec4e980239dc9273eb2f14b8eaf47a294324e701c",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 1, a degree major ('Statistics') and a generic role reference ('statistical role') do not count as naming a skill.\"}",
+  "decision": "drop",
+  "why": "Under Rule 1, a degree major ('Statistics') and a generic role reference ('statistical role') do not count as naming a skill.",
+  "error": null
+}

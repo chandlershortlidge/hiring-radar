@@ -1,0 +1,15 @@
+{
+  "item": 89,
+  "golden_id": "golden_036",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "f28c6963880ea8de95dff082e48ac75cce419d2dd5dee28b83686aae5bd4e871",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet that explicitly requires the ability to conceive, design, and develop software solutions counts as the software-engineering skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet that explicitly requires the ability to conceive, design, and develop software solutions counts as the software-engineering skill.",
+  "error": null
+}

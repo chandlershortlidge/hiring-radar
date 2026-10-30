@@ -1,0 +1,15 @@
+{
+  "item": 63,
+  "golden_id": "golden_027",
+  "kind": "skill",
+  "key": "model-versioning",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "a19f3070c15af1ac29aff33f41238dd47bd50cff10deb13617a5a7360c7f8359",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification bullet asking for 'Know-how in LLMOps (Deployment-Patterns, Versionierung, Testing, Monitoring)' explicitly requires versioning in an ML/LLMOps context.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification bullet asking for 'Know-how in LLMOps (Deployment-Patterns, Versionierung, Testing, Monitoring)' explicitly requires versioning in an ML/LLMOps context.",
+  "error": null
+}

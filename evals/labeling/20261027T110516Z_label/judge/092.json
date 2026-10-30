@@ -1,0 +1,15 @@
+{
+  "item": 92,
+  "golden_id": "golden_037",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "5210a19019e36b568777ff8c701b9bf754ce6545830eca9e26015bd2da5c2418",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rules 1 and 4, 'Eval.' is merely a category heading in the company's current tech stack list rather than a qualification asked of the candidate.\"}",
+  "decision": "drop",
+  "why": "Under Rules 1 and 4, 'Eval.' is merely a category heading in the company's current tech stack list rather than a qualification asked of the candidate.",
+  "error": null
+}

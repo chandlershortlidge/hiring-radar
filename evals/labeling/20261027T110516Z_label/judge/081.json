@@ -1,0 +1,15 @@
+{
+  "item": 81,
+  "golden_id": "golden_035",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "fa7d38be83a7445940ad98fb71296849d97650994865eaf4450cbf99df563827",
+  "raw": "{\"decision\": \"ok\", \"why\": \"By Rule 1, a qualification bullet under the 'Nice-to-haves' heading explicitly names experience supporting 'agentic workloads'.\"}",
+  "decision": "ok",
+  "why": "By Rule 1, a qualification bullet under the 'Nice-to-haves' heading explicitly names experience supporting 'agentic workloads'.",
+  "error": null
+}
