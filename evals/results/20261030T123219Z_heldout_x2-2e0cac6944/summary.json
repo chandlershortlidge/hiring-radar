@@ -1,0 +1,351 @@
+{
+  "meta": {
+    "run_id": "20261030T123219Z_heldout_x2-2e0cac6944",
+    "split": "heldout",
+    "n_goldens": 26,
+    "repeats": 3,
+    "model": "claude-sonnet-5-5",
+    "extractor_version": "x2-2e0cac6944",
+    "taxonomy_version": 4
+  },
+  "aggregate": {
+    "precision": {
+      "mean": 0.9519692603266089,
+      "min": 0.9481268011527377,
+      "max": 0.9538904899135446,
+      "n": 3
+    },
+    "recall": {
+      "mean": 0.8879928315412187,
+      "min": 0.8844086021505376,
+      "max": 0.8897849462365591,
+      "n": 3
+    },
+    "f1": {
+      "mean": 0.9188687992582291,
+      "min": 0.9151599443671766,
+      "max": 0.9207232267037552,
+      "n": 3
+    },
+    "requirement_accuracy": {
+      "mean": 0.9677070802609146,
+      "min": 0.9665653495440729,
+      "max": 0.9697885196374623,
+      "n": 3
+    },
+    "seniority_accuracy": {
+      "mean": 0.9615384615384616,
+      "min": 0.9615384615384616,
+      "max": 0.9615384615384616,
+      "n": 3
+    },
+    "german_accuracy": {
+      "mean": 0.9615384615384616,
+      "min": 0.9615384615384616,
+      "max": 0.9615384615384616,
+      "n": 3
+    },
+    "degree_accuracy": {
+      "mean": 0.9487179487179488,
+      "min": 0.9230769230769231,
+      "max": 0.9615384615384616,
+      "n": 3
+    },
+    "production_accuracy": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n": 3
+    },
+    "production_signal_agreement": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n": 3
+    },
+    "rank_spearman": {
+      "mean": 0.9329635823703826,
+      "min": 0.9234379531031405,
+      "max": 0.9391272640425259,
+      "n": 3
+    },
+    "top10_overlap": {
+      "mean": 0.6666666666666666,
+      "min": 0.6,
+      "max": 0.7,
+      "n": 3
+    }
+  },
+  "runs": [
+    {
+      "n_goldens": 26,
+      "n_errors": 0,
+      "tp": 329,
+      "fp": 18,
+      "fn": 43,
+      "precision": 0.9481268011527377,
+      "recall": 0.8844086021505376,
+      "f1": 0.9151599443671766,
+      "requirement_accuracy": 0.9665653495440729,
+      "seniority_accuracy": 0.9615384615384616,
+      "seniority_n": 26,
+      "german_accuracy": 0.9615384615384616,
+      "german_n": 26,
+      "degree_accuracy": 0.9615384615384616,
+      "degree_n": 26,
+      "production_accuracy": 1.0,
+      "production_n": 4,
+      "production_per_class": {
+        "required": {
+          "support": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nice_to_have": {
+          "support": 1,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "none": {
+          "support": 3,
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "production_confusion": {
+        "required": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 0
+        },
+        "nice_to_have": {
+          "required": 0,
+          "nice_to_have": 1,
+          "none": 0
+        },
+        "none": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 3
+        }
+      },
+      "production_signal_agreement": 1.0,
+      "production_signal_n": 1,
+      "rank_spearman": 0.9234379531031405,
+      "top10_overlap": 0.7,
+      "gold_top": [
+        "python",
+        "llms",
+        "cloud",
+        "ai-deployment",
+        "evaluation",
+        "kubernetes",
+        "software-engineering",
+        "ai-ml",
+        "apis",
+        "observability"
+      ],
+      "pred_top": [
+        "python",
+        "llms",
+        "kubernetes",
+        "cloud",
+        "apis",
+        "evaluation",
+        "agents",
+        "aws",
+        "observability",
+        "pytorch"
+      ]
+    },
+    {
+      "n_goldens": 26,
+      "n_errors": 0,
+      "tp": 331,
+      "fp": 16,
+      "fn": 41,
+      "precision": 0.9538904899135446,
+      "recall": 0.8897849462365591,
+      "f1": 0.9207232267037552,
+      "requirement_accuracy": 0.9697885196374623,
+      "seniority_accuracy": 0.9615384615384616,
+      "seniority_n": 26,
+      "german_accuracy": 0.9615384615384616,
+      "german_n": 26,
+      "degree_accuracy": 0.9230769230769231,
+      "degree_n": 26,
+      "production_accuracy": 1.0,
+      "production_n": 4,
+      "production_per_class": {
+        "required": {
+          "support": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nice_to_have": {
+          "support": 1,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "none": {
+          "support": 3,
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "production_confusion": {
+        "required": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 0
+        },
+        "nice_to_have": {
+          "required": 0,
+          "nice_to_have": 1,
+          "none": 0
+        },
+        "none": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 3
+        }
+      },
+      "production_signal_agreement": 1.0,
+      "production_signal_n": 1,
+      "rank_spearman": 0.9363255299654814,
+      "top10_overlap": 0.6,
+      "gold_top": [
+        "python",
+        "llms",
+        "cloud",
+        "ai-deployment",
+        "evaluation",
+        "kubernetes",
+        "software-engineering",
+        "ai-ml",
+        "apis",
+        "observability"
+      ],
+      "pred_top": [
+        "python",
+        "llms",
+        "cloud",
+        "kubernetes",
+        "evaluation",
+        "apis",
+        "agents",
+        "aws",
+        "backend-development",
+        "pytorch"
+      ]
+    },
+    {
+      "n_goldens": 26,
+      "n_errors": 0,
+      "tp": 331,
+      "fp": 16,
+      "fn": 41,
+      "precision": 0.9538904899135446,
+      "recall": 0.8897849462365591,
+      "f1": 0.9207232267037552,
+      "requirement_accuracy": 0.9667673716012085,
+      "seniority_accuracy": 0.9615384615384616,
+      "seniority_n": 26,
+      "german_accuracy": 0.9615384615384616,
+      "german_n": 26,
+      "degree_accuracy": 0.9615384615384616,
+      "degree_n": 26,
+      "production_accuracy": 1.0,
+      "production_n": 4,
+      "production_per_class": {
+        "required": {
+          "support": 0,
+          "tp": 0,
+          "fp": 0,
+          "fn": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nice_to_have": {
+          "support": 1,
+          "tp": 1,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "none": {
+          "support": 3,
+          "tp": 3,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        }
+      },
+      "production_confusion": {
+        "required": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 0
+        },
+        "nice_to_have": {
+          "required": 0,
+          "nice_to_have": 1,
+          "none": 0
+        },
+        "none": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 3
+        }
+      },
+      "production_signal_agreement": 1.0,
+      "production_signal_n": 1,
+      "rank_spearman": 0.9391272640425259,
+      "top10_overlap": 0.7,
+      "gold_top": [
+        "python",
+        "llms",
+        "cloud",
+        "ai-deployment",
+        "evaluation",
+        "kubernetes",
+        "software-engineering",
+        "ai-ml",
+        "apis",
+        "observability"
+      ],
+      "pred_top": [
+        "python",
+        "llms",
+        "cloud",
+        "kubernetes",
+        "evaluation",
+        "agents",
+        "apis",
+        "aws",
+        "observability",
+        "pytorch"
+      ]
+    }
+  ]
+}
