@@ -5,6 +5,46 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-30 — The repo guards the branch, not the memory of it (HIR-88)
+
+Three commits landed on the wrong branch this week. The expensive one was the HIR-70 /
+HIR-85 tangle: HIR-69 made production experience a fourth per-job attribute while HIR-70's
+held-out labeling was still mid-flight, and work for the two moved between branches that
+looked interchangeable because every branch here is `chandlershortlidge/hir-NN-...`. The
+cost was not a lost commit — it was that a merge of main into HIR-70 surfaced the overlap
+as a red test rather than a conflict (DECISIONS 2026-10-29, HIR-85), so the question "which
+ticket is this change for?" got answered after the fact, by reading a diff.
+
+**The guard is a hook, and the hook reads a file, not the branch name.** `.githooks/pre-commit`
+refuses a commit on `main`/`master`, requires a `TICKET` file at the repo root, and refuses
+if the current branch name does not contain the id in `TICKET` (case-insensitively, since
+branch names are lowercase and issue ids are not). `TICKET` is gitignored: it is a statement
+about the working copy, not about the history, and it must not travel in a merge.
+
+Why a separate file at all, when the branch name already carries the id: a name only says
+what the branch was created for. `TICKET` is written deliberately at the start of a session,
+so the check compares an intention against a branch instead of comparing a branch to itself.
+A mismatch is exactly the case that cost us this week, and the hook's message says to stop
+and decide rather than offering a fix — rewriting `TICKET` to match the branch would pass
+the check and lose the signal.
+
+**Not chosen.** A commit-msg hook parsing the ticket out of the message: it fires after the
+message is written, catches nothing about where the commit lands, and would push the id into
+every subject line. A `prepare-commit-msg` hook that fills the id in: helpful, but it makes
+a wrong branch easier to commit to, not harder. A CI check on the PR: too late — by then the
+commits exist on the branch they shouldn't be on.
+
+**The hook is advisory by construction.** Git will not run hooks a repository ships, so
+`git config core.hooksPath .githooks` is a one-time step per clone (README, AGENTS.md), and
+`--no-verify` still bypasses it. That is accepted: the goal is to make the wrong branch
+noisy, not impossible.
+
+Alongside it, `.github/pull_request_template.md` with three headings — Testing, Risk, How
+to revert. Same reasoning at the other end of the branch: the facts a reviewer needs are the
+ones the author has and forgets to write down.
+
+---
+
 ## 2026-10-29 — Production experience joins the HIR-70 labeling: a production-only pass, no restart (HIR-85)
 
 HIR-69 made production experience a fourth per-job attribute while HIR-70's held-out

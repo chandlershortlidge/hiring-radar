@@ -16,3 +16,6 @@ scratch/
 # review_queue.md are the provenance of every held-out Golden -- who labeled it, under
 # which prompt and taxonomy, which fields a person decided and why. They hold public job
 # postings and model output, no credentials. A run is ~900 KB.
+
+# One ticket per branch (HIR-88). The pre-commit hook reads it; it never ships.
+TICKET

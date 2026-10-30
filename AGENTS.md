@@ -184,6 +184,25 @@ Three layout rules:
 - Every module gets a top docstring: what it does, what it explicitly does *not* do, and
   the invariants it holds.
 
+### Branches and commits
+
+Before the first commit of a session, in this order:
+
+```bash
+git config core.hooksPath .githooks   # once per clone; harmless to repeat
+git branch --show-current              # which branch are we actually on?
+echo HIR-NN > TICKET                   # the one ticket this branch is for (gitignored)
+```
+
+- **One ticket per branch.** `TICKET` holds one issue id and the branch name contains it.
+  `.githooks/pre-commit` enforces both.
+- **If the branch does not match the ticket you were asked to work on, stop and ask.** Do
+  not rewrite `TICKET` to match the branch, and do not switch branches on your own — which
+  of the two is wrong is the person's call.
+- **Never commit to main.** The hook refuses it; do not work around the hook.
+- **A branch open more than two days gets split or merged**, not carried. If work has
+  grown past its ticket, say so and propose the split.
+
 ### Project rules
 
 - **Policy lives in the taxonomy, not the prompt.** If extraction gets a skill wrong,
