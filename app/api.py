@@ -119,9 +119,9 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
         """The radial skill tree over the filtered job set. Same filters as /api/skills,
         except that `requirement` and `skill` are ignored: every node carries both the
         required and the mentioned share, and the tree always maps the whole market."""
-        r = skill_tree(conn, f, now_iso())
-        r["nodes"] = with_display(r["nodes"])
-        return r
+        # The display names go in, not on: a label's width decides the layout, so the
+        # tree cannot place anything without knowing what will be written.
+        return skill_tree(conn, f, now_iso(), {k: v.display for k, v in tax.skills.items()})
 
     @app.get("/api/jobs")
     def get_jobs(f: q.Filters = Depends(filters), sort: str = "newest",

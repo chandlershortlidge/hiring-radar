@@ -106,33 +106,57 @@ select.sel { padding-right: 28px; }
 .legend { display: inline-flex; align-items: center; gap: 6px; }
 .legend i { width: 14px; height: 10px; display: inline-block; border-radius: 2px; }
 
-/* skill tree (HIR-81). Every coordinate comes from the server; this only styles it. */
+/* skill tree (HIR-81). Every coordinate comes from the server; this only styles it.
+
+   Three branch hues, from the dataviz reference palette's first three categorical slots.
+   A tree shows every branch at once, so it is an all-pairs form: validate_palette.js
+   passes 3 slots in both modes and fails 4 on the normal-vision floor. Every other branch
+   and the whole trunk stay ink. Dark steps, validated and waiting for a dark mode the app
+   does not have yet: #3987e5 / #d95926 / #199e70 on #1a1a19.
+   DECISIONS 2026-10-30, "The skill tree, made readable". */
 .tree { display: flex; flex-direction: column; gap: 16px; }
 .tree-svg { width: 100%; height: auto; overflow: visible; }
-/* Strokes stay a constant screen width whatever the viewBox scales to; the font sizes
-   are set on the elements, because they do have to scale with it. */
-.tree-edge, .tree-node .ring { vector-effect: non-scaling-stroke; }
 .tree-edge { fill: none; stroke: var(--line-3); stroke-width: 1.25; }
 .tree-edge.lit { stroke: var(--ink); stroke-width: 2; }
 .tree-hub { fill: var(--ink); }
-.tree-hub-n { fill: #fff; font-family: var(--mono); font-weight: 600; }
-.tree-hub-l { fill: #cfcfcf; font-family: var(--sans); }
-.tree-node { cursor: pointer; }
-.tree-node .ring { fill: var(--paper); stroke: var(--ink-3); stroke-width: 1.5; }
-.tree-node .core { fill: var(--bar); }
-.tree-node .label { fill: var(--ink); font-family: var(--sans); }
-.tree-node .nums { fill: var(--ink-3); font-family: var(--mono); }
-.tree-node:hover .ring, .tree-node.lit .ring { stroke: var(--ink); stroke-width: 2; }
-.tree-node:hover .label, .tree-node:focus-visible .label { font-weight: 600; text-decoration: underline; }
+.tree-hub-n { fill: #fff; font-family: var(--mono); font-weight: 600; dominant-baseline: central; }
+
+.tree-node { cursor: pointer; --hue: var(--ink-3); --tint: #e9e9e9; }
+.tree-node.b0 { --hue: #2a78d6; --tint: #d4e4f7; }
+.tree-node.b1 { --hue: #eb6834; --tint: #fadfd3; }
+.tree-node.b2 { --hue: #1baf7a; --tint: #d1efe4; }
+.tree-node .ring { fill: var(--tint); stroke: var(--hue); stroke-width: 1.25; vector-effect: non-scaling-stroke; }
+.tree-node .core { fill: var(--hue); }
+.tree-node .leader { fill: none; stroke: var(--line-3); stroke-width: 1; vector-effect: non-scaling-stroke; }
+/* A paper outline under the glyphs, so a name stays readable where it crosses an edge —
+   which is unavoidable for the trunk, whose edges fan out beneath its own label. */
+.tree-node .label {
+  fill: var(--ink); font-family: var(--sans);
+  paint-order: stroke fill; stroke: var(--paper); stroke-width: 3px; stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+.tree-node:hover .ring, .tree-node.lit .ring { stroke-width: 2.5; }
+.tree-node:hover .label, .tree-node:focus-visible .label, .tree-node.on .label { font-weight: 600; }
 .tree-node.on .ring { stroke: var(--ink); stroke-width: 3; }
-.tree-node.on .label { font-weight: 600; }
-.tree-node.dimmed .ring { stroke: var(--bar-dim); }
-.tree-node.dimmed .core { fill: var(--bar-dim); }
-.tree-node.dimmed .label, .tree-node.dimmed .nums { fill: var(--line-3); }
+.tree-node.dimmed { --hue: var(--line-3); --tint: #f2f2f2; }
+.tree-node.dimmed .label { fill: var(--ink-3); }
 .tree-node:focus { outline: none; }
 .tree-node:focus-visible .ring { stroke: var(--ink); stroke-width: 3; }
-.legend .lg-ring { fill: var(--paper); stroke: var(--ink-3); stroke-width: 1.5; }
-.legend .lg-core { fill: var(--bar); }
+
+.tree-tip { pointer-events: none; }
+.tree-tip rect { fill: var(--ink); }
+.tree-tip text { fill: #fff; font-family: var(--mono); }
+
+.legend .swatch { width: 11px; height: 11px; border-radius: 50%; display: inline-block; background: var(--ink-3); }
+.legend .swatch.b0 { background: #2a78d6; }
+.legend .swatch.b1 { background: #eb6834; }
+.legend .swatch.b2 { background: #1baf7a; }
+
+/* the collapsed card: the header is always there, so the tree is discoverable */
+.fold { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0; border: 0; background: transparent; text-align: left; }
+.fold h2 { margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
+.fold .chev { color: var(--ink-3); transition: transform .15s ease; }
+.fold[aria-expanded="true"] .chev { transform: rotate(180deg); }
 
 /* compare */
 .cmp-head, .cmp-row { display: grid; grid-template-columns: 172px minmax(0,1fr) minmax(0,1fr) 120px; padding-right: 36px; gap: 16px; align-items: center; }

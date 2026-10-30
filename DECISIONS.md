@@ -5,6 +5,79 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-30 — The skill tree, made readable: names only, three hues, branches by greedy split (HIR-81)
+
+The tree shipped correct and unusable. Four decisions from the follow-up.
+
+**The two shares move to a tooltip; the name stays on the drawing.** The 2026-10-30 entry
+put both percentages on the node, on the argument that the gap is the feature and a
+tooltip hides it. Thirty two-line labels do not fit: each needs ~24px of height at the
+~930px the card renders at, and they collided in five places. One line per node halves
+that. The gap is still on the drawing — it is the band between the ring (mentioned) and
+the solid core (required) — and the exact pair is one hover or Tab away. Both numbers are
+in every node's `aria-label` besides, so a screen reader never depends on the tip.
+
+Where there is any gap at all the band is held open to `MIN_BAND`, because at a small
+radius a true 19-in-20 ratio draws as a hairline. A skill required every time it is
+mentioned keeps a solid circle: the floor never invents a gap that is not there. Worth
+knowing for whoever reads the picture: on this corpus required ≈ mentioned for most skills
+(Python 76/75, TypeScript 13/13), so the encoding has less signal here than the Snowflake
+example suggests. MLOps (20% / 12%) is what it looks like when there is something to see.
+
+**Three hues, not one per branch.** A tree shows every branch at once, so it is an
+*all-pairs* form in the dataviz sense, not the adjacent-pairs case a bar chart is.
+`scripts/validate_palette.js` on the reference palette against our white card:
+
+- 3 slots `#2a78d6` / `#eb6834` / `#1baf7a` — ALL CHECKS PASS (worst all-pairs CVD ΔE 9.2,
+  normal-vision 24.0; aqua is a 2.82:1 contrast WARN, relieved by the always-visible names)
+- 4 slots — FAIL the hard normal-vision floor, yellow↔orange ΔE 13.7 against a floor of 15
+- 6 slots — FAIL that *and* CVD separation (ΔE 3.2, protan)
+
+So the three largest branches are coloured and everything else is ink: the skill's own
+"past three, fold to Other" rule. Dark steps `#3987e5` / `#d95926` / `#199e70` on `#1a1a19`
+pass all six checks and are recorded in `web/src/styles.css` against the day the dashboard
+gets a dark mode — it has none today, so none was added for one card.
+
+**A branch is a lobe found by greedy split, not a root.** One hue per top-level subtree
+does not work here: the tree normally has a single root (python) whose one big child holds
+most of the nodes, so every node would be one colour. Instead the largest branch is split
+into its children, repeatedly, until none holds more than `TRUNK_SHARE` of the tree; the
+heads that were split are the trunk and stay neutral. On the open set that yields
+Cloud(14), Agents(4), APIs(2), CI/CD(2), Evaluation(2) under a python→llms trunk, and it
+stays sane across city, seniority and window filters. A branch under `MIN_BRANCH` nodes
+never takes a hue off a real lobe.
+
+A knowing deviation, recorded rather than hidden: dataviz says colour follows the entity,
+never its rank, and here the hue is assigned by branch rank. There is nothing stable to
+pin it to — the branch *set* is recomputed per filter, and Cloud is a branch under one
+filter and trunk under another. The legend names the three coloured branches, so identity
+is never colour-alone.
+
+**Labels are placed by a de-collision pass, so non-overlap is an invariant.** A name sits
+beside its node and slides vertically, in half-label steps, until its box touches no other
+name, no node and not the hub; a leader line is drawn when it moved. Nodes are placed
+most-prevalent first, so the skills a reader goes looking for keep their natural spot.
+
+Two alternatives were weighed and rejected. Lowering `MAX_NODES` to 20–24 is one constant,
+but it buys legibility by deleting skills and makes nothing invariant — it only makes
+today's corpus happen to fit. "More ring spacing" is a visual no-op: `size` is derived from
+`RING × max_depth` and every radius and type size is scaled by `size / 1000`, so growing
+`RING` grows the whole picture in lockstep and nothing gains room on screen. The real
+levers are rendered pixels, shorter labels and placement — which is also why the card is
+now collapsed by default and last on the page: opened deliberately, it can have the width.
+
+Python has no font metrics, so a label's width is estimated per character and deliberately
+over-estimated. Checked against the browser's own `getBBox` across all 30 labels: the
+estimate is 1.04–1.6× the real width, never under. That is what makes
+`test_no_two_labels_overlap_at_thirty_nodes` a guarantee rather than a coincidence. If the
+pass ever runs out of steps it sets `label_placed: False` and the test fails — *that* is
+the signal to lower `MAX_NODES`, so the two levers compose instead of competing.
+
+Display names now go *into* `build_tree` rather than being attached to its output: a
+label's width decides the layout, so the tree cannot place anything without them.
+
+---
+
 ## 2026-10-30 — The repo guards the branch, not the memory of it (HIR-88)
 
 Three commits landed on the wrong branch this week. The expensive one was the HIR-70 /
@@ -92,8 +165,11 @@ a two-ring star, the hairball the issue wanted avoided, just drawn radially. Tak
 python → llms → agents → rag → prompt-engineering → tool-calling.
 
 **Both shares on every node, so the tree ignores the requirement filter.** Each node
-carries mentioned % and required % over the same denominator, visible on the node rather
-than in a tooltip (Leoson's Snowflake observation: 17% mentioned, 3% required). There is
+carries mentioned % and required % over the same denominator (Leoson's Snowflake
+observation: 17% mentioned, 3% required). *Superseded later the same day by "The skill
+tree, made readable" at the top of this log, on where they are shown: the numbers moved to
+a hover/focus tooltip and the ring/core encoding carries the gap on the drawing. The rule
+that both are reported, over one denominator, stands.* There is
 therefore nothing for `requirement` to choose, and `/api/skills/tree` ignores it along with
 the skill selection — the tree maps the whole filtered market, and selecting a skill only
 highlights it. Every other filter (city, seniority, German, degree, production, window)
