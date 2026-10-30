@@ -4,7 +4,7 @@ import pytest
 
 from app import db, queries as q
 from app.skill_tree import (BRANCH_HUES, LINE_H, MIN_BAND, MIN_JOBS, PAD, RING,
-                            _text_width, build_tree, fetch_jobs, skill_tree)
+                            _mono_width, _text_width, build_tree, fetch_jobs, skill_tree)
 from tests.test_queries import NOW, RELATED_JOBS, add, ts
 
 
@@ -334,6 +334,19 @@ def test_the_width_estimate_is_conservative():
     assert _text_width("MMMM", 13) > _text_width("iiii", 13) * 2
     assert _text_width("", 13) == 0
     assert _text_width("abc", 26) == 2 * _text_width("abc", 13)      # linear in the size
+
+
+def test_the_tooltip_box_holds_its_own_text():
+    """The tip is set in the mono face, so its box is measured per advance rather than per
+    glyph shape — the proportional estimate under-measures mono and the box clipped the
+    line it was drawn around."""
+    t = tree(thirty_node_corpus())
+    for n in t["nodes"]:
+        widest = max(_mono_width(l, t["tip_font"]) for l in n["tip"]["lines"])
+        assert n["tip"]["w"] >= widest, n["skill_id"]
+        assert 0 <= n["tip"]["x"] and n["tip"]["x"] + n["tip"]["w"] <= t["size"]
+        assert 0 <= n["tip"]["y"] and n["tip"]["y"] + n["tip"]["h"] <= t["size"]
+    assert _mono_width("iiii", 13) == _mono_width("MMMM", 13)      # one advance each
 
 
 def test_display_names_are_used_for_the_label_and_its_width():

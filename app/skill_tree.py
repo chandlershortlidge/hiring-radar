@@ -87,6 +87,13 @@ MIN_BRANCH = 2
 # coincidence.
 _WIDE = set("mwMW@%")
 _NARROW = set("iljtfrI.,;:'|!()[] ")
+# The tooltip is set in the mono face, where every glyph is one advance wide — the
+# proportional estimate above badly under-measures it and the box would clip its own text.
+MONO_W = 0.63
+
+
+def _mono_width(text: str, size: float) -> float:
+    return len(text) * MONO_W * size
 
 
 def _text_width(text: str, size: float) -> float:
@@ -410,7 +417,7 @@ def build_tree(total: int, jobs: list[tuple[set, set]], display: dict[str, str] 
         """The tooltip that carries the two shares, now that only the name is drawn."""
         lines = [f"mentioned in {mentioned[n]} of {total} jobs · {m_pct}%",
                  f"required in {required[n]} · {r_pct}%"]
-        w = max(_text_width(l, tip_font) for l in lines) + 16 * k
+        w = max(_mono_width(l, tip_font) for l in lines) + 16 * k
         h = 2 * tip_font * LINE_H + 10 * k
         # Opposite the label, so the tip never covers the name it belongs to.
         tx = x - (r + 8 * k) - w if x >= cx else x + r + 8 * k
