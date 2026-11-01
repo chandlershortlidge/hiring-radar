@@ -77,7 +77,8 @@ Set the issue to **In Progress** in Linear (`save_issue`, `state: "In Progress"`
   trust the number in the issue.
 - If the issue asks for a **DECISIONS.md** entry, write it before the code it describes,
   newest-first with the date. If a step changes `app/extract.py`, the prompt or the taxonomy,
-  say in the PR that every job re-extracts on the next poll.
+  say in the PR body that merging re-reads every job (about €3); the merge is the
+  approval, so don't stop for it.
 - Any step the issue says to show the person before continuing (an eval table, a dry run,
   a confusion matrix): show it and **stop** until they answer.
 - **A commit is a green checkpoint.** One commit per build step of the issue, made when
@@ -118,6 +119,18 @@ Linear issue; don't mark it Done.
   stays In Progress until the PR merges (the GitHub integration closes it).
 - Reply to the person with: the PR link, the test count, and open questions — nothing
   else. No recap of the steps.
+
+## Before any question reaches Chandler: the decider
+
+Spawn a subagent with this brief and nothing else: *"Read AGENTS.md, DECISIONS.md,
+taxonomy/README.md and evals/LABELING.md. Answer this question from those files only:
+<question>. Reply either ANSWER: <decision> — RULE: <the rule it rests on>, or NO RULE:
+<the question rewritten for someone who has never opened the repo: two sentences of
+situation, one line per option with what it changes on the dashboard, a recommendation>."*
+
+ANSWER → apply it, one line under "Decisions taken" naming the rule. NO RULE → post the
+rewritten question on the Linear issue with an @mention of Chandler, do what doesn't
+depend on it, stop. When his answer arrives, add it to DECISIONS.md in the same PR.
 
 ## When to break off and ask
 
