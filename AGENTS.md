@@ -218,6 +218,9 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   degree, production, requirement, window), skill document frequency with per-city counts,
   related-skills co-occurrence with lift (`related_skills`, feeds `/api/skills/related`),
   job list/detail, proposed-skill grouping and resolution. The open-job rule lives here.
+  Two job-list searches that never blur: `query` over company and title, `text` over the
+  posting itself (`fts_query` sanitizes it; the FTS5 index is migration 014's `job_fts`,
+  kept in step with `job.description_text` by triggers, so writers need not know of it).
 - `app/api.py` — FastAPI routes over `queries` plus the add-a-job paths (url / text /
   screenshot), which run intake + extraction for the one job added. Validates every filter
   value (422), one SQLite connection per request, model client created lazily.

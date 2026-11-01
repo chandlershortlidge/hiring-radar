@@ -14,7 +14,7 @@ import ProfileDrawer from "./ProfileDrawer.jsx";
 import JobPage from "./JobPage.jsx";
 
 const WINDOWS = { open: "Currently open", "30d": "Last 30 days", "90d": "Last 90 days", all: "All" };
-const DEFAULT = { cities: [], compare: false, seniorities: [], requirement: "required", window: "open", german: "any", degree: "any", production: "any", skillIds: [], query: "" };
+const DEFAULT = { cities: [], compare: false, seniorities: [], requirement: "required", window: "open", german: "any", degree: "any", production: "any", skillIds: [], query: "", text: "" };
 
 // The only route besides "/": /jobs/{id} is a job's own page. The server returns index.html
 // for every path, so the address bar is read here, on load and whenever the back/forward
@@ -82,7 +82,7 @@ export default function App() {
   const set = (patch) => setFilters((f) => ({ ...f, ...patch }));
   const setCity = (c) => set(c === "compare" ? { compare: true, cities: [] } : { compare: false, cities: c ? [c] : [] });
   const toggleSen = (s) => set({ seniorities: filters.seniorities.includes(s) ? filters.seniorities.filter((x) => x !== s) : [...filters.seniorities, s] });
-  const viewJob = (id) => { setDrawer(null); if (pageJob) closePage(); set({ skillIds: [], query: "", window: "all" }); setJumpTo(id); };
+  const viewJob = (id) => { setDrawer(null); if (pageJob) closePage(); set({ skillIds: [], query: "", text: "", window: "all" }); setJumpTo(id); };
 
   // The skill filter is a set, read as AND: the job list shows the jobs requiring every one
   // of them. A bar click replaces the selection — clicking the only selected skill clears it —

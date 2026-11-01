@@ -409,3 +409,84 @@ def test_related_skills_empty_list_distinguishes_pruned_from_no_such_jobs(wide):
     # No job requires all of them: nothing to say anything about.
     none = q.related_skills(wide, q.Filters(window="all", skill_ids=("python", "nothing-asks-for-this")), NOW)
     assert none == {"selected_count": 0, "total": 20, "skills": []}
+
+
+# --- posting-text search (HIR-67) -------------------------------------------------------
+
+def test_fts_query_sanitizes_what_a_person_typed():
+    assert q.fts_query("langfuse") == '"langfuse"'
+    assert q.fts_query("  on-call   rotation ") == '"on-call" AND "rotation"'
+    # FTS5's own operators and syntax are literal words here, not query language.
+    assert q.fts_query("python OR rust") == '"python" AND "OR" AND "rust"'
+    assert q.fts_query('say "hello') == '"say" AND "hello"'
+    assert q.fts_query("") == "" and q.fts_query('   "" ') == ""
+
+
+def body(words: str) -> str:
+    """A posting long enough to count, whose distinctive words are `words`."""
+    return words + " We are hiring an engineer for our team in Berlin." * 12
+
+
+def add_text(conn, company, text, when=None):
+    p = Posting("paste", "", "", company, "AI Engineer", "Berlin", text)
+    out = ingest_one(conn, p, when or ts(1), require_city=False, trust_title=True)
+    return int(out[4:])
+
+
+def companies(conn, **kw):
+    return {j["company"] for j in q.list_jobs(conn, q.Filters(window="all", **kw), NOW)["jobs"]}
+
+
+def test_text_search_finds_words_the_taxonomy_does_not_track(conn):
+    add_text(conn, "Theta", body("You will join an on-call rotation. Office in München."))
+    add_text(conn, "Iota", body("No on-call. Fully remote, founders still write code."))
+    assert companies(conn, text="on-call") == {"Theta", "Iota"}
+    # Several words mean AND: every one has to appear somewhere in the posting.
+    assert companies(conn, text="on-call rotation") == {"Theta"}
+    assert companies(conn, text="on-call founders") == {"Iota"}
+    assert companies(conn, text="kubernetes") == set()
+    # Diacritics are folded, so the index finds the city typed either way.
+    assert companies(conn, text="munchen") == {"Theta"}
+    assert companies(conn, text="München") == {"Theta"}
+
+
+def test_text_search_is_separate_from_the_company_title_search(conn):
+    # "Theta" is in Iota's posting text but is not its company; `query` and `text` stay distinct.
+    add_text(conn, "Theta", body("Theta runs a rotation, on-call, every third week."))
+    add_text(conn, "Iota", body("We spun out of Theta. No on-call here."))
+    assert companies(conn, query="theta") == {"Theta"}
+    assert companies(conn, text="theta") == {"Theta", "Iota"}
+    assert companies(conn, query="iota", text="theta") == {"Iota"}
+    # An empty or punctuation-only search is no filter at all, as with `query`.
+    assert len(companies(conn, text="  ")) == 7
+    r = q.list_jobs(conn, q.Filters(window="all", text="on-call"), NOW)
+    assert r["total"] == 2  # the count the UI shows is the filtered count
+
+
+def test_text_index_follows_the_job_row(conn):
+    jid = add_text(conn, "Theta", body("Langfuse and Phoenix for tracing."))
+    assert companies(conn, text="langfuse") == {"Theta"}
+    # Re-transcribing or re-fetching a posting replaces its text; the index follows.
+    conn.execute("UPDATE job SET description_text=? WHERE id=?", (body("Braintrust for tracing."), jid))
+    assert companies(conn, text="langfuse") == set()
+    assert companies(conn, text="braintrust") == {"Theta"}
+    # Every poll touches last_seen on every live job; that must not disturb the index.
+    conn.execute("UPDATE job SET last_seen=? WHERE id=?", (ts(0), jid))
+    assert companies(conn, text="braintrust") == {"Theta"}
+    conn.execute("DELETE FROM job WHERE id=?", (jid,))
+    assert companies(conn, text="braintrust") == set()
+
+
+def test_text_index_is_backfilled_for_jobs_stored_before_the_migration(tmp_path):
+    """The migration indexes what is already stored, so search is not blind to old jobs."""
+    c = db.connect(tmp_path / "pre.db")
+    c.execute("CREATE TABLE schema_migrations (version INTEGER PRIMARY KEY)")
+    # The database as it looked one migration before the full-text index.
+    for p in sorted(p for p in db.MIGRATIONS_DIR.glob("*.sql") if int(p.name[:3]) < 14):
+        c.executescript(p.read_text())
+        c.execute("INSERT INTO schema_migrations (version) VALUES (?)", (int(p.name[:3]),))
+    c.commit()
+    add_text(c, "Theta", body("An on-call rotation."))
+    assert not c.execute("SELECT name FROM sqlite_master WHERE name='job_fts'").fetchall()
+    assert db.migrate(c) == [14]
+    assert companies(c, text="on-call") == {"Theta"}
