@@ -55,14 +55,28 @@ test: *could someone who has never opened the repo say "fine" or "no" to it?*
   consequence, then your recommendation and why. Three options at most.
 - Reread it as him before sending. If it needs the repo to make sense, rewrite it.
 
-## 2. Session start (AGENTS.md "Starting a session", HIR-88)
+## 2. Session start (AGENTS.md "Starting a session", HIR-88 / HIR-94)
+
+**Every issue gets its own worktree.** A folder has one current branch and one `TICKET`;
+two sessions in one folder will put commits on each other's branches no matter what the
+hook checks. So never `git switch` in a folder another session might be using.
+
+First check where you are: `git branch --show-current`. If this folder is already a
+worktree on HIR-n's branch (Chandler usually creates it before starting the session),
+write `TICKET`, set the hooks path, and skip to step 3. Otherwise create one — with Claude
+Code's own worktree tool if the session offers it, else:
 
 ```bash
-git switch main && git pull
-git switch -c <linear gitBranchName>          # or git switch it if it exists
+git -C <repo> fetch origin main
+git -C <repo> worktree add ../<repo>-hir-n -b <linear gitBranchName> origin/main
+                                            # or without -b if the branch already exists
+cd ../<repo>-hir-n
 echo HIR-n > TICKET
-git config core.hooksPath .githooks            # once per clone
+git config core.hooksPath .githooks        # per worktree checkout, once
+uv sync                                    # the worktree has its own .venv
 ```
+
+When the PR is merged: `git worktree remove ../<repo>-hir-n`.
 
 Uncommitted changes on the tree: stop and ask whose they are. Never stash or discard.
 

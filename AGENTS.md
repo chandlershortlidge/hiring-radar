@@ -58,7 +58,11 @@ carry.
    anything else. Do not infer it from the branch the terminal is on, from uncommitted
    changes, or from what looks half-finished.
 
-2. **Get onto that ticket's branch.** Never inherit whatever branch the terminal happens
+2. **Get onto that ticket's branch — in its own worktree.** A folder has one current
+   branch and one `TICKET`, so two sessions in one folder will commit onto each other's
+   branches however careful each one is (HIR-94: an HIR-72 commit landed on the HIR-92
+   branch this way). `git worktree add ../<repo>-hir-NN -b <branch> origin/main`, then
+   work there. Never inherit whatever branch the terminal happens
    to be on. A terminal left on another ticket's branch, or on `main`, is the ordinary
    case between sessions, not a hint about what to work on.
 
@@ -92,8 +96,9 @@ git config core.hooksPath .githooks
 
 Then, for the rest of the session:
 
-- **One ticket per branch.** `TICKET` holds one id and the branch name contains it; the
-  hook checks both on every commit.
+- **One ticket per branch, per folder, per commit.** `TICKET` holds one id; the branch
+  name must contain it (`pre-commit`) and a commit subject that names a ticket must name
+  the same one (`commit-msg`).
 - **If the branch and the ticket disagree, stop and ask.** Do not rewrite `TICKET` to
   match the branch, and do not switch branches to make it fit — which of the two is wrong
   is the person's call. This applies once step 3 has been done this session. If you
