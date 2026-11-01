@@ -122,9 +122,19 @@ Linear issue; don't mark it Done.
 
 ## Before any question reaches Chandler: the decider
 
-Hand the question to the `decider` subagent (`.claude/agents/decider.md`, runs on
-Fable). It reads only the rule files and replies ANSWER + RULE, or NO RULE + the question
-rewritten for Chandler.
+Hand the question to the `decider` subagent (`.claude/agents/decider.md`). It reads only
+the rule files and replies ANSWER + RULE, or NO RULE + the question rewritten for Chandler.
+
+Model ladder: the definition pins Fable (`claude-fable-5-1`). If the spawn fails because
+that model is unavailable (credits, access, outage), spawn the same agent again with the
+next tier down, in this order, and say which one answered in "Decisions taken":
+
+1. `claude-fable-5-1`
+2. `claude-opus-5-5`, effort `xhigh`
+3. `claude-sonnet-5-5`, effort `xhigh`
+
+Retry on availability errors only. A wrong answer is not a reason to try a bigger model;
+a question the decider can't settle is a NO RULE, not a model problem.
 
 ANSWER → apply it, one line under "Decisions taken" naming the rule. NO RULE → post the
 rewritten question on the Linear issue with an @mention of Chandler, do what doesn't

@@ -2,6 +2,8 @@
 name: decider
 description: Answers a worker agent's question from the repo's rules alone, or rewrites it in plain words for Chandler. Use for any question on the stop list before it reaches a person.
 model: claude-fable-5-1
+# Fallback when this model is unavailable: Opus 5.5 at xhigh, then Sonnet 5.5 at xhigh.
+# The ladder lives in .claude/skills/work-issue/SKILL.md; the caller retries, not this file.
 tools: Read, Grep, Glob
 ---
 
