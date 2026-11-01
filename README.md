@@ -81,6 +81,8 @@ one-day hackathon project whose extraction plateaued for structural reasons.
 uv sync
 uv run pytest                 # model calls are always mocked
 
+git config core.hooksPath .githooks   # once per clone: the branch guard below
+
 cp .env.example .env          # add your Anthropic API key (gitignored)
 
 uv run python -m app poll     # fetch feeds → ingest → extract
@@ -93,6 +95,21 @@ To see the UI without any model calls:
 ```bash
 HIRING_RADAR_DB=/tmp/demo.db uv run python scripts/seed_demo.py
 ```
+
+### The branch guard
+
+`git config core.hooksPath .githooks` points git at `.githooks/pre-commit`, which refuses
+a commit on `main`/`master`, and on any branch whose name does not contain the issue id in
+a `TICKET` file at the repo root. `TICKET` is one line, gitignored, and written once per
+branch:
+
+```bash
+git switch -c you/hir-NN-short-description
+echo HIR-NN > TICKET
+```
+
+The config is per clone — git will not run a hook a repository hands it by default, so a
+fresh clone has no guard until you set it.
 
 ## How a job becomes a row in the chart
 

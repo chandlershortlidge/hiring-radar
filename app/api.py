@@ -28,6 +28,7 @@ from app.extract import DEFAULT_MODEL, extract, make_client
 from app.ingest import ingest_one, job_id_for_screenshot, now_iso, store_screenshot
 from app.pipeline import extract_pending
 from app.poll import load_feeds
+from app.skill_tree import skill_tree
 from app.sources import Posting
 from app.taxonomy import Taxonomy
 from app.transcribe import DEFAULT_MODEL as VISION_MODEL, TranscriptionError, transcribe
@@ -112,6 +113,15 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
         r = q.related_skills(conn, f, now_iso())
         r["skills"] = with_display(r["skills"])
         return r
+
+    @app.get("/api/skills/tree")
+    def get_skill_tree(f: q.Filters = Depends(filters), conn=Depends(conn_dep)):
+        """The radial skill tree over the filtered job set. Same filters as /api/skills,
+        except that `requirement` and `skill` are ignored: every node carries both the
+        required and the mentioned share, and the tree always maps the whole market."""
+        # The display names go in, not on: a label's width decides the layout, so the
+        # tree cannot place anything without knowing what will be written.
+        return skill_tree(conn, f, now_iso(), {k: v.display for k, v in tax.skills.items()})
 
     @app.get("/api/jobs")
     def get_jobs(f: q.Filters = Depends(filters), sort: str = "newest",

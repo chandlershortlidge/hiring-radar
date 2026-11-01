@@ -33,6 +33,10 @@ export const api = {
   stats: () => call("/api/stats"),
   taxonomy: () => call("/api/taxonomy"),
   skills: (f) => call(`/api/skills${qs(filterParams(f))}`),
+  // The tree reports both the required and the mentioned share of every skill and always
+  // maps the whole market, so `requirement` and the skill selection are left off the
+  // request rather than sent and ignored (app/skill_tree.py says the same).
+  skillTree: (f) => call(`/api/skills/tree${qs({ ...filterParams(f), requirement: null })}`),
   relatedSkills: (f) => call(`/api/skills/related${qs({ ...filterParams(f), skill: f.skillIds })}`),
   jobs: (f, { sort, limit, offset }) =>
     call(`/api/jobs${qs({ ...filterParams(f), skill: f.skillIds, q: f.query, sort, limit, offset })}`),

@@ -5,6 +5,191 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-10-30 — The skill tree, made readable: names only, three hues, branches by greedy split (HIR-81)
+
+The tree shipped correct and unusable. Four decisions from the follow-up.
+
+**The two shares move to a tooltip; the name stays on the drawing.** The 2026-10-30 entry
+put both percentages on the node, on the argument that the gap is the feature and a
+tooltip hides it. Thirty two-line labels do not fit: each needs ~24px of height at the
+~930px the card renders at, and they collided in five places. One line per node halves
+that. The gap is still on the drawing — it is the band between the ring (mentioned) and
+the solid core (required) — and the exact pair is one hover or Tab away. Both numbers are
+in every node's `aria-label` besides, so a screen reader never depends on the tip.
+
+Where there is any gap at all the band is held open to `MIN_BAND`, because at a small
+radius a true 19-in-20 ratio draws as a hairline. A skill required every time it is
+mentioned keeps a solid circle: the floor never invents a gap that is not there. Worth
+knowing for whoever reads the picture: on this corpus required ≈ mentioned for most skills
+(Python 76/75, TypeScript 13/13), so the encoding has less signal here than the Snowflake
+example suggests. MLOps (20% / 12%) is what it looks like when there is something to see.
+
+**Three hues, not one per branch.** A tree shows every branch at once, so it is an
+*all-pairs* form in the dataviz sense, not the adjacent-pairs case a bar chart is.
+`scripts/validate_palette.js` on the reference palette against our white card:
+
+- 3 slots `#2a78d6` / `#eb6834` / `#1baf7a` — ALL CHECKS PASS (worst all-pairs CVD ΔE 9.2,
+  normal-vision 24.0; aqua is a 2.82:1 contrast WARN, relieved by the always-visible names)
+- 4 slots — FAIL the hard normal-vision floor, yellow↔orange ΔE 13.7 against a floor of 15
+- 6 slots — FAIL that *and* CVD separation (ΔE 3.2, protan)
+
+So the three largest branches are coloured and everything else is ink: the skill's own
+"past three, fold to Other" rule. Dark steps `#3987e5` / `#d95926` / `#199e70` on `#1a1a19`
+pass all six checks and are recorded in `web/src/styles.css` against the day the dashboard
+gets a dark mode — it has none today, so none was added for one card.
+
+**A branch is a lobe found by greedy split, not a root.** One hue per top-level subtree
+does not work here: the tree normally has a single root (python) whose one big child holds
+most of the nodes, so every node would be one colour. Instead the largest branch is split
+into its children, repeatedly, until none holds more than `TRUNK_SHARE` of the tree; the
+heads that were split are the trunk and stay neutral. On the open set that yields
+Cloud(14), Agents(4), APIs(2), CI/CD(2), Evaluation(2) under a python→llms trunk, and it
+stays sane across city, seniority and window filters. A branch under `MIN_BRANCH` nodes
+never takes a hue off a real lobe.
+
+A knowing deviation, recorded rather than hidden: dataviz says colour follows the entity,
+never its rank, and here the hue is assigned by branch rank. There is nothing stable to
+pin it to — the branch *set* is recomputed per filter, and Cloud is a branch under one
+filter and trunk under another. The legend names the three coloured branches, so identity
+is never colour-alone.
+
+**Labels are placed by a de-collision pass, so non-overlap is an invariant.** A name sits
+beside its node and slides vertically, in half-label steps, until its box touches no other
+name, no node and not the hub; a leader line is drawn when it moved. Nodes are placed
+most-prevalent first, so the skills a reader goes looking for keep their natural spot.
+
+Two alternatives were weighed and rejected. Lowering `MAX_NODES` to 20–24 is one constant,
+but it buys legibility by deleting skills and makes nothing invariant — it only makes
+today's corpus happen to fit. "More ring spacing" is a visual no-op: `size` is derived from
+`RING × max_depth` and every radius and type size is scaled by `size / 1000`, so growing
+`RING` grows the whole picture in lockstep and nothing gains room on screen. The real
+levers are rendered pixels, shorter labels and placement — which is also why the card is
+now collapsed by default and last on the page: opened deliberately, it can have the width.
+
+Python has no font metrics, so a label's width is estimated per character and deliberately
+over-estimated. Checked against the browser's own `getBBox` across all 30 labels: the
+estimate is 1.04–1.6× the real width, never under. That is what makes
+`test_no_two_labels_overlap_at_thirty_nodes` a guarantee rather than a coincidence. If the
+pass ever runs out of steps it sets `label_placed: False` and the test fails — *that* is
+the signal to lower `MAX_NODES`, so the two levers compose instead of competing.
+
+Display names now go *into* `build_tree` rather than being attached to its output: a
+label's width decides the layout, so the tree cannot place anything without them.
+
+---
+
+## 2026-10-30 — The repo guards the branch, not the memory of it (HIR-88)
+
+Three commits landed on the wrong branch this week. The expensive one was the HIR-70 /
+HIR-85 tangle: HIR-69 made production experience a fourth per-job attribute while HIR-70's
+held-out labeling was still mid-flight, and work for the two moved between branches that
+looked interchangeable because every branch here is `chandlershortlidge/hir-NN-...`. The
+cost was not a lost commit — it was that a merge of main into HIR-70 surfaced the overlap
+as a red test rather than a conflict (DECISIONS 2026-10-29, HIR-85), so the question "which
+ticket is this change for?" got answered after the fact, by reading a diff.
+
+**The guard is a hook, and the hook reads a file, not the branch name.** `.githooks/pre-commit`
+refuses a commit on `main`/`master`, requires a `TICKET` file at the repo root, and refuses
+if the current branch name does not contain the id in `TICKET` (case-insensitively, since
+branch names are lowercase and issue ids are not). `TICKET` is gitignored: it is a statement
+about the working copy, not about the history, and it must not travel in a merge.
+
+Why a separate file at all, when the branch name already carries the id: a name only says
+what the branch was created for. `TICKET` is written deliberately at the start of a session,
+so the check compares an intention against a branch instead of comparing a branch to itself.
+A mismatch is exactly the case that cost us this week, and the hook's message says to stop
+and decide rather than offering a fix — rewriting `TICKET` to match the branch would pass
+the check and lose the signal.
+
+**The hook is the backstop; the first action of the session is the fix.** AGENTS.md opens
+with it, ahead of everything else in the project block: ask which ticket this session is
+for if the prompt does not name one, switch to that ticket's branch — freshly cut from an
+up-to-date main, or the existing one — and only then write the id to `TICKET`. The rule it
+replaces is "never inherit whatever branch the terminal is on": between sessions the
+terminal is left wherever the last one ended, and reading that as a statement of intent is
+how all three wrong-branch commits happened. A branch is now chosen, never inherited.
+
+Ordering it first is the point, not decoration. An agent that reads the code before fixing
+the branch has already spent the part of the session where switching is free — by the time
+the hook says no, there is a diff to move, and moving it is where the mistakes live.
+
+**Scoped to sessions that will commit.** The first version said "every session", which
+charges a ticket question to anyone who only wanted a question answered — a cost paid on
+the sessions the rule was never about. A read-only session now stays where it is. The seam
+that creates is the session that starts as a question and becomes a change; the rule names
+it and puts the switch *before the first edit* rather than before the first commit, which
+is the same free moment the ordering above is protecting. The hook still refuses the commit
+if that is missed, so the narrowing costs a backstop, not the guard.
+
+**Not chosen.** A commit-msg hook parsing the ticket out of the message: it fires after the
+message is written, catches nothing about where the commit lands, and would push the id into
+every subject line. A `prepare-commit-msg` hook that fills the id in: helpful, but it makes
+a wrong branch easier to commit to, not harder. A CI check on the PR: too late — by then the
+commits exist on the branch they shouldn't be on.
+
+**The hook is advisory by construction.** Git will not run hooks a repository ships, so
+`git config core.hooksPath .githooks` is a one-time step per clone (README, AGENTS.md), and
+`--no-verify` still bypasses it. That is accepted: the goal is to make the wrong branch
+noisy, not impossible.
+
+Alongside it, `.github/pull_request_template.md` with three headings — Testing, Risk, How
+to revert. Same reasoning at the other end of the branch: the facts a reviewer needs are the
+ones the author has and forgets to write down.
+
+---
+
+## 2026-10-30 — The skill tree reads the conditional asymmetry the other way round, and a parent is the nearest gateway, not the trunk (HIR-81)
+
+v1 of the skill tree is a static SVG with a radial layout computed live from the
+co-occurrence of the filtered job set: `app/skill_tree.py` does every count and every
+coordinate, `web/src/SkillTree.jsx` only draws them. Three decisions in it are worth
+recording, because two of them contradict the issue and the third was tried and reverted.
+
+**Direction: the more prevalent skill is the parent.** HIR-81 gives two rules — depth is
+prevalence, and direction is the conditional-probability asymmetry — and its worked example
+reads the asymmetry so that the *rarer* skill is the parent ("P(observability | evaluation)
+high and P(evaluation | observability) low, so evaluation is the parent" — which means
+observability is the more common of the two). Taken literally that puts Snowflake above
+Python and there is no trunk at all, so the two rules cannot both hold. Depth-is-prevalence
+is the one that carries the picture, so the asymmetry is read the other way: a parent is
+always *strictly* more prevalent than its child. This also makes the graph a forest for
+free — an edge can never close a cycle — and means two equally common skills are never
+parent and child, because neither direction has an asymmetry to read.
+
+**A parent is the least prevalent skill that still qualifies, not the most.** Taking the
+most prevalent qualifying parent — the obvious reading of "high conditional probability" —
+makes every node a direct child of Python, because almost everything co-occurs with Python:
+a two-ring star, the hairball the issue wanted avoided, just drawn radially. Taking the
+*least* prevalent skill that the child's jobs still ask for at least `MIN_CONDITIONAL`
+(0.6) of the time gives the specialization paths that are the point:
+python → llms → agents → rag → prompt-engineering → tool-calling.
+
+**Both shares on every node, so the tree ignores the requirement filter.** Each node
+carries mentioned % and required % over the same denominator (Leoson's Snowflake
+observation: 17% mentioned, 3% required). *Superseded later the same day by "The skill
+tree, made readable" at the top of this log, on where they are shown: the numbers moved to
+a hover/focus tooltip and the ring/core encoding carries the gap on the drawing. The rule
+that both are reported, over one denominator, stands.* There is
+therefore nothing for `requirement` to choose, and `/api/skills/tree` ignores it along with
+the skill selection — the tree maps the whole filtered market, and selecting a skill only
+highlights it. Every other filter (city, seniority, German, degree, production, window)
+still narrows the job set the tree is drawn over.
+
+**Tried and reverted: equalizing arc length instead of angle.** Giving each leaf a slice of
+1/depth rather than a flat one makes every leaf's *arc* equal — an inner ring is shorter,
+so an equal angle near the centre buys less room. It reads worse: it squeezes exactly the
+long deep branches that carry the picture. Equal angular slices stayed. Label crowding was
+instead handled by capping the drawing at `MAX_NODES` = 30; what still overlaps is a branch
+whose child sits at nearly its own angle one ring out (Machine Learning and PyTorch). The
+fix for that is a de-collision pass with leader lines, which v1 does not need; pulling a
+branch's label back along its own spoke was tried and is not it — the label slides across
+the node it names.
+
+The personal overlay (your skills lit up, the shortest path to a target cluster) waits for
+HIR-14, as HIR-81 says.
+
+---
+
 ## 2026-10-29 — Production experience joins the HIR-70 labeling: a production-only pass, no restart (HIR-85)
 
 HIR-69 made production experience a fourth per-job attribute while HIR-70's held-out

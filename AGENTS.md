@@ -46,6 +46,70 @@ template first, then synced into projects while preserving the project-specific 
 
 <!-- BEGIN PROJECT -->
 
+## Starting a session
+
+**This is the first action of every session that will commit, before reading any code,
+docs or diff.** A session that only reads or answers a question skips it and stays where
+it is. If such a session turns into a change — and they do — stop and run this *before the
+first edit*, not before the first commit: the switch is free while there is nothing to
+carry.
+
+1. **Which ticket is this session for?** If the prompt does not name one, ask — before
+   anything else. Do not infer it from the branch the terminal is on, from uncommitted
+   changes, or from what looks half-finished.
+
+2. **Get onto that ticket's branch — in its own worktree.** A folder has one current
+   branch and one `TICKET`, so two sessions in one folder will commit onto each other's
+   branches however careful each one is (HIR-94: an HIR-72 commit landed on the HIR-92
+   branch this way). `git worktree add ../<repo>-hir-NN -b <branch> origin/main`, then
+   work there. Never inherit whatever branch the terminal happens
+   to be on. A terminal left on another ticket's branch, or on `main`, is the ordinary
+   case between sessions, not a hint about what to work on.
+
+   ```bash
+   # work not started yet
+   git switch main && git pull
+   git switch -c chandlershortlidge/<ticket>-<slug>      # e.g. .../hir-88-git-hygiene
+
+   # work already has a branch
+   git switch chandlershortlidge/<ticket>-<slug>
+   ```
+
+   If the tree has uncommitted changes, `git switch main` either refuses or carries them
+   onto the new branch. Stop and ask whose they are; do not stash, commit or discard them
+   to get moving.
+
+3. **Write the id to `TICKET`.**
+
+   ```bash
+   echo HIR-NN > TICKET
+   ```
+
+   `TICKET` is gitignored and does not travel with a switch or a merge, so a stale id left
+   by the previous session is normal — rewrite it every time rather than trusting it.
+
+Once per clone, so `.githooks/pre-commit` actually runs:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+Then, for the rest of the session:
+
+- **One ticket per branch, per folder, per commit.** `TICKET` holds one id; the branch
+  name must contain it (`pre-commit`) and a commit subject that names a ticket must name
+  the same one (`commit-msg`).
+- **If the branch and the ticket disagree, stop and ask.** Do not rewrite `TICKET` to
+  match the branch, and do not switch branches to make it fit — which of the two is wrong
+  is the person's call. This applies once step 3 has been done this session. If you
+  skipped step 3 and the ticket was named in the prompt, do step 3 now; that isn't
+  rewriting `TICKET` to match the branch.
+- **Never commit to main.** The hook refuses it; do not reach for `--no-verify`.
+- **A branch open more than two days gets split or merged**, not carried. If the work has
+  grown past its ticket, say so and propose the split.
+
+---
+
 ## What this project is
 
 **hiring-radar** — answers one question: *what skills is the AI-engineering job market
@@ -139,6 +203,13 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   feed could have stored it (board not polled, filter would drop it, not an ATS page).
   Writes only its own log (`url_check`, the first check per URL drives the coverage line
   in `stats`); `--add` in the CLI hands the resolved posting to `ingest_one`.
+- `app/skill_tree.py` — the radial skill tree (`/api/skills/tree`): mentioned and required
+  counts per skill over the filtered job set, a parent for each (the least prevalent skill
+  its own jobs still nearly always ask for), which branch each reads as part of, and every
+  coordinate of the layout down to where each label goes. Pure `build_tree` plus a thin
+  `fetch_jobs`; display names are passed *in*, because a label's width decides the layout.
+  Ignores the `requirement` and skill filters on purpose — see the two DECISIONS entries
+  of 2026-10-30, "reads the conditional asymmetry" and "made readable".
 - `app/queries.py` — read queries behind the dashboard: filters (city, seniority, German,
   degree, production, requirement, window), skill document frequency with per-city counts,
   related-skills co-occurrence with lift (`related_skills`, feeds `/api/skills/related`),
@@ -149,7 +220,9 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `web/src/` — `App.jsx` (filters, header, stats, controls, and the one route: `/jobs/{id}`
   read from the address bar), `JobPage.jsx` (a job's own page: detail + the stored posting
   text), `SkillChart.jsx`,
-  `CompareChart.jsx`, `RelatedSkills.jsx` (what the jobs requiring the selected skill also
+  `CompareChart.jsx`, `SkillTree.jsx` (draws `/api/skills/tree`; does no layout arithmetic
+  of its own, and the card is collapsed by default so it is not fetched until opened),
+  `RelatedSkills.jsx` (what the jobs requiring the selected skill also
   require; renders only with a skill selected and computes nothing itself),
   `JobList.jsx` (rows + expanded detail with quotes), the three drawers
   (`AddJobDrawer`, `ReviewDrawer`, `ProfileDrawer`), `profile.js` (localStorage profile +
@@ -236,5 +309,60 @@ or a bad chart:
   near-miss dedup. State it plainly as the person's call, separate from the numbers.
 
 A clean run is one headline. Silence on failures is not cleanliness.
+
+
+### Deciding alone vs. stopping
+
+Agents decide the small things and stop for the big ones. The test for a decision is
+whether Chandler could judge it right or wrong from one plain sentence; if he couldn't,
+it is either mechanical (don't report it) or badly explained (rewrite it).
+
+**Decide, don't report** — mechanical, already settled by this file or DECISIONS.md:
+next free migration number; DECISIONS.md merge conflicts (keep both entries, newest
+first); a proposed skill needs 3 jobs before it becomes an entry; alias before new entry
+when a phrase is another spelling of an existing skill; test names, fixture choice,
+commit wording.
+
+**Decide, then report in the PR's "Decisions taken"** — judgment, cheap to undo: which
+postings to sample; how a UI label or a DECISIONS entry is worded; alias vs. new entry
+when the phrase is genuinely ambiguous; the shape of a taxonomy change (parent/children,
+which entries); anything the issue left open that costs one commit to reverse. One
+sentence each: what, why, how to undo.
+
+Anything that bumps `extractor_version` (prompt, taxonomy, model) is decided here too.
+Say in the PR body that merging re-reads every job (about €3). **The merge is the
+approval**; nothing waits before the PR.
+
+**An existing rule is never a question.** When an issue and DECISIONS.md (or this file)
+disagree, the rule wins: apply it, note the conflict in one line under "Decisions taken",
+carry on. Before asking anything, check whether a standing rule already answers it. Ask
+only when no rule covers the case — then the answer becomes a rule, and the question
+is never asked again.
+
+**Stop and ask, even unattended** — irreversible, expensive, or policy:
+- any edit to `evals/LABELING.md` or to an attribute's definition (invalidates every eval)
+- `ACTIVE_CITIES`; what the public site stores, shows, or sends to a provider; spend
+- deleting or rewriting stored jobs, Goldens, or eval results
+- an eval metric down more than 0.02 against the last committed run
+- the branch and `TICKET` disagree; a hot-spot file is already changed on another branch
+
+**Questions go to the decider agent before they go to Chandler.** `.claude/agents/decider.md`
+(Fable) reads only AGENTS.md, DECISIONS.md, taxonomy/README.md and evals/LABELING.md, and
+answers the question from them. It returns either an answer with the rule it rests on (the worker
+applies it and notes it under "Decisions taken"), or "no rule covers this" plus the
+question rewritten per "How to write anything Chandler reads". Only the second kind
+reaches Chandler: a comment on the Linear issue that @mentions him, two sentences of
+situation, one line per option with its consequence, a recommendation. His answer is
+written into DECISIONS.md so it is never asked again. Meanwhile the worker does any step
+that doesn't depend on the answer, and stops.
+
+**Unattended runs never merge.** They open the PR; a person merges.
+
+### Skills
+
+`.claude/skills/` holds the repeatable procedures. `/work-issue HIR-n` takes a Linear
+issue to a PR; `/check-url` audits feed coverage for careers-page URLs. When a procedure
+has been typed into a session twice, it belongs here; when one fails, fix the skill, not
+the conversation.
 
 <!-- END PROJECT -->

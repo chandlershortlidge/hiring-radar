@@ -1,0 +1,75 @@
+#!/bin/sh
+# Branch guard (HIR-88). Refuses a commit unless the branch is a ticket branch that
+# matches the ticket id recorded in TICKET at the repo root.
+#
+# What it does NOT do: it does not create TICKET, pick a ticket id, or validate that the
+# id exists in Linear. Writing TICKET is the first step of a session (AGENTS.md).
+#
+# Invariant: a commit that passes this hook is on a non-main branch whose name contains
+# the ticket id in TICKET, compared case-insensitively.
+#
+# One-time setup:  git config core.hooksPath .githooks
+
+root=$(git rev-parse --show-toplevel) || exit 1
+ticket_file="$root/TICKET"
+# --show-current, not rev-parse: it reports the branch before its first commit too,
+# and prints nothing on a detached HEAD instead of the string "HEAD".
+branch=$(git branch --show-current)
+
+case "$branch" in
+main|master)
+	cat >&2 <<EOF
+pre-commit: refusing to commit on "$branch".
+
+Work goes on a ticket branch. Create one and commit there:
+
+    git switch -c <you>/hir-NN-short-description
+
+If these changes are already staged, the new branch keeps them.
+EOF
+	exit 1
+	;;
+"")
+	echo "pre-commit: detached HEAD, no branch to check. Commit from a ticket branch." >&2
+	exit 1
+	;;
+esac
+
+if [ ! -f "$ticket_file" ]; then
+	cat >&2 <<EOF
+pre-commit: no TICKET file at the repo root.
+
+Record which ticket this branch is for (TICKET is gitignored, one line, one ticket):
+
+    git branch --show-current          # $branch
+    echo HIR-NN > TICKET
+EOF
+	exit 1
+fi
+
+ticket=$(tr -d '[:space:]' < "$ticket_file")
+
+if [ -z "$ticket" ]; then
+	echo "pre-commit: TICKET is empty. Write the issue id into it, e.g. 'echo HIR-NN > TICKET'." >&2
+	exit 1
+fi
+
+ticket_lc=$(printf '%s' "$ticket" | tr '[:upper:]' '[:lower:]')
+branch_lc=$(printf '%s' "$branch" | tr '[:upper:]' '[:lower:]')
+
+case "$branch_lc" in
+*"$ticket_lc"*) ;;
+*)
+	cat >&2 <<EOF
+pre-commit: branch and ticket disagree.
+
+    branch:  $branch
+    TICKET:  $ticket
+
+The branch name must contain the ticket id. One ticket per branch — do not retarget
+TICKET to make a commit go through. Either switch to the branch for $ticket, or stop and
+decide which ticket this work belongs to.
+EOF
+	exit 1
+	;;
+esac

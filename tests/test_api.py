@@ -182,6 +182,21 @@ def test_repeated_skill_params_are_anded(wide_api):
     assert companies(skill=["python", "python"]) == companies(skill="python")
 
 
+def test_skill_tree_carries_both_shares_and_display_names(wide_api):
+    r = wide_api.get("/api/skills/tree", params={"window": "all"}).json()
+    assert r["total"] == len(RELATED_JOBS) and r["size"] > 0
+    by = {n["skill_id"]: n for n in r["nodes"]}
+    assert by["rag"]["display"] == "RAG"                 # the id resolved through the taxonomy
+    assert (by["rag"]["mentioned"], by["rag"]["mentioned_pct"]) == (13, 86.7)
+    assert by["rag"]["required_pct"] == 86.7             # every mention in the fixture is required
+    assert {e["child"] for e in r["edges"]} == set(by)   # one edge per node, parent or spoke
+
+
+def test_skill_tree_rejects_a_bad_filter_like_every_other_read(wide_api):
+    assert wide_api.get("/api/skills/tree", params={"window": "yesterday"}).status_code == 422
+    assert wide_api.get("/api/skills/tree", params={"seniority": "staff"}).status_code == 422
+
+
 def test_related_skills_over_a_skill_set(wide_api):
     r = wide_api.get("/api/skills/related", params={"window": "all", "skill": ["python", "docker"]}).json()
     assert (r["selected_count"], r["total"]) == (5, 15)
