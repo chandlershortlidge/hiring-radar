@@ -62,7 +62,8 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
     def filters(city: list[str] = Query(default=[]), seniority: list[str] = Query(default=[]),
                 requirement: str = "required", window: str = "open", german: str = "any", degree: str = "any",
                 production: str = "any",
-                skill: list[str] = Query(default=[]), q_: str = Query(default="", alias="q")) -> q.Filters:
+                skill: list[str] = Query(default=[]), q_: str = Query(default="", alias="q"),
+                text: str = Query(default="")) -> q.Filters:
         for s in seniority:
             if s not in q.SENIORITIES:
                 raise HTTPException(422, f"bad seniority {s!r}")
@@ -83,7 +84,7 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
         # twice does not add a redundant EXISTS clause.
         return q.Filters(cities=tuple(city), seniorities=tuple(seniority), requirement=requirement,
                          window=window, german=german, degree=degree, production=production,
-                         skill_ids=tuple(dict.fromkeys(skill)), query=q_)
+                         skill_ids=tuple(dict.fromkeys(skill)), query=q_, text=text)
 
     def with_display(skills: list[dict]) -> list[dict]:
         for s in skills:

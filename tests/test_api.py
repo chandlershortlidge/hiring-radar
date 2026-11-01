@@ -92,6 +92,20 @@ def test_jobs_and_detail(api):
     assert client.get("/api/jobs/999").status_code == 404
 
 
+def test_jobs_text_search(api):
+    """`text` searches the posting text, `q` the company and title; neither touches the other."""
+    client, _ = api
+    r = client.get("/api/jobs", params={"text": "rag aws"}).json()
+    assert r["total"] == 1 and r["jobs"][0]["company"] == "Acme"
+    assert client.get("/api/jobs", params={"text": "kubernetes"}).json()["total"] == 0
+    # No syntax error from FTS5's own operators, and nothing matches the literal word.
+    assert client.get("/api/jobs", params={"text": 'OR "('}).json()["total"] == 0
+    assert client.get("/api/jobs", params={"text": "  "}).json()["total"] == 2
+    # Sent together they narrow together: no job is Gamma's and mentions Acme.
+    assert client.get("/api/jobs", params={"q": "gamma", "text": "acme"}).json()["total"] == 0
+    assert client.get("/api/jobs", params={"q": "acme", "text": "acme"}).json()["total"] == 1
+
+
 def test_taxonomy_endpoint(api):
     client, _ = api
     t = client.get("/api/taxonomy").json()

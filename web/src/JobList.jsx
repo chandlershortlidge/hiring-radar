@@ -15,8 +15,12 @@ export default function JobList({ filters, setFilters, profile, taxonomy, refres
   const [open, setOpen] = useState(null);
   const [loading, setLoading] = useState(false);
   const [q, setQ] = useState(filters.query);
+  // The posting-text search (HIR-67) is its own box: `q` matches the company and title,
+  // `text` every word of the stored posting, and a word can mean different things in each.
+  const [text, setText] = useState(filters.text);
 
   useEffect(() => { const t = setTimeout(() => setFilters((f) => ({ ...f, query: q })), 250); return () => clearTimeout(t); }, [q, setFilters]);
+  useEffect(() => { const t = setTimeout(() => setFilters((f) => ({ ...f, text })), 250); return () => clearTimeout(t); }, [text, setFilters]);
 
   useEffect(() => {
     let live = true;
@@ -50,6 +54,8 @@ export default function JobList({ filters, setFilters, profile, taxonomy, refres
         <div className="r">
           <label htmlFor="q" className="sr">Search company or title</label>
           <div className="search"><Search stroke="#6B6B6B" /><input id="q" type="search" className="inp" placeholder="Search company or title" value={q} onChange={(e) => setQ(e.target.value)} /></div>
+          <label htmlFor="jd" className="sr">Search the posting text</label>
+          <div className="search"><Search stroke="#6B6B6B" /><input id="jd" type="search" className="inp" placeholder="Search the posting text" value={text} onChange={(e) => setText(e.target.value)} /></div>
           <label htmlFor="sort" className="muted" style={{ fontSize: 12.5 }}>Sort</label>
           <select id="sort" className="sel" value={sort} onChange={(e) => setSort(e.target.value)}>
             {Object.entries(SORTS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
@@ -62,7 +68,9 @@ export default function JobList({ filters, setFilters, profile, taxonomy, refres
           <Row key={j.id} job={j} open={open === j.id} onToggle={() => setOpen(open === j.id ? null : j.id)}
             profile={profile} taxonomy={taxonomy} onOpenPage={onOpenPage} />
         ))}
-        {!loading && !page.jobs.length && <div className="empty">No jobs match. Widen the time window or clear the skill filter.</div>}
+        {!loading && !page.jobs.length && <div className="empty">{text.trim()
+          ? `No posting contains ${text.trim().split(/\s+/).length > 1 ? "all of those words" : "that word"}. Every word you type has to appear somewhere in the posting.`
+          : "No jobs match. Widen the time window or clear the skill filter."}</div>}
       </div></div>
       <div className="jobs-foot">
         {page.jobs.length < page.total && <button type="button" className="btn" onClick={more}>Load {Math.min(PAGE, page.total - page.jobs.length)} more</button>}
