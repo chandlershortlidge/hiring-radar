@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 from app.html_text import html_to_text
+from app.ingest import in_scope_title
 from app.sources import arbeitnow, ashby, greenhouse, lever, startup_jobs
 
 FIX = Path(__file__).parent / "fixtures" / "feeds"
@@ -316,10 +317,13 @@ def test_remote_flags_become_part_of_the_location():
     """arbeitnow `remote`, startup.jobs `workplace_type`, JSearch `job_is_remote` → geo sees them."""
     from app.geo import place_of
     from app.sources import jsearch
+    # arbeitnow names no country, so it adds none: a bare city passes through untouched
+    # and geo judges it (HIR-98). See test_arbeitnow_remote_* below.
     item = {"slug": "s", "company_name": "Acme", "title": "AI Engineer", "description": "<p>x</p>",
             "url": "u", "location": "Munich", "remote": True, "created_at": 1760000000}
-    assert arbeitnow.parse({"data": [item]})[0].location_raw == "Munich (remote, Germany)"
-    assert place_of("Munich (remote, Germany)") == "Remote (EU)"
+    assert arbeitnow.parse({"data": [item]})[0].location_raw == "Munich"
+    assert arbeitnow.parse({"data": [{**item, "location": "Germany"}]})[0].location_raw == "Germany (remote)"
+    assert place_of("Germany (remote)") == "Remote (EU)"
     sj = {"id": 1, "title": "AI Engineer", "description": "x", "company_name": "Acme", "url": "u",
           "workplace_type": "remote", "location": {"city": "Hamburg", "country": "Germany"}}
     assert startup_jobs.parse({"data": [sj]})[0].location_raw == "Hamburg (remote, Germany)"
@@ -328,3 +332,53 @@ def test_remote_flags_become_part_of_the_location():
     assert jsearch.parse({"data": [js]})[0].location_raw == "Remote (Germany)"
     assert jsearch.parse({"data": [{**js, "job_country": "US"}]})[0].location_raw == "Remote (US)"
     assert place_of("Remote (US)") is None
+
+
+# --- arbeitnow: remote never invents a country (HIR-98) --------------------------
+
+def _arbeitnow_remote_places():
+    """Every posting in the remote fixture → (slug, location after parse, place ingest sees)."""
+    from app.geo import active_place
+    return {p.source_job_id: (p.location_raw, active_place(p.location_raw))
+            for p in arbeitnow.parse(load("arbeitnow_remote.json"))}
+
+
+def test_arbeitnow_remote_non_german_city_is_not_eu_remote():
+    """A UK posting arriving as location="Bromley", remote=true must not become EU-remote."""
+    loc, place = _arbeitnow_remote_places()["remote-sql-developer-ai-prompting-bromley-268635"]
+    assert loc == "Bromley"            # no fabricated country
+    assert place is None               # so ingest's city filter drops it
+    assert in_scope_title("Remote SQL Developer (AI Prompting / Context Engineering)")
+
+
+def test_arbeitnow_remote_swiss_city_is_not_eu_remote():
+    """Switzerland is not the EU: "Zürich" + remote is dropped, not stored as Remote (EU)."""
+    assert _arbeitnow_remote_places()["ai-engineer-zurich-4"] == ("Zürich", None)
+
+
+def test_arbeitnow_remote_tracked_city_still_wins():
+    assert _arbeitnow_remote_places()["ai-engineer-berlin-1"] == ("Berlin", "Berlin")
+
+
+def test_arbeitnow_non_remote_location_unchanged():
+    assert _arbeitnow_remote_places()["ai-engineer-berlin-onsite-5"] == ("Berlin", "Berlin")
+
+
+def test_arbeitnow_remote_without_a_location_is_eu_remote():
+    """Nothing but `remote: true`: arbeitnow's own jurisdiction is the only region on offer."""
+    assert _arbeitnow_remote_places()["ai-engineer-nowhere-2"] == ("Remote (Germany)", "Remote (EU)")
+
+
+def test_arbeitnow_remote_german_words_survive_without_the_stamp():
+    """The rows that used to depend on the stamp reach Remote (EU) through geo's own paths:
+    "Homeoffice" has no region at all, "Germany" names one."""
+    places = _arbeitnow_remote_places()
+    assert places["ai-engineer-homeoffice-3"] == ("Homeoffice", "Remote (EU)")
+    assert places["ai-engineer-germany-6"] == ("Germany (remote)", "Remote (EU)")
+
+
+def test_names_eu_region_is_what_the_adapter_asks():
+    from app.geo import names_eu_region
+    assert names_eu_region("Germany") and names_eu_region("EMEA") and names_eu_region("Deutschland")
+    assert not names_eu_region("Bromley") and not names_eu_region("Zürich")
+    assert not names_eu_region("") and not names_eu_region(None)

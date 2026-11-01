@@ -68,6 +68,12 @@ _STRONG_REMOTE_TEXT = re.compile(
     r"\b(fully remote|100\s?% remote|remote[- ]first|remote[- ]only|work from anywhere|fully distributed)\b", re.I)
 
 
+def names_eu_region(location_raw: str | None) -> bool:
+    """Does this location string name Germany or an EU-wide region? Source adapters ask
+    before adding a remote marker of their own, so they never invent a region."""
+    return bool(location_raw and _EU_WIDE.search(location_raw))
+
+
 def city_of(location_raw: str | None) -> str | None:
     if not location_raw:
         return None
