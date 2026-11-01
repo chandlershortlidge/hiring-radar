@@ -379,12 +379,21 @@ Whoever files the issue applies the label, by that rule, at filing time: an agen
 writing a follow-up ticket, the decider, or a Claude session. Chandler does not sort
 issues by hand. When in doubt, leave the label off; an attended run costs one "go".
 
-**Unattended runs never merge.** They open the PR; a person merges.
+**Who merges.** A worker never merges its own PR. For an `autopilot` issue the
+`reviewer` agent (`.claude/agents/reviewer.md`, fresh context, Fable) merges when CI is
+green, the diff stays in scope and off the stop-list files, "Needs Chandler" is empty,
+every decision has an undo and every follow-up a ticket; otherwise it labels the PR
+`needs-chandler` and @mentions Chandler on the issue. At most one PR that re-reads every
+job (taxonomy, prompt, model) merges per day. PRs for non-autopilot issues always wait for
+a person. `/run-autopilot` runs a batch end to end: pick, work in parallel worktrees,
+review, merge, one report.
 
 ### Skills
 
 `.claude/skills/` holds the repeatable procedures. `/work-issue HIR-n` takes a Linear
-issue to a PR; `/check-url` audits feed coverage for careers-page URLs. When a procedure
+issue to a PR; `/run-autopilot` runs a batch of autopilot issues through work, review and
+merge; `/check-url` audits feed coverage for careers-page URLs. `.claude/agents/` holds
+the `decider` (answers questions from the rules) and the `reviewer` (merges autopilot PRs). When a procedure
 has been typed into a session twice, it belongs here; when one fails, fix the skill, not
 the conversation.
 
