@@ -110,3 +110,38 @@ def test_v5_entries_absorb_their_spelling_variants():
         ("NVIDIA Dynamo", "nvidia-dynamo"),
     ]:
         assert t.resolve(label) == expected, label
+
+
+# --- HIR-97: taxonomy v6, the spellings the first real CV run missed -------------------
+
+def test_v6_cv_spellings_resolve():
+    # Every phrase here is one the HIR-14 matcher met in a real CV and could not map
+    # (DECISIONS 2026-11-01). The singular "LLM" is the load-bearing one: `llms` is the
+    # most-asked-for skill, and the taxonomy had only the plural and "LLM APIs".
+    t = Taxonomy.load()
+    for label, expected in [
+        ("LLM", "llms"), ("llm", "llms"),
+        ("ChromaDB", "vector-databases"), ("Chroma", "vector-databases"),
+        ("Postgres", "postgresql"),
+        ("tool-call", "tool-calling"), ("tool calls", "tool-calling"),
+        ("spaCy", "nlp"), ("Named Entity Recognition", "nlp"),
+        ("OpenCV", "computer-vision"),
+    ]:
+        assert t.resolve(label) == expected, label
+
+
+def test_ner_stays_unresolvable():
+    # Three characters and ambiguous in a CV, so it is deliberately not an alias of `nlp`:
+    # the unambiguous spelling carries the same meaning. DECISIONS 2026-11-01.
+    assert Taxonomy.load().resolve("NER") is None
+
+
+def test_v6_cv_spellings_clear_the_browser_matchers_minimum():
+    # web/src/cvSkills.js refuses any phrase under MIN_PHRASE = 3 characters, so an alias
+    # shorter than that would resolve server-side and still never tick a chip. "llm" is
+    # exactly 3 and passes; this test fails if a future alias sneaks under the bar.
+    t = Taxonomy.load()
+    for label in ("llm", "chroma", "chromadb", "postgres", "tool-call", "tool calls",
+                  "spacy", "named entity recognition", "opencv"):
+        assert len(label) >= 3, label
+        assert t.resolve(label) is not None, label
