@@ -32,6 +32,13 @@ the code. Five lines, plain words, no file names:
   Chandler in the comment and wait for the answer before step 3.
 - **Not doing:** what the issue's out-of-scope says, in plain words.
 
+**Autopilot.** If the issue carries the Linear label `autopilot`, or the person said
+"unattended" / "autopilot": post the brief on Linear for the record but do **not** wait
+for a "go"; start at once. Every question goes to the decider; if it returns ANSWER,
+apply it and continue. Only a NO RULE reaches Chandler (Linear comment, @mention), and
+then stop. The person sees nothing until the PR exists. The PR is still never merged
+by the agent.
+
 **Show the brief in the session as well as on Linear.** Posting the comment is not
 briefing the person. In an attended session, print the five lines and wait for an OK
 before step 2; "go" is enough. Unattended, post it and continue unless "will ask about"
