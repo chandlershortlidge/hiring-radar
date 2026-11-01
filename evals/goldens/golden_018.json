@@ -46,6 +46,11 @@
       "raw_text": "S3"
     },
     {
+      "skill_id": "chain-of-thought",
+      "requirement": "required",
+      "raw_text": "multi-step reasoning"
+    },
+    {
       "skill_id": "chemical-descriptors",
       "requirement": "nice_to_have",
       "raw_text": "chemical descriptors"

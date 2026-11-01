@@ -122,7 +122,10 @@ Rebuild of `job-skills-dashboard` (the June 2026 hackathon version). Why the reb
 what changed: DECISIONS.md, first entry.
 
 Out of scope (deliberately): résumé matching or tailoring, email parsing, applicant
-counts, anything that requires LinkedIn.
+counts, anything that requires LinkedIn. One narrow exception, since 2026-11-01 (HIR-14):
+a CV may be read **in the browser** to pre-select the profile's skill chips, which the
+person then edits. The CV never reaches the server or a provider. Tailoring, stored
+résumés and scoring a person against a posting stay out.
 
 ---
 
@@ -155,6 +158,7 @@ uv run python -m app stats
 
 # Dashboard
 cd web && npm install && npm run build && cd ..   # once, and after frontend changes → web/dist
+cd web && npm test && cd ..                       # the frontend's own tests (vitest), e.g. the CV matcher
 uv run python -m app serve                        # http://127.0.0.1:8000 (API + built frontend)
 cd web && npm run dev                             # frontend with hot reload on :5173, proxies /api to :8000
 HIRING_RADAR_DB=/tmp/demo.db uv run python scripts/seed_demo.py   # fake data to look at the UI without model calls
@@ -214,6 +218,9 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   degree, production, requirement, window), skill document frequency with per-city counts,
   related-skills co-occurrence with lift (`related_skills`, feeds `/api/skills/related`),
   job list/detail, proposed-skill grouping and resolution. The open-job rule lives here.
+  Two job-list searches that never blur: `query` over company and title, `text` over the
+  posting itself (`fts_query` sanitizes it; the FTS5 index is migration 014's `job_fts`,
+  kept in step with `job.description_text` by triggers, so writers need not know of it).
 - `app/api.py` — FastAPI routes over `queries` plus the add-a-job paths (url / text /
   screenshot), which run intake + extraction for the one job added. Validates every filter
   value (422), one SQLite connection per request, model client created lazily.
@@ -227,6 +234,12 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   `JobList.jsx` (rows + expanded detail with quotes), the three drawers
   (`AddJobDrawer`, `ReviewDrawer`, `ProfileDrawer`), `profile.js` (localStorage profile +
   set-overlap coverage; the server never sees it), `api.js`, `format.js`.
+- `web/src/cvSkills.js` + `cvText.js` — "Fill from your CV" in `ProfileDrawer` (HIR-14).
+  `cvSkills.js` is the pure matcher (CV text → taxonomy ids: literal, word-boundary,
+  case-insensitive except ReAct/React, phrases under 3 characters never match) and is what
+  the tests cover; `cvText.js` is the thin reader (PDF via pdf.js, .docx via mammoth, plain
+  text). **The CV is read in the browser and never leaves it** — no endpoint, no model call,
+  nothing stored (DECISIONS 2026-11-01). Keep it that way: the drawer promises it.
 - `app/__main__.py` — the CLI (`python -m app ...`, including `serve`).
 - `.claude/skills/check-url/` — `/check-url <url>`: runs `check` and acts on the verdict
   (adds the board to `config/feeds.json` and polls; stops on filter judgment calls).
@@ -355,6 +368,16 @@ reaches Chandler: a comment on the Linear issue that @mentions him, two sentence
 situation, one line per option with its consequence, a recommendation. His answer is
 written into DECISIONS.md so it is never asked again. Meanwhile the worker does any step
 that doesn't depend on the answer, and stops.
+
+**Autopilot issues.** An issue labelled `autopilot` in Linear is small enough that
+Chandler does not need to be involved: no "go" on the brief, every question to the
+decider, the first thing he sees is the PR. Label an issue `autopilot` when it is one
+bounded change with no stop-list item in it (aliases, a fixture, a copy fix, a test).
+A NO RULE from the decider still stops the run — guessing is not autopilot.
+
+Whoever files the issue applies the label, by that rule, at filing time: an agent
+writing a follow-up ticket, the decider, or a Claude session. Chandler does not sort
+issues by hand. When in doubt, leave the label off; an attended run costs one "go".
 
 **Unattended runs never merge.** They open the PR; a person merges.
 

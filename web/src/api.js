@@ -39,7 +39,7 @@ export const api = {
   skillTree: (f) => call(`/api/skills/tree${qs({ ...filterParams(f), requirement: null })}`),
   relatedSkills: (f) => call(`/api/skills/related${qs({ ...filterParams(f), skill: f.skillIds })}`),
   jobs: (f, { sort, limit, offset }) =>
-    call(`/api/jobs${qs({ ...filterParams(f), skill: f.skillIds, q: f.query, sort, limit, offset })}`),
+    call(`/api/jobs${qs({ ...filterParams(f), skill: f.skillIds, q: f.query, text: f.text, sort, limit, offset })}`),
   job: (id) => call(`/api/jobs/${id}`),
   proposed: () => call("/api/proposed"),
   resolve: (ids, status, resolved_skill_id) =>

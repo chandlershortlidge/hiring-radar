@@ -78,6 +78,11 @@
       "raw_text": "backend services"
     },
     {
+      "skill_id": "chain-of-thought",
+      "requirement": "required",
+      "raw_text": "multi-step reasoning"
+    },
+    {
       "skill_id": "cloud",
       "requirement": "required",
       "raw_text": "Cloud-native development"

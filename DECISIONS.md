@@ -5,6 +5,229 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-01 — Taxonomy v7: the German and short-form spellings the Golden pass found (HIR-101)
+
+The HIR-97 pass over the 46 Golden postings listed every label a Golden spells one way and
+the taxonomy another. Twenty-four aliases close them, mostly German words for skills already
+tracked in English: `vektordatenbanken`, `vector db` → `vector-databases`;
+`container`, `containerisierung` → `containerization`; `softwareentwicklung` →
+`software-engineering`; `architekturdesign` → `software-architecture`;
+`machine-learning-konzepte` → `machine-learning`; `verteilte systeme` →
+`distributed-systems`; `datenpipelines` → `data-pipelines`; `datenmodelle` →
+`data-modeling`; `evaluierung` → `evaluation`; `versionierung` → `model-versioning`;
+`versionskontrolle` → `git`; `feinabstimmung` → `fine-tuning`; `automatisierte tests`,
+`testautomatisierung` → `testing`; `netzwerke` → `networking`; `statistische methoden` →
+`statistics`; `orchestrierungs-frameworks` → `llm-orchestration`; plus the short forms
+`spark` → `apache-spark`, `huggingface` → `hugging-face`, `nodejs` → `node-js`,
+`bedrock` → `aws-bedrock`, `s3` → `aws-s3`. Taxonomy v7, still 210 skills — aliases add no
+row to the chart, so the rule that a proposed skill needs three postings does not apply.
+
+**`deployment` stays out, and this is the general shape of the rule.** It is the one
+candidate whose English and German spelling are the same word, and it reads as a whole word
+in 23 of the 46 Goldens — five of them (003, 005, 006, 011, 045) in postings that do *not*
+ask for `ai-deployment`: "deployment and monitoring of data pipelines", "cloud-native
+deployment", "concept & design, development, QA, deployment and production monitoring".
+Those are ordinary software delivery, not deploying a model. An alias has to be the same
+*thing* spelled differently; bare "deployment" is a broader thing than `ai-deployment`, so
+it would be a parent at best and is a false positive in practice. `model deployment` and
+`ml model deployment` already cover the narrow sense.
+
+**`container` goes in, on the same test.** Four whole-word occurrences across the Goldens,
+every one in a posting that does ask for `containerization` ("DevOps-Stacks (CI/CD, IaC,
+Container, Kubernetes)", "Container-Technologien wie Docker"). German compounds the word
+rather than pluralising it, so the existing `containers` alias misses all four.
+
+**`netzwerke` goes in despite one miss.** Its single occurrence in the Goldens is company
+boilerplate — golden_025 runs "Kommunikations-Netzwerke für den Digitalfunk BOS" — not a
+requirement, and that posting does not ask for `networking`. It is kept anyway because it is
+simply the German for Networking, the same thing spelled differently, which is what an alias
+is; the miss is a posting describing its own infrastructure, which the extractor is told not
+to read as a requirement. If `networking` starts appearing on the chart for postings that
+never asked for it, this alias is the first thing to pull.
+
+**`s3` is the documented exception to the three-character floor.** `cvSkills.js` refuses any
+phrase under `MIN_PHRASE` = 3 characters, so `s3` resolves when a job posting names it and
+is silently ignored when a CV does — which is the right split: "S3" in a stack list is
+unambiguous, "S3" in a CV is as likely a model number. Every other alias added here is 3
+characters or more. `postgress` (a typo), and bare `c#`, `r` and `go` stay out for the same
+floor, as in HIR-97.
+
+---
+
+## 2026-11-01 — Taxonomy v6: the nine spellings the first real CV run missed (HIR-97)
+
+Chandler's own CV through the HIR-14 matcher ticked 20 skills and missed six, every one a
+missing alias rather than a matcher bug: "LLM products" (the taxonomy had `llm apis` and
+`large language models` but not the bare singular), "ChromaDB", "SQLite/Postgres",
+"tool-call design", "NER (Presidio + spaCy)", "OpenCV". Nine aliases close all six:
+`llm` → `llms`; `chromadb`, `chroma` → `vector-databases`; `postgres` → `postgresql`;
+`tool-call`, `tool calls` → `tool-calling`; `spacy`, `named entity recognition` → `nlp`;
+`opencv` → `computer-vision`. Taxonomy v6, still 210 skills.
+
+**`ner` stays out.** Three characters, which `cvSkills.js`'s `MIN_PHRASE` admits, so it
+would match — and that is the problem: in a CV "NER" is as likely a product name or a
+German word fragment as the technique. `named entity recognition` carries the same meaning
+with no ambiguity, and someone who writes only "NER" loses one click.
+
+**ChromaDB, spaCy and OpenCV become aliases of the category, not entries of their own,
+and the 3-jobs rule is why.** Weaviate, pgvector and FAISS *are* entries under
+`vector-databases`, so the precedent for a named tool is an entry — but each of those
+cleared the 2026-10-20 bar of 3 jobs in the `proposed_skill` queue first. These three have
+no queue support at all; they surfaced from one person's CV, which is not frequency
+evidence. Counts do not roll up from child to parent anywhere in `app/queries.py`, so an
+entry now would move a posting that says "ChromaDB" *off* the Vector Databases bar and onto
+a bar of its own with one job behind it — the exact fragmentation the 3-jobs rule exists to
+prevent. Promotion stays available: if any of the three reaches 3 jobs in the queue it
+becomes an entry with the category as parent, and the alias moves with it.
+
+**The matcher is unchanged.** `MIN_PHRASE` is 3 and "LLM" is exactly 3, so the singular
+passes as the issue predicted; nothing in `cvSkills.js` needed touching.
+
+Merging re-reads every job once (`extractor_version` hashes the taxonomy block), about €3
+on the next poll.
+
+---
+
+## 2026-11-01 — A CV may pre-fill the profile, but only inside the browser (HIR-14)
+
+**The scope line changes, narrowly.** AGENTS.md and the rebuild entry below both put
+"résumé matching/tailoring" out of scope. That stays true for tailoring, stored résumés and
+scoring a person against a posting. What is now **in** scope is one thing: reading a CV to
+pre-select skills the person then edits, as a faster way to fill the same
+`profile.skills` set they could fill by clicking chips. Nothing downstream changes — the
+profile shape, `coverage()` and the chart are untouched.
+
+**It happens in the browser, and the CV never leaves it.** HIR-14 was written for the
+Dossier method: extract text server-side, send it to Anthropic with a CV variant of the
+extractor prompt. Chandler chose the browser-only version instead (asked and answered on
+HIR-14, 1 Nov). The reason is the promise the profile panel already makes — "Stays in this
+browser… nothing is scored or uploaded" — and the fact that HIR-14 blocks the public
+launch. A CV is the most sensitive document a visitor has; sending one to our server and on
+to a provider is a new privacy surface, and it would have made that promise false. So:
+
+- CV text is read in the page, matched in the page, and dropped when the drawer closes.
+- No endpoint, no model call, no bytes stored — server-side and client-side alike.
+- The panel's promise stands unchanged and stays true.
+
+**What we give up, knowingly.** Matching is substring, not semantic: a CV that spells a
+skill out ("we served models with Triton") matches; a paraphrase the taxonomy has no alias
+for ("stood up our own inference endpoints") does not. That is acceptable because a
+pre-fill is a starting point the person reviews — the drawer already lets them add and
+remove anything — and because the alternative was a model call per upload on a public site.
+If the local match proves too weak once people use it, the model-call version can be added
+later as its own decision, with its own disclosure.
+
+**Why the issue's "supersedes" line could not be honoured as written.** HIR-14 asked the
+entry to supersede "no résumé upload (too error-prone)". That phrase is recorded nowhere in
+this repo; it is from the legacy project. This entry is written against the scope line in
+the rebuild decision instead.
+
+---
+
+## 2026-11-01 — Taxonomy v5: the HIR-70 gaps triaged, but the 3-jobs rule still gates (HIR-72)
+
+The two HIR-70 labelers reported 216 label strings they could not map to taxonomy v4. All
+216 are now triaged, each with exactly one verdict (the full table is on HIR-72). The shape:
+**61 would-be entries, 17 strings that are other spellings of 13 entries we already have,
+107 out.** The 216 overstates the gap — it counts "Spring", "Spring Boot" and
+"Spring/SpringBoot" as three, and every German/English pair twice.
+
+**The 3-jobs rule from 2026-10-20 holds, and it counts jobs in the live `proposed_skill`
+queue, not postings in the Goldens.** This was the decision that shaped the change. 24
+Goldens cannot establish frequency: in that run all but one label appears in a single
+posting, so "both labelers agreed" is corroboration that the *phrase* is unmapped, not
+evidence that the market asks for it. The queue is the frequency counter; the Goldens only
+tell us which names to look up in it.
+
+Gating the 61 on the queue, **9 land**: `cuda` (4 jobs), `kserve` (4), `nvidia-dynamo` (3),
+`quantization` (4, folding "model quantization"), `ray-serve` (4),
+`speculative-decoding` (4), `spring-boot` (4, folding "spring" and "springboot"),
+`triton-inference-server` (5, folding "NVIDIA Triton"), `knowledge-distillation` (4,
+folding "distillation" and "model distillation"). **`opentelemetry`** (3) joins them: it
+never appeared in the 216, but the bar is the bar and it was sitting over it, so leaving it
+pending would have meant running the same review twice. Taxonomy v5, 210 skills.
+
+The other 52 stay pending in the queue and cost nothing to revisit — ten are already at 2
+jobs (`redis`, `django`, `jenkins`, `dvc`, `opensearch`, `ray`, `dotnet`, `oauth2`,
+`openwebui`, `tflite`) and will land on their own. **Their ids, parents and aliases are
+decided and recorded on HIR-72**, so the next review is a lookup, not a re-argument.
+
+**All 17 alias strings were added regardless of frequency, because an alias cannot widen
+the chart** — it only stops a phrase counting as nothing. That is where the German
+duplicates go: "Container-Orchestrierung" → `containerization`, "Retrieval-Pipelines" →
+`rag`, "Tool-Engineering" → `tool-calling`, "produktiver Betrieb von KI-Modellen" →
+`mlops`, "Training von KI Modellen" → `model-development`. Also folded:
+"orchestration frameworks" / "agent orchestration" → `llm-orchestration`, "memory systems"
+→ `agent-state-management`, "knowledge base design" → `rag`, "cloud functions" →
+`serverless`, "multi-step reasoning" → `chain-of-thought`, "tracing" → `observability`,
+"enterprise architecture" → `software-architecture`, "web application development" →
+`full-stack-development`.
+
+**"Data analytics" is not an alias of `data-science`,** though it was one for a few hours.
+The two are different jobs — analytics describes and reports, data science models and
+predicts — and folding the first into the second would have inflated `data-science` with
+business-analytics postings and made the chart's most load-bearing row mean less. It is a
+new entry when it earns one, not a spelling of an existing skill, and it is back in the
+queue until it does. This is what the taxonomy/README.md rule "aliases are the same thing
+spelled differently" is for: convenience is not sameness.
+
+**Two findings that corrected the issue's own reading of the data, both from `merged.json`:**
+
+- **"Tracking" in 2 postings is two different skills, not corroboration.** golden_037 quotes
+  `Tracking` in a web-app stack list (web analytics); golden_040 quotes `tracking` inside
+  "detection, classification, segmentation, tracking" (object tracking in video). A bare
+  `tracking` alias would have silently merged a marketing term into a vision skill. Left
+  out, in both senses. That leaves **"Context engineering" as the only label in the run two
+  different companies actually asked for** — and it has 0 queue rows, so it does not land.
+- **"Triton" can now be disambiguated, and still resolves to nothing.** 2026-10-20 left
+  bare "Triton" out as ambiguous between NVIDIA's server and OpenAI's kernel language.
+  golden_035 names both, separately ("CUDA or Triton", and "Triton Inference Server"), so
+  `triton-inference-server` is an entry with `nvidia triton` as an alias, `triton-kernels`
+  is a decided-but-unlanded id (0 queue rows), and **bare "Triton" is deliberately still
+  not an alias of either** — the 2026-10-20 reasoning survives intact. The queue has
+  "triton" at 2 jobs and those rows stay pending, unresolvable on purpose.
+
+**What stays out, and why, so it is not re-litigated:** all 17 paid-social labels from
+golden_048, which was already ruled a marketing role (2026-10-27). The 45 method and format
+names from golden_035 — AWQ, GPTQ, SmoothQuant, FP8/INT4/INT8/MXFP4/NVFP4, EAGLE, Medusa,
+FlashInfer, LMCache, WideEP, prefill–decode disaggregation, NVLink, InfiniBand, RoCE,
+NCCL — because the level above each of them is a decided id, so one posting's vocabulary
+does not become 45 chart rows with document frequency 1. Twenty-two phrases too broad to
+count ("Data", "Infrastructure", "Scalability", "Integration", bare "Security"). Twelve
+responsibilities rather than skills, including golden_035's four "diagnose the bottleneck"
+phrases. Ten working methods (Agile, Scrum, Freigabeprozesse, Qualitätssicherung,
+Prototyping) and "Open-source contributions".
+
+**Every job re-extracts on the next poll.** `extractor_version` hashes the system prompt,
+which contains the taxonomy block, so any edit here — a new alias as much as a new entry —
+invalidates every stamp. Per AGENTS.md as of HIR-94, the merge is the approval for that;
+nothing waits before the PR.
+
+**13 Golden labels added across 6 Goldens, on the 2026-10-20 precedent** — a label the
+taxonomy could not express before is a missing gold label, so adding it is taxonomy-driven
+rather than tuning. golden_035 gains 8 of the 9 new entries, which is the clearest evidence
+the gating worked: it is the inference posting the whole issue came from.
+`requirement` follows LABELING.md's section rule in every case, which puts the four serving
+engines from the "Must-haves" stack list (`kserve`, `nvidia-dynamo`, `ray-serve`,
+`triton-inference-server`) at `required` and the four from "Nice-to-haves" (`cuda`,
+`knowledge-distillation`, `quantization`, `speculative-decoding`) at `nice_to_have`, even
+where the same skill also appears in the responsibilities — responsibilities alone are not
+an ask. The rest: `chain-of-thought` from "multi-step reasoning" in golden_018 and
+golden_032, `llm-orchestration` in golden_044, `agent-state-management` from "memory
+systems" in golden_045, `spring-boot` from "Spring/SpringBoot" in golden_047.
+
+**One existing label was narrowed, not added.** golden_035's `tensorrt` quoted
+"TensorRT-LLM, Triton Inference Server, NVIDIA Dynamo, Ray Serve" — one span standing in
+for four tools, because three of them had no id to go to. Now they do, so the quote is
+`TensorRT-LLM` and each engine carries its own. An over-broad `raw_text` is the shape a
+taxonomy gap leaves behind in the answer key, and it is worth looking for the next time
+entries land.
+
+**What did not change: golden_038.** It was a relabel candidate only through the
+"data analytics" → `data-science` alias, and that alias is gone, so it keeps its labels.
+
+---
+
 ## 2026-10-30 — The skill tree, made readable: names only, three hues, branches by greedy split (HIR-81)
 
 The tree shipped correct and unusable. Four decisions from the follow-up.

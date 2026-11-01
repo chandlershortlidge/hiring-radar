@@ -32,6 +32,13 @@ the code. Five lines, plain words, no file names:
   Chandler in the comment and wait for the answer before step 3.
 - **Not doing:** what the issue's out-of-scope says, in plain words.
 
+**Autopilot.** If the issue carries the Linear label `autopilot`, or the person said
+"unattended" / "autopilot": post the brief on Linear for the record but do **not** wait
+for a "go"; start at once. Every question goes to the decider; if it returns ANSWER,
+apply it and continue. Only a NO RULE reaches Chandler (Linear comment, @mention), and
+then stop. The person sees nothing until the PR exists. The PR is still never merged
+by the agent.
+
 **Show the brief in the session as well as on Linear.** Posting the comment is not
 briefing the person. In an attended session, print the five lines and wait for an OK
 before step 2; "go" is enough. Unattended, post it and continue unless "will ask about"
@@ -121,13 +128,26 @@ git push -u origin HEAD
 gh pr create --base main --fill
 ```
 
-PR body, in the template's sections: Testing, Risk, How to revert, and **Decisions taken**
-and **Needs Chandler** per AGENTS.md "Deciding alone vs. stopping". Write both for a reader
+PR body, in the template's sections: Testing, Risk, How to revert, **Decisions taken**,
+**Needs Chandler** and **Follow-ups** per AGENTS.md "Deciding alone vs. stopping". "Needs
+Chandler" holds only what blocks the merge. A known limit, a later ticket or a suggestion
+is a Follow-up, stated as a fact, never as a question — if it doesn't need an answer,
+don't ask for one. Follow-ups come in two lists, **"Changes what you'd see"** first
+(chart, job list, counts, which jobs get in or out — these are decisions in disguise and
+Chandler reads them) and **"Internal"** second (refactors, tests, docs, tooling — he
+doesn't). Same split in the Linear comment and the final reply: lead with the first list,
+and if it's empty say so in four words. Write both for a reader
 who hasn't seen the code: one sentence per decision — what, why, how to undo. Then a
 one-paragraph delta from the brief: what differs from what you said you'd do. Any step from
 the issue that was **not** done, named. If the issue is only partly done (e.g. the eval is still
 to run), say which steps remain in the PR body and in a status line at the top of the
 Linear issue; don't mark it Done.
+
+## 5b. Follow-up tickets
+
+Any ticket you file (a Follow-up that deserves one, a bug found on the way) gets the
+`autopilot` label when it is one bounded change with no stop-list item, per AGENTS.md.
+Decide it at filing time; Chandler does not sort issues by hand.
 
 ## 6. Finish
 

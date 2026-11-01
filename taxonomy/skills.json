@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 7,
   "skills": [
     {
       "id": "a-b-testing",
@@ -36,7 +36,10 @@
     {
       "id": "agent-state-management",
       "display": "Agent state management",
-      "aliases": [],
+      "aliases": [
+        "agent memory systems",
+        "memory systems"
+      ],
       "parents": [
         "agents"
       ],
@@ -131,7 +134,9 @@
     {
       "id": "apache-spark",
       "display": "Apache Spark",
-      "aliases": [],
+      "aliases": [
+        "spark"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -194,7 +199,9 @@
     {
       "id": "aws-bedrock",
       "display": "AWS Bedrock",
-      "aliases": [],
+      "aliases": [
+        "bedrock"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -202,7 +209,8 @@
       "id": "aws-s3",
       "display": "AWS S3",
       "aliases": [
-        "amazon s3"
+        "amazon s3",
+        "s3"
       ],
       "parents": [
         "aws",
@@ -259,7 +267,9 @@
     {
       "id": "chain-of-thought",
       "display": "Chain-of-Thought",
-      "aliases": [],
+      "aliases": [
+        "multi-step reasoning"
+      ],
       "parents": [
         "prompt-engineering"
       ],
@@ -328,7 +338,9 @@
     {
       "id": "computer-vision",
       "display": "Computer Vision",
-      "aliases": [],
+      "aliases": [
+        "opencv"
+      ],
       "parents": [
         "deep-learning"
       ],
@@ -338,8 +350,12 @@
       "id": "containerization",
       "display": "Containerization",
       "aliases": [
+        "container orchestration",
+        "container-orchestrierung",
         "containerized workloads",
-        "containers"
+        "containers",
+        "container",
+        "containerisierung"
       ],
       "parents": [],
       "reviewed": true
@@ -370,6 +386,13 @@
     {
       "id": "csharp",
       "display": "C#",
+      "aliases": [],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "cuda",
+      "display": "CUDA",
       "aliases": [],
       "parents": [],
       "reviewed": true
@@ -413,7 +436,9 @@
     {
       "id": "data-modeling",
       "display": "Data modeling",
-      "aliases": [],
+      "aliases": [
+        "datenmodelle"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -424,7 +449,8 @@
         "etl pipelines",
         "etl/elt",
         "etl/elt pipelines",
-        "etl"
+        "etl",
+        "datenpipelines"
       ],
       "parents": [],
       "reviewed": true
@@ -503,7 +529,9 @@
     {
       "id": "distributed-systems",
       "display": "Distributed Systems",
-      "aliases": [],
+      "aliases": [
+        "verteilte systeme"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -556,7 +584,8 @@
         "ai output evaluation",
         "evaluation frameworks",
         "llm evaluation",
-        "model evaluation"
+        "model evaluation",
+        "evaluierung"
       ],
       "parents": [],
       "reviewed": true
@@ -631,7 +660,8 @@
       "display": "Fine-tuning",
       "aliases": [
         "llm fine-tuning",
-        "model fine-tuning"
+        "model fine-tuning",
+        "feinabstimmung"
       ],
       "parents": [],
       "reviewed": true
@@ -679,7 +709,8 @@
       "display": "Full-stack development",
       "aliases": [
         "full stack competence",
-        "full-stack competence"
+        "full-stack competence",
+        "web application development"
       ],
       "parents": [],
       "reviewed": true
@@ -711,7 +742,8 @@
       "display": "Git",
       "aliases": [
         "github",
-        "version control"
+        "version control",
+        "versionskontrolle"
       ],
       "parents": [],
       "reviewed": true
@@ -814,7 +846,9 @@
     {
       "id": "hugging-face",
       "display": "Hugging Face",
-      "aliases": [],
+      "aliases": [
+        "huggingface"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -878,6 +912,18 @@
       "reviewed": true
     },
     {
+      "id": "knowledge-distillation",
+      "display": "Knowledge distillation",
+      "aliases": [
+        "distillation",
+        "model distillation"
+      ],
+      "parents": [
+        "deep-learning"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "knowledge-graphs",
       "display": "Knowledge Graphs",
       "aliases": [],
@@ -889,6 +935,15 @@
       "display": "Kotlin",
       "aliases": [],
       "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "kserve",
+      "display": "KServe",
+      "aliases": [],
+      "parents": [
+        "model-serving"
+      ],
       "reviewed": true
     },
     {
@@ -1010,7 +1065,12 @@
     {
       "id": "llm-orchestration",
       "display": "LLM orchestration",
-      "aliases": [],
+      "aliases": [
+        "agent orchestration",
+        "multi-step orchestration",
+        "orchestration frameworks",
+        "orchestrierungs-frameworks"
+      ],
       "parents": [
         "llms"
       ],
@@ -1033,6 +1093,7 @@
         "generative ai applications",
         "generative ai solutions",
         "large language models",
+        "llm",
         "llm apis"
       ],
       "parents": [],
@@ -1041,7 +1102,9 @@
     {
       "id": "machine-learning",
       "display": "Machine Learning",
-      "aliases": [],
+      "aliases": [
+        "machine-learning-konzepte"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -1128,14 +1191,20 @@
     {
       "id": "mlops",
       "display": "MLOps",
-      "aliases": [],
+      "aliases": [
+        "production operation of ai models",
+        "produktiver betrieb von ki-modellen"
+      ],
       "parents": [],
       "reviewed": true
     },
     {
       "id": "model-development",
       "display": "Model Development",
-      "aliases": [],
+      "aliases": [
+        "ai model training",
+        "training von ki modellen"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -1156,7 +1225,9 @@
     {
       "id": "model-versioning",
       "display": "Model Versioning",
-      "aliases": [],
+      "aliases": [
+        "versionierung"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -1206,7 +1277,9 @@
     {
       "id": "networking",
       "display": "Networking",
-      "aliases": [],
+      "aliases": [
+        "netzwerke"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -1221,7 +1294,9 @@
       "id": "nlp",
       "display": "NLP",
       "aliases": [
-        "natural language processing"
+        "named entity recognition",
+        "natural language processing",
+        "spacy"
       ],
       "parents": [
         "machine-learning"
@@ -1231,7 +1306,9 @@
     {
       "id": "node-js",
       "display": "Node.js",
-      "aliases": [],
+      "aliases": [
+        "nodejs"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -1252,6 +1329,16 @@
       "reviewed": true
     },
     {
+      "id": "nvidia-dynamo",
+      "display": "NVIDIA Dynamo",
+      "aliases": [],
+      "parents": [
+        "model-serving",
+        "inference-optimization"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "object-storage",
       "display": "Object Storage",
       "aliases": [],
@@ -1266,7 +1353,8 @@
         "ai observability & monitoring",
         "model monitoring",
         "monitoring",
-        "monitoring & observability"
+        "monitoring & observability",
+        "tracing"
       ],
       "parents": [],
       "reviewed": true
@@ -1300,6 +1388,17 @@
         "openai"
       ],
       "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "opentelemetry",
+      "display": "OpenTelemetry",
+      "aliases": [
+        "otel"
+      ],
+      "parents": [
+        "observability"
+      ],
       "reviewed": true
     },
     {
@@ -1339,7 +1438,9 @@
     {
       "id": "postgresql",
       "display": "PostgreSQL",
-      "aliases": [],
+      "aliases": [
+        "postgres"
+      ],
       "parents": [
         "sql"
       ],
@@ -1396,6 +1497,19 @@
       "reviewed": true
     },
     {
+      "id": "quantization",
+      "display": "Quantization",
+      "aliases": [
+        "model quantization",
+        "post-training quantization",
+        "quantization-aware training"
+      ],
+      "parents": [
+        "inference-optimization"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "r-lang",
       "display": "R",
       "aliases": [],
@@ -1406,7 +1520,10 @@
       "id": "rag",
       "display": "RAG",
       "aliases": [
-        "retrieval-augmented generation"
+        "knowledge base design",
+        "retrieval pipelines",
+        "retrieval-augmented generation",
+        "retrieval-pipelines"
       ],
       "parents": [
         "llms"
@@ -1419,6 +1536,16 @@
       "aliases": [],
       "parents": [
         "evaluation"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "ray-serve",
+      "display": "Ray Serve",
+      "aliases": [],
+      "parents": [
+        "model-serving",
+        "distributed-systems"
       ],
       "reviewed": true
     },
@@ -1516,7 +1643,9 @@
     {
       "id": "serverless",
       "display": "Serverless",
-      "aliases": [],
+      "aliases": [
+        "cloud functions"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -1541,7 +1670,9 @@
       "id": "software-architecture",
       "display": "Software Architecture",
       "aliases": [
-        "softwarearchitektur"
+        "enterprise architecture",
+        "softwarearchitektur",
+        "architekturdesign"
       ],
       "parents": [
         "software-engineering"
@@ -1551,8 +1682,19 @@
     {
       "id": "software-engineering",
       "display": "Software engineering",
-      "aliases": [],
+      "aliases": [
+        "softwareentwicklung"
+      ],
       "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "speculative-decoding",
+      "display": "Speculative decoding",
+      "aliases": [],
+      "parents": [
+        "inference-optimization"
+      ],
       "reviewed": true
     },
     {
@@ -1570,6 +1712,20 @@
       "reviewed": true
     },
     {
+      "id": "spring-boot",
+      "display": "Spring Boot",
+      "aliases": [
+        "spring",
+        "springboot",
+        "spring/springboot",
+        "spring/spring boot"
+      ],
+      "parents": [
+        "java"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "sql",
       "display": "SQL",
       "aliases": [],
@@ -1583,7 +1739,8 @@
         "statistical analysis",
         "statistical modeling",
         "statistical modelling",
-        "statistical methods"
+        "statistical methods",
+        "statistische methoden"
       ],
       "parents": [],
       "reviewed": true
@@ -1648,7 +1805,9 @@
         "automated testing",
         "debugging & testing",
         "integration testing",
-        "test automation"
+        "test automation",
+        "automatisierte tests",
+        "testautomatisierung"
       ],
       "parents": [],
       "reviewed": true
@@ -1657,7 +1816,11 @@
       "id": "tool-calling",
       "display": "Tool calling",
       "aliases": [
-        "tool use"
+        "tool calls",
+        "tool engineering",
+        "tool use",
+        "tool-call",
+        "tool-engineering"
       ],
       "parents": [],
       "reviewed": true
@@ -1672,6 +1835,18 @@
       "reviewed": true
     },
     {
+      "id": "triton-inference-server",
+      "display": "Triton Inference Server",
+      "aliases": [
+        "nvidia triton",
+        "nvidia triton inference server"
+      ],
+      "parents": [
+        "model-serving"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "typescript",
       "display": "TypeScript",
       "aliases": [],
@@ -1681,7 +1856,12 @@
     {
       "id": "vector-databases",
       "display": "Vector Databases",
-      "aliases": [],
+      "aliases": [
+        "chroma",
+        "chromadb",
+        "vektordatenbanken",
+        "vector db"
+      ],
       "parents": [],
       "reviewed": true
     },
