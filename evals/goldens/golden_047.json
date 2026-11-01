@@ -140,6 +140,11 @@
       "raw_text": "RAG-Pipelines"
     },
     {
+      "skill_id": "spring-boot",
+      "requirement": "required",
+      "raw_text": "Spring/SpringBoot"
+    },
+    {
       "skill_id": "vector-databases",
       "requirement": "required",
       "raw_text": "Vektordatenbanken"

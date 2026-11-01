@@ -50,6 +50,11 @@
       "raw_text": "streaming APIs"
     },
     {
+      "skill_id": "cuda",
+      "requirement": "nice_to_have",
+      "raw_text": "CUDA"
+    },
+    {
       "skill_id": "distributed-systems",
       "requirement": "required",
       "raw_text": "distributed inference system architecture"
@@ -58,6 +63,16 @@
       "skill_id": "inference-optimization",
       "requirement": "required",
       "raw_text": "optimizing LLM, VLM, or high-throughput transformer inference"
+    },
+    {
+      "skill_id": "knowledge-distillation",
+      "requirement": "nice_to_have",
+      "raw_text": "distillation"
+    },
+    {
+      "skill_id": "kserve",
+      "requirement": "required",
+      "raw_text": "KServe"
     },
     {
       "skill_id": "llm-orchestration",
@@ -75,6 +90,11 @@
       "raw_text": "at least one modern inference stack"
     },
     {
+      "skill_id": "nvidia-dynamo",
+      "requirement": "required",
+      "raw_text": "NVIDIA Dynamo"
+    },
+    {
       "skill_id": "python",
       "requirement": "required",
       "raw_text": "Python"
@@ -83,6 +103,16 @@
       "skill_id": "pytorch",
       "requirement": "required",
       "raw_text": "Python and PyTorch"
+    },
+    {
+      "skill_id": "quantization",
+      "requirement": "nice_to_have",
+      "raw_text": "quantization-aware training"
+    },
+    {
+      "skill_id": "ray-serve",
+      "requirement": "required",
+      "raw_text": "Ray Serve"
     },
     {
       "skill_id": "sglang",
@@ -95,14 +125,24 @@
       "raw_text": "designing or optimizing distributed inference system architecture"
     },
     {
+      "skill_id": "speculative-decoding",
+      "requirement": "nice_to_have",
+      "raw_text": "speculative decoding"
+    },
+    {
       "skill_id": "tensorrt",
       "requirement": "required",
-      "raw_text": "TensorRT-LLM, Triton Inference Server, NVIDIA Dynamo, Ray Serve"
+      "raw_text": "TensorRT-LLM"
     },
     {
       "skill_id": "tool-calling",
       "requirement": "nice_to_have",
       "raw_text": "tool calling"
+    },
+    {
+      "skill_id": "triton-inference-server",
+      "requirement": "required",
+      "raw_text": "Triton Inference Server"
     },
     {
       "skill_id": "vllm",
