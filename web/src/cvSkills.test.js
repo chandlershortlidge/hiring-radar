@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { MIN_PHRASE, matchCvSkills, occursAsWord, phrasesFor } from "./cvSkills.js";
+import { MIN_PHRASE, flatten, matchCvSkills, occursAsWord, phrasesFor } from "./cvSkills.js";
 
 // A slice of the real taxonomy (v5 ids, displays and aliases), including every entry whose
 // name is short or case-sensitive enough to be a hazard.
@@ -132,6 +132,88 @@ describe("matchCvSkills", () => {
     expect(ids(cv)).toEqual([
       "aws", "python", "pytorch", "rag", "react", "triton-inference-server",
     ]);
+  });
+});
+
+describe("hyphens and slashes are word separators (HIR-100)", () => {
+  // Its own slice: these entries are multi-word or punctuated, which is what the rule is
+  // about, and adding them to TAX would change every exact-array expectation above.
+  const COMPOUNDS = [
+    ...TAX,
+    { id: "prompt-engineering", display: "prompt engineering", aliases: [] },
+    { id: "docker", display: "Docker", aliases: ["container technologies"] },
+    { id: "machine-learning", display: "machine learning", aliases: [] },
+    { id: "kubernetes", display: "Kubernetes", aliases: ["deployment patterns"] },
+    { id: "agent-frameworks", display: "agent frameworks", aliases: ["orchestration frameworks"] },
+    { id: "sqlite", display: "SQLite", aliases: [] },
+    { id: "postgres", display: "Postgres", aliases: ["PostgreSQL"] },
+    { id: "tool-calling", display: "tool calling", aliases: ["function calling"] },
+    { id: "dotnet", display: ".NET", aliases: [] },
+    { id: "nodejs", display: "Node.js", aliases: [] },
+    { id: "tool-call-hyphen", display: "tool-call", aliases: [] },
+    { id: "cicd", display: "CI/CD", aliases: [] },
+  ];
+  const ids = (text) => matchCvSkills(text, COMPOUNDS).ids;
+
+  it("matches a hyphenated compound against the spaced phrase", () => {
+    expect(ids("Erfahrung mit Prompt-Engineering")).toContain("prompt-engineering");
+    expect(ids("Container-Technologien wie Docker")).toContain("docker");
+    expect(ids("Deployment-Patterns in der Cloud")).toContain("kubernetes");
+    expect(ids("Kenntnisse in Machine-Learning-Konzepten")).toContain("machine-learning");
+    expect(ids("Orchestrierungs-Frameworks")).not.toContain("agent-frameworks");
+    expect(ids("Orchestration-Frameworks kennen")).toContain("agent-frameworks");
+  });
+
+  it("matches both sides of a slashed pair", () => {
+    const got = ids("Datenbanken: SQLite/Postgres");
+    expect(got).toContain("sqlite");
+    expect(got).toContain("postgres");
+  });
+
+  it("matches a phrase split by a slash in the text", () => {
+    const got = ids("tool/function calling with the API");
+    expect(got).toContain("tool-calling");
+  });
+
+  it("matches a hyphenated phrase against spaced text, and the reverse", () => {
+    // phrase "tool-call" against spaced text
+    expect(ids("we do a tool call per step")).toContain("tool-call-hyphen");
+    // phrase "CI/CD" against spaced and hyphenated text
+    expect(ids("owned CI CD pipelines")).toContain("cicd");
+    expect(ids("owned CI-CD pipelines")).toContain("cicd");
+    expect(ids("owned CI/CD pipelines")).toContain("cicd");
+  });
+
+  it("reports the taxonomy's own spelling, not the flattened one", () => {
+    const { found } = matchCvSkills("Erfahrung mit Prompt-Engineering", COMPOUNDS);
+    expect(found.find((f) => f.id === "prompt-engineering").phrase).toBe("prompt engineering");
+  });
+
+  it("leaves dots alone, so .NET and Node.js still match as one token", () => {
+    expect(ids("backend in .NET and Node.js")).toEqual(
+      expect.arrayContaining(["dotnet", "nodejs"]),
+    );
+    // and a dot is still not a separator: "NET" alone must not claim ".NET"
+    expect(ids("NET revenue grew")).not.toContain("dotnet");
+    expect(ids("node js scripts")).not.toContain("nodejs");
+  });
+
+  it("keeps every rule the fix had to leave alone", () => {
+    expect(ids("Wrote C++11 for three years")).toContain("cpp");
+    expect(ids("Front end in React with hooks")).toContain("react");
+    expect(ids("Front end in React with hooks")).not.toContain("react-agent-pattern");
+    expect(ids("Agents using the ReAct loop")).toContain("react-agent-pattern");
+    expect(ids("Go-live owner; go to market")).not.toContain("go");
+    expect(ids("Wrote plain js")).not.toContain("javascript");
+    expect(ids("R&D lead. Modelling in R.")).not.toContain("r-lang");
+  });
+
+  it("flattens separators but not other punctuation", () => {
+    expect(flatten("Machine-Learning/Konzepten")).toBe("Machine Learning Konzepten");
+    expect(flatten("Node.js")).toBe("Node.js");
+    expect(flatten("C++")).toBe("C++");
+    expect(flatten("  a - b  ")).toBe("a b");
+    expect(flatten(undefined)).toBe("");
   });
 });
 
