@@ -32,7 +32,28 @@ the code. Five lines, plain words, no file names:
   Chandler in the comment and wait for the answer before step 3.
 - **Not doing:** what the issue's out-of-scope says, in plain words.
 
+**Show the brief in the session as well as on Linear.** Posting the comment is not
+briefing the person. In an attended session, print the five lines and wait for an OK
+before step 2; "go" is enough. Unattended, post it and continue unless "will ask about"
+has something in it.
+
 The final PR reports the difference from this brief, not the work itself.
+
+## How to write anything Chandler reads (brief, questions, Decisions taken)
+
+He has not read the code and does not remember rule dates. Every sentence passes this
+test: *could someone who has never opened the repo say "fine" or "no" to it?*
+
+- Say what changes on the dashboard, not what changes in the code. "61 new skills appear
+  on the chart, most at 1–2%" — not "61 entries land in taxonomy v5".
+- Never assume a rule is known. If a rule matters, restate it in one clause: "the rule
+  that a skill needs 3 job postings before it goes on the chart".
+- No file names, function names, ids or dates as shorthand. `proposed_skill` is "the
+  queue of skills the model has suggested"; `extractor_version` bump is "every job gets
+  re-read by the model once, about €3".
+- A question is: the situation in two sentences, then one line per option with its
+  consequence, then your recommendation and why. Three options at most.
+- Reread it as him before sending. If it needs the repo to make sense, rewrite it.
 
 ## 2. Session start (AGENTS.md "Starting a session", HIR-88)
 
