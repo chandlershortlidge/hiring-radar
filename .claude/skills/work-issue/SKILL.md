@@ -121,7 +121,8 @@ Linear issue; don't mark it Done.
 
 ## When to break off and ask
 
-The stop list in AGENTS.md "Deciding alone vs. stopping", plus: the issue contradicts
-DECISIONS.md or AGENTS.md; the work has grown past the issue (propose the split). Asking
+The stop list in AGENTS.md "Deciding alone vs. stopping", plus: the work has grown past
+the issue (propose the split). An issue that contradicts a standing rule is **not** a
+reason to ask: the rule wins, note it under "Decisions taken". Asking
 is a Linear comment with an @mention, one sentence and the options; then do whatever
 doesn't depend on the answer, and stop.

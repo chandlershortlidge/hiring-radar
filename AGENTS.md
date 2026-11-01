@@ -323,6 +323,12 @@ postings to sample; how a UI label or a DECISIONS entry is worded; alias vs. new
 when the phrase is genuinely ambiguous; anything the issue left open that costs one
 commit to reverse. One sentence each: what, why, how to undo.
 
+**An existing rule is never a question.** When an issue and DECISIONS.md (or this file)
+disagree, the rule wins: apply it, note the conflict in one line under "Decisions taken",
+carry on. Before asking anything, check whether a standing rule already answers it. Ask
+only when no rule covers the case — then the answer becomes a rule, and the question
+is never asked again.
+
 **Stop and ask, even unattended** — irreversible, expensive, or policy:
 - any edit to `evals/LABELING.md` or to an attribute's definition (invalidates every eval)
 - anything that bumps `extractor_version` (prompt, taxonomy, model): say so and wait,
