@@ -173,9 +173,13 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - SQLite, one file, schema managed by numbered migrations in `app/migrations/`.
 - React 18 + Vite frontend in `web/`, no chart library (CSS bars), served from `web/dist`
   by the same process.
-- Hosting: one GCP Compute Engine VM in europe-west3 (HIR-29): systemd service + 07:00 poll
-  timer, Caddy for HTTPS + basic auth, nightly SQLite backup to GCS, deploy on merge to
-  `main` via GitHub Actions. How to SSH in and operate it: [deploy/README.md](deploy/README.md).
+- Hosting: one GCP Compute Engine e2-micro in europe-west3 (HIR-29): systemd service +
+  07:00 poll timer, Caddy for HTTPS + basic auth, nightly SQLite backup to a GCS bucket
+  with a 30-day lifecycle, deploy on merge to `main` via GitHub Actions. The deploy job
+  authenticates by workload identity federation (no stored key; only `main` of this repo)
+  and reaches the VM through IAP + OS Login. How to SSH in, operate it, rebuild it and
+  restore a backup: [deploy/README.md](deploy/README.md); the shape and the reasons are in
+  DECISIONS.md (2026-10-21 and 2026-11-01, HIR-74).
 
 ### Where things live
 
@@ -260,6 +264,12 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   held-out eval. See DECISIONS 2026-10-27 and `evals/LABELER_PROMPT.md`.
 - `scripts/seed_from_legacy.py` — one-off that built the taxonomy and Goldens from the
   legacy repo. Kept for provenance.
+- `deploy/` — everything about the VM: the runbook (`README.md`), `provision.sh` (rebuilds
+  the VM's software side, re-runnable), the five systemd units and the `Caddyfile` as
+  verbatim copies of what is in the VM's `/etc` (the Caddyfile's password hash is a
+  placeholder), `backup.sh`, `remote-deploy.sh` (what the GitHub deploy job runs on the
+  VM) and the bucket's lifecycle rule. Editing a unit or the Caddyfile here changes
+  nothing by itself — a deploy does not apply them; `provision.sh` does.
 - `tests/` — pytest.
 
 Three layout rules:

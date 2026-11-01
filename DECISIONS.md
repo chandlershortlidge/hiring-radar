@@ -5,6 +5,50 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-01 — The deployed setup, written down: OS Login + federated deployer, units in the repo (HIR-74)
+
+HIR-29 built the VM by hand and left the result undocumented. This records the shape it
+settled into, and the two choices made while writing it down.
+
+**The server's own configuration lives in the repo, and `/etc` is a copy of it.** The five
+systemd units and the Caddyfile are committed to `deploy/` byte-for-byte as they are on the
+VM, so `diff` against `/etc` answers "has the box drifted?". The one exception is the
+Caddyfile's bcrypt password hash, replaced by `REPLACE_WITH_BCRYPT_HASH`; `provision.sh`
+substitutes the real hash at install time, so the password never enters git. A deploy does
+**not** apply these files — only `provision.sh` or a hand copy does. Rejected: keeping them
+only on the VM (one disk failure and the setup is gone), and templating the whole thing
+(one VM, one hostname; the indirection buys nothing).
+
+**`provision.sh` provisions the VM, not the cloud.** It does the inside-the-VM half
+(packages, 1 GB swap, app user, checkout, `uv sync`, a secrets *template*, the units,
+Caddy) and is re-runnable: every step checks for its own result, it never overwrites
+`/etc/hiring-radar.env`, and it never touches the database. The static IP, firewall,
+instance, backups bucket and CI/CD identity stay hand-run from the Mac — they need admin
+credentials the VM deliberately does not have, and they are created once in the life of the
+project. Rejected: one script for all of it, which would need owner-level credentials to
+exist somewhere.
+
+**No deploy key exists anywhere.** CD authenticates by workload identity federation:
+GitHub mints an OIDC token per run, GCP's provider accepts it only when the claims say
+repository `chandlershortlidge/hiring-radar` *and* ref `refs/heads/main`, and swaps it for a
+token for the `github-deployer` service account. A fork, a branch or a PR gets nothing.
+That account holds three roles and no more: `compute.viewer` and
+`iap.tunnelResourceAccessor` on the project, `compute.osAdminLogin` on the one instance.
+**OS Login** (`enable-oslogin=TRUE`) is what turns the IAM role into a Linux account, so no
+SSH key sits in instance metadata and each run gets a throwaway key that expires in 30
+minutes. `osAdminLogin` rather than `osLogin` because the deploy script needs `sudo`.
+Rejected: a service-account JSON key in a GitHub secret — a long-lived credential to rotate
+and to leak.
+
+**Backups are the VM's own job, restores are a documented procedure.** `backup.sh` runs at
+03:30 Europe/Berlin: SQLite `.backup`, integrity check, gzip, into
+`gs://hiring-radar-512318-backups/db/`, where a lifecycle rule deletes copies after 30 days.
+The VM writes as its default Compute Engine service account, which already has project
+`roles/editor` — no extra grant. A deploy takes one first, so the pre-deploy state is always
+one object away. Restoring is in the runbook and its load-bearing step is deleting the
+`-wal` and `-shm` files: leave them and SQLite replays the old write-ahead log over the
+restored file, giving a silent mix of two databases.
+
 ## 2026-11-01 — Taxonomy v7: the German and short-form spellings the Golden pass found (HIR-101)
 
 The HIR-97 pass over the 46 Golden postings listed every label a Golden spells one way and
