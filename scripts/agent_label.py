@@ -740,20 +740,55 @@ proposal because it is there is worth nothing; the whole point of asking you is 
 are a third reader."""
 
 
+BULLET_CHARS = ("-", "*", "•", "·")
+
+
+def is_bullet(line: str) -> bool:
+    """True for a list item, false for a bold heading.
+
+    `* Python` and `**Deine Benefits**` both start with `*`; a bullet is a marker alone on
+    the line or a marker followed by a space, which the bold heading is not. Tested here,
+    before any `*` is stripped, because stripping turns the bullet into a heading (HIR-95).
+    """
+    s = line.strip()
+    if not s:
+        return False
+    if s in BULLET_CHARS:
+        return True
+    return any(s.startswith(c + " ") for c in BULLET_CHARS)
+
+
+def looks_like_heading(line: str) -> bool:
+    """Whether this line reads as a section heading: short, not a bullet, not a sentence."""
+    if is_bullet(line):
+        return False
+    s = line.strip().strip("*#").strip()
+    if not s or len(s) > 80:
+        return False
+    return not s.endswith((".", "!", "?"))
+
+
 def heading_above(posting: str, at: int) -> str:
     """The nearest line above `at` that looks like a section heading, or "".
 
     Rules 1 and 4 turn on which section a phrase sits in - a requirements bullet counts, the
     same words under "Responsibilities" do not - and a window of characters often cuts the
-    heading off. A heading here is the last short, non-bullet, non-empty line above the
-    quote, which is what these postings' headings look like ("Core Requirements",
+    heading off. A heading here is the last short, non-bullet, non-sentence, non-empty line
+    above the quote, which is what these postings' headings look like ("Core Requirements",
     "Nice-to-haves", "Dein Profil", "**Deine Benefits**").
+
+    Three things are explicitly not headings, each seen passing for one (HIR-95): a `* `
+    list item, the half line `at` cuts through on its way into the quote's own bullet, and
+    a full sentence ("These are meant to be indicative, not hard requirements.", which a
+    model then reads as a section called "requirements").
     """
-    for line in reversed(posting[:at].splitlines()):
-        s = line.strip().strip("*#").strip()
-        if not s or s.startswith(("-", "*", "•", "·")) or len(s) > 80:
-            continue
-        return s
+    before = posting[:at]
+    lines = before.splitlines()
+    if lines and not before.endswith(("\n", "\r")):
+        lines.pop()          # `at` cut this line mid-way; a fragment is not a heading
+    for line in reversed(lines):
+        if looks_like_heading(line):
+            return line.strip().strip("*#").strip()
     return ""
 
 

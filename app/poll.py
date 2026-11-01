@@ -15,7 +15,7 @@ import json
 import sqlite3
 from pathlib import Path
 
-from app.ingest import Report, ingest
+from app.ingest import Report, in_scope_title, ingest
 from app.sources import arbeitnow, arbeitsagentur, ashby, greenhouse, join, jsearch, lever, startup_jobs
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -33,8 +33,11 @@ def fetch_feed(feed: dict) -> list:
     if t == "startup_jobs":
         return startup_jobs.fetch(feed["search"], feed.get("country"), feed.get("max_pages", 3))
     if t == "arbeitsagentur":
+        # Every search result costs a second request for its description, so the title
+        # filter runs here, on the search result, instead of after the fetch (HIR-56).
         return arbeitsagentur.fetch(feed["search"], feed.get("where", "Berlin"), feed.get("radius_km", 25),
-                                    feed.get("days", 30), feed.get("max_pages", 2), feed.get("size", 50))
+                                    feed.get("days", 30), feed.get("max_pages", 2), feed.get("size", 50),
+                                    title_filter=in_scope_title)
     if t == "jsearch":
         return jsearch.fetch(feed["search"], feed.get("country", "de"), feed.get("date_posted", "week"),
                              feed.get("num_pages", 1))
