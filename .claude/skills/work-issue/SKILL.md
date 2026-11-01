@@ -32,6 +32,13 @@ the code. Five lines, plain words, no file names:
   Chandler in the comment and wait for the answer before step 3.
 - **Not doing:** what the issue's out-of-scope says, in plain words.
 
+**Autopilot.** If the issue carries the Linear label `autopilot`, or the person said
+"unattended" / "autopilot": post the brief on Linear for the record but do **not** wait
+for a "go"; start at once. Every question goes to the decider; if it returns ANSWER,
+apply it and continue. Only a NO RULE reaches Chandler (Linear comment, @mention), and
+then stop. The person sees nothing until the PR exists. The PR is still never merged
+by the agent.
+
 **Show the brief in the session as well as on Linear.** Posting the comment is not
 briefing the person. In an attended session, print the five lines and wait for an OK
 before step 2; "go" is enough. Unattended, post it and continue unless "will ask about"
@@ -131,6 +138,12 @@ one-paragraph delta from the brief: what differs from what you said you'd do. An
 the issue that was **not** done, named. If the issue is only partly done (e.g. the eval is still
 to run), say which steps remain in the PR body and in a status line at the top of the
 Linear issue; don't mark it Done.
+
+## 5b. Follow-up tickets
+
+Any ticket you file (a Follow-up that deserves one, a bug found on the way) gets the
+`autopilot` label when it is one bounded change with no stop-list item, per AGENTS.md.
+Decide it at filing time; Chandler does not sort issues by hand.
 
 ## 6. Finish
 

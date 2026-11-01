@@ -369,6 +369,16 @@ situation, one line per option with its consequence, a recommendation. His answe
 written into DECISIONS.md so it is never asked again. Meanwhile the worker does any step
 that doesn't depend on the answer, and stops.
 
+**Autopilot issues.** An issue labelled `autopilot` in Linear is small enough that
+Chandler does not need to be involved: no "go" on the brief, every question to the
+decider, the first thing he sees is the PR. Label an issue `autopilot` when it is one
+bounded change with no stop-list item in it (aliases, a fixture, a copy fix, a test).
+A NO RULE from the decider still stops the run — guessing is not autopilot.
+
+Whoever files the issue applies the label, by that rule, at filing time: an agent
+writing a follow-up ticket, the decider, or a Claude session. Chandler does not sort
+issues by hand. When in doubt, leave the label off; an attended run costs one "go".
+
 **Unattended runs never merge.** They open the PR; a person merges.
 
 ### Skills
