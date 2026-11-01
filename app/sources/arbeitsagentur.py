@@ -23,12 +23,17 @@ are skipped (a Posting needs description text), the same as other adapters skip 
 Pagination: page numbers start at 1; stop on an empty page or once page*size covers
 maxErgebnisse.
 
-Does NOT filter by title or city (ingest does), even though every listing costs one
-details call — keep `max_pages` × `size` modest and the `was` query narrow.
+Does NOT filter by city, and holds no filtering policy of its own: `fetch` takes an
+optional `title_filter` predicate (poll.py passes ingest's `in_scope_title`) and applies
+it to the search result's own title, so an out-of-scope posting costs no details call.
+A result whose search entry carries no title is fetched, not dropped — only ingest,
+which sees the details title too, decides that. Imports stay one-directional: the
+caller passes the filter in; this module never imports ingest.
 """
 
 import base64
 import urllib.parse
+from collections.abc import Callable
 
 from app.html_text import html_to_text
 from app.sources import Posting, fetch_json
@@ -50,6 +55,22 @@ def listings(payload: dict) -> list[dict]:
         if ref:
             out.append({**l, "refnr": ref})
     return out
+
+
+def listing_title(listing: dict) -> str | None:
+    """The title a search result already carries, before any details call. v6 uses
+    `stellenangebotsTitel`, v4 used `titel`; None when neither is set."""
+    title = listing.get("stellenangebotsTitel") or listing.get("titel")
+    return str(title).strip() or None if title else None
+
+
+def wanted(listing: dict, title_filter: Callable[[str], bool] | None) -> bool:
+    """Pure: whether this search result is worth a details call. Without a filter, or
+    when the result carries no title to judge, the answer is yes."""
+    if title_filter is None:
+        return True
+    title = listing_title(listing)
+    return title is None or title_filter(title)
 
 
 def has_next(payload: dict) -> bool:
@@ -115,11 +136,14 @@ def details_url(refnr: str) -> str:
 
 
 def fetch(search: str, where: str | None = "Berlin", radius_km: int | None = 25,
-          days: int | None = 30, max_pages: int = 2, size: int = 50) -> list[Posting]:
+          days: int | None = 30, max_pages: int = 2, size: int = 50,
+          title_filter: Callable[[str], bool] | None = None) -> list[Posting]:
     out, page = [], 1
     while page <= max_pages:
         payload = fetch_json(search_url(search, where, radius_km, days, page, size), headers=HEADERS)
         for l in listings(payload):
+            if not wanted(l, title_filter):
+                continue
             p = parse(l, fetch_json(details_url(l["refnr"]), headers=HEADERS))
             if p:
                 out.append(p)
