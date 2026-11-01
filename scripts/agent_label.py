@@ -659,7 +659,8 @@ def apply_decision(item: dict, decision: str):
 
 
 def final_golden(base: dict, skills: list[dict], attrs: dict,
-                 labeled_by: list[str], adjudicated: dict[str, str], spot_checked: bool,
+                 labeled_by: list[str], adjudicated: dict[str, str],
+                 spot_checked_by: str | None = None,
                  third_labeler: str | None = None, reviewed: set[str] | None = None) -> dict:
     """A Golden in the shape evals/goldens/ already uses, plus HIR-70 provenance.
 
@@ -668,6 +669,10 @@ def final_golden(base: dict, skills: list[dict], attrs: dict,
     spot-checked and confirmed, where there was nothing to decide. `*_reviewed` keeps its
     meaning - a person looked at this label - so it follows `reviewed`, and is never true for
     a field only a model ruled on or one accepted on agreement.
+
+    `spot_checked_by` names who answered the spot-check - a person, or the model id if a
+    model did - rather than a bare `spot_checked: true`. A flag cannot say who, and a
+    spot-check answered by a model is not the number this process exists to produce.
     """
     reviewed = set() if reviewed is None else reviewed
     out = {"id": base["id"], "split": "heldout"}
@@ -684,7 +689,7 @@ def final_golden(base: dict, skills: list[dict], attrs: dict,
         out["third_labeler"] = third_labeler
     out["adjudicated"] = sorted(f for f, by in adjudicated.items() if by == "human")
     out["adjudicated_by_model"] = sorted(f for f, by in adjudicated.items() if by == "model")
-    out["spot_checked"] = spot_checked
+    out["spot_checked_by"] = spot_checked_by
     out["job_description"] = base["job_description"]
     out["expected"] = [{"skill_id": s["skill_id"], "requirement": s["requirement"],
                         "raw_text": s["raw_text"]}
@@ -1350,7 +1355,11 @@ def cmd_apply(args):
     # it must not set `*_reviewed`; the human sample is the one a person actually read.
     record = load_adjudication(run_dir)
     by_model = {int(n) for n, v in record.get("items", {}).items() if v.get("by") == "model"}
-    human_sample = set((record.get("human_sample") or {}).get("items") or [])
+    drawn = record.get("spot_check_sample") or {}
+    sampled = set(drawn.get("items") or [])
+    # Who answered the sample. "human" is the point of drawing one; a model id means the
+    # error rate is a further model check, and nothing it confirms counts as reviewed.
+    answered_by = drawn.get("answered_by") or "human"
 
     # Scope first: a posting ruled out of scope is not a Golden, so none of its other
     # decisions matter and its spot-checks must not count toward the error rate.
@@ -1403,7 +1412,7 @@ def cmd_apply(args):
         if item["reason"] == "spot-check":
             # The error rate is the human sample's, where one exists: a label a third model
             # confirmed is not evidence about the answer key that a person reading it is.
-            counts = n in human_sample if human_sample else True
+            counts = n in sampled if sampled else True
             if counts:
                 spot_n += 1
             if decision.strip().strip("`").lower() == "ok":
@@ -1411,7 +1420,10 @@ def cmd_apply(args):
             elif counts:
                 spot_errors += 1
                 spot_wrong.append(f"{gid} {item['kind']} `{item['key']}` -> {decision}")
-        who = "model" if n in by_model and n not in human_sample else "human"
+        if n in sampled:
+            who = "human" if answered_by == "human" else "model"
+        else:
+            who = "model" if n in by_model else "human"
         field = f"skill:{item['key']}" if item["kind"] == "skill" else item["key"]
         if item["kind"] == "skill":
             for sid in item["key"].split("|"):
@@ -1426,13 +1438,14 @@ def cmd_apply(args):
             reviewed[gid].add(field)
 
     labeled_by = [summary["model_a"], summary["model_b"]]
-    spot_by_gid: dict[str, bool] = {}
-    if human_sample:
-        for n in human_sample:
-            spot_by_gid[items[n - 1]["golden_id"]] = True
+    spot_by_gid: dict[str, str] = {}
+    if sampled:
+        for n in sampled:
+            spot_by_gid[items[n - 1]["golden_id"]] = answered_by
     else:
+        # No drawn sample: whoever worked the queue answered every spot-check item in it.
         for gid, _, _ in (tuple(s) for s in summary["spot_check"]["sample"]):
-            spot_by_gid[gid] = True
+            spot_by_gid[gid] = answered_by
     # A posting the third labeler read carries its model id, so a Golden says who read it.
     third_by_gid = {}
     for gid in skills:
@@ -1459,19 +1472,21 @@ def cmd_apply(args):
     for gid in sorted(skills):
         golden = final_golden({**picks[gid], "id": gid}, list(skills[gid].values()),
                               attrs.get(gid, {}), labeled_by, adjudicated[gid],
-                              spot_by_gid.get(gid, False), third_by_gid.get(gid),
+                              spot_by_gid.get(gid), third_by_gid.get(gid),
                               reviewed[gid])
         path = GOLDENS / f"{gid}.json"
         if not args.dry_run:
             path.write_text(json.dumps(golden, indent=2, ensure_ascii=False) + "\n")
         written.append(f"{gid}  {len(golden['expected'])} skills  "
                        f"{len(golden['adjudicated'])} adjudicated"
-                       f"{'  spot-checked' if golden['spot_checked'] else ''}")
+                       f"{'  spot-checked by ' + golden['spot_checked_by'] if golden['spot_checked_by'] else ''}")
 
     lo, hi = wilson(spot_errors, spot_n)
     spot = {"n": spot_n, "errors": spot_errors, "rate": spot_errors / spot_n if spot_n else None,
             "wilson_95": [lo, hi], "wrong": spot_wrong,
-            "human_sample": sorted(human_sample) or None}
+            # Not "sample": that key already holds the 80 labels the pool was drawn from.
+            "sample_items": sorted(sampled) or None,
+            "answered_by": answered_by if sampled else None}
     summary["spot_check"] |= spot
     if not args.dry_run:
         (run_dir / "summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n")
@@ -1763,39 +1778,41 @@ def cmd_third(args):
 
 
 def cmd_sample(args):
-    """Draw the human spot-check from the labels all three labelers agreed on.
+    """Draw the spot-check sample from the labels all three labelers agreed on.
 
     This is the number that matters, and the only one a person's attention buys: three models
     agreeing is still three models. The sample is seeded, its items go back to `?` so apply
-    cannot pass without them, and they are recorded as the human sample so the error rate is
-    reported over the sample, not over every agreed label.
+    cannot pass without them, and the record names who answered them, so an error rate a
+    model produced is never read as one a person produced.
     """
     run_dir, items, picks, summary, queue_text = load_run(args.run)
     adj = load_adjudication(run_dir)
     pool = [int(n) for n, v in adj.get("items", {}).items() if v.get("mode") == "third"]
+    by = args.answered_by
     if not pool:
         raise SystemExit(f"no three-way-agreed labels in {run_dir / 'adjudication.json'}; "
                          f"run `third --run {args.run}` first.")
-    if adj.get("human_sample") and not args.force:
-        picked = adj["human_sample"]["items"]
-        raise SystemExit(f"this run already has a human sample of {len(picked)} "
-                         f"(seed {adj['human_sample']['seed']}): {picked}. "
-                         f"Pass --force to draw a new one.")
+    if adj.get("spot_check_sample") and not args.force:
+        drawn = adj["spot_check_sample"]
+        raise SystemExit(f"this run already has a spot-check sample of {len(drawn['items'])} "
+                         f"(seed {drawn['seed']}, answered by {drawn.get('answered_by')}): "
+                         f"{drawn['items']}. Pass --force to draw a new one.")
 
     chosen = human_sample_pick(pool, args.n, args.seed)
     by_n = {n: item for n, item in enumerate(items, 1)}
     if not args.dry_run:
         (run_dir / "review_queue.md").write_text(reset_decisions(queue_text, chosen))
-        adj["human_sample"] = {"n": len(chosen), "asked": args.n, "seed": args.seed,
-                               "pool": len(pool), "items": chosen}
+        adj["spot_check_sample"] = {"n": len(chosen), "asked": args.n, "seed": args.seed,
+                                    "pool": len(pool), "items": chosen, "answered_by": by}
         for n in chosen:
             # No longer a model's call: a person is about to read the posting for this one.
             # `mode` stays "third" - the label is still one all three agreed on, and it is what
             # the pool is drawn from, so a redraw must still see it.
-            adj["items"][str(n)] |= {"by": "human", "third_agreed": True, "decision": None}
+            adj["items"][str(n)] |= {"by": "human" if by == "human" else "model",
+                                     "answered_by": by, "third_agreed": True, "decision": None}
         save_adjudication(run_dir, adj)
 
-    print(f"human spot-check: {len(chosen)} of {len(pool)} three-way-agreed labels, "
+    print(f"spot-check for {by}: {len(chosen)} of {len(pool)} three-way-agreed labels, "
           f"seed {args.seed}\n")
     for n in chosen:
         item = by_n[n]
@@ -1804,7 +1821,7 @@ def cmd_sample(args):
         print(f"    agreed label: {fmt_value(item['kind'], item.get('a') or item.get('b'))}\n")
     if not args.dry_run:
         print(f"These {len(chosen)} are back at `?` in {run_dir / 'review_queue.md'}; "
-              f"answer each one `ok` or what it should be.")
+              f"{by} answers each one `ok` or what it should be.")
 
 
 def item_range(text: str) -> set[int]:
@@ -1872,6 +1889,9 @@ def main(argv=None):
     smp.add_argument("--run", required=True)
     smp.add_argument("--n", type=int, default=15, help="labels for a person to check (default 15)")
     smp.add_argument("--seed", type=int, default=SEED, help=f"seeds the sample (default {SEED})")
+    smp.add_argument("--answered-by", default="human", metavar="WHO",
+                     help="who answers it: `human` (the default, and the point of drawing one) "
+                          "or a model id, which keeps what it confirms out of `*_reviewed`")
     smp.add_argument("--force", action="store_true", help="draw a new sample over an existing one")
     smp.add_argument("--dry-run", action="store_true", help="print the sample without recording it")
     smp.set_defaults(fn=cmd_sample)
