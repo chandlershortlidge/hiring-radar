@@ -2,6 +2,7 @@
 Description=hiring-radar daily poll
 After=network-online.target
 Wants=network-online.target
+
 [Service]
 Type=oneshot
 User=hiring-radar

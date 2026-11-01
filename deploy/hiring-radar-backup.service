@@ -2,6 +2,7 @@
 Description=hiring-radar database backup to Cloud Storage
 After=network-online.target
 Wants=network-online.target
+
 [Service]
 Type=oneshot
 User=hiring-radar
