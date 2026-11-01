@@ -11,8 +11,13 @@ options. Also posted on the Linear issue with an @mention. "None" if nothing blo
 
 ## Follow-ups
 
-<!-- Things worth knowing that do NOT need an answer: known limits, a later ticket, a
-suggestion. Never phrase these as questions. "None" is fine. -->
+<!-- Things worth knowing that do NOT need an answer. Never phrase these as questions.
+Two lists, in this order; "None" is fine for either. -->
+
+**Changes what you'd see** — anything that alters the chart, the job list, a count, or
+which jobs get in or out. One line each, with the ticket it was filed as.
+
+**Internal** — refactors, test gaps, docs, tooling. One line each, with the ticket.
 
 ## Testing
 
