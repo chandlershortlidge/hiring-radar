@@ -6,8 +6,13 @@ to say "fine" or "no". Mechanical choices don't belong here. "None" is a valid a
 
 ## Needs Chandler
 
-<!-- Questions you stopped on, one line each, with the options. Also posted on the Linear
-issue with an @mention. "None" if the brief's questions were all answered. -->
+<!-- Only things that block the merge: questions you stopped on, one line each, with the
+options. Also posted on the Linear issue with an @mention. "None" if nothing blocks. -->
+
+## Follow-ups
+
+<!-- Things worth knowing that do NOT need an answer: known limits, a later ticket, a
+suggestion. Never phrase these as questions. "None" is fine. -->
 
 ## Testing
 
