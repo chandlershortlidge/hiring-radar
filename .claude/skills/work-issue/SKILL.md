@@ -9,6 +9,16 @@ One procedure for every issue, so the person never has to spell it out. The issu
 plan; this skill only sequences the steps. AGENTS.md rules apply throughout (smallest
 change, mock model calls, regression tests, report only what you ran).
 
+## 0. Am I running the current rules?
+
+Skills load from the folder the session was launched in. If that folder is on an old
+branch, this file is old too. First thing: `git -C <launch folder> fetch origin main` and
+compare `git rev-parse HEAD` with `origin/main`. If they differ and the folder is the main
+checkout (not a worktree), say so and run `git switch main && git pull` there before
+continuing, then re-read this file. If the folder is a worktree on a ticket branch, leave
+it — but read `.claude/skills/work-issue/SKILL.md` and `AGENTS.md` from `origin/main`
+(`git show origin/main:<path>`) and follow those.
+
 ## 1. Read the issue
 
 - `get_issue` on the Linear MCP for HIR-n with `includeRelations`. If the MCP isn't
