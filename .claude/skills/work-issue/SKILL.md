@@ -139,6 +139,12 @@ the issue that was **not** done, named. If the issue is only partly done (e.g. t
 to run), say which steps remain in the PR body and in a status line at the top of the
 Linear issue; don't mark it Done.
 
+## 5b. Follow-up tickets
+
+Any ticket you file (a Follow-up that deserves one, a bug found on the way) gets the
+`autopilot` label when it is one bounded change with no stop-list item, per AGENTS.md.
+Decide it at filing time; Chandler does not sort issues by hand.
+
 ## 6. Finish
 
 - Linear: a comment with the PR link and the same "Needs Chandler" lines as the PR, with

@@ -375,6 +375,10 @@ decider, the first thing he sees is the PR. Label an issue `autopilot` when it i
 bounded change with no stop-list item in it (aliases, a fixture, a copy fix, a test).
 A NO RULE from the decider still stops the run — guessing is not autopilot.
 
+Whoever files the issue applies the label, by that rule, at filing time: an agent
+writing a follow-up ticket, the decider, or a Claude session. Chandler does not sort
+issues by hand. When in doubt, leave the label off; an attended run costs one "go".
+
 **Unattended runs never merge.** They open the PR; a person merges.
 
 ### Skills
