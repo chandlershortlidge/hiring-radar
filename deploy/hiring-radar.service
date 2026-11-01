@@ -1,0 +1,15 @@
+[Unit]
+Description=hiring-radar dashboard
+After=network-online.target
+Wants=network-online.target
+[Service]
+User=hiring-radar
+Group=hiring-radar
+WorkingDirectory=/opt/hiring-radar/app
+EnvironmentFile=/etc/hiring-radar.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/hiring-radar/app/.venv/bin/python -m app serve --host 127.0.0.1 --port 8000
+Restart=on-failure
+RestartSec=5
+[Install]
+WantedBy=multi-user.target

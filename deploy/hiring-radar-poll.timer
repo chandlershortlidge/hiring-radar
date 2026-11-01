@@ -1,0 +1,7 @@
+[Unit]
+Description=Run hiring-radar poll daily at 07:00 Berlin
+[Timer]
+OnCalendar=*-*-* 07:00:00 Europe/Berlin
+Persistent=true
+[Install]
+WantedBy=timers.target
