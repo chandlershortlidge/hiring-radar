@@ -66,6 +66,13 @@ describe("matchCvSkills", () => {
       expect(ids("served models on NVIDIA Triton in prod")).toContain("triton-inference-server");
       expect(ids("built retrieval-augmented generation over our docs")).toContain("rag");
     });
+
+    it("matches a multi-word phrase a PDF wrapped across lines", () => {
+      // How pdf.js hands back a wrapped line: the break lands mid-phrase.
+      expect(ids("served models on NVIDIA\nTriton in prod")).toContain("triton-inference-server");
+      expect(ids("NVIDIA   Triton")).toContain("triton-inference-server");
+      expect(ids("retrieval-augmented\n   generation")).toContain("rag");
+    });
   });
 
   describe("ReAct vs React (case carries meaning)", () => {

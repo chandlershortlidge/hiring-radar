@@ -19,6 +19,9 @@
 //   - Phrases shorter than MIN_PHRASE characters are never matched. "R", "C#" and "Go" as
 //     bare tokens are far more often prose, an initial or "go-live" than a skill claim.
 //     "Go" is still reachable through its "golang" alias; R and C# stay hand-ticked.
+//   - Whitespace is collapsed before matching, the same way app/extract.py's _norm does it,
+//     so a PDF that wraps "Machine Learning" across two lines still matches. Without this a
+//     wrapped multi-word skill is missed, and PDFs wrap constantly.
 //   - Pure and deterministic: same text in, same ids out, sorted by id.
 
 export const MIN_PHRASE = 3;
@@ -28,6 +31,11 @@ const ALNUM = /[\p{L}\p{N}]/u;
 
 function alnum(ch) {
   return ch !== undefined && ALNUM.test(ch);
+}
+
+// One space between words, no leading or trailing space. Mirrors app/extract.py's _norm.
+export function collapse(s) {
+  return (s || "").replace(/\s+/g, " ").trim();
 }
 
 // A phrase occurs in `text` as a whole word. `text` and `phrase` must already agree on case.
@@ -49,7 +57,10 @@ export function occursAsWord(text, phrase) {
 // The phrases that stand for a skill: its display name first, then its aliases.
 export function phrasesFor(skill) {
   const all = [skill.display, ...(skill.aliases || [])];
-  return all.filter((p) => typeof p === "string" && p.trim().length >= MIN_PHRASE);
+  return all
+    .filter((p) => typeof p === "string")
+    .map(collapse)
+    .filter((p) => p.length >= MIN_PHRASE);
 }
 
 /**
@@ -60,7 +71,7 @@ export function phrasesFor(skill) {
  * drawer can tell the person why a chip is ticked. Sorted by id.
  */
 export function matchCvSkills(cvText, skills) {
-  const text = typeof cvText === "string" ? cvText : "";
+  const text = collapse(typeof cvText === "string" ? cvText : "");
   const lower = text.toLowerCase();
   const found = [];
 
