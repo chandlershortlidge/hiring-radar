@@ -18,6 +18,22 @@ change, mock model calls, regression tests, report only what you ran).
 - Its "Build" / "Steps" section is the plan. Its "Tests" section is the test list. Its
   "Out of scope" section is binding. Anything you'd add beyond those: ask first.
 
+## 1b. The brief (before any code)
+
+Post one comment on the Linear issue (`save_comment`), written for someone who hasn't read
+the code. Five lines, plain words, no file names:
+
+- **Doing:** what will exist when this is done, in one sentence.
+- **You'll see:** what changes for the person using the dashboard, and any cost (a full
+  re-extract is about €3).
+- **Deciding alone:** the judgment calls you expect to make (AGENTS.md "Deciding alone vs.
+  stopping").
+- **Will ask about:** anything on the stop list. If this line isn't "nothing", @mention
+  Chandler in the comment and wait for the answer before step 3.
+- **Not doing:** what the issue's out-of-scope says, in plain words.
+
+The final PR reports the difference from this brief, not the work itself.
+
 ## 2. Session start (AGENTS.md "Starting a session", HIR-88)
 
 ```bash
@@ -43,8 +59,11 @@ Set the issue to **In Progress** in Linear (`save_issue`, `state: "In Progress"`
   say in the PR that every job re-extracts on the next poll.
 - Any step the issue says to show the person before continuing (an eval table, a dry run,
   a confusion matrix): show it and **stop** until they answer.
-- Commit at working checkpoints. Commit messages: what changed and why, one paragraph,
-  no step-by-step narration.
+- **A commit is a green checkpoint.** One commit per build step of the issue, made when
+  that step is done and the tests pass. Never commit a red suite; never commit half a
+  step — if a step can't be green in one go, it is two steps. Subject line names the
+  step: `HIR-72 step 3: aliases for 15 phrases; 391 tests pass`. Push after every commit,
+  so a killed session loses nothing. Any single commit is then a safe place to go back to.
 
 ## 4. Verify
 
@@ -63,20 +82,25 @@ git push -u origin HEAD
 gh pr create --base main --fill
 ```
 
-PR body: what and why in two or three sentences, the test count, and any step from the
-issue that was **not** done, named. If the issue is only partly done (e.g. the eval is still
+PR body, in the template's sections: Testing, Risk, How to revert, and **Decisions taken**
+and **Needs Chandler** per AGENTS.md "Deciding alone vs. stopping". Write both for a reader
+who hasn't seen the code: one sentence per decision — what, why, how to undo. Then a
+one-paragraph delta from the brief: what differs from what you said you'd do. Any step from
+the issue that was **not** done, named. If the issue is only partly done (e.g. the eval is still
 to run), say which steps remain in the PR body and in a status line at the top of the
 Linear issue; don't mark it Done.
 
 ## 6. Finish
 
-- Linear: `save_issue` with a one-line comment of what shipped and the PR link. Status
+- Linear: a comment with the PR link and the same "Needs Chandler" lines as the PR, with
+  an @mention if there are any. Status
   stays In Progress until the PR merges (the GitHub integration closes it).
 - Reply to the person with: the PR link, the test count, and open questions — nothing
   else. No recap of the steps.
 
 ## When to break off and ask
 
-The issue contradicts DECISIONS.md or AGENTS.md; the branch and `TICKET` disagree; a
-hot-spot file is already changed on another open branch; the fix needs a full re-extract
-and one is already running; the work has grown past the issue (propose the split).
+The stop list in AGENTS.md "Deciding alone vs. stopping", plus: the issue contradicts
+DECISIONS.md or AGENTS.md; the work has grown past the issue (propose the split). Asking
+is a Linear comment with an @mention, one sentence and the options; then do whatever
+doesn't depend on the answer, and stop.

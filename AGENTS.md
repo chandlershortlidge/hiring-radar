@@ -305,7 +305,38 @@ or a bad chart:
 
 A clean run is one headline. Silence on failures is not cleanliness.
 
-<!-- END PROJECT -->
+
+### Deciding alone vs. stopping
+
+Agents decide the small things and stop for the big ones. The test for a decision is
+whether Chandler could judge it right or wrong from one plain sentence; if he couldn't,
+it is either mechanical (don't report it) or badly explained (rewrite it).
+
+**Decide, don't report** — mechanical, already settled by this file or DECISIONS.md:
+next free migration number; DECISIONS.md merge conflicts (keep both entries, newest
+first); a proposed skill needs 3 jobs before it becomes an entry; alias before new entry
+when a phrase is another spelling of an existing skill; test names, fixture choice,
+commit wording.
+
+**Decide, then report in the PR's "Decisions taken"** — judgment, cheap to undo: which
+postings to sample; how a UI label or a DECISIONS entry is worded; alias vs. new entry
+when the phrase is genuinely ambiguous; anything the issue left open that costs one
+commit to reverse. One sentence each: what, why, how to undo.
+
+**Stop and ask, even unattended** — irreversible, expensive, or policy:
+- any edit to `evals/LABELING.md` or to an attribute's definition (invalidates every eval)
+- anything that bumps `extractor_version` (prompt, taxonomy, model): say so and wait,
+  because every job re-extracts on the next poll
+- `ACTIVE_CITIES`; what the public site stores, shows, or sends to a provider; spend
+- deleting or rewriting stored jobs, Goldens, or eval results
+- an eval metric down more than 0.02 against the last committed run
+- the branch and `TICKET` disagree; a hot-spot file is already changed on another branch
+
+Asking means: a comment on the Linear issue that @mentions Chandler, with the question in
+one sentence and the options in one line each. Then do any step that doesn't depend on
+the answer, and stop.
+
+**Unattended runs never merge.** They open the PR; a person merges.
 
 ### Skills
 
@@ -313,3 +344,5 @@ A clean run is one headline. Silence on failures is not cleanliness.
 issue to a PR; `/check-url` audits feed coverage for careers-page URLs. When a procedure
 has been typed into a session twice, it belongs here; when one fails, fix the skill, not
 the conversation.
+
+<!-- END PROJECT -->
