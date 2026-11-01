@@ -122,11 +122,9 @@ Linear issue; don't mark it Done.
 
 ## Before any question reaches Chandler: the decider
 
-Spawn a subagent with this brief and nothing else: *"Read AGENTS.md, DECISIONS.md,
-taxonomy/README.md and evals/LABELING.md. Answer this question from those files only:
-<question>. Reply either ANSWER: <decision> — RULE: <the rule it rests on>, or NO RULE:
-<the question rewritten for someone who has never opened the repo: two sentences of
-situation, one line per option with what it changes on the dashboard, a recommendation>."*
+Hand the question to the `decider` subagent (`.claude/agents/decider.md`, runs on
+Fable). It reads only the rule files and replies ANSWER + RULE, or NO RULE + the question
+rewritten for Chandler.
 
 ANSWER → apply it, one line under "Decisions taken" naming the rule. NO RULE → post the
 rewritten question on the Linear issue with an @mention of Chandler, do what doesn't

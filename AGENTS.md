@@ -341,9 +341,9 @@ is never asked again.
 - an eval metric down more than 0.02 against the last committed run
 - the branch and `TICKET` disagree; a hot-spot file is already changed on another branch
 
-**Questions go to a decider agent before they go to Chandler.** A fresh subagent that
-reads only AGENTS.md, DECISIONS.md, taxonomy/README.md and evals/LABELING.md, and answers
-the question from them. It returns either an answer with the rule it rests on (the worker
+**Questions go to the decider agent before they go to Chandler.** `.claude/agents/decider.md`
+(Fable) reads only AGENTS.md, DECISIONS.md, taxonomy/README.md and evals/LABELING.md, and
+answers the question from them. It returns either an answer with the rule it rests on (the worker
 applies it and notes it under "Decisions taken"), or "no rule covers this" plus the
 question rewritten per "How to write anything Chandler reads". Only the second kind
 reaches Chandler: a comment on the Linear issue that @mentions him, two sentences of
