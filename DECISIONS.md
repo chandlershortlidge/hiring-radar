@@ -5,6 +5,40 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-01 — Taxonomy v6: the nine spellings the first real CV run missed (HIR-97)
+
+Chandler's own CV through the HIR-14 matcher ticked 20 skills and missed six, every one a
+missing alias rather than a matcher bug: "LLM products" (the taxonomy had `llm apis` and
+`large language models` but not the bare singular), "ChromaDB", "SQLite/Postgres",
+"tool-call design", "NER (Presidio + spaCy)", "OpenCV". Nine aliases close all six:
+`llm` → `llms`; `chromadb`, `chroma` → `vector-databases`; `postgres` → `postgresql`;
+`tool-call`, `tool calls` → `tool-calling`; `spacy`, `named entity recognition` → `nlp`;
+`opencv` → `computer-vision`. Taxonomy v6, still 210 skills.
+
+**`ner` stays out.** Three characters, which `cvSkills.js`'s `MIN_PHRASE` admits, so it
+would match — and that is the problem: in a CV "NER" is as likely a product name or a
+German word fragment as the technique. `named entity recognition` carries the same meaning
+with no ambiguity, and someone who writes only "NER" loses one click.
+
+**ChromaDB, spaCy and OpenCV become aliases of the category, not entries of their own,
+and the 3-jobs rule is why.** Weaviate, pgvector and FAISS *are* entries under
+`vector-databases`, so the precedent for a named tool is an entry — but each of those
+cleared the 2026-10-20 bar of 3 jobs in the `proposed_skill` queue first. These three have
+no queue support at all; they surfaced from one person's CV, which is not frequency
+evidence. Counts do not roll up from child to parent anywhere in `app/queries.py`, so an
+entry now would move a posting that says "ChromaDB" *off* the Vector Databases bar and onto
+a bar of its own with one job behind it — the exact fragmentation the 3-jobs rule exists to
+prevent. Promotion stays available: if any of the three reaches 3 jobs in the queue it
+becomes an entry with the category as parent, and the alias moves with it.
+
+**The matcher is unchanged.** `MIN_PHRASE` is 3 and "LLM" is exactly 3, so the singular
+passes as the issue predicted; nothing in `cvSkills.js` needed touching.
+
+Merging re-reads every job once (`extractor_version` hashes the taxonomy block), about €3
+on the next poll.
+
+---
+
 ## 2026-11-01 — A CV may pre-fill the profile, but only inside the browser (HIR-14)
 
 **The scope line changes, narrowly.** AGENTS.md and the rebuild entry below both put

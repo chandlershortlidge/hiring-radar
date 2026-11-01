@@ -1,5 +1,5 @@
 {
-  "version": 5,
+  "version": 6,
   "skills": [
     {
       "id": "a-b-testing",
@@ -333,7 +333,9 @@
     {
       "id": "computer-vision",
       "display": "Computer Vision",
-      "aliases": [],
+      "aliases": [
+        "opencv"
+      ],
       "parents": [
         "deep-learning"
       ],
@@ -1073,6 +1075,7 @@
         "generative ai applications",
         "generative ai solutions",
         "large language models",
+        "llm",
         "llm apis"
       ],
       "parents": [],
@@ -1267,7 +1270,9 @@
       "id": "nlp",
       "display": "NLP",
       "aliases": [
-        "natural language processing"
+        "named entity recognition",
+        "natural language processing",
+        "spacy"
       ],
       "parents": [
         "machine-learning"
@@ -1407,7 +1412,9 @@
     {
       "id": "postgresql",
       "display": "PostgreSQL",
-      "aliases": [],
+      "aliases": [
+        "postgres"
+      ],
       "parents": [
         "sql"
       ],
@@ -1777,8 +1784,10 @@
       "id": "tool-calling",
       "display": "Tool calling",
       "aliases": [
+        "tool calls",
         "tool engineering",
         "tool use",
+        "tool-call",
         "tool-engineering"
       ],
       "parents": [],
@@ -1815,7 +1824,10 @@
     {
       "id": "vector-databases",
       "display": "Vector Databases",
-      "aliases": [],
+      "aliases": [
+        "chroma",
+        "chromadb"
+      ],
       "parents": [],
       "reviewed": true
     },
