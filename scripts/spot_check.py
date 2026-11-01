@@ -88,10 +88,10 @@ HEADING_KINDS = (
     ("responsibilities", ("responsibilit", "what you will do", "what you'll do", "your role",
                           "your tasks", "deine aufgaben", "aufgaben", "the role", "day to day",
                           "day-to-day", "deine rolle")),
-    ("requirements", ("requirement", "qualification", "what we are looking for",
-                      "what we're looking for", "you bring", "your profile", "about you",
-                      "dein profil", "das bringst du", "must have", "must-have", "skills",
-                      "experience", "we expect", "who you are")),
+    ("requirements", ("requirement", "qualification", "looking for", "you bring",
+                      "your profile", "about you", "dein profil", "bringst du",
+                      "mitbringen", "must have", "must-have", "skills", "experience",
+                      "we expect", "who you are", "sollten sie")),
 )
 
 
@@ -192,19 +192,33 @@ MAX_SEGMENT = 300      # longer than this and a "bullet" is really a flattened p
 WINDOW = 200           # characters each side of the quote when that happens
 
 
-def is_bullet(line: str) -> bool:
-    """Whether a line is a list item rather than a heading.
+def is_bullet(text: str) -> bool:
+    """Whether a block of text is a list item rather than a heading.
 
-    Tested on the raw line, before any `*` stripping: a markdown bold heading
-    (`**Deine Benefits**`) and a `* bullet` both start with `*`, and only the second is a
-    list item. What tells them apart is whether a space follows the marker.
+    Tested before any `*` stripping: a markdown bold heading (`**Deine Benefits**`) and a
+    `* bullet` both start with `*`, and only the second is a list item. What tells them
+    apart is whether a space follows the marker.
+
+    Takes a block, not a line, so the shape two of these postings use - the marker alone on
+    its line, its text on the next - is a bullet too. Judged on the block's first line,
+    which is where the marker is.
     """
-    s = line.strip()
+    s = text.strip()
     if not s:
         return False
-    if s in BULLET_CHARS:
+    first = s.splitlines()[0].strip()
+    if first in BULLET_CHARS:
         return True
-    return any(s.startswith(c + " ") for c in BULLET_CHARS)
+    return any(first.startswith(c + " ") for c in BULLET_CHARS)
+
+
+def heading_text(block: str) -> str:
+    """A heading block as it should read: no markers, no stray emphasis.
+
+    `*` is dropped throughout rather than just at the ends, because these postings carry
+    bold mid-word ("Al**s **Qualitatsingenieur ... mitbringen:").
+    """
+    return " ".join(block.replace("*", "").replace("#", "").split())
 
 
 def looks_like_heading(line: str) -> bool:
@@ -215,7 +229,7 @@ def looks_like_heading(line: str) -> bool:
     meant to be indicative, not hard requirements." would otherwise be read as a heading
     and - on the word "requirements" - classified as the opposite of what it says.
     """
-    s = line.strip().strip("*#").strip()
+    s = heading_text(line)
     return bool(s) and not is_bullet(line) and len(s) <= 80 and not s.endswith((".", "!", "?"))
 
 
@@ -254,20 +268,28 @@ def section_heading(posting: str, at: int) -> str:
     this one's is a person deciding whether a requirement is a requirement.
     """
     before = posting[:at]
-    lines = before.splitlines()
-    # The slice cuts mid-line, and that partial line is the start of the quote's own bullet,
-    # not a heading - it is short enough to pass for one, which is how a requirements bullet
-    # came to be reported as its own section.
-    if lines and not before.endswith(("\n", "\r")):
-        lines = lines[:-1]
-    best, text, pos = -1, "", 0
-    for line in lines:
-        if looks_like_heading(line):
-            best, text = pos, line.strip().strip("*#").strip()
-        pos += len(line) + 1
+    best, text = -1, ""
+    spans = segments(posting)
+    # Every bullet, the quote's own included: an inline candidate inside any of them is a
+    # bullet's label, not a section heading.
+    bullets = [(s, e) for s, e in spans if is_bullet(posting[s:e])]
+    for s, e in spans:
+        # Only a block that closes before the quote can introduce it. This also drops the
+        # quote's own block, whose leading fragment is short enough to pass for a heading -
+        # which is how a requirements bullet came to be reported as its own section.
+        if e > at:
+            break
+        block = posting[s:e]
+        if looks_like_heading(block):
+            best, text = s, heading_text(block)
     for m in INLINE_HEADING.finditer(before):
+        # Not inside a bullet: "- Cloud-native development: Proficient in AWS ..." labels
+        # its own bullet, and reporting that label as the section would hide that the list
+        # has no heading at all - which is what rule 1's default turns on.
+        if any(s <= m.start() < e for s, e in bullets):
+            continue
         if m.start() > best:
-            best, text = m.start(), trim_heading(m.group(1).strip())
+            best, text = m.start(), trim_heading(heading_text(m.group(1)))
     return text
 
 

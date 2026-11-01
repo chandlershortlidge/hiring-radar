@@ -145,6 +145,20 @@ def test_a_flattened_posting_still_finds_its_heading_inside_the_line():
     assert sc.classify_heading(heading) == "requirements"
 
 
+def test_a_bullets_own_label_is_not_read_as_the_section_heading():
+    """golden_032 opens straight into its qualifications list with no heading. The bullets
+    label themselves ("Cloud-native development: ..."), and reporting that label as the
+    section would hide that there is no heading - which is what rule 1's default rests on."""
+    posting = ("AI Systems Engineer (d/f/m)\n\n"
+               "- Agentic platform engineering: Hands-on experience operating agents.\n"
+               "- Cloud-native development: Proficient in AWS infrastructure (S3, IAM).\n")
+    at = posting.index("S3")
+    # The title line is the nearest thing to a heading this posting has; the bullet's own
+    # label is not it, and classifying on the title keeps the list unlabelled, as it is.
+    assert sc.section_heading(posting, at) == "AI Systems Engineer (d/f/m)"
+    assert sc.classify_heading(sc.section_heading(posting, at)) == "intro prose"
+
+
 def test_a_short_inline_heading_is_not_marked_as_a_fragment():
     assert sc.trim_heading("Dein Profil") == "Dein Profil"
     assert sc.trim_heading("a b c " * 20).startswith("...")
@@ -160,6 +174,9 @@ def test_a_short_inline_heading_is_not_marked_as_a_fragment():
     ("", "intro prose"),
     ("About Ubiquiti", "intro prose"),
     ("Nice-to-have requirements", "optional"),   # optional wins over the requirements words
+    ("Profile we're looking for", "requirements"),
+    ("Als Qualitätsingenieur KI-Fokus sollten Sie mitbringen:", "requirements"),
+    ("IN ORDER FOR YOU TO BE SUCCESSFUL, YOU BRING:", "requirements"),
 ])
 def test_classify_heading(heading, kind):
     assert sc.classify_heading(heading) == kind
