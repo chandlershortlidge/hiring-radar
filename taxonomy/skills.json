@@ -1,5 +1,5 @@
 {
-  "version": 4,
+  "version": 5,
   "skills": [
     {
       "id": "a-b-testing",
@@ -36,7 +36,10 @@
     {
       "id": "agent-state-management",
       "display": "Agent state management",
-      "aliases": [],
+      "aliases": [
+        "agent memory systems",
+        "memory systems"
+      ],
       "parents": [
         "agents"
       ],
@@ -259,7 +262,9 @@
     {
       "id": "chain-of-thought",
       "display": "Chain-of-Thought",
-      "aliases": [],
+      "aliases": [
+        "multi-step reasoning"
+      ],
       "parents": [
         "prompt-engineering"
       ],
@@ -338,6 +343,8 @@
       "id": "containerization",
       "display": "Containerization",
       "aliases": [
+        "container orchestration",
+        "container-orchestrierung",
         "containerized workloads",
         "containers"
       ],
@@ -370,6 +377,13 @@
     {
       "id": "csharp",
       "display": "C#",
+      "aliases": [],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "cuda",
+      "display": "CUDA",
       "aliases": [],
       "parents": [],
       "reviewed": true
@@ -439,7 +453,9 @@
     {
       "id": "data-science",
       "display": "Data Science",
-      "aliases": [],
+      "aliases": [
+        "data analytics"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -679,7 +695,8 @@
       "display": "Full-stack development",
       "aliases": [
         "full stack competence",
-        "full-stack competence"
+        "full-stack competence",
+        "web application development"
       ],
       "parents": [],
       "reviewed": true
@@ -878,6 +895,18 @@
       "reviewed": true
     },
     {
+      "id": "knowledge-distillation",
+      "display": "Knowledge distillation",
+      "aliases": [
+        "distillation",
+        "model distillation"
+      ],
+      "parents": [
+        "deep-learning"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "knowledge-graphs",
       "display": "Knowledge Graphs",
       "aliases": [],
@@ -889,6 +918,15 @@
       "display": "Kotlin",
       "aliases": [],
       "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "kserve",
+      "display": "KServe",
+      "aliases": [],
+      "parents": [
+        "model-serving"
+      ],
       "reviewed": true
     },
     {
@@ -1010,7 +1048,11 @@
     {
       "id": "llm-orchestration",
       "display": "LLM orchestration",
-      "aliases": [],
+      "aliases": [
+        "agent orchestration",
+        "multi-step orchestration",
+        "orchestration frameworks"
+      ],
       "parents": [
         "llms"
       ],
@@ -1128,14 +1170,20 @@
     {
       "id": "mlops",
       "display": "MLOps",
-      "aliases": [],
+      "aliases": [
+        "production operation of ai models",
+        "produktiver betrieb von ki-modellen"
+      ],
       "parents": [],
       "reviewed": true
     },
     {
       "id": "model-development",
       "display": "Model Development",
-      "aliases": [],
+      "aliases": [
+        "ai model training",
+        "training von ki modellen"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -1252,6 +1300,16 @@
       "reviewed": true
     },
     {
+      "id": "nvidia-dynamo",
+      "display": "NVIDIA Dynamo",
+      "aliases": [],
+      "parents": [
+        "model-serving",
+        "inference-optimization"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "object-storage",
       "display": "Object Storage",
       "aliases": [],
@@ -1266,7 +1324,8 @@
         "ai observability & monitoring",
         "model monitoring",
         "monitoring",
-        "monitoring & observability"
+        "monitoring & observability",
+        "tracing"
       ],
       "parents": [],
       "reviewed": true
@@ -1396,6 +1455,19 @@
       "reviewed": true
     },
     {
+      "id": "quantization",
+      "display": "Quantization",
+      "aliases": [
+        "model quantization",
+        "post-training quantization",
+        "quantization-aware training"
+      ],
+      "parents": [
+        "inference-optimization"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "r-lang",
       "display": "R",
       "aliases": [],
@@ -1406,7 +1478,10 @@
       "id": "rag",
       "display": "RAG",
       "aliases": [
-        "retrieval-augmented generation"
+        "knowledge base design",
+        "retrieval pipelines",
+        "retrieval-augmented generation",
+        "retrieval-pipelines"
       ],
       "parents": [
         "llms"
@@ -1419,6 +1494,16 @@
       "aliases": [],
       "parents": [
         "evaluation"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "ray-serve",
+      "display": "Ray Serve",
+      "aliases": [],
+      "parents": [
+        "model-serving",
+        "distributed-systems"
       ],
       "reviewed": true
     },
@@ -1516,7 +1601,9 @@
     {
       "id": "serverless",
       "display": "Serverless",
-      "aliases": [],
+      "aliases": [
+        "cloud functions"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -1541,6 +1628,7 @@
       "id": "software-architecture",
       "display": "Software Architecture",
       "aliases": [
+        "enterprise architecture",
         "softwarearchitektur"
       ],
       "parents": [
@@ -1556,6 +1644,15 @@
       "reviewed": true
     },
     {
+      "id": "speculative-decoding",
+      "display": "Speculative decoding",
+      "aliases": [],
+      "parents": [
+        "inference-optimization"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "speech-recognition",
       "display": "Speech Recognition",
       "aliases": [
@@ -1566,6 +1663,20 @@
       ],
       "parents": [
         "deep-learning"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "spring-boot",
+      "display": "Spring Boot",
+      "aliases": [
+        "spring",
+        "springboot",
+        "spring/springboot",
+        "spring/spring boot"
+      ],
+      "parents": [
+        "java"
       ],
       "reviewed": true
     },
@@ -1657,7 +1768,9 @@
       "id": "tool-calling",
       "display": "Tool calling",
       "aliases": [
-        "tool use"
+        "tool engineering",
+        "tool use",
+        "tool-engineering"
       ],
       "parents": [],
       "reviewed": true
@@ -1668,6 +1781,18 @@
       "aliases": [],
       "parents": [
         "deep-learning"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "triton-inference-server",
+      "display": "Triton Inference Server",
+      "aliases": [
+        "nvidia triton",
+        "nvidia triton inference server"
+      ],
+      "parents": [
+        "model-serving"
       ],
       "reviewed": true
     },

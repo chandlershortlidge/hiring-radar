@@ -5,6 +5,82 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-01 — Taxonomy v5: the HIR-70 gaps triaged, but the 3-jobs rule still gates (HIR-72)
+
+The two HIR-70 labelers reported 216 label strings they could not map to taxonomy v4. All
+216 are now triaged, each with exactly one verdict (the full table is on HIR-72). The shape:
+**61 would-be entries, 17 strings that are other spellings of 13 entries we already have,
+107 out.** The 216 overstates the gap — it counts "Spring", "Spring Boot" and
+"Spring/SpringBoot" as three, and every German/English pair twice.
+
+**The 3-jobs rule from 2026-10-20 holds, and it counts jobs in the live `proposed_skill`
+queue, not postings in the Goldens.** This was the decision that shaped the change. 24
+Goldens cannot establish frequency: in that run all but one label appears in a single
+posting, so "both labelers agreed" is corroboration that the *phrase* is unmapped, not
+evidence that the market asks for it. The queue is the frequency counter; the Goldens only
+tell us which names to look up in it.
+
+Gating the 61 on the queue, **9 land**: `cuda` (4 jobs), `kserve` (4), `nvidia-dynamo` (3),
+`quantization` (4, folding "model quantization"), `ray-serve` (4),
+`speculative-decoding` (4), `spring-boot` (4, folding "spring" and "springboot"),
+`triton-inference-server` (5, folding "NVIDIA Triton"), `knowledge-distillation` (4,
+folding "distillation" and "model distillation"). Taxonomy v5, 209 skills.
+
+The other 52 stay pending in the queue and cost nothing to revisit — ten are already at 2
+jobs (`redis`, `django`, `jenkins`, `dvc`, `opensearch`, `ray`, `dotnet`, `oauth2`,
+`openwebui`, `tflite`) and will land on their own. **Their ids, parents and aliases are
+decided and recorded on HIR-72**, so the next review is a lookup, not a re-argument.
+
+**All 17 alias strings were added regardless of frequency, because an alias cannot widen
+the chart** — it only stops a phrase counting as nothing. That is where the German
+duplicates go: "Container-Orchestrierung" → `containerization`, "Retrieval-Pipelines" →
+`rag`, "Tool-Engineering" → `tool-calling`, "produktiver Betrieb von KI-Modellen" →
+`mlops`, "Training von KI Modellen" → `model-development`. Also folded:
+"orchestration frameworks" / "agent orchestration" → `llm-orchestration`, "memory systems"
+→ `agent-state-management`, "knowledge base design" → `rag`, "cloud functions" →
+`serverless`, "multi-step reasoning" → `chain-of-thought`, "tracing" → `observability`,
+"enterprise architecture" → `software-architecture`, "data analytics" → `data-science`,
+"web application development" → `full-stack-development`.
+
+**Two findings that corrected the issue's own reading of the data, both from `merged.json`:**
+
+- **"Tracking" in 2 postings is two different skills, not corroboration.** golden_037 quotes
+  `Tracking` in a web-app stack list (web analytics); golden_040 quotes `tracking` inside
+  "detection, classification, segmentation, tracking" (object tracking in video). A bare
+  `tracking` alias would have silently merged a marketing term into a vision skill. Left
+  out, in both senses. That leaves **"Context engineering" as the only label in the run two
+  different companies actually asked for** — and it has 0 queue rows, so it does not land.
+- **"Triton" can now be disambiguated, and still resolves to nothing.** 2026-10-20 left
+  bare "Triton" out as ambiguous between NVIDIA's server and OpenAI's kernel language.
+  golden_035 names both, separately ("CUDA or Triton", and "Triton Inference Server"), so
+  `triton-inference-server` is an entry with `nvidia triton` as an alias, `triton-kernels`
+  is a decided-but-unlanded id (0 queue rows), and **bare "Triton" is deliberately still
+  not an alias of either** — the 2026-10-20 reasoning survives intact. The queue has
+  "triton" at 2 jobs and those rows stay pending, unresolvable on purpose.
+
+**What stays out, and why, so it is not re-litigated:** all 17 paid-social labels from
+golden_048, which was already ruled a marketing role (2026-10-27). The 45 method and format
+names from golden_035 — AWQ, GPTQ, SmoothQuant, FP8/INT4/INT8/MXFP4/NVFP4, EAGLE, Medusa,
+FlashInfer, LMCache, WideEP, prefill–decode disaggregation, NVLink, InfiniBand, RoCE,
+NCCL — because the level above each of them is a decided id, so one posting's vocabulary
+does not become 45 chart rows with document frequency 1. Twenty-two phrases too broad to
+count ("Data", "Infrastructure", "Scalability", "Integration", bare "Security"). Twelve
+responsibilities rather than skills, including golden_035's four "diagnose the bottleneck"
+phrases. Ten working methods (Agile, Scrum, Freigabeprozesse, Qualitätssicherung,
+Prototyping) and "Open-source contributions".
+
+**Every job re-extracts on the next poll.** `extractor_version` hashes the system prompt,
+which contains the taxonomy block, so any edit here — a new alias as much as a new entry —
+invalidates every stamp. Known and accepted when the change was approved.
+
+**Not done here, and deliberately:** no Golden was relabeled. The 2026-10-20 precedent
+allows it (a label the taxonomy could not express is a missing gold label, taxonomy-driven
+rather than tuning), but which Goldens gain which label is its own release decision and is
+listed on HIR-72 instead. Separately, `opentelemetry` sits at 3 jobs in the queue and is
+over the bar, but it never appeared in the 216, so it is out of this change's scope.
+
+---
+
 ## 2026-10-30 — The skill tree, made readable: names only, three hues, branches by greedy split (HIR-81)
 
 The tree shipped correct and unusable. Four decisions from the follow-up.
