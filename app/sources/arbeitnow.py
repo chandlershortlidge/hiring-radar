@@ -6,6 +6,7 @@ Their page says nothing about reuse terms, so poll politely (once a day) and lin
 
 from datetime import datetime, timezone
 
+from app.geo import names_eu_region
 from app.html_text import html_to_text
 from app.sources import Posting, fetch_json
 
@@ -14,11 +15,22 @@ FIRST_PAGE = "https://www.arbeitnow.com/api/job-board-api"
 
 
 def _location(j: dict) -> str | None:
-    """`remote: true` becomes part of the location so geo can see it. Arbeitnow is a German
-    board and its locations are bare city names, so a remote posting is remote in Germany."""
+    """`remote: true` becomes part of the location so geo can see it — but the country is
+    never invented. Arbeitnow is German-facing, not German-only: its `location` is a bare
+    place name with no country, and the pool holds Swiss, Dutch and UK postings ("Zürich",
+    "Amsterdam", "Bromley") alongside German ones. So "Germany" is added only where the feed
+    itself says so: an empty location (the posting is remote and nothing more is known, and
+    arbeitnow's own jurisdiction is the only region on offer), or a location that already
+    names Germany or an EU-wide region, which only needs the word "remote" to read as remote
+    there. Every other location passes through untouched and `app/geo.py` judges it; a bare
+    non-tracked city then matches nothing and ingest drops it on the city filter (HIR-98)."""
     loc = j.get("location")
-    if j.get("remote") is True:
-        return f"{loc} (remote, Germany)" if loc else "Remote (Germany)"
+    if j.get("remote") is not True:
+        return loc
+    if not loc:
+        return "Remote (Germany)"
+    if names_eu_region(loc):
+        return f"{loc} (remote)"
     return loc
 
 
