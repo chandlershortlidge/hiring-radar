@@ -32,16 +32,54 @@ the code. Five lines, plain words, no file names:
   Chandler in the comment and wait for the answer before step 3.
 - **Not doing:** what the issue's out-of-scope says, in plain words.
 
+**Show the brief in the session as well as on Linear.** Posting the comment is not
+briefing the person. In an attended session, print the five lines and wait for an OK
+before step 2; "go" is enough. Unattended, post it and continue unless "will ask about"
+has something in it.
+
 The final PR reports the difference from this brief, not the work itself.
 
-## 2. Session start (AGENTS.md "Starting a session", HIR-88)
+## How to write anything Chandler reads (brief, questions, Decisions taken)
 
-```bash
-git switch main && git pull
-git switch -c <linear gitBranchName>          # or git switch it if it exists
-echo HIR-n > TICKET
-git config core.hooksPath .githooks            # once per clone
-```
+He has not read the code and does not remember rule dates. Every sentence passes this
+test: *could someone who has never opened the repo say "fine" or "no" to it?*
+
+- Say what changes on the dashboard, not what changes in the code. "61 new skills appear
+  on the chart, most at 1–2%" — not "61 entries land in taxonomy v5".
+- Never assume a rule is known. If a rule matters, restate it in one clause: "the rule
+  that a skill needs 3 job postings before it goes on the chart".
+- No file names, function names, ids or dates as shorthand. `proposed_skill` is "the
+  queue of skills the model has suggested"; `extractor_version` bump is "every job gets
+  re-read by the model once, about €3".
+- A question is: the situation in two sentences, then one line per option with its
+  consequence, then your recommendation and why. Three options at most.
+- Reread it as him before sending. If it needs the repo to make sense, rewrite it.
+
+## 2. Session start (AGENTS.md "Starting a session", HIR-88 / HIR-94)
+
+**Every issue gets its own worktree, and this step creates it.** A folder has one current
+branch and one `TICKET`; two sessions in one folder put commits on each other's branches
+no matter what the hooks check. So never `git switch` in the folder the session was
+launched in.
+
+1. `git branch --show-current`. If this folder is already a worktree on HIR-n's branch,
+   go to step 4.
+2. Call **EnterWorktree** with `name` = the Linear `gitBranchName` without the
+   `chandlershortlidge/` prefix (e.g. `hir-14-cv-upload-pre-fill-profile-skills`). It
+   creates `.claude/worktrees/<name>` from `origin/main` and moves this session into it.
+   If the tool isn't available: `git worktree add ../<repo>-hir-n -b <gitBranchName>
+   origin/main` and `cd` there.
+3. `git branch --show-current` again. If the branch name doesn't contain `hir-n`, rename
+   it: `git branch -m <linear gitBranchName>`. The pre-commit hook needs the id in the name.
+4. In the worktree:
+   ```bash
+   echo HIR-n > TICKET
+   git config core.hooksPath .githooks
+   uv sync
+   ```
+
+Leave the worktree in place when done; Chandler removes it after the merge
+(`git worktree remove`, or the prompt on session exit).
 
 Uncommitted changes on the tree: stop and ask whose they are. Never stash or discard.
 
@@ -56,7 +94,8 @@ Set the issue to **In Progress** in Linear (`save_issue`, `state: "In Progress"`
   trust the number in the issue.
 - If the issue asks for a **DECISIONS.md** entry, write it before the code it describes,
   newest-first with the date. If a step changes `app/extract.py`, the prompt or the taxonomy,
-  say in the PR that every job re-extracts on the next poll.
+  say in the PR body that merging re-reads every job (about €3); the merge is the
+  approval, so don't stop for it.
 - Any step the issue says to show the person before continuing (an eval table, a dry run,
   a confusion matrix): show it and **stop** until they answer.
 - **A commit is a green checkpoint.** One commit per build step of the issue, made when
@@ -98,9 +137,30 @@ Linear issue; don't mark it Done.
 - Reply to the person with: the PR link, the test count, and open questions — nothing
   else. No recap of the steps.
 
+## Before any question reaches Chandler: the decider
+
+Hand the question to the `decider` subagent (`.claude/agents/decider.md`). It reads only
+the rule files and replies ANSWER + RULE, or NO RULE + the question rewritten for Chandler.
+
+Model ladder: the definition pins Fable (`claude-fable-5-1`). If the spawn fails because
+that model is unavailable (credits, access, outage), spawn the same agent again with the
+next tier down, in this order, and say which one answered in "Decisions taken":
+
+1. `claude-fable-5-1`
+2. `claude-opus-5-5`, effort `xhigh`
+3. `claude-sonnet-5-5`, effort `xhigh`
+
+Retry on availability errors only. A wrong answer is not a reason to try a bigger model;
+a question the decider can't settle is a NO RULE, not a model problem.
+
+ANSWER → apply it, one line under "Decisions taken" naming the rule. NO RULE → post the
+rewritten question on the Linear issue with an @mention of Chandler, do what doesn't
+depend on it, stop. When his answer arrives, add it to DECISIONS.md in the same PR.
+
 ## When to break off and ask
 
-The stop list in AGENTS.md "Deciding alone vs. stopping", plus: the issue contradicts
-DECISIONS.md or AGENTS.md; the work has grown past the issue (propose the split). Asking
+The stop list in AGENTS.md "Deciding alone vs. stopping", plus: the work has grown past
+the issue (propose the split). An issue that contradicts a standing rule is **not** a
+reason to ask: the rule wins, note it under "Decisions taken". Asking
 is a Linear comment with an @mention, one sentence and the options; then do whatever
 doesn't depend on the answer, and stop.

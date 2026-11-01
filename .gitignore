@@ -19,3 +19,4 @@ scratch/
 
 # One ticket per branch (HIR-88). The pre-commit hook reads it; it never ships.
 TICKET
+.claude/worktrees/

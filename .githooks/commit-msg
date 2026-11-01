@@ -1,0 +1,34 @@
+#!/bin/sh
+# Ticket guard, second half (HIR-94). pre-commit checks the branch against TICKET; this
+# checks the commit message against TICKET. Together they catch a commit for one ticket
+# made in a folder set up for another — which happens when two sessions share one
+# working tree, since a folder has only one current branch and one TICKET.
+#
+# Rule: if the subject line names a ticket id (HIR-NN), it must be the one in TICKET.
+# A subject with no ticket id passes; merge commits pass.
+
+root=$(git rev-parse --show-toplevel) || exit 1
+ticket=$(tr -d '[:space:]' < "$root/TICKET" 2>/dev/null)
+[ -z "$ticket" ] && exit 0            # pre-commit already refused this case
+
+subject=$(head -n1 "$1")
+case "$subject" in
+Merge\ *) exit 0 ;;
+esac
+
+named=$(printf '%s' "$subject" | grep -oiE '\bHIR-[0-9]+\b' | head -n1)
+[ -z "$named" ] && exit 0
+
+if [ "$(printf '%s' "$named" | tr '[:lower:]' '[:upper:]')" != "$(printf '%s' "$ticket" | tr '[:lower:]' '[:upper:]')" ]; then
+	cat >&2 <<EOF
+commit-msg: the commit names $named but this folder is set up for $ticket.
+
+    subject: $subject
+    TICKET:  $ticket
+
+One ticket per branch and per folder. If this work is for $named, do it in that ticket's
+own worktree (git worktree add ../<repo>-$(printf '%s' "$named" | tr '[:upper:]' '[:lower:]') <its branch>). Do not edit TICKET to
+make the commit go through.
+EOF
+	exit 1
+fi

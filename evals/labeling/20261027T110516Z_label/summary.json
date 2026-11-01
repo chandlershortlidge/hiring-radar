@@ -479,7 +479,25 @@
       187,
       188,
       189
-    ]
+    ],
+    "sample_items": [
+      127,
+      139,
+      149,
+      155,
+      158,
+      160,
+      167,
+      171,
+      174,
+      176,
+      184,
+      185,
+      187,
+      188,
+      189
+    ],
+    "answered_by": "claude-fable-5-1 (assistant)"
   },
   "signal_mismatches": [
     "golden_030 german: A 'Sehr gute und verhandlungssichere (C1) Deutsch-' vs B 'Sehr gute und verhandlungssichere (C1) Deutsch- und Englischkenntnisse werden vorausgesetzt'",

@@ -58,7 +58,11 @@ carry.
    anything else. Do not infer it from the branch the terminal is on, from uncommitted
    changes, or from what looks half-finished.
 
-2. **Get onto that ticket's branch.** Never inherit whatever branch the terminal happens
+2. **Get onto that ticket's branch — in its own worktree.** A folder has one current
+   branch and one `TICKET`, so two sessions in one folder will commit onto each other's
+   branches however careful each one is (HIR-94: an HIR-72 commit landed on the HIR-92
+   branch this way). `git worktree add ../<repo>-hir-NN -b <branch> origin/main`, then
+   work there. Never inherit whatever branch the terminal happens
    to be on. A terminal left on another ticket's branch, or on `main`, is the ordinary
    case between sessions, not a hint about what to work on.
 
@@ -92,8 +96,9 @@ git config core.hooksPath .githooks
 
 Then, for the rest of the session:
 
-- **One ticket per branch.** `TICKET` holds one id and the branch name contains it; the
-  hook checks both on every commit.
+- **One ticket per branch, per folder, per commit.** `TICKET` holds one id; the branch
+  name must contain it (`pre-commit`) and a commit subject that names a ticket must name
+  the same one (`commit-msg`).
 - **If the branch and the ticket disagree, stop and ask.** Do not rewrite `TICKET` to
   match the branch, and do not switch branches to make it fit — which of the two is wrong
   is the person's call. This applies once step 3 has been done this session. If you
@@ -320,21 +325,36 @@ commit wording.
 
 **Decide, then report in the PR's "Decisions taken"** — judgment, cheap to undo: which
 postings to sample; how a UI label or a DECISIONS entry is worded; alias vs. new entry
-when the phrase is genuinely ambiguous; anything the issue left open that costs one
-commit to reverse. One sentence each: what, why, how to undo.
+when the phrase is genuinely ambiguous; the shape of a taxonomy change (parent/children,
+which entries); anything the issue left open that costs one commit to reverse. One
+sentence each: what, why, how to undo.
+
+Anything that bumps `extractor_version` (prompt, taxonomy, model) is decided here too.
+Say in the PR body that merging re-reads every job (about €3). **The merge is the
+approval**; nothing waits before the PR.
+
+**An existing rule is never a question.** When an issue and DECISIONS.md (or this file)
+disagree, the rule wins: apply it, note the conflict in one line under "Decisions taken",
+carry on. Before asking anything, check whether a standing rule already answers it. Ask
+only when no rule covers the case — then the answer becomes a rule, and the question
+is never asked again.
 
 **Stop and ask, even unattended** — irreversible, expensive, or policy:
 - any edit to `evals/LABELING.md` or to an attribute's definition (invalidates every eval)
-- anything that bumps `extractor_version` (prompt, taxonomy, model): say so and wait,
-  because every job re-extracts on the next poll
 - `ACTIVE_CITIES`; what the public site stores, shows, or sends to a provider; spend
 - deleting or rewriting stored jobs, Goldens, or eval results
 - an eval metric down more than 0.02 against the last committed run
 - the branch and `TICKET` disagree; a hot-spot file is already changed on another branch
 
-Asking means: a comment on the Linear issue that @mentions Chandler, with the question in
-one sentence and the options in one line each. Then do any step that doesn't depend on
-the answer, and stop.
+**Questions go to the decider agent before they go to Chandler.** `.claude/agents/decider.md`
+(Fable) reads only AGENTS.md, DECISIONS.md, taxonomy/README.md and evals/LABELING.md, and
+answers the question from them. It returns either an answer with the rule it rests on (the worker
+applies it and notes it under "Decisions taken"), or "no rule covers this" plus the
+question rewritten per "How to write anything Chandler reads". Only the second kind
+reaches Chandler: a comment on the Linear issue that @mentions him, two sentences of
+situation, one line per option with its consequence, a recommendation. His answer is
+written into DECISIONS.md so it is never asked again. Meanwhile the worker does any step
+that doesn't depend on the answer, and stops.
 
 **Unattended runs never merge.** They open the PR; a person merges.
 
