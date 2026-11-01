@@ -182,6 +182,63 @@ def test_arbeitsagentur_fetch_pages_and_calls_details(monkeypatch):
     assert sum("/pc/v6/jobs?" in c for c in calls) == 2 and sum("/jobdetails/" in c for c in calls) == 2
 
 
+def test_arbeitsagentur_listing_title_reads_both_shapes():
+    from app.sources import arbeitsagentur
+    assert arbeitsagentur.listing_title({"stellenangebotsTitel": " AI Engineer "}) == "AI Engineer"
+    assert arbeitsagentur.listing_title({"titel": "ML Engineer"}) == "ML Engineer"   # v4
+    assert arbeitsagentur.listing_title({}) is None
+    assert arbeitsagentur.listing_title({"stellenangebotsTitel": "   "}) is None
+
+
+def test_arbeitsagentur_wanted_keeps_untitled_and_unfiltered_results():
+    from app.sources import arbeitsagentur
+    sales = {"stellenangebotsTitel": "Vertriebsmitarbeiter KI-Lösungen"}
+    assert arbeitsagentur.wanted(sales, None) is True             # no filter: everything
+    assert arbeitsagentur.wanted(sales, in_scope_title) is False
+    assert arbeitsagentur.wanted({"stellenangebotsTitel": "AI Engineer"}, in_scope_title) is True
+    assert arbeitsagentur.wanted({"refnr": "R"}, in_scope_title) is True   # no title to judge
+
+
+def test_arbeitsagentur_fetch_skips_details_for_out_of_scope_titles(monkeypatch):
+    from app.sources import arbeitsagentur
+    search = {"ergebnisliste": [
+        {"referenznummer": "A", "stellenangebotsTitel": "AI Engineer (m/w/d)"},
+        {"referenznummer": "B", "stellenangebotsTitel": "Vertriebsmitarbeiter KI-Lösungen"},
+        {"referenznummer": "C"},                      # no title in the search result
+    ], "maxErgebnisse": 3, "page": 1, "size": 50}
+    details = {"A": {"stellenangebotsBeschreibung": "Python, RAG"},
+               "C": {"stellenangebotsBeschreibung": "Python", "stellenangebotsTitel": "ML Engineer"}}
+    calls = []
+
+    def fake_fetch_json(url, headers=None, timeout=30):
+        calls.append(url)
+        if "/jobdetails/" in url:
+            for refnr, d in details.items():
+                if url == arbeitsagentur.details_url(refnr):
+                    return d
+            raise AssertionError(f"details fetched for a dropped title: {url}")
+        return search
+
+    monkeypatch.setattr(arbeitsagentur, "fetch_json", fake_fetch_json)
+    ps = arbeitsagentur.fetch("AI Engineer", max_pages=1, title_filter=in_scope_title)
+    assert [p.source_job_id for p in ps] == ["A", "C"]
+    assert sum("/jobdetails/" in c for c in calls) == 2        # B never fetched
+
+
+def test_poll_passes_the_title_filter_to_arbeitsagentur(monkeypatch):
+    from app import poll
+    from app.sources import arbeitsagentur
+    got = {}
+
+    def fake_fetch(*args, **kwargs):
+        got.update(kwargs)
+        return []
+
+    monkeypatch.setattr(arbeitsagentur, "fetch", fake_fetch)
+    poll.fetch_feed({"type": "arbeitsagentur", "search": "AI Engineer"})
+    assert got["title_filter"] is in_scope_title
+
+
 # --- jsearch (fixture is hand-built to the documented shape) ---------------------
 
 def test_jsearch_parse_maps_fields_and_skips_empty():
