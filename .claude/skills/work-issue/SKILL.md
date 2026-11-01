@@ -142,7 +142,11 @@ PR body, in the template's sections: Testing, Risk, How to revert, **Decisions t
 **Needs Chandler** and **Follow-ups** per AGENTS.md "Deciding alone vs. stopping". "Needs
 Chandler" holds only what blocks the merge. A known limit, a later ticket or a suggestion
 is a Follow-up, stated as a fact, never as a question — if it doesn't need an answer,
-don't ask for one. Same split in the Linear comment and the final reply. Write both for a reader
+don't ask for one. Follow-ups come in two lists, **"Changes what you'd see"** first
+(chart, job list, counts, which jobs get in or out — these are decisions in disguise and
+Chandler reads them) and **"Internal"** second (refactors, tests, docs, tooling — he
+doesn't). Same split in the Linear comment and the final reply: lead with the first list,
+and if it's empty say so in four words. Write both for a reader
 who hasn't seen the code: one sentence per decision — what, why, how to undo. Then a
 one-paragraph delta from the brief: what differs from what you said you'd do. Any step from
 the issue that was **not** done, named. If the issue is only partly done (e.g. the eval is still

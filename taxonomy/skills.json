@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "skills": [
     {
       "id": "a-b-testing",
@@ -134,7 +134,9 @@
     {
       "id": "apache-spark",
       "display": "Apache Spark",
-      "aliases": [],
+      "aliases": [
+        "spark"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -197,7 +199,9 @@
     {
       "id": "aws-bedrock",
       "display": "AWS Bedrock",
-      "aliases": [],
+      "aliases": [
+        "bedrock"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -205,7 +209,8 @@
       "id": "aws-s3",
       "display": "AWS S3",
       "aliases": [
-        "amazon s3"
+        "amazon s3",
+        "s3"
       ],
       "parents": [
         "aws",
@@ -348,7 +353,9 @@
         "container orchestration",
         "container-orchestrierung",
         "containerized workloads",
-        "containers"
+        "containers",
+        "container",
+        "containerisierung"
       ],
       "parents": [],
       "reviewed": true
@@ -429,7 +436,9 @@
     {
       "id": "data-modeling",
       "display": "Data modeling",
-      "aliases": [],
+      "aliases": [
+        "datenmodelle"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -440,7 +449,8 @@
         "etl pipelines",
         "etl/elt",
         "etl/elt pipelines",
-        "etl"
+        "etl",
+        "datenpipelines"
       ],
       "parents": [],
       "reviewed": true
@@ -519,7 +529,9 @@
     {
       "id": "distributed-systems",
       "display": "Distributed Systems",
-      "aliases": [],
+      "aliases": [
+        "verteilte systeme"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -572,7 +584,8 @@
         "ai output evaluation",
         "evaluation frameworks",
         "llm evaluation",
-        "model evaluation"
+        "model evaluation",
+        "evaluierung"
       ],
       "parents": [],
       "reviewed": true
@@ -647,7 +660,8 @@
       "display": "Fine-tuning",
       "aliases": [
         "llm fine-tuning",
-        "model fine-tuning"
+        "model fine-tuning",
+        "feinabstimmung"
       ],
       "parents": [],
       "reviewed": true
@@ -728,7 +742,8 @@
       "display": "Git",
       "aliases": [
         "github",
-        "version control"
+        "version control",
+        "versionskontrolle"
       ],
       "parents": [],
       "reviewed": true
@@ -831,7 +846,9 @@
     {
       "id": "hugging-face",
       "display": "Hugging Face",
-      "aliases": [],
+      "aliases": [
+        "huggingface"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -1051,7 +1068,8 @@
       "aliases": [
         "agent orchestration",
         "multi-step orchestration",
-        "orchestration frameworks"
+        "orchestration frameworks",
+        "orchestrierungs-frameworks"
       ],
       "parents": [
         "llms"
@@ -1084,7 +1102,9 @@
     {
       "id": "machine-learning",
       "display": "Machine Learning",
-      "aliases": [],
+      "aliases": [
+        "machine-learning-konzepte"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -1205,7 +1225,9 @@
     {
       "id": "model-versioning",
       "display": "Model Versioning",
-      "aliases": [],
+      "aliases": [
+        "versionierung"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -1255,7 +1277,9 @@
     {
       "id": "networking",
       "display": "Networking",
-      "aliases": [],
+      "aliases": [
+        "netzwerke"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -1282,7 +1306,9 @@
     {
       "id": "node-js",
       "display": "Node.js",
-      "aliases": [],
+      "aliases": [
+        "nodejs"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -1645,7 +1671,8 @@
       "display": "Software Architecture",
       "aliases": [
         "enterprise architecture",
-        "softwarearchitektur"
+        "softwarearchitektur",
+        "architekturdesign"
       ],
       "parents": [
         "software-engineering"
@@ -1655,7 +1682,9 @@
     {
       "id": "software-engineering",
       "display": "Software engineering",
-      "aliases": [],
+      "aliases": [
+        "softwareentwicklung"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -1710,7 +1739,8 @@
         "statistical analysis",
         "statistical modeling",
         "statistical modelling",
-        "statistical methods"
+        "statistical methods",
+        "statistische methoden"
       ],
       "parents": [],
       "reviewed": true
@@ -1775,7 +1805,9 @@
         "automated testing",
         "debugging & testing",
         "integration testing",
-        "test automation"
+        "test automation",
+        "automatisierte tests",
+        "testautomatisierung"
       ],
       "parents": [],
       "reviewed": true
@@ -1826,7 +1858,9 @@
       "display": "Vector Databases",
       "aliases": [
         "chroma",
-        "chromadb"
+        "chromadb",
+        "vektordatenbanken",
+        "vector db"
       ],
       "parents": [],
       "reviewed": true

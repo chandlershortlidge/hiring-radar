@@ -22,6 +22,12 @@
 //   - Whitespace is collapsed before matching, the same way app/extract.py's _norm does it,
 //     so a PDF that wraps "Machine Learning" across two lines still matches. Without this a
 //     wrapped multi-word skill is missed, and PDFs wrap constantly.
+//   - Hyphens and slashes count as whitespace, on the CV text and on the skill phrase alike
+//     (HIR-100), so "Prompt-Engineering" matches `prompt engineering`, "Machine-Learning-
+//     Konzepten" matches `machine learning` and "SQLite/Postgres" matches either side.
+//     German postings and CVs hyphenate constantly. Dots are NOT separators: ".NET" and
+//     "Node.js" have to stay one token. This only ever adds matches — a hyphen was already
+//     a word boundary, so nothing that matched before stops matching.
 //   - Pure and deterministic: same text in, same ids out, sorted by id.
 
 export const MIN_PHRASE = 3;
@@ -36,6 +42,16 @@ function alnum(ch) {
 // One space between words, no leading or trailing space. Mirrors app/extract.py's _norm.
 export function collapse(s) {
   return (s || "").replace(/\s+/g, " ").trim();
+}
+
+// The characters that read as a word break inside a compound: hyphen and slash. Not the dot
+// (".NET", "Node.js") and not the plus ("C++").
+const SEPARATORS = /[-/]+/g;
+
+// Collapse, with hyphens and slashes turned into spaces first. Applied to both sides of a
+// comparison, so a spaced phrase and a hyphenated one meet in the middle.
+export function flatten(s) {
+  return collapse((s || "").replace(SEPARATORS, " "));
 }
 
 // A phrase occurs in `text` as a whole word. `text` and `phrase` must already agree on case.
@@ -71,7 +87,7 @@ export function phrasesFor(skill) {
  * drawer can tell the person why a chip is ticked. Sorted by id.
  */
 export function matchCvSkills(cvText, skills) {
-  const text = collapse(typeof cvText === "string" ? cvText : "");
+  const text = flatten(typeof cvText === "string" ? cvText : "");
   const lower = text.toLowerCase();
   const found = [];
 
@@ -79,9 +95,10 @@ export function matchCvSkills(cvText, skills) {
     if (!skill || !skill.id) continue;
     for (const phrase of phrasesFor(skill)) {
       const exact = CASE_SENSITIVE.has(phrase);
+      const needle = flatten(phrase);
       const hit = exact
-        ? occursAsWord(text, phrase)
-        : occursAsWord(lower, phrase.toLowerCase());
+        ? occursAsWord(text, needle)
+        : occursAsWord(lower, needle.toLowerCase());
       if (hit) {
         found.push({ id: skill.id, display: skill.display, phrase });
         break; // one reason is enough; the display name is tried first
