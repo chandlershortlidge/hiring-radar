@@ -453,9 +453,7 @@
     {
       "id": "data-science",
       "display": "Data Science",
-      "aliases": [
-        "data analytics"
-      ],
+      "aliases": [],
       "parents": [],
       "reviewed": true
     },
@@ -1359,6 +1357,17 @@
         "openai"
       ],
       "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "opentelemetry",
+      "display": "OpenTelemetry",
+      "aliases": [
+        "otel"
+      ],
+      "parents": [
+        "observability"
+      ],
       "reviewed": true
     },
     {

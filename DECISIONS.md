@@ -24,7 +24,9 @@ Gating the 61 on the queue, **9 land**: `cuda` (4 jobs), `kserve` (4), `nvidia-d
 `quantization` (4, folding "model quantization"), `ray-serve` (4),
 `speculative-decoding` (4), `spring-boot` (4, folding "spring" and "springboot"),
 `triton-inference-server` (5, folding "NVIDIA Triton"), `knowledge-distillation` (4,
-folding "distillation" and "model distillation"). Taxonomy v5, 209 skills.
+folding "distillation" and "model distillation"). **`opentelemetry`** (3) joins them: it
+never appeared in the 216, but the bar is the bar and it was sitting over it, so leaving it
+pending would have meant running the same review twice. Taxonomy v5, 210 skills.
 
 The other 52 stay pending in the queue and cost nothing to revisit — ten are already at 2
 jobs (`redis`, `django`, `jenkins`, `dvc`, `opensearch`, `ray`, `dotnet`, `oauth2`,
@@ -39,8 +41,16 @@ duplicates go: "Container-Orchestrierung" → `containerization`, "Retrieval-Pip
 "orchestration frameworks" / "agent orchestration" → `llm-orchestration`, "memory systems"
 → `agent-state-management`, "knowledge base design" → `rag`, "cloud functions" →
 `serverless`, "multi-step reasoning" → `chain-of-thought`, "tracing" → `observability`,
-"enterprise architecture" → `software-architecture`, "data analytics" → `data-science`,
-"web application development" → `full-stack-development`.
+"enterprise architecture" → `software-architecture`, "web application development" →
+`full-stack-development`.
+
+**"Data analytics" is not an alias of `data-science`,** though it was one for a few hours.
+The two are different jobs — analytics describes and reports, data science models and
+predicts — and folding the first into the second would have inflated `data-science` with
+business-analytics postings and made the chart's most load-bearing row mean less. It is a
+new entry when it earns one, not a spelling of an existing skill, and it is back in the
+queue until it does. This is what the taxonomy/README.md rule "aliases are the same thing
+spelled differently" is for: convenience is not sameness.
 
 **Two findings that corrected the issue's own reading of the data, both from `merged.json`:**
 
@@ -71,13 +81,31 @@ Prototyping) and "Open-source contributions".
 
 **Every job re-extracts on the next poll.** `extractor_version` hashes the system prompt,
 which contains the taxonomy block, so any edit here — a new alias as much as a new entry —
-invalidates every stamp. Known and accepted when the change was approved.
+invalidates every stamp. Per AGENTS.md as of HIR-94, the merge is the approval for that;
+nothing waits before the PR.
 
-**Not done here, and deliberately:** no Golden was relabeled. The 2026-10-20 precedent
-allows it (a label the taxonomy could not express is a missing gold label, taxonomy-driven
-rather than tuning), but which Goldens gain which label is its own release decision and is
-listed on HIR-72 instead. Separately, `opentelemetry` sits at 3 jobs in the queue and is
-over the bar, but it never appeared in the 216, so it is out of this change's scope.
+**13 Golden labels added across 6 Goldens, on the 2026-10-20 precedent** — a label the
+taxonomy could not express before is a missing gold label, so adding it is taxonomy-driven
+rather than tuning. golden_035 gains 8 of the 9 new entries, which is the clearest evidence
+the gating worked: it is the inference posting the whole issue came from.
+`requirement` follows LABELING.md's section rule in every case, which puts the four serving
+engines from the "Must-haves" stack list (`kserve`, `nvidia-dynamo`, `ray-serve`,
+`triton-inference-server`) at `required` and the four from "Nice-to-haves" (`cuda`,
+`knowledge-distillation`, `quantization`, `speculative-decoding`) at `nice_to_have`, even
+where the same skill also appears in the responsibilities — responsibilities alone are not
+an ask. The rest: `chain-of-thought` from "multi-step reasoning" in golden_018 and
+golden_032, `llm-orchestration` in golden_044, `agent-state-management` from "memory
+systems" in golden_045, `spring-boot` from "Spring/SpringBoot" in golden_047.
+
+**One existing label was narrowed, not added.** golden_035's `tensorrt` quoted
+"TensorRT-LLM, Triton Inference Server, NVIDIA Dynamo, Ray Serve" — one span standing in
+for four tools, because three of them had no id to go to. Now they do, so the quote is
+`TensorRT-LLM` and each engine carries its own. An over-broad `raw_text` is the shape a
+taxonomy gap leaves behind in the answer key, and it is worth looking for the next time
+entries land.
+
+**What did not change: golden_038.** It was a relabel candidate only through the
+"data analytics" → `data-science` alias, and that alias is gone, so it keeps its labels.
 
 ---
 
