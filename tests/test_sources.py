@@ -182,7 +182,45 @@ def test_arbeitsagentur_fetch_pages_and_calls_details(monkeypatch):
     assert sum("/pc/v6/jobs?" in c for c in calls) == 2 and sum("/jobdetails/" in c for c in calls) == 2
 
 
-# --- jsearch (fixture is hand-built to the documented shape) ---------------------
+# --- jsearch (jsearch_recorded.json is a real response; jsearch.json is hand-built
+#     for the degenerate records a real response does not contain) -----------------
+
+def test_jsearch_parse_reads_a_recorded_response():
+    from app.sources import jsearch
+    ps = jsearch.parse(load("jsearch_recorded.json"))
+    sumup = [p for p in ps if p.company == "SumUp"]
+    assert len(sumup) == 1
+    assert sumup[0].title == "AI / Machine Learning Engineer II | Mitte, DE"
+    assert sumup[0].source_job_id == "oh0HsA4eZrv-OO8wAAAAAA=="
+    assert sumup[0].location_raw == "Berlin"
+    assert sumup[0].posted_at == "2026-10-28T00:00:00.000Z"
+    assert "Global Operations" in sumup[0].description_text
+
+
+def test_jsearch_parse_drops_aggregator_headline_rows():
+    """HIR-96: JobLeads gave the search-result headline as job_title and an unrelated
+    firm as employer_name; the recorded response has the same posting from another
+    publisher with the right title and company, so dropping it loses nothing."""
+    from app.sources import jsearch
+    payload = load("jsearch_recorded.json")
+    assert any(j["employer_name"] == "Primetime" for j in payload["data"])
+    ps = jsearch.parse(payload)
+    assert [p.company for p in ps].count("Primetime") == 0
+    assert not any("arbeitnow" in p.title for p in ps)
+    assert len(ps) == len(payload["data"]) - 1
+
+
+def test_jsearch_is_headline_only_fires_on_a_trailing_date():
+    from app.sources import jsearch
+    assert jsearch.is_headline(
+        "AI / Machine Learning Engineer II arbeitnow SumUp Berlin, Berlin, Germany · 10/28/2026")
+    assert jsearch.is_headline("Voice AI Engineer arbeitnow NAIRON Berlin · 10/18/2026")
+    assert jsearch.is_headline("AI Engineer Berlin 2026-10-18")
+    assert not jsearch.is_headline("AI / Machine Learning Engineer II | Mitte, DE")
+    assert not jsearch.is_headline("Machine Learning Engineer • Full Time • Berlin • Hybrid")
+    assert not jsearch.is_headline("Senior AI Engineer (m/f/d)")
+    assert not jsearch.is_headline("Data Scientist 2026 Graduate Programme")
+
 
 def test_jsearch_parse_maps_fields_and_skips_empty():
     from app.sources import jsearch

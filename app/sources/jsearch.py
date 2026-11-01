@@ -20,9 +20,20 @@ carries `job_id`, `job_title`, `employer_name`, `job_description` (plain text),
 `job_apply_link`, `job_google_link`, `job_city`, `job_location`, `job_country`,
 `job_posted_at_datetime_utc`, `job_publisher`, plus salary/benefit fields we do not use.
 
-Field names come from OpenWeb Ninja's sample response and third-party write-ups, not a
-recorded call: tests/fixtures/feeds/jsearch.json is hand-built to that shape. Replace it
-with a recorded response when one is available.
+Fixtures: tests/fixtures/feeds/jsearch_recorded.json is a real response (recorded
+2026-11-01, query "machine learning engineer in Berlin"). tests/fixtures/feeds/jsearch.json
+stays hand-built, for the degenerate records a real response does not contain (no apply
+link, no city, empty description).
+
+Aggregator headlines are dropped. Some publishers (seen with JobLeads) hand Google their
+search-result headline instead of the posting's own title — "AI / Machine Learning
+Engineer II arbeitnow SumUp Berlin, Berlin, Germany · 10/28/2026" — and name themselves,
+or an unrelated firm, as `employer_name` ("Primetime", website primetime.company). The
+real company appears only inside that headline, so neither field can be recovered and
+normalizing the company would not help: dedup would still see a different company and
+store a second copy of a posting we already have. A title that ends in a date is the
+signature; `parse` skips those records. Nothing is lost — the same SumUp posting came back
+in the same response under its own publisher with the right title and company (HIR-96).
 
 `job_id` is not stable: it is base64 of `<docid>:<per-request token>`, and the token changes
 on every call (seen live 2026-10-18: one StepStone posting under four ids in two polls,
@@ -35,6 +46,7 @@ dedup at ingest merges those (same company, similar text).
 import base64
 import binascii
 import os
+import re
 import urllib.parse
 
 from app.sources import Posting, fetch_json
@@ -58,6 +70,18 @@ def stable_id(job_id: str) -> str:
     return head if sep and head else job_id
 
 
+_TRAILING_DATE = re.compile(
+    r"[\s·•|,-]*(\d{1,2}[/.]\d{1,2}[/.]\d{2,4}|\d{4}-\d{2}-\d{2})\s*$")
+
+
+def is_headline(title: str) -> bool:
+    """True when the "title" is an aggregator's search-result headline rather than the
+    posting's own title. A headline ends with the date it was listed; a job title never
+    does. Such a record's `employer_name` is the aggregator's, not the employer's, so the
+    whole posting is unusable."""
+    return bool(_TRAILING_DATE.search(title))
+
+
 def _location(j: dict) -> str | None:
     """`job_is_remote: true` becomes "Remote (<country>)" so geo can judge the region;
     otherwise the city, then the location text."""
@@ -76,12 +100,15 @@ def parse(payload) -> list[Posting]:
         title, text, job_id = j.get("job_title"), (j.get("job_description") or "").strip(), j.get("job_id")
         if not title or not text or not job_id:
             continue
+        title = str(title).strip()
+        if is_headline(title):
+            continue
         out.append(Posting(
             source=SOURCE,
             source_job_id=stable_id(str(job_id)),
             url=j.get("job_apply_link") or j.get("job_google_link") or "",
             company=j.get("employer_name"),
-            title=str(title).strip(),
+            title=title,
             location_raw=_location(j),
             description_text=text,
             posted_at=j.get("job_posted_at_datetime_utc"),
