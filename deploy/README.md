@@ -195,8 +195,8 @@ gone; the next poll re-ingests whatever is still listed.
 
 ## Building the VM from nothing
 
-`provision.sh` does steps 3–8 below. Steps 1 and 2 create the GCP resources and are run
-once from the Mac; the rest run on the VM.
+`provision.sh` does steps 3–7 below — everything inside the VM. Steps 1, 2 and 8 create GCP
+resources and need admin credentials, so they are run from the Mac, by hand, once.
 
 Set these first (from the Mac):
 
