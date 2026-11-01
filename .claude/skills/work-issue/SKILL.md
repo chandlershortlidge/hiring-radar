@@ -121,8 +121,11 @@ git push -u origin HEAD
 gh pr create --base main --fill
 ```
 
-PR body, in the template's sections: Testing, Risk, How to revert, and **Decisions taken**
-and **Needs Chandler** per AGENTS.md "Deciding alone vs. stopping". Write both for a reader
+PR body, in the template's sections: Testing, Risk, How to revert, **Decisions taken**,
+**Needs Chandler** and **Follow-ups** per AGENTS.md "Deciding alone vs. stopping". "Needs
+Chandler" holds only what blocks the merge. A known limit, a later ticket or a suggestion
+is a Follow-up, stated as a fact, never as a question — if it doesn't need an answer,
+don't ask for one. Same split in the Linear comment and the final reply. Write both for a reader
 who hasn't seen the code: one sentence per decision — what, why, how to undo. Then a
 one-paragraph delta from the brief: what differs from what you said you'd do. Any step from
 the issue that was **not** done, named. If the issue is only partly done (e.g. the eval is still
