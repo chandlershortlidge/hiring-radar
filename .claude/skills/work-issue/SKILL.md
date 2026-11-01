@@ -57,26 +57,29 @@ test: *could someone who has never opened the repo say "fine" or "no" to it?*
 
 ## 2. Session start (AGENTS.md "Starting a session", HIR-88 / HIR-94)
 
-**Every issue gets its own worktree.** A folder has one current branch and one `TICKET`;
-two sessions in one folder will put commits on each other's branches no matter what the
-hook checks. So never `git switch` in a folder another session might be using.
+**Every issue gets its own worktree, and this step creates it.** A folder has one current
+branch and one `TICKET`; two sessions in one folder put commits on each other's branches
+no matter what the hooks check. So never `git switch` in the folder the session was
+launched in.
 
-First check where you are: `git branch --show-current`. If this folder is already a
-worktree on HIR-n's branch (Chandler usually creates it before starting the session),
-write `TICKET`, set the hooks path, and skip to step 3. Otherwise create one — with Claude
-Code's own worktree tool if the session offers it, else:
+1. `git branch --show-current`. If this folder is already a worktree on HIR-n's branch,
+   go to step 4.
+2. Call **EnterWorktree** with `name` = the Linear `gitBranchName` without the
+   `chandlershortlidge/` prefix (e.g. `hir-14-cv-upload-pre-fill-profile-skills`). It
+   creates `.claude/worktrees/<name>` from `origin/main` and moves this session into it.
+   If the tool isn't available: `git worktree add ../<repo>-hir-n -b <gitBranchName>
+   origin/main` and `cd` there.
+3. `git branch --show-current` again. If the branch name doesn't contain `hir-n`, rename
+   it: `git branch -m <linear gitBranchName>`. The pre-commit hook needs the id in the name.
+4. In the worktree:
+   ```bash
+   echo HIR-n > TICKET
+   git config core.hooksPath .githooks
+   uv sync
+   ```
 
-```bash
-git -C <repo> fetch origin main
-git -C <repo> worktree add ../<repo>-hir-n -b <linear gitBranchName> origin/main
-                                            # or without -b if the branch already exists
-cd ../<repo>-hir-n
-echo HIR-n > TICKET
-git config core.hooksPath .githooks        # per worktree checkout, once
-uv sync                                    # the worktree has its own .venv
-```
-
-When the PR is merged: `git worktree remove ../<repo>-hir-n`.
+Leave the worktree in place when done; Chandler removes it after the merge
+(`git worktree remove`, or the prompt on session exit).
 
 Uncommitted changes on the tree: stop and ask whose they are. Never stash or discard.
 
