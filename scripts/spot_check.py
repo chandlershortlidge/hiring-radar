@@ -127,8 +127,15 @@ def batch_goldens(goldens_dir: Path = GOLDENS) -> list[dict]:
 
 
 def read_by_person(golden: dict) -> set[str]:
-    """The keys in this Golden a person has already read, in `adjudicated`'s own format."""
+    """The keys in this Golden a person has already read, in `adjudicated`'s own format.
+
+    Reads `spot_checked_by_human` as well, so a second sample never re-draws a label from
+    the first. The whole-Golden `spot_checked` / `spot_checked_by` is deliberately *not*
+    consulted: a flag over a whole posting says nothing about which of its labels was read,
+    and under the old spelling it was set by a model.
+    """
     done = set(golden.get("adjudicated", []))
+    done |= set(golden.get("spot_checked_by_human", []))
     for attr in ATTRS:
         if golden.get(REVIEWED_FLAG[attr]):
             done.add(attr)

@@ -49,11 +49,21 @@ def test_a_reviewed_flag_takes_its_attributes_out_of_the_pool():
     assert ("golden_900", "attribute", "seniority") in sc.pool([golden(attrs_reviewed=True)])
 
 
-def test_a_label_only_a_model_spot_checked_is_still_in_the_pool():
-    """The reason this ticket exists: `spot_checked: true` was written by a model."""
-    g = golden(spot_checked=True, adjudicated_by_model=["skill:python"],
+@pytest.mark.parametrize("provenance", [{"spot_checked": True},
+                                        {"spot_checked_by": "claude-fable-5-1 (assistant)"}])
+def test_a_label_only_a_model_spot_checked_is_still_in_the_pool(provenance):
+    """The reason this ticket exists: the 2026-10-30 spot-check was answered by a model, so
+    neither spelling of that provenance takes a label out of the pool."""
+    g = golden(adjudicated_by_model=["skill:python"], **provenance,
                expected=[{"skill_id": "python", "requirement": "required", "raw_text": "Python"}])
     assert ("golden_900", "skill", "python") in sc.pool([g])
+
+
+def test_a_label_this_process_already_checked_is_not_drawn_again():
+    g = golden(spot_checked_by_human=["skill:python", "german"],
+               expected=[{"skill_id": "python", "requirement": "required", "raw_text": "Python"}])
+    assert sc.pool([g]) == [("golden_900", "attribute", "degree"),
+                            ("golden_900", "attribute", "seniority")]
 
 
 def test_a_null_attribute_is_a_label_in_its_own_right():
