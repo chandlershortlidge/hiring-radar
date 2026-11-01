@@ -5,6 +5,42 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-01 — A CV may pre-fill the profile, but only inside the browser (HIR-14)
+
+**The scope line changes, narrowly.** AGENTS.md and the rebuild entry below both put
+"résumé matching/tailoring" out of scope. That stays true for tailoring, stored résumés and
+scoring a person against a posting. What is now **in** scope is one thing: reading a CV to
+pre-select skills the person then edits, as a faster way to fill the same
+`profile.skills` set they could fill by clicking chips. Nothing downstream changes — the
+profile shape, `coverage()` and the chart are untouched.
+
+**It happens in the browser, and the CV never leaves it.** HIR-14 was written for the
+Dossier method: extract text server-side, send it to Anthropic with a CV variant of the
+extractor prompt. Chandler chose the browser-only version instead (asked and answered on
+HIR-14, 1 Nov). The reason is the promise the profile panel already makes — "Stays in this
+browser… nothing is scored or uploaded" — and the fact that HIR-14 blocks the public
+launch. A CV is the most sensitive document a visitor has; sending one to our server and on
+to a provider is a new privacy surface, and it would have made that promise false. So:
+
+- CV text is read in the page, matched in the page, and dropped when the drawer closes.
+- No endpoint, no model call, no bytes stored — server-side and client-side alike.
+- The panel's promise stands unchanged and stays true.
+
+**What we give up, knowingly.** Matching is substring, not semantic: a CV that spells a
+skill out ("we served models with Triton") matches; a paraphrase the taxonomy has no alias
+for ("stood up our own inference endpoints") does not. That is acceptable because a
+pre-fill is a starting point the person reviews — the drawer already lets them add and
+remove anything — and because the alternative was a model call per upload on a public site.
+If the local match proves too weak once people use it, the model-call version can be added
+later as its own decision, with its own disclosure.
+
+**Why the issue's "supersedes" line could not be honoured as written.** HIR-14 asked the
+entry to supersede "no résumé upload (too error-prone)". That phrase is recorded nowhere in
+this repo; it is from the legacy project. This entry is written against the scope line in
+the rebuild decision instead.
+
+---
+
 ## 2026-11-01 — Taxonomy v5: the HIR-70 gaps triaged, but the 3-jobs rule still gates (HIR-72)
 
 The two HIR-70 labelers reported 216 label strings they could not map to taxonomy v4. All
