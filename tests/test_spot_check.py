@@ -175,6 +175,7 @@ def test_a_short_inline_heading_is_not_marked_as_a_fragment():
     ("About Ubiquiti", "intro prose"),
     ("Nice-to-have requirements", "optional"),   # optional wins over the requirements words
     ("Profile we're looking for", "requirements"),
+    ("Qualifikationen", "requirements"),
     ("Als Qualitätsingenieur KI-Fokus sollten Sie mitbringen:", "requirements"),
     ("IN ORDER FOR YOU TO BE SUCCESSFUL, YOU BRING:", "requirements"),
 ])

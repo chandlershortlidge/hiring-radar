@@ -88,7 +88,7 @@ HEADING_KINDS = (
     ("responsibilities", ("responsibilit", "what you will do", "what you'll do", "your role",
                           "your tasks", "deine aufgaben", "aufgaben", "the role", "day to day",
                           "day-to-day", "deine rolle")),
-    ("requirements", ("requirement", "qualification", "looking for", "you bring",
+    ("requirements", ("requirement", "qualification", "qualifikation", "looking for", "you bring",
                       "your profile", "about you", "dein profil", "bringst du",
                       "mitbringen", "must have", "must-have", "skills", "experience",
                       "we expect", "who you are", "sollten sie")),
