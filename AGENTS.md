@@ -122,7 +122,10 @@ Rebuild of `job-skills-dashboard` (the June 2026 hackathon version). Why the reb
 what changed: DECISIONS.md, first entry.
 
 Out of scope (deliberately): résumé matching or tailoring, email parsing, applicant
-counts, anything that requires LinkedIn.
+counts, anything that requires LinkedIn. One narrow exception, since 2026-11-01 (HIR-14):
+a CV may be read **in the browser** to pre-select the profile's skill chips, which the
+person then edits. The CV never reaches the server or a provider. Tailoring, stored
+résumés and scoring a person against a posting stay out.
 
 ---
 
