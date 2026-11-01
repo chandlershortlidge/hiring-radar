@@ -4,7 +4,7 @@
   "seniority": "senior",
   "seniority_basis": "stated",
   "seniority_signal": "Lead AI Engineer",
-  "seniority_reviewed": true,
+  "seniority_reviewed": false,
   "german": null,
   "german_basis": null,
   "german_signal": null,
@@ -27,7 +27,7 @@
   "adjudicated_by_model": [
     "skill:ai-infrastructure"
   ],
-  "spot_checked": true,
+  "spot_checked_by": "claude-fable-5-1 (assistant)",
   "job_description": "Lead AI Engineer, Agents & Infrastructure\n\nABOUT THE ROLE\n\nAs Lead AI Engineer, you will own the platform that makes AI agents capable, reliable, and increasingly autonomous. Working closely with technical and product teammates, you will turn advances in AI into dependable capabilities for a procurement technology platform.\n\n\nWHAT YOU'LL DO\n\n - Build agent orchestration, context management, memory, and programmatic tool calling.\n\n - Enable agents to perform useful work through sandboxed code execution and permission-aware access to data.\n\n - Develop evaluations for multi-turn workflows so agent quality and reliability can be measured.\n\n - Integrate models and build inference infrastructure to make AI practical at scale.\n\n - Create shared foundations that help product engineers deliver agent-powered features.\n\n\nWHAT WE'RE LOOKING FOR\n\n - Typically 5+ years of software engineering experience, with strong engineering fundamentals and hands-on TypeScript skills; Python experience is useful.\n\n - Experience shipping LLM-powered systems to real customers and owning them after launch.\n\n - Deep hands-on experience with agent orchestration, tool calling, and context management.\n\n - Experience with sandboxed code execution, inference infrastructure, or similarly demanding production systems.\n\n - Ability to evaluate system quality beyond demos, make sound technical decisions, and help other engineers succeed.\n\n - Familiarity with evaluation frameworks and failure investigation is useful; procurement experience is a plus.\n\n\nCOMPENSATION & BENEFITS\n\nCompetitive salary and meaningful equity are offered. Salary range was not specified. Visa sponsorship is not available.\n\n\nLOCATION\n\nThis is an on-site role in Berlin, Germany.",
   "expected": [
     {

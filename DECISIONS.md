@@ -673,16 +673,18 @@ labeling run started before this edit was stopped at posting 3 of 24 and restart
 >   agree the item is recorded `ok`, again `by: "model"`; where it differs, `?`. It refuses
 >   to run if the labeler prompt has changed since the run, since a disagreement under an
 >   edited guide cannot be told apart from a rule change.
-> - **`sample`** — the human spot-check, drawn seeded from the three-way-agreed labels and
->   put back to `?` so `apply` cannot pass without it. n=15 of 79, seed 0 — 19% of the
->   agreed pool, the 15–20% HIR-70 asked for.
+> - **`sample`** — the spot-check, drawn seeded from the three-way-agreed labels and put
+>   back to `?` so `apply` cannot pass without it. n=15 of 79, seed 0 — 19% of the agreed
+>   pool, the 15–20% HIR-70 asked for. It was **meant** to be the one number a person
+>   produced, and it is not (see the correction below); `--answered-by` now records who
+>   answered instead of letting the field's name assume it.
 >
 > **What a model decided is recorded as such.** A Golden carries `adjudicated` (fields a
 > person decided) and `adjudicated_by_model` (fields the judge or the third labeler
 > settled) separately, plus `third_labeler` where one read the posting.
 > `seniority_reviewed` / `attrs_reviewed` keep their meaning — a person looked at this —
 > so they stay false for anything only a model touched. `apply` counts the spot-check error
-> rate over the human sample, not over every agreed label.
+> rate over the drawn sample rather than over every agreed label, and records who answered it.
 >
 > **Measured.** judge: ruled 70, agreed with the proposal on **50**, **20** left for a
 > person, 0 unusable verdicts. Agreement is judged on the outcome, not the verdict word: on
@@ -693,7 +695,8 @@ labeling run started before this edit was stopped at posting 3 of 24 and restart
 > pool is the labels two models already agreed on, so it says the easy cases are solid, not
 > that the answer key is right. The hard cases went to the queue.
 >
-> **Settled by a person:** all 15 spot-check labels came back `ok`. Of the 21
+> **Answered outside the queue:** all 15 spot-check labels came back `ok` — from a model,
+> not a person; see the correction below. Of the 21
 > judge-vs-proposal splits, the judge was taken on 8, the proposal on 7, and on the six that
 > differed only in the quote the shorter quote won three times — `Architektur` alone does not
 > name *software* architecture, `deployment` alone does not name *AI* deployment, and
@@ -808,7 +811,8 @@ vs B `gpt-6.1-sol`, 0 failures): **skills P 0.932 / R 0.974 / F1 0.953** (tp 301
 A-only 8), requirement 0.993 on shared ids, seniority 24/24, German 24/24, degree 23/24.
 243 skills and 62 attributes accepted on agreement; 201 queue items (24 in-scope, 31
 disagreement, 65 uncertain, 1 mapping, 80 spot-check). **Spot-check error rate 0 of 15 labels, 95%
-Wilson [0.000, 0.204]** — the human sample drawn seeded from the three-way-agreed pool.
+Wilson [0.000, 0.204]** — a sample drawn seeded from the three-way-agreed pool and answered
+by a fourth model, not by a person.
 
 ### The numbers this process produced (2026-10-30)
 
@@ -821,17 +825,33 @@ third labeler `gemini-4-argon`, extractor `claude-sonnet-5-5` (never a labeler).
 | labeler agreement, requirement on shared ids | 0.993 |
 | labeler agreement, attributes | seniority 24/24, German 24/24, degree 23/24 |
 | third labeler vs the agreed labels | **0 of 79 differed**, Wilson 95% [0.000, 0.046] |
-| human spot-check of the three-way-agreed labels | **0 errors of 15**, Wilson 95% [0.000, 0.204] |
+| fourth-model check of the three-way-agreed labels | **0 errors of 15**, Wilson 95% [0.000, 0.204] — `claude-fable-5-1`, not a person |
 | adjudication split, fields | **45 decided by a person, 50 by a model** |
 
 Each number answers a different question, and the weakest one is the one that counts.
 Agreement measures whether two readers coincide, not whether they are right. The third
 labeler's 0/79 is drawn from the pool two models already agreed on — the easy cases by
 construction, since every hard one was queued — so it bounds how often three independent
-readers of an easy label all err, not how good the answer key is. The spot-check's 0/15 is
-the only number where a person read the posting, and its interval is wide: 15 labels cannot
-rule out a 20% error rate. Treat the key as good enough to gate a release and not as
-settled; the interval narrows only by a person reading more labels.
+readers of an easy label all err, not how good the answer key is. The 0/15 adds a fourth
+reader to that same easy pool, and its interval is wide on top of that: 15 labels cannot rule
+out a 20% error rate.
+
+**Correction, 2026-10-30: no label in this process was checked by a person.** The 15-label
+spot-check was answered by `claude-fable-5-1` in a side conversation, and was recorded at the
+time as a human sample and reported as the one number a person's attention bought. It is not.
+The Goldens carry `spot_checked_by: "claude-fable-5-1 (assistant)"` instead of
+`spot_checked: true`, and `seniority_reviewed` / `attrs_reviewed` are false wherever only
+that check touched a field — those flags mean a person looked, and `apply` now takes the
+answerer from the record instead of assuming one. What a person did decide is unchanged, and
+it is the 45 in the row above: the queue adjudication, every disagreement, every judge split.
+
+It also makes the fourth reader a partly correlated one. `claude-fable-5-1` shares a family
+with labeler A (`claude-opus-5-5`), and this entry already records what that costs — the
+two-Claude smoke run agreed 43/43 and measured nothing. A cross-family checker was the right
+choice for the judge and the third labeler, and would have been here.
+
+**A human spot-check is still open.** Until one is done, the error rate on this answer key is
+four models agreeing with each other.
 
 ### Held-out eval at the release point
 
@@ -881,7 +901,8 @@ correlated labelers produce a clean number and measure nothing; the cross-family
 produces 31 real disagreements to adjudicate.
 
 With those adjudicated and the spot-check recorded, **the held-out split is a release gate**
-(HIR-55): 26 Goldens, provenance per label, and an error rate with an interval on it.
+(HIR-55): 26 Goldens, provenance per label, and an error rate with an interval on it — a
+model-produced error rate, per the correction above, which is the gate's weakest joint.
 
 **Scope calls on that run: two postings out, two kept on purpose.**
 
