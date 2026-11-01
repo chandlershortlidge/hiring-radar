@@ -5,6 +5,55 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-01 — Taxonomy v7: the German and short-form spellings the Golden pass found (HIR-101)
+
+The HIR-97 pass over the 46 Golden postings listed every label a Golden spells one way and
+the taxonomy another. Twenty-four aliases close them, mostly German words for skills already
+tracked in English: `vektordatenbanken`, `vector db` → `vector-databases`;
+`container`, `containerisierung` → `containerization`; `softwareentwicklung` →
+`software-engineering`; `architekturdesign` → `software-architecture`;
+`machine-learning-konzepte` → `machine-learning`; `verteilte systeme` →
+`distributed-systems`; `datenpipelines` → `data-pipelines`; `datenmodelle` →
+`data-modeling`; `evaluierung` → `evaluation`; `versionierung` → `model-versioning`;
+`versionskontrolle` → `git`; `feinabstimmung` → `fine-tuning`; `automatisierte tests`,
+`testautomatisierung` → `testing`; `netzwerke` → `networking`; `statistische methoden` →
+`statistics`; `orchestrierungs-frameworks` → `llm-orchestration`; plus the short forms
+`spark` → `apache-spark`, `huggingface` → `hugging-face`, `nodejs` → `node-js`,
+`bedrock` → `aws-bedrock`, `s3` → `aws-s3`. Taxonomy v7, still 210 skills — aliases add no
+row to the chart, so the rule that a proposed skill needs three postings does not apply.
+
+**`deployment` stays out, and this is the general shape of the rule.** It is the one
+candidate whose English and German spelling are the same word, and it reads as a whole word
+in 23 of the 46 Goldens — five of them (003, 005, 006, 011, 045) in postings that do *not*
+ask for `ai-deployment`: "deployment and monitoring of data pipelines", "cloud-native
+deployment", "concept & design, development, QA, deployment and production monitoring".
+Those are ordinary software delivery, not deploying a model. An alias has to be the same
+*thing* spelled differently; bare "deployment" is a broader thing than `ai-deployment`, so
+it would be a parent at best and is a false positive in practice. `model deployment` and
+`ml model deployment` already cover the narrow sense.
+
+**`container` goes in, on the same test.** Four whole-word occurrences across the Goldens,
+every one in a posting that does ask for `containerization` ("DevOps-Stacks (CI/CD, IaC,
+Container, Kubernetes)", "Container-Technologien wie Docker"). German compounds the word
+rather than pluralising it, so the existing `containers` alias misses all four.
+
+**`netzwerke` goes in despite one miss.** Its single occurrence in the Goldens is company
+boilerplate — golden_025 runs "Kommunikations-Netzwerke für den Digitalfunk BOS" — not a
+requirement, and that posting does not ask for `networking`. It is kept anyway because it is
+simply the German for Networking, the same thing spelled differently, which is what an alias
+is; the miss is a posting describing its own infrastructure, which the extractor is told not
+to read as a requirement. If `networking` starts appearing on the chart for postings that
+never asked for it, this alias is the first thing to pull.
+
+**`s3` is the documented exception to the three-character floor.** `cvSkills.js` refuses any
+phrase under `MIN_PHRASE` = 3 characters, so `s3` resolves when a job posting names it and
+is silently ignored when a CV does — which is the right split: "S3" in a stack list is
+unambiguous, "S3" in a CV is as likely a model number. Every other alias added here is 3
+characters or more. `postgress` (a typo), and bare `c#`, `r` and `go` stay out for the same
+floor, as in HIR-97.
+
+---
+
 ## 2026-11-01 — Taxonomy v6: the nine spellings the first real CV run missed (HIR-97)
 
 Chandler's own CV through the HIR-14 matcher ticked 20 skills and missed six, every one a
