@@ -1036,6 +1036,37 @@ def test_heading_above_finds_the_section_and_skips_bullets():
     assert al.heading_above(posting, posting.index("Docker")) == "Core Requirements"
 
 
+def test_is_bullet_tells_a_list_item_from_a_bold_heading():
+    assert al.is_bullet("* Strong Python")
+    assert al.is_bullet("  - Docker")
+    assert al.is_bullet("• Kubernetes")
+    assert al.is_bullet("*")
+    assert not al.is_bullet("**Deine Benefits**")
+    assert not al.is_bullet("*Dein Profil*")
+    assert not al.is_bullet("")
+    assert not al.is_bullet("Core Requirements")
+
+
+def test_heading_above_skips_a_star_bullet_and_keeps_a_bold_heading():
+    # golden_027's shape: `*` bullets under a bold heading.
+    posting = ("Rolle\n\n**Dein Profil**\n\n"
+               "* Fundierte Erfahrung in GenAI-Technologien (\n* LLM APIs\n")
+    assert al.heading_above(posting, posting.index("LLM APIs")) == "Dein Profil"
+
+
+def test_heading_above_ignores_the_line_at_cuts_through():
+    posting = "Role\n\nCore Requirements\n\n- Strong Python\n- Docker in production\n"
+    # `at` lands inside "- Docker in production", so the fragment "- Docker in " is not a heading.
+    assert al.heading_above(posting, posting.index("in production")) == "Core Requirements"
+
+
+def test_heading_above_ignores_a_sentence():
+    # golden_038: a sentence is prose, not a section called "requirements".
+    posting = ("Requirements\n\nThese are meant to be indicative, not hard requirements.\n\n"
+               "- Docker in production\n")
+    assert al.heading_above(posting, posting.index("Docker")) == "Requirements"
+
+
 def test_wide_excerpt_carries_the_heading_and_marks_the_truncation():
     posting = "Role\n\nNice-to-haves\n\n- " + ("filler " * 200) + "Docker in production\n"
     out = al.wide_excerpt(posting, "Docker in production", width=60)

@@ -41,6 +41,11 @@
       "raw_text": "evaluation frameworks"
     },
     {
+      "skill_id": "llm-orchestration",
+      "requirement": "required",
+      "raw_text": "Deep hands-on experience with agent orchestration"
+    },
+    {
       "skill_id": "llms",
       "requirement": "required",
       "raw_text": "LLM-powered systems"

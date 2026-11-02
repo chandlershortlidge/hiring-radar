@@ -1,0 +1,10 @@
+[Unit]
+Description=hiring-radar database backup to Cloud Storage
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=hiring-radar
+Group=hiring-radar
+ExecStart=/opt/hiring-radar/app/deploy/backup.sh

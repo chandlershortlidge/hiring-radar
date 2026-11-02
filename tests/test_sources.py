@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 from app.html_text import html_to_text
+from app.ingest import in_scope_title
 from app.sources import arbeitnow, ashby, greenhouse, lever, startup_jobs
 
 FIX = Path(__file__).parent / "fixtures" / "feeds"
@@ -181,7 +182,102 @@ def test_arbeitsagentur_fetch_pages_and_calls_details(monkeypatch):
     assert sum("/pc/v6/jobs?" in c for c in calls) == 2 and sum("/jobdetails/" in c for c in calls) == 2
 
 
-# --- jsearch (fixture is hand-built to the documented shape) ---------------------
+def test_arbeitsagentur_listing_title_reads_both_shapes():
+    from app.sources import arbeitsagentur
+    assert arbeitsagentur.listing_title({"stellenangebotsTitel": " AI Engineer "}) == "AI Engineer"
+    assert arbeitsagentur.listing_title({"titel": "ML Engineer"}) == "ML Engineer"   # v4
+    assert arbeitsagentur.listing_title({}) is None
+    assert arbeitsagentur.listing_title({"stellenangebotsTitel": "   "}) is None
+
+
+def test_arbeitsagentur_wanted_keeps_untitled_and_unfiltered_results():
+    from app.sources import arbeitsagentur
+    sales = {"stellenangebotsTitel": "Vertriebsmitarbeiter KI-Lösungen"}
+    assert arbeitsagentur.wanted(sales, None) is True             # no filter: everything
+    assert arbeitsagentur.wanted(sales, in_scope_title) is False
+    assert arbeitsagentur.wanted({"stellenangebotsTitel": "AI Engineer"}, in_scope_title) is True
+    assert arbeitsagentur.wanted({"refnr": "R"}, in_scope_title) is True   # no title to judge
+
+
+def test_arbeitsagentur_fetch_skips_details_for_out_of_scope_titles(monkeypatch):
+    from app.sources import arbeitsagentur
+    search = {"ergebnisliste": [
+        {"referenznummer": "A", "stellenangebotsTitel": "AI Engineer (m/w/d)"},
+        {"referenznummer": "B", "stellenangebotsTitel": "Vertriebsmitarbeiter KI-Lösungen"},
+        {"referenznummer": "C"},                      # no title in the search result
+    ], "maxErgebnisse": 3, "page": 1, "size": 50}
+    details = {"A": {"stellenangebotsBeschreibung": "Python, RAG"},
+               "C": {"stellenangebotsBeschreibung": "Python", "stellenangebotsTitel": "ML Engineer"}}
+    calls = []
+
+    def fake_fetch_json(url, headers=None, timeout=30):
+        calls.append(url)
+        if "/jobdetails/" in url:
+            for refnr, d in details.items():
+                if url == arbeitsagentur.details_url(refnr):
+                    return d
+            raise AssertionError(f"details fetched for a dropped title: {url}")
+        return search
+
+    monkeypatch.setattr(arbeitsagentur, "fetch_json", fake_fetch_json)
+    ps = arbeitsagentur.fetch("AI Engineer", max_pages=1, title_filter=in_scope_title)
+    assert [p.source_job_id for p in ps] == ["A", "C"]
+    assert sum("/jobdetails/" in c for c in calls) == 2        # B never fetched
+
+
+def test_poll_passes_the_title_filter_to_arbeitsagentur(monkeypatch):
+    from app import poll
+    from app.sources import arbeitsagentur
+    got = {}
+
+    def fake_fetch(*args, **kwargs):
+        got.update(kwargs)
+        return []
+
+    monkeypatch.setattr(arbeitsagentur, "fetch", fake_fetch)
+    poll.fetch_feed({"type": "arbeitsagentur", "search": "AI Engineer"})
+    assert got["title_filter"] is in_scope_title
+
+
+# --- jsearch (jsearch_recorded.json is a real response; jsearch.json is hand-built
+#     for the degenerate records a real response does not contain) -----------------
+
+def test_jsearch_parse_reads_a_recorded_response():
+    from app.sources import jsearch
+    ps = jsearch.parse(load("jsearch_recorded.json"))
+    sumup = [p for p in ps if p.company == "SumUp"]
+    assert len(sumup) == 1
+    assert sumup[0].title == "AI / Machine Learning Engineer II | Mitte, DE"
+    assert sumup[0].source_job_id == "oh0HsA4eZrv-OO8wAAAAAA=="
+    assert sumup[0].location_raw == "Berlin"
+    assert sumup[0].posted_at == "2026-10-28T00:00:00.000Z"
+    assert "Global Operations" in sumup[0].description_text
+
+
+def test_jsearch_parse_drops_aggregator_headline_rows():
+    """HIR-96: JobLeads gave the search-result headline as job_title and an unrelated
+    firm as employer_name; the recorded response has the same posting from another
+    publisher with the right title and company, so dropping it loses nothing."""
+    from app.sources import jsearch
+    payload = load("jsearch_recorded.json")
+    assert any(j["employer_name"] == "Primetime" for j in payload["data"])
+    ps = jsearch.parse(payload)
+    assert [p.company for p in ps].count("Primetime") == 0
+    assert not any("arbeitnow" in p.title for p in ps)
+    assert len(ps) == len(payload["data"]) - 1
+
+
+def test_jsearch_is_headline_only_fires_on_a_trailing_date():
+    from app.sources import jsearch
+    assert jsearch.is_headline(
+        "AI / Machine Learning Engineer II arbeitnow SumUp Berlin, Berlin, Germany · 10/28/2026")
+    assert jsearch.is_headline("Voice AI Engineer arbeitnow NAIRON Berlin · 10/18/2026")
+    assert jsearch.is_headline("AI Engineer Berlin 2026-10-18")
+    assert not jsearch.is_headline("AI / Machine Learning Engineer II | Mitte, DE")
+    assert not jsearch.is_headline("Machine Learning Engineer • Full Time • Berlin • Hybrid")
+    assert not jsearch.is_headline("Senior AI Engineer (m/f/d)")
+    assert not jsearch.is_headline("Data Scientist 2026 Graduate Programme")
+
 
 def test_jsearch_parse_maps_fields_and_skips_empty():
     from app.sources import jsearch
@@ -316,10 +412,13 @@ def test_remote_flags_become_part_of_the_location():
     """arbeitnow `remote`, startup.jobs `workplace_type`, JSearch `job_is_remote` → geo sees them."""
     from app.geo import place_of
     from app.sources import jsearch
+    # arbeitnow names no country, so it adds none: a bare city passes through untouched
+    # and geo judges it (HIR-98). See test_arbeitnow_remote_* below.
     item = {"slug": "s", "company_name": "Acme", "title": "AI Engineer", "description": "<p>x</p>",
             "url": "u", "location": "Munich", "remote": True, "created_at": 1760000000}
-    assert arbeitnow.parse({"data": [item]})[0].location_raw == "Munich (remote, Germany)"
-    assert place_of("Munich (remote, Germany)") == "Remote (EU)"
+    assert arbeitnow.parse({"data": [item]})[0].location_raw == "Munich"
+    assert arbeitnow.parse({"data": [{**item, "location": "Germany"}]})[0].location_raw == "Germany (remote)"
+    assert place_of("Germany (remote)") == "Remote (EU)"
     sj = {"id": 1, "title": "AI Engineer", "description": "x", "company_name": "Acme", "url": "u",
           "workplace_type": "remote", "location": {"city": "Hamburg", "country": "Germany"}}
     assert startup_jobs.parse({"data": [sj]})[0].location_raw == "Hamburg (remote, Germany)"
@@ -328,3 +427,53 @@ def test_remote_flags_become_part_of_the_location():
     assert jsearch.parse({"data": [js]})[0].location_raw == "Remote (Germany)"
     assert jsearch.parse({"data": [{**js, "job_country": "US"}]})[0].location_raw == "Remote (US)"
     assert place_of("Remote (US)") is None
+
+
+# --- arbeitnow: remote never invents a country (HIR-98) --------------------------
+
+def _arbeitnow_remote_places():
+    """Every posting in the remote fixture → (slug, location after parse, place ingest sees)."""
+    from app.geo import active_place
+    return {p.source_job_id: (p.location_raw, active_place(p.location_raw))
+            for p in arbeitnow.parse(load("arbeitnow_remote.json"))}
+
+
+def test_arbeitnow_remote_non_german_city_is_not_eu_remote():
+    """A UK posting arriving as location="Bromley", remote=true must not become EU-remote."""
+    loc, place = _arbeitnow_remote_places()["remote-sql-developer-ai-prompting-bromley-268635"]
+    assert loc == "Bromley"            # no fabricated country
+    assert place is None               # so ingest's city filter drops it
+    assert in_scope_title("Remote SQL Developer (AI Prompting / Context Engineering)")
+
+
+def test_arbeitnow_remote_swiss_city_is_not_eu_remote():
+    """Switzerland is not the EU: "Zürich" + remote is dropped, not stored as Remote (EU)."""
+    assert _arbeitnow_remote_places()["ai-engineer-zurich-4"] == ("Zürich", None)
+
+
+def test_arbeitnow_remote_tracked_city_still_wins():
+    assert _arbeitnow_remote_places()["ai-engineer-berlin-1"] == ("Berlin", "Berlin")
+
+
+def test_arbeitnow_non_remote_location_unchanged():
+    assert _arbeitnow_remote_places()["ai-engineer-berlin-onsite-5"] == ("Berlin", "Berlin")
+
+
+def test_arbeitnow_remote_without_a_location_is_eu_remote():
+    """Nothing but `remote: true`: arbeitnow's own jurisdiction is the only region on offer."""
+    assert _arbeitnow_remote_places()["ai-engineer-nowhere-2"] == ("Remote (Germany)", "Remote (EU)")
+
+
+def test_arbeitnow_remote_german_words_survive_without_the_stamp():
+    """The rows that used to depend on the stamp reach Remote (EU) through geo's own paths:
+    "Homeoffice" has no region at all, "Germany" names one."""
+    places = _arbeitnow_remote_places()
+    assert places["ai-engineer-homeoffice-3"] == ("Homeoffice", "Remote (EU)")
+    assert places["ai-engineer-germany-6"] == ("Germany (remote)", "Remote (EU)")
+
+
+def test_names_eu_region_is_what_the_adapter_asks():
+    from app.geo import names_eu_region
+    assert names_eu_region("Germany") and names_eu_region("EMEA") and names_eu_region("Deutschland")
+    assert not names_eu_region("Bromley") and not names_eu_region("Zürich")
+    assert not names_eu_region("") and not names_eu_region(None)

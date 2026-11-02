@@ -6,8 +6,18 @@ to say "fine" or "no". Mechanical choices don't belong here. "None" is a valid a
 
 ## Needs Chandler
 
-<!-- Questions you stopped on, one line each, with the options. Also posted on the Linear
-issue with an @mention. "None" if the brief's questions were all answered. -->
+<!-- Only things that block the merge: questions you stopped on, one line each, with the
+options. Also posted on the Linear issue with an @mention. "None" if nothing blocks. -->
+
+## Follow-ups
+
+<!-- Things worth knowing that do NOT need an answer. Never phrase these as questions.
+Two lists, in this order; "None" is fine for either. -->
+
+**Changes what you'd see** — anything that alters the chart, the job list, a count, or
+which jobs get in or out. One line each, with the ticket it was filed as.
+
+**Internal** — refactors, test gaps, docs, tooling. One line each, with the ticket.
 
 ## Testing
 

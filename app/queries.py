@@ -3,6 +3,8 @@
 Does: turn a Filters object into SQL, compute document frequency over the filtered job
 set (count of jobs mentioning each skill ÷ jobs in the set), the skills that co-occur with
 the selected ones (share against the same set's baseline), and the open/closed status of a job.
+The job list also searches two ways that do not blur: `query` over company and title,
+`text` over the posting text itself (the FTS5 index migration 014 keeps in step with it).
 
 Does NOT: write anything, know about HTTP, or call a model. Frontend-only concerns
 (profile match, chip ordering) are computed from these results elsewhere.
@@ -91,6 +93,7 @@ class Filters:
     # that list every one of them. () = no skill filter.
     skill_ids: tuple[str, ...] = ()
     query: str = ""                       # job list only: company/title substring
+    text: str = ""                        # job list only: words that must appear in the posting text
 
 
 # --- the job set ----------------------------------------------------------------------
@@ -157,6 +160,24 @@ def _skills_clause(f: Filters, prefix: str = "sm") -> tuple[str, list]:
                      f" WHERE {a}.job_id = j.id AND {a}.skill_id = ? AND {mc})")
         params += [sid] + mp
     return (" AND ".join(parts) or "1=1"), params
+
+
+# --- posting-text search ----------------------------------------------------------------
+
+def fts_query(text: str) -> str:
+    """Turn what a person typed into an FTS5 MATCH expression: every word must appear.
+
+    FTS5 reads bare input as a query language (AND/OR/NOT, NEAR, column filters, "*"), so
+    typing `AND` or an unbalanced quote would either change the meaning or raise a syntax
+    error. Each whitespace-separated word is therefore wrapped in double quotes, which
+    makes it a literal string token, and the quoted words are ANDed. Returns "" when
+    nothing is left to search for, which the caller reads as "no text filter".
+    """
+    words = [w.replace('"', "") for w in text.split()]
+    return " AND ".join(f'"{w}"' for w in words if w)
+
+
+_FTS_CLAUSE = "j.id IN (SELECT rowid FROM job_fts WHERE job_fts MATCH ?)"
 
 
 # --- stats ------------------------------------------------------------------------------
@@ -311,6 +332,10 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
         q = f"%{f.query.strip().lower()}%"
         where.append("(lower(j.company) LIKE ? OR lower(j.title) LIKE ?)")
         params += [q, q]
+    match = fts_query(f.text)
+    if match:
+        where.append(_FTS_CLAUSE)
+        params.append(match)
     w = " AND ".join(where)
     total = conn.execute(f"SELECT count(*) FROM job j WHERE {w}", params).fetchone()[0]
     order = SORTS.get(sort, SORTS["newest"])

@@ -122,7 +122,10 @@ Rebuild of `job-skills-dashboard` (the June 2026 hackathon version). Why the reb
 what changed: DECISIONS.md, first entry.
 
 Out of scope (deliberately): résumé matching or tailoring, email parsing, applicant
-counts, anything that requires LinkedIn.
+counts, anything that requires LinkedIn. One narrow exception, since 2026-11-01 (HIR-14):
+a CV may be read **in the browser** to pre-select the profile's skill chips, which the
+person then edits. The CV never reaches the server or a provider. Tailoring, stored
+résumés and scoring a person against a posting stay out.
 
 ---
 
@@ -155,6 +158,7 @@ uv run python -m app stats
 
 # Dashboard
 cd web && npm install && npm run build && cd ..   # once, and after frontend changes → web/dist
+cd web && npm test && cd ..                       # the frontend's own tests (vitest), e.g. the CV matcher
 uv run python -m app serve                        # http://127.0.0.1:8000 (API + built frontend)
 cd web && npm run dev                             # frontend with hot reload on :5173, proxies /api to :8000
 HIRING_RADAR_DB=/tmp/demo.db uv run python scripts/seed_demo.py   # fake data to look at the UI without model calls
@@ -169,9 +173,13 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - SQLite, one file, schema managed by numbered migrations in `app/migrations/`.
 - React 18 + Vite frontend in `web/`, no chart library (CSS bars), served from `web/dist`
   by the same process.
-- Hosting: one GCP Compute Engine VM in europe-west3 (HIR-29): systemd service + 07:00 poll
-  timer, Caddy for HTTPS + basic auth, nightly SQLite backup to GCS, deploy on merge to
-  `main` via GitHub Actions. How to SSH in and operate it: [deploy/README.md](deploy/README.md).
+- Hosting: one GCP Compute Engine e2-micro in europe-west3 (HIR-29): systemd service +
+  07:00 poll timer, Caddy for HTTPS + basic auth, nightly SQLite backup to a GCS bucket
+  with a 30-day lifecycle, deploy on merge to `main` via GitHub Actions. The deploy job
+  authenticates by workload identity federation (no stored key; only `main` of this repo)
+  and reaches the VM through IAP + OS Login. How to SSH in, operate it, rebuild it and
+  restore a backup: [deploy/README.md](deploy/README.md); the shape and the reasons are in
+  DECISIONS.md (2026-10-21 and 2026-11-01, HIR-74).
 
 ### Where things live
 
@@ -214,6 +222,9 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   degree, production, requirement, window), skill document frequency with per-city counts,
   related-skills co-occurrence with lift (`related_skills`, feeds `/api/skills/related`),
   job list/detail, proposed-skill grouping and resolution. The open-job rule lives here.
+  Two job-list searches that never blur: `query` over company and title, `text` over the
+  posting itself (`fts_query` sanitizes it; the FTS5 index is migration 014's `job_fts`,
+  kept in step with `job.description_text` by triggers, so writers need not know of it).
 - `app/api.py` — FastAPI routes over `queries` plus the add-a-job paths (url / text /
   screenshot), which run intake + extraction for the one job added. Validates every filter
   value (422), one SQLite connection per request, model client created lazily.
@@ -227,6 +238,12 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   `JobList.jsx` (rows + expanded detail with quotes), the three drawers
   (`AddJobDrawer`, `ReviewDrawer`, `ProfileDrawer`), `profile.js` (localStorage profile +
   set-overlap coverage; the server never sees it), `api.js`, `format.js`.
+- `web/src/cvSkills.js` + `cvText.js` — "Fill from your CV" in `ProfileDrawer` (HIR-14).
+  `cvSkills.js` is the pure matcher (CV text → taxonomy ids: literal, word-boundary,
+  case-insensitive except ReAct/React, phrases under 3 characters never match) and is what
+  the tests cover; `cvText.js` is the thin reader (PDF via pdf.js, .docx via mammoth, plain
+  text). **The CV is read in the browser and never leaves it** — no endpoint, no model call,
+  nothing stored (DECISIONS 2026-11-01). Keep it that way: the drawer promises it.
 - `app/__main__.py` — the CLI (`python -m app ...`, including `serve`).
 - `.claude/skills/check-url/` — `/check-url <url>`: runs `check` and acts on the verdict
   (adds the board to `config/feeds.json` and polls; stops on filter judgment calls).
@@ -247,6 +264,12 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   held-out eval. See DECISIONS 2026-10-27 and `evals/LABELER_PROMPT.md`.
 - `scripts/seed_from_legacy.py` — one-off that built the taxonomy and Goldens from the
   legacy repo. Kept for provenance.
+- `deploy/` — everything about the VM: the runbook (`README.md`), `provision.sh` (rebuilds
+  the VM's software side, re-runnable), the five systemd units and the `Caddyfile` as
+  verbatim copies of what is in the VM's `/etc` (the Caddyfile's password hash is a
+  placeholder), `backup.sh`, `remote-deploy.sh` (what the GitHub deploy job runs on the
+  VM) and the bucket's lifecycle rule. Editing a unit or the Caddyfile here changes
+  nothing by itself — a deploy does not apply them; `provision.sh` does.
 - `tests/` — pytest.
 
 Three layout rules:
@@ -356,12 +379,32 @@ situation, one line per option with its consequence, a recommendation. His answe
 written into DECISIONS.md so it is never asked again. Meanwhile the worker does any step
 that doesn't depend on the answer, and stops.
 
-**Unattended runs never merge.** They open the PR; a person merges.
+**Autopilot issues.** An issue labelled `autopilot` in Linear is small enough that
+Chandler does not need to be involved: no "go" on the brief, every question to the
+decider, the first thing he sees is the PR. Label an issue `autopilot` when it is one
+bounded change with no stop-list item in it (aliases, a fixture, a copy fix, a test).
+A NO RULE from the decider still stops the run — guessing is not autopilot.
+
+Whoever files the issue applies the label, by that rule, at filing time: an agent
+writing a follow-up ticket, the decider, or a Claude session. Chandler does not sort
+issues by hand. When in doubt, leave the label off; an attended run costs one "go".
+
+**Who merges.** A worker never merges its own PR. For an `autopilot` issue the
+`reviewer` agent (`.claude/agents/reviewer.md`, fresh context, Fable) merges when CI is
+green, the diff stays in scope and off the stop-list files, "Needs Chandler" is empty,
+every decision has an undo and every follow-up a ticket; otherwise it labels the PR
+`needs-chandler` and @mentions Chandler on the issue. At most one PR that re-reads every
+job (taxonomy, prompt, model) merges per day. PRs for non-autopilot issues always wait for
+a person. `/work-issue-orchestrator HIR-a HIR-b …` runs a batch: pick, one worker per issue in
+parallel worktrees, reviewer merges the autopilot PRs, attended ones pause for Chandler's
+go and wait for his merge, one report.
 
 ### Skills
 
 `.claude/skills/` holds the repeatable procedures. `/work-issue HIR-n` takes a Linear
-issue to a PR; `/check-url` audits feed coverage for careers-page URLs. When a procedure
+issue to a PR; `/work-issue-orchestrator` runs a batch of issues through work, review and
+merge; `/check-url` audits feed coverage for careers-page URLs. `.claude/agents/` holds
+the `decider` (answers questions from the rules) and the `reviewer` (merges autopilot PRs). When a procedure
 has been typed into a session twice, it belongs here; when one fails, fix the skill, not
 the conversation.
 
