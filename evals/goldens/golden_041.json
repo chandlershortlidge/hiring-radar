@@ -104,5 +104,11 @@
       "requirement": "required",
       "raw_text": "automatisierten Tests"
     }
+  ],
+  "spot_checked_by_human": [
+    "degree",
+    "german",
+    "skill:containerization",
+    "skill:python"
   ]
 }

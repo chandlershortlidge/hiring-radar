@@ -102,5 +102,8 @@
       "requirement": "nice_to_have",
       "raw_text": "Vektordatenbanken"
     }
+  ],
+  "spot_checked_by_human": [
+    "skill:vector-databases"
   ]
 }

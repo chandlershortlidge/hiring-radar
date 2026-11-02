@@ -66,5 +66,8 @@
       "requirement": "required",
       "raw_text": "Terraform"
     }
+  ],
+  "spot_checked_by_human": [
+    "skill:python"
   ]
 }

@@ -125,5 +125,10 @@
       "requirement": "required",
       "raw_text": "Tool-Engineering"
     }
+  ],
+  "spot_checked_by_human": [
+    "skill:evaluation",
+    "skill:go",
+    "skill:grafana"
   ]
 }

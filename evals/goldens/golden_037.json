@@ -128,5 +128,8 @@
       "requirement": "required",
       "raw_text": "Weaviate"
     }
+  ],
+  "spot_checked_by_human": [
+    "seniority"
   ]
 }

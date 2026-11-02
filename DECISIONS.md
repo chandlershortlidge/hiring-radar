@@ -49,6 +49,70 @@ approved here.
 
 ---
 
+## 2026-11-02 — A person read 30 held-out labels: 0 errors of 30 (HIR-92)
+
+The held-out answer key now has one number a human produced. Until today the whole HIR-70
+batch — 22 Goldens, ~300 skill labels and ~60 attribute labels — was graded only by models
+agreeing with each other, and the 15-label "spot-check" recorded on 2026-10-30 was answered
+by `claude-fable-5-1`, not a person. That gap is what this entry closes.
+
+**The result: 0 errors of 30, Wilson 95% [0.000, 0.114]** — skills 0 of 24, attributes 0 of 6.
+The ticket's rule accepts the batch at 0–1 errors in 30, so no second sample was drawn. The
+interval is the honest part: 30 labels cannot rule out an 11% error rate. It is still the
+first bound on this answer key that does not rest on model agreement.
+
+**The protocol, which is the reusable half.** `scripts/spot_check.py`, two subcommands:
+
+- `sample` draws at the **label** level, not the posting level — one skill or one attribute
+  per item — seeded and stratified, and renders each item with its quote located in the
+  posting, the section heading named and classified, the neighbouring bullets, the other
+  sections the skill appears under, and (behind a null attribute) every mention of that
+  attribute's trigger words. 30 items in 3 batches of 10.
+- `apply` scores the answers, writes `summary.json`, and stamps `spot_checked_by_human` on
+  the labels that passed. It never changes a label's value: a wrong one lands in
+  `corrections_to_decide` to be ruled on separately. The Wilson interval is imported from
+  `agent_label.py` rather than re-implemented, so the two cannot fork.
+
+**The pool excludes every label a person had already read** — `adjudicated`,
+`spot_checked_by_human`, and attributes under a true `seniority_reviewed` / `attrs_reviewed`.
+Re-asking a question already answered by hand measures nothing. It deliberately ignores the
+whole-Golden `spot_checked` / `spot_checked_by` fields, because a model wrote those. 343
+labels eligible (281 skills, 62 attributes).
+
+**Each item arrives pre-answered, and the human confirms or flips.** Both checks — is this
+asked of the candidate, and is it required or nice-to-have — are stated with their one-line
+reason, plus a "watch for" line naming the single thing most likely to be misread. Quote-
+verbatim is not asked as a human question; the auto-check already enforces it, and the bold
+span in the context *is* the located quote. This is what keeps an item under 30 seconds.
+Rejected: showing the A/B/third-labeler outputs or the earlier adjudication notes — a
+reviewer who sees three models agree is no longer an independent read.
+
+**German postings are presented in English, translated, with the original quote kept.** The
+quoted phrase stays bold in the translation; the LABEL line carries the German verbatim in
+parentheses; the section heading is translated and classified; and an optional marker is
+named by its English meaning *and* by which bullet it attaches to, since that is the single
+most common way these labels go wrong ("sind von Vorteil" governing a three-item list, an
+"idealerweise" in the adjacent bullet). 16 of the 30 items were German.
+
+**Two readings confirmed as guide rules rather than changed.** Both were put up as candidate
+guide edits and came back accepted as-is: "These are meant to be indicative, not hard
+requirements" above a list does **not** flip the section to `nice_to_have` — it is prose, not
+a heading, and "indicative" is not one of rule 2's inline markers (golden_038); and "MS or
+PhD" takes the **highest** level named, per the degree rule as written (golden_040).
+
+**Amends the 2026-10-30 entry.** "A human spot-check is still open" and "the error rate on
+this answer key is four models agreeing with each other" were true when written and are now
+superseded by the 0-of-30 above. The 0-of-15 fourth-model row stands as a record of what was
+actually run; it is not a human number and the table already says so.
+
+Two taxonomy gaps the sample surfaced, both filed rather than fixed here: "recommendation
+engines" → `recommender-systems` and "prompting" → `prompt-engineering` are mapped by
+meaning with no registered alias. Three others the sample flagged the same way
+("orchestration frameworks", "Orchestrierungs-Frameworks", "Container-Orchestrierung") were
+already closed by taxonomy v7 on main.
+
+---
+
 ## 2026-11-01 — The deployed setup, written down: OS Login + federated deployer, units in the repo (HIR-74)
 
 HIR-29 built the VM by hand and left the result undocumented. This records the shape it
@@ -1084,6 +1148,10 @@ choice for the judge and the third labeler, and would have been here.
 
 **A human spot-check is still open.** Until one is done, the error rate on this answer key is
 four models agreeing with each other.
+
+> **Closed 2026-11-02 (HIR-92).** A person read a seeded sample of 30 labels from this batch:
+> **0 errors of 30, Wilson 95% [0.000, 0.114]**. See the 2026-11-02 entry for the protocol.
+> This paragraph records the state between 10-30 and 11-02; it is no longer the current one.
 
 ### Held-out eval at the release point
 
