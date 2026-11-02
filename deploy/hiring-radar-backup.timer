@@ -1,0 +1,9 @@
+[Unit]
+Description=hiring-radar nightly backup at 03:30 Berlin
+
+[Timer]
+OnCalendar=*-*-* 03:30:00 Europe/Berlin
+Persistent=true
+
+[Install]
+WantedBy=timers.target
