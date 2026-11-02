@@ -61,17 +61,16 @@ jobs:
           workload_identity_provider: projects/128016795965/locations/global/workloadIdentityPools/github/providers/hiring-radar-repo
           service_account: github-deployer@hiring-radar-512318.iam.gserviceaccount.com
       - uses: google-github-actions/setup-gcloud@v2
-      - name: Copy frontend to VM
-        run: >
-          gcloud compute scp web-dist.tgz hiring-radar:/tmp/web-dist.tgz
-          --zone=europe-west3-a --tunnel-through-iap --quiet --strict-host-key-checking=no --ssh-key-expire-after=30m
+      # One IAP/OS Login connection, not two: the tarball arrives on this ssh
+      # invocation's stdin instead of a separate `gcloud compute scp` (HIR-106).
+      # A truncated pipe fails `tar -xzf` in remote-deploy.sh, so the job goes red.
       - name: Deploy on VM
         run: |
           gcloud compute ssh hiring-radar --zone=europe-west3-a --tunnel-through-iap --quiet \
             --strict-host-key-checking=no --ssh-key-expire-after=30m --command "
-            
             set -e
+            cat > /tmp/web-dist.tgz
             sudo -u hiring-radar -H git -C /opt/hiring-radar/app fetch origin main
             sudo -u hiring-radar -H git -C /opt/hiring-radar/app reset --hard ${{ github.sha }}
             sudo bash /opt/hiring-radar/app/deploy/remote-deploy.sh /tmp/web-dist.tgz
-          "
+          " < web-dist.tgz
