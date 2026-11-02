@@ -13,23 +13,39 @@ written before that fix were already in the database: jobs 208 ("Primetime", "AI
 Engineer arbeitnow NAIRON Berlin · 10/18/2026"), duplicates of jobs 2/16 (commercetools)
 and 183 (NAIRON) under a company that never posted them.
 
-**They are deleted, in both the dev and the live database.** Chandler's go, 2026-11-02 —
-deleting stored jobs is on the AGENTS.md stop list, so this is the standing answer for
-rows of this exact shape: a title that `jsearch.is_headline` matches on a job with a
-jsearch source row is removable without asking again. Nothing else about them is
-recoverable — the real company appears only inside the headline — so there is nothing to
-repair and no reason to keep them. Rejected: keeping them and filtering them out of the
+The live database held five, not two: also jobs 254 (Nebius), 255 (Perplexity) and 363
+(SumUp). The dev copy was simply older.
+
+**A headline row that duplicates a posting we already hold is deleted.** Chandler's go,
+2026-11-02 — deleting stored jobs is on the AGENTS.md stop list, so this is the standing
+answer for rows of that shape: a title that `jsearch.is_headline` matches, on a job with a
+jsearch source row, **whose posting is stored under its real company too**, is removable
+without asking again. Four of the five qualified (208→2/16, 230→183, 254→196/219,
+255→175, all title-for-title). Rejected: keeping them and filtering them out of the
 queries (the chart would be right and the stored data wrong, and every later query would
 have to remember them), and rewriting their company and title by hand from the headline
 (it guesses, and dedup would then merge two rows whose text came from different places).
+
+**A headline row that is the only copy of a posting is a different question, and waits.**
+Job 363 is SumUp's "AI / Machine Learning Engineer II", stored nowhere else, and it cannot
+come back: HIR-96 now drops the record at parse time, and SumUp's polled Greenhouse board
+does not carry that posting (its other three rows came in on 2026-11-02 without it). So
+deleting it loses a real Berlin posting rather than a duplicate, which is not what the go
+covered. It stays, via `--keep 363`, until Chandler says which he wants: lose the posting,
+or repair the row by hand (its description text is genuine; only the company and title are
+the aggregator's, and both read unambiguously out of the headline). The chart therefore
+still shows one phantom "Primetime" employer.
 
 **The removal is a script, not typed SQL.** `scripts/remove_headline_jobs.py` selects with
 `app.sources.jsearch.is_headline` — the same test the adapter applies — so it can never
 remove a row the adapter would have kept, and so the two copies of the database are
 cleaned by the same rule rather than by two sets of hand-typed ids, which differ between
-them. It refuses to run with foreign keys off (that would orphan the skill mentions
-instead of cascading them), and it leaves a headline-titled job from any other source
-alone and reports it: that would be a different bug from the one approved here.
+them (as they did: the live copy had three rows the dev copy never saw). `--keep <id>`
+is how a person's "not that one" is expressed, so sparing a row is a recorded argument
+rather than an edited script. It refuses to run with foreign keys off (that would orphan
+the skill mentions instead of cascading them), and it leaves a headline-titled job from
+any other source alone and reports it: that would be a different bug from the one
+approved here.
 
 ---
 

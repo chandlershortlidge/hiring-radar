@@ -58,7 +58,7 @@ def test_removes_the_headline_job_and_cascades_its_mentions(conn):
 def test_leaves_real_titles_alone_even_from_jsearch(conn):
     _add_job(conn, "NAIRON", "Voice AI Engineer", mentions=2)
 
-    assert remove_headline_jobs.remove(conn) == {"removed": [], "skipped_other_source": []}
+    assert remove_headline_jobs.remove(conn) == {"removed": [], "kept": []}
     assert conn.execute("SELECT COUNT(*) FROM job").fetchone()[0] == 1
 
 
@@ -68,7 +68,7 @@ def test_reports_but_keeps_a_headline_title_from_another_source(conn):
     result = remove_headline_jobs.remove(conn)
 
     assert result["removed"] == []
-    assert [r["id"] for r in result["skipped_other_source"]] == [pasted]
+    assert [r["id"] for r in result["kept"]] == [pasted]
     assert conn.execute("SELECT COUNT(*) FROM job").fetchone()[0] == 1
 
 
@@ -85,7 +85,7 @@ def test_second_run_finds_nothing(conn):
     _add_job(conn, "Primetime", HEADLINE, mentions=3)
 
     assert len(remove_headline_jobs.remove(conn)["removed"]) == 1
-    assert remove_headline_jobs.remove(conn) == {"removed": [], "skipped_other_source": []}
+    assert remove_headline_jobs.remove(conn) == {"removed": [], "kept": []}
 
 
 def test_refuses_to_run_with_foreign_keys_off(tmp_path):
@@ -108,7 +108,7 @@ def test_a_job_with_no_source_row_is_never_deleted(conn):
     result = remove_headline_jobs.remove(conn)
 
     assert result["removed"] == []
-    assert [r["id"] for r in result["skipped_other_source"]] == [pasted]
+    assert [r["id"] for r in result["kept"]] == [pasted]
 
 
 def test_classify_reads_without_writing(conn):
@@ -118,3 +118,27 @@ def test_classify_reads_without_writing(conn):
 
     assert len(removable) == 1 and other == []
     assert conn.execute("SELECT COUNT(*) FROM job").fetchone()[0] == 1
+
+
+def test_keep_holds_back_a_row_a_person_decided_to_spare(conn):
+    """A headline row that is the only stored copy of a posting is not a duplicate; the
+    person decides, and --keep is how that decision is expressed (HIR-104, job 363)."""
+    doomed = _add_job(conn, "Primetime", HEADLINE, mentions=3)
+    spared = _add_job(conn, "Primetime", "AI / ML Engineer II arbeitnow SumUp Berlin · 10/28/2026",
+                      mentions=4)
+
+    result = remove_headline_jobs.remove(conn, keep={spared})
+
+    assert [r["id"] for r in result["removed"]] == [doomed]
+    assert [r["id"] for r in result["kept"]] == [spared]
+    assert result["kept"][0]["held_because"] == "asked to keep"
+    assert [r[0] for r in conn.execute("SELECT id FROM job ORDER BY id")] == [spared]
+    assert conn.execute("SELECT COUNT(*) FROM skill_mention").fetchone()[0] == 4
+
+
+def test_held_because_says_which_reason(conn):
+    other_source = _add_job(conn, "Primetime", HEADLINE, source="arbeitnow")
+
+    _, held = remove_headline_jobs.classify(conn)
+
+    assert [(r["id"], r["held_because"]) for r in held] == [(other_source, "not from jsearch")]
