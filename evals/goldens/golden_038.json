@@ -49,5 +49,9 @@
       "requirement": "required",
       "raw_text": "excellent software engineering skills"
     }
+  ],
+  "spot_checked_by_human": [
+    "seniority",
+    "skill:javascript"
   ]
 }

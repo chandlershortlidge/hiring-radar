@@ -124,5 +124,10 @@
       "requirement": "nice_to_have",
       "raw_text": "Weights & Biases"
     }
+  ],
+  "spot_checked_by_human": [
+    "degree",
+    "german",
+    "skill:onnx"
   ]
 }

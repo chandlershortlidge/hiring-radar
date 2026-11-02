@@ -60,5 +60,8 @@
       "requirement": "required",
       "raw_text": "Automatisierungslösungen"
     }
+  ],
+  "spot_checked_by_human": [
+    "skill:cloud"
   ]
 }

@@ -86,5 +86,8 @@
       "requirement": "required",
       "raw_text": "Testautomatisierungstools / -frameworks"
     }
+  ],
+  "spot_checked_by_human": [
+    "skill:llms"
   ]
 }
