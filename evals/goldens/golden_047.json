@@ -149,5 +149,9 @@
       "requirement": "required",
       "raw_text": "Vektordatenbanken"
     }
+  ],
+  "spot_checked_by_human": [
+    "skill:aws",
+    "skill:langchain"
   ]
 }

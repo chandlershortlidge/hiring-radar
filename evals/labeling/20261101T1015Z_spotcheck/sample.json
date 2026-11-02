@@ -1,0 +1,832 @@
+{
+ "meta": {
+  "run_id": "20261101T1015Z_spotcheck",
+  "seed": 0,
+  "n": 30,
+  "n_goldens": 22,
+  "pool": 343,
+  "pool_skills": 281,
+  "pool_attributes": 62,
+  "goldens": [
+   "golden_025",
+   "golden_026",
+   "golden_027",
+   "golden_028",
+   "golden_029",
+   "golden_030",
+   "golden_031",
+   "golden_032",
+   "golden_033",
+   "golden_034",
+   "golden_035",
+   "golden_036",
+   "golden_037",
+   "golden_038",
+   "golden_040",
+   "golden_041",
+   "golden_042",
+   "golden_043",
+   "golden_044",
+   "golden_045",
+   "golden_046",
+   "golden_047"
+  ],
+  "drawn_from": "held-out Goldens with a model `labeled_by`, minus every label a person had already read"
+ },
+ "items": [
+  {
+   "golden_id": "golden_026",
+   "kind": "skill",
+   "key": "terraform",
+   "label": "terraform (Terraform) · required",
+   "value": {
+    "skill_id": "terraform",
+    "requirement": "required",
+    "raw_text": "Terraform"
+   },
+   "context": {
+    "heading": "...zusammen Das bringst Du mit",
+    "kind": "requirements",
+    "lines": [
+     "...Infrastruktur / GPU-Workloads oder großes Interesse, dich in diese Themen einzuarbeiten Du besitzt solide Kenntnisse in Linux, Netzwerken und Troubleshooting Du denkst in Automatisierungslösungen wie **Terraform**, Helm, GitOps und CI/CD Du fühlst dich in dynamischen Greenfield-Umgebungen wohl und hast Interesse an AI-Plattformen Du verfügst über Kommunkationsstärke, ein sicheres Auftreten sowie sehr gute Deut..."
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_027",
+   "kind": "skill",
+   "key": "llms",
+   "label": "llms (LLMs; generative ai; generative ai applications; generative ai solutions; large language models; +1 more) · required",
+   "value": {
+    "skill_id": "llms",
+    "requirement": "required",
+    "raw_text": "LLM APIs"
+   },
+   "context": {
+    "heading": "Dein Profil",
+    "kind": "requirements",
+    "lines": [
+     "Dein Profil",
+     "* Fundierte Erfahrung in GenAI-Technologien (**LLM APIs**, Embeddings, RAG, Prompt Engineering, Evaluierung)",
+     "* Starker Hintergrund in Software Engineering mit Fokus auf Backend, APIs, Microservices oder verteilte Systeme"
+    ],
+    "located": true
+   },
+   "also_under": [
+    "Deine Rolle"
+   ],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_028",
+   "kind": "skill",
+   "key": "evaluation",
+   "label": "evaluation (Evaluation; ai evaluation; ai evaluation & benchmarking; ai evaluation & observability; ai output evaluation; +3 more) · required",
+   "value": {
+    "skill_id": "evaluation",
+    "requirement": "required",
+    "raw_text": "Erfahrung in der Evaluation"
+   },
+   "context": {
+    "heading": "Dein Profil:",
+    "kind": "requirements",
+    "lines": [
+     "- Mindestens 5 Jahre relevante Berufserfahrung nach Abschluss des Studiums zwingend erforderlich",
+     "- **Erfahrung in der Evaluation**, Deployment und dem produktiven Betrieb von KI-Modellen",
+     "- Erfahrung im Prompt-, Kontext- und Tool-Engineering von generativen KI-Modellen"
+    ],
+    "located": true
+   },
+   "also_under": [
+    "Deine Aufgaben:"
+   ],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_028",
+   "kind": "skill",
+   "key": "go",
+   "label": "go (Go; golang) · required",
+   "value": {
+    "skill_id": "go",
+    "requirement": "required",
+    "raw_text": "Go"
+   },
+   "context": {
+    "heading": "Dein Profil:",
+    "kind": "requirements",
+    "lines": [
+     "- Erfahrung im Prompt-, Kontext- und Tool-Engineering von generativen KI-Modellen",
+     "- Erfahrung in der Backend-Entwicklung mit Python, **Go**, Rust oder Java",
+     "- Erfahrung mit On-Prem Cloud-Techniken (z. B. Kubernetes) und MLOps-Frameworks (MLFlow, Kubeflow)"
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_028",
+   "kind": "skill",
+   "key": "grafana",
+   "label": "grafana (Grafana) · required",
+   "value": {
+    "skill_id": "grafana",
+    "requirement": "required",
+    "raw_text": "Grafana"
+   },
+   "context": {
+    "heading": "Dein Profil:",
+    "kind": "requirements",
+    "lines": [
+     "- Erfahrung mit On-Prem Cloud-Techniken (z. B. Kubernetes) und MLOps-Frameworks (MLFlow, Kubeflow)",
+     "- Expertise in Leistungsoptimierung und Monitoring (z. B. Prometheus, **Grafana**)",
+     "- Fähigkeit, technische Konzepte eigenständig zu entwickeln, zu bewerten und gegenüber (technischen und nicht-technischen) Stakeholdern zu vertreten"
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_029",
+   "kind": "skill",
+   "key": "llms",
+   "label": "llms (LLMs; generative ai; generative ai applications; generative ai solutions; large language models; +1 more) · required",
+   "value": {
+    "skill_id": "llms",
+    "requirement": "required",
+    "raw_text": "LLM-APIs"
+   },
+   "context": {
+    "heading": "Als Qualitätsingenieur KI-Fokus sollten Sie mitbringen:",
+    "kind": "requirements",
+    "lines": [
+     "- Praktische Erfahrung im Einsatz LLM-basierter Tools zur Testunterstützung, darunter KI-gestützte Testfallgenerierung, KI-assistiertes Code-Authoring und synthetische Testdatenerzeugung",
+     "- Erfahrung in der Integration von **LLM-APIs** und KI-Services in Testframeworks sowie im Aufbau KI-nativer Testlösungen wie Self-Healing Locators, autonome Testausführung und agentenbasierte Testarchitekturen",
+     "- Erfahrung in der nahtlosen Integration automatisierter Tests in CI/CD-Pipelines gängiger Plattformen wie Jenkins, GitLab CI, GitHub Actions und Azure DevOps"
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_030",
+   "kind": "skill",
+   "key": "cloud",
+   "label": "cloud (Cloud; cloud infrastructure; cloud platforms) · nice_to_have",
+   "value": {
+    "skill_id": "cloud",
+    "requirement": "nice_to_have",
+    "raw_text": "Cloud-Technologien"
+   },
+   "context": {
+    "heading": "Dein Skillset",
+    "kind": "requirements",
+    "lines": [
+     "- Erfahrung in der Übersetzung fachlicher Anforderungen in technische Lösungen inkl. Prototyping",
+     "- Kenntnisse moderner Architekturen, **Cloud-Technologien** und AI/ML sind von Vorteil",
+     "- Als struktuierter Teamplayer (w/m/x) mit enormer Eigeninitative sowie analytischer und lösungsorientierter Arbeitsweise, verfügst du über ein ausgeprägtes Kommunikationsgeschick"
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_032",
+   "kind": "skill",
+   "key": "aws-s3",
+   "label": "aws-s3 (AWS S3; amazon s3) · required",
+   "value": {
+    "skill_id": "aws-s3",
+    "requirement": "required",
+    "raw_text": "S3"
+   },
+   "context": {
+    "heading": "mobile.de • Berlin, Berlin, Germany (Hybrid)",
+    "kind": "intro prose",
+    "lines": [
+     "- Agentic platform engineering: Hands-on experience designing, developing, and operating agentic systems using frameworks such as AWS AgentCore, Google Vertex AI, Bedrock, LangChain, LangGraph, AutoGen, CrewAI or similar.",
+     "- Cloud-native development: Proficient in AWS infrastructure (VPC, Lambda, **S3**, IAM, CloudWatch) or their Google Cloud Platform equivalents, with experience in cross-account integrations, Terraform, and Kubernetes.",
+     "- Programming expertise: Strong coding skills in Python and/or Java, with a track record of building production-grade backend services and APIs."
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_032",
+   "kind": "skill",
+   "key": "recommender-systems",
+   "label": "recommender-systems (Recommender Systems) · required",
+   "value": {
+    "skill_id": "recommender-systems",
+    "requirement": "required",
+    "raw_text": "recommendation engines"
+   },
+   "context": {
+    "heading": "mobile.de • Berlin, Berlin, Germany (Hybrid)",
+    "kind": "intro prose",
+    "lines": [
+     "- Programming expertise: Strong coding skills in Python and/or Java, with a track record of building production-grade backend services and APIs.",
+     "- System integration: Experience integrating agents with microservices, **recommendation engines**, and vector databases (e.g., S3 Vector, OpenSearch), ideally in a multi-environment setup.",
+     "- Observability, evaluation and compliance: Familiarity with implementing observability, evaluation frameworks (for agents and prompts), runtime guardrails, and compliance controls for AI/agentic workflows."
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_032",
+   "kind": "skill",
+   "key": "vector-databases",
+   "label": "vector-databases (Vector Databases) · required",
+   "value": {
+    "skill_id": "vector-databases",
+    "requirement": "required",
+    "raw_text": "vector databases"
+   },
+   "context": {
+    "heading": "mobile.de • Berlin, Berlin, Germany (Hybrid)",
+    "kind": "intro prose",
+    "lines": [
+     "- Programming expertise: Strong coding skills in Python and/or Java, with a track record of building production-grade backend services and APIs.",
+     "- System integration: Experience integrating agents with microservices, recommendation engines, and **vector databases** (e.g., S3 Vector, OpenSearch), ideally in a multi-environment setup.",
+     "- Observability, evaluation and compliance: Familiarity with implementing observability, evaluation frameworks (for agents and prompts), runtime guardrails, and compliance controls for AI/agentic workflows."
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_034",
+   "kind": "skill",
+   "key": "python",
+   "label": "python (Python) · required",
+   "value": {
+    "skill_id": "python",
+    "requirement": "required",
+    "raw_text": "Python"
+   },
+   "context": {
+    "heading": "IN ORDER FOR YOU TO BE SUCCESSFUL, YOU BRING:",
+    "kind": "requirements",
+    "lines": [
+     "- You have several years of experience with Microsoft Azure or AWS and associated services.",
+     "- You have solid expertise in at least one programming language, either **Python** or C++.",
+     "- You have several years of experience implementing cloud infrastructure solutions, specifically IaC with Terraform and Kubernetes."
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_035",
+   "kind": "skill",
+   "key": "tensorrt",
+   "label": "tensorrt (TensorRT; tensorrt-llm) · required",
+   "value": {
+    "skill_id": "tensorrt",
+    "requirement": "required",
+    "raw_text": "TensorRT-LLM, Triton Inference Server, NVIDIA Dynamo, Ray Serve"
+   },
+   "context": {
+    "heading": "Must-haves",
+    "kind": "requirements",
+    "lines": [
+     "- Hands-on experience deploying or optimizing LLM, VLM, or high-throughput transformer inference.",
+     "- Practical knowledge of at least one modern inference stack, such as vLLM, SGLang, **TensorRT-LLM, Triton Inference Server, NVIDIA Dynamo, Ray Serve**, KServe, or an equivalent internal system.",
+     "- A strong understanding of transformer inference bottlenecks involving KV cache, attention, memory bandwidth, batching, parallelism, and long-context serving."
+    ],
+    "located": true
+   },
+   "also_under": [
+    "Your responsibilities",
+    "Nice-to-haves"
+   ],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_036",
+   "kind": "skill",
+   "key": "agents",
+   "label": "agents (Agents; agent frameworks; agentic ai frameworks; agentic frameworks; ai agents) · required",
+   "value": {
+    "skill_id": "agents",
+    "requirement": "required",
+    "raw_text": "AI Agents/Agenten"
+   },
+   "context": {
+    "heading": "Dein Skillset",
+    "kind": "requirements",
+    "lines": [
+     "- Du verfügst zwingend über praktische Industrieerfahrung in Financial Services (FIS) und/oder Manufacturing, bspw. Energy & Utilities, Pharma, Industrial Machinery etc.",
+     "- Du hast mindestens 1 Jahr praktische Erfahrung in der Entwicklung von GenAI-Lösungen, beispielsweise mit RAG oder **AI Agents/Agenten**, und kennst die Anforderungen an deren produktiven Einsatz.",
+     "- Du verfügst über nachgewiesene technische Kenntnisse in relevanten Programmiersprachen, insbesondere Python, und praktische Erfahrung mit AI- und GenAI-Frameworks wie SciKit-Learn, PyTorch, KubeFlow, HuggingFace, LangChain oder vergleichbaren Technologien."
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_036",
+   "kind": "skill",
+   "key": "scikit-learn",
+   "label": "scikit-learn (scikit-learn) · required",
+   "value": {
+    "skill_id": "scikit-learn",
+    "requirement": "required",
+    "raw_text": "SciKit-Learn"
+   },
+   "context": {
+    "heading": "Dein Skillset",
+    "kind": "requirements",
+    "lines": [
+     "- Du hast mindestens 1 Jahr praktische Erfahrung in der Entwicklung von GenAI-Lösungen, beispielsweise mit RAG oder AI Agents/Agenten, und kennst die Anforderungen an deren produktiven Einsatz.",
+     "- Du verfügst über nachgewiesene technische Kenntnisse in relevanten Programmiersprachen, insbesondere Python, und praktische Erfahrung mit AI- und GenAI-Frameworks wie **SciKit-Learn**, PyTorch, KubeFlow, HuggingFace, LangChain oder vergleichbaren Technologien.",
+     "- Du kannst Softwarelösungen konzipieren, designen und entwickeln, idealerweise im AI-/GenAI-Umfeld, und kennst agile Softwareentwicklungsmethoden sowie die Anforderungen moderner Enterprise-Architekturen."
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_037",
+   "kind": "attribute",
+   "key": "seniority",
+   "label": "seniority: seniority=\"mid\", seniority_basis=\"inferred\"",
+   "value": {
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "at least 3+ years of experience"
+   },
+   "context": {
+    "heading": "Your profile",
+    "kind": "requirements",
+    "lines": [
+     "- You've build applied AI/ML use cases and brought them to production",
+     "- You have **at least 3+ years of experience** as a software engineer, machine learning engineer or AI i in a fast paced environment",
+     "- You are fluent in English"
+    ],
+    "located": true,
+    "triggers": []
+   },
+   "also_under": [],
+   "corrections": []
+  },
+  {
+   "golden_id": "golden_038",
+   "kind": "attribute",
+   "key": "seniority",
+   "label": "seniority: seniority=\"senior\", seniority_basis=\"stated\"",
+   "value": {
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff Product Engineer"
+   },
+   "context": {
+    "heading": "",
+    "kind": "intro prose",
+    "lines": [
+     "**Staff Product Engineer**, AI",
+     "Fin, now part of Salesforce, is on a mission to help businesses provide perfect customer experiences."
+    ],
+    "located": true,
+    "triggers": []
+   },
+   "also_under": [],
+   "corrections": []
+  },
+  {
+   "golden_id": "golden_038",
+   "kind": "skill",
+   "key": "javascript",
+   "label": "javascript (JavaScript; js) · required",
+   "value": {
+    "skill_id": "javascript",
+    "requirement": "required",
+    "raw_text": "Javascript"
+   },
+   "context": {
+    "heading": "Profile we’re looking for",
+    "kind": "requirements",
+    "lines": [
+     "- You take pride in having strong technical fundamentals; you love learning and are willing to work hard to invest in your development.",
+     "- Deep knowledge of a high-level programming language (for example, Ruby, Python, **Javascript** etc.) but it doesn’t need to be a language that we use here!",
+     "- Strong willingness to fight for good outcomes"
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_040",
+   "kind": "attribute",
+   "key": "degree",
+   "label": "degree: degree=\"phd\", degree_requirement=\"required\", degree_or_equivalent=true",
+   "value": {
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "MS or PhD in Computer Science, Electrical Engineering, or a related field, or equivalent practical experience"
+   },
+   "context": {
+    "heading": "Requirements",
+    "kind": "requirements",
+    "lines": [
+     "Requirements",
+     "• **MS or PhD in Computer Science, Electrical Engineering, or a related field, or equivalent practical experience**;",
+     "• Strong Python skills;"
+    ],
+    "located": true,
+    "triggers": []
+   },
+   "also_under": [],
+   "corrections": []
+  },
+  {
+   "golden_id": "golden_040",
+   "kind": "attribute",
+   "key": "german",
+   "label": "german: german=null, german_basis=null",
+   "value": {
+    "german": null,
+    "german_basis": null,
+    "german_signal": null
+   },
+   "context": {
+    "heading": "",
+    "kind": "intro prose",
+    "lines": [],
+    "located": false,
+    "triggers": []
+   },
+   "also_under": [],
+   "corrections": []
+  },
+  {
+   "golden_id": "golden_040",
+   "kind": "skill",
+   "key": "onnx",
+   "label": "onnx (ONNX) · nice_to_have",
+   "value": {
+    "skill_id": "onnx",
+    "requirement": "nice_to_have",
+    "raw_text": "ONNX"
+   },
+   "context": {
+    "heading": "Nice To Have",
+    "kind": "optional",
+    "lines": [
+     "• Experience with LLMs or multimodal models in production;",
+     "• Experience with **ONNX**, TensorRT, OpenVINO, or TFLite;",
+     "• Experience with MLOps and experiment tools such as MLflow, Weights & Biases, or DVC;"
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_041",
+   "kind": "attribute",
+   "key": "degree",
+   "label": "degree: degree=\"bachelor\", degree_requirement=\"required\", degree_or_equivalent=false",
+   "value": {
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "abgeschlossenes Studium der Mathematik, Physik, (Wirtschafts-)Informatik oder eines anderen quantitativen Studiengangs"
+   },
+   "context": {
+    "heading": "Dein Profil",
+    "kind": "requirements",
+    "lines": [
+     "Dein Profil",
+     "* Du hast ein **abgeschlossenes Studium der Mathematik, Physik, (Wirtschafts-)Informatik oder eines anderen quantitativen Studiengangs**",
+     "* Du verfügst über mehrjährige Berufserfahrung in der professionellen Softwareentwicklung und hast bereits produktive Anwendungen entwickelt und betrieben"
+    ],
+    "located": true,
+    "triggers": []
+   },
+   "also_under": [],
+   "corrections": []
+  },
+  {
+   "golden_id": "golden_041",
+   "kind": "attribute",
+   "key": "german",
+   "label": "german: german=\"required\", german_basis=\"stated\"",
+   "value": {
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "sehr gute Deutsch- und Englischkenntnisse"
+   },
+   "context": {
+    "heading": "Dein Profil",
+    "kind": "requirements",
+    "lines": [
+     "* Du denkst analytisch, arbeitest strukturiert und kommunizierst technische Zusammenhänge prägnant",
+     "* Du hast **sehr gute Deutsch- und Englischkenntnisse**",
+     "Die DKB steht für Vielfalt und Chancengerechtigkeit. Egal, woher du kommst, wie alt du bist, welches Geschlecht, welche Genderidentität, sexuelle Orientierung oder Religion du hast, ob mit oder ohne Behinderung - wir freuen uns auf deine Bewerbung!"
+    ],
+    "located": true,
+    "triggers": []
+   },
+   "also_under": [],
+   "corrections": []
+  },
+  {
+   "golden_id": "golden_041",
+   "kind": "skill",
+   "key": "containerization",
+   "label": "containerization (Containerization; containerized workloads; containers) · nice_to_have",
+   "value": {
+    "skill_id": "containerization",
+    "requirement": "nice_to_have",
+    "raw_text": "Container-Orchestrierung"
+   },
+   "context": {
+    "heading": "Dein Profil",
+    "kind": "requirements",
+    "lines": [
+     "* Du hast fundierte Erfahrung mit NLP und generativer KI und kannst Modelle und Frameworks nicht nur anwenden, sondern sinnvoll in Softwarelösungen integrieren",
+     "* Du bringst praktische Erfahrung mit Cloud Computing und Docker mit; Kenntnisse in CI/CD, **Container-Orchestrierung** oder Infrastructure as Code sind willkommen",
+     "* Du verstehst Machine Learning und Data Science so gut, dass du geeignete Verfahren auswählen, bewerten und in robuste Anwendungen überführen kannst"
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_041",
+   "kind": "skill",
+   "key": "python",
+   "label": "python (Python) · required",
+   "value": {
+    "skill_id": "python",
+    "requirement": "required",
+    "raw_text": "programmierst sicher mit Python"
+   },
+   "context": {
+    "heading": "Dein Profil",
+    "kind": "requirements",
+    "lines": [
+     "* Du verfügst über mehrjährige Berufserfahrung in der professionellen Softwareentwicklung und hast bereits produktive Anwendungen entwickelt und betrieben",
+     "* Du **programmierst sicher mit Python** und kennst dich mit Softwarearchitektur, APIs, automatisierten Tests, Git und modernen Entwicklungsprozessen aus",
+     "* Du hast fundierte Erfahrung mit NLP und generativer KI und kannst Modelle und Frameworks nicht nur anwenden, sondern sinnvoll in Softwarelösungen integrieren"
+    ],
+    "located": true
+   },
+   "also_under": [
+    "Deine Aufgaben"
+   ],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_045",
+   "kind": "skill",
+   "key": "llm-orchestration",
+   "label": "llm-orchestration (LLM orchestration) · nice_to_have",
+   "value": {
+    "skill_id": "llm-orchestration",
+    "requirement": "nice_to_have",
+    "raw_text": "orchestration frameworks"
+   },
+   "context": {
+    "heading": "Bonus Qualifications",
+    "kind": "optional",
+    "lines": [
+     "- Prior experience integrating AI into SaaS business workflows, ideally in a client-facing or forward-deployed setup.",
+     "- Familiarity with the modern AI-tooling ecosystem (agents, memory systems, vector databases, **orchestration frameworks**).",
+     "- Experience working with distributed or multi-location teams."
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_045",
+   "kind": "skill",
+   "key": "prompt-engineering",
+   "label": "prompt-engineering (Prompt engineering) · required",
+   "value": {
+    "skill_id": "prompt-engineering",
+    "requirement": "required",
+    "raw_text": "prompting"
+   },
+   "context": {
+    "heading": "Requirements",
+    "kind": "requirements",
+    "lines": [
+     "...loping AI agents and integrating them into business workflows. - Be on top of the latest tools, models and trends in AI-assisted software engineering. You are excellent at context engineering (incl. **prompting**), know when to leverage which model, and have first-hand experience with Claude Code or Cursor, and you know how to roll these practices out across a team. - Know how to evaluate what gets built. Yo..."
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_045",
+   "kind": "skill",
+   "key": "vector-databases",
+   "label": "vector-databases (Vector Databases) · nice_to_have",
+   "value": {
+    "skill_id": "vector-databases",
+    "requirement": "nice_to_have",
+    "raw_text": "vector databases"
+   },
+   "context": {
+    "heading": "Bonus Qualifications",
+    "kind": "optional",
+    "lines": [
+     "- Prior experience integrating AI into SaaS business workflows, ideally in a client-facing or forward-deployed setup.",
+     "- Familiarity with the modern AI-tooling ecosystem (agents, memory systems, **vector databases**, orchestration frameworks).",
+     "- Experience working with distributed or multi-location teams."
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_046",
+   "kind": "skill",
+   "key": "vector-databases",
+   "label": "vector-databases (Vector Databases) · nice_to_have",
+   "value": {
+    "skill_id": "vector-databases",
+    "requirement": "nice_to_have",
+    "raw_text": "Vektordatenbanken"
+   },
+   "context": {
+    "heading": "Dein Profil:",
+    "kind": "requirements",
+    "lines": [
+     "...CP), Agenten-Frameworks oder Retrieval-Pipelines sind für Dich keine Fremdwörter oder Du hast großes Interesse, Dich strukturiert in diese Themen einzuarbeiten. Erste Berührungspunkte mit Embeddings, **Vektordatenbanken**, AI-Frameworks oder Plattformkomponenten wie OpenWebUI und LiteLLM sind von Vorteil, aber keine zwingende Voraussetzung. Ebenso sind Kenntnisse in den Bereichen Authentifizierung, OAuth2 oder Identit..."
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_047",
+   "kind": "skill",
+   "key": "aws",
+   "label": "aws (AWS) · required",
+   "value": {
+    "skill_id": "aws",
+    "requirement": "required",
+    "raw_text": "wie AWS"
+   },
+   "context": {
+    "heading": "Qualifikationen",
+    "kind": "requirements",
+    "lines": [
+     "Außerdem konntest du bereits praktische Erfahrungen mit Backend-Technologien wie NodeJS, Spring/SpringBoot, Flask/Django, REST APIs oder GraphQL, FastAPI sammeln",
+     "Du hattest bereits Berührungspunkte mit Microsoft Azure oder einem anderen Cloud-Anbieter **wie AWS** oder Google",
+     "Mündliche und schriftliche Kommunikationsfähigkeit in Deutsch und Englisch und die Bereitschaft national zu reisen"
+    ],
+    "located": true
+   },
+   "also_under": [
+    "Aufgaben"
+   ],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  },
+  {
+   "golden_id": "golden_047",
+   "kind": "skill",
+   "key": "langchain",
+   "label": "langchain (LangChain) · required",
+   "value": {
+    "skill_id": "langchain",
+    "requirement": "required",
+    "raw_text": "LangChain"
+   },
+   "context": {
+    "heading": "Qualifikationen",
+    "kind": "requirements",
+    "lines": [
+     "Wir freuen uns auf deinen Studienabschluss mit einem technischen Hintergrund, zum Beispiel in Informatik, Data Science, Künstliche Intelligenz, Wirtschaftsinformatik oder einem ähnlichen orientierten Studiengang",
+     "Erfahrung in der Integration generativer KI-Lösungen (LLMs, Vektordatenbanken, RAG-Pipelines, Orchestrierungs-Frameworks wie **LangChain**/LangGraph) in Unternehmensumgebungen",
+     "Dank deiner praktischen Erfahrung in DevOps-Projekten verfügst du über Kenntnisse in einer der folgenden Programmiersprachen:.NET Core, C#, JavaScript oder Python"
+    ],
+    "located": true
+   },
+   "also_under": [],
+   "corrections": [
+    "required",
+    "nice_to_have",
+    "drop"
+   ]
+  }
+ ]
+}

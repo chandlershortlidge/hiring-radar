@@ -143,5 +143,10 @@
       "requirement": "nice_to_have",
       "raw_text": "vector databases"
     }
+  ],
+  "spot_checked_by_human": [
+    "skill:llm-orchestration",
+    "skill:prompt-engineering",
+    "skill:vector-databases"
   ]
 }
