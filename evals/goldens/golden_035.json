@@ -109,5 +109,8 @@
       "requirement": "required",
       "raw_text": "inference stack, such as vLLM"
     }
+  ],
+  "spot_checked_by_human": [
+    "skill:tensorrt"
   ]
 }

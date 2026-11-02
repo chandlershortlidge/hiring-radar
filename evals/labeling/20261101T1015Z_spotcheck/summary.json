@@ -1,0 +1,162 @@
+{
+ "meta": {
+  "run_id": "20261101T1015Z_spotcheck",
+  "seed": 0,
+  "n": 30,
+  "n_goldens": 22,
+  "pool": 343,
+  "pool_skills": 281,
+  "pool_attributes": 62,
+  "goldens": [
+   "golden_025",
+   "golden_026",
+   "golden_027",
+   "golden_028",
+   "golden_029",
+   "golden_030",
+   "golden_031",
+   "golden_032",
+   "golden_033",
+   "golden_034",
+   "golden_035",
+   "golden_036",
+   "golden_037",
+   "golden_038",
+   "golden_040",
+   "golden_041",
+   "golden_042",
+   "golden_043",
+   "golden_044",
+   "golden_045",
+   "golden_046",
+   "golden_047"
+  ],
+  "drawn_from": "held-out Goldens with a model `labeled_by`, minus every label a person had already read"
+ },
+ "stats": {
+  "overall": {
+   "errors": 0,
+   "n": 30,
+   "rate": 0.0,
+   "wilson95": [
+    0.0,
+    0.11351339317396876
+   ]
+  },
+  "skill": {
+   "errors": 0,
+   "n": 24,
+   "rate": 0.0,
+   "wilson95": [
+    1.3877787807814457e-17,
+    0.13797620467498017
+   ]
+  },
+  "attribute": {
+   "errors": 0,
+   "n": 6,
+   "rate": 0.0,
+   "wilson95": [
+    2.7755575615628914e-17,
+    0.3903342879021653
+   ]
+  }
+ },
+ "verdicts": {
+  "golden_026:skill:terraform": "ok",
+  "golden_027:skill:llms": "ok",
+  "golden_028:skill:evaluation": "ok",
+  "golden_028:skill:go": "ok",
+  "golden_028:skill:grafana": "ok",
+  "golden_029:skill:llms": "ok",
+  "golden_030:skill:cloud": "ok",
+  "golden_032:skill:aws-s3": "ok",
+  "golden_032:skill:recommender-systems": "ok",
+  "golden_032:skill:vector-databases": "ok",
+  "golden_034:skill:python": "ok",
+  "golden_035:skill:tensorrt": "ok",
+  "golden_036:skill:agents": "ok",
+  "golden_036:skill:scikit-learn": "ok",
+  "golden_037:seniority": "ok",
+  "golden_038:seniority": "ok",
+  "golden_038:skill:javascript": "ok",
+  "golden_040:degree": "ok",
+  "golden_040:german": "ok",
+  "golden_040:skill:onnx": "ok",
+  "golden_041:degree": "ok",
+  "golden_041:german": "ok",
+  "golden_041:skill:containerization": "ok",
+  "golden_041:skill:python": "ok",
+  "golden_045:skill:llm-orchestration": "ok",
+  "golden_045:skill:prompt-engineering": "ok",
+  "golden_045:skill:vector-databases": "ok",
+  "golden_046:skill:vector-databases": "ok",
+  "golden_047:skill:aws": "ok",
+  "golden_047:skill:langchain": "ok"
+ },
+ "corrections_to_decide": {},
+ "stamped": {
+  "golden_026": [
+   "skill:terraform"
+  ],
+  "golden_027": [
+   "skill:llms"
+  ],
+  "golden_028": [
+   "skill:evaluation",
+   "skill:go",
+   "skill:grafana"
+  ],
+  "golden_029": [
+   "skill:llms"
+  ],
+  "golden_030": [
+   "skill:cloud"
+  ],
+  "golden_032": [
+   "skill:aws-s3",
+   "skill:recommender-systems",
+   "skill:vector-databases"
+  ],
+  "golden_034": [
+   "skill:python"
+  ],
+  "golden_035": [
+   "skill:tensorrt"
+  ],
+  "golden_036": [
+   "skill:agents",
+   "skill:scikit-learn"
+  ],
+  "golden_037": [
+   "seniority"
+  ],
+  "golden_038": [
+   "seniority",
+   "skill:javascript"
+  ],
+  "golden_040": [
+   "degree",
+   "german",
+   "skill:onnx"
+  ],
+  "golden_041": [
+   "degree",
+   "german",
+   "skill:containerization",
+   "skill:python"
+  ],
+  "golden_045": [
+   "skill:llm-orchestration",
+   "skill:prompt-engineering",
+   "skill:vector-databases"
+  ],
+  "golden_046": [
+   "skill:vector-databases"
+  ],
+  "golden_047": [
+   "skill:aws",
+   "skill:langchain"
+  ]
+ }
+}

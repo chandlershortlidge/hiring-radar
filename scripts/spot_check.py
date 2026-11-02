@@ -615,8 +615,11 @@ def cmd_apply(args):
     if not args.dry_run:
         for gid, keys in by_golden.items():
             path = GOLDENS / f"{gid}.json"
+            # 2-space indent, literal UTF-8: the Goldens' committed style. Writing
+            # anything else reformats an authoritative fixture end to end and buries
+            # the one added field under a whole-file diff.
             path.write_text(json.dumps(stamp(json.loads(path.read_text()), keys),
-                                       indent=1, ensure_ascii=False) + "\n")
+                                       indent=2, ensure_ascii=False) + "\n")
     wrong = {key_of(it): verdicts[key_of(it)] for it in items
              if not verdicts[key_of(it)].startswith("ok")}
     summary = {"meta": sample["meta"], "stats": stats, "verdicts": verdicts,

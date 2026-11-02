@@ -338,7 +338,42 @@ def test_the_committed_batch_renders_without_an_unlocated_quote():
     for gid, kind, key in drawn:
         item = (sc.skill_item(goldens[gid], key, tax) if kind == "skill"
                 else sc.attribute_item(goldens[gid], key))
-        value_is_null = kind == "attribute" and item["value"][key] is None
-        if not item["context"]["located"] and not value_is_null:
+        # Nothing to locate is not the same as failing to locate something. An
+        # attribute is quoteless either when its value is null, or when the guide
+        # itself prescribes a null signal: German `basis: inferred` is defined as a
+        # German-language posting that says nothing about language (golden_043), so
+        # there is no phrase in the text for the renderer to find.
+        nothing_to_quote = kind == "attribute" and (
+            item["value"][key] is None or item["value"].get(f"{key}_signal") is None)
+        if not item["context"]["located"] and not nothing_to_quote:
             unlocated.append((gid, kind, key))
     assert unlocated == []
+
+
+def test_the_packet_chandler_answered_located_every_quote_it_needed():
+    """The draw above re-runs against the live pool, which shrinks as labels are
+    stamped human-read — so it stops describing what was actually shown. This pins the
+    committed sample: the 30 items in the packet Chandler answered.
+    """
+    sample = json.loads((ROOT / "evals" / "labeling" / "20261101T1015Z_spotcheck"
+                         / "sample.json").read_text())
+    assert len(sample["items"]) == 30
+    for item in sample["items"]:
+        key = item["key"]
+        nothing_to_quote = item["kind"] == "attribute" and (
+            item["value"][key] is None or item["value"].get(f"{key}_signal") is None)
+        assert item["context"]["located"] or nothing_to_quote, (
+            f"{item['golden_id']}:{key} was shown without its quote located")
+
+
+def test_a_stamped_golden_keeps_the_committed_file_s_formatting():
+    """`apply` rewrites each sampled Golden in place. If it serializes in a different
+    style than the file was committed in, the one added field arrives buried in a
+    whole-file reformat of an authoritative fixture — 1,800 lines of diff for 62 lines
+    of content. Pin the style the Goldens are actually stored in: 2-space indent,
+    literal UTF-8, one trailing newline.
+    """
+    for path in sorted((ROOT / "evals" / "goldens").glob("golden_*.json")):
+        raw = path.read_text()
+        assert raw == json.dumps(json.loads(raw), indent=2, ensure_ascii=False) + "\n", (
+            f"{path.name} is not stored in the style `apply` writes back")

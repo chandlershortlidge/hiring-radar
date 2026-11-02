@@ -100,5 +100,9 @@
       "requirement": "required",
       "raw_text": "Softwarelösungen konzipieren, designen und entwickeln"
     }
+  ],
+  "spot_checked_by_human": [
+    "skill:agents",
+    "skill:scikit-learn"
   ]
 }

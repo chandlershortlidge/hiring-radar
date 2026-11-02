@@ -182,5 +182,10 @@
       "requirement": "required",
       "raw_text": "Google Vertex AI"
     }
+  ],
+  "spot_checked_by_human": [
+    "skill:aws-s3",
+    "skill:recommender-systems",
+    "skill:vector-databases"
   ]
 }
