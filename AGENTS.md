@@ -256,6 +256,10 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   and the one-off importer. See its docstring for the three import paths.
 - `scripts/fix_jsearch_ids.py` — one-off: collapse jsearch rows stored under unstable ids
   (before 2026-10-18) and undo the repost counts they caused. `--dry-run` first.
+- `scripts/remove_headline_jobs.py` — one-off: delete jobs stored under an aggregator's
+  search-result headline before HIR-96 stopped the feed writing them. Selects with
+  `jsearch.is_headline`, deletes only jobs with a jsearch source row, cascades their skill
+  mentions. `--dry-run` first. See DECISIONS 2026-11-02 (HIR-104).
 - `scripts/new_goldens.py` — draft unlabeled held-out Goldens from DB jobs
   (`--german N` or `--ids ...`); run_eval skips files with `"draft": true`.
 - `scripts/agent_label.py` — held-out Goldens via two blind labeler agents: pick → label A

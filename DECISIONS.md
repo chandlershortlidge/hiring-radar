@@ -5,6 +5,34 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-02 — Aggregator-headline rows already stored are deleted, not kept and hidden (HIR-104)
+
+HIR-96 stopped the JSearch adapter storing aggregator search-result headlines, but two rows
+written before that fix were already in the database: jobs 208 ("Primetime", "AI Engineer
+(m/f/x) arbeitnow commercetools Berlin · 10/16/2026") and 230 ("Primetime", "Voice AI
+Engineer arbeitnow NAIRON Berlin · 10/18/2026"), duplicates of jobs 2/16 (commercetools)
+and 183 (NAIRON) under a company that never posted them.
+
+**They are deleted, in both the dev and the live database.** Chandler's go, 2026-11-02 —
+deleting stored jobs is on the AGENTS.md stop list, so this is the standing answer for
+rows of this exact shape: a title that `jsearch.is_headline` matches on a job with a
+jsearch source row is removable without asking again. Nothing else about them is
+recoverable — the real company appears only inside the headline — so there is nothing to
+repair and no reason to keep them. Rejected: keeping them and filtering them out of the
+queries (the chart would be right and the stored data wrong, and every later query would
+have to remember them), and rewriting their company and title by hand from the headline
+(it guesses, and dedup would then merge two rows whose text came from different places).
+
+**The removal is a script, not typed SQL.** `scripts/remove_headline_jobs.py` selects with
+`app.sources.jsearch.is_headline` — the same test the adapter applies — so it can never
+remove a row the adapter would have kept, and so the two copies of the database are
+cleaned by the same rule rather than by two sets of hand-typed ids, which differ between
+them. It refuses to run with foreign keys off (that would orphan the skill mentions
+instead of cascading them), and it leaves a headline-titled job from any other source
+alone and reports it: that would be a different bug from the one approved here.
+
+---
+
 ## 2026-11-01 — The deployed setup, written down: OS Login + federated deployer, units in the repo (HIR-74)
 
 HIR-29 built the VM by hand and left the result undocumented. This records the shape it
