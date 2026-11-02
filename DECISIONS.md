@@ -49,6 +49,31 @@ one object away. Restoring is in the runbook and its load-bearing step is deleti
 `-wal` and `-shm` files: leave them and SQLite replays the old write-ahead log over the
 restored file, giving a silent mix of two databases.
 
+## 2026-11-01 — JSearch postings whose title is an aggregator headline are dropped, not repaired (HIR-96)
+
+The job list showed a row titled "AI / Machine Learning Engineer II arbeitnow SumUp Berlin,
+Berlin, Germany · 10/28/2026" under the company "Primetime", sitting next to the real SumUp
+posting. A recorded JSearch response (now `tests/fixtures/feeds/jsearch_recorded.json`)
+shows what happens: for some postings the publisher JobLeads hands Google its own
+search-result headline as `job_title`, and `employer_name` is an unrelated firm — Primetime,
+website primetime.company, not the employer at all. Two such rows are already stored
+(jobs 208 commercetools and 230 NAIRON, both duplicates of rows we hold from the real board
+feed).
+
+Decided: `jsearch.parse` skips these records. Neither field can be repaired — the real
+company name exists only inside the headline text, and there is no way to tell where the
+title ends and the aggregator's branding begins. Nothing is lost: the same SumUp posting
+came back in the same response from another publisher with the right title and company.
+
+Rejected: a company-normalisation step before dedup (the issue's second question). It cannot
+help, because "Primetime" is not a variant spelling of "SumUp" — it is a different company.
+Normalising would still leave dedup comparing two different companies and storing a second
+copy. Also rejected: parsing the real title and company out of the headline — the boundary
+between them is not recoverable, and a wrong guess is worse than a dropped posting.
+
+The signature is a title that ends in a date; a job title never does. The two rows already
+stored are left alone — deleting stored jobs needs Chandler's go.
+
 ## 2026-11-01 — Taxonomy v7: the German and short-form spellings the Golden pass found (HIR-101)
 
 The HIR-97 pass over the 46 Golden postings listed every label a Golden spells one way and
