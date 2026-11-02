@@ -122,3 +122,65 @@ One label per posting, or none (`null`) when no degree is mentioned.
   field" / "or a comparable technical focus" widens the *field*, not the requirement → false.
 - `degree_signal` quotes the phrase, including the "or equivalent" wording when present.
 - `attrs_reviewed: false` marks pre-filled German/degree labels not yet checked by a person.
+
+
+## Verifying a label: the human spot-check
+
+**This section changes no labeling rule.** It records how a label is *checked* and by whom,
+not what a label means, so it invalidates no stored eval. Every rule above is unchanged.
+
+A label's provenance says who read it:
+
+- `labeled_by` — the models that produced it. Agreement between them is not correctness.
+- `adjudicated` — the fields a person decided (a disagreement, a judge split, a flag).
+- `spot_checked_by_human` — labels a person read in a spot-check and confirmed.
+- `spot_checked` / `spot_checked_by` (whole-Golden) — a **model** answered these. They are
+  not human verification and the sampler ignores them.
+
+### The protocol
+
+`scripts/spot_check.py sample` then `apply`. The properties that make the number mean
+something:
+
+1. **Label level, not posting level.** One skill or one attribute per item, so the sample
+   size is the number of labels read, not postings opened.
+2. **Seeded and stratified**, drawn before the reviewer sees anything, with attributes given
+   their own share so they are not swamped by skills.
+3. **The pool excludes every label a person has already read** — `adjudicated`,
+   `spot_checked_by_human`, and attributes under a true `seniority_reviewed` /
+   `attrs_reviewed`. Re-asking a settled question measures nothing.
+4. **Blind.** No labeler outputs, no third-labeler read, no earlier adjudication notes. A
+   reviewer shown three models agreeing is no longer an independent read.
+5. **Each item is pre-answered and decidable in under 30 seconds.** Both checks — is this
+   asked of the candidate; is it `required` or `nice_to_have` — are stated with a one-line
+   reason, plus a "watch for" line naming the likeliest misreading. The reviewer confirms or
+   flips. Quote-verbatim is not a human question: the auto-check enforces it, and the bold
+   span in the shown context is the located quote.
+6. **A null attribute shows its evidence of absence** — every mention of that attribute's
+   trigger words in the posting (German/Deutsch/Sprache; degree/Abschluss/Studium;
+   years/Senior/Lead/Junior), or the explicit statement that there are none.
+7. **German postings are shown in English, translated.** The quoted phrase stays bold in the
+   translation, the LABEL line carries the German verbatim, the section heading is translated
+   and classified, and an optional marker is named by its English meaning *and* by which
+   bullet it attaches to — the most common way these labels go wrong.
+8. **`apply` never changes a label's value.** A label called wrong goes to
+   `corrections_to_decide` and is ruled on separately, so scoring and relabeling stay apart.
+
+**Decision rule:** 0–1 errors in 30 accepts the batch; record the rate and the Wilson 95%
+interval. 2 or more means a second sample of 30 and a written note on what the models miss
+together.
+
+### Figures
+
+| batch | read by | result |
+|---|---|---|
+| HIR-70 held-out, 22 Goldens (golden_025–047) | a person, 2026-11-02, 30 labels seed 0 | **0 errors of 30**, Wilson 95% [0.000, 0.114] — skills 0/24, attributes 0/6 |
+| same batch, earlier 15-label check | `claude-fable-5-1` | 0 errors of 15, Wilson 95% [0.000, 0.204] — a model, not human verification |
+
+Read the interval, not the rate: 30 labels do not rule out an 11% error rate. It is still the
+first bound on this answer key that does not rest on models agreeing with each other.
+
+Two readings were put up as candidate rule changes and came back **confirmed as-is**, so the
+rules above stand unedited: "These are meant to be indicative, not hard requirements" above a
+list does not flip the section to `nice_to_have` (golden_038), and "MS or PhD" takes the
+highest level named (golden_040).
