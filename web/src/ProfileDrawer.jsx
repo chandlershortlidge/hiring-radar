@@ -102,6 +102,18 @@ export default function ProfileDrawer({ onClose, profile, save, taxonomyList }) 
               : `Found ${cv.found} skill${cv.found === 1 ? "" : "s"}${cv.added ? `, ${cv.added} newly ticked` : ", all already ticked"}. Check them below — a CV only matches skills it spells out.`}
           </span>
         )}
+        {cv?.found !== undefined && (
+          <div className="pchips" style={{ marginTop: 8 }}>
+            <span className="help" style={{ flexBasis: "100%" }}>
+              Which level are you targeting? The CV doesn't say — pick one, or Any.
+            </span>
+            <button type="button" className="pchip" aria-pressed={!p.seniority} onClick={() => setP((x) => ({ ...x, seniority: "" }))}>Any</button>
+            {SENIORITIES.map((s) => (
+              <button key={s} type="button" className="pchip" aria-pressed={p.seniority === s}
+                onClick={() => setP((x) => ({ ...x, seniority: s }))}>{cap(s)}</button>
+            ))}
+          </div>
+        )}
       </div>
       <div className="pchips">
         {shown.map((s) => (
