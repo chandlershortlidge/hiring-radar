@@ -150,6 +150,11 @@ cp .env.example .env         # then put the key in .env — it is gitignored; ne
 uv run python scripts/run_eval.py --repeats 1     # quick look
 uv run python scripts/run_eval.py                 # dev split, 3 repeats → evals/results/<run_id>/
 
+# Required before a PR that touches app/extract.py or taxonomy/skills.json can merge
+# (AGENTS.md "The eval gate"): run the dev eval above, then
+uv run python scripts/eval_table.py <run_id>      # score table for the PR body, vs. the last committed run
+uv run python scripts/eval_table.py --version-check   # ...unless the baseline already measured this extractor
+
 # Intake (writes ./data/hiring-radar.db; migrations apply automatically)
 uv run python -m app poll                 # fetch feeds → ingest → extract new jobs
 uv run python -m app poll --no-extract    # fetch + ingest only (no model calls)
@@ -275,6 +280,10 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   search-result headline before HIR-96 stopped the feed writing them. Selects with
   `jsearch.is_headline`, deletes only jobs with a jsearch source row, cascades their skill
   mentions. `--dry-run` first. See DECISIONS 2026-11-02 (HIR-104).
+- `scripts/eval_table.py` — the eval gate's table: finds the newest *committed* dev run,
+  compares every aggregate metric with it, marks any drop past the 0.02 stop line, and
+  exits non-zero if there is one. `--version-check` answers whether the baseline already
+  measured this extractor (the gate's one exemption). Calls no model and writes nothing.
 - `scripts/new_goldens.py` — draft unlabeled held-out Goldens from DB jobs
   (`--german N` or `--ids ...`); run_eval skips files with `"draft": true`.
 - `scripts/agent_label.py` — held-out Goldens via two blind labeler agents: pick → label A
@@ -333,11 +342,14 @@ A metric down more than 0.02 against that baseline is on the stop list below: sa
 the PR, don't merge, and ask. A smaller move is noise on 20 Goldens — note it in the PR
 and carry on.
 
-**One exemption, and it must be evidenced.** If the diff touches those files but leaves
-`extractor_version` unchanged — a comment, a docstring, a test helper, anything outside the
-prompt, the tool schema, the model id and the taxonomy — the model reads every job exactly
-as before and the eval cannot move. Skip the run, and say so in the PR body with both
-version strings printed by `uv run python scripts/eval_table.py --version-check`.
+**One exemption, and it must be evidenced.** Run
+`uv run python scripts/eval_table.py --version-check`. If it answers MATCH, the committed
+baseline already scored this exact extractor — prompt, tool schema, model id and skill list
+all identical, the branch only touched a comment, a docstring or a test helper — so a fresh
+run cannot produce new information. Skip it, and paste those two version lines into the PR
+body instead of the table. If it answers DIFFERENT, the gate applies, and that includes the
+case where the branch changed nothing but main itself was never measured: then the run also
+re-baselines main, which is the gap this rule exists to close.
 
 The held-out split stays release-only (the rule just above). This gate is the dev split.
 
