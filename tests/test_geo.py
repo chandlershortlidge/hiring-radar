@@ -56,6 +56,60 @@ def test_no_region_remote_is_dropped_when_the_description_restricts_it():
     assert is_remote_eu("Remote (Europe)", text="US citizens and EU residents welcome")
 
 
+# --- HIR-109: the declarative residence sentence counts too ----------------------
+
+# The tails of the two real Clera postings, which share one LOCATION template and differ
+# only in the region named. One must drop out, the other must stay in.
+CLERA_US_TAIL = ("COMPENSATION & BENEFITS\n\nAnnual base salary is $180,000 to $260,000 USD, "
+                 "depending on skills, experience,\nand role scope. Visa sponsorship is not "
+                 "available.\n\nLOCATION\n\nRemote within the United States.")
+CLERA_EU_TAIL = ("COMPENSATION & BENEFITS\n\nSalary range: €75,000 to €100,000 annually."
+                 "\n\nLOCATION\n\nFully remote within the EU.")
+
+
+def test_declarative_us_location_sentence_drops_a_no_region_remote_posting():
+    assert not is_remote_eu("remote", text=CLERA_US_TAIL)
+    assert is_remote_eu("remote", text=CLERA_EU_TAIL)
+
+
+@pytest.mark.parametrize("sentence", [
+    "Remote within the United States.",
+    "Fully remote within the US.",
+    "Remote in the United States",
+    "Remote from the US.",
+    "Remote within Canada.",
+    "Remote within India.",
+    "LOCATION\n\nBased in the United States.",
+    "This role is based in the United States.",
+    "Candidates are located in the UK.",
+    "You must be located in the U.S.",          # the abbreviation, now reachable
+])
+def test_declarative_and_imperative_residence_sentences_both_restrict(sentence):
+    assert not is_remote_eu("remote", text=sentence)
+
+
+@pytest.mark.parametrize("sentence", [
+    # The documented accepted risk: no residence sentence at all still gets in.
+    "We are a fully remote team building agents. Python and RAG required.",
+    # An EU region in the same template is not on the non-EU country list.
+    "Fully remote within the EU.",
+    "Remote within Europe.",
+    # Explicitly rejected as residence evidence (HIR-109): each has a counter-example.
+    "Annual base salary is $180,000 to $260,000 USD, depending on skills.",
+    "Visa sponsorship is not available.",
+    "We are a US-based company with a distributed team.",
+    "Clera is a company based in the United States, with a remote team across the EU.",
+    # Anchored on a named country, so no country means no restriction.
+    "Remote within your timezone.",
+    "Remote within the CET timezone.",
+    # A country named for some other reason than where you live.
+    "You will support customers in the United States.",
+    "We serve clients in India and the UK.",
+])
+def test_phrases_that_do_not_restrict_where_you_live(sentence):
+    assert is_remote_eu("remote", text=sentence)
+
+
 def test_empty_location_falls_back_to_title_then_strong_description_phrases():
     assert place_of(None, title="Senior AI/LLM Engineer (Python) - Remote") == REMOTE_EU
     assert place_of(None, title="AI Engineer (Remote, US)") is None

@@ -477,3 +477,26 @@ def test_names_eu_region_is_what_the_adapter_asks():
     assert names_eu_region("Germany") and names_eu_region("EMEA") and names_eu_region("Deutschland")
     assert not names_eu_region("Bromley") and not names_eu_region("Zürich")
     assert not names_eu_region("") and not names_eu_region(None)
+
+
+# --- ashby + geo: the paired Clera postings (HIR-109) ---------------------------
+
+def _clera_places():
+    """Both Clera postings → (location after parse, place ingest sees). Their locations are
+    identical bare "remote" strings; only the LOCATION sentence in the description differs."""
+    from app.geo import active_place
+    return {p.title: (p.location_raw, active_place(p.location_raw, p.title, p.description_text))
+            for p in ashby.parse(load("ashby_clera.json"), company="Clera")}
+
+
+def test_clera_us_only_remote_posting_is_dropped():
+    """"Remote within the United States." is a residence sentence, so ingest's city filter
+    drops the posting instead of storing it as Remote (EU)."""
+    assert _clera_places()["AI Infrastructure / Product Engineer"] == ("remote", None)
+    assert in_scope_title("AI Infrastructure / Product Engineer")
+
+
+def test_clera_eu_remote_posting_still_gets_in():
+    """The same template naming the EU stays in: only the non-EU side was tightened."""
+    assert _clera_places()["Senior Data Scientist"] == ("remote", "Remote (EU)")
+    assert in_scope_title("Senior Data Scientist")
