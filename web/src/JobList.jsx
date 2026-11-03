@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { api } from "./api.js";
-import { Down, Ext, Repost, Search, Up, X } from "./icons.jsx";
+import { Down, Ext, Repost, Search, Star, Up, X } from "./icons.jsx";
 import { cap, dateShort, degreeLine, germanLine, productionLine, sourceCode, timeAgo } from "./format.js";
 import { fails, fit, gates, rankJobs } from "./profile.js";
+import { copyLines, sortJobs, useSaved } from "./saved.js";
 import AddSkillChip from "./AddSkillChip.jsx";
 
 const SORTS = { newest: "Newest first", oldest: "Oldest first", reposts: "Most reposted", company: "Company A–Z" };
@@ -28,6 +29,13 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
   // The posting-text search (HIR-67) is its own box: `q` matches the company and title,
   // `text` every word of the stored posting, and a word can mean different things in each.
   const [text, setText] = useState(filters.text);
+  // Saved jobs (HIR-99): ids live only in this browser. The Saved view fetches each saved
+  // job by its id — the one request no filter touches — so a job that has since closed, or
+  // left the current window, still shows with its status instead of silently vanishing.
+  const [savedIds, toggleSaved] = useSaved();
+  const [savedOn, setSavedOn] = useState(false);
+  const [savedJobs, setSavedJobs] = useState(null);   // null until the first fetch answers
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => { const t = setTimeout(() => setFilters((f) => ({ ...f, query: q })), 250); return () => clearTimeout(t); }, [q, setFilters]);
   useEffect(() => { const t = setTimeout(() => setFilters((f) => ({ ...f, text })), 250); return () => clearTimeout(t); }, [text, setFilters]);
@@ -48,10 +56,26 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
 
   useEffect(() => { if (openJobId) { setOpen(openJobId); onOpened?.(); } }, [openJobId, onOpened]);
 
+  // A saved id whose job the server no longer has (deleted by hand) is dropped from the
+  // view rather than crashing it; un-starring filters below without waiting for a refetch.
+  useEffect(() => {
+    if (!savedOn) return;
+    let live = true;
+    Promise.all(savedIds.map((id) => api.job(id).catch(() => null)))
+      .then((js) => { if (live) setSavedJobs(js.filter(Boolean)); });
+    return () => { live = false; };
+  }, [savedOn, savedIds, refreshKey]);
+
   // Ranked once per fetch, not once per row: every row's badge reads its own fit, but the
   // order is one pass over the set. Ties keep the server's newest-first order.
   const ordered = useMemo(() => (byFit ? rankJobs(profile, page.jobs, demand) : page.jobs), [byFit, profile, page.jobs, demand]);
-  const rows = byFit ? ordered.slice(0, shown) : ordered;
+  // The Saved view sorts locally (saved.js mirrors the server's sorts) because the ids
+  // never leave the browser; the whole set is in hand, so there is nothing to page.
+  const savedRows = useMemo(
+    () => sortJobs((savedJobs || []).filter((j) => savedIds.includes(j.id)), byFit ? "fit" : sort, profile, demand),
+    [savedJobs, savedIds, sort, byFit, profile, demand],
+  );
+  const rows = savedOn ? savedRows : byFit ? ordered.slice(0, shown) : ordered;
   const more = byFit
     ? () => setShown((n) => n + PAGE)
     : () => api.jobs(filters, { sort, limit: PAGE, offset: page.jobs.length })
@@ -64,22 +88,37 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
       <div className="jobs-head">
         <div className="l">
           <h2 id="jobs-title">Jobs</h2>
-          {filters.skillIds.length > 0 && <span className="muted" style={{ fontSize: 12.5 }}>Requires</span>}
-          {filters.skillIds.map((id) => (
-            <span key={id} className="chip-filter">{taxonomy[id] || id}
-              <button type="button" aria-label={`Remove ${taxonomy[id] || id} from the skill filter`}
-                onClick={() => setFilters((f) => ({ ...f, skillIds: f.skillIds.filter((x) => x !== id) }))}><X size={12} /></button>
-            </span>
-          ))}
-          <AddSkillChip selected={filters.skillIds} suggestions={suggestions} taxonomy={taxonomyRows}
-            aliases={aliases} onAdd={onAddSkill} />
-          <span className="muted" style={{ fontSize: 13 }}>{page.total} {filters.window === "open" ? "open" : ""} jobs · {scope}</span>
+          <button type="button" className={`pill saved-toggle${savedOn ? " on" : ""}`} aria-pressed={savedOn}
+            onClick={() => setSavedOn((v) => !v)} title="Only the jobs you starred. Saved jobs live in this browser; the server never sees them.">
+            <Star />Saved · {savedIds.length}
+          </button>
+          {!savedOn && filters.skillIds.length > 0 && <span className="muted" style={{ fontSize: 12.5 }}>Requires</span>}
+          {savedOn && <span className="muted" style={{ fontSize: 13 }}>in the current sort · a saved job that closed stays listed</span>}
+          {!savedOn && <>
+            {filters.skillIds.map((id) => (
+              <span key={id} className="chip-filter">{taxonomy[id] || id}
+                <button type="button" aria-label={`Remove ${taxonomy[id] || id} from the skill filter`}
+                  onClick={() => setFilters((f) => ({ ...f, skillIds: f.skillIds.filter((x) => x !== id) }))}><X size={12} /></button>
+              </span>
+            ))}
+            <AddSkillChip selected={filters.skillIds} suggestions={suggestions} taxonomy={taxonomyRows}
+              aliases={aliases} onAdd={onAddSkill} />
+            <span className="muted" style={{ fontSize: 13 }}>{page.total} {filters.window === "open" ? "open" : ""} jobs · {scope}</span>
+          </>}
         </div>
         <div className="r">
-          <label htmlFor="q" className="sr">Search company or title</label>
-          <div className="search"><Search stroke="#6B6B6B" /><input id="q" type="search" className="inp" placeholder="Search company or title" value={q} onChange={(e) => setQ(e.target.value)} /></div>
-          <label htmlFor="jd" className="sr">Search the posting text</label>
-          <div className="search"><Search stroke="#6B6B6B" /><input id="jd" type="search" className="inp" placeholder="Search the posting text" value={text} onChange={(e) => setText(e.target.value)} /></div>
+          {savedOn ? (
+            <button type="button" className="btn" disabled={!rows.length}
+              title="Puts one “company — title — link” line per saved job on the clipboard"
+              onClick={() => navigator.clipboard.writeText(copyLines(rows)).then(() => { setCopied(true); setTimeout(() => setCopied(false), 1500); }).catch(() => {})}>
+              {copied ? "Copied" : "Copy as list"}
+            </button>
+          ) : (<>
+            <label htmlFor="q" className="sr">Search company or title</label>
+            <div className="search"><Search stroke="#6B6B6B" /><input id="q" type="search" className="inp" placeholder="Search company or title" value={q} onChange={(e) => setQ(e.target.value)} /></div>
+            <label htmlFor="jd" className="sr">Search the posting text</label>
+            <div className="search"><Search stroke="#6B6B6B" /><input id="jd" type="search" className="inp" placeholder="Search the posting text" value={text} onChange={(e) => setText(e.target.value)} /></div>
+          </>)}
           <label htmlFor="sort" className="muted" style={{ fontSize: 12.5 }}>Sort</label>
           <select id="sort" className="sel" value={sort} onChange={(e) => setSort(e.target.value)}>
             {profile && <option value={FIT}>Best fit</option>}
@@ -91,22 +130,25 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
         <div className="row-head"><span>Company</span><span>Title</span><span>City</span><span>First seen</span><span>Status</span><span>Sources</span><span /></div>
         {rows.map((j) => (
           <Row key={j.id} job={j} open={open === j.id} onToggle={() => setOpen(open === j.id ? null : j.id)}
-            profile={profile} taxonomy={taxonomy} demand={demand} onOpenPage={onOpenPage} />
+            profile={profile} taxonomy={taxonomy} demand={demand} onOpenPage={onOpenPage}
+            saved={savedIds.includes(j.id)} onSave={() => toggleSaved(j.id)} />
         ))}
-        {!loading && !page.jobs.length && <div className="empty">{text.trim()
+        {savedOn && !savedJobs && savedIds.length > 0 && <div className="empty">Loading your saved jobs…</div>}
+        {savedOn && !rows.length && (savedJobs || !savedIds.length) && <div className="empty">Nothing saved yet. Star a job to keep it here.</div>}
+        {!savedOn && !loading && !page.jobs.length && <div className="empty">{text.trim()
           ? `No posting contains ${text.trim().split(/\s+/).length > 1 ? "all of those words" : "that word"}. Every word you type has to appear somewhere in the posting.`
           : "No jobs match. Widen the time window or clear the skill filter."}</div>}
       </div></div>
       <div className="jobs-foot">
-        {left > 0 && <button type="button" className="btn" onClick={more}>Load {Math.min(PAGE, left)} more</button>}
-        <span>Showing {rows.length} of {page.total}</span>
-        {byFit && page.total > FIT_MAX && <span className="dim">Best fit ranks the {FIT_MAX} newest of them.</span>}
+        {!savedOn && left > 0 && <button type="button" className="btn" onClick={more}>Load {Math.min(PAGE, left)} more</button>}
+        <span>{savedOn ? `Showing all ${rows.length} saved` : `Showing ${rows.length} of ${page.total}`}</span>
+        {!savedOn && byFit && page.total > FIT_MAX && <span className="dim">Best fit ranks the {FIT_MAX} newest of them.</span>}
       </div>
     </section>
   );
 }
 
-function Row({ job: j, open, onToggle, profile, taxonomy, demand, onOpenPage }) {
+function Row({ job: j, open, onToggle, profile, taxonomy, demand, onOpenPage, saved, onSave }) {
   const [detail, setDetail] = useState(null);
   useEffect(() => { if (open && !detail) api.job(j.id).then(setDetail); }, [open, detail, j.id]);
   const cov = profile ? fit(profile, j, demand) : null;
@@ -115,7 +157,14 @@ function Row({ job: j, open, onToggle, profile, taxonomy, demand, onOpenPage }) 
     <>
       <div className={`row${open ? " open-row" : ""}${j.legacy || j.too_short ? " legacy" : ""}${cov?.gated_by ? " gated" : ""}`} onClick={onToggle} role="button" tabIndex={0} aria-expanded={open}
         onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onToggle(); } }}>
-        <span className="co">{j.company}{j.legacy && <span className="src" style={{ marginLeft: 6 }} title="Imported from the old project with its skills; not in the chart">legacy</span>}{j.too_short && <span className="src" style={{ marginLeft: 6 }} title="Only a fragment of the posting was stored; not in the chart">short</span>}</span>
+        <span className="co">
+          <button type="button" className={`star${saved ? " on" : ""}`} aria-pressed={saved}
+            aria-label={saved ? `Remove ${j.company} — ${j.title} from saved` : `Save ${j.company} — ${j.title}`}
+            title={saved ? "Saved — click to remove" : "Save this job (stays in this browser)"}
+            onClick={(e) => { e.stopPropagation(); onSave(); }} onKeyDown={(e) => e.stopPropagation()}>
+            <Star />
+          </button>
+          {j.company}{j.legacy && <span className="src" style={{ marginLeft: 6 }} title="Imported from the old project with its skills; not in the chart">legacy</span>}{j.too_short && <span className="src" style={{ marginLeft: 6 }} title="Only a fragment of the posting was stored; not in the chart">short</span>}</span>
         <span className="ti">
           {miss.length > 0 && <span className="fit miss" title={miss.map((w) => MISS_LABELS[w]).join(" · ")}>!</span>}
           {cov?.gated_by && <span className="fit gate" title={MISS_LABELS[cov.gated_by]}>{gateWord(cov.gated_by, j)}</span>}
