@@ -268,13 +268,15 @@ def test_v8_entries_resolve_with_their_spellings():
         assert t.resolve(label) == expected, label
 
 
-def test_v8_below_the_bar_labels_still_resolve_to_nothing():
-    # FSDP was at 2 jobs and bare "Triton" at 1 when v8 landed, so neither earned an entry
-    # (DECISIONS 2026-11-03). They stay pending in the queue, not folded into a neighbour.
+def test_v8_leaves_out_the_labels_it_deliberately_left_out():
+    # Bare "Triton" is out for good: two unrelated products share the word (see above).
+    # FSDP and Datadog are out only of *this* change — both crossed the 3-job bar while it
+    # was in flight and are filed as HIR-131, so the chart gains them in a ticket of their
+    # own rather than silently here. DECISIONS 2026-11-03.
     t = Taxonomy.load()
-    assert t.resolve("FSDP") is None
-    assert t.resolve("fsdp") is None
     assert t.resolve("Triton") is None
+    assert t.resolve("FSDP") is None
+    assert t.resolve("Datadog") is None
 
 
 def test_ray_serve_hangs_under_ray_without_losing_distributed_systems():

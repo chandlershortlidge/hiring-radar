@@ -11,9 +11,11 @@ HIR-128 reported 18 proposed labels at or over the 2026-10-20 bar of 3 jobs afte
 read the 264 San Francisco postings. **Nine of the 18 already had entries.** `cuda`,
 `kserve`, `ray-serve`, `speculative-decoding`, `spring-boot`, `triton-inference-server`,
 `nvidia-dynamo`, `opentelemetry` and `quantization` all landed in taxonomy v5 (HIR-72,
-2026-11-01); their pending rows come from 165 jobs still stamped at the v4-era
-`extractor_version`, which the next poll replaces. Counting only jobs at the current
-stamp, all nine sit at **zero** pending rows.
+2026-11-01); their pending rows came from 165 jobs still stamped at the v4-era
+`extractor_version`. Counting only jobs at the current stamp, all nine sat at **zero**
+pending rows — and an extraction run during this ticket proved it: with all 528 stored
+jobs now at the current stamp, those nine labels have left the queue entirely without
+anyone reviewing them.
 
 **So the queue is only a frequency counter for jobs read under the current taxonomy.** A
 label whose rows all predate the entry that covers it is not evidence of a gap; it is a
@@ -21,10 +23,17 @@ job awaiting re-extraction. Read the queue with `job.extracted_version` joined i
 same batch gets reviewed twice. That is the finding worth carrying forward from this
 ticket.
 
-**Seven entries land, taxonomy v8, 217 skills:** `ansible` (5 jobs), `nccl` (4), `ray`
-(3), `bash` (3), `redis` (3), `sagemaker` (3), `temporal` (3) — counts over jobs at the
-current stamp, which is the conservative reading. Two fall below the bar and stay pending:
-`fsdp` (2) and bare `triton` (1).
+**Seven entries land, taxonomy v8, 217 skills:** `ansible`, `nccl`, `ray`, `bash`,
+`redis`, `sagemaker` and `temporal`. They were selected at 5/4/3/3/3/3/3 jobs counting
+only the then-current stamp, which was the conservative reading; after the re-extraction
+described above they stand at 6/4/4/4/6/3/5. Bare `triton` stays out at 1 job.
+
+**`fsdp` and `datadog` crossed the bar mid-ticket and are not in v8** (HIR-131). Both read
+2 jobs when this change was scoped and 3 after the re-extraction. They are left out
+deliberately rather than quietly added: the seven above are what the brief named, and two
+extra rows on the chart is a visible change that should arrive as its own reviewable
+ticket. Neither is a fresh judgment call — HIR-72's triage already recorded `datadog`
+[`observability`], and `fsdp` is a distributed-training technique like `deepspeed`.
 
 **`nccl` lands although 2026-11-02 listed it under "What stays out, and why, so it is not
 re-litigated".** That list's stated reason for the 45 golden_035 names was frequency —
