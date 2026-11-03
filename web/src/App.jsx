@@ -70,6 +70,11 @@ export default function App() {
   }, [filters, refresh]);
 
   const taxName = useMemo(() => Object.fromEntries(tax.skills.map((s) => [s.id, s.display])), [tax]);
+  // How many jobs ask for each skill, straight off the chart's own rows. It only orders the
+  // missing-skill list in a job's fit badge — most asked for first — so the first name there
+  // is the one worth learning next. Null until the chart's numbers arrive; the order is
+  // deterministic either way (HIR-51).
+  const demand = useMemo(() => (skills ? Object.fromEntries(skills.skills.map((s) => [s.skill_id, s.count])) : null), [skills]);
   // For the chart's find box: it matches a skill's aliases as well as its display name.
   const taxAliases = useMemo(() => Object.fromEntries(tax.skills.map((s) => [s.id, s.aliases || []])), [tax]);
   // What the add-skill popover types over, and what it offers before anything is typed: the
@@ -119,7 +124,7 @@ export default function App() {
         </div>
       </div></header>
 
-      {pageJob ? <JobPage id={pageJob} onBack={closePage} profile={profile} taxonomy={taxName} /> : <main className="main">
+      {pageJob ? <JobPage id={pageJob} onBack={closePage} profile={profile} taxonomy={taxName} demand={demand} /> : <main className="main">
         {stats && (
           <p className="stats">
             <span>{stats.jobs} jobs</span><span>·</span>
@@ -196,7 +201,7 @@ export default function App() {
         <RelatedSkills filters={filters} skillNames={skillNames} onAdd={addSkill} data={related} />
 
         <JobList filters={filters} setFilters={setFilters}
-          profile={profile} taxonomy={taxName} refreshKey={refresh} openJobId={jumpTo} onOpened={() => setJumpTo(null)} onOpenPage={openPage}
+          profile={profile} taxonomy={taxName} demand={demand} refreshKey={refresh} openJobId={jumpTo} onOpened={() => setJumpTo(null)} onOpenPage={openPage}
           taxonomyRows={taxRows} aliases={taxAliases} suggestions={skillSuggestions} onAddSkill={addSkill} />
 
         <section className="card chart" aria-labelledby="tree-title">
