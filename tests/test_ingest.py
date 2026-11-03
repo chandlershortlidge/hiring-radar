@@ -1,6 +1,6 @@
 import pytest
 
-from app import db
+from app import db, geo
 from app.ingest import in_scope_title, ingest, ingest_one
 from app.sources import Posting
 
@@ -161,8 +161,19 @@ def test_filters_skip_out_of_scope_titles_and_cities(conn):
     assert count(conn, "job") == 1
 
 
-def test_tracked_but_inactive_city_is_skipped_unless_added_by_hand(conn):
-    """San Francisco is tracked (geo.CITIES) but not in ACTIVE_CITIES: feeds drop it."""
+def test_san_francisco_postings_are_ingested_under_their_own_city(conn):
+    """SF is active since 2026-11-03 (DECISIONS, HIR-12): feeds keep it, as its own city."""
+    assert ingest_one(conn, posting(sid="sf1", company="Golden Gate Labs", location="San Francisco, CA")).startswith("new:")
+    assert ingest_one(conn, posting(sid="sf2", company="Bay Co", title="ML Engineer",
+                                    location="South San Francisco, CA")).startswith("new:")
+    assert ingest_one(conn, posting(sid="b1")).startswith("new:")   # Berlin, unchanged
+    cities = [r["city"] for r in conn.execute("SELECT city FROM job ORDER BY id")]
+    assert cities == ["San Francisco", "San Francisco", "Berlin"]
+
+
+def test_a_city_off_the_active_list_is_still_skipped_unless_added_by_hand(conn, monkeypatch):
+    """The tracked-vs-active gate is unchanged; only SF's side of it moved."""
+    monkeypatch.setattr(geo, "ACTIVE_CITIES", ("Berlin", geo.REMOTE_EU))
     assert ingest_one(conn, posting(location="San Francisco, CA")) == "skipped_city"
     assert ingest_one(conn, posting(location="San Francisco, CA"), require_city=False).startswith("new:")
     assert conn.execute("SELECT city FROM job").fetchone()["city"] == "San Francisco"

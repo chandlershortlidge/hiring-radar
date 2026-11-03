@@ -7,7 +7,9 @@ are active.
 A city can be tracked without being active. `city_of` recognizes every tracked city (manual
 adds keep their real city). Only ACTIVE_CITIES pass the ingest and discover-boards filters
 (`active_place`). Making a tracked city active is a deliberate one-line change: San
-Francisco waits until Berlin extraction passes the held-out eval (DECISIONS 2026-10-19).
+Francisco became active on 2026-11-03, once the held-out eval passed, and is the single
+exception to a Germany-and-EU-remote scope (DECISIONS 2026-11-03, HIR-12). A further
+non-German city is not covered by that exception.
 
 EU-remote (DECISIONS 2026-10-26): a remote posting counts when its location names an
 EU-wide region or Germany ("Remote (EMEA)", "Hamburg, Germany (remote)"), or names no
@@ -36,7 +38,7 @@ CITIES: dict[str, tuple[str, ...]] = {
 
 REMOTE_EU = "Remote (EU)"
 
-ACTIVE_CITIES: tuple[str, ...] = ("Berlin", REMOTE_EU)
+ACTIVE_CITIES: tuple[str, ...] = ("Berlin", REMOTE_EU, "San Francisco")
 
 _PATTERNS = {city: re.compile(r"\b(" + "|".join(re.escape(a) for a in aliases) + r")\b", re.I)
              for city, aliases in CITIES.items()}

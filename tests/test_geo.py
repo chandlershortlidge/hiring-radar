@@ -4,6 +4,7 @@ and careers pages send; the Kake case is the posting /check-url rejected on 2026
 import pytest
 
 from app.check import posting_from_html
+from app import geo
 from app.geo import REMOTE_EU, active_place, is_remote_eu, place_of
 
 
@@ -44,7 +45,15 @@ def test_other_locations_do_not(loc):
 
 def test_a_city_wins_over_remote():
     assert place_of("Berlin or Remote (EU)") == "Berlin"
-    assert active_place("San Francisco, CA (Remote)") is None   # tracked city, not active
+    assert active_place("San Francisco, CA (Remote)") == "San Francisco"   # active since HIR-12
+
+
+def test_san_francisco_is_active_but_the_gate_still_drops_an_inactive_city(monkeypatch):
+    """The tracked-vs-active gate is unchanged; only SF's side of it moved."""
+    assert "San Francisco" in geo.ACTIVE_CITIES
+    monkeypatch.setattr(geo, "ACTIVE_CITIES", ("Berlin", REMOTE_EU))
+    assert place_of("San Francisco, CA") == "San Francisco"   # still tracked
+    assert active_place("San Francisco, CA") is None          # but not collected
 
 
 def test_no_region_remote_is_dropped_when_the_description_restricts_it():

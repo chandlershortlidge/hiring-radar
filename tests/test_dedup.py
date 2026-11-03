@@ -54,8 +54,10 @@ def test_city_of():
     assert city_of(None) is None
 
 
-def test_active_places_are_berlin_and_eu_remote():
+def test_active_places_are_berlin_eu_remote_and_san_francisco():
     assert active_city("Berlin, Germany") == "Berlin"
-    assert active_city("San Francisco, CA") is None and city_of("San Francisco, CA") == "San Francisco"
+    # SF is active since 2026-11-03 (DECISIONS, HIR-12), the only non-German exception.
+    assert active_city("San Francisco, CA") == "San Francisco" and city_of("San Francisco, CA") == "San Francisco"
     assert active_city("Remote") == "Remote (EU)"
     assert active_city("Remote - US") is None
+    assert active_city("Tokyo, Japan") is None

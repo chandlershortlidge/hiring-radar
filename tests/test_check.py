@@ -2,7 +2,7 @@ import json
 
 import pytest
 
-from app import db
+from app import check, db, geo
 from app.check import (AtsRef, CheckResult, check_url, checked_coverage, containment, diagnose,
                        job_coverage, reach_breakdown, reach_of,
                        feed_had_it, log_check, parse_ats_url, posting_from_html)
@@ -203,7 +203,18 @@ def test_diagnose_is_pure_and_names_the_filter():
     assert "fails the title filter" in diagnose(p, None, FEEDS, None)
     assert "no feed can reach it" in diagnose(p, None, FEEDS, None)
     sf = Posting("url", "", "u", "Acme", "AI Engineer", "San Francisco, CA", JD)
-    assert "maps to San Francisco, which is tracked but not active (active: Berlin, Remote (EU))" in diagnose(sf, None, FEEDS, None)
+    # SF is active since 2026-11-03 (HIR-12): no city reason is added any more.
+    assert diagnose(sf, None, FEEDS, None) == ("not a hosted ATS page — no feed can reach it; "
+                                               "--add stores it as source=url")
+
+
+def test_diagnose_names_a_tracked_but_inactive_city(monkeypatch):
+    """Still reachable for any city switched off: geo decides, check prints the list."""
+    monkeypatch.setattr(geo, "ACTIVE_CITIES", ("Berlin", geo.REMOTE_EU))
+    monkeypatch.setattr(check, "ACTIVE_CITIES", ("Berlin", geo.REMOTE_EU))
+    sf = Posting("url", "", "u", "Acme", "AI Engineer", "San Francisco, CA", JD)
+    assert ("maps to San Francisco, which is tracked but not active (active: Berlin, Remote (EU))"
+            in diagnose(sf, None, FEEDS, None))
 
 
 def test_board_without_company_uses_board_token_for_the_match(conn):

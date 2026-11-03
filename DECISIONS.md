@@ -5,6 +5,39 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-03 — San Francisco is active: the one exception to a Germany-only scope (HIR-12)
+
+Collection is switched on for San Francisco, so `geo.ACTIVE_CITIES` is now
+`("Berlin", "Remote (EU)", "San Francisco")`. The gate this waited on — "SF only after
+Berlin extraction passes the held-out eval" (2026-10-19, below) — is met: HIR-70 built the
+26 held-out Goldens, a person read a 30-label sample of them with 0 errors (HIR-92), and
+the 2026-10-30 held-out run reads F1 0.919 / requirement accuracy 0.968
+(`evals/results/20261030T123219Z_heldout_x2-2e0cac6944`). Chandler called it unblocked on
+2026-11-03.
+
+- **The scope rule, stated once so it is never re-argued.** hiring-radar collects Germany
+  and EU-remote. **San Francisco is the single exception**, decided by Chandler on
+  2026-11-03, for one reason: comparing two markets for the same skill is the product's
+  point, and SF is where the volume is. An agent asked whether some other non-German city
+  may be added applies this rule as a *no* — the exception is SF by name, not "non-German
+  cities are fine now". Turning a further city on stays on the AGENTS.md stop list.
+- **Hiding SF from other people using the site is not required.** Also Chandler's call:
+  the site shows every city it collects, and nobody will spend time on a per-viewer scope.
+- **Board discovery searches for SF too.** `config/discover.json` gains two SF queries
+  next to the two Berlin ones, so a `discover-boards` run surfaces SF boards instead of
+  judging every SF posting irrelevant. That doubles a run's Brave searches (domains ×
+  queries), from 10 to 20 — about 10 cents at $5/1,000.
+- **What does not change.** The dashboard already had the San Francisco button, the
+  per-city counts and compare mode (`PLACES` in `web/src/format.js` has listed SF since
+  the compare build); until now they simply had no SF job to show. No extractor change, no
+  taxonomy change, no `extractor_version` bump — SF postings are read by the same prompt
+  as Berlin ones.
+- **Job 140** (Intercom, SF, polled 2026-10-19) was kept in the DB when SF was switched
+  off and is in reach again. It is one row; polls will mark it still-listed or not on
+  their own.
+
+---
+
 ## 2026-11-03 — Best fit: a gate, then a ratio, then the nice-to-haves (HIR-51)
 
 The job list can now be ordered by how well each job fits the profile. Three things about
