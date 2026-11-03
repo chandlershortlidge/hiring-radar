@@ -1346,6 +1346,19 @@ tracked city"). Until now geo dropped every remote posting on purpose (2026-10-1
   JSearch docs, not yet in a recorded fixture). JOIN already did.
 - **Accepted risk:** a bare "Remote" on a US company's board with no residence sentence in
   the JD gets in. Time-zone overlap ("5h with PST") is not treated as a residence rule.
+- **Both phrasings of the residence sentence count** (HIR-109, 2026-11-03). As first
+  written, the check only read *imperative* sentences ("must be located in the US"), so
+  Clera's "Remote within the United States." — a plain declarative LOCATION line — was
+  stored as Remote (EU). That was this rule failing to run, not the accepted risk above:
+  the posting has a residence sentence, and an unambiguous one. The declarative shapes
+  ("Remote within/in/from <country>", "This role is based in <country>", and a bare
+  "Based in <country>." on its own line) now count too, for the same country list. No
+  policy changed, and the accepted risk is untouched — a remote posting whose JD says
+  nothing about residence still gets in. Still **not** residence evidence, because each
+  has a live counter-example: a USD salary band (EU companies quote USD), "visa
+  sponsorship is not available" (Clera's own *Berlin* posting carries that sentence), and
+  a company fact with no job-or-person subject ("Acme is based in the United States").
+  Promoting any of those is a policy change and goes to Chandler.
 - **Extraction caveat:** the Goldens are all Berlin postings; extraction quality on
   remote-EU descriptions is unmeasured, the same caveat as SF.
 

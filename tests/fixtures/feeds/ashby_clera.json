@@ -1,0 +1,24 @@
+{
+  "jobs": [
+    {
+      "id": "1b931920-c4bd-4310-ba61-21f1e108693d",
+      "title": "AI Infrastructure / Product Engineer",
+      "jobUrl": "https://jobs.ashbyhq.com/clera/1b931920-c4bd-4310-ba61-21f1e108693d",
+      "location": "remote",
+      "isRemote": null,
+      "address": null,
+      "publishedAt": "2026-10-28T00:00:00Z",
+      "descriptionPlain": "ABOUT CLERA\n\nWe are building agent infrastructure for financial advisors.\n\nWHAT YOU WILL DO\n\n- Build and operate the retrieval and agent orchestration layer in Python\n- Own deployment, observability and cost of the LLM pipelines\n\nCOMPENSATION & BENEFITS\n\nAnnual base salary is $180,000 to $260,000 USD, depending on skills, experience,\nand role scope. Visa sponsorship is not available.\n\nLOCATION\n\nRemote within the United States."
+    },
+    {
+      "id": "45f788d1-4a00-45a1-9583-17a09ae0bde9",
+      "title": "Senior Data Scientist",
+      "jobUrl": "https://jobs.ashbyhq.com/clera/45f788d1-4a00-45a1-9583-17a09ae0bde9",
+      "location": "remote",
+      "isRemote": null,
+      "address": null,
+      "publishedAt": "2026-10-28T00:00:00Z",
+      "descriptionPlain": "ABOUT CLERA\n\nWe are building agent infrastructure for financial advisors.\n\nWHAT YOU WILL DO\n\n- Model advisor and portfolio behaviour in Python and SQL\n- Design and read the experiments behind the product decisions\n\nCOMPENSATION & BENEFITS\n\nSalary range: €75,000 to €100,000 annually.\n\nLOCATION\n\nFully remote within the EU."
+    }
+  ]
+}
