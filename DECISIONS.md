@@ -5,6 +5,36 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-03 — Best fit sorts on a lower bound, not the ratio (HIR-113)
+
+The first live list had Pentadoc first at `100% · 2/2`, above PharmaHera at 6/8 and
+Deloitte at 10/14. Two matched skills is not evidence of a perfect fit; it is evidence of
+almost nothing. Ranking on the raw ratio rewards exactly the postings we know least about,
+and short required-skill lists are usually thin extractions rather than genuinely simple
+jobs.
+
+So `rankJobs` orders on the **Wilson score interval's lower bound** of covered/total
+instead, and `fit()` returns it as `rank_score` beside the plain `score`. The three rows
+above become 0.45, 0.41 and 0.34 — the order a person would pick by eye.
+
+- **Why a lower bound rather than a smoothed ratio.** It answers the question the list is
+  actually asking: given this much evidence, how good can we be confident the fit is? A
+  prior-based smoothing (add-k) would do something similar, but needs a k chosen out of
+  thin air; the bound needs only a confidence level, and the same method is already used on
+  PatternAI's eval rates, so the two read alike.
+- **Why z = 1.96.** The conventional 95% level, and the number already in use for those
+  eval rates. Nothing here is sensitive to the exact value — it sets how hard small
+  denominators are penalised, and 1.96 reproduces the ordering a person reads off the
+  screenshot. One constant, `Z`, so there is one place to change it.
+- **The badge did not change.** A row still reads `100% · 2/2`, because that *is* what the
+  posting asked and what the profile covers; inventing a "34%" badge would be telling the
+  person their two-for-two match is a third of a fit. `score` is for showing, `rank_score`
+  is for ordering, and the return shape says so. Alerts (HIR-19) and the Advisor sort on
+  `rank_score` so every surface agrees.
+- **Nothing else about the order moved.** Gated-out jobs still sort below everything in
+  reach; a job with no required skills to judge still sorts last among the ungated; the
+  quarter-weighted nice-to-have share is still a separate, lower tie-break.
+
 ## 2026-11-03 — A title can name a level (HIR-113)
 
 HIR-51 said a posting that names no level never gates, because `null` is the extractor's

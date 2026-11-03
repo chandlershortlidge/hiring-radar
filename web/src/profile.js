@@ -11,7 +11,8 @@
 //
 // What they do NOT do: weight rare skills above common ones, estimate what a missing
 // skill costs to learn, or look at proficiency (HIR-59). A gate is a yes/no on what the
-// posting insists on, and the score is a plain ratio.
+// posting insists on; the score a badge shows is a plain ratio, and the score jobs are
+// *ordered* by is that ratio's Wilson lower bound, so thin evidence sorts lower.
 import { useCallback, useEffect, useState } from "react";
 import { DEGREE_RANK } from "./format.js";
 
@@ -101,13 +102,38 @@ export function skillSides(job) {
   return { required: job.required_skills || [], nice: job.nice_skills || [] };
 }
 
+// z for a 95% one-sided-ish normal interval. The number only has to be the same everywhere
+// the ranking is computed; 1.96 is the conventional choice and the one PatternAI's eval
+// rates already use, so the two read the same way.
+const Z = 1.96;
+
+// The Wilson score interval's lower bound for `covered` successes out of `total`. Shrinks
+// a ratio towards 0 by however little evidence stands behind it: 2/2 lands at 0.34 and
+// 10/14 at 0.45, so the better-evidenced job sorts first. Returns null for total = 0,
+// which is "unknown", not "no fit". Pure arithmetic — no clamping needed, the bound is in
+// [0, 1] for any 0 <= covered <= total.
+export function wilsonLower(covered, total, z = Z) {
+  if (!total) return null;
+  const p = covered / total;
+  const z2 = z * z;
+  const centre = p + z2 / (2 * total);
+  const spread = z * Math.sqrt((p * (1 - p)) / total + z2 / (4 * total * total));
+  return (centre - spread) / (1 + z2 / total);
+}
+
 // How well a job fits a profile. Returns null without a profile, otherwise
-//   { score, covered, total, missing, gated_by }
+//   { score, rank_score, covered, total, missing, gated_by }
 // where `total` is the job's required-skill count, `covered` how many of them the profile
 // has, `score` their ratio (null when the job has no required skills at all — a fragment
 // or a legacy import — because 0/0 is "unknown", not "no fit"), `missing` the required
 // skill ids the profile lacks, most-asked-for first, and `gated_by` the first hard ask the
 // profile fails, or null. A gate does not change the score: it says the score is moot.
+//
+// `rank_score` is what *orders* jobs: the Wilson lower bound of covered/total (null
+// alongside a null `score`). `score` is what a badge *shows*. They differ on purpose — a
+// 2/2 job reads "100% · 2/2" and still sorts below a 10/14 one, because two matched skills
+// is thin evidence for a perfect score. Anything that ranks jobs — the list, alerts
+// (HIR-19), the Advisor — sorts on `rank_score` so they all agree.
 //
 // `demand` maps a skill id to how many jobs ask for it, and only orders `missing`. Without
 // it the ids keep the order they arrived in, so the result stays deterministic either way.
@@ -120,6 +146,7 @@ export function fit(profile, job, demand = null) {
   const covered = required.length - missing.length;
   return {
     score: required.length ? covered / required.length : null,
+    rank_score: wilsonLower(covered, required.length),
     covered,
     total: required.length,
     missing,
@@ -131,7 +158,7 @@ export function fit(profile, job, demand = null) {
 const NICE_WEIGHT = 0.25;
 
 // Sortable fit, lower sorts earlier: gated-out jobs last, then jobs with no required
-// skills to judge, then the score, and only then nice-to-have coverage.
+// skills to judge, then the confidence-bounded score, and only then nice-to-have coverage.
 //
 // Nice-to-haves are a *separate, lower* term rather than part of the score, because the
 // issue asks them to break ties and nothing more. Folded into one number they do more
@@ -143,7 +170,7 @@ function sortKey(profile, job, f) {
   const have = new Set(profile.skills);
   const coveredNice = nice.filter((id) => have.has(id)).length;
   const bonus = f.total ? (NICE_WEIGHT * coveredNice) / f.total : 0;
-  return [f.gated_by ? 1 : 0, f.total ? 0 : 1, -(f.score || 0), -bonus];
+  return [f.gated_by ? 1 : 0, f.total ? 0 : 1, -(f.rank_score || 0), -bonus];
 }
 
 // Best fit first, over jobs already fetched and filtered. Stable: jobs that tie keep the
