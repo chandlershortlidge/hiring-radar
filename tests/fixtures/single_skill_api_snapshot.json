@@ -13,6 +13,7 @@
           "id": 2,
           "last_seen": "2026-10-17T12:00:00Z",
           "legacy": false,
+          "nice_skills": [],
           "production": null,
           "repost_count": 0,
           "required_skills": [
@@ -49,6 +50,9 @@
           "id": 1,
           "last_seen": "2026-10-16T12:00:00Z",
           "legacy": false,
+          "nice_skills": [
+            "aws"
+          ],
           "production": null,
           "repost_count": 0,
           "required_skills": [
@@ -96,6 +100,7 @@
           "id": 2,
           "last_seen": "2026-10-17T12:00:00Z",
           "legacy": false,
+          "nice_skills": [],
           "production": null,
           "repost_count": 0,
           "required_skills": [
@@ -132,6 +137,9 @@
           "id": 1,
           "last_seen": "2026-10-16T12:00:00Z",
           "legacy": false,
+          "nice_skills": [
+            "aws"
+          ],
           "production": null,
           "repost_count": 0,
           "required_skills": [
@@ -179,6 +187,9 @@
           "id": 1,
           "last_seen": "2026-10-16T12:00:00Z",
           "legacy": false,
+          "nice_skills": [
+            "aws"
+          ],
           "production": null,
           "repost_count": 0,
           "required_skills": [
@@ -276,6 +287,7 @@
           "id": 6,
           "last_seen": "2026-10-16T12:00:00Z",
           "legacy": false,
+          "nice_skills": [],
           "production": null,
           "repost_count": 0,
           "required_skills": [
@@ -313,6 +325,7 @@
           "id": 5,
           "last_seen": "2026-10-16T12:00:00Z",
           "legacy": false,
+          "nice_skills": [],
           "production": null,
           "repost_count": 0,
           "required_skills": [
@@ -350,6 +363,7 @@
           "id": 4,
           "last_seen": "2026-10-16T12:00:00Z",
           "legacy": false,
+          "nice_skills": [],
           "production": null,
           "repost_count": 0,
           "required_skills": [
@@ -389,6 +403,7 @@
           "id": 3,
           "last_seen": "2026-10-16T12:00:00Z",
           "legacy": false,
+          "nice_skills": [],
           "production": null,
           "repost_count": 0,
           "required_skills": [
@@ -428,6 +443,7 @@
           "id": 2,
           "last_seen": "2026-10-16T12:00:00Z",
           "legacy": false,
+          "nice_skills": [],
           "production": null,
           "repost_count": 0,
           "required_skills": [
@@ -468,6 +484,7 @@
           "id": 1,
           "last_seen": "2026-10-16T12:00:00Z",
           "legacy": false,
+          "nice_skills": [],
           "production": null,
           "repost_count": 0,
           "required_skills": [

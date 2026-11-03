@@ -78,6 +78,11 @@ def test_filter_validation(api):
     assert client.get("/api/skills", params={"degree": "open", "german": "not_required"}).status_code == 200
     assert client.get("/api/skills", params={"production": "not_required"}).status_code == 200
     assert client.get("/api/jobs", params={"production": "required"}).status_code == 200
+    # The largest page the route serves. "Best fit" ranks in the browser and so asks for
+    # exactly this many rows in one request (web/src/JobList.jsx FIT_MAX) — raising that
+    # constant past this bound silently empties the job list, so the bound is pinned here.
+    assert client.get("/api/jobs", params={"limit": 200}).status_code == 200
+    assert client.get("/api/jobs", params={"limit": 201}).status_code == 422
 
 
 def test_jobs_and_detail(api):

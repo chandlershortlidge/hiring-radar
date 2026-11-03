@@ -246,6 +246,10 @@ select.sel { padding-right: 28px; }
 .cover .miss { color: var(--ink); font-weight: 600; }
 .cover .miss::before { content: "! "; }
 .row .ti .fit.miss { border-color: var(--ink); color: var(--ink); font-weight: 600; }
+/* Gated out: the posting insists on something the profile says no to. Greyed like a
+   legacy row — still readable, still expandable, just not where the eye goes first. */
+.row .ti .fit.gate { border-style: dashed; text-transform: none; }
+.row.gated .co, .row.gated .ti { color: var(--ink-3); }
 /* job page (/jobs/{id}) */
 .page > a { align-self: flex-start; font-size: 13px; }
 .page-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 12px 24px; padding: 20px 20px 16px; }
