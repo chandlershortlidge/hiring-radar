@@ -44,10 +44,31 @@ export function useProfile() {
 // --- fit --------------------------------------------------------------------------------
 
 // The hard asks a profile can fail. A gate is only a gate when the posting *insists*:
-// "nice to have" never gates, and a job that names no level never gates on seniority
-// (plenty of postings simply don't say). Order matters: it is the order a row names the
-// reason in, so the most concrete ask comes first.
+// "nice to have" never gates, and a job that names no level — in the body or the title —
+// never gates on seniority (plenty of postings simply don't say). Order matters: it is the
+// order a row names the reason in, so the most concrete ask comes first.
 export const GATES = ["german", "production", "degree", "seniority"];
+
+// Level words a title can carry. Whole words only, so "Internal Tools" is not an
+// internship and "Leading" is not a Lead. These are the words HIR-113 lists and nothing
+// more: the list is deliberately short, because a wrong guess here hides a job.
+const SENIOR_TITLE = /\b(senior|staff|principal|lead|head)\b/i;
+const JUNIOR_TITLE = /\b(junior|werkstudent|working student|intern)\b/i;
+
+// The level a job names: the extractor's stored level when it found one, otherwise the
+// title's own word. Returns null when nothing names a level, and also when the title names
+// both ("Junior Lead") — ambiguous is as good as silent, and a null level never gates.
+//
+// The stored level wins on purpose. It was read from the whole posting, where the title is
+// one line; when the two disagree the body is the better evidence (HIR-113).
+export function jobSeniority(job) {
+  if (job.seniority) return job.seniority;
+  const title = job.title || "";
+  const senior = SENIOR_TITLE.test(title);
+  const junior = JUNIOR_TITLE.test(title);
+  if (senior === junior) return null;
+  return senior ? "senior" : "junior";
+}
 
 // Does this one hard ask rule the profile out? Pure; false whenever the ask is absent.
 export function fails(profile, job, gate) {
@@ -58,7 +79,10 @@ export function fails(profile, job, gate) {
     const hard = job.degree_requirement === "required" && !job.degree_or_equivalent;
     return hard && DEGREE_RANK[profile.degree || ""] < DEGREE_RANK[job.degree];
   }
-  if (gate === "seniority") return Boolean(profile.seniority && job.seniority && job.seniority !== profile.seniority);
+  if (gate === "seniority") {
+    const level = jobSeniority(job);
+    return Boolean(profile.seniority && level && level !== profile.seniority);
+  }
   return false;
 }
 

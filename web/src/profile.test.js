@@ -2,13 +2,13 @@
 // nice-to-have tie-break, and a job with no required skills to judge. No DOM, no network,
 // no localStorage — these are the functions alerts and the Advisor will reuse.
 import { describe, expect, it } from "vitest";
-import { EMPTY, fails, fit, gates, rankJobs, skillSides } from "./profile.js";
+import { EMPTY, fails, fit, gates, jobSeniority, rankJobs, skillSides } from "./profile.js";
 
 const me = (p = {}) => ({ ...EMPTY, seniority: "mid", skills: ["python", "rag"], ...p });
 
 // A list row as /api/jobs returns it, with only the fields fit() reads.
 const job = (o = {}) => ({
-  id: 1, required_skills: [], nice_skills: [], german: null, production: null,
+  id: 1, title: "AI Engineer", required_skills: [], nice_skills: [], german: null, production: null,
   degree: null, degree_requirement: null, degree_or_equivalent: false, seniority: null, ...o,
 });
 
@@ -82,6 +82,62 @@ describe("gates", () => {
     expect(gates(me(), job({ seniority: "mid" }))).toEqual([]);
     expect(gates(me(), job({ seniority: null }))).toEqual([]);          // the job names no level
     expect(gates(me({ seniority: "" }), job({ seniority: "senior" }))).toEqual([]);  // nor does the profile
+  });
+
+  // HIR-113: the extractor leaves plenty of senior postings at null, and HIR-51's "a job
+  // that names no level never gates" let them sit at the top of a Mid profile's list.
+  it("falls back to the title when the posting stores no level", () => {
+    const titled = (t) => job({ seniority: null, title: t });
+    for (const t of [
+      "(Senior) AI Web & GTM Engineer (f/m/d)",
+      "Senior Consultant AI Engineer",
+      "Staff Engineer, Künstliche Intelligenz Ingenieur",
+      "Principal Software Engineer - Machine Learning",
+      "AI Engineer Team Lead (all genders)",
+      "Head of AI Engineering",
+    ]) {
+      expect(gates(me(), titled(t))).toEqual(["seniority"]);
+      expect(jobSeniority(titled(t))).toBe("senior");
+    }
+  });
+
+  it("reads a junior title the same way, so a Mid profile is not shown internships", () => {
+    for (const t of ["Junior AI Engineer", "Werkstudent Machine Learning", "Working Student AI", "Intern, AI Engineering"]) {
+      expect(jobSeniority(job({ title: t }))).toBe("junior");
+      expect(gates(me(), job({ title: t }))).toEqual(["seniority"]);
+    }
+    // A junior title does gate a junior profile out of nothing.
+    expect(gates(me({ seniority: "junior" }), job({ title: "Junior AI Engineer" }))).toEqual([]);
+  });
+
+  it("matches level words only as whole words, so ordinary titles still name no level", () => {
+    for (const t of ["AI Engineer", "Machine Learning Engineer (m/w/d)", "Internal Tools Engineer", "Leading Edge AI Developer"]) {
+      expect(jobSeniority(job({ title: t }))).toBe(null);
+      expect(gates(me(), job({ title: t }))).toEqual([]);
+    }
+  });
+
+  it("lets a stored level win over the title, because the body is the better evidence", () => {
+    const j = job({ seniority: "mid", title: "(Senior) AI Web & GTM Engineer" });
+    expect(jobSeniority(j)).toBe("mid");
+    expect(gates(me(), j)).toEqual([]);
+    expect(gates(me({ seniority: "senior" }), j)).toEqual(["seniority"]);
+  });
+
+  it("treats a title naming two levels as naming none", () => {
+    expect(jobSeniority(job({ title: "Junior to Lead AI Engineer" }))).toBe(null);
+    expect(gates(me(), job({ title: "Junior to Lead AI Engineer" }))).toEqual([]);
+  });
+
+  it("never gates on a title when the profile targets no level", () => {
+    expect(gates(me({ seniority: "" }), job({ title: "Senior AI Engineer" }))).toEqual([]);
+    expect(gates(me({ seniority: "" }), job({ title: "Werkstudent AI" }))).toEqual([]);
+  });
+
+  it("survives a job with no title at all", () => {
+    const j = job({ title: undefined });
+    expect(jobSeniority(j)).toBe(null);
+    expect(gates(me(), j)).toEqual([]);
   });
 
   it("names every failed ask in order, and fit reports the first", () => {

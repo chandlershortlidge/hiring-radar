@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { api } from "./api.js";
 import { Down, Ext, Repost, Search, Star, Up, X } from "./icons.jsx";
 import { cap, dateShort, degreeLine, germanLine, productionLine, sourceCode, timeAgo } from "./format.js";
-import { fails, fit, gates, rankJobs } from "./profile.js";
+import { fails, fit, gates, jobSeniority, rankJobs } from "./profile.js";
 import { copyLines, sortJobs, useSaved } from "./saved.js";
 import AddSkillChip from "./AddSkillChip.jsx";
 
@@ -200,9 +200,11 @@ const MISS_LABELS = {
 };
 
 // The one word the badge uses for a gated-out row. Seniority says which level, because
-// "senior" is the useful word there and "seniority" is not.
+// "senior" is the useful word there and "seniority" is not — and it asks profile.js for
+// that level rather than reading the row, so a job gated on its title alone still names
+// one instead of showing a blank (HIR-113).
 const GATE_WORDS = { german: "German", production: "production", degree: "degree" };
-const gateWord = (gate, j) => (gate === "seniority" ? j.seniority : GATE_WORDS[gate]);
+const gateWord = (gate, j) => (gate === "seniority" ? jobSeniority(j) : GATE_WORDS[gate]);
 
 const pct = (score) => Math.round(score * 100);
 

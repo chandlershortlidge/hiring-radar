@@ -5,6 +5,37 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-03 — A title can name a level (HIR-113)
+
+HIR-51 said a posting that names no level never gates, because `null` is the extractor's
+safe error. On the live list that turned out to be the wrong default for one shape of
+posting: "(Senior) AI Web & GTM Engineer", "Senior Consultant AI Engineer", "Staff
+Engineer…", "Principal Software Engineer…" all reached the browser with no stored level,
+so none of them gated, and they sat at the top of a list filtered to Mid — the exact jobs
+the filter was meant to push down.
+
+So when a job stores no level, `jobSeniority` in `web/src/profile.js` reads the title:
+Senior, Staff, Principal, Lead or Head as a whole word means `senior`, and Junior,
+Werkstudent, Working Student or Intern means `junior`. Four things about that:
+
+- **A stored level still wins.** The extractor read the whole posting; the title is one
+  line of it. When they disagree the body is the better evidence, so "(Senior) AI Web & GTM
+  Engineer" stored as `mid` stays `mid` and does not gate a Mid profile. This is why the
+  change fixes fewer rows than the screenshot suggests, and why the extractor's own
+  behaviour on bracketed "(Senior)" is a separate ticket rather than something papered over
+  here.
+- **Whole words only, and a short list.** `\b(senior|staff|principal|lead|head)\b` —
+  so "Internal Tools Engineer" is not an internship and "Leading Edge AI" is not a Lead. The
+  list is only the words HIR-113 names. A wrong guess here *hides a job*, which is worse
+  than letting one sort too high, so the list stays short rather than clever.
+- **A title that names two levels names none.** "Junior to Lead AI Engineer" returns
+  `null` and never gates. Ambiguous is treated exactly like silent.
+- **The badge still names a level.** A row gated on its title alone would otherwise show a
+  blank word, because the row's own `seniority` is null; `JobList.jsx` asks `profile.js`
+  for the effective level instead of reading the field.
+
+Browser-only and deterministic: no model call, no stored data, nothing re-extracted.
+
 ## 2026-11-03 — Best fit: a gate, then a ratio, then the nice-to-haves (HIR-51)
 
 The job list can now be ordered by how well each job fits the profile. Three things about
@@ -25,6 +56,9 @@ how that order is computed were open, and this is how they were settled.
   word. A posting that names no level never gates: most don't, and `null` is the extractor's
   safe error there (DECISIONS 2026-10-27). Seniority is a gate at all because the profile
   targets exactly one level; that is the filter's own meaning.
+  **Narrowed the same week — see the 2026-11-03 HIR-113 entry above:** a posting that stores
+  no level but names one *in its title* now gates on the title. "Names no level" means
+  neither the body nor the title did.
 - **"Best fit" ranks in the browser, over at most 200 jobs.** The server is never told the
   profile, so it cannot sort by fit; `web/src/profile.js` does, over one page of the
   filtered set, and pages through the result locally. 200 is the largest page `/api/jobs`
