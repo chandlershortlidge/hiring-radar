@@ -12,7 +12,10 @@ Francisco waits until Berlin extraction passes the held-out eval (DECISIONS 2026
 EU-remote (DECISIONS 2026-10-26): a remote posting counts when its location names an
 EU-wide region or Germany ("Remote (EMEA)", "Hamburg, Germany (remote)"), or names no
 region at all ("Remote", "Anywhere") and the description does not restrict it to a non-EU
-country. A remote posting tied to one other country ("Remote – Spain", "Remote, US") does
+country. Both phrasings of that restriction count — imperative ("candidates must be
+located in the US") and declarative, the shape a LOCATION section writes ("Remote within
+the United States.") — always anchored on a named non-EU country (HIR-109).
+A remote posting tied to one other country ("Remote – Spain", "Remote, US") does
 not count: it usually needs residence or an employer entity there. A city match wins:
 "Berlin or remote" is Berlin. When the location is empty (a careers page without
 JSON-LD), the title and strong phrases in the description ("fully remote", "remote-first")
@@ -52,14 +55,31 @@ homeoffice wfh telecommute anywhere worldwide global globally international dist
 within the any location locations ok possible hybrid flexible timezone timezones time zone zones
 """.split())
 
-# A description restricting a no-region remote posting to a non-EU country. Kept narrow:
-# "US-based company" or "overlap with PST" do not restrict where you live.
+# Countries a residence sentence can name to put a posting out of reach. No EU region is
+# on this list: matching it only ever makes a posting drop out.
+_NON_EU_COUNTRY = (r"(?:US|U\.S\.|USA|U\.S\.A\.|United States|Canada|North America"
+                   r"|Latin America|LATAM|India|UK|United Kingdom)(?!\w)")
+
+# A description restricting a no-region remote posting to a non-EU country, in either of
+# the shapes postings write it (HIR-109): imperative ("candidates must be located in the
+# US") and declarative, which is what a LOCATION section uses ("Remote within the United
+# States.", "This role is based in Canada"). Every branch is anchored on a named country,
+# so "remote within your timezone" never trips it.
+# Kept narrow, because none of these says where you live: "US-based company"; a bare
+# company fact ("Acme is based in the United States" — the declarative branches need a
+# remote/job/person subject, or a LOCATION line of its own); a USD salary band; "visa
+# sponsorship is not available"; "overlap with PST".
 _NON_EU_ONLY = re.compile(
-    r"\b(?:must|need to|needs to|required to|should)\s+(?:be\s+)?(?:located|based|resid\w*|living|live)\s+in\s+"
-    r"(?:the\s+)?(?:US|U\.S\.|USA|United States|Canada|North America|Latin America|LATAM|India|UK|United Kingdom)\b"
-    r"|\bauthori[sz]ed to work in the (?:US|U\.S\.|United States)\b"
-    r"|\b(?:US|U\.S\.|USA)[- ]only\b"
-    r"|\b(?:US|U\.S\.) (?:citizens?|residents?|persons?)\b",
+    r"\b(?:must|need to|needs to|required to|should)\s+(?:be\s+)?"
+    r"(?:located|based|resid\w*|living|live)\s+in\s+(?:the\s+)?" + _NON_EU_COUNTRY
+    + r"|\bremote\s+(?:with)?in\s+(?:the\s+)?" + _NON_EU_COUNTRY
+    + r"|\bremote\s+from\s+(?:the\s+)?" + _NON_EU_COUNTRY
+    + r"|(?:^|(?<=[.\n]))\s*(?:based|located)\s+in\s+(?:the\s+)?" + _NON_EU_COUNTRY
+    + r"|\b(?:roles?|position|job|candidates?|applicants?|hires?|you)\b[^.;\n]{0,30}?"
+      r"\b(?:based|located|residing)\s+in\s+(?:the\s+)?" + _NON_EU_COUNTRY
+    + r"|\bauthori[sz]ed to work in the (?:US|U\.S\.|United States)\b"
+    + r"|\b(?:US|U\.S\.|USA)[- ]only\b"
+    + r"|\b(?:US|U\.S\.) (?:citizens?|residents?|persons?)\b",
     re.I)
 
 # Description phrases strong enough to stand in for an empty location. Plain "remote" is
