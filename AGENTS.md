@@ -198,8 +198,12 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `app/sources/` — one adapter per feed (`greenhouse`, `lever`, `ashby`, `join`, `arbeitnow`,
   `arbeitsagentur`, `jsearch`, `startup_jobs`): `parse(payload)` is pure and tested on `tests/fixtures/feeds/`;
   `fetch()` is the thin HTTP wrapper. `app/html_text.py` strips HTML.
-- `app/dedup.py` — company/title keys and 3-word-shingle Jaccard similarity; `find_match`
-  needs same company AND similarity ≥ 0.7. `app/geo.py` — location → tracked city or EU-remote.
+- `app/dedup.py` — company/title keys and 3-word-shingle text measures; `find_match` needs
+  the same company AND `is_same_posting`: Jaccard ≥ 0.7, **or** the containment path added
+  by HIR-113 (the shorter text ≥ 0.9 contained in the longer, ≥ 60 shingles long, and the
+  shorter title's words all in the longer title). A title never carries a match alone. The
+  real postings the thresholds rest on are `tests/fixtures/dedup/real_cases.json`.
+  `app/geo.py` — location → tracked city or EU-remote.
 - `app/ingest.py` — the still-listed / merge / repost / new decision and the title+city
   filters. `app/pipeline.py` — extract skills for jobs not yet at the current
   `extractor_version`. `app/poll.py` — run all feeds in `config/feeds.json`.

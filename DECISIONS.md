@@ -5,6 +5,55 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-03 — Dedup gains a containment path, guarded by the title (HIR-113)
+
+Cloover appeared three times in the job list. Pulling the rows settled what happened — and
+it was two different things, not one:
+
+| pair | Jaccard | containment | what it is |
+| --- | --- | --- | --- |
+| 76 + 231 | 0.683 | **1.000** | the same posting; one source stored a shorter extract |
+| 206 + 76 | 0.013 | 0.033 | the same posting **in German** |
+| 206 + 231 | 0.011 | 0.022 | likewise |
+
+**The near miss.** Job 76's text is a literal prefix of job 231's: every one of its 675
+shingles is in 231. Jaccard still read 0.683, under the 0.7 threshold, because it divides
+by the *union*, which grows with the longer text. So the measure was working as designed and
+the design was wrong for this case. `dedup.containment` — `|A∩B| / min(|A|,|B|)` — reads
+1.000, and `is_same_posting` now accepts either path.
+
+**Why the containment path needs three guards, not one.** Containment ≥ 0.9 on its own
+breaks the invariant that two different roles at one company never merge. Checked over all
+246 stored jobs it would have merged pplwise's "AI engineer in manufacturing" with their
+"Senior AI / Machine Learning Engineer" at containment 0.931 — a recruiter whose postings
+share most of their boilerplate. Two genuinely different jobs. So the path requires all of:
+
+- containment ≥ 0.9; **and**
+- the shorter text at least 60 shingles (~60 words), because less than that cannot
+  establish identity; **and**
+- every word of the shorter title present in the longer title.
+
+The title is a *supporting* signal only — `test_a_matching_title_alone_never_merges` pins
+that identical titles with unrelated text still do not merge. With all three, the rule adds
+exactly two merges across the stored set (Cloover 76+231, eGroup 77+240), both genuine
+duplicates, and changes no existing merge. Those numbers, and the four real postings behind
+them, are in `tests/fixtures/dedup/real_cases.json`.
+
+**The German translation is a known limit, not a fix.** No shingle measure over words can
+see that job 206 is job 231 in German; both read under 0.04. Catching it needs a different
+signal (same company + same source + same posted date, or a translation step), which is its
+own ticket — HIR-117 — not a threshold change.
+
+**The rows already split stay split.** Changing stored jobs is Chandler's call, so nothing
+was rewritten here; the fix stops *new* duplicates only. When it is wanted, merging the two
+pairs above means, for each: repoint the loser's `job_source` rows at the winner, take
+`min(first_seen)` and `max(last_seen)`, drop the loser's `skill_mention` and
+`extraction_reject` rows (the winner's extraction stands; the FTS triggers follow the
+delete), and delete the loser. Keep the longer description — it is the one the extractor
+should read. That is a `scripts/` one-off with `--dry-run`, in the shape of
+`scripts/remove_headline_jobs.py`, and the three Cloover rows are only two merges, so doing
+it by hand is also reasonable.
+
 ## 2026-11-03 — Best fit sorts on a lower bound, not the ratio (HIR-113)
 
 The first live list had Pentadoc first at `100% · 2/2`, above PharmaHera at 6/8 and
