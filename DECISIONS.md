@@ -5,6 +5,46 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-03 — arbeitnow's "Remote job" is a placeholder, and its URL carries the place (HIR-111)
+
+A large block of arbeitnow's remote postings sends the literal string `"Remote job"` as the
+location. Every word of it is filler to `geo` ("remote", "job"), so it read as a remote
+posting naming no region at all and became `Remote (EU)` wherever the job really was — a
+Zürich role, an Amsterdam role, the UK-local Bromcom role from HIR-110. HIR-98 fixed the
+bare-place-name case ("Bromley" passes through and gets dropped) and never saw this one.
+Measured over one live 5-page poll (1410 postings): 20 carry the placeholder, 3 of those also
+pass the title filter and were stored, all 3 as `Remote (EU)` and none of them EU-wide.
+
+The adapter now reads the place out of the posting's own URL, which is the only other thing
+that carries it: the host is country-localized (`.com` Germany, `.ch`, `.nl`, `.co.uk`,
+`.fr` — 20/20 agreed with the city in the slug) and the slug ends in the place and the
+posting id. A tracked city in the last two slug words wins, which is geo's own rule that a
+city beats a remote marker; otherwise the host's country goes in and geo judges
+`"Remote (Switzerland)"` exactly as it judges a feed that writes "Remote, UK" itself — not
+EU-remote, because such a posting usually needs residence or an entity there (2026-10-26).
+No policy changed: the placeholder was hiding a place the 2026-10-26 rules already decide.
+
+Three things were weighed and rejected:
+
+- **Treating the placeholder as an empty location.** The adapter already turns an empty
+  location into `"Remote (Germany)"`, so this would have kept every one of these postings
+  EU-remote. Handing `None` to geo instead (title and description stand in) was measured:
+  it drops the two Zürich postings but still stores the Amsterdam one as `Remote (EU)`,
+  because its description says "fully remote". The feed knows where the job is; guessing
+  from prose when the URL says "amsterdam" is the weaker reading.
+- **Widening `geo._NON_EU_ONLY`** (HIR-109's axis). It only ever catches a posting that
+  writes a residence sentence, and the Bromcom one does not.
+- **Reading the slug for anything but a tracked city.** Only the last two words before the
+  posting id are read, and only `city_of` reads them, so title words that end up in that
+  window ("...-software-engineer-302654") are never mistaken for a place — they fall back
+  to the host's country rather than dropping the posting on a word like "engineer".
+
+Known cost: a posting that is genuinely open worldwide but sits on a non-German host is now
+dropped — the seven Tether "100% Remote Worldwide" rows in HIR-110's sample would be. That is
+the same loss the 2026-10-26 rule already takes on any feed that says "Remote, UK", and
+undoing it means letting a title or description override a country the feed named, which is
+its own decision.
+
 ## 2026-11-03 — Best fit: a gate, then a ratio, then the nice-to-haves (HIR-51)
 
 The job list can now be ordered by how well each job fits the profile. Three things about
