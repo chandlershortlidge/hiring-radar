@@ -11,16 +11,35 @@ max 3 workers at once.
 
 ## 1. Pick
 
+**You are probably not the only orchestrator running** (HIR-124). Another session on
+another ticket list sees none of your workers, and you see none of its. Everything in this
+step reads shared state — Linear's issue status and the open pull requests — because that
+is the only state both of you can see. Your own batch table is not shared state: never
+decide a collision from it alone.
+
 - If issues were named, use those. Otherwise take Linear issues in the roadmap project,
   state Todo, no open blockers (`blockedBy` all Done), not labelled `attended`.
+- **Skip anything already In Progress.** A worker claims its issue by setting it In
+  Progress before it does anything else, so In Progress means "another session has this"
+  — drop it from the batch and say so in the table, even when it was named on the command
+  line. An In Progress issue with a status note saying where a run stopped is the one
+  exception: it may be picked up, and only if no other session is live on it.
 - Every issue runs autopilot unless it carries the `attended` label (HIR-120). The worker
   sets the `autopilot` label itself; you don't label anything.
-- Collisions: two issues naming the same adapter or module, or both touching a hot spot
-  (`app/migrations/`, `app/extract.py`, `app/pipeline.py`, `taxonomy/skills.json`), do not
-  run together. Keep the higher priority, queue the other for after it merges. Two
-  taxonomy-bumping issues never share a batch (one re-extract per day).
+- **Check the open PRs before starting each worker, not once per batch.** List them
+  (`gh pr list --state open --json number,title,headRefName`) and the files each one
+  changes (`gh api repos/:owner/:repo/pulls/<n>/files`). Hold back any issue that would
+  touch a file an open PR already changes, or a hot spot (`app/migrations/`,
+  `app/extract.py`, `app/pipeline.py`, `app/dedup.py`, `taxonomy/skills.json`) an open PR
+  touches — whoever opened that PR, this run or another session. Re-run the check as each
+  slot frees up: the PR list has moved on.
+- Collisions inside your own batch: two issues naming the same adapter or module, or both
+  touching a hot spot, do not run together. Keep the higher priority, queue the other for
+  after it merges. Two taxonomy-bumping issues never share a batch (one re-extract per
+  day).
 - Print the batch as a table: issue, `autopilot` or `attended`, why it's safe alongside the
-  others, and the queue.
+  others and alongside every open PR, and the queue — with what each held-back issue is
+  waiting for.
 
 ## 2. Work
 
@@ -35,21 +54,36 @@ a worker that stops on a NO RULE has done the right thing — note it and move o
 Chandler in this session, verbatim, and pass his answer back to that worker (SendMessage).
 Do the same for any Needs-Chandler question. You never answer for him.
 
+**Never replace a ticket description** (HIR-124). Anything you put on a Linear issue is a
+comment, or an append through `save_issue`'s `patch`. Two agents overwrote one ticket's
+description on 3 Nov by each sending a whole new `description`; with several orchestrators
+running, the one you overwrite may belong to a session you cannot see.
+
 ## 3. Review and merge
 
 **Autopilot PR:** start the `reviewer` subagent (`.claude/agents/reviewer.md`) with the
-PR number. It merges or labels `needs-chandler`.
+PR number. It enqueues the PR or labels it `needs-chandler`. The worker inside an
+orchestrator does *not* review its own PR at the end of its run (its skill's step 5c tells
+it to skip that when you started it) — reviewing is yours, so every autopilot PR gets
+exactly one reviewer.
 
 **Attended PR:** do not review, do not merge. List it under "Ready for you" with the PR
 link and the worker's one-line summary.
 
-Start queued issues as slots free up and their blockers merge.
+Merges go through GitHub's merge queue, so an enqueued PR is not merged the moment the
+reviewer passes it: the queue tests it against the latest main first. Treat "enqueued" as
+done for reporting, and check back once — a PR the queue dropped out on a conflict is back
+with its author and belongs under "Needs you".
+
+Start queued issues as slots free up and their blockers merge. Before each one, re-read
+the open PRs (step 1): other sessions have been merging while you worked.
 
 ## 4. Report
 
 One message at the end, written for Chandler:
 
-- **Merged:** PR, issue, one line of what changed on the dashboard (or "internal").
+- **Merged or queued:** PR, issue, one line of what changed on the dashboard (or
+  "internal"), and whether it is merged or still in the queue.
 - **Ready for you:** attended PRs waiting for your merge, one line each.
 - **Needs you:** PR, issue, the failing check or open question in plain words.
 - **Stopped:** issue, the question the decider couldn't answer (already on Linear with an

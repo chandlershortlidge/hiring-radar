@@ -11,10 +11,12 @@ _spec = importlib.util.spec_from_file_location(
 remove_headline_jobs = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(remove_headline_jobs)
 
-# The two shapes seen live (HIR-104): the aggregator's headline as title, an unrelated
-# firm as company. A real title never ends in a date.
+# The shapes seen live: the aggregator's headline as title, an unrelated firm as company.
+# A real title never ends in a date (HIR-96, JobLeads); learn4good wedges the board's name
+# into the title instead, with no date in the title at all (HIR-107).
 HEADLINE = "AI Engineer (m/f/x) arbeitnow commercetools Berlin · 10/16/2026"
 REAL_TITLE = "AI Engineer (m/f/x)"
+WEDGED_HEADLINE = "AI/ML Engineer arbeitnow Melotech"
 
 
 def _add_job(conn, company, title, source="jsearch", source_job_id="sid", mentions=0):
@@ -57,6 +59,29 @@ def test_removes_the_headline_job_and_cascades_its_mentions(conn):
 
 def test_leaves_real_titles_alone_even_from_jsearch(conn):
     _add_job(conn, "NAIRON", "Voice AI Engineer", mentions=2)
+
+    assert remove_headline_jobs.remove(conn) == {"removed": [], "kept": []}
+    assert conn.execute("SELECT COUNT(*) FROM job").fetchone()[0] == 1
+
+
+def test_removes_the_learn4good_wedged_headline_too(conn):
+    """HIR-107: no trailing date, but the board's name is wedged in and the company is the
+    same known-aggregator identity as the JobLeads shape."""
+    headline = _add_job(conn, "Primetime", WEDGED_HEADLINE, mentions=2)
+    real = _add_job(conn, "Melotech", "AI/ML Engineer", source="arbeitnow", mentions=1)
+
+    result = remove_headline_jobs.remove(conn)
+
+    assert [r["id"] for r in result["removed"]] == [headline]
+    assert [r[0] for r in conn.execute("SELECT id FROM job ORDER BY id")] == [real]
+
+
+def test_leaves_a_wedged_title_alone_under_a_real_employer(conn):
+    """The word "arbeitnow" wedged in a title is not itself the signature — only paired
+    with the known-aggregator company name — so a real posting that happens to mention the
+    board is never removed."""
+    _add_job(conn, "RealCo GmbH", "Backend Engineer who has worked with the arbeitnow board",
+             mentions=4)
 
     assert remove_headline_jobs.remove(conn) == {"removed": [], "kept": []}
     assert conn.execute("SELECT COUNT(*) FROM job").fetchone()[0] == 1

@@ -58,7 +58,15 @@ carry.
    anything else. Do not infer it from the branch the terminal is on, from uncommitted
    changes, or from what looks half-finished.
 
-2. **Get onto that ticket's branch — in its own worktree.** A folder has one current
+2. **Claim it in Linear before anything else** (HIR-124). Set the issue to In Progress
+   as the session's first write — before the brief, before the worktree, before any edit.
+   Several orchestrators now run at once and each sees only its own workers, so the issue
+   status is the one claim both can read: an issue read but not claimed is an issue a
+   second session will start a second worker on. An issue already In Progress with no
+   status note saying where a run stopped belongs to a session you cannot see — say so and
+   stop.
+
+3. **Get onto that ticket's branch — in its own worktree.** A folder has one current
    branch and one `TICKET`, so two sessions in one folder will commit onto each other's
    branches however careful each one is (HIR-94: an HIR-72 commit landed on the HIR-92
    branch this way). `git worktree add ../<repo>-hir-NN -b <branch> origin/main`, then
@@ -79,7 +87,7 @@ carry.
    onto the new branch. Stop and ask whose they are; do not stash, commit or discard them
    to get moving.
 
-3. **Write the id to `TICKET`.**
+4. **Write the id to `TICKET`.**
 
    ```bash
    echo HIR-NN > TICKET
@@ -101,8 +109,8 @@ Then, for the rest of the session:
   the same one (`commit-msg`).
 - **If the branch and the ticket disagree, stop and ask.** Do not rewrite `TICKET` to
   match the branch, and do not switch branches to make it fit — which of the two is wrong
-  is the person's call. This applies once step 3 has been done this session. If you
-  skipped step 3 and the ticket was named in the prompt, do step 3 now; that isn't
+  is the person's call. This applies once step 4 has been done this session. If you
+  skipped step 4 and the ticket was named in the prompt, do step 4 now; that isn't
   rewriting `TICKET` to match the branch.
 - **Never commit to main.** The hook refuses it; do not reach for `--no-verify`.
 - **A branch open more than two days gets split or merged**, not carried. If the work has
@@ -413,9 +421,32 @@ green, the diff stays in scope and off the stop-list files, "Needs Chandler" is 
 every decision has an undo and every follow-up a ticket; otherwise it labels the PR
 `needs-chandler` and @mentions Chandler on the issue. At most one PR that re-reads every
 job (taxonomy, prompt, model) merges per day. PRs for `attended` issues always wait for
-a person. `/work-issue-orchestrator HIR-a HIR-b …` runs a batch: pick, one worker per issue in
-parallel worktrees, reviewer merges the autopilot PRs, `attended` ones pause for Chandler's
-go and wait for his merge, one report.
+a person.
+
+**Nothing merges directly to main: it goes through the merge queue** (HIR-124). The
+reviewer enqueues (`gh pr merge <n> --merge --auto`) and GitHub does the rest — it builds
+each PR on top of the ones ahead of it, runs the required checks on that combination, and
+merges in order. So no branch is ever updated or rebased to get a merge through, and a
+worker does not merge main into its branch before review: being behind main is the queue's
+job. A conflict the queue can't resolve drops the PR back out to its author.
+
+**Every merge happens from the run that reviewed it.** There is no timer and no scheduled
+cloud reviewer: an autopilot `/work-issue` waits for CI at the end of its own run and
+starts the `reviewer` agent on the PR it just opened; inside an orchestrator the
+orchestrator does that instead. A run that stops before merging leaves its PR labelled
+`needs-chandler` and says so, rather than leaving it for something to pick up later.
+
+**A Linear description is appended to, never replaced** (HIR-124). Two agents overwrote
+HIR-112's description on 3 Nov. Any agent — worker, decider, reviewer, orchestrator —
+changing a description it did not write in this session uses `save_issue` with `patch`
+(`append`, `insert_after`, or a single-match `replace`), or just adds a comment. A full
+`description` field replace is only for a description this session wrote.
+
+`/work-issue-orchestrator HIR-a HIR-b …` runs a batch: pick, one worker per issue in
+parallel worktrees, reviewer enqueues the autopilot PRs, `attended` ones pause for
+Chandler's go and wait for his merge, one report. More than one orchestrator may be
+running, each blind to the other's workers: the shared state is the Linear issue status
+(the claim) and the open PRs (what files are taken), never a session's own table.
 
 ### Skills
 
