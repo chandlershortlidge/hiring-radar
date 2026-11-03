@@ -58,7 +58,15 @@ carry.
    anything else. Do not infer it from the branch the terminal is on, from uncommitted
    changes, or from what looks half-finished.
 
-2. **Get onto that ticket's branch — in its own worktree.** A folder has one current
+2. **Claim it in Linear before anything else** (HIR-124). Set the issue to In Progress
+   as the session's first write — before the brief, before the worktree, before any edit.
+   Several orchestrators now run at once and each sees only its own workers, so the issue
+   status is the one claim both can read: an issue read but not claimed is an issue a
+   second session will start a second worker on. An issue already In Progress with no
+   status note saying where a run stopped belongs to a session you cannot see — say so and
+   stop.
+
+3. **Get onto that ticket's branch — in its own worktree.** A folder has one current
    branch and one `TICKET`, so two sessions in one folder will commit onto each other's
    branches however careful each one is (HIR-94: an HIR-72 commit landed on the HIR-92
    branch this way). `git worktree add ../<repo>-hir-NN -b <branch> origin/main`, then
@@ -79,7 +87,7 @@ carry.
    onto the new branch. Stop and ask whose they are; do not stash, commit or discard them
    to get moving.
 
-3. **Write the id to `TICKET`.**
+4. **Write the id to `TICKET`.**
 
    ```bash
    echo HIR-NN > TICKET
@@ -101,8 +109,8 @@ Then, for the rest of the session:
   the same one (`commit-msg`).
 - **If the branch and the ticket disagree, stop and ask.** Do not rewrite `TICKET` to
   match the branch, and do not switch branches to make it fit — which of the two is wrong
-  is the person's call. This applies once step 3 has been done this session. If you
-  skipped step 3 and the ticket was named in the prompt, do step 3 now; that isn't
+  is the person's call. This applies once step 4 has been done this session. If you
+  skipped step 4 and the ticket was named in the prompt, do step 4 now; that isn't
   rewriting `TICKET` to match the branch.
 - **Never commit to main.** The hook refuses it; do not reach for `--no-verify`.
 - **A branch open more than two days gets split or merged**, not carried. If the work has

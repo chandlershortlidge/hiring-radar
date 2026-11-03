@@ -28,6 +28,17 @@ it — but read `.claude/skills/work-issue/SKILL.md` and `AGENTS.md` from `origi
 - Its "Build" / "Steps" section is the plan. Its "Tests" section is the test list. Its
   "Out of scope" section is binding. Anything you'd add beyond those: ask first.
 
+## 1a. Claim it, before anything else (HIR-124)
+
+**Set the issue to In Progress now** (`save_issue`, `state: "In Progress"`), before the
+brief and before the worktree. This is the claim, and it is the only signal another
+session gets: orchestrators skip In Progress issues when picking, so an issue you have
+read but not claimed is an issue a second orchestrator will hand to a second worker.
+Claim it the moment you have decided to work it — reading the issue is not claiming it.
+
+If it is already In Progress and no status note says where a previous run stopped, a
+session you cannot see may be on it: say so and stop.
+
 ## 1b. The brief (before any code)
 
 Post one comment on the Linear issue (`save_comment`), written for someone who hasn't read
@@ -110,13 +121,13 @@ Leave the worktree in place when done; Chandler removes it after the merge
 
 Uncommitted changes on the tree: stop and ask whose they are. Never stash or discard.
 
-Set the issue to **In Progress** in Linear (`save_issue`, `state: "In Progress"`).
-
 ## 3. Build
 
 - Follow the issue's steps in order. Hot spots (`app/migrations/`, `app/extract.py`,
-  `app/pipeline.py`, `taxonomy/skills.json`) are one branch at a time: if another open
-  branch touches one, say so before editing it.
+  `app/pipeline.py`, `app/dedup.py`, `taxonomy/skills.json`) are one branch at a time: if
+  another open branch touches one, say so before editing it. The open PRs are what you
+  check, not what the session remembers: `gh pr list --state open` then
+  `gh api repos/:owner/:repo/pulls/<n>/files` for each.
 - A new migration takes the next free number — check `ls app/migrations/` first, don't
   trust the number in the issue.
 - If the issue asks for a **DECISIONS.md** entry, write it before the code it describes,
