@@ -5,6 +5,116 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-03 — Dedup gains a containment path, guarded by the title (HIR-113)
+
+Cloover appeared three times in the job list. Pulling the rows settled what happened — and
+it was two different things, not one:
+
+| pair | Jaccard | containment | what it is |
+| --- | --- | --- | --- |
+| 76 + 231 | 0.683 | **1.000** | the same posting; one source stored a shorter extract |
+| 206 + 76 | 0.013 | 0.033 | the same posting **in German** |
+| 206 + 231 | 0.011 | 0.022 | likewise |
+
+**The near miss.** Job 76's text is a literal prefix of job 231's: every one of its 675
+shingles is in 231. Jaccard still read 0.683, under the 0.7 threshold, because it divides
+by the *union*, which grows with the longer text. So the measure was working as designed and
+the design was wrong for this case. `dedup.containment` — `|A∩B| / min(|A|,|B|)` — reads
+1.000, and `is_same_posting` now accepts either path.
+
+**Why the containment path needs three guards, not one.** Containment ≥ 0.9 on its own
+breaks the invariant that two different roles at one company never merge. Checked over all
+246 stored jobs it would have merged pplwise's "AI engineer in manufacturing" with their
+"Senior AI / Machine Learning Engineer" at containment 0.931 — a recruiter whose postings
+share most of their boilerplate. Two genuinely different jobs. So the path requires all of:
+
+- containment ≥ 0.9; **and**
+- the shorter text at least 60 shingles (~60 words), because less than that cannot
+  establish identity; **and**
+- every word of the shorter title present in the longer title.
+
+The title is a *supporting* signal only — `test_a_matching_title_alone_never_merges` pins
+that identical titles with unrelated text still do not merge. With all three, the rule adds
+exactly two merges across the stored set (Cloover 76+231, eGroup 77+240), both genuine
+duplicates, and changes no existing merge. Those numbers, and the four real postings behind
+them, are in `tests/fixtures/dedup/real_cases.json`.
+
+**The German translation is a known limit, not a fix.** No shingle measure over words can
+see that job 206 is job 231 in German; both read under 0.04. Catching it needs a different
+signal (same company + same source + same posted date, or a translation step), which is its
+own ticket — HIR-117 — not a threshold change.
+
+**The rows already split stay split.** Changing stored jobs is Chandler's call, so nothing
+was rewritten here; the fix stops *new* duplicates only. When it is wanted, merging the two
+pairs above means, for each: repoint the loser's `job_source` rows at the winner, take
+`min(first_seen)` and `max(last_seen)`, drop the loser's `skill_mention` and
+`extraction_reject` rows (the winner's extraction stands; the FTS triggers follow the
+delete), and delete the loser. Keep the longer description — it is the one the extractor
+should read. That is a `scripts/` one-off with `--dry-run`, in the shape of
+`scripts/remove_headline_jobs.py`, and the three Cloover rows are only two merges, so doing
+it by hand is also reasonable.
+
+## 2026-11-03 — Best fit sorts on a lower bound, not the ratio (HIR-113)
+
+The first live list had Pentadoc first at `100% · 2/2`, above PharmaHera at 6/8 and
+Deloitte at 10/14. Two matched skills is not evidence of a perfect fit; it is evidence of
+almost nothing. Ranking on the raw ratio rewards exactly the postings we know least about,
+and short required-skill lists are usually thin extractions rather than genuinely simple
+jobs.
+
+So `rankJobs` orders on the **Wilson score interval's lower bound** of covered/total
+instead, and `fit()` returns it as `rank_score` beside the plain `score`. The three rows
+above become 0.45, 0.41 and 0.34 — the order a person would pick by eye.
+
+- **Why a lower bound rather than a smoothed ratio.** It answers the question the list is
+  actually asking: given this much evidence, how good can we be confident the fit is? A
+  prior-based smoothing (add-k) would do something similar, but needs a k chosen out of
+  thin air; the bound needs only a confidence level, and the same method is already used on
+  PatternAI's eval rates, so the two read alike.
+- **Why z = 1.96.** The conventional 95% level, and the number already in use for those
+  eval rates. Nothing here is sensitive to the exact value — it sets how hard small
+  denominators are penalised, and 1.96 reproduces the ordering a person reads off the
+  screenshot. One constant, `Z`, so there is one place to change it.
+- **The badge did not change.** A row still reads `100% · 2/2`, because that *is* what the
+  posting asked and what the profile covers; inventing a "34%" badge would be telling the
+  person their two-for-two match is a third of a fit. `score` is for showing, `rank_score`
+  is for ordering, and the return shape says so. Alerts (HIR-19) and the Advisor sort on
+  `rank_score` so every surface agrees.
+- **Nothing else about the order moved.** Gated-out jobs still sort below everything in
+  reach; a job with no required skills to judge still sorts last among the ungated; the
+  quarter-weighted nice-to-have share is still a separate, lower tie-break.
+
+## 2026-11-03 — A title can name a level (HIR-113)
+
+HIR-51 said a posting that names no level never gates, because `null` is the extractor's
+safe error. On the live list that turned out to be the wrong default for one shape of
+posting: "(Senior) AI Web & GTM Engineer", "Senior Consultant AI Engineer", "Staff
+Engineer…", "Principal Software Engineer…" all reached the browser with no stored level,
+so none of them gated, and they sat at the top of a list filtered to Mid — the exact jobs
+the filter was meant to push down.
+
+So when a job stores no level, `jobSeniority` in `web/src/profile.js` reads the title:
+Senior, Staff, Principal, Lead or Head as a whole word means `senior`, and Junior,
+Werkstudent, Working Student or Intern means `junior`. Four things about that:
+
+- **A stored level still wins.** The extractor read the whole posting; the title is one
+  line of it. When they disagree the body is the better evidence, so "(Senior) AI Web & GTM
+  Engineer" stored as `mid` stays `mid` and does not gate a Mid profile. This is why the
+  change fixes fewer rows than the screenshot suggests, and why the extractor's own
+  behaviour on bracketed "(Senior)" is a separate ticket rather than something papered over
+  here.
+- **Whole words only, and a short list.** `\b(senior|staff|principal|lead|head)\b` —
+  so "Internal Tools Engineer" is not an internship and "Leading Edge AI" is not a Lead. The
+  list is only the words HIR-113 names. A wrong guess here *hides a job*, which is worse
+  than letting one sort too high, so the list stays short rather than clever.
+- **A title that names two levels names none.** "Junior to Lead AI Engineer" returns
+  `null` and never gates. Ambiguous is treated exactly like silent.
+- **The badge still names a level.** A row gated on its title alone would otherwise show a
+  blank word, because the row's own `seniority` is null; `JobList.jsx` asks `profile.js`
+  for the effective level instead of reading the field.
+
+Browser-only and deterministic: no model call, no stored data, nothing re-extracted.
+
 ## 2026-11-03 — arbeitnow's "Remote job" is a placeholder, and its URL carries the place (HIR-111)
 
 A large block of arbeitnow's remote postings sends the literal string `"Remote job"` as the
@@ -109,6 +219,9 @@ how that order is computed were open, and this is how they were settled.
   word. A posting that names no level never gates: most don't, and `null` is the extractor's
   safe error there (DECISIONS 2026-10-27). Seniority is a gate at all because the profile
   targets exactly one level; that is the filter's own meaning.
+  **Narrowed the same week — see the 2026-11-03 HIR-113 entry above:** a posting that stores
+  no level but names one *in its title* now gates on the title. "Names no level" means
+  neither the body nor the title did.
 - **"Best fit" ranks in the browser, over at most 200 jobs.** The server is never told the
   profile, so it cannot sort by fit; `web/src/profile.js` does, over one page of the
   filtered set, and pages through the result locally. 200 is the largest page `/api/jobs`
