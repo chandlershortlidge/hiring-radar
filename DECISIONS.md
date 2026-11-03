@@ -5,6 +5,97 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-03 — One pre-HIR-98 row is deleted; the German ones wait for HIR-102 (HIR-110)
+
+**This entry settles one row, not a class.** No standing permission is recorded here: an
+agent that finds another stored row it thinks should go still asks, because "deleting or
+rewriting stored jobs" is on the AGENTS.md stop list with no count threshold. The decider
+was asked twice whether a one-row scope escapes that list and said it does not — a deleted
+row is not reversed by a commit.
+
+**The contamination window.** Until 2026-11-01 ~18:06 UTC `app/sources/arbeitnow.py`
+appended "(remote, Germany)" to the location of every posting the feed marked remote,
+whatever its real place, so `geo._EU_WIDE` matched the injected word and all of them were
+stored as `Remote (EU)` — ingest's city filter could never drop them (HIR-98 fixed intake
+only).
+
+**Measured on the 2026-11-03T14:05:51Z backup:** 390 stored jobs, 60 filed as
+`Remote (EU)`, 23 rows still carrying the stamp. Re-running today's adapter and
+`geo.active_place` over each row's real location leaves **three** candidates, and
+**exactly one** of them is placed wrongly by today's rules:
+
+- **job 278** — Lightly AG, "AI Research Scientist – Scientific Evaluation (ML/AI)",
+  3 skill mentions, stored `location_raw` **`'Zürich (remote, Germany)'`**. That string is
+  the clearest surviving artifact of the bug: Zürich is in Switzerland, and nothing but the
+  adapter put "Germany" next to it. Remote tied to one non-EU country, which the EU-remote
+  rule of 2026-10-26 does not collect. **Deleted, with its 3 skill mentions, 0 extraction
+  rejects and its feed-source row** (2026-11-03). The dry run immediately before it listed
+  the same three candidates and removed nothing, so the selector had not drifted between
+  measuring and running:
+
+  ```
+  removed job 278: 'Lightly AG' — 'AI Research Scientist – Scientific Evaluation (ML/AI)'
+    ['Zürich (remote, Germany)' -> today None] (3 mentions, 0 rejects)
+  CANDIDATE job 275 (not confirmed): 'hurra.com' — 'Freelance Full-Stack Developer | …'
+    ['Stuttgart' -> today None]
+  CANDIDATE job 339 (not confirmed): 'Pentadoc Gruppe' — 'Working Student (m/f/d) - AI Engineering'
+    ['Würzburg' -> today None]
+  removed: 1 job(s), 3 skill mention(s); candidates left: 2
+  ```
+
+  Pre-deletion state, if it ever has to come back:
+  `gs://hiring-radar-512318-backups/db/hiring-radar-2026-11-03T140551Z.db.gz`
+  (11,134,109 bytes, 2026-11-03T14:05:53Z).
+- **jobs 275 (Stuttgart) and 339 (Würzburg) were deliberately kept**, and the run above
+  shows them reported as candidates rather than removed. They are remote work at untracked
+  *German* cities, which the 2026-10-26 rule counts as postings a Berlin resident can take,
+  so they are not damage — they only *look* like the Zürich row to the code, because `geo`
+  has no notion of "this place is in Germany". Whether to collect that shape is **HIR-102**,
+  and it stays open; until it is decided these two rows stay. **A later reader should not
+  read "2 candidates left" as unfinished work**: leaving them is the decision, not a
+  shortfall, and this is the precedent for the next one.
+- Rows stamped by `app/sources/startup_jobs.py` are not candidates at all: it builds the
+  same string out of the feed's own `location.country`, which was never fabricated. One
+  such row (381, Berlin) was stored *after* the fix and is correct.
+
+**A place is never blanked to hide a row.** Nulling `city` was the third option and is the
+worst of the three: it rewrites stored data and changes nothing anyone sees, because
+`queries.job_set_clause` constrains `j.city` only when a city filter is chosen and the
+default view chooses none. So the row would keep counting on the chart while the stored
+data became less true.
+
+**The selector is the rule, not a row id.** `scripts/remove_pre_hir98_remote_jobs.py`
+strips the stamp, runs the bare location back through the current adapter and
+`geo.active_place`, and only then offers a row for deletion — so it cannot remove a row the
+current code would have kept, and it stays correct if ids move between reading the database
+and running it. It still requires `--confirm <id>` and refuses an id that is not a
+candidate, because of the German-city judgment above. Same pattern as
+`scripts/remove_headline_jobs.py` (2026-11-02).
+
+**What the earlier record got wrong.** The 2026-10-26 entry describes the arbeitnow
+"(remote, Germany)" mapping as a deliberate part of EU-remote collection; HIR-98 removed it
+as a bug five days later without amending that entry. The removal is right — the feed
+carries Swiss, Dutch and UK postings, so the country was being invented — and that clause
+of the 2026-10-26 entry no longer holds. The EU-remote rules themselves are unchanged.
+
+**Provenance of the go, so nobody has to guess.** Chandler chose this option in a Claude
+Code session's question prompt; it reached this ticket as a comment written by the
+orchestrator agent rather than typed by him (HIR-110, 2026-11-03 13:36Z). The working agent
+refused to act on the relay until it was on the record, and **Chandler ran the deletion
+himself on the VM** — no agent executed it.
+
+**What that cost, and why it was right.** Three agent sessions could not carry out this
+one-row delete: the permission layer refused the production read (`[Production Reads]`),
+the backup (`[Remote Shell Writes]`) and even the no-op dry run on the VM, and an attempt to
+write a blanket "no further ask" rule into this log was refused as `[Instruction
+Poisoning]`. Every one of those refusals was correct — a stop-list item was being
+approached on a relayed go. The lesson is not to loosen the controls but to **say in the
+brief, up front, when a ticket ends in a production write**, so the hand-off to a person is
+planned rather than discovered at the last step. HIR-110's brief promised a count and a
+stop; it should also have said that whatever followed would need someone at a terminal.
+
+---
+
 ## 2026-11-03 — San Francisco is active: the one exception to a Germany-only scope (HIR-12)
 
 Collection is switched on for San Francisco, so `geo.ACTIVE_CITIES` is now
