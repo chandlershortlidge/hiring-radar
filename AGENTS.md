@@ -259,7 +259,12 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `scripts/remove_headline_jobs.py` — one-off: delete jobs stored under an aggregator's
   search-result headline before HIR-96 stopped the feed writing them. Selects with
   `jsearch.is_headline`, deletes only jobs with a jsearch source row, cascades their skill
-  mentions. `--dry-run` first. See DECISIONS 2026-11-02 (HIR-104).
+  mentions. `--keep <id>` spares a row. `--dry-run` first.
+- `scripts/repair_headline_job.py` — the counterpart, for a headline row that is the only
+  copy of a posting: pass the real company and title, read off the headline yourself, and
+  it rewrites them plus the dedup `title_key` and clears `extracted_version` so the job is
+  re-read (the title goes on top of the text the model sees). Reports a dedup collision
+  rather than merging. `--dry-run` first. Both scripts: DECISIONS 2026-11-02 (HIR-104).
 - `scripts/new_goldens.py` — draft unlabeled held-out Goldens from DB jobs
   (`--german N` or `--ids ...`); run_eval skips files with `"draft": true`.
 - `scripts/agent_label.py` — held-out Goldens via two blind labeler agents: pick → label A

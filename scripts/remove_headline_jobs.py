@@ -16,14 +16,15 @@ Does NOT touch a headline-titled job that has no jsearch source row: that would 
 different bug from the one HIR-104 approved removing, so it is reported and left alone.
 Does NOT adjust any other job's repost_count — these rows were never merged into another
 job, so no count was inflated by them. Does NOT decide for itself when a headline row is
-the only stored copy of a posting: check that first, and pass `--keep <id>` for any row
-whose deletion would lose a posting rather than a duplicate (job 363 on the live database
-is one — SumUp's "AI / Machine Learning Engineer II", held nowhere else).
+the only stored copy of a posting: check that before running, and pass `--keep <id>` for
+any row whose deletion would lose a posting rather than a duplicate. Such a row is repaired
+instead, with `repair_headline_job.py` — that was job 363 on the live database, SumUp's
+"AI / Machine Learning Engineer II" (DECISIONS 2026-11-02).
 
 Safe to run twice: the second run finds nothing.
 
     uv run python scripts/remove_headline_jobs.py --dry-run
-    uv run python scripts/remove_headline_jobs.py --keep 363
+    uv run python scripts/remove_headline_jobs.py --keep 412
 """
 
 import argparse

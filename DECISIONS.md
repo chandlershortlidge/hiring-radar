@@ -42,7 +42,7 @@ at the bottom with the gated-out. Alerts (HIR-19) and the Advisor call the same 
 
 ---
 
-## 2026-11-02 — Aggregator-headline rows already stored are deleted, not kept and hidden (HIR-104)
+## 2026-11-02 — Stored aggregator-headline rows: duplicates deleted, the last copy repaired (HIR-104)
 
 HIR-96 stopped the JSearch adapter storing aggregator search-result headlines, but two rows
 written before that fix were already in the database: jobs 208 ("Primetime", "AI Engineer
@@ -63,15 +63,31 @@ queries (the chart would be right and the stored data wrong, and every later que
 have to remember them), and rewriting their company and title by hand from the headline
 (it guesses, and dedup would then merge two rows whose text came from different places).
 
-**A headline row that is the only copy of a posting is a different question, and waits.**
-Job 363 is SumUp's "AI / Machine Learning Engineer II", stored nowhere else, and it cannot
-come back: HIR-96 now drops the record at parse time, and SumUp's polled Greenhouse board
-does not carry that posting (its other three rows came in on 2026-11-02 without it). So
-deleting it loses a real Berlin posting rather than a duplicate, which is not what the go
-covered. It stays, via `--keep 363`, until Chandler says which he wants: lose the posting,
-or repair the row by hand (its description text is genuine; only the company and title are
-the aggregator's, and both read unambiguously out of the headline). The chart therefore
-still shows one phantom "Primetime" employer.
+**A headline row that is the only copy of a posting is repaired, not deleted.** Chandler's
+answer, 2026-11-03, and the standing rule for this case. Job 363 was SumUp's "AI / Machine
+Learning Engineer II", stored nowhere else and unable to come back: HIR-96 now drops the
+record at parse time, and SumUp's polled Greenhouse board does not carry that posting (its
+other three rows came in on 2026-11-02 without it). Deleting it would have lost a real
+Berlin posting rather than a duplicate. Its description text was always genuine — only the
+company and title were the aggregator's, and both read unambiguously out of the headline —
+so `scripts/repair_headline_job.py` set company "SumUp" and title "AI / Machine Learning
+Engineer II" and had the job re-read.
+
+This is narrower than what HIR-96 rejected, and does not reopen it: HIR-96 rejected
+recovering these fields **automatically at parse time** for every such record, where the
+split between title and company cannot be trusted. One stored row, read by a person and
+passed in as arguments, is a different act.
+
+**Repairing one of these rows always means re-reading it.** `extract` puts the title on top
+of the posting text the model sees (`extraction_input`), so every attribute on a headline
+row was judged with the headline in front of it — and job 363 showed exactly that damage:
+"senior", basis "stated", on the quote "Senior Machine Learning Engineer", for a posting
+titled "Engineer II". After the re-read it is "mid", basis "inferred", on "4+ years of
+proven experience working as a Machine Learning Engineer". So the repair script clears
+`extracted_version` rather than leaving the old attributes in place; one job, one model
+call. It does not re-run dedup, so it cannot merge the repaired row into another job — it
+reports a collision on dedup's keys and stops, because merging stored jobs is its own
+decision (there was none for 363; SumUp's other rows carry different titles).
 
 **The removal is a script, not typed SQL.** `scripts/remove_headline_jobs.py` selects with
 `app.sources.jsearch.is_headline` — the same test the adapter applies — so it can never
