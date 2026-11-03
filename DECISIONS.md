@@ -5,6 +5,72 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-03 — Taxonomy v8: seven entries from the San Francisco queue, and the queue's count was inflated (HIR-128)
+
+HIR-128 reported 18 proposed labels at or over the 2026-10-20 bar of 3 jobs after HIR-123
+read the 264 San Francisco postings. **Nine of the 18 already had entries.** `cuda`,
+`kserve`, `ray-serve`, `speculative-decoding`, `spring-boot`, `triton-inference-server`,
+`nvidia-dynamo`, `opentelemetry` and `quantization` all landed in taxonomy v5 (HIR-72,
+2026-11-01); their pending rows come from 165 jobs still stamped at the v4-era
+`extractor_version`, which the next poll replaces. Counting only jobs at the current
+stamp, all nine sit at **zero** pending rows.
+
+**So the queue is only a frequency counter for jobs read under the current taxonomy.** A
+label whose rows all predate the entry that covers it is not evidence of a gap; it is a
+job awaiting re-extraction. Read the queue with `job.extracted_version` joined in, or the
+same batch gets reviewed twice. That is the finding worth carrying forward from this
+ticket.
+
+**Seven entries land, taxonomy v8, 217 skills:** `ansible` (5 jobs), `nccl` (4), `ray`
+(3), `bash` (3), `redis` (3), `sagemaker` (3), `temporal` (3) — counts over jobs at the
+current stamp, which is the conservative reading. Two fall below the bar and stay pending:
+`fsdp` (2) and bare `triton` (1).
+
+**`nccl` lands although 2026-11-02 listed it under "What stays out, and why, so it is not
+re-litigated".** That list's stated reason for the 45 golden_035 names was frequency —
+"so one posting's vocabulary does not become 45 chart rows with document frequency 1" —
+and NCCL now has 4 distinct postings in the live queue, which is where 2026-10-20 says
+frequency is counted. "Not re-litigated" protects the reasoning, and the reasoning was
+frequency; applying the standing rule to a count that has since changed is what the rule
+is for, not a reversal of the decision. The same entry's "promotion stays available" is
+the precedent. Its parent is `distributed-training`: the exclusion paragraph said "the
+level above each of them is a decided id", but the id it meant for NCCL (`gpu-computing`,
+proposed on HIR-72) never landed, so the nearest entry that does exist carries it.
+
+**Bare `triton` still resolves to nothing, and a higher count would not change that.**
+Its exclusion rests on ambiguity between NVIDIA's Triton Inference Server and OpenAI's
+Triton kernel language, not on frequency (2026-10-20, reaffirmed 2026-11-01). It is at 1
+job anyway. The one posting behind it quotes "CUDA or Triton", which is the kernel
+language — the ambiguity is real and live, so the rows stay pending on purpose.
+
+**`ray-serve` is reparented from `["model-serving", "distributed-systems"]` to
+`["model-serving", "ray"]`,** which is the shape HIR-72's triage comment recorded
+(`ray` [distributed-systems] · `ray-serve` [ray]). It landed with `distributed-systems`
+only because `ray` was at 2 jobs and did not land with it. `distributed-systems` is still
+an ancestor through `ray`, so nothing a parent walk sees has changed. The issue called the
+Ray/Ray Serve shape a judgment call; a recorded decision already covered it, so the rule
+won (AGENTS.md, "An existing rule is never a question").
+
+**`redis` takes no parent and `ray` takes `distributed-systems`,** both as recorded on
+HIR-72. The four names that pre-date no decision are `ansible` [`infrastructure-as-code`,
+following `terraform`], `sagemaker` [`aws`, following `vertex-ai` under `gcp`], `temporal`
+[`distributed-systems`] and `bash` [no parent, as every other language entry].
+`temporal` is the durable-execution engine, capitalised in all three postings, not
+"temporal" as a property of data.
+
+**Three Golden labels added to two held-out Goldens**, on the 2026-10-20 precedent that a
+label the taxonomy could not express before is a missing gold label rather than tuning,
+applied to the same file on 2026-11-02. golden_031 gains `redis`, golden_035 gains `ray`
+and `nccl`. Each sits in an ask, per evals/LABELING.md; `requirement` follows the section
+rule. Nothing was deleted or rewritten.
+
+**Every job re-extracts on the next poll** — `extractor_version` hashes the system prompt,
+which contains the taxonomy, so seven entries invalidate every stamp. About €6 at 510
+stored jobs. Per AGENTS.md the merge is the approval. **No eval was run:** no dev-split
+Golden mentions any of the seven, so a dev run could not show a change attributable to
+this edit, and the stamp change makes it incomparable to the last committed run either
+way. The last two taxonomy changes (v6, v7) shipped the same way.
+
 ## 2026-11-03 — Dedup gains an exact-title path: company + identical title is enough (HIR-108)
 
 HIR-108 reported 11 pairs stored twice under the same company and title, found on
