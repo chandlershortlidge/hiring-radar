@@ -1,0 +1,40 @@
+{
+  "_comment": "Hand-built to the learn4good shape reported in HIR-107 (jobs 248 and 327 on the live database) — not a recorded response: no live call was made for this ticket, and a recorded one would have spent part of the 200-request/month budget. The two headline titles are reconstructed from the clean real titles quoted in the issue (jobs 12, 59/238); the issue's own verbatim quote of job 327's headline carries stray punctuation that reads as a markdown-escaping artifact rather than real data, so that qualifier was dropped rather than guessed at. The third record is not from the live database: it exists only to prove the word 'arbeitnow' inside a title, on its own, never drops a real posting.",
+  "status": "OK",
+  "request_id": "00000000-0000-0000-0000-000000000000",
+  "parameters": {"query": "AI engineer in Berlin", "page": 1, "num_pages": 1, "country": "de", "date_posted": "week"},
+  "data": [
+    {
+      "job_id": "l4g-248",
+      "job_title": "AI/ML Engineer arbeitnow Melotech",
+      "employer_name": "Primetime",
+      "employer_website": "https://www.primetime.company",
+      "job_publisher": "learn4good",
+      "job_apply_link": "https://www.learn4good.com/jobs/germany/computer_internet/248/ai-ml-engineer.htm",
+      "job_description": "Stellenbezeichnung: AI/ML Engineer arbeitnow Melotech 10/25/2026\n\nMelotech is hiring an AI/ML engineer in Berlin.",
+      "job_city": "Berlin", "job_location": "Berlin, Germany", "job_country": "DE",
+      "job_posted_at_datetime_utc": "2026-10-25T00:00:00.000Z"
+    },
+    {
+      "job_id": "l4g-327",
+      "job_title": "AI Application Engineer – AI Products (LLM & RAG) arbeitnow Machine Learning Reply",
+      "employer_name": "Primetime",
+      "employer_website": "https://www.primetime.company",
+      "job_publisher": "learn4good",
+      "job_apply_link": "https://www.learn4good.com/jobs/germany/computer_internet/327/ai-application-engineer.htm",
+      "job_description": "Stellenbezeichnung: AI Application Engineer - AI Products; LLM & RAG); m/f/d) arbeitnow Machine Learning Reply 10/25/2026\n\nReply is hiring for AI products work in Berlin.",
+      "job_city": "Berlin", "job_location": "Berlin, Germany", "job_country": "DE",
+      "job_posted_at_datetime_utc": "2026-10-25T00:00:00.000Z"
+    },
+    {
+      "job_id": "real-1",
+      "job_title": "Backend Engineer who has worked with the arbeitnow board before",
+      "employer_name": "RealCo GmbH",
+      "job_publisher": "learn4good",
+      "job_apply_link": "https://example.com/jobs/real-1",
+      "job_description": "RealCo is hiring a backend engineer in Berlin.",
+      "job_city": "Berlin", "job_location": "Berlin, Germany", "job_country": "DE",
+      "job_posted_at_datetime_utc": "2026-10-25T00:00:00.000Z"
+    }
+  ]
+}

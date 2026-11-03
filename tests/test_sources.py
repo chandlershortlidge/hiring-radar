@@ -267,16 +267,52 @@ def test_jsearch_parse_drops_aggregator_headline_rows():
     assert len(ps) == len(payload["data"]) - 1
 
 
-def test_jsearch_is_headline_only_fires_on_a_trailing_date():
+def test_jsearch_is_headline_fires_on_a_trailing_date_regardless_of_employer():
+    """HIR-96: the JobLeads shape. A title ending in the date it was listed is a reliable
+    signature on its own, so this needs no employer_name check at all."""
     from app.sources import jsearch
     assert jsearch.is_headline(
         "AI / Machine Learning Engineer II arbeitnow SumUp Berlin, Berlin, Germany · 10/28/2026")
     assert jsearch.is_headline("Voice AI Engineer arbeitnow NAIRON Berlin · 10/18/2026")
-    assert jsearch.is_headline("AI Engineer Berlin 2026-10-18")
+    assert jsearch.is_headline("AI Engineer Berlin 2026-10-18", "a real employer")
     assert not jsearch.is_headline("AI / Machine Learning Engineer II | Mitte, DE")
     assert not jsearch.is_headline("Machine Learning Engineer • Full Time • Berlin • Hybrid")
     assert not jsearch.is_headline("Senior AI Engineer (m/f/d)")
     assert not jsearch.is_headline("Data Scientist 2026 Graduate Programme")
+
+
+def test_jsearch_is_headline_fires_on_a_wedged_publisher_only_with_a_known_aggregator():
+    """HIR-107: the learn4good shape. No trailing date — the board's own name is wedged
+    between the real title and the real company instead, and that alone is not reliable
+    (a real title could mention the board), so it only counts together with employer_name
+    matching a known aggregator identity."""
+    from app.sources import jsearch
+    assert jsearch.is_headline("AI/ML Engineer arbeitnow Melotech", "Primetime")
+    assert jsearch.is_headline(
+        "AI Application Engineer – AI Products (LLM & RAG) arbeitnow Machine Learning Reply",
+        "Primetime")
+    # The real postings these two duplicate (jobs 12, 59/238) are not themselves headlines.
+    assert not jsearch.is_headline("AI/ML Engineer", "Melotech")
+    assert not jsearch.is_headline("AI Application Engineer – AI Products (LLM & RAG)",
+                                    "Machine Learning Reply")
+    # The marker alone — "arbeitnow" wedged in the title — never drops a real posting.
+    assert not jsearch.is_headline("Backend Engineer who has worked with the arbeitnow board before",
+                                    "RealCo GmbH")
+    assert not jsearch.is_headline("AI/ML Engineer arbeitnow Melotech", "Melotech")
+    assert not jsearch.is_headline("AI/ML Engineer arbeitnow Melotech")  # no employer_name at all
+    # A known aggregator alone, with no wedge, never drops a real posting either.
+    assert not jsearch.is_headline("AI Engineer", "Primetime")
+
+
+def test_jsearch_parse_drops_learn4good_wedge_rows():
+    """HIR-107: learn4good's shape has no trailing date, so it needs the separate wedge +
+    known-aggregator-employer check; the fixture's third record proves that check does not
+    drop a real posting merely for mentioning the arbeitnow board."""
+    from app.sources import jsearch
+    payload = load("jsearch_learn4good.json")
+    ps = jsearch.parse(payload)
+    assert [p.company for p in ps] == ["RealCo GmbH"]
+    assert "arbeitnow" in ps[0].title
 
 
 def test_jsearch_parse_maps_fields_and_skips_empty():

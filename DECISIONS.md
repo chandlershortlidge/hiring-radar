@@ -58,6 +58,52 @@ about extraction, the taxonomy or the dashboard changes, and no model call is in
 
 ---
 
+## 2026-11-03 — learn4good's headline shape is also dropped, not repaired (HIR-107)
+
+HIR-104 found two more stored "Primetime" phantom-employer rows while removing the
+JobLeads ones: job 248 ("AI/ML Engineer arbeitnow Melotech", duplicate of job 12) and job
+327 ("AI Application Engineer – AI Products (LLM & RAG) arbeitnow Machine Learning
+Reply" with a trailing fragment, duplicate of jobs 59/238). Same aggregator employer name,
+different publisher (learn4good) and a different shape: no trailing date — `jsearch.
+is_headline` only caught JobLeads's "ends in a date" signature — the board's own name is
+wedged between the real title and the real company instead, and learn4good's listing date
+is in the description body, not the title.
+
+**Detection widens to a second signature, not a replacement.** `is_headline` keeps the
+trailing-date test unchanged (still sufficient alone — a real title never ends in a date)
+and adds: the title has `arbeitnow` wedged with text on both sides, **and**
+`employer_name` is a known aggregator identity (so far only ever "Primetime", seen on both
+shapes). The wedge alone is rejected as a signature — a real posting can legitimately
+mention the arbeitnow board by name — which is why `is_headline` now also takes
+`employer_name`; `scripts/remove_headline_jobs.py` passes the stored `job.company` the
+same way.
+
+**Recovering the real title and company from the wedge is rejected here too.** The
+build asked whether HIR-96's "drop, don't repair" answer for JobLeads still holds for
+learn4good's simpler-looking `<title> arbeitnow <company>` shape. It does: job 327's own
+text already shows the split is not always clean (a trailing fragment sits after the
+company name that the clean stored duplicate doesn't have), so a parsed-out title risks
+being subtly wrong rather than simply dropped — stored as a second, messier near-duplicate
+that dedup's text-similarity check might not even catch, which is worse than one dropped
+posting. Undo: if a cleaner pattern turns up later, recovery can be added as its own
+change; nothing here forecloses it.
+
+**No fixture existed for this shape; recording a live one was not worth the budget.**
+`tests/fixtures/feeds/jsearch_learn4good.json` is hand-built from the two titles HIR-107
+quotes from the live database (job 327's reconstructed from the clean real title in jobs
+59/238, since the issue's own quote of the headline carries what reads as a
+markdown-escaping artifact — stray semicolons and a missing paren — not real data), the
+same way `jsearch.json` is already hand-built for shapes `jsearch_recorded.json` doesn't
+cover. JSearch's plan is a hard 200-requests-a-month budget; spending one to record a
+fixture for a bug fix wasn't asked for.
+
+**Jobs 248 and 327 are not deleted by this change.** Same as HIR-104: deleting stored jobs
+needs Chandler's go. Once given, `scripts/remove_headline_jobs.py --dry-run` will now
+select both (its `is_headline` call was widened the same way), to confirm before a real
+run.
+
+---
+
 ## 2026-11-03 — One pre-HIR-98 row is deleted; the German ones wait for HIR-102 (HIR-110)
 
 **This entry settles one row, not a class.** No standing permission is recorded here: an
