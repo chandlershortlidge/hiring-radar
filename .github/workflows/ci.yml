@@ -4,6 +4,12 @@ on:
   push:
     branches: [main]
   pull_request:
+  # Queued merges (HIR-124). The merge queue builds each PR on top of the ones
+  # ahead of it and runs the required checks on that combination, so `test` and
+  # `build-web` must trigger here or a queued merge waits for checks that never
+  # start. `deploy` is gated on `push` to main and so stays out of the queue's
+  # runs: it fires once, on the push the queue makes when it merges.
+  merge_group:
 
 jobs:
   test:
