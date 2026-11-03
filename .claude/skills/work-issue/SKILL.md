@@ -133,7 +133,7 @@ Uncommitted changes on the tree: stop and ask whose they are. Never stash or dis
 - If the issue asks for a **DECISIONS.md** entry, write it before the code it describes,
   newest-first with the date. If a step changes `app/extract.py`, the prompt or the taxonomy,
   say in the PR body that merging re-reads every job (about €3); the merge is the
-  approval, so don't stop for it.
+  approval, so don't stop for it. Those same changes trigger the eval gate — step 3a.
 - Any step the issue says to show the person before continuing (an eval table, a dry run,
   a confusion matrix): show it and **stop** until they answer.
 - **A commit is a green checkpoint.** One commit per build step of the issue, made when
@@ -141,6 +141,46 @@ Uncommitted changes on the tree: stop and ask whose they are. Never stash or dis
   step — if a step can't be green in one go, it is two steps. Subject line names the
   step: `HIR-72 step 3: aliases for 15 phrases; 391 tests pass`. Push after every commit,
   so a killed session loses nothing. Any single commit is then a safe place to go back to.
+
+## 3a. The eval gate (only if the diff touches the extractor or the skill list)
+
+**Check this on every run, before step 4:** `git diff --name-only origin/main...HEAD`. If
+it names `app/extract.py` or `taxonomy/skills.json`, AGENTS.md "The eval gate" applies and
+the PR cannot merge without a score table. The trigger is that file list, not your
+judgment about whether the change could move a score.
+
+```bash
+uv run python scripts/eval_table.py --version-check     # may this PR skip the eval?
+```
+
+**MATCH** — the committed baseline already scored this exact extractor, so a run would
+re-measure something unchanged. Paste those two version lines into the PR body under a
+`## Eval (dev)` heading, say the run was skipped and why, and go to step 4.
+
+**DIFFERENT** — run it:
+
+```bash
+uv run python scripts/run_eval.py                       # dev split, 3 repeats, ~60 model calls
+uv run python scripts/eval_table.py <run_id>            # the table for the PR body
+```
+
+Then, in one commit of its own:
+
+- the whole `evals/results/<run_id>/` directory — **this is not optional.** The run a PR
+  commits is the baseline the next extractor change is measured against; not committing it
+  is what left skill-list v8 comparable only with v5.
+- the table, pasted verbatim into the PR body under `## Eval (dev)`.
+
+`eval_table.py` exits non-zero when a metric fell more than 0.02 against the baseline.
+That is a stop-list item, not a judgment call: commit the result directory anyway so the
+number is on the record, put the table in the PR body with the flagged metric, label the
+PR `needs-chandler`, @mention Chandler on the issue in plain words ("the model got worse at
+X by Y against the last measured run"), and stop. Do not re-run the eval hoping for a
+kinder number — three repeats is already the average, and picking the best of several runs
+is tuning.
+
+The eval needs an API key from `.env` at the repo root, and **a worktree has no `.env`** —
+symlink it in before the run or the first call fails (see the session's memory on this).
 
 ## 4. Verify
 
@@ -167,6 +207,9 @@ resolve it drops your PR back out, and that one *is* yours: resolve it then, kee
 sides newest-first in DECISIONS.md.
 
 PR body, in the template's sections: Testing, Risk, How to revert, **Decisions taken**,
+plus **`## Eval (dev)`** whenever step 3a applied — the reviewer refuses a PR that touches
+the extractor or the skill list and has no such section, so an absent table reads as an
+eval nobody ran, not as a clean one.
 **Needs Chandler** and **Follow-ups** per AGENTS.md "Deciding alone vs. stopping". "Needs
 Chandler" holds only what blocks the merge. A known limit, a later ticket or a suggestion
 is a Follow-up, stated as a fact, never as a question — if it doesn't need an answer,

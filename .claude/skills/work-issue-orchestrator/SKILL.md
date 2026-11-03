@@ -54,6 +54,13 @@ a worker that stops on a NO RULE has done the right thing — note it and move o
 Chandler in this session, verbatim, and pass his answer back to that worker (SendMessage).
 Do the same for any Needs-Chandler question. You never answer for him.
 
+**An issue that touches the extractor or the skill list takes longer, and that is the
+gate working.** Its worker runs the dev eval before opening its PR (its skill's step 3a,
+AGENTS.md "The eval gate"): about 60 model calls, a few minutes, cents. Let it finish —
+a worker that looks stalled on an extractor issue is usually mid-eval. Two such workers
+running at once is fine; they measure independently. What you must not do is wave a
+missing score table through because the batch is slow.
+
 **Never replace a ticket description** (HIR-124). Anything you put on a Linear issue is a
 comment, or an append through `save_issue`'s `patch`. Two agents overwrote one ticket's
 description on 3 Nov by each sending a whole new `description`; with several orchestrators
@@ -69,6 +76,14 @@ exactly one reviewer.
 
 **Attended PR:** do not review, do not merge. List it under "Ready for you" with the PR
 link and the worker's one-line summary.
+
+**A PR touching `app/extract.py` or `taxonomy/skills.json` needs its `## Eval (dev)`
+section before it can be enqueued** (AGENTS.md "The eval gate"). The reviewer checks this
+and you do not overrule it. When a batch produces two or more of them, note in your report
+that each committed its own baseline run, and that the reviewer merges at most one
+re-reads-every-job PR per calendar day — the rest wait, which is not a failure to report
+as one. A flagged metric (down more than 0.02) goes under "Needs you" in Chandler's words,
+with the metric named and the two runs compared.
 
 Merges go through GitHub's merge queue, so an enqueued PR is not merged the moment the
 reviewer passes it: the queue tests it against the latest main first. Treat "enqueued" as
