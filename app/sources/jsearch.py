@@ -22,18 +22,27 @@ carries `job_id`, `job_title`, `employer_name`, `job_description` (plain text),
 
 Fixtures: tests/fixtures/feeds/jsearch_recorded.json is a real response (recorded
 2026-11-01, query "machine learning engineer in Berlin"). tests/fixtures/feeds/jsearch.json
-stays hand-built, for the degenerate records a real response does not contain (no apply
-link, no city, empty description).
+and tests/fixtures/feeds/jsearch_learn4good.json stay hand-built — the former for the
+degenerate records a real response does not contain (no apply link, no city, empty
+description), the latter because no recorded learn4good response exists yet (HIR-107) and
+fetching a live one would spend part of the 200-request/month budget.
 
-Aggregator headlines are dropped. Some publishers (seen with JobLeads) hand Google their
-search-result headline instead of the posting's own title — "AI / Machine Learning
-Engineer II arbeitnow SumUp Berlin, Berlin, Germany · 10/28/2026" — and name themselves,
-or an unrelated firm, as `employer_name` ("Primetime", website primetime.company). The
-real company appears only inside that headline, so neither field can be recovered and
-normalizing the company would not help: dedup would still see a different company and
-store a second copy of a posting we already have. A title that ends in a date is the
-signature; `parse` skips those records. Nothing is lost — the same SumUp posting came back
-in the same response under its own publisher with the right title and company (HIR-96).
+Aggregator headlines are dropped, in either of two shapes seen live. JobLeads hands Google
+its search-result headline instead of the posting's own title, with the listing date
+appended — "AI / Machine Learning Engineer II arbeitnow SumUp Berlin, Berlin, Germany ·
+10/28/2026" (HIR-96). learn4good wedges its own board name between the real title and the
+real company with no date in the title at all — "AI/ML Engineer arbeitnow Melotech"; its
+date is in the description body instead (HIR-107). Both name themselves, or an unrelated
+firm, as `employer_name` ("Primetime", website primetime.company). The real company
+appears only inside the title, so neither field can be recovered and normalizing the
+company would not help: dedup would still see a different company and store a second copy
+of a posting we already have — and even the simpler-looking learn4good shape is not always
+a clean split (one real example carries a leftover fragment past the company name), so a
+parsed-out title risks being subtly wrong rather than merely absent. A title that ends in a
+date is on its own a reliable signature; a title with "arbeitnow" wedged in the middle only
+counts alongside a known-aggregator `employer_name`, since the word alone can appear in a
+real title. `parse` skips both. Nothing is lost — the same posting always comes back
+elsewhere under its own publisher with the right title and company.
 
 `job_id` is not stable: it is base64 of `<docid>:<per-request token>`, and the token changes
 on every call (seen live 2026-10-18: one StepStone posting under four ids in two polls,
@@ -73,13 +82,31 @@ def stable_id(job_id: str) -> str:
 _TRAILING_DATE = re.compile(
     r"[\s·•|,-]*(\d{1,2}[/.]\d{1,2}[/.]\d{2,4}|\d{4}-\d{2}-\d{2})\s*$")
 
+# A title with the board's own name wedged in the middle, i.e. text on both sides of the
+# word. Not reliable alone — a real title could mention the board — so it is only trusted
+# together with a known-aggregator `employer_name` below.
+_WEDGED_PUBLISHER = re.compile(r".+\barbeitnow\b.+", re.IGNORECASE | re.DOTALL)
 
-def is_headline(title: str) -> bool:
+# employer_name values seen standing in for the real employer on a headline row (HIR-96
+# JobLeads, HIR-107 learn4good). Both used the same one; add to this set only from a row
+# actually seen live, not a guess at who else might do this.
+_AGGREGATOR_EMPLOYER_NAMES = {"primetime"}
+
+
+def is_headline(title: str, employer_name: str | None = None) -> bool:
     """True when the "title" is an aggregator's search-result headline rather than the
-    posting's own title. A headline ends with the date it was listed; a job title never
-    does. Such a record's `employer_name` is the aggregator's, not the employer's, so the
-    whole posting is unusable."""
-    return bool(_TRAILING_DATE.search(title))
+    posting's own title, in either shape seen live. A title ending in the date it was
+    listed (JobLeads) is a signature on its own — a real job title never ends in a date.
+    A title with the board's name wedged between other text on both sides (learn4good)
+    only counts when `employer_name` is also a known aggregator identity, since the wedge
+    alone is not reliable. Either shape's `employer_name` is the aggregator's, not the
+    employer's, so the whole posting is unusable."""
+    if _TRAILING_DATE.search(title):
+        return True
+    return bool(
+        employer_name
+        and employer_name.strip().lower() in _AGGREGATOR_EMPLOYER_NAMES
+        and _WEDGED_PUBLISHER.search(title))
 
 
 def _location(j: dict) -> str | None:
@@ -101,7 +128,7 @@ def parse(payload) -> list[Posting]:
         if not title or not text or not job_id:
             continue
         title = str(title).strip()
-        if is_headline(title):
+        if is_headline(title, j.get("employer_name")):
             continue
         out.append(Posting(
             source=SOURCE,
