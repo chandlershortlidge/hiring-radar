@@ -127,6 +127,35 @@ about extraction, the taxonomy or the dashboard changes, and no model call is in
 
 ---
 
+## 2026-11-03 — Skipping a board is not rejecting it (HIR-123)
+
+A `discover-boards` run after San Francisco went active surfaced 69 boards we don't poll,
+carrying 400 roles that pass the title and city filters (379 SF, 14 EU-remote, 7 Berlin).
+Chandler's pick: **the 16 boards carrying five or more relevant roles** — openai,
+anthropic, brainco, databricks, doordashusa, scaleai, mercor, distyl, faire, figma,
+togetherai, chime, cognition, plaid, egen, gleanwork — 303 of the 400 roles. The long tail
+of 53 boards carried 1–4 roles each: about a quarter of the roles for roughly half the
+daily fetching, and too few postings each to move any skill's share.
+
+**The rule this settles: a board we decline is left out of both files, not rejected.**
+`config/boards_rejected.json` means *never suggest this again* (2026-10-19), which is the
+wrong verdict on a company that is small today and may hire properly next quarter. So the
+51 declined boards are in neither `config/feeds.json` nor the rejected list. The price is
+accepted deliberately: every future `discover-boards` run re-reports them, and that noise
+is cheaper than permanently blinding the search to 51 companies. Do not "tidy up" by
+rejecting them.
+
+**Rejection is for boards whose problem will not change.** Two JOIN boards were rejected
+with a reason — `worldwideplacementlimitedcouk` and `verwaltungssprungcom` — because they
+are recruitment agencies and job portals rather than single employers: the postings they
+carry are not written by the hiring company, so they distort skill counts the way the
+aggregator headline rows did (HIR-104). Being an agency is a permanent property, so a
+permanent rejection is the right record.
+
+**This replaced the issue's own "done when",** which had asked for every board not added
+to be rejected. Where an issue's completion condition and this reasoning disagree, this
+entry wins.
+
 ## 2026-11-03 — learn4good's headline shape is also dropped, not repaired (HIR-107)
 
 HIR-104 found two more stored "Primetime" phantom-employer rows while removing the
