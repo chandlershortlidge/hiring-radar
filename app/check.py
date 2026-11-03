@@ -3,7 +3,9 @@ not, why the feeds could not have stored it. This is how feed coverage gets audi
 
 Does:
   - recognize hosted ATS job URLs (Greenhouse, Lever, Ashby, JOIN) and turn them into
-    (source, board token, job id);
+    (source, board token, job id); a Greenhouse embed URL (`?gh_jid=`) names the job but
+    not the board, so the board token is instead read off the embed widget script on the
+    fetched page, when the page has one;
   - look the job up by exact (source, source_job_id), then by company + text containment
     against stored jobs (the page may have been stored via another source, e.g. arbeitnow);
   - for a page that is not a known ATS, read the posting out of JSON-LD `JobPosting` when
@@ -21,8 +23,8 @@ Does NOT: write anything but the url_check log (the CLI's --add hands the resolv
 to app.ingest), call a model, or fetch LinkedIn (its pages are not readable without a login
 and the project does not scrape it).
 
-Invariants: `parse_ats_url`, `posting_from_html`, `containment`, `diagnose` and
-`feed_had_it` are pure; `check_url` reads the DB and never writes it, and does network I/O
+Invariants: `parse_ats_url`, `token_from_embed`, `posting_from_html`, `containment`,
+`diagnose` and `feed_had_it` are pure; `check_url` reads the DB and never writes it, and does network I/O
 only through the injected fetchers, so tests never touch the network. Coverage counts only
 the first check of each URL: the /check-url skill re-checks after adding a board and
 polling, and that re-check must not count as the feed having had the posting.
@@ -65,6 +67,10 @@ _ATS_PATTERNS = (
      re.compile(r"^/companies/(?P<token>[^/]+)/(?P<id>\d+)")),
 )
 _FETCHERS = {"greenhouse": greenhouse.fetch, "lever": lever.fetch, "ashby": ashby.fetch, "join": join.fetch}
+# A company embedding its Greenhouse board loads this script; its `for=` value is the board
+# token (Greenhouse's own embed-code snippet names it exactly this way), independent of which
+# greenhouse.io host happens to be serving it (boards. or job-boards., plain or .eu).
+_EMBED_TOKEN_RE = re.compile(r"greenhouse\.io/embed/job_board(?:/js)?\?(?:[^\"'\s>]*&)?for=(?P<token>[\w-]+)", re.I)
 
 
 @dataclass(frozen=True)
@@ -90,6 +96,15 @@ def parse_ats_url(url: str) -> AtsRef | None:
     if q.get("gh_jid", "").isdigit():
         return AtsRef("greenhouse", None, q["gh_jid"])
     return None
+
+
+def token_from_embed(markup: str) -> str | None:
+    """A `gh_jid` URL's page, when Greenhouse's own job board is embedded on it, carries a
+    script tag loading `.../embed/job_board(/js)?for=<token>` — that `for=` value is the
+    board token the URL itself doesn't carry. None when no such script is on the page
+    (a custom-built careers page, or the embed removed since)."""
+    m = _EMBED_TOKEN_RE.search(markup)
+    return m["token"] if m else None
 
 
 class _PageParser(HTMLParser):
@@ -264,8 +279,9 @@ def diagnose(posting: Posting, ref: AtsRef | None, feeds: list[dict], board_had_
         base = "not a hosted ATS page — no feed can reach it; --add stores it as source=url"
         return base + ("; it would also be dropped: " + "; ".join(reasons) if reasons else "")
     if ref.token is None:
-        return (f"{ref.source} job {ref.job_id} via an embed URL — board token unknown; "
-                f"re-run with the boards.greenhouse.io link to check the board")
+        return (f"{ref.source} job {ref.job_id} via an embed URL — board token unknown "
+                f"(the page carries no Greenhouse embed script); re-run with the "
+                f"boards.greenhouse.io link to check the board")
     if (ref.source, ref.token) not in polled_boards(feeds):
         hint = json.dumps({"type": ref.source, "enabled": True, "token": ref.token,
                            "company": posting.company or ""})
@@ -322,6 +338,18 @@ def check_url(conn: sqlite3.Connection, url: str, feeds: list[dict], company: st
         if row:
             return _found(conn, result, row["job_id"], "ats id")
 
+    # 1b. An embed URL names the job but not the board; the page it points at may carry
+    # Greenhouse's own embed script, which does. Fetch it once and reuse it below either way.
+    markup: str | None = None
+    if ref is not None and ref.token is None:
+        markup = fetch_page(url)
+        resolved = token_from_embed(markup)
+        if resolved:
+            ref = AtsRef(ref.source, resolved, ref.job_id)
+            result.notes.append(f"board token {resolved!r} read from the embed script")
+        else:
+            result.notes.append("page carries no Greenhouse embed script — board token still unknown")
+
     # 2. Resolve the posting text: from the board API when we know the board, else the page.
     posting: Posting | None = None
     board_had_it: bool | None = None
@@ -332,7 +360,8 @@ def check_url(conn: sqlite3.Connection, url: str, feeds: list[dict], company: st
         except Exception as e:  # board unreachable → fall back to the page itself
             result.notes.append(f"board fetch failed: {type(e).__name__}: {str(e)[:120]}")
     if posting is None:
-        posting, how = posting_from_html(url, fetch_page(url), company, title, location)
+        posting, how = posting_from_html(url, markup if markup is not None else fetch_page(url),
+                                         company, title, location)
         result.notes.append(f"read posting from {how}")
     else:
         # Lever and Ashby boards don't name the company; the board token is its slug

@@ -5,6 +5,59 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-03 — Several orchestrators at once: claims, a merge queue, append-only tickets (HIR-124)
+
+Running more than one `/work-issue-orchestrator` at a time is what we want, and the batch
+of 3 Nov showed what breaks without it being designed for. Each orchestrator sees only its
+own workers, so two of them went wrong in two different ways: two agents each sent a whole
+new description for HIR-112 and erased the other's edit, and eleven PRs merged into main
+inside eighty minutes while workers were merging main into their branches to get reviewed,
+which produced duplicate edits and cost a whole extra PR (#64) to sort out.
+
+**The fix is to stop inventing shared state and use the state that is already shared.**
+Two things are visible to every session: the Linear issue status, and the open pull
+requests. So those are the claim and the lock.
+
+- **An issue is claimed by setting it In Progress**, as a session's first write — before
+  the brief, before the worktree. Orchestrators skip In Progress issues when picking. An
+  issue that has been read but not claimed is an issue a second orchestrator will start a
+  second worker on.
+- **The open PRs say which files are taken.** Before starting each worker (not once per
+  batch) the orchestrator lists every open PR's changed files and holds back any issue
+  that would touch one, or a hot spot an open PR touches — whoever opened it. A session's
+  own batch table is not shared state and never decides a collision.
+- **Nothing merges directly to main; it goes through GitHub's merge queue.** The reviewer
+  enqueues (`gh pr merge --merge --auto`) and the queue builds each PR on top of the ones
+  ahead of it, runs the required checks on that combination, and merges in order. This is
+  what lets the rebasing stop: *workers no longer merge main into their branch before
+  review, and no agent updates a branch to force a merge through.* Being behind main is the
+  queue's problem. A conflict the queue can't resolve drops the PR back out to its author,
+  which is the one case that is still the worker's.
+- **Ticket descriptions are appended to, never replaced.** Any agent changing a
+  description it did not write this session uses `save_issue`'s `patch` (`prepend` for a
+  status line, `append`/`insert_after` elsewhere) or adds a comment. The HIR-112 overwrite
+  is impossible that way.
+
+**Rejected: a lane per orchestrator** (a reserved slice of the repo or the issue list each
+one owns). It needs coordination to hand out the lanes, which is the problem it was meant
+to solve, and claims plus the queue already cover the two failures we actually saw. If
+those turn out not to be enough, lanes are the next thing to try.
+
+**The scheduled cloud reviewer is retired** — disabled, not deleted. Merges now happen
+from the run that did the review: an autopilot `/work-issue` waits for CI at the end of
+its own run and starts a fresh `reviewer` agent on the PR it just opened, and inside an
+orchestrator the orchestrator does that. There is deliberately **no timer backstop**: a
+run that stops before merging labels its PR `needs-chandler` and says so, because a PR
+quietly waiting for a nightly job is how work goes missing. Enqueueing needs GraphQL,
+which works from a Mac session and not from a scheduled cloud run, so this is also the
+only place it can happen.
+
+This needs **"Require merge queue" on in the `main` ruleset** to do anything; until that
+is on, `--auto` behaves as a plain auto-merge and the old behaviour continues. Nothing
+about extraction, the taxonomy or the dashboard changes, and no model call is involved.
+
+---
+
 ## 2026-11-03 — learn4good's headline shape is also dropped, not repaired (HIR-107)
 
 HIR-104 found two more stored "Primetime" phantom-employer rows while removing the
