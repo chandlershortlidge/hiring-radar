@@ -5,6 +5,75 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-03 — Dedup gains an exact-title path: company + identical title is enough (HIR-108)
+
+HIR-108 reported 11 pairs stored twice under the same company and title, found on
+2026-11-02. Re-measuring on the live DB a day later (polls and HIR-104's cleanup had run
+in between) found 9 current pairs, not 11 — three of the original ids now point at
+unrelated postings or no longer exist, and one new pair (eGroup, 77+240) had arrived since.
+The table below is what is true now, not what the issue originally listed:
+
+| company | title | ids | Jaccard | containment | sources |
+| --- | --- | --- | --- | --- | --- |
+| BWI GmbH | Senior AI Engineer (w/m/d) | 184, 185 | 0.302 | 0.507 | arbeitsagentur / arbeitsagentur |
+| BWI GmbH | Senior AI Engineer - Agentic Software Development (w/m/d) | 106, 109 | 0.007 | 0.143 | arbeitsagentur / arbeitsagentur |
+| BWI GmbH | Senior AI Platform Engineer (w/m/d) | 101, 105 | 0.008 | 0.135 | arbeitsagentur / arbeitsagentur |
+| Doctolib | Principal Machine Learning Engineer - Applied AI & LLMs (x/f/m) | 4, 154 | 0.640 | 0.854 | arbeitnow / greenhouse |
+| Nebius | Senior Machine Learning Engineer, LLM Inference Optimization | 196, 219 | 0.550 | 0.782 | arbeitnow / greenhouse |
+| Nebius | Staff Machine Learning Engineer, LLM Inference Optimization | 195, 220 | 0.481 | 0.810 | arbeitnow / greenhouse |
+| commercetools | AI Engineer (m/f/x) | 2, 16 | 0.603 | 0.882 | arbeitnow / startup_jobs |
+| eGroup | (Senior) AI Web & GTM Engineer (f/m/d) | 78, 188 | 0.362 | 0.892 | url+recruitee / jsearch |
+| eGroup | AI Product Engineer (f/m/d) | 77, 240 | 0.619 | **0.997** | url / recruitee |
+
+**What the BWI pairs actually are.** The issue flagged these three as the ones most likely
+to be real separate listings, so they were the ones to check by hand, not by threshold.
+Reading job 106 and 109 side by side: 106 is Arbeitsagentur's own short auto-generated
+summary of the posting (285 characters, machine-paraphrased, not an excerpt), 109 is the
+full scraped page for the identical job. Same for 101/105 and 184/185. They are the same
+posting, not separate listings — the near-zero Jaccard and containment are an artifact of
+Arbeitsagentur sometimes storing a paraphrase instead of the page, not evidence of two
+different roles. No text measure can bridge a paraphrase to the text it paraphrases; HIR-113's
+containment path, built for a literal-prefix snippet, does not and cannot catch this either
+(containment tops out at 0.507 here, nowhere near its 0.9 guard).
+
+**The other five pairs (Doctolib, Nebius ×2, commercetools, eGroup's first pair) are
+ordinary same-posting-via-different-feeds cases** — containment 0.78–0.89, just under
+HIR-113's 0.9 guard, almost certainly boilerplate differences between how `arbeitnow`,
+`greenhouse`, `startup_jobs`, `url`/`recruitee` and `jsearch` each strip or wrap the same
+HTML. Lowering the containment or Jaccard threshold far enough to reach 0.78 would still
+miss the BWI pairs (0.135–0.507) and starts to risk the kind of false merge HIR-113's title
+guard exists to prevent. Stripping each feed's specific boilerplate is a real option but a
+much bigger, source-by-source change for a 3% chart effect.
+
+**The rule: same `company_key` and byte-identical `title_key` is sufficient on its own, no
+text test required.** `dedup.is_same_posting` now checks this first, before Jaccard and
+before the containment path. It is the only candidate the measurements support — nothing
+short of ignoring the text can bridge a 0.007 Jaccard pair that is, by inspection, the same
+job. The existing invariant, "a title never carries a match alone", still holds in the
+sense that matters: the title only carries a match when the *company also matches*, and
+only when the title is *exactly* identical after normalization, not merely similar — a
+same-company, similar-but-not-identical title (the pplwise case, HIR-113) still requires
+text corroboration exactly as before. Checked against the full live set: this rule adds
+exactly these 9 pairs as merges (8 new, plus the eGroup pair HIR-113's containment path
+already caught) and changes no other existing match, because it only ever fires when both
+the company and the full normalized title string already agree — a much narrower
+precondition than the containment path's.
+
+**The real BWI pair (106 + 109) is the regression fixture** — `bwi_auto_summary` and
+`bwi_full` in `tests/fixtures/dedup/real_cases.json` — because it is the case no threshold
+tuning could have caught, and the case the issue most worried the fix might get wrong in
+the other direction.
+
+**Not done here: merging the 9 pairs already stored.** Deleting or rewriting stored jobs is
+on the AGENTS.md stop list. Like HIR-113's two pairs before it, these stay split until
+Chandler says to merge them; the shape of that merge (repoint `job_source`, keep the
+longer `description_text`, drop the loser's `skill_mention`/`extraction_reject`, re-extract
+if the kept text changed) is recorded in the 2026-11-03 HIR-113 entry above and applies
+unchanged here. The fix in this entry stops the pattern from recurring; it does not clean
+up what already recurred.
+
+---
+
 ## 2026-11-03 — Several orchestrators at once: claims, a merge queue, append-only tickets (HIR-124)
 
 Running more than one `/work-issue-orchestrator` at a time is what we want, and the batch
