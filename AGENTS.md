@@ -222,6 +222,10 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   (config/discover.json: domains × queries) → boards we don't poll → each fetched live and
   judged by ingest's filters → report. `--add`/`--reject` are the only writes (feeds.json,
   `config/boards_rejected.json`). Needs `BRAVE_API_KEY`.
+  `--launch <city>` is the one path that writes without being asked (HIR-132): it counts
+  roles in that city alone, adds every employer board with 5+ of them, skips agencies and
+  aggregators, leaves 1–4 unrecorded, and stops the whole launch — adding nothing — above
+  €10 of one-time model reading or 5,000 postings added to the daily download.
 - `app/check.py` — `check`: a careers-page URL → found / not found, and on a miss why no
   feed could have stored it (board not polled, filter would drop it, not an ATS page).
   Writes only its own log (`url_check`, the first check per URL drives the coverage line
@@ -280,7 +284,14 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `scripts/agent_label.py` — held-out Goldens via two blind labeler agents: pick → label A
   and B → auto-check → merge → review queue (`label`), then your decisions → final Goldens
   with provenance (`apply`). Refuses to label with the extractor's model. Never runs the
-  held-out eval. See DECISIONS 2026-10-27 and `evals/LABELER_PROMPT.md`.
+  held-out eval. See DECISIONS 2026-10-27 and `evals/LABELER_PROMPT.md`. `--city <city>`
+  narrows the pool to one city, which is what a city launch samples.
+- `scripts/launch_check.py` — the quality check a city launch reports (HIR-132): scores the
+  labeller panel's *agreed* labels against what the extractor actually stored for the same
+  postings, with `app.evaluation`'s scorer, and against a second run on Berlin
+  (`--baseline-run`) as the bar. Read-only; calls no model. The labels it reads are
+  model-written and unreviewed, so they are **not** Goldens — they wait in the run's
+  `review_queue.md` for the ordinary spot-check.
 - `scripts/seed_from_legacy.py` — one-off that built the taxonomy and Goldens from the
   legacy repo. Kept for provenance.
 - `deploy/` — everything about the VM: the runbook (`README.md`), `provision.sh` (rebuilds
