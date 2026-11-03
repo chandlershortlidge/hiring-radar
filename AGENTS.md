@@ -418,9 +418,32 @@ green, the diff stays in scope and off the stop-list files, "Needs Chandler" is 
 every decision has an undo and every follow-up a ticket; otherwise it labels the PR
 `needs-chandler` and @mentions Chandler on the issue. At most one PR that re-reads every
 job (taxonomy, prompt, model) merges per day. PRs for `attended` issues always wait for
-a person. `/work-issue-orchestrator HIR-a HIR-b …` runs a batch: pick, one worker per issue in
-parallel worktrees, reviewer merges the autopilot PRs, `attended` ones pause for Chandler's
-go and wait for his merge, one report.
+a person.
+
+**Nothing merges directly to main: it goes through the merge queue** (HIR-124). The
+reviewer enqueues (`gh pr merge <n> --merge --auto`) and GitHub does the rest — it builds
+each PR on top of the ones ahead of it, runs the required checks on that combination, and
+merges in order. So no branch is ever updated or rebased to get a merge through, and a
+worker does not merge main into its branch before review: being behind main is the queue's
+job. A conflict the queue can't resolve drops the PR back out to its author.
+
+**Every merge happens from the run that reviewed it.** There is no timer and no scheduled
+cloud reviewer: an autopilot `/work-issue` waits for CI at the end of its own run and
+starts the `reviewer` agent on the PR it just opened; inside an orchestrator the
+orchestrator does that instead. A run that stops before merging leaves its PR labelled
+`needs-chandler` and says so, rather than leaving it for something to pick up later.
+
+**A Linear description is appended to, never replaced** (HIR-124). Two agents overwrote
+HIR-112's description on 3 Nov. Any agent — worker, decider, reviewer, orchestrator —
+changing a description it did not write in this session uses `save_issue` with `patch`
+(`append`, `insert_after`, or a single-match `replace`), or just adds a comment. A full
+`description` field replace is only for a description this session wrote.
+
+`/work-issue-orchestrator HIR-a HIR-b …` runs a batch: pick, one worker per issue in
+parallel worktrees, reviewer enqueues the autopilot PRs, `attended` ones pause for
+Chandler's go and wait for his merge, one report. More than one orchestrator may be
+running, each blind to the other's workers: the shared state is the Linear issue status
+(the claim) and the open PRs (what files are taken), never a session's own table.
 
 ### Skills
 

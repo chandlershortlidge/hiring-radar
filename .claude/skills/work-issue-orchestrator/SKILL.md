@@ -54,21 +54,36 @@ a worker that stops on a NO RULE has done the right thing — note it and move o
 Chandler in this session, verbatim, and pass his answer back to that worker (SendMessage).
 Do the same for any Needs-Chandler question. You never answer for him.
 
+**Never replace a ticket description** (HIR-124). Anything you put on a Linear issue is a
+comment, or an append through `save_issue`'s `patch`. Two agents overwrote one ticket's
+description on 3 Nov by each sending a whole new `description`; with several orchestrators
+running, the one you overwrite may belong to a session you cannot see.
+
 ## 3. Review and merge
 
 **Autopilot PR:** start the `reviewer` subagent (`.claude/agents/reviewer.md`) with the
-PR number. It merges or labels `needs-chandler`.
+PR number. It enqueues the PR or labels it `needs-chandler`. The worker inside an
+orchestrator does *not* review its own PR at the end of its run (its skill's step 5c tells
+it to skip that when you started it) — reviewing is yours, so every autopilot PR gets
+exactly one reviewer.
 
 **Attended PR:** do not review, do not merge. List it under "Ready for you" with the PR
 link and the worker's one-line summary.
 
-Start queued issues as slots free up and their blockers merge.
+Merges go through GitHub's merge queue, so an enqueued PR is not merged the moment the
+reviewer passes it: the queue tests it against the latest main first. Treat "enqueued" as
+done for reporting, and check back once — a PR the queue dropped out on a conflict is back
+with its author and belongs under "Needs you".
+
+Start queued issues as slots free up and their blockers merge. Before each one, re-read
+the open PRs (step 1): other sessions have been merging while you worked.
 
 ## 4. Report
 
 One message at the end, written for Chandler:
 
-- **Merged:** PR, issue, one line of what changed on the dashboard (or "internal").
+- **Merged or queued:** PR, issue, one line of what changed on the dashboard (or
+  "internal"), and whether it is merged or still in the queue.
 - **Ready for you:** attended PRs waiting for your merge, one line each.
 - **Needs you:** PR, issue, the failing check or open question in plain words.
 - **Stopped:** issue, the question the decider couldn't answer (already on Linear with an

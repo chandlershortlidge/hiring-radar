@@ -57,14 +57,14 @@ the code. Five lines, plain words, no file names:
 `attended` after the issue id, or the issue carries the Linear label `attended`. Everything
 else runs autopilot — including an issue with no label at all. First, before the brief,
 add the label `autopilot` to the issue (`save_issue` with `addLabels: ["autopilot"]`):
-that label is what the reviewer and the scheduled cloud reviewer read before merging, so
-without it the PR would sit. If the Linear MCP can't write the label, say so once in the
+that label is what the reviewer reads before merging, so without it the PR would sit. If the Linear MCP can't write the label, say so once in the
 session and continue — the PR body's first line then says "autopilot run, label not set".
 
 Autopilot means: post the brief on Linear for the record but do **not** wait for a "go";
 start at once. Every question goes to the decider; if it returns ANSWER, apply it and
 continue. Only a NO RULE reaches Chandler (Linear comment, @mention), and then stop. The
-person sees nothing until the PR exists. The PR is still never merged by the agent.
+person sees nothing until the PR exists. You still never merge your own PR — at the end of
+the run a fresh `reviewer` agent does it (step 5c).
 
 What makes this safe is not the label but the stop list (AGENTS.md "Stop and ask, even
 unattended") and the reviewer's file stop-list: those apply to every run, whatever the
@@ -154,10 +154,17 @@ Report numbers you saw, not numbers you expect.
 ## 5. Pull request
 
 ```bash
-git fetch origin main && git merge origin/main      # resolve, keep both sides in DECISIONS.md
 git push -u origin HEAD
 gh pr create --base main --fill
 ```
+
+**Do not merge `origin/main` into your branch first** (HIR-124). The merge queue does that
+for you, and better: it builds your PR on top of whatever is ahead of it in the queue and
+runs the required checks on that combination, so a branch that is behind main is not
+something to fix before review. Merging main in by hand while other sessions were merging
+is what produced the duplicate edits of 3 Nov. If the queue hits a conflict it cannot
+resolve it drops your PR back out, and that one *is* yours: resolve it then, keeping both
+sides newest-first in DECISIONS.md.
 
 PR body, in the template's sections: Testing, Risk, How to revert, **Decisions taken**,
 **Needs Chandler** and **Follow-ups** per AGENTS.md "Deciding alone vs. stopping". "Needs
@@ -174,19 +181,49 @@ the issue that was **not** done, named. If the issue is only partly done (e.g. t
 to run), say which steps remain in the PR body and in a status line at the top of the
 Linear issue; don't mark it Done.
 
+**Writing that status line, and anything else on a Linear issue: append, never replace**
+(HIR-124). Use `save_issue` with `patch` — `{"op": "prepend", "text": "..."}` for a status
+line at the top, `insert_after` or `append` elsewhere — or just post a comment. Never send
+a whole `description`: Chandler wrote it, and on 3 Nov two agents each sent a full
+description and erased the other's edit. The only description you may replace outright is
+one this session wrote.
+
 ## 5b. Follow-up tickets
 
 Any ticket you file (a Follow-up that deserves one, a bug found on the way) gets the
 `autopilot` label when it is one bounded change with no stop-list item, per AGENTS.md.
 Decide it at filing time; Chandler does not sort issues by hand.
 
+## 5c. Review and merge, before the run ends (autopilot only, HIR-124)
+
+**Skip this whole step if a `/work-issue-orchestrator` started you** — the orchestrator
+reviews and enqueues your PR itself, and two reviewers on one PR is worse than none. Skip
+it for an `attended` issue too: those always wait for Chandler.
+
+Otherwise, an autopilot run finishes the job rather than leaving a PR for something else
+to notice. There is no timer and no scheduled cloud reviewer; if you don't do this, nobody
+does.
+
+1. Wait for CI on the PR's head commit (`gh pr checks <n> --watch`).
+2. Start the **`reviewer`** subagent (`.claude/agents/reviewer.md`) with the PR number and
+   nothing else. It has fresh context and has not seen your work — that is the point, and
+   it is why this does not count as merging your own PR. Do not summarise your work to it,
+   do not tell it what you concluded, and do not argue with its verdict.
+3. On a pass it enqueues the PR and the queue merges it. On a fail it labels the PR
+   `needs-chandler` — leave that label alone and say so in your final reply.
+
+If you cannot get this far — CI never goes green, the reviewer can't be started, the run
+is stopping for a NO RULE — **label the PR `needs-chandler` yourself and say in your final
+reply that the PR is unmerged and why**. A PR left with no label and no reviewer is the
+one outcome this step exists to prevent.
+
 ## 6. Finish
 
 - Linear: a comment with the PR link and the same "Needs Chandler" lines as the PR, with
   an @mention if there are any. Status
   stays In Progress until the PR merges (the GitHub integration closes it).
-- Reply to the person with: the PR link, the test count, and open questions — nothing
-  else. No recap of the steps.
+- Reply to the person with: the PR link, the test count, whether the PR was enqueued or
+  is waiting and why, and open questions — nothing else. No recap of the steps.
 
 ## Before any question reaches Chandler: the decider
 
