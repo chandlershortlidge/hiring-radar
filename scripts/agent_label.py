@@ -1193,6 +1193,12 @@ def cmd_label(args):
         rows = ng.candidates(conn, used)
         if not rows:
             raise SystemExit("no candidate jobs (all are already Goldens or legacy imports)")
+        if args.city:
+            # A city launch checks that city's postings and no others (HIR-132). Narrowing the
+            # pool, not a quota: a quota would let other cities fill the rest of the sample.
+            rows = [r for r in rows if r["city"] == args.city]
+            if not rows:
+                raise SystemExit(f"no candidate jobs in {args.city!r}")
         quotas = {"remote_eu": args.remote_eu, "german": args.german}
         quotas |= {f"source:{s}": n for s, n in args.source}
         quotas |= {f"seniority:{s}": n for s, n in args.seniority}
@@ -1880,6 +1886,8 @@ def main(argv=None):
     lab.add_argument("--remote-eu", type=int, default=2,
                      help="at least N 'Remote (EU)' postings; their extraction is unmeasured (default 2)")
     lab.add_argument("--german", type=int, default=6, help="at least N German-language postings (default 6)")
+    lab.add_argument("--city", default=None, metavar="CITY",
+                     help="pick only postings in this city (a city launch checks that city alone)")
     lab.add_argument("--source", type=kv, action="append", default=[], metavar="NAME=N",
                      help="at least N postings from that feed, repeatable")
     lab.add_argument("--seniority", type=kv, action="append", default=[], metavar="LEVEL=N",

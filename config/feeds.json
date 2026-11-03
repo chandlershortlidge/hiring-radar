@@ -63,6 +63,10 @@
     {"type": "ashby", "enabled": true, "token": "cognition", "company": "cognition"},
     {"type": "ashby", "enabled": true, "token": "plaid", "company": "plaid"},
     {"type": "lever", "enabled": true, "token": "egen", "company": "egen"},
-    {"type": "greenhouse", "enabled": true, "token": "gleanwork", "company": "gleanwork"}
+    {"type": "greenhouse", "enabled": true, "token": "gleanwork", "company": "gleanwork"},
+    {"type": "greenhouse", "enabled": true, "token": "point72", "company": "point72"},
+    {"type": "greenhouse", "enabled": true, "token": "wehrtyou", "company": "wehrtyou"},
+    {"type": "lever", "enabled": true, "token": "spotify", "company": "spotify"},
+    {"type": "ashby", "enabled": true, "token": "ramp", "company": "ramp"}
   ]
 }

@@ -1570,3 +1570,18 @@ def test_a_model_answered_spot_check_is_recorded_as_such_and_reviews_nothing(tmp
     assert golden["adjudicated"] == []
     spot = json.loads((run_dir / "summary.json").read_text())["spot_check"]
     assert spot["n"] == len(chosen) and spot["answered_by"] == "fourth-model (assistant)"
+
+
+def test_narrowing_the_pool_to_one_city_keeps_only_that_city(tmp_path):
+    """A city launch samples that city alone (HIR-132).
+
+    Narrowing the pool, not adding a quota: with a quota the rest of the sample fills from
+    other cities, which would make a New York quality check mostly a Berlin one. Guards the
+    `city` column name the --city filter reads.
+    """
+    rows = db_rows(tmp_path)
+    assert {r["city"] for r in rows} == {"Berlin", "Remote (EU)"}
+    narrowed = [r for r in rows if r["city"] == "Remote (EU)"]
+    assert len(narrowed) == 3
+    picks = al.pick(narrowed, count=3, seed=1, quotas={})
+    assert {al.describe(r)["place"] for r in picks} == {"Remote (EU)"}
