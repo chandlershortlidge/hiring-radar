@@ -5,6 +5,53 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-03 — Adding a city is automated, and New York is the first one (HIR-132)
+
+Two standing rules end here, both by Chandler's written decision on the HIR-132 ticket
+("Adding a city is fully automated … Don't re-ask any of this"):
+
+- **A city is no longer an exception by name.** The 2026-11-03 HIR-12 entry below says
+  San Francisco is "the single exception" to a Germany-and-EU-remote scope and that an
+  agent asked about any further non-German city "applies this rule as a *no*". That line
+  is superseded: **New York is active too**, and the scope rule is now "Germany, EU-remote,
+  and the cities Chandler has turned on" — SF and NYC so far. `geo.ACTIVE_CITIES` is
+  `("Berlin", "Remote (EU)", "San Francisco", "New York")`.
+- **A board no longer waits for a person to approve it.** The 2026-10-19 rule
+  ("Approval is manual (`--add` / `--reject`). A board joins the daily poll … only after a
+  person looks at it") is superseded for city launches: `discover-boards --launch <city>`
+  applies the written policy below itself and reports afterwards.
+
+**The board policy, which is Chandler's SF choices (HIR-123) turned into code.**
+
+- **Add** every board with **5 or more** roles that pass the title filter and map to the
+  city being launched.
+- **Skip** recruitment agencies and job aggregators — only employers' own boards.
+- **Leave the rest unrecorded.** A board with 1–4 roles is neither added nor rejected:
+  rejecting hides it from every future search for good, and a small board may grow
+  (the "skipping is not rejecting" entry of 2026-11-03, HIR-123).
+- **Two caps, and hitting either one stops the launch and reports instead of adding:**
+  more than **€10** of one-time model reading, or more than **5,000** postings added to
+  the daily download.
+
+**Why automated at all.** The approval step was the whole cost of a city. Chandler made the
+same call 67 times for SF (HIR-123) and the policy above is just what he did; a rule he can
+write down is a rule an agent can apply, and the report afterwards is what he actually reads.
+
+**What this does not change.** No extractor, prompt or taxonomy change, so no
+`extractor_version` bump — a NYC posting is read by the same prompt as a Berlin one, exactly
+as the HIR-12 entry recorded for SF. The site still shows every city it collects (HIR-12,
+"Hiding SF from other people using the site is not required"), so NYC appears on the
+dashboard as its own place because it is collected.
+
+**The launch quality check is not a Golden.** A sample of NYC postings is labelled by the
+three-family labeller panel and compared with what the extractor read, to catch "the
+extractor reads US wording worse" early. Those labels are model-written and unreviewed, so
+they are **not** Goldens: they land in the ordinary review queue for Chandler's 10–15%
+spot-check and become Goldens only after it. The check never blocks or undoes a launch —
+a bad result files a follow-up.
+
+---
+
 ## 2026-11-03 — The dev baseline moves to v8, and the top-10 dip that moved it is not a regression (HIR-128)
 
 Taxonomy v8 shipped without an eval, on the reasoning that no dev-split Golden mentions any

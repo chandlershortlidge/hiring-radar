@@ -315,10 +315,13 @@ Three layout rules:
   (they were hand-edited after seeding). Never run it against the real files.
 - Feeds return everything; `app/ingest.py` filters by title regex and *active* city. A job
   in an untracked or inactive city is dropped, not stored. `app/geo.py` has two lists:
-  `CITIES` (recognized) and `ACTIVE_CITIES` (collected: Berlin, `REMOTE_EU` and San
-  Francisco, active since 2026-11-03). The scope is Germany and EU-remote, with San
-  Francisco as the single exception by name — a further non-German city is not covered by
-  it, and `ACTIVE_CITIES` stays on the stop list (DECISIONS 2026-11-03, HIR-12).
+  `CITIES` (recognized) and `ACTIVE_CITIES` (collected: Berlin, `REMOTE_EU`, San Francisco
+  and New York). The scope is Germany, EU-remote, and the cities Chandler has turned on —
+  SF since 2026-11-03 (HIR-12), New York since 2026-11-03 (HIR-132). Launching a city is
+  automated: `discover-boards --launch <city>` applies the written board policy itself and
+  reports afterwards, so neither the city nor its boards waits on approval (DECISIONS
+  2026-11-03, HIR-132, which supersedes both the "SF is the single exception" line and the
+  manual `--add` approval rule). Adding a city Chandler has *not* named is still his call.
   EU-remote rules live in `geo.is_remote_eu` (DECISIONS 2026-10-26).
 - `skill_mention` holds one extraction per job (the latest). Re-extraction replaces.
   `extraction_reject` (items that failed validation) follows the same rule.

@@ -6,10 +6,11 @@ are active.
 
 A city can be tracked without being active. `city_of` recognizes every tracked city (manual
 adds keep their real city). Only ACTIVE_CITIES pass the ingest and discover-boards filters
-(`active_place`). Making a tracked city active is a deliberate one-line change: San
-Francisco became active on 2026-11-03, once the held-out eval passed, and is the single
-exception to a Germany-and-EU-remote scope (DECISIONS 2026-11-03, HIR-12). A further
-non-German city is not covered by that exception.
+(`active_place`). The scope is Germany, EU-remote, and the cities Chandler has turned on:
+San Francisco became active on 2026-11-03 once the held-out eval passed (DECISIONS
+2026-11-03, HIR-12), and New York on 2026-11-03 as the first city launched end to end
+without a human step (DECISIONS 2026-11-03, HIR-132). Turning on a city Chandler has not
+named is still on the AGENTS.md stop list.
 
 EU-remote (DECISIONS 2026-10-26): a remote posting counts when its location names an
 EU-wide region or Germany ("Remote (EMEA)", "Hamburg, Germany (remote)"), or names no
@@ -31,14 +32,18 @@ Invariant: pure; matching is case-insensitive on whole words.
 
 import re
 
+# "new york" already covers "New York City" and "New York, NY" (whole-word match inside a
+# longer string), so only the spellings it does not cover are listed. Bare "ny" is
+# deliberately absent: it would tag the whole state, so "Rochester, NY" would read as NYC.
 CITIES: dict[str, tuple[str, ...]] = {
     "Berlin": ("berlin",),
     "San Francisco": ("san francisco", "sf bay area", "bay area", "south san francisco"),
+    "New York": ("new york", "nyc", "manhattan", "brooklyn"),
 }
 
 REMOTE_EU = "Remote (EU)"
 
-ACTIVE_CITIES: tuple[str, ...] = ("Berlin", REMOTE_EU, "San Francisco")
+ACTIVE_CITIES: tuple[str, ...] = ("Berlin", REMOTE_EU, "San Francisco", "New York")
 
 _PATTERNS = {city: re.compile(r"\b(" + "|".join(re.escape(a) for a in aliases) + r")\b", re.I)
              for city, aliases in CITIES.items()}
