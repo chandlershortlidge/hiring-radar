@@ -69,7 +69,7 @@ running, the one you overwrite may belong to a session you cannot see.
 ## 3. Review and merge
 
 **Autopilot PR:** start the `reviewer` subagent (`.claude/agents/reviewer.md`) with the
-PR number. It enqueues the PR or labels it `needs-chandler`. The worker inside an
+PR number. It sets the PR to merge on its own or labels it `needs-chandler`. The worker inside an
 orchestrator does *not* review its own PR at the end of its run (its skill's step 5c tells
 it to skip that when you started it) — reviewing is yours, so every autopilot PR gets
 exactly one reviewer.
@@ -78,17 +78,19 @@ exactly one reviewer.
 link and the worker's one-line summary.
 
 **A PR touching `app/extract.py` or `taxonomy/skills.json` needs its `## Eval (dev)`
-section before it can be enqueued** (AGENTS.md "The eval gate"). The reviewer checks this
+section before it can merge** (AGENTS.md "The eval gate"). The reviewer checks this
 and you do not overrule it. When a batch produces two or more of them, note in your report
 that each committed its own baseline run, and that the reviewer merges at most one
 re-reads-every-job PR per calendar day — the rest wait, which is not a failure to report
 as one. A flagged metric (down more than 0.02) goes under "Needs you" in Chandler's words,
 with the metric named and the two runs compared.
 
-Merges go through GitHub's merge queue, so an enqueued PR is not merged the moment the
-reviewer passes it: the queue tests it against the latest main first. Treat "enqueued" as
-done for reporting, and check back once — a PR the queue dropped out on a conflict is back
-with its author and belongs under "Needs you".
+**There is no merge queue** — GitHub offers one only on organization-owned repositories
+and this one is personal (HIR-136). The reviewer arms GitHub's auto-merge and brings the
+branch up to date, so a passed PR is not merged the moment the reviewer passes it: it
+merges when the checks on the updated branch go green. Treat "set to merge" as done for
+reporting, and check back once — a PR with a real conflict, or one that kept losing the
+race to other merges, is back with its author and belongs under "Needs you".
 
 Start queued issues as slots free up and their blockers merge. Before each one, re-read
 the open PRs (step 1): other sessions have been merging while you worked.
@@ -97,8 +99,8 @@ the open PRs (step 1): other sessions have been merging while you worked.
 
 One message at the end, written for Chandler:
 
-- **Merged or queued:** PR, issue, one line of what changed on the dashboard (or
-  "internal"), and whether it is merged or still in the queue.
+- **Merged or merging:** PR, issue, one line of what changed on the dashboard (or
+  "internal"), and whether it is merged or still waiting on its checks.
 - **Ready for you:** attended PRs waiting for your merge, one line each.
 - **Needs you:** PR, issue, the failing check or open question in plain words.
 - **Stopped:** issue, the question the decider couldn't answer (already on Linear with an

@@ -470,12 +470,20 @@ every decision has an undo and every follow-up a ticket; otherwise it labels the
 job (taxonomy, prompt, model) merges per day. PRs for `attended` issues always wait for
 a person.
 
-**Nothing merges directly to main: it goes through the merge queue** (HIR-124). The
-reviewer enqueues (`gh pr merge <n> --merge --auto`) and GitHub does the rest — it builds
-each PR on top of the ones ahead of it, runs the required checks on that combination, and
-merges in order. So no branch is ever updated or rebased to get a merge through, and a
-worker does not merge main into its branch before review: being behind main is the queue's
-job. A conflict the queue can't resolve drops the PR back out to its author.
+**Nothing merges directly to main: the reviewer arms auto-merge and GitHub does it**
+(HIR-136). `gh pr merge <n> --merge --auto` tells GitHub to merge the PR the moment its
+required checks are green; no person presses anything. There is **no merge queue** on this
+repository and there cannot be — GitHub offers queues only on organization-owned
+repositories, and this one belongs to a personal account. HIR-124 wrote a queue into these
+rules anyway, which is why every autopilot PR stalled until HIR-136.
+
+Because nothing is testing each PR against the latest main for us, **being behind main is
+the reviewer's job**: `main` requires branches to be up to date before they merge, so after
+arming auto-merge the reviewer brings the branch up to date and the checks re-run. A
+**worker still never merges main into its branch** — doing that during review is what
+produced the duplicate edits of 3 Nov; the point is that it happens once, at the end, and
+not by the author. A real conflict drops the PR back to its author, which is the one case
+that is still the worker's.
 
 **Every merge happens from the run that reviewed it.** There is no timer and no scheduled
 cloud reviewer: an autopilot `/work-issue` waits for CI at the end of its own run and
@@ -490,7 +498,7 @@ changing a description it did not write in this session uses `save_issue` with `
 `description` field replace is only for a description this session wrote.
 
 `/work-issue-orchestrator HIR-a HIR-b …` runs a batch: pick, one worker per issue in
-parallel worktrees, reviewer enqueues the autopilot PRs, `attended` ones pause for
+parallel worktrees, reviewer merges the autopilot PRs, `attended` ones pause for
 Chandler's go and wait for his merge, one report. More than one orchestrator may be
 running, each blind to the other's workers: the shared state is the Linear issue status
 (the claim) and the open PRs (what files are taken), never a session's own table.
