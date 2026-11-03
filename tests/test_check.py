@@ -5,7 +5,7 @@ import pytest
 from app import check, db, geo
 from app.check import (AtsRef, CheckResult, check_url, checked_coverage, containment, diagnose,
                        job_coverage, reach_breakdown, reach_of,
-                       feed_had_it, log_check, parse_ats_url, posting_from_html)
+                       feed_had_it, log_check, parse_ats_url, posting_from_html, token_from_embed)
 from app.geo import city_of
 from app.ingest import ingest_one
 from app.sources import Posting
@@ -41,6 +41,11 @@ def no_fetch(*a, **k):
     raise AssertionError("network fetch should not happen")
 
 
+def embed_script(token, host="boards.greenhouse.io"):
+    """What a company's careers page carries when it embeds its Greenhouse board."""
+    return f'<script src="https://{host}/embed/job_board/js?for={token}"></script>'
+
+
 # --- URL parsing ------------------------------------------------------------------------
 
 @pytest.mark.parametrize("url,expected", [
@@ -60,6 +65,29 @@ def no_fetch(*a, **k):
 ])
 def test_parse_ats_url(url, expected):
     assert parse_ats_url(url) == expected
+
+
+# --- embed-script board token resolution (HIR-31) -----------------------------------------
+
+def test_token_from_embed_reads_the_for_parameter():
+    markup = page().replace("</body>", embed_script("acme") + "</body>")
+    assert token_from_embed(markup) == "acme"
+
+
+@pytest.mark.parametrize("host", ["boards.greenhouse.io", "boards.eu.greenhouse.io", "job-boards.greenhouse.io"])
+def test_token_from_embed_any_greenhouse_embed_host(host):
+    markup = page().replace("</body>", embed_script("acme", host) + "</body>")
+    assert token_from_embed(markup) == "acme"
+
+
+def test_token_from_embed_tolerates_other_query_params_either_side_of_for():
+    before = page().replace("</body>", '<script src="https://boards.greenhouse.io/embed/job_board/js?gh_src=x&for=acme"></script></body>')
+    after = page().replace("</body>", '<script src="https://boards.greenhouse.io/embed/job_board/js?for=acme&gh_src=x"></script></body>')
+    assert token_from_embed(before) == token_from_embed(after) == "acme"
+
+
+def test_token_from_embed_none_without_the_script():
+    assert token_from_embed(page()) is None
 
 
 # --- page → posting ----------------------------------------------------------------------
@@ -196,6 +224,29 @@ def test_greenhouse_embed_url_exact_hit_but_no_board_check(conn):
     assert r.verdict == "not_found" and "board token unknown" in r.diagnosis
     ingest_one(conn, posting(source="greenhouse", sid="4012345"))
     assert check_url(conn, url, FEEDS, fetch_page=no_fetch, fetch_board=no_fetch).verdict == "found"
+
+
+def test_greenhouse_embed_url_resolves_token_from_embed_script_and_checks_the_board(conn):
+    # HIR-31: the embed page itself carries the board token, so once it's fetched, an
+    # embed URL diagnoses exactly like a plain boards.greenhouse.io URL would.
+    url = "https://acme.com/careers?gh_jid=4012345"
+    markup = page().replace("</body>", embed_script("acme") + "</body>")
+    board = [posting(source="greenhouse", sid="4012345", url=GH_URL)]
+    r = check_url(conn, url, FEEDS, fetch_page=lambda u: markup, fetch_board=lambda s, t: board)
+    assert r.verdict == "not_found"
+    assert "passes both filters" in r.diagnosis
+    assert any("board token 'acme' read from the embed script" in n for n in r.notes)
+
+
+def test_greenhouse_embed_url_resolved_token_not_polled_gives_add_hint(conn):
+    url = "https://newco.com/careers?gh_jid=99"
+    markup = page().replace("</body>", embed_script("newco") + "</body>")
+    board = [Posting("greenhouse", "99", GH_URL, "NewCo", "AI Engineer", "Berlin", JD)]
+    r = check_url(conn, url, FEEDS, fetch_page=lambda u: markup, fetch_board=lambda s, t: board)
+    assert r.verdict == "not_found"
+    assert r.diagnosis.startswith("board greenhouse:newco is not in config/feeds.json — add ")
+    assert json.loads(r.diagnosis.split("add ", 1)[1]) == {"type": "greenhouse", "enabled": True,
+                                                             "token": "newco", "company": "NewCo"}
 
 
 def test_diagnose_is_pure_and_names_the_filter():
