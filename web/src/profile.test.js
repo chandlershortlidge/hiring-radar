@@ -2,13 +2,13 @@
 // nice-to-have tie-break, and a job with no required skills to judge. No DOM, no network,
 // no localStorage — these are the functions alerts and the Advisor will reuse.
 import { describe, expect, it } from "vitest";
-import { EMPTY, fails, fit, gates, rankJobs, skillSides } from "./profile.js";
+import { EMPTY, fails, fit, gates, jobSeniority, rankJobs, skillSides, wilsonLower } from "./profile.js";
 
 const me = (p = {}) => ({ ...EMPTY, seniority: "mid", skills: ["python", "rag"], ...p });
 
 // A list row as /api/jobs returns it, with only the fields fit() reads.
 const job = (o = {}) => ({
-  id: 1, required_skills: [], nice_skills: [], german: null, production: null,
+  id: 1, title: "AI Engineer", required_skills: [], nice_skills: [], german: null, production: null,
   degree: null, degree_requirement: null, degree_or_equivalent: false, seniority: null, ...o,
 });
 
@@ -84,6 +84,62 @@ describe("gates", () => {
     expect(gates(me({ seniority: "" }), job({ seniority: "senior" }))).toEqual([]);  // nor does the profile
   });
 
+  // HIR-113: the extractor leaves plenty of senior postings at null, and HIR-51's "a job
+  // that names no level never gates" let them sit at the top of a Mid profile's list.
+  it("falls back to the title when the posting stores no level", () => {
+    const titled = (t) => job({ seniority: null, title: t });
+    for (const t of [
+      "(Senior) AI Web & GTM Engineer (f/m/d)",
+      "Senior Consultant AI Engineer",
+      "Staff Engineer, Künstliche Intelligenz Ingenieur",
+      "Principal Software Engineer - Machine Learning",
+      "AI Engineer Team Lead (all genders)",
+      "Head of AI Engineering",
+    ]) {
+      expect(gates(me(), titled(t))).toEqual(["seniority"]);
+      expect(jobSeniority(titled(t))).toBe("senior");
+    }
+  });
+
+  it("reads a junior title the same way, so a Mid profile is not shown internships", () => {
+    for (const t of ["Junior AI Engineer", "Werkstudent Machine Learning", "Working Student AI", "Intern, AI Engineering"]) {
+      expect(jobSeniority(job({ title: t }))).toBe("junior");
+      expect(gates(me(), job({ title: t }))).toEqual(["seniority"]);
+    }
+    // A junior title does gate a junior profile out of nothing.
+    expect(gates(me({ seniority: "junior" }), job({ title: "Junior AI Engineer" }))).toEqual([]);
+  });
+
+  it("matches level words only as whole words, so ordinary titles still name no level", () => {
+    for (const t of ["AI Engineer", "Machine Learning Engineer (m/w/d)", "Internal Tools Engineer", "Leading Edge AI Developer"]) {
+      expect(jobSeniority(job({ title: t }))).toBe(null);
+      expect(gates(me(), job({ title: t }))).toEqual([]);
+    }
+  });
+
+  it("lets a stored level win over the title, because the body is the better evidence", () => {
+    const j = job({ seniority: "mid", title: "(Senior) AI Web & GTM Engineer" });
+    expect(jobSeniority(j)).toBe("mid");
+    expect(gates(me(), j)).toEqual([]);
+    expect(gates(me({ seniority: "senior" }), j)).toEqual(["seniority"]);
+  });
+
+  it("treats a title naming two levels as naming none", () => {
+    expect(jobSeniority(job({ title: "Junior to Lead AI Engineer" }))).toBe(null);
+    expect(gates(me(), job({ title: "Junior to Lead AI Engineer" }))).toEqual([]);
+  });
+
+  it("never gates on a title when the profile targets no level", () => {
+    expect(gates(me({ seniority: "" }), job({ title: "Senior AI Engineer" }))).toEqual([]);
+    expect(gates(me({ seniority: "" }), job({ title: "Werkstudent AI" }))).toEqual([]);
+  });
+
+  it("survives a job with no title at all", () => {
+    const j = job({ title: undefined });
+    expect(jobSeniority(j)).toBe(null);
+    expect(gates(me(), j)).toEqual([]);
+  });
+
   it("names every failed ask in order, and fit reports the first", () => {
     const hard = job({ german: "required", production: "required", seniority: "senior", required_skills: ["python"] });
     expect(gates(me(), hard)).toEqual(["german", "production", "seniority"]);
@@ -96,8 +152,71 @@ describe("gates", () => {
   });
 });
 
+// HIR-113: the order is the Wilson lower bound of covered/total, not the raw ratio, so a
+// perfect score off two skills stops beating a near-perfect one off fourteen.
+describe("wilsonLower", () => {
+  it("shrinks a ratio by how little evidence stands behind it", () => {
+    expect(wilsonLower(10, 14)).toBeCloseTo(0.4535, 3);
+    expect(wilsonLower(6, 8)).toBeCloseTo(0.4091, 3);
+    expect(wilsonLower(2, 2)).toBeCloseTo(0.3424, 3);
+    // ...which is the whole point: the raw ratios run the other way.
+    expect(wilsonLower(10, 14)).toBeGreaterThan(wilsonLower(6, 8));
+    expect(wilsonLower(6, 8)).toBeGreaterThan(wilsonLower(2, 2));
+  });
+
+  it("is unknown with nothing to judge, and bottoms out when nothing is covered", () => {
+    expect(wilsonLower(0, 0)).toBe(null);
+    expect(wilsonLower(0, 3)).toBeCloseTo(0, 10);
+    expect(wilsonLower(0, 14)).toBeCloseTo(0, 10);
+  });
+
+  it("stays inside [0, 1], and rises with evidence at an unchanged ratio", () => {
+    expect(wilsonLower(1, 1)).toBeGreaterThan(0);
+    expect(wilsonLower(1, 1)).toBeLessThan(1);
+    expect(wilsonLower(20, 20)).toBeGreaterThan(wilsonLower(2, 2));
+    expect(wilsonLower(50, 100)).toBeGreaterThan(wilsonLower(5, 10));
+  });
+});
+
 describe("rankJobs", () => {
   const ids = (jobs) => jobs.map((j) => j.id);
+
+  // A job asking `total` required skills of which the profile below covers `covered`.
+  const fitJob = (id, covered, total, o = {}) => job({
+    id,
+    required_skills: [
+      ...Array.from({ length: covered }, (_, i) => `have${i}`),
+      ...Array.from({ length: total - covered }, (_, i) => `lack${i}`),
+    ],
+    ...o,
+  });
+  const haveAll = me({ skills: Array.from({ length: 12 }, (_, i) => `have${i}`) });
+
+  it("ranks better-evidenced coverage first, so 2/2 no longer tops the list (HIR-113)", () => {
+    // The live screenshot's three rows: Pentadoc 2/2, PharmaHera 6/8, Deloitte 10/14.
+    expect(ids(rankJobs(haveAll, [fitJob(1, 2, 2), fitJob(2, 6, 8), fitJob(3, 10, 14)]))).toEqual([3, 2, 1]);
+    // The badge is untouched: the 2/2 job still reads a plain 100%.
+    const f = fit(haveAll, fitJob(1, 2, 2));
+    expect(f.score).toBe(1);
+    expect(f.covered).toBe(2);
+    expect(f.total).toBe(2);
+    expect(f.rank_score).toBeCloseTo(0.3424, 3);
+  });
+
+  it("still puts a gated-out job last, however well evidenced its coverage", () => {
+    const jobs = [fitJob(1, 10, 14), fitJob(2, 10, 10, { german: "required" })];
+    expect(ids(rankJobs(haveAll, jobs))).toEqual([1, 2]);
+  });
+
+  it("sorts a job covering none of its required skills below any job covering some", () => {
+    const jobs = [fitJob(1, 0, 5), fitJob(2, 1, 20), job({ id: 3, nice_skills: ["have0"] })];
+    expect(ids(rankJobs(haveAll, jobs))).toEqual([2, 1, 3]);
+  });
+
+  it("keeps the order it was given when two jobs share a bound", () => {
+    const jobs = [fitJob(7, 3, 4), fitJob(4, 3, 4), fitJob(9, 3, 4)];
+    expect(ids(rankJobs(haveAll, jobs))).toEqual([7, 4, 9]);
+  });
 
   it("puts a gated-out job below every job still in reach, however well it scores", () => {
     const perfect_but_german = job({ id: 1, required_skills: ["python", "rag"], german: "required" });

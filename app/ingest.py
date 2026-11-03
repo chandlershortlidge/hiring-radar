@@ -107,7 +107,7 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
                 conn.execute("UPDATE job SET last_seen=max(last_seen, ?) WHERE id=?", (when, row["job_id"]))
                 return "still_listed"
 
-        match = dedup.find_match(p.company, p.description_text, _candidates(conn, p.company))
+        match = dedup.find_match(p.company, p.title, p.description_text, _candidates(conn, p.company))
         if match:
             job_id = match.job_id
             other_ids = {r[0] for r in conn.execute(

@@ -156,9 +156,12 @@ gcloud compute scp hiring-radar:/var/lib/hiring-radar/hiring-radar.db ./data/hir
 Or pull last night's backup from the bucket:
 
 ```
-gcloud storage ls gs://hiring-radar-512318-backups/db/      # pick the newest
+gcloud storage ls "gs://hiring-radar-512318-backups/db/hiring-radar-$(date -u +%Y-%m-%d)*"
 gcloud storage cp gs://hiring-radar-512318-backups/db/<file>.gz . && gunzip <file>.gz
 ```
+
+One day at a time, not the whole `db/` prefix — see [Backups](#backups) for why the full
+listing misleads.
 
 ## Backups
 
@@ -168,6 +171,20 @@ older than 30 days. The VM writes to the bucket as its own (default Compute Engi
 account, which has project `roles/editor` — no extra grant.
 `journalctl -u hiring-radar-backup --since yesterday --no-pager` shows the last run.
 `systemctl start hiring-radar-backup.service` takes one on demand (a deploy does this).
+
+**To check that a backup landed, ask for one day, not for the whole bucket:**
+
+```
+gcloud storage ls "gs://hiring-radar-512318-backups/db/hiring-radar-$(date -u +%Y-%m-%d)*"
+```
+
+A nightly plus every deploy means the bucket holds 50+ objects, and a plain
+`gcloud storage ls` of `db/` returns all of them oldest-first. Any wrapper or terminal that
+clips long output then leaves you reading a *prefix* of the listing whose last line looks
+like the newest backup — and `| sort | tail` does not save you if the clipping happens
+before the pipe. The listing above is a few lines however the bucket grows, so there is
+nothing to clip. HIR-112 was a two-day backup outage reported entirely from a clipped
+listing; see DECISIONS.md (2026-11-03).
 
 ## Restore a backup
 

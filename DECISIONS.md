@@ -61,6 +61,200 @@ taxonomy gap, which was the thing worth checking.
 
 ---
 
+## 2026-11-03 — Dedup gains a containment path, guarded by the title (HIR-113)
+
+Cloover appeared three times in the job list. Pulling the rows settled what happened — and
+it was two different things, not one:
+
+| pair | Jaccard | containment | what it is |
+| --- | --- | --- | --- |
+| 76 + 231 | 0.683 | **1.000** | the same posting; one source stored a shorter extract |
+| 206 + 76 | 0.013 | 0.033 | the same posting **in German** |
+| 206 + 231 | 0.011 | 0.022 | likewise |
+
+**The near miss.** Job 76's text is a literal prefix of job 231's: every one of its 675
+shingles is in 231. Jaccard still read 0.683, under the 0.7 threshold, because it divides
+by the *union*, which grows with the longer text. So the measure was working as designed and
+the design was wrong for this case. `dedup.containment` — `|A∩B| / min(|A|,|B|)` — reads
+1.000, and `is_same_posting` now accepts either path.
+
+**Why the containment path needs three guards, not one.** Containment ≥ 0.9 on its own
+breaks the invariant that two different roles at one company never merge. Checked over all
+246 stored jobs it would have merged pplwise's "AI engineer in manufacturing" with their
+"Senior AI / Machine Learning Engineer" at containment 0.931 — a recruiter whose postings
+share most of their boilerplate. Two genuinely different jobs. So the path requires all of:
+
+- containment ≥ 0.9; **and**
+- the shorter text at least 60 shingles (~60 words), because less than that cannot
+  establish identity; **and**
+- every word of the shorter title present in the longer title.
+
+The title is a *supporting* signal only — `test_a_matching_title_alone_never_merges` pins
+that identical titles with unrelated text still do not merge. With all three, the rule adds
+exactly two merges across the stored set (Cloover 76+231, eGroup 77+240), both genuine
+duplicates, and changes no existing merge. Those numbers, and the four real postings behind
+them, are in `tests/fixtures/dedup/real_cases.json`.
+
+**The German translation is a known limit, not a fix.** No shingle measure over words can
+see that job 206 is job 231 in German; both read under 0.04. Catching it needs a different
+signal (same company + same source + same posted date, or a translation step), which is its
+own ticket — HIR-117 — not a threshold change.
+
+**The rows already split stay split.** Changing stored jobs is Chandler's call, so nothing
+was rewritten here; the fix stops *new* duplicates only. When it is wanted, merging the two
+pairs above means, for each: repoint the loser's `job_source` rows at the winner, take
+`min(first_seen)` and `max(last_seen)`, drop the loser's `skill_mention` and
+`extraction_reject` rows (the winner's extraction stands; the FTS triggers follow the
+delete), and delete the loser. Keep the longer description — it is the one the extractor
+should read. That is a `scripts/` one-off with `--dry-run`, in the shape of
+`scripts/remove_headline_jobs.py`, and the three Cloover rows are only two merges, so doing
+it by hand is also reasonable.
+
+## 2026-11-03 — Best fit sorts on a lower bound, not the ratio (HIR-113)
+
+The first live list had Pentadoc first at `100% · 2/2`, above PharmaHera at 6/8 and
+Deloitte at 10/14. Two matched skills is not evidence of a perfect fit; it is evidence of
+almost nothing. Ranking on the raw ratio rewards exactly the postings we know least about,
+and short required-skill lists are usually thin extractions rather than genuinely simple
+jobs.
+
+So `rankJobs` orders on the **Wilson score interval's lower bound** of covered/total
+instead, and `fit()` returns it as `rank_score` beside the plain `score`. The three rows
+above become 0.45, 0.41 and 0.34 — the order a person would pick by eye.
+
+- **Why a lower bound rather than a smoothed ratio.** It answers the question the list is
+  actually asking: given this much evidence, how good can we be confident the fit is? A
+  prior-based smoothing (add-k) would do something similar, but needs a k chosen out of
+  thin air; the bound needs only a confidence level, and the same method is already used on
+  PatternAI's eval rates, so the two read alike.
+- **Why z = 1.96.** The conventional 95% level, and the number already in use for those
+  eval rates. Nothing here is sensitive to the exact value — it sets how hard small
+  denominators are penalised, and 1.96 reproduces the ordering a person reads off the
+  screenshot. One constant, `Z`, so there is one place to change it.
+- **The badge did not change.** A row still reads `100% · 2/2`, because that *is* what the
+  posting asked and what the profile covers; inventing a "34%" badge would be telling the
+  person their two-for-two match is a third of a fit. `score` is for showing, `rank_score`
+  is for ordering, and the return shape says so. Alerts (HIR-19) and the Advisor sort on
+  `rank_score` so every surface agrees.
+- **Nothing else about the order moved.** Gated-out jobs still sort below everything in
+  reach; a job with no required skills to judge still sorts last among the ungated; the
+  quarter-weighted nice-to-have share is still a separate, lower tie-break.
+
+## 2026-11-03 — A title can name a level (HIR-113)
+
+HIR-51 said a posting that names no level never gates, because `null` is the extractor's
+safe error. On the live list that turned out to be the wrong default for one shape of
+posting: "(Senior) AI Web & GTM Engineer", "Senior Consultant AI Engineer", "Staff
+Engineer…", "Principal Software Engineer…" all reached the browser with no stored level,
+so none of them gated, and they sat at the top of a list filtered to Mid — the exact jobs
+the filter was meant to push down.
+
+So when a job stores no level, `jobSeniority` in `web/src/profile.js` reads the title:
+Senior, Staff, Principal, Lead or Head as a whole word means `senior`, and Junior,
+Werkstudent, Working Student or Intern means `junior`. Four things about that:
+
+- **A stored level still wins.** The extractor read the whole posting; the title is one
+  line of it. When they disagree the body is the better evidence, so "(Senior) AI Web & GTM
+  Engineer" stored as `mid` stays `mid` and does not gate a Mid profile. This is why the
+  change fixes fewer rows than the screenshot suggests, and why the extractor's own
+  behaviour on bracketed "(Senior)" is a separate ticket rather than something papered over
+  here.
+- **Whole words only, and a short list.** `\b(senior|staff|principal|lead|head)\b` —
+  so "Internal Tools Engineer" is not an internship and "Leading Edge AI" is not a Lead. The
+  list is only the words HIR-113 names. A wrong guess here *hides a job*, which is worse
+  than letting one sort too high, so the list stays short rather than clever.
+- **A title that names two levels names none.** "Junior to Lead AI Engineer" returns
+  `null` and never gates. Ambiguous is treated exactly like silent.
+- **The badge still names a level.** A row gated on its title alone would otherwise show a
+  blank word, because the row's own `seniority` is null; `JobList.jsx` asks `profile.js`
+  for the effective level instead of reading the field.
+
+Browser-only and deterministic: no model call, no stored data, nothing re-extracted.
+
+## 2026-11-03 — arbeitnow's "Remote job" is a placeholder, and its URL carries the place (HIR-111)
+
+A large block of arbeitnow's remote postings sends the literal string `"Remote job"` as the
+location. Every word of it is filler to `geo` ("remote", "job"), so it read as a remote
+posting naming no region at all and became `Remote (EU)` wherever the job really was — a
+Zürich role, an Amsterdam role, the UK-local Bromcom role from HIR-110. HIR-98 fixed the
+bare-place-name case ("Bromley" passes through and gets dropped) and never saw this one.
+Measured over one live 5-page poll (1410 postings): 20 carry the placeholder, 3 of those also
+pass the title filter and were stored, all 3 as `Remote (EU)` and none of them EU-wide.
+
+The adapter now reads the place out of the posting's own URL, which is the only other thing
+that carries it: the host is country-localized (`.com` Germany, `.ch`, `.nl`, `.co.uk`,
+`.fr` — 20/20 agreed with the city in the slug) and the slug ends in the place and the
+posting id. A tracked city in the last two slug words wins, which is geo's own rule that a
+city beats a remote marker; otherwise the host's country goes in and geo judges
+`"Remote (Switzerland)"` exactly as it judges a feed that writes "Remote, UK" itself — not
+EU-remote, because such a posting usually needs residence or an entity there (2026-10-26).
+No policy changed: the placeholder was hiding a place the 2026-10-26 rules already decide.
+
+Three things were weighed and rejected:
+
+- **Treating the placeholder as an empty location.** The adapter already turns an empty
+  location into `"Remote (Germany)"`, so this would have kept every one of these postings
+  EU-remote. Handing `None` to geo instead (title and description stand in) was measured:
+  it drops the two Zürich postings but still stores the Amsterdam one as `Remote (EU)`,
+  because its description says "fully remote". The feed knows where the job is; guessing
+  from prose when the URL says "amsterdam" is the weaker reading.
+- **Widening `geo._NON_EU_ONLY`** (HIR-109's axis). It only ever catches a posting that
+  writes a residence sentence, and the Bromcom one does not.
+- **Reading the slug for anything but a tracked city.** Only the last two words before the
+  posting id are read, and only `city_of` reads them, so title words that end up in that
+  window ("...-software-engineer-302654") are never mistaken for a place — they fall back
+  to the host's country rather than dropping the posting on a word like "engineer".
+
+Known cost: a posting that is genuinely open worldwide but sits on a non-German host is now
+dropped — the seven Tether "100% Remote Worldwide" rows in HIR-110's sample would be. That is
+the same loss the 2026-10-26 rule already takes on any feed that says "Remote, UK", and
+undoing it means letting a title or description override a country the feed named, which is
+its own decision.
+
+## 2026-11-03 — The backups were never missing: a truncated listing read as a complete one (HIR-112)
+
+HIR-112 reported that no database backup had reached the bucket since 2026-11-01 10:09Z —
+two nightly runs and two pre-deploy backups all apparently absent. None of that was true.
+Every backup had landed. What had gone wrong was the *looking*.
+
+The bucket holds 56 objects (one per nightly plus one per deploy, under the 30-day
+lifecycle rule). `gcloud storage ls` on it returns all 56, sorted lexicographically, which
+for this naming scheme is also oldest-first. Chandler's `rtk` CLI proxy — the
+output-shrinking wrapper the Claude Code hook prepends to shell commands — cuts its output
+at 30 lines and appends `... (26 lines truncated)`. Thirty lines in, the newest name
+visible is `hiring-radar-2026-11-01T100917Z.db.gz`. That is exactly the object the issue
+named as the newest, and exactly the count ("31 objects") the issue reported: 30 names plus
+the truncation line. The two "missing" nightlies (`2026-11-02T023000Z`,
+`2026-11-03T023030Z`) and the two "missing" deploy backups (`2026-11-01T180622Z` for the
+HIR-98 merge, `2026-11-02T155131Z` for the HIR-106 merge) were all sitting past the cut.
+The VM agreed throughout: the timer's last run was 2026-11-03 02:30:30 UTC, and every run
+since 11-01 logged `backup ok`.
+
+Two things make this trap worse than an ordinary truncation, and both are why it is written
+down rather than just closed:
+
+- **Piping does not escape it.** `... | sort | tail -3` still answers
+  `2026-11-01T100917Z`, because the wrapper truncates its own stdout *before* the pipe
+  sees it. The reflex that normally rescues a long listing makes this one look confirmed.
+- **The truncated answer is plausible.** A listing that ends two days ago reads as a
+  service that stopped two days ago. Nothing about the output says "this is a prefix".
+
+So the rule is: **never establish "the newest backup" from an unbounded listing.** Ask the
+bucket a question whose true answer is short. `deploy/README.md` now carries the date-glob
+form — `gcloud storage ls "gs://…/db/hiring-radar-$(date -u +%Y-%m-%d)*"` — which returns a
+handful of lines no wrapper will cut, and answers "did a backup land today?" directly.
+`rtk proxy <cmd>` (unfiltered) is the other way out, but it is personal tooling and not
+something the runbook should depend on.
+
+Nothing was restored and nothing was lost; the 30-day retention and the lifecycle rule were
+never in question. A fresh on-demand backup (`2026-11-03T133146Z`, 10.6 MiB) was taken to
+close the issue's "a backup newer than the investigation" condition, and the nightly timer
+is scheduled for 2026-11-04 02:30 UTC.
+
+One real gap survives, separately from this: `backup.sh` is loud only in the journal. If it
+ever genuinely failed, the timer would go on firing and nobody would hear. That is filed as
+its own ticket rather than built here.
+
 ## 2026-11-03 — Best fit: a gate, then a ratio, then the nice-to-haves (HIR-51)
 
 The job list can now be ordered by how well each job fits the profile. Three things about
@@ -81,6 +275,9 @@ how that order is computed were open, and this is how they were settled.
   word. A posting that names no level never gates: most don't, and `null` is the extractor's
   safe error there (DECISIONS 2026-10-27). Seniority is a gate at all because the profile
   targets exactly one level; that is the filter's own meaning.
+  **Narrowed the same week — see the 2026-11-03 HIR-113 entry above:** a posting that stores
+  no level but names one *in its title* now gates on the title. "Names no level" means
+  neither the body nor the title did.
 - **"Best fit" ranks in the browser, over at most 200 jobs.** The server is never told the
   profile, so it cannot sort by fit; `web/src/profile.js` does, over one page of the
   filtered set, and pages through the result locally. 200 is the largest page `/api/jobs`

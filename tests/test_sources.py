@@ -479,6 +479,61 @@ def test_names_eu_region_is_what_the_adapter_asks():
     assert not names_eu_region("") and not names_eu_region(None)
 
 
+# --- arbeitnow: the feed's "Remote job" placeholder names no place (HIR-111) -----
+
+def test_arbeitnow_placeholder_location_takes_the_country_from_the_host():
+    """"Remote job" is the feed's placeholder, not a place: a Swiss posting must not become
+    EU-remote just because every word of the placeholder is filler to geo."""
+    loc, place = _arbeitnow_remote_places()[
+        "machine-learning-computer-graphics-engineer-remote-junior-mid-senior-zurich-312397"]
+    assert loc == "Remote (Switzerland)"
+    assert place is None
+
+
+def test_arbeitnow_placeholder_uk_posting_is_dropped():
+    """The posting HIR-111 was filed for: a UK-local role on arbeitnow.co.uk."""
+    loc, place = _arbeitnow_remote_places()[
+        "remote-sql-developer-ai-prompting-context-engineering-bromley-268635"]
+    assert loc == "Remote (United Kingdom)"
+    assert place is None
+    assert in_scope_title("Remote SQL Developer (AI Prompting / Context Engineering)")
+
+
+def test_arbeitnow_placeholder_tracked_city_in_the_slug_wins():
+    """The slug ends in the place. A tracked city there beats the host's country, the way
+    geo's own rule makes "Berlin or remote" Berlin."""
+    assert _arbeitnow_remote_places()["remote-senior-data-engineer-berlin-467823"] == (
+        "Berlin (remote)", "Berlin")
+
+
+def test_arbeitnow_placeholder_slug_without_a_place_keeps_the_host_country():
+    """A slug can end in title words instead of a place ("...-software-engineer-302654").
+    Those words are never read as one: the host still names the country."""
+    assert _arbeitnow_remote_places()["remote-staff-ai-software-engineer-302654"] == (
+        "Remote (Germany)", "Remote (EU)")
+
+
+def test_arbeitnow_placeholder_unknown_host_names_no_country():
+    """Off the five localized hosts nothing is known, which is the state the empty location
+    is already in: arbeitnow's own jurisdiction."""
+    assert _arbeitnow_remote_places()["remote-ai-engineer-elsewhere-7"] == (
+        "Remote (Germany)", "Remote (EU)")
+
+
+def test_arbeitnow_placeholder_only_applies_to_the_placeholder():
+    """Employer text keeps passing through untouched: "Remote" and "Homeoffice" are what the
+    posting wrote, so the host's country never overrides them."""
+    item = {"slug": "remote-ai-engineer-london-9", "company_name": "Acme", "title": "AI Engineer",
+            "description": "<p>x</p>", "url": "https://www.arbeitnow.co.uk/jobs/x",
+            "remote": True, "created_at": 1760000000}
+    for loc in ("Remote", "Homeoffice", "Bromley"):
+        assert arbeitnow.parse({"data": [{**item, "location": loc}]})[0].location_raw == loc
+    # The placeholder itself is read the same way whatever the `remote` flag says: it is the
+    # feed saying no place is named, and passing it through is what HIR-111 is about.
+    assert arbeitnow.parse({"data": [{**item, "location": "Remote job", "remote": False}]}
+                           )[0].location_raw == "Remote (United Kingdom)"
+
+
 # --- ashby + geo: the paired Clera postings (HIR-109) ---------------------------
 
 def _clera_places():
