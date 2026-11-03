@@ -198,8 +198,12 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `app/sources/` — one adapter per feed (`greenhouse`, `lever`, `ashby`, `join`, `arbeitnow`,
   `arbeitsagentur`, `jsearch`, `startup_jobs`): `parse(payload)` is pure and tested on `tests/fixtures/feeds/`;
   `fetch()` is the thin HTTP wrapper. `app/html_text.py` strips HTML.
-- `app/dedup.py` — company/title keys and 3-word-shingle Jaccard similarity; `find_match`
-  needs same company AND similarity ≥ 0.7. `app/geo.py` — location → tracked city or EU-remote.
+- `app/dedup.py` — company/title keys and 3-word-shingle text measures; `find_match` needs
+  the same company AND `is_same_posting`: Jaccard ≥ 0.7, **or** the containment path added
+  by HIR-113 (the shorter text ≥ 0.9 contained in the longer, ≥ 60 shingles long, and the
+  shorter title's words all in the longer title). A title never carries a match alone. The
+  real postings the thresholds rest on are `tests/fixtures/dedup/real_cases.json`.
+  `app/geo.py` — location → tracked city or EU-remote.
 - `app/ingest.py` — the still-listed / merge / repost / new decision and the title+city
   filters. `app/pipeline.py` — extract skills for jobs not yet at the current
   `extractor_version`. `app/poll.py` — run all feeds in `config/feeds.json`.
@@ -300,8 +304,10 @@ Three layout rules:
   (they were hand-edited after seeding). Never run it against the real files.
 - Feeds return everything; `app/ingest.py` filters by title regex and *active* city. A job
   in an untracked or inactive city is dropped, not stored. `app/geo.py` has two lists:
-  `CITIES` (recognized) and `ACTIVE_CITIES` (collected: Berlin and `REMOTE_EU`; SF waits
-  for the held-out eval). Change `ACTIVE_CITIES` only on purpose (DECISIONS 2026-10-19).
+  `CITIES` (recognized) and `ACTIVE_CITIES` (collected: Berlin, `REMOTE_EU` and San
+  Francisco, active since 2026-11-03). The scope is Germany and EU-remote, with San
+  Francisco as the single exception by name — a further non-German city is not covered by
+  it, and `ACTIVE_CITIES` stays on the stop list (DECISIONS 2026-11-03, HIR-12).
   EU-remote rules live in `geo.is_remote_eu` (DECISIONS 2026-10-26).
 - `skill_mention` holds one extraction per job (the latest). Re-extraction replaces.
   `extraction_reject` (items that failed validation) follows the same rule.
@@ -383,24 +389,29 @@ situation, one line per option with its consequence, a recommendation. His answe
 written into DECISIONS.md so it is never asked again. Meanwhile the worker does any step
 that doesn't depend on the answer, and stops.
 
-**Autopilot issues.** An issue labelled `autopilot` in Linear is small enough that
-Chandler does not need to be involved: no "go" on the brief, every question to the
-decider, the first thing he sees is the PR. Label an issue `autopilot` when it is one
-bounded change with no stop-list item in it (aliases, a fixture, a copy fix, a test).
-A NO RULE from the decider still stops the run — guessing is not autopilot.
+**Autopilot is the default** (HIR-120). `/work-issue HIR-n` runs unattended: no "go" on
+the brief, every question to the decider, the first thing Chandler sees is the PR. The
+worker adds the `autopilot` label to the issue itself; that label is what the reviewer
+reads before merging, not a thing anyone applies by hand. A NO RULE from the decider
+still stops the run — guessing is not autopilot.
 
-Whoever files the issue applies the label, by that rule, at filing time: an agent
-writing a follow-up ticket, the decider, or a Claude session. Chandler does not sort
-issues by hand. When in doubt, leave the label off; an attended run costs one "go".
+An issue runs **attended** only when Chandler wants to be in it: `/work-issue HIR-n
+attended`, or the Linear label `attended` on the issue (he applies that one, or an agent
+filing an issue that plainly needs him — a direction call, a public-facing change, work
+he asked to be involved in). Attended means the brief waits for his "go" and the PR waits
+for his merge.
+
+What keeps the default safe is the stop list above and the reviewer's file stop-list,
+which apply to every run regardless of label.
 
 **Who merges.** A worker never merges its own PR. For an `autopilot` issue the
 `reviewer` agent (`.claude/agents/reviewer.md`, fresh context, Fable) merges when CI is
 green, the diff stays in scope and off the stop-list files, "Needs Chandler" is empty,
 every decision has an undo and every follow-up a ticket; otherwise it labels the PR
 `needs-chandler` and @mentions Chandler on the issue. At most one PR that re-reads every
-job (taxonomy, prompt, model) merges per day. PRs for non-autopilot issues always wait for
+job (taxonomy, prompt, model) merges per day. PRs for `attended` issues always wait for
 a person. `/work-issue-orchestrator HIR-a HIR-b …` runs a batch: pick, one worker per issue in
-parallel worktrees, reviewer merges the autopilot PRs, attended ones pause for Chandler's
+parallel worktrees, reviewer merges the autopilot PRs, `attended` ones pause for Chandler's
 go and wait for his merge, one report.
 
 ### Skills

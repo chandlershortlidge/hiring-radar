@@ -49,6 +49,15 @@ def fetch_board(source, token):
     return BOARDS[(source, token)]
 
 
+def test_shipped_config_searches_for_every_active_city():
+    """Switching a city on means discover-boards looks for its boards too (HIR-12)."""
+    import json
+
+    queries = json.loads(discover.CONFIG_PATH.read_text())["queries"]
+    for city in ("Berlin", "San Francisco"):
+        assert any(city in q for q in queries), city
+
+
 def test_search_queries_cross_domains_and_queries():
     assert discover.search_queries(CONFIG) == ['site:jobs.lever.co "AI engineer" Berlin',
                                                'site:jobs.ashbyhq.com "AI engineer" Berlin']
@@ -67,8 +76,11 @@ def test_known_includes_disabled_feeds_and_rejected_are_excluded():
     assert new == [("ashby", "newco"), ("lever", "quietco"), ("lever", "deadco")]
 
 
-def test_relevant_roles_need_the_title_filter_and_a_tracked_city():
-    assert discover.relevant_roles(BOARDS[("ashby", "newco")]) == ["Senior AI Engineer (Berlin)"]
+def test_relevant_roles_need_the_title_filter_and_an_active_city():
+    # Berlin and San Francisco count (HIR-12); "Sales Lead" fails the title filter and
+    # "Remote - US" is not EU-remote.
+    assert discover.relevant_roles(BOARDS[("ashby", "newco")]) == ["Senior AI Engineer (Berlin)",
+                                                                   "AI Engineer (San Francisco)"]
     assert discover.relevant_roles(BOARDS[("lever", "quietco")]) == []
 
 
@@ -79,12 +91,14 @@ def test_run_classifies_and_reports_failures_without_stopping():
     assert len(seen) == 2 and r.queries[1][1] == 0
     assert (r.urls, r.found, r.known, r.rejected, r.unparsed) == (9, 6, 2, 1, 2)
     by = {c.board: c for c in r.candidates}
-    assert by[("ashby", "newco")].relevant == ["Senior AI Engineer (Berlin)"] and by[("ashby", "newco")].total == 4
+    assert by[("ashby", "newco")].relevant == ["Senior AI Engineer (Berlin)",
+                                               "AI Engineer (San Francisco)"] and by[("ashby", "newco")].total == 4
     assert by[("lever", "quietco")].relevant == [] and by[("lever", "quietco")].error is None
     assert by[("lever", "deadco")].error == "OSError: HTTP Error 404"
     out = "\n".join(discover.report_lines(r))
     assert 'site:jobs.ashbyhq.com "AI engineer" Berlin → 0 results' in out
-    assert "new boards with relevant roles: 1\n  ashby:newco: 4 jobs, 1 relevant: Senior AI Engineer (Berlin)" in out
+    assert ("new boards with relevant roles: 1\n  ashby:newco: 4 jobs, 2 relevant: "
+            "Senior AI Engineer (Berlin); AI Engineer (San Francisco)") in out
     assert '{"type": "ashby", "enabled": true, "token": "newco", "company": "newco"}' in out
     assert "nothing relevant now: 1\n  lever:quietco: 2 jobs, 0 relevant" in out
     assert "board fetch FAILED: 1\n  lever:deadco: OSError: HTTP Error 404" in out
