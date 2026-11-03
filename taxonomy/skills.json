@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
   "skills": [
     {
       "id": "a-b-testing",
@@ -122,6 +122,15 @@
       "reviewed": true
     },
     {
+      "id": "ansible",
+      "display": "Ansible",
+      "aliases": [],
+      "parents": [
+        "infrastructure-as-code"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "anthropic-api",
       "display": "Anthropic API",
       "aliases": [
@@ -235,6 +244,15 @@
       "aliases": [
         "backend",
         "backend engineering"
+      ],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "bash",
+      "display": "Bash",
+      "aliases": [
+        "bash scripting"
       ],
       "parents": [],
       "reviewed": true
@@ -1275,6 +1293,15 @@
       "reviewed": true
     },
     {
+      "id": "nccl",
+      "display": "NCCL",
+      "aliases": [],
+      "parents": [
+        "distributed-training"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "networking",
       "display": "Networking",
       "aliases": [
@@ -1540,12 +1567,21 @@
       "reviewed": true
     },
     {
+      "id": "ray",
+      "display": "Ray",
+      "aliases": [],
+      "parents": [
+        "distributed-systems"
+      ],
+      "reviewed": true
+    },
+    {
       "id": "ray-serve",
       "display": "Ray Serve",
       "aliases": [],
       "parents": [
         "model-serving",
-        "distributed-systems"
+        "ray"
       ],
       "reviewed": true
     },
@@ -1591,6 +1627,13 @@
       "reviewed": true
     },
     {
+      "id": "redis",
+      "display": "Redis",
+      "aliases": [],
+      "parents": [],
+      "reviewed": true
+    },
+    {
       "id": "reinforcement-learning",
       "display": "Reinforcement Learning",
       "aliases": [],
@@ -1613,6 +1656,18 @@
       "display": "Rust",
       "aliases": [],
       "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "sagemaker",
+      "display": "SageMaker",
+      "aliases": [
+        "aws sagemaker",
+        "amazon sagemaker"
+      ],
+      "parents": [
+        "aws"
+      ],
       "reviewed": true
     },
     {
@@ -1766,6 +1821,17 @@
       "parents": [
         "business-intelligence",
         "data-visualization"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "temporal",
+      "display": "Temporal",
+      "aliases": [
+        "temporal.io"
+      ],
+      "parents": [
+        "distributed-systems"
       ],
       "reviewed": true
     },

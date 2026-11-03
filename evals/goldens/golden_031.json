@@ -150,6 +150,11 @@
       "raw_text": "RAG architectures"
     },
     {
+      "skill_id": "redis",
+      "requirement": "required",
+      "raw_text": "Redis"
+    },
+    {
       "skill_id": "scikit-learn",
       "requirement": "nice_to_have",
       "raw_text": "scikit-learn"

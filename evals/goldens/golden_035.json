@@ -90,6 +90,11 @@
       "raw_text": "at least one modern inference stack"
     },
     {
+      "skill_id": "nccl",
+      "requirement": "nice_to_have",
+      "raw_text": "NCCL"
+    },
+    {
       "skill_id": "nvidia-dynamo",
       "requirement": "required",
       "raw_text": "NVIDIA Dynamo"
@@ -108,6 +113,11 @@
       "skill_id": "quantization",
       "requirement": "nice_to_have",
       "raw_text": "quantization-aware training"
+    },
+    {
+      "skill_id": "ray",
+      "requirement": "nice_to_have",
+      "raw_text": "Triton, Ray"
     },
     {
       "skill_id": "ray-serve",

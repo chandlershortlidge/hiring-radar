@@ -79,13 +79,25 @@ def test_every_golden_has_a_valid_seniority_label():
 
 def test_ambiguous_bare_labels_still_resolve_to_nothing():
     # DECISIONS 2026-10-20 and 2026-11-01: "Triton" is ambiguous between NVIDIA's inference
-    # server and OpenAI's kernel language, and "Ray" between Ray and Ray Serve. v5 added the
-    # unambiguous names; the bare words must stay unresolvable rather than pick a side.
+    # server and OpenAI's kernel language — two unrelated products sharing a word — so the
+    # bare label must stay unresolvable rather than pick a side. HIR-128 left it that way:
+    # it is at 1 job, and a higher count would not make the word less ambiguous.
     t = Taxonomy.load()
     assert t.resolve("Triton") is None
     assert t.resolve("triton") is None
-    assert t.resolve("Ray") is None
     assert t.resolve("NVIDIA Triton") == "triton-inference-server"
+    assert t.resolve("Ray Serve") == "ray-serve"
+
+
+def test_bare_ray_resolves_now_that_ray_itself_is_an_entry():
+    # Until v8 bare "Ray" resolved to nothing, but for a different reason than "Triton":
+    # the only ambiguity was between Ray and its own component Ray Serve, and `ray` had no
+    # entry to point at. HIR-72's triage recorded `ray` [distributed-systems] as an entry to
+    # land once it reached 3 jobs; HIR-128 landed it, so the framework is the plain reading
+    # of the bare word and the longer name still wins where a posting uses it.
+    t = Taxonomy.load()
+    assert t.resolve("Ray") == "ray"
+    assert t.resolve("ray") == "ray"
     assert t.resolve("Ray Serve") == "ray-serve"
 
 
@@ -237,3 +249,58 @@ def test_v7_aliases_clear_the_browser_matchers_minimum_except_s3():
             assert len(label) == 2, "the one documented exception"
         else:
             assert len(label) >= 3, label
+
+
+# --- HIR-128: taxonomy v8, the seven that cleared 3 jobs in the SF queue ---------------
+
+def test_v8_entries_resolve_with_their_spellings():
+    # DECISIONS 2026-11-03. Each of these cleared the 2026-10-20 bar of 3 jobs counting
+    # only jobs at the current extractor stamp; the aliases are spellings the SF postings
+    # used. `temporal` is the durable-execution engine, capitalised in all three postings.
+    t = Taxonomy.load()
+    for label, expected in [
+        ("Ansible", "ansible"), ("NCCL", "nccl"), ("nccl", "nccl"),
+        ("Bash", "bash"), ("bash scripting", "bash"),
+        ("Redis", "redis"), ("Temporal", "temporal"), ("temporal.io", "temporal"),
+        ("SageMaker", "sagemaker"), ("aws sagemaker", "sagemaker"),
+        ("amazon sagemaker", "sagemaker"),
+    ]:
+        assert t.resolve(label) == expected, label
+
+
+def test_v8_leaves_out_the_labels_it_deliberately_left_out():
+    # Bare "Triton" is out for good: two unrelated products share the word (see above).
+    # FSDP and Datadog are out only of *this* change — both crossed the 3-job bar while it
+    # was in flight and are filed as HIR-131, so the chart gains them in a ticket of their
+    # own rather than silently here. DECISIONS 2026-11-03.
+    t = Taxonomy.load()
+    assert t.resolve("Triton") is None
+    assert t.resolve("FSDP") is None
+    assert t.resolve("Datadog") is None
+
+
+def test_ray_serve_hangs_under_ray_without_losing_distributed_systems():
+    # HIR-72's triage recorded `ray-serve` [ray]; it shipped with `distributed-systems`
+    # instead only because `ray` had not landed yet. v8 restores the recorded shape, and
+    # `distributed-systems` survives as an ancestor through `ray`, so a parent walk is
+    # unchanged. DECISIONS 2026-11-03.
+    t = Taxonomy.load()
+    assert t.skills["ray-serve"].parents == ("model-serving", "ray")
+    assert "distributed-systems" in t.ancestors("ray-serve")
+    assert "ray" in t.ancestors("ray-serve")
+    assert t.skills["ray"].parents == ("distributed-systems",)
+
+
+def test_v8_parents_follow_the_existing_precedents():
+    # `ansible` under infrastructure-as-code follows `terraform`; `sagemaker` under `aws`
+    # follows `vertex-ai` under `gcp`; `bash` takes no parent, as every other language
+    # entry does. `nccl` takes `distributed-training` because `gpu-computing`, the id
+    # HIR-72 proposed above it, never landed. DECISIONS 2026-11-03.
+    t = Taxonomy.load()
+    assert t.skills["ansible"].parents == ("infrastructure-as-code",)
+    assert t.skills["terraform"].parents == ("infrastructure-as-code",)
+    assert t.skills["sagemaker"].parents == ("aws",)
+    assert t.skills["nccl"].parents == ("distributed-training",)
+    assert t.skills["bash"].parents == ()
+    assert t.skills["redis"].parents == ()
+    assert "gpu-computing" not in t.skills
