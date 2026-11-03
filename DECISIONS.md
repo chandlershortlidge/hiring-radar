@@ -36,6 +36,29 @@ the 2026-10-30 held-out run reads F1 0.919 / requirement accuracy 0.968
   off and is in reach again. It is one row; polls will mark it still-listed or not on
   their own.
 
+**The spot-check (2026-11-03, HIR-12).** 12 SF postings from four boards — a frontier lab
+(ashby:openai), a lab with a commercial org (greenhouse:anthropic), a non-AI company hiring
+AI roles (greenhouse:asana) and a startup (ashby:distyl) — ingested into a scratch database
+and extracted with the current prompt and taxonomy (`x2-5068a71f9d`). 73 mentions,
+**0 proposed skills, 0 validation rejects, 0 failures**: on this sample US wording opens no
+taxonomy gap, which was the thing worth checking.
+
+- **Skill density is lower than Berlin's, and the postings explain most of it.**
+  6.1 mentions per SF posting against 23.7 on six stored Berlin postings re-extracted with
+  the same version, at the same description length (mean ~6.7k characters both). The SF
+  postings name far fewer skills verbatim to begin with: a literal label-and-alias scan
+  finds ~8 taxonomy skills named per SF posting against ~26 per Berlin posting. SF research,
+  architect and platform roles describe the work; Berlin data-science roles list a stack.
+- **The one zero-skill posting is a correct zero.** Asana's "Software Engineer - AI
+  Teammates Platform" asks for "2+ years working within large, well-maintained codebases",
+  communication and "curiosity about AI tools" — no concrete skill to extract. Berlin's
+  corpus runs 8 zero-skill jobs in 244.
+- **What this does not establish.** 12 postings cannot separate "SF postings ask for fewer
+  named skills" from "the extractor reads US wording less well". Only labeled SF Goldens
+  measure that, and there are none — every Golden is a Berlin posting. Until then, read a
+  Berlin-vs-SF skill-share comparison as a comparison of how the two markets *write*
+  postings as much as of what they ask for.
+
 ---
 
 ## 2026-11-03 — Best fit: a gate, then a ratio, then the nice-to-haves (HIR-51)
