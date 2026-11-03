@@ -47,6 +47,22 @@
     {"type": "join", "enabled": true, "token": "noah-labs", "company": "Noah Labs"},
     {"type": "join", "enabled": true, "token": "ai-coustics", "company": "ai-coustics"},
     {"type": "join", "enabled": true, "token": "limebit", "company": "Limebit"},
-    {"type": "greenhouse", "enabled": true, "token": "solarisbank", "company": "Solaris"}
+    {"type": "greenhouse", "enabled": true, "token": "solarisbank", "company": "Solaris"},
+    {"type": "ashby", "enabled": true, "token": "openai", "company": "openai"},
+    {"type": "greenhouse", "enabled": true, "token": "anthropic", "company": "anthropic"},
+    {"type": "ashby", "enabled": true, "token": "brainco", "company": "brainco"},
+    {"type": "greenhouse", "enabled": true, "token": "databricks", "company": "databricks"},
+    {"type": "greenhouse", "enabled": true, "token": "doordashusa", "company": "doordashusa"},
+    {"type": "greenhouse", "enabled": true, "token": "scaleai", "company": "scaleai"},
+    {"type": "ashby", "enabled": true, "token": "mercor", "company": "mercor"},
+    {"type": "ashby", "enabled": true, "token": "distyl", "company": "distyl"},
+    {"type": "greenhouse", "enabled": true, "token": "faire", "company": "faire"},
+    {"type": "greenhouse", "enabled": true, "token": "figma", "company": "figma"},
+    {"type": "greenhouse", "enabled": true, "token": "togetherai", "company": "togetherai"},
+    {"type": "greenhouse", "enabled": true, "token": "chime", "company": "chime"},
+    {"type": "ashby", "enabled": true, "token": "cognition", "company": "cognition"},
+    {"type": "ashby", "enabled": true, "token": "plaid", "company": "plaid"},
+    {"type": "lever", "enabled": true, "token": "egen", "company": "egen"},
+    {"type": "greenhouse", "enabled": true, "token": "gleanwork", "company": "gleanwork"}
   ]
 }
