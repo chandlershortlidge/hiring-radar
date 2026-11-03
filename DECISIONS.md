@@ -5,6 +5,40 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-03 — Extractor and skill-list changes run the dev eval before they merge (HIR-133)
+
+Skill-list versions v6 and v7 merged with no eval run at all. When v8 was finally measured
+(HIR-128, earlier today) the only committed dev run to compare it with was v5's, three
+changes back, so the small drop it showed could not be attributed to any one of them. It
+turned out to be noise. A real regression would have been exactly as untraceable, and
+overnight autopilot batches make the silent case the normal one — there is nobody there to
+ask for the eval.
+
+**So the eval is a gate, not a request.** Any diff touching `app/extract.py` or
+`taxonomy/skills.json` runs `scripts/run_eval.py` on the dev split, pastes the score table
+into the PR, and commits `evals/results/<run_id>/` in that same PR. Committing it is the
+load-bearing half: the run a PR commits is the baseline the next one is measured against,
+which is what removes the separate re-baseline step and the three-changes-back gap that
+caused this. The full rule, with the one evidenced exemption for diffs that leave
+`extractor_version` unchanged, is in AGENTS.md under "The eval gate".
+
+**The trigger is a file list, deliberately, not a judgment.** "Does this change how the
+model reads a posting?" is a question an agent can talk itself out of at 3am; "does the
+diff touch these two paths?" is not. It over-triggers on docstring edits, and the
+exemption handles those by printing both `extractor_version` strings rather than by
+letting the agent assert that nothing changed.
+
+`scripts/eval_table.py` exists so the table is the same table every time: it finds the
+last committed dev run itself, compares every aggregate metric, and marks drops over the
+0.02 stop line. Hand-rolled comparisons were the alternative and they would differ per
+run, which defeats the point of a baseline. It shows every metric rather than a chosen
+few, because the 0.02 stop line applies to any metric and a metric left out of the table
+is a metric nobody gates on.
+
+Held-out Goldens stay release-only (unchanged, HIR-55). This gate is the dev split.
+
+---
+
 ## 2026-11-03 — Taxonomy v8: seven entries from the San Francisco queue, and the queue's count was inflated (HIR-128)
 
 HIR-128 reported 18 proposed labels at or over the 2026-10-20 bar of 3 jobs after HIR-123

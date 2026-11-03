@@ -307,6 +307,40 @@ Three layout rules:
 - **Never tune on held-out Goldens.** Look at held-out results only at release points.
 - **Unknown skills never reach the chart.** They go to `proposed_skill` for review.
 
+### The eval gate: extractor and skill-list changes are measured before they merge
+
+**Any change that touches the extractor or the skill list runs the dev eval before its PR
+merges** (HIR-133, Chandler's decision 2026-11-03). This holds for autopilot and
+orchestrator runs exactly as for attended ones — nobody is there overnight to ask for the
+eval, which is how skill-list v6 and v7 merged unmeasured and left v8's small drop
+untraceable to any one change.
+
+The trigger is mechanical, so nobody has to judge it: **the diff touches
+`app/extract.py` or `taxonomy/skills.json`** — the two inputs to `extractor_version`.
+Then, before the PR is reviewable:
+
+1. `uv run python scripts/run_eval.py` on the branch. Dev split, 3 repeats, about 20 model
+   calls per repeat — cents, not the ~€3 that re-reading every job costs on merge.
+2. `uv run python scripts/eval_table.py <run_id>` and paste its output into the PR body
+   under a `## Eval (dev)` heading. It compares every metric with the last committed dev
+   run and shows the deltas.
+3. **Commit the whole `evals/results/<run_id>/` directory in the same PR.** That run
+   becomes the baseline the next such change is measured against, so there is no separate
+   re-baseline step — and a PR that runs the eval without committing it leaves the next
+   change nothing to compare against.
+
+A metric down more than 0.02 against that baseline is on the stop list below: say so in
+the PR, don't merge, and ask. A smaller move is noise on 20 Goldens — note it in the PR
+and carry on.
+
+**One exemption, and it must be evidenced.** If the diff touches those files but leaves
+`extractor_version` unchanged — a comment, a docstring, a test helper, anything outside the
+prompt, the tool schema, the model id and the taxonomy — the model reads every job exactly
+as before and the eval cannot move. Skip the run, and say so in the PR body with both
+version strings printed by `uv run python scripts/eval_table.py --version-check`.
+
+The held-out split stays release-only (the rule just above). This gate is the dev split.
+
 ### Pitfalls specific to this project
 
 - `ReAct` (agent pattern) and `React` (framework) differ only by case. The taxonomy
@@ -387,7 +421,8 @@ is never asked again.
 - any edit to `evals/LABELING.md` or to an attribute's definition (invalidates every eval)
 - `ACTIVE_CITIES`; what the public site stores, shows, or sends to a provider; spend
 - deleting or rewriting stored jobs, Goldens, or eval results
-- an eval metric down more than 0.02 against the last committed run
+- an eval metric down more than 0.02 against the last committed run (the eval gate
+  above; the run itself is not a question, only a drop this size is)
 - the branch and `TICKET` disagree; a hot-spot file is already changed on another branch
 
 **Questions go to the decider agent before they go to Chandler.** `.claude/agents/decider.md`
