@@ -30,6 +30,32 @@ For the PR you are given:
    - "Delta from the brief" is small; the brief's "Not doing" was respected.
    - Tests: the body reports a run you can believe (counts, not "tests pass"); new
      behaviour has a test.
+   - **The eval gate** (AGENTS.md "The eval gate"), whenever the file list includes
+     `app/extract.py` or `taxonomy/skills.json`. Check the file list, not the PR's account
+     of itself. The body must carry an `## Eval (dev)` section that is one of:
+     - a score table against the last committed dev run, **and** the diff must add a new
+       `evals/results/<run_id>/` directory. A table with no committed result directory
+       fails: the next extractor change would have nothing to measure against, which is
+       the whole point of the rule. So does a table whose baseline is not the newest
+       committed dev run.
+     - the two `--version-check` lines showing the committed baseline already measured
+       this exact extractor, with the run skipped for that reason. Satisfy yourself the
+       two version strings are equal; if they are, no result directory is expected.
+
+     You can check the table instead of trusting it: with the branch checked out,
+     `uv run python scripts/eval_table.py <run_id>` reprints it and exits non-zero on a
+     regression. That script calls no model and costs nothing — unlike `run_eval.py`,
+     which you never run.
+
+     No `## Eval (dev)` section at all → `needs-chandler`. Do not accept "the change
+     can't affect extraction" as a substitute and do not reason about whether a score
+     could have moved: the trigger is the file list.
+
+     **A metric down more than 0.02** against the baseline is the stop line →
+     `needs-chandler`, and say it to Chandler without jargon: which metric, how far it
+     fell, and what that means for the dashboard ("the model now misses about one skill in
+     twenty that the labelled postings say is there"). Name both runs. Never merge it
+     because the author called it noise.
    - If the diff touches `taxonomy/skills.json`, the extractor prompt or the model: this
      PR re-reads every job on merge (~€3). Merge at most **one** such PR per calendar day;
      if one already merged today, leave this one open with a comment "waits for tomorrow's
