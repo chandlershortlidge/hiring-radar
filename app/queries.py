@@ -354,13 +354,13 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
                                       "last_seen": s["last_seen"], "found_via": s["found_via"]})
     skill_counts: dict[int, dict] = {i: {"required": 0, "nice_to_have": 0} for i in ids}
     required: dict[int, list] = {i: [] for i in ids}
+    nice: dict[int, list] = {i: [] for i in ids}
     if ids:
         for s in conn.execute(
                 f"SELECT job_id, skill_id, requirement FROM skill_mention"
                 f" WHERE job_id IN ({','.join('?' * len(ids))}) ORDER BY skill_id", ids):
             skill_counts[s["job_id"]][s["requirement"]] += 1
-            if s["requirement"] == "required":
-                required[s["job_id"]].append(s["skill_id"])
+            (required if s["requirement"] == "required" else nice)[s["job_id"]].append(s["skill_id"])
     jobs = []
     for r in rows:
         d = dict(r)
@@ -370,7 +370,11 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
         d["sources"] = srcs[r["id"]]
         d["status"] = _status(r, now, d["sources"])
         d["skill_counts"] = skill_counts[r["id"]]
-        d["required_skills"] = required[r["id"]]  # ids only; the browser-side profile match uses them
+        # Ids only, both lists. The browser-side profile match scores a job on the required
+        # ones and breaks ties on the nice-to-have ones (HIR-51); the profile itself never
+        # reaches this process, so the ranking cannot happen here.
+        d["required_skills"] = required[r["id"]]
+        d["nice_skills"] = nice[r["id"]]
         jobs.append(d)
     return {"total": total, "jobs": jobs, "limit": limit, "offset": offset}
 
