@@ -210,6 +210,13 @@ select.sel { padding-right: 28px; }
 .row:hover { background: #fafafa; }
 .row > span { min-width: 0; }
 .row .co { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.row .star { width: 26px; height: 26px; margin-right: 4px; border: 0; border-radius: 6px; background: transparent; color: var(--line-3); display: inline-flex; align-items: center; justify-content: center; vertical-align: middle; }
+.row .star:hover { color: var(--ink-2); }
+.row .star.on { color: #b8860b; }
+.row .star.on svg { fill: currentColor; }
+.saved-toggle { gap: 6px; cursor: pointer; }
+.saved-toggle.on { border-color: var(--ink); color: var(--ink); background: var(--ground); }
+.saved-toggle.on svg { fill: #b8860b; color: #b8860b; }
 .row .ti { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .row .ti .fit { margin-right: 8px; padding: 1px 5px; border: 1px solid var(--line-3); border-radius: 4px; font: 11px var(--mono); color: var(--ink-2); }
 .row .ti .fit.full { color: var(--ink); font-weight: 600; }
