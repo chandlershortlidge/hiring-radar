@@ -115,6 +115,50 @@ Werkstudent, Working Student or Intern means `junior`. Four things about that:
 
 Browser-only and deterministic: no model call, no stored data, nothing re-extracted.
 
+## 2026-11-03 — The backups were never missing: a truncated listing read as a complete one (HIR-112)
+
+HIR-112 reported that no database backup had reached the bucket since 2026-11-01 10:09Z —
+two nightly runs and two pre-deploy backups all apparently absent. None of that was true.
+Every backup had landed. What had gone wrong was the *looking*.
+
+The bucket holds 56 objects (one per nightly plus one per deploy, under the 30-day
+lifecycle rule). `gcloud storage ls` on it returns all 56, sorted lexicographically, which
+for this naming scheme is also oldest-first. Chandler's `rtk` CLI proxy — the
+output-shrinking wrapper the Claude Code hook prepends to shell commands — cuts its output
+at 30 lines and appends `... (26 lines truncated)`. Thirty lines in, the newest name
+visible is `hiring-radar-2026-11-01T100917Z.db.gz`. That is exactly the object the issue
+named as the newest, and exactly the count ("31 objects") the issue reported: 30 names plus
+the truncation line. The two "missing" nightlies (`2026-11-02T023000Z`,
+`2026-11-03T023030Z`) and the two "missing" deploy backups (`2026-11-01T180622Z` for the
+HIR-98 merge, `2026-11-02T155131Z` for the HIR-106 merge) were all sitting past the cut.
+The VM agreed throughout: the timer's last run was 2026-11-03 02:30:30 UTC, and every run
+since 11-01 logged `backup ok`.
+
+Two things make this trap worse than an ordinary truncation, and both are why it is written
+down rather than just closed:
+
+- **Piping does not escape it.** `... | sort | tail -3` still answers
+  `2026-11-01T100917Z`, because the wrapper truncates its own stdout *before* the pipe
+  sees it. The reflex that normally rescues a long listing makes this one look confirmed.
+- **The truncated answer is plausible.** A listing that ends two days ago reads as a
+  service that stopped two days ago. Nothing about the output says "this is a prefix".
+
+So the rule is: **never establish "the newest backup" from an unbounded listing.** Ask the
+bucket a question whose true answer is short. `deploy/README.md` now carries the date-glob
+form — `gcloud storage ls "gs://…/db/hiring-radar-$(date -u +%Y-%m-%d)*"` — which returns a
+handful of lines no wrapper will cut, and answers "did a backup land today?" directly.
+`rtk proxy <cmd>` (unfiltered) is the other way out, but it is personal tooling and not
+something the runbook should depend on.
+
+Nothing was restored and nothing was lost; the 30-day retention and the lifecycle rule were
+never in question. A fresh on-demand backup (`2026-11-03T133146Z`, 10.6 MiB) was taken to
+close the issue's "a backup newer than the investigation" condition, and the nightly timer
+is scheduled for 2026-11-04 02:30 UTC.
+
+One real gap survives, separately from this: `backup.sh` is loud only in the journal. If it
+ever genuinely failed, the timer would go on firing and nobody would hear. That is filed as
+its own ticket rather than built here.
+
 ## 2026-11-03 — Best fit: a gate, then a ratio, then the nice-to-haves (HIR-51)
 
 The job list can now be ordered by how well each job fits the profile. Three things about
