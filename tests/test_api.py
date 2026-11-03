@@ -149,10 +149,13 @@ def test_add_text_runs_extraction_and_dedups(api):
 def test_add_screenshot_transcribes_then_extracts(api):
     client, fake = api
     png = b"\x89PNG\r\n\x1a\n" + b"\x00" * 32
-    r = client.post("/api/add/screenshot", params={"company": "Acme", "title": "AI Engineer", "location": "Berlin"},
+    # A different title from the fixture's seeded "Acme" / "AI Engineer" job (HIR-108: an
+    # exact company+title match now merges regardless of text, so a colliding title here
+    # would merge instead of adding, which is not what this test is about).
+    r = client.post("/api/add/screenshot", params={"company": "Acme", "title": "Senior AI Engineer", "location": "Berlin"},
                     files={"file": ("shot.png", png, "image/png")}).json()
     assert r["outcome"] == "added" and r["skills_found"] == 1 and fake.calls == 2
-    r2 = client.post("/api/add/screenshot", params={"company": "Acme", "title": "AI Engineer"},
+    r2 = client.post("/api/add/screenshot", params={"company": "Acme", "title": "Senior AI Engineer"},
                      files={"file": ("shot.png", png, "image/png")}).json()
     assert r2["outcome"] == "exists" and r2["job_id"] == r["job_id"] and fake.calls == 2
 

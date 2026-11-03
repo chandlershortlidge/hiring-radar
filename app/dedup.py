@@ -7,11 +7,14 @@ Does NOT: read or write the database (callers pass candidate rows in), or know a
 sources — "same source id" short-circuiting happens in ingest before this runs.
 
 Invariants: pure and deterministic; similarity is symmetric and in [0, 1]; a match requires
-the same normalized company AND a text test, so two different roles at one company never
-merge on company alone. There are two text tests, either of which is enough: Jaccard
->= THRESHOLD, or — for the aggregator-snippet case, where one source stores a short extract
-of a posting another stores in full — the shorter text almost entirely contained in the
-longer one, with the title corroborating. See `is_same_posting`.
+the same normalized company AND one of three tests, so two different roles at one company
+never merge on company alone. The three: an exact `title_key` match (same company, byte-
+identical normalized title — HIR-108: a feed-quirk rewrite of the same posting can diverge
+from the original text almost completely, so this path needs no text corroboration at all);
+Jaccard >= THRESHOLD; or — for the aggregator-snippet case, where one source stores a short
+extract of a posting another stores in full — the shorter text almost entirely contained in
+the longer one, with the title corroborating. See `is_same_posting`. A *non-identical* title
+is still never enough on its own — only an exact normalized match skips the text test.
 """
 
 import re
@@ -86,11 +89,22 @@ def is_same_posting(title_a: str, text_a: str, title_b: str, text_b: str,
                     threshold: float = THRESHOLD) -> bool:
     """Do these two postings (already known to be at the same company) say the same thing?
 
-    True on either path: plain shingle Jaccard at or above `threshold`, or the containment
-    path — the shorter text almost wholly inside the longer, long enough to mean something,
-    and with the shorter title's words all present in the longer title. The title is only
-    ever a *supporting* signal here; it can never carry a match on its own.
+    True on any of three paths. First, an exact `title_key` match (HIR-108): the same
+    company posting the byte-identical normalized title twice is itself strong enough
+    evidence, because the text that made it into our DB can diverge almost completely for
+    reasons that have nothing to do with the posting — Arbeitsagentur, for one, sometimes
+    stores its own short auto-generated summary instead of the scraped page, which shares
+    almost no wording with the full text of the same job (measured Jaccard as low as 0.007
+    against the real pair this guards). A title that is merely *similar but not identical*
+    still gets no such pass — it remains a supporting signal only, never sufficient alone
+    (see `test_identical_title_without_company_match_never_merges`, which pins that a title
+    match without the same company still never merges). Second, plain shingle Jaccard at or
+    above `threshold`. Third, the containment path — the shorter text almost wholly inside
+    the longer, long enough to mean something, and with the shorter title's words all
+    present in the longer title.
     """
+    if title_key(title_a) and title_key(title_a) == title_key(title_b):
+        return True
     if similarity(text_a, text_b) >= threshold:
         return True
     sa, sb = shingles(text_a), shingles(text_b)
@@ -112,7 +126,8 @@ class Candidate:
 class Match:
     job_id: int
     similarity: float   # the plain Jaccard, reported as measured — so a match found on the
-                        # containment path carries a value below THRESHOLD. Informational.
+                        # containment path, or on an exact title_key match, can carry a
+                        # value far below THRESHOLD (even near 0). Informational.
 
 
 def find_match(company: str | None, title: str, description_text: str,

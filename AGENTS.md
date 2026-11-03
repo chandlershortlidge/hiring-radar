@@ -199,9 +199,12 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   `arbeitsagentur`, `jsearch`, `startup_jobs`): `parse(payload)` is pure and tested on `tests/fixtures/feeds/`;
   `fetch()` is the thin HTTP wrapper. `app/html_text.py` strips HTML.
 - `app/dedup.py` — company/title keys and 3-word-shingle text measures; `find_match` needs
-  the same company AND `is_same_posting`: Jaccard ≥ 0.7, **or** the containment path added
-  by HIR-113 (the shorter text ≥ 0.9 contained in the longer, ≥ 60 shingles long, and the
-  shorter title's words all in the longer title). A title never carries a match alone. The
+  the same company AND `is_same_posting`: an exact `title_key` match (HIR-108, no text test
+  at all — a feed can store a paraphrase of the same posting with near-zero text overlap),
+  **or** Jaccard ≥ 0.7, **or** the containment path added by HIR-113 (the shorter text ≥ 0.9
+  contained in the longer, ≥ 60 shingles long, and the shorter title's words all in the
+  longer title). A title *without* the same company never carries a match alone, and a
+  title that is merely similar (not identical) still needs one of the text tests. The
   real postings the thresholds rest on are `tests/fixtures/dedup/real_cases.json`.
   `app/geo.py` — location → tracked city or EU-remote.
 - `app/ingest.py` — the still-listed / merge / repost / new decision and the title+city

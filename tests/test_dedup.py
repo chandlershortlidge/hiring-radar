@@ -4,10 +4,13 @@ import pathlib
 from app import dedup
 from app.geo import active_city, city_of
 
-# Four real stored postings, exported verbatim from the production DB for HIR-113. Two are
-# the same Cloover posting stored twice (one source kept a shorter extract); two are
-# different pplwise roles that share a recruiter's boilerplate. They are the cases that set
-# the containment thresholds, so they are the cases that have to keep holding.
+# Real stored postings, exported verbatim from the production DB. Four are from HIR-113: two
+# are the same Cloover posting stored twice (one source kept a shorter extract); two are
+# different pplwise roles that share a recruiter's boilerplate. Two more are from HIR-108:
+# the same BWI posting stored twice, once as Arbeitsagentur's own short auto-generated
+# summary and once as the full scraped text — the case that forced the exact-title path.
+# They are the cases that set the thresholds, so they are the cases that have to keep
+# holding.
 REAL = json.loads((pathlib.Path(__file__).parent / "fixtures" / "dedup" / "real_cases.json")
                   .read_text(encoding="utf-8"))
 
@@ -93,21 +96,54 @@ def test_shared_boilerplate_does_not_merge_two_different_roles():
     assert dedup.find_match(company, title_a, text_a, cands) is None
 
 
-def test_a_matching_title_alone_never_merges():
-    # The title is only ever a supporting signal: identical titles, unrelated text.
-    cands = [dedup.Candidate(1, "Acme", "AI Engineer", JD_OTHER)]
+def test_identical_title_without_company_match_never_merges():
+    # Title parity alone, without the same company, still never merges — the exact-title
+    # path (HIR-108, below) only fires once company_key already matches.
+    cands = [dedup.Candidate(1, "Other Co", "AI Engineer", JD)]
     assert dedup.find_match("Acme", "AI Engineer", JD, cands) is None
+
+
+# --- the exact-title path (HIR-108) -------------------------------------------------------
+
+def test_identical_company_and_title_merges_even_with_unrelated_text():
+    # HIR-108: same company, byte-identical normalized title, text that shares nothing.
+    # Unlike a merely *similar* title, an exact title_key match needs no text corroboration
+    # — see is_same_posting's docstring for why (a feed can rewrite the stored text almost
+    # completely without it being a different posting).
+    cands = [dedup.Candidate(1, "Acme", "AI Engineer", JD_OTHER)]
+    m = dedup.find_match("Acme", "AI Engineer", JD, cands)
+    assert m and m.job_id == 1
+
+
+def test_the_real_bwi_duplicate_now_merges_despite_near_zero_similarity():
+    # The real pair that forced this rule: Arbeitsagentur stored its own short auto-generated
+    # summary for job 106 and the full scraped posting for job 109, under the identical
+    # title. The two texts share almost no wording, so neither Jaccard nor containment comes
+    # anywhere close — only the exact title match catches it.
+    company, summary_title, summary = _case("bwi_auto_summary")
+    _, full_title, full = _case("bwi_full")
+    assert summary_title == full_title
+    assert dedup.similarity(summary, full) < 0.05
+    assert dedup.containment(summary, full) < 0.2
+    assert dedup.is_same_posting(summary_title, summary, full_title, full)
+    cands = [dedup.Candidate(109, company, full_title, full)]
+    m = dedup.find_match(company, summary_title, summary, cands)
+    assert m and m.job_id == 109
 
 
 def test_too_little_text_cannot_establish_identity():
     # A contained fragment shorter than MIN_CONTAINED shingles is not evidence, however
     # perfectly it sits inside the longer posting — otherwise a scrap of boilerplate would
-    # pull unrelated roles together.
+    # pull unrelated roles together. The fragment's title is corroborating but deliberately
+    # *not* byte-identical to the full posting's, so this isolates the containment path's own
+    # guard from the exact-title path (HIR-108), which would otherwise short-circuit it.
     _, full_title, full = _case("cloover_full")
     fragment = " ".join(full.split()[:30])
+    fragment_title = full_title + " (contract)"
     assert dedup.containment(fragment, full) == 1.0
     assert len(dedup.shingles(fragment)) < dedup.MIN_CONTAINED
-    assert not dedup.is_same_posting(full_title, fragment, full_title, full)
+    assert dedup.title_key(fragment_title) != dedup.title_key(full_title)
+    assert not dedup.is_same_posting(fragment_title, fragment, full_title, full)
 
 
 def test_a_translated_posting_is_still_a_duplicate_no_text_measure_can_see():
