@@ -304,8 +304,10 @@ Three layout rules:
   (they were hand-edited after seeding). Never run it against the real files.
 - Feeds return everything; `app/ingest.py` filters by title regex and *active* city. A job
   in an untracked or inactive city is dropped, not stored. `app/geo.py` has two lists:
-  `CITIES` (recognized) and `ACTIVE_CITIES` (collected: Berlin and `REMOTE_EU`; SF waits
-  for the held-out eval). Change `ACTIVE_CITIES` only on purpose (DECISIONS 2026-10-19).
+  `CITIES` (recognized) and `ACTIVE_CITIES` (collected: Berlin, `REMOTE_EU` and San
+  Francisco, active since 2026-11-03). The scope is Germany and EU-remote, with San
+  Francisco as the single exception by name — a further non-German city is not covered by
+  it, and `ACTIVE_CITIES` stays on the stop list (DECISIONS 2026-11-03, HIR-12).
   EU-remote rules live in `geo.is_remote_eu` (DECISIONS 2026-10-26).
 - `skill_mention` holds one extraction per job (the latest). Re-extraction replaces.
   `extraction_reject` (items that failed validation) follows the same rule.

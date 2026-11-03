@@ -11,7 +11,7 @@ Does:
   - drop boards already in config/feeds.json (enabled or not) or in
     config/boards_rejected.json;
   - fetch each remaining board live and keep the postings that pass ingest's title filter
-    and map to an active place (geo.ACTIVE_CITIES: Berlin or EU-remote);
+    and map to an active place (geo.ACTIVE_CITIES: Berlin, EU-remote or San Francisco);
   - append a board to feeds.json (`add_board`) or boards_rejected.json (`reject_board`)
     when the person says so.
 

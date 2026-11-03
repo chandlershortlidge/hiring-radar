@@ -10,6 +10,8 @@
   ],
   "queries": [
     "\"AI engineer\" Berlin",
-    "\"machine learning\" Berlin"
+    "\"machine learning\" Berlin",
+    "\"AI engineer\" \"San Francisco\"",
+    "\"machine learning\" \"San Francisco\""
   ]
 }
