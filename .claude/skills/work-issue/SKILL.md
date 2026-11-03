@@ -1,9 +1,9 @@
 ---
 name: work-issue
-description: Take one Linear issue (HIR-n) from ticket to pull request — read the issue, get on its branch, follow its build steps, test, open the PR, update Linear. Use when the person says "work HIR-n", "do HIR-n", "pick up HIR-n", or invokes /work-issue.
+description: Take one Linear issue (HIR-n) from ticket to pull request — read the issue, get on its branch, follow its build steps, test, open the PR, update Linear. Runs unattended (autopilot) by default; add "attended" to be asked for a go. Use when the person says "work HIR-n", "do HIR-n", "pick up HIR-n", or invokes /work-issue.
 ---
 
-# /work-issue HIR-n
+# /work-issue HIR-n [attended]
 
 One procedure for every issue, so the person never has to spell it out. The issue is the
 plan; this skill only sequences the steps. AGENTS.md rules apply throughout (smallest
@@ -42,17 +42,27 @@ the code. Five lines, plain words, no file names:
   Chandler in the comment and wait for the answer before step 3.
 - **Not doing:** what the issue's out-of-scope says, in plain words.
 
-**Autopilot.** If the issue carries the Linear label `autopilot`, or the person said
-"unattended" / "autopilot": post the brief on Linear for the record but do **not** wait
-for a "go"; start at once. Every question goes to the decider; if it returns ANSWER,
-apply it and continue. Only a NO RULE reaches Chandler (Linear comment, @mention), and
-then stop. The person sees nothing until the PR exists. The PR is still never merged
-by the agent.
+**Autopilot is the default** (HIR-120). The run is *attended* only when the person wrote
+`attended` after the issue id, or the issue carries the Linear label `attended`. Everything
+else runs autopilot — including an issue with no label at all. First, before the brief,
+add the label `autopilot` to the issue (`save_issue` with `addLabels: ["autopilot"]`):
+that label is what the reviewer and the scheduled cloud reviewer read before merging, so
+without it the PR would sit. If the Linear MCP can't write the label, say so once in the
+session and continue — the PR body's first line then says "autopilot run, label not set".
+
+Autopilot means: post the brief on Linear for the record but do **not** wait for a "go";
+start at once. Every question goes to the decider; if it returns ANSWER, apply it and
+continue. Only a NO RULE reaches Chandler (Linear comment, @mention), and then stop. The
+person sees nothing until the PR exists. The PR is still never merged by the agent.
+
+What makes this safe is not the label but the stop list (AGENTS.md "Stop and ask, even
+unattended") and the reviewer's file stop-list: those apply to every run, whatever the
+default.
 
 **Show the brief in the session as well as on Linear.** Posting the comment is not
-briefing the person. In an attended session, print the five lines and wait for an OK
-before step 2; "go" is enough. Unattended, post it and continue unless "will ask about"
-has something in it.
+briefing the person. In an attended run, print the five lines and wait for an OK
+before step 2; "go" is enough. Autopilot: post it, print it, and continue unless "will
+ask about" has something in it.
 
 The final PR reports the difference from this brief, not the work itself.
 

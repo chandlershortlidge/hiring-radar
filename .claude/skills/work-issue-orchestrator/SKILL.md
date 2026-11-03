@@ -1,6 +1,6 @@
 ---
 name: work-issue-orchestrator
-description: Drop in a list of Linear issues and it runs them — one worker per issue in its own worktree via /work-issue, in parallel, then review and merge through the reviewer agent for autopilot issues, or a pause for Chandler's go and merge for the rest. Use when the person names several issues, says "run these", "work the autopilot list", or invokes /work-issue-orchestrator.
+description: Drop in a list of Linear issues and it runs them — one worker per issue in its own worktree via /work-issue, in parallel, then review and merge through the reviewer agent — autopilot by default, or a pause for Chandler's go and merge for issues labelled attended. Use when the person names several issues, says "run these", "work the todo list", or invokes /work-issue-orchestrator.
 ---
 
 # /work-issue-orchestrator [HIR-n …] [max N]
@@ -11,8 +11,10 @@ max 3 workers at once.
 
 ## 1. Pick
 
-- If issues were named, use those. Otherwise take Linear issues with label `autopilot`,
-  state Todo, no open blockers (`blockedBy` all Done).
+- If issues were named, use those. Otherwise take Linear issues in the roadmap project,
+  state Todo, no open blockers (`blockedBy` all Done), not labelled `attended`.
+- Every issue runs autopilot unless it carries the `attended` label (HIR-120). The worker
+  sets the `autopilot` label itself; you don't label anything.
 - Collisions: two issues naming the same adapter or module, or both touching a hot spot
   (`app/migrations/`, `app/extract.py`, `app/pipeline.py`, `taxonomy/skills.json`), do not
   run together. Keep the higher priority, queue the other for after it merges. Two
