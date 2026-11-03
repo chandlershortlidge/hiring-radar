@@ -103,6 +103,13 @@ def test_list_jobs_filters_search_sort_and_status(conn):
     assert [j["company"] for j in r["jobs"]] == ["Beta", "Delta"] and r["total"] == 5
     assert r["jobs"][0]["skill_counts"] == {"required": 2, "nice_to_have": 0}
     assert r["jobs"][0]["required_skills"] == ["docker", "python"]
+    assert r["jobs"][0]["nice_skills"] == []
+
+
+def test_list_jobs_carries_required_and_nice_skill_ids(conn):
+    """Both lists ride on every row: the browser ranks on required, breaks ties on nice (HIR-51)."""
+    acme = q.list_jobs(conn, q.Filters(window="all", query="acme"), NOW)["jobs"][0]
+    assert acme["required_skills"] == ["python", "rag"] and acme["nice_skills"] == ["aws"]
 
 
 def test_job_detail(conn):

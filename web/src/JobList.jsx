@@ -1,17 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { api } from "./api.js";
 import { Down, Ext, Repost, Search, Up, X } from "./icons.jsx";
-import { DEGREE_RANK, cap, dateShort, degreeLine, germanLine, productionLine, sourceCode, timeAgo } from "./format.js";
-import { coverage } from "./profile.js";
+import { cap, dateShort, degreeLine, germanLine, productionLine, sourceCode, timeAgo } from "./format.js";
+import { fails, fit, gates, rankJobs } from "./profile.js";
 import AddSkillChip from "./AddSkillChip.jsx";
 
 const SORTS = { newest: "Newest first", oldest: "Oldest first", reposts: "Most reposted", company: "Company A–Z" };
+const FIT = "fit";                   // best fit first; only offered once a profile exists
 const PAGE = 20;
+// "Best fit" is the one sort the server cannot do: it never learns the profile (HIR-51).
+// So that sort asks for the whole filtered set in one request, ranks it here, and pages
+// through the result locally. FIT_MAX is the largest page /api/jobs will serve, and the
+// honest limit of the trick: past it the ranking only covers the newest FIT_MAX jobs, so
+// the foot says so rather than quietly ranking a slice.
+const FIT_MAX = 200;
 
-export default function JobList({ filters, setFilters, profile, taxonomy, refreshKey, openJobId, onOpened, onOpenPage,
+export default function JobList({ filters, setFilters, profile, taxonomy, demand = null, refreshKey, openJobId, onOpened, onOpenPage,
   taxonomyRows = [], aliases = {}, suggestions = [], onAddSkill }) {
-  const [sort, setSort] = useState("newest");
+  // Best fit is the default for someone who has a profile: it is why they made one. The
+  // profile loads synchronously, so this is right on the first render, not after a flash.
+  const [sort, setSort] = useState(() => (profile ? FIT : "newest"));
   const [page, setPage] = useState({ jobs: [], total: 0 });
+  const [shown, setShown] = useState(PAGE);   // only "Best fit" pages locally; see FIT_MAX
   const [open, setOpen] = useState(null);
   const [loading, setLoading] = useState(false);
   const [q, setQ] = useState(filters.query);
@@ -22,17 +32,31 @@ export default function JobList({ filters, setFilters, profile, taxonomy, refres
   useEffect(() => { const t = setTimeout(() => setFilters((f) => ({ ...f, query: q })), 250); return () => clearTimeout(t); }, [q, setFilters]);
   useEffect(() => { const t = setTimeout(() => setFilters((f) => ({ ...f, text })), 250); return () => clearTimeout(t); }, [text, setFilters]);
 
+  // Clearing the profile has to take its sort with it, or the list would sit on an
+  // ordering there is nothing left to compute.
+  const byFit = sort === FIT && Boolean(profile);
+  useEffect(() => { if (sort === FIT && !profile) setSort("newest"); }, [sort, profile]);
+
   useEffect(() => {
     let live = true;
     setLoading(true);
-    api.jobs(filters, { sort, limit: PAGE, offset: 0 }).then((r) => { if (live) { setPage(r); setLoading(false); } });
+    setShown(PAGE);
+    api.jobs(filters, { sort: byFit ? "newest" : sort, limit: byFit ? FIT_MAX : PAGE, offset: 0 })
+      .then((r) => { if (live) { setPage(r); setLoading(false); } });
     return () => { live = false; };
-  }, [filters, sort, refreshKey]);
+  }, [filters, sort, byFit, refreshKey]);
 
   useEffect(() => { if (openJobId) { setOpen(openJobId); onOpened?.(); } }, [openJobId, onOpened]);
 
-  const more = () => api.jobs(filters, { sort, limit: PAGE, offset: page.jobs.length })
-    .then((r) => setPage((p) => ({ ...r, jobs: [...p.jobs, ...r.jobs] })));
+  // Ranked once per fetch, not once per row: every row's badge reads its own fit, but the
+  // order is one pass over the set. Ties keep the server's newest-first order.
+  const ordered = useMemo(() => (byFit ? rankJobs(profile, page.jobs, demand) : page.jobs), [byFit, profile, page.jobs, demand]);
+  const rows = byFit ? ordered.slice(0, shown) : ordered;
+  const more = byFit
+    ? () => setShown((n) => n + PAGE)
+    : () => api.jobs(filters, { sort, limit: PAGE, offset: page.jobs.length })
+      .then((r) => setPage((p) => ({ ...r, jobs: [...p.jobs, ...r.jobs] })));
+  const left = byFit ? Math.min(ordered.length, page.total) - rows.length : page.total - rows.length;
 
   const scope = filters.compare ? "both cities" : filters.cities.length ? filters.cities.join(" + ") : "all cities";
   return (
@@ -58,39 +82,46 @@ export default function JobList({ filters, setFilters, profile, taxonomy, refres
           <div className="search"><Search stroke="#6B6B6B" /><input id="jd" type="search" className="inp" placeholder="Search the posting text" value={text} onChange={(e) => setText(e.target.value)} /></div>
           <label htmlFor="sort" className="muted" style={{ fontSize: 12.5 }}>Sort</label>
           <select id="sort" className="sel" value={sort} onChange={(e) => setSort(e.target.value)}>
+            {profile && <option value={FIT}>Best fit</option>}
             {Object.entries(SORTS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
           </select>
         </div>
       </div>
       <div className="tbl"><div className="tbl-in">
         <div className="row-head"><span>Company</span><span>Title</span><span>City</span><span>First seen</span><span>Status</span><span>Sources</span><span /></div>
-        {page.jobs.map((j) => (
+        {rows.map((j) => (
           <Row key={j.id} job={j} open={open === j.id} onToggle={() => setOpen(open === j.id ? null : j.id)}
-            profile={profile} taxonomy={taxonomy} onOpenPage={onOpenPage} />
+            profile={profile} taxonomy={taxonomy} demand={demand} onOpenPage={onOpenPage} />
         ))}
         {!loading && !page.jobs.length && <div className="empty">{text.trim()
           ? `No posting contains ${text.trim().split(/\s+/).length > 1 ? "all of those words" : "that word"}. Every word you type has to appear somewhere in the posting.`
           : "No jobs match. Widen the time window or clear the skill filter."}</div>}
       </div></div>
       <div className="jobs-foot">
-        {page.jobs.length < page.total && <button type="button" className="btn" onClick={more}>Load {Math.min(PAGE, page.total - page.jobs.length)} more</button>}
-        <span>Showing {page.jobs.length} of {page.total}</span>
+        {left > 0 && <button type="button" className="btn" onClick={more}>Load {Math.min(PAGE, left)} more</button>}
+        <span>Showing {rows.length} of {page.total}</span>
+        {byFit && page.total > FIT_MAX && <span className="dim">Best fit ranks the {FIT_MAX} newest of them.</span>}
       </div>
     </section>
   );
 }
 
-function Row({ job: j, open, onToggle, profile, taxonomy, onOpenPage }) {
+function Row({ job: j, open, onToggle, profile, taxonomy, demand, onOpenPage }) {
   const [detail, setDetail] = useState(null);
   useEffect(() => { if (open && !detail) api.job(j.id).then(setDetail); }, [open, detail, j.id]);
-  const cov = profile ? coverage(profile, (j.required_skills || []).map((id) => ({ skill_id: id, requirement: "required" }))) : null;
-  const miss = misses(profile, j);
+  const cov = profile ? fit(profile, j, demand) : null;
+  const miss = gates(profile, j);
   return (
     <>
-      <div className={`row${open ? " open-row" : ""}${j.legacy || j.too_short ? " legacy" : ""}`} onClick={onToggle} role="button" tabIndex={0} aria-expanded={open}
+      <div className={`row${open ? " open-row" : ""}${j.legacy || j.too_short ? " legacy" : ""}${cov?.gated_by ? " gated" : ""}`} onClick={onToggle} role="button" tabIndex={0} aria-expanded={open}
         onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onToggle(); } }}>
         <span className="co">{j.company}{j.legacy && <span className="src" style={{ marginLeft: 6 }} title="Imported from the old project with its skills; not in the chart">legacy</span>}{j.too_short && <span className="src" style={{ marginLeft: 6 }} title="Only a fragment of the posting was stored; not in the chart">short</span>}</span>
-        <span className="ti">{miss.length > 0 && <span className="fit miss" title={miss.map((w) => MISS_LABELS[w]).join(" · ")}>!</span>}{cov && <span className={`fit${cov.covered === cov.total ? " full" : ""}`} title={`You cover ${cov.covered} of ${cov.total} required skills`}>{cov.covered}/{cov.total}</span>}{j.title}{j.seniority && <span className="dim" style={{ marginLeft: 8, fontSize: 12 }}>{cap(j.seniority)}</span>}</span>
+        <span className="ti">
+          {miss.length > 0 && <span className="fit miss" title={miss.map((w) => MISS_LABELS[w]).join(" · ")}>!</span>}
+          {cov?.gated_by && <span className="fit gate" title={MISS_LABELS[cov.gated_by]}>{gateWord(cov.gated_by, j)}</span>}
+          {cov && cov.score !== null && <span className={`fit${cov.score === 1 ? " full" : ""}`} title={fitTitle(cov, taxonomy)}>{pct(cov.score)}% · {cov.covered}/{cov.total}</span>}
+          {j.title}{j.seniority && <span className="dim" style={{ marginLeft: 8, fontSize: 12 }}>{cap(j.seniority)}</span>}
+        </span>
         <span className="ci muted">{j.city || "—"}</span>
         <span className="fs muted" style={{ fontSize: 13 }}>{timeAgo(j.first_seen)}</span>
         <span className="st">
@@ -106,22 +137,33 @@ function Row({ job: j, open, onToggle, profile, taxonomy, onOpenPage }) {
   );
 }
 
-// "miss" when the profile says the person does not meet a hard ask; "" otherwise.
-function flag(profile, what, j) {
-  if (!profile) return "";
-  if (what === "german") return j.german === "required" && !profile.german ? "miss" : "ok";
-  if (what === "production") return j.production === "required" && !profile.production ? "miss" : "ok";
-  const hard = j.degree_requirement === "required" && !j.degree_or_equivalent;
-  return hard && DEGREE_RANK[profile.degree || ""] < DEGREE_RANK[j.degree] ? "miss" : "ok";
-}
+// "miss" when the profile says the person does not meet a hard ask; "ok" otherwise. The
+// judgment itself lives in profile.js, so the row, the ranking and the attribute lines in
+// the detail below all read the same rule.
+const flag = (profile, what, j) => (!profile ? "" : fails(profile, j, what) ? "miss" : "ok");
 
-// The hard asks a profile can fail, and how the row's "!" tooltip names each one.
+// How the row's "!" tooltip names each hard ask the profile fails.
 const MISS_LABELS = {
   german: "needs German",
   production: "needs production experience you don't claim",
   degree: "needs a degree you don't list",
+  seniority: "wants a level you are not targeting",
 };
-const misses = (profile, j) => Object.keys(MISS_LABELS).filter((w) => flag(profile, w, j) === "miss");
+
+// The one word the badge uses for a gated-out row. Seniority says which level, because
+// "senior" is the useful word there and "seniority" is not.
+const GATE_WORDS = { german: "German", production: "production", degree: "degree" };
+const gateWord = (gate, j) => (gate === "seniority" ? j.seniority : GATE_WORDS[gate]);
+
+const pct = (score) => Math.round(score * 100);
+
+// The gap, in the badge's tooltip: the required skills the profile lacks, most-asked-for
+// first, so the first name in the list is the one worth learning next.
+function fitTitle(cov, taxonomy) {
+  const head = `You cover ${cov.covered} of ${cov.total} required skills`;
+  if (!cov.missing.length) return `${head} — a full match`;
+  return `${head}. Missing, most asked for first: ${cov.missing.map((id) => taxonomy[id] || id).join(", ")}`;
+}
 
 // Also rendered by JobPage, which passes no onOpenPage: it is already the page, and its header
 // carries the original-posting link, so neither link is repeated here.
@@ -155,8 +197,11 @@ export function Detail({ job, d, profile, taxonomy, cov, onOpenPage }) {
           <span>“{quote.raw_text}”</span>
         </div>
       )}
-      {cov && (
-        <div className="cover">You cover <b>{cov.covered} of {cov.total}</b> required skills{cov.missing.length ? ` · missing: ${cov.missing.map((id) => taxonomy[id] || id).join(", ")}` : " · full match"}.</div>
+      {cov && cov.total > 0 && (
+        <div className="cover">You cover <b>{cov.covered} of {cov.total}</b> required skills ({pct(cov.score)}%){cov.missing.length ? ` · missing, most asked for first: ${cov.missing.map((id) => taxonomy[id] || id).join(", ")}` : " · full match"}.</div>
+      )}
+      {cov?.gated_by && (
+        <div className="cover">Out of reach as the posting is written: it {MISS_LABELS[cov.gated_by]}. Best fit sorts it to the bottom.</div>
       )}
       {(d.german || d.degree || d.production) && (
         <div className="cover attrs">

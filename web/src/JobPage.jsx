@@ -8,10 +8,10 @@ import { useEffect, useState } from "react";
 import { api } from "./api.js";
 import { Ext } from "./icons.jsx";
 import { cap, dateShort, sourceCode } from "./format.js";
-import { coverage } from "./profile.js";
+import { fit } from "./profile.js";
 import { Detail } from "./JobList.jsx";
 
-export default function JobPage({ id, onBack, profile, taxonomy }) {
+export default function JobPage({ id, onBack, profile, taxonomy, demand = null }) {
   const [d, setD] = useState(null);
   const [error, setError] = useState(null);
 
@@ -42,7 +42,7 @@ export default function JobPage({ id, onBack, profile, taxonomy }) {
 
   const url = d.sources.find((s) => s.url)?.url;
   const captured = d.sources.map((s) => `${sourceCode(s.source)[1]} (${dateShort(s.first_seen)})`).join(", ");
-  const cov = profile ? coverage(profile, d.skills) : null;
+  const cov = profile ? fit(profile, d, demand) : null;
 
   return (
     <main className="main page">

@@ -104,12 +104,14 @@ The job:
    **and** `assertion.ref == 'refs/heads/main'`, and swaps it for a token for the
    `github-deployer` service account. A fork, a branch or a PR gets nothing. There is no
    service-account key anywhere, and no GitHub secret to rotate.
-3. `gcloud compute scp` the tarball to `/tmp/web-dist.tgz` over IAP.
-4. `gcloud compute ssh` to run `sudo bash deploy/remote-deploy.sh /tmp/web-dist.tgz`, after
-   fetching `main` and `git reset --hard` to the merged commit. `remote-deploy.sh` takes a
+3. Opens **one** `gcloud compute ssh` connection over IAP and does everything in it: the
+   tarball goes in on that connection's stdin (`cat > /tmp/web-dist.tgz`), then `main` is
+   fetched and `git reset --hard` to the merged commit, then
+   `sudo bash deploy/remote-deploy.sh /tmp/web-dist.tgz`. `remote-deploy.sh` takes a
    backup first, then `uv sync --frozen --no-dev`, unpacks `web/dist`, restarts the API, and
    polls `/api/stats` for up to 60 s. If the app does not answer it exits non-zero and
-   prints the last 30 journal lines, so the workflow goes red.
+   prints the last 30 journal lines, so the workflow goes red. A tarball that arrives
+   truncated fails `tar -xzf` in the same script, so that is loud too.
 
 `github-deployer` holds exactly three roles: `roles/compute.viewer` and
 `roles/iap.tunnelResourceAccessor` on the project, and `roles/compute.osAdminLogin` on the
@@ -118,12 +120,12 @@ into a Linux account: no SSH keys live in instance metadata, and each run gets a
 key (`--ssh-key-expire-after=30m`). `osAdminLogin` rather than `osLogin` because
 `remote-deploy.sh` needs `sudo`.
 
-Why a deploy takes ~5 minutes: almost all of it is the two IAP/OS Login connections (scp,
-then ssh), each provisioning a fresh key. Collapsing them into one connection would roughly
-halve it — HIR-106.
+Most of a deploy's wall clock is the IAP/OS Login connection, which provisions a fresh
+throwaway key. Until HIR-106 there were two of them (an `scp`, then the `ssh`) and a deploy
+took ~5 minutes; there is now one.
 
 Migrations need no step here: the API opens the database per request and applies any
-pending migration first (`app/api.py` → `db.migrate`), so step 4's smoke check against
+pending migration first (`app/api.py` → `db.migrate`), so step 3's smoke check against
 `/api/stats` is what migrates.
 
 **A deploy never touches the database or `/etc`.** Changing a unit file, the Caddyfile or

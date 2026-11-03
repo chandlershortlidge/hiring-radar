@@ -5,6 +5,43 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-03 — Best fit: a gate, then a ratio, then the nice-to-haves (HIR-51)
+
+The job list can now be ordered by how well each job fits the profile. Three things about
+how that order is computed were open, and this is how they were settled.
+
+- **A nice-to-have breaks ties and does nothing else.** The issue asks for a fit score of
+  covered required skills over required skills, with covered nice-to-haves "weighted at a
+  quarter of a required one" as the tie-break. Folded into one number — `(covered + 0.25 ×
+  covered_nice) / total` — a quarter weight does more than break ties, and the demo data
+  showed it immediately: a job asking two required skills you half cover, with two
+  nice-to-haves you have, reads 0.75 and outranks a job you cover 3 of 5 of. The worse fit
+  came first. So the ratio sorts, and the quarter-weighted nice-to-have share is a
+  *separate, lower* sort term that only separates jobs the ratio leaves equal. The badge
+  shows the plain ratio either way.
+- **A gate outranks every score.** A job that insists on German, production experience or a
+  degree the profile says no to — or names a level the profile isn't targeting — sorts
+  below every job still in reach, however well its skills line up, and says which ask in one
+  word. A posting that names no level never gates: most don't, and `null` is the extractor's
+  safe error there (DECISIONS 2026-10-27). Seniority is a gate at all because the profile
+  targets exactly one level; that is the filter's own meaning.
+- **"Best fit" ranks in the browser, over at most 200 jobs.** The server is never told the
+  profile, so it cannot sort by fit; `web/src/profile.js` does, over one page of the
+  filtered set, and pages through the result locally. 200 is the largest page `/api/jobs`
+  serves, now pinned by a test, because setting the constant above it silently empties the
+  list — which is exactly what happened on the first run. Past 200 matching jobs the foot
+  says the ranking covers the newest 200, rather than ranking a slice quietly. Today's
+  corpus is 248 jobs across all windows and far fewer open, so this bites rarely; a real
+  fix is a server-side sort over ids the browser sends, which is more machinery than the
+  cap is worth until the corpus demands it.
+
+`coverage()` is gone; `fit()` replaces it, returning `{score, covered, total, missing,
+gated_by}` with `score: null` for a job that lists no required skills at all — 0/0 is
+"nothing to judge", not "no fit", and those jobs sort below every judged one rather than
+at the bottom with the gated-out. Alerts (HIR-19) and the Advisor call the same function.
+
+---
+
 ## 2026-11-02 — Aggregator-headline rows already stored are deleted, not kept and hidden (HIR-104)
 
 HIR-96 stopped the JSearch adapter storing aggregator search-result headlines, but two rows
