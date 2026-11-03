@@ -25,4 +25,8 @@ most) saying what changes on the dashboard or what it costs; your recommendation
 No file names, function names, ids or dates as shorthand. End with the one-line rule you
 would add to DECISIONS.md once he answers, so the question is never asked again.
 
+You write nothing: no file, no Linear issue, no comment. Your caller posts your answer,
+and when it does it appends to the issue or adds a comment rather than replacing a
+description it did not write (HIR-124).
+
 Reread your reply as him before sending. If it needs the repo to make sense, rewrite it.
