@@ -132,7 +132,8 @@ export default function App() {
               {Object.keys(stats.open_by_city).length > 1 && ` (${Object.entries(stats.open_by_city).map(([c, n]) => `${c} ${n}`).join(" · ")})`}</span><span>·</span>
             <span>{stats.companies} companies</span><span>·</span>
             <span>{stats.skills_tracked} skills tracked</span><span>·</span>
-            {stats.open > 0 && <><span><abbr title="Open jobs that ask for German outright or are written in German">{stats.open_german_required} need German</abbr></span><span>·</span>
+            {stats.open > 0 && <><span>of those open now:</span><span>·</span>
+            <span><abbr title="Open jobs that ask for German outright or are written in German">{stats.open_german_required} need German</abbr></span><span>·</span>
             <span><abbr title="Open jobs that name a degree, don't mark it optional, and don't accept equivalent experience">{stats.open_degree_required} need a degree</abbr></span><span>·</span>
             <span><abbr title="Open jobs that ask the candidate for prior experience shipping or operating software real users depended on">{stats.open_production_required} need production experience</abbr></span><span>·</span></>}
             {stats.legacy > 0 && <><span><abbr title="Imported from the old project with the old extractor's skills; listed but not counted in the chart">{stats.legacy} legacy, not charted</abbr></span><span>·</span></>}

@@ -1,11 +1,12 @@
 """One-off: delete stored jobs whose title is an aggregator's search-result headline.
 
-HIR-96 taught the JSearch adapter to skip these records at parse time, but rows stored
-before that fix are still in the database (jobs 208 and 230 in the dev copy). Such a row
-carries the aggregator's headline as its title ("AI Engineer (m/f/x) arbeitnow
-commercetools Berlin · 10/16/2026") and an unrelated firm as its company ("Primetime"),
-so it shows on the chart and in the job list as a separate employer and double-counts the
-skills of a posting we already hold under its real company.
+HIR-96 (JobLeads: date appended to the title) and HIR-107 (learn4good: the board's own
+name wedged into the title with no date) taught the JSearch adapter to skip these records
+at parse time, but rows stored before each fix are still in the database (jobs 208 and 230
+in the dev copy). Such a row carries the aggregator's headline as its title ("AI Engineer
+(m/f/x) arbeitnow commercetools Berlin · 10/16/2026") and an unrelated firm as its company
+("Primetime"), so it shows on the chart and in the job list as a separate employer and
+double-counts the skills of a posting we already hold under its real company.
 
 Selects with `app.sources.jsearch.is_headline` — the same test the adapter now applies —
 so this script can never remove a row the adapter would have kept. Deleting a job cascades
@@ -52,7 +53,7 @@ def classify(conn: sqlite3.Connection, keep: set[int] = frozenset()) -> tuple[li
     removable: list[dict] = []
     held: list[dict] = []
     for r in rows:
-        if not is_headline(r["title"] or ""):
+        if not is_headline(r["title"] or "", r["company"]):
             continue
         sources = [s for s in (r["sources"] or "").split(",") if s]
         row = dict(r)
