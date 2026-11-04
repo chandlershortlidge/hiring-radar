@@ -23,7 +23,9 @@ For the PR you are given:
    **labels**, its **status**, and its **"Done when"** list.
    - The issue must carry `autopilot`. If it carries `attended`, or carries no label at
      all: label the PR `needs-chandler`, say in one PR comment that this issue waits for
-     a person, stop.
+     a person, stop. One thing still happens first: if the file list trips **the rules
+     gate** (step 3), write its block into the PR description before you stop, because
+     that PR needs it whatever its label.
    - **If you cannot reach the ticket at all** — the Linear tools are not in your
      session, the id is in neither the branch name nor the title, the call errors, the
      issue does not exist — label the PR `needs-chandler` and say in plain words which of
@@ -36,6 +38,40 @@ For the PR you are given:
    `gh api .../pulls/<n>` for the body). Read `AGENTS.md` "Deciding alone vs. stopping" on
    `origin/main`.
 3. **Check, in order.** Any failure → `needs-chandler`, one comment naming which check:
+   - **The rules gate** (AGENTS.md "The rules gate", HIR-142), first, because it decides
+     whether this PR may merge at all. The trigger is the file list, not your judgment:
+     the PR touches anything under `.claude/`, `AGENTS.md`,
+     `.github/pull_request_template.md`, anything under `.github/workflows/`, or
+     `scripts/rules_gate.py`. **Then this PR never merges** — not by you, not by
+     auto-merge, whatever else passes. Do three things and stop:
+
+     1. **Write the bullets yourself.** You are the second reader; that is the whole
+        point, so the author's account of its own diff is not the list. Read the diff and
+        say what changed, one plain-words bullet each, no file or function names.
+     2. **Put the block in the PR description**, keeping everything already there
+        (`gh api .../pulls/<n> --jq .body` to read it, `gh pr edit <n> --body-file` to
+        write it back with the block appended). The description, not a comment: the
+        "Rules gate" CI check reads the description, and that is how it goes green.
+        The block is exactly this and nothing more:
+
+        ```
+        Changes were made to .claude/agents/skills:
+
+        * bullet a
+        * bullet b
+
+        Did you authorize these?
+        ```
+
+     3. **Label the PR `needs-chandler`** and @mention him on the issue. He does not read
+        these files — he discussed what goes in them beforehand — so the only question is
+        whether he authorized this. He answers by merging, or by sending it back.
+
+     You still report the "Done when" list (step 5); you just never arm auto-merge. If
+     the block is somehow already in the description, check it is one bullet per change
+     and leave it, and still label and stop. To check your block is the shape the check
+     wants before you wait on CI, run it the way CI does:
+     `python3 scripts/rules_gate.py --paths-file <changed files> --body-file <the body>`.
    - CI is green on the head commit (`gh api .../commits/<sha>/check-runs`: every required
      check `success`).
    - Every changed file is inside the issue's scope, and none is a stop-list file:
@@ -82,7 +118,8 @@ For the PR you are given:
      PR re-reads every job on merge (~€3). Merge at most **one** such PR per calendar day;
      if one already merged today, leave this one open with a comment "waits for tomorrow's
      window", no label.
-4. **Arm auto-merge** when everything holds — you never merge by hand (HIR-136):
+4. **Arm auto-merge** when everything holds — you never merge by hand (HIR-136), and
+   never at all for a PR that trips the rules gate:
    `gh pr merge <n> --merge --auto`. GitHub then merges the PR itself the moment its
    required checks are green and the branch is up to date. **There is no merge queue on
    this repository** and there cannot be (GitHub offers queues only on organization-owned

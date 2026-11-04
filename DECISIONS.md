@@ -5,6 +5,45 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-04 — A PR that changes the agents' own rules never merges on its own (HIR-142)
+
+Since HIR-136 a reviewed PR merges itself. That included PRs that rewrite how review and
+merging work, so an agent could have changed its own rules and the change would have landed
+without Chandler seeing it. **Chandler's decision, 2026-11-04:** any PR touching the agents'
+own rules stops, gets `needs-chandler`, and carries a short block listing each change in
+plain words followed by "Did you authorize these?" — nothing more. He answers by merging or
+by sending it back. He does not read those files; he discusses what goes in them beforehand,
+so the only question is whether he authorized the change. The rule is in AGENTS.md "The
+rules gate"; the watched paths are `.claude/**`, `AGENTS.md`,
+`.github/pull_request_template.md` and `.github/workflows/**` (he confirmed the workflows
+belong in the list the same day — CI is part of the gate).
+
+`scripts/rules_gate.py`, the check's own code, was added to that list as a judgment
+call while building this (HIR-142): the paths Chandler named cover the workflow that
+runs the check but not the script it runs, and a PR that rewrote the script to always
+pass would have walked through. To undo, drop it from `RULE_FILES` in that script.
+
+**The bullets are written by the reviewer, never by the agent that made the change.** The
+value is a second reader saying what changed; an author summarising its own diff is the
+thing this gate exists to distrust.
+
+**Two enforcers, because one of them is a rule file.** The reviewer agent applies the rule,
+and `scripts/rules_gate.py` runs in CI (`.github/workflows/rules-gate.yml`, check name
+"Rules gate") on the PR's own file list. The CI half is the backstop: it still fires on a PR
+that edits the reviewer's instructions out of existence. It re-runs when the PR description
+is edited, which is how the check goes green once the reviewer has added the block.
+
+**Who adds "Rules gate" to the repository's required-checks list: Chandler, after the
+HIR-142 PR merges** (his answer in session, 2026-11-04). A failing check only blocks a merge
+when it is on that list, and that list is a repository setting — no diff can show a change
+to it, which is precisely why it is the one gate an agent cannot edit through a PR. Agents do
+not add themselves to it. Until he flips it, the Rules gate check goes red but does not stop
+a merge. Rejected: an agent adding it with one command (an invisible change to the merge rule
+by an agent, and a check required before it exists on main stalls every other open PR), and a
+standing permission for agents to add checks (same two hazards, permanently).
+
+---
+
 ## 2026-11-04 — New York's 0.064 F1 gap is the measure, not the extractor (HIR-139)
 
 New York's launch check scored 0.846 F1 against Berlin's 0.910. The gap is past the 0.05
