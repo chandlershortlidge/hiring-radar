@@ -254,10 +254,12 @@ does.
    (HIR-137), so it needs nothing from you: do not summarise your work to it, do not paste
    the issue's labels or its "Done when" list, do not tell it what you concluded, and do
    not argue with its verdict.
-3. On a pass it arms GitHub's auto-merge and brings the branch up to date; GitHub merges
-   the PR when the checks on the updated branch go green, so "merging" is a normal end
-   state to report rather than "merged". On a fail it labels the PR `needs-chandler` —
-   leave that label alone and say so in your final reply.
+3. On a pass it merges the PR outright when the checks are already green (the usual case,
+   since you waited for CI in step 1), and otherwise arms GitHub's auto-merge and brings
+   the branch up to date — then GitHub merges when the checks on the updated branch go
+   green, so "merging" is also a normal end state to report, not only "merged" (HIR-157).
+   Report whichever it did. On a fail it labels the PR `needs-chandler` — leave that label
+   alone and say so in your final reply.
 
 If you cannot get this far — CI never goes green, the reviewer can't be started, the run
 is stopping for a NO RULE — **label the PR `needs-chandler` yourself and say in your final
