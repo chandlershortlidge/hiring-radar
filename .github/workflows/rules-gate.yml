@@ -1,0 +1,44 @@
+name: Rules gate
+
+# The backstop half of AGENTS.md "The rules gate" (HIR-142). The reviewer agent is told to
+# stop any PR that changes the agents' own rules — but the reviewer's instructions are one of
+# those rule files, so a PR could switch the rule off on its way past. This check does not
+# live in the reviewer: it reads the PR's own file list and fails when a rule file changed and
+# the "Did you authorize these?" block is missing from the description.
+#
+# `edited` is in the trigger list on purpose: the reviewer adds the block to the description
+# after CI has already run, and this is what re-runs the check so it can go green.
+#
+# A red check only stops a merge once "Rules gate" is on the repository's required-checks
+# list. That list is a repository setting, not a file here, and adding to it is Chandler's
+# (DECISIONS 2026-11-04) — which is also why deleting this workflow does not get a PR past
+# the gate: the required check would then never report at all.
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, edited]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  rules-gate:
+    name: Rules gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # The API's file list, not `git diff`: it is the same list the reviewer reads, and it
+      # needs no fetch depth or base-ref guessing.
+      - name: Collect the PR's changed files and its description
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+          PR_BODY: ${{ github.event.pull_request.body }}
+        run: |
+          gh api "repos/$REPO/pulls/$PR/files" --paginate --jq '.[].filename' > changed.txt
+          printf '%s' "$PR_BODY" > body.md
+      # Standard library only, so no uv sync and no lockfile in the loop.
+      - name: Is the authorization block there?
+        run: python3 scripts/rules_gate.py --paths-file changed.txt --body-file body.md
