@@ -1,8 +1,9 @@
 """Score extractions against Goldens and run the eval suite.
 
 Does: per-Golden set comparison on skill ids, micro-averaged precision/recall/F1,
-requirement accuracy on matched skills, seniority accuracy over Goldens that carry a
-seniority label, per-class precision/recall and a confusion matrix for production
+requirement accuracy on matched skills, a grounding check that every quoted snippet the
+model offered as evidence really appears in the posting, seniority accuracy over Goldens
+that carry a seniority label, per-class precision/recall and a confusion matrix for production
 experience (plus signal agreement, so a right class off the wrong clause shows), and rank
 agreement between predicted and gold
 skill frequencies across the suite (the chart is a frequency ranking, so we measure it
@@ -16,6 +17,7 @@ length); scoring is deterministic for a given input; a Golden whose extraction r
 counts as an error and contributes all its expected skills as misses.
 """
 
+import re
 import statistics
 from collections import Counter
 from dataclasses import dataclass, field
@@ -40,13 +42,19 @@ class GoldenScore:
     # through the wrong clause is visible (HIR-69).
     production: tuple | None = None         # (expected, predicted) or None = unlabeled
     production_signal: tuple | None = None  # (expected_signal, predicted_signal)
+    # Grounding (HIR-78): quoted evidence that is really in the posting, out of every quote
+    # the model offered. Gold-independent — it asks whether the model invented its evidence,
+    # not whether the skill was the right one, so it stays separate from fp/fn.
+    grounded: int = 0
+    quotes: int = 0
 
 
 def score_golden(golden_id: str, expected: list[dict], predicted: list[dict],
                  seniority_expected: str | None = None, seniority_predicted: str | None = None,
                  german: tuple | None = None, degree: tuple | None = None,
                  seniority_labeled: bool | None = None, production: tuple | None = None,
-                 production_signal: tuple | None = None) -> GoldenScore:
+                 production_signal: tuple | None = None,
+                 grounding: tuple[int, int] = (0, 0)) -> GoldenScore:
     exp = {e["skill_id"]: e["requirement"] for e in expected}
     pred = {p["skill_id"]: p["requirement"] for p in predicted}
     tp = sorted(exp.keys() & pred.keys())
@@ -63,7 +71,42 @@ def score_golden(golden_id: str, expected: list[dict], predicted: list[dict],
         degree=degree,
         production=production,
         production_signal=production_signal,
+        grounded=grounding[0],
+        quotes=grounding[1],
     )
+
+
+_WS = re.compile(r"\s+")
+
+# app/extract.py's reason string for a quote it could not find in the posting. Matched by
+# value, not imported: evaluation.py scores what it is handed and never imports the
+# extractor (see the module docstring).
+UNGROUNDED_REASON = "raw_text not found in job text"
+
+
+def _quote(item) -> str:
+    """raw_text off a Mention/Proposed dataclass or the dict form of one."""
+    if isinstance(item, dict):
+        return str(item.get("raw_text") or "")
+    return str(getattr(item, "raw_text", "") or "")
+
+
+def grounding(jd_text: str, mentions, proposed, rejected) -> tuple[int, int]:
+    """(grounded, total) over every skill quote the model returned for one Golden.
+
+    An invented quote is a different failure from a wrong skill: it says the model made
+    its evidence up. The extractor already drops a skill whose quote it cannot find, so
+    those arrive here in `rejected` and count against the total. The quotes it kept are
+    re-checked all the same, so a regression in that check shows as a falling score
+    instead of passing silently.
+
+    Whitespace- and case-insensitive, the same comparison the extractor makes.
+    """
+    jd = _WS.sub(" ", jd_text).strip().lower()
+    kept = [_quote(x) for x in list(mentions) + list(proposed)]
+    grounded = sum(1 for q in kept if q and _WS.sub(" ", q).strip().lower() in jd)
+    ungrounded = sum(1 for r in rejected if isinstance(r, dict) and r.get("reason") == UNGROUNDED_REASON)
+    return grounded, len(kept) + ungrounded
 
 
 def _rank(values: list[float]) -> list[float]:
@@ -151,6 +194,9 @@ def summarize(scores: list[GoldenScore], expected_by_id: dict[str, list[dict]],
            if s.production is not None and s.production[0] == s.production[1] and s.production[0] is not None]
     sig_ok = sum(1 for e, p in sig if e and p and (e in p or p in e)) if sig else 0
 
+    quotes = sum(s.quotes for s in scores)
+    grounding_acc = sum(s.grounded for s in scores) / quotes if quotes else None
+
     gold_freq = Counter(e["skill_id"] for es in expected_by_id.values() for e in es)
     pred_freq = Counter(p["skill_id"] for ps in predicted_by_id.values() for p in ps)
     universe = sorted(gold_freq.keys() | pred_freq.keys())
@@ -172,6 +218,8 @@ def summarize(scores: list[GoldenScore], expected_by_id: dict[str, list[dict]],
         "production_confusion": confusion(prod),
         "production_signal_agreement": sig_ok / len(sig) if sig else None,
         "production_signal_n": len(sig),
+        "grounding_accuracy": grounding_acc,
+        "grounding_n": quotes,
         "rank_spearman": rho,
         f"top{k}_overlap": len(set(gold_top) & set(pred_top)) / k if gold_top else None,
         "gold_top": gold_top, "pred_top": pred_top,
@@ -208,6 +256,8 @@ def run_once(goldens: list[dict], extract_fn) -> RunResult:
                 "usage": getattr(ex, "usage", {}),
             }
             s = score_golden(g["id"], g["expected"], pred,
+                             grounding=grounding(g["job_description"], ex.mentions,
+                                                 ex.proposed, ex.rejected),
                              seniority_expected=g.get("seniority"),
                              seniority_predicted=sen.level if sen else None,
                              seniority_labeled="seniority" in g,
@@ -231,7 +281,8 @@ def run_once(goldens: list[dict], extract_fn) -> RunResult:
 
 
 METRICS = ("precision", "recall", "f1", "requirement_accuracy", "seniority_accuracy", "german_accuracy", "degree_accuracy",
-           "production_accuracy", "production_signal_agreement", "rank_spearman", "top10_overlap")
+           "production_accuracy", "production_signal_agreement", "grounding_accuracy",
+           "rank_spearman", "top10_overlap")
 
 
 def across_runs(runs: list[RunResult]) -> dict:
