@@ -5,6 +5,46 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-04 — A PR whose checks have already passed is merged directly, not armed (HIR-157)
+
+HIR-136 gave the reviewer one command for every PR: `gh pr merge <n> --merge --auto`. On
+PR #88 that command failed with GitHub's generic "Something went wrong while executing your
+query". The PR was `mergeable_state: clean` — every required check green, branch up to
+date. **GitHub refuses to arm auto-merge on a PR that can already merge**; `--auto` is only
+for a PR still waiting on something. The reviewer, correctly refusing to merge by hand when
+the rules said arm, labelled it and Chandler merged #88 himself. Every PR the reviewer
+reaches after CI has finished would have done the same — and the reviewer usually *does*
+arrive after CI, because `/work-issue` waits for the checks before starting it.
+
+**The reviewer now reads `mergeable_state` first and branches on it:**
+
+- `clean` → **merge directly**, `gh pr merge <n> --merge`. This is not merging by hand in
+  the sense HIR-136 forbade. What that rule protects is the requirement that the checks
+  decide; the ruleset still enforces it, and a merge of a `clean` PR cannot happen unless
+  the three required checks ("Python tests", "Frontend build", "Rules gate") are green.
+  The command is refused by GitHub otherwise.
+- anything else → arm `--auto` and bring the branch up to date, exactly as HIR-136 wrote
+  it. Unchanged.
+- any other error → `needs-chandler`, **no retry**. A merge command that failed for a
+  reason we did not predict is the case where a second attempt is how a wrong merge
+  happens.
+
+**What this entry does not do: it does not drop the update-branch step.** HIR-157 asked
+for that, on the grounds that "the ruleset no longer requires it, as of 4 Nov". That
+premise does not hold — the `main` ruleset (id 26303302, last updated 2026-11-04 10:41)
+still carries `strict_required_status_checks_policy: true`, which is GitHub's "require
+branches to be up to date before merging". So being behind main is still the reviewer's
+job and the step stays, per AGENTS.md "Nothing merges directly to main" and the HIR-136
+entry below. The two halves fit without a conflict: with strict on, a branch behind main
+reports `behind`, never `clean`, so it takes the auto-merge-and-update path that still
+needs the step. If Chandler does turn strict off later, the step becomes dead rather than
+wrong, and the `clean` branch already covers every PR.
+
+**How to undo:** restore step 4 of `.claude/agents/reviewer.md` to the single
+`--merge --auto` command. The cost of undoing it is the one above: every PR reviewed after
+its checks finish stalls on `needs-chandler`.
+---
+
 ## 2026-11-04 — Best fit scores a job against a floor of 7 required skills (HIR-154)
 
 HIR-113 made the *order* the Wilson lower bound of `covered/total`, so a 2/2 job (bound

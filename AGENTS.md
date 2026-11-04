@@ -533,16 +533,26 @@ rules is never merged by any run — the rules gate above. At most one PR that r
 job (taxonomy, prompt, model) merges per day. PRs for `attended` issues always wait for
 a person.
 
-**Nothing merges directly to main: the reviewer arms auto-merge and GitHub does it**
-(HIR-136). `gh pr merge <n> --merge --auto` tells GitHub to merge the PR the moment its
-required checks are green; no person presses anything. There is **no merge queue** on this
-repository and there cannot be — GitHub offers queues only on organization-owned
-repositories, and this one belongs to a personal account. HIR-124 wrote a queue into these
-rules anyway, which is why every autopilot PR stalled until HIR-136.
+**No person presses anything: the reviewer merges, or arms auto-merge and GitHub does it**
+(HIR-136, HIR-157). The reviewer reads `mergeable_state` and that picks the command. A
+`clean` PR — required checks already green, branch up to date — is **merged directly**,
+`gh pr merge <n> --merge`, because GitHub refuses to arm auto-merge on a PR that can
+already merge, and the reviewer usually arrives after CI has finished. Any other state gets
+`gh pr merge <n> --merge --auto`, which tells GitHub to merge the PR the moment its
+required checks are green. Neither is a human merge, and neither can get round the checks:
+the ruleset requires all three, so a merge command on a PR whose checks are not green is
+refused by GitHub. Any other error from either command is `needs-chandler` with no retry.
+There is **no merge queue** on this repository and there cannot be — GitHub offers queues
+only on organization-owned repositories, and this one belongs to a personal account.
+HIR-124 wrote a queue into these rules anyway, which is why every autopilot PR stalled
+until HIR-136.
 
 Because nothing is testing each PR against the latest main for us, **being behind main is
-the reviewer's job**: `main` requires branches to be up to date before they merge, so after
-arming auto-merge the reviewer brings the branch up to date and the checks re-run. A
+the reviewer's job**: `main` requires branches to be up to date before they merge
+(`strict_required_status_checks_policy`, still on as of 4 Nov), so after arming auto-merge
+the reviewer brings the branch up to date and the checks re-run. That is also why the two
+merge paths above never overlap — with that policy on, a branch behind main reports
+`behind`, never `clean`. A
 **worker still never merges main into its branch** — doing that during review is what
 produced the duplicate edits of 3 Nov; the point is that it happens once, at the end, and
 not by the author. A real conflict drops the PR back to its author, which is the one case

@@ -90,11 +90,12 @@ as one. A flagged metric (down more than 0.02) goes under "Needs you" in Chandle
 with the metric named and the two runs compared.
 
 **There is no merge queue** — GitHub offers one only on organization-owned repositories
-and this one is personal (HIR-136). The reviewer arms GitHub's auto-merge and brings the
-branch up to date, so a passed PR is not merged the moment the reviewer passes it: it
-merges when the checks on the updated branch go green. Treat "set to merge" as done for
-reporting, and check back once — a PR with a real conflict, or one that kept losing the
-race to other merges, is back with its author and belongs under "Needs you".
+and this one is personal (HIR-136). The reviewer merges a PR whose checks are already green
+outright; on any other PR it arms GitHub's auto-merge and brings the branch up to date, and
+that one is not merged the moment the reviewer passes it — it merges when the checks on the
+updated branch go green (HIR-157). Treat both "merged" and "set to merge" as done for
+reporting, and check back once on the second — a PR with a real conflict, or one that kept
+losing the race to other merges, is back with its author and belongs under "Needs you".
 
 Start queued issues as slots free up and their blockers merge. Before each one, re-read
 the open PRs (step 1): other sessions have been merging while you worked.
