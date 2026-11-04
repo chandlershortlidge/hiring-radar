@@ -198,13 +198,12 @@ git push -u origin HEAD
 gh pr create --base main --fill
 ```
 
-**Do not merge `origin/main` into your branch first** (HIR-124). The merge queue does that
-for you, and better: it builds your PR on top of whatever is ahead of it in the queue and
-runs the required checks on that combination, so a branch that is behind main is not
-something to fix before review. Merging main in by hand while other sessions were merging
-is what produced the duplicate edits of 3 Nov. If the queue hits a conflict it cannot
-resolve it drops your PR back out, and that one *is* yours: resolve it then, keeping both
-sides newest-first in DECISIONS.md.
+**Do not merge `origin/main` into your branch first** (HIR-124, HIR-136). The reviewer
+brings the branch up to date at the end, once, just before the merge — a branch that is
+behind main is not something to fix before review. Merging main in by hand while other
+sessions were merging is what produced the duplicate edits of 3 Nov. What *is* still yours
+is a real conflict: the reviewer cannot update a branch that conflicts, so it hands the PR
+back to you. Resolve it then, keeping both sides newest-first in DECISIONS.md.
 
 PR body, in the template's sections: Testing, Risk, How to revert, **Decisions taken**,
 plus **`## Eval (dev)`** whenever step 3a applied — the reviewer refuses a PR that touches
@@ -240,7 +239,7 @@ Decide it at filing time; Chandler does not sort issues by hand.
 ## 5c. Review and merge, before the run ends (autopilot only, HIR-124)
 
 **Skip this whole step if a `/work-issue-orchestrator` started you** — the orchestrator
-reviews and enqueues your PR itself, and two reviewers on one PR is worse than none. Skip
+reviews and merges your PR itself, and two reviewers on one PR is worse than none. Skip
 it for an `attended` issue too: those always wait for Chandler.
 
 Otherwise, an autopilot run finishes the job rather than leaving a PR for something else
@@ -250,10 +249,15 @@ does.
 1. Wait for CI on the PR's head commit (`gh pr checks <n> --watch`).
 2. Start the **`reviewer`** subagent (`.claude/agents/reviewer.md`) with the PR number and
    nothing else. It has fresh context and has not seen your work — that is the point, and
-   it is why this does not count as merging your own PR. Do not summarise your work to it,
-   do not tell it what you concluded, and do not argue with its verdict.
-3. On a pass it enqueues the PR and the queue merges it. On a fail it labels the PR
-   `needs-chandler` — leave that label alone and say so in your final reply.
+   it is why this does not count as merging your own PR. It fetches the ticket itself from
+   the issue id in the branch name and checks the PR against the ticket's "Done when" list
+   (HIR-137), so it needs nothing from you: do not summarise your work to it, do not paste
+   the issue's labels or its "Done when" list, do not tell it what you concluded, and do
+   not argue with its verdict.
+3. On a pass it arms GitHub's auto-merge and brings the branch up to date; GitHub merges
+   the PR when the checks on the updated branch go green, so "merging" is a normal end
+   state to report rather than "merged". On a fail it labels the PR `needs-chandler` —
+   leave that label alone and say so in your final reply.
 
 If you cannot get this far — CI never goes green, the reviewer can't be started, the run
 is stopping for a NO RULE — **label the PR `needs-chandler` yourself and say in your final
@@ -265,8 +269,8 @@ one outcome this step exists to prevent.
 - Linear: a comment with the PR link and the same "Needs Chandler" lines as the PR, with
   an @mention if there are any. Status
   stays In Progress until the PR merges (the GitHub integration closes it).
-- Reply to the person with: the PR link, the test count, whether the PR was enqueued or
-  is waiting and why, and open questions — nothing else. No recap of the steps.
+- Reply to the person with: the PR link, the test count, whether the PR is set to merge on
+  its own or is waiting and why, and open questions — nothing else. No recap of the steps.
 
 ## Before any question reaches Chandler: the decider
 
