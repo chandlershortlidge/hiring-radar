@@ -364,6 +364,18 @@ re-baselines main, which is the gap this rule exists to close.
 
 The held-out split stays release-only (the rule just above). This gate is the dev split.
 
+### A change to an agent's instructions takes effect in the next session, not this one
+
+Agents and skills load from the project folder on Chandler's Mac, not from the branch and
+not from GitHub, and the copy in that folder is only refreshed when a session starts with
+`claude-hr`, which pulls `main` first (HIR-153). So a merged edit to `AGENTS.md`, a skill or
+an agent definition is inert until the next such session: the agents running now, including
+any subagent this session starts, still follow the version the folder held when it opened.
+
+**Don't test a change to an agent's instructions in the session that made it** — test it in
+the next one. On 4 Nov an agent spent a long investigation diagnosing the reviewer from the
+branch while the reviewer it was watching ran a version two tickets older (HIR-145).
+
 ### The rules gate: a PR that changes the agents' own rules asks Chandler first
 
 **No PR that touches the agents' own rules merges on its own** (Chandler's decision
