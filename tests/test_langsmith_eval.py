@@ -28,6 +28,7 @@ class FakeClient:
         self.created = []
         self.updated = []
         self.feedback = []
+        self.feedback_kw = []
         self.projects = []
         self.closed = []
 
@@ -62,7 +63,12 @@ class FakeClient:
         self.closed.append((project_id, kw))
 
     def create_feedback(self, run_id=None, key=None, score=None, **kw):
+        # The real client rejects this combination; a live run found it the hard way, so
+        # the fake enforces it too.
+        if kw.get("project_id") and (run_id or kw.get("trace_id")):
+            raise ValueError("project_id cannot be provided if run_id or trace_id is provided")
         self.feedback.append((key, score))
+        self.feedback_kw.append(kw)
 
 
 META = {"run_id": "20261104T120000Z_dev_x2-abc", "split": "dev", "n_goldens": 1, "repeats": 3,
@@ -221,6 +227,18 @@ def test_per_golden_scores_are_attached_as_feedback():
     assert got["extras"] == 1.0 and got["missed"] == 1.0
     assert got["german"] == 1.0
     assert "seniority" not in got      # this Golden carries no seniority label
+
+
+def test_feedback_names_the_session_so_it_is_not_orphaned():
+    # Without a session the SDK deprecation-warns and will one day drop the feedback;
+    # project_id is rejected next to a run_id, so session_id carries the experiment.
+    client = FakeClient()
+    project_id = uuid4()
+    span = ls.Span(client, FakeRunTree(), project_id)
+    span.record(ev.score_golden("g1", [{"skill_id": "python", "requirement": "required"}], []))
+    span.flush()
+    assert client.feedback_kw and all(kw["session_id"] == project_id for kw in client.feedback_kw)
+    assert all("project_id" not in kw for kw in client.feedback_kw)
 
 
 def test_an_unlabeled_attribute_gets_no_score():

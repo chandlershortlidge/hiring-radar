@@ -118,10 +118,10 @@ def sync_dataset(client, goldens: list[dict], name: str = DATASET_NAME):
 class Span:
     """One Golden's trace. Collects the scores and posts them once the trace has closed."""
 
-    def __init__(self, client, run_tree, project_id=None):
+    def __init__(self, client, run_tree, session_id=None):
         self.client = client
         self.run_tree = run_tree
-        self.project_id = project_id
+        self.session_id = session_id   # the experiment's project id, in feedback's terms
         self._feedback: list[tuple[str, float]] = []
 
     def mapping(self, extraction) -> None:
@@ -177,11 +177,14 @@ class Span:
         if self.run_tree is None:
             return
         for key, value in self._feedback:
-            # project_id: feedback without it is deprecated and stops working in a future
-            # SDK release.
+            # session_id, not project_id: feedback for a run without a session is
+            # deprecated and stops working in a future SDK release, and `project_id` is
+            # rejected outright next to a run_id ("project_id cannot be provided if run_id
+            # or trace_id is provided"). session_id takes the same value — the experiment's
+            # project id. A live run found that the hard way.
             _safe(f"feedback {key}", self.client.create_feedback,
                   run_id=self.run_tree.id, key=key, score=value,
-                  project_id=self.project_id, trace_id=self.run_tree.trace_id)
+                  trace_id=self.run_tree.trace_id, session_id=self.session_id)
 
 
 class Experiment:
