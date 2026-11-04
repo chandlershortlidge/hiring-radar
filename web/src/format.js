@@ -13,12 +13,23 @@ export const SOURCE_CODES = {
 };
 export const sourceCode = (s) => (SOURCE_CODES[s] || [s.toUpperCase().slice(0, 3), s]);
 
-// CITIES is the compare pair; PLACES is every filterable place, EU-remote included (DECISIONS 2026-10-26).
-// New York is filterable and counted on its own (HIR-132) but is not in the compare pair:
-// CompareChart destructures exactly two cities, so compare mode stays Berlin vs SF.
-export const CITIES = ["Berlin", "San Francisco"];
+// PLACES is every filterable place, EU-remote included (DECISIONS 2026-10-26), and it is
+// also the option list for both sides of compare mode: compare is two sides, each a picker
+// over every collected place, opening on COMPARE_DEFAULT (HIR-138). A newly launched city
+// joins PLACES and is compareable with no further change.
+export const COMPARE_DEFAULT = ["Berlin", "San Francisco"];
 export const PLACES = ["Berlin", "Remote (EU)", "San Francisco", "New York"];
 export const SENIORITIES = ["junior", "mid", "senior"];
+
+// One side of compare mode picks a place. The two sides must stay different — a place
+// against itself is an empty comparison — so picking the place already on the other side
+// swaps the pair instead. `side` is 0 for the left side, 1 for the right.
+export function comparePick(pair, side, place) {
+  const [a, b] = pair;
+  if (place === (side === 0 ? a : b)) return [a, b];
+  if (place === (side === 0 ? b : a)) return [b, a];
+  return side === 0 ? [place, b] : [a, place];
+}
 // "A", "A and B", "A, B and C" — for the sentences that name the selected skills.
 export const listAnd = (xs) => (xs.length < 2 ? xs[0] || "" : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
 
