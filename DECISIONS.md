@@ -18,6 +18,11 @@ rules gate"; the watched paths are `.claude/**`, `AGENTS.md`,
 `.github/pull_request_template.md` and `.github/workflows/**` (he confirmed the workflows
 belong in the list the same day — CI is part of the gate).
 
+`scripts/rules_gate.py`, the check's own code, was added to that list as a judgment
+call while building this (HIR-142): the paths Chandler named cover the workflow that
+runs the check but not the script it runs, and a PR that rewrote the script to always
+pass would have walked through. To undo, drop it from `RULE_FILES` in that script.
+
 **The bullets are written by the reviewer, never by the agent that made the change.** The
 value is a second reader saying what changed; an author summarising its own diff is the
 thing this gate exists to distrust.

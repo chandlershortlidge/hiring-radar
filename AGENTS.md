@@ -377,6 +377,8 @@ The trigger is a file list, not a judgment. The diff touches any of:
 - `AGENTS.md`
 - `.github/pull_request_template.md`
 - anything under `.github/workflows/` — the automated checks are part of the gate
+- `scripts/rules_gate.py` — the gate's own code, so a PR cannot rewrite the check into
+  one that always passes
 
 Then the PR gets `needs-chandler`, does not merge, and its description carries this block,
 with nothing more in it:
