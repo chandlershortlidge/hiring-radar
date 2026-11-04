@@ -4,11 +4,13 @@ on:
   push:
     branches: [main]
   pull_request:
-  # Queued merges (HIR-124). The merge queue builds each PR on top of the ones
-  # ahead of it and runs the required checks on that combination, so `test` and
-  # `build-web` must trigger here or a queued merge waits for checks that never
-  # start. `deploy` is gated on `push` to main and so stays out of the queue's
-  # runs: it fires once, on the push the queue makes when it merges.
+  # Inert today, deliberately kept (HIR-136). There is no merge queue on this
+  # repository and there cannot be: GitHub offers queues only on organization-owned
+  # repositories, and this one belongs to a personal account. Merges go through
+  # GitHub auto-merge instead, which runs on `pull_request` checks. This trigger
+  # costs nothing while no queue exists and means a future move to an org-owned
+  # repository needs no CI change — `test` and `build-web` would already run on
+  # the queue's combined commits, while `deploy` stays gated on `push` to main.
   merge_group:
 
 jobs:

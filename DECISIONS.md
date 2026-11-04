@@ -5,6 +5,57 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-03 — There is no merge queue on this repository; auto-merge replaces it (HIR-136)
+
+HIR-124, earlier today, wrote a merge queue into AGENTS.md, both work-issue skills and the
+reviewer agent: nothing merges directly to main, the reviewer enqueues, and the queue
+builds each PR on top of the ones ahead of it, tests that combination and merges in order.
+That queue was never switched on, and the entry said so — it ends "this needs *Require
+merge queue* on in the `main` ruleset to do anything".
+
+**It cannot be switched on. GitHub offers merge queues only on repositories owned by an
+organization, and this one is owned by a personal account** — "Require merge queue" is not
+in the ruleset's rule list at all, and `mergeQueue(branch:"main")` is null. So the rules
+described a mechanism that does not exist here, and the reviewer, correctly refusing to
+merge by hand when told to enqueue, labelled the first PR to reach it (#74) `needs-chandler`
+for a reason that had nothing to do with the PR. Every autopilot PR after it would have
+done the same.
+
+**Chandler's call: reviewed work still merges without him** — the intent of HIR-124 stands,
+only the mechanism changes. **GitHub auto-merge replaces the queue.** It works on personal
+repositories, and "Allow auto-merge" is now on.
+
+The reviewer's command is unchanged (`gh pr merge <n> --merge --auto`); what changes is
+what it does and who owns being behind main.
+
+- **With no queue, `--auto` is a plain auto-merge:** GitHub merges the PR as it stands the
+  moment its conditions hold. Nothing is tested against the latest main first, and nothing
+  is ordered. That protection is gone, and this entry is the record that we traded it away
+  because the alternative was a queue we cannot have.
+- **Being behind main is the reviewer's problem, not the worker's.** The `main` ruleset
+  requires branches to be up to date before they merge (`strict_required_status_checks_policy`),
+  so auto-merge will not fire on a branch behind main. The reviewer arms auto-merge, then
+  brings the branch up to date (`gh api -X PUT repos/:owner/:repo/pulls/<n>/update-branch`),
+  which re-runs the checks; auto-merge fires when they go green. **A worker still never
+  merges main into its branch** — that is what produced the duplicate edits of 3 Nov, and
+  moving it to the moment before the merge is the point. The worker's one case is still a
+  real conflict: `update-branch` returns 422 and the PR goes back to its author.
+- **Two reviewers can race:** each updates its branch, one merges first, the other is
+  behind again. The reviewer updates at most **twice** and then labels the PR
+  `needs-chandler` rather than looping — a PR losing an update race forever is the failure
+  this bounds.
+
+The `merge_group:` trigger stays in `ci.yml`. It is inert without a queue and costs
+nothing, and leaving it means a future move to an organization-owned repository needs no CI
+change.
+
+Unchanged from HIR-124: an issue is claimed by setting it In Progress, ticket descriptions
+are appended to and never replaced, every merge happens from the run that reviewed it, and
+there is no timer backstop. Nothing about extraction, the taxonomy or the dashboard
+changes, and no model call is involved.
+
+---
+
 ## 2026-11-03 — Extractor and skill-list changes run the dev eval before they merge (HIR-133)
 
 Skill-list versions v6 and v7 merged with no eval run at all. When v8 was finally measured

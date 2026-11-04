@@ -60,31 +60,37 @@ For the PR you are given:
      PR re-reads every job on merge (~€3). Merge at most **one** such PR per calendar day;
      if one already merged today, leave this one open with a comment "waits for tomorrow's
      window", no label.
-4. **Enqueue** when everything holds — you do not merge by hand (HIR-124):
-   `gh pr merge <n> --merge --auto`. The merge queue takes it from there: it builds the PR
-   on top of whatever is ahead of it in the queue, runs the required checks on *that*
-   combination, and merges in order. So a PR behind main is no longer your problem —
-   **never** update the branch or rebase it to make the merge go through; the queue tests
-   against the real latest main, which is the whole point. Two things can come back:
-   - **A real conflict** the queue cannot resolve: it drops the PR out of the queue. Say
-     so in a PR comment naming the conflicting files, label the PR `needs-chandler`, and
-     @mention the worker's issue — resolving it is the author's job, not yours.
-   - **A check that fails only in the queue** (it passed on the PR alone): that is a
-     genuine interaction with something merged ahead of it. Same handling — comment,
-     `needs-chandler`, do not retry the enqueue.
+4. **Arm auto-merge** when everything holds — you never merge by hand (HIR-136):
+   `gh pr merge <n> --merge --auto`. GitHub then merges the PR itself the moment its
+   required checks are green and the branch is up to date. **There is no merge queue on
+   this repository** and there cannot be (GitHub offers queues only on organization-owned
+   repositories; this one is personal), so nothing tests the PR against the latest main for
+   you and nothing orders the merges. Two consequences, both yours:
 
-   If `gh pr merge --auto` is refused because the repository has no merge queue enabled
-   yet, say that in the comment and label the PR `needs-chandler`. Do not fall back to a
-   direct merge.
-5. **Report** in one PR comment: enqueued (and that it merges when the queue's checks
-   pass), or needs-chandler with the failing check, in plain words a person who hasn't read
-   the code can act on. Mirror that line on the Linear issue; @mention Chandler only for
-   needs-chandler. When you write on the Linear issue, add a comment, or append to the
-   description with `save_issue`'s `patch` — never replace a description you did not write
-   (HIR-124).
+   - **Bring the branch up to date, after arming auto-merge.** `main` requires branches to
+     be up to date before they merge, so auto-merge will sit there forever on a branch
+     behind main. Run `gh api -X PUT repos/:owner/:repo/pulls/<n>/update-branch`; the
+     checks re-run on the updated branch and auto-merge fires when they pass. Arm first,
+     update second, so you are never waiting on a check run you then invalidate.
+   - **A real conflict** makes `update-branch` fail (422). Say so in a PR comment naming
+     the conflicting files, label the PR `needs-chandler`, and @mention the worker's issue
+     — resolving it is the author's job, not yours.
+   - **If another PR merges while yours updates**, the branch is behind again. Update once
+     more. **At most two updates**: if it is still behind after the second, comment that it
+     keeps losing the race, label `needs-chandler`, and stop. Do not loop.
+   - **A check that fails only after the update** (it passed on the PR alone) is a genuine
+     interaction with something merged ahead of it: comment, `needs-chandler`, and do not
+     re-arm.
+5. **Report** in one PR comment: auto-merge armed (and that GitHub merges it as soon as the
+   checks on the updated branch pass), or needs-chandler with the failing check, in plain
+   words a person who hasn't read the code can act on. Mirror that line on the Linear
+   issue; @mention Chandler only for needs-chandler. When you write on the Linear issue,
+   add a comment, or append to the description with `save_issue`'s `patch` — never replace
+   a description you did not write (HIR-124).
 
 Be strict on the checks and plain in the comment. A wrong merge is live on the VM within
 minutes; a wrong `needs-chandler` costs one look.
 
-Enqueueing needs GraphQL, so it works from a Mac session and not from a scheduled cloud
-run. There is no timer that merges PRs: every merge happens from the run that reviewed it.
+Arming auto-merge needs GraphQL, so it works from a Mac session and not from a scheduled
+cloud run. There is no timer that merges PRs: every merge happens from the run that
+reviewed it.
