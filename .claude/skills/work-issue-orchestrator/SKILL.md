@@ -69,7 +69,11 @@ running, the one you overwrite may belong to a session you cannot see.
 ## 3. Review and merge
 
 **Autopilot PR:** start the `reviewer` subagent (`.claude/agents/reviewer.md`) with the
-PR number. It sets the PR to merge on its own or labels it `needs-chandler`. The worker inside an
+PR number **and nothing else** (HIR-137). It reads the ticket itself, from the issue id in
+the branch name — do not paste the issue's labels, its "Done when" list, or your own
+account of what the worker did into its prompt. Your framing between the ticket and the
+reviewer is exactly what it is meant to be reading around. It sets the PR to merge on its
+own or labels it `needs-chandler`. The worker inside an
 orchestrator does *not* review its own PR at the end of its run (its skill's step 5c tells
 it to skip that when you started it) — reviewing is yours, so every autopilot PR gets
 exactly one reviewer.

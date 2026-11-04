@@ -249,8 +249,11 @@ does.
 1. Wait for CI on the PR's head commit (`gh pr checks <n> --watch`).
 2. Start the **`reviewer`** subagent (`.claude/agents/reviewer.md`) with the PR number and
    nothing else. It has fresh context and has not seen your work — that is the point, and
-   it is why this does not count as merging your own PR. Do not summarise your work to it,
-   do not tell it what you concluded, and do not argue with its verdict.
+   it is why this does not count as merging your own PR. It fetches the ticket itself from
+   the issue id in the branch name and checks the PR against the ticket's "Done when" list
+   (HIR-137), so it needs nothing from you: do not summarise your work to it, do not paste
+   the issue's labels or its "Done when" list, do not tell it what you concluded, and do
+   not argue with its verdict.
 3. On a pass it arms GitHub's auto-merge and brings the branch up to date; GitHub merges
    the PR when the checks on the updated branch go green, so "merging" is a normal end
    state to report rather than "merged". On a fail it labels the PR `needs-chandler` —
