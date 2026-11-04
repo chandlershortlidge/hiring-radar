@@ -164,6 +164,10 @@ def test_merge_queues_an_uncertain_flag_even_when_both_agree():
     reasons = {(i["kind"], i["key"]): i["reason"] for i in m.review}
     assert reasons == {("skill", "python"): "uncertain", ("attribute", "german"): "uncertain"}
     assert "german" not in m.accepted_attrs and "seniority" in m.accepted_attrs
+    # HIR-159: the queue is where an unsure skill waits for a hand-check, and the posting
+    # text has to travel with it — a person cannot rule on a skill id alone.
+    skill, = [i for i in m.review if i["kind"] == "skill"]
+    assert "Python" in skill["excerpt"] and skill["decision"] == "?"
 
 
 def test_merge_queues_an_attribute_disagreement_per_field():

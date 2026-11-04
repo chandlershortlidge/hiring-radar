@@ -148,6 +148,57 @@ standing permission for agents to add checks (same two hazards, permanently).
 
 ---
 
+## 2026-11-04 — A labeller's "unsure" sends the skill to the hand-check, not out of the answer key (HIR-159)
+
+**Chandler's written decision on the HIR-159 ticket, 2026-11-04: "A skill both labellers
+found, where one or both said they were unsure, no longer drops out of the answer key. It
+goes to Chandler's hand-check queue instead. Until he has checked it, the score leaves it
+out of both sides: it counts neither as a correct find nor as a mistake. Don't re-ask
+this."**
+
+Why it had to change. The labeller panel's yardstick is what both labellers agree on;
+anything either flagged uncertain went to the review queue and so out of the yardstick,
+which made the extractor's own copy of that skill a mistake. HIR-139 found that 29 of New
+York's 35 "extractor mistakes" were exactly this: skills *both* labellers had found. The
+score was punishing the extractor for being right.
+
+The rule, as implemented in `scripts/launch_check.py`: an unsure skill both labellers found
+is **set aside** — removed from the yardstick and from the extractor's side alike — for as
+long as it sits unanswered in the run's `review_queue.md`. Once a person writes a verdict it
+counts normally: `ok` / `A` / `B` / a JSON override puts the label into the yardstick, and
+`drop` leaves it out and charges the extractor for it as before. A verdict written by the
+judge model or the third labeller is **not** a hand-check and leaves the skill set aside,
+which is the same rule as everywhere else here: a model's reading of a label is not a
+person's (2026-11-03, HIR-132). The report now prints three numbers — the score, how many
+skills were set aside unchecked, and how many items are still waiting in the hand-check
+queue — because a score computed over a yardstick with holes in it should never be read
+without knowing how many holes.
+
+Recomputed under the rule, which settles HIR-139's question:
+
+| | before | after |
+| -- | -- | -- |
+| New York (14 postings) | 0.739 precision, **0.846 F1**, 35 extras | 0.943 precision, **0.966 F1**, 6 extras |
+| Berlin (15 postings) | 0.845 precision, **0.910 F1**, 37 extras | 0.922 precision, **0.953 F1**, 17 extras |
+| gap | **−0.064 F1** ("clearly worse") | **+0.013 F1** (New York slightly ahead) |
+
+Recall and requirement accuracy do not move: a set-aside skill was never in the yardstick,
+so it was never a miss. 42 New York skills and 36 Berlin skills are set aside pending
+hand-check; 62 and 142 items respectively are waiting in those queues. The unagreed extras
+the HIR-139 entry reports per posting shrink with the same arithmetic — 2.5 and 2.5 before,
+0.4 (New York) and 1.1 (Berlin) after — because most of those extras *were* the unsure
+skills.
+
+Scope. Skills only one labeller found, and skills neither found, are scored exactly as
+before. Nothing about the extractor, the prompt or the taxonomy changes, and the held-out
+eval's release-only rule is untouched. To undo: revert the HIR-159 commits — the rule is
+reporting only, and no stored data depends on it.
+
+This supersedes the measure described in the HIR-139 entry below, which was written against
+the old rule: the numbers in that entry are the "before" column of the table above.
+
+---
+
 ## 2026-11-04 — New York's 0.064 F1 gap is the measure, not the extractor (HIR-139)
 
 New York's launch check scored 0.846 F1 against Berlin's 0.910. The gap is past the 0.05
