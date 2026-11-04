@@ -485,6 +485,15 @@ produced the duplicate edits of 3 Nov; the point is that it happens once, at the
 not by the author. A real conflict drops the PR back to its author, which is the one case
 that is still the worker's.
 
+**A PR armed for auto-merge no longer has to win the race** (HIR-140). The
+`update-automerge-prs` workflow runs on every push to `main`, finds the open PRs with
+auto-merge armed that have fallen behind, and updates them so their checks re-run and
+auto-merge fires. So a merge that lands after the reviewer finishes no longer leaves a PR
+waiting forever and unlabelled. The reviewer's own update stays as the first move — one
+update, then it moves on — and the workflow is what covers every later merge. A conflict it
+cannot resolve gets `needs-chandler` and one comment, never a retry, exactly as the
+reviewer would.
+
 **Every merge happens from the run that reviewed it.** There is no timer and no scheduled
 cloud reviewer: an autopilot `/work-issue` waits for CI at the end of its own run and
 starts the `reviewer` agent on the PR it just opened; inside an orchestrator the

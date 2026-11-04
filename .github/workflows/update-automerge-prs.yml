@@ -1,0 +1,118 @@
+# Keeps every auto-merge PR up to date with main, so none of them stalls (HIR-140).
+#
+# What it does: on every push to `main`, finds the open PRs against `main` that have
+# auto-merge armed, and for each one that is now behind `main` calls the update-branch
+# API. The checks re-run on the updated branch and GitHub's auto-merge fires when they
+# pass. This exists because `main` requires branches to be up to date before they merge
+# and there is no merge queue on this repository (GitHub offers queues only on
+# organization-owned repositories; this one is personal — HIR-136), so without this a PR
+# armed before someone else's merge waits forever, unlabelled and unreported.
+#
+# What it does not do: it does not arm auto-merge (the reviewer agent does), does not
+# merge anything itself, does not order merges, and does not resolve conflicts. A PR
+# whose update hits a conflict is handed back to its author, once.
+#
+# Invariants:
+# - Read-only for any PR that is already up to date: behind-ness is decided by a compare
+#   call, never by trying the update and reading the error.
+# - One conflict notice per PR, ever: the `needs-chandler` label is the marker, so a
+#   later push to main neither retries nor comments again.
+# - A PR that errors does not stop the others; unexpected errors fail the job so they
+#   are visible in Actions.
+name: Update auto-merge PRs
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write        # update-branch pushes a merge commit onto the PR branch
+  pull-requests: write   # read auto_merge, add the label, post the comment
+
+# One run at a time: two concurrent runs would both see the same behind PRs and race on
+# update-branch. Queue them instead of cancelling, so the last push to main is acted on.
+concurrency:
+  group: update-automerge-prs
+  cancel-in-progress: false
+
+jobs:
+  update:
+    name: Update branches behind main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+
+            const prs = await github.paginate(github.rest.pulls.list, {
+              owner, repo, base: 'main', state: 'open', per_page: 100,
+            });
+            const armed = prs.filter((pr) => pr.auto_merge !== null);
+            core.info(`${prs.length} open PR(s) against main, ${armed.length} with auto-merge armed`);
+
+            let unexpected = 0;
+
+            for (const pr of armed) {
+              const tag = `#${pr.number} (${pr.head.ref})`;
+
+              if (pr.labels.some((l) => l.name === 'needs-chandler')) {
+                core.info(`${tag}: already needs-chandler, left alone`);
+                continue;
+              }
+
+              // Is it behind? compare main...head reports, in behind_by, how many commits
+              // of main the head is missing. 0 means up to date — nothing to do.
+              const { data: cmp } = await github.rest.repos.compareCommitsWithBasehead({
+                owner, repo, basehead: `main...${pr.head.sha}`,
+              });
+              if (cmp.behind_by === 0) {
+                core.info(`${tag}: up to date`);
+                continue;
+              }
+              core.info(`${tag}: ${cmp.behind_by} commit(s) behind main, updating`);
+
+              try {
+                await github.rest.pulls.updateBranch({
+                  owner, repo, pull_number: pr.number, expected_head_sha: pr.head.sha,
+                });
+                core.info(`${tag}: update requested`);
+              } catch (err) {
+                const message = String(err.message || '');
+
+                // The head moved between the list call and the update: another run or a
+                // push got there first. Not a conflict; the next push to main re-checks.
+                if (err.status === 422 && /expected head sha/i.test(message)) {
+                  core.info(`${tag}: head moved under us, skipped`);
+                  continue;
+                }
+
+                if (err.status === 422) {
+                  core.warning(`${tag}: merge conflict with main — handing back to the author`);
+                  await github.rest.issues.addLabels({
+                    owner, repo, issue_number: pr.number, labels: ['needs-chandler'],
+                  });
+                  await github.rest.issues.createComment({
+                    owner, repo, issue_number: pr.number,
+                    body: [
+                      'This branch can no longer be brought up to date with `main` on its own: ',
+                      'something merged into `main` changes the same lines this branch does, ',
+                      'and the two versions have to be combined by hand.',
+                      '\n\nAuto-merge stays armed but will not fire while the branch is behind, ',
+                      'so this PR is now waiting on its author: merge `main` into the branch, ',
+                      'resolve the conflict (in DECISIONS.md, keep both entries, newest first), ',
+                      'and push. Nothing retries this automatically.',
+                      `\n\n— \`.github/workflows/update-automerge-prs.yml\`, after \`main\` moved to ${context.sha.slice(0, 7)}`,
+                    ].join(''),
+                  });
+                  continue;
+                }
+
+                unexpected += 1;
+                core.error(`${tag}: update-branch failed with ${err.status}: ${message}`);
+              }
+            }
+
+            if (unexpected > 0) {
+              core.setFailed(`${unexpected} PR(s) could not be updated for an unexpected reason`);
+            }

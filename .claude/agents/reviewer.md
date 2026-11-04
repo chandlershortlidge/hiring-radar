@@ -65,19 +65,23 @@ For the PR you are given:
    required checks are green and the branch is up to date. **There is no merge queue on
    this repository** and there cannot be (GitHub offers queues only on organization-owned
    repositories; this one is personal), so nothing tests the PR against the latest main for
-   you and nothing orders the merges. Two consequences, both yours:
+   you and nothing orders the merges. What that leaves you:
 
    - **Bring the branch up to date, after arming auto-merge.** `main` requires branches to
      be up to date before they merge, so auto-merge will sit there forever on a branch
      behind main. Run `gh api -X PUT repos/:owner/:repo/pulls/<n>/update-branch`; the
      checks re-run on the updated branch and auto-merge fires when they pass. Arm first,
      update second, so you are never waiting on a check run you then invalidate.
+   - **You do not have to win the race** (HIR-140). Update once and move on: the
+     `update-automerge-prs` workflow runs on every push to `main` and updates every armed
+     PR that has fallen behind, so a merge that lands after you finish is caught without
+     you. If you do see the branch go behind again before you leave, update once more —
+     **at most two updates**, then comment that it keeps losing the race, label
+     `needs-chandler`, and stop. Do not loop; that bullet is now a fallback, not the plan.
    - **A real conflict** makes `update-branch` fail (422). Say so in a PR comment naming
      the conflicting files, label the PR `needs-chandler`, and @mention the worker's issue
-     — resolving it is the author's job, not yours.
-   - **If another PR merges while yours updates**, the branch is behind again. Update once
-     more. **At most two updates**: if it is still behind after the second, comment that it
-     keeps losing the race, label `needs-chandler`, and stop. Do not loop.
+     — resolving it is the author's job, not yours. The workflow does the same thing and
+     stops, so a `needs-chandler` PR is never retried by either of you.
    - **A check that fails only after the update** (it passed on the PR alone) is a genuine
      interaction with something merged ahead of it: comment, `needs-chandler`, and do not
      re-arm.
