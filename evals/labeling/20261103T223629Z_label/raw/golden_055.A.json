@@ -1,0 +1,176 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"mathematical foundations of machine learning\"},\n    {\"skill_id\": \"statistics\", \"requirement\": \"required\", \"raw_text\": \"statistics\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"Experience with AI\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"cutting edge LLMs\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agents\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python Proficiency\"},\n    {\"skill_id\": \"data-science\", \"requirement\": \"required\", \"raw_text\": \"common Data Science libraries\", \"uncertain\": true},\n    {\"skill_id\": \"pandas\", \"requirement\": \"required\", \"raw_text\": \"pandas\"},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"required\", \"raw_text\": \"scikit-learn\"},\n    {\"skill_id\": \"numpy\", \"requirement\": \"required\", \"raw_text\": \"NumPy\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL Knowledge\"},\n    {\"skill_id\": \"snowflake\", \"requirement\": \"required\", \"raw_text\": \"Snowflake\"},\n    {\"skill_id\": \"bigquery\", \"requirement\": \"required\", \"raw_text\": \"BigQuery\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"evaluating ML models\", \"uncertain\": true},\n    {\"skill_id\": \"model-development\", \"requirement\": \"required\", \"raw_text\": \"building/evaluating ML models\", \"uncertain\": true},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"nice_to_have\", \"raw_text\": \"software engineering best practices\"},\n    {\"skill_id\": \"git\", \"requirement\": \"nice_to_have\", \"raw_text\": \"version control (Git)\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"nice_to_have\", \"raw_text\": \"testing\"},\n    {\"skill_id\": \"airflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Airflow\"},\n    {\"skill_id\": \"dagster\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Dagster\"},\n    {\"skill_id\": \"prefect\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Prefect\"},\n    {\"skill_id\": \"metaflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Metaflow\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"probability\", \"raw_text\": \"probability\"},\n    {\"label\": \"optimization\", \"raw_text\": \"optimization\"},\n    {\"label\": \"Redshift\", \"raw_text\": \"Redshift\"},\n    {\"label\": \"ClickHouse\", \"raw_text\": \"Clickhouse\"},\n    {\"label\": \"data warehouse\", \"raw_text\": \"modern data warehouse\"},\n    {\"label\": \"dataset curation\", \"raw_text\": \"curating datasets\"},\n    {\"label\": \"data orchestration\", \"raw_text\": \"modern data orchestration platforms\"}\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Applied Scientist Intern\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"B.S., M.S. or Ph.D. Student: currently pursuing a degree\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"Sections: WHAT YOU NEED defaults to required. NICE TO HAVES is an optional heading, so its items are nice_to_have.\\nNot labeled because they appear only in WHAT YOU'LL DO (responsibilities): deep learning, gradient boosting, causal inference, A/B tests, feature engineering, deployment and monitoring.\\nai-ml: required via 'Strong Interest or Experience with AI'. It is also named in nice-to-haves ('applying AI/ML'), and the required mention wins. Flagged uncertain because bare 'AI' mapping to ai-ml is a judgment call.\\ndata-science: taken from 'common Data Science libraries' in the required Python bullet. 'Data Science' as a degree field is a field of study, not a skill. Uncertain.\\nevaluation and model-development: both read from 'building/evaluating ML models'. Uncertain whether these are distinct skills beyond machine-learning.\\nagents: 'LLMs and agents' sits under a required bullet titled 'Strong Interest or Experience'. 'Interest' could weaken it, but there is no optional marker, so it stays required.\\nDegree: 'B.S., M.S. or Ph.D.' takes the highest level named (phd), per the golden_040 rule. 'Graduate degrees are preferred' marks only the graduate level as optional, and a degree in progress is still required, so degree_requirement is required. Flagged because a B.S. student fully qualifies.\\nSeniority: 'Intern' in the title gives junior, stated.\\nGerman: not mentioned, so null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "mathematical foundations of machine learning"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistics"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Experience with AI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "cutting edge LLMs"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agents"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python Proficiency"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "common Data Science libraries",
+        "uncertain": true
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "required",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "numpy",
+        "requirement": "required",
+        "raw_text": "NumPy"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL Knowledge"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "bigquery",
+        "requirement": "required",
+        "raw_text": "BigQuery"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluating ML models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "building/evaluating ML models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "software engineering best practices"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "nice_to_have",
+        "raw_text": "version control (Git)"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "testing"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Airflow"
+      },
+      {
+        "skill_id": "dagster",
+        "requirement": "nice_to_have",
+        "raw_text": "Dagster"
+      },
+      {
+        "skill_id": "prefect",
+        "requirement": "nice_to_have",
+        "raw_text": "Prefect"
+      },
+      {
+        "skill_id": "metaflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Metaflow"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "probability",
+        "raw_text": "probability"
+      },
+      {
+        "label": "optimization",
+        "raw_text": "optimization"
+      },
+      {
+        "label": "Redshift",
+        "raw_text": "Redshift"
+      },
+      {
+        "label": "ClickHouse",
+        "raw_text": "Clickhouse"
+      },
+      {
+        "label": "data warehouse",
+        "raw_text": "modern data warehouse"
+      },
+      {
+        "label": "dataset curation",
+        "raw_text": "curating datasets"
+      },
+      {
+        "label": "data orchestration",
+        "raw_text": "modern data orchestration platforms"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Applied Scientist Intern",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "B.S., M.S. or Ph.D. Student: currently pursuing a degree",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Sections: WHAT YOU NEED defaults to required. NICE TO HAVES is an optional heading, so its items are nice_to_have.\nNot labeled because they appear only in WHAT YOU'LL DO (responsibilities): deep learning, gradient boosting, causal inference, A/B tests, feature engineering, deployment and monitoring.\nai-ml: required via 'Strong Interest or Experience with AI'. It is also named in nice-to-haves ('applying AI/ML'), and the required mention wins. Flagged uncertain because bare 'AI' mapping to ai-ml is a judgment call.\ndata-science: taken from 'common Data Science libraries' in the required Python bullet. 'Data Science' as a degree field is a field of study, not a skill. Uncertain.\nevaluation and model-development: both read from 'building/evaluating ML models'. Uncertain whether these are distinct skills beyond machine-learning.\nagents: 'LLMs and agents' sits under a required bullet titled 'Strong Interest or Experience'. 'Interest' could weaken it, but there is no optional marker, so it stays required.\nDegree: 'B.S., M.S. or Ph.D.' takes the highest level named (phd), per the golden_040 rule. 'Graduate degrees are preferred' marks only the graduate level as optional, and a degree in progress is still required, so degree_requirement is required. Flagged because a B.S. student fully qualifies.\nSeniority: 'Intern' in the title gives junior, stated.\nGerman: not mentioned, so null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "139f1fd60439798e8d98c04885cd1520cbbe0696c03ded72c5cb400a4e94a540",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

@@ -1,0 +1,117 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Snowflake\"\n    },\n    {\n      \"skill_id\": \"bigquery\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"BigQuery\"\n    },\n    {\n      \"skill_id\": \"business-intelligence\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"BI tools\"\n    },\n    {\n      \"skill_id\": \"dbt\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"dbt\"\n    },\n    {\n      \"skill_id\": \"data-modeling\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"data modeling\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"version control\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"testing\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Redshift\",\n      \"raw_text\": \"Redshift\"\n    },\n    {\n      \"label\": \"Looker\",\n      \"raw_text\": \"Looker\"\n    },\n    {\n      \"label\": \"Omni\",\n      \"raw_text\": \"Omni\"\n    },\n    {\n      \"label\": \"Sigma\",\n      \"raw_text\": \"Sigma\"\n    },\n    {\n      \"label\": \"Hex\",\n      \"raw_text\": \"Hex\"\n    },\n    {\n      \"label\": \"Reporting and dashboards\",\n      \"raw_text\": \"distributing data insights via reports and dashboards\"\n    },\n    {\n      \"label\": \"Modern data stack\",\n      \"raw_text\": \"modern data stack\"\n    },\n    {\n      \"label\": \"Fivetran\",\n      \"raw_text\": \"Fivetran\"\n    },\n    {\n      \"label\": \"Hightouch\",\n      \"raw_text\": \"Hightouch\"\n    },\n    {\n      \"label\": \"Analytics engineering development cycle\",\n      \"raw_text\": \"analytics engineering development cycle\"\n    },\n    {\n      \"label\": \"Documentation\",\n      \"raw_text\": \"documentation\"\n    },\n    {\n      \"label\": \"Codebase development best practices\",\n      \"raw_text\": \"best practices for codebase development\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Minimum of 4 years of industry experience as a Data Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"WHAT YOU NEED defaults to required; NICE-TO-HAVES makes its items optional. Read 'preferably' as an inline preference applying only to the parenthesized tools, not SQL or BI tools.\\nSnowflake and Looker occur in both preference lists; their optional mentions collapse.\\nFull stack development and experimental design appear only in responsibilities and are excluded. The Data Scientist role title and experience requirement are not treated as a separately requested Data Science technique.\\nReporting and dashboards are retained as unmapped rather than assuming the distinct skill of data visualization. Modern data stack and analytics engineering are not expanded into unnamed parent skills.\\nThe testing criterion quotes the optional development-cycle mention, not the responsibilities mention.\\nSeniority uses the four-year requirement. 'Help lead the future of analytics' is treated as aspirational rather than an explicit team-lead duty; flagged because a literal leadership reading could instead support senior.\\nNo German-language requirement or degree is mentioned.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "nice_to_have",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "bigquery",
+        "requirement": "nice_to_have",
+        "raw_text": "BigQuery"
+      },
+      {
+        "skill_id": "business-intelligence",
+        "requirement": "required",
+        "raw_text": "BI tools"
+      },
+      {
+        "skill_id": "dbt",
+        "requirement": "nice_to_have",
+        "raw_text": "dbt"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "nice_to_have",
+        "raw_text": "data modeling"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "nice_to_have",
+        "raw_text": "version control"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "testing"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Redshift",
+        "raw_text": "Redshift"
+      },
+      {
+        "label": "Looker",
+        "raw_text": "Looker"
+      },
+      {
+        "label": "Omni",
+        "raw_text": "Omni"
+      },
+      {
+        "label": "Sigma",
+        "raw_text": "Sigma"
+      },
+      {
+        "label": "Hex",
+        "raw_text": "Hex"
+      },
+      {
+        "label": "Reporting and dashboards",
+        "raw_text": "distributing data insights via reports and dashboards"
+      },
+      {
+        "label": "Modern data stack",
+        "raw_text": "modern data stack"
+      },
+      {
+        "label": "Fivetran",
+        "raw_text": "Fivetran"
+      },
+      {
+        "label": "Hightouch",
+        "raw_text": "Hightouch"
+      },
+      {
+        "label": "Analytics engineering development cycle",
+        "raw_text": "analytics engineering development cycle"
+      },
+      {
+        "label": "Documentation",
+        "raw_text": "documentation"
+      },
+      {
+        "label": "Codebase development best practices",
+        "raw_text": "best practices for codebase development"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Minimum of 4 years of industry experience as a Data Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "WHAT YOU NEED defaults to required; NICE-TO-HAVES makes its items optional. Read 'preferably' as an inline preference applying only to the parenthesized tools, not SQL or BI tools.\nSnowflake and Looker occur in both preference lists; their optional mentions collapse.\nFull stack development and experimental design appear only in responsibilities and are excluded. The Data Scientist role title and experience requirement are not treated as a separately requested Data Science technique.\nReporting and dashboards are retained as unmapped rather than assuming the distinct skill of data visualization. Modern data stack and analytics engineering are not expanded into unnamed parent skills.\nThe testing criterion quotes the optional development-cycle mention, not the responsibilities mention.\nSeniority uses the four-year requirement. 'Help lead the future of analytics' is treated as aspirational rather than an explicit team-lead duty; flagged because a literal leadership reading could instead support senior.\nNo German-language requirement or degree is mentioned."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "029bc5f3bfe8c6fa03caf6edd94167405d60fb5933566aca48157df4e75f9524",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

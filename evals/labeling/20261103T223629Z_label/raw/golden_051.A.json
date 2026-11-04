@@ -1,0 +1,141 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"shipping production software\", \"uncertain\": true},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"solutions architecture\", \"uncertain\": true},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"ML/GenAI\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM systems\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"evaluation\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"deployment trade-offs\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"TypeScript\"},\n    {\"skill_id\": \"javascript\", \"requirement\": \"required\", \"raw_text\": \"JavaScript\"},\n    {\"skill_id\": \"java\", \"requirement\": \"required\", \"raw_text\": \"Java, Go\"},\n    {\"skill_id\": \"go\", \"requirement\": \"required\", \"raw_text\": \"Go, or similar\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"APIs\"},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"required\", \"raw_text\": \"data pipelines\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud infrastructure\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"GCP\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\"},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"required\", \"raw_text\": \"distributed systems patterns\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agents\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"monitoring, and evals\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"technical documentation\", \"raw_text\": \"clear technical documentation\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": null, \"german_basis\": null, \"german_signal\": null,\n  \"degree\": null, \"degree_requirement\": null,\n  \"degree_or_equivalent\": false, \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"The 'Nice to have' finance-operations item is domain knowledge, not a skill, so it is not labeled.\\n'GenAI' and 'LLM systems' both map to llms. Both mentions are required, so I quoted the clearer 'LLM systems'.\\nBoth 'evaluation' and 'evals' map to evaluation. I quoted the first mention.\\nThe 'integrations' mention is covered by apis (alias 'api integrations'). It was not added separately.\\n'cloud infrastructure' and 'cloud architecture' both support cloud. I quoted the alias form.\\n'solutions architecture' is mapped to software-architecture as the closest entry. It also appears in 'design secure, scalable systems' and 'cloud architecture'. Flagged uncertain.\\n'shipping production software' is mapped to software-engineering. This is a borderline experience phrase, flagged uncertain.\\n'deployment trade-offs' in an ML/GenAI context is mapped to ai-deployment. Flagged uncertain.\\nThe Java quote is 'Java, Go' so it is not read as the 'Java' inside 'JavaScript'.\\n'monitoring' in the responsibilities is not labeled from there. observability rests on the requirements bullet.\\nSeniority is none: there are no years, level words or mentoring duty. 'co-lead customer engagements' is a responsibility shared with a strategist, not team leadership. 'high-ownership' is ownership language, which is not a level signal.\\nThere is no German or degree mention ('We care less about where you trained' is not a degree requirement).\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "shipping production software",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "solutions architecture",
+        "uncertain": true
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ML/GenAI"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM systems"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deployment trade-offs",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java, Go"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go, or similar"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "data pipelines"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud infrastructure"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed systems patterns"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agents"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring, and evals"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "technical documentation",
+        "raw_text": "clear technical documentation"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The 'Nice to have' finance-operations item is domain knowledge, not a skill, so it is not labeled.\n'GenAI' and 'LLM systems' both map to llms. Both mentions are required, so I quoted the clearer 'LLM systems'.\nBoth 'evaluation' and 'evals' map to evaluation. I quoted the first mention.\nThe 'integrations' mention is covered by apis (alias 'api integrations'). It was not added separately.\n'cloud infrastructure' and 'cloud architecture' both support cloud. I quoted the alias form.\n'solutions architecture' is mapped to software-architecture as the closest entry. It also appears in 'design secure, scalable systems' and 'cloud architecture'. Flagged uncertain.\n'shipping production software' is mapped to software-engineering. This is a borderline experience phrase, flagged uncertain.\n'deployment trade-offs' in an ML/GenAI context is mapped to ai-deployment. Flagged uncertain.\nThe Java quote is 'Java, Go' so it is not read as the 'Java' inside 'JavaScript'.\n'monitoring' in the responsibilities is not labeled from there. observability rests on the requirements bullet.\nSeniority is none: there are no years, level words or mentoring duty. 'co-lead customer engagements' is a responsibility shared with a strategist, not team leadership. 'high-ownership' is ownership language, which is not a level signal.\nThere is no German or degree mention ('We care less about where you trained' is not a degree requirement)."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "c9d5a5c2d9c5a7d641b35cada3a202cf1e7bb9731ded28afc2fb19245fcd0a6f",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

@@ -1,0 +1,89 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"including applications and agents\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"limitations, APIs\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"Technical fluency across modern AI systems\", \"uncertain\": true},\n    {\"skill_id\": \"ai-infrastructure\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience selling AI infrastructure\", \"uncertain\": true},\n    {\"skill_id\": \"workflow-automation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"workflow automation software\", \"uncertain\": true},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"nice_to_have\", \"raw_text\": \"enterprise AI deployment\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"AI gateways\", \"raw_text\": \"AI gateways\"},\n    {\"label\": \"Model routing\", \"raw_text\": \"model routing\"},\n    {\"label\": \"Data governance\", \"raw_text\": \"data governance\"},\n    {\"label\": \"Data flows\", \"raw_text\": \"data flows\"},\n    {\"label\": \"Security (AI systems)\", \"raw_text\": \"data flows, security\"},\n    {\"label\": \"Developer tools\", \"raw_text\": \"developer tools\"},\n    {\"label\": \"Data platforms\", \"raw_text\": \"data platforms\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"5+ years of experience in Solutions Engineering\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Requirements are under 'WHAT YOU'LL BRING' (required) and 'NICE TO HAVE' (nice_to_have). Responsibilities and company text are not labeled.\\n'agents' appears in the about-role text, the requirements and the nice-to-have list. The required mention wins, and its raw_text includes 'including' so it points to the requirements bullet.\\n'APIs' appears in both the responsibilities and the requirements. The raw_text 'limitations, APIs' occurs only in the requirements bullet.\\nThe 'integrations' mentions are folded into apis; the 'api integrations' alias covers them.\\n'modern AI systems' is mapped to ai-ml as a broad AI skill. This is a judgment call, so it is marked uncertain.\\nThe nice-to-have items are phrased as selling or familiarity experience ('Experience selling AI infrastructure', 'workflow automation software'). I mapped them to taxonomy ids and marked them uncertain, since they may read as sales-domain experience rather than technical skills.\\n'security' in the AI fluency bullet is not mapped to cybersecurity or data-privacy-and-security because the posting is too vague. It is listed in unmapped instead.\\nNo model-specific skill (for example LLMs) is labeled because the posting never names one.\\nSeniority is inferred from '5+ years', so the basis is inferred.\\nNo German and no degree are mentioned anywhere in the posting.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "including applications and agents"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "limitations, APIs"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Technical fluency across modern AI systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience selling AI infrastructure",
+        "uncertain": true
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "nice_to_have",
+        "raw_text": "workflow automation software",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "nice_to_have",
+        "raw_text": "enterprise AI deployment",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "AI gateways",
+        "raw_text": "AI gateways"
+      },
+      {
+        "label": "Model routing",
+        "raw_text": "model routing"
+      },
+      {
+        "label": "Data governance",
+        "raw_text": "data governance"
+      },
+      {
+        "label": "Data flows",
+        "raw_text": "data flows"
+      },
+      {
+        "label": "Security (AI systems)",
+        "raw_text": "data flows, security"
+      },
+      {
+        "label": "Developer tools",
+        "raw_text": "developer tools"
+      },
+      {
+        "label": "Data platforms",
+        "raw_text": "data platforms"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "5+ years of experience in Solutions Engineering",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Requirements are under 'WHAT YOU'LL BRING' (required) and 'NICE TO HAVE' (nice_to_have). Responsibilities and company text are not labeled.\n'agents' appears in the about-role text, the requirements and the nice-to-have list. The required mention wins, and its raw_text includes 'including' so it points to the requirements bullet.\n'APIs' appears in both the responsibilities and the requirements. The raw_text 'limitations, APIs' occurs only in the requirements bullet.\nThe 'integrations' mentions are folded into apis; the 'api integrations' alias covers them.\n'modern AI systems' is mapped to ai-ml as a broad AI skill. This is a judgment call, so it is marked uncertain.\nThe nice-to-have items are phrased as selling or familiarity experience ('Experience selling AI infrastructure', 'workflow automation software'). I mapped them to taxonomy ids and marked them uncertain, since they may read as sales-domain experience rather than technical skills.\n'security' in the AI fluency bullet is not mapped to cybersecurity or data-privacy-and-security because the posting is too vague. It is listed in unmapped instead.\nNo model-specific skill (for example LLMs) is labeled because the posting never names one.\nSeniority is inferred from '5+ years', so the basis is inferred.\nNo German and no degree are mentioned anywhere in the posting."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "7149b631e137d396f77391b3a1d1494c9fe079b597e2caf0cf62f156f9bc2700",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

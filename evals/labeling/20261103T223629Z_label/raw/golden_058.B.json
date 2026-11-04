@@ -1,0 +1,88 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM benchmarks or evals\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Statistical judgment\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SFT\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RL with verifiable rewards\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agentic tasks\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"verifiers evaluation framework\",\n      \"raw_text\": \"verifiers\"\n    },\n    {\n      \"label\": \"lm-evaluation-harness\",\n      \"raw_text\": \"lm-evaluation-harness\"\n    },\n    {\n      \"label\": \"HELM evaluation framework\",\n      \"raw_text\": \"HELM\"\n    },\n    {\n      \"label\": \"Failure analysis\",\n      \"raw_text\": \"failure-analysis\",\n      \"uncertain\": true\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"WHAT YOU NEED sets required skills; NICE-TO-HAVE sets optional skills. Responsibilities and company descriptions do not independently establish requirements.\\nSFT is read literally as supervised fine-tuning. Statistical judgment maps to statistics; individual statistical concepts are not separate taxonomy entries.\\nHELM names an evaluation framework here, not the Helm deployment tool. The framework-list occurrence of verifiers is treated as a named framework.\\nThe optional public-work example may ask for failure-analysis practice; flagged for review rather than silently omitting it.\\nAccounting and finance are excluded as domain knowledge. Ownership language alone does not establish seniority.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "LLM benchmarks or evals"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "Statistical judgment"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "SFT"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "RL with verifiable rewards"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic tasks"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "verifiers evaluation framework",
+        "raw_text": "verifiers"
+      },
+      {
+        "label": "lm-evaluation-harness",
+        "raw_text": "lm-evaluation-harness"
+      },
+      {
+        "label": "HELM evaluation framework",
+        "raw_text": "HELM"
+      },
+      {
+        "label": "Failure analysis",
+        "raw_text": "failure-analysis",
+        "uncertain": true
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "WHAT YOU NEED sets required skills; NICE-TO-HAVE sets optional skills. Responsibilities and company descriptions do not independently establish requirements.\nSFT is read literally as supervised fine-tuning. Statistical judgment maps to statistics; individual statistical concepts are not separate taxonomy entries.\nHELM names an evaluation framework here, not the Helm deployment tool. The framework-list occurrence of verifiers is treated as a named framework.\nThe optional public-work example may ask for failure-analysis practice; flagged for review rather than silently omitting it.\nAccounting and finance are excluded as domain knowledge. Ownership language alone does not establish seniority."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "c796207cf3978ab922e3d002bf2c86b8477bdd105fc8f159a6ce70b0eb3420df",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

@@ -1,0 +1,92 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"LLM benchmarks or evals\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM benchmarks\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong Python\"},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"software engineering\"},\n    {\"skill_id\": \"statistics\", \"requirement\": \"required\", \"raw_text\": \"Statistical judgment\", \"uncertain\": true},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"SFT\", \"uncertain\": true},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"required\", \"raw_text\": \"RL with verifiable rewards\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"Comfort with SQL\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"agentic tasks\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"post-training\", \"raw_text\": \"Working knowledge of post-training\"},\n    {\"label\": \"verifiers (eval framework)\", \"raw_text\": \"verifiers\"},\n    {\"label\": \"lm-evaluation-harness\", \"raw_text\": \"lm-evaluation-harness\"},\n    {\"label\": \"HELM\", \"raw_text\": \"HELM\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": null, \"german_basis\": null, \"german_signal\": null,\n  \"degree\": null, \"degree_requirement\": null,\n  \"degree_or_equivalent\": false, \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"WHAT YOU NEED sets items to required. NICE-TO-HAVE sets items to nice_to_have.\\nevaluation is required from 'LLM benchmarks or evals'. The nice-to-have eval-frameworks mention collapses into it.\\nllms is labeled because 'LLM benchmarks' names LLMs. It is flagged because the asked skill may be evaluation only.\\nSFT (supervised fine-tuning) is mapped to fine-tuning. 'post-training' itself has no exact taxonomy entry, so it is listed in unmapped.\\nreinforcement-learning is required from 'RL with verifiable rewards'. The nice-to-have 'RL environments' mention collapses into it.\\n'Statistical judgment' is mapped to statistics. Its sub-items are variance, confidence intervals and sample size.\\nagents comes from 'agentic tasks' in the nice-to-have list. It is flagged because it may be a domain descriptor rather than an asked skill.\\ntool use, llm-as-judge and multi-step reasoning appear only in responsibilities, so they are not labeled.\\nSeniority has no level, years or mentoring signal. Ownership language is not a level signal, so it is null.\\nThere is no German or degree mention.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "LLM benchmarks or evals"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM benchmarks",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "Statistical judgment",
+        "uncertain": true
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "SFT",
+        "uncertain": true
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "RL with verifiable rewards"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "Comfort with SQL"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic tasks",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "post-training",
+        "raw_text": "Working knowledge of post-training"
+      },
+      {
+        "label": "verifiers (eval framework)",
+        "raw_text": "verifiers"
+      },
+      {
+        "label": "lm-evaluation-harness",
+        "raw_text": "lm-evaluation-harness"
+      },
+      {
+        "label": "HELM",
+        "raw_text": "HELM"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "WHAT YOU NEED sets items to required. NICE-TO-HAVE sets items to nice_to_have.\nevaluation is required from 'LLM benchmarks or evals'. The nice-to-have eval-frameworks mention collapses into it.\nllms is labeled because 'LLM benchmarks' names LLMs. It is flagged because the asked skill may be evaluation only.\nSFT (supervised fine-tuning) is mapped to fine-tuning. 'post-training' itself has no exact taxonomy entry, so it is listed in unmapped.\nreinforcement-learning is required from 'RL with verifiable rewards'. The nice-to-have 'RL environments' mention collapses into it.\n'Statistical judgment' is mapped to statistics. Its sub-items are variance, confidence intervals and sample size.\nagents comes from 'agentic tasks' in the nice-to-have list. It is flagged because it may be a domain descriptor rather than an asked skill.\ntool use, llm-as-judge and multi-step reasoning appear only in responsibilities, so they are not labeled.\nSeniority has no level, years or mentoring signal. Ownership language is not a level signal, so it is null.\nThere is no German or degree mention."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "c796207cf3978ab922e3d002bf2c86b8477bdd105fc8f159a6ce70b0eb3420df",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

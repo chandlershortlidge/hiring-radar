@@ -1,0 +1,79 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning systems\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying, and improving machine learning systems\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"recommender-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"recommendation systems\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"backend engineering\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"interpret model performance\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"large language models\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agentic systems\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Information Retrieval\",\n      \"raw_text\": \"information retrieval\"\n    },\n    {\n      \"label\": \"Search Ranking\",\n      \"raw_text\": \"search ranking\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"'You are curious about emerging AI technologies, including large language models and agentic systems, and interested in their potential' asks only for curiosity/interest rather than experience; labeled llms and agents as nice_to_have and marked uncertain.\\n'deploying, and improving machine learning systems in production environments' mapped to ai-deployment (marked uncertain as it could also relate to mlops).\\n'interpret model performance' mapped to evaluation (marked uncertain).\\n'design and evaluate experiments' not mapped to a-b-testing as A/B testing is not explicitly named.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning systems"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying, and improving machine learning systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "required",
+        "raw_text": "recommendation systems"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend engineering"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "interpret model performance",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "large language models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic systems",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Information Retrieval",
+        "raw_text": "information retrieval"
+      },
+      {
+        "label": "Search Ranking",
+        "raw_text": "search ranking"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "'You are curious about emerging AI technologies, including large language models and agentic systems, and interested in their potential' asks only for curiosity/interest rather than experience; labeled llms and agents as nice_to_have and marked uncertain.\n'deploying, and improving machine learning systems in production environments' mapped to ai-deployment (marked uncertain as it could also relate to mlops).\n'interpret model performance' mapped to evaluation (marked uncertain).\n'design and evaluate experiments' not mapped to a-b-testing as A/B testing is not explicitly named."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "3bb23f51d160b92d3511234fc3e5f4a328572b4ee3873c1cfdc09ea41de4fcd1",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

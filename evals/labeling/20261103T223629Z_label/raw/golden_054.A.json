@@ -1,0 +1,71 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"technical interviews in either Python\", \"uncertain\": true},\n    {\"skill_id\": \"cpp\", \"requirement\": \"required\", \"raw_text\": \"C++\", \"uncertain\": true},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"ML/Deep Learning platforms\", \"uncertain\": true},\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"ML/Deep Learning platforms\"},\n    {\"skill_id\": \"pandas\", \"requirement\": \"nice_to_have\", \"raw_text\": \"pandas\"},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"nice_to_have\", \"raw_text\": \"scikit\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"nice_to_have\", \"raw_text\": \"pytorch\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Data structures and algorithms\", \"raw_text\": \"Strong understanding of data structures, algorithms, and design principles\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": null, \"german_basis\": null, \"german_signal\": null,\n  \"degree\": \"master\", \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false, \"degree_signal\": \"Completed a Bachelor's or Master's degree in Computer Science, Engineering, or a related technical field\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"Python and C++ are labeled required. The interview line says proficiency in one will be assessed, even though it also says 'no hard language requirement'. This is an either/or, read literally as an ask for both; flagged.\\nPython is also mentioned in the 'big plus' libraries line, which would make it nice_to_have. The required mention wins.\\nThe libraries line carries the inline marker 'big plus', so pandas, scikit-learn and pytorch are nice_to_have.\\nmachine-learning and deep-learning come from 'bonus if you have ... ML/Deep Learning platforms', which is nice_to_have. The 'ML' in the libraries line is also a plus. machine-learning is flagged because 'ML' only modifies 'platforms'/'libraries'.\\n'scikit' is mapped to scikit-learn.\\nDistributed systems, debugging and deployment of deep learning models appear only in the responsibilities and project examples, so they are not labeled from there.\\nSeniority is none: 'previous experience at a top-tier finance or technology company' gives no years and no 'proven experience'. 'Management experience' is a bonus, not a lead duty. The redirect of current Bachelor's students to new-grad roles is not a level statement.\\nDegree is labeled master, the highest level named, by analogy to the 'MS or PhD' ruling. 'Bachelor's or Master's' arguably means a Bachelor's suffices; flagged.\\n'Kindness', communication and multitasking are soft skills and are excluded.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "technical interviews in either Python",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++",
+        "uncertain": true
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "ML/Deep Learning platforms",
+        "uncertain": true
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "ML/Deep Learning platforms"
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "nice_to_have",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "nice_to_have",
+        "raw_text": "scikit"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "pytorch"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data structures and algorithms",
+        "raw_text": "Strong understanding of data structures, algorithms, and design principles"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Completed a Bachelor's or Master's degree in Computer Science, Engineering, or a related technical field",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Python and C++ are labeled required. The interview line says proficiency in one will be assessed, even though it also says 'no hard language requirement'. This is an either/or, read literally as an ask for both; flagged.\nPython is also mentioned in the 'big plus' libraries line, which would make it nice_to_have. The required mention wins.\nThe libraries line carries the inline marker 'big plus', so pandas, scikit-learn and pytorch are nice_to_have.\nmachine-learning and deep-learning come from 'bonus if you have ... ML/Deep Learning platforms', which is nice_to_have. The 'ML' in the libraries line is also a plus. machine-learning is flagged because 'ML' only modifies 'platforms'/'libraries'.\n'scikit' is mapped to scikit-learn.\nDistributed systems, debugging and deployment of deep learning models appear only in the responsibilities and project examples, so they are not labeled from there.\nSeniority is none: 'previous experience at a top-tier finance or technology company' gives no years and no 'proven experience'. 'Management experience' is a bonus, not a lead duty. The redirect of current Bachelor's students to new-grad roles is not a level statement.\nDegree is labeled master, the highest level named, by analogy to the 'MS or PhD' ruling. 'Bachelor's or Master's' arguably means a Bachelor's suffices; flagged.\n'Kindness', communication and multitasking are soft skills and are excluded."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "6da2deb252fd6875dd5f3884e427be058fb56d1d91149fd6c7ce1aa7cffdb07b",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

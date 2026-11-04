@@ -1,0 +1,40 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"r-lang\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"R\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"MATLAB\",\n      \"raw_text\": \"Matlab\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Intern\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Students enrolled in a PhD program in machine learning, computer science, statistics, or a related field.\",\n  \"notes\": \"Read DESIRABLE CANDIDATES literally as an optional qualifications heading, making its skills and degree nice_to_have.\\nMachine learning, computer science, and statistics in the qualifications describe fields of study, not separate technical skill requirements.\\nTechnologies and techniques named only in JOB DESCRIPTION are excluded.\\nThe PhD criterion asks for enrollment, not completion.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "r-lang",
+        "requirement": "nice_to_have",
+        "raw_text": "R"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "MATLAB",
+        "raw_text": "Matlab"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Intern",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Students enrolled in a PhD program in machine learning, computer science, statistics, or a related field.",
+    "notes": "Read DESIRABLE CANDIDATES literally as an optional qualifications heading, making its skills and degree nice_to_have.\nMachine learning, computer science, and statistics in the qualifications describe fields of study, not separate technical skill requirements.\nTechnologies and techniques named only in JOB DESCRIPTION are excluded.\nThe PhD criterion asks for enrollment, not completion."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "c5be0813871624a3bbb7314e21eff76405f1282b3a066a0bcb9d88064c1d443d",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

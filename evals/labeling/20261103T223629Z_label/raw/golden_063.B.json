@@ -1,0 +1,86 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Technical fluency across modern AI systems\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"including applications and agents\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"APIs\"\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"security\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"ai-infrastructure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI infrastructure\"\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"workflow automation\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"enterprise AI deployment\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Developer tools\",\n      \"raw_text\": \"developer tools\"\n    },\n    {\n      \"label\": \"Data platforms\",\n      \"raw_text\": \"data platforms\"\n    },\n    {\n      \"label\": \"AI gateways\",\n      \"raw_text\": \"AI gateways\"\n    },\n    {\n      \"label\": \"Model routing\",\n      \"raw_text\": \"model routing\"\n    },\n    {\n      \"label\": \"Usage controls\",\n      \"raw_text\": \"usage controls\"\n    },\n    {\n      \"label\": \"Data governance\",\n      \"raw_text\": \"data governance\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"5+ years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"WHAT YOU’LL BRING sets required criteria; NICE TO HAVE sets optional criteria. Technologies appearing only in ABOUT THE ROLE or WHAT YOU’LL DO are excluded.\\nTechnical fluency across modern AI systems is mapped to AI/ML; no LLM-specific skill is inferred from references to models.\\nThe required security fluency is provisionally mapped to Data Privacy & Security; the taxonomy fit is flagged for review.\\nTechnology categories explicitly named in the optional selling-experience bullet are treated as requested technology experience, even though the experience is commercial rather than implementation-focused. Generic developer tools are not assumed to be AI developer tooling.\\nGovernance in the required technical-fluency list is broader than the optional data governance phrase; no exact taxonomy entry fits either.\\nSales practices, financial analyses, finance technology domain knowledge, and customer-facing role titles are not labeled as technical skills. Solutions Architecture appears as a prior-role category, not an explicit software-architecture skill requirement.\\nNo German-language or degree requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Technical fluency across modern AI systems"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "including applications and agents"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "security",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "nice_to_have",
+        "raw_text": "AI infrastructure"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "nice_to_have",
+        "raw_text": "workflow automation"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "nice_to_have",
+        "raw_text": "enterprise AI deployment"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Developer tools",
+        "raw_text": "developer tools"
+      },
+      {
+        "label": "Data platforms",
+        "raw_text": "data platforms"
+      },
+      {
+        "label": "AI gateways",
+        "raw_text": "AI gateways"
+      },
+      {
+        "label": "Model routing",
+        "raw_text": "model routing"
+      },
+      {
+        "label": "Usage controls",
+        "raw_text": "usage controls"
+      },
+      {
+        "label": "Data governance",
+        "raw_text": "data governance"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "5+ years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "WHAT YOU’LL BRING sets required criteria; NICE TO HAVE sets optional criteria. Technologies appearing only in ABOUT THE ROLE or WHAT YOU’LL DO are excluded.\nTechnical fluency across modern AI systems is mapped to AI/ML; no LLM-specific skill is inferred from references to models.\nThe required security fluency is provisionally mapped to Data Privacy & Security; the taxonomy fit is flagged for review.\nTechnology categories explicitly named in the optional selling-experience bullet are treated as requested technology experience, even though the experience is commercial rather than implementation-focused. Generic developer tools are not assumed to be AI developer tooling.\nGovernance in the required technical-fluency list is broader than the optional data governance phrase; no exact taxonomy entry fits either.\nSales practices, financial analyses, finance technology domain knowledge, and customer-facing role titles are not labeled as technical skills. Solutions Architecture appears as a prior-role category, not an explicit software-architecture skill requirement.\nNo German-language or degree requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "7149b631e137d396f77391b3a1d1494c9fe079b597e2caf0cf62f156f9bc2700",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

@@ -1,0 +1,98 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience in NLP\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agents\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"RAG\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"open-source-llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"open-source models\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"fine-tuning\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"deployment\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering principles\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"github\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"testing\"\n    },\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Data science stack\"\n    }\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Bachelor, Master’s or PhD graduate or candidate\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Bachelor, Master’s or PhD graduate or candidate in computer science or another quantitative discipline\",\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"Skills in the intro paragraph ('The ideal candidate has a track record of developing modern NLP solutions, including the use of LLMs, agents, RAG, open-source models fine-tuning and deployment, etc.') are treated as candidate asks and marked nice_to_have due to 'The ideal candidate' (inline marker equivalent to 'ideally'), and flagged uncertain. NLP and LLMs collapse into required because they also appear in REQUIREMENTS.\\nSeniority labeled 'junior' based on 'graduate or candidate' per the rule 'Intern, working student, graduate, entry-level, (Junior) -> junior', flagged uncertain as it appears in a degree bullet.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "Experience in NLP"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agents",
+        "uncertain": true
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "RAG",
+        "uncertain": true
+      },
+      {
+        "skill_id": "open-source-llms",
+        "requirement": "nice_to_have",
+        "raw_text": "open-source models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "fine-tuning",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "nice_to_have",
+        "raw_text": "deployment",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering principles"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "github"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "Data science stack"
+      }
+    ],
+    "unmapped": [],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Bachelor, Master’s or PhD graduate or candidate",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor, Master’s or PhD graduate or candidate in computer science or another quantitative discipline",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Skills in the intro paragraph ('The ideal candidate has a track record of developing modern NLP solutions, including the use of LLMs, agents, RAG, open-source models fine-tuning and deployment, etc.') are treated as candidate asks and marked nice_to_have due to 'The ideal candidate' (inline marker equivalent to 'ideally'), and flagged uncertain. NLP and LLMs collapse into required because they also appear in REQUIREMENTS.\nSeniority labeled 'junior' based on 'graduate or candidate' per the rule 'Intern, working student, graduate, entry-level, (Junior) -> junior', flagged uncertain as it appears in a degree bullet."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "76f62559d135c4101876848dca69cc1963d7feda2d4756579ab76c69c772321b",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

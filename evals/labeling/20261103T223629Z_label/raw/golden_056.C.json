@@ -1,0 +1,40 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"r-lang\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"R\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Matlab\",\n      \"raw_text\": \"Matlab\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Machine Learning Researcher - Intern\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Students enrolled in a PhD program in machine learning, computer science, statistics, or a related field.\",\n  \"notes\": \"Treated 'DESIRABLE CANDIDATES' as the primary requirements section since it is the only qualifications section in the posting. ML, NLP, computer vision, etc., in the 'JOB DESCRIPTION' section are role/company interests and responsibilities rather than candidate requirements. 'machine learning, computer science, statistics' under DESIRABLE CANDIDATES are degree fields of study, not standalone skill requirements.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "r-lang",
+        "requirement": "required",
+        "raw_text": "R"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Matlab",
+        "raw_text": "Matlab"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Machine Learning Researcher - Intern",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Students enrolled in a PhD program in machine learning, computer science, statistics, or a related field.",
+    "notes": "Treated 'DESIRABLE CANDIDATES' as the primary requirements section since it is the only qualifications section in the posting. ML, NLP, computer vision, etc., in the 'JOB DESCRIPTION' section are role/company interests and responsibilities rather than candidate requirements. 'machine learning, computer science, statistics' under DESIRABLE CANDIDATES are degree fields of study, not standalone skill requirements."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "c5be0813871624a3bbb7314e21eff76405f1282b3a066a0bcb9d88064c1d443d",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

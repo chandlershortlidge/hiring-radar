@@ -1,0 +1,85 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"machine learning approaches\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"deploying, and improving machine learning systems in production\", \"uncertain\": true},\n    {\"skill_id\": \"recommender-systems\", \"requirement\": \"required\", \"raw_text\": \"recommendation systems\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"backend engineering\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"large language models\", \"uncertain\": true},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agentic systems\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"information retrieval\", \"raw_text\": \"information retrieval\"},\n    {\"label\": \"search ranking\", \"raw_text\": \"search ranking\"},\n    {\"label\": \"personalization\", \"raw_text\": \"personalization\"},\n    {\"label\": \"experiment design\", \"raw_text\": \"design and evaluate experiments\"},\n    {\"label\": \"large-scale data processing\", \"raw_text\": \"large-scale datasets\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"'Who You Are' is a requirements section with no optional heading, so every item under it defaults to required.\\nThe responsibilities section is not labeled; this covers 'ranking and backend retrieval systems' and 'agentic approaches' there.\\nai-deployment comes from 'deploying ... machine learning systems in production', matching the taxonomy alias 'model deployment'. Flagged uncertain because the wording is generic.\\nllms and agents are phrased as 'curious about ... interested in' inside a requirements bullet. I read that literally as asked of the candidate and required, with no optional marker. Flagged uncertain.\\n'modern machine learning frameworks and data processing tools' names no concrete tool, so nothing specific is labeled from it.\\nNo existing taxonomy entry fits the experiment-design or model-performance wording without stretching. I did not map it to a-b-testing or evaluation; it is listed in unmapped.\\nInformation retrieval, search ranking and personalization have no taxonomy entries, so they are listed in unmapped.\\nSeniority: the title says 'Senior'. There is no mention of German language or a degree.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning approaches"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying, and improving machine learning systems in production",
+        "uncertain": true
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "required",
+        "raw_text": "recommendation systems"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend engineering"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "large language models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic systems",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "information retrieval",
+        "raw_text": "information retrieval"
+      },
+      {
+        "label": "search ranking",
+        "raw_text": "search ranking"
+      },
+      {
+        "label": "personalization",
+        "raw_text": "personalization"
+      },
+      {
+        "label": "experiment design",
+        "raw_text": "design and evaluate experiments"
+      },
+      {
+        "label": "large-scale data processing",
+        "raw_text": "large-scale datasets"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "'Who You Are' is a requirements section with no optional heading, so every item under it defaults to required.\nThe responsibilities section is not labeled; this covers 'ranking and backend retrieval systems' and 'agentic approaches' there.\nai-deployment comes from 'deploying ... machine learning systems in production', matching the taxonomy alias 'model deployment'. Flagged uncertain because the wording is generic.\nllms and agents are phrased as 'curious about ... interested in' inside a requirements bullet. I read that literally as asked of the candidate and required, with no optional marker. Flagged uncertain.\n'modern machine learning frameworks and data processing tools' names no concrete tool, so nothing specific is labeled from it.\nNo existing taxonomy entry fits the experiment-design or model-performance wording without stretching. I did not map it to a-b-testing or evaluation; it is listed in unmapped.\nInformation retrieval, search ranking and personalization have no taxonomy entries, so they are listed in unmapped.\nSeniority: the title says 'Senior'. There is no mention of German language or a degree."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "3bb23f51d160b92d3511234fc3e5f4a328572b4ee3873c1cfdc09ea41de4fcd1",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

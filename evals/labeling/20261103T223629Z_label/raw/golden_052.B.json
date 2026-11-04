@@ -1,0 +1,97 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying, and improving machine learning systems in production environments\"\n    },\n    {\n      \"skill_id\": \"recommender-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"recommendation systems\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"backend engineering\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"interpret model performance\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"large language models\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic systems\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Information retrieval\",\n      \"raw_text\": \"information retrieval\"\n    },\n    {\n      \"label\": \"Search ranking\",\n      \"raw_text\": \"search ranking\"\n    },\n    {\n      \"label\": \"Personalization\",\n      \"raw_text\": \"personalization\"\n    },\n    {\n      \"label\": \"Machine learning frameworks\",\n      \"raw_text\": \"modern machine learning frameworks\"\n    },\n    {\n      \"label\": \"Data processing tools\",\n      \"raw_text\": \"data processing tools\"\n    },\n    {\n      \"label\": \"Experimental design and evaluation\",\n      \"raw_text\": \"design and evaluate experiments\"\n    },\n    {\n      \"label\": \"Working with large-scale datasets\",\n      \"raw_text\": \"working with large-scale datasets\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Who You Are is the candidate-qualification section; it contains no optional markers. Technologies and practices appearing only in What You'll Do or the company description are excluded.\\nThe alternative approaches in the information-retrieval/search-ranking/recommendation/personalization list are retained individually, as named skills.\\nEvaluation is flagged because interpreting model performance does not explicitly say model evaluation; experimental design is separately unmapped, and A/B testing is not assumed.\\nLLMs and agents are flagged because the qualification asks for curiosity and interest rather than demonstrated technical proficiency; no optional marker makes these nice-to-have.\\nGeneric machine learning frameworks and data processing tools have no exact taxonomy entries; no specific frameworks or tools are inferred.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying, and improving machine learning systems in production environments"
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "required",
+        "raw_text": "recommendation systems"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend engineering"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "interpret model performance",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "large language models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic systems",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Information retrieval",
+        "raw_text": "information retrieval"
+      },
+      {
+        "label": "Search ranking",
+        "raw_text": "search ranking"
+      },
+      {
+        "label": "Personalization",
+        "raw_text": "personalization"
+      },
+      {
+        "label": "Machine learning frameworks",
+        "raw_text": "modern machine learning frameworks"
+      },
+      {
+        "label": "Data processing tools",
+        "raw_text": "data processing tools"
+      },
+      {
+        "label": "Experimental design and evaluation",
+        "raw_text": "design and evaluate experiments"
+      },
+      {
+        "label": "Working with large-scale datasets",
+        "raw_text": "working with large-scale datasets"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Who You Are is the candidate-qualification section; it contains no optional markers. Technologies and practices appearing only in What You'll Do or the company description are excluded.\nThe alternative approaches in the information-retrieval/search-ranking/recommendation/personalization list are retained individually, as named skills.\nEvaluation is flagged because interpreting model performance does not explicitly say model evaluation; experimental design is separately unmapped, and A/B testing is not assumed.\nLLMs and agents are flagged because the qualification asks for curiosity and interest rather than demonstrated technical proficiency; no optional marker makes these nice-to-have.\nGeneric machine learning frameworks and data processing tools have no exact taxonomy entries; no specific frameworks or tools are inferred."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "3bb23f51d160b92d3511234fc3e5f4a328572b4ee3873c1cfdc09ea41de4fcd1",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

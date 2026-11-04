@@ -1,0 +1,89 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"programming fundamentals\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"ML/Deep Learning platforms\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Deep Learning platforms\"\n    },\n    {\n      \"skill_id\": \"pandas\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"pandas\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"scikit\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"pytorch\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"either Python or C++\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"either Python or C++\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Numerical and data-oriented Python libraries\",\n      \"raw_text\": \"python numerical, ML and data-oriented libraries\"\n    },\n    {\n      \"label\": \"Data structures\",\n      \"raw_text\": \"data structures\"\n    },\n    {\n      \"label\": \"Algorithms\",\n      \"raw_text\": \"algorithms\"\n    },\n    {\n      \"label\": \"Software design principles\",\n      \"raw_text\": \"design principles\"\n    },\n    {\n      \"label\": \"Software deployment\",\n      \"raw_text\": \"deploy new software and features\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Completed a Bachelor's or Master's degree in Computer Science, Engineering, or a related technical field.\",\n  \"notes\": \"Qualifications defaults to required; inline bonus and plus markers make the ML platforms and library experience optional.\\nPython and C++ are labeled required because proficiency in one is explicitly assessed; this is an alternative, not a requirement for both. Flagged because the posting also says there is no hard language requirement.\\nInterpreted 'scikit' as scikit-learn in the ML-library context; flagged the abbreviated name.\\nMapped programming fundamentals to software engineering; did not infer software architecture from design principles or CI/CD from software deployment.\\nExcluded technologies appearing only in project examples or responsibilities, including distributed systems and monitoring.\\nQuant research is domain knowledge; internal-user support and management experience are not treated as named technical skills.\\nPrevious experience and rapid advancement do not supply a seniority signal under the guide. The Campus/New Grad reference redirects other applicants and does not describe this role's level.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "programming fundamentals"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "ML/Deep Learning platforms"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "Deep Learning platforms"
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "nice_to_have",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "nice_to_have",
+        "raw_text": "scikit",
+        "uncertain": true
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "pytorch"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "either Python or C++",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "either Python or C++",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Numerical and data-oriented Python libraries",
+        "raw_text": "python numerical, ML and data-oriented libraries"
+      },
+      {
+        "label": "Data structures",
+        "raw_text": "data structures"
+      },
+      {
+        "label": "Algorithms",
+        "raw_text": "algorithms"
+      },
+      {
+        "label": "Software design principles",
+        "raw_text": "design principles"
+      },
+      {
+        "label": "Software deployment",
+        "raw_text": "deploy new software and features"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Completed a Bachelor's or Master's degree in Computer Science, Engineering, or a related technical field.",
+    "notes": "Qualifications defaults to required; inline bonus and plus markers make the ML platforms and library experience optional.\nPython and C++ are labeled required because proficiency in one is explicitly assessed; this is an alternative, not a requirement for both. Flagged because the posting also says there is no hard language requirement.\nInterpreted 'scikit' as scikit-learn in the ML-library context; flagged the abbreviated name.\nMapped programming fundamentals to software engineering; did not infer software architecture from design principles or CI/CD from software deployment.\nExcluded technologies appearing only in project examples or responsibilities, including distributed systems and monitoring.\nQuant research is domain knowledge; internal-user support and management experience are not treated as named technical skills.\nPrevious experience and rapid advancement do not supply a seniority signal under the guide. The Campus/New Grad reference redirects other applicants and does not describe this role's level."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "6da2deb252fd6875dd5f3884e427be058fb56d1d91149fd6c7ce1aa7cffdb07b",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

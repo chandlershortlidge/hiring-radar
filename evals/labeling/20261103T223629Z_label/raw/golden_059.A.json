@@ -1,0 +1,159 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong Python proficiency required\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Machine learning research or engineering\"},\n    {\"skill_id\": \"ml-engineering\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Machine learning research or engineering\", \"uncertain\": true},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"fine-tuning\"},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"post-training, fine-tuning, reinforcement learning\", \"uncertain\": true},\n    {\"skill_id\": \"agent-architecture\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AI-agent architecture\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AI-agent architecture, evaluation\", \"uncertain\": true},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"nice_to_have\", \"raw_text\": \"tool-use environments\"},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Distributed systems\"},\n    {\"skill_id\": \"model-serving\", \"requirement\": \"nice_to_have\", \"raw_text\": \"model serving\"},\n    {\"skill_id\": \"linux\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Linux\"},\n    {\"skill_id\": \"networking\", \"requirement\": \"nice_to_have\", \"raw_text\": \"networking\"},\n    {\"skill_id\": \"cpp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"C++\"},\n    {\"skill_id\": \"typescript\", \"requirement\": \"nice_to_have\", \"raw_text\": \"TypeScript\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"software design\", \"raw_text\": \"Excellent software design\"},\n    {\"label\": \"debugging\", \"raw_text\": \"debugging\"},\n    {\"label\": \"building and operating software systems\", \"raw_text\": \"Experience building and operating substantial software systems\"},\n    {\"label\": \"modern AI systems\", \"raw_text\": \"Demonstrated engagement with modern AI systems, tools, or research\"},\n    {\"label\": \"experiment design\", \"raw_text\": \"rigorous measurement and experiment design\"},\n    {\"label\": \"post-training\", \"raw_text\": \"post-training\"},\n    {\"label\": \"alignment\", \"raw_text\": \"alignment\"},\n    {\"label\": \"orchestration\", \"raw_text\": \"orchestration\"},\n    {\"label\": \"high-throughput research infrastructure\", \"raw_text\": \"high-throughput research infrastructure\"},\n    {\"label\": \"security sandboxing\", \"raw_text\": \"Security sandboxing\"},\n    {\"label\": \"policy enforcement\", \"raw_text\": \"policy enforcement\"},\n    {\"label\": \"adversarial testing\", \"raw_text\": \"adversarial testing\"},\n    {\"label\": \"AI governance\", \"raw_text\": \"governance for AI systems\"},\n    {\"label\": \"forward-deployed engineering\", \"raw_text\": \"Forward-deployed engineering\"},\n    {\"label\": \"systems performance\", \"raw_text\": \"systems performance\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": null, \"german_basis\": null, \"german_signal\": null,\n  \"degree\": \"bachelor\", \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor's degree in Computer Science, Engineering, or a related field, or equivalent practical experience required\",\n  \"notes\": \"Two sub-headings under Qualifications matter here. 'Required:' covers the first list. 'Experience in one or more of the following is helpful:' covers the second. I read 'helpful' as marking that second list optional, so its items are nice_to_have. 'helpful' is not one of the heading words listed in the guide, so this is a judgment call.\\nThe Responsibilities section names prompting, monitoring, post-training and similar work. Those are not labeled unless they reappear in the Qualifications section.\\nml-engineering comes from the phrase 'Machine learning research or engineering'. I am not sure that phrase names ML engineering as a distinct skill, so it is flagged uncertain.\\nevaluation: the bare word 'evaluation' appears many times in the posting. I quoted 'AI-agent architecture, evaluation' so the quote identifies the Qualifications bullet that carries the label. It is flagged uncertain because the label is still a judgment call.\\nreinforcement-learning: the bare words 'reinforcement learning' appear in both the company description and the Responsibilities section, which are not labeled. I quoted 'post-training, fine-tuning, reinforcement learning' so the quote points at the Qualifications bullet that carries the label. It is flagged uncertain because this disambiguation is a judgment call.\\n'orchestration' sits next to distributed systems and model serving. That context is ambiguous between LLM orchestration and container orchestration, so I left it unmapped.\\nThe security items (sandboxing, policy enforcement, adversarial testing, governance) were not mapped to llm-guardrails or testing. The text does not name those taxonomy concepts directly.\\nThe 'Profile' section has no optional marker, so it defaults to required. Its items are soft skills except 'experiment design', which has no taxonomy fit and is listed as unmapped.\\nSeniority: the posting has no title level, no years of experience and no lead or mentoring duty, so it is null.\\nGerman is not mentioned. The degree accepts 'equivalent practical experience', so degree_or_equivalent is true.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python proficiency required"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "Machine learning research or engineering"
+      },
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "Machine learning research or engineering",
+        "uncertain": true
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "post-training, fine-tuning, reinforcement learning",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agent-architecture",
+        "requirement": "nice_to_have",
+        "raw_text": "AI-agent architecture"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "AI-agent architecture, evaluation",
+        "uncertain": true
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "nice_to_have",
+        "raw_text": "tool-use environments"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "Distributed systems"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "model serving"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "nice_to_have",
+        "raw_text": "Linux"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "nice_to_have",
+        "raw_text": "networking"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "nice_to_have",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "nice_to_have",
+        "raw_text": "TypeScript"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "software design",
+        "raw_text": "Excellent software design"
+      },
+      {
+        "label": "debugging",
+        "raw_text": "debugging"
+      },
+      {
+        "label": "building and operating software systems",
+        "raw_text": "Experience building and operating substantial software systems"
+      },
+      {
+        "label": "modern AI systems",
+        "raw_text": "Demonstrated engagement with modern AI systems, tools, or research"
+      },
+      {
+        "label": "experiment design",
+        "raw_text": "rigorous measurement and experiment design"
+      },
+      {
+        "label": "post-training",
+        "raw_text": "post-training"
+      },
+      {
+        "label": "alignment",
+        "raw_text": "alignment"
+      },
+      {
+        "label": "orchestration",
+        "raw_text": "orchestration"
+      },
+      {
+        "label": "high-throughput research infrastructure",
+        "raw_text": "high-throughput research infrastructure"
+      },
+      {
+        "label": "security sandboxing",
+        "raw_text": "Security sandboxing"
+      },
+      {
+        "label": "policy enforcement",
+        "raw_text": "policy enforcement"
+      },
+      {
+        "label": "adversarial testing",
+        "raw_text": "adversarial testing"
+      },
+      {
+        "label": "AI governance",
+        "raw_text": "governance for AI systems"
+      },
+      {
+        "label": "forward-deployed engineering",
+        "raw_text": "Forward-deployed engineering"
+      },
+      {
+        "label": "systems performance",
+        "raw_text": "systems performance"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor's degree in Computer Science, Engineering, or a related field, or equivalent practical experience required",
+    "notes": "Two sub-headings under Qualifications matter here. 'Required:' covers the first list. 'Experience in one or more of the following is helpful:' covers the second. I read 'helpful' as marking that second list optional, so its items are nice_to_have. 'helpful' is not one of the heading words listed in the guide, so this is a judgment call.\nThe Responsibilities section names prompting, monitoring, post-training and similar work. Those are not labeled unless they reappear in the Qualifications section.\nml-engineering comes from the phrase 'Machine learning research or engineering'. I am not sure that phrase names ML engineering as a distinct skill, so it is flagged uncertain.\nevaluation: the bare word 'evaluation' appears many times in the posting. I quoted 'AI-agent architecture, evaluation' so the quote identifies the Qualifications bullet that carries the label. It is flagged uncertain because the label is still a judgment call.\nreinforcement-learning: the bare words 'reinforcement learning' appear in both the company description and the Responsibilities section, which are not labeled. I quoted 'post-training, fine-tuning, reinforcement learning' so the quote points at the Qualifications bullet that carries the label. It is flagged uncertain because this disambiguation is a judgment call.\n'orchestration' sits next to distributed systems and model serving. That context is ambiguous between LLM orchestration and container orchestration, so I left it unmapped.\nThe security items (sandboxing, policy enforcement, adversarial testing, governance) were not mapped to llm-guardrails or testing. The text does not name those taxonomy concepts directly.\nThe 'Profile' section has no optional marker, so it defaults to required. Its items are soft skills except 'experiment design', which has no taxonomy fit and is listed as unmapped.\nSeniority: the posting has no title level, no years of experience and no lead or mentoring duty, so it is null.\nGerman is not mentioned. The degree accepts 'equivalent practical experience', so degree_or_equivalent is true."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "ef109727c86b4fad4f92117a49a18e760484d909e41c41d22876f8c556bff2a4",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

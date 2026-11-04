@@ -1,0 +1,66 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agents\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"APIs\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"enterprise AI deployment\"\n    },\n    {\n      \"skill_id\": \"ai-infrastructure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI infrastructure\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"workflow automation\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"AI gateways\",\n      \"raw_text\": \"AI gateways\"\n    },\n    {\n      \"label\": \"Model routing\",\n      \"raw_text\": \"model routing\"\n    },\n    {\n      \"label\": \"Data governance\",\n      \"raw_text\": \"data governance\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"5+ years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Flagged ai-infrastructure and workflow-automation as uncertain because they appear under 'Experience selling AI infrastructure, AI applications or agents, developer tools, data platforms, security products, finance technology, or workflow automation software' rather than hands-on technical skills.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agents"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "nice_to_have",
+        "raw_text": "enterprise AI deployment"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "nice_to_have",
+        "raw_text": "AI infrastructure",
+        "uncertain": true
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "nice_to_have",
+        "raw_text": "workflow automation",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "AI gateways",
+        "raw_text": "AI gateways"
+      },
+      {
+        "label": "Model routing",
+        "raw_text": "model routing"
+      },
+      {
+        "label": "Data governance",
+        "raw_text": "data governance"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "5+ years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Flagged ai-infrastructure and workflow-automation as uncertain because they appear under 'Experience selling AI infrastructure, AI applications or agents, developer tools, data platforms, security products, finance technology, or workflow automation software' rather than hands-on technical skills."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "7149b631e137d396f77391b3a1d1494c9fe079b597e2caf0cf62f156f9bc2700",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

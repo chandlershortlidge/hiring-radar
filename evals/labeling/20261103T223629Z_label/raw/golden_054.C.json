@@ -1,0 +1,68 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"ML\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Deep Learning\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"prepared for technical interviews in either Python or C++\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"pandas\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"pandas\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"scikit\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"pytorch\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data Structures and Algorithms\",\n      \"raw_text\": \"data structures, algorithms\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Completed a Bachelor's or Master's degree in Computer Science, Engineering, or a related technical field.\",\n  \"uncertain\": [],\n  \"notes\": \"Python and C++ are mentioned in 'Candidates should be prepared for technical interviews in either Python or C++. While there is no hard language requirement for RE roles, proficiency in one of these languages will be assessed during the interview process.' Labeled as required with uncertain: true due to the 'either/or' and 'no hard language requirement' phrasing.\\nDistributed systems and deep learning models in the project examples/responsibilities sections were skipped as they only appear in responsibilities.\\nDegree is labeled 'master' as the highest level named in 'Bachelor's or Master's degree'.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "ML"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "Deep Learning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "prepared for technical interviews in either Python or C++",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++",
+        "uncertain": true
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "nice_to_have",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "nice_to_have",
+        "raw_text": "scikit"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "pytorch"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data Structures and Algorithms",
+        "raw_text": "data structures, algorithms"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Completed a Bachelor's or Master's degree in Computer Science, Engineering, or a related technical field.",
+    "uncertain": [],
+    "notes": "Python and C++ are mentioned in 'Candidates should be prepared for technical interviews in either Python or C++. While there is no hard language requirement for RE roles, proficiency in one of these languages will be assessed during the interview process.' Labeled as required with uncertain: true due to the 'either/or' and 'no hard language requirement' phrasing.\nDistributed systems and deep learning models in the project examples/responsibilities sections were skipped as they only appear in responsibilities.\nDegree is labeled 'master' as the highest level named in 'Bachelor's or Master's degree'."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "6da2deb252fd6875dd5f3884e427be058fb56d1d91149fd6c7ce1aa7cffdb07b",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

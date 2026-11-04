@@ -1,0 +1,154 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"statistics\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agents\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python Proficiency\"\n    },\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Data Science libraries\"\n    },\n    {\n      \"skill_id\": \"pandas\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"pandas\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"scikit-learn\"\n    },\n    {\n      \"skill_id\": \"numpy\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"NumPy\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL Knowledge\"\n    },\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Snowflake\"\n    },\n    {\n      \"skill_id\": \"bigquery\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"BigQuery\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building/evaluating ML models\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building/evaluating ML models\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI/ML\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"version control (Git)\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"testing\"\n    },\n    {\n      \"skill_id\": \"airflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Airflow\"\n    },\n    {\n      \"skill_id\": \"dagster\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Dagster\"\n    },\n    {\n      \"skill_id\": \"prefect\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Prefect\"\n    },\n    {\n      \"skill_id\": \"metaflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Metaflow\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Redshift\",\n      \"raw_text\": \"Redshift\"\n    },\n    {\n      \"label\": \"Clickhouse\",\n      \"raw_text\": \"Clickhouse\"\n    },\n    {\n      \"label\": \"Data Orchestration\",\n      \"raw_text\": \"Data Orchestration\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Applied Scientist Intern\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"B.S., M.S. or Ph.D. Student: currently pursuing a degree in Data Science, Computer Science, Math, Physics, Economics, Statistics, or other quantitative fields\",\n  \"uncertain\": [],\n  \"notes\": \"Skills under 'WHAT YOU’LL DO' (feature engineering, deep learning, causal inference, A/B tests, etc.) are skipped as they are in the responsibilities section. Degree is labeled 'phd' (highest named in 'B.S., M.S. or Ph.D. Student') and 'required' because a degree is required, even though graduate degrees are marked preferred.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistics"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agents"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python Proficiency"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "Data Science libraries"
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "required",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "numpy",
+        "requirement": "required",
+        "raw_text": "NumPy"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL Knowledge"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "bigquery",
+        "requirement": "required",
+        "raw_text": "BigQuery"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "building/evaluating ML models"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "building/evaluating ML models"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "nice_to_have",
+        "raw_text": "AI/ML"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "nice_to_have",
+        "raw_text": "version control (Git)"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "testing"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Airflow"
+      },
+      {
+        "skill_id": "dagster",
+        "requirement": "nice_to_have",
+        "raw_text": "Dagster"
+      },
+      {
+        "skill_id": "prefect",
+        "requirement": "nice_to_have",
+        "raw_text": "Prefect"
+      },
+      {
+        "skill_id": "metaflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Metaflow"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Redshift",
+        "raw_text": "Redshift"
+      },
+      {
+        "label": "Clickhouse",
+        "raw_text": "Clickhouse"
+      },
+      {
+        "label": "Data Orchestration",
+        "raw_text": "Data Orchestration"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Applied Scientist Intern",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "B.S., M.S. or Ph.D. Student: currently pursuing a degree in Data Science, Computer Science, Math, Physics, Economics, Statistics, or other quantitative fields",
+    "uncertain": [],
+    "notes": "Skills under 'WHAT YOU’LL DO' (feature engineering, deep learning, causal inference, A/B tests, etc.) are skipped as they are in the responsibilities section. Degree is labeled 'phd' (highest named in 'B.S., M.S. or Ph.D. Student') and 'required' because a degree is required, even though graduate degrees are marked preferred."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "139f1fd60439798e8d98c04885cd1520cbbe0696c03ded72c5cb400a4e94a540",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

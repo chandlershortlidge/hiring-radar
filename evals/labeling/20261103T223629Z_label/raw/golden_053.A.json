@@ -1,0 +1,107 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"Strong knowledge of SQL\"},\n    {\"skill_id\": \"snowflake\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Redshift, Snowflake\", \"uncertain\": true},\n    {\"skill_id\": \"bigquery\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Snowflake, BigQuery\", \"uncertain\": true},\n    {\"skill_id\": \"business-intelligence\", \"requirement\": \"required\", \"raw_text\": \"BI tools\"},\n    {\"skill_id\": \"dbt\", \"requirement\": \"nice_to_have\", \"raw_text\": \"dbt\"},\n    {\"skill_id\": \"data-modeling\", \"requirement\": \"nice_to_have\", \"raw_text\": \"data modeling\"},\n    {\"skill_id\": \"git\", \"requirement\": \"nice_to_have\", \"raw_text\": \"version control\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"nice_to_have\", \"raw_text\": \"documentation + testing\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Redshift\", \"raw_text\": \"Redshift\"},\n    {\"label\": \"Looker\", \"raw_text\": \"Looker\"},\n    {\"label\": \"Omni\", \"raw_text\": \"Omni\"},\n    {\"label\": \"Sigma\", \"raw_text\": \"Sigma\"},\n    {\"label\": \"Hex\", \"raw_text\": \"Hex\"},\n    {\"label\": \"Fivetran\", \"raw_text\": \"Fivetran\"},\n    {\"label\": \"Hightouch\", \"raw_text\": \"Hightouch\"},\n    {\"label\": \"Modern data stack\", \"raw_text\": \"modern data stack\"},\n    {\"label\": \"Analytics engineering\", \"raw_text\": \"analytics engineering development cycle\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Minimum of 4 years of industry experience as a Data Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"'preferably Redshift, Snowflake, BigQuery' is read as the inline marker 'preferred', so the named warehouses are nice_to_have. SQL itself stays required.\\nSnowflake is mentioned twice: under 'preferably' in the requirements and in the NICE-TO-HAVES modern data stack list. Both mentions are optional, so it is collapsed to one criterion, nice_to_have.\\nThe BI tool examples (Looker, Omni, Sigma, Hex) are under 'preferably'; they have no taxonomy ids and go to unmapped. The broad 'BI tools' requirement is required.\\n'reports and dashboards' is not labeled as data-visualization because the posting never names it.\\n'Full stack development' and 'experimental design, testing agenda' appear only in WHAT YOU'LL DO (responsibilities), so they are not labeled. Testing comes only from the nice-to-have 'documentation + testing'.\\nSeniority is inferred from 'Minimum of 4 years' (3-5 years), giving mid. 'help lead the future of analytics' is in the role description and is vague, not a clear lead or mentoring duty, so it was not used to infer senior. Flagged for review.\\nNo German or degree mention appears in the posting. 'We care less about where you trained' is not a degree requirement.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "Strong knowledge of SQL"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "nice_to_have",
+        "raw_text": "Redshift, Snowflake",
+        "uncertain": true
+      },
+      {
+        "skill_id": "bigquery",
+        "requirement": "nice_to_have",
+        "raw_text": "Snowflake, BigQuery",
+        "uncertain": true
+      },
+      {
+        "skill_id": "business-intelligence",
+        "requirement": "required",
+        "raw_text": "BI tools"
+      },
+      {
+        "skill_id": "dbt",
+        "requirement": "nice_to_have",
+        "raw_text": "dbt"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "nice_to_have",
+        "raw_text": "data modeling"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "nice_to_have",
+        "raw_text": "version control"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "documentation + testing"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Redshift",
+        "raw_text": "Redshift"
+      },
+      {
+        "label": "Looker",
+        "raw_text": "Looker"
+      },
+      {
+        "label": "Omni",
+        "raw_text": "Omni"
+      },
+      {
+        "label": "Sigma",
+        "raw_text": "Sigma"
+      },
+      {
+        "label": "Hex",
+        "raw_text": "Hex"
+      },
+      {
+        "label": "Fivetran",
+        "raw_text": "Fivetran"
+      },
+      {
+        "label": "Hightouch",
+        "raw_text": "Hightouch"
+      },
+      {
+        "label": "Modern data stack",
+        "raw_text": "modern data stack"
+      },
+      {
+        "label": "Analytics engineering",
+        "raw_text": "analytics engineering development cycle"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Minimum of 4 years of industry experience as a Data Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "'preferably Redshift, Snowflake, BigQuery' is read as the inline marker 'preferred', so the named warehouses are nice_to_have. SQL itself stays required.\nSnowflake is mentioned twice: under 'preferably' in the requirements and in the NICE-TO-HAVES modern data stack list. Both mentions are optional, so it is collapsed to one criterion, nice_to_have.\nThe BI tool examples (Looker, Omni, Sigma, Hex) are under 'preferably'; they have no taxonomy ids and go to unmapped. The broad 'BI tools' requirement is required.\n'reports and dashboards' is not labeled as data-visualization because the posting never names it.\n'Full stack development' and 'experimental design, testing agenda' appear only in WHAT YOU'LL DO (responsibilities), so they are not labeled. Testing comes only from the nice-to-have 'documentation + testing'.\nSeniority is inferred from 'Minimum of 4 years' (3-5 years), giving mid. 'help lead the future of analytics' is in the role description and is vague, not a clear lead or mentoring duty, so it was not used to infer senior. Flagged for review.\nNo German or degree mention appears in the posting. 'We care less about where you trained' is not a degree requirement."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "029bc5f3bfe8c6fa03caf6edd94167405d60fb5933566aca48157df4e75f9524",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

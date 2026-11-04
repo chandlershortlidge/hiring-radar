@@ -1,0 +1,96 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"nlp\", \"requirement\": \"required\", \"raw_text\": \"Experience in NLP\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"particularly LLMs\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agents\", \"uncertain\": true},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG\", \"uncertain\": true},\n    {\"skill_id\": \"open-source-llms\", \"requirement\": \"required\", \"raw_text\": \"open-source models\", \"uncertain\": true},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"fine-tuning\", \"uncertain\": true},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"fine-tuning and deployment\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL\"},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"general software engineering principles\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"github\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"testing\"},\n    {\"skill_id\": \"data-science\", \"requirement\": \"required\", \"raw_text\": \"Data science stack\"}\n  ],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Bachelor, Master’s or PhD graduate or candidate in computer science or another quantitative discipline\",\n  \"uncertain\": [],\n  \"notes\": \"The sentence 'The ideal candidate has a track record of ... LLMs, agents, RAG, open-source models fine-tuning and deployment' sits under ROLE/RESPONSIBILTIES. It describes the candidate, so its skills are labeled.\\nThose skills are labeled required. 'ideal' is not one of the listed markers ('ideally' is), and the heading does not mark the section optional. They are flagged uncertain because a reviewer may read 'ideal candidate' as optional.\\n'deployment' maps to ai-deployment (model deployment). It is quoted as 'fine-tuning and deployment' because 'deployment' alone is ambiguous.\\n'open-source models' maps to open-source-llms. This is a judgment call: the context is LLMs, but the phrase says 'models'.\\nThese items appear only in responsibilities and are not labeled: 'external APIs', 'Benchmarking LLM approaches' (evaluation), 'Post-training models' and 'GenAI solutions'.\\nLLMs is labeled required. The raw_text quotes the Requirements mention, 'particularly LLMs'.\\n'Interest in financial markets' is domain knowledge and 'Collaborative mindset' is a soft skill; neither is labeled.\\nSeniority is null. 'graduate or candidate' and 'track record' are not level signals under the guide, and no years of experience are given.\\nDegree is phd, the highest level named in 'Bachelor, Master’s or PhD'. 'or another quantitative discipline' widens the field, so degree_or_equivalent is false.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "Experience in NLP"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "particularly LLMs"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agents",
+        "uncertain": true
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG",
+        "uncertain": true
+      },
+      {
+        "skill_id": "open-source-llms",
+        "requirement": "required",
+        "raw_text": "open-source models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "fine-tuning and deployment",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "general software engineering principles"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "github"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "Data science stack"
+      }
+    ],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor, Master’s or PhD graduate or candidate in computer science or another quantitative discipline",
+    "uncertain": [],
+    "notes": "The sentence 'The ideal candidate has a track record of ... LLMs, agents, RAG, open-source models fine-tuning and deployment' sits under ROLE/RESPONSIBILTIES. It describes the candidate, so its skills are labeled.\nThose skills are labeled required. 'ideal' is not one of the listed markers ('ideally' is), and the heading does not mark the section optional. They are flagged uncertain because a reviewer may read 'ideal candidate' as optional.\n'deployment' maps to ai-deployment (model deployment). It is quoted as 'fine-tuning and deployment' because 'deployment' alone is ambiguous.\n'open-source models' maps to open-source-llms. This is a judgment call: the context is LLMs, but the phrase says 'models'.\nThese items appear only in responsibilities and are not labeled: 'external APIs', 'Benchmarking LLM approaches' (evaluation), 'Post-training models' and 'GenAI solutions'.\nLLMs is labeled required. The raw_text quotes the Requirements mention, 'particularly LLMs'.\n'Interest in financial markets' is domain knowledge and 'Collaborative mindset' is a soft skill; neither is labeled.\nSeniority is null. 'graduate or candidate' and 'track record' are not level signals under the guide, and no years of experience are given.\nDegree is phd, the highest level named in 'Bachelor, Master’s or PhD'. 'or another quantitative discipline' widens the field, so degree_or_equivalent is false."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "76f62559d135c4101876848dca69cc1963d7feda2d4756579ab76c69c772321b",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

@@ -1,0 +1,90 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"cuda\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CUDA\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning systems\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLM experience is valuable, but not necessary\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Triton kernel programming\",\n      \"raw_text\": \"Triton\"\n    },\n    {\n      \"label\": \"Pallas\",\n      \"raw_text\": \"Pallas\"\n    },\n    {\n      \"label\": \"CuTe DSL\",\n      \"raw_text\": \"CuTe DSL\"\n    },\n    {\n      \"label\": \"Kernel development\",\n      \"raw_text\": \"kernel development\"\n    },\n    {\n      \"label\": \"XLA\",\n      \"raw_text\": \"XLA\"\n    },\n    {\n      \"label\": \"CUDA Graphs\",\n      \"raw_text\": \"CUDA Graphs\"\n    },\n    {\n      \"label\": \"FPGA\",\n      \"raw_text\": \"FPGA\"\n    },\n    {\n      \"label\": \"ASIC\",\n      \"raw_text\": \"ASIC\"\n    },\n    {\n      \"label\": \"Translating methods between application areas\",\n      \"raw_text\": \"translating methods between areas of application\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"two or more years work experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"Qualifications is a required section; the alternatives introduced by 'especially any of' are individually labeled required, not optional.\\nLLM experience is explicitly unnecessary and therefore nice_to_have.\\nTriton denotes the kernel-programming technology, not Triton Inference Server, and has no matching taxonomy entry.\\nTranslating methods between application areas is retained as an unmapped technique rather than assumed to mean transfer learning.\\nThe application domains listed after 'for any domain' are examples of domain experience, not separately requested skills.\\nSeniority uses the two-year lower bound and the guide's 0–2-year junior range; 'or more' leaves the level ambiguous and is flagged.\\nTechnologies mentioned only in the role description are excluded; generic 'engineering skills' is not assumed to mean software engineering.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cuda",
+        "requirement": "required",
+        "raw_text": "CUDA"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning systems"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM experience is valuable, but not necessary"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Triton kernel programming",
+        "raw_text": "Triton"
+      },
+      {
+        "label": "Pallas",
+        "raw_text": "Pallas"
+      },
+      {
+        "label": "CuTe DSL",
+        "raw_text": "CuTe DSL"
+      },
+      {
+        "label": "Kernel development",
+        "raw_text": "kernel development"
+      },
+      {
+        "label": "XLA",
+        "raw_text": "XLA"
+      },
+      {
+        "label": "CUDA Graphs",
+        "raw_text": "CUDA Graphs"
+      },
+      {
+        "label": "FPGA",
+        "raw_text": "FPGA"
+      },
+      {
+        "label": "ASIC",
+        "raw_text": "ASIC"
+      },
+      {
+        "label": "Translating methods between application areas",
+        "raw_text": "translating methods between areas of application"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "two or more years work experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Qualifications is a required section; the alternatives introduced by 'especially any of' are individually labeled required, not optional.\nLLM experience is explicitly unnecessary and therefore nice_to_have.\nTriton denotes the kernel-programming technology, not Triton Inference Server, and has no matching taxonomy entry.\nTranslating methods between application areas is retained as an unmapped technique rather than assumed to mean transfer learning.\nThe application domains listed after 'for any domain' are examples of domain experience, not separately requested skills.\nSeniority uses the two-year lower bound and the guide's 0–2-year junior range; 'or more' leaves the level ambiguous and is flagged.\nTechnologies mentioned only in the role description are excluded; generic 'engineering skills' is not assumed to mean software engineering."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "e545d916b05297c905646cda807e0bf08feb56483a7ffddb2661232f97735b04",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

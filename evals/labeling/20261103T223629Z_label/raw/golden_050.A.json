@@ -1,0 +1,75 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"cuda\", \"requirement\": \"required\", \"raw_text\": \"CUDA\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"jax\", \"requirement\": \"required\", \"raw_text\": \"JAX\"},\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"required\", \"raw_text\": \"building deep learning systems\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LLM experience is valuable, but not necessary\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Triton (GPU kernel language)\", \"raw_text\": \"Triton\"},\n    {\"label\": \"Pallas\", \"raw_text\": \"Pallas\"},\n    {\"label\": \"CuTe DSL\", \"raw_text\": \"CuTe DSL kernel development\"},\n    {\"label\": \"XLA\", \"raw_text\": \"XLA\"},\n    {\"label\": \"FPGA/ASIC\", \"raw_text\": \"FPGA/ASIC experience\"}\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"two or more years work experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"The only heading over the skills is 'Qualifications', which marks a requirements section, so the default is required.\\nThe first bullet lists its skills as alternatives ('especially any of'). None of the guide's optional markers appears, so CUDA, PyTorch and JAX are labeled required.\\n'Triton' here is the GPU kernel language listed beside CUDA, Pallas and CuTe DSL, not Triton Inference Server, so it is unmapped. No taxonomy entry fits it.\\n'CUDA Graphs' collapses into the single cuda criterion. 'CUDA' appears verbatim at the start of the kernel list.\\nllms: 'valuable, but not necessary' is not one of the guide's listed markers. I still read it as an explicit optional marker, so it is labeled nice_to_have and flagged.\\nThe domains (robotics, biology, chemistry, physics, audio, video, recommendations) are given as example application areas, not skills, so they are not labeled. This includes recommender-systems.\\n'Finance experience is not required' is domain knowledge and is not labeled.\\nGPU kernel development, ASICs/FPGAs and data streaming are labeled only where the qualifications mention them. Inference work appears only in the role description, so inference-optimization is not labeled.\\nSeniority: the title has no level. 'Two or more years' is a 2-year minimum, which falls in the guide's 0–2 years band, so I inferred junior. This is flagged because '2+' sits at the boundary.\\nThe posting does not mention German or any degree.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cuda",
+        "requirement": "required",
+        "raw_text": "CUDA"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "building deep learning systems"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM experience is valuable, but not necessary",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Triton (GPU kernel language)",
+        "raw_text": "Triton"
+      },
+      {
+        "label": "Pallas",
+        "raw_text": "Pallas"
+      },
+      {
+        "label": "CuTe DSL",
+        "raw_text": "CuTe DSL kernel development"
+      },
+      {
+        "label": "XLA",
+        "raw_text": "XLA"
+      },
+      {
+        "label": "FPGA/ASIC",
+        "raw_text": "FPGA/ASIC experience"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "two or more years work experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The only heading over the skills is 'Qualifications', which marks a requirements section, so the default is required.\nThe first bullet lists its skills as alternatives ('especially any of'). None of the guide's optional markers appears, so CUDA, PyTorch and JAX are labeled required.\n'Triton' here is the GPU kernel language listed beside CUDA, Pallas and CuTe DSL, not Triton Inference Server, so it is unmapped. No taxonomy entry fits it.\n'CUDA Graphs' collapses into the single cuda criterion. 'CUDA' appears verbatim at the start of the kernel list.\nllms: 'valuable, but not necessary' is not one of the guide's listed markers. I still read it as an explicit optional marker, so it is labeled nice_to_have and flagged.\nThe domains (robotics, biology, chemistry, physics, audio, video, recommendations) are given as example application areas, not skills, so they are not labeled. This includes recommender-systems.\n'Finance experience is not required' is domain knowledge and is not labeled.\nGPU kernel development, ASICs/FPGAs and data streaming are labeled only where the qualifications mention them. Inference work appears only in the role description, so inference-optimization is not labeled.\nSeniority: the title has no level. 'Two or more years' is a 2-year minimum, which falls in the guide's 0–2 years band, so I inferred junior. This is flagged because '2+' sits at the boundary.\nThe posting does not mention German or any degree."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "e545d916b05297c905646cda807e0bf08feb56483a7ffddb2661232f97735b04",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}
