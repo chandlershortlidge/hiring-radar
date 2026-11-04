@@ -5,6 +5,44 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-04 — "Few skills listed" is 3 or fewer, and the Best fit floor moves with it (HIR-161)
+
+**Supersedes the K = 7 of HIR-154 below, and its "side effect, accepted" paragraph.** K is
+now 4: a job listing 3 or fewer required skills is thin, and one listing 4 or more is a
+normal posting that shows its percentage and ranks on its own ratio.
+
+HIR-154 set the floor at 7 — the measured median required-skill count — and used that one
+number for two things: the ranking denominator `max(total, K)` and the badge's "thin"
+threshold. It recorded the consequence as a side effect it accepted: a job listing 6
+required skills, all of which you have, read "6/6 · few skills listed" instead of 100%.
+
+In use that side effect was the bug. Chandler saw "2/6 · few skills listed" on a Lieferando
+ML Engineer row and 3/4 and 3/6 on Anthropic rows (4 Nov) and ruled: six is a normal list,
+the tag is for postings so thinly extracted that a percentage would mislead, like 2/2 or
+2/3. "Few skills" means 3 or fewer; 4 or more shows the normal percentage and ranks like
+any other job.
+
+**The two numbers stay one number.** HIR-154 explicitly refused to lower the badge
+threshold alone, because that decouples the ratio a row shows from the ratio it is ordered
+by — a row could read 100% and still be held back, with nothing on screen saying why.
+HIR-161 changes where the single threshold sits, not the fact that it is single. So the
+floor drops to 4 along with the tag, and a 6/6 job now both reads 100% and ranks on 6/6.
+
+**What this costs, on the record.** HIR-154 measured inversions at K from 5 to 8 and found
+the ordering barely moved across that band; K = 4 is below it, and was not measured. The
+scripts that produced those numbers were in git-ignored `scratch/hir-154/` and are gone, so
+this change ships unmeasured on Chandler's explicit instruction ("Don't re-ask"). The known
+exposure: a posting listing 4 or 5 required skills that you cover in full is now floored at
+its own count rather than at 7, so it can sit near the top of Best fit again — a weaker
+version of the complaint HIR-154 was filed about, which concerned 2/2 and 3/3 rows. Those
+stay floored. If Best fit starts looking top-heavy with 4/4 and 5/5 rows, this is the cause
+and the undo is restoring `SKILL_FLOOR` to 7.
+
+The floor still only ever lowers a score, never raises one, and nice-to-have skills still
+do not count toward it (HIR-51).
+
+---
+
 ## 2026-11-04 — A PR whose checks have already passed is merged directly, not armed (HIR-157)
 
 HIR-136 gave the reviewer one command for every PR: `gh pr merge <n> --merge --auto`. On

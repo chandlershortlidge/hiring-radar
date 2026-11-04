@@ -108,24 +108,31 @@ export function skillSides(job) {
 // rates already use, so the two read the same way.
 const Z = 1.96;
 
+// Where "too little was listed to read as a percentage" ends. A job listing fewer than
+// this is scored as though it had listed this many and failed the rest, so "2/2" is judged
+// as 2 out of 4: two required skills is usually what the extractor found, not what the
+// posting asks. It is one number on purpose — the same threshold decides what the badge
+// shows and what the ranking divides by, so a row never reads 100% while being held back
+// with nothing on screen to say why (HIR-154).
+//
+// 4, meaning "few skills" is 3 or fewer (HIR-161, Chandler's call). It was 7, the measured
+// median required-skill count, until a job listing 6 skills reading "6/6 · few skills
+// listed" turned out to be the bug rather than an accepted side effect: six is a normal
+// list. A constant, not a median recomputed per request — that would score the same job
+// differently on page 1 and page 2. See DECISIONS.md: 4 is below the 5-to-8 band HIR-154
+// measured, and the undo is restoring this to 7.
+export const SKILL_FLOOR = 4;
+
+// Is this job's required list too thin to read as a percentage — 3 or fewer asks? False
+// for a job with no required skills at all: that is "unknown", and `score` is already null
+// there.
+export const thinlyListed = (total) => total > 0 && total < SKILL_FLOOR;
+
 // The Wilson score interval's lower bound for `covered` successes out of `total`. Shrinks
 // a ratio towards 0 by however little evidence stands behind it: 2/2 lands at 0.34 and
 // 10/14 at 0.45, so the better-evidenced job sorts first. Returns null for total = 0,
 // which is "unknown", not "no fit". Pure arithmetic — no clamping needed, the bound is in
 // [0, 1] for any 0 <= covered <= total.
-// How many required skills a posting normally lists. A job that lists fewer is scored as
-// though it had listed this many and failed the rest, so "2/2" is judged as 2 out of 7:
-// two required skills is usually what the extractor found, not what the posting asks
-// (HIR-154). Measured — the median required-skill count over the 410 open jobs in the
-// chart set on 2026-11-04 (San Francisco 6, Berlin 11, New York 6) — and a constant on
-// purpose: a median recomputed over whatever jobs a filter returned would score the same
-// job differently on page 1 and page 2.
-export const SKILL_FLOOR = 7;
-
-// Is this job's required list thinner than a posting normally carries? False for a job
-// with no required skills at all: that is "unknown", and `score` is already null there.
-export const thinlyListed = (total) => total > 0 && total < SKILL_FLOOR;
-
 export function wilsonLower(covered, total, z = Z) {
   if (!total) return null;
   const p = covered / total;
