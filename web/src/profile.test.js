@@ -2,7 +2,7 @@
 // nice-to-have tie-break, and a job with no required skills to judge. No DOM, no network,
 // no localStorage — these are the functions alerts and the Advisor will reuse.
 import { describe, expect, it } from "vitest";
-import { EMPTY, fails, fit, gates, jobSeniority, rankJobs, skillSides, wilsonLower } from "./profile.js";
+import { EMPTY, SKILL_FLOOR, fails, fit, gates, jobSeniority, rankJobs, skillSides, thinlyListed, wilsonLower } from "./profile.js";
 
 const me = (p = {}) => ({ ...EMPTY, seniority: "mid", skills: ["python", "rag"], ...p });
 
@@ -178,6 +178,69 @@ describe("wilsonLower", () => {
   });
 });
 
+// HIR-154: a job is scored against max(total, SKILL_FLOOR), so a posting that lists two
+// required skills is judged as though it had listed SKILL_FLOOR and failed the rest.
+describe("the skill floor", () => {
+  const fitJob = (id, covered, total) => job({
+    id,
+    required_skills: [
+      ...Array.from({ length: covered }, (_, i) => `have${i}`),
+      ...Array.from({ length: total - covered }, (_, i) => `lack${i}`),
+    ],
+  });
+  const haveAll = me({ skills: Array.from({ length: 40 }, (_, i) => `have${i}`) });
+  const rank = (covered, total) => fit(haveAll, fitJob(1, covered, total)).rank_score;
+  const ids = (jobs) => jobs.map((j) => j.id);
+
+  it("marks a job below the floor thin, and leaves a full list alone", () => {
+    expect(thinlyListed(2)).toBe(true);
+    expect(thinlyListed(SKILL_FLOOR - 1)).toBe(true);
+    expect(thinlyListed(SKILL_FLOOR)).toBe(false);
+    expect(thinlyListed(20)).toBe(false);
+    // Nothing listed at all is "unknown", not thin: score and rank_score are already null.
+    expect(thinlyListed(0)).toBe(false);
+    const nothing = fit(haveAll, job({ id: 1 }));
+    expect(nothing.thin).toBe(false);
+    expect(nothing.score).toBe(null);
+    expect(nothing.rank_score).toBe(null);
+  });
+
+  it("scores a thin job against the floor, and a full one against its own list", () => {
+    expect(rank(2, 2)).toBeCloseTo(wilsonLower(2, SKILL_FLOOR), 10);
+    expect(rank(3, 3)).toBeCloseTo(wilsonLower(3, SKILL_FLOOR), 10);
+    // From the floor up the denominator is the job's own count: the floor only ever
+    // lowers a score, never raises one.
+    expect(rank(7, 7)).toBeCloseTo(wilsonLower(7, 7), 10);
+    expect(rank(10, 14)).toBeCloseTo(wilsonLower(10, 14), 10);
+    expect(rank(2, 2)).toBeLessThan(wilsonLower(2, 2));
+  });
+
+  it("puts a partly covered fuller posting above a thin one it covers completely", () => {
+    // The San Francisco complaint: "100% · 2/2" rows sitting above real matches.
+    expect(ids(rankJobs(haveAll, [fitJob(1, 2, 2), fitJob(2, 5, 8)]))).toEqual([2, 1]);
+    expect(ids(rankJobs(haveAll, [fitJob(1, 3, 3), fitJob(2, 5, 7)]))).toEqual([2, 1]);
+    expect(ids(rankJobs(haveAll, [fitJob(1, 4, 4), fitJob(2, 6, 10)]))).toEqual([2, 1]);
+  });
+
+  it("never ranks a thin job above a full match of the floor or more — the issue's bar", () => {
+    // Over every pair the data can produce, not a hand-picked few: any thin job, against
+    // any job that lists at least the floor and covers all of it.
+    for (let total = 1; total < SKILL_FLOOR; total++) {
+      for (let covered = 0; covered <= total; covered++) {
+        for (let full = SKILL_FLOOR; full <= 30; full++) {
+          expect(rank(covered, total)).toBeLessThan(rank(full, full));
+        }
+      }
+    }
+  });
+
+  it("still separates two thin jobs by how much of each you cover", () => {
+    expect(rank(3, 3)).toBeGreaterThan(rank(2, 2));
+    expect(rank(2, 4)).toBeGreaterThan(rank(1, 4));
+    expect(ids(rankJobs(haveAll, [fitJob(1, 1, 2), fitJob(2, 3, 3)]))).toEqual([2, 1]);
+  });
+});
+
 describe("rankJobs", () => {
   const ids = (jobs) => jobs.map((j) => j.id);
 
@@ -195,12 +258,16 @@ describe("rankJobs", () => {
   it("ranks better-evidenced coverage first, so 2/2 no longer tops the list (HIR-113)", () => {
     // The live screenshot's three rows: Pentadoc 2/2, PharmaHera 6/8, Deloitte 10/14.
     expect(ids(rankJobs(haveAll, [fitJob(1, 2, 2), fitJob(2, 6, 8), fitJob(3, 10, 14)]))).toEqual([3, 2, 1]);
-    // The badge is untouched: the 2/2 job still reads a plain 100%.
+    // The ratio a badge shows is untouched: the 2/2 job really does cover both its asks.
     const f = fit(haveAll, fitJob(1, 2, 2));
     expect(f.score).toBe(1);
     expect(f.covered).toBe(2);
     expect(f.total).toBe(2);
-    expect(f.rank_score).toBeCloseTo(0.3424, 3);
+    // ...but it is scored as 2 out of SKILL_FLOOR, not 2 out of 2 (HIR-154). Before the
+    // floor this was 0.3424, the bound of a true 2/2, which beat every partly covered job.
+    expect(f.rank_score).toBeCloseTo(wilsonLower(2, SKILL_FLOOR), 10);
+    expect(f.rank_score).toBeCloseTo(0.0822, 3);
+    expect(f.thin).toBe(true);
   });
 
   it("still puts a gated-out job last, however well evidenced its coverage", () => {
