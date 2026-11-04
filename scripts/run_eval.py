@@ -8,6 +8,11 @@ Usage:
 Needs ANTHROPIC_API_KEY, from the environment or a .env file at the repo root (see .env.example). Calls the model sequentially, no retries.
 Writes evals/results/<run_id>/{predictions.jsonl, summary.json, summary.md}.
 
+When LANGSMITH_API_KEY is set, the run is also reported to LangSmith as an experiment named
+after the extractor_version (app/langsmith_eval.py): the dev Goldens as a dataset, one
+trace per Golden per repeat, the scores attached. Pass --no-langsmith to skip that. The
+committed evals/results/ directory stays the eval gate either way; LangSmith is the view.
+
 Does NOT: change prompts, taxonomy, or Goldens; run held-out Goldens without the explicit
 flag (AGENTS.md: never tune on held-out).
 """
@@ -27,7 +32,7 @@ from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(ROOT / ".env")  # existing environment variables win over .env
 
-from app import evaluation  # noqa: E402
+from app import evaluation, extras_judge, langsmith_eval  # noqa: E402
 from app.extract import DEFAULT_MODEL, extract, extractor_version, make_client  # noqa: E402
 from app.taxonomy import Taxonomy  # noqa: E402
 
@@ -87,12 +92,49 @@ def render_md(meta, agg, runs) -> str:
     return "\n".join(lines) + "\n"
 
 
+def judge_extras(runs, goldens, args) -> dict:
+    """Judge run 1's extras: {golden_id: [Verdict, ...]}.
+
+    Run 1 only. The judge is there to find gold labels that are incomplete, which is a
+    property of the label and not of a repeat, so judging all three repeats would pay three
+    times for the same answer.
+
+    Its own client is deliberately unwrapped, so its calls stay out of LangSmith: the issue
+    asks for the trace budget to be checked before the judge is allowed to spend traces,
+    and the verdicts are written to the results either way.
+    """
+    first = runs[0]
+    by_id = {g["id"]: g for g in goldens}
+    client = make_client()
+    out = {}
+    for gs in first.scores:
+        if not gs.fp:
+            continue
+        g = by_id[gs.golden_id]
+        mentions = first.predictions[gs.golden_id].get("mentions") or []
+        quotes = {m["skill_id"]: m.get("raw_text") for m in mentions}
+        extras = [{"skill_id": sid, "raw_text": quotes.get(sid)} for sid in gs.fp]
+        out[gs.golden_id] = extras_judge.judge_golden(
+            g["job_description"], sorted(x["skill_id"] for x in g["expected"]), extras,
+            client, args.judge_model or extras_judge.DEFAULT_JUDGE_MODEL)
+        print(f"  judged {len(extras)} extras on {gs.golden_id}", flush=True)
+    return out
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--split", default="dev", choices=["dev", "heldout"])
     ap.add_argument("--repeats", type=int, default=3)
     ap.add_argument("--model", default=DEFAULT_MODEL)
     ap.add_argument("--i-am-releasing", action="store_true")
+    ap.add_argument("--no-langsmith", action="store_true",
+                    help="do not report this run to LangSmith even if LANGSMITH_API_KEY is set")
+    ap.add_argument("--extras-judge", action="store_true",
+                    help="after the runs, ask a model whether each extra skill means the gold "
+                         "label missed it or the model is wrong (one extra call per Golden "
+                         "that has extras; off by default)")
+    ap.add_argument("--judge-model", default=None,
+                    help=f"model for --extras-judge (default: {extras_judge.DEFAULT_JUDGE_MODEL})")
     args = ap.parse_args(argv)
 
     if args.split == "heldout" and not args.i_am_releasing:
@@ -104,13 +146,25 @@ def main(argv=None):
     goldens = load_goldens(args.split)
     if not goldens:
         sys.exit(f"No Goldens in split {args.split!r}.")
-    client = make_client()
+    version = extractor_version(tax, args.model)
+    run_id = f"{datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}_{args.split}_{version}"
+    meta = {"run_id": run_id, "split": args.split, "n_goldens": len(goldens), "repeats": args.repeats,
+            "model": args.model, "extractor_version": version, "taxonomy_version": tax.version}
+
+    # Held-out text is never uploaded (app/langsmith_eval.py raises on a non-dev Golden),
+    # and nothing is sent without a key.
+    experiment = None if args.no_langsmith else langsmith_eval.start(goldens, meta)
+    if experiment:
+        print(f"langsmith experiment: {experiment.name} {experiment.url or ''}", flush=True)
+
+    client = langsmith_eval.wrap_client(make_client()) if experiment else make_client()
     extract_fn = lambda text: extract(text, tax, client, args.model)
 
     runs = []
     for i in range(args.repeats):
         print(f"run {i + 1}/{args.repeats} over {len(goldens)} goldens…", flush=True)
-        runs.append(evaluation.run_once(goldens, extract_fn))
+        runs.append(evaluation.run_once(goldens, extract_fn,
+                                        trace=experiment.trace if experiment else None))
         s = runs[-1].summary
         print(f"  P={fmt(s['precision'])} R={fmt(s['recall'])} F1={fmt(s['f1'])} "
               f"req={fmt(s['requirement_accuracy'])} sen={fmt(s['seniority_accuracy'])}/{s['seniority_n']} "
@@ -124,18 +178,26 @@ def main(argv=None):
             sys.exit("Every Golden failed — no results written. Fix the error above and re-run.")
 
     agg = evaluation.across_runs(runs)
-    version = extractor_version(tax, args.model)
-    run_id = f"{datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}_{args.split}_{version}"
-    meta = {"run_id": run_id, "split": args.split, "n_goldens": len(goldens), "repeats": args.repeats,
-            "model": args.model, "extractor_version": version, "taxonomy_version": tax.version}
+
+    verdicts = judge_extras(runs, goldens, args) if args.extras_judge else {}
+    if verdicts:
+        counts = extras_judge.tally([v for vs in verdicts.values() for v in vs])
+        meta["extras_verdicts"] = counts
+        print(f"extras judge over run 1: {counts}", flush=True)
+
+    if experiment:
+        experiment.finish(meta, agg, [r.summary for r in runs])
 
     out = ROOT / "evals/results" / run_id
     out.mkdir(parents=True)
     with (out / "predictions.jsonl").open("w") as f:
         for i, r in enumerate(runs):
             for gs in r.scores:
-                f.write(json.dumps({"run": i + 1, "golden_id": gs.golden_id, "tp": gs.tp, "fp": gs.fp, "fn": gs.fn,
-                                    "error": gs.error, **r.predictions[gs.golden_id]}, ensure_ascii=False) + "\n")
+                row = {"run": i + 1, "golden_id": gs.golden_id, "tp": gs.tp, "fp": gs.fp, "fn": gs.fn,
+                       "error": gs.error, **r.predictions[gs.golden_id]}
+                if i == 0 and gs.golden_id in verdicts:
+                    row["extras_verdicts"] = [vars(v) for v in verdicts[gs.golden_id]]
+                f.write(json.dumps(row, ensure_ascii=False) + "\n")
     (out / "summary.json").write_text(json.dumps(
         {"meta": meta, "aggregate": agg, "runs": [r.summary for r in runs]}, indent=2) + "\n")
     (out / "summary.md").write_text(render_md(meta, agg, runs))

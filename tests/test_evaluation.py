@@ -173,3 +173,49 @@ def test_a_right_class_off_the_wrong_clause_is_not_signal_agreement():
     assert s["production_accuracy"] == 1.0          # both classes right
     assert s["production_signal_n"] == 2
     assert s["production_signal_agreement"] == 0.5  # only one quotes the right clause
+
+
+# --- grounding (HIR-78) -------------------------------------------------------------
+
+JD = "We want Python and  strong\nSQL skills."
+
+
+def test_grounding_counts_quotes_the_posting_really_contains():
+    mentions = [Mention("python", "required", "Python"),
+                Mention("sql", "required", "strong SQL")]  # whitespace-insensitive match
+    assert ev.grounding(JD, mentions, [], []) == (2, 2)
+
+
+def test_an_invented_quote_is_ungrounded_even_when_the_extractor_kept_it():
+    # Guards the extractor's own check: if parse_skills ever stopped dropping unfounded
+    # quotes, the score falls here instead of the regression passing unnoticed.
+    mentions = [Mention("python", "required", "Python"),
+                Mention("kubernetes", "required", "Kubernetes in production")]
+    assert ev.grounding(JD, mentions, [], []) == (1, 2)
+
+
+def test_quotes_the_extractor_already_rejected_count_against_the_total():
+    rejected = [{"item": {}, "reason": ev.UNGROUNDED_REASON},
+                {"item": {}, "reason": "unknown skill_id"}]  # a different failure, not grounding
+    out = ev.grounding(JD, [Mention("python", "required", "Python")], [], rejected)
+    assert out == (1, 2)
+
+
+def test_proposed_skills_are_held_to_the_same_quote_check():
+    from app.extract import Proposed
+    proposed = [Proposed("Polars", "required", "Python"), Proposed("Dask", "required", "Dask")]
+    assert ev.grounding(JD, [], proposed, []) == (1, 2)
+
+
+def test_grounding_accuracy_is_micro_averaged_over_goldens():
+    g1 = ev.score_golden("g1", [e("a")], [e("a")], grounding=(1, 2))
+    g2 = ev.score_golden("g2", [e("b")], [e("b")], grounding=(3, 3))
+    s = ev.summarize([g1, g2], {"g1": [e("a")], "g2": [e("b")]}, {"g1": [e("a")], "g2": [e("b")]})
+    assert s["grounding_accuracy"] == pytest.approx(4 / 5)
+    assert s["grounding_n"] == 5
+
+
+def test_grounding_accuracy_is_none_when_the_model_returned_no_quotes():
+    s = ev.summarize([ev.score_golden("g", [e("a")], [])], {"g": [e("a")]}, {"g": []})
+    assert s["grounding_accuracy"] is None
+    assert s["grounding_n"] == 0

@@ -5,6 +5,60 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-04 — LangSmith watches the eval, and only the eval (HIR-78)
+
+Observability on this project starts at the regression eval, not in production. Whenever
+the extractor or the skill list changes, `scripts/run_eval.py` now also reports the run to
+LangSmith: the dev-split Goldens as a dataset called `goldens-dev`, the run itself as an
+experiment named `<extractor_version>-<run timestamp>`, one trace per Golden per repeat
+with the model call and the taxonomy-mapping step as children, and the scores attached. Two
+taxonomy versions can then be read side by side, and a single posting can be opened to see
+what the model was told, what it answered, what the mapping kept or threw away, and what it
+cost.
+
+**Why the eval and not the daily poll.** The eval is where a number is compared against a
+previous number, so it is where a trace earns its keep; the poll's failures are already
+visible in its own logs. Tracing production is HIR-160, after launch.
+
+**What is sent, and where.** Chandler's existing LangSmith account, US region (the default
+endpoint), so the 2026 experiments on `jd-skill-extraction-golden-v1` and this work sit in
+one place. Only public job-ad text goes out — the dev Goldens' postings, their labels, and
+the model's answers. No CV, no profile, no user data. Held-out Goldens are never uploaded:
+`app/langsmith_eval.py` raises on a Golden from any split but `dev` before anything is
+sent, because held-out text is what the release measurement rests on.
+
+**LangSmith is the view; `evals/results/` is the gate.** The committed result directory
+stays the only thing that decides whether a change may merge (AGENTS.md "The eval gate").
+Every LangSmith call goes through a wrapper that warns and carries on, so a LangSmith
+outage, a missing key or a bad key leaves the eval and the gate working exactly as before.
+Tracing is off unless `LANGSMITH_API_KEY` is set, and `--no-langsmith` turns it off with the
+key present.
+
+**The old dataset stays as history.** `jd-skill-extraction-golden-v1` and its 7 experiments
+predate the current labels and the dev/held-out split, so their numbers are not comparable
+with anything measured now (Chandler, 4 Nov). They are left untouched rather than migrated.
+
+**Two things the eval now measures that it did not.** A grounding score: of every skill
+quote the model returned, how many really appear in the posting. Invented evidence is a
+different failure from a wrong skill, so it gets its own metric instead of hiding among the
+false positives. And an extras judge, off unless `--extras-judge` is passed: for each skill
+the model added that the Golden lacks, a model says whether the label missed it or the
+extractor is wrong, for the HIR-92 spot-check to work from. A verdict is a pointer for a
+person, never an edit to a label.
+
+**No test reaches LangSmith.** `tests/conftest.py` unsets the key for every test. This is
+not belt-and-braces: `run_eval.py` calls `load_dotenv()` at import, so while HIR-78 was
+being built the mocked eval tests picked up the real key, uploaded a fixture Golden
+("Python and LangChain") into `goldens-dev` and opened four experiments in the live
+account. Those five objects were deleted. The guard makes it an environment guarantee
+rather than something every new test has to remember.
+
+To undo: revert the HIR-78 commits. Nothing outside the eval path changes, the dashboard
+and the daily poll are untouched, and the dataset and experiments can be deleted in the
+LangSmith UI.
+
+---
+
 ## 2026-11-04 — "Few skills listed" is 3 or fewer, and the Best fit floor moves with it (HIR-161)
 
 **Supersedes the K = 7 of HIR-154 below, and its "side effect, accepted" paragraph.** K is
