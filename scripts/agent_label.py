@@ -6,7 +6,9 @@ Pipeline, in two commands:
             -> merge (agreement accepted, disagreement queued) -> spot-check sample
             -> evals/labeling/<run>/{review_queue.md, summary.md, summary.json}
     apply:  read the decisions a person wrote into review_queue.md -> write final Goldens
-            to evals/goldens/ with split "heldout" and provenance, and report the
+            to evals/goldens/ with provenance and split "heldout" (or "dev" with
+            `apply --split dev`, which grows the set the eval gate tunes against,
+            HIR-164), and report the
             spot-check error rate with a 95% Wilson interval.
 
 Does: build each labeler's prompt from evals/LABELER_PROMPT.md with evals/LABELING.md and
@@ -81,6 +83,12 @@ GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
 MAX_TOKENS = 8192
 SPOT_CHECK_N = 80
 SEED = 0
+
+# Which eval split `apply` writes the batch into. Held-out stays the default: a Golden is
+# held out unless it is added to fix a dev-side problem (DECISIONS 2026-10-17), and a batch
+# silently landing in dev would quietly weaken the release gate. `--split dev` is the
+# deliberate opposite, for growing the set the gate tunes against (HIR-164).
+SPLITS = ("heldout", "dev")
 
 REQUIREMENTS = ("required", "nice_to_have")
 SENIORITIES = ("junior", "mid", "senior")
@@ -661,7 +669,8 @@ def apply_decision(item: dict, decision: str):
 def final_golden(base: dict, skills: list[dict], attrs: dict,
                  labeled_by: list[str], adjudicated: dict[str, str],
                  spot_checked_by: str | None = None,
-                 third_labeler: str | None = None, reviewed: set[str] | None = None) -> dict:
+                 third_labeler: str | None = None, reviewed: set[str] | None = None,
+                 split: str = "heldout") -> dict:
     """A Golden in the shape evals/goldens/ already uses, plus HIR-70 provenance.
 
     `adjudicated` maps each decided field to who decided it, "human" or "model". `reviewed`
@@ -675,7 +684,9 @@ def final_golden(base: dict, skills: list[dict], attrs: dict,
     spot-check answered by a model is not the number this process exists to produce.
     """
     reviewed = set() if reviewed is None else reviewed
-    out = {"id": base["id"], "split": "heldout"}
+    if split not in SPLITS:
+        raise ValueError(f"split must be one of {', '.join(SPLITS)}, not {split!r}")
+    out = {"id": base["id"], "split": split}
     for attr in ATTRS:
         group = attrs.get(attr) or {f: None for f in ATTR_FIELDS[attr]}
         for f in ATTR_FIELDS[attr]:
@@ -1514,11 +1525,11 @@ def cmd_apply(args):
         golden = final_golden({**picks[gid], "id": gid}, list(skills[gid].values()),
                               attrs.get(gid, {}), labeled_by, adjudicated[gid],
                               spot_by_gid.get(gid), third_by_gid.get(gid),
-                              reviewed[gid])
+                              reviewed[gid], split=args.split)
         path = GOLDENS / f"{gid}.json"
         if not args.dry_run:
             path.write_text(json.dumps(golden, indent=2, ensure_ascii=False) + "\n")
-        written.append(f"{gid}  {len(golden['expected'])} skills  "
+        written.append(f"{gid}  {golden['split']}  {len(golden['expected'])} skills  "
                        f"{len(golden['adjudicated'])} adjudicated"
                        f"{'  spot-checked by ' + golden['spot_checked_by'] if golden['spot_checked_by'] else ''}")
 
@@ -1542,8 +1553,14 @@ def cmd_apply(args):
     print()
     print(render_summary(summary, spot).split("## Spot-check")[-1].strip())
     if not args.dry_run:
-        print(f"\nWritten to {GOLDENS}. The held-out eval is a separate, release-point step: "
-              f"uv run python scripts/run_eval.py --split heldout --i-am-releasing")
+        if args.split == "heldout":
+            print(f"\nWritten to {GOLDENS}. The held-out eval is a separate, release-point "
+                  f"step: uv run python scripts/run_eval.py --split heldout --i-am-releasing")
+        else:
+            print(f"\nWritten to {GOLDENS} as `dev` Goldens, so they are part of the eval "
+                  f"gate from now on and may be looked at while tuning. The next extractor "
+                  f"change is measured against a baseline that includes them, so commit a "
+                  f"fresh dev run: uv run python scripts/run_eval.py")
 
 
 def load_run(run: str):
@@ -1906,6 +1923,8 @@ def main(argv=None):
 
     app = sub.add_parser("apply", help="apply the decisions in review_queue.md and write the Goldens")
     app.add_argument("--run", required=True)
+    app.add_argument("--split", default="heldout", choices=SPLITS,
+                     help="which eval split these Goldens join (default heldout; `dev` grows the set the gate tunes against, HIR-164)")
     app.add_argument("--dry-run", action="store_true")
     app.set_defaults(fn=cmd_apply)
 

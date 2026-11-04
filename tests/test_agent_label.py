@@ -1589,3 +1589,42 @@ def test_narrowing_the_pool_to_one_city_keeps_only_that_city(tmp_path):
     assert len(narrowed) == 3
     picks = al.pick(narrowed, count=3, seed=1, quotas={})
     assert {al.describe(r)["place"] for r in picks} == {"Remote (EU)"}
+
+
+# --- which split a batch joins (HIR-164) ------------------------------------------
+#
+# New Goldens went to held-out unconditionally, which is why dev never grew past 20 while
+# the corpus reached 46. Held-out stays the default on purpose (DECISIONS 2026-10-17): a
+# batch quietly landing in dev would weaken the release gate without anyone choosing it.
+
+
+def _a_golden(**kw):
+    base = {"id": "golden_030", "source_sha256": "abc", "job_description": POSTING}
+    return al.final_golden(
+        base,
+        [{"skill_id": "rag", "requirement": "required", "raw_text": "RAG pipelines"}],
+        {}, labeled_by=["claude-opus-5-5", "gpt-5.6"], adjudicated={}, **kw)
+
+
+def test_a_batch_is_held_out_unless_someone_says_otherwise():
+    assert _a_golden()["split"] == "heldout"
+
+
+def test_a_batch_can_be_written_into_dev():
+    assert _a_golden(split="dev")["split"] == "dev"
+
+
+def test_split_stays_the_second_key_so_the_eval_still_reads_it():
+    assert list(_a_golden(split="dev"))[:2] == ["id", "split"]
+
+
+def test_an_unknown_split_is_refused_rather_than_written():
+    """A typo must not produce a Golden no run will ever score."""
+    with pytest.raises(ValueError, match="split must be one of"):
+        _a_golden(split="held-out")
+
+
+def test_the_cli_only_offers_the_two_real_splits():
+    assert al.SPLITS == ("heldout", "dev")
+    with pytest.raises(SystemExit):
+        al.main(["apply", "--run", "nope", "--split", "holdout"])
