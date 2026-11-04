@@ -20,6 +20,7 @@ counts as an error and contributes all its expected skills as misses.
 import re
 import statistics
 from collections import Counter
+from contextlib import nullcontext
 from dataclasses import dataclass, field
 
 
@@ -233,50 +234,75 @@ class RunResult:
     predictions: dict[str, dict] = field(default_factory=dict)
 
 
-def run_once(goldens: list[dict], extract_fn) -> RunResult:
-    """extract_fn(jd_text) -> Extraction-like object with .mentions/.proposed/.rejected."""
+def _score_one(g: dict, extract_fn, span):
+    """One Golden: extract, score, report. Returns (predicted_mentions, prediction, score).
+
+    A Golden whose extraction raises is scored as a total miss and reported as an error,
+    so one bad posting cannot hide the rest of the run.
+    """
+    try:
+        ex = extract_fn(g["job_description"])
+    except Exception as e:  # one bad Golden must not hide the rest of the run
+        prediction = {"error": f"{type(e).__name__}: {e}"}
+        score = GoldenScore(
+            g["id"], [], [], sorted(x["skill_id"] for x in g["expected"]), 0, error=str(e),
+            seniority_expected=g.get("seniority"), seniority_labeled="seniority" in g,
+            german=(g["german"], None) if "german" in g else None,
+            degree=((g["degree"], bool(g.get("degree_or_equivalent"))), (None, False)) if "degree" in g else None,
+            production=(g["production"], None) if "production" in g else None,
+            production_signal=(g.get("production_signal"), None) if "production" in g else None)
+        return [], prediction, score
+
+    pred = [{"skill_id": m.skill_id, "requirement": m.requirement, "raw_text": m.raw_text} for m in ex.mentions]
+    sen = getattr(ex, "seniority", None)
+    ger = getattr(ex, "german", None)
+    deg = getattr(ex, "degree", None)
+    prod = getattr(ex, "production", None)
+    prediction = {
+        "mentions": pred,
+        "proposed": [vars(p) for p in ex.proposed],
+        "rejected": ex.rejected,
+        "seniority": vars(sen) if sen else None,
+        "german": vars(ger) if ger else None,
+        "degree": vars(deg) if deg else None,
+        "production": vars(prod) if prod else None,
+        "usage": getattr(ex, "usage", {}),
+    }
+    if span is not None:
+        span.mapping(ex)
+    score = score_golden(g["id"], g["expected"], pred,
+                         grounding=grounding(g["job_description"], ex.mentions,
+                                             ex.proposed, ex.rejected),
+                         seniority_expected=g.get("seniority"),
+                         seniority_predicted=sen.level if sen else None,
+                         seniority_labeled="seniority" in g,
+                         german=(g["german"], ger.requirement if ger else None) if "german" in g else None,
+                         degree=((g["degree"], bool(g.get("degree_or_equivalent"))),
+                                 (deg.level, deg.or_equivalent) if deg else (None, False)) if "degree" in g else None,
+                         production=(g["production"], prod.requirement if prod else None) if "production" in g else None,
+                         production_signal=(g.get("production_signal"), prod.signal if prod else None) if "production" in g else None)
+    return pred, prediction, score
+
+
+def run_once(goldens: list[dict], extract_fn, trace=None) -> RunResult:
+    """extract_fn(jd_text) -> Extraction-like object with .mentions/.proposed/.rejected.
+
+    trace(golden) is an optional context manager yielding a span with .mapping(extraction),
+    .result(prediction) and .record(score) — the reporting backend, injected the same way
+    extract_fn is, so this module knows nothing about where anything is sent
+    (app/langsmith_eval.py).
+    """
     scores, predicted_by_id, predictions = [], {}, {}
     expected_by_id = {g["id"]: g["expected"] for g in goldens}
     for g in goldens:
-        try:
-            ex = extract_fn(g["job_description"])
-            pred = [{"skill_id": m.skill_id, "requirement": m.requirement, "raw_text": m.raw_text} for m in ex.mentions]
-            sen = getattr(ex, "seniority", None)
-            ger = getattr(ex, "german", None)
-            deg = getattr(ex, "degree", None)
-            prod = getattr(ex, "production", None)
-            predictions[g["id"]] = {
-                "mentions": pred,
-                "proposed": [vars(p) for p in ex.proposed],
-                "rejected": ex.rejected,
-                "seniority": vars(sen) if sen else None,
-                "german": vars(ger) if ger else None,
-                "degree": vars(deg) if deg else None,
-                "production": vars(prod) if prod else None,
-                "usage": getattr(ex, "usage", {}),
-            }
-            s = score_golden(g["id"], g["expected"], pred,
-                             grounding=grounding(g["job_description"], ex.mentions,
-                                                 ex.proposed, ex.rejected),
-                             seniority_expected=g.get("seniority"),
-                             seniority_predicted=sen.level if sen else None,
-                             seniority_labeled="seniority" in g,
-                             german=(g["german"], ger.requirement if ger else None) if "german" in g else None,
-                             degree=((g["degree"], bool(g.get("degree_or_equivalent"))),
-                                     (deg.level, deg.or_equivalent) if deg else (None, False)) if "degree" in g else None,
-                             production=(g["production"], prod.requirement if prod else None) if "production" in g else None,
-                             production_signal=(g.get("production_signal"), prod.signal if prod else None) if "production" in g else None)
-        except Exception as e:  # one bad Golden must not hide the rest of the run
-            pred = []
-            predictions[g["id"]] = {"error": f"{type(e).__name__}: {e}"}
-            s = GoldenScore(g["id"], [], [], sorted(x["skill_id"] for x in g["expected"]), 0, error=str(e),
-                            seniority_expected=g.get("seniority"), seniority_labeled="seniority" in g,
-                            german=(g["german"], None) if "german" in g else None,
-                            degree=((g["degree"], bool(g.get("degree_or_equivalent"))), (None, False)) if "degree" in g else None,
-                            production=(g["production"], None) if "production" in g else None,
-                            production_signal=(g.get("production_signal"), None) if "production" in g else None)
+        with (trace(g) if trace else nullcontext()) as span:
+            pred, prediction, score = _score_one(g, extract_fn, span)
+            if span is not None:
+                span.result(prediction)
+                span.record(score)
+        predictions[g["id"]] = prediction
         predicted_by_id[g["id"]] = pred
-        scores.append(s)
+        scores.append(score)
     return RunResult(summarize(scores, expected_by_id, predicted_by_id), scores, predictions)
 
 

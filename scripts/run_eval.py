@@ -8,6 +8,11 @@ Usage:
 Needs ANTHROPIC_API_KEY, from the environment or a .env file at the repo root (see .env.example). Calls the model sequentially, no retries.
 Writes evals/results/<run_id>/{predictions.jsonl, summary.json, summary.md}.
 
+When LANGSMITH_API_KEY is set, the run is also reported to LangSmith as an experiment named
+after the extractor_version (app/langsmith_eval.py): the dev Goldens as a dataset, one
+trace per Golden per repeat, the scores attached. Pass --no-langsmith to skip that. The
+committed evals/results/ directory stays the eval gate either way; LangSmith is the view.
+
 Does NOT: change prompts, taxonomy, or Goldens; run held-out Goldens without the explicit
 flag (AGENTS.md: never tune on held-out).
 """
@@ -27,7 +32,7 @@ from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(ROOT / ".env")  # existing environment variables win over .env
 
-from app import evaluation  # noqa: E402
+from app import evaluation, langsmith_eval  # noqa: E402
 from app.extract import DEFAULT_MODEL, extract, extractor_version, make_client  # noqa: E402
 from app.taxonomy import Taxonomy  # noqa: E402
 
@@ -93,6 +98,8 @@ def main(argv=None):
     ap.add_argument("--repeats", type=int, default=3)
     ap.add_argument("--model", default=DEFAULT_MODEL)
     ap.add_argument("--i-am-releasing", action="store_true")
+    ap.add_argument("--no-langsmith", action="store_true",
+                    help="do not report this run to LangSmith even if LANGSMITH_API_KEY is set")
     args = ap.parse_args(argv)
 
     if args.split == "heldout" and not args.i_am_releasing:
@@ -104,13 +111,25 @@ def main(argv=None):
     goldens = load_goldens(args.split)
     if not goldens:
         sys.exit(f"No Goldens in split {args.split!r}.")
-    client = make_client()
+    version = extractor_version(tax, args.model)
+    run_id = f"{datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}_{args.split}_{version}"
+    meta = {"run_id": run_id, "split": args.split, "n_goldens": len(goldens), "repeats": args.repeats,
+            "model": args.model, "extractor_version": version, "taxonomy_version": tax.version}
+
+    # Held-out text is never uploaded (app/langsmith_eval.py raises on a non-dev Golden),
+    # and nothing is sent without a key.
+    experiment = None if args.no_langsmith else langsmith_eval.start(goldens, meta)
+    if experiment:
+        print(f"langsmith experiment: {experiment.name} {experiment.url or ''}", flush=True)
+
+    client = langsmith_eval.wrap_client(make_client()) if experiment else make_client()
     extract_fn = lambda text: extract(text, tax, client, args.model)
 
     runs = []
     for i in range(args.repeats):
         print(f"run {i + 1}/{args.repeats} over {len(goldens)} goldens…", flush=True)
-        runs.append(evaluation.run_once(goldens, extract_fn))
+        runs.append(evaluation.run_once(goldens, extract_fn,
+                                        trace=experiment.trace if experiment else None))
         s = runs[-1].summary
         print(f"  P={fmt(s['precision'])} R={fmt(s['recall'])} F1={fmt(s['f1'])} "
               f"req={fmt(s['requirement_accuracy'])} sen={fmt(s['seniority_accuracy'])}/{s['seniority_n']} "
@@ -124,10 +143,8 @@ def main(argv=None):
             sys.exit("Every Golden failed — no results written. Fix the error above and re-run.")
 
     agg = evaluation.across_runs(runs)
-    version = extractor_version(tax, args.model)
-    run_id = f"{datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}_{args.split}_{version}"
-    meta = {"run_id": run_id, "split": args.split, "n_goldens": len(goldens), "repeats": args.repeats,
-            "model": args.model, "extractor_version": version, "taxonomy_version": tax.version}
+    if experiment:
+        experiment.finish(meta, agg, [r.summary for r in runs])
 
     out = ROOT / "evals/results" / run_id
     out.mkdir(parents=True)
