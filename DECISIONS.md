@@ -10,6 +10,18 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 Two standing rules end here, both by Chandler's written decision on the HIR-132 ticket
 ("Adding a city is fully automated … Don't re-ask any of this"):
 
+**Provenance of that decision, so nobody has to ask again (2026-11-04).** The HIR-132 PR
+was held at `needs-chandler` because switching a city on is on the stop list and the only
+authority for doing it unattended was a decision section on the ticket itself — and an
+agent cannot clear the stop list by citing a rule change it made in the same PR. Nothing
+available to an agent settles who wrote that section: Linear's edit history is not exposed
+through the MCP, and the integration posts as Chandler's account, so an author name proves
+nothing (every agent comment on HIR-132 reads as his). **Chandler confirmed in session on
+2026-11-04 that the decision section is his and that he asked for it on 2026-11-03.** That
+is the go; this paragraph is the record of it, per the 2026-11-03 HIR-110 rule that a go
+has to be on the record. A future agent reads this entry, not the ticket, and does not
+re-ask.
+
 - **A city is no longer an exception by name.** The 2026-11-03 HIR-12 entry below says
   San Francisco is "the single exception" to a Germany-and-EU-remote scope and that an
   agent asked about any further non-German city "applies this rule as a *no*". That line
