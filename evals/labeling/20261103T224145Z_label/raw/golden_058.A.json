@@ -1,0 +1,101 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Strong experience in Machine Learning\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"software engineering skills\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud services\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"Amazon Web Services\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"Google Cloud Platform\"},\n    {\"skill_id\": \"microservices\", \"requirement\": \"required\", \"raw_text\": \"microservices\"},\n    {\"skill_id\": \"event-driven-systems\", \"requirement\": \"required\", \"raw_text\": \"event-driven architecture\"},\n    {\"skill_id\": \"serverless\", \"requirement\": \"required\", \"raw_text\": \"serverless computing\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Kubernetes\"},\n    {\"skill_id\": \"airflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Airflow\"},\n    {\"skill_id\": \"mlflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Mlflow\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Docker\"},\n    {\"skill_id\": \"flink\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Flink\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"real-time data streaming\", \"raw_text\": \"real time data streaming technologies\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Data pipelines and evaluation frameworks appear only in the responsibilities section, so they are not labeled.\\n\\\"Forecast or logistics products\\\" is read as a product domain, not as forecasting the skill, so forecasting is not labeled.\\n\\\"Cloud architecture patterns\\\" is covered by cloud. software-architecture is not added because the text names a cloud pattern, not general architecture.\\n\\\"A plus would be\\\" marks Airflow, Mlflow, Docker and Flink as nice_to_have. Kubernetes is explicitly \\\"expected\\\", so it is required.\\nThe phrase \\\"deploy using cloud services\\\" is not labeled as ai-deployment, because model deployment is not named.\\nThe Berlin location does not imply German, so German is null.\\nNo degree is mentioned, so degree is null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Strong experience in Machine Learning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering skills"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud services"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "Amazon Web Services"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google Cloud Platform"
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "microservices"
+      },
+      {
+        "skill_id": "event-driven-systems",
+        "requirement": "required",
+        "raw_text": "event-driven architecture"
+      },
+      {
+        "skill_id": "serverless",
+        "requirement": "required",
+        "raw_text": "serverless computing"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Airflow"
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Mlflow"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "flink",
+        "requirement": "nice_to_have",
+        "raw_text": "Flink"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "real-time data streaming",
+        "raw_text": "real time data streaming technologies"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Data pipelines and evaluation frameworks appear only in the responsibilities section, so they are not labeled.\n\"Forecast or logistics products\" is read as a product domain, not as forecasting the skill, so forecasting is not labeled.\n\"Cloud architecture patterns\" is covered by cloud. software-architecture is not added because the text names a cloud pattern, not general architecture.\n\"A plus would be\" marks Airflow, Mlflow, Docker and Flink as nice_to_have. Kubernetes is explicitly \"expected\", so it is required.\nThe phrase \"deploy using cloud services\" is not labeled as ai-deployment, because model deployment is not named.\nThe Berlin location does not imply German, so German is null.\nNo degree is mentioned, so degree is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "0dce6b51d6218f29f856f0675d1885866230490c488a649f65e210586270220c",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

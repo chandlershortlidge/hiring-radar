@@ -1,0 +1,110 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong experience in Machine Learning\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"productise and deploy using cloud services\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud services\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Amazon Web Services\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Google Cloud Platform\"\n    },\n    {\n      \"skill_id\": \"microservices\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"microservices\"\n    },\n    {\n      \"skill_id\": \"event-driven-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"event-driven architecture\"\n    },\n    {\n      \"skill_id\": \"serverless\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"serverless computing\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"airflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Airflow\"\n    },\n    {\n      \"skill_id\": \"mlflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Mlflow\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"flink\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Flink\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Real-time data streaming\",\n      \"raw_text\": \"developing real time data streaming technologies\"\n    },\n    {\n      \"label\": \"Real-time production systems at scale\",\n      \"raw_text\": \"Real-time production systems at scale (millions of requests/transactions per day)\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The qualifications section defaults to required; the inline phrase 'A plus' makes only Airflow/Mlflow/Docker/Flink optional, not Kubernetes.\\nAI deployment is interpreted from 'productise and deploy' in the machine-learning context; flagged because the qualification does not explicitly name models as the deployment target.\\nForecast and logistics products are product-domain context, not explicit requests for forecasting skills.\\nCloud architecture patterns support the named cloud skill; no separate software-architecture requirement is inferred.\\nData pipelines and evaluation frameworks appear only in responsibilities and are excluded. Real-time systems and streaming do not by themselves establish a distributed-systems requirement.\\nNo German-language or degree requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Strong experience in Machine Learning"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "productise and deploy using cloud services",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud services"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "Amazon Web Services"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google Cloud Platform"
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "microservices"
+      },
+      {
+        "skill_id": "event-driven-systems",
+        "requirement": "required",
+        "raw_text": "event-driven architecture"
+      },
+      {
+        "skill_id": "serverless",
+        "requirement": "required",
+        "raw_text": "serverless computing"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Airflow"
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Mlflow"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "flink",
+        "requirement": "nice_to_have",
+        "raw_text": "Flink"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Real-time data streaming",
+        "raw_text": "developing real time data streaming technologies"
+      },
+      {
+        "label": "Real-time production systems at scale",
+        "raw_text": "Real-time production systems at scale (millions of requests/transactions per day)"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The qualifications section defaults to required; the inline phrase 'A plus' makes only Airflow/Mlflow/Docker/Flink optional, not Kubernetes.\nAI deployment is interpreted from 'productise and deploy' in the machine-learning context; flagged because the qualification does not explicitly name models as the deployment target.\nForecast and logistics products are product-domain context, not explicit requests for forecasting skills.\nCloud architecture patterns support the named cloud skill; no separate software-architecture requirement is inferred.\nData pipelines and evaluation frameworks appear only in responsibilities and are excluded. Real-time systems and streaming do not by themselves establish a distributed-systems requirement.\nNo German-language or degree requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "0dce6b51d6218f29f856f0675d1885866230490c488a649f65e210586270220c",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

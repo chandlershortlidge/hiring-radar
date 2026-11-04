@@ -1,0 +1,167 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"full-stack-development\", \"requirement\": \"required\", \"raw_text\": \"Fullstack- oder Softwareentwicklung\"},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"oder Softwareentwicklung\"},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"Fundierte Kenntnisse in TypeScript\"},\n    {\"skill_id\": \"javascript\", \"requirement\": \"required\", \"raw_text\": \"TypeScript oder JavaScript\"},\n    {\"skill_id\": \"react\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit React\"},\n    {\"skill_id\": \"frontend-development\", \"requirement\": \"required\", \"raw_text\": \"modernen Frontend-Framework\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Programmierkenntnisse in Python\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"Backend-Entwicklung\"},\n    {\"skill_id\": \"fastapi\", \"requirement\": \"required\", \"raw_text\": \"FastAPI oder vergleichbaren Frameworks\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"REST-APIs\"},\n    {\"skill_id\": \"workflow-automation\", \"requirement\": \"required\", \"raw_text\": \"Automatisierungslösungen\", \"uncertain\": true},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"Softwarearchitektur\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"automatisierte Tests\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"Versionskontrolle\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit Cloud-Anwendungen\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"nice_to_have\", \"raw_text\": \"vorzugsweise auf Microsoft Azure\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"Logging, Monitoring\", \"uncertain\": true},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Vertrautheit mit CI/CD\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"containerisierten Anwendungen\"},\n    {\"skill_id\": \"devops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"DevOps-Spezialisierung\"},\n    {\"skill_id\": \"openai-api\", \"requirement\": \"nice_to_have\", \"raw_text\": \"idealerweise erste praktische Erfahrung mit Azure OpenAI\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LLMs, RAG-Architekturen\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"nice_to_have\", \"raw_text\": \"RAG-Architekturen\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Prompt Engineering\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"agentischen Systemen\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Django\", \"raw_text\": \"Django\"},\n    {\"label\": \"Databases\", \"raw_text\": \"Datenbanken\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Mehrjährige praktische Erfahrung\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"gute Deutsch- und gute Englischkenntnisse\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Ein abgeschlossenes Studium der (Wirtschafts-)Informatik, der Ingenieurwissenschaften oder eine vergleichbare, durch praktische Erfahrung erworbene Qualifikation\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"I read the heading 'Das wünschen wir uns' ('what we would like') as the standard German requirements heading, not as an optional marker. Under rule 1 its unmarked items default to required.\\nI treated 'vorzugsweise' (preferably), 'wünschenswert' (desirable) and 'idealerweise' (ideally) as inline optional markers that make the item nice_to_have.\\nAzure: its only qualification mentions are marked optional ('vorzugsweise auf Microsoft Azure' and the 'idealerweise' AI bullet), so it is nice_to_have. Its other mentions are in responsibilities only.\\nAzure OpenAI is mapped to openai-api (uncertain), with Azure collapsed into the azure criterion.\\nI did not label 'Interesse an KI-Anwendungen' (interest in AI applications) as ai-ml, because interest is not a skill ask.\\nI labeled observability from the willingness to share responsibility for 'Logging, Monitoring' and flagged it uncertain. I did not label Deployment, because no generic deployment skill id fits.\\nI mapped 'Automatisierungslösungen' (automation solutions) to workflow-automation and flagged it uncertain.\\nI mapped 'Frontend-Framework' to frontend-development as the broad skill the text names, and flagged it uncertain.\\nI did not label 'Webanwendungen' (web applications) separately, because full-stack-development is already labeled.\\nThe tech in the responsibilities section ('Das erwartet Sie') is skipped unless the candidate is also asked for it.\\nSeniority: 'Mehrjährige' means 'several years', which gives no exact count. I read it as 'proven experience', so mid, inferred and uncertain. 'erfahrene' (experienced) alone is not a level signal.\\nDegree: 'oder eine vergleichbare, durch praktische Erfahrung erworbene Qualifikation' accepts experience in place of the degree, so degree_or_equivalent is true.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "Fullstack- oder Softwareentwicklung"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "oder Softwareentwicklung"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "Fundierte Kenntnisse in TypeScript"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "TypeScript oder JavaScript"
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit React"
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "required",
+        "raw_text": "modernen Frontend-Framework",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Programmierkenntnisse in Python"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend-Entwicklung"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI oder vergleichbaren Frameworks"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST-APIs"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "Automatisierungslösungen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Softwarearchitektur"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automatisierte Tests"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Versionskontrolle"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit Cloud-Anwendungen"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "vorzugsweise auf Microsoft Azure"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Logging, Monitoring",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "Vertrautheit mit CI/CD"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerisierten Anwendungen"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "nice_to_have",
+        "raw_text": "DevOps-Spezialisierung"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise erste praktische Erfahrung mit Azure OpenAI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLMs, RAG-Architekturen"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "RAG-Architekturen"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentischen Systemen",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Django",
+        "raw_text": "Django"
+      },
+      {
+        "label": "Databases",
+        "raw_text": "Datenbanken"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Mehrjährige praktische Erfahrung",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "gute Deutsch- und gute Englischkenntnisse",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Ein abgeschlossenes Studium der (Wirtschafts-)Informatik, der Ingenieurwissenschaften oder eine vergleichbare, durch praktische Erfahrung erworbene Qualifikation",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "I read the heading 'Das wünschen wir uns' ('what we would like') as the standard German requirements heading, not as an optional marker. Under rule 1 its unmarked items default to required.\nI treated 'vorzugsweise' (preferably), 'wünschenswert' (desirable) and 'idealerweise' (ideally) as inline optional markers that make the item nice_to_have.\nAzure: its only qualification mentions are marked optional ('vorzugsweise auf Microsoft Azure' and the 'idealerweise' AI bullet), so it is nice_to_have. Its other mentions are in responsibilities only.\nAzure OpenAI is mapped to openai-api (uncertain), with Azure collapsed into the azure criterion.\nI did not label 'Interesse an KI-Anwendungen' (interest in AI applications) as ai-ml, because interest is not a skill ask.\nI labeled observability from the willingness to share responsibility for 'Logging, Monitoring' and flagged it uncertain. I did not label Deployment, because no generic deployment skill id fits.\nI mapped 'Automatisierungslösungen' (automation solutions) to workflow-automation and flagged it uncertain.\nI mapped 'Frontend-Framework' to frontend-development as the broad skill the text names, and flagged it uncertain.\nI did not label 'Webanwendungen' (web applications) separately, because full-stack-development is already labeled.\nThe tech in the responsibilities section ('Das erwartet Sie') is skipped unless the candidate is also asked for it.\nSeniority: 'Mehrjährige' means 'several years', which gives no exact count. I read it as 'proven experience', so mid, inferred and uncertain. 'erfahrene' (experienced) alone is not a level signal.\nDegree: 'oder eine vergleichbare, durch praktische Erfahrung erworbene Qualifikation' accepts experience in place of the degree, so degree_or_equivalent is true."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "3c5cd9b28d72b14f404bdceaceaa55fa8352a704c0222479afaa73f216d0879e",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

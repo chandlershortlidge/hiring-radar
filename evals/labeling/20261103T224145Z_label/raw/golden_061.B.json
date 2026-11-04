@@ -1,0 +1,167 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Software- oder KI-Entwicklung\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"KI-Entwicklung\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"REST-APIs\"\n    },\n    {\n      \"skill_id\": \"fastapi\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"FastAPI\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL-Datenbanken\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud-Infrastruktur\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD-Pipelines\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Infrastructure-as-Code\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM-Anwendungen\"\n    },\n    {\n      \"skill_id\": \"aws-bedrock\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Amazon Bedrock\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM-Anwendungen mit Amazon Bedrock in den produktiven Einsatz gebracht\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Vektordatenbanken\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Agentic Coding und KI-gestützte Tools\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Observability\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"systematischer Evaluation von Enterprise-KI-Anwendungen und KI-Pipelines\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Pydantic\",\n      \"raw_text\": \"Pydantic\"\n    },\n    {\n      \"label\": \"AWS CDK\",\n      \"raw_text\": \"AWS CDK\"\n    },\n    {\n      \"label\": \"AWS CloudFormation\",\n      \"raw_text\": \"CloudFormation\"\n    },\n    {\n      \"label\": \"Agile software development\",\n      \"raw_text\": \"agiler Softwareentwicklung\"\n    },\n    {\n      \"label\": \"Scrum\",\n      \"raw_text\": \"Scrum\"\n    },\n    {\n      \"label\": \"Kanban\",\n      \"raw_text\": \"Kanban\"\n    },\n    {\n      \"label\": \"SAFe\",\n      \"raw_text\": \"SAFe\"\n    },\n    {\n      \"label\": \"Technical documentation\",\n      \"raw_text\": \"strukturierter technischer Dokumentation\"\n    },\n    {\n      \"label\": \"Code quality\",\n      \"raw_text\": \"nachhaltige Code-Qualität\"\n    },\n    {\n      \"label\": \"Enterprise standards\",\n      \"raw_text\": \"Enterprise-Standards\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"mind. 3 Jahre Erfahrung\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"sehr gute Deutschkenntnisse (mind. C1) in Wort und Schrift notwendig\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"ein abgeschlossenes Studium (Informatik, Software Engineering, Ingenieurwesen o. ä.) oder eine vergleichbare technische Vorbildung\",\n  \"notes\": \"„Was dir bei der Arbeit helfen wird“ does not explicitly mark its items optional; on a literal reading, these candidate qualifications default to required.\\nKI-Entwicklung is provisionally mapped to ai-ml; this is broader than the taxonomy's explicit aliases and is flagged for review. It does not establish model training.\\nThe degree has no stated level, so bachelor applies; vergleichbare technische Vorbildung is read as an accepted comparable qualification.\\nTechnologies and practices appearing only under „Deine Aufgaben“ are excluded. Degree fields are not treated as skill requirements.\\nCode quality and Enterprise-Standards are read literally as requested technical practices, but have no matching taxonomy entries.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Software- oder KI-Entwicklung"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "KI-Entwicklung",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST-APIs"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL-Datenbanken"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Infrastruktur"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Pipelines"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure-as-Code"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-Anwendungen"
+      },
+      {
+        "skill_id": "aws-bedrock",
+        "requirement": "required",
+        "raw_text": "Amazon Bedrock"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "LLM-Anwendungen mit Amazon Bedrock in den produktiven Einsatz gebracht"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "Vektordatenbanken"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Agentic Coding und KI-gestützte Tools"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Observability"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "systematischer Evaluation von Enterprise-KI-Anwendungen und KI-Pipelines"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Pydantic",
+        "raw_text": "Pydantic"
+      },
+      {
+        "label": "AWS CDK",
+        "raw_text": "AWS CDK"
+      },
+      {
+        "label": "AWS CloudFormation",
+        "raw_text": "CloudFormation"
+      },
+      {
+        "label": "Agile software development",
+        "raw_text": "agiler Softwareentwicklung"
+      },
+      {
+        "label": "Scrum",
+        "raw_text": "Scrum"
+      },
+      {
+        "label": "Kanban",
+        "raw_text": "Kanban"
+      },
+      {
+        "label": "SAFe",
+        "raw_text": "SAFe"
+      },
+      {
+        "label": "Technical documentation",
+        "raw_text": "strukturierter technischer Dokumentation"
+      },
+      {
+        "label": "Code quality",
+        "raw_text": "nachhaltige Code-Qualität"
+      },
+      {
+        "label": "Enterprise standards",
+        "raw_text": "Enterprise-Standards"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "mind. 3 Jahre Erfahrung",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "sehr gute Deutschkenntnisse (mind. C1) in Wort und Schrift notwendig",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "ein abgeschlossenes Studium (Informatik, Software Engineering, Ingenieurwesen o. ä.) oder eine vergleichbare technische Vorbildung",
+    "notes": "„Was dir bei der Arbeit helfen wird“ does not explicitly mark its items optional; on a literal reading, these candidate qualifications default to required.\nKI-Entwicklung is provisionally mapped to ai-ml; this is broader than the taxonomy's explicit aliases and is flagged for review. It does not establish model training.\nThe degree has no stated level, so bachelor applies; vergleichbare technische Vorbildung is read as an accepted comparable qualification.\nTechnologies and practices appearing only under „Deine Aufgaben“ are excluded. Degree fields are not treated as skill requirements.\nCode quality and Enterprise-Standards are read literally as requested technical practices, but have no matching taxonomy entries."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "4493d994b604305589030681a458f480d8bd45c7a73f23be519721dd643a9dd3",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

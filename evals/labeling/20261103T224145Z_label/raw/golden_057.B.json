@@ -1,0 +1,198 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building production software\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agent or LLM-powered capability\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM-powered capability\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"orchestration\"\n    },\n    {\n      \"skill_id\": \"agent-state-management\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"memory\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG\"\n    },\n    {\n      \"skill_id\": \"multi-agent-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"multi-agent design\"\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangGraph\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Evaluation\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"regression suites\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Observability\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Backend\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"frontend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Frontend\"\n    },\n    {\n      \"skill_id\": \"react\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"React\"\n    },\n    {\n      \"skill_id\": \"node-js\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Node.js\"\n    },\n    {\n      \"skill_id\": \"mysql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MySQL\"\n    },\n    {\n      \"skill_id\": \"postgresql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PostgreSQL\"\n    },\n    {\n      \"skill_id\": \"vertex-ai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Google Vertex\"\n    },\n    {\n      \"skill_id\": \"gemini\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Gemini\"\n    },\n    {\n      \"skill_id\": \"aws-bedrock\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS Bedrock\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes on AWS\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Context engineering\",\n      \"raw_text\": \"context engineering\"\n    },\n    {\n      \"label\": \"Tool contracts\",\n      \"raw_text\": \"tool contracts\"\n    },\n    {\n      \"label\": \"Mastra\",\n      \"raw_text\": \"Mastra\"\n    },\n    {\n      \"label\": \"Vercel AI SDK\",\n      \"raw_text\": \"Vercel ai-sdk\"\n    },\n    {\n      \"label\": \"Agent authorization integration\",\n      \"raw_text\": \"integrated agents into a real product and its authorization model\"\n    },\n    {\n      \"label\": \"Cost and latency optimization\",\n      \"raw_text\": \"tuning cost and latency\"\n    },\n    {\n      \"label\": \"Provider rate-limit and fallback handling\",\n      \"raw_text\": \"handling provider rate limits and fallback\"\n    },\n    {\n      \"label\": \"EU data-residency constraints\",\n      \"raw_text\": \"working under EU data-residency constraints\"\n    },\n    {\n      \"label\": \"Svelte\",\n      \"raw_text\": \"Svelte\"\n    },\n    {\n      \"label\": \"Nest.js\",\n      \"raw_text\": \"Nest.js\"\n    },\n    {\n      \"label\": \"Datadog\",\n      \"raw_text\": \"Datadog\"\n    },\n    {\n      \"label\": \"FusionAuth\",\n      \"raw_text\": \"FusionAuth\"\n    },\n    {\n      \"label\": \"Retool\",\n      \"raw_text\": \"Retool\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Applied AI Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"ABOUT YOU defaults to required; OUR TECH STACK is a required stack list. No heading marks an optional section.\\nThe inline plus makes experience working under EU data-residency constraints optional; that practice has no precise taxonomy entry. Fintech and private-markets experience are domain knowledge and excluded.\\nFrontend and Backend are explicitly named in the stack and are labeled alongside the specific technologies; no unnamed parent skills are added.\\nTool contracts and context engineering are read literally and left unmapped rather than equated with tool calling or prompt engineering.\\nMCP, guardrails, deployment, architecture, and other technologies or practices appearing only in responsibilities are excluded.\\nMastra and ai-sdk are requested in ABOUT YOU and the stack but have no taxonomy entries; ai-sdk and Vercel ai-sdk are treated as the same technology.\\nNeither German nor a degree is requested.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "building production software"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agent or LLM-powered capability"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-powered capability"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "orchestration"
+      },
+      {
+        "skill_id": "agent-state-management",
+        "requirement": "required",
+        "raw_text": "memory"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "required",
+        "raw_text": "multi-agent design"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Evaluation"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "regression suites"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Observability"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "required",
+        "raw_text": "Frontend"
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "React"
+      },
+      {
+        "skill_id": "node-js",
+        "requirement": "required",
+        "raw_text": "Node.js"
+      },
+      {
+        "skill_id": "mysql",
+        "requirement": "required",
+        "raw_text": "MySQL"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "PostgreSQL"
+      },
+      {
+        "skill_id": "vertex-ai",
+        "requirement": "required",
+        "raw_text": "Google Vertex"
+      },
+      {
+        "skill_id": "gemini",
+        "requirement": "required",
+        "raw_text": "Gemini"
+      },
+      {
+        "skill_id": "aws-bedrock",
+        "requirement": "required",
+        "raw_text": "AWS Bedrock"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "Kubernetes on AWS"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Context engineering",
+        "raw_text": "context engineering"
+      },
+      {
+        "label": "Tool contracts",
+        "raw_text": "tool contracts"
+      },
+      {
+        "label": "Mastra",
+        "raw_text": "Mastra"
+      },
+      {
+        "label": "Vercel AI SDK",
+        "raw_text": "Vercel ai-sdk"
+      },
+      {
+        "label": "Agent authorization integration",
+        "raw_text": "integrated agents into a real product and its authorization model"
+      },
+      {
+        "label": "Cost and latency optimization",
+        "raw_text": "tuning cost and latency"
+      },
+      {
+        "label": "Provider rate-limit and fallback handling",
+        "raw_text": "handling provider rate limits and fallback"
+      },
+      {
+        "label": "EU data-residency constraints",
+        "raw_text": "working under EU data-residency constraints"
+      },
+      {
+        "label": "Svelte",
+        "raw_text": "Svelte"
+      },
+      {
+        "label": "Nest.js",
+        "raw_text": "Nest.js"
+      },
+      {
+        "label": "Datadog",
+        "raw_text": "Datadog"
+      },
+      {
+        "label": "FusionAuth",
+        "raw_text": "FusionAuth"
+      },
+      {
+        "label": "Retool",
+        "raw_text": "Retool"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Applied AI Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "ABOUT YOU defaults to required; OUR TECH STACK is a required stack list. No heading marks an optional section.\nThe inline plus makes experience working under EU data-residency constraints optional; that practice has no precise taxonomy entry. Fintech and private-markets experience are domain knowledge and excluded.\nFrontend and Backend are explicitly named in the stack and are labeled alongside the specific technologies; no unnamed parent skills are added.\nTool contracts and context engineering are read literally and left unmapped rather than equated with tool calling or prompt engineering.\nMCP, guardrails, deployment, architecture, and other technologies or practices appearing only in responsibilities are excluded.\nMastra and ai-sdk are requested in ABOUT YOU and the stack but have no taxonomy entries; ai-sdk and Vercel ai-sdk are treated as the same technology.\nNeither German nor a degree is requested."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "c20a2e42ac1d0d677a86c5b351f1c54a37bafdaf945f7df9b92fd932c13f3ee8",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

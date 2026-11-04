@@ -1,0 +1,226 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"modernem Software Engineering\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"Testing, Debugging\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"Git\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Machine-Learning-Frameworks\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\"},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"required\", \"raw_text\": \"scikit-learn\"},\n    {\"skill_id\": \"model-development\", \"requirement\": \"required\", \"raw_text\": \"Modelltraining\", \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"Evaluation\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"produktiver Bereitstellung\", \"uncertain\": true},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"required\", \"raw_text\": \"Datenpipelines\"},\n    {\"skill_id\": \"feature-engineering\", \"requirement\": \"required\", \"raw_text\": \"Feature-Engineering-Prozessen\"},\n    {\"skill_id\": \"pandas\", \"requirement\": \"required\", \"raw_text\": \"pandas\"},\n    {\"skill_id\": \"apache-spark\", \"requirement\": \"required\", \"raw_text\": \"Spark\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"Du entwickelst APIs\"},\n    {\"skill_id\": \"fastapi\", \"requirement\": \"required\", \"raw_text\": \"FastAPI\"},\n    {\"skill_id\": \"flask\", \"requirement\": \"required\", \"raw_text\": \"Flask\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud- und Cloud-Native-Architekturen\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"GCP\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"Containerisierung\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Docker\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"nice_to_have\", \"raw_text\": \"idealerweise Kubernetes\"},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"MLOps/LLMOps\"},\n    {\"skill_id\": \"llmops\", \"requirement\": \"required\", \"raw_text\": \"LLMOps, Monitoring\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"Monitoring, Versionierung\"},\n    {\"skill_id\": \"model-versioning\", \"requirement\": \"required\", \"raw_text\": \"Versionierung, Retraining\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Generative AI\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG\"},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"required\", \"raw_text\": \"Embeddings\"},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"required\", \"raw_text\": \"Vector Stores\", \"uncertain\": true},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"Prompt Engineering\"},\n    {\"skill_id\": \"llm-guardrails\", \"requirement\": \"required\", \"raw_text\": \"Guardrails\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Apache Beam\", \"raw_text\": \"Beam\"},\n    {\"label\": \"Clean Code\", \"raw_text\": \"Clean Code\"},\n    {\"label\": \"Code Reviews\", \"raw_text\": \"Code Reviews\"},\n    {\"label\": \"Data Quality\", \"raw_text\": \"Data Quality\"},\n    {\"label\": \"Retraining\", \"raw_text\": \"Retraining\"}\n  ],\n  \"seniority\": \"senior\", \"seniority_basis\": \"stated\", \"seniority_signal\": \"Senior AI Engineer\",\n  \"german\": \"required\", \"german_basis\": \"stated\", \"german_signal\": \"kommunizierst verhandlungssicher auf Deutsch\",\n  \"degree\": null, \"degree_requirement\": null,\n  \"degree_or_equivalent\": false, \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Only the 'Dein Skillset' section is labeled; 'Deine Mission' is responsibilities, and the 'Schlagworte' keywords (DevOps etc.) are not asked of the candidate.\\n'idealerweise' is an inline 'ideally' marker and applies only to Kubernetes, so Kubernetes is nice_to_have.\\n'Erfahrung oder großes Interesse an Generative AI…' has no optional marker, so the GenAI items are required.\\n'Erfahrung oder ein solides Verständnis von MLOps/LLMOps…' is likewise treated as required.\\nREST collapses into apis (alias 'rest apis'). 'Generative AI' and 'Large Language Models' both map to llms.\\n'Machine-Learning-Frameworks' is mapped to machine-learning.\\nModelltraining is mapped to model-development and 'produktiver Bereitstellung' to ai-deployment; both are flagged uncertain.\\n'Vector Stores' is mapped to vector-databases (uncertain).\\n'Versionierung' in the MLOps context is mapped to model-versioning (uncertain).\\nTesting, Monitoring and Versionierung also appear in the Mission section, so their raw_text quotes the Skillset fragment.\\nNo degree is mentioned anywhere in the posting.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "modernem Software Engineering"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "Testing, Debugging"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Machine-Learning-Frameworks"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "Modelltraining",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Evaluation"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "produktiver Bereitstellung",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "Datenpipelines"
+      },
+      {
+        "skill_id": "feature-engineering",
+        "requirement": "required",
+        "raw_text": "Feature-Engineering-Prozessen"
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "required",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "required",
+        "raw_text": "Spark"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Du entwickelst APIs"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "flask",
+        "requirement": "required",
+        "raw_text": "Flask"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud- und Cloud-Native-Architekturen"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "Containerisierung"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise Kubernetes"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps/LLMOps"
+      },
+      {
+        "skill_id": "llmops",
+        "requirement": "required",
+        "raw_text": "LLMOps, Monitoring"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring, Versionierung"
+      },
+      {
+        "skill_id": "model-versioning",
+        "requirement": "required",
+        "raw_text": "Versionierung, Retraining",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generative AI"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "Embeddings"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "Vector Stores",
+        "uncertain": true
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "Guardrails"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Apache Beam",
+        "raw_text": "Beam"
+      },
+      {
+        "label": "Clean Code",
+        "raw_text": "Clean Code"
+      },
+      {
+        "label": "Code Reviews",
+        "raw_text": "Code Reviews"
+      },
+      {
+        "label": "Data Quality",
+        "raw_text": "Data Quality"
+      },
+      {
+        "label": "Retraining",
+        "raw_text": "Retraining"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI Engineer",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "kommunizierst verhandlungssicher auf Deutsch",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Only the 'Dein Skillset' section is labeled; 'Deine Mission' is responsibilities, and the 'Schlagworte' keywords (DevOps etc.) are not asked of the candidate.\n'idealerweise' is an inline 'ideally' marker and applies only to Kubernetes, so Kubernetes is nice_to_have.\n'Erfahrung oder großes Interesse an Generative AI…' has no optional marker, so the GenAI items are required.\n'Erfahrung oder ein solides Verständnis von MLOps/LLMOps…' is likewise treated as required.\nREST collapses into apis (alias 'rest apis'). 'Generative AI' and 'Large Language Models' both map to llms.\n'Machine-Learning-Frameworks' is mapped to machine-learning.\nModelltraining is mapped to model-development and 'produktiver Bereitstellung' to ai-deployment; both are flagged uncertain.\n'Vector Stores' is mapped to vector-databases (uncertain).\n'Versionierung' in the MLOps context is mapped to model-versioning (uncertain).\nTesting, Monitoring and Versionierung also appear in the Mission section, so their raw_text quotes the Skillset fragment.\nNo degree is mentioned anywhere in the posting."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "900f796e04943280216ade79a1a0174375dc0759ab52fc3e9f7952d2f69111f9",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

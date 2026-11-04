@@ -1,0 +1,122 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong Python proficiency\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Machine learning research or engineering\"\n    },\n    {\n      \"skill_id\": \"ml-engineering\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Machine learning research or engineering\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"fine-tuning\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement learning\"\n    },\n    {\n      \"skill_id\": \"agent-architecture\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI-agent architecture\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI-agent architecture, evaluation\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"tool-use environments\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Distributed systems\"\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"model serving\"\n    },\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Linux\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"networking\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"C++\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"TypeScript\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Post-training\",\n      \"raw_text\": \"post-training\"\n    },\n    {\n      \"label\": \"AI alignment\",\n      \"raw_text\": \"alignment\"\n    },\n    {\n      \"label\": \"Security sandboxing\",\n      \"raw_text\": \"Security sandboxing\"\n    },\n    {\n      \"label\": \"Adversarial testing\",\n      \"raw_text\": \"adversarial testing\"\n    },\n    {\n      \"label\": \"AI governance\",\n      \"raw_text\": \"governance for AI systems\"\n    },\n    {\n      \"label\": \"Systems performance\",\n      \"raw_text\": \"systems performance\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor's degree in Computer Science, Engineering, or a related field, or equivalent practical experience required\",\n  \"uncertain\": [],\n  \"notes\": \"Section 'Experience in one or more of the following is helpful:' treated as nice_to_have heading.\\n'Machine learning research or engineering' mapped to both machine-learning and ml-engineering (flagged ml-engineering as uncertain since it shares the 'Machine learning' prefix).\\n'modern AI systems, tools, or research' not mapped to ai-ml or ai-developer-tooling as the phrasing is general rather than a specific taxonomy alias.\\n'software design, debugging, and problem-solving skills' not mapped to software-architecture or testing as neither 'software design' nor standalone 'debugging' are taxonomy aliases.\\n'orchestration' in 'Distributed systems, model serving, orchestration, or high-throughput research infrastructure' not mapped to llm-orchestration or containerization as it refers to general compute/system orchestration in context.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python proficiency"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "Machine learning research or engineering"
+      },
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "Machine learning research or engineering",
+        "uncertain": true
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "agent-architecture",
+        "requirement": "nice_to_have",
+        "raw_text": "AI-agent architecture"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "AI-agent architecture, evaluation"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "nice_to_have",
+        "raw_text": "tool-use environments"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "Distributed systems"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "model serving"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "nice_to_have",
+        "raw_text": "Linux"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "nice_to_have",
+        "raw_text": "networking"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "nice_to_have",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "nice_to_have",
+        "raw_text": "TypeScript"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Post-training",
+        "raw_text": "post-training"
+      },
+      {
+        "label": "AI alignment",
+        "raw_text": "alignment"
+      },
+      {
+        "label": "Security sandboxing",
+        "raw_text": "Security sandboxing"
+      },
+      {
+        "label": "Adversarial testing",
+        "raw_text": "adversarial testing"
+      },
+      {
+        "label": "AI governance",
+        "raw_text": "governance for AI systems"
+      },
+      {
+        "label": "Systems performance",
+        "raw_text": "systems performance"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor's degree in Computer Science, Engineering, or a related field, or equivalent practical experience required",
+    "uncertain": [],
+    "notes": "Section 'Experience in one or more of the following is helpful:' treated as nice_to_have heading.\n'Machine learning research or engineering' mapped to both machine-learning and ml-engineering (flagged ml-engineering as uncertain since it shares the 'Machine learning' prefix).\n'modern AI systems, tools, or research' not mapped to ai-ml or ai-developer-tooling as the phrasing is general rather than a specific taxonomy alias.\n'software design, debugging, and problem-solving skills' not mapped to software-architecture or testing as neither 'software design' nor standalone 'debugging' are taxonomy aliases.\n'orchestration' in 'Distributed systems, model serving, orchestration, or high-throughput research infrastructure' not mapped to llm-orchestration or containerization as it refers to general compute/system orchestration in context."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "ef109727c86b4fad4f92117a49a18e760484d909e41c41d22876f8c556bff2a4",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

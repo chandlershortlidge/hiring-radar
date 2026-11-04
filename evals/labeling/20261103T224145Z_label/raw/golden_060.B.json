@@ -1,0 +1,177 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"full-stack-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Fullstack- oder Softwareentwicklung\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Softwareentwicklung sowie Verantwortung\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Fundierte Kenntnisse in TypeScript\"\n    },\n    {\n      \"skill_id\": \"javascript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JavaScript\"\n    },\n    {\n      \"skill_id\": \"react\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Erfahrung mit React\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Gute Programmierkenntnisse in Python\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Backend-Entwicklung\"\n    },\n    {\n      \"skill_id\": \"fastapi\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"FastAPI\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"REST-APIs\"\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Automatisierungslösungen\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Softwarearchitektur\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"automatisierte Tests\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Versionskontrolle\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud-Anwendungen\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vorzugsweise auf Microsoft Azure\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Monitoring und Fehleranalyse für die eigenen Anwendungen mitzuverantworten\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"containerisierten Anwendungen\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"DevOps-Spezialisierung\"\n    },\n    {\n      \"skill_id\": \"openai-api\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"idealerweise erste praktische Erfahrung mit Azure OpenAI\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLMs, RAG-Architekturen\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"RAG-Architekturen\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Prompt Engineering\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agentischen Systemen\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Django\",\n      \"raw_text\": \"Django\"\n    },\n    {\n      \"label\": \"Databases\",\n      \"raw_text\": \"Datenbanken\"\n    },\n    {\n      \"label\": \"Modern development workflows\",\n      \"raw_text\": \"moderne Entwicklungsworkflows\"\n    },\n    {\n      \"label\": \"Software deployment\",\n      \"raw_text\": \"Deployment, Logging, Monitoring und Fehleranalyse für die eigenen Anwendungen mitzuverantworten\"\n    },\n    {\n      \"label\": \"Logging\",\n      \"raw_text\": \"Logging\"\n    },\n    {\n      \"label\": \"Fault analysis\",\n      \"raw_text\": \"Fehleranalyse\"\n    },\n    {\n      \"label\": \"Platform specialization\",\n      \"raw_text\": \"tiefgehende Platform- oder DevOps-Spezialisierung\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Mehrjährige praktische Erfahrung in der Fullstack- oder Softwareentwicklung\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"gute Deutsch- und gute Englischkenntnisse\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Ein abgeschlossenes Studium der (Wirtschafts-)Informatik, der Ingenieurwissenschaften oder eine vergleichbare, durch praktische Erfahrung erworbene Qualifikation\",\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"“Das wünschen wir uns” is read as a requirements heading, not an optional section; the invitation to apply without meeting every requirement does not change the labels.\\n“vorzugsweise”, “wünschenswert” and “idealerweise” are read literally as optional markers. “wünschenswert” applies to the entire CI/CD, containers and Platform/DevOps bullet.\\nTechnologies appearing only under “Das erwartet Sie” are excluded. Longer quotes distinguish qualification mentions from responsibility-only mentions.\\nAzure OpenAI maps to Azure and OpenAI API; Azure is independently preferred in the cloud qualification.\\nDeployment, logging and fault analysis are explicitly requested through willingness to share operational responsibility; no AI-specific deployment skill is inferred.\\nInterest in AI applications alone is not treated as a request for AI/ML proficiency.\\n“Mehrjährige” indicates multiple years but gives no numerical range; mid is an uncertain inference, not a stated level.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "Fullstack- oder Softwareentwicklung"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Softwareentwicklung sowie Verantwortung"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "Fundierte Kenntnisse in TypeScript"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit React"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Gute Programmierkenntnisse in Python"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend-Entwicklung"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST-APIs"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "Automatisierungslösungen"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Softwarearchitektur"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automatisierte Tests"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Versionskontrolle"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Anwendungen"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "vorzugsweise auf Microsoft Azure"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring und Fehleranalyse für die eigenen Anwendungen mitzuverantworten"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerisierten Anwendungen"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "nice_to_have",
+        "raw_text": "DevOps-Spezialisierung"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise erste praktische Erfahrung mit Azure OpenAI"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLMs, RAG-Architekturen"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "RAG-Architekturen"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentischen Systemen"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Django",
+        "raw_text": "Django"
+      },
+      {
+        "label": "Databases",
+        "raw_text": "Datenbanken"
+      },
+      {
+        "label": "Modern development workflows",
+        "raw_text": "moderne Entwicklungsworkflows"
+      },
+      {
+        "label": "Software deployment",
+        "raw_text": "Deployment, Logging, Monitoring und Fehleranalyse für die eigenen Anwendungen mitzuverantworten"
+      },
+      {
+        "label": "Logging",
+        "raw_text": "Logging"
+      },
+      {
+        "label": "Fault analysis",
+        "raw_text": "Fehleranalyse"
+      },
+      {
+        "label": "Platform specialization",
+        "raw_text": "tiefgehende Platform- oder DevOps-Spezialisierung"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Mehrjährige praktische Erfahrung in der Fullstack- oder Softwareentwicklung",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "gute Deutsch- und gute Englischkenntnisse",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Ein abgeschlossenes Studium der (Wirtschafts-)Informatik, der Ingenieurwissenschaften oder eine vergleichbare, durch praktische Erfahrung erworbene Qualifikation",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "“Das wünschen wir uns” is read as a requirements heading, not an optional section; the invitation to apply without meeting every requirement does not change the labels.\n“vorzugsweise”, “wünschenswert” and “idealerweise” are read literally as optional markers. “wünschenswert” applies to the entire CI/CD, containers and Platform/DevOps bullet.\nTechnologies appearing only under “Das erwartet Sie” are excluded. Longer quotes distinguish qualification mentions from responsibility-only mentions.\nAzure OpenAI maps to Azure and OpenAI API; Azure is independently preferred in the cloud qualification.\nDeployment, logging and fault analysis are explicitly requested through willingness to share operational responsibility; no AI-specific deployment skill is inferred.\nInterest in AI applications alone is not treated as a request for AI/ML proficiency.\n“Mehrjährige” indicates multiple years but gives no numerical range; mid is an uncertain inference, not a stated level."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "3c5cd9b28d72b14f404bdceaceaa55fa8352a704c0222479afaa73f216d0879e",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

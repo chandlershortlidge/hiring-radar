@@ -1,0 +1,130 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM-based systems\"\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MCP Servers\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG pipelines\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic workflows\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud platform\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Google Cloud preferred\"\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data security\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"enterprise APIs\"\n    },\n    {\n      \"skill_id\": \"multi-agent-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"multi-agent frameworks\"\n    },\n    {\n      \"skill_id\": \"crewai\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CrewAI\"\n    },\n    {\n      \"skill_id\": \"n8n\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"n8n\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"observability\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Authentication\",\n      \"raw_text\": \"authentication\"\n    },\n    {\n      \"label\": \"Authorization\",\n      \"raw_text\": \"authorization\"\n    },\n    {\n      \"label\": \"AI tooling ecosystem\",\n      \"raw_text\": \"common AI tooling ecosystem\"\n    },\n    {\n      \"label\": \"Low-code platforms\",\n      \"raw_text\": \"low-code platforms\"\n    },\n    {\n      \"label\": \"Dataleap\",\n      \"raw_text\": \"Dataleap\"\n    },\n    {\n      \"label\": \"Reliability practices\",\n      \"raw_text\": \"reliability practices for AI or data systems\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3 to 5 years\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Your fitness level is required by default; Nice to have is optional. Your daily workout contains responsibilities and does not independently establish skill requirements.\\nGoogle Cloud is optional because of the inline preferred marker; its required use in responsibilities does not change that label.\\nPython and Java are both labeled despite being alternatives, as explicitly named candidate skills.\\nAgentic workflows maps to agents; multi-agent frameworks additionally names multi-agent systems. No separate workflow-automation requirement is inferred.\\nThe ideally marker applies to having a system running in a real environment, not to the preceding LLM, MCP, RAG, or agent skills.\\nCommon AI tooling ecosystem is left unmapped rather than interpreted as coding-agent tooling or general AI/ML expertise.\\nNo German-language or degree requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-based systems"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "MCP Servers"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG pipelines"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic workflows"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud platform"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "Google Cloud preferred"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "data security"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "enterprise APIs"
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "multi-agent frameworks"
+      },
+      {
+        "skill_id": "crewai",
+        "requirement": "nice_to_have",
+        "raw_text": "CrewAI"
+      },
+      {
+        "skill_id": "n8n",
+        "requirement": "nice_to_have",
+        "raw_text": "n8n"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "observability"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Authentication",
+        "raw_text": "authentication"
+      },
+      {
+        "label": "Authorization",
+        "raw_text": "authorization"
+      },
+      {
+        "label": "AI tooling ecosystem",
+        "raw_text": "common AI tooling ecosystem"
+      },
+      {
+        "label": "Low-code platforms",
+        "raw_text": "low-code platforms"
+      },
+      {
+        "label": "Dataleap",
+        "raw_text": "Dataleap"
+      },
+      {
+        "label": "Reliability practices",
+        "raw_text": "reliability practices for AI or data systems"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3 to 5 years",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Your fitness level is required by default; Nice to have is optional. Your daily workout contains responsibilities and does not independently establish skill requirements.\nGoogle Cloud is optional because of the inline preferred marker; its required use in responsibilities does not change that label.\nPython and Java are both labeled despite being alternatives, as explicitly named candidate skills.\nAgentic workflows maps to agents; multi-agent frameworks additionally names multi-agent systems. No separate workflow-automation requirement is inferred.\nThe ideally marker applies to having a system running in a real environment, not to the preceding LLM, MCP, RAG, or agent skills.\nCommon AI tooling ecosystem is left unmapped rather than interpreted as coding-agent tooling or general AI/ML expertise.\nNo German-language or degree requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "2fdf02ac628390b08b2d6e736522566a398c2a266e1a56dbca7a8cddf5290a80",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

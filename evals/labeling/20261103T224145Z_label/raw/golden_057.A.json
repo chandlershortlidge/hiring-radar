@@ -1,0 +1,185 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"Agents: real depth\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM-powered capability\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"real depth in orchestration\", \"uncertain\": true},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"tool contracts\", \"uncertain\": true},\n    {\"skill_id\": \"agent-state-management\", \"requirement\": \"required\", \"raw_text\": \"memory, RAG\", \"uncertain\": true},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG\"},\n    {\"skill_id\": \"multi-agent-systems\", \"requirement\": \"required\", \"raw_text\": \"multi-agent design\"},\n    {\"skill_id\": \"langgraph\", \"requirement\": \"required\", \"raw_text\": \"LangGraph\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"Evaluation: you know how to make a non-deterministic system measurable\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"regression suites and human review\", \"uncertain\": true},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"Observability: Datadog\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"Backend: You have experience\", \"uncertain\": true},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"experience with TypeScript\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"frontend-development\", \"requirement\": \"required\", \"raw_text\": \"Frontend: TypeScript\", \"uncertain\": true},\n    {\"skill_id\": \"react\", \"requirement\": \"required\", \"raw_text\": \"React\"},\n    {\"skill_id\": \"node-js\", \"requirement\": \"required\", \"raw_text\": \"Node.js\"},\n    {\"skill_id\": \"mysql\", \"requirement\": \"required\", \"raw_text\": \"MySQL\"},\n    {\"skill_id\": \"postgresql\", \"requirement\": \"required\", \"raw_text\": \"PostgreSQL\"},\n    {\"skill_id\": \"vertex-ai\", \"requirement\": \"required\", \"raw_text\": \"Google Vertex\"},\n    {\"skill_id\": \"gemini\", \"requirement\": \"required\", \"raw_text\": \"(Gemini)\"},\n    {\"skill_id\": \"aws-bedrock\", \"requirement\": \"required\", \"raw_text\": \"AWS Bedrock\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Kubernetes\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"Kubernetes on AWS\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Mastra\", \"raw_text\": \"Mastra\"},\n    {\"label\": \"Vercel ai-sdk\", \"raw_text\": \"Vercel ai-sdk\"},\n    {\"label\": \"context engineering\", \"raw_text\": \"context engineering\"},\n    {\"label\": \"Svelte\", \"raw_text\": \"Svelte\"},\n    {\"label\": \"Nest.js\", \"raw_text\": \"Nest.js\"},\n    {\"label\": \"Datadog\", \"raw_text\": \"Datadog\"},\n    {\"label\": \"FusionAuth\", \"raw_text\": \"FusionAuth\"},\n    {\"label\": \"Retool\", \"raw_text\": \"Retool\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Applied AI Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Top Priorities and First 90 Days are responsibilities. Skills named only there are not labeled: MCP, guardrails, CI, and prompt conventions.\\nTech-stack entries are unmarked, so each one is required (rule 3).\\n'tool contracts' is mapped to tool-calling and 'memory' to agent-state-management. Both are approximate alias matches, so both are flagged uncertain.\\n'tool contracts' also appears verbatim in Top Priorities. The criterion rests on the About You mention ('tool contracts, memory, RAG, multi-agent design'), but a reviewer locating the bare phrase may land on the earlier responsibilities occurrence.\\n'orchestration' in the agent context is mapped to llm-orchestration.\\n'regression suites' is mapped to testing and flagged uncertain.\\n'Frontend:' and 'Backend:' are tech-stack / About You category labels. They are read as naming the broad skills, which is why those two are flagged uncertain.\\nThe 'AI:' tech-stack label is not mapped to ai-ml, because a bare category label is too weak.\\n'Infrastructure:' is not mapped to cloud; that would add a parent skill the text does not name.\\n'Database:' has no taxonomy entry, so only MySQL and PostgreSQL are labeled.\\n'building production software' sits inside the years-of-experience line and is not labeled as software-engineering.\\nThe fintech, private-markets and EU data-residency plus is domain knowledge, not a skill.\\nSeniority is stated in the title. The 5+ years requirement and the mentoring duty agree with that label.\\nNo German or degree is mentioned anywhere in the posting.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Agents: real depth"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-powered capability"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "real depth in orchestration",
+        "uncertain": true
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool contracts",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agent-state-management",
+        "requirement": "required",
+        "raw_text": "memory, RAG",
+        "uncertain": true
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "required",
+        "raw_text": "multi-agent design"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Evaluation: you know how to make a non-deterministic system measurable"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "regression suites and human review",
+        "uncertain": true
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Observability: Datadog"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend: You have experience",
+        "uncertain": true
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "experience with TypeScript"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "required",
+        "raw_text": "Frontend: TypeScript",
+        "uncertain": true
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "React"
+      },
+      {
+        "skill_id": "node-js",
+        "requirement": "required",
+        "raw_text": "Node.js"
+      },
+      {
+        "skill_id": "mysql",
+        "requirement": "required",
+        "raw_text": "MySQL"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "PostgreSQL"
+      },
+      {
+        "skill_id": "vertex-ai",
+        "requirement": "required",
+        "raw_text": "Google Vertex"
+      },
+      {
+        "skill_id": "gemini",
+        "requirement": "required",
+        "raw_text": "(Gemini)"
+      },
+      {
+        "skill_id": "aws-bedrock",
+        "requirement": "required",
+        "raw_text": "AWS Bedrock"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "Kubernetes on AWS"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Mastra",
+        "raw_text": "Mastra"
+      },
+      {
+        "label": "Vercel ai-sdk",
+        "raw_text": "Vercel ai-sdk"
+      },
+      {
+        "label": "context engineering",
+        "raw_text": "context engineering"
+      },
+      {
+        "label": "Svelte",
+        "raw_text": "Svelte"
+      },
+      {
+        "label": "Nest.js",
+        "raw_text": "Nest.js"
+      },
+      {
+        "label": "Datadog",
+        "raw_text": "Datadog"
+      },
+      {
+        "label": "FusionAuth",
+        "raw_text": "FusionAuth"
+      },
+      {
+        "label": "Retool",
+        "raw_text": "Retool"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Applied AI Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Top Priorities and First 90 Days are responsibilities. Skills named only there are not labeled: MCP, guardrails, CI, and prompt conventions.\nTech-stack entries are unmarked, so each one is required (rule 3).\n'tool contracts' is mapped to tool-calling and 'memory' to agent-state-management. Both are approximate alias matches, so both are flagged uncertain.\n'tool contracts' also appears verbatim in Top Priorities. The criterion rests on the About You mention ('tool contracts, memory, RAG, multi-agent design'), but a reviewer locating the bare phrase may land on the earlier responsibilities occurrence.\n'orchestration' in the agent context is mapped to llm-orchestration.\n'regression suites' is mapped to testing and flagged uncertain.\n'Frontend:' and 'Backend:' are tech-stack / About You category labels. They are read as naming the broad skills, which is why those two are flagged uncertain.\nThe 'AI:' tech-stack label is not mapped to ai-ml, because a bare category label is too weak.\n'Infrastructure:' is not mapped to cloud; that would add a parent skill the text does not name.\n'Database:' has no taxonomy entry, so only MySQL and PostgreSQL are labeled.\n'building production software' sits inside the years-of-experience line and is not labeled as software-engineering.\nThe fintech, private-markets and EU data-residency plus is domain knowledge, not a skill.\nSeniority is stated in the title. The 5+ years requirement and the mentoring duty agree with that label.\nNo German or degree is mentioned anywhere in the posting."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "c20a2e42ac1d0d677a86c5b351f1c54a37bafdaf945f7df9b92fd932c13f3ee8",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

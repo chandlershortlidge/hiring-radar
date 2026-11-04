@@ -227,6 +227,10 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   (config/discover.json: domains × queries) → boards we don't poll → each fetched live and
   judged by ingest's filters → report. `--add`/`--reject` are the only writes (feeds.json,
   `config/boards_rejected.json`). Needs `BRAVE_API_KEY`.
+  `--launch <city>` is the one path that writes without being asked (HIR-132): it counts
+  roles in that city alone, adds every employer board with 5+ of them, skips agencies and
+  aggregators, leaves 1–4 unrecorded, and stops the whole launch — adding nothing — above
+  €10 of one-time model reading or 5,000 postings added to the daily download.
 - `app/check.py` — `check`: a careers-page URL → found / not found, and on a miss why no
   feed could have stored it (board not polled, filter would drop it, not an ATS page).
   Writes only its own log (`url_check`, the first check per URL drives the coverage line
@@ -289,7 +293,14 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `scripts/agent_label.py` — held-out Goldens via two blind labeler agents: pick → label A
   and B → auto-check → merge → review queue (`label`), then your decisions → final Goldens
   with provenance (`apply`). Refuses to label with the extractor's model. Never runs the
-  held-out eval. See DECISIONS 2026-10-27 and `evals/LABELER_PROMPT.md`.
+  held-out eval. See DECISIONS 2026-10-27 and `evals/LABELER_PROMPT.md`. `--city <city>`
+  narrows the pool to one city, which is what a city launch samples.
+- `scripts/launch_check.py` — the quality check a city launch reports (HIR-132): scores the
+  labeller panel's *agreed* labels against what the extractor actually stored for the same
+  postings, with `app.evaluation`'s scorer, and against a second run on Berlin
+  (`--baseline-run`) as the bar. Read-only; calls no model. The labels it reads are
+  model-written and unreviewed, so they are **not** Goldens — they wait in the run's
+  `review_queue.md` for the ordinary spot-check.
 - `scripts/seed_from_legacy.py` — one-off that built the taxonomy and Goldens from the
   legacy repo. Kept for provenance.
 - `deploy/` — everything about the VM: the runbook (`README.md`), `provision.sh` (rebuilds
@@ -361,10 +372,13 @@ The held-out split stays release-only (the rule just above). This gate is the de
   (they were hand-edited after seeding). Never run it against the real files.
 - Feeds return everything; `app/ingest.py` filters by title regex and *active* city. A job
   in an untracked or inactive city is dropped, not stored. `app/geo.py` has two lists:
-  `CITIES` (recognized) and `ACTIVE_CITIES` (collected: Berlin, `REMOTE_EU` and San
-  Francisco, active since 2026-11-03). The scope is Germany and EU-remote, with San
-  Francisco as the single exception by name — a further non-German city is not covered by
-  it, and `ACTIVE_CITIES` stays on the stop list (DECISIONS 2026-11-03, HIR-12).
+  `CITIES` (recognized) and `ACTIVE_CITIES` (collected: Berlin, `REMOTE_EU`, San Francisco
+  and New York). The scope is Germany, EU-remote, and the cities Chandler has turned on —
+  SF since 2026-11-03 (HIR-12), New York since 2026-11-03 (HIR-132). Launching a city is
+  automated: `discover-boards --launch <city>` applies the written board policy itself and
+  reports afterwards, so neither the city nor its boards waits on approval (DECISIONS
+  2026-11-03, HIR-132, which supersedes both the "SF is the single exception" line and the
+  manual `--add` approval rule). Adding a city Chandler has *not* named is still his call.
   EU-remote rules live in `geo.is_remote_eu` (DECISIONS 2026-10-26).
 - `skill_mention` holds one extraction per job (the latest). Re-extraction replaces.
   `extraction_reject` (items that failed validation) follows the same rule.

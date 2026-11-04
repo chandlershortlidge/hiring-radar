@@ -48,6 +48,37 @@ def test_a_city_wins_over_remote():
     assert active_place("San Francisco, CA (Remote)") == "San Francisco"   # active since HIR-12
 
 
+@pytest.mark.parametrize("loc", [
+    "New York, NY",
+    "New York City",
+    "NYC",
+    "Manhattan, New York",
+    "Brooklyn, NY",
+    "New York, NY (Hybrid)",
+    "Remote - New York",                  # a city match wins over remote
+])
+def test_new_york_is_recognized_and_collected(loc):
+    """New York became active with HIR-132."""
+    assert place_of(loc) == "New York" and active_place(loc) == "New York"
+
+
+@pytest.mark.parametrize("loc", [
+    "Rochester, NY",        # bare "NY" is not an alias: this is the state, not the city
+    "Albany, NY",
+    "Newark, NJ",
+])
+def test_new_york_state_outside_the_city_is_not_new_york(loc):
+    assert place_of(loc) is None and active_place(loc) is None
+
+
+def test_new_york_is_active_but_the_gate_still_drops_it_when_inactive(monkeypatch):
+    """The tracked-vs-active gate applies to New York like any other city."""
+    assert "New York" in geo.ACTIVE_CITIES
+    monkeypatch.setattr(geo, "ACTIVE_CITIES", ("Berlin", REMOTE_EU))
+    assert place_of("New York, NY") == "New York"    # still tracked
+    assert active_place("New York, NY") is None      # but not collected
+
+
 def test_san_francisco_is_active_but_the_gate_still_drops_an_inactive_city(monkeypatch):
     """The tracked-vs-active gate is unchanged; only SF's side of it moved."""
     assert "San Francisco" in geo.ACTIVE_CITIES

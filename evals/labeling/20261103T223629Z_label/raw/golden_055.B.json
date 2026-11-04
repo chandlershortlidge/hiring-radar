@@ -1,0 +1,171 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\"skill_id\":\"machine-learning\",\"requirement\":\"required\",\"raw_text\":\"machine learning\"},\n    {\"skill_id\":\"statistics\",\"requirement\":\"required\",\"raw_text\":\"statistics\"},\n    {\"skill_id\":\"ai-ml\",\"requirement\":\"required\",\"raw_text\":\"Strong Interest or Experience with AI\"},\n    {\"skill_id\":\"llms\",\"requirement\":\"required\",\"raw_text\":\"LLMs\"},\n    {\"skill_id\":\"agents\",\"requirement\":\"required\",\"raw_text\":\"agents\"},\n    {\"skill_id\":\"python\",\"requirement\":\"required\",\"raw_text\":\"Python\"},\n    {\"skill_id\":\"pandas\",\"requirement\":\"required\",\"raw_text\":\"pandas\"},\n    {\"skill_id\":\"scikit-learn\",\"requirement\":\"required\",\"raw_text\":\"scikit-learn\"},\n    {\"skill_id\":\"numpy\",\"requirement\":\"required\",\"raw_text\":\"NumPy\"},\n    {\"skill_id\":\"pytorch\",\"requirement\":\"required\",\"raw_text\":\"PyTorch\"},\n    {\"skill_id\":\"sql\",\"requirement\":\"required\",\"raw_text\":\"SQL\"},\n    {\"skill_id\":\"snowflake\",\"requirement\":\"required\",\"raw_text\":\"Snowflake\"},\n    {\"skill_id\":\"bigquery\",\"requirement\":\"required\",\"raw_text\":\"BigQuery\"},\n    {\"skill_id\":\"model-development\",\"requirement\":\"required\",\"raw_text\":\"building/evaluating ML models\"},\n    {\"skill_id\":\"evaluation\",\"requirement\":\"required\",\"raw_text\":\"evaluating ML models\"},\n    {\"skill_id\":\"software-engineering\",\"requirement\":\"nice_to_have\",\"raw_text\":\"software engineering best practices\"},\n    {\"skill_id\":\"git\",\"requirement\":\"nice_to_have\",\"raw_text\":\"version control (Git)\"},\n    {\"skill_id\":\"testing\",\"requirement\":\"nice_to_have\",\"raw_text\":\"testing\"},\n    {\"skill_id\":\"airflow\",\"requirement\":\"nice_to_have\",\"raw_text\":\"Airflow\"},\n    {\"skill_id\":\"dagster\",\"requirement\":\"nice_to_have\",\"raw_text\":\"Dagster\"},\n    {\"skill_id\":\"prefect\",\"requirement\":\"nice_to_have\",\"raw_text\":\"Prefect\"},\n    {\"skill_id\":\"metaflow\",\"requirement\":\"nice_to_have\",\"raw_text\":\"Metaflow\"}\n  ],\n  \"unmapped\": [\n    {\"label\":\"Probability\",\"raw_text\":\"probability\"},\n    {\"label\":\"Mathematical optimization\",\"raw_text\":\"optimization\"},\n    {\"label\":\"Data wrangling\",\"raw_text\":\"wrangling data\"},\n    {\"label\":\"Data warehousing\",\"raw_text\":\"modern data warehouse\"},\n    {\"label\":\"Amazon Redshift\",\"raw_text\":\"Redshift\"},\n    {\"label\":\"ClickHouse\",\"raw_text\":\"Clickhouse\"},\n    {\"label\":\"Dataset curation\",\"raw_text\":\"curating datasets\"},\n    {\"label\":\"Data orchestration\",\"raw_text\":\"Data Orchestration\"}\n  ],\n  \"seniority\":\"junior\",\n  \"seniority_basis\":\"stated\",\n  \"seniority_signal\":\"Applied Scientist Intern\",\n  \"german\":null,\n  \"german_basis\":null,\n  \"german_signal\":null,\n  \"degree\":\"phd\",\n  \"degree_requirement\":\"nice_to_have\",\n  \"degree_or_equivalent\":false,\n  \"degree_signal\":\"B.S., M.S. or Ph.D. Student: currently pursuing a degree in Data Science, Computer Science, Math, Physics, Economics, Statistics, or other quantitative fields with an expected graduation date between Dec 2027 - 2029. Graduate degrees are preferred, but not a must.\",\n  \"uncertain\":[\"degree\"],\n  \"notes\":\"WHAT YOU NEED defaults to required; NICE TO HAVES makes its items optional.\\nResponsibility-only techniques, including feature engineering, deep learning, causal inference, and A/B testing, are excluded.\\nDegree fields are not skills; Data Science libraries is read literally as introducing library proficiency, not as a separate Data Science requirement.\\nInterest in AI, LLMs, and agents is explicitly requested and is labeled despite not requiring prior experience.\\nThe highest degree named is Ph.D.; the explicit preference for graduate degrees makes that level nice_to_have, although enrollment in some qualifying degree is required.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistics"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Strong Interest or Experience with AI"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agents"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "required",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "numpy",
+        "requirement": "required",
+        "raw_text": "NumPy"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "bigquery",
+        "requirement": "required",
+        "raw_text": "BigQuery"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "building/evaluating ML models"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluating ML models"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "software engineering best practices"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "nice_to_have",
+        "raw_text": "version control (Git)"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "testing"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Airflow"
+      },
+      {
+        "skill_id": "dagster",
+        "requirement": "nice_to_have",
+        "raw_text": "Dagster"
+      },
+      {
+        "skill_id": "prefect",
+        "requirement": "nice_to_have",
+        "raw_text": "Prefect"
+      },
+      {
+        "skill_id": "metaflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Metaflow"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Probability",
+        "raw_text": "probability"
+      },
+      {
+        "label": "Mathematical optimization",
+        "raw_text": "optimization"
+      },
+      {
+        "label": "Data wrangling",
+        "raw_text": "wrangling data"
+      },
+      {
+        "label": "Data warehousing",
+        "raw_text": "modern data warehouse"
+      },
+      {
+        "label": "Amazon Redshift",
+        "raw_text": "Redshift"
+      },
+      {
+        "label": "ClickHouse",
+        "raw_text": "Clickhouse"
+      },
+      {
+        "label": "Dataset curation",
+        "raw_text": "curating datasets"
+      },
+      {
+        "label": "Data orchestration",
+        "raw_text": "Data Orchestration"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Applied Scientist Intern",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "B.S., M.S. or Ph.D. Student: currently pursuing a degree in Data Science, Computer Science, Math, Physics, Economics, Statistics, or other quantitative fields with an expected graduation date between Dec 2027 - 2029. Graduate degrees are preferred, but not a must.",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "WHAT YOU NEED defaults to required; NICE TO HAVES makes its items optional.\nResponsibility-only techniques, including feature engineering, deep learning, causal inference, and A/B testing, are excluded.\nDegree fields are not skills; Data Science libraries is read literally as introducing library proficiency, not as a separate Data Science requirement.\nInterest in AI, LLMs, and agents is explicitly requested and is labeled despite not requiring prior experience.\nThe highest degree named is Ph.D.; the explicit preference for graduate degrees makes that level nice_to_have, although enrollment in some qualifying degree is required."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "139f1fd60439798e8d98c04885cd1520cbbe0696c03ded72c5cb400a4e94a540",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

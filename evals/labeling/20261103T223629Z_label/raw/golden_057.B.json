@@ -1,0 +1,73 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML engineering\"\n    },\n    {\n      \"skill_id\": \"ml-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML engineering\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning frameworks and libraries\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Scikit-learn\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\"\n    }\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3-7 years of experience in AI/ML engineering\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Bachelor's or master's degree in computer science, engineering, or a related field.\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"All skills come from “What’s required”; no optional qualifications section is present. Technologies listed as alternatives or examples remain required criteria under the guide.\\n“AI/ML engineering” explicitly names AI/ML and ML engineering; “machine learning frameworks and libraries” separately supports machine-learning.\\nThe 3–7-year range spans mid and senior thresholds; mid is inferred from the minimum requirement and flagged for review.\\nThe highest degree named is master's; “or a related field” does not permit experience in place of a degree.\\nTechnologies mentioned only in the company description or responsibilities are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML engineering"
+      },
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "AI/ML engineering"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning frameworks and libraries"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "Scikit-learn"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      }
+    ],
+    "unmapped": [],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3-7 years of experience in AI/ML engineering",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor's or master's degree in computer science, engineering, or a related field.",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "All skills come from “What’s required”; no optional qualifications section is present. Technologies listed as alternatives or examples remain required criteria under the guide.\n“AI/ML engineering” explicitly names AI/ML and ML engineering; “machine learning frameworks and libraries” separately supports machine-learning.\nThe 3–7-year range spans mid and senior thresholds; mid is inferred from the minimum requirement and flagged for review.\nThe highest degree named is master's; “or a related field” does not permit experience in place of a degree.\nTechnologies mentioned only in the company description or responsibilities are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "f2e4f21b23e6de1aee78ec39aebd5365ea9154bafd4251153237b869f8b19e53",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

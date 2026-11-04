@@ -1,0 +1,151 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"software engineering\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"machine learning\"},\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"required\", \"raw_text\": \"deep learning\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"production-grade GenAI applications\", \"uncertain\": true},\n    {\"skill_id\": \"nlp\", \"requirement\": \"required\", \"raw_text\": \"in GenAI or NLP\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong Python skills\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"GenAI applications: RAG pipelines\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"agent orchestration\"},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"fine-tuning\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"fine-tuning, prompt engineering\"},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"required\", \"raw_text\": \"vector databases\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"continuous evaluation\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"major cloud platform\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"such as Azure\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"or GCP\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"containerization\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD pipelines\"},\n    {\"skill_id\": \"langchain\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LangChain\"},\n    {\"skill_id\": \"langgraph\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LangChain, LangGraph\"},\n    {\"skill_id\": \"workflow-automation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"workflow automation tools\"},\n    {\"skill_id\": \"n8n\", \"requirement\": \"nice_to_have\", \"raw_text\": \"n8n\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Azure AI Foundry\", \"raw_text\": \"n8n, Azure AI Foundry\"},\n    {\"label\": \"cloud-native tooling\", \"raw_text\": \"cloud-native tooling\"},\n    {\"label\": \"code review\", \"raw_text\": \"you review other people's code constructively\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior GenAI Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Sections: 'Your main responsibilities include' is responsibilities only and not labeled. 'Fuel for your success' and 'In addition, your profile includes' are requirement sections, so their items default to required. 'A plus for this role' is an optional heading, so its items are nice_to_have.\\nGenAI is mapped to llms, whose alias is 'generative ai'. It is flagged uncertain because 'GenAI' is not a literal alias.\\n'continuous evaluation' sits in the requirements paragraph as something the candidate understands. It is labeled as evaluation (required) but flagged uncertain.\\n'agent orchestration' is an alias of llm-orchestration. The agents parent is not added.\\n'LLM frameworks' in the plus section is not separately labeled as llms. llms is already required, and 'LLM frameworks' is a generic category.\\nLangGraph appears in responsibilities and in the plus section. It is labeled only from the plus section, so it is nice_to_have.\\nAzure is also mentioned via 'Azure AI Foundry' in the plus section. The required mention 'such as Azure' wins.\\n'Comfortable working in English' is not German, so german is null.\\nNo degree is mentioned.\\nSeniority is stated in the title; the 'helping junior engineers grow' mentoring duty is consistent with it.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "production-grade GenAI applications",
+        "uncertain": true
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "in GenAI or NLP"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python skills"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "GenAI applications: RAG pipelines"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "agent orchestration"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "fine-tuning, prompt engineering"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector databases"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "continuous evaluation",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "major cloud platform"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "such as Azure"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "or GCP"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containerization"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD pipelines"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "nice_to_have",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "nice_to_have",
+        "raw_text": "LangChain, LangGraph"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "nice_to_have",
+        "raw_text": "workflow automation tools"
+      },
+      {
+        "skill_id": "n8n",
+        "requirement": "nice_to_have",
+        "raw_text": "n8n"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Azure AI Foundry",
+        "raw_text": "n8n, Azure AI Foundry"
+      },
+      {
+        "label": "cloud-native tooling",
+        "raw_text": "cloud-native tooling"
+      },
+      {
+        "label": "code review",
+        "raw_text": "you review other people's code constructively"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior GenAI Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Sections: 'Your main responsibilities include' is responsibilities only and not labeled. 'Fuel for your success' and 'In addition, your profile includes' are requirement sections, so their items default to required. 'A plus for this role' is an optional heading, so its items are nice_to_have.\nGenAI is mapped to llms, whose alias is 'generative ai'. It is flagged uncertain because 'GenAI' is not a literal alias.\n'continuous evaluation' sits in the requirements paragraph as something the candidate understands. It is labeled as evaluation (required) but flagged uncertain.\n'agent orchestration' is an alias of llm-orchestration. The agents parent is not added.\n'LLM frameworks' in the plus section is not separately labeled as llms. llms is already required, and 'LLM frameworks' is a generic category.\nLangGraph appears in responsibilities and in the plus section. It is labeled only from the plus section, so it is nice_to_have.\nAzure is also mentioned via 'Azure AI Foundry' in the plus section. The required mention 'such as Azure' wins.\n'Comfortable working in English' is not German, so german is null.\nNo degree is mentioned.\nSeniority is stated in the title; the 'helping junior engineers grow' mentoring duty is consistent with it."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "70429d60bd0ad47f240a449c3a5ce0b15f32c79eda96932d97a53509048054b0",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

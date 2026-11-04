@@ -1,0 +1,95 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Generative AI applications\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Proficient in Python\"},\n    {\"skill_id\": \"pandas\", \"requirement\": \"required\", \"raw_text\": \"pandas\"},\n    {\"skill_id\": \"numpy\", \"requirement\": \"required\", \"raw_text\": \"NumPy\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL\"},\n    {\"skill_id\": \"data-visualization\", \"requirement\": \"required\", \"raw_text\": \"data visualization\"},\n    {\"skill_id\": \"jupyter-notebooks\", \"requirement\": \"required\", \"raw_text\": \"Jupyter Notebooks\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"ML libraries\", \"uncertain\": true},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"required\", \"raw_text\": \"scikit-learn\"},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"dive deep into LangChain\", \"uncertain\": true},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"LLM orchestration\", \"uncertain\": true},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"required\", \"raw_text\": \"vector databases\", \"uncertain\": true},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD\"}\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"(Junior)\",\n  \"german\": \"nice_to_have\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"German (Nice-to-have)\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"There are two sections: 'Your Role' (responsibilities) and 'Your Profile' (requirements, no optional heading). Profile items default to required.\\nStreamlit, fine-tuning and Explainable AI appear only under 'Your Role', so they are not labeled.\\nLangChain appears in the role section and in the profile. It is labeled once, quoting the profile mention.\\nLangChain, LLM orchestration and vector databases sit under 'eager to dive deep into', an aspiration rather than a stated qualification. They carry no optional marker, so I read them literally as required and flagged them.\\n'ML libraries (e.g., scikit-learn)': I labeled the broad machine-learning skill from 'ML libraries' and flagged it, since it may be read as naming only the library category.\\n'initial experience or a very strong interest in ... Generative AI applications' has no optional marker, so it is required. 'Generative AI applications' is a taxonomy alias of llms.\\n'Pull Requests, code reviews' does not name Git or GitHub, so git is not labeled.\\n'technical architectures' sits in a consulting-mindset bullet, so software-architecture is not labeled.\\nNo degree is mentioned anywhere in the posting.\\nGerman is explicitly marked Nice-to-have; English is ignored per the guide.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generative AI applications"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Proficient in Python"
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "required",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "numpy",
+        "requirement": "required",
+        "raw_text": "NumPy"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "data-visualization",
+        "requirement": "required",
+        "raw_text": "data visualization"
+      },
+      {
+        "skill_id": "jupyter-notebooks",
+        "requirement": "required",
+        "raw_text": "Jupyter Notebooks"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ML libraries",
+        "uncertain": true
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "dive deep into LangChain",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "LLM orchestration",
+        "uncertain": true
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector databases",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      }
+    ],
+    "unmapped": [],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "(Junior)",
+    "german": "nice_to_have",
+    "german_basis": "stated",
+    "german_signal": "German (Nice-to-have)",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "There are two sections: 'Your Role' (responsibilities) and 'Your Profile' (requirements, no optional heading). Profile items default to required.\nStreamlit, fine-tuning and Explainable AI appear only under 'Your Role', so they are not labeled.\nLangChain appears in the role section and in the profile. It is labeled once, quoting the profile mention.\nLangChain, LLM orchestration and vector databases sit under 'eager to dive deep into', an aspiration rather than a stated qualification. They carry no optional marker, so I read them literally as required and flagged them.\n'ML libraries (e.g., scikit-learn)': I labeled the broad machine-learning skill from 'ML libraries' and flagged it, since it may be read as naming only the library category.\n'initial experience or a very strong interest in ... Generative AI applications' has no optional marker, so it is required. 'Generative AI applications' is a taxonomy alias of llms.\n'Pull Requests, code reviews' does not name Git or GitHub, so git is not labeled.\n'technical architectures' sits in a consulting-mindset bullet, so software-architecture is not labeled.\nNo degree is mentioned anywhere in the posting.\nGerman is explicitly marked Nice-to-have; English is ignored per the guide."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "9349bbd86a859ca3f1bdfdbf22b180c4a8aa6c9aaafaa636add602429e914e16",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

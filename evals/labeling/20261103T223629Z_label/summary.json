@@ -1,0 +1,568 @@
+{
+  "run_id": "20261103T223629Z_label",
+  "seed": 0,
+  "provider_a": "anthropic",
+  "model_a": "claude-opus-5-5",
+  "provider_b": "openai",
+  "model_b": "gpt-6.1-sol",
+  "extractor": "claude-sonnet-5-5",
+  "spot_n": 80,
+  "spot_pool": 137,
+  "taxonomy_version": 8,
+  "n_picked": 15,
+  "n_labeled": 15,
+  "failed": [],
+  "agreement": {
+    "n_postings": 15,
+    "skills": {
+      "tp": 144,
+      "fp": 10,
+      "fn": 0,
+      "precision": 0.935064935064935,
+      "recall": 1.0,
+      "f1": 0.9664429530201343
+    },
+    "requirement_agreement": 0.9861111111111112,
+    "attributes": {
+      "seniority": {
+        "agreed": 14,
+        "n": 15,
+        "rate": 0.9333333333333333
+      },
+      "german": {
+        "agreed": 15,
+        "n": 15,
+        "rate": 1.0
+      },
+      "degree": {
+        "agreed": 13,
+        "n": 15,
+        "rate": 0.8666666666666667
+      }
+    }
+  },
+  "accepted_skills": 100,
+  "accepted_attributes": 37,
+  "review_items": {
+    "in-scope": 15,
+    "disagreement": 15,
+    "uncertain": 47,
+    "spot-check": 80
+  },
+  "spot_check": {
+    "n": 80,
+    "pool": 137,
+    "seed": 0,
+    "sample": [
+      [
+        "golden_049",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_049",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_050",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_050",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_050",
+        "skill",
+        "cuda"
+      ],
+      [
+        "golden_050",
+        "skill",
+        "deep-learning"
+      ],
+      [
+        "golden_050",
+        "skill",
+        "jax"
+      ],
+      [
+        "golden_050",
+        "skill",
+        "pytorch"
+      ],
+      [
+        "golden_051",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_051",
+        "skill",
+        "aws"
+      ],
+      [
+        "golden_051",
+        "skill",
+        "azure"
+      ],
+      [
+        "golden_051",
+        "skill",
+        "cloud"
+      ],
+      [
+        "golden_051",
+        "skill",
+        "go"
+      ],
+      [
+        "golden_051",
+        "skill",
+        "javascript"
+      ],
+      [
+        "golden_051",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_051",
+        "skill",
+        "machine-learning"
+      ],
+      [
+        "golden_051",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_051",
+        "skill",
+        "rag"
+      ],
+      [
+        "golden_051",
+        "skill",
+        "typescript"
+      ],
+      [
+        "golden_052",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_052",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_052",
+        "skill",
+        "backend-development"
+      ],
+      [
+        "golden_052",
+        "skill",
+        "recommender-systems"
+      ],
+      [
+        "golden_053",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_053",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_053",
+        "skill",
+        "business-intelligence"
+      ],
+      [
+        "golden_053",
+        "skill",
+        "git"
+      ],
+      [
+        "golden_054",
+        "skill",
+        "deep-learning"
+      ],
+      [
+        "golden_055",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_055",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_055",
+        "skill",
+        "agents"
+      ],
+      [
+        "golden_055",
+        "skill",
+        "dagster"
+      ],
+      [
+        "golden_055",
+        "skill",
+        "git"
+      ],
+      [
+        "golden_055",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_055",
+        "skill",
+        "machine-learning"
+      ],
+      [
+        "golden_055",
+        "skill",
+        "metaflow"
+      ],
+      [
+        "golden_055",
+        "skill",
+        "numpy"
+      ],
+      [
+        "golden_055",
+        "skill",
+        "pandas"
+      ],
+      [
+        "golden_055",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_055",
+        "skill",
+        "pytorch"
+      ],
+      [
+        "golden_055",
+        "skill",
+        "scikit-learn"
+      ],
+      [
+        "golden_055",
+        "skill",
+        "snowflake"
+      ],
+      [
+        "golden_055",
+        "skill",
+        "software-engineering"
+      ],
+      [
+        "golden_055",
+        "skill",
+        "statistics"
+      ],
+      [
+        "golden_056",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_057",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_057",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_057",
+        "skill",
+        "cpp"
+      ],
+      [
+        "golden_057",
+        "skill",
+        "java"
+      ],
+      [
+        "golden_057",
+        "skill",
+        "tensorflow"
+      ],
+      [
+        "golden_058",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_058",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_058",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_058",
+        "skill",
+        "reinforcement-learning"
+      ],
+      [
+        "golden_058",
+        "skill",
+        "software-engineering"
+      ],
+      [
+        "golden_058",
+        "skill",
+        "sql"
+      ],
+      [
+        "golden_059",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_059",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_059",
+        "skill",
+        "agent-architecture"
+      ],
+      [
+        "golden_059",
+        "skill",
+        "cpp"
+      ],
+      [
+        "golden_059",
+        "skill",
+        "fine-tuning"
+      ],
+      [
+        "golden_059",
+        "skill",
+        "linux"
+      ],
+      [
+        "golden_059",
+        "skill",
+        "machine-learning"
+      ],
+      [
+        "golden_059",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_059",
+        "skill",
+        "reinforcement-learning"
+      ],
+      [
+        "golden_060",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_060",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_060",
+        "skill",
+        "linux"
+      ],
+      [
+        "golden_060",
+        "skill",
+        "sql"
+      ],
+      [
+        "golden_061",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_061",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_062",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_062",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_062",
+        "skill",
+        "data-science"
+      ],
+      [
+        "golden_062",
+        "skill",
+        "software-engineering"
+      ],
+      [
+        "golden_062",
+        "skill",
+        "sql"
+      ],
+      [
+        "golden_063",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_063",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_063",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_063",
+        "skill",
+        "agents"
+      ]
+    ]
+  },
+  "signal_mismatches": [
+    "golden_054 degree: A \"Bachelor's or Master's degree in Computer Science, Engineering, or a related technical field\" vs B \"Completed a Bachelor's or Master's degree in Computer Science, Engineering, or a related technical field.\"",
+    "golden_057 degree: A \"Bachelor's or master's degree in computer science, engineering, or a related field\" vs B \"Bachelor's or master's degree in computer science, engineering, or a related field.\"",
+    "golden_063 seniority: A '5+ years of experience in Solutions Engineering' vs B '5+ years of experience'"
+  ],
+  "unmapped": [
+    "AI alignment",
+    "AI gateways",
+    "AI governance",
+    "ASIC",
+    "Advanced modeling techniques",
+    "Algorithms",
+    "Amazon Redshift",
+    "Analytics engineering development cycle",
+    "CUDA Graphs",
+    "ClickHouse",
+    "Cluster computing environment",
+    "Codebase development best practices",
+    "Collaborative software development workflow",
+    "CuTe DSL",
+    "Data flows",
+    "Data governance",
+    "Data mining tools",
+    "Data orchestration",
+    "Data platforms",
+    "Data processing tools",
+    "Data structures",
+    "Data structures and algorithms",
+    "Data warehouse",
+    "Data warehousing",
+    "Data wrangling",
+    "Dataset curation",
+    "Debugging",
+    "Developer tools",
+    "Experimental design",
+    "Experimental design and evaluation",
+    "FPGA",
+    "FPGA/ASIC",
+    "Fivetran",
+    "Forward deployed engineering",
+    "Forward-deployed engineering",
+    "Graph neural networks",
+    "Graph neural networks (posting says “neutral”)",
+    "HELM",
+    "HELM evaluation framework",
+    "Hex",
+    "High-throughput research infrastructure",
+    "Hightouch",
+    "Information retrieval",
+    "Kernel development",
+    "Looker",
+    "MATLAB",
+    "Mathematical optimization",
+    "Matlab",
+    "Model routing",
+    "Modern data stack",
+    "Modern sequence models",
+    "Omni",
+    "Orchestration",
+    "Pallas",
+    "Personalization",
+    "Policy enforcement",
+    "Post-training",
+    "Pre-sales engineering",
+    "Probability",
+    "Problem decomposition",
+    "Quant research",
+    "Redshift",
+    "Reporting and dashboarding",
+    "Search ranking",
+    "Secure and scalable system design",
+    "Security (AI systems)",
+    "Security sandboxing",
+    "Sequence models",
+    "Sigma",
+    "Software deployment",
+    "Software design principles",
+    "Systems performance",
+    "Technical consulting",
+    "Technical documentation",
+    "Translating methods between application areas",
+    "Triton (GPU kernel language)",
+    "Triton kernel programming",
+    "Usage controls",
+    "Working with large-scale datasets",
+    "XLA",
+    "adversarial testing",
+    "alignment",
+    "analytics engineering",
+    "data mining",
+    "debugging",
+    "experiment design",
+    "forward-deployed engineering",
+    "high-throughput research infrastructure",
+    "information retrieval",
+    "large-scale data processing",
+    "lm-evaluation-harness",
+    "orchestration (unspecified)",
+    "personalization",
+    "policy enforcement",
+    "post-training",
+    "search ranking",
+    "security sandboxing",
+    "software design",
+    "systems performance",
+    "technical documentation",
+    "verifiers (eval framework)",
+    "verifiers evaluation framework"
+  ]
+}

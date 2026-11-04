@@ -1,0 +1,54 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"business-intelligence\", \"requirement\": \"required\", \"raw_text\": \"Business Intelligence\"},\n    {\"skill_id\": \"data-science\", \"requirement\": \"required\", \"raw_text\": \"als Data Scientist\", \"uncertain\": true},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"Leidenschaft für Daten und KI\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Data Engineering\", \"raw_text\": \"Data Engineering\"},\n    {\"label\": \"Data analysis\", \"raw_text\": \"Datenanalyse\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": \"required\", \"german_basis\": \"inferred\", \"german_signal\": null,\n  \"degree\": null, \"degree_requirement\": null,\n  \"degree_or_equivalent\": false, \"degree_signal\": null,\n  \"uncertain\": [\"german\"],\n  \"notes\": \"Skills come only from the 'Das bringst Du mit' requirements section. It has no optional heading, so every skill defaults to required.\\nThe 'beispielsweise' list names example backgrounds, and per the guide those count as skills: Business Intelligence and Data Scientist.\\n'als Data Scientist' names a role, not a skill. I mapped it to data-science and flagged it.\\n'Leidenschaft für Daten und KI' plus project experience in that field is mapped to ai-ml as the broad AI skill. Flagged, because it is vague and could be read as motivation rather than a skill.\\nData Engineering and Datenanalyse have no taxonomy entry. data-pipelines is narrower than Data Engineering, so I did not substitute it; both go to unmapped.\\nPresentation and communication skills are soft skills and are not labeled. Microsoft/SAP technologies appear only in the company description and are not labeled.\\nGerman is inferred required because the posting is written in German and states no language requirement. Flagged, because the benefits offer external German lessons ('Deutschunterricht'), which hints German may not be strictly required.\\nSeniority: no title level, years of experience, or lead duty. 'bereits in Projekten ... gearbeitet' is not a level signal, so seniority is none.\\nDegree: none mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "business-intelligence",
+        "requirement": "required",
+        "raw_text": "Business Intelligence"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "als Data Scientist",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Leidenschaft für Daten und KI",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data Engineering",
+        "raw_text": "Data Engineering"
+      },
+      {
+        "label": "Data analysis",
+        "raw_text": "Datenanalyse"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "german"
+    ],
+    "notes": "Skills come only from the 'Das bringst Du mit' requirements section. It has no optional heading, so every skill defaults to required.\nThe 'beispielsweise' list names example backgrounds, and per the guide those count as skills: Business Intelligence and Data Scientist.\n'als Data Scientist' names a role, not a skill. I mapped it to data-science and flagged it.\n'Leidenschaft für Daten und KI' plus project experience in that field is mapped to ai-ml as the broad AI skill. Flagged, because it is vague and could be read as motivation rather than a skill.\nData Engineering and Datenanalyse have no taxonomy entry. data-pipelines is narrower than Data Engineering, so I did not substitute it; both go to unmapped.\nPresentation and communication skills are soft skills and are not labeled. Microsoft/SAP technologies appear only in the company description and are not labeled.\nGerman is inferred required because the posting is written in German and states no language requirement. Flagged, because the benefits offer external German lessons ('Deutschunterricht'), which hints German may not be strictly required.\nSeniority: no title level, years of experience, or lead duty. 'bereits in Projekten ... gearbeitet' is not a level signal, so seniority is none.\nDegree: none mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "8703dd24e1a49d353767f817108bb48704c4eeb4b73722603cab1885bf706ca7",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

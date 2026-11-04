@@ -1,0 +1,157 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software design\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"debugging\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building and operating substantial software systems\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"modern AI systems, tools, or research\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Machine learning\"\n    },\n    {\n      \"skill_id\": \"ml-engineering\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Machine learning research or engineering\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"fine-tuning\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement learning\"\n    },\n    {\n      \"skill_id\": \"agent-architecture\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI-agent architecture\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"evaluation\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"tool-use environments\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Distributed systems\"\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"model serving\"\n    },\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Linux\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"networking\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"C++\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"TypeScript\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Experiment design\",\n      \"raw_text\": \"experiment design\"\n    },\n    {\n      \"label\": \"Post-training\",\n      \"raw_text\": \"post-training\"\n    },\n    {\n      \"label\": \"AI alignment\",\n      \"raw_text\": \"alignment\"\n    },\n    {\n      \"label\": \"Orchestration\",\n      \"raw_text\": \"orchestration\"\n    },\n    {\n      \"label\": \"High-throughput research infrastructure\",\n      \"raw_text\": \"high-throughput research infrastructure\"\n    },\n    {\n      \"label\": \"Security sandboxing\",\n      \"raw_text\": \"Security sandboxing\"\n    },\n    {\n      \"label\": \"Policy enforcement\",\n      \"raw_text\": \"policy enforcement\"\n    },\n    {\n      \"label\": \"AI governance\",\n      \"raw_text\": \"governance for AI systems\"\n    },\n    {\n      \"label\": \"Forward-deployed engineering\",\n      \"raw_text\": \"Forward-deployed engineering\"\n    },\n    {\n      \"label\": \"Systems performance\",\n      \"raw_text\": \"systems performance\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor's degree in Computer Science, Engineering, or a related field, or equivalent practical experience required\",\n  \"notes\": \"Profile and Required default to required; the heading 'Experience in one or more of the following is helpful:' makes its list optional.\\nTechnologies and practices appearing only in the introduction or Responsibilities are excluded.\\nSoftware design is mapped to software-architecture; building and operating software systems is mapped to software-engineering.\\nDebugging is tentatively mapped to testing and flagged for review; adversarial testing also supplies an optional testing mention, which collapses into the required criterion if that mapping is accepted.\\nGeneric orchestration and research infrastructure are left unmapped rather than assuming LLM orchestration or AI infrastructure.\\nAgent architecture does not independently imply a broad agents criterion.\\nNo qualifying seniority signal or German-language requirement appears.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "software design"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "debugging",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "building and operating substantial software systems"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "modern AI systems, tools, or research"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "Machine learning"
+      },
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "Machine learning research or engineering"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "agent-architecture",
+        "requirement": "nice_to_have",
+        "raw_text": "AI-agent architecture"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "evaluation"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "nice_to_have",
+        "raw_text": "tool-use environments"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "Distributed systems"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "model serving"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "nice_to_have",
+        "raw_text": "Linux"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "nice_to_have",
+        "raw_text": "networking"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "nice_to_have",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "nice_to_have",
+        "raw_text": "TypeScript"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Experiment design",
+        "raw_text": "experiment design"
+      },
+      {
+        "label": "Post-training",
+        "raw_text": "post-training"
+      },
+      {
+        "label": "AI alignment",
+        "raw_text": "alignment"
+      },
+      {
+        "label": "Orchestration",
+        "raw_text": "orchestration"
+      },
+      {
+        "label": "High-throughput research infrastructure",
+        "raw_text": "high-throughput research infrastructure"
+      },
+      {
+        "label": "Security sandboxing",
+        "raw_text": "Security sandboxing"
+      },
+      {
+        "label": "Policy enforcement",
+        "raw_text": "policy enforcement"
+      },
+      {
+        "label": "AI governance",
+        "raw_text": "governance for AI systems"
+      },
+      {
+        "label": "Forward-deployed engineering",
+        "raw_text": "Forward-deployed engineering"
+      },
+      {
+        "label": "Systems performance",
+        "raw_text": "systems performance"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor's degree in Computer Science, Engineering, or a related field, or equivalent practical experience required",
+    "notes": "Profile and Required default to required; the heading 'Experience in one or more of the following is helpful:' makes its list optional.\nTechnologies and practices appearing only in the introduction or Responsibilities are excluded.\nSoftware design is mapped to software-architecture; building and operating software systems is mapped to software-engineering.\nDebugging is tentatively mapped to testing and flagged for review; adversarial testing also supplies an optional testing mention, which collapses into the required criterion if that mapping is accepted.\nGeneric orchestration and research infrastructure are left unmapped rather than assuming LLM orchestration or AI infrastructure.\nAgent architecture does not independently imply a broad agents criterion.\nNo qualifying seniority signal or German-language requirement appears."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "ef109727c86b4fad4f92117a49a18e760484d909e41c41d22876f8c556bff2a4",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

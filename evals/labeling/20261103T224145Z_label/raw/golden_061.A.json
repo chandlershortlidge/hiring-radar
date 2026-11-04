@@ -1,0 +1,140 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"REST-APIs\"},\n    {\"skill_id\": \"fastapi\", \"requirement\": \"required\", \"raw_text\": \"FastAPI\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL-Datenbanken\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud-Infrastruktur\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"Cloud-Infrastruktur auf AWS\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Docker\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"Docker, CI/CD-Pipelines\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"Infrastructure-as-Code (z. B.\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"required\", \"raw_text\": \"Terraform\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM-Anwendungen\"},\n    {\"skill_id\": \"aws-bedrock\", \"requirement\": \"required\", \"raw_text\": \"Amazon Bedrock\"},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"required\", \"raw_text\": \"Vektordatenbanken\"},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"Agentic Coding und KI-gestützte Tools\", \"uncertain\": true},\n    {\"skill_id\": \"mlops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"MLOps\", \"uncertain\": true},\n    {\"skill_id\": \"observability\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Observability\", \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Evaluation\", \"uncertain\": true},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"nice_to_have\", \"raw_text\": \"agiler Softwareentwicklung\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Pydantic\", \"raw_text\": \"Pydantic\"},\n    {\"label\": \"AWS CDK\", \"raw_text\": \"AWS CDK\"},\n    {\"label\": \"AWS CloudFormation\", \"raw_text\": \"CloudFormation\"},\n    {\"label\": \"Agile (Scrum, Kanban, SAFe)\", \"raw_text\": \"Scrum, Kanban oder SAFe\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"mind. 3 Jahre Erfahrung\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"sehr gute Deutschkenntnisse (mind. C1) in Wort und Schrift notwendig\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"abgeschlossenes Studium (Informatik, Software Engineering, Ingenieurwesen o. ä.) oder eine vergleichbare technische Vorbildung\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"I read the heading 'Was dir bei der Arbeit helfen wird' ('what will help you at work') as an optional section, so its items are nice_to_have. This is uncertain because the guide does not list this heading.\\nAPI design, software architecture, deployment and security appear only under 'Deine Aufgaben' (responsibilities), so they are not labeled.\\n'Agentic Coding und KI-gestützte Tools' is mapped to ai-developer-tooling (aliases: coding agents, ai development tools).\\n'agiler Softwareentwicklung' is mapped to software-engineering via the alias 'softwareentwicklung'. This is uncertain because the item is about the agile methodology rather than software engineering as such. Scrum/Kanban/SAFe are unmapped.\\n'Erfahrung in der Software- oder KI-Entwicklung' in the requirements is a years-of-experience statement, so it is not labeled as a skill.\\nThe degree is labeled with degree_or_equivalent=true because 'vergleichbare technische Vorbildung' (comparable technical background/training) reads as a comparable qualification accepted instead of the degree. This is uncertain because it could also be read as only widening the type of education.\\nThe CI/CD and Infrastructure-as-Code quotes include context because both phrases also appear in the responsibilities.\\nAWS/Bedrock in the title is not used; the requirements bullets carry the quotes.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST-APIs"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL-Datenbanken"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Infrastruktur"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "Cloud-Infrastruktur auf AWS"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "Docker, CI/CD-Pipelines"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure-as-Code (z. B."
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-Anwendungen"
+      },
+      {
+        "skill_id": "aws-bedrock",
+        "requirement": "required",
+        "raw_text": "Amazon Bedrock"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "Vektordatenbanken"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Agentic Coding und KI-gestützte Tools",
+        "uncertain": true
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "nice_to_have",
+        "raw_text": "MLOps",
+        "uncertain": true
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "Observability",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "Evaluation",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "agiler Softwareentwicklung",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Pydantic",
+        "raw_text": "Pydantic"
+      },
+      {
+        "label": "AWS CDK",
+        "raw_text": "AWS CDK"
+      },
+      {
+        "label": "AWS CloudFormation",
+        "raw_text": "CloudFormation"
+      },
+      {
+        "label": "Agile (Scrum, Kanban, SAFe)",
+        "raw_text": "Scrum, Kanban oder SAFe"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "mind. 3 Jahre Erfahrung",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "sehr gute Deutschkenntnisse (mind. C1) in Wort und Schrift notwendig",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "abgeschlossenes Studium (Informatik, Software Engineering, Ingenieurwesen o. ä.) oder eine vergleichbare technische Vorbildung",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "I read the heading 'Was dir bei der Arbeit helfen wird' ('what will help you at work') as an optional section, so its items are nice_to_have. This is uncertain because the guide does not list this heading.\nAPI design, software architecture, deployment and security appear only under 'Deine Aufgaben' (responsibilities), so they are not labeled.\n'Agentic Coding und KI-gestützte Tools' is mapped to ai-developer-tooling (aliases: coding agents, ai development tools).\n'agiler Softwareentwicklung' is mapped to software-engineering via the alias 'softwareentwicklung'. This is uncertain because the item is about the agile methodology rather than software engineering as such. Scrum/Kanban/SAFe are unmapped.\n'Erfahrung in der Software- oder KI-Entwicklung' in the requirements is a years-of-experience statement, so it is not labeled as a skill.\nThe degree is labeled with degree_or_equivalent=true because 'vergleichbare technische Vorbildung' (comparable technical background/training) reads as a comparable qualification accepted instead of the degree. This is uncertain because it could also be read as only widening the type of education.\nThe CI/CD and Infrastructure-as-Code quotes include context because both phrases also appear in the responsibilities.\nAWS/Bedrock in the title is not used; the requirements bullets carry the quotes."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "4493d994b604305589030681a458f480d8bd45c7a73f23be519721dd643a9dd3",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

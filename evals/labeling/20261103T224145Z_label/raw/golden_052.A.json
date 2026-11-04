@@ -1,0 +1,177 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong Python\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch engineering skills\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"deploying or optimizing LLM\"},\n    {\"skill_id\": \"inference-optimization\", \"requirement\": \"required\", \"raw_text\": \"optimizing LLM, VLM, or high-throughput transformer inference systems\", \"uncertain\": true},\n    {\"skill_id\": \"vllm\", \"requirement\": \"required\", \"raw_text\": \"inference stack such as vLLM\"},\n    {\"skill_id\": \"sglang\", \"requirement\": \"required\", \"raw_text\": \"stack such as vLLM, SGLang\"},\n    {\"skill_id\": \"tensorrt\", \"requirement\": \"required\", \"raw_text\": \"stack such as vLLM, SGLang, TensorRT-LLM\"},\n    {\"skill_id\": \"triton-inference-server\", \"requirement\": \"required\", \"raw_text\": \"Triton Inference Server, NVIDIA Dynamo, Ray Serve\"},\n    {\"skill_id\": \"nvidia-dynamo\", \"requirement\": \"required\", \"raw_text\": \"NVIDIA Dynamo, Ray Serve\"},\n    {\"skill_id\": \"ray-serve\", \"requirement\": \"required\", \"raw_text\": \"Ray Serve\"},\n    {\"skill_id\": \"kserve\", \"requirement\": \"required\", \"raw_text\": \"Ray Serve, KServe\"},\n    {\"skill_id\": \"quantization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"post-training quantization\"},\n    {\"skill_id\": \"knowledge-distillation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience with distillation\"},\n    {\"skill_id\": \"speculative-decoding\", \"requirement\": \"nice_to_have\", \"raw_text\": \"distillation, speculative decoding\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"agentic workloads\", \"uncertain\": true},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"nice_to_have\", \"raw_text\": \"tool calling\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"nice_to_have\", \"raw_text\": \"streaming APIs\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"nice_to_have\", \"raw_text\": \"multi-step orchestration\"},\n    {\"skill_id\": \"cuda\", \"requirement\": \"nice_to_have\", \"raw_text\": \"CUDA\"},\n    {\"skill_id\": \"ray\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Triton, Ray\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Transformer inference internals (KV cache, attention, batching, parallelism)\", \"raw_text\": \"transformer inference bottlenecks, including KV cache, attention, memory bandwidth, batching, parallelism, and long-context serving\"},\n    {\"label\": \"Low-precision formats (FP8, INT8, INT4, NVFP4, MXFP4)\", \"raw_text\": \"FP8, INT8, INT4, NVFP4, MXFP4\"},\n    {\"label\": \"AWQ\", \"raw_text\": \"AWQ\"},\n    {\"label\": \"GPTQ\", \"raw_text\": \"GPTQ\"},\n    {\"label\": \"SmoothQuant\", \"raw_text\": \"SmoothQuant\"},\n    {\"label\": \"EAGLE\", \"raw_text\": \"EAGLE\"},\n    {\"label\": \"Medusa\", \"raw_text\": \"Medusa\"},\n    {\"label\": \"Multi-token prediction\", \"raw_text\": \"multi-token prediction\"},\n    {\"label\": \"Structured outputs\", \"raw_text\": \"structured outputs\"},\n    {\"label\": \"Triton (GPU kernel language)\", \"raw_text\": \"CUDA or Triton familiarity\"},\n    {\"label\": \"FlashInfer\", \"raw_text\": \"FlashInfer\"},\n    {\"label\": \"LMCache\", \"raw_text\": \"LMCache\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The 'Required Qualifications' heading makes its items required. The 'Preferred Qualifications' heading makes its items nice_to_have. Responsibilities-only technologies were not labeled.\\nvLLM, SGLang, TensorRT-LLM, PyTorch and KServe also appear under Preferred (open-source contributions). They collapse to required, and raw_text quotes the required mention, extended where needed to distinguish it from the responsibilities and preferred mentions.\\ninference-optimization is flagged uncertain. It rests on 'optimizing ... inference systems' in the required list; the taxonomy phrase 'inference optimization' itself appears only in the company description.\\nai-deployment was not added. 'deploying ... inference systems' was judged too indirect.\\nagents is flagged uncertain. 'agentic workloads' is not an exact alias.\\nTriton in 'CUDA or Triton familiarity' and in the open-source list refers to the Triton kernel language. It was left unmapped rather than mapped to triton-inference-server.\\nquantization collapses the 'quantization-aware training' and 'post-training quantization' aliases into one criterion. Individual formats and methods (FP8, AWQ, GPTQ, etc.) are unmapped.\\nray (nice_to_have, from the open-source contributions list) is distinct from ray-serve (required).\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch engineering skills"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "deploying or optimizing LLM"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "required",
+        "raw_text": "optimizing LLM, VLM, or high-throughput transformer inference systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "required",
+        "raw_text": "inference stack such as vLLM"
+      },
+      {
+        "skill_id": "sglang",
+        "requirement": "required",
+        "raw_text": "stack such as vLLM, SGLang"
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "required",
+        "raw_text": "stack such as vLLM, SGLang, TensorRT-LLM"
+      },
+      {
+        "skill_id": "triton-inference-server",
+        "requirement": "required",
+        "raw_text": "Triton Inference Server, NVIDIA Dynamo, Ray Serve"
+      },
+      {
+        "skill_id": "nvidia-dynamo",
+        "requirement": "required",
+        "raw_text": "NVIDIA Dynamo, Ray Serve"
+      },
+      {
+        "skill_id": "ray-serve",
+        "requirement": "required",
+        "raw_text": "Ray Serve"
+      },
+      {
+        "skill_id": "kserve",
+        "requirement": "required",
+        "raw_text": "Ray Serve, KServe"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "nice_to_have",
+        "raw_text": "post-training quantization"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with distillation"
+      },
+      {
+        "skill_id": "speculative-decoding",
+        "requirement": "nice_to_have",
+        "raw_text": "distillation, speculative decoding"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic workloads",
+        "uncertain": true
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "nice_to_have",
+        "raw_text": "tool calling"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "nice_to_have",
+        "raw_text": "streaming APIs"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "nice_to_have",
+        "raw_text": "multi-step orchestration"
+      },
+      {
+        "skill_id": "cuda",
+        "requirement": "nice_to_have",
+        "raw_text": "CUDA"
+      },
+      {
+        "skill_id": "ray",
+        "requirement": "nice_to_have",
+        "raw_text": "Triton, Ray"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Transformer inference internals (KV cache, attention, batching, parallelism)",
+        "raw_text": "transformer inference bottlenecks, including KV cache, attention, memory bandwidth, batching, parallelism, and long-context serving"
+      },
+      {
+        "label": "Low-precision formats (FP8, INT8, INT4, NVFP4, MXFP4)",
+        "raw_text": "FP8, INT8, INT4, NVFP4, MXFP4"
+      },
+      {
+        "label": "AWQ",
+        "raw_text": "AWQ"
+      },
+      {
+        "label": "GPTQ",
+        "raw_text": "GPTQ"
+      },
+      {
+        "label": "SmoothQuant",
+        "raw_text": "SmoothQuant"
+      },
+      {
+        "label": "EAGLE",
+        "raw_text": "EAGLE"
+      },
+      {
+        "label": "Medusa",
+        "raw_text": "Medusa"
+      },
+      {
+        "label": "Multi-token prediction",
+        "raw_text": "multi-token prediction"
+      },
+      {
+        "label": "Structured outputs",
+        "raw_text": "structured outputs"
+      },
+      {
+        "label": "Triton (GPU kernel language)",
+        "raw_text": "CUDA or Triton familiarity"
+      },
+      {
+        "label": "FlashInfer",
+        "raw_text": "FlashInfer"
+      },
+      {
+        "label": "LMCache",
+        "raw_text": "LMCache"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The 'Required Qualifications' heading makes its items required. The 'Preferred Qualifications' heading makes its items nice_to_have. Responsibilities-only technologies were not labeled.\nvLLM, SGLang, TensorRT-LLM, PyTorch and KServe also appear under Preferred (open-source contributions). They collapse to required, and raw_text quotes the required mention, extended where needed to distinguish it from the responsibilities and preferred mentions.\ninference-optimization is flagged uncertain. It rests on 'optimizing ... inference systems' in the required list; the taxonomy phrase 'inference optimization' itself appears only in the company description.\nai-deployment was not added. 'deploying ... inference systems' was judged too indirect.\nagents is flagged uncertain. 'agentic workloads' is not an exact alias.\nTriton in 'CUDA or Triton familiarity' and in the open-source list refers to the Triton kernel language. It was left unmapped rather than mapped to triton-inference-server.\nquantization collapses the 'quantization-aware training' and 'post-training quantization' aliases into one criterion. Individual formats and methods (FP8, AWQ, GPTQ, etc.) are unmapped.\nray (nice_to_have, from the open-source contributions list) is distinct from ray-serve (required)."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "3c6880c05893937321354cc4fb253416c0d40b637c2507d979c7eba9fe7341b8",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

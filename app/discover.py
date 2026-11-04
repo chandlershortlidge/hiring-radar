@@ -11,18 +11,29 @@ Does:
   - drop boards already in config/feeds.json (enabled or not) or in
     config/boards_rejected.json;
   - fetch each remaining board live and keep the postings that pass ingest's title filter
-    and map to an active place (geo.ACTIVE_CITIES: Berlin, EU-remote or San Francisco);
+    and map to an active place (geo.ACTIVE_CITIES), or to one named city for a launch;
   - append a board to feeds.json (`add_board`) or boards_rejected.json (`reject_board`)
-    when the person says so.
+    when the person says so;
+  - or, launching a city (`--launch <city>`, HIR-132), apply Chandler's written board
+    policy itself and add what passes: 5+ roles in that city, employers only, the rest
+    left unrecorded, and two spending caps that stop the launch instead of adding.
 
-Does NOT: add a board on its own, ingest postings, call a model, or page through search
-results. A search hit is only a lead. The board is checked live before it is reported,
-because indexed postings go stale (cortea, 2026-10-19).
+Does NOT: ingest postings, call a model, or page through search results. A search hit is
+only a lead. The board is checked live before it is reported, because indexed postings go
+stale (cortea, 2026-10-19).
 
-Invariants: `search_queries`, `harvest`, `new_boards`, `relevant_roles` and
-`feeds_entry` are pure. `run` does network I/O only through the injected `search` and
-`fetch_board`, so tests never touch the network. A failed board fetch is reported and the
-run goes on. A query with no results is reported, not skipped silently.
+A launch is the one path that writes without being asked, and only within the policy
+above (DECISIONS 2026-11-03, HIR-132, which supersedes the 2026-10-19 manual-approval
+rule). Everywhere else approval is still manual, and rejecting stays manual always —
+a rejection hides a board from every future search.
+
+Invariants: `search_queries`, `harvest`, `new_boards`, `relevant_roles`, `feeds_entry`,
+`agency_word`, `estimate_extraction_cost_eur`, `launch_decisions` and `launch_caps` are
+pure. `run` does network I/O only through the injected `search` and `fetch_board`, so
+tests never touch the network. A failed board fetch is reported and the run goes on, and
+is never added — an empty role list from a dead board must not read as "too few roles".
+A query with no results is reported, not skipped silently. A cap breach adds nothing at
+all, rather than adding boards up to the limit: a half-launched city is worse than none.
 """
 
 import json
@@ -71,13 +82,17 @@ def new_boards(found: list[Board], known: set[Board], rejected: set[Board]) -> l
     return [b for b in found if b not in known and b not in rejected]
 
 
-def relevant_roles(postings) -> list[str]:
-    """Titles (with city) of postings that would pass ingest's title and active-city filters."""
+def relevant_roles(postings, city: str | None = None) -> list[str]:
+    """Titles (with city) of postings that would pass ingest's title and active-city filters.
+
+    With `city`, only roles in that one city count — what a launch needs, because a board
+    full of Berlin roles is not evidence that it hires in New York.
+    """
     out = []
     for p in postings:
-        city = active_place(p.location_raw, p.title, p.description_text)
-        if in_scope_title(p.title) and city:
-            out.append(f"{p.title} ({city})")
+        place = active_place(p.location_raw, p.title, p.description_text)
+        if in_scope_title(p.title) and place and (city is None or place == city):
+            out.append(f"{p.title} ({place})")
     return out
 
 
@@ -115,8 +130,12 @@ class Report:
 
 
 def run(config: dict, feeds_doc: dict, rejected_doc: dict, search,
-        fetch_board=default_fetch_board) -> Report:
-    """search(query) -> list[url]; fetch_board(source, token) -> list[Posting]."""
+        fetch_board=default_fetch_board, city: str | None = None) -> Report:
+    """search(query) -> list[url]; fetch_board(source, token) -> list[Posting].
+
+    With `city`, a candidate's relevant roles are counted in that city only — what a
+    launch judges boards on.
+    """
     r = Report()
     urls = []
     for q in search_queries(config):
@@ -133,7 +152,7 @@ def run(config: dict, feeds_doc: dict, rejected_doc: dict, search,
         c = Candidate(board)
         try:
             postings = fetch_board(*board)
-            c.total, c.relevant = len(postings), relevant_roles(postings)
+            c.total, c.relevant = len(postings), relevant_roles(postings, city)
         except Exception as e:  # one dead board must not stop the run
             c.error = f"{type(e).__name__}: {str(e)[:160]}"
         r.candidates.append(c)
@@ -161,6 +180,136 @@ def report_lines(r: Report) -> list[str]:
         lines.append(f"board fetch FAILED: {len(failed)}")
         for c in failed:
             lines.append(f"  {c.board[0]}:{c.board[1]}: {c.error}")
+    return lines
+
+
+# --- launching a city: the written policy, applied without asking (HIR-132) ------------
+#
+# Chandler's SF choices (HIR-123) turned into code. Every threshold here is his, written on
+# the HIR-132 ticket; none of it is this module's judgment to re-tune.
+
+MIN_ROLES_TO_ADD = 5          # "add every board with 5 or more roles that pass the filters"
+MAX_LAUNCH_COST_EUR = 10.0    # stop and report rather than add, above this
+MAX_DAILY_POSTINGS = 5000     # ...or above this many postings added to the daily download
+
+# One extraction call, measured against app/extract.py on claude-sonnet-5-5 ($2.00 per
+# MTok in, $10.00 per MTok out). The system prompt with the taxonomy inlined is ~3.9k
+# tokens; a posting runs ~1.7k; the tool schema and the JSON answer make up the rest.
+# Deliberately rounded up: a cap that stops a launch too early is cheap to re-run, one
+# that stops it too late is not.
+EXTRACT_INPUT_TOKENS = 6_500
+EXTRACT_OUTPUT_TOKENS = 700
+USD_PER_MTOK_IN = 2.00
+USD_PER_MTOK_OUT = 10.00
+EUR_PER_USD = 0.93
+
+# A conservative screen for "recruitment agency or job aggregator", which the policy skips.
+# Substring match on the board token and the company name, both lowercased with separators
+# removed, so "talent-partners" and "talentpartners" read alike. Conservative on purpose:
+# a missed agency is one noisy feed that can be disabled, while a false positive silently
+# drops a real employer. Every verdict is reported, so the screen is auditable.
+AGENCY_WORDS = (
+    "recruit", "staffing", "headhunt", "jobboard", "jobportal", "jobsite", "aggregator",
+    "personalberatung", "personalvermittlung", "zeitarbeit", "workforce", "placement",
+    "resourcing", "talentpartner", "talentsolutions", "talentacquisition", "talentgroup",
+    "manpower", "randstad", "adecco", "hays", "michaelpage", "roberthalf", "kellyservices",
+    "experis", "robertwalters", "pagegroup", "huntscanlon", "jobrapido", "jobleads",
+    "learn4good", "ziprecruiter", "indeed", "glassdoor", "monsterjobs",
+)
+
+
+def _squashed(*parts: str | None) -> str:
+    return "".join(ch for p in parts if p for ch in p.lower() if ch.isalnum())
+
+
+def agency_word(board: Board, company: str | None = None) -> str | None:
+    """The agency/aggregator word this board's name matches, or None. Pure."""
+    text = _squashed(board[1], company)
+    return next((w for w in AGENCY_WORDS if w in text), None)
+
+
+def estimate_extraction_cost_eur(n_postings: int) -> float:
+    """What reading `n_postings` once with the current extractor costs, in euros. Pure."""
+    usd = n_postings * (EXTRACT_INPUT_TOKENS / 1e6 * USD_PER_MTOK_IN
+                        + EXTRACT_OUTPUT_TOKENS / 1e6 * USD_PER_MTOK_OUT)
+    return usd * EUR_PER_USD
+
+
+@dataclass
+class LaunchDecision:
+    board: Board
+    verdict: str                  # "add" | "skip-agency" | "too-few-roles" | "failed"
+    why: str
+    roles: list[str] = field(default_factory=list)
+    total: int = 0
+
+
+def launch_decisions(candidates: list[Candidate], min_roles: int = MIN_ROLES_TO_ADD,
+                     ) -> list[LaunchDecision]:
+    """The policy, applied to each candidate. Pure; the order of the checks is the policy's.
+
+    A board that failed to fetch is reported, never added — an empty role list from a dead
+    board must not read as "too few roles".
+    """
+    out = []
+    for c in candidates:
+        n = len(c.relevant)
+        if c.error:
+            out.append(LaunchDecision(c.board, "failed", c.error, c.relevant, c.total))
+        elif (w := agency_word(c.board)):
+            out.append(LaunchDecision(c.board, "skip-agency", f"name contains {w!r}",
+                                      c.relevant, c.total))
+        elif n >= min_roles:
+            out.append(LaunchDecision(c.board, "add", f"{n} roles in the city",
+                                      c.relevant, c.total))
+        else:
+            out.append(LaunchDecision(c.board, "too-few-roles",
+                                      f"{n} roles, under the {min_roles} needed; left unrecorded",
+                                      c.relevant, c.total))
+    return out
+
+
+def launch_caps(decisions: list[LaunchDecision]) -> tuple[float, int, str | None]:
+    """(cost in euros, postings added to the daily download, breach reason or None). Pure.
+
+    The cost is of reading the roles that would actually be stored; the daily figure is
+    every posting on the added boards, because a poll downloads a whole board.
+    """
+    adds = [d for d in decisions if d.verdict == "add"]
+    to_read = sum(len(d.roles) for d in adds)
+    daily = sum(d.total for d in adds)
+    cost = estimate_extraction_cost_eur(to_read)
+    breach = None
+    if cost > MAX_LAUNCH_COST_EUR:
+        breach = (f"reading {to_read} new postings would cost about €{cost:.2f}, "
+                  f"over the €{MAX_LAUNCH_COST_EUR:.0f} cap")
+    elif daily > MAX_DAILY_POSTINGS:
+        breach = (f"the {len(adds)} boards carry {daily} postings to download daily, "
+                  f"over the {MAX_DAILY_POSTINGS} cap")
+    return cost, daily, breach
+
+
+def launch_report_lines(city: str, decisions: list[LaunchDecision],
+                        cost: float, daily: int, breach: str | None, applied: bool) -> list[str]:
+    by = lambda v: [d for d in decisions if d.verdict == v]   # noqa: E731
+    lines = [f"launch {city}: {len(decisions)} new boards judged"]
+    for verdict, heading in (("add", "added"), ("skip-agency", "skipped (agency/aggregator)"),
+                             ("too-few-roles", "left unrecorded"), ("failed", "FAILED to fetch")):
+        ds = by(verdict)
+        if not ds:
+            continue
+        lines.append(f"{heading}: {len(ds)}")
+        for d in ds:
+            lines.append(f"  {d.board[0]}:{d.board[1]}: {d.why}"
+                         + (f" — {'; '.join(d.roles[:6])}" if d.roles else ""))
+    lines.append(f"one-time model reading: about €{cost:.2f} (cap €{MAX_LAUNCH_COST_EUR:.0f}); "
+                 f"{daily} postings added to the daily download (cap {MAX_DAILY_POSTINGS})")
+    if breach:
+        lines.append(f"STOPPED, nothing added: {breach}")
+    elif not applied:
+        lines.append("dry run: nothing written")
+    else:
+        lines.append(f"{len(by('add'))} boards written to config/feeds.json")
     return lines
 
 

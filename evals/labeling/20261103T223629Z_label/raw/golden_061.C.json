@@ -1,0 +1,89 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement learning\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Torch\"\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering principles\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"source control\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"testing\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Sequence Models\",\n      \"raw_text\": \"modern sequence models\"\n    },\n    {\n      \"label\": \"Graph Neural Networks\",\n      \"raw_text\": \"graph neutral nets\"\n    },\n    {\n      \"label\": \"Cluster Computing\",\n      \"raw_text\": \"cluster environment\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s or PhD in machine learning, computer science, statistics, or related fields.\",\n  \"uncertain\": [],\n  \"notes\": \"Heading 'DESIRABLE CANDIDATES:' serves as the main qualifications section here and defaults to required; inline 'strongly preferred' overrides specific items (reinforcement learning, LLMs) to nice_to_have.\\nMapped 'Torch' to pytorch and 'source control' to git (alias version control).\\nFields of study in the degree bullet ('machine learning, computer science, statistics') are not treated as standalone skill requirements, though machine-learning is required elsewhere.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "Torch"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering principles"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "source control"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Sequence Models",
+        "raw_text": "modern sequence models"
+      },
+      {
+        "label": "Graph Neural Networks",
+        "raw_text": "graph neutral nets"
+      },
+      {
+        "label": "Cluster Computing",
+        "raw_text": "cluster environment"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s or PhD in machine learning, computer science, statistics, or related fields.",
+    "uncertain": [],
+    "notes": "Heading 'DESIRABLE CANDIDATES:' serves as the main qualifications section here and defaults to required; inline 'strongly preferred' overrides specific items (reinforcement learning, LLMs) to nice_to_have.\nMapped 'Torch' to pytorch and 'source control' to git (alias version control).\nFields of study in the degree bullet ('machine learning, computer science, statistics') are not treated as standalone skill requirements, though machine-learning is required elsewhere."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "3b0524c6233f1251b25157a34130b9493d60fe5bce0f462ba414192ea690d11c",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

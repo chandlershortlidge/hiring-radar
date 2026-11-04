@@ -1,0 +1,91 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"NLP\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agents\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG\"\n    },\n    {\n      \"skill_id\": \"open-source-llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"open-source models\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"fine-tuning\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deployment\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering principles\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"github\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"testing\"\n    },\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Data science\"\n    }\n  ],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Bachelor, Master’s or PhD graduate or candidate in computer science or another quantitative discipline\",\n  \"notes\": \"The introductory ideal-candidate sentence explicitly asks for skills, despite appearing under ROLE/RESPONSIBILTIES; its skills are included. No section marks skills optional.\\nMapped open-source models to open-source-llms in the NLP/LLM context, but flagged because the phrase does not explicitly restrict models to LLMs.\\nRead seniority literally: a track record does not specify years, an explicit level, proven experience, or leadership/mentoring duties.\\nExcluded technologies appearing only in the responsibilities, and excluded financial-market interest and collaborative mindset as domain interest and a soft skill.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "NLP"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agents"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "open-source-llms",
+        "requirement": "required",
+        "raw_text": "open-source models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deployment"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering principles"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "github"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "Data science"
+      }
+    ],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor, Master’s or PhD graduate or candidate in computer science or another quantitative discipline",
+    "notes": "The introductory ideal-candidate sentence explicitly asks for skills, despite appearing under ROLE/RESPONSIBILTIES; its skills are included. No section marks skills optional.\nMapped open-source models to open-source-llms in the NLP/LLM context, but flagged because the phrase does not explicitly restrict models to LLMs.\nRead seniority literally: a track record does not specify years, an explicit level, proven experience, or leadership/mentoring duties.\nExcluded technologies appearing only in the responsibilities, and excluded financial-market interest and collaborative mindset as domain interest and a soft skill."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "76f62559d135c4101876848dca69cc1963d7feda2d4756579ab76c69c772321b",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

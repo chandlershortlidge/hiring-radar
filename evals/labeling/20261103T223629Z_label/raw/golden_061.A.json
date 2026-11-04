@@ -1,0 +1,99 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"utilizing machine learning\", \"uncertain\": true},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"reinforcement learning\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LLMs\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"Torch\", \"uncertain\": true},\n    {\"skill_id\": \"jax\", \"requirement\": \"required\", \"raw_text\": \"JAX\", \"uncertain\": true},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\", \"uncertain\": true},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"general software engineering principles\", \"uncertain\": true},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"source control\", \"uncertain\": true},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"testing\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Sequence models\", \"raw_text\": \"modern sequence models\"},\n    {\"label\": \"Graph neural networks\", \"raw_text\": \"graph neutral nets\"},\n    {\"label\": \"Cluster computing environment\", \"raw_text\": \"cluster environment\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": null, \"german_basis\": null, \"german_signal\": null,\n  \"degree\": \"phd\", \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false, \"degree_signal\": \"Master’s or PhD in machine learning, computer science, statistics, or related fields\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"Heading 'DESIRABLE CANDIDATES' is not one of the guide's optional headings and is the posting's only qualifications section. I treated it as a requirements heading, so unmarked items default to required. One item carries its own inline 'strongly preferred', which only makes sense if the section itself is not optional. Every item under this heading is flagged because a reviewer could read 'Desirable' as optional.\\nThe 'strongly preferred' bullet makes its items nice_to_have via the inline 'preferred' marker: sequence models, graph nets, reinforcement learning, LLMs.\\n'Torch' is mapped to pytorch; in modern ML-library context it means PyTorch. Flagged.\\n'source control' is mapped to git via the 'version control' alias. Flagged.\\n'machine learning libraries' is not labeled as a separate broad skill; machine-learning is labeled from 'utilizing machine learning'.\\nstatistics, computer science and machine learning in the degree line are degree fields (domain), not skill asks. statistics is not labeled.\\nAI/ML, evaluation and model selection appear only in the responsibilities and are not labeled.\\nSeniority: there are no years, level words or lead duty. The team's 'experienced' members do not count, so seniority is null.\\nDegree: 'Master’s or PhD' takes the highest level named, phd, per golden_040. It is a bare mention, so required; it is flagged only because of the 'Desirable' heading question.\\nGerman: there is no mention of German and the posting is in English, so german is null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "utilizing machine learning",
+        "uncertain": true
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "Torch",
+        "uncertain": true
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX",
+        "uncertain": true
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "general software engineering principles",
+        "uncertain": true
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "source control",
+        "uncertain": true
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Sequence models",
+        "raw_text": "modern sequence models"
+      },
+      {
+        "label": "Graph neural networks",
+        "raw_text": "graph neutral nets"
+      },
+      {
+        "label": "Cluster computing environment",
+        "raw_text": "cluster environment"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s or PhD in machine learning, computer science, statistics, or related fields",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Heading 'DESIRABLE CANDIDATES' is not one of the guide's optional headings and is the posting's only qualifications section. I treated it as a requirements heading, so unmarked items default to required. One item carries its own inline 'strongly preferred', which only makes sense if the section itself is not optional. Every item under this heading is flagged because a reviewer could read 'Desirable' as optional.\nThe 'strongly preferred' bullet makes its items nice_to_have via the inline 'preferred' marker: sequence models, graph nets, reinforcement learning, LLMs.\n'Torch' is mapped to pytorch; in modern ML-library context it means PyTorch. Flagged.\n'source control' is mapped to git via the 'version control' alias. Flagged.\n'machine learning libraries' is not labeled as a separate broad skill; machine-learning is labeled from 'utilizing machine learning'.\nstatistics, computer science and machine learning in the degree line are degree fields (domain), not skill asks. statistics is not labeled.\nAI/ML, evaluation and model selection appear only in the responsibilities and are not labeled.\nSeniority: there are no years, level words or lead duty. The team's 'experienced' members do not count, so seniority is null.\nDegree: 'Master’s or PhD' takes the highest level named, phd, per golden_040. It is a bare mention, so required; it is flagged only because of the 'Desirable' heading question.\nGerman: there is no mention of German and the posting is in English, so german is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "3b0524c6233f1251b25157a34130b9493d60fe5bce0f462ba414192ea690d11c",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

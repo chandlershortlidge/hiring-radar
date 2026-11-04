@@ -1,0 +1,103 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Prior research experience utilizing machine learning\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement learning\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Torch\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering principles\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"source control\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"testing\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Modern sequence models\",\n      \"raw_text\": \"modern sequence models\"\n    },\n    {\n      \"label\": \"Graph neural networks (posting says “neutral”)\",\n      \"raw_text\": \"graph neutral nets\"\n    },\n    {\n      \"label\": \"Cluster computing environment\",\n      \"raw_text\": \"cluster environment\"\n    },\n    {\n      \"label\": \"Collaborative software development workflow\",\n      \"raw_text\": \"collaborative workflow\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s or PhD in machine learning, computer science, statistics, or related fields.\",\n  \"uncertain\": [\n    \"degree\"\n  ],\n  \"notes\": \"Interpreted “DESIRABLE CANDIDATES” as a candidate-profile heading rather than an explicitly optional qualifications heading; unmarked items default to required. Flagged affected labels because “desirable” could alternatively mark the whole section optional.\\nThe inline “strongly preferred” makes modern sequence models, graph neutral nets, reinforcement learning, and LLMs optional regardless of that heading interpretation.\\nMapped “Torch” to pytorch as the closest taxonomy entry; literal Torch could instead refer to the distinct older framework, so this mapping is uncertain.\\nMapped “source control” to git through the taxonomy’s version-control meaning, without inferring a specific hosting platform.\\nTreated “collaborative workflow” within software engineering principles as a technical development practice, not the separate interpersonal collaboration requirements.\\nDegree fields do not independently establish statistics or computer-science skills. Responsibilities-only evaluation and model-selection activities were excluded.\\nPrior research experience supplies no qualifying seniority signal under the guide; no German requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Prior research experience utilizing machine learning",
+        "uncertain": true
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "Torch",
+        "uncertain": true
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX",
+        "uncertain": true
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering principles",
+        "uncertain": true
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "source control",
+        "uncertain": true
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Modern sequence models",
+        "raw_text": "modern sequence models"
+      },
+      {
+        "label": "Graph neural networks (posting says “neutral”)",
+        "raw_text": "graph neutral nets"
+      },
+      {
+        "label": "Cluster computing environment",
+        "raw_text": "cluster environment"
+      },
+      {
+        "label": "Collaborative software development workflow",
+        "raw_text": "collaborative workflow"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s or PhD in machine learning, computer science, statistics, or related fields.",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Interpreted “DESIRABLE CANDIDATES” as a candidate-profile heading rather than an explicitly optional qualifications heading; unmarked items default to required. Flagged affected labels because “desirable” could alternatively mark the whole section optional.\nThe inline “strongly preferred” makes modern sequence models, graph neutral nets, reinforcement learning, and LLMs optional regardless of that heading interpretation.\nMapped “Torch” to pytorch as the closest taxonomy entry; literal Torch could instead refer to the distinct older framework, so this mapping is uncertain.\nMapped “source control” to git through the taxonomy’s version-control meaning, without inferring a specific hosting platform.\nTreated “collaborative workflow” within software engineering principles as a technical development practice, not the separate interpersonal collaboration requirements.\nDegree fields do not independently establish statistics or computer-science skills. Responsibilities-only evaluation and model-selection activities were excluded.\nPrior research experience supplies no qualifying seniority signal under the guide; no German requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "3b0524c6233f1251b25157a34130b9493d60fe5bce0f462ba414192ea690d11c",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

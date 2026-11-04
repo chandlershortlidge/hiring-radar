@@ -1,0 +1,106 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"industry experience as a Data Scientist\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Snowflake\"\n    },\n    {\n      \"skill_id\": \"bigquery\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"BigQuery\"\n    },\n    {\n      \"skill_id\": \"business-intelligence\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"BI tools\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"dbt\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"dbt\"\n    },\n    {\n      \"skill_id\": \"data-modeling\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"data modeling\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"version control\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"testing\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Redshift\",\n      \"raw_text\": \"Redshift\"\n    },\n    {\n      \"label\": \"Looker\",\n      \"raw_text\": \"Looker\"\n    },\n    {\n      \"label\": \"Omni\",\n      \"raw_text\": \"Omni\"\n    },\n    {\n      \"label\": \"Sigma\",\n      \"raw_text\": \"Sigma\"\n    },\n    {\n      \"label\": \"Hex\",\n      \"raw_text\": \"Hex\"\n    },\n    {\n      \"label\": \"Fivetran\",\n      \"raw_text\": \"Fivetran\"\n    },\n    {\n      \"label\": \"Hightouch\",\n      \"raw_text\": \"Hightouch\"\n    },\n    {\n      \"label\": \"Analytics Engineering\",\n      \"raw_text\": \"analytics engineering\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Minimum of 4 years of industry experience as a Data Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Snowflake and BigQuery appear under 'WHAT YOU NEED' inside '(preferably Redshift, Snowflake, BigQuery)', so the inline marker 'preferably' flips them to nice_to_have; Snowflake also appears under 'NICE-TO-HAVES'. Flagged 'data-science' (from 'experience as a Data Scientist') and 'business-intelligence' (from 'BI tools') as uncertain regarding whether they map cleanly as requested skills vs role/generic tool category. 'Full stack development' under 'WHAT YOU’LL DO' is skipped as it only appears in responsibilities.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "industry experience as a Data Scientist",
+        "uncertain": true
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "nice_to_have",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "bigquery",
+        "requirement": "nice_to_have",
+        "raw_text": "BigQuery"
+      },
+      {
+        "skill_id": "business-intelligence",
+        "requirement": "required",
+        "raw_text": "BI tools",
+        "uncertain": true
+      },
+      {
+        "skill_id": "dbt",
+        "requirement": "nice_to_have",
+        "raw_text": "dbt"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "nice_to_have",
+        "raw_text": "data modeling"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "nice_to_have",
+        "raw_text": "version control"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "testing"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Redshift",
+        "raw_text": "Redshift"
+      },
+      {
+        "label": "Looker",
+        "raw_text": "Looker"
+      },
+      {
+        "label": "Omni",
+        "raw_text": "Omni"
+      },
+      {
+        "label": "Sigma",
+        "raw_text": "Sigma"
+      },
+      {
+        "label": "Hex",
+        "raw_text": "Hex"
+      },
+      {
+        "label": "Fivetran",
+        "raw_text": "Fivetran"
+      },
+      {
+        "label": "Hightouch",
+        "raw_text": "Hightouch"
+      },
+      {
+        "label": "Analytics Engineering",
+        "raw_text": "analytics engineering"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Minimum of 4 years of industry experience as a Data Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Snowflake and BigQuery appear under 'WHAT YOU NEED' inside '(preferably Redshift, Snowflake, BigQuery)', so the inline marker 'preferably' flips them to nice_to_have; Snowflake also appears under 'NICE-TO-HAVES'. Flagged 'data-science' (from 'experience as a Data Scientist') and 'business-intelligence' (from 'BI tools') as uncertain regarding whether they map cleanly as requested skills vs role/generic tool category. 'Full stack development' under 'WHAT YOU’LL DO' is skipped as it only appears in responsibilities."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "029bc5f3bfe8c6fa03caf6edd94167405d60fb5933566aca48157df4e75f9524",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

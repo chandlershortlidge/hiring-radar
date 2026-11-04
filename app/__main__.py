@@ -9,7 +9,8 @@
   stats             counts by city and source; share of jobs a feed has seen (legacy imports excluded);
                     checked URLs split by whether a feed can reach them now
   discover-boards   web-search for Greenhouse/Lever/Ashby/JOIN boards we don't poll, check each live, report;
-                    --add source:token appends to feeds.json, --reject source:token --reason R remembers a no
+                    --add source:token appends to feeds.json, --reject source:token --reason R remembers a no;
+                    --launch CITY applies the written board policy itself and adds what passes
   migrate           apply pending migrations and exit
 
 Database path: $HIRING_RADAR_DB, default ./data/hiring-radar.db.
@@ -209,9 +210,26 @@ def cmd_discover_boards(args):
         sys.exit(str(e))
     config = json.loads(discover.CONFIG_PATH.read_text())
     r = discover.run(config, json.loads(FEEDS_PATH.read_text()), json.loads(discover.REJECTED_PATH.read_text()),
-                     lambda q: brave.fetch(q, key, config.get("count", 20)))
+                     lambda q: brave.fetch(q, key, config.get("count", 20)), city=args.launch)
     for line in discover.report_lines(r):
         print(line)
+    if not args.launch:
+        return
+    from app.geo import ACTIVE_CITIES
+    if args.launch not in ACTIVE_CITIES:
+        sys.exit(f"{args.launch!r} is not collected; add it to geo.ACTIVE_CITIES first")
+    decisions = discover.launch_decisions(r.candidates)
+    cost, daily, breach = discover.launch_caps(decisions)
+    applied = not breach and not args.dry_run
+    if applied:
+        for d in decisions:
+            if d.verdict == "add":
+                discover.add_board(d.board)
+    print()
+    for line in discover.launch_report_lines(args.launch, decisions, cost, daily, breach, applied):
+        print(line)
+    if breach:
+        sys.exit(2)
 
 
 def cmd_migrate(args):
@@ -258,7 +276,12 @@ def main(argv=None):
     p = sub.add_parser("discover-boards", help="find company job boards we don't poll yet (Brave search)")
     p.add_argument("--add", action="append", default=[], metavar="SOURCE:TOKEN")
     p.add_argument("--reject", action="append", default=[], metavar="SOURCE:TOKEN")
-    p.add_argument("--reason", default=None); p.set_defaults(fn=cmd_discover_boards)
+    p.add_argument("--reason", default=None)
+    p.add_argument("--launch", metavar="CITY", default=None,
+                   help="judge boards for this one city and add what the written policy allows "
+                        "(5+ roles there, employers only), then report; stops on a spending cap")
+    p.add_argument("--dry-run", action="store_true", help="with --launch: decide and report, write nothing")
+    p.set_defaults(fn=cmd_discover_boards)
     sub.add_parser("migrate").set_defaults(fn=cmd_migrate)
     p = sub.add_parser("serve", help="run the dashboard API (and web/dist if built)")
     p.add_argument("--host", default="127.0.0.1"); p.add_argument("--port", type=int, default=int(os.environ.get("PORT", 8000)))

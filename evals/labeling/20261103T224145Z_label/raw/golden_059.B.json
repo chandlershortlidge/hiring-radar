@@ -1,0 +1,161 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GenAI\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"shipped GenAI solutions into production\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"continuous evaluation\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning\"\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"NLP\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG pipelines\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agent orchestration\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"fine-tuning\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"prompt engineering\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"vector databases\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud platform\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GCP\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"containerization\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LangChain\"\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LangGraph\"\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"workflow automation\"\n    },\n    {\n      \"skill_id\": \"n8n\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"n8n\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Clean coding\",\n      \"raw_text\": \"clean, production-quality code\"\n    },\n    {\n      \"label\": \"Code review\",\n      \"raw_text\": \"review other people's code\"\n    },\n    {\n      \"label\": \"Cloud-native tooling\",\n      \"raw_text\": \"cloud-native tooling\"\n    },\n    {\n      \"label\": \"LLM frameworks\",\n      \"raw_text\": \"LLM frameworks\"\n    },\n    {\n      \"label\": \"Azure AI Foundry\",\n      \"raw_text\": \"Azure AI Foundry\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior GenAI Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The qualifications sections are required; 'A plus for this role' makes its items optional.\\nAlternatives and examples are labeled individually without implying that every alternative must be possessed.\\nShipping GenAI solutions into production is read literally as AI deployment; continuous evaluation is explicitly part of the requested understanding.\\nLLM frameworks has no exact broad taxonomy entry; it is not silently equated with orchestration. Its named examples are labeled separately.\\nUnmapped Azure AI Foundry and LLM frameworks are optional; the other unmapped practices are required.\\nSkills appearing only in responsibilities, including embeddings, vector search and API integration, are excluded.\\nThe English-language posting asks for neither German nor a degree.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "GenAI"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "shipped GenAI solutions into production"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "continuous evaluation"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "NLP"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG pipelines"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "agent orchestration"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompt engineering"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector databases"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud platform"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containerization"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "nice_to_have",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "nice_to_have",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "nice_to_have",
+        "raw_text": "workflow automation"
+      },
+      {
+        "skill_id": "n8n",
+        "requirement": "nice_to_have",
+        "raw_text": "n8n"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Clean coding",
+        "raw_text": "clean, production-quality code"
+      },
+      {
+        "label": "Code review",
+        "raw_text": "review other people's code"
+      },
+      {
+        "label": "Cloud-native tooling",
+        "raw_text": "cloud-native tooling"
+      },
+      {
+        "label": "LLM frameworks",
+        "raw_text": "LLM frameworks"
+      },
+      {
+        "label": "Azure AI Foundry",
+        "raw_text": "Azure AI Foundry"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior GenAI Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The qualifications sections are required; 'A plus for this role' makes its items optional.\nAlternatives and examples are labeled individually without implying that every alternative must be possessed.\nShipping GenAI solutions into production is read literally as AI deployment; continuous evaluation is explicitly part of the requested understanding.\nLLM frameworks has no exact broad taxonomy entry; it is not silently equated with orchestration. Its named examples are labeled separately.\nUnmapped Azure AI Foundry and LLM frameworks are optional; the other unmapped practices are required.\nSkills appearing only in responsibilities, including embeddings, vector search and API integration, are excluded.\nThe English-language posting asks for neither German nor a degree."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "70429d60bd0ad47f240a449c3a5ce0b15f32c79eda96932d97a53509048054b0",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

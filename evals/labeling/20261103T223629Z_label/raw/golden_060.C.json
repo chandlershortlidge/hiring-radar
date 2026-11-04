@@ -1,0 +1,51 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Linux\"\n    },\n    {\n      \"skill_id\": \"airflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Airflow\"\n    }\n  ],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Masters in Financial Engineering, Statistics, Computer Science or other disciplines involving rigorous quantitative analysis\",\n  \"uncertain\": [],\n  \"notes\": \"'data pipelines' and 'creating features from datasets' appear only in RESPONSIBILITIES, so they are excluded per the labeling guide. 'Statistics' appears only as a degree field ('Masters in Financial Engineering, Statistics...'), not as a standalone skill requirement.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "nice_to_have",
+        "raw_text": "Linux"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Airflow"
+      }
+    ],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Masters in Financial Engineering, Statistics, Computer Science or other disciplines involving rigorous quantitative analysis",
+    "uncertain": [],
+    "notes": "'data pipelines' and 'creating features from datasets' appear only in RESPONSIBILITIES, so they are excluded per the labeling guide. 'Statistics' appears only as a degree field ('Masters in Financial Engineering, Statistics...'), not as a standalone skill requirement."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "67189a44076adeead6a829d6ced28525debcd4eb77af649b88b57f1a4f7a395e",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

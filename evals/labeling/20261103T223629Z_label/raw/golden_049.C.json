@@ -1,0 +1,62 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"statistics\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Python (preferred)\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"r-lang\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"R\"\n    },\n    {\n      \"skill_id\": \"apache-spark\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Spark\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data mining\",\n      \"raw_text\": \"data mining tools\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"1+ year of professional experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Masters/PhD in a quantitative discipline\",\n  \"uncertain\": [],\n  \"notes\": \"In 'Strong programming skills in Python (preferred), R, Spark, SQL', '(preferred)' acts as an inline marker on Python; marked uncertain as in natural language it means preferred among the options rather than optional.\\n'Masters/PhD' labeled as 'phd' per rule that highest level named wins.\\n'1+ year of professional experience' mapped to junior (0-2 years).\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistics"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Python (preferred)",
+        "uncertain": true
+      },
+      {
+        "skill_id": "r-lang",
+        "requirement": "required",
+        "raw_text": "R"
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "required",
+        "raw_text": "Spark"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data mining",
+        "raw_text": "data mining tools"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "1+ year of professional experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Masters/PhD in a quantitative discipline",
+    "uncertain": [],
+    "notes": "In 'Strong programming skills in Python (preferred), R, Spark, SQL', '(preferred)' acts as an inline marker on Python; marked uncertain as in natural language it means preferred among the options rather than optional.\n'Masters/PhD' labeled as 'phd' per rule that highest level named wins.\n'1+ year of professional experience' mapped to junior (0-2 years)."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "fa8b91a68fd74de0983d5ff60841aff68ef4d13a9b9a988aeb39f763a62d7386",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}
