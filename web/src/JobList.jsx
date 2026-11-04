@@ -168,7 +168,7 @@ function Row({ job: j, open, onToggle, profile, taxonomy, demand, onOpenPage, sa
         <span className="ti">
           {miss.length > 0 && <span className="fit miss" title={miss.map((w) => MISS_LABELS[w]).join(" · ")}>!</span>}
           {cov?.gated_by && <span className="fit gate" title={MISS_LABELS[cov.gated_by]}>{gateWord(cov.gated_by, j)}</span>}
-          {cov && cov.score !== null && <span className={`fit${cov.score === 1 ? " full" : ""}`} title={fitTitle(cov, taxonomy)}>{pct(cov.score)}% · {cov.covered}/{cov.total}</span>}
+          {cov && cov.score !== null && <span className={`fit${cov.score === 1 && !cov.thin ? " full" : ""}`} title={fitTitle(cov, taxonomy)}>{fitBadge(cov)}</span>}
           {j.title}{j.seniority && <span className="dim" style={{ marginLeft: 8, fontSize: 12 }}>{cap(j.seniority)}</span>}
         </span>
         <span className="ci muted">{j.city || "—"}</span>
@@ -208,12 +208,27 @@ const gateWord = (gate, j) => (gate === "seniority" ? jobSeniority(j) : GATE_WOR
 
 const pct = (score) => Math.round(score * 100);
 
+// What a job below the floor says instead of a percentage, in the badge and in the two
+// sentences below. A posting naming two required skills has told us too little for a
+// percentage to mean anything, so the row shows the count and says why (HIR-154).
+const FEW_SKILLS = "few skills listed";
+
+// The badge: a percentage and the count, except on a thinly listed job, where the
+// percentage is exactly the misleading part and the count stands alone.
+export function fitBadge(cov) {
+  if (cov.thin) return `${cov.covered}/${cov.total} · ${FEW_SKILLS}`;
+  return `${pct(cov.score)}% · ${cov.covered}/${cov.total}`;
+}
+
 // The gap, in the badge's tooltip: the required skills the profile lacks, most-asked-for
-// first, so the first name in the list is the one worth learning next.
-function fitTitle(cov, taxonomy) {
+// first, so the first name in the list is the one worth learning next. "A full match" is
+// only ever said of a job that listed a normal number of asks; covering both asks of a
+// two-ask posting is not a match, it is a posting we know little about.
+export function fitTitle(cov, taxonomy) {
   const head = `You cover ${cov.covered} of ${cov.total} required skills`;
-  if (!cov.missing.length) return `${head} — a full match`;
-  return `${head}. Missing, most asked for first: ${cov.missing.map((id) => taxonomy[id] || id).join(", ")}`;
+  if (cov.missing.length) return `${head}. Missing, most asked for first: ${cov.missing.map((id) => taxonomy[id] || id).join(", ")}`;
+  if (cov.thin) return `${head} — but ${FEW_SKILLS}, so this is not a full match`;
+  return `${head} — a full match`;
 }
 
 // Also rendered by JobPage, which passes no onOpenPage: it is already the page, and its header
@@ -249,7 +264,7 @@ export function Detail({ job, d, profile, taxonomy, cov, onOpenPage }) {
         </div>
       )}
       {cov && cov.total > 0 && (
-        <div className="cover">You cover <b>{cov.covered} of {cov.total}</b> required skills ({pct(cov.score)}%){cov.missing.length ? ` · missing, most asked for first: ${cov.missing.map((id) => taxonomy[id] || id).join(", ")}` : " · full match"}.</div>
+        <div className="cover">You cover <b>{cov.covered} of {cov.total}</b> required skills{cov.thin ? "" : ` (${pct(cov.score)}%)`}{cov.missing.length ? ` · missing, most asked for first: ${cov.missing.map((id) => taxonomy[id] || id).join(", ")}` : cov.thin ? ` · ${FEW_SKILLS}, so Best fit does not treat this as a full match` : " · full match"}.</div>
       )}
       {cov?.gated_by && (
         <div className="cover">Out of reach as the posting is written: it {MISS_LABELS[cov.gated_by]}. Best fit sorts it to the bottom.</div>

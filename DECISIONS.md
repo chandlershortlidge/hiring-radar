@@ -5,6 +5,70 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-04 — Best fit scores a job against a floor of 7 required skills (HIR-154)
+
+HIR-113 made the *order* the Wilson lower bound of `covered/total`, so a 2/2 job (bound
+0.342) stopped beating a 10/14 one (0.454). It did not stop 2/2 beating the far commoner
+*partially* covered job: 4/10 bounds at 0.168, so in San Francisco the top of Best fit
+filled up with Anthropic and OpenAI rows reading "100% · 2/2". Two required skills is
+usually what the extractor found, not what the posting asks.
+
+**The floor.** A job is now scored against `max(total, K)` with **K = 7**, so a job that
+lists fewer than K required skills is judged as though it had listed K and simply failed
+the rest. 2/2 is scored as 2 out of 7.
+
+K = 7 is measured, not guessed: the median required-skill count over the 410 open jobs in
+the chart set on 2026-11-04 (San Francisco 6, Berlin 11, New York 6). It is a constant,
+**not** recomputed per request — a median over whatever jobs a filter returns would score
+the same job differently on page 1 and page 2, and the ranking has to be reproducible.
+The issue guessed "about 5 or 6"; the distribution says 7, and between K = 5 and K = 8 the
+measurement below barely moves, so the exact value is not load-bearing.
+
+**The floor tightens the bound rather than replacing it** (the issue left this open and
+asked for one of the two to be kept). The ranking score is now the Wilson lower bound of
+`covered / max(total, K)`.
+
+Measured by running the real 273-job San Francisco open list through the shipped
+`rankJobs` against 201 stand-in profiles — each one the required skills of two randomly
+chosen SF jobs, plus one built from the 12 most-demanded skills — and counting
+*inversions*: a job listing fewer than K required skills ranked above a job covering
+strictly more skills than it does. Gated-out jobs are excluded from the count on both
+sides, since a job whose posting rules you out sorts last whatever it scores (HIR-51).
+
+| ranking | mean inversions per profile |
+| --- | --- |
+| Wilson alone (HIR-113, before this) | 346 |
+| floor alone | 82 |
+| **floor inside the Wilson bound (kept)** | **36** |
+
+The floor alone loses what HIR-113 bought — among jobs at the same floored ratio it has
+nothing to separate 5/7 from 6/10 — so the two together beat either alone, at every K from
+5 to 8. The top of the list for the most-demanded-skills profile goes from seven thin rows
+(4/4 Databricks, 3/3 OpenAI, then five 4/5s) to 5/7, 5/8, 5/8, 6/11, 5/9, 5/9, with the
+first thin row seventh.
+
+The scripts behind these numbers are in `scratch/hir-154/` (git-ignored): `measure_k.py`
+for the distribution, `dump_sf.py` plus `sf_rank_check.test.js` for the list comparison.
+
+**What the row shows.** The badge still shows the plain ratio, because that is the honest
+count of what the posting asks. But a job below the floor shows the count *without* the
+percentage — "2/2 · few skills listed" — and never gets the "full match" wording in the
+tooltip or the expanded row, which is what made a thin extraction read as a perfect one.
+Side effect, accepted: at K = 7 a job listing 6 required skills all of which you have
+reads "6/6 · few skills listed" rather than 100%. It sorts correctly either way; lowering
+the badge's threshold alone would decouple two numbers the issue deliberately tied
+together.
+
+Nice-to-have skills still do not count toward the score, only toward breaking ties
+(HIR-51), and the floor does not touch that.
+
+Not looked at here: *why* so many postings come back with two or three required skills —
+83 of 273 open San Francisco jobs list fewer than 5, and 60 of those 83 are OpenAI (32)
+and Anthropic (28), which is a pattern in their Greenhouse postings rather than in the
+market. Filed as its own ticket.
+
+---
+
 ## 2026-11-04 — A PR that changes the agents' own rules never merges on its own (HIR-142)
 
 Since HIR-136 a reviewed PR merges itself. That included PRs that rewrite how review and

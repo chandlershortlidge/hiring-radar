@@ -12,7 +12,8 @@
 // What they do NOT do: weight rare skills above common ones, estimate what a missing
 // skill costs to learn, or look at proficiency (HIR-59). A gate is a yes/no on what the
 // posting insists on; the score a badge shows is a plain ratio, and the score jobs are
-// *ordered* by is that ratio's Wilson lower bound, so thin evidence sorts lower.
+// *ordered* by is the Wilson lower bound of that ratio taken against a floor of
+// SKILL_FLOOR required skills, so both thin evidence and a thin posting sort lower.
 import { useCallback, useEffect, useState } from "react";
 import { DEGREE_RANK } from "./format.js";
 
@@ -112,6 +113,19 @@ const Z = 1.96;
 // 10/14 at 0.45, so the better-evidenced job sorts first. Returns null for total = 0,
 // which is "unknown", not "no fit". Pure arithmetic — no clamping needed, the bound is in
 // [0, 1] for any 0 <= covered <= total.
+// How many required skills a posting normally lists. A job that lists fewer is scored as
+// though it had listed this many and failed the rest, so "2/2" is judged as 2 out of 7:
+// two required skills is usually what the extractor found, not what the posting asks
+// (HIR-154). Measured — the median required-skill count over the 410 open jobs in the
+// chart set on 2026-11-04 (San Francisco 6, Berlin 11, New York 6) — and a constant on
+// purpose: a median recomputed over whatever jobs a filter returned would score the same
+// job differently on page 1 and page 2.
+export const SKILL_FLOOR = 7;
+
+// Is this job's required list thinner than a posting normally carries? False for a job
+// with no required skills at all: that is "unknown", and `score` is already null there.
+export const thinlyListed = (total) => total > 0 && total < SKILL_FLOOR;
+
 export function wilsonLower(covered, total, z = Z) {
   if (!total) return null;
   const p = covered / total;
@@ -122,18 +136,24 @@ export function wilsonLower(covered, total, z = Z) {
 }
 
 // How well a job fits a profile. Returns null without a profile, otherwise
-//   { score, rank_score, covered, total, missing, gated_by }
+//   { score, rank_score, covered, total, thin, missing, gated_by }
 // where `total` is the job's required-skill count, `covered` how many of them the profile
 // has, `score` their ratio (null when the job has no required skills at all — a fragment
 // or a legacy import — because 0/0 is "unknown", not "no fit"), `missing` the required
 // skill ids the profile lacks, most-asked-for first, and `gated_by` the first hard ask the
 // profile fails, or null. A gate does not change the score: it says the score is moot.
 //
-// `rank_score` is what *orders* jobs: the Wilson lower bound of covered/total (null
-// alongside a null `score`). `score` is what a badge *shows*. They differ on purpose — a
-// 2/2 job reads "100% · 2/2" and still sorts below a 10/14 one, because two matched skills
-// is thin evidence for a perfect score. Anything that ranks jobs — the list, alerts
-// (HIR-19), the Advisor — sorts on `rank_score` so they all agree.
+// `rank_score` is what *orders* jobs: the Wilson lower bound of covered over
+// max(total, SKILL_FLOOR) (null alongside a null `score`). `score` is what a badge
+// *shows*. They differ on purpose — a 2/2 job has covered every skill it names, so its
+// ratio really is 1, but it is scored as 2 out of 7 and sorts below a 5/8 one, because a
+// posting that names two required skills has not told us enough to call it a match
+// (HIR-113, tightened by HIR-154). Anything that ranks jobs — the list, alerts (HIR-19),
+// the Advisor — sorts on `rank_score` so they all agree.
+//
+// `thin` says the job named fewer required skills than a posting normally does. It is why
+// the row shows the count without a percentage and never says "full match": at this end
+// of the scale the ratio is a fact about the extraction, not about the fit.
 //
 // `demand` maps a skill id to how many jobs ask for it, and only orders `missing`. Without
 // it the ids keep the order they arrived in, so the result stays deterministic either way.
@@ -146,9 +166,10 @@ export function fit(profile, job, demand = null) {
   const covered = required.length - missing.length;
   return {
     score: required.length ? covered / required.length : null,
-    rank_score: wilsonLower(covered, required.length),
+    rank_score: required.length ? wilsonLower(covered, Math.max(required.length, SKILL_FLOOR)) : null,
     covered,
     total: required.length,
+    thin: thinlyListed(required.length),
     missing,
     gated_by: gates(profile, job)[0] || null,
   };
