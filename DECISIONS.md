@@ -50,6 +50,23 @@ they are **not** Goldens: they land in the ordinary review queue for Chandler's 
 spot-check and become Goldens only after it. The check never blocks or undoes a launch —
 a bad result files a follow-up.
 
+**What the first run of that check said (2026-11-04).** New York F1 **0.846** against a
+Berlin run of the same panel at **0.910** — 0.064 apart, past the 0.05 the check calls
+clearly worse, so HIR-139 is filed and the launch stands, exactly as the rule says.
+Read it carefully, though: the gap is entirely precision (recall 0.990 vs 0.985,
+requirement accuracy 1.000 vs 0.990), and the extractor adds **the same 2.5 unagreed
+skills per posting in both cities** — 2.5 of 9.6 stored in New York, 2.5 of 15.9 in
+Berlin. Precision divides by a New York posting's 7.1 agreed labels against Berlin's
+13.7, which is the "US postings name fewer skills" effect already recorded for SF above,
+not new noise. The non-Claude third labeller (`gemini-4-argon`), the one this ticket says
+to weigh most, differed on 0 of 80 agreed New York labels.
+
+**So precision against an agreement-only yardstick is a lower bound, not an error rate.**
+Only what *both* labellers agreed counts as truth, so a skill one of them found scores as
+an extractor error. That holds equally in both cities, which is why the comparison is worth
+more than either number alone — and why HIR-139's first step is a person reading 35 of
+those "extras" rather than any change to the extractor.
+
 ---
 
 ## 2026-11-03 — Extractor and skill-list changes run the dev eval before they merge (HIR-133)

@@ -1,0 +1,131 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building AI-powered product features\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM-based workflows\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"testing\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"integrating AI workflows into production systems\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI development tools\"\n    },\n    {\n      \"skill_id\": \"claude-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Claude Code\"\n    },\n    {\n      \"skill_id\": \"codex\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Codex\"\n    },\n    {\n      \"skill_id\": \"cursor\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cursor\"\n    },\n    {\n      \"skill_id\": \"github-copilot\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Copilot\"\n    },\n    {\n      \"skill_id\": \"frontend-development\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"frontend\"\n    },\n    {\n      \"skill_id\": \"full-stack-development\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"fullstack product development\"\n    },\n    {\n      \"skill_id\": \"open-source-llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"self-hosted LLMs\"\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"model serving\"\n    },\n    {\n      \"skill_id\": \"inference-optimization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"inference optimization\"\n    },\n    {\n      \"skill_id\": \"structured-data-extraction\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"structured data extraction\"\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"workflow automation\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Documentation automation\",\n      \"raw_text\": \"documentation automation\"\n    },\n    {\n      \"label\": \"Voice workflows\",\n      \"raw_text\": \"voice workflows\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"nice_to_have\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"German language skills\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Must-have sets required; Nice-to-have sets optional. Named example tools remain required despite being alternatives.\\nAI-powered product features is provisionally mapped to applied AI (ai-ml); flagged for review.\\nProduction integration of AI workflows is provisionally mapped to AI deployment; its required mention overrides optional deployment workflows. Flagged because workflow integration is broader than model deployment.\\nSelf-hosted LLMs and open-source LLMs collapse to the same taxonomy ID.\\nDocumentation automation and voice workflows have no precise taxonomy entries; voice workflows does not explicitly ask for speech recognition.\\nHealthcare and elderly-care knowledge are excluded as domain knowledge. No usable seniority signal or degree mention appears.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "building AI-powered product features",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-based workflows"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "integrating AI workflows into production systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI development tools"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code"
+      },
+      {
+        "skill_id": "codex",
+        "requirement": "required",
+        "raw_text": "Codex"
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "Copilot"
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "nice_to_have",
+        "raw_text": "frontend"
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "nice_to_have",
+        "raw_text": "fullstack product development"
+      },
+      {
+        "skill_id": "open-source-llms",
+        "requirement": "nice_to_have",
+        "raw_text": "self-hosted LLMs"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "model serving"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "nice_to_have",
+        "raw_text": "inference optimization"
+      },
+      {
+        "skill_id": "structured-data-extraction",
+        "requirement": "nice_to_have",
+        "raw_text": "structured data extraction"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "nice_to_have",
+        "raw_text": "workflow automation"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Documentation automation",
+        "raw_text": "documentation automation"
+      },
+      {
+        "label": "Voice workflows",
+        "raw_text": "voice workflows"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "nice_to_have",
+    "german_basis": "stated",
+    "german_signal": "German language skills",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Must-have sets required; Nice-to-have sets optional. Named example tools remain required despite being alternatives.\nAI-powered product features is provisionally mapped to applied AI (ai-ml); flagged for review.\nProduction integration of AI workflows is provisionally mapped to AI deployment; its required mention overrides optional deployment workflows. Flagged because workflow integration is broader than model deployment.\nSelf-hosted LLMs and open-source LLMs collapse to the same taxonomy ID.\nDocumentation automation and voice workflows have no precise taxonomy entries; voice workflows does not explicitly ask for speech recognition.\nHealthcare and elderly-care knowledge are excluded as domain knowledge. No usable seniority signal or degree mention appears."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "f46627240d0f04682a0fbb1b89291ce580f788e37dfeadae3eae4dc2fb4d1189",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

@@ -1,0 +1,49 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"business-intelligence\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Business Intelligence\"\n    },\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Data Scientist\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"KI\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data analysis\",\n      \"raw_text\": \"Datenanalyse\"\n    },\n    {\n      \"label\": \"Data Engineering\",\n      \"raw_text\": \"Data Engineering\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"“Das bringst Du mit” is the requirements section; no optional qualification section appears. The example backgrounds are labeled individually as required under the guide.\\nDatenanalyse and Data Engineering have no matching taxonomy entries; Data Engineering is not treated as an implicit request for data pipelines.\\nKI is mapped to AI/ML based on the requested project background in that area.\\nGerman is inferred from the German-language posting. Deutschunterricht is an offered benefit, not an explicit language qualification.\\nPrior project work does not establish seniority under the guide. No degree is mentioned.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "business-intelligence",
+        "requirement": "required",
+        "raw_text": "Business Intelligence"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "Data Scientist"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "KI"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data analysis",
+        "raw_text": "Datenanalyse"
+      },
+      {
+        "label": "Data Engineering",
+        "raw_text": "Data Engineering"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "“Das bringst Du mit” is the requirements section; no optional qualification section appears. The example backgrounds are labeled individually as required under the guide.\nDatenanalyse and Data Engineering have no matching taxonomy entries; Data Engineering is not treated as an implicit request for data pipelines.\nKI is mapped to AI/ML based on the requested project background in that area.\nGerman is inferred from the German-language posting. Deutschunterricht is an offered benefit, not an explicit language qualification.\nPrior project work does not establish seniority under the guide. No degree is mentioned."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "8703dd24e1a49d353767f817108bb48704c4eeb4b73722603cab1885bf706ca7",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

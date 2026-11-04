@@ -1,0 +1,112 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Strong software engineering skills\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM-based workflows\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"Experience with evaluation\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"testing\", \"uncertain\": true},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"AI development tools\"},\n    {\"skill_id\": \"claude-code\", \"requirement\": \"required\", \"raw_text\": \"Claude Code\"},\n    {\"skill_id\": \"codex\", \"requirement\": \"required\", \"raw_text\": \"Codex\"},\n    {\"skill_id\": \"cursor\", \"requirement\": \"required\", \"raw_text\": \"Cursor\"},\n    {\"skill_id\": \"github-copilot\", \"requirement\": \"required\", \"raw_text\": \"Copilot\"},\n    {\"skill_id\": \"frontend-development\", \"requirement\": \"nice_to_have\", \"raw_text\": \"frontend\"},\n    {\"skill_id\": \"full-stack-development\", \"requirement\": \"nice_to_have\", \"raw_text\": \"fullstack product development\"},\n    {\"skill_id\": \"open-source-llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"self-hosted LLMs\"},\n    {\"skill_id\": \"model-serving\", \"requirement\": \"nice_to_have\", \"raw_text\": \"model serving\"},\n    {\"skill_id\": \"inference-optimization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"inference optimization\"},\n    {\"skill_id\": \"structured-data-extraction\", \"requirement\": \"nice_to_have\", \"raw_text\": \"structured data extraction\"},\n    {\"skill_id\": \"workflow-automation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"workflow automation\"}\n  ],\n  \"unmapped\": [],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": \"nice_to_have\", \"german_basis\": \"stated\", \"german_signal\": \"German language skills\",\n  \"degree\": null, \"degree_requirement\": null,\n  \"degree_or_equivalent\": false, \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Must-have heading sets required; Nice-to-have heading sets nice_to_have for every item under it, including German.\\n'Python or a comparable backend language' names a language, not backend development as a skill, so backend-development is not labeled.\\n'testing' refers to testing of AI-generated outputs; it is mapped to testing and flagged uncertain.\\n'self-hosted LLMs' and 'open-source LLMs' both map to open-source-llms and collapse into one criterion.\\n'related deployment workflows' is not labeled ai-deployment because the text does not name model deployment.\\nThe AI-powered features, production integration and debugging bullets are left unlabeled because they name no taxonomy skill at their level.\\n'Strong' and 'Serious experience' are not level signals, so seniority is none.\\nNo degree is mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software engineering skills"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-based workflows"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Experience with evaluation"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI development tools"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code"
+      },
+      {
+        "skill_id": "codex",
+        "requirement": "required",
+        "raw_text": "Codex"
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "Copilot"
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "nice_to_have",
+        "raw_text": "frontend"
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "nice_to_have",
+        "raw_text": "fullstack product development"
+      },
+      {
+        "skill_id": "open-source-llms",
+        "requirement": "nice_to_have",
+        "raw_text": "self-hosted LLMs"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "model serving"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "nice_to_have",
+        "raw_text": "inference optimization"
+      },
+      {
+        "skill_id": "structured-data-extraction",
+        "requirement": "nice_to_have",
+        "raw_text": "structured data extraction"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "nice_to_have",
+        "raw_text": "workflow automation"
+      }
+    ],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "nice_to_have",
+    "german_basis": "stated",
+    "german_signal": "German language skills",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Must-have heading sets required; Nice-to-have heading sets nice_to_have for every item under it, including German.\n'Python or a comparable backend language' names a language, not backend development as a skill, so backend-development is not labeled.\n'testing' refers to testing of AI-generated outputs; it is mapped to testing and flagged uncertain.\n'self-hosted LLMs' and 'open-source LLMs' both map to open-source-llms and collapse into one criterion.\n'related deployment workflows' is not labeled ai-deployment because the text does not name model deployment.\nThe AI-powered features, production integration and debugging bullets are left unlabeled because they name no taxonomy skill at their level.\n'Strong' and 'Serious experience' are not level signals, so seniority is none.\nNo degree is mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "f46627240d0f04682a0fbb1b89291ce580f788e37dfeadae3eae4dc2fb4d1189",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

@@ -1,0 +1,95 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software development lifecycle\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"APIs\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud systems\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI/LLM platforms\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agent frameworks\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI-assisted development tools\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Software systems integration\",\n      \"raw_text\": \"integrating complex software systems into enterprise environments\"\n    },\n    {\n      \"label\": \"Developer tooling\",\n      \"raw_text\": \"developer tools\"\n    },\n    {\n      \"label\": \"Infrastructure systems\",\n      \"raw_text\": \"infrastructure systems\"\n    },\n    {\n      \"label\": \"Developer platforms\",\n      \"raw_text\": \"developer platforms\"\n    },\n    {\n      \"label\": \"Developer environments\",\n      \"raw_text\": \"developer environments\"\n    },\n    {\n      \"label\": \"JetBrains ecosystem\",\n      \"raw_text\": \"JetBrains ecosystem\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff Forward Deployed Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The thrive and bring sections are required; the plus section is optional. The inline 'ideally' modifies the customer-facing or consulting environment, not the entire experience requirement.\\nJava and Python are both labeled despite being alternatives, as instructed for explicitly named technologies.\\nSoftware development lifecycle is interpreted literally as software-engineering knowledge; generic developer tooling, platforms, environments, infrastructure systems, and systems integration have no fitting taxonomy entries.\\nCuriosity about AI agents is not treated as a required technical skill; agent-framework experience is explicitly optional.\\nAI/LLM platforms is mapped to llms without inferring machine learning or AI infrastructure.\\nGovernance, observability, security controls, and deployment technologies mentioned only in responsibilities or company description are excluded.\\nNo German-language or degree requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software development lifecycle"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud systems"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "AI/LLM platforms"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agent frameworks"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "nice_to_have",
+        "raw_text": "AI-assisted development tools"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Software systems integration",
+        "raw_text": "integrating complex software systems into enterprise environments"
+      },
+      {
+        "label": "Developer tooling",
+        "raw_text": "developer tools"
+      },
+      {
+        "label": "Infrastructure systems",
+        "raw_text": "infrastructure systems"
+      },
+      {
+        "label": "Developer platforms",
+        "raw_text": "developer platforms"
+      },
+      {
+        "label": "Developer environments",
+        "raw_text": "developer environments"
+      },
+      {
+        "label": "JetBrains ecosystem",
+        "raw_text": "JetBrains ecosystem"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff Forward Deployed Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The thrive and bring sections are required; the plus section is optional. The inline 'ideally' modifies the customer-facing or consulting environment, not the entire experience requirement.\nJava and Python are both labeled despite being alternatives, as instructed for explicitly named technologies.\nSoftware development lifecycle is interpreted literally as software-engineering knowledge; generic developer tooling, platforms, environments, infrastructure systems, and systems integration have no fitting taxonomy entries.\nCuriosity about AI agents is not treated as a required technical skill; agent-framework experience is explicitly optional.\nAI/LLM platforms is mapped to llms without inferring machine learning or AI infrastructure.\nGovernance, observability, security controls, and deployment technologies mentioned only in responsibilities or company description are excluded.\nNo German-language or degree requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "480075206e66ef94d6c0145504d33d1da711b80dfe0d521ecc07fb6fb675ceda",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

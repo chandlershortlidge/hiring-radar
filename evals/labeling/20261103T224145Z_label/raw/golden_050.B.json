@@ -1,0 +1,113 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Generative AI applications\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"pandas\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"pandas\"\n    },\n    {\n      \"skill_id\": \"numpy\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"NumPy\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"data-visualization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data visualization\"\n    },\n    {\n      \"skill_id\": \"jupyter-notebooks\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Jupyter Notebooks\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML libraries\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"scikit-learn\"\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"dive deep into LangChain\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM orchestration\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"vector databases\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD automation\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"technical architectures\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Algorithm design\",\n      \"raw_text\": \"designing algorithms\"\n    },\n    {\n      \"label\": \"Clean code\",\n      \"raw_text\": \"clean code\"\n    },\n    {\n      \"label\": \"Pull requests\",\n      \"raw_text\": \"Pull Requests\"\n    },\n    {\n      \"label\": \"Code reviews\",\n      \"raw_text\": \"code reviews\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"(Junior)\",\n  \"german\": \"nice_to_have\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"German (Nice-to-have): Proficiency in German is a strong plus for collaborating with clients and partners.\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Your Profile defaults to required; interest and eagerness to learn are not optional markers under the guide.\\nTechnologies and practices named only in Your Role are excluded.\\nML libraries is read literally as an explicit request for machine-learning knowledge, alongside the specific scikit-learn example.\\nTechnical architectures is provisionally mapped to software architecture; review whether this consultancy-mindset wording asks for a technical skill or only a learning disposition.\\nPull requests and code reviews do not independently establish a request for Git; they are unmapped technical practices.\\nNo degree is mentioned.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generative AI applications"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "required",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "numpy",
+        "requirement": "required",
+        "raw_text": "NumPy"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "data-visualization",
+        "requirement": "required",
+        "raw_text": "data visualization"
+      },
+      {
+        "skill_id": "jupyter-notebooks",
+        "requirement": "required",
+        "raw_text": "Jupyter Notebooks"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ML libraries"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "dive deep into LangChain"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "LLM orchestration"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector databases"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD automation"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "technical architectures",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Algorithm design",
+        "raw_text": "designing algorithms"
+      },
+      {
+        "label": "Clean code",
+        "raw_text": "clean code"
+      },
+      {
+        "label": "Pull requests",
+        "raw_text": "Pull Requests"
+      },
+      {
+        "label": "Code reviews",
+        "raw_text": "code reviews"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "(Junior)",
+    "german": "nice_to_have",
+    "german_basis": "stated",
+    "german_signal": "German (Nice-to-have): Proficiency in German is a strong plus for collaborating with clients and partners.",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Your Profile defaults to required; interest and eagerness to learn are not optional markers under the guide.\nTechnologies and practices named only in Your Role are excluded.\nML libraries is read literally as an explicit request for machine-learning knowledge, alongside the specific scikit-learn example.\nTechnical architectures is provisionally mapped to software architecture; review whether this consultancy-mindset wording asks for a technical skill or only a learning disposition.\nPull requests and code reviews do not independently establish a request for Git; they are unmapped technical practices.\nNo degree is mentioned."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "9349bbd86a859ca3f1bdfdbf22b180c4a8aa6c9aaafaa636add602429e914e16",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

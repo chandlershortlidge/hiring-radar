@@ -1,0 +1,159 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed systems\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"fastapi\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"FastAPI\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI model\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic systems\"\n    },\n    {\n      \"skill_id\": \"postgresql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PostgreSQL\"\n    },\n    {\n      \"skill_id\": \"redis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Redis\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud infrastructure\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GCP\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure\"\n    },\n    {\n      \"skill_id\": \"livekit\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LiveKit\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"temporal\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Temporal\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"react\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"React\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"observability platforms\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Software fundamentals\",\n      \"raw_text\": \"software fundamentals\"\n    },\n    {\n      \"label\": \"Real-time systems\",\n      \"raw_text\": \"real-time systems\"\n    },\n    {\n      \"label\": \"Audio processing\",\n      \"raw_text\": \"audio processing\"\n    },\n    {\n      \"label\": \"Voice infrastructure\",\n      \"raw_text\": \"voice infrastructure\"\n    },\n    {\n      \"label\": \"Systems design\",\n      \"raw_text\": \"design or debug systems\"\n    },\n    {\n      \"label\": \"Systems debugging\",\n      \"raw_text\": \"debug systems\"\n    },\n    {\n      \"label\": \"Concurrency\",\n      \"raw_text\": \"concurrency\"\n    },\n    {\n      \"label\": \"Load balancing\",\n      \"raw_text\": \"load balancing\"\n    },\n    {\n      \"label\": \"Fault tolerance\",\n      \"raw_text\": \"fault tolerance\"\n    },\n    {\n      \"label\": \"Message queues\",\n      \"raw_text\": \"message queues\"\n    },\n    {\n      \"label\": \"Workflow orchestration\",\n      \"raw_text\": \"workflow orchestration\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"WHAT WE'RE LOOKING FOR is the requirements section; no heading marks any section optional. Technologies appearing only in ABOUT THE ROLE or WHAT YOU'LL DO are excluded.\\nThe phrase 'is valuable' suggests a preference but is not among the guide's enumerated inline markers; the affected mapped skills remain required under the literal rule and are flagged for review.\\nIn 'plus cloud infrastructure', 'plus' joins two requested qualifications rather than marking cloud infrastructure as a bonus; cloud and its named platforms are required.\\nAlternatives joined by 'or' are each labeled, without implying that every alternative must be possessed together.\\nGeneric workflow orchestration is not mapped to LLM orchestration, and debugging alone is not expanded to testing. Software fundamentals is retained as unmapped rather than equated with software engineering.\\nProduction experience and end-to-end ownership are not usable seniority signals under the guide. No German-language or degree requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI model"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic systems"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "PostgreSQL"
+      },
+      {
+        "skill_id": "redis",
+        "requirement": "required",
+        "raw_text": "Redis"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud infrastructure"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "livekit",
+        "requirement": "required",
+        "raw_text": "LiveKit",
+        "uncertain": true
+      },
+      {
+        "skill_id": "temporal",
+        "requirement": "required",
+        "raw_text": "Temporal",
+        "uncertain": true
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "React",
+        "uncertain": true
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "observability platforms",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Software fundamentals",
+        "raw_text": "software fundamentals"
+      },
+      {
+        "label": "Real-time systems",
+        "raw_text": "real-time systems"
+      },
+      {
+        "label": "Audio processing",
+        "raw_text": "audio processing"
+      },
+      {
+        "label": "Voice infrastructure",
+        "raw_text": "voice infrastructure"
+      },
+      {
+        "label": "Systems design",
+        "raw_text": "design or debug systems"
+      },
+      {
+        "label": "Systems debugging",
+        "raw_text": "debug systems"
+      },
+      {
+        "label": "Concurrency",
+        "raw_text": "concurrency"
+      },
+      {
+        "label": "Load balancing",
+        "raw_text": "load balancing"
+      },
+      {
+        "label": "Fault tolerance",
+        "raw_text": "fault tolerance"
+      },
+      {
+        "label": "Message queues",
+        "raw_text": "message queues"
+      },
+      {
+        "label": "Workflow orchestration",
+        "raw_text": "workflow orchestration"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "WHAT WE'RE LOOKING FOR is the requirements section; no heading marks any section optional. Technologies appearing only in ABOUT THE ROLE or WHAT YOU'LL DO are excluded.\nThe phrase 'is valuable' suggests a preference but is not among the guide's enumerated inline markers; the affected mapped skills remain required under the literal rule and are flagged for review.\nIn 'plus cloud infrastructure', 'plus' joins two requested qualifications rather than marking cloud infrastructure as a bonus; cloud and its named platforms are required.\nAlternatives joined by 'or' are each labeled, without implying that every alternative must be possessed together.\nGeneric workflow orchestration is not mapped to LLM orchestration, and debugging alone is not expanded to testing. Software fundamentals is retained as unmapped rather than equated with software engineering.\nProduction experience and end-to-end ownership are not usable seniority signals under the guide. No German-language or degree requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "098f2946590448266936fcfa8c93ade16b98d4775ea9e983568d93c7016e6416",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

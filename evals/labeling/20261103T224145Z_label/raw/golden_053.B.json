@@ -1,0 +1,234 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Software Engineering\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"Testing\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"Git\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Machine-Learning-Frameworks\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\"},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"required\", \"raw_text\": \"scikit-learn\"},\n    {\"skill_id\": \"model-development\", \"requirement\": \"required\", \"raw_text\": \"Modelltraining\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"Evaluation\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"produktiver Bereitstellung\"},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"required\", \"raw_text\": \"Datenpipelines\"},\n    {\"skill_id\": \"feature-engineering\", \"requirement\": \"required\", \"raw_text\": \"Feature-Engineering-Prozessen\"},\n    {\"skill_id\": \"pandas\", \"requirement\": \"required\", \"raw_text\": \"pandas\"},\n    {\"skill_id\": \"apache-spark\", \"requirement\": \"required\", \"raw_text\": \"Spark\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"APIs\"},\n    {\"skill_id\": \"fastapi\", \"requirement\": \"required\", \"raw_text\": \"FastAPI\"},\n    {\"skill_id\": \"flask\", \"requirement\": \"required\", \"raw_text\": \"Flask\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud- und Cloud-Native-Architekturen\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"GCP\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"Containerisierung\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Docker\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Kubernetes\"},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"MLOps/LLMOps\"},\n    {\"skill_id\": \"llmops\", \"requirement\": \"required\", \"raw_text\": \"LLMOps\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"Monitoring\"},\n    {\"skill_id\": \"model-versioning\", \"requirement\": \"required\", \"raw_text\": \"Versionierung\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Large Language Models\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG\"},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"required\", \"raw_text\": \"Embeddings\"},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"required\", \"raw_text\": \"Vector Stores\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"Prompt Engineering\"},\n    {\"skill_id\": \"llm-guardrails\", \"requirement\": \"required\", \"raw_text\": \"Guardrails\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Clean Code\", \"raw_text\": \"Clean Code\"},\n    {\"label\": \"Debugging\", \"raw_text\": \"Debugging\"},\n    {\"label\": \"Code reviews\", \"raw_text\": \"Code Reviews\"},\n    {\"label\": \"Model optimization\", \"raw_text\": \"Optimierung\"},\n    {\"label\": \"Apache Beam\", \"raw_text\": \"Beam\"},\n    {\"label\": \"Data quality\", \"raw_text\": \"Data Quality\"},\n    {\"label\": \"Enterprise AI integration\", \"raw_text\": \"Integration von AI-Lösungen in Enterprise-Umgebungen\"},\n    {\"label\": \"Cloud-native architecture\", \"raw_text\": \"Cloud-Native-Architekturen\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"kommunizierst verhandlungssicher auf Deutsch\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Dein Skillset is the requirements section; no optional section is present. The inline idealerweise marks only Kubernetes as nice_to_have.\\nExperience or strong interest in Generative AI and its listed examples is treated literally as a required qualification, not as an optional marker.\\nGenerative AI and Large Language Models collapse into llms; REST collapses into apis; Retraining collapses into model-development; produktiven AI-Betriebsmodellen collapses into mlops.\\nVersionierung is mapped to model-versioning using the taxonomy alias; its object is unspecified in the qualification, so this mapping is flagged for review.\\nCloud-native architecture and enterprise AI integration are retained as unmapped rather than adding broader skills not explicitly requested.\\nDebugging is retained as unmapped because the taxonomy provides the combined alias debugging & testing, but no standalone debugging entry.\\nTechnologies appearing only in Deine Mission, company descriptions, benefits, or the Schlagworte metadata are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Software Engineering"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "Testing"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Machine-Learning-Frameworks"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "Modelltraining"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Evaluation"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "produktiver Bereitstellung"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "Datenpipelines"
+      },
+      {
+        "skill_id": "feature-engineering",
+        "requirement": "required",
+        "raw_text": "Feature-Engineering-Prozessen"
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "required",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "required",
+        "raw_text": "Spark"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "flask",
+        "requirement": "required",
+        "raw_text": "Flask"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud- und Cloud-Native-Architekturen"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "Containerisierung"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps/LLMOps"
+      },
+      {
+        "skill_id": "llmops",
+        "requirement": "required",
+        "raw_text": "LLMOps"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring"
+      },
+      {
+        "skill_id": "model-versioning",
+        "requirement": "required",
+        "raw_text": "Versionierung",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Large Language Models"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "Embeddings"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "Vector Stores"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "Guardrails"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Clean Code",
+        "raw_text": "Clean Code"
+      },
+      {
+        "label": "Debugging",
+        "raw_text": "Debugging"
+      },
+      {
+        "label": "Code reviews",
+        "raw_text": "Code Reviews"
+      },
+      {
+        "label": "Model optimization",
+        "raw_text": "Optimierung"
+      },
+      {
+        "label": "Apache Beam",
+        "raw_text": "Beam"
+      },
+      {
+        "label": "Data quality",
+        "raw_text": "Data Quality"
+      },
+      {
+        "label": "Enterprise AI integration",
+        "raw_text": "Integration von AI-Lösungen in Enterprise-Umgebungen"
+      },
+      {
+        "label": "Cloud-native architecture",
+        "raw_text": "Cloud-Native-Architekturen"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI Engineer",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "kommunizierst verhandlungssicher auf Deutsch",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Dein Skillset is the requirements section; no optional section is present. The inline idealerweise marks only Kubernetes as nice_to_have.\nExperience or strong interest in Generative AI and its listed examples is treated literally as a required qualification, not as an optional marker.\nGenerative AI and Large Language Models collapse into llms; REST collapses into apis; Retraining collapses into model-development; produktiven AI-Betriebsmodellen collapses into mlops.\nVersionierung is mapped to model-versioning using the taxonomy alias; its object is unspecified in the qualification, so this mapping is flagged for review.\nCloud-native architecture and enterprise AI integration are retained as unmapped rather than adding broader skills not explicitly requested.\nDebugging is retained as unmapped because the taxonomy provides the combined alias debugging & testing, but no standalone debugging entry.\nTechnologies appearing only in Deine Mission, company descriptions, benefits, or the Schlagworte metadata are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "900f796e04943280216ade79a1a0174375dc0759ab52fc3e9f7952d2f69111f9",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

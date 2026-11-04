@@ -1,0 +1,593 @@
+{
+  "run_id": "20261103T224145Z_label",
+  "seed": 0,
+  "provider_a": "anthropic",
+  "model_a": "claude-opus-5-5",
+  "provider_b": "openai",
+  "model_b": "gpt-6.1-sol",
+  "extractor": "claude-sonnet-5-5",
+  "spot_n": 80,
+  "spot_pool": 246,
+  "taxonomy_version": 8,
+  "n_picked": 15,
+  "n_labeled": 15,
+  "failed": [],
+  "agreement": {
+    "n_postings": 15,
+    "skills": {
+      "tp": 249,
+      "fp": 12,
+      "fn": 2,
+      "precision": 0.9540229885057471,
+      "recall": 0.9920318725099602,
+      "f1": 0.9726562499999999
+    },
+    "requirement_agreement": 0.9678714859437751,
+    "attributes": {
+      "seniority": {
+        "agreed": 15,
+        "n": 15,
+        "rate": 1.0
+      },
+      "german": {
+        "agreed": 15,
+        "n": 15,
+        "rate": 1.0
+      },
+      "degree": {
+        "agreed": 15,
+        "n": 15,
+        "rate": 1.0
+      }
+    }
+  },
+  "accepted_skills": 205,
+  "accepted_attributes": 41,
+  "review_items": {
+    "in-scope": 15,
+    "disagreement": 22,
+    "uncertain": 40,
+    "spot-check": 80
+  },
+  "spot_check": {
+    "n": 80,
+    "pool": 246,
+    "seed": 0,
+    "sample": [
+      [
+        "golden_049",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_049",
+        "skill",
+        "ai-developer-tooling"
+      ],
+      [
+        "golden_049",
+        "skill",
+        "github-copilot"
+      ],
+      [
+        "golden_049",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_049",
+        "skill",
+        "software-engineering"
+      ],
+      [
+        "golden_049",
+        "skill",
+        "workflow-automation"
+      ],
+      [
+        "golden_050",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_050",
+        "skill",
+        "data-visualization"
+      ],
+      [
+        "golden_050",
+        "skill",
+        "jupyter-notebooks"
+      ],
+      [
+        "golden_050",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_051",
+        "skill",
+        "ai-developer-tooling"
+      ],
+      [
+        "golden_051",
+        "skill",
+        "ci-cd"
+      ],
+      [
+        "golden_051",
+        "skill",
+        "java"
+      ],
+      [
+        "golden_052",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_052",
+        "skill",
+        "quantization"
+      ],
+      [
+        "golden_052",
+        "skill",
+        "sglang"
+      ],
+      [
+        "golden_052",
+        "skill",
+        "speculative-decoding"
+      ],
+      [
+        "golden_053",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_053",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_053",
+        "skill",
+        "apache-spark"
+      ],
+      [
+        "golden_053",
+        "skill",
+        "aws"
+      ],
+      [
+        "golden_053",
+        "skill",
+        "embeddings"
+      ],
+      [
+        "golden_053",
+        "skill",
+        "gcp"
+      ],
+      [
+        "golden_053",
+        "skill",
+        "kubernetes"
+      ],
+      [
+        "golden_053",
+        "skill",
+        "llm-guardrails"
+      ],
+      [
+        "golden_053",
+        "skill",
+        "llmops"
+      ],
+      [
+        "golden_053",
+        "skill",
+        "machine-learning"
+      ],
+      [
+        "golden_053",
+        "skill",
+        "mlops"
+      ],
+      [
+        "golden_053",
+        "skill",
+        "observability"
+      ],
+      [
+        "golden_053",
+        "skill",
+        "rag"
+      ],
+      [
+        "golden_053",
+        "skill",
+        "scikit-learn"
+      ],
+      [
+        "golden_054",
+        "skill",
+        "apis"
+      ],
+      [
+        "golden_054",
+        "skill",
+        "gcp"
+      ],
+      [
+        "golden_054",
+        "skill",
+        "java"
+      ],
+      [
+        "golden_054",
+        "skill",
+        "observability"
+      ],
+      [
+        "golden_055",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_055",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_055",
+        "skill",
+        "ci-cd"
+      ],
+      [
+        "golden_055",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_055",
+        "skill",
+        "nlp"
+      ],
+      [
+        "golden_055",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_056",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_056",
+        "skill",
+        "machine-learning"
+      ],
+      [
+        "golden_056",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_057",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_057",
+        "skill",
+        "aws"
+      ],
+      [
+        "golden_057",
+        "skill",
+        "gemini"
+      ],
+      [
+        "golden_057",
+        "skill",
+        "kubernetes"
+      ],
+      [
+        "golden_057",
+        "skill",
+        "langgraph"
+      ],
+      [
+        "golden_057",
+        "skill",
+        "multi-agent-systems"
+      ],
+      [
+        "golden_057",
+        "skill",
+        "node-js"
+      ],
+      [
+        "golden_057",
+        "skill",
+        "rag"
+      ],
+      [
+        "golden_058",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_058",
+        "skill",
+        "airflow"
+      ],
+      [
+        "golden_058",
+        "skill",
+        "cloud"
+      ],
+      [
+        "golden_058",
+        "skill",
+        "event-driven-systems"
+      ],
+      [
+        "golden_058",
+        "skill",
+        "kubernetes"
+      ],
+      [
+        "golden_059",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_059",
+        "skill",
+        "ci-cd"
+      ],
+      [
+        "golden_059",
+        "skill",
+        "gcp"
+      ],
+      [
+        "golden_059",
+        "skill",
+        "langchain"
+      ],
+      [
+        "golden_059",
+        "skill",
+        "machine-learning"
+      ],
+      [
+        "golden_059",
+        "skill",
+        "nlp"
+      ],
+      [
+        "golden_059",
+        "skill",
+        "rag"
+      ],
+      [
+        "golden_060",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_060",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_060",
+        "skill",
+        "containerization"
+      ],
+      [
+        "golden_060",
+        "skill",
+        "git"
+      ],
+      [
+        "golden_060",
+        "skill",
+        "prompt-engineering"
+      ],
+      [
+        "golden_060",
+        "skill",
+        "software-architecture"
+      ],
+      [
+        "golden_060",
+        "skill",
+        "software-engineering"
+      ],
+      [
+        "golden_061",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_061",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_061",
+        "skill",
+        "sql"
+      ],
+      [
+        "golden_061",
+        "skill",
+        "terraform"
+      ],
+      [
+        "golden_062",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_063",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_063",
+        "skill",
+        "aws"
+      ],
+      [
+        "golden_063",
+        "skill",
+        "distributed-systems"
+      ],
+      [
+        "golden_063",
+        "skill",
+        "fastapi"
+      ]
+    ]
+  },
+  "signal_mismatches": [
+    "golden_050 german: A 'German (Nice-to-have)' vs B 'German (Nice-to-have): Proficiency in German is a strong plus for collaborating with clients and partners.'",
+    "golden_052 seniority: A 'Staff Machine Learning Engineer' vs B 'Staff Machine Learning Engineer, LLM Inference Optimization'"
+  ],
+  "unmapped": [
+    "AI tooling ecosystem",
+    "AWQ",
+    "AWS CDK",
+    "AWS CloudFormation",
+    "Agent authorization integration",
+    "Agile (Scrum, Kanban, SAFe)",
+    "Agile software development",
+    "Algorithm design",
+    "Apache Beam",
+    "Audio processing",
+    "Authentication",
+    "Authentication / authorization",
+    "Authorization",
+    "Azure AI Foundry",
+    "Building and operating production data systems",
+    "Clean Code",
+    "Clean code",
+    "Clean coding",
+    "Cloud-native architecture",
+    "Cloud-native tooling",
+    "Code Reviews",
+    "Code quality",
+    "Code review",
+    "Code reviews",
+    "Concurrency",
+    "Context engineering",
+    "Cost and latency optimization",
+    "Data Engineering",
+    "Data Quality",
+    "Data analysis",
+    "Data preprocessing",
+    "Data quality",
+    "Databases",
+    "Datadog",
+    "Dataleap",
+    "Debugging",
+    "Developer environments",
+    "Developer platforms",
+    "Developer tooling",
+    "Django",
+    "Documentation automation",
+    "EAGLE",
+    "EU data-residency constraints",
+    "Enterprise AI integration",
+    "Enterprise standards",
+    "FP8",
+    "Fault analysis",
+    "Fault tolerance",
+    "FlashInfer",
+    "FusionAuth",
+    "GPTQ",
+    "High-concurrency processing",
+    "INT4",
+    "INT8",
+    "Inference batching",
+    "Inference parallelism",
+    "Infrastructure systems",
+    "JetBrains ecosystem",
+    "KV cache",
+    "Kanban",
+    "LLM frameworks",
+    "LMCache",
+    "Load balancing",
+    "Logging",
+    "Low-code platforms",
+    "Low-precision formats (FP8, INT8, INT4, NVFP4, MXFP4)",
+    "MXFP4",
+    "Mastra",
+    "Medusa",
+    "Memory bandwidth",
+    "Message queues",
+    "Model optimization",
+    "Modern development workflows",
+    "Multi-token prediction",
+    "NVFP4",
+    "Nest.js",
+    "On-call and incident practices",
+    "Platform specialization",
+    "Provider rate-limit and fallback handling",
+    "Pull requests",
+    "Pydantic",
+    "Real-time data streaming",
+    "Real-time production systems at scale",
+    "Real-time systems",
+    "Reliability practices",
+    "Retool",
+    "Retraining",
+    "SAFe",
+    "SLOs / on-call / incident practices",
+    "Scrum",
+    "Service architectures",
+    "Service-level objectives",
+    "SmoothQuant",
+    "Software deployment",
+    "Software fundamentals",
+    "Software systems integration",
+    "Structured outputs",
+    "Svelte",
+    "Systems debugging",
+    "Systems design",
+    "Technical documentation",
+    "Tool contracts",
+    "Transformer attention",
+    "Transformer inference internals (KV cache, attention, batching, parallelism)",
+    "Triton (GPU kernel language)",
+    "Triton GPU programming",
+    "Vercel AI SDK",
+    "Vercel ai-sdk",
+    "Vision-language model inference",
+    "Voice infrastructure",
+    "Voice workflows",
+    "Workflow orchestration",
+    "audio processing",
+    "cloud-native tooling",
+    "code review",
+    "concurrency",
+    "context engineering",
+    "data preprocessing",
+    "developer productivity tooling",
+    "fault tolerance",
+    "internal developer platforms",
+    "load balancing",
+    "message queues",
+    "modern service architectures",
+    "real-time data streaming",
+    "real-time systems",
+    "voice infrastructure",
+    "workflow orchestration"
+  ]
+}

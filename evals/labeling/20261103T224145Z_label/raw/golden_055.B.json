@@ -1,0 +1,116 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying LLMs\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"system design\"\n    },\n    {\n      \"skill_id\": \"data-modeling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data modeling\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"training and deploying machine learning models\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying machine learning models\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"NLP\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"infrastructure as code\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud infrastructure\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"observability\"\n    },\n    {\n      \"skill_id\": \"feature-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"feature engineering\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model evaluation techniques\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Building and operating production data systems\",\n      \"raw_text\": \"building and operating production data systems\"\n    },\n    {\n      \"label\": \"Service architectures\",\n      \"raw_text\": \"modern service architectures\"\n    },\n    {\n      \"label\": \"Service-level objectives\",\n      \"raw_text\": \"SLOs\"\n    },\n    {\n      \"label\": \"On-call and incident practices\",\n      \"raw_text\": \"on‑call/incident practices\"\n    },\n    {\n      \"label\": \"Data preprocessing\",\n      \"raw_text\": \"data preprocessing\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff AI Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Qualifications is a required section; no optional qualification markers appear.\\nSystem design maps to software-architecture; modern service architectures is retained as unmapped rather than assuming microservices or distributed systems.\\nBuilding and operating production data systems is retained as unmapped rather than inferring data pipelines from responsibilities.\\nTechnologies and practices appearing only in the role description or responsibilities are excluded.\\nGermany and Berlin location references do not establish a German-language requirement.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "deploying LLMs"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "system design"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "data modeling"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "training and deploying machine learning models"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying machine learning models"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "NLP"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "infrastructure as code"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud infrastructure"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "observability"
+      },
+      {
+        "skill_id": "feature-engineering",
+        "requirement": "required",
+        "raw_text": "feature engineering"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "model evaluation techniques"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Building and operating production data systems",
+        "raw_text": "building and operating production data systems"
+      },
+      {
+        "label": "Service architectures",
+        "raw_text": "modern service architectures"
+      },
+      {
+        "label": "Service-level objectives",
+        "raw_text": "SLOs"
+      },
+      {
+        "label": "On-call and incident practices",
+        "raw_text": "on‑call/incident practices"
+      },
+      {
+        "label": "Data preprocessing",
+        "raw_text": "data preprocessing"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff AI Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Qualifications is a required section; no optional qualification markers appear.\nSystem design maps to software-architecture; modern service architectures is retained as unmapped rather than assuming microservices or distributed systems.\nBuilding and operating production data systems is retained as unmapped rather than inferring data pipelines from responsibilities.\nTechnologies and practices appearing only in the role description or responsibilities are excluded.\nGermany and Berlin location references do not establish a German-language requirement."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "0753f34f30334c36a2efa31b120e1e0d346ce1b8ff16d43a050e69f6f54f1e44",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

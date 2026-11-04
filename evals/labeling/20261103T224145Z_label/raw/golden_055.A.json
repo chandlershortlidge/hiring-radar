@@ -1,0 +1,112 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"deploying LLMs\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"deploying machine learning models\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"system design\", \"uncertain\": true},\n    {\"skill_id\": \"data-modeling\", \"requirement\": \"required\", \"raw_text\": \"data modeling\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"machine learning models\"},\n    {\"skill_id\": \"model-development\", \"requirement\": \"required\", \"raw_text\": \"training and deploying machine learning models\", \"uncertain\": true},\n    {\"skill_id\": \"nlp\", \"requirement\": \"required\", \"raw_text\": \"NLP/LLM domain\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"infrastructure as code\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud infrastructure\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"observability\"},\n    {\"skill_id\": \"feature-engineering\", \"requirement\": \"required\", \"raw_text\": \"feature engineering\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"model evaluation\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"SLOs / on-call / incident practices\", \"raw_text\": \"SLOs, on‑call/incident practices\"},\n    {\"label\": \"data preprocessing\", \"raw_text\": \"data preprocessing\"},\n    {\"label\": \"modern service architectures\", \"raw_text\": \"modern service architectures\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff AI Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Only the Qualifications section is labeled. Skills named only in the responsibilities (data pipelines, testing, evals, devops) are skipped.\\nLLMs is named twice: in 'deploying LLMs' and in 'NLP/LLM domain'. Both are required, so they collapse into one criterion quoting the first mention.\\nThe 'training and deploying machine learning models' phrase is mapped to model-development and ai-deployment, both marked uncertain.\\n'Strong system design' is mapped to software-architecture, marked uncertain. 'Modern service architectures' is put in unmapped instead of being forced to microservices.\\nGerman is null: 'remote work in Germany' is a location, not a language requirement.\\nNo degree is mentioned, so degree is null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "deploying LLMs"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying machine learning models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "system design",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "data modeling"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning models"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "training and deploying machine learning models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "NLP/LLM domain"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "infrastructure as code"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud infrastructure"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "observability"
+      },
+      {
+        "skill_id": "feature-engineering",
+        "requirement": "required",
+        "raw_text": "feature engineering"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "model evaluation"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "SLOs / on-call / incident practices",
+        "raw_text": "SLOs, on‑call/incident practices"
+      },
+      {
+        "label": "data preprocessing",
+        "raw_text": "data preprocessing"
+      },
+      {
+        "label": "modern service architectures",
+        "raw_text": "modern service architectures"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff AI Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Only the Qualifications section is labeled. Skills named only in the responsibilities (data pipelines, testing, evals, devops) are skipped.\nLLMs is named twice: in 'deploying LLMs' and in 'NLP/LLM domain'. Both are required, so they collapse into one criterion quoting the first mention.\nThe 'training and deploying machine learning models' phrase is mapped to model-development and ai-deployment, both marked uncertain.\n'Strong system design' is mapped to software-architecture, marked uncertain. 'Modern service architectures' is put in unmapped instead of being forced to microservices.\nGerman is null: 'remote work in Germany' is a location, not a language requirement.\nNo degree is mentioned, so degree is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "0753f34f30334c36a2efa31b120e1e0d346ce1b8ff16d43a050e69f6f54f1e44",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}

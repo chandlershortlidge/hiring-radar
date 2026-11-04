@@ -1,0 +1,146 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"required\", \"raw_text\": \"building and owning distributed systems\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"fastapi\", \"requirement\": \"required\", \"raw_text\": \"FastAPI\"},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"TypeScript\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"production LLM\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agentic systems\", \"uncertain\": true},\n    {\"skill_id\": \"postgresql\", \"requirement\": \"required\", \"raw_text\": \"PostgreSQL\"},\n    {\"skill_id\": \"redis\", \"requirement\": \"required\", \"raw_text\": \"Redis\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud infrastructure\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"GCP\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\"},\n    {\"skill_id\": \"livekit\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LiveKit\", \"uncertain\": true},\n    {\"skill_id\": \"temporal\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Temporal\", \"uncertain\": true},\n    {\"skill_id\": \"react\", \"requirement\": \"nice_to_have\", \"raw_text\": \"React\", \"uncertain\": true},\n    {\"skill_id\": \"observability\", \"requirement\": \"nice_to_have\", \"raw_text\": \"observability platforms\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"real-time systems\", \"raw_text\": \"real-time systems\"},\n    {\"label\": \"audio processing\", \"raw_text\": \"audio processing\"},\n    {\"label\": \"voice infrastructure\", \"raw_text\": \"voice infrastructure\"},\n    {\"label\": \"concurrency\", \"raw_text\": \"concurrency\"},\n    {\"label\": \"load balancing\", \"raw_text\": \"load balancing\"},\n    {\"label\": \"fault tolerance\", \"raw_text\": \"fault tolerance\"},\n    {\"label\": \"message queues\", \"raw_text\": \"message queues\"},\n    {\"label\": \"workflow orchestration\", \"raw_text\": \"workflow orchestration\"}\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"The 'Familiarity with tools such as LiveKit, Temporal, ... React, and observability platforms is valuable' bullet ends in 'is valuable'. That word is not in the guide's marker list, but it reads as the equivalent of 'is an advantage', so all four skills are labeled nice_to_have and flagged; under a strictly literal reading of the marker list they would be required.\\nRAG, model evaluation, async processing and tracing appear only in WHAT YOU'LL DO, a responsibilities section, so they are not labeled. Observability is labeled only from the requirements bullet.\\n'agentic systems' is mapped to agents, the nearest alias ('agentic frameworks'). Flagged.\\nNeither 'AI model' nor 'Strong software fundamentals' is labeled; neither names a specific taxonomy skill clearly enough.\\n'similar data stores' is not labeled.\\nSeniority: the title has no level. 'Production experience' is explicitly not a level signal. 'track record of shipping' resembles 'proven experience' but is not that phrase, so seniority is null and flagged.\\nGerman: no language is mentioned. The Berlin location is not used for inference.\\nDegree: none mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "building and owning distributed systems"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "production LLM"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "PostgreSQL"
+      },
+      {
+        "skill_id": "redis",
+        "requirement": "required",
+        "raw_text": "Redis"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud infrastructure"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "livekit",
+        "requirement": "nice_to_have",
+        "raw_text": "LiveKit",
+        "uncertain": true
+      },
+      {
+        "skill_id": "temporal",
+        "requirement": "nice_to_have",
+        "raw_text": "Temporal",
+        "uncertain": true
+      },
+      {
+        "skill_id": "react",
+        "requirement": "nice_to_have",
+        "raw_text": "React",
+        "uncertain": true
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "observability platforms",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "real-time systems",
+        "raw_text": "real-time systems"
+      },
+      {
+        "label": "audio processing",
+        "raw_text": "audio processing"
+      },
+      {
+        "label": "voice infrastructure",
+        "raw_text": "voice infrastructure"
+      },
+      {
+        "label": "concurrency",
+        "raw_text": "concurrency"
+      },
+      {
+        "label": "load balancing",
+        "raw_text": "load balancing"
+      },
+      {
+        "label": "fault tolerance",
+        "raw_text": "fault tolerance"
+      },
+      {
+        "label": "message queues",
+        "raw_text": "message queues"
+      },
+      {
+        "label": "workflow orchestration",
+        "raw_text": "workflow orchestration"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The 'Familiarity with tools such as LiveKit, Temporal, ... React, and observability platforms is valuable' bullet ends in 'is valuable'. That word is not in the guide's marker list, but it reads as the equivalent of 'is an advantage', so all four skills are labeled nice_to_have and flagged; under a strictly literal reading of the marker list they would be required.\nRAG, model evaluation, async processing and tracing appear only in WHAT YOU'LL DO, a responsibilities section, so they are not labeled. Observability is labeled only from the requirements bullet.\n'agentic systems' is mapped to agents, the nearest alias ('agentic frameworks'). Flagged.\nNeither 'AI model' nor 'Strong software fundamentals' is labeled; neither names a specific taxonomy skill clearly enough.\n'similar data stores' is not labeled.\nSeniority: the title has no level. 'Production experience' is explicitly not a level signal. 'track record of shipping' resembles 'proven experience' but is not that phrase, so seniority is null and flagged.\nGerman: no language is mentioned. The Berlin location is not used for inference.\nDegree: none mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "098f2946590448266936fcfa8c93ade16b98d4775ea9e983568d93c7016e6416",
+  "prompt_sha256": "0d31d860fa2eb3f34456eb1a9ee497dcba8005cf409f66f1c74f76a6cd3f9660"
+}
