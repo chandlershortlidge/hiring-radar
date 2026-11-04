@@ -300,7 +300,11 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   postings, with `app.evaluation`'s scorer, and against a second run on Berlin
   (`--baseline-run`) as the bar. Read-only; calls no model. The labels it reads are
   model-written and unreviewed, so they are **not** Goldens — they wait in the run's
-  `review_queue.md` for the ordinary spot-check.
+  `review_queue.md` for the ordinary spot-check. A skill both labellers found but one
+  flagged unsure is **set aside** while it waits there: out of the yardstick *and* out of
+  the extractor's side, so it is neither credited nor penalised, and the report prints how
+  many were set aside and how long the queue is next to the score (DECISIONS 2026-11-04,
+  HIR-159). A verdict a model wrote does not lift that: only a person's does.
 - `scripts/seed_from_legacy.py` — one-off that built the taxonomy and Goldens from the
   legacy repo. Kept for provenance.
 - `deploy/` — everything about the VM: the runbook (`README.md`), `provision.sh` (rebuilds
