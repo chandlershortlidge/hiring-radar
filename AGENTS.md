@@ -364,6 +364,49 @@ re-baselines main, which is the gap this rule exists to close.
 
 The held-out split stays release-only (the rule just above). This gate is the dev split.
 
+### The rules gate: a PR that changes the agents' own rules asks Chandler first
+
+**No PR that touches the agents' own rules merges on its own** (Chandler's decision
+2026-11-04, HIR-142). Since HIR-136 a reviewed PR merges itself, and that would include a PR
+that rewrites how review and merging work: an agent could change its own rules and the change
+would land without Chandler ever seeing it.
+
+The trigger is a file list, not a judgment. The diff touches any of:
+
+- anything under `.claude/` — agents, skills, settings
+- `AGENTS.md`
+- `.github/pull_request_template.md`
+- anything under `.github/workflows/` — the automated checks are part of the gate
+
+Then the PR gets `needs-chandler`, does not merge, and its description carries this block,
+with nothing more in it:
+
+> Changes were made to .claude/agents/skills:
+>
+> * bullet a
+> * bullet b
+>
+> Did you authorize these?
+
+One bullet per change, in plain words. No paragraph, no diff walkthrough. **The reviewer
+writes the bullets; the agent that made the change does not** — the point of the gate is a
+second reader saying what changed. Chandler does not read these files. He discusses what goes
+in them beforehand, so the only question is whether he authorized this one. He answers by
+merging, or by sending it back.
+
+**Two enforcers, because one of them is itself a rule file.** The reviewer applies the rule
+(`.claude/agents/reviewer.md`). And `scripts/rules_gate.py` runs in CI on every PR
+(`.github/workflows/rules-gate.yml`, check name "Rules gate"): it reads the PR's own changed
+files and fails when one of them is a rule file and the block is absent. That half is the
+backstop — it still fires on a PR that edits the reviewer's instructions out of existence. It
+re-runs when the PR description is edited, which is how it goes green once the reviewer has
+added the block.
+
+A failing check only blocks a merge once it is on the repository's required-checks list, and
+**that list is Chandler's to change, never an agent's** (DECISIONS 2026-11-04). It is a
+repository setting, so no diff can show a change to it — which is exactly why it is the one
+gate an agent cannot edit through a PR.
+
 ### Pitfalls specific to this project
 
 - `ReAct` (agent pattern) and `React` (framework) differ only by case. The taxonomy
@@ -450,6 +493,9 @@ is never asked again.
 - an eval metric down more than 0.02 against the last committed run (the eval gate
   above; the run itself is not a question, only a drop this size is)
 - the branch and `TICKET` disagree; a hot-spot file is already changed on another branch
+- a PR that changes the agents' own rules — `.claude/`, `AGENTS.md`, the PR template,
+  `.github/workflows/` (the rules gate above). The reviewer is what asks, by adding the
+  block to the PR; no run of any label merges such a PR.
 
 **Questions go to the decider agent before they go to Chandler.** `.claude/agents/decider.md`
 (Fable) reads only AGENTS.md, DECISIONS.md, taxonomy/README.md and evals/LABELING.md, and
@@ -480,7 +526,8 @@ which apply to every run regardless of label.
 `reviewer` agent (`.claude/agents/reviewer.md`, fresh context, Fable) merges when CI is
 green, the diff stays in scope and off the stop-list files, "Needs Chandler" is empty,
 every decision has an undo and every follow-up a ticket; otherwise it labels the PR
-`needs-chandler` and @mentions Chandler on the issue. At most one PR that re-reads every
+`needs-chandler` and @mentions Chandler on the issue. A PR that changes the agents' own
+rules is never merged by any run — the rules gate above. At most one PR that re-reads every
 job (taxonomy, prompt, model) merges per day. PRs for `attended` issues always wait for
 a person.
 
