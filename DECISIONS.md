@@ -108,6 +108,63 @@ standing permission for agents to add checks (same two hazards, permanently).
 
 ---
 
+## 2026-11-04 — New York's 0.064 F1 gap is the measure, not the extractor (HIR-139)
+
+New York's launch check scored 0.846 F1 against Berlin's 0.910. The gap is past the 0.05
+the check calls "clearly worse", so HIR-132 filed a follow-up instead of undoing the
+launch. **The verdict is that the extractor reads New York postings about as well as
+Berlin's, and the gap is an artefact of how precision is calculated.** The launch itself
+stands; nothing about extraction changes.
+
+How that was settled. All 35 New York "unagreed extras" — skills the extractor stored that
+the labeller panel did not *both* agree on — were classified by hand against the posting
+text and against each labeller's own raw output:
+
+| | New York | Berlin |
+| -- | -- | -- |
+| both panel labellers proposed it | 30 (86%) | 27 (73%) |
+| exactly one proposed it | 2 (6%) | 1 (3%) |
+| neither proposed it | 3 (9%) | 9 (24%) |
+| corroborated by at least one labeller | **32/35 (91%)** | **28/37 (76%)** |
+
+So 30 of New York's 35 extras are skills *both* labellers found; 29 of those were kept out
+of the agreed yardstick only because at least one labeller flagged uncertainty, which sends
+a label to the review queue. They are counted as extractor errors by the score and are not
+errors. Of the three no labeller proposed, one is a defensible inference (`a-b-testing` from
+"design and evaluate experiments" in a personalization role) and two are real mistakes:
+`llm-orchestration` read from "orchestration" where the posting's own list is about
+distributed systems and model serving, not LLMs; and `statistics` taken from the degree
+clause "Master's or PhD in machine learning, computer science, statistics", which names a
+field of study rather than a skill the job asks for. **Two real errors in 35 extras.**
+
+By the same test Berlin is the worse of the two, not the better: 9 of its 37 extras had no
+labeller behind them, and spot-checking those found the extractor right and the panel
+simply short — the postings literally say "MCP" and "embeddings, vector search".
+
+Why precision still fell. The extractor adds the same ~2.5 unagreed extras per posting in
+both cities; New York postings carry roughly half as many agreed labels (7.1 against 13.7)
+for those extras to be divided by, so the same behaviour scores worse. This is the "US
+postings name fewer skills" effect already recorded for San Francisco on 2026-11-03
+(HIR-12).
+
+A second limit, equal in both cities: the yardstick is agreement only, so a skill one
+labeller found counts as an extractor error. Precision here is a lower bound, not an error
+rate — and the two runs are not even measured by the same panel, since the third checker
+(`gemini-4-argon`) ran on New York only. Comparisons across cities therefore use the two
+labellers both runs share.
+
+What changed because of this: the launch check now prints agreed labels and unagreed extras
+per posting next to F1, and says so when F1 falls while the extras count holds — the extras
+count was flat across the two cities and F1 was not, so the pair separates an arithmetic gap
+from a real one. To undo, revert the HIR-139 commits; the measure is reporting only and no
+stored data depends on it.
+
+Not done here: the two real errors are a Follow-up, not a fix. Changing the prompt or the
+taxonomy was out of this ticket's scope, runs the dev eval first (HIR-133) and re-reads
+every job on merge.
+
+---
+
 ## 2026-11-03 — Adding a city is automated, and New York is the first one (HIR-132)
 
 Two standing rules end here, both by Chandler's written decision on the HIR-132 ticket
