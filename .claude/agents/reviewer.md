@@ -127,19 +127,38 @@ For the PR you are given:
      PR re-reads every job on merge (~€3). Merge at most **one** such PR per calendar day;
      if one already merged today, leave this one open with a comment "waits for tomorrow's
      window", no label.
-4. **Arm auto-merge** when everything holds — you never merge by hand (HIR-136), and
-   never at all for a PR that trips the rules gate:
-   `gh pr merge <n> --merge --auto`. GitHub then merges the PR itself the moment its
-   required checks are green and the branch is up to date. **There is no merge queue on
-   this repository** and there cannot be (GitHub offers queues only on organization-owned
-   repositories; this one is personal), so nothing tests the PR against the latest main for
-   you and nothing orders the merges. Two consequences, both yours:
+4. **Merge** when everything holds — never at all for a PR that trips the rules gate.
+   **Read `mergeable_state` first and let it pick the command** (HIR-157):
+   `gh api repos/:owner/:repo/pulls/<n> --jq .mergeable_state`.
+
+   - **`clean` → merge it directly:** `gh pr merge <n> --merge`. GitHub **refuses to arm
+     auto-merge on a PR that can already merge** — `--auto` on a `clean` PR fails with the
+     generic "Something went wrong while executing your query", which is what stalled PR
+     #88. You usually arrive here, because `/work-issue` waits for CI before starting you.
+     This is not the merging by hand that HIR-136 forbade: what that rule protects is that
+     the checks decide, and the ruleset still enforces it — a `clean` PR is one whose
+     required checks are *already* green, and GitHub rejects the command otherwise. You
+     still never merge a PR you authored, or one whose issue lacks `autopilot`.
+   - **Anything else → arm auto-merge:** `gh pr merge <n> --merge --auto`. GitHub then
+     merges the PR itself the moment its required checks are green and the branch is up to
+     date.
+   - **Any other error from either command → `needs-chandler`, and do not retry.** A merge
+     command that failed for a reason these rules did not predict is exactly where a second
+     attempt becomes a wrong merge. Quote the error in the PR comment.
+
+   **There is no merge queue on this repository** and there cannot be (GitHub offers queues
+   only on organization-owned repositories; this one is personal), so nothing tests the PR
+   against the latest main for you and nothing orders the merges. On the auto-merge path,
+   two consequences, both yours:
 
    - **Bring the branch up to date, after arming auto-merge.** `main` requires branches to
-     be up to date before they merge, so auto-merge will sit there forever on a branch
-     behind main. Run `gh api -X PUT repos/:owner/:repo/pulls/<n>/update-branch`; the
-     checks re-run on the updated branch and auto-merge fires when they pass. Arm first,
-     update second, so you are never waiting on a check run you then invalidate.
+     be up to date before they merge (`strict_required_status_checks_policy` is still on,
+     checked 4 Nov), so auto-merge will sit there forever on a branch behind main. Run
+     `gh api -X PUT repos/:owner/:repo/pulls/<n>/update-branch`; the checks re-run on the
+     updated branch and auto-merge fires when they pass. Arm first, update second, so you
+     are never waiting on a check run you then invalidate. This is also why the two paths
+     do not overlap: with that policy on, a branch behind main reports `behind`, never
+     `clean`.
    - **A real conflict** makes `update-branch` fail (422). Say so in a PR comment naming
      the conflicting files, label the PR `needs-chandler`, and @mention the worker's issue
      — resolving it is the author's job, not yours.
@@ -149,9 +168,10 @@ For the PR you are given:
    - **A check that fails only after the update** (it passed on the PR alone) is a genuine
      interaction with something merged ahead of it: comment, `needs-chandler`, and do not
      re-arm.
-5. **Report** in one PR comment: auto-merge armed (and that GitHub merges it as soon as the
-   checks on the updated branch pass), or needs-chandler with the failing check, in plain
-   words a person who hasn't read the code can act on. Either way the comment goes through
+5. **Report** in one PR comment: merged (the checks were already green), or auto-merge
+   armed (and that GitHub merges it as soon as the checks on the updated branch pass), or
+   needs-chandler with the failing check, in plain words a person who hasn't read the code
+   can act on. Either way the comment goes through
    the ticket's "Done when" items and says which the PR meets and which it does not — one
    line each, no file or function names. That list is the review; a comment without it is
    not one.
@@ -166,6 +186,6 @@ For the PR you are given:
 Be strict on the checks and plain in the comment. A wrong merge is live on the VM within
 minutes; a wrong `needs-chandler` costs one look.
 
-Arming auto-merge needs GraphQL, so it works from a Mac session and not from a scheduled
-cloud run. There is no timer that merges PRs: every merge happens from the run that
-reviewed it.
+Merging and arming auto-merge both need GraphQL, so they work from a Mac session and not
+from a scheduled cloud run. There is no timer that merges PRs: every merge happens from the
+run that reviewed it.

@@ -5,6 +5,46 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-04 — A PR whose checks have already passed is merged directly, not armed (HIR-157)
+
+HIR-136 gave the reviewer one command for every PR: `gh pr merge <n> --merge --auto`. On
+PR #88 that command failed with GitHub's generic "Something went wrong while executing your
+query". The PR was `mergeable_state: clean` — every required check green, branch up to
+date. **GitHub refuses to arm auto-merge on a PR that can already merge**; `--auto` is only
+for a PR still waiting on something. The reviewer, correctly refusing to merge by hand when
+the rules said arm, labelled it and Chandler merged #88 himself. Every PR the reviewer
+reaches after CI has finished would have done the same — and the reviewer usually *does*
+arrive after CI, because `/work-issue` waits for the checks before starting it.
+
+**The reviewer now reads `mergeable_state` first and branches on it:**
+
+- `clean` → **merge directly**, `gh pr merge <n> --merge`. This is not merging by hand in
+  the sense HIR-136 forbade. What that rule protects is the requirement that the checks
+  decide; the ruleset still enforces it, and a merge of a `clean` PR cannot happen unless
+  the three required checks ("Python tests", "Frontend build", "Rules gate") are green.
+  The command is refused by GitHub otherwise.
+- anything else → arm `--auto` and bring the branch up to date, exactly as HIR-136 wrote
+  it. Unchanged.
+- any other error → `needs-chandler`, **no retry**. A merge command that failed for a
+  reason we did not predict is the case where a second attempt is how a wrong merge
+  happens.
+
+**What this entry does not do: it does not drop the update-branch step.** HIR-157 asked
+for that, on the grounds that "the ruleset no longer requires it, as of 4 Nov". That
+premise does not hold — the `main` ruleset (id 26303302, last updated 2026-11-04 10:41)
+still carries `strict_required_status_checks_policy: true`, which is GitHub's "require
+branches to be up to date before merging". So being behind main is still the reviewer's
+job and the step stays, per AGENTS.md "Nothing merges directly to main" and the HIR-136
+entry below. The two halves fit without a conflict: with strict on, a branch behind main
+reports `behind`, never `clean`, so it takes the auto-merge-and-update path that still
+needs the step. If Chandler does turn strict off later, the step becomes dead rather than
+wrong, and the `clean` branch already covers every PR.
+
+**How to undo:** restore step 4 of `.claude/agents/reviewer.md` to the single
+`--merge --auto` command. The cost of undoing it is the one above: every PR reviewed after
+its checks finish stalls on `needs-chandler`.
+---
+
 ## 2026-11-04 — Best fit scores a job against a floor of 7 required skills (HIR-154)
 
 HIR-113 made the *order* the Wilson lower bound of `covered/total`, so a 2/2 job (bound
@@ -144,12 +184,75 @@ Recomputed under the rule, which settles HIR-139's question:
 
 Recall and requirement accuracy do not move: a set-aside skill was never in the yardstick,
 so it was never a miss. 42 New York skills and 36 Berlin skills are set aside pending
-hand-check; 62 and 142 items respectively are waiting in those queues.
+hand-check; 62 and 142 items respectively are waiting in those queues. The unagreed extras
+the HIR-139 entry reports per posting shrink with the same arithmetic — 2.5 and 2.5 before,
+0.4 (New York) and 1.1 (Berlin) after — because most of those extras *were* the unsure
+skills.
 
 Scope. Skills only one labeller found, and skills neither found, are scored exactly as
 before. Nothing about the extractor, the prompt or the taxonomy changes, and the held-out
 eval's release-only rule is untouched. To undo: revert the HIR-159 commits — the rule is
 reporting only, and no stored data depends on it.
+
+This supersedes the measure described in the HIR-139 entry below, which was written against
+the old rule: the numbers in that entry are the "before" column of the table above.
+
+---
+
+## 2026-11-04 — New York's 0.064 F1 gap is the measure, not the extractor (HIR-139)
+
+New York's launch check scored 0.846 F1 against Berlin's 0.910. The gap is past the 0.05
+the check calls "clearly worse", so HIR-132 filed a follow-up instead of undoing the
+launch. **The verdict is that the extractor reads New York postings about as well as
+Berlin's, and the gap is an artefact of how precision is calculated.** The launch itself
+stands; nothing about extraction changes.
+
+How that was settled. All 35 New York "unagreed extras" — skills the extractor stored that
+the labeller panel did not *both* agree on — were classified by hand against the posting
+text and against each labeller's own raw output:
+
+| | New York | Berlin |
+| -- | -- | -- |
+| both panel labellers proposed it | 30 (86%) | 27 (73%) |
+| exactly one proposed it | 2 (6%) | 1 (3%) |
+| neither proposed it | 3 (9%) | 9 (24%) |
+| corroborated by at least one labeller | **32/35 (91%)** | **28/37 (76%)** |
+
+So 30 of New York's 35 extras are skills *both* labellers found; 29 of those were kept out
+of the agreed yardstick only because at least one labeller flagged uncertainty, which sends
+a label to the review queue. They are counted as extractor errors by the score and are not
+errors. Of the three no labeller proposed, one is a defensible inference (`a-b-testing` from
+"design and evaluate experiments" in a personalization role) and two are real mistakes:
+`llm-orchestration` read from "orchestration" where the posting's own list is about
+distributed systems and model serving, not LLMs; and `statistics` taken from the degree
+clause "Master's or PhD in machine learning, computer science, statistics", which names a
+field of study rather than a skill the job asks for. **Two real errors in 35 extras.**
+
+By the same test Berlin is the worse of the two, not the better: 9 of its 37 extras had no
+labeller behind them, and spot-checking those found the extractor right and the panel
+simply short — the postings literally say "MCP" and "embeddings, vector search".
+
+Why precision still fell. The extractor adds the same ~2.5 unagreed extras per posting in
+both cities; New York postings carry roughly half as many agreed labels (7.1 against 13.7)
+for those extras to be divided by, so the same behaviour scores worse. This is the "US
+postings name fewer skills" effect already recorded for San Francisco on 2026-11-03
+(HIR-12).
+
+A second limit, equal in both cities: the yardstick is agreement only, so a skill one
+labeller found counts as an extractor error. Precision here is a lower bound, not an error
+rate — and the two runs are not even measured by the same panel, since the third checker
+(`gemini-4-argon`) ran on New York only. Comparisons across cities therefore use the two
+labellers both runs share.
+
+What changed because of this: the launch check now prints agreed labels and unagreed extras
+per posting next to F1, and says so when F1 falls while the extras count holds — the extras
+count was flat across the two cities and F1 was not, so the pair separates an arithmetic gap
+from a real one. To undo, revert the HIR-139 commits; the measure is reporting only and no
+stored data depends on it.
+
+Not done here: the two real errors are a Follow-up, not a fix. Changing the prompt or the
+taxonomy was out of this ticket's scope, runs the dev eval first (HIR-133) and re-reads
+every job on merge.
 
 ---
 

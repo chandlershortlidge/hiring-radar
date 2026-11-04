@@ -12,6 +12,14 @@ job each one is), read the stored extraction for those jobs out of the database,
 against the other with `app.evaluation` — the same scorer the eval uses — and print micro
 precision / recall / F1 plus requirement accuracy, for one run or for two side by side.
 
+It also prints agreed labels and unagreed extras per posting, because F1 alone cannot tell
+a quality gap from an arithmetic one: precision divides the extras by the agreed labels, so
+a city whose postings name fewer skills scores worse on identical behaviour. That is exactly
+what New York's 0.064 F1 gap turned out to be — same 2.5 extras per posting as Berlin, half
+the agreed labels to divide them by (DECISIONS 2026-11-04, HIR-139). Those 2.5 were measured
+before the unsure rule below; the extras this now prints are what is left after the skills
+waiting for a hand-check have been set aside, which is a smaller number.
+
 The comparison is panel-against-extractor in both cities, never panel-against-Goldens: the
 committed Goldens carry no job id, so the extraction they correspond to cannot be looked up,
 and a panel-labelled sample measured against a hand-labelled one would differ by method as
@@ -193,6 +201,20 @@ def score_run(run_id: str) -> tuple[dict, Run]:
     return compare(run.expected, predicted), run
 
 
+def per_posting(s: dict) -> dict:
+    """Agreed labels and unagreed extras per posting — the two sides of precision, unmixed.
+
+    Precision is extras measured against the agreed labels, so it moves when either side
+    moves. A city whose postings name fewer skills scores worse on identical behaviour: the
+    same extras divided by a smaller yardstick (HIR-139, and HIR-12 for why US postings name
+    fewer). Reporting the two counts separately is what tells those cases apart. Pure.
+    """
+    n = s["n_goldens"]
+    if not n:
+        return {"agreed": None, "extras": None, "n": 0}
+    return {"agreed": (s["tp"] + s["fn"]) / n, "extras": s["fp"] / n, "n": n}
+
+
 def line(name: str, s: dict) -> str:
     def pct(x):
         return "n/a" if x is None else f"{x:.3f}"
@@ -215,6 +237,14 @@ def counts_line(run_id: str, run: Run) -> str:
                "(panel agreed on nothing): " + ", ".join(run.skipped) if run.skipped else ""))
 
 
+def per_posting_line(name: str, s: dict) -> str:
+    p = per_posting(s)
+    if p["n"] == 0:
+        return f"{name}: no postings scored"
+    return (f"{name}: {p['agreed']:.1f} agreed labels per posting, "
+            f"{p['extras']:.1f} unagreed extras per posting")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     ap.add_argument("--run", required=True, help="a labelling run id under evals/labeling/")
@@ -222,20 +252,38 @@ def main() -> None:
                     help="a second run, on the city that is the bar (usually Berlin)")
     ap.add_argument("--worse-by", type=float, default=0.05,
                     help="how much lower in F1 counts as clearly worse (default 0.05)")
+    ap.add_argument("--extras-worse-by", type=float, default=0.5,
+                    help="how many more unagreed extras per posting count as a real "
+                         "difference rather than an arithmetic one (default 0.5)")
     args = ap.parse_args()
 
     s, run = score_run(args.run)
     print(counts_line(args.run, run))
     print(line("new city", s))
+    print(per_posting_line("new city", s))
     if args.baseline_run:
         b, brun = score_run(args.baseline_run)
         print(counts_line(args.baseline_run, brun))
         print(line("baseline", b))
+        print(per_posting_line("baseline", b))
         if s["f1"] is not None and b["f1"] is not None:
             d = s["f1"] - b["f1"]
             worse = d < -args.worse_by
             print(f"F1 difference: {d:+.3f}  — "
                   + ("clearly worse, file a follow-up" if worse else "not clearly worse"))
+            # A lower F1 on a flat extras count is the arithmetic of a shorter yardstick,
+            # not worse extraction (HIR-139). Still a follow-up — but one that should start
+            # by reading the extras, not the prompt.
+            pn, pb = per_posting(s), per_posting(b)
+            if worse and pn["extras"] is not None and pb["extras"] is not None:
+                de = pn["extras"] - pb["extras"]
+                print(f"unagreed extras per posting: {de:+.1f}  — "
+                      + ("the extras count held while F1 fell, so check whether this city's "
+                         "postings simply name fewer skills before reading it as worse "
+                         "extraction"
+                         if de <= args.extras_worse_by
+                         else "the extractor is adding more extras here, not just scoring "
+                              "against a shorter yardstick"))
     print("\nThese labels are model-written and unreviewed: they are not Goldens. "
           f"The review queue is evals/labeling/{args.run}/review_queue.md.")
 

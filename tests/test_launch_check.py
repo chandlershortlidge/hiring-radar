@@ -111,6 +111,54 @@ def test_scores_are_micro_averaged_across_postings():
     assert s["recall"] == pytest.approx(0.75)      # micro, not the 0.5 a per-posting mean gives
 
 
+def test_per_posting_splits_precision_into_its_two_sides():
+    """Agreed labels and extras are reported apart, so a shorter yardstick is visible."""
+    expected = {"g1": skills(("python", "required"), ("sql", "required")),
+                "g2": skills(("rag", "required"), ("pytorch", "required"))}
+    predicted = {"g1": skills(("python", "required"), ("sql", "required"),
+                              ("kubernetes", "required")),
+                 "g2": skills(("rag", "required"), ("pytorch", "required"),
+                              ("docker", "required"))}
+    p = lc.per_posting(lc.compare(expected, predicted))
+    assert p["n"] == 2
+    assert p["agreed"] == pytest.approx(2.0)
+    assert p["extras"] == pytest.approx(1.0)
+
+
+def test_the_same_extras_on_fewer_agreed_labels_lowers_precision():
+    """HIR-139: identical extractor behaviour scores worse where postings name fewer skills.
+
+    Two cities, one unagreed extra per posting in both. The city with half the agreed
+    labels scores lower precision, so the extras count — not precision — is what says
+    whether the extractor behaved differently.
+    """
+    wordy = {"g1": skills(("python", "required"), ("sql", "required"),
+                          ("rag", "required"), ("pytorch", "required"))}
+    wordy_pred = {"g1": skills(("python", "required"), ("sql", "required"),
+                               ("rag", "required"), ("pytorch", "required"),
+                               ("kubernetes", "required"))}
+    terse = {"g1": skills(("python", "required"), ("sql", "required"))}
+    terse_pred = {"g1": skills(("python", "required"), ("sql", "required"),
+                               ("kubernetes", "required"))}
+
+    w, t = lc.compare(wordy, wordy_pred), lc.compare(terse, terse_pred)
+    assert t["precision"] < w["precision"]                      # the gap the ticket chased
+    assert lc.per_posting(w)["extras"] == lc.per_posting(t)["extras"] == 1.0   # behaviour is flat
+
+
+def test_per_posting_on_nothing_scored_is_not_a_division_by_zero():
+    p = lc.per_posting(lc.compare({}, {}))
+    assert p == {"agreed": None, "extras": None, "n": 0}
+    assert "no postings scored" in lc.per_posting_line("new city", lc.compare({}, {}))
+
+
+def test_per_posting_line_reports_both_counts():
+    s = lc.compare({"g1": skills(("python", "required"))},
+                   {"g1": skills(("python", "required"), ("kubernetes", "required"))})
+    assert lc.per_posting_line("new city", s) == (
+        "new city: 1.0 agreed labels per posting, 1.0 unagreed extras per posting")
+
+
 def test_load_run_skips_a_posting_the_panel_agreed_nothing_on(tmp_path, monkeypatch):
     """Nothing agreed is not the same as the extractor being wrong — it must not be scored."""
     run = write_run(
