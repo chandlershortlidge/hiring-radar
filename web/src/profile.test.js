@@ -180,6 +180,9 @@ describe("wilsonLower", () => {
 
 // HIR-154: a job is scored against max(total, SKILL_FLOOR), so a posting that lists two
 // required skills is judged as though it had listed SKILL_FLOOR and failed the rest.
+// HIR-161 moved SKILL_FLOOR from 7 to 4, so "thin" is 3 asks or fewer. The threshold is
+// asserted in absolute counts as well as in SKILL_FLOOR, because an assertion written only
+// as SKILL_FLOOR - 1 holds at every threshold, including the 7 that was the bug.
 describe("the skill floor", () => {
   const fitJob = (id, covered, total) => job({
     id,
@@ -197,6 +200,10 @@ describe("the skill floor", () => {
     expect(thinlyListed(SKILL_FLOOR - 1)).toBe(true);
     expect(thinlyListed(SKILL_FLOOR)).toBe(false);
     expect(thinlyListed(20)).toBe(false);
+    // HIR-161, in the numbers the decision is written in: the line sits between 3 and 4.
+    expect(thinlyListed(3)).toBe(true);
+    expect(thinlyListed(4)).toBe(false);
+    expect(thinlyListed(6)).toBe(false);
     // Nothing listed at all is "unknown", not thin: score and rank_score are already null.
     expect(thinlyListed(0)).toBe(false);
     const nothing = fit(haveAll, job({ id: 1 }));
@@ -219,7 +226,21 @@ describe("the skill floor", () => {
     // The San Francisco complaint: "100% · 2/2" rows sitting above real matches.
     expect(ids(rankJobs(haveAll, [fitJob(1, 2, 2), fitJob(2, 5, 8)]))).toEqual([2, 1]);
     expect(ids(rankJobs(haveAll, [fitJob(1, 3, 3), fitJob(2, 5, 7)]))).toEqual([2, 1]);
-    expect(ids(rankJobs(haveAll, [fitJob(1, 4, 4), fitJob(2, 6, 10)]))).toEqual([2, 1]);
+    expect(ids(rankJobs(haveAll, [fitJob(1, 3, 3), fitJob(2, 6, 10)]))).toEqual([2, 1]);
+  });
+
+  // HIR-161, and the price of it, pinned so it is a decision rather than a surprise: at
+  // the old floor of 7 a 4/4 posting was thin and sorted below 6/10. Four asks is a normal
+  // list now, so it ranks on its own ratio and wins. This is the intended consequence of
+  // "jobs with 4 or more rank by Best fit like any other job"; it is also the residue of
+  // the HIR-154 complaint, which was about 2/2 and 3/3 rows, and those still sort below.
+  it("lets a 4-ask posting you cover in full rank on its own ratio", () => {
+    expect(ids(rankJobs(haveAll, [fitJob(1, 4, 4), fitJob(2, 6, 10)]))).toEqual([1, 2]);
+    expect(rank(4, 4)).toBeCloseTo(wilsonLower(4, 4), 10);
+    expect(rank(5, 5)).toBeCloseTo(wilsonLower(5, 5), 10);
+    // ...while 3 asks and fewer stay floored, so they cannot read as perfect matches.
+    expect(rank(3, 3)).toBeCloseTo(wilsonLower(3, SKILL_FLOOR), 10);
+    expect(rank(3, 3)).toBeLessThan(wilsonLower(3, 3));
   });
 
   it("never ranks a thin job above a full match of the floor or more — the issue's bar", () => {
@@ -265,8 +286,9 @@ describe("rankJobs", () => {
     expect(f.total).toBe(2);
     // ...but it is scored as 2 out of SKILL_FLOOR, not 2 out of 2 (HIR-154). Before the
     // floor this was 0.3424, the bound of a true 2/2, which beat every partly covered job.
+    // 0.1500 is the bound of 2 out of 4; it was 0.0822 at the floor of 7 (HIR-161).
     expect(f.rank_score).toBeCloseTo(wilsonLower(2, SKILL_FLOOR), 10);
-    expect(f.rank_score).toBeCloseTo(0.0822, 3);
+    expect(f.rank_score).toBeCloseTo(0.1500, 3);
     expect(f.thin).toBe(true);
   });
 
