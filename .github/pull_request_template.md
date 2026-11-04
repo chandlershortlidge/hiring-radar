@@ -1,3 +1,9 @@
+<!-- If this PR changes the agents' own rules — anything under .claude/, AGENTS.md, this
+template, .github/workflows/, scripts/rules_gate.py — do NOT write the "Did you authorize
+these?" block yourself. The reviewer writes it and adds it here, and the PR waits for
+Chandler either way (AGENTS.md "The rules gate"). The "Rules gate" check stays red until
+then, by design. -->
+
 ## Decisions taken
 
 <!-- Only judgment calls (AGENTS.md "Deciding alone vs. stopping"). One sentence each:
