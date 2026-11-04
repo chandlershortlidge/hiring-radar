@@ -32,7 +32,7 @@ from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(ROOT / ".env")  # existing environment variables win over .env
 
-from app import evaluation, langsmith_eval  # noqa: E402
+from app import evaluation, extras_judge, langsmith_eval  # noqa: E402
 from app.extract import DEFAULT_MODEL, extract, extractor_version, make_client  # noqa: E402
 from app.taxonomy import Taxonomy  # noqa: E402
 
@@ -92,6 +92,35 @@ def render_md(meta, agg, runs) -> str:
     return "\n".join(lines) + "\n"
 
 
+def judge_extras(runs, goldens, args) -> dict:
+    """Judge run 1's extras: {golden_id: [Verdict, ...]}.
+
+    Run 1 only. The judge is there to find gold labels that are incomplete, which is a
+    property of the label and not of a repeat, so judging all three repeats would pay three
+    times for the same answer.
+
+    Its own client is deliberately unwrapped, so its calls stay out of LangSmith: the issue
+    asks for the trace budget to be checked before the judge is allowed to spend traces,
+    and the verdicts are written to the results either way.
+    """
+    first = runs[0]
+    by_id = {g["id"]: g for g in goldens}
+    client = make_client()
+    out = {}
+    for gs in first.scores:
+        if not gs.fp:
+            continue
+        g = by_id[gs.golden_id]
+        mentions = first.predictions[gs.golden_id].get("mentions") or []
+        quotes = {m["skill_id"]: m.get("raw_text") for m in mentions}
+        extras = [{"skill_id": sid, "raw_text": quotes.get(sid)} for sid in gs.fp]
+        out[gs.golden_id] = extras_judge.judge_golden(
+            g["job_description"], sorted(x["skill_id"] for x in g["expected"]), extras,
+            client, args.judge_model or extras_judge.DEFAULT_JUDGE_MODEL)
+        print(f"  judged {len(extras)} extras on {gs.golden_id}", flush=True)
+    return out
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--split", default="dev", choices=["dev", "heldout"])
@@ -100,6 +129,12 @@ def main(argv=None):
     ap.add_argument("--i-am-releasing", action="store_true")
     ap.add_argument("--no-langsmith", action="store_true",
                     help="do not report this run to LangSmith even if LANGSMITH_API_KEY is set")
+    ap.add_argument("--extras-judge", action="store_true",
+                    help="after the runs, ask a model whether each extra skill means the gold "
+                         "label missed it or the model is wrong (one extra call per Golden "
+                         "that has extras; off by default)")
+    ap.add_argument("--judge-model", default=None,
+                    help=f"model for --extras-judge (default: {extras_judge.DEFAULT_JUDGE_MODEL})")
     args = ap.parse_args(argv)
 
     if args.split == "heldout" and not args.i_am_releasing:
@@ -143,6 +178,13 @@ def main(argv=None):
             sys.exit("Every Golden failed — no results written. Fix the error above and re-run.")
 
     agg = evaluation.across_runs(runs)
+
+    verdicts = judge_extras(runs, goldens, args) if args.extras_judge else {}
+    if verdicts:
+        counts = extras_judge.tally([v for vs in verdicts.values() for v in vs])
+        meta["extras_verdicts"] = counts
+        print(f"extras judge over run 1: {counts}", flush=True)
+
     if experiment:
         experiment.finish(meta, agg, [r.summary for r in runs])
 
@@ -151,8 +193,11 @@ def main(argv=None):
     with (out / "predictions.jsonl").open("w") as f:
         for i, r in enumerate(runs):
             for gs in r.scores:
-                f.write(json.dumps({"run": i + 1, "golden_id": gs.golden_id, "tp": gs.tp, "fp": gs.fp, "fn": gs.fn,
-                                    "error": gs.error, **r.predictions[gs.golden_id]}, ensure_ascii=False) + "\n")
+                row = {"run": i + 1, "golden_id": gs.golden_id, "tp": gs.tp, "fp": gs.fp, "fn": gs.fn,
+                       "error": gs.error, **r.predictions[gs.golden_id]}
+                if i == 0 and gs.golden_id in verdicts:
+                    row["extras_verdicts"] = [vars(v) for v in verdicts[gs.golden_id]]
+                f.write(json.dumps(row, ensure_ascii=False) + "\n")
     (out / "summary.json").write_text(json.dumps(
         {"meta": meta, "aggregate": agg, "runs": [r.summary for r in runs]}, indent=2) + "\n")
     (out / "summary.md").write_text(render_md(meta, agg, runs))
