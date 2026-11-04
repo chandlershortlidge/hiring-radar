@@ -115,7 +115,7 @@ def test_clean_table_says_so_and_shows_both_run_ids():
     base = summary(f1=0.9237, run_id="20261101T100707Z_dev_x2-old", extractor="x2-old",
                    taxonomy_version=5)
     out = eval_table.render(eval_table.compare(cur, base), cur, base)
-    assert "No metric down more than 0.02" in out
+    assert "Nothing over the stop line" in out
     assert "do not merge" not in out
     assert "20261103T120000Z_dev_x2-new" in out and "20261101T100707Z_dev_x2-old" in out
     assert "skill list v8" in out and "skill list v5" in out
@@ -212,7 +212,7 @@ def test_exit_code_is_zero_on_a_clean_run(repo, monkeypatch, capsys):
     monkeypatch.setattr(eval_table, "ROOT", repo)
     good = repo / "evals/results/20261103T120000Z_dev_x2-uncommitted"
     assert eval_table.main([str(good)]) == 0
-    assert "No metric down more than 0.02" in capsys.readouterr().out
+    assert "Nothing over the stop line" in capsys.readouterr().out
 
 
 def test_a_run_id_resolves_as_well_as_a_path(repo):
@@ -259,3 +259,135 @@ def _fake_extract(version):
     m.DEFAULT_MODEL = "claude-sonnet-5-5"
     m.extractor_version = lambda tax, model: version
     return m
+
+
+# ------------------------------------------------- flipped Goldens (HIR-164)
+#
+# The gate's point: on 20 Goldens one yes/no answer is 0.05, so a fractional stop line
+# cannot separate one unlucky posting from a regression. These check that the attribute
+# scores are judged on counted flips, that the skill scores are not, and that a count
+# nobody can trust is never reported as if it were one.
+
+
+def hits(**by_metric):
+    """{metric: {golden_id: [hit per repeat]}}."""
+    return {m: dict(v) for m, v in by_metric.items()}
+
+
+def test_majority_over_repeats_ignores_one_unlucky_repeat():
+    assert eval_table._majority([True, True, False]) is True
+    assert eval_table._majority([False, False, True]) is False
+
+
+def test_a_tied_golden_is_evidence_for_neither_side():
+    assert eval_table._majority([True, False]) is None
+    assert eval_table._majority([]) is None
+
+
+def test_flip_is_counted_only_when_a_golden_goes_from_right_to_wrong(monkeypatch):
+    cur = hits(degree_accuracy={"golden_001": [False], "golden_002": [True],
+                                "golden_003": [True]})
+    base = hits(degree_accuracy={"golden_001": [True], "golden_002": [False],
+                                 "golden_003": [True]})
+    monkeypatch.setattr(eval_table, "per_golden_hits",
+                        lambda d, g: cur if str(d) == "cur" else base)
+    monkeypatch.setattr(eval_table, "reproduces_stored", lambda s, h: True)
+    out = eval_table.flip_counts(Path("cur"), Path("base"), {}, {}, {})
+    assert out["degree_accuracy"] == {"worse": 1, "better": 1, "n": 3}
+
+
+def test_a_golden_only_one_run_scored_is_never_a_flip(monkeypatch):
+    """Growing the dev set must not read as a regression."""
+    cur = hits(degree_accuracy={"golden_001": [True], "golden_099": [False]})
+    base = hits(degree_accuracy={"golden_001": [True]})
+    monkeypatch.setattr(eval_table, "per_golden_hits",
+                        lambda d, g: cur if str(d) == "cur" else base)
+    monkeypatch.setattr(eval_table, "reproduces_stored", lambda s, h: True)
+    out = eval_table.flip_counts(Path("cur"), Path("base"), {}, {}, {})
+    assert out["degree_accuracy"] == {"worse": 0, "better": 0, "n": 1}
+
+
+def test_more_flips_than_the_limit_stops_the_merge():
+    rows = eval_table.annotate_flips(
+        eval_table.compare(summary(degree_accuracy=0.80), summary(degree_accuracy=0.95)),
+        {"degree_accuracy": {"worse": 3, "better": 0, "n": 20}})
+    assert [r["metric"] for r in eval_table.regressions(rows)] == ["degree_accuracy"]
+
+
+def test_flips_at_the_limit_pass_even_though_the_drop_is_large():
+    """Two Goldens on a 20-Golden set is -0.10 — far past 0.02, and deliberately allowed."""
+    rows = eval_table.annotate_flips(
+        eval_table.compare(summary(degree_accuracy=0.85), summary(degree_accuracy=0.95)),
+        {"degree_accuracy": {"worse": 2, "better": 0, "n": 20}})
+    assert eval_table.regressions(rows) == []
+
+
+def test_improvements_never_stop_the_merge():
+    rows = eval_table.annotate_flips(
+        eval_table.compare(summary(degree_accuracy=0.95), summary(degree_accuracy=0.80)),
+        {"degree_accuracy": {"worse": 0, "better": 3, "n": 20}})
+    assert eval_table.regressions(rows) == []
+
+
+def test_a_skill_score_keeps_the_delta_rule_and_is_not_gated_on_flips():
+    rows = eval_table.annotate_flips(
+        eval_table.compare(summary(f1=0.90), summary(f1=0.95)),
+        {"degree_accuracy": {"worse": 0, "better": 0, "n": 20}})
+    assert [r["metric"] for r in eval_table.regressions(rows)] == ["f1"]
+
+
+def test_an_uncountable_flip_falls_back_to_the_delta_rule():
+    """No flips attached: the attribute score is judged on 0.02 like everything else."""
+    rows = eval_table.annotate_flips(
+        eval_table.compare(summary(degree_accuracy=0.80), summary(degree_accuracy=0.95)),
+        None)
+    assert [r["metric"] for r in eval_table.regressions(rows)] == ["degree_accuracy"]
+
+
+def test_relabelled_goldens_give_no_flip_count_rather_than_a_wrong_one(monkeypatch):
+    monkeypatch.setattr(eval_table, "per_golden_hits",
+                        lambda d, g: hits(degree_accuracy={"golden_001": [True]}))
+    monkeypatch.setattr(eval_table, "reproduces_stored", lambda s, h: False)
+    assert eval_table.flip_counts(Path("cur"), Path("base"), {}, {}, {}) is None
+
+
+def test_missing_predictions_give_no_flip_count(monkeypatch):
+    monkeypatch.setattr(eval_table, "per_golden_hits", lambda d, g: {})
+    assert eval_table.flip_counts(Path("cur"), Path("base"), {}, {}, {}) is None
+
+
+def test_reproduces_stored_rejects_a_run_whose_numbers_do_not_come_back():
+    stored = {"runs": [{"degree_accuracy": 1.0}]}
+    assert eval_table.reproduces_stored(
+        stored, hits(degree_accuracy={"golden_001": [True]})) is True
+    assert eval_table.reproduces_stored(
+        stored, hits(degree_accuracy={"golden_001": [False]})) is False
+
+
+def test_table_shows_flips_as_counts_and_names_them_in_the_stop_line():
+    cur, base = summary(degree_accuracy=0.80), summary(degree_accuracy=0.95,
+                                                       run_id="20261101T100707Z_dev_x2-old",
+                                                       extractor="x2-old")
+    rows = eval_table.annotate_flips(eval_table.compare(cur, base),
+                                     {"degree_accuracy": {"worse": 3, "better": 1, "n": 20}})
+    out = eval_table.render(rows, cur, base)
+    assert "| Goldens worse / better |" in out
+    assert "**3 / 1** ⚠" in out
+    assert "degree_accuracy (3 Goldens worse)" in out
+    assert "do not merge" in out and "Needs Chandler" in out
+
+
+def test_a_gated_row_does_not_also_flag_its_delta():
+    """A 0.05 move is one Golden. Marking it as a drop would contradict this gate."""
+    cur, base = summary(degree_accuracy=0.90), summary(degree_accuracy=0.95)
+    rows = eval_table.annotate_flips(eval_table.compare(cur, base),
+                                     {"degree_accuracy": {"worse": 1, "better": 0, "n": 20}})
+    out = eval_table.render(rows, cur, base)
+    assert "| degree_accuracy | 0.950 | 0.900 | -0.050 | 1 / 0 |" in out
+    assert "do not merge" not in out
+
+
+def test_table_says_when_flips_could_not_be_counted():
+    cur, base = summary(f1=0.90), summary(f1=0.91)
+    out = eval_table.render(eval_table.compare(cur, base), cur, base)
+    assert "could not be counted" in out and "relabelled" in out

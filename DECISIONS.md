@@ -5,6 +5,56 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-04 — The eval gate counts flipped Goldens, not fractions of a point (HIR-164)
+
+On 20 dev Goldens one Golden is 5% of a yes/no attribute score, so the gate's 0.02 stop
+line was smaller than the smallest move the measurement can make. Every single flip fired
+it and nothing distinguished noise from a regression: the first LangSmith comparison the
+same day showed production 0.98 → 0.85 — two or three Goldens on one repeat — and read as
+a stop-the-merge event.
+
+**For the four per-Golden attributes — seniority, German, degree, production — the gate now
+counts Goldens that flipped from right to wrong, and stops the PR at more than 2.** The
+skill scores (precision, recall, f1, requirement accuracy, grounding, rank) pool hundreds
+of mentions per run, so they keep the 0.02 rule.
+
+Why counts rather than a bigger threshold: a threshold scaled to the set size has to be
+re-chosen every time the set grows, and it still reports a 5% move on 20 Goldens and a 5%
+move on 100 as the same number when they are not the same evidence. A count says what
+actually happened — "two postings the model used to get right, it now gets wrong" — and
+stays meaningful at any size. The rule is written to hold as dev grows toward ~100; it is
+not a temporary scaffold to be removed at that point.
+
+How a flip is decided, and why:
+
+- A Golden counts as right in a run when it is right in **most of that run's repeats**, so
+  a single unlucky repeat is not a flip. With one repeat that is just the one answer.
+- Only Goldens **both** runs scored are counted, so growing the set never registers as
+  flips.
+- Correctness comes from `app/evaluation.attribute_hits`, which the live run and the table
+  both call, on the stored prediction. One code path on purpose: a gate that compared
+  attributes by its own slightly different rules could stop a PR the run called clean.
+- Improvements are counted and shown the same way, so the table says "2 worse, 1 better"
+  rather than implying every flip is a loss.
+
+**Repeats: routine changes run 1 repeat, releases and anything that trips the gate run 3.**
+100 Goldens × 3 repeats is 300 traces a run, about 16 runs a month inside the free
+LangSmith plan — enough to measure a release, not enough for every PR. One repeat is the
+cheap read; when it trips the gate, re-run at 3 before taking the number seriously, because
+a single repeat is exactly the noise this entry exists to tame. Three repeats stay
+mandatory for the held-out release gate.
+
+What this does not change: the trigger (a diff touching `app/extract.py` or
+`taxonomy/skills.json`), the requirement to commit `evals/results/<run_id>/` as the next
+baseline, the one version-check exemption, and held-out staying release-only.
+
+To undo: restore the single 0.02 rule for every metric in `scripts/eval_table.py` and in
+AGENTS.md "The eval gate". The stored runs need no change — flips are computed from
+`predictions.jsonl`, which every dev run already carries, so the rule can be changed in
+either direction without re-running anything.
+
+---
+
 ## 2026-11-04 — LangSmith watches the eval, and only the eval (HIR-78)
 
 Observability on this project starts at the regression eval, not in production. Whenever
