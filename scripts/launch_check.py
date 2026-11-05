@@ -40,12 +40,25 @@ counts normally — `ok`/`A`/`B`/an override puts the label back in the yardstic
 leaves it out and the extractor is charged for it as before. A verdict written by the judge
 model or the third labeller is not a hand-check: those items stay set aside.
 
-Invariants: read-only. `compare` and `unsure_rule` are pure — they take the label sets, or
-the queue items and their decisions, and return the result — so the arithmetic is testable
-without a database or a run directory. A posting the panel could not label (both labellers
-failed, or every label went to review) is reported as skipped, never scored as a
-disagreement. Skills only one labeller found, and skills neither found, are untouched by
-the unsure rule: they score as they always did.
+The panel check (HIR-149). Two cities can only be read against each other if their labels
+were produced the same way, and the first two runs this script was used on were not: New
+York was labelled by three labellers (a third checker, `gemini-4-argon`, was run on it)
+and Berlin by two, which made the two runs' "agreed" yardsticks differ in kind. That was
+visible only to someone listing the run directories by hand. So with `--baseline-run` the
+script now reads the labellers each run actually used — out of the runs' own files — and,
+when the two sets differ, prints one plain line **before** the numbers saying so and
+saying that the comparison should be read on the labellers both runs share. The scores
+still print: the comparison is not withheld, it is just no longer presented as clean.
+
+Invariants: read-only. `compare`, `unsure_rule` and `panel_line` are pure — they take the
+label sets, the queue items and their decisions, or the two labeller sets, and return the
+result — so the arithmetic and the warning are testable without a database or a run
+directory. A posting the panel could not label (both labellers failed, or every label went
+to review) is reported as skipped, never scored as a disagreement. Skills only one
+labeller found, and skills neither found, are untouched by the unsure rule: they score as
+they always did. The panel check never stops the check it annotates: a run that does not
+record its labellers reads as an unknown panel, which is reported as unknown rather than
+as even.
 
     uv run python scripts/launch_check.py --run 20261103T223629Z_label
     uv run python scripts/launch_check.py --run <new city run> --baseline-run <berlin run>
@@ -201,6 +214,71 @@ def score_run(run_id: str) -> tuple[dict, Run]:
     return compare(run.expected, predicted), run
 
 
+def _recorded_model(path: Path) -> set[str]:
+    """The labeller a run file says wrote it, as a one-element set, or nothing.
+
+    Unreadable is not the same as absent, but it is treated the same here on purpose: this
+    is an annotation on someone else's numbers, and it must not be able to stop them being
+    printed. An unreadable file leaves the panel looking incomplete, which `panel_line`
+    then reports as unknown rather than as even.
+    """
+    try:
+        model = json.loads(path.read_text()).get("model")
+    except (OSError, json.JSONDecodeError, AttributeError):
+        return set()
+    return {model} if model else set()
+
+
+def labellers(run_dir: Path) -> list[str]:
+    """The labellers actually present in one run, by model name, sorted.
+
+    Read from the run's own files rather than from its summary: the raw per-labeller files
+    (`raw/golden_NNN.A.json` and friends) are what a labeller leaves behind, and
+    `third_check.json` is what a third checker leaves behind — a panel of three shows up in
+    both. Model names, not the slot letters A/B/C, because the name is what tells a reader
+    that two runs used different families.
+
+    An empty list means the run does not say: its `raw/` directory is missing, or nothing
+    in it records a model. Never raises.
+    """
+    found: set[str] = set()
+    raw = run_dir / "raw"
+    if raw.is_dir():
+        for f in sorted(raw.glob("*.json")):
+            found |= _recorded_model(f)
+    found |= _recorded_model(run_dir / "third_check.json")
+    return sorted(found)
+
+
+def panel_line(new_id: str, new_panel: list[str], base_id: str,
+               base_panel: list[str]) -> str | None:
+    """The one line that goes before the numbers, or None when the panels match. Pure.
+
+    Three cases: the two runs used the same labellers (nothing to say); one of them does
+    not record its labellers (cannot be shown to be even, so say that); the sets differ
+    (say how, and on what the comparison should be read).
+    """
+    def names(panel):
+        return ", ".join(panel)
+
+    if not new_panel or not base_panel:
+        unknown = [rid for rid, panel in ((new_id, new_panel), (base_id, base_panel))
+                   if not panel]
+        return ("uneven panel: cannot tell — "
+                + plural(len(unknown), "run", "runs") + " " + ", ".join(unknown)
+                + " does not record which labellers it used, so the comparison below "
+                  "cannot be shown to have been labelled the same way in both cities; "
+                  "read it on the labellers both runs share.")
+    if sorted(new_panel) == sorted(base_panel):
+        return None
+    shared = sorted(set(new_panel) & set(base_panel))
+    return (f"uneven panel: this run was labelled by {names(new_panel)}; the baseline by "
+            f"{names(base_panel)}. The two runs' agreed labels therefore mean different "
+            "things, so the city-against-city comparison below should be read on the "
+            + (f"labellers both runs share ({names(shared)})." if shared
+               else "labellers both runs share — and they share none."))
+
+
 def per_posting(s: dict) -> dict:
     """Agreed labels and unagreed extras per posting — the two sides of precision, unmixed.
 
@@ -256,6 +334,14 @@ def main() -> None:
                     help="how many more unagreed extras per posting count as a real "
                          "difference rather than an arithmetic one (default 0.5)")
     args = ap.parse_args()
+
+    # Before any numbers: was this even a comparison between two cities, or between two
+    # panels? (HIR-149.) Only with a baseline — one run alone is not a comparison.
+    if args.baseline_run:
+        warning = panel_line(args.run, labellers(LABELING_DIR / args.run),
+                             args.baseline_run, labellers(LABELING_DIR / args.baseline_run))
+        if warning:
+            print(warning + "\n")
 
     s, run = score_run(args.run)
     print(counts_line(args.run, run))
