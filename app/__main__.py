@@ -31,7 +31,8 @@ from app import db  # noqa: E402
 from app.check import check_url, checked_coverage, job_coverage, log_check, reach_breakdown  # noqa: E402
 from app.extract import DEFAULT_MODEL, extract, make_client  # noqa: E402
 from app.ingest import ingest_one, job_id_for_screenshot, now_iso, store_screenshot  # noqa: E402
-from app.pipeline import extract_pending  # noqa: E402
+from app.labels import import_answers  # noqa: E402
+from app.pipeline import extract_pending, unlogged_extractions  # noqa: E402
 from app.poll import FEEDS_PATH, load_feeds, poll_feeds, select_feeds  # noqa: E402
 from app.sources import Posting  # noqa: E402
 from app.taxonomy import Taxonomy  # noqa: E402
@@ -58,7 +59,14 @@ def run_extraction(conn, limit=None, job_ids=None):
     report = extract_pending(conn, tax, lambda text, t, m: extract(text, t, client, m), DEFAULT_MODEL, limit,
                              job_ids=job_ids)
     print(report.line())
+    print(report.log_line(unlogged_extractions(conn)))
     return report
+
+
+def cmd_import_labels(args):
+    """Load each labeller's own answer from the run folders, so the panel's disagreement is
+    data in the database and not only files on someone's disk (HIR-170)."""
+    print(import_answers(open_db()).line())
 
 
 def cmd_poll(args):
@@ -283,6 +291,9 @@ def main(argv=None):
     p.add_argument("--dry-run", action="store_true", help="with --launch: decide and report, write nothing")
     p.set_defaults(fn=cmd_discover_boards)
     sub.add_parser("migrate").set_defaults(fn=cmd_migrate)
+    sub.add_parser("import-labels",
+                   help="load each labeller's own answer from evals/labeling/<run>/raw into the database"
+                   ).set_defaults(fn=cmd_import_labels)
     p = sub.add_parser("serve", help="run the dashboard API (and web/dist if built)")
     p.add_argument("--host", default="127.0.0.1"); p.add_argument("--port", type=int, default=int(os.environ.get("PORT", 8000)))
     p.add_argument("--reload", action="store_true"); p.set_defaults(fn=cmd_serve)
