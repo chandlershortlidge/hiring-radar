@@ -67,3 +67,25 @@ def test_a_non_golden_file_in_the_goldens_directory_is_not_read_as_a_golden(tmp_
     monkeypatch.setattr(ng, "GOLDENS", goldens)
     hashes, top = ng.existing()
     assert "abc" in hashes and top == 2
+
+
+# HIR-178: appetite wording ("eager to learn X", "interest in X") is nice_to_have.
+# Where the quote itself carries one of those phrases, the label rests on it, so a
+# `required` there contradicts LABELING.md rule 3 and the extractor prompt. A quote that
+# does not contain an appetite word is out of this guard's reach on purpose: whether the
+# appetite governs the skill is a reading, not a string match (golden_014 asks for
+# hands-on exposure and only wants the deepening, so it stays required).
+APPETITE_IN_QUOTE = ("eager to", "eagerness to", "interest in", "interested in", "keen to",
+                     "curious about", "excited by", "hungry to", "willing to learn",
+                     "interesse an", "interesse,", "interesse daran", "lust auf")
+
+
+def test_no_golden_quotes_appetite_wording_and_calls_it_required():
+    offenders = []
+    for path in sorted((ROOT / "evals" / "goldens").glob("golden_*.json")):
+        golden = json.loads(path.read_text())
+        for crit in golden.get("expected", []):
+            quote = (crit.get("raw_text") or "").lower()
+            if any(w in quote for w in APPETITE_IN_QUOTE) and crit["requirement"] != "nice_to_have":
+                offenders.append(f"{golden['id']}/{crit['skill_id']}: {crit['requirement']}")
+    assert offenders == [], "appetite wording labeled required: " + ", ".join(offenders)

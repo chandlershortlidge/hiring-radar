@@ -22,12 +22,12 @@
   "expected": [
     {
       "skill_id": "agents",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Interest in LLMs, AI agents, RAG, vector databases, knowledge graphs, and AI infrastructure"
     },
     {
       "skill_id": "ai-infrastructure",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Interest in LLMs, AI agents, RAG, vector databases, knowledge graphs, and AI infrastructure"
     },
     {
@@ -52,7 +52,7 @@
     },
     {
       "skill_id": "knowledge-graphs",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Interest in LLMs, AI agents, RAG, vector databases, knowledge graphs, and AI infrastructure"
     },
     {
@@ -67,7 +67,7 @@
     },
     {
       "skill_id": "llms",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Interest in LLMs, AI agents, RAG, vector databases, knowledge graphs, and AI infrastructure"
     },
     {
@@ -92,12 +92,12 @@
     },
     {
       "skill_id": "rag",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Interest in LLMs, AI agents, RAG, vector databases, knowledge graphs, and AI infrastructure"
     },
     {
       "skill_id": "vector-databases",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Interest in LLMs, AI agents, RAG, vector databases, knowledge graphs, and AI infrastructure"
     }
   ]

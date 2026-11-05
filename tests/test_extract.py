@@ -1,9 +1,12 @@
+from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
 
 from app import extract as ex
 from app.taxonomy import Taxonomy
+
+ROOT = Path(__file__).resolve().parent.parent
 
 JD = """Requirements:
 - 3+ years with Python and Large Language Models
@@ -219,8 +222,48 @@ def test_prompt_contains_no_golden_specific_text(tax):
     # when the rules they illustrate went into the prompt (DECISIONS 2026-10-29).
     for phrase in ("Agentic Coding Patterns", "Golden", "full-stack competence", "Elasticsearch, pgvector",
                    "structured operation", "production-quality agentic systems", "highly relevant",
-                   "production-oriented LLM workflows", "production-grade applications"):
+                   "production-oriented LLM workflows", "production-grade applications",
+                   # HIR-178: the appetite rule is illustrated in LABELING.md with the Goldens
+                   # that motivated it, but the prompt states it generically. These are the
+                   # dev/held-out JD phrases a first draft of rule 6 copied in by mistake.
+                   "dive deep into", "scikit-learn) and", "agentic ecosystems",
+                   "deepen this expertise", "love to hear from you"):
         assert phrase not in ex.PRINCIPLES
+
+
+# --- the appetite rule (HIR-178) -------------------------------------------------
+
+APPETITE_WORDS = ("eager to", "eagerness to", "interest in", "interested in", "keen to",
+                  "curious about", "excited by", "hungry to", "willing to learn",
+                  "Interesse an", "Lust auf")
+
+
+def test_appetite_words_are_named_in_the_prompt_and_the_guide():
+    """The rule has to be the same in both places, or the Goldens and the extractor are
+    judged by two rules (HIR-178, DECISIONS 2026-11-05)."""
+    # Both files wrap prose, so a phrase can straddle a newline: compare on one line.
+    flat = lambda s: " ".join(s.split())
+    guide = flat((ROOT / "evals" / "LABELING.md").read_text())
+    prompt = flat(ex.PRINCIPLES)
+    for word in APPETITE_WORDS:
+        assert word in prompt, f"{word!r} missing from the extractor prompt"
+        assert word in guide, f"{word!r} missing from the labeling guide"
+
+
+def test_appetite_rule_states_the_nice_to_have_direction():
+    # Guards against the rule surviving as prose that no longer says which label it gives.
+    assert "Wanting a skill is not having it" in ex.PRINCIPLES
+    block = ex.PRINCIPLES.split("Wanting a skill is not having it")[1]
+    assert '"nice_to_have" whatever the heading says' in block
+    assert "raw_text must include the appetite phrase" in block
+
+
+def test_guide_lists_the_appetite_rule_in_the_precedence_list():
+    guide = (ROOT / "evals" / "LABELING.md").read_text()
+    section = guide.split("## requirement:")[1].split("\n## ")[0]
+    assert "Four rules, in order of precedence" in section
+    assert "3. **Wanting a skill is not having it.**" in section
+    assert "4. **An unmarked item in a tech-stack list is `required`.**" in section
 
 
 # --- seniority -------------------------------------------------------------------

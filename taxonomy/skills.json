@@ -1,5 +1,5 @@
 {
-  "version": 9,
+  "version": 10,
   "skills": [
     {
       "id": "a-b-testing",
@@ -84,10 +84,30 @@
     },
     {
       "id": "ai-developer-tooling",
-      "display": "AI developer tooling",
+      "display": "AI Coding Tools",
       "aliases": [
         "coding agents",
-        "ai development tools"
+        "ai development tools",
+        "ai developer tooling",
+        "ai coding tools",
+        "ai coding assistants",
+        "ai coding agents",
+        "coding agent",
+        "agentic coding",
+        "agentic coding tools",
+        "ai-assisted coding",
+        "coding copilots",
+        "ai-assisted development tools",
+        "ai-assisted developer tooling",
+        "ai-powered development tools",
+        "ai-powered developer tools",
+        "ai dev tools",
+        "genai coding tools",
+        "ki-coding-agenten",
+        "ai-coding-copiloten",
+        "ki-gestützte tools",
+        "ki-entwicklungstools",
+        "coding-agenten"
       ],
       "parents": [],
       "reviewed": true

@@ -357,3 +357,73 @@ def test_v9_the_boundary_is_written_down_where_a_labeller_reaches_it():
         assert sid in section, sid
     labeling = (Path(__file__).resolve().parent.parent / "evals" / "LABELING.md").read_text()
     assert "taxonomy/README.md" in labeling
+
+
+# --- HIR-181: taxonomy v10, the AI-assisted-coding skill in the market's own words ---
+
+def test_v10_ai_coding_tools_is_the_display_name_and_the_id_is_unchanged():
+    # The chart reads "AI Coding Tools" — one posting uses exactly that phrase and four
+    # more say "AI coding tools". The id stays `ai-developer-tooling` because 70 stored
+    # postings and six Goldens point at it, and an id is never renamed once rows reference
+    # it (taxonomy/README.md). DECISIONS 2026-11-05, HIR-181.
+    t = Taxonomy.load()
+    assert t.version >= 10
+    assert t.skills["ai-developer-tooling"].display == "AI Coding Tools"
+
+
+def test_v10_the_old_display_name_still_resolves():
+    # "AI developer tooling" used to resolve as the display name, and two stored postings
+    # plus golden_009 quote it. Renaming without keeping the alias would send that phrase
+    # down extract.py's `new:` path as a *proposed* skill instead of a mention, and would
+    # stop web/src/cvSkills.js matching it in a CV. DECISIONS 2026-11-05, HIR-181.
+    t = Taxonomy.load()
+    for label in ("AI developer tooling", "ai developer tooling", "AI development tools"):
+        assert t.resolve(label) == "ai-developer-tooling", label
+
+
+def test_v10_the_market_spellings_resolve():
+    # Every one of these was read off a stored `skill_mention.raw_text` for this skill, in
+    # the 61 distinct quotes behind its 70 jobs — not guessed. DECISIONS 2026-11-05.
+    t = Taxonomy.load()
+    for label in (
+        "AI Coding Tools", "AI coding tools", "AI coding assistants", "AI coding agents",
+        "coding agents", "coding agent", "Agentic Coding", "agentic coding tools",
+        "AI-assisted coding", "coding copilots", "AI-assisted development tools",
+        "AI-assisted developer tooling", "AI-powered development tools",
+        "AI-powered developer tools", "AI dev tools", "GenAI coding tools",
+        # the German postings
+        "KI-Coding-Agenten", "AI-Coding-Copiloten", "KI-gestützte Tools",
+        "KI-Entwicklungstools", "Coding-Agenten",
+    ):
+        assert t.resolve(label) == "ai-developer-tooling", label
+
+
+def test_v10_leaves_out_the_phrases_that_belong_to_the_neighbours():
+    # "agentic development" and "agent-driven development" appear in real quotes but sit one
+    # word from `agents` (building agents) and `tool-calling` (a model calling tools), which
+    # the ticket names as the confusion to avoid. Bare "AI tools" / "KI-Tools" is too broad:
+    # a posting asking for them need not mean coding. DECISIONS 2026-11-05, HIR-181.
+    t = Taxonomy.load()
+    for label in ("agentic development", "agent-driven development", "AI tools", "KI-Tools"):
+        assert t.resolve(label) is None, label
+    assert t.resolve("agents") == "agents"
+    assert t.resolve("tool calling") == "tool-calling"
+
+
+def test_v10_cursor_and_copilot_still_hang_off_it():
+    # The two children are the specific tools under the renamed parent; the rename must not
+    # move them. DECISIONS 2026-11-05, HIR-181.
+    t = Taxonomy.load()
+    assert t.skills["cursor"].parents == ("ai-developer-tooling",)
+    assert t.skills["github-copilot"].parents == ("ai-developer-tooling",)
+    for sid in ("cursor", "github-copilot"):
+        assert "ai-developer-tooling" in t.ancestors(sid), sid
+
+
+def test_v10_aliases_clear_the_browser_matchers_minimum():
+    # cvSkills.js refuses any phrase under MIN_PHRASE = 3 characters, so an alias shorter
+    # than that would resolve a job posting and be silently ignored in a CV.
+    t = Taxonomy.load()
+    for a in t.skills["ai-developer-tooling"].aliases:
+        assert len(a) >= 3, a
+        assert a == a.strip().lower(), a

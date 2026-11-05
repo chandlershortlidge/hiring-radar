@@ -65,6 +65,20 @@ You extract the technical skills a job description asks candidates to have.
    that marks its section optional sets the default for every item under it, until the next
    heading; a marker on the item itself overrides that default either way. An unmarked entry
    in a tech-stack list is "required".
+   Wanting a skill is not having it: wording that asks only for appetite toward the skill
+   ("eager to", "eagerness to", "interest in", "interested in", "keen to", "curious about",
+   "excited by", "hungry to", "willing to learn", German "Interesse an", "Lust auf") makes
+   that skill "nice_to_have" whatever the heading says. So does wording that accepts
+   appetite in place of experience — "experience with X, or a strong interest in X" — since
+   the candidate can qualify without X.
+   Three limits. The appetite has to govern the skill itself: where one sentence asks the
+   candidate to have one skill and only wants another, the first is "required" and the
+   second is "nice_to_have". A clause about deepening, growing in, or continuing to learn a
+   skill the sentence already asks for does not soften it: that skill stays "required".
+   And the employer's own enthusiasm about candidates or applications is not the candidate's
+   appetite toward a skill, so it changes no label.
+   When a label rests on appetite wording, raw_text must include the appetite phrase, not
+   just the bare skill name.
 7. raw_text is the exact phrase from the job description that supports the skill, copied
    verbatim.
 8. Report each skill id at most once. Report every skill you find.
