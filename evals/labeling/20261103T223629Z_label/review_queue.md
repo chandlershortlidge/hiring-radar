@@ -417,7 +417,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: drop
 
 ## 36. golden_051 - skill `software-architecture` (uncertain)
 
@@ -593,7 +593,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 52. golden_057 - skill `ml-engineering` (uncertain)
 
@@ -681,7 +681,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 60. golden_061 - attribute `degree` (uncertain)
 
@@ -714,7 +714,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 63. golden_061 - skill `machine-learning` (uncertain)
 
@@ -769,7 +769,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 68. golden_061 - skill `testing` (uncertain)
 
@@ -780,7 +780,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 69. golden_062 - skill `agents` (uncertain)
 
