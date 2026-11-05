@@ -1,10 +1,3 @@
-# Decisions Log
-
-What we decided, why, and what we tried that didn't work — so nobody (person or agent)
-re-treads a dead end or undoes a decision without knowing the reason. Newest first.
-
----
-
 ## 2026-11-05 — Job family is a title rule (v1) (HIR-186)
 
 Decision: every job carries one of five job families — `ai-engineer`, `ml-engineer`,
@@ -55,6 +48,71 @@ To undo: revert the HIR-186 commits and drop the column; the filter is additive,
 earlier number changes. A model-assigned family can replace the rule later without the
 column, the API parameter or the dashboard control changing — only `family_of` and the
 extractor would.
+
+---
+
+## 2026-11-05 — `ai-deployment` is not narrowed: the two spot-check rejections were item-level calls (HIR-183)
+
+Chandler was asked whether to narrow `ai-deployment`, and chose not to. **The skill list and
+`evals/LABELING.md` are unchanged by this decision, and no boundary between `ai-deployment`
+and `mlops` is written down.** Recording the measurement here so this is not re-asked.
+
+**What prompted it.** Of the 11 `unsure` skills he hand-checked under HIR-159, he rejected 2,
+and both were `ai-deployment`: New York/ramp on the `raw_text` "deployment trade-offs" (a
+fragment of "Strong fundamentals in ML/GenAI, including problem decomposition, evaluation, and
+deployment trade-offs"), and Berlin/Bluefish on "Extensive experience with training and
+deploying machine learning models". Two of two looked like it might imply a narrower skill than
+the stored mentions reflect.
+
+**It does not, and the rules already said so.** Two standing rules settle most of it. The
+2026-11-01 entry below (HIR-101) draws `ai-deployment` against generic deployment: bare
+"deployment" is "ordinary software delivery, not deploying a model", a false positive in
+practice, while `model deployment` / `ml model deployment` "cover the narrow sense". That
+disposes of the New York quote with no rule change at all. And DECISIONS 2026-11-04 (HIR-159)
+plus `evals/LABELING.md` protocol rule 8 say a verdict that calls a label wrong scores that one
+posting and goes to `corrections_to_decide` — it never rewrites the taxonomy. So "no rule
+change" was already the default; narrowing would have been a separate, deliberate act.
+
+**The measurement, on 5 Nov 2026 (36 stored `skill_mention` rows for `ai-deployment`).** Split
+by whether the quote names a model at all, and then by wording:
+
+| Group | Mentions |
+| --- | --- |
+| Bare "deployment" — no model/ML/AI/KI word in the quote | 8 |
+| Names a model, explicit first-hand experience wording ("Experience deploying…", "hands-on", "Erfahrung", "You've deployed…") | 14 |
+| Names a model, deployment as a task or topic ("Training, Fine-Tuning und Deployment von…", "designing, training, tuning, and deploying models") | 14 |
+
+So the three candidate lines were **36 → 28** (drop only the bare ones), **36 → 14** (require
+first-hand experience wording), and **36 → 5** (require deployment-machinery wording:
+serving, monitoring, scaling, maintaining, produktiver Betrieb — only 5 of the 28 qualify,
+which would take the skill off the chart). Chandler was given all three numbers and chose
+**36 → 28**: the Berlin posting keeps its label, and that stays a one-posting call.
+
+**Why a first-hand-experience rule was rejected on its own merits, not just on cost.** It would
+not have excluded the quote that prompted the question. "Extensive experience with training and
+deploying machine learning models" *is* first-hand experience wording, so a rule requiring
+first-hand experience keeps it. Its stated mechanism — that "knowledge of X" wording would then
+map nowhere — only reaches the New York quote, which the 2026-11-01 rule already handles. It
+would also have contradicted `evals/LABELING.md` requirement rule 3, which says knowledge
+wording ("You have basic knowledge of ML libraries" → `scikit-learn` stays `required`,
+golden_020) counts as asking for the skill; editing that is a stop-list change that invalidates
+every stored eval result. All cost, no effect on the motivating case.
+
+**Merging `ai-deployment` into `mlops` was also rejected, on the data.** Only 9 of
+`ai-deployment`'s 36 jobs also carry `mlops` (2 carry `model-serving`), so postings are using
+them as different things. Counts that day: `mlops` 49 jobs, `ai-deployment` 36, `model-serving`
+23, `devops` 16, `llmops` 8.
+
+**The 8 bare mentions are handled separately, as HIR-183 did not cover them.** They are wrong
+under the 2026-11-01 rule whichever way this went — they arrived as extractor output, which
+that entry's alias reasoning never reached. Filed as HIR-185 (`attended`, because dropping
+stored rows moves counts the dashboard has already shown): jobs 18, 114, 125, 126, 211, 213,
+329, 420, every one of which carries `ai-deployment` *only* through a bare quote, so the skill
+goes from 36 jobs to 28 when they are corrected.
+
+**To undo.** Nothing to revert — no code, skill list, guide or stored data changed in this
+ticket. Re-opening the question means re-opening HIR-183, and the numbers above are the
+starting point rather than something to re-measure.
 
 ---
 
