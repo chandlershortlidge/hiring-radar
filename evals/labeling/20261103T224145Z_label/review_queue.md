@@ -472,7 +472,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 41. golden_050 - skill `machine-learning` (uncertain)
 
@@ -626,7 +626,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: drop
 
 ## 55. golden_055 - skill `model-development` (uncertain)
 
@@ -714,7 +714,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 63. golden_057 - skill `testing` (uncertain)
 
@@ -736,7 +736,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 65. golden_059 - skill `llms` (uncertain)
 
@@ -824,7 +824,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 73. golden_062 - attribute `german` (uncertain)
 
