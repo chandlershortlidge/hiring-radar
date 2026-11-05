@@ -9,7 +9,8 @@ Does:
   - look the job up by exact (source, source_job_id), then by company + text containment
     against stored jobs (the page may have been stored via another source, e.g. arbeitnow);
   - for a page that is not a known ATS, read the posting out of JSON-LD `JobPosting` when
-    the page has it, otherwise the stripped page text;
+    the page has it, otherwise the stripped page text; a Personio tenant serving no
+    JSON-LD still gives up its company and city, out of the payload it embeds;
   - diagnose a miss: board not in config/feeds.json; board polled but the title or city
     filter would have dropped it; board polled and it would have passed (a feed bug, or
     posted since the last poll); not a feed-reachable page at all.
@@ -71,6 +72,11 @@ _FETCHERS = {"greenhouse": greenhouse.fetch, "lever": lever.fetch, "ashby": ashb
 # token (Greenhouse's own embed-code snippet names it exactly this way), independent of which
 # greenhouse.io host happens to be serving it (boards. or job-boards., plain or .eu).
 _EMBED_TOKEN_RE = re.compile(r"greenhouse\.io/embed/job_board(?:/js)?\?(?:[^\"'\s>]*&)?for=(?P<token>[\w-]+)", re.I)
+
+# One Personio tenant per subdomain, on either of the two hosts Personio serves them from
+# (`acto.jobs.personio.com`, `adsquare.jobs.personio.de`). Not an ATS pattern: a Personio
+# job URL is read as a page, not resolved to a board — see `_personio_fields`.
+_PERSONIO_HOST_RE = re.compile(r"(?:^|\.)jobs\.personio\.(?:com|de)$", re.I)
 
 
 @dataclass(frozen=True)
@@ -184,6 +190,40 @@ def _location_of(jp: dict) -> str | None:
     return "; ".join(p for p in places if p) or None
 
 
+def _personio_field(flat: str, pattern: str) -> str | None:
+    """One string value out of Personio's payload, JSON escapes decoded. None when absent or blank."""
+    m = re.search(pattern, flat)
+    if not m:
+        return None
+    try:
+        value = json.loads(f'"{m["v"]}"')
+    except ValueError:
+        value = m["v"]
+    return value.strip() or None
+
+
+def _personio_fields(markup: str) -> tuple[str | None, str | None]:
+    """(company, location) out of the Next.js payload a Personio tenant embeds in its page.
+
+    The tenants that serve no JSON-LD still carry the posting as JSON inside a JavaScript
+    string, so its quotes arrive backslash-escaped (`\\"main_office\\":\\"Berlin\\"`);
+    dropping that escaping first lets one plain pattern read either form. The payload is
+    preferred over the visible location label because the label's CSS class carries a
+    build hash that changes between Personio releases.
+
+    `main_office` ("Berlin", "Berlin (Remote)") is the city as the page shows it next to
+    the title, and `city_of` reads a tracked city out of either; the first office address
+    is the fallback, by its `name` and not its `city`, because a remote posting puts
+    "Remote" in `city` and the city in `state`. Company is blank on some tenants — those
+    still need `--company`.
+    """
+    flat = markup.replace('\\"', '"')
+    company = _personio_field(flat, r'"company_name"\s*:\s*"(?P<v>[^"]*)"')
+    location = (_personio_field(flat, r'"main_office"\s*:\s*"(?P<v>[^"]*)"')
+                or _personio_field(flat, r'"office_addresses"\s*:\s*\[\s*\{\s*"name"\s*:\s*"(?P<v>[^"]*)"'))
+    return company, location
+
+
 def posting_from_html(url: str, markup: str, company: str | None = None,
                       title: str | None = None, location: str | None = None) -> tuple[Posting, str]:
     """Build a Posting from a careers page. Returns (posting, how), how ∈ {'json-ld', 'page-text', 'meta-description'}.
@@ -193,6 +233,11 @@ def posting_from_html(url: str, markup: str, company: str | None = None,
     what the page cannot say for itself. A JavaScript-rendered page (jobs.gem.com) has
     almost no body text; when its meta description is longer, that is the description.
     Explicit flags override JSON-LD fields.
+
+    A Personio tenant that serves no JSON-LD is the one page-text case where company and
+    location can still be read off the page, out of the payload Personio embeds
+    (`_personio_fields`); `--company`/`--location` override that too. `how` keeps naming
+    where the *description* came from, which on those pages is still the page text.
     """
     p = _PageParser()
     p.feed(markup)
@@ -218,9 +263,12 @@ def posting_from_html(url: str, markup: str, company: str | None = None,
     text, how = html_to_text(markup), "page-text"
     if len(p.meta_description) > len(text):
         text, how = p.meta_description, "meta-description"
+    page_company = page_location = None
+    if _PERSONIO_HOST_RE.search(urllib.parse.urlparse(url).hostname or ""):
+        page_company, page_location = _personio_fields(markup)
     return Posting(
-        source="url", source_job_id="", url=url, company=company,
-        title=title or p.title.strip(), location_raw=location,
+        source="url", source_job_id="", url=url, company=company or page_company,
+        title=title or p.title.strip(), location_raw=location or page_location,
         description_text=text,
     ), how
 
