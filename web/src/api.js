@@ -22,6 +22,7 @@ function qs(params) {
 export const filterParams = (f) => ({
   city: f.compare ? [] : f.cities,
   seniority: f.seniorities,
+  family: f.families,
   requirement: f.requirement,
   window: f.window,
   german: f.german,
