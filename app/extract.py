@@ -22,6 +22,11 @@ Invariants:
   - A call that does not produce exactly one record_skills tool call raises
     ExtractionError. tool_choice is "auto" (forced tool use is rejected by current
     models), so the prompt asks for the call and `strict` keeps its arguments valid.
+  - A tool call that carries nothing at all — no skills, nothing proposed, nothing
+    rejected, and none of the four attributes — raises ExtractionError too (HIR-172). A
+    well-formed empty call is a failed read, not a posting without skills: the caller
+    leaves the job unstamped and counts it as failed, instead of storing a blank job that
+    looks processed. Zero skills *with* any attribute found stays a success.
 """
 
 import hashlib
@@ -435,12 +440,22 @@ def extract(jd_text: str, tax: Taxonomy, client, model: str = DEFAULT_MODEL) -> 
         raise ExtractionError("tool input has no 'skills' list")
 
     mentions, proposed, rejected = parse_skills(items, tax, jd_text)
+    seniority = parse_seniority(blocks[0].input, jd_text)
+    german = parse_german(blocks[0].input, jd_text)
+    degree = parse_degree(blocks[0].input, jd_text)
+    production = parse_production(blocks[0].input, jd_text)
+    if not (mentions or proposed or rejected) and (
+            (seniority, german, degree, production)
+            == (NO_SENIORITY, NO_GERMAN, NO_DEGREE, NO_PRODUCTION)):
+        raise ExtractionError(
+            "tool call carried nothing: no skills and no seniority/german/degree/production")
+
     usage = getattr(response, "usage", None)
     return Extraction(
-        seniority=parse_seniority(blocks[0].input, jd_text),
-        german=parse_german(blocks[0].input, jd_text),
-        degree=parse_degree(blocks[0].input, jd_text),
-        production=parse_production(blocks[0].input, jd_text),
+        seniority=seniority,
+        german=german,
+        degree=degree,
+        production=production,
         mentions=mentions,
         proposed=proposed,
         rejected=rejected,
