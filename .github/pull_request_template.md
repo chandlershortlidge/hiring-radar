@@ -37,8 +37,11 @@ extractor change is measured against.
 Or, if `scripts/eval_table.py --version-check` said MATCH: paste its two version lines and
 say the run was skipped because the committed baseline already scored this extractor.
 
-A metric down more than 0.02 is on the stop list: say so here, label the PR
-needs-chandler, and don't merge. -->
+Either stop line puts the PR on the stop list - a per-Golden attribute score (seniority,
+German, degree, production) that lost more than 2 Goldens, or a skill score down more than
+0.02. Say so here, label the PR needs-chandler, and don't merge. The "Goldens worse /
+better" column is what decides the attribute rows; their delta is context, so don't read a
+0.05 move there as a regression - it is one posting (HIR-164). -->
 
 ## Testing
 

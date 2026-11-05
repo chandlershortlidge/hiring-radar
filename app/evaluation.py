@@ -234,6 +234,62 @@ class RunResult:
     predictions: dict[str, dict] = field(default_factory=dict)
 
 
+# The four per-Golden attributes the eval gate counts flips on (HIR-164). Each is one
+# yes/no answer per Golden, so on a small dev set one Golden is a large slice of the score
+# and a fractional threshold cannot separate noise from a regression. The skill scores pool
+# hundreds of mentions and keep the 0.02 rule. See DECISIONS 2026-11-04 (HIR-164).
+ATTRIBUTE_METRICS = ("seniority_accuracy", "german_accuracy", "degree_accuracy",
+                     "production_accuracy")
+
+# metric name -> the GoldenScore/attribute_pairs key holding its (expected, predicted) pair
+_PAIR_OF = {"german_accuracy": "german", "degree_accuracy": "degree",
+            "production_accuracy": "production"}
+
+
+def attribute_pairs(g: dict, prediction: dict) -> dict:
+    """The expected/predicted attribute arguments for one Golden, off a stored prediction.
+
+    Returns exactly the attribute keyword arguments `score_golden` takes. The live run and
+    anything that re-reads `predictions.jsonl` later both go through here, so the eval gate's
+    flip counts and the run's own accuracies can never drift apart (HIR-164) — a gate that
+    compared attributes by its own slightly different rules could stop a PR the run called
+    clean. `prediction` is the dict `_score_one` stores, including the `{"error": ...}` form,
+    where every predicted side is absent and reads as "said nothing".
+    """
+    sen = prediction.get("seniority") or {}
+    ger = prediction.get("german") or {}
+    deg = prediction.get("degree") or None
+    prod = prediction.get("production") or {}
+    return {
+        "seniority_expected": g.get("seniority"),
+        "seniority_predicted": sen.get("level"),
+        "seniority_labeled": "seniority" in g,
+        "german": (g["german"], ger.get("requirement")) if "german" in g else None,
+        "degree": ((g["degree"], bool(g.get("degree_or_equivalent"))),
+                   (deg.get("level"), deg.get("or_equivalent")) if deg else (None, False)
+                   ) if "degree" in g else None,
+        "production": (g["production"], prod.get("requirement")) if "production" in g else None,
+        "production_signal": (g.get("production_signal"), prod.get("signal")) if "production" in g else None,
+    }
+
+
+def attribute_hits(g: dict, prediction: dict) -> dict[str, bool | None]:
+    """Per-attribute correctness for one Golden: True, False, or None when not scored.
+
+    None means the Golden does not carry that attribute, so it is outside the metric's
+    denominator — never counted as a miss, and never as a flip.
+    """
+    p = attribute_pairs(g, prediction)
+    hits: dict[str, bool | None] = {
+        "seniority_accuracy": (p["seniority_predicted"] == p["seniority_expected"])
+        if p["seniority_labeled"] else None,
+    }
+    for metric, key in _PAIR_OF.items():
+        pair = p[key]
+        hits[metric] = None if pair is None else pair[0] == pair[1]
+    return hits
+
+
 def _score_one(g: dict, extract_fn, span):
     """One Golden: extract, score, report. Returns (predicted_mentions, prediction, score).
 
@@ -246,11 +302,7 @@ def _score_one(g: dict, extract_fn, span):
         prediction = {"error": f"{type(e).__name__}: {e}"}
         score = GoldenScore(
             g["id"], [], [], sorted(x["skill_id"] for x in g["expected"]), 0, error=str(e),
-            seniority_expected=g.get("seniority"), seniority_labeled="seniority" in g,
-            german=(g["german"], None) if "german" in g else None,
-            degree=((g["degree"], bool(g.get("degree_or_equivalent"))), (None, False)) if "degree" in g else None,
-            production=(g["production"], None) if "production" in g else None,
-            production_signal=(g.get("production_signal"), None) if "production" in g else None)
+            **attribute_pairs(g, prediction))
         return [], prediction, score
 
     pred = [{"skill_id": m.skill_id, "requirement": m.requirement, "raw_text": m.raw_text} for m in ex.mentions]
@@ -273,14 +325,7 @@ def _score_one(g: dict, extract_fn, span):
     score = score_golden(g["id"], g["expected"], pred,
                          grounding=grounding(g["job_description"], ex.mentions,
                                              ex.proposed, ex.rejected),
-                         seniority_expected=g.get("seniority"),
-                         seniority_predicted=sen.level if sen else None,
-                         seniority_labeled="seniority" in g,
-                         german=(g["german"], ger.requirement if ger else None) if "german" in g else None,
-                         degree=((g["degree"], bool(g.get("degree_or_equivalent"))),
-                                 (deg.level, deg.or_equivalent) if deg else (None, False)) if "degree" in g else None,
-                         production=(g["production"], prod.requirement if prod else None) if "production" in g else None,
-                         production_signal=(g.get("production_signal"), prod.signal if prod else None) if "production" in g else None)
+                         **attribute_pairs(g, prediction))
     return pred, prediction, score
 
 

@@ -147,8 +147,8 @@ uv run pytest                # tests — model calls are always mocked
 
 # Live eval (~20 model calls per repeat). Key comes from the environment or .env:
 cp .env.example .env         # then put the key in .env — it is gitignored; never commit it
-uv run python scripts/run_eval.py --repeats 1     # quick look
-uv run python scripts/run_eval.py                 # dev split, 3 repeats → evals/results/<run_id>/
+uv run python scripts/run_eval.py --repeats 1     # a routine change → evals/results/<run_id>/
+uv run python scripts/run_eval.py                 # 3 repeats: a release, or 1 repeat tripped the gate
 
 # Required before a PR that touches app/extract.py or taxonomy/skills.json can merge
 # (AGENTS.md "The eval gate"): run the dev eval above, then
@@ -285,8 +285,12 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   `jsearch.is_headline`, deletes only jobs with a jsearch source row, cascades their skill
   mentions. `--dry-run` first. See DECISIONS 2026-11-02 (HIR-104).
 - `scripts/eval_table.py` — the eval gate's table: finds the newest *committed* dev run,
-  compares every aggregate metric with it, marks any drop past the 0.02 stop line, and
-  exits non-zero if there is one. `--version-check` answers whether the baseline already
+  compares every aggregate metric with it, and exits non-zero on either stop line — a
+  per-Golden attribute score that lost more than 2 Goldens, or a skill score down more than
+  0.02 (HIR-164). Flips come from rescoring both runs' `predictions.jsonl` through
+  `app.evaluation.attribute_hits`, the function the runs scored with; when rescoring no
+  longer reproduces what a run recorded, the Goldens were relabelled since and it says so
+  instead of reporting a count. `--version-check` answers whether the baseline already
   measured this extractor (the gate's one exemption). Calls no model and writes nothing.
 - `scripts/new_goldens.py` — draft unlabeled held-out Goldens from DB jobs
   (`--german N` or `--ids ...`); run_eval skips files with `"draft": true`.
@@ -343,8 +347,14 @@ The trigger is mechanical, so nobody has to judge it: **the diff touches
 `app/extract.py` or `taxonomy/skills.json`** — the two inputs to `extractor_version`.
 Then, before the PR is reviewable:
 
-1. `uv run python scripts/run_eval.py` on the branch. Dev split, 3 repeats, about 20 model
+1. `uv run python scripts/run_eval.py --repeats 1` on the branch. Dev split, about 20 model
    calls per repeat — cents, not the ~€3 that re-reading every job costs on merge.
+   **One repeat for a routine change, 3 before a release or when 1 repeat trips the gate**
+   (DECISIONS 2026-11-04): a single repeat is the cheap read, and when it stops the merge
+   you re-run at `--repeats 3` before believing the number, because one repeat is exactly
+   the noise the gate exists to tame. 100 Goldens × 3 repeats is 300 traces, about 16 runs
+   a month inside the free LangSmith plan — enough for releases, not for every PR.
+   The held-out release gate always runs 3.
 2. `uv run python scripts/eval_table.py <run_id>` and paste its output into the PR body
    under a `## Eval (dev)` heading. It compares every metric with the last committed dev
    run and shows the deltas.
@@ -353,9 +363,27 @@ Then, before the PR is reviewable:
    re-baseline step — and a PR that runs the eval without committing it leaves the next
    change nothing to compare against.
 
-A metric down more than 0.02 against that baseline is on the stop list below: say so in
-the PR, don't merge, and ask. A smaller move is noise on 20 Goldens — note it in the PR
-and carry on.
+**Two stop lines, because the metrics carry very different amounts of evidence**
+(DECISIONS 2026-11-04, HIR-164). `eval_table.py` applies both and exits non-zero on either,
+so this is not a judgment call:
+
+- **The four per-Golden attribute scores** — seniority, German, degree, production — are
+  gated on **Goldens that flipped from right to wrong: more than 2 stops the merge.** Each
+  is one yes/no answer per Golden, so on a 20-Golden set one posting is 0.05 of the score
+  and a fractional threshold cannot tell one unlucky posting from a regression. The table's
+  "Goldens worse / better" column is the number that decides; the Δ beside it is context,
+  not a stop line. Don't read a 0.05 drop here as a regression — it is one posting.
+- **The skill scores** — precision, recall, f1, requirement accuracy, grounding, rank — pool
+  hundreds of mentions a run, so they keep the **0.02** drop rule. A smaller move is noise;
+  note it in the PR and carry on.
+
+Either kind of stop is on the stop list below: say so in the PR, don't merge, and ask.
+
+Flips are counted by rescoring both runs' stored predictions, so if the table says they
+**could not be counted**, read it: either a run has no `predictions.jsonl`, or the Goldens
+were relabelled since a run and the two are no longer comparable Golden by Golden. The gate
+then falls back to 0.02 for everything, which on a small dev set is strict — a flagged
+attribute there may well be one posting. Say which case it is in the PR.
 
 **One exemption, and it must be evidenced.** Run
 `uv run python scripts/eval_table.py --version-check`. If it answers MATCH, the committed
@@ -508,8 +536,9 @@ is never asked again.
 - any edit to `evals/LABELING.md` or to an attribute's definition (invalidates every eval)
 - `ACTIVE_CITIES`; what the public site stores, shows, or sends to a provider; spend
 - deleting or rewriting stored jobs, Goldens, or eval results
-- an eval metric down more than 0.02 against the last committed run (the eval gate
-  above; the run itself is not a question, only a drop this size is)
+- an eval score over either stop line against the last committed run: a per-Golden
+  attribute score that lost **more than 2 Goldens**, or a skill score **down more than
+  0.02** (the eval gate above; the run itself is not a question, only a result this size is)
 - the branch and `TICKET` disagree; a hot-spot file is already changed on another branch
 - a PR that changes the agents' own rules — `.claude/`, `AGENTS.md`, the PR template,
   `.github/workflows/` (the rules gate above). The reviewer is what asks, by adding the

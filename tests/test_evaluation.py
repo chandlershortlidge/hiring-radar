@@ -219,3 +219,100 @@ def test_grounding_accuracy_is_none_when_the_model_returned_no_quotes():
     s = ev.summarize([ev.score_golden("g", [e("a")], [])], {"g": [e("a")]}, {"g": []})
     assert s["grounding_accuracy"] is None
     assert s["grounding_n"] == 0
+
+
+# ------------------------------------- attribute_hits: one scorer, two readers (HIR-164)
+#
+# The eval gate counts Goldens that flipped right -> wrong, and it counts them by rescoring
+# a finished run's stored predictions. That is only honest if rescoring agrees with what the
+# run itself recorded, so the agreement is the property under test here — not the formatting.
+
+
+def _golden_set():
+    from app.extract import Degree, German, Production, Seniority
+    goldens = [
+        {"id": "g1", "job_description": "a", "expected": [e("a")],
+         "seniority": "junior", "german": None, "degree": None, "production": None},
+        {"id": "g2", "job_description": "b", "expected": [e("b")],
+         "seniority": "senior", "german": "required", "degree": "master",
+         "degree_or_equivalent": True, "production": "required"},
+        {"id": "g3", "job_description": "c", "expected": [e("c")]},  # unlabeled throughout
+    ]
+    pred = {
+        "a": (Seniority("junior", "stated", "Junior"), German(None, None, None),
+              Degree(None, None, False, None), Production(None, None, None)),
+        "b": (Seniority("mid", "inferred", None), German("nice_to_have", "stated", "plus"),
+              Degree("master", "required", False, "M.Sc."),
+              Production("nice_to_have", "stated", "shipped")),
+        "c": (Seniority("senior", "stated", "Senior"), German("required", "stated", "German"),
+              Degree("phd", "required", False, "PhD"),
+              Production("required", "stated", "production")),
+    }
+
+    def fake(text):
+        x = _extraction([text])
+        x.seniority, x.german, x.degree, x.production = pred[text]
+        return x
+
+    return goldens, fake
+
+
+def test_rescoring_stored_predictions_reproduces_the_run_it_came_from():
+    """The invariant the eval gate rests on: the table's flip counts and the run's own
+    accuracies come from the same function, so they cannot drift apart."""
+    goldens, fake = _golden_set()
+    result = ev.run_once(goldens, fake)
+    by_id = {g["id"]: g for g in goldens}
+
+    for metric in ev.ATTRIBUTE_METRICS:
+        scored = [h for gid, pred in result.predictions.items()
+                  if (h := ev.attribute_hits(by_id[gid], pred)[metric]) is not None]
+        mine = sum(1 for h in scored if h) / len(scored) if scored else None
+        assert mine == pytest.approx(result.summary[metric]), metric
+
+
+def test_an_unlabeled_attribute_is_not_scored_rather_than_counted_wrong():
+    goldens, fake = _golden_set()
+    predictions = ev.run_once(goldens, fake).predictions
+    g3 = next(g for g in goldens if g["id"] == "g3")
+    assert ev.attribute_hits(g3, predictions["g3"]) == {
+        m: None for m in ev.ATTRIBUTE_METRICS}
+
+
+def test_a_right_answer_is_a_hit_and_a_wrong_one_is_a_miss():
+    goldens, fake = _golden_set()
+    predictions = ev.run_once(goldens, fake).predictions
+    g1 = next(g for g in goldens if g["id"] == "g1")
+    g2 = next(g for g in goldens if g["id"] == "g2")
+    assert ev.attribute_hits(g1, predictions["g1"]) == {
+        "seniority_accuracy": True, "german_accuracy": True,
+        "degree_accuracy": True, "production_accuracy": True}
+    # g2: seniority mid vs senior, german nice_to_have vs required, degree or_equivalent
+    # mismatch, production nice_to_have vs required — every one wrong
+    assert ev.attribute_hits(g2, predictions["g2"]) == {
+        "seniority_accuracy": False, "german_accuracy": False,
+        "degree_accuracy": False, "production_accuracy": False}
+
+
+def test_a_golden_whose_extraction_failed_scores_as_said_nothing():
+    """The error path and the normal path go through the same helper, so a crashed Golden
+    is a miss on every attribute it carries a label for — never an unscored gap."""
+    goldens = [{"id": "g1", "job_description": "a", "expected": [e("a")],
+                "seniority": "junior", "german": "required", "degree": "master",
+                "production": "required"}]
+
+    def boom(text):
+        raise RuntimeError("no")
+
+    result = ev.run_once(goldens, boom)
+    assert ev.attribute_hits(goldens[0], result.predictions["g1"]) == {
+        "seniority_accuracy": False, "german_accuracy": False,
+        "degree_accuracy": False, "production_accuracy": False}
+
+
+def test_a_label_of_none_is_a_label_and_a_none_prediction_matches_it():
+    g = {"id": "g1", "job_description": "a", "expected": [], "german": None,
+         "production": None}
+    assert ev.attribute_hits(g, {"error": "boom"})["german_accuracy"] is True
+    assert ev.attribute_hits(g, {"error": "boom"})["production_accuracy"] is True
+    assert ev.attribute_hits(g, {"error": "boom"})["seniority_accuracy"] is None
