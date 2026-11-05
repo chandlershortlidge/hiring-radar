@@ -60,6 +60,7 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
             c.close()
 
     def filters(city: list[str] = Query(default=[]), seniority: list[str] = Query(default=[]),
+                family: list[str] = Query(default=[]),
                 requirement: str = "required", window: str = "open", german: str = "any", degree: str = "any",
                 production: str = "any",
                 skill: list[str] = Query(default=[]), q_: str = Query(default="", alias="q"),
@@ -67,6 +68,9 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
         for s in seniority:
             if s not in q.SENIORITIES:
                 raise HTTPException(422, f"bad seniority {s!r}")
+        for s in family:
+            if s not in q.FAMILIES:
+                raise HTTPException(422, f"bad family {s!r}")
         if requirement not in q.REQUIREMENTS:
             raise HTTPException(422, f"bad requirement {requirement!r}")
         if window not in q.WINDOWS:
@@ -82,7 +86,8 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
                 raise HTTPException(422, f"unknown skill {s!r}")
         # Repeated `skill=` params mean AND. Deduplicated, order kept, so a skill sent
         # twice does not add a redundant EXISTS clause.
-        return q.Filters(cities=tuple(city), seniorities=tuple(seniority), requirement=requirement,
+        return q.Filters(cities=tuple(city), seniorities=tuple(seniority), families=tuple(family),
+                         requirement=requirement,
                          window=window, german=german, degree=degree, production=production,
                          skill_ids=tuple(dict.fromkeys(skill)), query=q_, text=text)
 

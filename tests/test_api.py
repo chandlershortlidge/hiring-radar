@@ -245,7 +245,9 @@ def test_skill_validation_over_a_list(api):
 # with HIR-69's production field already on the job rows): with one `skill=` the responses
 # must be identical, field for field, to what the single-skill `Filters.skill_id` produced.
 # Regenerate it the same way — against the last commit before the change under test — rather
-# than from the current code, or it stops being a before/after.
+# than from the current code, or it stops being a before/after. A later migration that puts a
+# new field on every job row is the one allowed edit: HIR-186 added `family` to the stored
+# rows (derived from each row's title), leaving every other field as captured.
 SNAPSHOT = json.loads((Path(__file__).parent / "fixtures" / "single_skill_api_snapshot.json").read_text())
 
 
@@ -257,3 +259,22 @@ def test_single_skill_responses_are_unchanged(api, wide_api):
         r = clients[dataset].get(case["url"])
         assert r.status_code == case["status"], key
         assert r.json() == case["body"], key
+
+
+def test_family_filter_and_per_family_counts(api):
+    """Both fixture jobs are AI Engineer, so the family filter either keeps or drops them."""
+    client, _ = api
+    assert client.get("/api/stats").json()["open_by_family"] == {"ai-engineer": 2}
+    # The related panel needs a skill of its own; the other three take the filter alone.
+    extra = {"/api/skills/related": {"skill": "python"}}
+    for path in ("/api/skills", "/api/skills/related", "/api/skills/tree", "/api/jobs"):
+        base = extra.get(path, {})
+        assert client.get(path, params={**base, "family": "ai-engineer"}).status_code == 200
+        assert client.get(path, params={**base, "family": "bogus"}).status_code == 422
+    assert client.get("/api/skills", params={"family": "ai-engineer"}).json()["total"] == 2
+    assert client.get("/api/skills", params={"family": "data-scientist"}).json()["total"] == 0
+    jobs = client.get("/api/jobs", params={"family": "ai-engineer"}).json()
+    assert jobs["total"] == 2 and {j["family"] for j in jobs["jobs"]} == {"ai-engineer"}
+    assert client.get("/api/jobs", params={"family": "data-scientist"}).json()["total"] == 0
+    # Repeated params are an OR, the same shape as seniority.
+    assert client.get("/api/jobs", params=[("family", "ai-engineer"), ("family", "research")]).json()["total"] == 2
