@@ -304,3 +304,56 @@ def test_v8_parents_follow_the_existing_precedents():
     assert t.skills["bash"].parents == ()
     assert t.skills["redis"].parents == ()
     assert "gpu-computing" not in t.skills
+
+
+# --- HIR-177: taxonomy v9, the "test" word boundary ---
+
+def test_v9_testing_is_displayed_as_software_testing_but_keeps_its_id():
+    # The chart reads "Software Testing"; the id stays `testing` because 72 stored postings
+    # and the Golden set point at it, and an id is never renamed once rows reference it
+    # (taxonomy/README.md). DECISIONS 2026-11-05, HIR-177.
+    t = Taxonomy.load()
+    assert t.version >= 9
+    assert t.skills["testing"].display == "Software Testing"
+
+
+def test_v9_the_bare_word_testing_still_resolves():
+    # It used to resolve as the display name. Renaming the display without adding the alias
+    # would silently break two paths: extract.py's `new:` branch, where an unresolvable
+    # label becomes a *proposed* skill instead of a mention, and web/src/cvSkills.js, which
+    # matches a CV against display names and aliases. DECISIONS 2026-11-05, HIR-177.
+    t = Taxonomy.load()
+    for label in ("testing", "Testing", "Software Testing", "software testing"):
+        assert t.resolve(label) == "testing", label
+
+
+def test_v9_the_test_sharing_phrases_land_on_their_own_skills():
+    # Four skills share the word "test". The boundary is written down in
+    # taxonomy/README.md, "Skill boundaries". DECISIONS 2026-11-05, HIR-177.
+    t = Taxonomy.load()
+    for label, expected in [
+        ("A/B test", "a-b-testing"), ("A/B testing", "a-b-testing"),
+        ("split test", "a-b-testing"), ("split testing", "a-b-testing"),
+        ("statistical testing", "statistics"), ("hypothesis testing", "statistics"),
+        ("significance testing", "statistics"),
+        ("model evaluation", "evaluation"), ("llm evaluation", "evaluation"),
+        ("evaluation frameworks", "evaluation"), ("Evaluierung", "evaluation"),
+        ("automated testing", "testing"), ("integration testing", "testing"),
+        ("test automation", "testing"), ("automatisierte Tests", "testing"),
+        ("Testautomatisierung", "testing"),
+    ]:
+        assert t.resolve(label) == expected, label
+
+
+def test_v9_the_boundary_is_written_down_where_a_labeller_reaches_it():
+    # The skill list has no per-entry description field, so the boundary lives in
+    # taxonomy/README.md — which evals/LABELING.md already names as the source of truth for
+    # what counts as a skill. This test fails if the section is deleted, which is how the
+    # skill would drift back. DECISIONS 2026-11-05, HIR-177.
+    readme = (Path(__file__).resolve().parent.parent / "taxonomy" / "README.md").read_text()
+    assert "## Skill boundaries" in readme
+    section = readme.split("## Skill boundaries", 1)[1].split("\n## ", 1)[0]
+    for sid in ("a-b-testing", "statistics", "evaluation"):
+        assert sid in section, sid
+    labeling = (Path(__file__).resolve().parent.parent / "evals" / "LABELING.md").read_text()
+    assert "taxonomy/README.md" in labeling

@@ -1,10 +1,14 @@
 {
-  "version": 8,
+  "version": 9,
   "skills": [
     {
       "id": "a-b-testing",
       "display": "A/B Testing",
-      "aliases": [],
+      "aliases": [
+        "a/b test",
+        "split test",
+        "split testing"
+      ],
       "parents": [],
       "reviewed": true
     },
@@ -1795,6 +1799,9 @@
         "statistical modeling",
         "statistical modelling",
         "statistical methods",
+        "statistical testing",
+        "hypothesis testing",
+        "significance testing",
         "statistische methoden"
       ],
       "parents": [],
@@ -1866,8 +1873,9 @@
     },
     {
       "id": "testing",
-      "display": "Testing",
+      "display": "Software Testing",
       "aliases": [
+        "testing",
         "automated testing",
         "debugging & testing",
         "integration testing",
