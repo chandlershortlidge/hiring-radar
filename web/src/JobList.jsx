@@ -133,9 +133,9 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
         ))}
         {savedOn && !savedJobs && savedIds.length > 0 && <div className="empty">Loading your saved jobs…</div>}
         {savedOn && !rows.length && (savedJobs || !savedIds.length) && <div className="empty">Nothing saved yet. Star a job to keep it here.</div>}
-        {!savedOn && !loading && !page.jobs.length && <div className="empty">{text.trim()
-          ? `No posting contains ${text.trim().split(/\s+/).length > 1 ? "all of those words" : "that word"}. Every word you type has to appear somewhere in the posting.`
-          : "No jobs match. Widen the time window or clear the skill filter."}</div>}
+        {/* The "no posting contains those words" variant of this message went with the
+            posting-text box (HIR-187): nothing in the UI can set `filters.text` any more. */}
+        {!savedOn && !loading && !page.jobs.length && <div className="empty">No jobs match. Widen the time window or clear the skill filter.</div>}
       </div></div>
       <div className="jobs-foot">
         {!savedOn && left > 0 && <button type="button" className="btn" onClick={more}>Load {Math.min(PAGE, left)} more</button>}
