@@ -493,7 +493,12 @@ def test_text_index_is_backfilled_for_jobs_stored_before_the_migration(tmp_path)
         c.executescript(p.read_text())
         c.execute("INSERT INTO schema_migrations (version) VALUES (?)", (int(p.name[:3]),))
     c.commit()
-    add_text(c, "Theta", body("An on-call rotation."))
+    # Inserted directly rather than through ingest_one: ingest writes every column the
+    # current schema has (family, from 017), and this database is deliberately behind.
+    c.execute("INSERT INTO job (company, title, title_key, city, location_raw, description_text,"
+              " first_seen, last_seen) VALUES ('Theta', 'AI Engineer', 'ai engineer', 'Berlin',"
+              " 'Berlin', ?, ?, ?)", (body("An on-call rotation."), ts(1), ts(1)))
+    c.commit()
     assert not c.execute("SELECT name FROM sqlite_master WHERE name='job_fts'").fetchall()
     # Every migration from 14 on, in order: 14 is the index itself, and the later ones must
     # apply cleanly on top of it. Derived from the directory so a new migration does not need

@@ -9,7 +9,8 @@ Does: for each posting decide, in order —
      concurrent duplicate and just merges;
   3. otherwise insert a new job.
 Also applies the title/city filters so feeds' unrelated postings never become rows:
-a title needs both an AI/ML domain term and a technical role term.
+a title needs both an AI/ML domain term and a technical role term. A new job is labelled
+with its job family (family_of, from the title alone) as it is inserted.
 
 Does NOT: call the model (see app/pipeline.py), fetch anything, or delete rows.
 
@@ -55,6 +56,42 @@ def now_iso() -> str:
 
 def in_scope_title(title: str) -> bool:
     return bool(DOMAIN_PATTERN.search(title) and ROLE_PATTERN.search(title))
+
+
+# Which of five job families a posting belongs to, from the title alone (HIR-186). Every
+# stored job already passed in_scope_title, so the title is enough to bucket the pool at no
+# model cost; a model-assigned family can replace this later without the column changing.
+# First match wins, in list order: `ml-platform` before `ml-engineer` so "ML Platform
+# Engineer" is platform, and a title naming two families takes the earlier entry. The same
+# rule, in the same order, backfills existing rows in app/migrations/017_job_family.sql;
+# tests/test_ingest.py asserts the two agree. See DECISIONS.md "Job family is a title rule
+# (v1)" for the accepted misfiles.
+FAMILIES = ("ai-engineer", "ml-engineer", "data-scientist", "ml-platform", "research")
+
+# Punctuation becomes a space before the whole-word `mle` test, so "(MLE)" and "MLE, Berlin"
+# count. The SQL backfill normalises exactly this set of characters.
+_FAMILY_PUNCT = "-/(),."
+
+_FAMILY_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
+    ("data-scientist", ("data scien", "datenwissenschaft")),
+    ("ml-platform", ("mlops", "ml platform", "ml-platform", "ml infra", "platform engineer")),
+    ("ml-engineer", ("machine learning engineer", "machine-learning engineer", "ml engineer", "ml-engineer")),
+    ("research", ("research", "applied scientist")),
+)
+
+
+def family_of(title: str) -> str:
+    low = (title or "").lower()
+    padded = low
+    for ch in _FAMILY_PUNCT:
+        padded = padded.replace(ch, " ")
+    padded = f" {padded} "
+    for family, needles in _FAMILY_RULES:
+        if any(n in low for n in needles):
+            return family
+        if family == "ml-engineer" and " mle " in padded:
+            return family
+    return "ai-engineer"
 
 
 @dataclass
@@ -127,9 +164,10 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
             return "merged"
 
         cur = conn.execute(
-            "INSERT INTO job (company, title, title_key, city, location_raw, description_text, first_seen, last_seen)"
-            " VALUES (?,?,?,?,?,?,?,?)",
-            (p.company, p.title, dedup.title_key(p.title), city, p.location_raw, p.description_text, when, when))
+            "INSERT INTO job (company, title, title_key, city, location_raw, description_text, family, first_seen, last_seen)"
+            " VALUES (?,?,?,?,?,?,?,?,?)",
+            (p.company, p.title, dedup.title_key(p.title), city, p.location_raw, p.description_text,
+             family_of(p.title), when, when))
         job_id = cur.lastrowid
         conn.execute(
             "INSERT INTO job_source (job_id, source, source_job_id, url, found_via, first_seen, last_seen, posted_at)"
