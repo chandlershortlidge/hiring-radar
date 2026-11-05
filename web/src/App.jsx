@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { api } from "./api.js";
-import { CITIES, PLACES, DEGREE_FILTERS, GERMAN_FILTERS, PRODUCTION_FILTERS, SENIORITIES, cap, dateTime, pctInt, timeAgo } from "./format.js";
+import { COMPARE_DEFAULT, PLACES, DEGREE_FILTERS, GERMAN_FILTERS, PRODUCTION_FILTERS, SENIORITIES, cap, dateTime, pctInt, timeAgo } from "./format.js";
 import { useProfile } from "./profile.js";
 import { Compare, Down, Person, Plus, Radar } from "./icons.jsx";
 import SkillChart from "./SkillChart.jsx";
@@ -42,6 +42,10 @@ export default function App() {
   const [jumpTo, setJumpTo] = useState(null);
   const [profile, saveProfile] = useProfile();
   const [pageJob, setPageJob] = useState(jobFromPath);
+  // Which two places compare mode shows. Kept out of `filters` on purpose: compare asks the
+  // server for every city at once and slices the answer here, so changing a side must not
+  // refetch anything (HIR-138).
+  const [comparePair, setComparePair] = useState(COMPARE_DEFAULT);
 
   useEffect(() => { const onPop = () => setPageJob(jobFromPath()); window.addEventListener("popstate", onPop); return () => window.removeEventListener("popstate", onPop); }, []);
   const openPage = (id) => { window.history.pushState(null, "", `/jobs/${id}`); setPageJob(id); window.scrollTo(0, 0); };
@@ -101,7 +105,7 @@ export default function App() {
   const addSkill = (id) => setFilters((f) => (f.skillIds.includes(id) ? f : { ...f, skillIds: [...f.skillIds, id] }));
   const skillNames = filters.skillIds.map((id) => taxName[id] || id);
 
-  const cityLabel = filters.compare ? `${CITIES.join(" + ")}` : filters.cities.length ? filters.cities.join(" + ") : PLACES.join(" + ");
+  const cityLabel = filters.compare ? comparePair.join(" + ") : filters.cities.length ? filters.cities.join(" + ") : PLACES.join(" + ");
   const winLabel = filters.window === "open" ? "currently open" : filters.window === "all" ? "" : `from the last ${filters.window.replace("d", " days")}`;
   const reqLabel = filters.requirement === "required" ? "as required" : "as required or nice-to-have";
   const senLabel = (filters.seniorities.length ? ` · ${filters.seniorities.map(cap).join("/")} roles` : "")
@@ -144,7 +148,7 @@ export default function App() {
 
         <section className="card chart" aria-labelledby="chart-title">
           <div>
-            <h1 id="chart-title">{filters.compare ? `${CITIES[0]} vs ${CITIES[1]}: which skills does each market ask for?` : "What skills are AI-engineering jobs asking for?"}</h1>
+            <h1 id="chart-title">{filters.compare ? `${comparePair[0]} vs ${comparePair[1]}: which skills does each market ask for?` : "What skills are AI-engineering jobs asking for?"}</h1>
             <p className="lede">
               {filters.compare ? `Share of each city's ${winLabel || "tracked"} jobs listing the skill ${reqLabel}`
                 : `Share of the ${skills?.total ?? "…"} ${winLabel} jobs that list each skill ${reqLabel} · ${cityLabel}`}{senLabel}.
@@ -194,6 +198,7 @@ export default function App() {
           </div>
           {filters.compare
             ? <CompareChart data={skills} selected={filters.skillIds} onSelect={selectSkill}
+                pair={comparePair} onPair={setComparePair}
                 onSelectCity={(id, city) => set({ skillIds: [id], compare: false, cities: [city] })} />
             : <SkillChart data={skills} selected={filters.skillIds} onSelect={selectSkill} profile={profile}
                 cityLabel={`${winLabel || "tracked"} jobs`} aliases={taxAliases} />}

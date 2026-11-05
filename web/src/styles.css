@@ -169,7 +169,7 @@ select.sel { padding-right: 28px; }
 .cmp-row > button { height: 100%; border: 0; background: transparent; text-align: left; padding: 0; color: inherit; }
 .cmp-row .name { display: flex; align-items: center; gap: 8px; padding-left: 4px; font-size: 13.5px; }
 .cmp-row .cb { display: flex; align-items: center; gap: 8px; height: 100%; }
-.cmp-row .cb .fill { background: var(--bar); } .cmp-row .cb.sf .fill { background: #7a7a7a; }
+.cmp-row .cb .fill { background: var(--bar); } .cmp-row .cb.side-b .fill { background: #7a7a7a; }
 .cmp-row .cb b { font: 500 12px var(--mono); } .cmp-row .cb span { font: 11px var(--mono); color: var(--ink-3); }
 .gap { display: grid; grid-template-columns: 1fr 1fr; align-items: center; height: 18px; position: relative; }
 .gap > div { height: 100%; display: flex; } .gap > div:first-child { justify-content: flex-end; border-right: 1px solid var(--line-3); }
