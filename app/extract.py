@@ -286,6 +286,13 @@ class Extraction:
     extractor_version: str = ""
     taxonomy_version: int = 0
     usage: dict = field(default_factory=dict)
+    # The model's tool call exactly as it arrived, before any validation dropped or rewrote an
+    # item, and the model that produced it. Kept so a reading can be re-parsed years later by
+    # something better than today's parser (HIR-170); nothing in the pipeline reads them.
+    # None on an Extraction built by hand rather than from a model call (the seed and legacy
+    # import scripts), which is how the log tells a real reading from a backfilled row.
+    raw_output: dict | None = None
+    model: str = ""
 
 
 # --- pure parts -------------------------------------------------------------------
@@ -487,4 +494,6 @@ def extract(jd_text: str, tax: Taxonomy, client, model: str = DEFAULT_MODEL) -> 
         taxonomy_version=tax.version,
         usage={k: getattr(usage, k, None) for k in
                ("input_tokens", "output_tokens", "cache_read_input_tokens", "cache_creation_input_tokens")} if usage else {},
+        raw_output=dict(blocks[0].input),
+        model=model,
     )

@@ -6,7 +6,9 @@ skill_mention + proposed_skill rows and the job's seniority / German / degree, t
 Does NOT: fetch postings, dedup, or decide which taxonomy/model to use (passed in).
 
 Invariants: a job holds exactly one extraction (the latest; older rows are replaced on
-re-extract); a job is processed once per extractor_version, including jobs with zero skills; a failed extraction leaves the job unstamped and no partial rows, and is reported,
+re-extract) but every extraction also appends a permanent `extraction_log` row, which is
+never replaced — the current answer is what the dashboard reads, the log is the record of
+every reading we paid for (HIR-170); a job is processed once per extractor_version, including jobs with zero skills; a failed extraction leaves the job unstamped and no partial rows, and is reported,
 not raised; re-running is safe. A read that comes back with nothing at all is counted on
 the job (`blank_extractions`) and the posting is deleted on the second one — try twice,
 then drop (HIR-172, Chandler's decision of 5 Nov). Every other failure is retried for ever,
@@ -17,6 +19,7 @@ twice, and its jobs stay pending for the next run.
 
 import contextlib
 import fcntl
+import hashlib
 import json
 import sqlite3
 from dataclasses import dataclass, field
@@ -36,12 +39,20 @@ class ExtractReport:
     proposed: int = 0
     skipped_busy: bool = False
     dropped: list[tuple[int, str]] = field(default_factory=list)
+    logged: int = 0
 
     def line(self) -> str:
         if self.skipped_busy:
             return "extract: skipped, another extraction is running on this database (jobs stay pending)"
         return (f"extracted={self.succeeded}/{self.attempted} mentions={self.mentions} "
                 f"proposed={self.proposed} failed={len(self.failed)} dropped={len(self.dropped)}")
+
+    def log_line(self, unlogged: int) -> str:
+        """The second line of the poll report (HIR-170 step 4): how much of the model's own
+        output we kept this run, and how many stored extractions still have no record of the
+        reading that produced them. `unlogged` only ever shrinks — it counts extractions made
+        before this logging existed, which cannot be filled in without paying to read again."""
+        return f"extraction log: logged={self.logged} missing={unlogged}"
 
 
 @contextlib.contextmanager
@@ -107,7 +118,43 @@ def _reject_fields(item) -> tuple[str | None, str | None]:
     return (str(sid) if sid is not None else None), (str(raw) if raw is not None else None)
 
 
-def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction) -> None:
+def log_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction, model: str,
+                   input_text: str) -> None:
+    """Append the permanent record of one reading. Must run inside the caller's transaction.
+
+    Append-only on purpose: `skill_mention` keeps only the latest answer, so without this a
+    re-extract would destroy the earlier one, and the model version that produced it may be
+    retired by the time anyone wants it back (HIR-170). `input_sha256` is the hash of the exact
+    text that was sent, which is what ties a logged answer to the posting it answers even after
+    the posting itself is edited or deleted."""
+    conn.execute(
+        "INSERT INTO extraction_log"
+        " (job_id, extractor_version, taxonomy_version, model, raw_output, usage, input_sha256)"
+        " VALUES (?,?,?,?,?,?,?)",
+        (job_id, ex.extractor_version, ex.taxonomy_version, model or ex.model,
+         json.dumps(ex.raw_output, ensure_ascii=False, sort_keys=True, default=str),
+         json.dumps(ex.usage, ensure_ascii=False, sort_keys=True, default=str),
+         hashlib.sha256(input_text.encode()).hexdigest()))
+
+
+def unlogged_extractions(conn: sqlite3.Connection) -> int:
+    """Stored extractions with no row recording the reading that produced them.
+
+    Only extractions made before HIR-170 landed; it never grows during a run."""
+    return conn.execute(
+        "SELECT count(*) FROM job j WHERE j.extracted_version IS NOT NULL"
+        " AND j.extracted_version != 'legacy'"
+        " AND NOT EXISTS (SELECT 1 FROM extraction_log l WHERE l.job_id = j.id"
+        "                 AND l.extractor_version = j.extracted_version)").fetchone()[0]
+
+
+def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction, model: str = "",
+                     input_text: str | None = None) -> None:
+    """Write the job's current answer, and append the log row when the caller passed what it needs.
+
+    `model` and `input_text` default to unset so the seed and legacy-import scripts, which
+    build an Extraction by hand rather than from a model call, store an answer without
+    claiming a reading that never happened."""
     with conn:
         conn.execute("DELETE FROM skill_mention WHERE job_id=?", (job_id,))  # one current extraction per job
         conn.executemany(
@@ -137,6 +184,10 @@ def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction) -> N
             (ex.extractor_version, sen.level, sen.basis, sen.signal, ger.requirement, ger.basis, ger.signal,
              deg.level, deg.requirement, int(deg.or_equivalent), deg.signal,
              prod.requirement, prod.basis, prod.signal, job_id))
+        # Same transaction as the answer itself: an extraction that is stored but not logged,
+        # or logged but not stored, is the one outcome this table exists to rule out.
+        if input_text is not None:
+            log_extraction(conn, job_id, ex, model, input_text)
 
 
 def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn, model: str,
@@ -154,8 +205,9 @@ def _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids) -> Extra
     report = ExtractReport()
     for row in jobs_needing_extraction(conn, version, limit, job_ids):
         report.attempted += 1
+        sent = extraction_input(row["title"], row["description_text"])
         try:
-            ex = extract_fn(extraction_input(row["title"], row["description_text"]), tax, model)
+            ex = extract_fn(sent, tax, model)
         except EmptyExtractionError as e:
             # A blank read is the posting's own failure, not the connection's: try it twice,
             # then drop it (HIR-172, Chandler's decision of 5 Nov).
@@ -174,7 +226,8 @@ def _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids) -> Extra
             continue
         if not ex.mentions:
             log(f"  job {row['id']}: 0 skills")  # legitimate for a partial posting; recorded, not retried
-        store_extraction(conn, row["id"], ex)
+        store_extraction(conn, row["id"], ex, model, sent)
+        report.logged += 1
         report.succeeded += 1
         report.mentions += len(ex.mentions)
         report.proposed += len(ex.proposed)

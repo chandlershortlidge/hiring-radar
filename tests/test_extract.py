@@ -157,6 +157,18 @@ def test_extract_end_to_end_with_fake_client(tax):
     assert len(client.requests) == 1  # no retries
 
 
+def test_extract_carries_the_models_whole_tool_call_and_the_model_name(tax):
+    """What HIR-170 logs: the tool call as it arrived, including the item validation threw away.
+
+    'new:Rust' becomes a proposal and is not a mention, so raw_output is the only place the
+    model's own wording survives — which is the point of keeping it."""
+    items = [item("python", "Python"), item("new:Rust", "Rust", "nice_to_have")]
+    out = ex.extract(JD, tax, FakeClient(response(items)), model="claude-test-1")
+    assert out.model == "claude-test-1"
+    assert out.raw_output == {"skills": items}
+    assert len(out.raw_output["skills"]) == 2 and len(out.mentions) == 1
+
+
 @pytest.mark.parametrize("resp", [response(stop="max_tokens"), response(stop="refusal"),
                                   response(n_blocks=0), response(n_blocks=2), response(name="other")])
 def test_extract_raises_on_anything_but_one_tool_call(tax, resp):
