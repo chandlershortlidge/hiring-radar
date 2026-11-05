@@ -1,3 +1,10 @@
+# Decisions Log
+
+What we decided, why, and what we tried that didn't work — so nobody (person or agent)
+re-treads a dead end or undoes a decision without knowing the reason. Newest first.
+
+---
+
 ## 2026-11-05 — Job family is a title rule (v1) (HIR-186)
 
 Decision: every job carries one of five job families — `ai-engineer`, `ml-engineer`,
