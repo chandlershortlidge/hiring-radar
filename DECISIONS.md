@@ -5,6 +5,42 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-05 — MVP page: no skill tree card, no posting-text search box (HIR-187)
+
+Both are hidden from the page and kept in the code and the API. Nothing was deleted on the
+server: `/api/jobs` still accepts the `text` filter, `/api/skills/tree` still answers, and
+`app/skill_tree.py`, `web/src/SkillTree.jsx`, `api.skillTree` and their tests are untouched.
+This is a decision about what the MVP page shows, not about what the product can do.
+
+**Why the posting-text box went.** The Jobs toolbar is one flex row: a left group (title,
+Saved pill, skill chips, "+ Add skill", the jobs count) and a right group (the search boxes
+and Sort). The left group's width follows the city label, so "56 open jobs · Remote (EU)" is
+much wider than "… · Berlin". With two ~260 px inputs in the right group the row could not
+hold on All, Remote (EU) or New York and wrapped to two rows — the toolbar changed height as
+you clicked between cities. Two search boxes were also the wrong answer to begin with: "Search
+company or title" and "Search the posting text" sat side by side with no explanation of which
+to use, and the same word means different things in each. One box stays; the posting-text
+search belongs in an advanced-filters drawer, which the home-screen rework will place.
+
+**Why the row now holds for every label.** Removing one input was most of it. The rest is in
+`.jobs-head`: the left group may shrink (`min-width: 0; flex: 1 1 auto`), the right group may
+not (`flex: 0 0 auto`), the remaining input shrinks down to 160 px instead of a fixed 260 px,
+and the count label never breaks mid-phrase. Below 1024 px the wrap is now deliberate — the
+search and Sort take their own line — rather than an accident of the label's length.
+
+**Why the skill tree card went.** It is the page's biggest drawing and it sat shut by default
+under the job list, so most visits paid for a card they never opened, and the ones that did
+opened a map the MVP has nothing to say about yet. HIR-81 and HIR-89 own the tree; they bring
+it back deliberately, per career track, when there is a reason to look at it. A comment is
+left where the card was so the next reader knows this was a choice.
+
+**To undo.** Both are small, self-contained reverts: the card is one `<section>` plus the
+state that fed it, the box is one `<label>`/`<div className="search">` pair plus its `text`
+state. `filters.text` is still in the filter shape and still sent to the server; it is simply
+always `""` from the UI.
+
+---
+
 ## 2026-11-05 — `ai-deployment` is not narrowed: the two spot-check rejections were item-level calls (HIR-183)
 
 Chandler was asked whether to narrow `ai-deployment`, and chose not to. **The skill list and
