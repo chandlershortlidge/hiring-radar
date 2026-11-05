@@ -495,5 +495,5 @@ def test_text_index_is_backfilled_for_jobs_stored_before_the_migration(tmp_path)
     c.commit()
     add_text(c, "Theta", body("An on-call rotation."))
     assert not c.execute("SELECT name FROM sqlite_master WHERE name='job_fts'").fetchall()
-    assert db.migrate(c) == [14]
+    assert db.migrate(c) == [14, 15]   # 14 is the index itself; 15 is HIR-172's blank-read count
     assert companies(c, text="on-call") == {"Theta"}

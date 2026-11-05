@@ -51,6 +51,13 @@ def test_unstamps_the_blank_job_so_it_is_read_again(conn):
     assert _version(conn, job) is None
 
 
+def test_the_blank_reading_already_stored_counts_as_the_first_attempt(conn):
+    # So an already-stored blank job gets one more try, like a new one, not two.
+    job = _add_job(conn)
+    reextract_blank_jobs.unstamp(conn)
+    assert conn.execute("SELECT blank_extractions FROM job WHERE id=?", (job,)).fetchone()[0] == 1
+
+
 def test_dry_run_changes_nothing(conn):
     job = _add_job(conn)
     result = reextract_blank_jobs.unstamp(conn, commit=False)

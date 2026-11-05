@@ -7,10 +7,15 @@ nothing downstream ever looked at it again, and the poll line reported it as ext
 Two such jobs are in the database (84 pplwise, 569 Accenture, both with a few thousand
 characters of real job description).
 
-Clearing `extracted_version` is all that is needed: `app.pipeline` picks up any job whose
-stamp is not the current extractor version, so the next `poll` or `extract` reads these
-jobs again — one model call each, cents. With the fix in place, a repeat of the empty call
-now fails loudly instead of being stored as a blank success.
+Clearing `extracted_version` is all that is needed to have them read again: `app.pipeline`
+picks up any job whose stamp is not the current extractor version, so the next `poll` or
+`extract` reads these jobs again — one model call each, cents. With the fix in place, a
+repeat of the empty call now fails loudly instead of being stored as a blank success.
+
+It also counts the blank reading already stored as the posting's first (`blank_extractions`
+= 1), so the handling is the same whether a job is new or already stored: one more attempt,
+and a second blank reading drops the posting (Chandler's decision of 5 Nov). Without that,
+these two jobs would silently get three attempts where a new one gets two.
 
 Selects only the shape the fix now rejects: no skill mentions, no extraction rejects, no
 proposed skills, and none of the four attributes. A job with zero skills that still states
@@ -70,7 +75,9 @@ def unstamp(conn: sqlite3.Connection, commit: bool = True, min_chars: int = 1000
     blank, short = classify(conn, min_chars)
     try:
         for r in blank:
-            conn.execute("UPDATE job SET extracted_version = NULL WHERE id = ?", (r["id"],))
+            conn.execute(
+                "UPDATE job SET extracted_version = NULL,"
+                " blank_extractions = max(blank_extractions, 1) WHERE id = ?", (r["id"],))
     except Exception:
         conn.rollback()
         raise

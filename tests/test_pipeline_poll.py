@@ -3,7 +3,7 @@ import json
 import pytest
 
 from app import db, pipeline, poll
-from app.extract import Extraction, Mention, Proposed, extractor_version
+from app.extract import EmptyExtractionError, Extraction, Mention, Proposed, extractor_version
 from app.ingest import ingest_one
 from app.sources import Posting
 from app.taxonomy import Taxonomy
@@ -104,6 +104,67 @@ def test_failed_job_stays_pending_and_others_proceed(conn):
     r = pipeline.extract_pending(conn, TAX, flaky, "m", log=lambda *_: None)
     assert r.succeeded == 2 and [j for j, _ in r.failed] == [2]
     assert conn.execute("SELECT count(*) FROM job WHERE extracted_version IS NULL").fetchone()[0] == 1
+
+
+def _blank(text, tax, model):
+    raise EmptyExtractionError("tool call carried nothing")
+
+
+def _blanks(conn, job_id):
+    return conn.execute("SELECT blank_extractions FROM job WHERE id=?", (job_id,)).fetchone()[0]
+
+
+def test_a_blank_read_is_counted_and_the_job_stays_for_one_more_try(conn):
+    # HIR-172: try twice, then drop (Chandler's decision of 5 Nov). First read: counted only.
+    r = pipeline.extract_pending(conn, TAX, _blank, "m", log=lambda *_: None)
+    assert [j for j, _ in r.failed] == [1, 2, 3] and r.dropped == []
+    assert conn.execute("SELECT count(*) FROM job").fetchone()[0] == 3
+    assert [_blanks(conn, i) for i in (1, 2, 3)] == [1, 1, 1]
+    assert conn.execute("SELECT count(*) FROM job WHERE extracted_version IS NULL").fetchone()[0] == 3
+
+
+def test_a_second_blank_read_drops_the_posting(conn):
+    pipeline.extract_pending(conn, TAX, _blank, "m", log=lambda *_: None)
+    r = pipeline.extract_pending(conn, TAX, _blank, "m", log=lambda *_: None)
+    assert [j for j, _ in r.dropped] == [1, 2, 3]
+    assert conn.execute("SELECT count(*) FROM job").fetchone()[0] == 0
+    assert conn.execute("SELECT count(*) FROM job_source").fetchone()[0] == 0  # cascaded
+    # Nothing is left to attempt, so a third run is free.
+    assert pipeline.extract_pending(conn, TAX, _blank, "m", log=lambda *_: None).attempted == 0
+
+
+def test_a_posting_that_reads_blank_once_then_fine_is_kept(conn):
+    reads = {"n": 0}
+
+    def blank_then_fine(text, tax, model):
+        reads["n"] += 1
+        if reads["n"] <= 3:
+            raise EmptyExtractionError("tool call carried nothing")
+        return fake_extract([Mention("python", "required", "Python")])(text, tax, model)
+
+    pipeline.extract_pending(conn, TAX, blank_then_fine, "m", log=lambda *_: None)
+    r = pipeline.extract_pending(conn, TAX, blank_then_fine, "m", log=lambda *_: None)
+    assert r.succeeded == 3 and r.dropped == []
+    assert conn.execute("SELECT count(*) FROM job").fetchone()[0] == 3
+    assert [_blanks(conn, i) for i in (1, 2, 3)] == [1, 1, 1]  # the count is not reset, by design
+
+
+def test_an_ordinary_failure_is_never_counted_as_blank_or_dropped(conn):
+    # A connection error says nothing about the posting, so it is retried for ever.
+    def boom(text, tax, model):
+        raise RuntimeError("boom")
+
+    for _ in range(3):
+        r = pipeline.extract_pending(conn, TAX, boom, "m", log=lambda *_: None)
+    assert r.dropped == [] and len(r.failed) == 3
+    assert conn.execute("SELECT count(*) FROM job").fetchone()[0] == 3
+    assert [_blanks(conn, i) for i in (1, 2, 3)] == [0, 0, 0]
+
+
+def test_the_report_line_names_dropped_postings(conn):
+    pipeline.extract_pending(conn, TAX, _blank, "m", log=lambda *_: None)
+    r = pipeline.extract_pending(conn, TAX, _blank, "m", log=lambda *_: None)
+    assert "failed=3 dropped=3" in r.line()
 
 
 def test_version_bump_requeues_everything(conn):

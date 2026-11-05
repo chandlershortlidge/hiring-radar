@@ -23,10 +23,11 @@ Invariants:
     ExtractionError. tool_choice is "auto" (forced tool use is rejected by current
     models), so the prompt asks for the call and `strict` keeps its arguments valid.
   - A tool call that carries nothing at all — no skills, nothing proposed, nothing
-    rejected, and none of the four attributes — raises ExtractionError too (HIR-172). A
+    rejected, and none of the four attributes — raises EmptyExtractionError (HIR-172). A
     well-formed empty call is a failed read, not a posting without skills: the caller
     leaves the job unstamped and counts it as failed, instead of storing a blank job that
-    looks processed. Zero skills *with* any attribute found stays a success.
+    looks processed, and drops the posting if a second read is blank too (Chandler's
+    decision of 5 Nov). Zero skills *with* any attribute found stays a success.
 """
 
 import hashlib
@@ -192,6 +193,15 @@ TOOL = {
 
 class ExtractionError(RuntimeError):
     pass
+
+
+class EmptyExtractionError(ExtractionError):
+    """The call completed but carried nothing at all — a failed read, not a blank posting.
+
+    Its own type because the caller treats it differently from a transport or schema
+    failure: a posting that reads blank twice is dropped (HIR-172), while a connection
+    error can be retried for ever.
+    """
 
 
 @dataclass(frozen=True)
@@ -447,7 +457,7 @@ def extract(jd_text: str, tax: Taxonomy, client, model: str = DEFAULT_MODEL) -> 
     if not (mentions or proposed or rejected) and (
             (seniority, german, degree, production)
             == (NO_SENIORITY, NO_GERMAN, NO_DEGREE, NO_PRODUCTION)):
-        raise ExtractionError(
+        raise EmptyExtractionError(
             "tool call carried nothing: no skills and no seniority/german/degree/production")
 
     usage = getattr(response, "usage", None)
