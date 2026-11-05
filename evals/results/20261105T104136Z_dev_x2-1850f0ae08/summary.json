@@ -1,0 +1,363 @@
+{
+  "meta": {
+    "run_id": "20261105T104136Z_dev_x2-1850f0ae08",
+    "split": "dev",
+    "n_goldens": 20,
+    "repeats": 3,
+    "model": "claude-sonnet-5-5",
+    "extractor_version": "x2-1850f0ae08",
+    "taxonomy_version": 9
+  },
+  "aggregate": {
+    "precision": {
+      "mean": 0.8879849541051161,
+      "min": 0.8845070422535212,
+      "max": 0.8926553672316384,
+      "n": 3
+    },
+    "recall": {
+      "mean": 0.9485657764589516,
+      "min": 0.9317507418397626,
+      "max": 0.9762611275964391,
+      "n": 3
+    },
+    "f1": {
+      "mean": 0.9171698265899103,
+      "min": 0.907514450867052,
+      "max": 0.9293785310734463,
+      "n": 3
+    },
+    "requirement_accuracy": {
+      "mean": 0.9874816213124893,
+      "min": 0.9872611464968153,
+      "max": 0.9878419452887538,
+      "n": 3
+    },
+    "seniority_accuracy": {
+      "mean": 0.9500000000000001,
+      "min": 0.9,
+      "max": 1.0,
+      "n": 3
+    },
+    "german_accuracy": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n": 3
+    },
+    "degree_accuracy": {
+      "mean": 0.9499999999999998,
+      "min": 0.95,
+      "max": 0.95,
+      "n": 3
+    },
+    "production_accuracy": {
+      "mean": 0.9499999999999998,
+      "min": 0.95,
+      "max": 0.95,
+      "n": 3
+    },
+    "production_signal_agreement": {
+      "mean": 1.0,
+      "min": 1.0,
+      "max": 1.0,
+      "n": 3
+    },
+    "grounding_accuracy": {
+      "mean": 0.9990636704119851,
+      "min": 0.9971910112359551,
+      "max": 1.0,
+      "n": 3
+    },
+    "rank_spearman": {
+      "mean": 0.8998764884521782,
+      "min": 0.8824701155934562,
+      "max": 0.9192134857869521,
+      "n": 3
+    },
+    "top10_overlap": {
+      "mean": 0.8333333333333334,
+      "min": 0.8,
+      "max": 0.9,
+      "n": 3
+    }
+  },
+  "runs": [
+    {
+      "n_goldens": 20,
+      "n_errors": 0,
+      "tp": 329,
+      "fp": 42,
+      "fn": 8,
+      "precision": 0.8867924528301887,
+      "recall": 0.9762611275964391,
+      "f1": 0.9293785310734463,
+      "requirement_accuracy": 0.9878419452887538,
+      "seniority_accuracy": 1.0,
+      "seniority_n": 20,
+      "german_accuracy": 1.0,
+      "german_n": 20,
+      "degree_accuracy": 0.95,
+      "degree_n": 20,
+      "production_accuracy": 0.95,
+      "production_n": 20,
+      "production_per_class": {
+        "required": {
+          "support": 8,
+          "tp": 8,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "nice_to_have": {
+          "support": 1,
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0
+        },
+        "none": {
+          "support": 11,
+          "tp": 11,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.9166666666666666,
+          "recall": 1.0
+        }
+      },
+      "production_confusion": {
+        "required": {
+          "required": 8,
+          "nice_to_have": 0,
+          "none": 0
+        },
+        "nice_to_have": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 1
+        },
+        "none": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 11
+        }
+      },
+      "production_signal_agreement": 1.0,
+      "production_signal_n": 8,
+      "grounding_accuracy": 1.0,
+      "grounding_n": 371,
+      "rank_spearman": 0.9192134857869521,
+      "top10_overlap": 0.8,
+      "gold_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "apis",
+        "aws",
+        "cloud",
+        "prompt-engineering",
+        "ci-cd"
+      ],
+      "pred_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "aws",
+        "ci-cd",
+        "cloud",
+        "langchain",
+        "testing"
+      ]
+    },
+    {
+      "n_goldens": 20,
+      "n_errors": 0,
+      "tp": 314,
+      "fp": 41,
+      "fn": 23,
+      "precision": 0.8845070422535212,
+      "recall": 0.9317507418397626,
+      "f1": 0.907514450867052,
+      "requirement_accuracy": 0.9872611464968153,
+      "seniority_accuracy": 0.95,
+      "seniority_n": 20,
+      "german_accuracy": 1.0,
+      "german_n": 20,
+      "degree_accuracy": 0.95,
+      "degree_n": 20,
+      "production_accuracy": 0.95,
+      "production_n": 20,
+      "production_per_class": {
+        "required": {
+          "support": 8,
+          "tp": 8,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "nice_to_have": {
+          "support": 1,
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0
+        },
+        "none": {
+          "support": 11,
+          "tp": 11,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.9166666666666666,
+          "recall": 1.0
+        }
+      },
+      "production_confusion": {
+        "required": {
+          "required": 8,
+          "nice_to_have": 0,
+          "none": 0
+        },
+        "nice_to_have": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 1
+        },
+        "none": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 11
+        }
+      },
+      "production_signal_agreement": 1.0,
+      "production_signal_n": 8,
+      "grounding_accuracy": 0.9971910112359551,
+      "grounding_n": 356,
+      "rank_spearman": 0.8824701155934562,
+      "top10_overlap": 0.8,
+      "gold_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "apis",
+        "aws",
+        "cloud",
+        "prompt-engineering",
+        "ci-cd"
+      ],
+      "pred_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "aws",
+        "testing",
+        "ci-cd",
+        "cloud",
+        "gcp"
+      ]
+    },
+    {
+      "n_goldens": 20,
+      "n_errors": 0,
+      "tp": 316,
+      "fp": 38,
+      "fn": 21,
+      "precision": 0.8926553672316384,
+      "recall": 0.9376854599406528,
+      "f1": 0.914616497829233,
+      "requirement_accuracy": 0.9873417721518988,
+      "seniority_accuracy": 0.9,
+      "seniority_n": 20,
+      "german_accuracy": 1.0,
+      "german_n": 20,
+      "degree_accuracy": 0.95,
+      "degree_n": 20,
+      "production_accuracy": 0.95,
+      "production_n": 20,
+      "production_per_class": {
+        "required": {
+          "support": 8,
+          "tp": 8,
+          "fp": 0,
+          "fn": 0,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "nice_to_have": {
+          "support": 1,
+          "tp": 0,
+          "fp": 0,
+          "fn": 1,
+          "precision": null,
+          "recall": 0.0
+        },
+        "none": {
+          "support": 11,
+          "tp": 11,
+          "fp": 1,
+          "fn": 0,
+          "precision": 0.9166666666666666,
+          "recall": 1.0
+        }
+      },
+      "production_confusion": {
+        "required": {
+          "required": 8,
+          "nice_to_have": 0,
+          "none": 0
+        },
+        "nice_to_have": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 1
+        },
+        "none": {
+          "required": 0,
+          "nice_to_have": 0,
+          "none": 11
+        }
+      },
+      "production_signal_agreement": 1.0,
+      "production_signal_n": 8,
+      "grounding_accuracy": 1.0,
+      "grounding_n": 354,
+      "rank_spearman": 0.8979458639761263,
+      "top10_overlap": 0.9,
+      "gold_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "apis",
+        "aws",
+        "cloud",
+        "prompt-engineering",
+        "ci-cd"
+      ],
+      "pred_top": [
+        "llms",
+        "python",
+        "rag",
+        "agents",
+        "evaluation",
+        "aws",
+        "cloud",
+        "apis",
+        "ci-cd",
+        "gcp"
+      ]
+    }
+  ]
+}
