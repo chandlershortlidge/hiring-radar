@@ -131,8 +131,8 @@ def log_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction, model:
         "INSERT INTO extraction_log"
         " (job_id, extractor_version, taxonomy_version, model, raw_output, usage, input_sha256)"
         " VALUES (?,?,?,?,?,?,?)",
-        (job_id, ex.extractor_version, ex.taxonomy_version, model,
-         json.dumps(getattr(ex, "raw_output", None), ensure_ascii=False, sort_keys=True, default=str),
+        (job_id, ex.extractor_version, ex.taxonomy_version, model or ex.model,
+         json.dumps(ex.raw_output, ensure_ascii=False, sort_keys=True, default=str),
          json.dumps(ex.usage, ensure_ascii=False, sort_keys=True, default=str),
          hashlib.sha256(input_text.encode()).hexdigest()))
 

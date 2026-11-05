@@ -26,13 +26,9 @@ def conn(tmp_path):
 def fake_extract(mentions, raw_output=None, usage=None):
     """An extractor whose answer carries the model's own tool call, as the real one does."""
     def fn(text, tax, model):
-        ex = Extraction(mentions=list(mentions), extractor_version=extractor_version(tax, model),
-                        taxonomy_version=tax.version, usage=dict(usage or {}))
-        if raw_output is not None:
-            # set, not passed to the constructor, so this test does not depend on the field's
-            # position and still exercises log_extraction's getattr fallback.
-            ex.raw_output = raw_output
-        return ex
+        return Extraction(mentions=list(mentions), extractor_version=extractor_version(tax, model),
+                          taxonomy_version=tax.version, usage=dict(usage or {}),
+                          raw_output=raw_output, model=model)
     return fn
 
 
@@ -61,13 +57,13 @@ def test_re_extraction_appends_a_row_and_leaves_the_first(conn):
     """The Done-when of HIR-170: the second reading must not overwrite the first."""
     job_id = conn.execute("SELECT id FROM job").fetchone()[0]
     first = Extraction(mentions=[Mention("python", "required", "Python")],
-                       extractor_version="x2-first", taxonomy_version=1)
-    first.raw_output = {"skills": ["first answer"]}
+                       extractor_version="x2-first", taxonomy_version=1,
+                       raw_output={"skills": ["first answer"]})
     pipeline.store_extraction(conn, job_id, first, "model-old", "the posting text")
 
     second = Extraction(mentions=[Mention("rag", "required", "RAG")],
-                        extractor_version="x2-second", taxonomy_version=2)
-    second.raw_output = {"skills": ["second answer"]}
+                        extractor_version="x2-second", taxonomy_version=2,
+                        raw_output={"skills": ["second answer"]})
     pipeline.store_extraction(conn, job_id, second, "model-new", "the posting text")
 
     rows = conn.execute("SELECT extractor_version, model, raw_output FROM extraction_log ORDER BY id").fetchall()
@@ -127,6 +123,37 @@ def test_jobs_stamped_legacy_are_not_counted_as_missing(conn):
     with conn:
         conn.execute("UPDATE job SET extracted_version = 'legacy' WHERE id = ?", (job_id,))
     assert pipeline.unlogged_extractions(conn) == 0
+
+
+def test_the_real_extractor_puts_its_tool_call_in_the_log(conn):
+    """End to end through the actual extract(), with only the model call faked: the Done-when
+    of HIR-170 is that a reading's raw output is in the database, not merely that it exists on
+    an object in memory."""
+    from types import SimpleNamespace
+
+    from app.extract import extract
+
+    tool_input = {"skills": [{"skill_id": "python", "requirement": "required", "raw_text": "Python"},
+                             {"skill_id": "new:Rust", "requirement": "required", "raw_text": "RAG"}],
+                  "seniority": None}
+    client = SimpleNamespace()
+    client.messages = SimpleNamespace(create=lambda **kw: SimpleNamespace(
+        stop_reason="tool_use",
+        content=[SimpleNamespace(type="tool_use", name="record_skills", input=tool_input)],
+        usage=SimpleNamespace(input_tokens=900, output_tokens=40,
+                              cache_read_input_tokens=0, cache_creation_input_tokens=0)))
+
+    r = pipeline.extract_pending(conn, TAX, lambda text, t, m: extract(text, t, client, m),
+                                 "claude-test-1", log=lambda *_: None)
+    assert r.succeeded == 1 and r.logged == 1
+    row = conn.execute("SELECT model, raw_output, usage FROM extraction_log").fetchone()
+    assert row["model"] == "claude-test-1"
+    assert json.loads(row["raw_output"]) == tool_input
+    assert json.loads(row["usage"])["input_tokens"] == 900
+    # The second item was not a known skill, so it never became a mention — the log is the
+    # only place the model's own wording for it survives.
+    assert [m[0] for m in conn.execute("SELECT skill_id FROM skill_mention")] == ["python"]
+    assert len(json.loads(row["raw_output"])["skills"]) == 2
 
 
 # --- the labellers' own answers ---------------------------------------------------

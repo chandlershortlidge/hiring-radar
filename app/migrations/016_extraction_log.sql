@@ -17,7 +17,12 @@ CREATE TABLE extraction_log (
     taxonomy_version  INTEGER NOT NULL,
     model             TEXT NOT NULL,
     created_at        TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%SZ', 'now')),  -- ISO 8601 UTC
-    raw_output        TEXT NOT NULL,   -- the model's tool-call input as JSON, before validation
+    -- The model's tool call as JSON, exactly as it arrived, before validation dropped or
+    -- rewrote any item. The JSON literal 'null' (not SQL NULL) would mean a row logged for an
+    -- answer that was built by hand rather than read from the model; the pipeline does not
+    -- log those, so it should not occur — but it is stored rather than raised, because losing
+    -- a reading we paid for is worse than a row that says less than it should.
+    raw_output        TEXT NOT NULL,
     usage             TEXT NOT NULL,   -- token counts as JSON; '{}' when the provider sent none
     input_sha256      TEXT NOT NULL    -- sha256 of the exact text sent to the model
 );
