@@ -24,6 +24,37 @@
   the second has the first as a parent.
 - **Bump `version`** when an edit changes what any existing label resolves to.
 
+## Skill boundaries
+
+Most entries need no explanation beyond their display name and aliases. A few sit next to
+something that uses the same word, and the display name alone has let the wrong phrases
+collect on them. Those are written down here, and this is the list a labeller checks when a
+phrase could go two ways.
+
+Add an entry here only when two skills share a word, not to define a skill in general.
+
+### Software Testing (`testing`) vs. A/B Testing, Statistics, Evaluation
+
+`testing` is **software testing**: checking that code behaves as intended. Unit,
+integration, regression and end-to-end tests, test automation and test infrastructure, and
+the German `automatisierte Tests` / `Testautomatisierung`. Its display name is "Software
+Testing" for this reason; the id stays `testing` because stored rows point at it (the id
+rule above).
+
+The three neighbours that share the word "test":
+
+- **`a-b-testing`** — comparing two live variants to decide between them: "A/B test",
+  "split test". The word is "test" but the thing is an experiment, not a check on code.
+- **`statistics`** — "statistical testing", "hypothesis testing", "significance testing".
+  A statistical procedure, not a check on code.
+- **`evaluation`** — judging the quality of a model's or an agent's output: "model
+  evaluation", "LLM evaluation", eval sets and evaluation frameworks.
+
+A phrase that names both gets both, like any other bullet naming two skills: "tests and
+evaluations" is `testing` **and** `evaluation`, and "simulation-based testing and
+evaluation of agents" is the same two. The boundary decides which skill a phrase belongs
+to, never how many skills one phrase may carry.
+
 ## Review pass (to do)
 
 All 175 seed entries are `reviewed: false`. Go through them once: delete non-skills,
