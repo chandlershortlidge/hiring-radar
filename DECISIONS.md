@@ -5,6 +5,45 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-05 — A blank reading of a posting is a failure, not a result (HIR-172)
+
+Decision: when the model answers with a well-formed tool call that carries nothing at all
+— no skills, nothing proposed, nothing rejected, and none of the four attributes
+(seniority, German, degree, production) — `extract()` raises `ExtractionError`. The
+pipeline then leaves the job unstamped and counts it in the `failed=` tally, so it is read
+again on the next run and shows in the poll line. Zero skills *with* any attribute found
+stays a success, because a posting that lists no technical skills but does state a
+seniority has genuinely been read.
+
+**Why.** Job 569 (Accenture, "AI LLM Architect (All Genders)") was stored on 5 Nov with
+every extracted field null off 5,975 characters dense with taxonomy skills, and reported as
+`extracted=1/1 ... failed=0`. The old checks only caught a `max_tokens`/`refusal` stop, a
+missing tool block, or a missing `skills` list; an empty list passed all three. Because the
+job was stamped with the extractor version, nothing downstream would ever look at it again
+— the one failure mode that is invisible both on the chart and in the poll line.
+
+The cost of being wrong in this direction is a retry worth one model call; the cost of the
+old behaviour is a posting silently missing from every count until the next version bump.
+
+**What this accepts.** A posting the model keeps reading as blank is retried on every poll,
+one call each time, and keeps `failed=` non-zero. That is deliberate: a recurring failure
+belongs in the poll line, and a retry cap would restore the quiet-loss shape this entry
+exists to remove. Short postings are the exception — `scripts/reextract_blank_jobs.py`
+leaves a blank job under 1,000 characters stamped, because a posting that short legitimately
+has nothing to find.
+
+The two jobs already stored blank (84 pplwise, 569 Accenture) are read again rather than
+deleted: deleting stored jobs is on the stop list, and re-reading costs cents.
+`scripts/reextract_blank_jobs.py` clears their stamp and nothing else.
+
+Still open: why the model returned an empty call on that posting at all (365 output tokens
+were spent producing it). A retry may repeat it — which the new `failed=` line will show.
+
+To undo, revert the HIR-172 commits: an empty call is stored as a blank success again.
+Nothing stored changes and no job is re-read by the revert itself.
+
+---
+
 ## 2026-11-04 — Compare mode is two pickable sides, not a fixed pair (HIR-138)
 
 Decision: compare mode keeps its two-sided layout, and each side is a picker over every
