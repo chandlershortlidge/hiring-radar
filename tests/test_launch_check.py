@@ -318,6 +318,118 @@ def test_a_run_without_its_queue_is_an_error_not_an_empty_queue(tmp_path, monkey
         lc.load_run(run.name)
 
 
+# The panel check (HIR-149): was this a comparison between two cities, or two panels?
+
+
+def write_panel(tmp_path, run_id, slots, third=None):
+    """A run directory carrying only what `labellers` reads: raw per-labeller files, each
+    recording the model that wrote it, and optionally a third checker's record."""
+    run = tmp_path / run_id
+    (run / "raw").mkdir(parents=True)
+    for n in (49, 50):
+        for slot, model in slots.items():
+            (run / "raw" / f"golden_{n:03d}.{slot}.json").write_text(
+                json.dumps({"provider": "x", "model": model, "raw": "{}"}))
+    if third is not None:
+        (run / "third_check.json").write_text(json.dumps({"model": third, "provider": "x"}))
+    return run
+
+
+def test_labellers_are_read_as_model_names_not_slot_letters(tmp_path):
+    run = write_panel(tmp_path, "r", {"A": "claude-opus-5-5", "B": "gpt-6.1-sol"})
+    assert lc.labellers(run) == ["claude-opus-5-5", "gpt-6.1-sol"]
+
+
+def test_a_third_checker_shows_up_in_the_panel(tmp_path):
+    """New York's shape: three raw slots and a third_check.json, naming three labellers."""
+    run = write_panel(tmp_path, "r",
+                      {"A": "claude-opus-5-5", "B": "gpt-6.1-sol", "C": "gemini-4-argon"},
+                      third="gemini-4-argon")
+    assert lc.labellers(run) == ["claude-opus-5-5", "gemini-4-argon", "gpt-6.1-sol"]
+
+
+def test_a_third_check_without_raw_files_still_counts_as_a_labeller(tmp_path):
+    run = write_panel(tmp_path, "r", {"A": "claude-opus-5-5", "B": "gpt-6.1-sol"},
+                      third="gemini-4-argon")
+    assert lc.labellers(run) == ["claude-opus-5-5", "gemini-4-argon", "gpt-6.1-sol"]
+
+
+def test_two_runs_with_the_same_labellers_produce_no_warning():
+    panel = ["claude-opus-5-5", "gpt-6.1-sol"]
+    assert lc.panel_line("new", panel, "base", list(panel)) is None
+    assert lc.panel_line("new", panel, "base", list(reversed(panel))) is None
+
+
+def test_three_labellers_against_two_warns_and_names_the_shared_pair():
+    """The HIR-139 case: New York's third checker made the two yardsticks differ in kind."""
+    out = lc.panel_line("new", ["claude-opus-5-5", "gemini-4-argon", "gpt-6.1-sol"],
+                        "base", ["claude-opus-5-5", "gpt-6.1-sol"])
+    assert out is not None
+    assert "uneven panel" in out
+    assert "gemini-4-argon" in out
+    assert "share (claude-opus-5-5, gpt-6.1-sol)" in out
+
+
+def test_the_warning_does_not_replace_the_scores(tmp_path, monkeypatch, capsys):
+    """The comparison is still printed — it is only no longer presented as clean."""
+    for run_id, slots, third in (("new_run", {"A": "a-model", "B": "b-model"}, "c-model"),
+                                 ("base_run", {"A": "a-model", "B": "b-model"}, None)):
+        write_panel(tmp_path, run_id, slots, third=third)
+        run = tmp_path / run_id
+        (run / "merged.json").write_text(
+            json.dumps({"golden_001": {"accepted_skills": [{"skill_id": "sql",
+                                                            "requirement": "required"}]}}))
+        (run / "picks.json").write_text(json.dumps([{"golden_id": "golden_001", "job_id": 11}]))
+        (run / "items.json").write_text(json.dumps([]))
+        (run / "review_queue.md").write_text("")
+    monkeypatch.setattr(lc, "LABELING_DIR", tmp_path)
+    monkeypatch.setattr(lc, "DB", one_job_db(tmp_path, [(11, "sql", "required")]))
+    monkeypatch.setattr(sys, "argv",
+                        ["launch_check.py", "--run", "new_run", "--baseline-run", "base_run"])
+    lc.main()
+
+    out = capsys.readouterr().out
+    assert out.index("uneven panel") < out.index("new city:")      # before the numbers
+    assert "c-model" in out
+    assert "F1 1.000" in out and "F1 difference:" in out           # scores still printed
+
+
+def test_a_run_whose_raw_directory_is_missing_does_not_crash_the_check(tmp_path):
+    """The panel check annotates someone else's numbers; it must not be able to stop them."""
+    (tmp_path / "r").mkdir()
+    assert lc.labellers(tmp_path / "r") == []
+
+    out = lc.panel_line("new", [], "base", ["claude-opus-5-5", "gpt-6.1-sol"])
+    assert out is not None and "cannot tell" in out and "run new does" in out
+
+
+def test_an_unreadable_labeller_file_is_skipped_rather_than_raising(tmp_path):
+    run = write_panel(tmp_path, "r", {"A": "claude-opus-5-5", "B": "gpt-6.1-sol"})
+    (run / "raw" / "golden_051.A.json").write_text("{not json")
+    assert lc.labellers(run) == ["claude-opus-5-5", "gpt-6.1-sol"]
+
+
+def test_two_panels_that_share_nothing_say_so():
+    out = lc.panel_line("new", ["gemini-4-argon"], "base", ["claude-opus-5-5"])
+    assert out is not None and "they share none" in out
+
+
+def test_one_run_alone_is_not_compared_to_a_panel(tmp_path, monkeypatch, capsys):
+    """No baseline, no comparison — so nothing to call uneven."""
+    run = write_panel(tmp_path, "solo", {"A": "a-model", "B": "b-model"}, third="c-model")
+    (run / "merged.json").write_text(
+        json.dumps({"golden_001": {"accepted_skills": [{"skill_id": "sql",
+                                                        "requirement": "required"}]}}))
+    (run / "picks.json").write_text(json.dumps([{"golden_id": "golden_001", "job_id": 11}]))
+    (run / "items.json").write_text(json.dumps([]))
+    (run / "review_queue.md").write_text("")
+    monkeypatch.setattr(lc, "LABELING_DIR", tmp_path)
+    monkeypatch.setattr(lc, "DB", one_job_db(tmp_path, [(11, "sql", "required")]))
+    monkeypatch.setattr(sys, "argv", ["launch_check.py", "--run", "solo"])
+    lc.main()
+    assert "uneven panel" not in capsys.readouterr().out
+
+
 def test_one_sided_and_unfound_skills_are_untouched_by_the_rule():
     """Out of HIR-159's scope: only a skill both labellers found is set aside."""
     items = [{"golden_id": "golden_001", "kind": "skill", "key": "python",

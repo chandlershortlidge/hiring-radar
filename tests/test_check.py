@@ -142,6 +142,64 @@ def test_page_text_wins_over_a_shorter_meta_description():
     assert how == "page-text"
 
 
+def personio_page(office="Berlin (Remote)", company="Acto", offices=True, ld=None):
+    """A Personio tenant page as served: the posting JSON sits inside a JavaScript string,
+    so every quote of the payload arrives backslash-escaped."""
+    office_addresses = (r'\"office_addresses\":[{\"name\":\"%s\",\"city\":\"Remote\",'
+                        r'\"state\":\"Berlin\",\"country\":\"DE\"}],' % office) if offices else ""
+    payload = (r'\"id\":2735717,%s\"main_office\":\"%s\",\"schedule\":\"Full-time\",'
+               r'\"careerSiteSettings\":{\"company_name\":\"%s\",\"logo_url\":null}'
+               % (office_addresses, office, company))
+    body = f'<script>self.__next_f.push([1,"{payload}"])</script>'
+    return page(ld=ld).replace("</body>", f"{body}</body>")
+
+
+def test_personio_without_json_ld_reads_company_and_city_from_the_payload():
+    # acto.jobs.personio.com/job/2735717?language=de serves no JSON-LD; the page still shows Berlin.
+    p, how = posting_from_html("https://acto.jobs.personio.com/job/2735717?language=de", personio_page())
+    assert how == "page-text"                      # the description is still the page text
+    assert p.company == "Acto" and p.location_raw == "Berlin (Remote)"
+    assert city_of(p.location_raw) == "Berlin"     # so the posting is no longer dropped
+
+
+def test_personio_de_host_is_read_the_same_way():
+    p, _ = posting_from_html("https://adsquare.jobs.personio.de/job/2865259", personio_page(office="Berlin"))
+    assert p.location_raw == "Berlin"
+
+
+def test_personio_blank_company_name_leaves_company_unset():
+    # vanilla-steel-gmbh ships an empty company_name; that one still needs --company.
+    p, _ = posting_from_html("https://vanilla-steel-gmbh.jobs.personio.com/job/2845809",
+                             personio_page(office="Berlin", company=""))
+    assert p.company is None and p.location_raw == "Berlin"
+
+
+def test_personio_falls_back_to_the_first_office_address():
+    markup = personio_page().replace(r'\"main_office\":\"Berlin (Remote)\",', "")
+    p, _ = posting_from_html("https://acto.jobs.personio.com/job/1", markup)
+    assert p.location_raw == "Berlin (Remote)"     # the office's name, not its city ("Remote")
+
+
+def test_personio_flags_still_override_the_payload():
+    p, _ = posting_from_html("https://acto.jobs.personio.com/job/1", personio_page(),
+                             company="Override Co", location="Munich")
+    assert p.company == "Override Co" and p.location_raw == "Munich"
+
+
+def test_personio_json_ld_tenant_is_unchanged():
+    # juni.jobs.personio.com does serve JSON-LD; that path still wins and the payload is not read.
+    ld = {"@type": "JobPosting", "title": "AI Engineer", "description": JD,
+          "hiringOrganization": {"name": "Juni"},
+          "jobLocation": {"@type": "Place", "address": {"addressLocality": "Berlin", "addressCountry": "DE"}}}
+    p, how = posting_from_html("https://juni.jobs.personio.com/job/2872093", personio_page(ld=ld))
+    assert how == "json-ld" and p.company == "Juni" and p.location_raw == "Berlin, DE"
+
+
+def test_a_payload_on_another_host_is_ignored():
+    p, _ = posting_from_html("https://acme.com/j/1", personio_page())
+    assert p.company is None and p.location_raw is None
+
+
 def test_containment_is_one_directional():
     noisy = page()
     assert containment(JD, noisy) == 1.0

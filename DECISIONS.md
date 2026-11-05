@@ -55,6 +55,37 @@ either direction without re-running anything.
 
 ---
 
+## 2026-11-04 — Compare mode is two pickable sides, not a fixed pair (HIR-138)
+
+Decision: compare mode keeps its two-sided layout, and each side is a picker over every
+collected place (`PLACES` in `web/src/format.js` — Berlin, Remote (EU), San Francisco, New
+York). It opens on Berlin vs San Francisco, so nothing moves until the reader chooses. A
+newly launched city joins `PLACES` and is compareable with no compare-view change. This
+replaces "Compare mode stays Berlin vs San Francisco" (2026-10-26, the EU-remote entry),
+which was decided when two cities existed; EU-remote stays a filter button and is now also
+pickable as a side.
+
+**Why two sides and not one column per city.** Comparing two markets for the same skill is
+what the second city was collected for, so pairwise is the purpose. One column per place
+would widen with every launch, narrow the bars, miss a phone screen at four columns, and
+give no way to focus on a pair. An all-cities view can still be added later.
+
+The two sides are always different: picking the place already on the other side swaps the
+pair rather than showing a place against itself. The pair is kept outside the filter object
+because compare asks the server for every city at once and slices the answer in the
+browser, so changing a side refetches nothing.
+
+**Provenance, and what is still open.** This design was the recommendation the decider put
+to Chandler on HIR-138; the "go" reached the worker relayed through its coordinating agent,
+not observed from Chandler directly. The PR says so and does not merge on it.
+
+Alternatives rejected: leaving compare as Berlin vs San Francisco (New York could then
+never be set against another market, which is the point of collecting it). To undo, revert
+the HIR-138 commits — the view returns to the fixed pair; nothing stored changes, and no
+job is re-read.
+
+---
+
 ## 2026-11-04 — LangSmith watches the eval, and only the eval (HIR-78)
 
 Observability on this project starts at the regression eval, not in production. Whenever
