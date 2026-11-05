@@ -5,6 +5,53 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-05 — The Testing skill is shown as "Software Testing", and the word-sharing boundaries live in taxonomy/README.md (HIR-177)
+
+Decision: the `testing` entry's display name becomes **Software Testing**. Its id stays
+`testing` — 72 stored postings and the labelled Golden set point at it, and the id rule in
+`taxonomy/README.md` is that an id is never renamed once rows reference it. Renaming the id
+would mean rewriting stored data, which is Chandler's call and a separate ticket.
+
+The bare word **`testing` is added as an alias** of that entry. It used to resolve as the
+display name; renaming the display without the alias would have silently stopped
+`resolve("testing")` working, which matters in two places — the `new:` proposal path in
+`app/extract.py`, where an unresolvable label becomes a *proposed* skill instead of a
+mention, and `web/src/cvSkills.js`, which matches a CV against display names and aliases.
+
+The three neighbours that share the word "test" keep the phrase families that belong to
+them: `a-b-testing` gains "a/b test", "split test", "split testing" (it had no aliases at
+all); `statistics` gains "statistical testing", "hypothesis testing", "significance
+testing". `evaluation` gains nothing — it already answers to "model evaluation", "llm
+evaluation", "ai output evaluation", "evaluation frameworks" and "Evaluierung".
+
+**Why, and what the evidence was.** The entry was called "Testing" with no statement
+anywhere of what it covers; the only thing pinning the meaning was its alias list, which is
+all software testing. It had not actually drifted: of the 72 stored postings carrying it, all
+72 quote a software-testing phrase. Nor had the neighbours leaked into it — across every
+stored mention, "a/b test" lands on `a-b-testing` (15), "hypothesis testing" on `statistics`
+(3), and neither "split test", "statistical testing" nor "significance testing" appears in
+the corpus at all. So the aliases added here are prevention, not repair; "split test" and
+"significance testing" are absent from today's postings and are added because they are the
+same thing spelled differently, which is the alias rule.
+
+**Where the boundary is written down: a new "Skill boundaries" section in
+`taxonomy/README.md`**, not in `evals/LABELING.md`. The skill list itself has no per-entry
+description field, and adding one would change the schema and every reader of it. LABELING.md
+would otherwise be the natural home — it is what a labeller reads — but editing it is on
+AGENTS.md's stop list ("any edit to `evals/LABELING.md` … invalidates every eval"), and
+LABELING.md already names `taxonomy/README.md` as "the source of truth" for what counts as a
+skill and quotes it, so a labeller following that pointer reaches the boundary. The rule wins
+over the ticket's wording; nothing in LABELING.md changed, so no stored eval is invalidated.
+The section is deliberately for word-sharing pairs only, so it does not grow into a
+definition for all 217 entries.
+
+No Golden label changes: every `testing` criterion in the 46 Goldens quotes a plainly
+software-testing phrase, and the answer key already treats a compound quote as two skills
+(golden_013 carries both `testing` and `evaluation` off "evaluation, testing, validation…").
+
+**Undo:** revert the three entries and the README section, and set `version` back to 8. It
+costs one re-read of every job (about €3) in each direction.
+
 ## 2026-11-05 — A blank reading of a posting is a failure, not a result (HIR-172)
 
 Decision: when the model answers with a well-formed tool call that carries nothing at all
