@@ -5,6 +5,48 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-05 — The AI-assisted-coding skill is shown as "AI Coding Tools", with the spellings the postings use (HIR-181)
+
+Decision: the `ai-developer-tooling` entry's display name becomes **AI Coding Tools**. Its
+id stays `ai-developer-tooling` — 70 stored postings and six Goldens point at it, and the id
+rule in `taxonomy/README.md` is that an id is never renamed once rows reference it. The two
+children, `cursor` and `github-copilot`, keep it as their parent, untouched.
+
+**Why "AI Coding Tools" and not "AI Coding Assistants"** (the ticket's runner-up): it is the
+postings' own phrase. Of the 61 distinct quotes behind the 70 jobs, one is literally "AI
+Coding Tools" and four more are "AI coding tools" ("Proficiency in using AI coding tools",
+"power user of AI coding tools", "similar AI coding tools", "uses AI coding tools and agent
+workflows as a force multiplier"). "Tools" also covers both children, which are different
+kinds of thing — Cursor is an agent, GitHub Copilot an autocomplete assistant — where
+"Assistants" would read oddly over an agent. The old name "AI developer tooling" appears in
+only 2 of the 70, and one of those two is a posting for *building* such tooling.
+
+**Every alias added here was read off a real stored quote**, not guessed. The entry had two
+aliases ("coding agents", "ai development tools"); it now also answers to: "ai coding tools",
+"ai coding assistants", "ai coding agents", "coding agent", "agentic coding", "agentic coding
+tools", "ai-assisted coding", "coding copilots", "ai-assisted development tools",
+"ai-assisted developer tooling", "ai-powered development tools", "ai-powered developer
+tools", "ai dev tools", "genai coding tools", and the German "ki-coding-agenten",
+"ai-coding-copiloten", "ki-gestützte tools", "ki-entwicklungstools", "coding-agenten".
+
+**"ai developer tooling" is kept as an alias of the renamed entry.** It used to resolve as
+the display name; renaming without the alias would silently stop `resolve("ai developer
+tooling")` working — the same trap HIR-177 recorded a day's work earlier. Two stored postings
+and Golden `golden_009` quote that phrase, and `app/extract.py`'s `new:` path would have
+turned it into a *proposed* skill instead of a mention, while `web/src/cvSkills.js` matches a
+CV against display names and aliases.
+
+**What was deliberately left out.** "agentic development" and "agent-driven development":
+both appear in quotes, but they sit one word away from `agents` (170 jobs, *building* agents)
+and `tool-calling` (60 jobs, a model calling tools), and the ticket names that confusion as
+the thing to avoid. "AI tools" and "KI-Tools" bare: too broad — a posting saying "Du nutzt
+KI-Tools souverän im Arbeitsalltag" need not mean coding. Both stay out until a posting
+forces the question. No new skills were created: this entry plus Cursor and Copilot already
+cover the ground.
+
+`version` goes 9 to 10: the rename changes what an existing label resolves to, so every job
+is re-read once on merge (about €3).
+
 ## 2026-11-05 — The Testing skill is shown as "Software Testing", and the word-sharing boundaries live in taxonomy/README.md (HIR-177)
 
 Decision: the `testing` entry's display name becomes **Software Testing**. Its id stays
