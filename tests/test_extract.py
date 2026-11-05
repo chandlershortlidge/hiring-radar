@@ -172,6 +172,35 @@ def test_extract_raises_when_the_model_answers_with_text_instead_of_calling_the_
         ex.extract(JD, tax, FakeClient(text_only), model="m")
 
 
+def test_extract_raises_when_the_tool_call_carries_nothing(tax):
+    # HIR-172: a well-formed but entirely empty call is a failed read, not a posting
+    # without skills. Raising leaves the job unstamped and puts it in the failed= tally,
+    # instead of storing a blank job that nothing downstream ever looks at again.
+    with pytest.raises(ex.ExtractionError, match="carried nothing"):
+        ex.extract(JD, tax, FakeClient(response([])), model="m")
+
+
+def test_extract_keeps_zero_skills_when_an_attribute_was_found(tax):
+    # The other half of HIR-172: zero skills is legitimate for a posting that still
+    # states a seniority, so that stays a success and the job gets stamped.
+    tool = SimpleNamespace(type="tool_use", name="record_skills", input={
+        "skills": [], "seniority": "senior", "seniority_basis": "stated",
+        "seniority_signal": "Senior AI Engineer"})
+    out = ex.extract(SEN_JD, tax, FakeClient(
+        SimpleNamespace(stop_reason="tool_use", content=[tool], usage=None)), model="m")
+    assert out.mentions == [] and out.seniority.level == "senior"
+
+
+@pytest.mark.parametrize("items,attr", [
+    ([item("new:Rust", "Rust", "nice_to_have")], "proposed"),
+    ([item("cobol", "Python")], "rejected"),
+])
+def test_extract_keeps_a_call_that_found_only_proposed_or_rejected_skills(tax, items, attr):
+    # Those are reads that produced something, so they are not the empty shape.
+    out = ex.extract(JD, tax, FakeClient(response(items)), model="m")
+    assert getattr(out, attr) and out.mentions == []
+
+
 def test_prompt_contains_no_golden_specific_text(tax):
     # Guard for the AGENTS.md rule: no JD wording copied into the prompt.
     # The production phrases below are dev-Golden wording we deliberately did not copy

@@ -5,6 +5,58 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-05 — A blank reading of a posting is a failure, not a result (HIR-172)
+
+Decision: when the model answers with a well-formed tool call that carries nothing at all
+— no skills, nothing proposed, nothing rejected, and none of the four attributes
+(seniority, German, degree, production) — `extract()` raises `EmptyExtractionError`. The
+pipeline then leaves the job unstamped and counts it in the `failed=` tally, so it is read
+again on the next run and shows in the poll line. Zero skills *with* any attribute found
+stays a success, because a posting that lists no technical skills but does state a
+seniority has genuinely been read.
+
+**Why.** Job 569 (Accenture, "AI LLM Architect (All Genders)") was stored on 5 Nov with
+every extracted field null off 5,975 characters dense with taxonomy skills, and reported as
+`extracted=1/1 ... failed=0`. The old checks only caught a `max_tokens`/`refusal` stop, a
+missing tool block, or a missing `skills` list; an empty list passed all three. Because the
+job was stamped with the extractor version, nothing downstream would ever look at it again
+— the one failure mode that is invisible both on the chart and in the poll line.
+
+The cost of being wrong in this direction is a retry worth one model call; the cost of the
+old behaviour is a posting silently missing from every count until the next version bump.
+
+**Try twice, then drop — Chandler's decision, 5 Nov** (HIR-172 comment). A blank reading is
+counted on the job (`job.blank_extractions`, migration 015) and the posting is deleted on
+the second one. The handling is the same whether the job is new or already stored: the
+blank reading already on disk counts as the first attempt, so
+`scripts/reextract_blank_jobs.py` sets the count to 1 when it clears the stamp, and one
+further blank reading drops the posting. Every *other* failure — a connection error, a
+`max_tokens` stop — is still retried for ever, because it says nothing about the posting;
+only a completed-but-empty reading counts towards the two.
+
+A dropped posting is deleted outright, which is the one place this overrides the stop list's
+"deleting stored jobs" line — Chandler decided it himself, which is the authority that line
+defers to. The poll line reports it: `failed=` plus a new `dropped=`, both always printed.
+
+Short postings are the exception to re-reading at all: `scripts/reextract_blank_jobs.py`
+leaves a blank job under 1,000 characters stamped, because a posting that short legitimately
+has nothing to find.
+
+**What this still accepts.** Nothing remembers a dropped posting, so the feed that carried it
+re-ingests it on the next poll and it earns two fresh attempts — about two model calls a day
+for a posting the model cannot read, and a job id that keeps changing. Filed as HIR-176.
+
+Still open: why the model returned an empty call on that posting at all (365 output tokens
+were spent producing it). The `failed=`/`dropped=` lines are what will show whether a second
+reading repeats it.
+
+To undo, revert the HIR-172 commits: an empty call is stored as a blank success again. The
+`blank_extractions` column stays behind harmlessly (never edit a committed migration) and
+nothing re-reads; postings already dropped are gone, and come back only when their feed
+next lists them.
+
+---
+
 ## 2026-11-04 — Compare mode is two pickable sides, not a fixed pair (HIR-138)
 
 Decision: compare mode keeps its two-sided layout, and each side is a picker over every

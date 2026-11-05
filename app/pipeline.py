@@ -7,7 +7,10 @@ Does NOT: fetch postings, dedup, or decide which taxonomy/model to use (passed i
 
 Invariants: a job holds exactly one extraction (the latest; older rows are replaced on
 re-extract); a job is processed once per extractor_version, including jobs with zero skills; a failed extraction leaves the job unstamped and no partial rows, and is reported,
-not raised; re-running is safe. Only one extraction runs per database at a time: a second
+not raised; re-running is safe. A read that comes back with nothing at all is counted on
+the job (`blank_extractions`) and the posting is deleted on the second one — try twice,
+then drop (HIR-172, Chandler's decision of 5 Nov). Every other failure is retried for ever,
+since it says nothing about the posting. Only one extraction runs per database at a time: a second
 run (a poll started while an add is extracting, say) skips instead of paying for the same jobs
 twice, and its jobs stay pending for the next run.
 """
@@ -18,8 +21,10 @@ import json
 import sqlite3
 from dataclasses import dataclass, field
 
-from app.extract import Extraction, extraction_input, extractor_version
+from app.extract import EmptyExtractionError, Extraction, extraction_input, extractor_version
 from app.taxonomy import Taxonomy
+
+BLANK_READ_LIMIT = 2   # reads that come back with nothing at all before the posting is dropped
 
 
 @dataclass
@@ -30,12 +35,13 @@ class ExtractReport:
     mentions: int = 0
     proposed: int = 0
     skipped_busy: bool = False
+    dropped: list[tuple[int, str]] = field(default_factory=list)
 
     def line(self) -> str:
         if self.skipped_busy:
             return "extract: skipped, another extraction is running on this database (jobs stay pending)"
         return (f"extracted={self.succeeded}/{self.attempted} mentions={self.mentions} "
-                f"proposed={self.proposed} failed={len(self.failed)}")
+                f"proposed={self.proposed} failed={len(self.failed)} dropped={len(self.dropped)}")
 
 
 @contextlib.contextmanager
@@ -76,6 +82,22 @@ def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int |
     if limit:
         sql += f" LIMIT {int(limit)}"
     return conn.execute(sql, params).fetchall()
+
+
+def _count_blank_read(conn: sqlite3.Connection, job_id: int) -> int:
+    """Record one blank read of this job and return how many it has had in all."""
+    with conn:
+        conn.execute("UPDATE job SET blank_extractions = blank_extractions + 1 WHERE id = ?", (job_id,))
+    return conn.execute("SELECT blank_extractions FROM job WHERE id = ?", (job_id,)).fetchone()[0]
+
+
+def _drop_job(conn: sqlite3.Connection, job_id: int) -> None:
+    """Delete a posting the model has read as blank twice; its rows cascade with it."""
+    if not conn.execute("PRAGMA foreign_keys").fetchone()[0]:
+        raise RuntimeError("foreign keys are off: dropping a job would orphan its rows. "
+                           "Open the database with app.db.connect.")
+    with conn:
+        conn.execute("DELETE FROM job WHERE id = ?", (job_id,))
 
 
 def _reject_fields(item) -> tuple[str | None, str | None]:
@@ -134,6 +156,18 @@ def _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids) -> Extra
         report.attempted += 1
         try:
             ex = extract_fn(extraction_input(row["title"], row["description_text"]), tax, model)
+        except EmptyExtractionError as e:
+            # A blank read is the posting's own failure, not the connection's: try it twice,
+            # then drop it (HIR-172, Chandler's decision of 5 Nov).
+            blanks = _count_blank_read(conn, row["id"])
+            report.failed.append((row["id"], f"{type(e).__name__}: {e}"))
+            log(f"  job {row['id']}: FAILED {type(e).__name__}: {str(e)[:200]}"
+                f" (blank read {blanks} of {BLANK_READ_LIMIT})")
+            if blanks >= BLANK_READ_LIMIT:
+                _drop_job(conn, row["id"])
+                report.dropped.append((row["id"], f"{blanks} blank reads"))
+                log(f"  job {row['id']}: DROPPED after {blanks} blank reads")
+            continue
         except Exception as e:  # keep going; the job stays pending for the next run
             report.failed.append((row["id"], f"{type(e).__name__}: {e}"))
             log(f"  job {row['id']}: FAILED {type(e).__name__}: {str(e)[:200]}")
