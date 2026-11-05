@@ -152,7 +152,9 @@ select.sel { padding-right: 28px; }
 .legend .swatch.b1 { background: #eb6834; }
 .legend .swatch.b2 { background: #1baf7a; }
 
-/* the collapsed card: the header is always there, so the tree is discoverable */
+/* the collapsed card: the header is always there, so the tree is discoverable.
+   Nothing on the page uses this since HIR-187 took the tree card off the MVP; kept because
+   HIR-81 / HIR-89 bring that card back. */
 .fold { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0; border: 0; background: transparent; text-align: left; }
 .fold h2 { margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
 .fold .chev { color: var(--ink-3); transition: transform .15s ease; }
@@ -182,8 +184,15 @@ select.sel { padding-right: 28px; }
 .jobs { display: flex; flex-direction: column; }
 .jobs-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px; border-bottom: 1px solid var(--line); }
 .jobs-head h2 { margin: 0; font-size: 16px; font-weight: 600; }
-.jobs-head .l { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-.jobs-head .r { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+/* One row at desktop width whatever the city is (HIR-187). The left group's width follows the
+   city label — "56 open jobs · Remote (EU)" is far wider than "· Berlin" — so it is the side
+   allowed to shrink; the search and Sort on the right keep their size. Below 1024 px the right
+   group takes a line of its own, so the wrap is a decision and not an accident of the label. */
+.jobs-head .l { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; min-width: 0; flex: 1 1 auto; }
+.jobs-head .r { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; flex: 0 0 auto; }
+.jobs-head .jobs-count { font-size: 13px; white-space: nowrap; }
+.jobs-head .search input { width: clamp(160px, 24vw, 260px); min-width: 160px; }
+@media (max-width: 1023px) { .jobs-head .r { flex-basis: 100%; } }
 .chip-filter { display: inline-flex; align-items: center; gap: 4px; height: 26px; padding: 0 4px 0 10px; border-radius: 13px; background: var(--ink); color: #fff; font-size: 12.5px; }
 .chip-filter button { width: 22px; height: 22px; border: 0; border-radius: 50%; background: transparent; color: #fff; display: inline-flex; align-items: center; justify-content: center; }
 /* "+ Add skill" in the chip row, and its typeahead popover (HIR-79) */
@@ -318,6 +327,8 @@ select.sel { padding-right: 28px; }
   .page-head { padding: 16px; } .page-head h1 { font-size: 17px; } .page-links { align-items: flex-start; } .posting-wrap { padding: 16px; }
   .bars-head, .bar-row { grid-template-columns: 120px minmax(0,1fr); gap: 10px; }
   .search input { width: 100%; }
+  /* beats the desktop clamp above, which is more specific than the line before this one */
+  .jobs-head .search input { width: 100%; min-width: 0; }
   .tbl-in { min-width: 0; }
   .row-head { display: none; }
   .row { grid-template-columns: 1fr auto; grid-template-areas: "co exp" "ti exp" "meta exp"; padding: 10px 16px; row-gap: 2px; }

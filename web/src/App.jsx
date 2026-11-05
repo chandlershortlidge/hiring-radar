@@ -2,12 +2,11 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { api } from "./api.js";
 import { COMPARE_DEFAULT, PLACES, DEGREE_FILTERS, GERMAN_FILTERS, PRODUCTION_FILTERS, SENIORITIES, cap, dateTime, pctInt, timeAgo } from "./format.js";
 import { useProfile } from "./profile.js";
-import { Compare, Down, Person, Plus, Radar } from "./icons.jsx";
+import { Compare, Person, Plus, Radar } from "./icons.jsx";
 import SkillChart from "./SkillChart.jsx";
 import CompareChart from "./CompareChart.jsx";
 import JobList from "./JobList.jsx";
 import RelatedSkills from "./RelatedSkills.jsx";
-import SkillTree from "./SkillTree.jsx";
 import AddJobDrawer from "./AddJobDrawer.jsx";
 import ReviewDrawer from "./ReviewDrawer.jsx";
 import ProfileDrawer from "./ProfileDrawer.jsx";
@@ -21,22 +20,12 @@ const DEFAULT = { cities: [], compare: false, seniorities: [], requirement: "req
 // buttons change it. Returns the job id or null.
 const jobFromPath = (path = window.location.pathname) => { const m = /^\/jobs\/(\d+)\/?$/.exec(path); return m ? Number(m[1]) : null; };
 
-// The skill tree is the one card that stays shut until asked for: it is a big drawing and
-// most visits want the chart and the list. Which way the reader left it is remembered per
-// browser, like the profile and with the same care — storage throws in private modes, and
-// a dashboard must not go blank over a preference.
-const TREE_KEY = "hiring-radar.skilltree.v1";
-const treeWasOpen = () => { try { return localStorage.getItem(TREE_KEY) === "1"; } catch { return false; } };
-const rememberTree = (open) => { try { localStorage.setItem(TREE_KEY, open ? "1" : "0"); } catch {} };
-
 export default function App() {
   const [filters, setFilters] = useState(DEFAULT);
   const [stats, setStats] = useState(null);
   const [skills, setSkills] = useState(null);
   const [tax, setTax] = useState({ version: 0, skills: [] });
   const [related, setRelated] = useState(null);
-  const [tree, setTree] = useState(null);
-  const [treeOpen, setTreeOpen] = useState(treeWasOpen);
   const [drawer, setDrawer] = useState(null); // 'add' | 'review' | 'profile'
   const [refresh, setRefresh] = useState(0);
   const [jumpTo, setJumpTo] = useState(null);
@@ -54,16 +43,6 @@ export default function App() {
   const reload = useCallback(() => { api.stats().then(setStats); setRefresh((n) => n + 1); }, []);
   useEffect(() => { api.taxonomy().then(setTax); reload(); }, [reload]);
   useEffect(() => { let live = true; api.skills(filters).then((r) => { if (live) setSkills(r); }); return () => { live = false; }; }, [filters, refresh]);
-  // Shut means unasked-for: no request until the reader opens it once. After that it
-  // follows the filters like every other card.
-  useEffect(() => {
-    if (!treeOpen) return;
-    let live = true;
-    setTree(null);
-    api.skillTree(filters).then((r) => { if (live) setTree(r); });
-    return () => { live = false; };
-  }, [filters, refresh, treeOpen]);
-  const toggleTree = () => setTreeOpen((open) => { rememberTree(!open); return !open; });
   // The related-skills rows, fetched here and not in the panel: the panel draws them and the
   // chip row's add-skill popover suggests them, both from this one request and in its order.
   useEffect(() => {
@@ -210,26 +189,8 @@ export default function App() {
           profile={profile} taxonomy={taxName} demand={demand} refreshKey={refresh} openJobId={jumpTo} onOpened={() => setJumpTo(null)} onOpenPage={openPage}
           taxonomyRows={taxRows} aliases={taxAliases} suggestions={skillSuggestions} onAddSkill={addSkill} />
 
-        <section className="card chart" aria-labelledby="tree-title">
-          <button type="button" className="fold" onClick={toggleTree}
-            aria-expanded={treeOpen} aria-controls="tree-body">
-            <h2 id="tree-title">The skill tree: what leads to what</h2>
-            <span className="chev"><Down /></span>
-          </button>
-          <div id="tree-body" hidden={!treeOpen}>
-            <p className="lede">
-              The same {skills?.total ?? "…"} {winLabel} jobs, drawn as the market’s own
-              specialization paths · {cityLabel}{senLabel}. The skills in most postings sit
-              near the centre; an edge means the outer skill’s jobs nearly always ask for
-              the inner one too. A node’s ring is how many jobs mention the skill and its
-              solid core how many require it, because the gap between them is the point:
-              mentioned often but required rarely is a résumé keyword, not a gate. Hover a
-              skill, or tab to it, for both numbers. Required-only and the skill selection
-              do not change this map.
-            </p>
-            {treeOpen && <SkillTree data={tree} selected={filters.skillIds} onSelect={selectSkill} />}
-          </div>
-        </section>
+        {/* The skill tree card stood here. Off the MVP page by HIR-187; SkillTree.jsx, api.skillTree
+            and /api/skills/tree all still work, and HIR-81 / HIR-89 bring it back per career track. */}
       </main>}
 
       {drawer === "add" && <AddJobDrawer onClose={() => setDrawer(null)} onAdded={reload} onViewJob={viewJob} />}
