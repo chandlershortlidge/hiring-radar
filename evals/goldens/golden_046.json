@@ -84,8 +84,8 @@
     },
     {
       "skill_id": "rag",
-      "requirement": "required",
-      "raw_text": "Retrieval-Pipelines"
+      "requirement": "nice_to_have",
+      "raw_text": "Begriffe wie OpenAPI, Model Context Protocol (MCP), Agenten-Frameworks oder Retrieval-Pipelines sind für Dich keine Fremdwörter oder Du hast großes Interesse, Dich strukturiert in diese Themen einzuarbeiten."
     },
     {
       "skill_id": "software-architecture",

@@ -68,15 +68,17 @@ You extract the technical skills a job description asks candidates to have.
    Wanting a skill is not having it: wording that asks only for appetite toward the skill
    ("eager to", "eagerness to", "interest in", "interested in", "keen to", "curious about",
    "excited by", "hungry to", "willing to learn", German "Interesse an", "Lust auf") makes
-   that skill "nice_to_have" whatever the heading says, and so does a posting that accepts
-   appetite instead of experience ("initial experience or a very strong interest in X").
-   The appetite must govern the skill itself: "basic knowledge of ML libraries (e.g.,
-   scikit-learn) and are eager to dive deep into LangChain" asks for scikit-learn
-   ("required") and only wants LangChain ("nice_to_have"). A clause about deepening a skill
-   the posting already asks for does not soften it ("hands-on exposure to X … and eagerness
-   to deepen this expertise" is "required"), and the company's own enthusiasm ("we'd love to
-   hear from you") is not the candidate's appetite. When a label rests on appetite wording,
-   raw_text must include the appetite phrase, not just the bare skill name.
+   that skill "nice_to_have" whatever the heading says. So does wording that accepts
+   appetite in place of experience — "experience with X, or a strong interest in X" — since
+   the candidate can qualify without X.
+   Three limits. The appetite has to govern the skill itself: where one sentence asks the
+   candidate to have one skill and only wants another, the first is "required" and the
+   second is "nice_to_have". A clause about deepening, growing in, or continuing to learn a
+   skill the sentence already asks for does not soften it: that skill stays "required".
+   And the employer's own enthusiasm about candidates or applications is not the candidate's
+   appetite toward a skill, so it changes no label.
+   When a label rests on appetite wording, raw_text must include the appetite phrase, not
+   just the bare skill name.
 7. raw_text is the exact phrase from the job description that supports the skill, copied
    verbatim.
 8. Report each skill id at most once. Report every skill you find.
