@@ -43,7 +43,7 @@ the taxonomy first — the Golden never invents an id.
 
 ## requirement: `required` or `nice_to_have`
 
-Three rules, in order of precedence:
+Four rules, in order of precedence:
 
 1. **The section heading sets the default.** A heading that marks its section optional —
    "Nice to have", "Bonus", "Strongly Preferred", "Preferred qualifications" — makes every
@@ -51,7 +51,30 @@ Three rules, in order of precedence:
    as requirements, or no heading at all, defaults to `required`.
 2. **An inline marker on the item overrides the heading**, in either direction. The markers
    are: preferred, plus, bonus, nice to have, ideally, is an advantage.
-3. **An unmarked item in a tech-stack list is `required`.** A "tech stack you will work
+3. **Wanting a skill is not having it.** Wording that asks only for *appetite* toward the
+   skill makes it `nice_to_have`, whatever the heading says. The appetite words are: eager
+   to, eagerness to, interest in, interested in, keen to, curious about, excited by, hungry
+   to, willing to learn — and in German: Interesse an, Lust auf. This also covers a posting
+   that accepts appetite *instead of* experience ("initial experience **or** a very strong
+   interest in X", "X is no foreign word to you **or** you are keen to learn it"): the
+   candidate can qualify without X, so X is not a requirement.
+
+   Three limits, all of them real cases in the answer key:
+
+   - **The appetite has to govern the skill itself.** "You have basic knowledge of ML
+     libraries (e.g., scikit-learn) and are eager to dive deep into LangChain, LLM
+     orchestration, and vector databases" asks for scikit-learn and only *wants* the other
+     three: `scikit-learn` stays `required`, the rest are `nice_to_have` (golden_020).
+   - **An extra clause about deepening a skill the posting already asks for does not soften
+     it.** "Hands-on exposure to LLM and agentic ecosystems … and eagerness to deepen this
+     expertise" is `required` — the exposure is asked for (golden_014).
+   - **The company's enthusiasm is not the candidate's appetite.** "we'd love to hear from
+     you" changes no label (golden_038).
+
+   Where a label rests on this rule, **`raw_text` must include the appetite phrase**. A
+   quote trimmed to the bare skill list hides the words that decide the label, which is
+   exactly how four of these criteria were mislabeled before HIR-178.
+4. **An unmarked item in a tech-stack list is `required`.** A "tech stack you will work
    with" section describes the job, not a wish list, so an entry in it with no marker of
    its own is a requirement.
 

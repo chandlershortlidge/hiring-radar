@@ -57,12 +57,12 @@
     },
     {
       "skill_id": "llms",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Interest in data, LLMs, Prompt Engineering, or Retrieval-Augmented Generation (RAG)."
     },
     {
       "skill_id": "prompt-engineering",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Interest in data, LLMs, Prompt Engineering, or Retrieval-Augmented Generation (RAG)."
     },
     {
@@ -72,7 +72,7 @@
     },
     {
       "skill_id": "rag",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "Interest in data, LLMs, Prompt Engineering, or Retrieval-Augmented Generation (RAG)."
     },
     {

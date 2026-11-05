@@ -43,18 +43,18 @@
     },
     {
       "skill_id": "ai-deployment",
-      "requirement": "required",
-      "raw_text": "wie Modelle und Datenpipelines in Produktionsumgebungen bereitgestellt"
+      "requirement": "nice_to_have",
+      "raw_text": "Interesse daran zu lernen, wie Modelle und Datenpipelines in Produktionsumgebungen bereitgestellt"
     },
     {
       "skill_id": "data-pipelines",
-      "requirement": "required",
-      "raw_text": "Datenpipelines in Produktionsumgebungen"
+      "requirement": "nice_to_have",
+      "raw_text": "Interesse daran zu lernen, wie Modelle und Datenpipelines"
     },
     {
       "skill_id": "observability",
-      "requirement": "required",
-      "raw_text": "bereitgestellt, überwacht und verbessert"
+      "requirement": "nice_to_have",
+      "raw_text": "Interesse daran zu lernen, wie Modelle und Datenpipelines in Produktionsumgebungen bereitgestellt, überwacht"
     },
     {
       "skill_id": "docker",

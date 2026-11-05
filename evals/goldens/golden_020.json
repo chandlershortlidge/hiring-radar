@@ -37,17 +37,17 @@
     },
     {
       "skill_id": "langchain",
-      "requirement": "required",
-      "raw_text": "LangChain, LLM orchestration, and vector databases"
+      "requirement": "nice_to_have",
+      "raw_text": "are eager to dive deep into LangChain, LLM orchestration, and vector databases"
     },
     {
       "skill_id": "llm-orchestration",
-      "requirement": "required",
-      "raw_text": "LangChain, LLM orchestration, and vector databases"
+      "requirement": "nice_to_have",
+      "raw_text": "are eager to dive deep into LangChain, LLM orchestration, and vector databases"
     },
     {
       "skill_id": "llms",
-      "requirement": "required",
+      "requirement": "nice_to_have",
       "raw_text": "initial experience or a very strong interest in designing algorithms and building Generative AI applications"
     },
     {
@@ -77,8 +77,8 @@
     },
     {
       "skill_id": "vector-databases",
-      "requirement": "required",
-      "raw_text": "LangChain, LLM orchestration, and vector databases"
+      "requirement": "nice_to_have",
+      "raw_text": "are eager to dive deep into LangChain, LLM orchestration, and vector databases"
     }
   ]
 }
