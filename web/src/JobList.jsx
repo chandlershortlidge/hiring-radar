@@ -82,9 +82,9 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
       .then((r) => setPage((p) => ({ ...r, jobs: [...p.jobs, ...r.jobs] })));
   const left = byFit ? Math.min(ordered.length, page.total) - rows.length : page.total - rows.length;
 
-  // Compare mode asks the server for every city at once, so the list below is every city,
-  // not only the ones being compared — and there can now be three of them (HIR-188).
-  const scope = filters.compare ? "all cities" : filters.cities.length ? filters.cities.join(" + ") : "all cities";
+  // The cities in the filter name the list's scope in every mode — compare mode passes the
+  // compared cities in (HIR-196), so there is no compare special case here.
+  const scope = filters.cities.length ? filters.cities.join(" + ") : "all cities";
   return (
     <section className="card jobs" aria-labelledby="jobs-title">
       <div className="jobs-head">
