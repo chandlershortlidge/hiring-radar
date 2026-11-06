@@ -20,3 +20,8 @@ scratch/
 # One ticket per branch (HIR-88). The pre-commit hook reads it; it never ships.
 TICKET
 .claude/worktrees/
+
+# Third-party skills installed via `npx skills` (local tooling, not shipped)
+.agents/
+skills-lock.json
+.claude/skills/security-audit/
