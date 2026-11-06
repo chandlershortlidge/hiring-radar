@@ -5,6 +5,95 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-05 — MVP page: no skill tree card, no posting-text search box (HIR-187)
+
+Both are hidden from the page and kept in the code and the API. Nothing was deleted on the
+server: `/api/jobs` still accepts the `text` filter, `/api/skills/tree` still answers, and
+`app/skill_tree.py`, `web/src/SkillTree.jsx`, `api.skillTree` and their tests are untouched.
+This is a decision about what the MVP page shows, not about what the product can do.
+
+**Why the posting-text box went.** The Jobs toolbar is one flex row: a left group (title,
+Saved pill, skill chips, "+ Add skill", the jobs count) and a right group (the search boxes
+and Sort). The left group's width follows the city label, so "56 open jobs · Remote (EU)" is
+much wider than "… · Berlin". With two ~260 px inputs in the right group the row could not
+hold on All, Remote (EU) or New York and wrapped to two rows — the toolbar changed height as
+you clicked between cities. Two search boxes were also the wrong answer to begin with: "Search
+company or title" and "Search the posting text" sat side by side with no explanation of which
+to use, and the same word means different things in each. One box stays; the posting-text
+search belongs in an advanced-filters drawer, which the home-screen rework will place.
+
+**Why the row now holds for every label.** Removing one input was most of it. The rest is in
+`.jobs-head`: the left group may shrink (`min-width: 0; flex: 1 1 auto`), the right group may
+not (`flex: 0 0 auto`), the remaining input shrinks down to 160 px instead of a fixed 260 px,
+and the count label never breaks mid-phrase. Below 1024 px the wrap is now deliberate — the
+search and Sort take their own line — rather than an accident of the label's length.
+
+**Why the skill tree card went.** It is the page's biggest drawing and it sat shut by default
+under the job list, so most visits paid for a card they never opened, and the ones that did
+opened a map the MVP has nothing to say about yet. HIR-81 and HIR-89 own the tree; they bring
+it back deliberately, per career track, when there is a reason to look at it. A comment is
+left where the card was so the next reader knows this was a choice.
+
+**To undo.** Both are small, self-contained reverts: the card is one `<section>` plus the
+state that fed it, the box is one `<label>`/`<div className="search">` pair plus its `text`
+state. `filters.text` is still in the filter shape and still sent to the server; it is simply
+always `""` from the UI.
+
+---
+
+## 2026-11-05 — Job family is a title rule (v1) (HIR-186)
+
+Decision: every job carries one of five job families — `ai-engineer`, `ml-engineer`,
+`data-scientist`, `ml-platform`, `research` — decided from `job.title` alone, matched
+case-insensitively, first match wins:
+
+| family | title matches |
+| -- | -- |
+| `data-scientist` | `data scien`, `datenwissenschaft` |
+| `ml-platform` | `mlops`, `ml platform`, `ml-platform`, `ml infra`, `platform engineer` |
+| `ml-engineer` | `machine learning engineer`, `machine-learning engineer`, `ml engineer`, `ml-engineer`, `mle` (whole word) |
+| `research` | `research`, `applied scientist` |
+| `ai-engineer` | everything else |
+
+Why a rule and not the model: every stored job already passed the ingest title filter (an
+AI/ML domain term plus a technical role term), so the title carries enough signal to split
+the pool into five buckets at no model cost and with no re-extraction. Data-scientist
+postings were already in the pool, just unlabelled. The families exist so the planned
+"my job in my city" entry screen (HIR-105) has a family field to offer a picker over.
+
+Known limits, accepted for v1:
+
+- A title naming two families takes the earlier row, so "Senior Data Scientist / Machine
+  Learning Engineer" is `data-scientist`, not both.
+- `ml-platform` is tested before `ml-engineer` so "ML Platform Engineer" is platform. The
+  cost is that `platform engineer` catches any platform role in the pool, AI-platform
+  titles included.
+- `research` catches "Research" anywhere in the title, so "Research Engineer, LLM
+  Infrastructure" is research rather than platform.
+- `ai-engineer` is the remainder, not a positive match: an unusual title with no family
+  word lands there. On 5 Nov that is the largest bucket by construction.
+- `mlops` is matched as one word, so "ML Ops" spelled with a space does not reach
+  `ml-platform`: "ML Engineer (Computer Vision & ML Ops)" is `ml-engineer`.
+- The family describes the title, not the work. A posting whose body is pure data science
+  under an "AI Engineer" title is misfiled, and nothing here notices.
+
+The rule lives twice: `family_of` in `app/ingest.py` labels new jobs at insert, and the
+same CASE in `app/migrations/017_job_family.sql` backfilled the existing rows. A test
+asserts the two agree over a fixture list of titles, so changing one without the other
+fails the suite.
+
+Measured on the 562 jobs stored on 5 Nov 2026, the backfill gives: `ai-engineer` 329,
+`research` 90, `ml-engineer` 64, `data-scientist` 60, `ml-platform` 19, none unlabelled.
+`research` is larger than one might expect because any "Research" in the title counts,
+including "Senior Machine Learning Research Engineer".
+
+To undo: revert the HIR-186 commits and drop the column; the filter is additive, so no
+earlier number changes. A model-assigned family can replace the rule later without the
+column, the API parameter or the dashboard control changing — only `family_of` and the
+extractor would.
+
+---
+
 ## 2026-11-05 — `ai-deployment` is not narrowed: the two spot-check rejections were item-level calls (HIR-183)
 
 Chandler was asked whether to narrow `ai-deployment`, and chose not to. **The skill list and
@@ -67,6 +156,8 @@ goes from 36 jobs to 28 when they are corrected.
 **To undo.** Nothing to revert — no code, skill list, guide or stored data changed in this
 ticket. Re-opening the question means re-opening HIR-183, and the numbers above are the
 starting point rather than something to re-measure.
+
+---
 
 ## 2026-11-05 — Wanting a skill is not having it: appetite wording is `nice_to_have` (HIR-178)
 

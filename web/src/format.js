@@ -21,6 +21,19 @@ export const COMPARE_DEFAULT = ["Berlin", "San Francisco"];
 export const PLACES = ["Berlin", "Remote (EU)", "San Francisco", "New York"];
 export const SENIORITIES = ["junior", "mid", "senior"];
 
+// The five job families every posting is sorted into from its title (HIR-186). The order is
+// the order of the buttons; the server validates against the same five. FAMILY_LABELS is
+// what a person reads — the stored value is the hyphenated id.
+export const FAMILIES = ["ai-engineer", "ml-engineer", "data-scientist", "ml-platform", "research"];
+export const FAMILY_LABELS = {
+  "ai-engineer": "AI Engineer",
+  "ml-engineer": "ML Engineer",
+  "data-scientist": "Data Scientist",
+  "ml-platform": "ML Platform",
+  research: "Research",
+};
+export const familyLabel = (f) => FAMILY_LABELS[f] || f;
+
 // One side of compare mode picks a place. The two sides must stay different — a place
 // against itself is an empty comparison — so picking the place already on the other side
 // swaps the pair instead. `side` is 0 for the left side, 1 for the right.

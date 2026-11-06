@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { api } from "./api.js";
 import { Down, Ext, Repost, Search, Star, Up, X } from "./icons.jsx";
-import { cap, dateShort, degreeLine, germanLine, productionLine, sourceCode, timeAgo } from "./format.js";
+import { cap, dateShort, degreeLine, familyLabel, germanLine, productionLine, sourceCode, timeAgo } from "./format.js";
 import { fails, fit, gates, jobSeniority, rankJobs } from "./profile.js";
 import { copyLines, sortJobs, useSaved } from "./saved.js";
 import AddSkillChip from "./AddSkillChip.jsx";
@@ -26,9 +26,10 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
   const [open, setOpen] = useState(null);
   const [loading, setLoading] = useState(false);
   const [q, setQ] = useState(filters.query);
-  // The posting-text search (HIR-67) is its own box: `q` matches the company and title,
-  // `text` every word of the stored posting, and a word can mean different things in each.
-  const [text, setText] = useState(filters.text);
+  // The posting-text search (HIR-67) had a second box here, next to this one. It is off the
+  // MVP page (HIR-187): two unexplained search boxes side by side, and the pair is what made
+  // the toolbar wrap to two rows. `filters.text` still exists and `/api/jobs` still accepts
+  // it — it is simply always "" from the UI until an advanced-filters drawer offers it again.
   // Saved jobs (HIR-99): ids live only in this browser. The Saved view fetches each saved
   // job by its id — the one request no filter touches — so a job that has since closed, or
   // left the current window, still shows with its status instead of silently vanishing.
@@ -38,7 +39,6 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
   const [copied, setCopied] = useState(false);
 
   useEffect(() => { const t = setTimeout(() => setFilters((f) => ({ ...f, query: q })), 250); return () => clearTimeout(t); }, [q, setFilters]);
-  useEffect(() => { const t = setTimeout(() => setFilters((f) => ({ ...f, text })), 250); return () => clearTimeout(t); }, [text, setFilters]);
 
   // Clearing the profile has to take its sort with it, or the list would sit on an
   // ordering there is nothing left to compute.
@@ -103,7 +103,7 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
             ))}
             <AddSkillChip selected={filters.skillIds} suggestions={suggestions} taxonomy={taxonomyRows}
               aliases={aliases} onAdd={onAddSkill} />
-            <span className="muted" style={{ fontSize: 13 }}>{page.total} {filters.window === "open" ? "open" : ""} jobs · {scope}</span>
+            <span className="muted jobs-count">{page.total} {filters.window === "open" ? "open" : ""} jobs · {scope}</span>
           </>}
         </div>
         <div className="r">
@@ -116,8 +116,6 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
           ) : (<>
             <label htmlFor="q" className="sr">Search company or title</label>
             <div className="search"><Search stroke="#6B6B6B" /><input id="q" type="search" className="inp" placeholder="Search company or title" value={q} onChange={(e) => setQ(e.target.value)} /></div>
-            <label htmlFor="jd" className="sr">Search the posting text</label>
-            <div className="search"><Search stroke="#6B6B6B" /><input id="jd" type="search" className="inp" placeholder="Search the posting text" value={text} onChange={(e) => setText(e.target.value)} /></div>
           </>)}
           <label htmlFor="sort" className="muted" style={{ fontSize: 12.5 }}>Sort</label>
           <select id="sort" className="sel" value={sort} onChange={(e) => setSort(e.target.value)}>
@@ -135,9 +133,9 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
         ))}
         {savedOn && !savedJobs && savedIds.length > 0 && <div className="empty">Loading your saved jobs…</div>}
         {savedOn && !rows.length && (savedJobs || !savedIds.length) && <div className="empty">Nothing saved yet. Star a job to keep it here.</div>}
-        {!savedOn && !loading && !page.jobs.length && <div className="empty">{text.trim()
-          ? `No posting contains ${text.trim().split(/\s+/).length > 1 ? "all of those words" : "that word"}. Every word you type has to appear somewhere in the posting.`
-          : "No jobs match. Widen the time window or clear the skill filter."}</div>}
+        {/* The "no posting contains those words" variant of this message went with the
+            posting-text box (HIR-187): nothing in the UI can set `filters.text` any more. */}
+        {!savedOn && !loading && !page.jobs.length && <div className="empty">No jobs match. Widen the time window or clear the skill filter.</div>}
       </div></div>
       <div className="jobs-foot">
         {!savedOn && left > 0 && <button type="button" className="btn" onClick={more}>Load {Math.min(PAGE, left)} more</button>}
@@ -169,7 +167,7 @@ function Row({ job: j, open, onToggle, profile, taxonomy, demand, onOpenPage, sa
           {miss.length > 0 && <span className="fit miss" title={miss.map((w) => MISS_LABELS[w]).join(" · ")}>!</span>}
           {cov?.gated_by && <span className="fit gate" title={MISS_LABELS[cov.gated_by]}>{gateWord(cov.gated_by, j)}</span>}
           {cov && cov.score !== null && <span className={`fit${cov.score === 1 && !cov.thin ? " full" : ""}`} title={fitTitle(cov, taxonomy)}>{fitBadge(cov)}</span>}
-          {j.title}{j.seniority && <span className="dim" style={{ marginLeft: 8, fontSize: 12 }}>{cap(j.seniority)}</span>}
+          {j.title}{j.seniority && <span className="dim" style={{ marginLeft: 8, fontSize: 12 }}>{cap(j.seniority)}</span>}{j.family && <span className="dim" style={{ marginLeft: 8, fontSize: 12 }} title="Job family, from the title">{familyLabel(j.family)}</span>}
         </span>
         <span className="ci muted">{j.city || "—"}</span>
         <span className="fs muted" style={{ fontSize: 13 }}>{timeAgo(j.first_seen)}</span>
