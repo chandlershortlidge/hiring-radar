@@ -14,7 +14,10 @@ the job (`blank_extractions`) and the posting is deleted on the second one — t
 then drop (HIR-172, Chandler's decision of 5 Nov). Every other failure is retried for ever,
 since it says nothing about the posting. Only one extraction runs per database at a time: a second
 run (a poll started while an add is extracting, say) skips instead of paying for the same jobs
-twice, and its jobs stay pending for the next run.
+twice, and its jobs stay pending for the next run. A version bump re-reads only jobs that are
+still open (the dashboard's open rule, queries.open_clause): closed jobs keep the skills and
+version stamp of their day, and a repost seen again counts as open and re-enters the queue
+(HIR-195). A job never read at all is read whatever its status — a first read is not a re-read.
 """
 
 import contextlib
@@ -25,6 +28,7 @@ import sqlite3
 from dataclasses import dataclass, field
 
 from app.extract import EmptyExtractionError, Extraction, extraction_input, extractor_version
+from app.queries import now_iso, open_clause
 from app.taxonomy import Taxonomy
 
 BLANK_READ_LIMIT = 2   # reads that come back with nothing at all before the posting is dropped
@@ -41,6 +45,8 @@ class ExtractReport:
     skipped_busy: bool = False
     dropped: list[tuple[int, str]] = field(default_factory=list)
     logged: int = 0
+    reread_queued: int = 0     # stale-stamped jobs in this run's queue (still open)
+    skipped_closed: int = 0    # stale-stamped jobs left out because they are closed (HIR-195)
 
     @property
     def all_blank(self) -> bool:
@@ -86,14 +92,22 @@ def _extraction_lock(conn: sqlite3.Connection):
 
 
 def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int | None = None,
-                            job_ids: list[int] | None = None) -> list[sqlite3.Row]:
+                            job_ids: list[int] | None = None, now: str | None = None) -> list[sqlite3.Row]:
     """Jobs without a current extraction; `job_ids` narrows to those jobs (the add endpoints).
 
     Jobs stamped 'legacy' are never re-extracted: they carry the old summary as text, not
-    the posting, so a fresh extraction would be worse than the labels they have."""
-    sql = ("SELECT id, title, description_text FROM job"
-           " WHERE (extracted_version IS NULL OR extracted_version != ?) AND extracted_version IS NOT 'legacy'")
-    params: list = [version]
+    the posting, so a fresh extraction would be worse than the labels they have.
+
+    A job never read at all is always in the queue, but a re-read (a job stamped with an
+    older version) only while the job is still open: closed jobs keep the skills of their
+    day, and nobody browses them, so a version bump must not pay to re-read them (HIR-195).
+    A repost the poll sees again gets its last_seen bumped by ingest, counts as open, and
+    re-enters the queue on its own."""
+    open_sql, open_params = open_clause(now or now_iso())
+    sql = ("SELECT id, extracted_version, title, description_text FROM job j"
+           f" WHERE (j.extracted_version IS NULL OR (j.extracted_version != ? AND {open_sql}))"
+           " AND j.extracted_version IS NOT 'legacy'")
+    params: list = [version, *open_params]
     if job_ids:
         sql += f" AND id IN ({','.join('?' * len(job_ids))})"
         params += list(job_ids)
@@ -104,6 +118,20 @@ def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int |
     if limit:
         sql += f" LIMIT {int(limit)}"
     return conn.execute(sql, params).fetchall()
+
+
+def closed_reread_skips(conn: sqlite3.Connection, version: str,
+                        job_ids: list[int] | None = None, now: str | None = None) -> int:
+    """How many stale-stamped jobs the queue left out because they are closed (HIR-195)."""
+    open_sql, open_params = open_clause(now or now_iso())
+    sql = ("SELECT count(*) FROM job j"
+           " WHERE j.extracted_version IS NOT NULL AND j.extracted_version != ?"
+           f" AND j.extracted_version != 'legacy' AND NOT {open_sql}")
+    params: list = [version, *open_params]
+    if job_ids:
+        sql += f" AND id IN ({','.join('?' * len(job_ids))})"
+        params += list(job_ids)
+    return conn.execute(sql, params).fetchone()[0]
 
 
 def _count_blank_read(conn: sqlite3.Connection, job_id: int) -> int:
@@ -213,8 +241,15 @@ def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn, model: 
 
 def _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids) -> ExtractReport:
     version = extractor_version(tax, model)
+    now = now_iso()
     report = ExtractReport()
-    for row in jobs_needing_extraction(conn, version, limit, job_ids):
+    rows = jobs_needing_extraction(conn, version, limit, job_ids, now)
+    report.reread_queued = sum(1 for r in rows if r["extracted_version"] is not None)
+    report.skipped_closed = closed_reread_skips(conn, version, job_ids, now)
+    if report.reread_queued or report.skipped_closed:
+        log(f"  re-reads: {report.reread_queued} open jobs queued;"
+            f" {report.skipped_closed} closed jobs skipped (keep their old skills)")
+    for row in rows:
         report.attempted += 1
         sent = extraction_input(row["title"], row["description_text"])
         try:
