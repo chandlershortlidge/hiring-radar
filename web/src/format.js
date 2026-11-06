@@ -13,12 +13,49 @@ export const SOURCE_CODES = {
 };
 export const sourceCode = (s) => (SOURCE_CODES[s] || [s.toUpperCase().slice(0, 3), s]);
 
-// PLACES is every filterable place, EU-remote included (DECISIONS 2026-10-26), and it is
-// also the option list for both sides of compare mode: compare is two sides, each a picker
-// over every collected place, opening on COMPARE_DEFAULT (HIR-138). A newly launched city
-// joins PLACES and is compareable with no further change.
+// PLACES is every filterable place, EU-remote included (DECISIONS 2026-10-26). It is the
+// option list for the city picker, the market grid and compare mode's tokens, so a newly
+// launched city appears in all three by being added here and nowhere else (HIR-188).
+// Each entry carries:
+//   name    what the server stores in job.city and what a person reads
+//   slug    the URL segment — /berlin/ai-engineer
+//   group   which heading it sits under, one of PLACE_GROUPS
+//   aliases extra words the picker's search box matches, beyond name and group
+export const PLACES = [
+  { name: "Berlin", slug: "berlin", group: "Germany", aliases: ["deutschland", "de"] },
+  { name: "Remote (EU)", slug: "remote-eu", group: "Remote", aliases: ["remote", "eu", "europe", "anywhere"] },
+  { name: "San Francisco", slug: "san-francisco", group: "United States", aliases: ["sf", "bay area", "usa", "us", "california"] },
+  { name: "New York", slug: "new-york", group: "United States", aliases: ["nyc", "usa", "us", "manhattan", "brooklyn"] },
+];
+// The group headings, in the order the picker and the grid show them.
+export const PLACE_GROUPS = ["Germany", "Remote", "United States"];
+// Names only, for the callers that just need the list of places.
+export const PLACE_NAMES = PLACES.map((p) => p.name);
+// "All of Germany" is not a place the server stores: it is every German place at once,
+// sent as a repeated city param. It sits at the end of the Germany group.
+export const ALL_GERMANY = { name: "All of Germany", slug: "all-germany", group: "Germany", aliases: ["germany", "deutschland", "de"] };
+export const placeBySlug = (slug) => (slug === ALL_GERMANY.slug ? ALL_GERMANY : PLACES.find((p) => p.slug === slug) || null);
+export const placeByName = (name) => (name === ALL_GERMANY.name ? ALL_GERMANY : PLACES.find((p) => p.name === name) || null);
+// The city names a chosen place asks the server for: one name, or every German one.
+export const placeCities = (slug) => (slug === ALL_GERMANY.slug
+  ? PLACES.filter((p) => p.group === "Germany").map((p) => p.name)
+  : (placeBySlug(slug) ? [placeBySlug(slug).name] : []));
+// Does this place match what someone typed into the picker's search box? Name, group and
+// aliases all count, so "germany" finds Berlin and "sf" finds San Francisco.
+// The market grid's groups: every place under its country heading, busiest first. Places
+// with no jobs still appear — an empty market is information, and it is where a newly
+// launched city starts.
+export const gridGroups = (counts) => PLACE_GROUPS
+  .map((g) => ({ name: g, places: PLACES.filter((p) => p.group === g).sort((a, b) => (counts[b.name] || 0) - (counts[a.name] || 0)) }))
+  .filter((g) => g.places.length);
+
+export function placeMatches(place, q) {
+  const t = q.trim().toLowerCase();
+  if (!t) return true;
+  return [place.name, place.group, ...(place.aliases || [])].some((s) => s.toLowerCase().includes(t));
+}
+
 export const COMPARE_DEFAULT = ["Berlin", "San Francisco"];
-export const PLACES = ["Berlin", "Remote (EU)", "San Francisco", "New York"];
 export const SENIORITIES = ["junior", "mid", "senior"];
 
 // The five job families every posting is sorted into from its title (HIR-186). The order is
@@ -34,15 +71,13 @@ export const FAMILY_LABELS = {
 };
 export const familyLabel = (f) => FAMILY_LABELS[f] || f;
 
-// One side of compare mode picks a place. The two sides must stay different — a place
-// against itself is an empty comparison — so picking the place already on the other side
-// swaps the pair instead. `side` is 0 for the left side, 1 for the right.
-export function comparePick(pair, side, place) {
-  const [a, b] = pair;
-  if (place === (side === 0 ? a : b)) return [a, b];
-  if (place === (side === 0 ? b : a)) return [b, a];
-  return side === 0 ? [place, b] : [a, place];
-}
+// Compare mode holds two or three places as removable tokens (HIR-188). The same place is
+// never added twice — a place against itself is an empty column — and the third is the last:
+// four columns do not fit the row, and reading three markets at once is already the limit.
+// Removing is allowed down to one; the caller then leaves compare mode with what is left.
+export const COMPARE_MAX = 3;
+export const compareAdd = (cities, place) => (cities.includes(place) || cities.length >= COMPARE_MAX ? cities : [...cities, place]);
+export const compareRemove = (cities, place) => cities.filter((c) => c !== place);
 // "A", "A and B", "A, B and C" — for the sentences that name the selected skills.
 export const listAnd = (xs) => (xs.length < 2 ? xs[0] || "" : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
 
