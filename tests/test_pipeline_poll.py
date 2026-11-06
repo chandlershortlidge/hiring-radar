@@ -187,6 +187,54 @@ def test_never_extracted_jobs_come_before_re_reads_newest_first(conn):
     assert [r["id"] for r in rows] == [2, 3, 1]
 
 
+def _close(conn, job_id):
+    """Make a job closed under the dashboard's open rule: no sighting for years."""
+    conn.execute("UPDATE job SET last_seen='2020-01-01T00:00:00Z' WHERE id=?", (job_id,))
+    conn.execute("UPDATE job_source SET last_seen='2020-01-01T00:00:00Z' WHERE job_id=?", (job_id,))
+
+
+def test_version_bump_requeues_only_open_jobs(conn):
+    # All three jobs carry an old stamp; job 1 is closed. The bump re-reads only the open
+    # two, and the closed job keeps its old skills and old version stamp (HIR-195).
+    fn = fake_extract([Mention("python", "required", "Python")])
+    pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None)
+    old = extractor_version(TAX, "m")
+    _close(conn, 1)
+    tax2 = Taxonomy({"version": 3, "skills": [{"id": "python", "display": "Python"}]})
+    assert [r["id"] for r in pipeline.jobs_needing_extraction(conn, extractor_version(tax2, "m"))] == [3, 2]
+    r = pipeline.extract_pending(conn, tax2, fn, "m", log=lambda *_: None)
+    assert (r.attempted, r.reread_queued, r.skipped_closed) == (2, 2, 1)
+    assert conn.execute("SELECT extracted_version FROM job WHERE id=1").fetchone()[0] == old
+    assert conn.execute("SELECT extractor_version FROM skill_mention WHERE job_id=1").fetchone()[0] == old
+
+
+def test_a_closed_job_never_read_still_gets_its_first_read(conn):
+    # Only re-reads are limited to open jobs: a job with no extraction at all is read
+    # whatever its status, or it would stay blank for ever.
+    _close(conn, 2)
+    assert [r["id"] for r in pipeline.jobs_needing_extraction(conn, "v1")] == [3, 2, 1]
+
+
+def test_a_reopened_repost_with_a_stale_stamp_is_requeued(conn):
+    fn = fake_extract([Mention("python", "required", "Python")])
+    pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None)
+    _close(conn, 1)
+    assert 1 not in [r["id"] for r in pipeline.jobs_needing_extraction(conn, "v-new")]
+    # The poll sees the same posting again: ingest bumps last_seen, the job counts as open.
+    ingest_one(conn=conn, p=Posting("arbeitnow", "a0", "", "Co0", "AI Engineer", "Berlin", "Python and RAG job 0"))
+    assert 1 in [r["id"] for r in pipeline.jobs_needing_extraction(conn, "v-new")]
+
+
+def test_the_log_states_reread_and_closed_skip_counts(conn):
+    fn = fake_extract([Mention("python", "required", "Python")])
+    pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None)
+    _close(conn, 3)
+    lines = []
+    tax2 = Taxonomy({"version": 3, "skills": [{"id": "python", "display": "Python"}]})
+    pipeline.extract_pending(conn, tax2, fn, "m", log=lines.append)
+    assert any("2 open jobs queued" in l and "1 closed jobs skipped" in l for l in lines)
+
+
 def test_extract_pending_processes_the_queue_in_that_order(conn):
     conn.execute("UPDATE job SET extracted_version='x2-old' WHERE id IN (1, 3)")
     seen = []
