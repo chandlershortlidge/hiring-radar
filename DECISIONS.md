@@ -5,6 +5,59 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-05 — Job family is a title rule (v1) (HIR-186)
+
+Decision: every job carries one of five job families — `ai-engineer`, `ml-engineer`,
+`data-scientist`, `ml-platform`, `research` — decided from `job.title` alone, matched
+case-insensitively, first match wins:
+
+| family | title matches |
+| -- | -- |
+| `data-scientist` | `data scien`, `datenwissenschaft` |
+| `ml-platform` | `mlops`, `ml platform`, `ml-platform`, `ml infra`, `platform engineer` |
+| `ml-engineer` | `machine learning engineer`, `machine-learning engineer`, `ml engineer`, `ml-engineer`, `mle` (whole word) |
+| `research` | `research`, `applied scientist` |
+| `ai-engineer` | everything else |
+
+Why a rule and not the model: every stored job already passed the ingest title filter (an
+AI/ML domain term plus a technical role term), so the title carries enough signal to split
+the pool into five buckets at no model cost and with no re-extraction. Data-scientist
+postings were already in the pool, just unlabelled. The families exist so the planned
+"my job in my city" entry screen (HIR-105) has a family field to offer a picker over.
+
+Known limits, accepted for v1:
+
+- A title naming two families takes the earlier row, so "Senior Data Scientist / Machine
+  Learning Engineer" is `data-scientist`, not both.
+- `ml-platform` is tested before `ml-engineer` so "ML Platform Engineer" is platform. The
+  cost is that `platform engineer` catches any platform role in the pool, AI-platform
+  titles included.
+- `research` catches "Research" anywhere in the title, so "Research Engineer, LLM
+  Infrastructure" is research rather than platform.
+- `ai-engineer` is the remainder, not a positive match: an unusual title with no family
+  word lands there. On 5 Nov that is the largest bucket by construction.
+- `mlops` is matched as one word, so "ML Ops" spelled with a space does not reach
+  `ml-platform`: "ML Engineer (Computer Vision & ML Ops)" is `ml-engineer`.
+- The family describes the title, not the work. A posting whose body is pure data science
+  under an "AI Engineer" title is misfiled, and nothing here notices.
+
+The rule lives twice: `family_of` in `app/ingest.py` labels new jobs at insert, and the
+same CASE in `app/migrations/017_job_family.sql` backfilled the existing rows. A test
+asserts the two agree over a fixture list of titles, so changing one without the other
+fails the suite.
+
+Measured on the 562 jobs stored on 5 Nov 2026, the backfill gives: `ai-engineer` 329,
+`research` 90, `ml-engineer` 64, `data-scientist` 60, `ml-platform` 19, none unlabelled.
+`research` is larger than one might expect because any "Research" in the title counts,
+including "Senior Machine Learning Research Engineer".
+
+To undo: revert the HIR-186 commits and drop the column; the filter is additive, so no
+earlier number changes. A model-assigned family can replace the rule later without the
+column, the API parameter or the dashboard control changing — only `family_of` and the
+extractor would.
+
+---
+
 ## 2026-11-05 — `ai-deployment` is not narrowed: the two spot-check rejections were item-level calls (HIR-183)
 
 Chandler was asked whether to narrow `ai-deployment`, and chose not to. **The skill list and
@@ -67,6 +120,8 @@ goes from 36 jobs to 28 when they are corrected.
 **To undo.** Nothing to revert — no code, skill list, guide or stored data changed in this
 ticket. Re-opening the question means re-opening HIR-183, and the numbers above are the
 starting point rather than something to re-measure.
+
+---
 
 ## 2026-11-05 — Wanting a skill is not having it: appetite wording is `nice_to_have` (HIR-178)
 

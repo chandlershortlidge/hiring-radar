@@ -493,7 +493,12 @@ def test_text_index_is_backfilled_for_jobs_stored_before_the_migration(tmp_path)
         c.executescript(p.read_text())
         c.execute("INSERT INTO schema_migrations (version) VALUES (?)", (int(p.name[:3]),))
     c.commit()
-    add_text(c, "Theta", body("An on-call rotation."))
+    # Inserted directly rather than through ingest_one: ingest writes every column the
+    # current schema has (family, from 017), and this database is deliberately behind.
+    c.execute("INSERT INTO job (company, title, title_key, city, location_raw, description_text,"
+              " first_seen, last_seen) VALUES ('Theta', 'AI Engineer', 'ai engineer', 'Berlin',"
+              " 'Berlin', ?, ?, ?)", (body("An on-call rotation."), ts(1), ts(1)))
+    c.commit()
     assert not c.execute("SELECT name FROM sqlite_master WHERE name='job_fts'").fetchall()
     # Every migration from 14 on, in order: 14 is the index itself, and the later ones must
     # apply cleanly on top of it. Derived from the directory so a new migration does not need
@@ -501,3 +506,46 @@ def test_text_index_is_backfilled_for_jobs_stored_before_the_migration(tmp_path)
     expected = sorted(int(p.name[:3]) for p in db.MIGRATIONS_DIR.glob("*.sql") if int(p.name[:3]) >= 14)
     assert db.migrate(c) == expected
     assert companies(c, text="on-call") == {"Theta"}
+
+
+# --- job family filter (HIR-186) --------------------------------------------------------
+
+def test_family_filter_narrows_the_job_set(conn):
+    """The families tuple is an OR, like seniorities: () means every family."""
+    add(conn, "Theta", "Senior Data Scientist", "Berlin", "arbeitnow", ts(1), [("python", "required")], "senior")
+    assert companies(conn) == {"Acme", "Beta", "Gamma", "Delta", "Epsilon", "Theta"}
+    assert companies(conn, families=("data-scientist",)) == {"Theta"}
+    assert companies(conn, families=("ml-engineer",)) == {"Beta"}
+    assert companies(conn, families=("data-scientist", "ml-engineer")) == {"Theta", "Beta"}
+    assert companies(conn, families=("research",)) == set()
+
+
+def test_family_filter_narrows_the_chart(conn):
+    add(conn, "Theta", "Senior Data Scientist", "Berlin", "arbeitnow", ts(1), [("docker", "required")], "senior")
+    all_fams = q.skill_frequency(conn, q.Filters(window="all"), NOW)
+    only_ds = q.skill_frequency(conn, q.Filters(window="all", families=("data-scientist",)), NOW)
+    assert only_ds["total"] == 1 and all_fams["total"] == 6
+    assert [s["skill_id"] for s in only_ds["skills"]] == ["docker"]
+
+
+def test_family_filter_combines_with_city_and_seniority(conn):
+    add(conn, "Theta", "Senior Data Scientist", "San Francisco", "greenhouse", ts(1), [("python", "required")], "senior")
+    assert companies(conn, families=("data-scientist",), cities=("Berlin",)) == set()
+    assert companies(conn, families=("data-scientist",), cities=("San Francisco",)) == {"Theta"}
+    assert companies(conn, families=("data-scientist",), seniorities=("junior",)) == set()
+
+
+def test_stats_counts_open_jobs_per_family(conn):
+    add(conn, "Theta", "MLOps Engineer", "Berlin", "arbeitnow", ts(1), [("python", "required")])
+    s = q.stats(conn, NOW, skills_tracked=143)
+    # Open: Acme, Gamma, Delta (all ai-engineer) and Theta. Beta (ml-engineer) is closed,
+    # so a family with no open job is simply absent, as cities are.
+    assert s["open_by_family"] == {"ai-engineer": 3, "ml-platform": 1}
+    assert sum(s["open_by_family"].values()) == s["open"]
+
+
+def test_the_job_list_reports_each_job_family(conn):
+    jobs = {j["company"]: j["family"] for j in q.list_jobs(conn, q.Filters(window="all"), NOW)["jobs"]}
+    assert jobs["Acme"] == "ai-engineer" and jobs["Beta"] == "ml-engineer"
+    acme = conn.execute("SELECT id FROM job WHERE company='Acme'").fetchone()[0]
+    assert q.job_detail(conn, acme, NOW)["family"] == "ai-engineer"

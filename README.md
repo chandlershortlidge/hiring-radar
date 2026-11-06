@@ -40,6 +40,11 @@ measured, not assumed:
 Each job also gets seniority, German-language requirement, and degree expectations — the
 three things that decide whether a posting is worth reading at all.
 
+Every job is also sorted into one of five job families — AI Engineer, ML Engineer, Data
+Scientist, ML Platform, Research — from its title alone, and the dashboard filters the
+chart, the related-skills panel, the skill tree and the job list by family the same way it
+filters by city and seniority (DECISIONS, 2026-11-05).
+
 ## What this means for you
 
 The market view is half the point. The other half is which of those skills you already
