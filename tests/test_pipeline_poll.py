@@ -117,7 +117,7 @@ def _blanks(conn, job_id):
 def test_a_blank_read_is_counted_and_the_job_stays_for_one_more_try(conn):
     # HIR-172: try twice, then drop (Chandler's decision of 5 Nov). First read: counted only.
     r = pipeline.extract_pending(conn, TAX, _blank, "m", log=lambda *_: None)
-    assert [j for j, _ in r.failed] == [1, 2, 3] and r.dropped == []
+    assert sorted(j for j, _ in r.failed) == [1, 2, 3] and r.dropped == []  # queue order is newest first (HIR-193)
     assert conn.execute("SELECT count(*) FROM job").fetchone()[0] == 3
     assert [_blanks(conn, i) for i in (1, 2, 3)] == [1, 1, 1]
     assert conn.execute("SELECT count(*) FROM job WHERE extracted_version IS NULL").fetchone()[0] == 3
@@ -126,7 +126,7 @@ def test_a_blank_read_is_counted_and_the_job_stays_for_one_more_try(conn):
 def test_a_second_blank_read_drops_the_posting(conn):
     pipeline.extract_pending(conn, TAX, _blank, "m", log=lambda *_: None)
     r = pipeline.extract_pending(conn, TAX, _blank, "m", log=lambda *_: None)
-    assert [j for j, _ in r.dropped] == [1, 2, 3]
+    assert sorted(j for j, _ in r.dropped) == [1, 2, 3]  # queue order is newest first (HIR-193)
     assert conn.execute("SELECT count(*) FROM job").fetchone()[0] == 0
     assert conn.execute("SELECT count(*) FROM job_source").fetchone()[0] == 0  # cascaded
     # Nothing is left to attempt, so a third run is free.
@@ -176,6 +176,43 @@ def test_version_bump_requeues_everything(conn):
     versions = {r[0] for r in conn.execute("SELECT DISTINCT extractor_version FROM skill_mention")}
     assert versions == {extractor_version(tax2, "m")}  # replaced, not accumulated
     assert conn.execute("SELECT count(*) FROM skill_mention").fetchone()[0] == 3
+
+
+def test_never_extracted_jobs_come_before_re_reads_newest_first(conn):
+    # Stamp jobs 1 and 3 with an old version; job 2 was never read. After a version bump the
+    # queue holds all three, and the unread job must come first so a fresh posting never waits
+    # behind a database-wide re-read (HIR-193). Within each group: newest first.
+    conn.execute("UPDATE job SET extracted_version='x2-old' WHERE id IN (1, 3)")
+    rows = pipeline.jobs_needing_extraction(conn, "x2-new")
+    assert [r["id"] for r in rows] == [2, 3, 1]
+
+
+def test_extract_pending_processes_the_queue_in_that_order(conn):
+    conn.execute("UPDATE job SET extracted_version='x2-old' WHERE id IN (1, 3)")
+    seen = []
+    def fn(text, tax, model):
+        seen.append(text)
+        return fake_extract([Mention("python", "required", "Python")])(text, tax, model)
+    pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None)
+    assert [t[-1] for t in seen] == ["1", "2", "0"]  # job text ends in its index: ids 2, 3, 1
+
+
+def test_a_run_of_three_with_no_skills_at_all_is_flagged_all_blank(conn):
+    fn = fake_extract([])  # succeeds, zero mentions, every time
+    r = pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None)
+    assert (r.attempted, r.mentions) == (3, 0)
+    assert r.all_blank
+
+
+def test_a_small_or_partly_successful_run_is_not_all_blank(conn):
+    fn = fake_extract([])
+    r = pipeline.extract_pending(conn, TAX, fn, "m", limit=2, log=lambda *_: None)
+    assert r.attempted == 2 and not r.all_blank  # below ALL_BLANK_MIN: could be sparse postings
+    one = fake_extract([Mention("python", "required", "Python")])
+    r2 = pipeline.extract_pending(conn, TAX, one, "m", log=lambda *_: None)
+    assert r2.mentions > 0 and not r2.all_blank
+    busy = pipeline.ExtractReport(skipped_busy=True)
+    assert not busy.all_blank
 
 
 def test_poll_feeds_continues_past_a_failing_feed(tmp_path):

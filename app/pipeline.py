@@ -28,6 +28,7 @@ from app.extract import EmptyExtractionError, Extraction, extraction_input, extr
 from app.taxonomy import Taxonomy
 
 BLANK_READ_LIMIT = 2   # reads that come back with nothing at all before the posting is dropped
+ALL_BLANK_MIN = 3      # a run at least this big where no job yields a single skill is an outage, not sparse postings
 
 
 @dataclass
@@ -40,6 +41,13 @@ class ExtractReport:
     skipped_busy: bool = False
     dropped: list[tuple[int, str]] = field(default_factory=list)
     logged: int = 0
+
+    @property
+    def all_blank(self) -> bool:
+        """True when a real run of ALL_BLANK_MIN+ jobs produced not one skill mention —
+        the shape of a broken prompt, schema or model, never of real postings (HIR-193).
+        Callers running the whole queue should fail loudly on it."""
+        return not self.skipped_busy and self.attempted >= ALL_BLANK_MIN and self.mentions == 0
 
     def line(self) -> str:
         if self.skipped_busy:
@@ -89,7 +97,10 @@ def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int |
     if job_ids:
         sql += f" AND id IN ({','.join('?' * len(job_ids))})"
         params += list(job_ids)
-    sql += " ORDER BY id"
+    # Jobs never read at all come before re-reads, newest first in both: after a version
+    # bump the queue holds the whole database, and this morning's postings must not sit
+    # blank on the dashboard for hours behind thousands of re-reads (HIR-193).
+    sql += " ORDER BY (extracted_version IS NOT NULL), id DESC"
     if limit:
         sql += f" LIMIT {int(limit)}"
     return conn.execute(sql, params).fetchall()

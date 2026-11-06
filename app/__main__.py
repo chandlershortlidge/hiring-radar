@@ -60,6 +60,11 @@ def run_extraction(conn, limit=None, job_ids=None):
                              job_ids=job_ids)
     print(report.line())
     print(report.log_line(unlogged_extractions(conn)))
+    if job_ids is None and report.all_blank:
+        sys.exit(f"ERROR: extraction produced zero skills across all {report.attempted} jobs"
+                 " — the extractor is broken (prompt, schema, key or model), not the postings."
+                 " Nothing was dropped; the stored answers carry the current version and WILL NOT"
+                 " be retried until the extractor changes (HIR-193).")
     return report
 
 
