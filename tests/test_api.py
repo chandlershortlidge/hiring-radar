@@ -170,6 +170,25 @@ def test_add_url_exists_path(api, monkeypatch):
     assert r["outcome"] == "exists" and r["job_id"] == 1
 
 
+def test_add_url_with_no_company_is_refused_and_stores_nothing(api, monkeypatch):
+    # HIR-198: a blank company can never dedup, so the posting is not ingested; the drawer
+    # shows the needs_company message instead.
+    client, fake = api
+    from app.check import CheckResult
+    from app.sources import Posting
+    p = Posting("url", "", "https://acto.jobs.personio.com/job/1", None, "AI Engineer", "Berlin", "text " * 50)
+    r_blank = CheckResult(url=p.url, verdict="not_found", how="", posting=p,
+                          notes=["company unknown — pass --company to enable the text match"])
+    monkeypatch.setattr("app.api.check_url", lambda *a, **k: r_blank)
+    monkeypatch.setattr("app.api.log_check", lambda *a, **k: None)
+    before = client.get("/api/stats").json()["jobs"]
+    r = client.post("/api/add/url", json={"url": p.url}).json()
+    assert r["outcome"] == "needs_company" and r["job_id"] is None
+    assert "company unknown" in r["notes"][0]
+    assert client.get("/api/stats").json()["jobs"] == before   # nothing ingested
+    assert fake.calls == 0                                     # and nothing extracted
+
+
 # --- several skills at once (HIR-75) -----------------------------------------------------
 
 # The 15-job set from tests/test_queries.py, with a taxonomy of its own so the snapshot

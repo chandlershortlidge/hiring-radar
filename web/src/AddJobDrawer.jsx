@@ -30,7 +30,8 @@ export default function AddJobDrawer({ onClose, onAdded, onViewJob }) {
   };
 
   const needsMeta = tab !== "url";
-  const canSubmit = !busy && (tab === "url" ? /^https?:\/\//.test(f.url.trim()) : (f.company && f.title && (tab === "text" ? f.text.trim().length >= 40 : !!f.file)));
+  const needCompany = res?.outcome === "needs_company";   // the page named no company; it must be typed in
+  const canSubmit = !busy && (tab === "url" ? /^https?:\/\//.test(f.url.trim()) && (!needCompany || !!f.company.trim()) : (f.company && f.title && (tab === "text" ? f.text.trim().length >= 40 : !!f.file)));
 
   return (
     <Drawer title="Add a job" onClose={onClose}>
@@ -59,7 +60,9 @@ export default function AddJobDrawer({ onClose, onAdded, onViewJob }) {
           </div>
         )}
         <div className="grid2">
-          <div className="field"><label htmlFor="co">Company{needsMeta ? "" : " (optional)"}</label><input id="co" value={f.company} onChange={set("company")} /></div>
+          <div className="field"><label htmlFor="co">Company{needsMeta || needCompany ? "" : " (optional)"}</label>
+            <input id="co" value={f.company} onChange={set("company")} aria-invalid={needCompany && !f.company.trim() ? true : undefined}
+              style={needCompany && !f.company.trim() ? { borderColor: "var(--ink-2)", borderStyle: "dashed" } : undefined} /></div>
           <div className="field"><label htmlFor="ti">Title{needsMeta ? "" : " (optional)"}</label><input id="ti" value={f.title} onChange={set("title")} /></div>
           <div className="field"><label htmlFor="ci">City</label>
             <select id="ci" value={f.location} onChange={set("location")}>{PLACES.map((c) => <option key={c}>{c}</option>)}</select></div>
@@ -96,6 +99,9 @@ function Result({ r, onViewJob, onText }) {
   }
   if (r.outcome === "merged" || r.outcome === "repost") return (
     <div className="note soft" role="status"><Info /><span><b>Looks like a job we already have</b> (same company, near-identical text). Recorded as {r.outcome === "repost" ? "a repost" : "another source"}; nothing new extracted.</span></div>
+  );
+  if (r.outcome === "needs_company") return (
+    <div className="note warn" role="alert"><Warn /><span><b>We couldn't find the company on that page</b> — add it and try again.</span></div>
   );
   if (r.outcome === "unreadable") return (
     <div className="note warn" role="alert"><Warn /><span><b>Couldn't read that page.</b> {r.verdict}. Try <a href="#" onClick={(e) => { e.preventDefault(); onText(); }}>Paste text</a> instead.</span></div>

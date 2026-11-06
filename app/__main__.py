@@ -27,7 +27,7 @@ from dotenv import load_dotenv
 ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(ROOT / ".env")
 
-from app import db  # noqa: E402
+from app import db, dedup  # noqa: E402
 from app.check import check_url, checked_coverage, job_coverage, log_check, reach_breakdown  # noqa: E402
 from app.extract import DEFAULT_MODEL, extract, make_client  # noqa: E402
 from app.ingest import ingest_one, job_id_for_screenshot, now_iso, store_screenshot  # noqa: E402
@@ -162,6 +162,11 @@ def check_one(conn, url, feeds, args):
         # Ingest's own dedup is symmetric Jaccard, which a full careers page can fail against a
         # shorter stored transcript; the check's containment match already said it is stored.
         print(f"add: skipped — already job {r.job_id}")
+        return
+    if not dedup.company_key(r.posting.company):
+        # Same rule as /api/add/url: a blank company plants a future duplicate
+        # (DECISIONS 2026-11-06 "A job is never stored without a company").
+        print("add: refused — no company found on the page; pass --company")
         return
     if len(r.posting.description_text) < MIN_ADD_TEXT:
         # A page that rendered nothing readable would be stored as an empty job with no skills.
