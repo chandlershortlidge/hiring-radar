@@ -1,39 +1,66 @@
 import { describe, expect, it } from "vitest";
-import { COMPARE_DEFAULT, FAMILIES, FAMILY_LABELS, PLACES, comparePick, familyLabel } from "./format.js";
+import {
+  ALL_GERMANY, COMPARE_DEFAULT, COMPARE_MAX, FAMILIES, FAMILY_LABELS, PLACES, PLACE_GROUPS, PLACE_NAMES,
+  compareAdd, compareRemove, familyLabel, placeBySlug, placeCities, placeMatches,
+} from "./format.js";
 
-describe("compare mode's two sides (HIR-138)", () => {
-  it("opens on Berlin vs San Francisco, the pair it had before it was pickable", () => {
-    expect(COMPARE_DEFAULT).toEqual(["Berlin", "San Francisco"]);
+describe("every place carries a slug and a group (HIR-188)", () => {
+  it("still lists every collected place, EU-remote and New York included", () => {
+    expect(PLACE_NAMES).toEqual(["Berlin", "Remote (EU)", "San Francisco", "New York"]);
   });
 
-  it("offers every collected place, New York included", () => {
-    for (const p of COMPARE_DEFAULT) expect(PLACES).toContain(p);
-    expect(PLACES).toContain("New York");
-  });
-
-  it("replaces the place on the side that was picked", () => {
-    expect(comparePick(["Berlin", "San Francisco"], 0, "New York")).toEqual(["New York", "San Francisco"]);
-    expect(comparePick(["Berlin", "San Francisco"], 1, "New York")).toEqual(["Berlin", "New York"]);
-  });
-
-  it("swaps rather than showing a place against itself", () => {
-    expect(comparePick(["Berlin", "San Francisco"], 0, "San Francisco")).toEqual(["San Francisco", "Berlin"]);
-    expect(comparePick(["Berlin", "San Francisco"], 1, "Berlin")).toEqual(["San Francisco", "Berlin"]);
-  });
-
-  it("changes nothing when a side is set to what it already shows", () => {
-    expect(comparePick(["Berlin", "New York"], 0, "Berlin")).toEqual(["Berlin", "New York"]);
-    expect(comparePick(["Berlin", "New York"], 1, "New York")).toEqual(["Berlin", "New York"]);
-  });
-
-  it("keeps the two sides different for every pair of places", () => {
-    for (const a of PLACES) for (const b of PLACES) {
-      if (a === b) continue;
-      for (const side of [0, 1]) for (const pick of PLACES) {
-        const [x, y] = comparePick([a, b], side, pick);
-        expect(x).not.toBe(y);
-      }
+  it("gives each place a unique slug and a group the picker knows", () => {
+    const slugs = PLACES.map((p) => p.slug);
+    expect(new Set(slugs).size).toBe(slugs.length);
+    for (const p of PLACES) {
+      expect(p.slug).toMatch(/^[a-z0-9-]+$/);
+      expect(PLACE_GROUPS).toContain(p.group);
     }
+  });
+
+  it("finds a place by its slug, and nothing for a slug we do not have", () => {
+    expect(placeBySlug("berlin").name).toBe("Berlin");
+    expect(placeBySlug("atlantis")).toBeNull();
+  });
+
+  it("turns 'all of Germany' into every German place, and a city into just itself", () => {
+    expect(placeCities(ALL_GERMANY.slug)).toEqual(["Berlin"]);
+    expect(placeCities("san-francisco")).toEqual(["San Francisco"]);
+    expect(placeCities("atlantis")).toEqual([]);
+  });
+
+  it("searches a place by name, country and alias", () => {
+    const sf = placeBySlug("san-francisco");
+    expect(placeMatches(sf, "")).toBe(true);
+    expect(placeMatches(sf, "fran")).toBe(true);
+    expect(placeMatches(sf, "sf")).toBe(true);
+    expect(placeMatches(sf, "united")).toBe(true);
+    expect(placeMatches(sf, "berlin")).toBe(false);
+    expect(placeMatches(placeBySlug("berlin"), "germany")).toBe(true);
+  });
+});
+
+describe("compare mode holds two or three places (HIR-188, was HIR-138's two sides)", () => {
+  it("opens on Berlin vs San Francisco, the pair it had before", () => {
+    expect(COMPARE_DEFAULT).toEqual(["Berlin", "San Francisco"]);
+    for (const p of COMPARE_DEFAULT) expect(PLACE_NAMES).toContain(p);
+  });
+
+  it("adds a third place but not a fourth", () => {
+    expect(compareAdd(["Berlin"], "New York")).toEqual(["Berlin", "New York"]);
+    expect(compareAdd(["Berlin", "San Francisco"], "New York")).toEqual(["Berlin", "San Francisco", "New York"]);
+    expect(compareAdd(["Berlin", "San Francisco", "New York"], "Remote (EU)")).toEqual(["Berlin", "San Francisco", "New York"]);
+    expect(COMPARE_MAX).toBe(3);
+  });
+
+  it("never shows the same place twice", () => {
+    expect(compareAdd(["Berlin", "San Francisco"], "Berlin")).toEqual(["Berlin", "San Francisco"]);
+  });
+
+  it("removes the place asked for, first one included", () => {
+    expect(compareRemove(["Berlin", "San Francisco", "New York"], "Berlin")).toEqual(["San Francisco", "New York"]);
+    expect(compareRemove(["Berlin", "San Francisco"], "San Francisco")).toEqual(["Berlin"]);
+    expect(compareRemove(["Berlin", "San Francisco"], "New York")).toEqual(["Berlin", "San Francisco"]);
   });
 });
 

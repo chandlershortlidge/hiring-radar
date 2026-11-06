@@ -5,6 +5,59 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-06 — Entry is a query bar, not city tabs (HIR-188)
+
+The page used to open on a row of city tabs — All / Berlin / Remote (EU) / San Francisco /
+New York / Compare — and a second row of job-family buttons. That row is a list of every
+option, so it only works while the options are few. At 20 cities and 5 families it is a
+wall of buttons and the first thing a visitor sees is an inventory, not a question.
+
+Entry is now one sentence with two pickers: **[AI Engineer ▾] in [Berlin ▾]**. Three rules
+hold it together.
+
+**The query bar is the entry point, and the address bar holds it.** City and job family
+live in the URL — `/berlin`, `/berlin/ai-engineer`, `/compare/berlin+san-francisco`. Every
+market therefore has a link that can be shared, and the back button works. There is no
+router: `web/src/routes.js` is two pure functions, `parsePath` and `pathFor`, extending the
+hand-parsed `/jobs/:id` that was already there. An address we cannot read falls back to the
+home view rather than erroring — a stale link should land somewhere usable.
+
+**The home grid is only for people who have not chosen.** `/` shows a headline and one card
+per market, each with its open-job count and top three skills. The moment a city is chosen
+it is remembered in localStorage, and `/` redirects there on the next visit. So the grid is
+a first-run screen, not a page anyone sees twice. ("All markets" in the header still shows
+it on demand.) The redirect uses `replaceState`, so back leaves the site rather than
+bouncing between `/` and the city.
+
+**Compare is a mode, not a destination.** It was a tab, which made it a seventh city and
+fixed it at exactly two sides. It is now a mode you turn on from the city you are already
+looking at: the picker becomes two or three removable tokens, the chart grows one column
+per city, and rows sort by any column, by the widest spread, or by name. Three is the
+limit — a fourth column does not fit the row, and reading three markets at once is already
+the edge of useful. The diverging "gap" bar is gone; the row with the widest spread is
+marked instead, which generalises past two cities where a signed gap does not.
+
+**What a new city costs.** One entry in `PLACES` (`web/src/format.js`) carrying its name,
+URL slug, country group and any search aliases. Picker, market grid, compare and the URLs
+all read that one list, so nothing else on the frontend changes. (Collecting the city is
+separate and unchanged: `geo.ACTIVE_CITIES` plus `discover-boards --launch`.)
+
+**Numbers, and why two of them differ.** Nothing new is computed and no endpoint was added.
+Per-city counts in the picker and on the cards come from `/api/stats` `open_by_city`; the
+cards' skill bars are a share of `city_totals` from the single `/api/skills` call the page
+already makes with no city filter. Those two differ slightly — a handful of postings are
+stored as a fragment too short to chart — so the card count and the picker count match each
+other, and the bars match the chart. One request serves every card; there is no call per
+city.
+
+**The job family moved into the query bar and became single-choice.** It was a multi-select
+button row; it is now one `<select>`, because a market is one role in one city and the URL
+has to name it. A short flat list of five needs no search box, so it is the browser's own
+control. Nothing defaults to a family: a first visit shows every AI and data role, as
+before, rather than silently hiding four fifths of the market.
+
+---
+
 ## 2026-11-05 — MVP page: no skill tree card, no posting-text search box (HIR-187)
 
 Both are hidden from the page and kept in the code and the API. Nothing was deleted on the

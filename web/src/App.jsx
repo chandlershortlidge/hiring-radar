@@ -1,8 +1,12 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { api } from "./api.js";
-import { COMPARE_DEFAULT, PLACES, DEGREE_FILTERS, FAMILIES, GERMAN_FILTERS, PRODUCTION_FILTERS, SENIORITIES, cap, dateTime, familyLabel, pctInt, timeAgo } from "./format.js";
+import { COMPARE_DEFAULT, DEGREE_FILTERS, GERMAN_FILTERS, PLACE_NAMES, PRODUCTION_FILTERS, SENIORITIES, cap, compareAdd, compareRemove, dateTime, familyLabel, placeByName, placeBySlug, placeCities, pctInt, timeAgo } from "./format.js";
+import { HOME, parsePath, pathFor } from "./routes.js";
+import { pushRecent, readLast, readRecent, writeLast } from "./lastPlace.js";
 import { useProfile } from "./profile.js";
-import { Compare, Person, Plus, Radar } from "./icons.jsx";
+import { Person, Plus, Radar } from "./icons.jsx";
+import QueryBar from "./QueryBar.jsx";
+import HomeGrid from "./HomeGrid.jsx";
 import SkillChart from "./SkillChart.jsx";
 import CompareChart from "./CompareChart.jsx";
 import JobList from "./JobList.jsx";
@@ -15,10 +19,16 @@ import JobPage from "./JobPage.jsx";
 const WINDOWS = { open: "Currently open", "30d": "Last 30 days", "90d": "Last 90 days", all: "All" };
 const DEFAULT = { cities: [], compare: false, seniorities: [], families: [], requirement: "required", window: "open", german: "any", degree: "any", production: "any", skillIds: [], query: "", text: "" };
 
-// The only route besides "/": /jobs/{id} is a job's own page. The server returns index.html
-// for every path, so the address bar is read here, on load and whenever the back/forward
-// buttons change it. Returns the job id or null.
-const jobFromPath = (path = window.location.pathname) => { const m = /^\/jobs\/(\d+)\/?$/.exec(path); return m ? Number(m[1]) : null; };
+// Where a request to add a city goes. There is no form for it, so it opens the repo's
+// issue tracker, which is where every other request already lands.
+const REQUEST_CITY_URL = "https://github.com/chandlershortlidge/hiring-radar/issues/new?title=City%20request";
+
+// The market a returning visitor lands on: what the browser remembered, as long as that
+// place is still one we collect.
+function rememberedMarket() {
+  const last = readLast();
+  return last && placeBySlug(last.place) ? { ...HOME, view: "city", place: last.place, family: last.family } : HOME;
+}
 
 export default function App() {
   const [filters, setFilters] = useState(DEFAULT);
@@ -30,15 +40,55 @@ export default function App() {
   const [refresh, setRefresh] = useState(0);
   const [jumpTo, setJumpTo] = useState(null);
   const [profile, saveProfile] = useProfile();
-  const [pageJob, setPageJob] = useState(jobFromPath);
-  // Which two places compare mode shows. Kept out of `filters` on purpose: compare asks the
-  // server for every city at once and slices the answer here, so changing a side must not
-  // refetch anything (HIR-138).
-  const [comparePair, setComparePair] = useState(COMPARE_DEFAULT);
+  const [recent, setRecent] = useState(readRecent);
 
-  useEffect(() => { const onPop = () => setPageJob(jobFromPath()); window.addEventListener("popstate", onPop); return () => window.removeEventListener("popstate", onPop); }, []);
-  const openPage = (id) => { window.history.pushState(null, "", `/jobs/${id}`); setPageJob(id); window.scrollTo(0, 0); };
-  const closePage = () => { window.history.pushState(null, "", "/"); setPageJob(null); };
+  // Two pieces of address-bar state (HIR-188). `route` is what the URL says right now;
+  // `market` is the last city, comparison or home view it showed — so closing a job's own
+  // page returns to the market you came from rather than to the home grid.
+  const [route, setRoute] = useState(() => {
+    const r = parsePath();
+    if (r.view !== "home") return r;
+    // A returning visitor goes straight to their last market. replaceState, not push: the
+    // back button should leave the site, not bounce between "/" and the city.
+    const m = rememberedMarket();
+    if (m.view !== "home") window.history.replaceState(null, "", pathFor(m));
+    return m;
+  });
+  const [market, setMarket] = useState(() => (route.view === "job" ? rememberedMarket() : route));
+  const pageJob = route.view === "job" ? route.jobId : null;
+
+  useEffect(() => {
+    const onPop = () => { const r = parsePath(); setRoute(r); if (r.view !== "job") setMarket(r); };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+
+  // Going to a market is the one place the remembered city and the recent list are written.
+  const goMarket = (r) => {
+    window.history.pushState(null, "", pathFor(r));
+    setRoute(r); setMarket(r);
+    if (r.view === "city") { writeLast(r.place, r.family); setRecent(pushRecent(r.place)); }
+    window.scrollTo(0, 0);
+  };
+  const openPage = (id) => { const r = { ...HOME, view: "job", jobId: id }; window.history.pushState(null, "", pathFor(r)); setRoute(r); window.scrollTo(0, 0); };
+  const closePage = () => { window.history.pushState(null, "", pathFor(market)); setRoute(market); };
+
+  // The address bar owns city, family and compare mode; the rest of the filters are the
+  // controls' own state. Keeping it one-way — route in, filters out — means the back
+  // button, a shared link and a picker click all land in exactly the same place.
+  useEffect(() => {
+    if (market.view === "job") return;
+    setFilters((f) => ({
+      ...f,
+      cities: market.view === "city" ? placeCities(market.place) : [],
+      compare: market.view === "compare",
+      families: market.family ? [market.family] : [],
+    }));
+  }, [market]);
+  const compareCities = market.view === "compare" ? market.cities : COMPARE_DEFAULT;
+  // Open jobs per city, for the picker's counts and the market cards. From /api/stats, so
+  // it stays the whole picture even while the page is filtered down to one city.
+  const cityCounts = stats?.open_by_city || {};
 
   const reload = useCallback(() => { api.stats().then(setStats); setRefresh((n) => n + 1); }, []);
   useEffect(() => { api.taxonomy().then(setTax); reload(); }, [reload]);
@@ -68,10 +118,30 @@ export default function App() {
     : (skills?.skills || []).map((s) => ({ skill_id: s.skill_id, display: s.display, note: `${pctInt(s.count, skills.total)}% of jobs` }))),
   [filters.skillIds, related, skills]);
   const set = (patch) => setFilters((f) => ({ ...f, ...patch }));
-  const setCity = (c) => set(c === "compare" ? { compare: true, cities: [] } : { compare: false, cities: c ? [c] : [] });
   const toggleSen = (s) => set({ seniorities: filters.seniorities.includes(s) ? filters.seniorities.filter((x) => x !== s) : [...filters.seniorities, s] });
-  const toggleFam = (f) => set({ families: filters.families.includes(f) ? filters.families.filter((x) => x !== f) : [...filters.families, f] });
   const viewJob = (id) => { setDrawer(null); if (pageJob) closePage(); set({ skillIds: [], query: "", text: "", window: "all" }); setJumpTo(id); };
+
+  // Everything the query bar can do, as moves between addresses.
+  const goPlace = (slug) => goMarket({ ...HOME, view: "city", place: slug, family: market.family });
+  const goFamily = (f) => goMarket(market.view === "compare" ? { ...market, family: f } : { ...HOME, view: "city", place: market.place, family: f });
+  // Compare opens on the city you are looking at plus the busiest other one, so the second
+  // column is never empty and the reader never has to pick twice to see anything.
+  const startCompare = () => {
+    const here = placeCities(market.place)[0];
+    const other = PLACE_NAMES.filter((n) => n !== here).sort((a, b) => (cityCounts[b] || 0) - (cityCounts[a] || 0))[0];
+    goMarket({ ...HOME, view: "compare", cities: [here, other].filter(Boolean), family: market.family });
+  };
+  const addCompare = (slug) => goMarket({ ...market, cities: compareAdd(market.cities, placeCities(slug)[0]) });
+  // Down to one city there is nothing left to compare, so removing the second-to-last one
+  // leaves compare mode with whichever city is still standing.
+  const removeCompare = (name) => {
+    const left = compareRemove(market.cities, name);
+    goMarket(left.length >= 2
+      ? { ...market, cities: left }
+      : { ...HOME, view: "city", place: placeByName(left[0])?.slug || null, family: market.family });
+  };
+  const exitCompare = () => goMarket({ ...HOME, view: "city", place: placeByName(market.cities[0])?.slug || null, family: market.family });
+  const requestCity = () => window.open(REQUEST_CITY_URL, "_blank", "noopener");
 
   // The skill filter is a set, read as AND: the job list shows the jobs requiring every one
   // of them. A bar click replaces the selection — clicking the only selected skill clears it —
@@ -85,7 +155,10 @@ export default function App() {
   const addSkill = (id) => setFilters((f) => (f.skillIds.includes(id) ? f : { ...f, skillIds: [...f.skillIds, id] }));
   const skillNames = filters.skillIds.map((id) => taxName[id] || id);
 
-  const cityLabel = filters.compare ? comparePair.join(" + ") : filters.cities.length ? filters.cities.join(" + ") : PLACES.join(" + ");
+  const placeName = market.view === "city" ? (placeBySlug(market.place)?.name || "") : "";
+  const cityLabel = filters.compare ? compareCities.join(" + ") : placeName || PLACE_NAMES.join(" + ");
+  // What the chart's heading calls the roles: the chosen family, or every role we track.
+  const roleLabel = market.family ? `${familyLabel(market.family)} jobs` : "AI-engineering jobs";
   const winLabel = filters.window === "open" ? "currently open" : filters.window === "all" ? "" : `from the last ${filters.window.replace("d", " days")}`;
   const reqLabel = filters.requirement === "required" ? "as required" : "as required or nice-to-have";
   // Family reads next to seniority in every subtitle: both describe the role, where the
@@ -99,8 +172,9 @@ export default function App() {
   return (
     <>
       <header className="hdr"><div className="hdr-in">
-        <div className="brand"><a href="/" onClick={(e) => { e.preventDefault(); if (pageJob) closePage(); }} className="home" aria-label="hiring-radar home"><Radar /><b>hiring-radar</b></a><span className="sub">AI-engineering skills, {PLACES.join(" + ")}</span></div>
+        <div className="brand"><a href="/" onClick={(e) => { e.preventDefault(); goMarket(HOME); }} className="home" aria-label="hiring-radar home"><Radar /><b>hiring-radar</b></a><span className="sub">AI-engineering skills, {PLACE_NAMES.join(" + ")}</span></div>
         <div className="hdr-actions">
+          {market.view !== "home" && <a className="pill" href="/" onClick={(e) => { e.preventDefault(); goMarket(HOME); }}>All markets</a>}
           <button type="button" className={`pill${profile ? " on" : ""}`} onClick={() => setDrawer("profile")} aria-label="Your profile">
             <Person /><span className="lbl">{profile ? `${profile.skills.length} skills in your profile` : "Set up your profile"}</span>
           </button>
@@ -111,7 +185,40 @@ export default function App() {
         </div>
       </div></header>
 
-      {pageJob ? <JobPage id={pageJob} onBack={closePage} profile={profile} taxonomy={taxName} demand={demand} /> : <main className="main">
+      {pageJob ? <JobPage id={pageJob} onBack={closePage} profile={profile} taxonomy={taxName} demand={demand} /> : <>
+
+      {market.view === "home" && (
+        <section className="hero"><div className="hero-in">
+          <h1>What are employers actually asking for?</h1>
+          <p className="lede">Live skill demand from every open AI &amp; data job we can find, per city.</p>
+        </div></section>
+      )}
+
+      <QueryBar
+        place={market.view === "city" ? market.place : null}
+        family={market.family}
+        counts={cityCounts}
+        recent={recent}
+        compare={market.view === "compare"}
+        compareCities={market.view === "compare" ? market.cities : []}
+        onPlace={goPlace} onFamily={goFamily}
+        onStartCompare={startCompare} onAddCity={addCompare} onRemoveCity={removeCompare} onExitCompare={exitCompare}
+        onRequestCity={requestCity}
+        right={stats && market.view !== "home"
+          ? <span className="mono dim">{stats.open} open jobs · updated {timeAgo(stats.last_updated)}</span>
+          : null} />
+
+      {market.view === "home" ? <main className="main">
+        {recent.length > 0 && (
+          <p className="recents"><span className="dim">Recent:</span>
+            {recent.map(placeBySlug).filter(Boolean).map((p) => (
+              <a key={p.slug} className="pill" href={market.family ? `/${p.slug}/${market.family}` : `/${p.slug}`}
+                onClick={(e) => { e.preventDefault(); goPlace(p.slug); }}>{p.name}</a>
+            ))}
+          </p>
+        )}
+        <HomeGrid data={skills} counts={cityCounts} family={market.family} onRequestCity={requestCity} />
+      </main> : <main className="main">
         {stats && (
           <p className="stats">
             <span>{stats.jobs} jobs</span><span>·</span>
@@ -131,21 +238,16 @@ export default function App() {
 
         <section className="card chart" aria-labelledby="chart-title">
           <div>
-            <h1 id="chart-title">{filters.compare ? `${comparePair[0]} vs ${comparePair[1]}: which skills does each market ask for?` : "What skills are AI-engineering jobs asking for?"}</h1>
+            <h1 id="chart-title">{filters.compare
+              ? `${compareCities.join(" vs ")} · ${market.family ? familyLabel(market.family) : "AI & data roles"}`
+              : `What skills are ${roleLabel}${placeName ? ` in ${placeName}` : ""} asking for?`}</h1>
             <p className="lede">
-              {filters.compare ? `Share of each city's ${winLabel || "tracked"} jobs listing the skill ${reqLabel}`
+              {filters.compare ? `Share of each city's ${winLabel || "tracked"} jobs listing the skill ${reqLabel}. Rows sorted by the column you pick`
                 : `Share of the ${skills?.total ?? "…"} ${winLabel} jobs that list each skill ${reqLabel} · ${cityLabel}`}{famLabel}{senLabel}.
               {profile && " Solid bars are skills in your profile."}
             </p>
           </div>
           <div className="controls">
-            <div className="ctl"><span>City</span>
-              <div className="seg" role="group" aria-label="City">
-                <button type="button" aria-pressed={!filters.compare && !filters.cities.length} onClick={() => setCity(null)}>All</button>
-                {PLACES.map((c) => <button key={c} type="button" aria-pressed={!filters.compare && filters.cities[0] === c} onClick={() => setCity(c)}>{c}</button>)}
-                <button type="button" aria-pressed={filters.compare} onClick={() => setCity("compare")}><Compare />Compare</button>
-              </div>
-            </div>
             <div className="ctl"><span>Requirement</span>
               <div className="seg" role="group" aria-label="Requirement">
                 <button type="button" aria-pressed={filters.requirement === "required"} onClick={() => set({ requirement: "required" })}>Required only</button>
@@ -156,12 +258,6 @@ export default function App() {
               <div className="seg" role="group" aria-label="Seniority">
                 <button type="button" aria-pressed={!filters.seniorities.length} onClick={() => set({ seniorities: [] })}>Any</button>
                 {SENIORITIES.map((s) => <button key={s} type="button" aria-pressed={filters.seniorities.includes(s)} onClick={() => toggleSen(s)}>{cap(s)}</button>)}
-              </div>
-            </div>
-            <div className="ctl"><span>Job family</span>
-              <div className="seg" role="group" aria-label="Job family">
-                <button type="button" aria-pressed={!filters.families.length} onClick={() => set({ families: [] })}>Any</button>
-                {FAMILIES.map((f) => <button key={f} type="button" aria-pressed={filters.families.includes(f)} onClick={() => toggleFam(f)}>{familyLabel(f)}</button>)}
               </div>
             </div>
             <div className="ctl"><label htmlFor="de">German</label>
@@ -186,9 +282,8 @@ export default function App() {
             </div>
           </div>
           {filters.compare
-            ? <CompareChart data={skills} selected={filters.skillIds} onSelect={selectSkill}
-                pair={comparePair} onPair={setComparePair}
-                onSelectCity={(id, city) => set({ skillIds: [id], compare: false, cities: [city] })} />
+            ? <CompareChart data={skills} selected={filters.skillIds} onSelect={selectSkill} cities={compareCities}
+                onSelectCity={(id, city) => { set({ skillIds: [id] }); goMarket({ ...HOME, view: "city", place: placeByName(city)?.slug || null, family: market.family }); }} />
             : <SkillChart data={skills} selected={filters.skillIds} onSelect={selectSkill} profile={profile}
                 cityLabel={`${winLabel || "tracked"} jobs`} aliases={taxAliases} />}
         </section>
@@ -201,7 +296,7 @@ export default function App() {
 
         {/* The skill tree card stood here. Off the MVP page by HIR-187; SkillTree.jsx, api.skillTree
             and /api/skills/tree all still work, and HIR-81 / HIR-89 bring it back per career track. */}
-      </main>}
+      </main>}</>}
 
       {drawer === "add" && <AddJobDrawer onClose={() => setDrawer(null)} onAdded={reload} onViewJob={viewJob} />}
       {drawer === "review" && <ReviewDrawer onClose={() => setDrawer(null)} taxonomyList={tax.skills} skillsTracked={stats?.skills_tracked ?? tax.skills.length} onChanged={reload} onViewJob={viewJob} />}
