@@ -37,6 +37,14 @@ measured, not assumed:
 - **Every extracted skill carries the sentence it came from.** Click a job in the
   dashboard and you see the quote, so any number can be traced back to the words.
 
+![The dashboard: a query bar, then the skill chart](docs/screens/02-dashboard.jpg)
+
+You open the site on one question — **[AI Engineer] in [Berlin]** — pick a city and a job
+family from the two dropdowns, and get that market'''s chart. Every market has its own
+address (`/berlin/ai-engineer`), so a link to one is a link anyone can open, and the first
+visit shows a card per city to choose from. "Compare with another city" puts two or three
+markets side by side. More screens in [docs/screens/](docs/screens/).
+
 Each job also gets seniority, German-language requirement, and degree expectations — the
 three things that decide whether a posting is worth reading at all.
 
@@ -68,7 +76,9 @@ needs LinkedIn. Those were in the predecessor and were cut deliberately
 
 **Status:** working locally — intake, extraction, evaluation, and dashboard all run. 44
 job-board feeds are polled. Collection is Berlin-only until the held-out evaluation
-passes; the city-comparison view is built and waiting on a second city. Runs 24/7 on a
+passes; comparison holds up to three cities at once. Adding a city to the dashboard is one
+entry in `PLACES` (`web/src/format.js`) with its name, URL slug and country group — the
+picker, the market grid, compare and the URLs all read that one list (DECISIONS 2026-11-06). Runs 24/7 on a
 GCP VM with a daily 07:00 poll; ops runbook in [deploy/README.md](deploy/README.md).
 
 This is a rebuild of

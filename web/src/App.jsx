@@ -217,7 +217,7 @@ export default function App() {
             ))}
           </p>
         )}
-        <HomeGrid data={skills} family={market.family} onRequestCity={requestCity} />
+        <HomeGrid data={skills} counts={cityCounts} family={market.family} onRequestCity={requestCity} />
       </main> : <main className="main">
         {stats && (
           <p className="stats">

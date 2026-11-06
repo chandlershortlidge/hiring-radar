@@ -385,7 +385,7 @@ a.card.market:hover { border-color: var(--ink); }
 .card.market.ask .btn { padding: 0; text-decoration: underline; }
 
 /* compare: one column per place */
-.cmp-sort { margin-bottom: 6px; }
+.cmp-sort { margin-bottom: 6px; align-self: flex-start; }
 .cmp-head .cty-h { border: 0; background: transparent; padding: 0; text-align: left; color: inherit; font-size: 12px; }
 .cmp-head .cty-h[aria-pressed="true"] b { text-decoration: underline; }
 .cmp-row .cb.col-0 .fill { background: var(--bar); }

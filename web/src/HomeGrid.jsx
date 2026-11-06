@@ -17,8 +17,12 @@ export const topSkills = (skills, city, total, n = TOP) => (skills || [])
   .slice(0, n)
   .map((s) => ({ ...s, pct: pctInt(s.count, total) }));
 
-export default function HomeGrid({ data, family, onRequestCity }) {
-  const counts = data?.city_totals || {};
+// `counts` is open jobs per city, the same number the city picker shows, so the two agree.
+// The bars are a share of the jobs we have actually read in that city (`city_totals`),
+// which is the slightly smaller set — a handful of postings are stored as a fragment too
+// short to chart. Each number is right for what it says; the stats line explains the gap.
+export default function HomeGrid({ data, counts, family, onRequestCity }) {
+  const charted = data?.city_totals || {};
   const groups = gridGroups(counts);
   const href = (place) => (family ? `/${place.slug}/${family}` : `/${place.slug}`);
 
@@ -34,7 +38,7 @@ export default function HomeGrid({ data, family, onRequestCity }) {
           <div className="market-cards">
             {g.places.map((p) => {
               const total = counts[p.name] || 0;
-              const top = topSkills(data?.skills, p.name, total);
+              const top = topSkills(data?.skills, p.name, charted[p.name] || 0);
               const max = Math.max(1, ...top.map((s) => s.pct));
               return (
                 <a key={p.slug} className="card market" href={href(p)}>
