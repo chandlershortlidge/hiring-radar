@@ -56,6 +56,23 @@ has to name it. A short flat list of five needs no search box, so it is the brow
 control. Nothing defaults to a family: a first visit shows every AI and data role, as
 before, rather than silently hiding four fifths of the market.
 
+**The landing view is centred, and it is one grid (HIR-191).** Chandler's first look at the
+shipped screen: splitting the grid into one row per country left every row half empty, so
+the page read as small and pushed left. Below four cities there is not enough in a country
+group to be worth its own row, so every market now sits in **one** grid sorted by open
+jobs, with its country as a small label on the card. Grouping comes back on its own once a
+group can fill a row; the "request a city" prompt left the grid and is a centred link under
+it, because a dashed card in a row of real markets reads as a market. On the landing view
+only -- no city chosen -- the headline, the line under it, the pickers and the Recent chips
+are centred and one size larger; the dashboard keeps its left alignment, because there the
+query bar is a control above a chart rather than the subject of the page.
+
+**Compare starts from a dropdown.** "+ Compare with another city" was a dashed button that
+only switched modes: you then had to click "+ add" and pick, so seeing two cities took two
+decisions. It is now the same searchable city list as the city picker, minus the city you
+are already on, and picking lands straight on `/compare/<a>+<b>`. Compare mode's "+ add" is
+that same control, so it opens on the first click.
+
 ---
 
 ## 2026-11-05 — MVP page: no skill tree card, no posting-text search box (HIR-187)

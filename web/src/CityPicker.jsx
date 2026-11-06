@@ -12,7 +12,16 @@ import { Search } from "./icons.jsx";
 //
 // Keyboard: the button opens the list and focus goes to the search box; up and down move
 // the highlight, Enter picks it, Escape closes. Clicking outside closes it too.
-export default function CityPicker({ value, counts, recent, onPick, onRequestCity }) {
+//
+// The same control is also how compare starts (HIR-191), via three props: `placeholder` is
+// what the button reads with nothing chosen, `exclude` drops places already in the
+// comparison (slugs or city names, whichever the caller has), and `variant="add"` draws it
+// in a lighter weight while keeping the height, border and caret. Everything else — search,
+// groups, counts, keyboard, ARIA — is shared, which is the point: there is one city list.
+export default function CityPicker({
+  value, counts, recent, onPick, onRequestCity,
+  placeholder = "Pick a city", exclude = [], variant, disabled = false,
+}) {
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
   const [at, setAt] = useState(0);
@@ -24,20 +33,27 @@ export default function CityPicker({ value, counts, recent, onPick, onRequestCit
     ? PLACES.filter((x) => x.group === "Germany").reduce((n, x) => n + (counts[x.name] || 0), 0)
     : counts[p.name] || 0);
 
+  // A caller may exclude by slug or by city name — compare mode holds names, the single
+  // query bar holds the slug it is already on — so both count as a match.
+  const hidden = exclude.join("\u0000");
+  const shown = (p) => !exclude.includes(p.slug) && !exclude.includes(p.name);
+
   // The groups, as drawn: Recent (only when there is something to recall and nothing
   // typed), then every country group with its places sorted by job count.
   const groups = useMemo(() => {
-    const match = (p) => placeMatches(p, q);
+    const match = (p) => placeMatches(p, q) && shown(p);
     const out = [];
     const recentPlaces = recent.map(placeBySlug).filter(Boolean).filter(match);
     if (!q.trim() && recentPlaces.length) out.push({ name: "Recent", places: recentPlaces });
     for (const g of PLACE_GROUPS) {
       const places = PLACES.filter((p) => p.group === g && match(p)).sort((a, b) => count(b) - count(a));
-      if (g === "Germany" && (places.length || match(ALL_GERMANY))) places.push(ALL_GERMANY);
+      // "All of Germany" sits at the end of its group whenever that group has anything in
+      // it, so it is offered even when the typed text only matched a city under it.
+      if (g === "Germany" && shown(ALL_GERMANY) && (places.length || placeMatches(ALL_GERMANY, q))) places.push(ALL_GERMANY);
       if (places.length) out.push({ name: g, places });
     }
     return out;
-  }, [q, recent, counts]);
+  }, [q, recent, counts, hidden]);
 
   // One flat list in drawn order, so the arrow keys walk the list the eye sees.
   const flat = useMemo(() => groups.flatMap((g) => g.places.map((p) => ({ group: g.name, place: p }))), [groups]);
@@ -62,9 +78,10 @@ export default function CityPicker({ value, counts, recent, onPick, onRequestCit
 
   return (
     <div className="picker" ref={box}>
-      <button type="button" className="qb-btn" aria-haspopup="listbox" aria-expanded={open}
+      <button type="button" className={`qb-btn${variant ? ` ${variant}` : ""}`} disabled={disabled}
+        aria-haspopup="listbox" aria-expanded={open}
         onClick={() => (open ? close() : setOpen(true))}>
-        {chosen ? chosen.name : "Pick a city"}<span className="caret" aria-hidden="true">▾</span>
+        {chosen ? chosen.name : placeholder}<span className="caret" aria-hidden="true">▾</span>
       </button>
       {open && (
         <div className="pop" role="dialog" aria-label="Choose a city">

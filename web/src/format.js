@@ -42,12 +42,14 @@ export const placeCities = (slug) => (slug === ALL_GERMANY.slug
   : (placeBySlug(slug) ? [placeBySlug(slug).name] : []));
 // Does this place match what someone typed into the picker's search box? Name, group and
 // aliases all count, so "germany" finds Berlin and "sf" finds San Francisco.
-// The market grid's groups: every place under its country heading, busiest first. Places
-// with no jobs still appear — an empty market is information, and it is where a newly
-// launched city starts.
-export const gridGroups = (counts) => PLACE_GROUPS
-  .map((g) => ({ name: g, places: PLACES.filter((p) => p.group === g).sort((a, b) => (counts[b.name] || 0) - (counts[a.name] || 0)) }))
-  .filter((g) => g.places.length);
+// The market grid: every place in one list, busiest first, each card carrying its country
+// as a label. It used to be one row per country, but with one or two cities in a group each
+// row filled only half the page (HIR-191) — grouping can come back once a group has four or
+// more cities to put in a row. Ties break by name, so the grid does not reshuffle between
+// visits. Places with no jobs still appear — an empty market is information, and it is where
+// a newly launched city starts.
+export const gridPlaces = (counts) => [...PLACES]
+  .sort((a, b) => (counts[b.name] || 0) - (counts[a.name] || 0) || a.name.localeCompare(b.name));
 
 export function placeMatches(place, q) {
   const t = q.trim().toLowerCase();

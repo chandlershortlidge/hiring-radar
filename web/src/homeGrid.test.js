@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { topSkills } from "./HomeGrid.jsx";
-import { gridGroups } from "./format.js";
+import { PLACES, PLACE_GROUPS, gridPlaces } from "./format.js";
 
 // One /api/skills response shape: every skill row carries its count per city, and the
 // response carries the job total per city. The market cards are drawn from that one
@@ -45,14 +45,28 @@ describe("the market cards on the home view (HIR-188)", () => {
     expect(topSkills(tied, "Berlin", 10).map((s) => s.name)).toEqual(["Alpha", "Bravo"]);
   });
 
-  it("groups the cards by country and puts the busiest market first in each group", () => {
-    const groups = gridGroups({ Berlin: 100, "San Francisco": 292, "New York": 300, "Remote (EU)": 40 });
-    expect(groups.map((g) => g.name)).toEqual(["Germany", "Remote", "United States"]);
-    expect(groups[2].places.map((p) => p.name)).toEqual(["New York", "San Francisco"]);
+  it("puts every market in one grid, busiest first, whatever country it is in (HIR-191)", () => {
+    const places = gridPlaces({ Berlin: 100, "San Francisco": 292, "New York": 300, "Remote (EU)": 40 });
+    expect(places.map((p) => p.name)).toEqual(["New York", "San Francisco", "Berlin", "Remote (EU)"]);
+  });
+
+  it("carries each market's country, since there is no row heading to say it any more", () => {
+    for (const p of gridPlaces({})) expect(PLACE_GROUPS).toContain(p.group);
+  });
+
+  it("breaks a tie by name, so the grid does not reshuffle between visits", () => {
+    const places = gridPlaces({ Berlin: 7, "San Francisco": 7, "New York": 7, "Remote (EU)": 7 });
+    expect(places.map((p) => p.name)).toEqual(["Berlin", "New York", "Remote (EU)", "San Francisco"]);
   });
 
   it("still lists a market with no jobs — that is where a new city starts", () => {
-    const groups = gridGroups({});
-    expect(groups.flatMap((g) => g.places).map((p) => p.name)).toContain("New York");
+    expect(gridPlaces({}).map((p) => p.name)).toContain("New York");
+  });
+
+  // PLACES is the one list the picker, the grid, compare and the URLs all read, so sorting
+  // it in place would quietly reorder the city picker as well.
+  it("sorts a copy, leaving the shared place list in its own declared order", () => {
+    gridPlaces({ "New York": 999 });
+    expect(PLACES.map((p) => p.name)).toEqual(["Berlin", "Remote (EU)", "San Francisco", "New York"]);
   });
 });

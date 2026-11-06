@@ -124,11 +124,17 @@ export default function App() {
   // Everything the query bar can do, as moves between addresses.
   const goPlace = (slug) => goMarket({ ...HOME, view: "city", place: slug, family: market.family });
   const goFamily = (f) => goMarket(market.view === "compare" ? { ...market, family: f } : { ...HOME, view: "city", place: market.place, family: f });
-  // Compare opens on the city you are looking at plus the busiest other one, so the second
-  // column is never empty and the reader never has to pick twice to see anything.
-  const startCompare = () => {
+  // Compare opens on the city you are looking at plus the one picked in the compare
+  // dropdown, so it takes one pick to see two markets (HIR-191). The dropdown hides the
+  // city you are already on, but "All of Germany" resolves to the busiest German city,
+  // which today is the only one — so if the pick lands back on the city we are already
+  // comparing, fall back to the busiest other market rather than comparing it with itself.
+  const startCompare = (slug) => {
     const here = placeCities(market.place)[0];
-    const other = PLACE_NAMES.filter((n) => n !== here).sort((a, b) => (cityCounts[b] || 0) - (cityCounts[a] || 0))[0];
+    const picked = placeCities(slug)[0];
+    const other = picked && picked !== here
+      ? picked
+      : PLACE_NAMES.filter((n) => n !== here).sort((a, b) => (cityCounts[b] || 0) - (cityCounts[a] || 0))[0];
     goMarket({ ...HOME, view: "compare", cities: [here, other].filter(Boolean), family: market.family });
   };
   const addCompare = (slug) => goMarket({ ...market, cities: compareAdd(market.cities, placeCities(slug)[0]) });
@@ -188,7 +194,7 @@ export default function App() {
       {pageJob ? <JobPage id={pageJob} onBack={closePage} profile={profile} taxonomy={taxName} demand={demand} /> : <>
 
       {market.view === "home" && (
-        <section className="hero"><div className="hero-in">
+        <section className="hero landing"><div className="hero-in">
           <h1>What are employers actually asking for?</h1>
           <p className="lede">Live skill demand from every open AI &amp; data job we can find, per city.</p>
         </div></section>
@@ -201,6 +207,7 @@ export default function App() {
         recent={recent}
         compare={market.view === "compare"}
         compareCities={market.view === "compare" ? market.cities : []}
+        landing={market.view === "home"}
         onPlace={goPlace} onFamily={goFamily}
         onStartCompare={startCompare} onAddCity={addCompare} onRemoveCity={removeCompare} onExitCompare={exitCompare}
         onRequestCity={requestCity}
@@ -208,7 +215,7 @@ export default function App() {
           ? <span className="mono dim">{stats.open} open jobs · updated {timeAgo(stats.last_updated)}</span>
           : null} />
 
-      {market.view === "home" ? <main className="main">
+      {market.view === "home" ? <main className="main landing">
         {recent.length > 0 && (
           <p className="recents"><span className="dim">Recent:</span>
             {recent.map(placeBySlug).filter(Boolean).map((p) => (

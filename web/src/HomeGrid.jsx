@@ -1,8 +1,14 @@
-import { gridGroups, pctInt } from "./format.js";
+import { gridPlaces, pctInt } from "./format.js";
 
 // What a first-time visitor sees instead of a dashboard for a city they never chose
-// (HIR-188): one card per market, grouped by country, each with its job count and the
-// three skills its jobs ask for most, as mini bars.
+// (HIR-188): one card per market, each with its job count and the three skills its jobs ask
+// for most, as mini bars.
+//
+// The cards sit in ONE grid, busiest market first, with the country as a small label on each
+// card. They used to be split into a row per country, which left each row half empty while a
+// country has only one or two cities (HIR-191). Grouping by country can come back once a
+// group has four or more cities to fill a row with; `gridPlaces` is the only thing that
+// would change. Not this ticket.
 //
 // Every number here comes from the one /api/skills request the page already makes with no
 // city filter: each skill row carries its count per city, and the response carries the job
@@ -23,7 +29,7 @@ export const topSkills = (skills, city, total, n = TOP) => (skills || [])
 // short to chart. Each number is right for what it says; the stats line explains the gap.
 export default function HomeGrid({ data, counts, family, onRequestCity }) {
   const charted = data?.city_totals || {};
-  const groups = gridGroups(counts);
+  const places = gridPlaces(counts);
   const href = (place) => (family ? `/${place.slug}/${family}` : `/${place.slug}`);
 
   return (
@@ -32,41 +38,36 @@ export default function HomeGrid({ data, counts, family, onRequestCity }) {
         <h2 id="markets-title">Or browse the markets</h2>
         <span className="dim">sorted by open jobs</span>
       </div>
-      {groups.map((g) => (
-        <div key={g.name} className="market-group">
-          <div className="market-head">{g.name}</div>
-          <div className="market-cards">
-            {g.places.map((p) => {
-              const total = counts[p.name] || 0;
-              const top = topSkills(data?.skills, p.name, charted[p.name] || 0);
-              const max = Math.max(1, ...top.map((s) => s.pct));
-              return (
-                <a key={p.slug} className="card market" href={href(p)}>
-                  <h3>{p.name}</h3>
-                  <p className="mono dim">{total} open</p>
-                  {top.length ? (
-                    <ul>
-                      {top.map((s) => (
-                        <li key={s.name}>
-                          <span className="nm">{s.name}</span>
-                          <span className="tr"><i style={{ width: `${(s.pct / max) * 100}%` }} /></span>
-                          <span className="pc mono">{s.pct}%</span>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : <p className="dim none">No jobs here yet.</p>}
-                </a>
-              );
-            })}
-            {g.name === "Germany" && (
-              <div className="card market ask">
-                <p className="dim">More German cities as they’re added</p>
-                <button type="button" className="btn ghost" onClick={onRequestCity}>Request a city →</button>
-              </div>
-            )}
-          </div>
-        </div>
-      ))}
+      <div className="market-cards">
+        {places.map((p) => {
+          const total = counts[p.name] || 0;
+          const top = topSkills(data?.skills, p.name, charted[p.name] || 0);
+          const max = Math.max(1, ...top.map((s) => s.pct));
+          return (
+            <a key={p.slug} className="card market" href={href(p)}>
+              <span className="market-tag">{p.group}</span>
+              <h3>{p.name}</h3>
+              <p className="mono dim">{total} open</p>
+              {top.length ? (
+                <ul>
+                  {top.map((s) => (
+                    <li key={s.name}>
+                      <span className="nm">{s.name}</span>
+                      <span className="tr"><i style={{ width: `${(s.pct / max) * 100}%` }} /></span>
+                      <span className="pc mono">{s.pct}%</span>
+                    </li>
+                  ))}
+                </ul>
+              ) : <p className="dim none">No jobs here yet.</p>}
+            </a>
+          );
+        })}
+      </div>
+      {/* Out of the grid since HIR-191: a dashed card in a row of real markets reads as a market. */}
+      <p className="market-ask dim">
+        More cities as they’re added.{" "}
+        <button type="button" className="btn ghost" onClick={onRequestCity}>Request a city →</button>
+      </p>
     </section>
   );
 }
