@@ -1,7 +1,7 @@
 import pytest
 
 from app import db, geo
-from app.ingest import in_scope_title, ingest, ingest_one
+from app.ingest import FAMILIES, family_of, in_scope_title, ingest, ingest_one
 from app.sources import Posting
 
 JD = ("AI Engineer. Requirements: 3+ years Python, experience with LLM applications, RAG "
@@ -203,3 +203,71 @@ def test_eu_remote_postings_are_ingested_as_remote_eu(conn):
     assert ingest_one(conn, posting(sid="r1", location="Remote (Germany)")).startswith("new:")
     assert conn.execute("SELECT city FROM job").fetchone()["city"] == "Remote (EU)"
     assert ingest_one(conn, posting(sid="r2", company="Other Co", location="Remote - US")) == "skipped_city"
+
+
+# --- job family (HIR-186) ---------------------------------------------------------------
+
+# One title per bucket plus the cases the rule's order exists for. Reused by the test that
+# the SQL backfill in migration 017 agrees with family_of, so every title here is checked
+# twice: once through Python, once through SQLite.
+FAMILY_CASES = [
+    ("Senior Data Scientist", "data-scientist"),
+    ("Data Science Lead (m/w/d)", "data-scientist"),
+    ("Datenwissenschaftler KI", "data-scientist"),
+    ("MLOps Engineer", "ml-platform"),
+    ("ML Platform Engineer", "ml-platform"),               # platform wins over ml-engineer
+    ("ML Infra Engineer", "ml-platform"),
+    ("Machine Learning Engineer", "ml-engineer"),
+    ("Machine-Learning Engineer (f/m/x)", "ml-engineer"),
+    ("Senior MLE (Berlin)", "ml-engineer"),                # `mle` as a whole word
+    ("Research Engineer, LLMs", "research"),
+    ("Applied Scientist - Generative AI", "research"),
+    ("Agentic AI Engineer", "ai-engineer"),                # the remainder
+    ("LLM Engineer", "ai-engineer"),
+    ("Senior Data Scientist / Machine Learning Engineer", "data-scientist"),  # first match wins
+    ("Samler AI Engineer", "ai-engineer"),                 # `mle` inside a word does not count
+]
+
+
+@pytest.mark.parametrize("title,family", FAMILY_CASES)
+def test_family_of_buckets_the_title(title, family):
+    assert family_of(title) == family
+
+
+def test_family_of_only_returns_known_families():
+    assert all(f in FAMILIES for _, f in FAMILY_CASES)
+    assert family_of("") == "ai-engineer"
+
+
+def test_migration_backfill_agrees_with_family_of(tmp_path):
+    """The SQL CASE in 017 and family_of must label the same titles the same way."""
+    import shutil
+    old = tmp_path / "old"
+    old.mkdir()
+    for m in sorted(db.MIGRATIONS_DIR.glob("*.sql")):
+        if int(m.name[:3]) < 17:
+            shutil.copy(m, old / m.name)
+    c = db.connect(tmp_path / "t.db")
+    db.migrate(c, old)
+    for title, _ in FAMILY_CASES:
+        c.execute("INSERT INTO job (title, description_text, first_seen, last_seen)"
+                  " VALUES (?, 'jd', '2026-10-16T00:00:00Z', '2026-10-16T00:00:00Z')", (title,))
+    c.commit()
+    assert 17 in db.migrate(c)
+    rows = c.execute("SELECT title, family FROM job").fetchall()
+    assert len(rows) == len(FAMILY_CASES)
+    assert [(r["title"], r["family"]) for r in rows] == [(t, family_of(t)) for t, _ in FAMILY_CASES]
+
+
+def test_new_job_gets_a_family_on_insert(conn):
+    assert ingest_one(conn, posting(title="Senior Machine Learning Engineer"),
+                      when="2026-10-16T00:00:00Z") == "new:1"
+    assert conn.execute("SELECT family FROM job").fetchone()["family"] == "ml-engineer"
+
+
+def test_a_hand_added_job_gets_a_family_too(conn):
+    """Manual adds (/api/add/url, /add/text, /add/screenshot) go through ingest_one with
+    trust_title, skipping the title filter — they must still be labelled."""
+    assert ingest_one(conn, posting(title="Head of Analytics"), when="2026-10-16T00:00:00Z",
+                      trust_title=True) == "new:1"
+    assert conn.execute("SELECT family FROM job").fetchone()["family"] == "ai-engineer"

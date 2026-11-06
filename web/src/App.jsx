@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { api } from "./api.js";
-import { COMPARE_DEFAULT, PLACES, DEGREE_FILTERS, GERMAN_FILTERS, PRODUCTION_FILTERS, SENIORITIES, cap, dateTime, pctInt, timeAgo } from "./format.js";
+import { COMPARE_DEFAULT, PLACES, DEGREE_FILTERS, FAMILIES, GERMAN_FILTERS, PRODUCTION_FILTERS, SENIORITIES, cap, dateTime, familyLabel, pctInt, timeAgo } from "./format.js";
 import { useProfile } from "./profile.js";
 import { Compare, Person, Plus, Radar } from "./icons.jsx";
 import SkillChart from "./SkillChart.jsx";
@@ -13,7 +13,7 @@ import ProfileDrawer from "./ProfileDrawer.jsx";
 import JobPage from "./JobPage.jsx";
 
 const WINDOWS = { open: "Currently open", "30d": "Last 30 days", "90d": "Last 90 days", all: "All" };
-const DEFAULT = { cities: [], compare: false, seniorities: [], requirement: "required", window: "open", german: "any", degree: "any", production: "any", skillIds: [], query: "", text: "" };
+const DEFAULT = { cities: [], compare: false, seniorities: [], families: [], requirement: "required", window: "open", german: "any", degree: "any", production: "any", skillIds: [], query: "", text: "" };
 
 // The only route besides "/": /jobs/{id} is a job's own page. The server returns index.html
 // for every path, so the address bar is read here, on load and whenever the back/forward
@@ -70,6 +70,7 @@ export default function App() {
   const set = (patch) => setFilters((f) => ({ ...f, ...patch }));
   const setCity = (c) => set(c === "compare" ? { compare: true, cities: [] } : { compare: false, cities: c ? [c] : [] });
   const toggleSen = (s) => set({ seniorities: filters.seniorities.includes(s) ? filters.seniorities.filter((x) => x !== s) : [...filters.seniorities, s] });
+  const toggleFam = (f) => set({ families: filters.families.includes(f) ? filters.families.filter((x) => x !== f) : [...filters.families, f] });
   const viewJob = (id) => { setDrawer(null); if (pageJob) closePage(); set({ skillIds: [], query: "", text: "", window: "all" }); setJumpTo(id); };
 
   // The skill filter is a set, read as AND: the job list shows the jobs requiring every one
@@ -87,6 +88,9 @@ export default function App() {
   const cityLabel = filters.compare ? comparePair.join(" + ") : filters.cities.length ? filters.cities.join(" + ") : PLACES.join(" + ");
   const winLabel = filters.window === "open" ? "currently open" : filters.window === "all" ? "" : `from the last ${filters.window.replace("d", " days")}`;
   const reqLabel = filters.requirement === "required" ? "as required" : "as required or nice-to-have";
+  // Family reads next to seniority in every subtitle: both describe the role, where the
+  // rest of senLabel describes what the posting demands.
+  const famLabel = filters.families.length ? ` · ${filters.families.map(familyLabel).join(" + ")}` : "";
   const senLabel = (filters.seniorities.length ? ` · ${filters.seniorities.map(cap).join("/")} roles` : "")
     + (filters.german !== "any" ? ` · German: ${GERMAN_FILTERS[filters.german].toLowerCase()}` : "")
     + (filters.production !== "any" ? ` · production experience: ${PRODUCTION_FILTERS[filters.production].toLowerCase()}` : "")
@@ -130,7 +134,7 @@ export default function App() {
             <h1 id="chart-title">{filters.compare ? `${comparePair[0]} vs ${comparePair[1]}: which skills does each market ask for?` : "What skills are AI-engineering jobs asking for?"}</h1>
             <p className="lede">
               {filters.compare ? `Share of each city's ${winLabel || "tracked"} jobs listing the skill ${reqLabel}`
-                : `Share of the ${skills?.total ?? "…"} ${winLabel} jobs that list each skill ${reqLabel} · ${cityLabel}`}{senLabel}.
+                : `Share of the ${skills?.total ?? "…"} ${winLabel} jobs that list each skill ${reqLabel} · ${cityLabel}`}{famLabel}{senLabel}.
               {profile && " Solid bars are skills in your profile."}
             </p>
           </div>
@@ -152,6 +156,12 @@ export default function App() {
               <div className="seg" role="group" aria-label="Seniority">
                 <button type="button" aria-pressed={!filters.seniorities.length} onClick={() => set({ seniorities: [] })}>Any</button>
                 {SENIORITIES.map((s) => <button key={s} type="button" aria-pressed={filters.seniorities.includes(s)} onClick={() => toggleSen(s)}>{cap(s)}</button>)}
+              </div>
+            </div>
+            <div className="ctl"><span>Job family</span>
+              <div className="seg" role="group" aria-label="Job family">
+                <button type="button" aria-pressed={!filters.families.length} onClick={() => set({ families: [] })}>Any</button>
+                {FAMILIES.map((f) => <button key={f} type="button" aria-pressed={filters.families.includes(f)} onClick={() => toggleFam(f)}>{familyLabel(f)}</button>)}
               </div>
             </div>
             <div className="ctl"><label htmlFor="de">German</label>

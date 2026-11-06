@@ -21,6 +21,8 @@ import sqlite3
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 
+from app.ingest import FAMILIES as ingest_families
+
 # Complete feeds list every live posting on every poll, so not seeing a job for
 # FEED_OPEN_DAYS means it closed. Search sources return a sample (JSearch: ~10 ranked
 # results; Arbeitsagentur: only postings published in the last 30 days), so absence there
@@ -34,6 +36,9 @@ MANUAL_OPEN_DAYS = 60
 WINDOWS = ("open", "30d", "90d", "all")
 REQUIREMENTS = ("required", "all")
 SENIORITIES = ("junior", "mid", "senior")
+# The five job families (HIR-186). Defined in ingest, which assigns one to every new job
+# from its title; re-exported here so the API validates against one list.
+FAMILIES = ingest_families
 # Single-choice filters over the German / degree / production attributes. "open" on degree
 # means a person without one can still apply: no degree named, marked optional, or
 # equivalent experience accepted.
@@ -84,6 +89,7 @@ def _days_ago(now: str, days: int) -> str:
 class Filters:
     cities: tuple[str, ...] = ()          # () = all
     seniorities: tuple[str, ...] = ()     # () = all, including unknown
+    families: tuple[str, ...] = ()        # () = all; every job has one (HIR-186)
     german: str = "any"                   # key of GERMAN_FILTERS
     degree: str = "any"                   # key of DEGREE_FILTERS
     production: str = "any"               # key of PRODUCTION_FILTERS
@@ -124,6 +130,9 @@ def job_set_clause(f: Filters, now: str, include_legacy: bool = False) -> tuple[
     if f.seniorities:
         parts.append(f"j.seniority IN ({','.join('?' * len(f.seniorities))})")
         params += list(f.seniorities)
+    if f.families:
+        parts.append(f"j.family IN ({','.join('?' * len(f.families))})")
+        params += list(f.families)
     if GERMAN_FILTERS.get(f.german):
         parts.append(GERMAN_FILTERS[f.german])
     if DEGREE_FILTERS.get(f.degree):
@@ -188,6 +197,8 @@ def stats(conn: sqlite3.Connection, now: str, skills_tracked: int) -> dict:
     open_total = conn.execute(f"SELECT count(*) FROM job j WHERE {oc}", op).fetchone()[0]
     by_city = {r["city"]: r["n"] for r in conn.execute(
         f"SELECT j.city, count(*) n FROM job j WHERE {oc} AND j.city IS NOT NULL GROUP BY j.city", op)}
+    by_family = {r["family"]: r["n"] for r in conn.execute(
+        f"SELECT j.family, count(*) n FROM job j WHERE {oc} AND j.family IS NOT NULL GROUP BY j.family", op)}
     companies = conn.execute("SELECT count(DISTINCT lower(company)) FROM job WHERE company IS NOT NULL").fetchone()[0]
     last = conn.execute("SELECT max(last_seen) FROM job").fetchone()[0]
     pending = conn.execute("SELECT count(*) FROM proposed_skill WHERE status='pending'").fetchone()[0]
@@ -196,7 +207,8 @@ def stats(conn: sqlite3.Connection, now: str, skills_tracked: int) -> dict:
     open_german = conn.execute(f"SELECT count(*) FROM job j WHERE {oc} AND {GERMAN_FILTERS['required']}", op).fetchone()[0]
     open_degree = conn.execute(f"SELECT count(*) FROM job j WHERE {oc} AND {DEGREE_FILTERS['required']}", op).fetchone()[0]
     open_production = conn.execute(f"SELECT count(*) FROM job j WHERE {oc} AND {PRODUCTION_FILTERS['required']}", op).fetchone()[0]
-    return {"jobs": total, "open": open_total, "open_by_city": by_city, "companies": companies,
+    return {"jobs": total, "open": open_total, "open_by_city": by_city, "open_by_family": by_family,
+            "companies": companies,
             "skills_tracked": skills_tracked, "last_updated": last, "proposed_pending": pending, "legacy": legacy, "too_short": too_short,
             "open_german_required": open_german, "open_degree_required": open_degree,
             "open_production_required": open_production,
@@ -340,7 +352,7 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
     total = conn.execute(f"SELECT count(*) FROM job j WHERE {w}", params).fetchone()[0]
     order = SORTS.get(sort, SORTS["newest"])
     rows = conn.execute(
-        f"SELECT j.id, j.company, j.title, j.city, j.seniority, j.seniority_basis, j.first_seen, j.last_seen,"
+        f"SELECT j.id, j.company, j.title, j.city, j.family, j.seniority, j.seniority_basis, j.first_seen, j.last_seen,"
         f" j.repost_count, j.extracted_version, length(j.description_text) AS text_len, j.german, j.degree, j.degree_requirement, j.degree_or_equivalent, j.production"
         f" FROM job j WHERE {w} ORDER BY {order} LIMIT ? OFFSET ?",
         params + [limit, offset]).fetchall()
@@ -381,7 +393,7 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
 
 def job_detail(conn: sqlite3.Connection, job_id: int, now: str) -> dict | None:
     r = conn.execute(
-        "SELECT id, company, title, city, location_raw, seniority, seniority_basis, seniority_signal,"
+        "SELECT id, company, title, city, location_raw, family, seniority, seniority_basis, seniority_signal,"
         " german, german_basis, german_signal, degree, degree_requirement, degree_or_equivalent, degree_signal,"
         " production, production_basis, production_signal,"
         " first_seen, last_seen, repost_count, extracted_version, description_text, length(description_text) AS text_len"

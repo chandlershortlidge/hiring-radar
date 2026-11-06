@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { COMPARE_DEFAULT, PLACES, comparePick } from "./format.js";
+import { COMPARE_DEFAULT, FAMILIES, FAMILY_LABELS, PLACES, comparePick, familyLabel } from "./format.js";
 
 describe("compare mode's two sides (HIR-138)", () => {
   it("opens on Berlin vs San Francisco, the pair it had before it was pickable", () => {
@@ -34,5 +34,20 @@ describe("compare mode's two sides (HIR-138)", () => {
         expect(x).not.toBe(y);
       }
     }
+  });
+});
+
+describe("the job family filter (HIR-186)", () => {
+  it("offers the five families the server accepts, in button order", () => {
+    expect(FAMILIES).toEqual(["ai-engineer", "ml-engineer", "data-scientist", "ml-platform", "research"]);
+  });
+
+  it("has a readable label for every family", () => {
+    for (const f of FAMILIES) expect(FAMILY_LABELS[f]).toBeTruthy();
+    expect(familyLabel("data-scientist")).toBe("Data Scientist");
+  });
+
+  it("falls back to the stored value for a family it does not know", () => {
+    expect(familyLabel("quantum-engineer")).toBe("quantum-engineer");
   });
 });

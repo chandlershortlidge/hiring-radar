@@ -112,3 +112,26 @@ def test_migration_007_keeps_existing_job_source_rows(tmp_path):
     assert rows == [(job_id, "arbeitnow", "a1", "u", "f", "l", "p")]
     conn.execute("DELETE FROM job WHERE id=?", (job_id,))   # cascade still wired
     assert conn.execute("SELECT COUNT(*) FROM job_source").fetchone()[0] == 0
+
+
+def test_migration_017_backfills_a_family_on_every_existing_job(tmp_path):
+    """A database with rows from before 017 comes out of the migration with no null family,
+    and the column refuses a family outside the five (HIR-186)."""
+    import shutil
+    old = tmp_path / "old"
+    old.mkdir()
+    for p in sorted(db.MIGRATIONS_DIR.glob("*.sql")):
+        if int(p.name[:3]) < 17:
+            shutil.copy(p, old / p.name)
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn, old)
+    for title in ("Senior Data Scientist", "MLOps Engineer", "AI Engineer", None):
+        conn.execute("INSERT INTO job (title, description_text, first_seen, last_seen)"
+                     " VALUES (?, 'jd', '2026-10-16T00:00:00Z', '2026-10-16T00:00:00Z')", (title,))
+    conn.commit()
+    assert 17 in db.migrate(conn)
+    assert conn.execute("SELECT COUNT(*) FROM job WHERE family IS NULL").fetchone()[0] == 0
+    assert [r[0] for r in conn.execute("SELECT family FROM job ORDER BY id")] == [
+        "data-scientist", "ml-platform", "ai-engineer", "ai-engineer"]
+    with pytest.raises(sqlite3.IntegrityError):
+        conn.execute("UPDATE job SET family='nonsense' WHERE id=1")
