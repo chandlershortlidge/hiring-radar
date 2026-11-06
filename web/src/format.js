@@ -80,6 +80,18 @@ export const familyLabel = (f) => FAMILY_LABELS[f] || f;
 export const COMPARE_MAX = 3;
 export const compareAdd = (cities, place) => (cities.includes(place) || cities.length >= COMPARE_MAX ? cities : [...cities, place]);
 export const compareRemove = (cities, place) => cities.filter((c) => c !== place);
+// Compare mode's job-scoped requests (the job list, the related-skills panel) are filtered
+// to the compared cities, while the chart's own filters keep cities empty so one request
+// covers every city (HIR-196). The compared entries are display names; a name that stands
+// for several cities (a place like "All of Germany", should compare ever offer one) expands
+// to all of them.
+export const compareListCities = (cities) => cities.flatMap((n) => {
+  const p = placeByName(n);
+  return p ? placeCities(p.slug) : [n];
+});
+export const listFilters = (filters, compareCities) => (filters.compare
+  ? { ...filters, cities: compareListCities(compareCities) }
+  : filters);
 // "A", "A and B", "A, B and C" — for the sentences that name the selected skills.
 export const listAnd = (xs) => (xs.length < 2 ? xs[0] || "" : `${xs.slice(0, -1).join(", ")} and ${xs[xs.length - 1]}`);
 

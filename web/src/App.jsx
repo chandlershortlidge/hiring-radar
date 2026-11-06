@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { api } from "./api.js";
-import { COMPARE_DEFAULT, DEGREE_FILTERS, GERMAN_FILTERS, PLACE_NAMES, PRODUCTION_FILTERS, SENIORITIES, cap, compareAdd, compareRemove, dateTime, familyLabel, placeByName, placeBySlug, placeCities, pctInt, timeAgo } from "./format.js";
+import { COMPARE_DEFAULT, DEGREE_FILTERS, GERMAN_FILTERS, PLACE_NAMES, PRODUCTION_FILTERS, SENIORITIES, cap, compareAdd, compareRemove, dateTime, familyLabel, listFilters as deriveListFilters, placeByName, placeBySlug, placeCities, pctInt, timeAgo } from "./format.js";
 import { HOME, parsePath, pathFor } from "./routes.js";
 import { pushRecent, readLast, readRecent, writeLast } from "./lastPlace.js";
 import { useProfile } from "./profile.js";
@@ -86,6 +86,10 @@ export default function App() {
     }));
   }, [market]);
   const compareCities = market.view === "compare" ? market.cities : COMPARE_DEFAULT;
+  // What the job-scoped consumers (the job list, the related-skills panel) filter by: in
+  // compare mode the compared cities, otherwise `filters` untouched. `filters` itself keeps
+  // cities empty in compare so the chart still covers every city in one request (HIR-196).
+  const listFilters = useMemo(() => deriveListFilters(filters, compareCities), [filters, compareCities]);
   // Open jobs per city, for the picker's counts and the market cards. From /api/stats, so
   // it stays the whole picture even while the page is filtered down to one city.
   const cityCounts = stats?.open_by_city || {};
@@ -96,11 +100,11 @@ export default function App() {
   // The related-skills rows, fetched here and not in the panel: the panel draws them and the
   // chip row's add-skill popover suggests them, both from this one request and in its order.
   useEffect(() => {
-    if (!filters.skillIds.length) { setRelated(null); return; }
+    if (!listFilters.skillIds.length) { setRelated(null); return; }
     let live = true;
-    api.relatedSkills(filters).then((r) => { if (live) setRelated(r); });
+    api.relatedSkills(listFilters).then((r) => { if (live) setRelated(r); });
     return () => { live = false; };
-  }, [filters, refresh]);
+  }, [listFilters, refresh]);
 
   const taxName = useMemo(() => Object.fromEntries(tax.skills.map((s) => [s.id, s.display])), [tax]);
   // How many jobs ask for each skill, straight off the chart's own rows. It only orders the
@@ -295,9 +299,9 @@ export default function App() {
                 cityLabel={`${winLabel || "tracked"} jobs`} aliases={taxAliases} />}
         </section>
 
-        <RelatedSkills filters={filters} skillNames={skillNames} onAdd={addSkill} data={related} />
+        <RelatedSkills filters={listFilters} skillNames={skillNames} onAdd={addSkill} data={related} />
 
-        <JobList filters={filters} setFilters={setFilters}
+        <JobList filters={listFilters} setFilters={setFilters}
           profile={profile} taxonomy={taxName} demand={demand} refreshKey={refresh} openJobId={jumpTo} onOpened={() => setJumpTo(null)} onOpenPage={openPage}
           taxonomyRows={taxRows} aliases={taxAliases} suggestions={skillSuggestions} onAddSkill={addSkill} />
 

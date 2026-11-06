@@ -20,7 +20,9 @@ function qs(params) {
 }
 
 export const filterParams = (f) => ({
-  city: f.compare ? [] : f.cities,
+  // `cities` is sent as given: the chart's filters hold [] in compare mode (every city in
+  // one request), while the job list and related panel pass the compared cities (HIR-196).
+  city: f.cities,
   seniority: f.seniorities,
   family: f.families,
   requirement: f.requirement,
