@@ -11,29 +11,40 @@ It pulls postings from company job boards, maps each one to a fixed list of skil
 LLM, and charts how many *distinct jobs* mention each skill. One posting shouting
 "Python, Python, Python" counts once.
 
-Today, across 222 collected postings (all Berlin but one):
+Today it holds 562 postings from 200 companies across four markets — San Francisco,
+Berlin, New York and EU-remote. 421 of those are still open, and the chart reads the 414
+open postings with a full description (a posting under 400 characters is a fragment and
+stays out):
 
-| skill | jobs asking for it |
-|---|---|
-| Python | 149 |
-| LLMs | 117 |
-| Agents | 80 |
-| Evaluation | 77 |
-| Cloud | 73 |
-| Machine learning | 70 |
+| skill | jobs asking for it | share of the 414 |
+|---|---|---|
+| Python | 256 | 62% |
+| LLMs | 155 | 37% |
+| Machine Learning | 143 | 35% |
+| Evaluation | 128 | 31% |
+| Software engineering | 90 | 22% |
+| Agents | 89 | 21% |
+
+Those are all four markets together. Berlin alone (103 open postings) reads Python 74%,
+LLMs 43%, Machine Learning 34%; San Francisco (273) reads Python 56%, LLMs 36%, Machine
+Learning 34%. `uv run python -m app stats` prints the posting counts; the skill counts are
+what `/api/skills` returns with no filters set, which is what the dashboard opens on.
 
 ## Why trust the numbers
 
 A chart built by an LLM is only as good as the extraction behind it, so extraction is
 measured, not assumed:
 
-- **24 job descriptions are hand-labeled** with the skills they truly ask for. Scoring
-  against them gives **F1 0.925** (precision 0.881, recall 0.972) on the development set.
-- **Four of those labeled ads are held out** and never looked at while tuning, so the
-  score can't quietly become a score of how well the test was memorized.
+- **46 job descriptions are hand-labeled** with the skills they truly ask for. Scoring the
+  current extractor against the 20 development ones gives **F1 0.920** (precision 0.876,
+  recall 0.968) — `evals/results/20261105T105022Z_dev_x2-7873e921da`.
+- **The other 26 labeled ads are held out** and never looked at while tuning, so the score
+  can't quietly become a score of how well the test was memorized. They are read only at
+  release points; the last held-out run scored F1 0.919 on the extractor as it stood on
+  30 October (`evals/results/20261030T123219Z_heldout_x2-2e0cac6944`).
 - **Skills live in a versioned list**, not in the prompt. A skill the list doesn't know
-  never reaches the chart — it goes to a review queue instead. 208 labels are queued now,
-  and one earns a permanent entry once three separate jobs ask for it.
+  never reaches the chart — it goes to a review queue instead. 139 different labels are
+  waiting there now, and one earns a permanent entry once three separate jobs ask for it.
 - **Every extracted skill carries the sentence it came from.** Click a job in the
   dashboard and you see the quote, so any number can be traced back to the words.
 
@@ -45,8 +56,9 @@ address (`/berlin/ai-engineer`), so a link to one is a link anyone can open, and
 visit shows a card per city to choose from. "Compare with another city" puts two or three
 markets side by side. More screens in [docs/screens/](docs/screens/).
 
-Each job also gets seniority, German-language requirement, and degree expectations — the
-three things that decide whether a posting is worth reading at all.
+Each job also gets seniority, German-language requirement, degree expectations, and
+whether it asks for production experience — the four things that decide whether a posting
+is worth reading at all.
 
 Every job is also sorted into one of five job families — AI Engineer, ML Engineer, Data
 Scientist, ML Platform, Research — from its title alone, and the dashboard filters the
@@ -64,7 +76,7 @@ Your profile stays in your browser's local storage. The server never sees it, so
 no account and nothing to upload.
 
 **Next up:** matching postings to a profile end to end — ranking jobs by how well you
-cover them and naming the specific gap per job — turning "222 jobs in Berlin" into the
+cover them and naming the specific gap per job — turning "421 open jobs" into the
 shortlist you could plausibly get, and the few skills standing between you and the rest.
 
 ## What it is not
@@ -74,12 +86,15 @@ does not rewrite your CV per posting. No email parsing, no applicant counts, not
 needs LinkedIn. Those were in the predecessor and were cut deliberately
 ([DECISIONS.md](DECISIONS.md), 2026-10-16).
 
-**Status:** working locally — intake, extraction, evaluation, and dashboard all run. 44
-job-board feeds are polled. Collection is Berlin-only until the held-out evaluation
-passes; comparison holds up to three cities at once. Adding a city to the dashboard is one
-entry in `PLACES` (`web/src/format.js`) with its name, URL slug and country group — the
-picker, the market grid, compare and the URLs all read that one list (DECISIONS 2026-11-06). Runs 24/7 on a
-GCP VM with a daily 07:00 poll; ops runbook in [deploy/README.md](deploy/README.md).
+**Status:** working locally — intake, extraction, evaluation, and dashboard all run. 64
+job-board feeds are polled (67 are configured, 3 switched off). Collection covers Germany
+and EU-remote, plus two cities turned on by name: San Francisco and New York, both on
+2026-11-03 (DECISIONS 2026-11-03). Those two are named exceptions, not a general opening
+to non-German cities. Comparison holds up to three cities at once. Adding a city to the
+dashboard is one entry in `PLACES` (`web/src/format.js`) with its name, URL slug and
+country group — the picker, the market grid, compare and the URLs all read that one list
+(DECISIONS 2026-11-06). Runs 24/7 on a GCP VM with a daily 07:00 poll; ops runbook in
+[deploy/README.md](deploy/README.md).
 
 This is a rebuild of
 [job-skills-dashboard](https://github.com/chandlershortlidge/job-skills-dashboard), a
@@ -138,7 +153,8 @@ feeds / pasted link / pasted text / screenshot
         │   filtered by title regex and active city
         ▼
   extract: one tool call → skill ids + requirement + quote,      (app/extract.py)
-        │   plus seniority / German / degree, each with a quote or none
+        │   plus seniority / German / degree / production experience,
+        │   each with a quote or none
         │   unknown labels → proposed_skill, never the chart
         ▼
   aggregate: document frequency per skill, per city              (app/queries.py)
@@ -191,7 +207,7 @@ points.
 | `app/evaluation.py` | scoring and the eval suite runner |
 | `app/queries.py` | the read queries behind the dashboard |
 | `app/api.py` | FastAPI routes plus the add-a-job paths |
-| `taxonomy/skills.json` | the skill list — source of truth (v4, 200 entries) |
+| `taxonomy/skills.json` | the skill list — source of truth (v10, 217 entries) |
 | `evals/goldens/` | labeled JDs with a `dev` / `heldout` split |
 | `config/feeds.json` | which boards get polled |
 | `web/src/profile.js` | the local profile and skill-overlap coverage (never sent to the server) |
