@@ -22,15 +22,17 @@ from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 
 from app.ingest import FAMILIES as ingest_families
+from app.sources import registry
 
 # Complete feeds list every live posting on every poll, so not seeing a job for
 # FEED_OPEN_DAYS means it closed. Search sources return a sample (JSearch: ~10 ranked
 # results; Arbeitsagentur: only postings published in the last 30 days), so absence there
 # proves nothing: a job known only from them, or added by hand, is assumed open for
 # MANUAL_OPEN_DAYS. When a complete feed has the job, only that feed's last sighting counts.
-FEED_SOURCES = ("greenhouse", "lever", "ashby", "join", "startup_jobs", "arbeitnow")
-SEARCH_SOURCES = ("jsearch", "arbeitsagentur")
-MANUAL_SOURCES = ("url", "paste", "screenshot")
+# Which source is which kind is declared once, in the source registry (HIR-202).
+FEED_SOURCES = registry.COMPLETE_SOURCES
+SEARCH_SOURCES = registry.SEARCH_SOURCES
+MANUAL_SOURCES = registry.MANUAL_SOURCES
 FEED_OPEN_DAYS = 3
 MANUAL_OPEN_DAYS = 60
 WINDOWS = ("open", "30d", "90d", "all")

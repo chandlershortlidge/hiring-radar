@@ -25,7 +25,7 @@ from datetime import datetime, timezone
 
 from app import dedup
 from app.geo import active_place, place_of
-from app.sources import Posting
+from app.sources import Posting, registry
 
 # A title is in scope only when it names an AI/ML domain AND a technical role. Either half
 # alone is noise: feeds carry "Industrial AI" in sales titles and "Agent" in call-centre and
@@ -47,7 +47,7 @@ ROLE_PATTERN = re.compile(
 # fetch was taken down. Everything else returns a sample (search sources, capped or
 # windowed aggregators) or isn't a feed (manual adds), so absence there proves nothing
 # and never makes a repost. DECISIONS 2026-10-19 "Reposts".
-REPOST_SOURCES = ("greenhouse", "lever", "ashby", "join")
+REPOST_SOURCES = registry.BOARD_SOURCES
 
 
 def now_iso() -> str:

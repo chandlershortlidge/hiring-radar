@@ -45,10 +45,10 @@ from app import dedup
 from app.geo import ACTIVE_CITIES, active_place, city_of
 from app.html_text import html_to_text
 from app.ingest import in_scope_title
-from app.sources import Posting, ashby, fetch_text, greenhouse, join, lever
+from app.sources import Posting, fetch_text, registry
 
 CONTAINMENT_THRESHOLD = 0.7   # share of a stored JD's 3-word shingles that must appear on the page
-MANUAL_SOURCES = ("url", "paste", "screenshot")   # job_source values a person added; the rest are feeds
+MANUAL_SOURCES = registry.MANUAL_SOURCES   # job_source values a person added; the rest are feeds
 # The legacy importer keeps the old project's dates as first_seen, all before the rebuild
 # began; a screenshot first seen before this is from the old (hackathon) collection method.
 REBUILD_START = "2026-10-16"
@@ -67,7 +67,6 @@ _ATS_PATTERNS = (
     ("join", re.compile(r"^(?:www\.)?join\.com$", re.I),
      re.compile(r"^/companies/(?P<token>[^/]+)/(?P<id>\d+)")),
 )
-_FETCHERS = {"greenhouse": greenhouse.fetch, "lever": lever.fetch, "ashby": ashby.fetch, "join": join.fetch}
 # A company embedding its Greenhouse board loads this script; its `for=` value is the board
 # token (Greenhouse's own embed-code snippet names it exactly this way), independent of which
 # greenhouse.io host happens to be serving it (boards. or job-boards., plain or .eu).
@@ -443,7 +442,11 @@ def _fetch_board_posting(ref: AtsRef, fetch_board) -> Posting | None:
 
 
 def default_fetch_board(source: str, token: str) -> list[Posting]:
-    return _FETCHERS[source](token)
+    """Fetch a company board by its token, through the source registry. Only a board can be
+    reached from a token alone, so anything else is a KeyError, as it always was."""
+    if source not in registry.BOARD_SOURCES:
+        raise KeyError(source)
+    return registry.fetch({"type": source, "token": token})
 
 
 def check_url(conn: sqlite3.Connection, url: str, feeds: list[dict], company: str | None = None,
