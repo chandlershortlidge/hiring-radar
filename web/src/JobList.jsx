@@ -292,7 +292,7 @@ export function Detail({ job, d, profile, taxonomy, cov, onOpenPage }) {
           <span>·</span><span>Sources: {d.sources.map((s) => `${sourceCode(s.source)[1]} (${dateShort(s.first_seen)})`).join(", ")}</span>
         </div>
         <span className="links">
-          {onOpenPage && <a href={`/jobs/${d.id}`} onClick={(e) => { e.preventDefault(); onOpenPage(d.id); }} title="Our stored copy of the posting; keeps working after the original is taken down">Permanent page</a>}
+          {onOpenPage && <a href={`/jobs/${d.id}`} target="_blank" rel="noopener" title="Our stored copy of the posting; keeps working after the original is taken down">Permanent page<Ext /></a>}
           {url && onOpenPage && <a href={url} target="_blank" rel="noopener">Open original posting<Ext /></a>}
         </span>
       </div>
