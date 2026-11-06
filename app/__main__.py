@@ -11,6 +11,8 @@
   discover-boards   web-search for Greenhouse/Lever/Ashby/JOIN boards we don't poll, check each live, report;
                     --add source:token appends to feeds.json, --reject source:token --reason R remembers a no;
                     --launch CITY applies the written board policy itself and adds what passes
+  repair-companies  fill in companies on jobs stored without one and merge the duplicates
+                    that appear; a dry run by default, --apply writes (HIR-198)
   migrate           apply pending migrations and exit
 
 Database path: $HIRING_RADAR_DB, default ./data/hiring-radar.db.
@@ -250,6 +252,30 @@ def cmd_discover_boards(args):
         sys.exit(2)
 
 
+def cmd_repair_companies(args):
+    from app.repair import repair_companies
+    conn = open_db()
+    lines = repair_companies(conn)
+    if not lines:
+        print("no jobs with a blank company — nothing to repair")
+        return
+    unresolved = [l for l in lines if l.company is None]
+    for l in lines:
+        if l.company is not None:
+            print(l.line())
+    if unresolved:
+        print(f"\n{len(unresolved)} unresolved (left as they are; fix by hand):")
+        for l in unresolved:
+            print(f"  {l.line()}")
+    if args.apply:
+        conn.commit()
+        merges = sum(1 for l in lines if l.merged_into is not None or l.absorbed is not None)
+        print(f"\napplied: {len(lines) - len(unresolved)} repaired, {merges} duplicate(s) merged")
+    else:
+        conn.rollback()
+        print("\ndry run — nothing written; re-run with --apply")
+
+
 def cmd_migrate(args):
     open_db()
     print("ok")
@@ -300,6 +326,9 @@ def main(argv=None):
                         "(5+ roles there, employers only), then report; stops on a spending cap")
     p.add_argument("--dry-run", action="store_true", help="with --launch: decide and report, write nothing")
     p.set_defaults(fn=cmd_discover_boards)
+    p = sub.add_parser("repair-companies", help="fill blank companies off each job's stored link, merge duplicates")
+    p.add_argument("--apply", action="store_true", help="write the repairs; without it, a dry run that changes nothing")
+    p.set_defaults(fn=cmd_repair_companies)
     sub.add_parser("migrate").set_defaults(fn=cmd_migrate)
     sub.add_parser("import-labels",
                    help="load each labeller's own answer from evals/labeling/<run>/raw into the database"
