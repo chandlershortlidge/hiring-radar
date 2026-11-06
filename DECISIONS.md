@@ -5,6 +5,32 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-06 — A job is never stored without a company (HIR-198)
+
+Duplicate detection matches on company first, so a row with a blank company can never be
+recognised as a duplicate — the same posting added twice by link became two rows. The add
+paths now guarantee a company: paste-text and screenshot always required one, and the
+add-by-link path now reads it off the page when the page carries no structured job data,
+in this order:
+
+1. the site name the page declares (`og:site_name`, then `application-name`) — unless it
+   is a job board's or ATS vendor's own name (LinkedIn, Indeed, StepStone, Glassdoor,
+   XING, Personio, Workday, Greenhouse, Lever, Ashby, JOIN), which names the host, not
+   the employer;
+2. the page title's tail after its last "|", "–", "—", spaced "-", or " at " — with the
+   same exclusion, and not a careers-section word (Jobs, Careers, Karriere, Join us).
+   When this rule supplies the company, the tail is also stripped from the stored title;
+3. the registrable part of the hostname (`careers.acme.de` → "Acme"), skipping the same
+   ATS and job-board hosts.
+
+If none of the three finds a company, the job is refused (API outcome `needs_company`;
+the drawer asks for the company and keeps the form filled), never stored blank. The
+one-off `repair-companies` command applies the same rules to rows stored blank before
+this decision and merges the duplicates it uncovers. To undo, revert the HIR-198 commits;
+existing rows repaired by the command keep their filled companies.
+
+---
+
 ## 2026-11-06 — The README's headline numbers are the whole corpus, open postings only (HIR-192)
 
 The front page had drifted a long way from the repository: 222 postings "all Berlin but

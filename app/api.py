@@ -22,7 +22,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from app import db, queries as q
+from app import db, dedup, queries as q
 from app.check import check_url, log_check
 from app.extract import DEFAULT_MODEL, extract, make_client
 from app.ingest import ingest_one, job_id_for_screenshot, now_iso, store_screenshot
@@ -197,6 +197,10 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
             return {"outcome": "exists", "job_id": r.job_id, "job": d, "verdict": r.line()}
         if r.posting is None:
             return {"outcome": "unreadable", "job_id": None, "verdict": r.line(), "notes": r.notes}
+        if not dedup.company_key(r.posting.company):
+            # A blank company can never be matched by dedup, so storing it plants a future
+            # duplicate (DECISIONS 2026-11-06 "A job is never stored without a company").
+            return {"outcome": "needs_company", "job_id": None, "verdict": r.line(), "notes": r.notes}
         is_board = r.posting.source in ("greenhouse", "lever", "ashby", "join")
         outcome = ingest_one(conn, r.posting, now_iso(), require_city=not is_board,
                              found_via=body.found_via, trust_title=True)

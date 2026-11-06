@@ -142,6 +142,78 @@ def test_page_text_wins_over_a_shorter_meta_description():
     assert how == "page-text"
 
 
+# --- company read off the page (HIR-198) ---------------------------------------------------
+
+def tagged(tag, title="AI Engineer"):
+    return page(title=title).replace("<head>", f"<head>{tag}")
+
+
+def test_company_from_og_site_name_wins_over_the_title_tail():
+    markup = tagged('<meta property="og:site_name" content="NewCo GmbH">', title="AI Engineer | Other Co")
+    p, _ = posting_from_html("https://careers.newco.de/j/1", markup)
+    assert p.company == "NewCo GmbH"
+    assert p.title == "AI Engineer | Other Co"   # the title is only trimmed when its tail is used
+
+
+def test_application_name_meta_counts_as_the_site_name():
+    p, _ = posting_from_html("u", tagged('<meta name="application-name" content="NewCo">'))
+    assert p.company == "NewCo"
+
+
+def test_generic_site_name_is_skipped_for_the_next_rule():
+    markup = tagged('<meta property="og:site_name" content="Personio">', title="AI Engineer | NewCo")
+    p, _ = posting_from_html("u", markup)
+    assert p.company == "NewCo"
+
+
+@pytest.mark.parametrize("title", ["AI Engineer | NewCo", "AI Engineer – NewCo",
+                                   "AI Engineer - NewCo", "AI Engineer at NewCo"])
+def test_company_from_title_tail_each_separator_and_the_title_is_trimmed(title):
+    p, _ = posting_from_html("u", page(title=title))
+    assert p.company == "NewCo" and p.title == "AI Engineer"
+
+
+def test_title_tail_takes_the_last_separator():
+    p, _ = posting_from_html("u", page(title="AI Engineer - NLP | NewCo"))
+    assert p.company == "NewCo" and p.title == "AI Engineer - NLP"
+
+
+@pytest.mark.parametrize("tail", ["Jobs", "Careers", "Karriere", "Join us", "LinkedIn", "J…"])
+def test_generic_or_truncated_title_tails_are_not_companies(tail):
+    # No site name and the personio host is skipped by the domain rule, so a rejected tail
+    # leaves the company unset.
+    p, _ = posting_from_html("https://acto.jobs.personio.com/job/1", page(title=f"AI Engineer | {tail}"))
+    assert p.company is None
+    assert p.title == f"AI Engineer | {tail}"    # a tail not used as the company stays in the title
+
+
+def test_company_from_the_hostname_as_a_last_resort():
+    p, _ = posting_from_html("https://careers.newco.de/j/1", page(title="AI Engineer"))
+    assert p.company == "Newco"
+
+
+def test_hostname_rule_handles_two_part_tlds():
+    p, _ = posting_from_html("https://jobs.newco.co.uk/j/1", page(title="AI Engineer"))
+    assert p.company == "Newco"
+
+
+def test_ats_hostname_is_never_the_company():
+    p, _ = posting_from_html("https://boards.greenhouse.io/x", page(title="AI Engineer"))
+    assert p.company is None
+
+
+def test_caller_company_still_wins_over_every_fallback():
+    p, _ = posting_from_html("https://careers.newco.de/j/1",
+                             tagged('<meta property="og:site_name" content="NewCo">'), company="Told Co")
+    assert p.company == "Told Co"
+
+
+def test_the_note_names_the_rule_that_supplied_the_company():
+    notes = []
+    posting_from_html("https://careers.newco.de/j/1", page(title="AI Engineer"), notes=notes)
+    assert notes == ["company read from the page's domain: 'Newco'"]
+
+
 def personio_page(office="Berlin (Remote)", company="Acto", offices=True, ld=None):
     """A Personio tenant page as served: the posting JSON sits inside a JavaScript string,
     so every quote of the payload arrives backslash-escaped."""
@@ -167,11 +239,21 @@ def test_personio_de_host_is_read_the_same_way():
     assert p.location_raw == "Berlin"
 
 
-def test_personio_blank_company_name_leaves_company_unset():
-    # vanilla-steel-gmbh ships an empty company_name; that one still needs --company.
+def test_personio_blank_company_name_falls_back_to_the_title_tail():
+    # vanilla-steel-gmbh ships an empty company_name; HIR-198's fallbacks now read the
+    # page title's tail instead of leaving the company unset (the host itself is skipped).
     p, _ = posting_from_html("https://vanilla-steel-gmbh.jobs.personio.com/job/2845809",
                              personio_page(office="Berlin", company=""))
-    assert p.company is None and p.location_raw == "Berlin"
+    assert p.company == "Acme" and p.location_raw == "Berlin"   # page() titles "AI Engineer - Acme"
+    assert p.title == "AI Engineer"                             # the tail used as company leaves the title
+
+
+def test_personio_blank_company_and_tailless_title_still_needs_company():
+    # Nothing to read: blank payload company, no site name, no title separator, and the
+    # personio host never counts as the company.
+    markup = personio_page(office="Berlin", company="").replace("AI Engineer - Acme", "AI Engineer")
+    p, _ = posting_from_html("https://vanilla-steel-gmbh.jobs.personio.com/job/2845809", markup)
+    assert p.company is None
 
 
 def test_personio_falls_back_to_the_first_office_address():
@@ -196,8 +278,10 @@ def test_personio_json_ld_tenant_is_unchanged():
 
 
 def test_a_payload_on_another_host_is_ignored():
+    # The Personio payload (company "Acto", office Berlin) is not read off a non-Personio
+    # host; the company instead comes from HIR-198's title-tail fallback.
     p, _ = posting_from_html("https://acme.com/j/1", personio_page())
-    assert p.company is None and p.location_raw is None
+    assert p.company == "Acme" and p.location_raw is None
 
 
 def test_containment_is_one_directional():
@@ -268,9 +352,19 @@ def test_board_fetch_failure_falls_back_to_page_and_is_noted(conn):
     assert any(n.startswith("board fetch failed: OSError") for n in r.notes)
 
 
-def test_plain_page_without_company_cannot_text_match_and_says_so(conn):
+def test_plain_page_without_company_flag_matches_via_the_page_company(conn):
+    # HIR-198: the title tail gives "Acme", company_key-equal to the stored "Acme GmbH",
+    # so the text match works without --company and the check says where the name came from.
     ingest_one(conn, posting())
     r = check_url(conn, "https://acme.com/careers/ai", FEEDS, fetch_page=lambda u: page(), fetch_board=no_fetch)
+    assert r.verdict == "found" and r.how == "text 1.00"
+    assert any("company read from the page's title tail: 'Acme'" in n for n in r.notes)
+
+
+def test_page_yielding_no_company_cannot_text_match_and_says_so(conn):
+    ingest_one(conn, posting())
+    r = check_url(conn, "https://acto.jobs.personio.com/job/1", FEEDS,
+                  fetch_page=lambda u: page(title="AI Engineer"), fetch_board=no_fetch)
     assert r.verdict == "not_found"
     assert r.diagnosis.startswith("not a hosted ATS page")
     assert any("pass --company" in n for n in r.notes)
