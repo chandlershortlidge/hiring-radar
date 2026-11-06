@@ -5,6 +5,28 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-06 — The README's headline numbers are the whole corpus, open postings only (HIR-192)
+
+The front page had drifted a long way from the repository: 222 postings "all Berlin but
+one", 44 feeds, 24 hand-labelled ads, F1 0.925, and a scope line saying collection was
+Berlin-only until the held-out eval passed — a gate that was met on 2026-11-03. Every one
+of those is now re-derived.
+
+Two choices worth keeping consistent the next time it is refreshed:
+
+- **The headline skill table counts all four markets together, not one city**, and counts
+  the *open* postings with a full description — the same slice the dashboard opens on
+  (`/api/skills` with no filters). A per-city line follows it for Berlin and San Francisco.
+  Quoting one city in the headline is what made the old table wrong the moment a second
+  city switched on.
+- **Each number says where it came from** — the command (`app stats`), the endpoint
+  (`/api/skills`), or the eval results directory. The numbers go stale by design, about
+  once a month; naming the source makes the next refresh a re-run rather than a hunt.
+
+To undo, revert the HIR-192 commit; nothing outside README.md changed.
+
+---
+
 ## 2026-11-06 — Entry is a query bar, not city tabs (HIR-188)
 
 The page used to open on a row of city tabs — All / Berlin / Remote (EU) / San Francisco /
