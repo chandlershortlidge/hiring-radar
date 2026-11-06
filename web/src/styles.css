@@ -331,6 +331,9 @@ select.sel { padding-right: 28px; }
 .qb-in { color: var(--ink-2); font-size: 15px; }
 .qb-btn { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border: 2px solid var(--ink); border-radius: 8px; background: var(--paper); color: var(--ink); font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
 .qb-btn .caret { color: var(--ink-3); font-size: 11px; }
+/* the compare picker: the city picker's shape, read as the secondary of the two (HIR-191) */
+.qb-btn.add { font-weight: 400; color: var(--ink-2); }
+.qb-btn:disabled { opacity: .5; cursor: default; }
 select.qb-sel { padding-right: 34px; appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--ink-3) 50%), linear-gradient(135deg, var(--ink-3) 50%, transparent 50%); background-position: calc(100% - 17px) 20px, calc(100% - 12px) 20px; background-size: 5px 5px; background-repeat: no-repeat; }
 .qb-add { height: 44px; padding: 0 14px; border: 1px dashed var(--line-3); border-radius: 8px; background: transparent; color: var(--ink-2); font-size: 13px; }
 .qb-add:hover:not(:disabled) { border-color: var(--ink-2); color: var(--ink); }
@@ -367,9 +370,11 @@ select.qb-sel { padding-right: 34px; appearance: none; background-image: linear-
 .markets-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px; }
 .markets-head h2 { margin: 0; font-size: 19px; font-weight: 600; }
 .markets-head span { font-size: 12.5px; }
-.market-group { display: flex; flex-direction: column; gap: 10px; }
-.market-head { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
 .market-cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+/* the country, on the card instead of over a row of its own (HIR-191) */
+.market-tag { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3); }
+.market-ask { margin: 0; text-align: center; font-size: 13px; }
+.market-ask .btn { padding: 0; text-decoration: underline; }
 .card.market { padding: 16px; display: flex; flex-direction: column; gap: 8px; text-decoration: none; }
 a.card.market:hover { border-color: var(--ink); }
 .card.market h3 { margin: 0; font-size: 16px; font-weight: 600; }
@@ -381,8 +386,6 @@ a.card.market:hover { border-color: var(--ink); }
 .card.market li .tr i { display: block; height: 100%; background: var(--bar); }
 .card.market li .pc { font-size: 11.5px; text-align: right; color: var(--ink-2); }
 .card.market .none { color: var(--ink-3); font-size: 12.5px; }
-.card.market.ask { border-style: dashed; align-items: flex-start; justify-content: center; gap: 6px; }
-.card.market.ask .btn { padding: 0; text-decoration: underline; }
 
 /* compare: one column per place */
 .cmp-sort { margin-bottom: 6px; align-self: flex-start; }
@@ -392,6 +395,24 @@ a.card.market:hover { border-color: var(--ink); }
 .cmp-row .cb.col-1 .fill { background: #7a7a7a; }
 .cmp-row .cb.col-2 .fill { background: var(--line-3); }
 .cmp-row .name small { font-size: 11px; }
+
+/* the landing view: no city chosen, so the query bar is the subject of the page rather than
+   a control above a chart. Centred at every width; the size bump is desktop-only, because
+   the phone rules below already give the pickers the full width and a smaller headline
+   (HIR-191). */
+.hero.landing .hero-in { text-align: center; }
+.hero.landing .lede { margin-inline: auto; }
+.qbar.landing .qbar-in { justify-content: center; }
+.qbar.landing .qb { justify-content: center; }
+.main.landing .recents { justify-content: center; }
+
+@media (min-width: 721px) {
+  .hero.landing h1 { font-size: 44px; }
+  .qbar.landing .qb-btn { height: 56px; padding: 0 20px; font-size: 22px; }
+  .qbar.landing .qb-in { font-size: 20px; }
+  /* the caret is drawn with background gradients, so its offset is the button's height */
+  .qbar.landing select.qb-sel { background-position: calc(100% - 17px) 26px, calc(100% - 12px) 26px; }
+}
 
 @media (max-width: 1099px) { .market-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 599px) { .market-cards { grid-template-columns: minmax(0, 1fr); } }
