@@ -78,6 +78,64 @@ _EMBED_TOKEN_RE = re.compile(r"greenhouse\.io/embed/job_board(?:/js)?\?(?:[^\"'\
 # job URL is read as a page, not resolved to a board — see `_personio_fields`.
 _PERSONIO_HOST_RE = re.compile(r"(?:^|\.)jobs\.personio\.(?:com|de)$", re.I)
 
+# Platform names that can sit in a page's site name, title tail or hostname without naming
+# the employer: the job boards and ATS vendors this project meets. A page declaring one of
+# these declares where it is hosted, not who is hiring (HIR-198).
+_GENERIC_SITE_NAMES = frozenset({
+    "linkedin", "indeed", "stepstone", "glassdoor", "xing", "personio", "workday",
+    "myworkdayjobs", "greenhouse", "lever", "ashby", "ashbyhq", "join",
+})
+# Title tails that name a careers section rather than a company ("AI Engineer | Careers").
+_GENERIC_TITLE_TAILS = frozenset({"jobs", "job", "careers", "career", "karriere", "join us", "jobs & careers"})
+# A page title's last "|", "–"/"—", spaced "-", or " at " splits it into role and company.
+# The hyphen needs space on both sides so "Machine-Learning Engineer" never splits.
+_TITLE_TAIL_RE = re.compile(r"\s*\|\s*|\s+[–—-]\s+|\s+at\s+")
+# acme.co.uk → acme: hostname labels that are a public-suffix part, not the company.
+_SECOND_LEVEL_TLDS = frozenset({"co", "com", "org", "net", "ac", "gov"})
+
+
+def split_title_tail(title: str) -> tuple[str, str | None]:
+    """"Senior AI Engineer | Acme" → ("Senior AI Engineer", "Acme"), on the LAST separator
+    so "AI Engineer - NLP | Acme" keeps its subtitle. (title, None) when there is none."""
+    last = None
+    for m in _TITLE_TAIL_RE.finditer(title):
+        last = m
+    if last is None:
+        return title.strip(), None
+    return title[:last.start()].strip(), title[last.end():].strip()
+
+
+def _usable_company(name: str | None) -> bool:
+    """A candidate company name is usable unless it is blank, a single character, truncated
+    (an ellipsis means the page or store cut it off mid-name), or a generic platform or
+    careers-section name."""
+    if not name:
+        return False
+    low = name.strip().lower()
+    return (len(low) > 1 and "…" not in name and "..." not in name
+            and low not in _GENERIC_SITE_NAMES and low not in _GENERIC_TITLE_TAILS)
+
+
+def company_from_page(url: str, parser: "_PageParser") -> tuple[str | None, str | None]:
+    """(company, rule) read off a page that has no structured job data; (None, None) when
+    nothing usable. Rules in order (HIR-198): the site name the page declares, the page
+    title's tail, the hostname's registrable label. `rule` names which one answered, for
+    the check's notes; "title tail" also tells the caller to strip the tail off the title.
+    """
+    site = (parser.site_name or parser.application_name).strip()
+    if _usable_company(site):
+        return site, "site name"
+    _, tail = split_title_tail(parser.title.strip())
+    if _usable_company(tail):
+        return tail, "title tail"
+    labels = (urllib.parse.urlsplit(url).hostname or "").lower().split(".")
+    labels = [l for l in labels if l and l != "www"]
+    if len(labels) >= 2:
+        name = labels[-3] if len(labels) >= 3 and labels[-2] in _SECOND_LEVEL_TLDS else labels[-2]
+        if _usable_company(name):
+            return name.capitalize(), "domain"
+    return None, None
+
 
 @dataclass(frozen=True)
 class AtsRef:
@@ -114,12 +172,15 @@ def token_from_embed(markup: str) -> str | None:
 
 
 class _PageParser(HTMLParser):
-    """Collect <title>, the longest meta/og description, and every <script type="application/ld+json"> body."""
+    """Collect <title>, the longest meta/og description, the declared site name
+    (og:site_name / application-name), and every <script type="application/ld+json"> body."""
 
     def __init__(self):
         super().__init__(convert_charrefs=True)
         self.title = ""
         self.meta_description = ""
+        self.site_name = ""
+        self.application_name = ""
         self.ld_json: list[str] = []
         self._in: str | None = None
 
@@ -131,6 +192,10 @@ class _PageParser(HTMLParser):
             content = (a.get("content") or "").strip()
             if len(content) > len(self.meta_description):
                 self.meta_description = content
+        elif tag == "meta" and (a.get("property") or "").lower() == "og:site_name":
+            self.site_name = (a.get("content") or "").strip()
+        elif tag == "meta" and (a.get("name") or "").lower() == "application-name":
+            self.application_name = (a.get("content") or "").strip()
         elif tag == "script" and (a.get("type") or "").lower() == "application/ld+json":
             self._in = "ld"
             self.ld_json.append("")
@@ -225,7 +290,8 @@ def _personio_fields(markup: str) -> tuple[str | None, str | None]:
 
 
 def posting_from_html(url: str, markup: str, company: str | None = None,
-                      title: str | None = None, location: str | None = None) -> tuple[Posting, str]:
+                      title: str | None = None, location: str | None = None,
+                      notes: list[str] | None = None) -> tuple[Posting, str]:
     """Build a Posting from a careers page. Returns (posting, how), how ∈ {'json-ld', 'page-text', 'meta-description'}.
 
     JSON-LD JobPosting wins when present: its description is the posting alone. Otherwise
@@ -266,9 +332,17 @@ def posting_from_html(url: str, markup: str, company: str | None = None,
     page_company = page_location = None
     if _PERSONIO_HOST_RE.search(urllib.parse.urlparse(url).hostname or ""):
         page_company, page_location = _personio_fields(markup)
+    page_title = p.title.strip()
+    if not (company or page_company):
+        page_company, rule = company_from_page(url, p)
+        if page_company:
+            if rule == "title tail":
+                page_title, _ = split_title_tail(page_title)
+            if notes is not None:
+                notes.append(f"company read from the page's {rule}: {page_company!r}")
     return Posting(
         source="url", source_job_id="", url=url, company=company or page_company,
-        title=title or p.title.strip(), location_raw=location or page_location,
+        title=title or page_title, location_raw=location or page_location,
         description_text=text,
     ), how
 
@@ -409,7 +483,7 @@ def check_url(conn: sqlite3.Connection, url: str, feeds: list[dict], company: st
             result.notes.append(f"board fetch failed: {type(e).__name__}: {str(e)[:120]}")
     if posting is None:
         posting, how = posting_from_html(url, markup if markup is not None else fetch_page(url),
-                                         company, title, location)
+                                         company, title, location, notes=result.notes)
         result.notes.append(f"read posting from {how}")
     else:
         # Lever and Ashby boards don't name the company; the board token is its slug
