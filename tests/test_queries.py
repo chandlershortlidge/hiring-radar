@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta, timezone
+
 import pytest
 
 from app import db, queries as q
@@ -65,6 +67,76 @@ def test_search_sources_use_the_manual_rule_and_never_keep_a_closed_feed_job_ope
     assert (s["Zeta"], s["Eta"], s["Beta"]) == ("open", "closed", "closed")
     assert q.stats(conn, NOW, 1)["open"] == 4  # Acme, Gamma, Delta, Zeta
     assert q.job_detail(conn, beta, NOW)["status"] == "closed"
+
+
+# --- the open rule is written twice (HIR-200) -------------------------------------------
+
+# `open_clause` (SQL: the job list, the chart and the re-read queue) and `_status` (Python:
+# the open/closed label a job shows) are two spellings of one rule, and nothing else checks
+# that they agree. These cases keep them in step and pin the window itself: the offsets are
+# absolute hours, so shortening or lengthening either window flips an expectation here.
+#
+# One case per branch of the rule, each just inside and just outside its window:
+# (name, ((source, hours since that source last saw the job), ...), expected status)
+OPEN_AGREEMENT_CASES = [
+    # Complete feed: open while a feed listed it within FEED_OPEN_DAYS (3 days = 72h).
+    ("feed-71h", (("arbeitnow", 71),), "open"),
+    ("feed-72h", (("arbeitnow", 72),), "open"),            # exactly on the edge counts as open
+    ("feed-73h", (("arbeitnow", 73),), "closed"),
+    # Manual add: assumed open for MANUAL_OPEN_DAYS (60 days = 1440h).
+    ("manual-1439h", (("paste", 1439),), "open"),
+    ("manual-1440h", (("paste", 1440),), "open"),
+    ("manual-1441h", (("paste", 1441),), "closed"),
+    # Search sample: absence proves nothing, so it follows the manual window.
+    ("search-1439h", (("jsearch", 1439),), "open"),
+    ("search-1441h", (("arbeitsagentur", 1441),), "closed"),
+    # Mixed: once a complete feed knows the job, only that feed's last sighting counts.
+    ("mixed-feed-fresh-manual-stale", (("arbeitnow", 71), ("paste", 1441)), "open"),
+    ("mixed-feed-stale-manual-fresh", (("arbeitnow", 73), ("paste", 1)), "closed"),
+    ("mixed-feed-stale-search-fresh", (("arbeitnow", 73), ("jsearch", 1)), "closed"),
+    ("mixed-both-feeds-stale", (("arbeitnow", 73), ("greenhouse", 100)), "closed"),
+    ("mixed-one-feed-fresh", (("arbeitnow", 100), ("greenhouse", 71)), "open"),
+]
+
+
+def _hours_ago(hours: int) -> str:
+    t = datetime.strptime(NOW, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    return (t - timedelta(hours=hours)).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+def test_open_clause_and_status_agree_on_every_case(tmp_path):
+    """The SQL rule and its Python twin must call the same jobs open, and call them right."""
+    assert (q.FEED_OPEN_DAYS, q.MANUAL_OPEN_DAYS) == (3, 60), (
+        "the offsets in OPEN_AGREEMENT_CASES are absolute hours; update them with the window")
+    c = db.connect(tmp_path / "open.db")
+    db.migrate(c)
+    name_of = {}
+    for name, sources, _ in OPEN_AGREEMENT_CASES:
+        # ingest keeps job.last_seen at the most recent sighting from any source.
+        cur = c.execute("INSERT INTO job (company, title, description_text, first_seen, last_seen)"
+                        " VALUES (?, 'AI Engineer', 'jd', ?, ?)",
+                        (name, _hours_ago(max(h for _, h in sources)),
+                         _hours_ago(min(h for _, h in sources))))
+        name_of[cur.lastrowid] = name
+        for source, hours in sources:
+            c.execute("INSERT INTO job_source (job_id, source, source_job_id, first_seen, last_seen)"
+                      " VALUES (?, ?, ?, ?, ?)",
+                      (cur.lastrowid, source, f"{name}-{source}",
+                       _hours_ago(hours), _hours_ago(hours)))
+    c.commit()
+
+    clause, params = q.open_clause(NOW)
+    sql_open = {name_of[r["id"]] for r in c.execute(f"SELECT j.id FROM job j WHERE {clause}", params)}
+    py_open = {name_of[row["id"]] for row in c.execute("SELECT id, last_seen FROM job").fetchall()
+               if q._status(row, NOW, c.execute(
+                   "SELECT source, last_seen FROM job_source WHERE job_id = ?",
+                   (row["id"],)).fetchall()) == "open"}
+
+    expected = {name for name, _, status in OPEN_AGREEMENT_CASES if status == "open"}
+    assert 0 < len(expected) < len(OPEN_AGREEMENT_CASES)   # the cases split both ways
+    assert sql_open == expected
+    assert py_open == expected
+    assert sql_open == py_open
 
 
 def test_skill_frequency_required_only_over_open_jobs(conn):
