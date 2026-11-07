@@ -9,13 +9,16 @@ Does: for each posting decide, in order —
      concurrent duplicate and just merges;
   3. otherwise insert a new job.
 Also applies the title/city filters so feeds' unrelated postings never become rows:
-a title needs both an AI/ML domain term and a technical role term. A new job is labelled
-with its job family (family_of, from the title alone) as it is inserted.
+a title needs both an AI/ML domain term and a technical role term. A posting with no
+company is dropped here too (HIR-207): dedup matches on company first, so a blank-company
+row can never be recognised as a duplicate and every repost of it from another source
+becomes a second row. A new job is labelled with its job family (family_of, from the title
+alone) as it is inserted.
 
 Does NOT: call the model (see app/pipeline.py), fetch anything, or delete rows.
 
 Invariants: one DB transaction per posting; `job.first_seen` never moves later (a
-backdated sighting may move it earlier); `job.last_seen` never moves earlier; a posting that fails the filters is counted, not stored.
+backdated sighting may move it earlier); `job.last_seen` never moves earlier; a posting that fails the filters is counted, not stored; no row in `job` is ever written with a blank company.
 """
 
 import re
@@ -103,11 +106,13 @@ class Report:
     new: int = 0
     skipped_title: int = 0
     skipped_city: int = 0
+    skipped_company: int = 0
     new_job_ids: list[int] = field(default_factory=list)
 
     def line(self) -> str:
         return (f"seen={self.seen} new={self.new} still_listed={self.still_listed} merged={self.merged} "
-                f"reposts={self.reposts} skipped_title={self.skipped_title} skipped_city={self.skipped_city}")
+                f"reposts={self.reposts} skipped_title={self.skipped_title} skipped_city={self.skipped_city} "
+                f"skipped_company={self.skipped_company}")
 
 
 def _candidates(conn: sqlite3.Connection, company: str | None) -> list[dedup.Candidate]:
@@ -122,7 +127,8 @@ def _candidates(conn: sqlite3.Connection, company: str | None) -> list[dedup.Can
 def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
                require_city: bool = True, found_via: str | None = None,
                trust_title: bool = False, fetched_ids: frozenset[str] | None = None) -> str:
-    """Returns one of: still_listed, merged, repost, new, skipped_title, skipped_city.
+    """Returns one of: still_listed, merged, repost, new, skipped_title, skipped_city,
+    skipped_company.
 
     trust_title skips the title filter — for postings a person chose by hand.
     fetched_ids is every source_job_id in the fetch this posting came from; without it
@@ -134,6 +140,13 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
     city = place_of(p.location_raw, p.title, p.description_text)
     if require_city and active_place(p.location_raw, p.title, p.description_text) is None:
         return "skipped_city"
+    # Last, so the title and city counts keep meaning what they did. No trust_title-style
+    # escape: this is the invariant of DECISIONS 2026-11-06 "A job is never stored without
+    # a company". Blank means blank *to dedup* — the same company_key that would have to
+    # match it — so punctuation alone ("-", "—") and a bare legal suffix ("GmbH") are
+    # refused too: they key to the empty string and so could never match anything either.
+    if not dedup.company_key(p.company):
+        return "skipped_company"
 
     with conn:
         if p.source_job_id:

@@ -5,6 +5,42 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-07 — The no-company rule is enforced where every job is stored (HIR-207)
+
+The rule of 6 Nov below ("A job is never stored without a company", HIR-198) was only
+checked on the add-by-link path. The poller stores feed postings as they arrive, so a feed
+that returned a blank company stored it blank — and because dedup matches on company
+first, such a row can never be recognised as a duplicate, so every repost of it from
+another source becomes a second row. One job was already stored this way, from the
+Arbeitsagentur feed.
+
+Decision: the check moves to `ingest_one`, which every stored job passes through. A posting
+whose company is empty *to dedup* — `dedup.company_key` comes out blank, which also covers
+punctuation used as a placeholder and a bare legal suffix — is refused and counted as
+`skipped_company`, the same way an out-of-scope title or an untracked city is, and the poll
+totals it per run. The check sits after the title and city filters so those counts keep
+their meaning, and `trust_title` (the waiver for a posting a person chose by hand) does not
+waive it: how a blank-company row got in does not change that it can never dedup.
+
+The add-by-link check in `app/add.py` stays: it is what lets the dashboard's drawer ask for
+the company and keep the form filled, which a bare refusal at ingest cannot do. Ingest is
+now the backstop for every other path, which is why `add-text` and `add-screenshot` with an
+empty company string are refused rather than stored blank — they were only ever safe because
+the field is required in the form, not because anything checked it.
+
+Rows stored blank before this are a separate, still-open question: the `repair-companies`
+command fills them, and where that reveals a duplicate it merges two rows into one, which
+deletes a stored job. That is on the AGENTS.md stop list and nothing here authorises it, so
+this entry changes no stored row. The one row concerned (job 95, Arbeitsagentur feed) would
+also be filled wrongly today — its page is gone (HTTP 410) and the hostname fallback proposes
+"Arbeitsagentur", the board rather than the employer, because the polled feed sources are
+missing from the not-an-employer list of the 6 Nov entry. HIR-211 fixes that first.
+
+To undo, drop the `company_key` check from `ingest_one`; the add-by-link path keeps the rule
+and nothing needs backfilling, since the check only ever refuses a write.
+
+---
+
 ## 2026-11-06 — The two blank readings that drop a posting must be consecutive (HIR-199)
 
 Clarifies the "try twice, then drop" rule of 5 Nov below (HIR-172). That entry says a posting
