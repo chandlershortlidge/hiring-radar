@@ -47,7 +47,6 @@ def api(tmp_path, monkeypatch):
         proposed=["Rust"])
     c.close()
     fake = FakeClient()
-    monkeypatch.setattr("app.queries.now_iso", lambda: NOW)
     monkeypatch.setattr("app.api.now_iso", lambda: NOW)
     app = create_app(path, TAX, client_factory=lambda: fake)
     return TestClient(app), fake
@@ -223,7 +222,6 @@ def wide_api(tmp_path, monkeypatch):
     for company, city, skills in RELATED_JOBS:
         add(c, company, "AI Engineer", city, "arbeitnow", ts(1), [(s, "required") for s in skills])
     c.close()
-    monkeypatch.setattr("app.queries.now_iso", lambda: NOW)
     monkeypatch.setattr("app.api.now_iso", lambda: NOW)
     return TestClient(create_app(path, WIDE_TAX, client_factory=lambda: FakeClient()))
 

@@ -19,8 +19,7 @@ def add(conn, company, title, city, source, when, skills, seniority=None, sid=No
     p = Posting(source, sid or (f"{source}-{company}-{title}" if source in q.FEED_SOURCES else ""), "", company, title, city,
                 f"{company} {title} wants " + ", ".join(s for s, _ in skills)
                 + f" {company} {title} posting body." * 20)  # past MIN_TEXT_CHARS: a full posting
-    out = ingest_one(conn, p, when, require_city=False, trust_title=True)
-    job_id = int(out[4:])
+    job_id = ingest_one(conn, p, when, require_city=False, trust_title=True).job_id
     ex = Extraction(seniority=Seniority(seniority, "stated", seniority) if seniority else Seniority(None, None, None),
                     mentions=[Mention(s, r, s) for s, r in skills],
                     proposed=[Proposed(l, "required", l) for l in proposed],
@@ -262,7 +261,7 @@ def test_legacy_jobs_stay_out_of_the_chart_but_in_the_list(conn):
 
 def test_too_short_jobs_stay_out_of_the_chart_but_in_the_list(conn):
     p = Posting("screenshot", "", "", "Theta", "AI Engineer", "Berlin", "Theta AI Engineer. Python.")
-    jid = int(ingest_one(conn, p, ts(1), require_city=False, trust_title=True)[4:])
+    jid = ingest_one(conn, p, ts(1), require_city=False, trust_title=True).job_id
     store_extraction(conn, jid, Extraction(mentions=[Mention("python", "required", "Python")],
                                            extractor_version="t", taxonomy_version=3))
     f = q.Filters(window="all")
@@ -508,8 +507,7 @@ def body(words: str) -> str:
 
 def add_text(conn, company, text, when=None):
     p = Posting("paste", "", "", company, "AI Engineer", "Berlin", text)
-    out = ingest_one(conn, p, when or ts(1), require_city=False, trust_title=True)
-    return int(out[4:])
+    return ingest_one(conn, p, when or ts(1), require_city=False, trust_title=True).job_id
 
 
 def companies(conn, **kw):

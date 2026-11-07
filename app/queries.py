@@ -78,10 +78,6 @@ MIN_CO_JOBS = 5
 RELATED_LIMIT = 10
 
 
-def now_iso() -> str:
-    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
-
-
 def _days_ago(now: str, days: int) -> str:
     t = datetime.strptime(now, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
     return (t - timedelta(days=days)).strftime("%Y-%m-%dT%H:%M:%SZ")

@@ -15,7 +15,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from app import db  # noqa: E402
+from app import add, db  # noqa: E402
 from app.extract import Degree, Extraction, German, Mention, Proposed, Seniority  # noqa: E402
 from app.ingest import ingest_one  # noqa: E402
 from app.pipeline import store_extraction  # noqa: E402
@@ -61,10 +61,16 @@ def main():
         text = f"{company} is hiring a {title} in {city}. Requirements: " + ", ".join(tax.skills[s].display for s in skills) + ". " + f"Posting {k}."
         p = Posting(src, f"{src}-{k}" if src in ("arbeitnow", "startup_jobs", "greenhouse", "lever", "ashby") else "",
                     f"https://example.com/jobs/{k}", company, title, city, text)
-        out = ingest_one(conn, p, first, require_city=False, trust_title=True, found_via="linkedin" if src in ("url", "paste", "screenshot") else None)
-        if not out.startswith("new:"):
+        # The hand-added half of the mix is stored through the one hand-add entry point, as
+        # the real add paths are (HIR-210). The feed half still needs trust_title, because
+        # these titles are made up and some would not pass the real title filter.
+        if src in ("url", "paste", "screenshot"):
+            out = add.add_by_hand(conn, p, "linkedin", when=first)
+        else:
+            out = ingest_one(conn, p, first, require_city=False, trust_title=True)
+        if not out.is_new:
             continue
-        job_id = int(out[4:])
+        job_id = out.job_id
         n += 1
         # feed jobs seen recently stay open; older ones were last seen when they were first seen
         last = now - timedelta(days=min(age, rng.choice([0, 0, 1, 2]))) if age < 10 else now - timedelta(days=age)
