@@ -5,6 +5,32 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-06 — The two blank readings that drop a posting must be consecutive (HIR-199)
+
+Clarifies the "try twice, then drop" rule of 5 Nov below (HIR-172). That entry says a posting
+is "deleted on the second one" blank reading; it meant two blank readings in a row of a
+posting we could not read. The count (`job.blank_extractions`) was a lifetime tally, so this
+sequence deleted a job whose skills were already on the dashboard: a blank reading (count 1),
+a retry that worked (job stamped, skills stored, count still 1), then a version bump that put
+the still-open job back in the queue and a second blank reading (count 2) — dropped, skills
+and all.
+
+Decision: `store_extraction` sets `blank_extractions` to 0 in the same transaction that stamps
+the job. A reading that worked proves the posting is readable, so the blank before it stops
+counting. A posting that only ever reads blank is still read at most twice, which is what the
+5 Nov rule was protecting. The alternative — counting blanks per extractor version — was
+rejected as heavier and unnecessary once the reset is in place.
+
+Migration 015's comment says the count "is never reset" and is now wrong on that point. It
+stays as written, because a committed migration is never edited (AGENTS.md "Where things
+live"); `app/pipeline.py`'s module docstring and this entry are the current rule.
+
+To undo, drop `blank_extractions=0` from that UPDATE: the count becomes a lifetime tally
+again and a posting is dropped on its second blank reading whenever it happens. Nothing needs
+backfilling — the column only ever drops jobs, never gates anything else.
+
+---
+
 ## 2026-11-06 — A job is never stored without a company (HIR-198)
 
 Duplicate detection matches on company first, so a row with a blank company can never be

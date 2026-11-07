@@ -146,7 +146,33 @@ def test_a_posting_that_reads_blank_once_then_fine_is_kept(conn):
     r = pipeline.extract_pending(conn, TAX, blank_then_fine, "m", log=lambda *_: None)
     assert r.succeeded == 3 and r.dropped == []
     assert conn.execute("SELECT count(*) FROM job").fetchone()[0] == 3
-    assert [_blanks(conn, i) for i in (1, 2, 3)] == [1, 1, 1]  # the count is not reset, by design
+    # HIR-199: the successful reading resets the count, so the blank before it no longer counts.
+    assert [_blanks(conn, i) for i in (1, 2, 3)] == [0, 0, 0]
+
+
+def test_a_blank_read_after_a_successful_one_does_not_drop_the_posting(conn):
+    # HIR-199: the two blank reads that drop a posting must be consecutive. Blank, then a good
+    # reading, then blank again must leave the job and its skills alone — only the version bump
+    # between them put a readable posting back in the queue.
+    reads = {"n": 0}
+
+    def blank_then_fine_then_blank(text, tax, model):
+        reads["n"] += 1
+        if reads["n"] <= 3 or reads["n"] > 6:
+            raise EmptyExtractionError("tool call carried nothing")
+        return fake_extract([Mention("python", "required", "Python")])(text, tax, model)
+
+    pipeline.extract_pending(conn, TAX, blank_then_fine_then_blank, "m", log=lambda *_: None)
+    pipeline.extract_pending(conn, TAX, blank_then_fine_then_blank, "m", log=lambda *_: None)
+    assert [_blanks(conn, i) for i in (1, 2, 3)] == [0, 0, 0]
+    # A version bump re-reads the stamped jobs; this third reading is blank again.
+    conn.execute("UPDATE job SET extracted_version='older'")
+    conn.commit()
+    r = pipeline.extract_pending(conn, TAX, blank_then_fine_then_blank, "m", log=lambda *_: None)
+    assert r.dropped == [] and sorted(j for j, _ in r.failed) == [1, 2, 3]
+    assert conn.execute("SELECT count(*) FROM job").fetchone()[0] == 3
+    assert conn.execute("SELECT count(*) FROM skill_mention").fetchone()[0] == 3  # skills kept
+    assert [_blanks(conn, i) for i in (1, 2, 3)] == [1, 1, 1]
 
 
 def test_an_ordinary_failure_is_never_counted_as_blank_or_dropped(conn):
