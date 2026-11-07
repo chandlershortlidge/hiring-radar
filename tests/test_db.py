@@ -135,3 +135,80 @@ def test_migration_017_backfills_a_family_on_every_existing_job(tmp_path):
         "data-scientist", "ml-platform", "ai-engineer", "ai-engineer"]
     with pytest.raises(sqlite3.IntegrityError):
         conn.execute("UPDATE job SET family='nonsense' WHERE id=1")
+
+
+# --- 018: the two append-only tables refuse to lose a row (HIR-209) -------------------
+
+def _log_row(conn, job_id=None):
+    conn.execute(
+        "INSERT INTO extraction_log (job_id, extractor_version, taxonomy_version, model,"
+        " raw_output, usage, input_sha256) VALUES (?, 'v1', 2, 'model-x', '{}', '{}', 'abc')",
+        (job_id,))
+    return conn.execute("SELECT id FROM extraction_log ORDER BY id DESC").fetchone()[0]
+
+
+def _label_row(conn):
+    conn.execute("INSERT INTO label_answer (run, golden_id, labeler) VALUES ('r1', 'g1', 'A')")
+    return conn.execute("SELECT id FROM label_answer ORDER BY id DESC").fetchone()[0]
+
+
+def test_a_stored_reading_cannot_be_changed_or_deleted(tmp_path):
+    """016 says extraction_log is append-only; 018 makes the database say so too."""
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+    job_id = _job(conn)
+    rid = _log_row(conn, job_id)
+    for sql, args in [("UPDATE extraction_log SET raw_output='{\"x\":1}' WHERE id=?", (rid,)),
+                      ("UPDATE extraction_log SET model='other' WHERE id=?", (rid,)),
+                      ("UPDATE extraction_log SET job_id=NULL, model='other' WHERE id=?", (rid,)),
+                      ("UPDATE extraction_log SET created_at='2020-01-01T00:00:00Z' WHERE id=?", (rid,)),
+                      ("DELETE FROM extraction_log WHERE id=?", (rid,))]:
+        with pytest.raises(sqlite3.IntegrityError, match="append-only"):
+            conn.execute(sql, args)
+    assert conn.execute("SELECT COUNT(*) FROM extraction_log").fetchone()[0] == 1
+
+
+def test_a_reading_may_still_be_moved_or_unlinked_but_not_rewritten(tmp_path):
+    """The guard freezes the reading, not which posting it hangs off: dropping a posting
+    unlinks its readings (016) and folding a duplicate moves them (HIR-208)."""
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+    job_id = _job(conn)
+    rid = _log_row(conn, job_id)
+    conn.execute("DELETE FROM job WHERE id=?", (job_id,))
+    assert [tuple(r) for r in conn.execute("SELECT id, job_id, model FROM extraction_log")] == [
+        (rid, None, "model-x")]
+    # Both link changes are allowed when written by hand too, so the guard does not depend
+    # on recursive_triggers being off.
+    keep, drop = _job(conn), _job(conn)
+    rid2 = _log_row(conn, drop)
+    conn.execute("UPDATE extraction_log SET job_id=? WHERE job_id=?", (keep, drop))
+    conn.execute("UPDATE extraction_log SET job_id=NULL WHERE id=?", (rid2,))
+    # ...but not when anything about the reading itself changes with it.
+    with pytest.raises(sqlite3.IntegrityError, match="append-only"):
+        conn.execute("UPDATE extraction_log SET job_id=?, input_sha256='other' WHERE id=?", (keep, rid2))
+
+
+def test_a_stored_label_cannot_be_changed_or_deleted(tmp_path):
+    """label_answer has no job link, so every UPDATE and DELETE is refused (HIR-209)."""
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+    lid = _label_row(conn)
+    for sql in ("UPDATE label_answer SET answer='{}' WHERE id=?", "DELETE FROM label_answer WHERE id=?"):
+        with pytest.raises(sqlite3.IntegrityError, match="append-only"):
+            conn.execute(sql, (lid,))
+    assert conn.execute("SELECT COUNT(*) FROM label_answer").fetchone()[0] == 1
+
+
+def test_appending_to_the_two_tables_is_untouched(tmp_path):
+    """The guard refuses changes, not new rows: the import that loads a labelling run and
+    the pipeline that logs a reading both still work."""
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+    job_id = _job(conn)
+    _log_row(conn, job_id)
+    _log_row(conn, job_id)
+    _label_row(conn)
+    conn.execute("INSERT OR IGNORE INTO label_answer (run, golden_id, labeler) VALUES ('r1', 'g1', 'A')")
+    assert conn.execute("SELECT COUNT(*) FROM extraction_log").fetchone()[0] == 2
+    assert conn.execute("SELECT COUNT(*) FROM label_answer").fetchone()[0] == 1
