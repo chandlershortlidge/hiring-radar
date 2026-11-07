@@ -189,6 +189,22 @@ def test_add_url_with_no_company_is_refused_and_stores_nothing(api, monkeypatch)
     assert fake.calls == 0                                     # and nothing extracted
 
 
+def test_add_url_still_stores_a_page_with_almost_no_text(api, monkeypatch):
+    """HIR-204: the CLI refuses a page under 200 characters, this endpoint stores it and the
+    chart leaves it out as "short" (DECISIONS 2026-10-21). Both now read one rule set, which
+    could have quietly given the endpoint the CLI's refusal; it keeps its own behaviour until
+    HIR-205 decides which is right."""
+    client, _ = api
+    from app.check import CheckResult
+    from app.sources import Posting
+    p = Posting("url", "", "https://acme.com/careers/5", "Acme", "Staff AI Engineer", "Berlin", "Python.")
+    monkeypatch.setattr("app.api.check_url", lambda *a, **k: CheckResult(
+        url=p.url, verdict="not_found", how="", posting=p))
+    monkeypatch.setattr("app.api.log_check", lambda *a, **k: None)
+    r = client.post("/api/add/url", json={"url": p.url}).json()
+    assert r["outcome"] == "added" and r["job_id"]
+
+
 # --- several skills at once (HIR-75) -----------------------------------------------------
 
 # The 15-job set from tests/test_queries.py, with a taxonomy of its own so the snapshot

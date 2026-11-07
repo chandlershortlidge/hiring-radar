@@ -29,18 +29,17 @@ from dotenv import load_dotenv
 ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(ROOT / ".env")
 
-from app import db, dedup  # noqa: E402
+from app import add, db  # noqa: E402
 from app.check import check_url, checked_coverage, job_coverage, log_check, reach_breakdown  # noqa: E402
 from app.extract import DEFAULT_MODEL, extract, make_client  # noqa: E402
 from app.ingest import ingest_one, job_id_for_screenshot, now_iso, store_screenshot  # noqa: E402
 from app.labels import import_answers  # noqa: E402
 from app.pipeline import extract_pending, unlogged_extractions  # noqa: E402
 from app.poll import FEEDS_PATH, load_feeds, poll_feeds, select_feeds  # noqa: E402
-from app.sources import Posting, registry  # noqa: E402
+from app.sources import Posting  # noqa: E402
 from app.taxonomy import Taxonomy  # noqa: E402
 from app.transcribe import DEFAULT_MODEL as VISION_MODEL, transcribe  # noqa: E402
 
-MIN_ADD_TEXT = 200   # characters; shorter than any real JD
 DB_PATH = Path(os.environ.get("HIRING_RADAR_DB", ROOT / "data" / "hiring-radar.db"))
 
 
@@ -160,25 +159,19 @@ def check_one(conn, url, feeds, args):
         print(f"  note: {n}")
     if not args.add or r.posting is None:
         return
-    if r.verdict == "found":
-        # Ingest's own dedup is symmetric Jaccard, which a full careers page can fail against a
-        # shorter stored transcript; the check's containment match already said it is stored.
-        print(f"add: skipped — already job {r.job_id}")
+    # Every add-by-link rule lives in app/add.py, so the CLI and /api/add/url cannot drift.
+    d = add.decide(r)
+    if d.action == add.EXISTS:
+        print(f"add: skipped — already job {d.job_id}")
         return
-    if not dedup.company_key(r.posting.company):
-        # Same rule as /api/add/url: a blank company plants a future duplicate
-        # (DECISIONS 2026-11-06 "A job is never stored without a company").
+    if d.action == add.NEEDS_COMPANY:
         print("add: refused — no company found on the page; pass --company")
         return
-    if len(r.posting.description_text) < MIN_ADD_TEXT:
-        # A page that rendered nothing readable would be stored as an empty job with no skills.
-        print(f"add: refused — only {len(r.posting.description_text)} characters of posting text; "
+    if d.action == add.TOO_SHORT:
+        print(f"add: refused — only {d.characters} characters of posting text; "
               f"paste it with add-text instead")
         return
-    # Board postings keep their feed source and id, so a later poll sees them as still-listed;
-    # page postings are source=url. Either way found_via records that a person found it.
-    is_board = r.posting.source in registry.BOARD_SOURCES
-    outcome = ingest_one(conn, r.posting, now_iso(), require_city=not is_board,
+    outcome = ingest_one(conn, r.posting, now_iso(), require_city=d.require_city,
                          found_via=args.found_via, trust_title=True)
     print(f"add: {outcome}")
     if outcome.startswith("new:") and not args.no_extract:

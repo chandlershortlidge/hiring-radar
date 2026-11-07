@@ -22,14 +22,14 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from app import db, dedup, queries as q
+from app import add, db, queries as q
 from app.check import check_url, log_check
 from app.extract import DEFAULT_MODEL, extract, make_client
 from app.ingest import ingest_one, job_id_for_screenshot, now_iso, store_screenshot
 from app.pipeline import extract_pending
 from app.poll import load_feeds
 from app.skill_tree import skill_tree
-from app.sources import Posting, registry
+from app.sources import Posting
 from app.taxonomy import Taxonomy
 from app.transcribe import DEFAULT_MODEL as VISION_MODEL, TranscriptionError, transcribe
 
@@ -195,14 +195,16 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
         if r.job_id:
             d = q.job_detail(conn, r.job_id, now_iso())
             return {"outcome": "exists", "job_id": r.job_id, "job": d, "verdict": r.line()}
-        if r.posting is None:
+        # Every add-by-link rule lives in app/add.py, so this endpoint and the CLI's
+        # `check --add` cannot drift. min_text=0 keeps this endpoint's behaviour as it is: the
+        # CLI refuses a page under 200 characters, the dashboard stores it and the chart leaves
+        # it out as "short" (DECISIONS 2026-10-21). Which of the two is right is HIR-205.
+        decision = add.decide(r, min_text=0)
+        if decision.action == add.UNREADABLE:
             return {"outcome": "unreadable", "job_id": None, "verdict": r.line(), "notes": r.notes}
-        if not dedup.company_key(r.posting.company):
-            # A blank company can never be matched by dedup, so storing it plants a future
-            # duplicate (DECISIONS 2026-11-06 "A job is never stored without a company").
+        if decision.action == add.NEEDS_COMPANY:
             return {"outcome": "needs_company", "job_id": None, "verdict": r.line(), "notes": r.notes}
-        is_board = r.posting.source in registry.BOARD_SOURCES
-        outcome = ingest_one(conn, r.posting, now_iso(), require_city=not is_board,
+        outcome = ingest_one(conn, r.posting, now_iso(), require_city=decision.require_city,
                              found_via=body.found_via, trust_title=True)
         res = finish_add(conn, outcome)
         res["verdict"] = r.line()
