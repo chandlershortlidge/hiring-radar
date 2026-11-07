@@ -1,0 +1,17 @@
+{
+  "001_init.sql": "55f40554ebc2db6e3cc77dcbee8c13cc7434ec919a28d97b3b83cd9b68cb4ef4",
+  "002_posted_at.sql": "819fff59f4b1b999695b6840f56a9595b15374f492bd6b94c6a25cdf95ae2bb2",
+  "003_extracted_version.sql": "31cf7f122d91c3411b9945f52324d099c4b75049aa64beef4ab190afd31fd32e",
+  "004_seniority.sql": "c5bc8038b2ac35e8628d35eb4b6560e60bfb86e20d0b696c2a979483802504fd",
+  "005_url_check.sql": "723e7fe7f4eeffa6be42e116aea049b98fda60f9e3c1a073a8f15c38a60ef7f1",
+  "006_german_degree.sql": "e49652885579149b11681a2706dbc4d4adc897895799c7da7df0a13d01fe652b",
+  "007_more_sources.sql": "4ad3052b55b5c080ccab7481327cc2baeae15ededb8dc9d142d3b7074b3a6def",
+  "008_join_source.sql": "bb4973f18fbaf09ab09ec97a736685f6ea5d0cfd2b2c2071e916e39c91adb90e",
+  "009_extraction_reject.sql": "4a30aa14a565c107aeb40020ce9153fa7ed3ac6cf0ec8dba80dcb33f48f41aed",
+  "013_production.sql": "4a1c92bd6106b8fca1802d8d7338319d0dd879bc17a2a80ac0dea01a73020d2f",
+  "014_job_fts.sql": "68e8599bbcaded368660f8cd53f6da71ba37c04d6c723a5a78348e61dec12871",
+  "015_blank_extractions.sql": "9f23d1c0dd90dc390321179b9d030d50be16fc0f0fc3b9ca27373da2b7486d36",
+  "016_extraction_log.sql": "ce4303e82511b7396bafceead418bee6b2fcfe3f7cc5a4f8dbc5052fb8f6a968",
+  "017_job_family.sql": "063cafec05a5cc340a9569e6f32887c2478b366b3934feeacfe51e743ff82951",
+  "018_append_only_guards.sql": "8f9ea6a0a50715b5338f95b4dc195f5de581052558fb9c1381ad5db4dff3ad53"
+}
