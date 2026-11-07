@@ -11,7 +11,11 @@ never replaced — the current answer is what the dashboard reads, the log is th
 every reading we paid for (HIR-170); a job is processed once per extractor_version, including jobs with zero skills; a failed extraction leaves the job unstamped and no partial rows, and is reported,
 not raised; re-running is safe. A read that comes back with nothing at all is counted on
 the job (`blank_extractions`) and the posting is deleted on the second one — try twice,
-then drop (HIR-172, Chandler's decision of 5 Nov). Every other failure is retried for ever,
+then drop (HIR-172, Chandler's decision of 5 Nov). The two must be consecutive: storing a
+successful extraction resets the count to 0 in the same transaction that stamps the job, so
+a reading that worked clears the blank before it (HIR-199). Migration 015's comment says the
+count is never reset and is wrong on that point; a committed migration is never edited, so
+this docstring and the DECISIONS entry of 6 Nov are the current rule. Every other failure is retried for ever,
 since it says nothing about the posting. Only one extraction runs per database at a time: a second
 run (a poll started while an add is extracting, say) skips instead of paying for the same jobs
 twice, and its jobs stay pending for the next run. A version bump re-reads only jobs that are
@@ -135,14 +139,17 @@ def closed_reread_skips(conn: sqlite3.Connection, version: str,
 
 
 def _count_blank_read(conn: sqlite3.Connection, job_id: int) -> int:
-    """Record one blank read of this job and return how many it has had in all."""
+    """Record one blank read of this job and return how many it has had in a row.
+
+    `store_extraction` sets the count back to 0, so this is a run of consecutive blank reads,
+    not a lifetime tally: a posting we once read successfully starts again from one (HIR-199)."""
     with conn:
         conn.execute("UPDATE job SET blank_extractions = blank_extractions + 1 WHERE id = ?", (job_id,))
     return conn.execute("SELECT blank_extractions FROM job WHERE id = ?", (job_id,)).fetchone()[0]
 
 
 def _drop_job(conn: sqlite3.Connection, job_id: int) -> None:
-    """Delete a posting the model has read as blank twice; its rows cascade with it."""
+    """Delete a posting the model has read as blank twice in a row; its rows cascade with it."""
     if not conn.execute("PRAGMA foreign_keys").fetchone()[0]:
         raise RuntimeError("foreign keys are off: dropping a job would orphan its rows. "
                            "Open the database with app.db.connect.")
@@ -216,7 +223,12 @@ def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction, mode
             [(job_id, p.label, p.raw_text) for p in ex.proposed if p.label.lower() not in rejected])
         sen, ger, deg, prod = ex.seniority, ex.german, ex.degree, ex.production
         conn.execute(
-            "UPDATE job SET extracted_version=?, seniority=?, seniority_basis=?, seniority_signal=?,"
+            # blank_extractions=0: the two blank reads that drop a posting must be two in a
+            # row. A reading that worked proves the posting is readable, so the earlier blank
+            # stops counting against it (HIR-199); without this, blank -> success -> blank
+            # deleted a job whose skills were already on the dashboard.
+            "UPDATE job SET extracted_version=?, blank_extractions=0,"
+            " seniority=?, seniority_basis=?, seniority_signal=?,"
             " german=?, german_basis=?, german_signal=?,"
             " degree=?, degree_requirement=?, degree_or_equivalent=?, degree_signal=?,"
             " production=?, production_basis=?, production_signal=? WHERE id=?",
