@@ -3,7 +3,9 @@
 Does: for every job whose company is NULL or blank, re-fetch its stored link and read the
 company off the page with the same rules the add-by-link path now uses (site name, title
 tail, hostname); a dead link falls back to those same rules on the stored title and URL.
-When the title tail supplied the company, the tail is stripped from the stored title too.
+When the title tail supplied the company, the tail is stripped from the stored title too, the
+job family is recomputed from the shorter title, and the job's extraction stamp is cleared so
+it is read again under that title.
 A repaired job is then matched against same-company rows with the normal dedup rules, and
 a duplicate is folded into the older row (sources, skills, logs moved; the newer job row
 deleted). Rows nothing could fix are reported and left untouched.
@@ -12,17 +14,23 @@ Does NOT: call a model, touch jobs that already have a company, or commit — th
 decides (the CLI's default is a dry run that rolls everything back).
 
 Invariants: `merge_jobs` keeps the row with the earlier first_seen (ties: the smaller id);
-every table that references job.id is moved before the duplicate row is deleted, so no
-extraction anyone paid for is lost; running the repair twice is a no-op, because a fixed
-row no longer has a blank company.
+every table that references job.id is moved before the duplicate row is deleted, and the
+list of those tables is read from the schema rather than written here, so a table added
+later is moved too; the surviving row carries exactly one reading's skills, never two
+unioned; running the repair twice is a no-op, because a fixed row no longer has a blank
+company.
 """
 
 import sqlite3
 from dataclasses import dataclass
 
-from app import dedup
+from app import dedup, ingest
 from app.check import _PageParser, company_from_page, split_title_tail
 from app.sources import fetch_text
+
+# The tables holding one job's current reading. store_extraction replaces them wholesale, so
+# a merge must drop the duplicate's rows rather than union two readings into them.
+_READING_TABLES = ("skill_mention", "extraction_reject")
 
 
 @dataclass
@@ -48,18 +56,39 @@ class RepairLine:
         return s
 
 
+def tables_referencing_job(conn: sqlite3.Connection) -> list[tuple[str, str]]:
+    """(table, column) for every table with a foreign key to job.id, read from the schema.
+
+    Discovered rather than listed by hand, so a table added later is moved by merge_jobs
+    without anyone remembering this function exists (HIR-208). A table a hand-written list
+    missed lost its rows silently: they cascade away with the duplicate job row, or are
+    orphaned from their job where the key is ON DELETE SET NULL."""
+    rows = conn.execute(
+        'SELECT m.name AS tbl, f."from" AS col FROM sqlite_master m'
+        ' JOIN pragma_foreign_key_list(m.name) f'
+        " WHERE m.type = 'table' AND lower(f.\"table\") = 'job'").fetchall()
+    return sorted({(r["tbl"], r["col"]) for r in rows})
+
+
 def merge_jobs(conn: sqlite3.Connection, keep: int, drop: int) -> None:
-    """Fold the duplicate row `drop` into `keep`: move every reference, widen the seen
-    window, delete the duplicate. skill_mention is unique per (job, skill), so a skill
-    both rows carry keeps the older row's mention and the duplicate's copy is dropped."""
-    conn.execute("UPDATE job_source SET job_id=? WHERE job_id=?", (keep, drop))
-    conn.execute("UPDATE OR IGNORE skill_mention SET job_id=? WHERE job_id=?", (keep, drop))
-    conn.execute("DELETE FROM skill_mention WHERE job_id=?", (drop,))
-    conn.execute("UPDATE proposed_skill SET job_id=? WHERE job_id=?", (keep, drop))
-    conn.execute("UPDATE extraction_log SET job_id=? WHERE job_id=?", (keep, drop))
-    conn.execute("UPDATE extraction_reject SET job_id=? WHERE job_id=?", (keep, drop))
-    conn.execute("UPDATE OR IGNORE screenshot SET job_id=? WHERE job_id=?", (keep, drop))
-    conn.execute("UPDATE url_check SET job_id=? WHERE job_id=?", (keep, drop))
+    """Fold the duplicate row `drop` into `keep`: drop the duplicate's reading, move every
+    other reference, widen the seen window, delete the duplicate row.
+
+    The kept row keeps its own reading whole and the duplicate's is dropped. Unioning the
+    two left the job carrying skills from both while stamped as read once, so the chart
+    counted skills neither reading alone found (HIR-208). Nothing paid for is lost: the
+    reading itself stays on the record in extraction_log, which is moved, not deleted. A
+    kept row with no reading of its own stays unstamped and is read again on the next run."""
+    if not conn.execute("PRAGMA foreign_keys").fetchone()[0]:
+        raise RuntimeError("foreign keys are off: merging a job would orphan the duplicate's "
+                           "rows instead of moving them. Open the database with app.db.connect.")
+    for table in _READING_TABLES:
+        conn.execute(f"DELETE FROM {table} WHERE job_id=?", (drop,))
+    for table, col in tables_referencing_job(conn):
+        # OR IGNORE, then delete what could not move: a row the kept job already has (one
+        # screenshot per job) is dropped rather than moved, as it was before.
+        conn.execute(f"UPDATE OR IGNORE {table} SET {col}=? WHERE {col}=?", (keep, drop))
+        conn.execute(f"DELETE FROM {table} WHERE {col}=?", (drop,))
     conn.execute(
         "UPDATE job SET first_seen = min(first_seen, (SELECT first_seen FROM job WHERE id=:drop)),"
         "               last_seen  = max(last_seen,  (SELECT last_seen  FROM job WHERE id=:drop))"
@@ -126,8 +155,16 @@ def repair_companies(conn: sqlite3.Connection, fetch_page=fetch_text) -> list[Re
             out.append(RepairLine(r["id"], r["company"], note=note))
             continue
         title = new_title or r["title"] or ""
-        conn.execute("UPDATE job SET company=?, title=?, title_key=? WHERE id=?",
-                     (company, title, dedup.title_key(title), r["id"]))
+        sets = "company=?, title=?, title_key=?"
+        params: list[object] = [company, title, dedup.title_key(title)]
+        if title != (r["title"] or ""):
+            # The job family is a title rule, and the skills were read under the old title:
+            # recompute the family and clear the stamp so the job is read again (HIR-208).
+            # The old skills stay on the chart until that reading happens.
+            sets += ", family=?, extracted_version=NULL"
+            params.append(ingest.family_of(title))
+        params.append(r["id"])
+        conn.execute(f"UPDATE job SET {sets} WHERE id=?", params)
         merged_into, absorbed = _merge_if_duplicate(conn, r["id"], company, title, r["description_text"])
         out.append(RepairLine(r["id"], r["company"], company, rule, merged_into, absorbed, note))
     return out
