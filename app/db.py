@@ -8,7 +8,10 @@ roll migrations back, or support any database other than SQLite.
 
 Invariants: a migration file is applied at most once; applied versions are recorded
 in schema_migrations; migration files are never edited after they are committed —
-changes go in a new numbered file.
+changes go in a new numbered file. That last one is enforced by
+tests/test_migration_immutability.py, against the fingerprints in
+tests/fixtures/migration_sha256.json; a new migration is recorded there with
+`uv run python scripts/record_migration_hashes.py`.
 """
 
 import re
