@@ -44,13 +44,14 @@ from app.check import default_fetch_board, parse_ats_url
 from app.geo import active_place
 from app.ingest import in_scope_title
 from app.poll import FEEDS_PATH
+from app.sources import registry
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG_PATH = ROOT / "config" / "discover.json"
 REJECTED_PATH = ROOT / "config" / "boards_rejected.json"
 
 Board = tuple[str, str]   # (source, token), e.g. ("greenhouse", "intercom")
-BOARD_SOURCES = ("greenhouse", "lever", "ashby", "join")
+BOARD_SOURCES = registry.BOARD_SOURCES
 
 
 def search_queries(config: dict) -> list[str]:

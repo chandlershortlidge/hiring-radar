@@ -29,7 +29,7 @@ from app.ingest import ingest_one, job_id_for_screenshot, now_iso, store_screens
 from app.pipeline import extract_pending
 from app.poll import load_feeds
 from app.skill_tree import skill_tree
-from app.sources import Posting
+from app.sources import Posting, registry
 from app.taxonomy import Taxonomy
 from app.transcribe import DEFAULT_MODEL as VISION_MODEL, TranscriptionError, transcribe
 
@@ -201,7 +201,7 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
             # A blank company can never be matched by dedup, so storing it plants a future
             # duplicate (DECISIONS 2026-11-06 "A job is never stored without a company").
             return {"outcome": "needs_company", "job_id": None, "verdict": r.line(), "notes": r.notes}
-        is_board = r.posting.source in ("greenhouse", "lever", "ashby", "join")
+        is_board = r.posting.source in registry.BOARD_SOURCES
         outcome = ingest_one(conn, r.posting, now_iso(), require_city=not is_board,
                              found_via=body.found_via, trust_title=True)
         res = finish_add(conn, outcome)

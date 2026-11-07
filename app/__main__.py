@@ -36,7 +36,7 @@ from app.ingest import ingest_one, job_id_for_screenshot, now_iso, store_screens
 from app.labels import import_answers  # noqa: E402
 from app.pipeline import extract_pending, unlogged_extractions  # noqa: E402
 from app.poll import FEEDS_PATH, load_feeds, poll_feeds, select_feeds  # noqa: E402
-from app.sources import Posting  # noqa: E402
+from app.sources import Posting, registry  # noqa: E402
 from app.taxonomy import Taxonomy  # noqa: E402
 from app.transcribe import DEFAULT_MODEL as VISION_MODEL, transcribe  # noqa: E402
 
@@ -177,7 +177,7 @@ def check_one(conn, url, feeds, args):
         return
     # Board postings keep their feed source and id, so a later poll sees them as still-listed;
     # page postings are source=url. Either way found_via records that a person found it.
-    is_board = r.posting.source in ("greenhouse", "lever", "ashby", "join")
+    is_board = r.posting.source in registry.BOARD_SOURCES
     outcome = ingest_one(conn, r.posting, now_iso(), require_city=not is_board,
                          found_via=args.found_via, trust_title=True)
     print(f"add: {outcome}")
