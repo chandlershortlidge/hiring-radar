@@ -427,3 +427,42 @@ def test_v10_aliases_clear_the_browser_matchers_minimum():
     for a in t.skills["ai-developer-tooling"].aliases:
         assert len(a) >= 3, a
         assert a == a.strip().lower(), a
+
+
+# --- a skill id is never removed once rows reference it (HIR-209) ----------------------
+#
+# taxonomy/README.md: an id is "stable; never rename once rows reference it". Nothing
+# checked it. A removed or renamed id takes that skill off the chart for every job that
+# mentions it — skill_mention rows keep pointing at an id the taxonomy no longer knows, and
+# nothing raises. tests/fixtures/skill_ids.json is the list of ids that have ever been
+# committed; `uv run python scripts/record_skill_ids.py` appends new ones and never removes
+# one, so an id that disappears cannot be made to pass by re-running it.
+
+KNOWN_IDS = ROOT / "tests" / "fixtures" / "skill_ids.json"
+
+
+def test_no_skill_id_has_disappeared_from_the_taxonomy():
+    known = set(json.loads(KNOWN_IDS.read_text()))
+    current = set(Taxonomy.load().skills)
+    gone = sorted(known - current)
+    assert not gone, (
+        "skill id(s) removed or renamed: " + ", ".join(gone)
+        + ". Every job that mentions one loses that skill from the chart, with no error"
+          " anywhere, and the stored rows still point at it. Keep the id and change the"
+          " display name, or add the old spelling as an alias of the new entry.")
+
+
+def test_every_current_skill_id_is_recorded():
+    """So a removal cannot be hidden by deleting the id from the list in the same commit."""
+    known = set(json.loads(KNOWN_IDS.read_text()))
+    missing = sorted(set(Taxonomy.load().skills) - known)
+    assert not missing, (
+        "new skill id(s) not recorded: " + ", ".join(missing)
+        + ". Run `uv run python scripts/record_skill_ids.py` and commit"
+          " tests/fixtures/skill_ids.json with them.")
+
+
+def test_the_recorded_list_is_sorted_and_has_no_duplicates():
+    """It is appended to by a script and read in diffs, so its order is part of it."""
+    ids = json.loads(KNOWN_IDS.read_text())
+    assert ids == sorted(set(ids))

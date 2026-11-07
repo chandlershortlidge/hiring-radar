@@ -23,6 +23,12 @@
 - **Keep specializations separate.** Agents and Multi-Agent Systems are both entries;
   the second has the first as a parent.
 - **Bump `version`** when an edit changes what any existing label resolves to.
+- **An id is never removed or renamed.** Stored rows point at it, so the jobs that mention
+  it would lose that skill from the chart with no error. `tests/test_taxonomy.py` fails if
+  an id that was ever committed is gone, against the list in
+  `tests/fixtures/skill_ids.json`; a new id is added to that list with
+  `uv run python scripts/record_skill_ids.py`. Rename the display name instead, and keep
+  the old spelling as an alias.
 
 ## Skill boundaries
 
