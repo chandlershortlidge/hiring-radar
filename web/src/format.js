@@ -60,6 +60,11 @@ export function placeMatches(place, q) {
 export const COMPARE_DEFAULT = ["Berlin", "San Francisco"];
 export const SENIORITIES = ["junior", "mid", "senior"];
 
+// The option lists below — FAMILIES, FAMILY_LABELS, SENIORITIES and the three attribute
+// filters — are the dashboard's copy of keys the server validates against. They hold the
+// wording a person reads, so they are not generated; tests/test_frontend_lists.py fails
+// whenever a key here and one on the server stop matching (HIR-203).
+//
 // The five job families every posting is sorted into from its title (HIR-186). The order is
 // the order of the buttons; the server validates against the same five. FAMILY_LABELS is
 // what a person reads — the stored value is the hyphenated id.
