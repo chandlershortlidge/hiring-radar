@@ -4,7 +4,7 @@ duplicates that appear, leave what it cannot fix alone."""
 import pytest
 
 from app import db
-from app.repair import merge_jobs, repair_companies
+from app.repair import merge_jobs, repair_companies, tables_referencing_job
 
 JD = ("Senior AI Engineer. Requirements: 5+ years Python, LLM applications, RAG pipelines "
       "and vector databases. Nice to have: Kubernetes, AWS. We build agents in Berlin and "
@@ -61,8 +61,8 @@ def test_two_blank_copies_become_one_row_with_a_company(conn):
     sources = conn.execute("SELECT url FROM job_source WHERE job_id=? ORDER BY first_seen", (a,)).fetchall()
     assert [s["url"] for s in sources] == ["https://jamino.de/jobs/1?utm=x", "https://jamino.de/jobs/1?utm=y"]
     mentions = {r["skill_id"] for r in conn.execute("SELECT skill_id FROM skill_mention WHERE job_id=?", (a,))}
-    assert mentions == {"python", "rag"}                             # moved, duplicate dropped
-    assert conn.execute("SELECT count(*) FROM skill_mention").fetchone()[0] == 2
+    assert mentions == {"python"}                 # the kept row's reading only, not the union
+    assert conn.execute("SELECT count(*) FROM skill_mention").fetchone()[0] == 1
     assert conn.execute("SELECT job_id FROM extraction_log").fetchone()["job_id"] == a
 
     assert lines[0].company == "Jamino" and lines[0].merged_into is None and lines[0].absorbed is None
@@ -116,6 +116,95 @@ def test_unresolved_rows_are_listed_and_left_alone(conn):
 def test_jobs_with_a_company_are_not_touched(conn):
     add_blank_job(conn, "https://jamino.de/jobs/1", "2026-11-04T10:00:00Z", company="Already Set")
     assert repair_companies(conn, fetch_page=lambda u: PAGE) == []
+
+
+def test_a_repaired_title_moves_the_job_family_and_queues_a_re_read(conn):
+    a = add_blank_job(conn, "https://jamino.de/jobs/1", "2026-11-04T10:00:00Z",
+                      title="Data Scientist | Jamino")
+    conn.execute("UPDATE job SET family='data-scientist', extracted_version='v1' WHERE id=?", (a,))
+    add_mention(conn, a, "python")
+    # The page's title is an AI engineering role; the stored title said data science.
+    repair_companies(conn, fetch_page=lambda u: PAGE)
+    conn.commit()
+    row = conn.execute("SELECT title, family, extracted_version FROM job WHERE id=?", (a,)).fetchone()
+    assert row["title"] == "Senior AI Engineer"
+    assert row["family"] == "ai-engineer"               # recomputed from the corrected title
+    assert row["extracted_version"] is None             # so the job is read again
+    # The old skills stay on the chart until that reading happens.
+    assert conn.execute("SELECT count(*) FROM skill_mention WHERE job_id=?", (a,)).fetchone()[0] == 1
+
+
+def test_a_company_only_repair_leaves_the_family_and_the_stamp_alone(conn):
+    # The hostname supplies the company, so the title is not touched.
+    a = add_blank_job(conn, "https://careers.newco.de/jobs/2", "2026-11-04T10:00:00Z",
+                      title="Senior AI Engineer")
+    conn.execute("UPDATE job SET family='research', extracted_version='v1' WHERE id=?", (a,))
+    conn.commit()
+
+    def dead(url):
+        raise OSError("gone")
+
+    repair_companies(conn, fetch_page=dead)
+    conn.commit()
+    row = conn.execute("SELECT company, title, family, extracted_version FROM job WHERE id=?", (a,)).fetchone()
+    assert row["company"] == "Newco" and row["title"] == "Senior AI Engineer"
+    assert row["family"] == "research" and row["extracted_version"] == "v1"
+
+
+def test_merge_moves_a_table_nobody_listed_by_hand(conn):
+    """A table added after merge_jobs was written must still be moved, not cascade away."""
+    conn.execute("CREATE TABLE job_note ("
+                 " id INTEGER PRIMARY KEY,"
+                 " job_id INTEGER NOT NULL REFERENCES job (id) ON DELETE CASCADE,"
+                 " note TEXT NOT NULL)")
+    a = add_blank_job(conn, "https://x/1", "2026-11-04T10:00:00Z", company="Acme")
+    b = add_blank_job(conn, "https://x/2", "2026-11-05T10:00:00Z", company="Acme")
+    conn.execute("INSERT INTO job_note (job_id, note) VALUES (?, 'keep me')", (b,))
+    conn.commit()
+
+    assert ("job_note", "job_id") in tables_referencing_job(conn)
+    merge_jobs(conn, a, b)
+    conn.commit()
+    rows = conn.execute("SELECT job_id, note FROM job_note").fetchall()
+    assert [(r["job_id"], r["note"]) for r in rows] == [(a, "keep me")]
+
+
+def test_merge_refuses_to_run_with_foreign_keys_off(conn):
+    a = add_blank_job(conn, "https://x/1", "2026-11-04T10:00:00Z", company="Acme")
+    b = add_blank_job(conn, "https://x/2", "2026-11-05T10:00:00Z", company="Acme")
+    conn.execute("PRAGMA foreign_keys = OFF")
+    with pytest.raises(RuntimeError, match="foreign keys are off"):
+        merge_jobs(conn, a, b)
+    assert conn.execute("SELECT count(*) FROM job").fetchone()[0] == 2
+
+
+def test_merge_keeps_one_reading_and_the_record_of_both(conn):
+    a = add_blank_job(conn, "https://x/1", "2026-11-04T10:00:00Z", company="Acme")
+    b = add_blank_job(conn, "https://x/2", "2026-11-05T10:00:00Z", company="Acme")
+    conn.execute("UPDATE job SET extracted_version='v1' WHERE id=?", (a,))
+    conn.execute("UPDATE job SET extracted_version='v2' WHERE id=?", (b,))
+    add_mention(conn, a, "python")
+    add_mention(conn, b, "rag")
+    for job_id, version in ((a, "v1"), (b, "v2")):
+        conn.execute("INSERT INTO extraction_reject (job_id, reason, item, extractor_version)"
+                     " VALUES (?,?,?,?)", (job_id, "unknown skill", "{}", version))
+        conn.execute("INSERT INTO extraction_log (job_id, extractor_version, taxonomy_version,"
+                     " model, raw_output, usage, input_sha256) VALUES (?,?,?,?,?,?,?)",
+                     (job_id, version, 3, "m", "{}", "{}", f"sha-{version}"))
+    conn.commit()
+
+    merge_jobs(conn, a, b)
+    conn.commit()
+
+    row = conn.execute("SELECT extracted_version FROM job WHERE id=?", (a,)).fetchone()
+    assert row["extracted_version"] == "v1"                           # the kept row's reading
+    mentions = {r["skill_id"] for r in conn.execute("SELECT skill_id FROM skill_mention")}
+    assert mentions == {"python"}                                     # the duplicate's dropped
+    rejects = [r["extractor_version"] for r in conn.execute("SELECT extractor_version FROM extraction_reject")]
+    assert rejects == ["v1"]
+    logs = sorted(r["extractor_version"] for r in conn.execute(
+        "SELECT extractor_version FROM extraction_log WHERE job_id=?", (a,)))
+    assert logs == ["v1", "v2"]                   # both readings stay on the permanent record
 
 
 def test_merge_jobs_widens_the_seen_window(conn):
