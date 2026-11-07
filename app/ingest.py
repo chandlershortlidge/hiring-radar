@@ -18,7 +18,7 @@ alone) as it is inserted.
 Does NOT: call the model (see app/pipeline.py), fetch anything, or delete rows.
 
 Invariants: one DB transaction per posting; `job.first_seen` never moves later (a
-backdated sighting may move it earlier); `job.last_seen` never moves earlier; a posting that fails the filters is counted, not stored; no row in `job` is ever written with a blank company.
+backdated sighting may move it earlier); `job.last_seen` never moves earlier; a posting that fails the filters is counted, not stored; no row in `job` is ever written with a blank company; every timestamp written is of the form 2026-11-07T15:42:00Z (check_timestamp).
 """
 
 import re
@@ -55,6 +55,36 @@ REPOST_SOURCES = registry.BOARD_SOURCES
 
 def now_iso() -> str:
     return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+
+
+# Every timestamp this project stores has exactly this shape: UTC, to the second, ending in
+# Z — 2026-11-07T15:42:00Z. SQLite has no date type, so first_seen and last_seen are plain
+# text and everything that reads them compares them as text: the open/closed rule in
+# app/queries.py (open_clause) and the min()/max() below that move a job's seen window. A
+# value in any other format sorts wrong, and silently — an offset ("+00:00") sorts after
+# "Z", milliseconds make a longer string that compares as later, and a bare date is shorter
+# than every full timestamp, so it looks older than everything. Callers may pass their own
+# `when` (scripts/import_legacy.py, scripts/seed_demo.py), so the check sits here, where
+# every stored timestamp goes through. HIR-209.
+#
+# Not applied to job_source.posted_at: that is kept as the feed gave it, in whatever format
+# that is (app/sources/__init__.py), and nothing compares it as text.
+TIMESTAMP_FORMAT = "%Y-%m-%dT%H:%M:%SZ"
+_TIMESTAMP = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$")
+
+
+def check_timestamp(when: str) -> str:
+    """Returns `when` unchanged, or raises ValueError naming what is wrong with it."""
+    if not isinstance(when, str) or not _TIMESTAMP.match(when):
+        raise ValueError(
+            f"timestamp {when!r} is not of the form 2026-11-07T15:42:00Z (UTC, to the second,"
+            f" ending in Z). Stored timestamps are compared as text, so another format sorts"
+            f" wrong without any error.")
+    try:
+        datetime.strptime(when, TIMESTAMP_FORMAT)
+    except ValueError as e:
+        raise ValueError(f"timestamp {when!r} is not a real date or time: {e}") from None
+    return when
 
 
 def in_scope_title(title: str) -> bool:
@@ -133,8 +163,11 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
     trust_title skips the title filter — for postings a person chose by hand.
     fetched_ids is every source_job_id in the fetch this posting came from; without it
     (a single posting added by hand) nothing counts as a repost.
+
+    Raises ValueError if `when` is not of the form 2026-11-07T15:42:00Z — a caller's bug,
+    not a posting this function can report on (check_timestamp).
     """
-    when = when or now_iso()
+    when = check_timestamp(when or now_iso())
     if not trust_title and not in_scope_title(p.title):
         return "skipped_title"
     city = place_of(p.location_raw, p.title, p.description_text)

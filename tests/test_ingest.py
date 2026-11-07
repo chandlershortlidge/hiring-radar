@@ -1,7 +1,8 @@
 import pytest
 
 from app import db, geo
-from app.ingest import FAMILIES, family_of, in_scope_title, ingest, ingest_one
+from app.ingest import (FAMILIES, check_timestamp, family_of, in_scope_title, ingest,
+                        ingest_one, now_iso)
 from app.sources import Posting
 
 JD = ("AI Engineer. Requirements: 3+ years Python, experience with LLM applications, RAG "
@@ -311,3 +312,56 @@ def test_a_hand_added_job_gets_a_family_too(conn):
     assert ingest_one(conn, posting(title="Head of Analytics"), when="2026-10-16T00:00:00Z",
                       trust_title=True) == "new:1"
     assert conn.execute("SELECT family FROM job").fetchone()["family"] == "ai-engineer"
+
+
+# --- every stored timestamp has the one exact form (HIR-209) --------------------------
+
+@pytest.mark.parametrize("when", [
+    "2026-11-07T15:42:00Z",
+    "2026-01-01T00:00:00Z",
+    "2026-12-31T23:59:59Z",
+])
+def test_the_exact_form_is_accepted(when):
+    assert check_timestamp(when) == when
+
+
+@pytest.mark.parametrize("when", [
+    "2026-11-07T15:42:00+00:00",   # an offset sorts after "Z"
+    "2026-11-07T15:42:00.123Z",    # milliseconds make a longer string, so a later one
+    "2026-11-07 15:42:00Z",        # a space instead of T
+    "2026-11-07T15:42:00",         # no zone marker at all
+    "2026-11-07",                  # a bare date looks older than every full timestamp
+    "2026-11-07T15:42Z",           # no seconds
+    "2026-1-7T15:42:00Z",          # one-digit month and day
+    "",
+    None,
+])
+def test_anything_else_is_refused(when):
+    with pytest.raises(ValueError, match="2026-11-07T15:42:00Z"):
+        check_timestamp(when)
+
+
+@pytest.mark.parametrize("when", ["2026-13-07T15:42:00Z", "2026-11-31T15:42:00Z", "2026-11-07T25:42:00Z"])
+def test_the_right_shape_with_an_impossible_date_is_refused(when):
+    with pytest.raises(ValueError, match="not a real date"):
+        check_timestamp(when)
+
+
+def test_ingest_refuses_a_badly_formatted_timestamp_and_stores_nothing(conn):
+    """Scripts pass their own `when`; one in another format would sort wrong for ever."""
+    with pytest.raises(ValueError, match="2026-11-07T15:42:00Z"):
+        ingest_one(conn, posting(), when="2026-10-16T00:00:00+00:00")
+    assert count(conn, "job") == 0
+    assert count(conn, "job_source") == 0
+
+
+def test_ingest_checks_before_the_title_and_city_filters(conn):
+    """A bad timestamp is a caller's bug, so it is raised even for a posting that would
+    have been skipped — otherwise the filters would hide it."""
+    with pytest.raises(ValueError):
+        ingest_one(conn, posting(title="Sales Manager"), when="2026-10-16")
+
+
+def test_the_default_timestamp_passes_its_own_check(conn):
+    assert check_timestamp(now_iso())
+    assert ingest_one(conn, posting()) == "new:1"
