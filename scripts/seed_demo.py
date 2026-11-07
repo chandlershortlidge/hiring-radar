@@ -62,9 +62,9 @@ def main():
         p = Posting(src, f"{src}-{k}" if src in ("arbeitnow", "startup_jobs", "greenhouse", "lever", "ashby") else "",
                     f"https://example.com/jobs/{k}", company, title, city, text)
         out = ingest_one(conn, p, first, require_city=False, trust_title=True, found_via="linkedin" if src in ("url", "paste", "screenshot") else None)
-        if not out.startswith("new:"):
+        if not out.is_new:
             continue
-        job_id = int(out[4:])
+        job_id = out.job_id
         n += 1
         # feed jobs seen recently stay open; older ones were last seen when they were first seen
         last = now - timedelta(days=min(age, rng.choice([0, 0, 1, 2]))) if age < 10 else now - timedelta(days=age)

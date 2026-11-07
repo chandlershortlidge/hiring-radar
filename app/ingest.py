@@ -15,9 +15,14 @@ row can never be recognised as a duplicate and every repost of it from another s
 becomes a second row. A new job is labelled with its job family (family_of, from the title
 alone) as it is inserted.
 
-Does NOT: call the model (see app/pipeline.py), fetch anything, or delete rows.
+Does NOT: call the model (see app/pipeline.py), fetch anything, or delete rows. It does
+not know where a posting came from either: the settings a hand-added posting is stored
+with live in app/add.py, which is the one entry point for those (HIR-210).
 
-Invariants: one DB transaction per posting; `job.first_seen` never moves later (a
+Invariants: one DB transaction per posting, and a screenshot passed in shares it — the
+image and the job it belongs to are both stored or neither is, because the "have I added
+this screenshot already?" check reads the image, so a job left without its image would be
+added again from the same file (HIR-210); `job.first_seen` never moves later (a
 backdated sighting may move it earlier); `job.last_seen` never moves earlier; a posting that fails the filters is counted, not stored; no row in `job` is ever written with a blank company.
 """
 
@@ -97,6 +102,45 @@ def family_of(title: str) -> str:
     return "ai-engineer"
 
 
+# What storing one posting did. `ingest_one` returns one of these as `Stored.kind`.
+STILL_LISTED = "still_listed"       # this source already had this id: only last_seen moved
+MERGED = "merged"                   # same job, another source row added
+REPOST = "repost"                   # a merge where the earlier listing had gone away
+NEW = "new"                         # a new job row
+SKIPPED_TITLE = "skipped_title"
+SKIPPED_CITY = "skipped_city"
+SKIPPED_COMPANY = "skipped_company"
+
+
+@dataclass(frozen=True)
+class Screenshot:
+    """The image a screenshot posting was read off, stored with the job it creates."""
+
+    data: bytes
+    sha256: str
+    media_type: str
+
+
+@dataclass(frozen=True)
+class Stored:
+    """What storing one posting did, so no caller has to read it out of a string.
+
+    `kind` is one of the seven constants above. `job_id` is the job the posting ended up
+    on, and is None only for the three skipped kinds, where no job was touched.
+    """
+
+    kind: str
+    job_id: int | None = None
+
+    @property
+    def is_new(self) -> bool:
+        return self.kind == NEW
+
+    def line(self) -> str:
+        """One word for the CLI, with the id when a job was created."""
+        return f"{NEW}:{self.job_id}" if self.is_new else self.kind
+
+
 @dataclass
 class Report:
     seen: int = 0
@@ -126,27 +170,30 @@ def _candidates(conn: sqlite3.Connection, company: str | None) -> list[dedup.Can
 
 def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
                require_city: bool = True, found_via: str | None = None,
-               trust_title: bool = False, fetched_ids: frozenset[str] | None = None) -> str:
-    """Returns one of: still_listed, merged, repost, new, skipped_title, skipped_city,
-    skipped_company.
+               trust_title: bool = False, fetched_ids: frozenset[str] | None = None,
+               screenshot: Screenshot | None = None) -> Stored:
+    """Store one posting; see `Stored` for what comes back.
 
     trust_title skips the title filter — for postings a person chose by hand.
     fetched_ids is every source_job_id in the fetch this posting came from; without it
     (a single posting added by hand) nothing counts as a repost.
+    screenshot is the image the posting was read off; it is written in the same
+    transaction as the new job, and only when a new job is created (a posting that merges
+    into a job already stored leaves that job's image alone, as it always has).
     """
     when = when or now_iso()
     if not trust_title and not in_scope_title(p.title):
-        return "skipped_title"
+        return Stored(SKIPPED_TITLE)
     city = place_of(p.location_raw, p.title, p.description_text)
     if require_city and active_place(p.location_raw, p.title, p.description_text) is None:
-        return "skipped_city"
+        return Stored(SKIPPED_CITY)
     # Last, so the title and city counts keep meaning what they did. No trust_title-style
     # escape: this is the invariant of DECISIONS 2026-11-06 "A job is never stored without
     # a company". Blank means blank *to dedup* — the same company_key that would have to
     # match it — so punctuation alone ("-", "—") and a bare legal suffix ("GmbH") are
     # refused too: they key to the empty string and so could never match anything either.
     if not dedup.company_key(p.company):
-        return "skipped_company"
+        return Stored(SKIPPED_COMPANY)
 
     with conn:
         if p.source_job_id:
@@ -155,7 +202,7 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
             if row:
                 conn.execute("UPDATE job_source SET last_seen=? WHERE id=?", (when, row["id"]))
                 conn.execute("UPDATE job SET last_seen=max(last_seen, ?) WHERE id=?", (when, row["job_id"]))
-                return "still_listed"
+                return Stored(STILL_LISTED, row["job_id"])
 
         match = dedup.find_match(p.company, p.title, p.description_text, _candidates(conn, p.company))
         if match:
@@ -173,8 +220,8 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
                          (when, when, job_id))
             if is_repost:
                 conn.execute("UPDATE job SET repost_count = repost_count + 1 WHERE id=?", (job_id,))
-                return "repost"
-            return "merged"
+                return Stored(REPOST, job_id)
+            return Stored(MERGED, job_id)
 
         cur = conn.execute(
             "INSERT INTO job (company, title, title_key, city, location_raw, description_text, family, first_seen, last_seen)"
@@ -186,7 +233,9 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
             "INSERT INTO job_source (job_id, source, source_job_id, url, found_via, first_seen, last_seen, posted_at)"
             " VALUES (?,?,?,?,?,?,?,?)",
             (job_id, p.source, p.source_job_id or None, p.url or None, found_via, when, when, p.posted_at))
-        return f"new:{job_id}"
+        if screenshot is not None:
+            _insert_screenshot(conn, job_id, screenshot)
+        return Stored(NEW, job_id)
 
 
 def ingest(conn: sqlite3.Connection, postings: list[Posting], when: str | None = None,
@@ -197,23 +246,32 @@ def ingest(conn: sqlite3.Connection, postings: list[Posting], when: str | None =
     fetched_ids = frozenset(p.source_job_id for p in postings if p.source_job_id)
     for p in postings:
         r.seen += 1
-        outcome = ingest_one(conn, p, when, require_city, fetched_ids=fetched_ids)
-        if outcome.startswith("new:"):
+        res = ingest_one(conn, p, when, require_city, fetched_ids=fetched_ids)
+        if res.is_new:
             r.new += 1
-            r.new_job_ids.append(int(outcome[4:]))
-        elif outcome == "repost":
+            r.new_job_ids.append(res.job_id)
+        elif res.kind == REPOST:
             r.reposts += 1
             r.merged += 1
         else:
-            setattr(r, outcome, getattr(r, outcome) + 1)
+            setattr(r, res.kind, getattr(r, res.kind) + 1)
     return r
 
 
+def _insert_screenshot(conn: sqlite3.Connection, job_id: int, s: Screenshot) -> None:
+    """The write itself, with no transaction of its own, so it can join one."""
+    conn.execute("INSERT OR REPLACE INTO screenshot (job_id, sha256, media_type, bytes) VALUES (?,?,?,?)",
+                 (job_id, s.sha256, s.media_type, s.data))
+
+
 def store_screenshot(conn: sqlite3.Connection, job_id: int, data: bytes, sha256: str, media_type: str) -> None:
-    """Keep the image so stage 1 can be re-run; one per job, replaced if re-added."""
+    """Keep the image so stage 1 can be re-run; one per job, replaced if re-added.
+
+    For a job that already exists. A job being created stores its image in the same
+    transaction — pass `screenshot=` to `ingest_one` instead.
+    """
     with conn:
-        conn.execute("INSERT OR REPLACE INTO screenshot (job_id, sha256, media_type, bytes) VALUES (?,?,?,?)",
-                     (job_id, sha256, media_type, data))
+        _insert_screenshot(conn, job_id, Screenshot(data, sha256, media_type))
 
 
 def job_id_for_screenshot(conn: sqlite3.Connection, sha256: str) -> int | None:

@@ -36,9 +36,9 @@ from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(ROOT / ".env")
 
-from app import db  # noqa: E402
-from app.extract import DEFAULT_MODEL, Extraction, Mention, extract, make_client  # noqa: E402
-from app.ingest import ingest_one, job_id_for_screenshot, store_screenshot  # noqa: E402
+from app import add, db  # noqa: E402
+from app.extract import Extraction, Mention, make_client  # noqa: E402
+from app.ingest import Screenshot, job_id_for_screenshot  # noqa: E402
 from app.pipeline import extract_pending, store_extraction  # noqa: E402
 from app.sources import Posting  # noqa: E402
 from app.taxonomy import Taxonomy  # noqa: E402
@@ -137,15 +137,14 @@ def main(argv=None):
 
         p = Posting(source="screenshot", source_job_id="", url="", company=j["company"], title=j["title"],
                     location_raw=location, description_text=text, posted_at=when)
-        outcome = ingest_one(conn, p, when, require_city=False, found_via="linkedin", trust_title=True)
-        if not outcome.startswith("new:"):
+        res = add.add_by_hand(conn, p, "linkedin", when=when,
+                              screenshot=Screenshot(data, sha, "image/png") if data else None)
+        if not res.is_new:
             counts["skipped"] += 1
-            print(f"  {outcome} (dedup) — skipped")
+            print(f"  {res.kind} (dedup) — skipped")
             continue
-        job_id = int(outcome[4:])
+        job_id = res.job_id
         counts[group] += 1
-        if data:
-            store_screenshot(conn, job_id, data, sha, "image/png")
         if group == "C":
             mentions, unmapped = legacy_mentions(skills.get(legacy_id, []), tax)
             counts["unmapped"] += len(unmapped)
@@ -157,8 +156,7 @@ def main(argv=None):
     print(f"\nimported: A(golden text)={counts['A']} B(transcribed)={counts['B']} C(legacy skills)={counts['C']} "
           f"skipped={counts['skipped']} unmapped_labels={counts['unmapped']}")
     if not args.dry_run and not args.no_extract:
-        client = client or make_client()
-        report = extract_pending(conn, tax, lambda text, t, m: extract(text, t, client, m), DEFAULT_MODEL)
+        report = extract_pending(conn, tax, client=client or make_client())
         print(report.line())
 
 

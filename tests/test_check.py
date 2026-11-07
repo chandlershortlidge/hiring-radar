@@ -517,5 +517,5 @@ def test_job_coverage_leaves_out_legacy_screenshot_imports(conn):
                         "2026-06-11T09:00:00Z", require_city=False)
     new_shot = ingest_one(conn, posting(source="screenshot", sid="", company="D Co", text="d " + JD),
                           "2026-10-18T09:00:00Z", require_city=False)
-    assert legacy.startswith("new:") and new_shot.startswith("new:")
+    assert legacy.is_new and new_shot.is_new
     assert job_coverage(conn) == (1, 3, 1)   # feed 1 of (feed, url, new screenshot); 1 legacy out
