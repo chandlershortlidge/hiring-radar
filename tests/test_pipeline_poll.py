@@ -326,6 +326,21 @@ def test_poll_feeds_warns_when_a_known_board_comes_back_empty(tmp_path):
     assert not any("WARNING" in l for l in lines)
 
 
+def test_poll_totals_include_the_blank_company_count(tmp_path):
+    """HIR-207: a feed posting with no company is refused, and the poll's own total says so
+    — without that the only trace of it would be the per-feed line."""
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+    feeds = [{"type": "arbeitsagentur", "search": "KI"}, {"type": "arbeitnow"}]
+    blank = [Posting("arbeitsagentur", "x1", "", "", "AI Engineer", "Berlin", "Python please")]
+    good = [Posting("arbeitnow", "y1", "", "Acme", "AI Engineer", "Berlin", "Python please")]
+
+    r = poll.poll_feeds(conn, feeds, fetch=lambda f: blank if f["type"] == "arbeitsagentur" else good,
+                        log=lambda *_: None)
+    assert (r.seen, r.new, r.skipped_company) == (2, 1, 1)
+    assert conn.execute("SELECT count(*) FROM job WHERE company IS NULL OR trim(company)=''").fetchone()[0] == 0
+
+
 def test_load_feeds_skips_disabled(tmp_path):
     p = tmp_path / "feeds.json"
     p.write_text(json.dumps({"feeds": [{"type": "arbeitnow", "enabled": True}, {"type": "lever", "enabled": False, "token": "x"}]}))
