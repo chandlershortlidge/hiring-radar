@@ -161,6 +161,46 @@ def test_filters_skip_out_of_scope_titles_and_cities(conn):
     assert count(conn, "job") == 1
 
 
+# --- a job is never stored without a company (HIR-207) ---------------------------------
+
+# Everything a feed has handed us, or could, where dedup's company_key comes out empty: the
+# field missing, whitespace, punctuation used as a placeholder, and a bare legal suffix.
+# Each of these can never be matched as a duplicate, so each must be refused at ingest.
+BLANK_COMPANIES = [None, "", "   ", "-", "—", "/", "GmbH"]
+
+
+@pytest.mark.parametrize("company", BLANK_COMPANIES)
+def test_a_feed_posting_with_no_company_is_refused_and_counted(conn, company):
+    assert ingest_one(conn, posting(company=company)) == "skipped_company"
+    assert count(conn, "job") == 0
+    assert count(conn, "job_source") == 0
+
+
+@pytest.mark.parametrize("company", BLANK_COMPANIES)
+def test_a_hand_picked_posting_with_no_company_is_refused_too(conn, company):
+    """trust_title waives the title filter for a posting a person chose; it never waives
+    this one — a blank-company row plants a duplicate however it got in."""
+    p = Posting("paste", "", "", company, "AI Engineer", None, JD)
+    assert ingest_one(conn, p, require_city=False, trust_title=True) == "skipped_company"
+    assert count(conn, "job") == 0
+
+
+def test_no_ingested_job_row_ever_has_a_blank_company(conn):
+    """The invariant itself, over a fetch mixing good and blank-company postings."""
+    ps = [posting(sid="a1"), posting(sid="a2", company=None, title="ML Engineer"),
+          posting(sid="a3", company="  ", title="Data Scientist"),
+          posting(sid="a4", company="Other Co", title="MLOps Engineer")]
+    r = ingest(conn, ps)
+    assert (r.seen, r.new, r.skipped_company) == (4, 2, 2)
+    assert conn.execute("SELECT count(*) FROM job WHERE company IS NULL OR trim(company)=''").fetchone()[0] == 0
+
+
+def test_the_blank_company_count_is_in_the_report_line(conn):
+    """The poll's per-feed line is where this shows up for a person."""
+    r = ingest(conn, [posting(sid="a1", company=""), posting(sid="a2")])
+    assert "skipped_company=1" in r.line() and "new=1" in r.line()
+
+
 def test_san_francisco_postings_are_ingested_under_their_own_city(conn):
     """SF is active since 2026-11-03 (DECISIONS, HIR-12): feeds keep it, as its own city."""
     assert ingest_one(conn, posting(sid="sf1", company="Golden Gate Labs", location="San Francisco, CA")).startswith("new:")
