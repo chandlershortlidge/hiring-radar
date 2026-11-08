@@ -1,27 +1,38 @@
-"""The rules for adding one job from a link, in one place.
+"""Adding one job by hand — from a link, from pasted text, or from a screenshot.
 
-Does: given the result of a link check (app/check.py), decide what adding it should do —
-hand back the job it already is, give up on a page nothing readable came off, refuse a
-posting with no company, refuse a page that rendered almost no text, or store it — and say
-whether ingest must insist on a known city. `decide` is pure: no database, no network, no
-printing, no model.
+Does two things.
 
-Does NOT: check the link (app/check.py), store anything (app/ingest.py), extract skills
-(app/pipeline.py), or format a message. Its two callers do that: the CLI's `check --add`
-(app/__main__.py) and the dashboard's `POST /api/add/url` (app/api.py). They differ only in
-how they report an outcome, which is why the decision lives here and the wording does not.
+`decide` holds the rules for adding from a *link*: given the result of a link check
+(app/check.py) it says what adding it should do — hand back the job it already is, give up
+on a page nothing readable came off, refuse a posting with no company, refuse a page that
+rendered almost no text, or store it — and whether ingest must insist on a known city.
+It is pure: no database, no network, no printing, no model.
 
-Invariant: both entry points reach every add-by-link rule through `decide` and nowhere
-else. The rules drifted twice while they were written out twice — the no-company rule of
-HIR-198 had to be added to both, and the minimum-text rule was only ever in the CLI
-(HIR-204). A new rule added here reaches both callers at once.
+`add_by_hand` stores one hand-added posting, whichever of the three ways it arrived. It is
+the only place that knows what "added by hand" means to storage, and it hands back
+app/ingest.py's typed result.
+
+Does NOT: check the link (app/check.py), read a screenshot (app/transcribe.py), extract
+skills (app/pipeline.py), or format a message. Its callers do that: the CLI's `check --add`,
+`add-text` and `add-screenshot` (app/__main__.py), the dashboard's three `POST /api/add/*`
+endpoints (app/api.py), and the one-off legacy import (scripts/import_legacy.py). They
+differ only in how they report an outcome, which is why the rules live here and the wording
+does not.
+
+Invariants: every entry point reaches every add-by-link rule through `decide`, and stores
+through `add_by_hand`, and nowhere else. The rules drifted twice while they were written
+out twice — the no-company rule of HIR-198 had to be added to both, and the minimum-text
+rule was only ever in the CLI (HIR-204). A new rule added here reaches every caller at
+once, and a new way of adding a job cannot forget one of the three storage settings
+(HIR-210).
 """
 
+import sqlite3
 from dataclasses import dataclass
 
-from app import dedup
+from app import dedup, ingest
 from app.check import CheckResult
-from app.sources import registry
+from app.sources import Posting, registry
 
 MIN_ADD_TEXT = 200   # characters; shorter than any real JD
 
@@ -70,3 +81,25 @@ def decide(r: CheckResult, min_text: int = MIN_ADD_TEXT) -> AddDecision:
     # page postings are source=url. Either way found_via records that a person found it.
     is_board = r.posting.source in registry.BOARD_SOURCES
     return AddDecision(STORE, require_city=not is_board)
+
+
+def add_by_hand(conn: sqlite3.Connection, posting: Posting, found_via: str | None,
+                when: str | None = None, require_city: bool = False,
+                screenshot: ingest.Screenshot | None = None) -> ingest.Stored:
+    """Store one posting a person added, and say what that did (app/ingest.py `Stored`).
+
+    This is the one place the "added by hand" storage settings live, so a new way of adding
+    a job cannot quietly store jobs under feed rules by forgetting one of them:
+
+    * the title is taken as read — a person chose this posting, so the title filter that
+      keeps feeds' unrelated postings out does not apply to it;
+    * `found_via` records where the person found it, which is what the coverage line in
+      `stats` counts;
+    * the city is not insisted on. The one exception is a posting read off a company's own
+      careers page, where `decide` asks for a known city — pass `require_city=True` for it.
+
+    `screenshot` is the image the posting was read off, if any. It is written in the same
+    transaction as the job, so the two can never come apart.
+    """
+    return ingest.ingest_one(conn, posting, when or ingest.now_iso(), require_city=require_city,
+                             found_via=found_via, trust_title=True, screenshot=screenshot)

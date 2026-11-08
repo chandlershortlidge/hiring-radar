@@ -9,7 +9,8 @@ computes coverage from /api/skills and job detail), edit the taxonomy, or poll f
 
 Invariants: every filter is validated against the allowed values and rejected with 422
 otherwise; DB connections are per request; model clients are created lazily so the API
-boots without credentials and only the add endpoints need them.
+boots without credentials and only the add endpoints need them; all three add paths store
+through app/add.py, so none of them can store a hand-added job under feed rules.
 """
 
 import hashlib
@@ -24,8 +25,8 @@ from pydantic import BaseModel, Field
 
 from app import add, db, queries as q
 from app.check import check_url, log_check
-from app.extract import DEFAULT_MODEL, extract, make_client
-from app.ingest import ingest_one, job_id_for_screenshot, now_iso, store_screenshot
+from app.extract import make_client
+from app.ingest import Screenshot, Stored, job_id_for_screenshot, now_iso
 from app.pipeline import extract_pending
 from app.poll import load_feeds
 from app.skill_tree import skill_tree
@@ -171,15 +172,13 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
 
     # --- adds -----------------------------------------------------------------------
 
-    def finish_add(conn, outcome: str) -> dict:
-        if outcome.startswith("new:"):
-            job_id = int(outcome[4:])
-            report = extract_pending(conn, tax, lambda text, t, m: extract(text, t, client(), m), DEFAULT_MODEL,
-                                     log=lambda *_: None, job_ids=[job_id])
-            d = q.job_detail(conn, job_id, now_iso())
-            return {"outcome": "added", "job_id": job_id, "skills_found": len(d["skills"]),
-                    "proposed": len(d["proposed"]), "failed": [f for f in report.failed if f[0] == job_id]}
-        return {"outcome": outcome, "job_id": None}
+    def finish_add(conn, res: Stored) -> dict:
+        if res.is_new:
+            report = extract_pending(conn, tax, client=client(), log=lambda *_: None, job_ids=[res.job_id])
+            d = q.job_detail(conn, res.job_id, now_iso())
+            return {"outcome": "added", "job_id": res.job_id, "skills_found": len(d["skills"]),
+                    "proposed": len(d["proposed"]), "failed": [f for f in report.failed if f[0] == res.job_id]}
+        return {"outcome": res.kind, "job_id": None}
 
     class AddUrl(BaseModel):
         url: str
@@ -204,11 +203,10 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
             return {"outcome": "unreadable", "job_id": None, "verdict": r.line(), "notes": r.notes}
         if decision.action == add.NEEDS_COMPANY:
             return {"outcome": "needs_company", "job_id": None, "verdict": r.line(), "notes": r.notes}
-        outcome = ingest_one(conn, r.posting, now_iso(), require_city=decision.require_city,
-                             found_via=body.found_via, trust_title=True)
-        res = finish_add(conn, outcome)
-        res["verdict"] = r.line()
-        return res
+        out = finish_add(conn, add.add_by_hand(conn, r.posting, body.found_via,
+                                               require_city=decision.require_city))
+        out["verdict"] = r.line()
+        return out
 
     class AddText(BaseModel):
         text: str = Field(min_length=40)
@@ -222,8 +220,7 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
     def add_text(body: AddText, conn=Depends(conn_dep)):
         p = Posting(source="paste", source_job_id="", url=body.url or "", company=body.company, title=body.title,
                     location_raw=body.location, description_text=body.text.strip())
-        outcome = ingest_one(conn, p, now_iso(), require_city=False, found_via=body.found_via, trust_title=True)
-        return finish_add(conn, outcome)
+        return finish_add(conn, add.add_by_hand(conn, p, body.found_via))
 
     @app.post("/api/add/screenshot")
     def add_screenshot(file: UploadFile, company: str, title: str, location: str | None = None,
@@ -240,10 +237,11 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
             raise HTTPException(422, f"could not read the screenshot: {e}")
         p = Posting(source="screenshot", source_job_id="", url=url or "", company=company, title=title,
                     location_raw=location, description_text=t.text)
-        outcome = ingest_one(conn, p, now_iso(), require_city=False, found_via=found_via, trust_title=True)
-        if outcome.startswith("new:"):
-            store_screenshot(conn, int(outcome[4:]), data, t.sha256, t.media_type)
-        return finish_add(conn, outcome)
+        # The image rides the same transaction as the job: if it could not be stored, the
+        # job is not stored either, so the next upload of this file recognises it instead
+        # of adding a second copy (HIR-210).
+        res = add.add_by_hand(conn, p, found_via, screenshot=Screenshot(data, t.sha256, t.media_type))
+        return finish_add(conn, res)
 
     # --- frontend -------------------------------------------------------------------
 

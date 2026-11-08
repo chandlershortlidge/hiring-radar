@@ -1,8 +1,8 @@
 import pytest
 
 from app import db, geo
-from app.ingest import (FAMILIES, check_timestamp, family_of, in_scope_title, ingest,
-                        ingest_one, now_iso)
+from app.ingest import (FAMILIES, Stored, check_timestamp, family_of, in_scope_title,
+                        ingest, ingest_one, now_iso)
 from app.sources import Posting
 
 JD = ("AI Engineer. Requirements: 3+ years Python, experience with LLM applications, RAG "
@@ -27,7 +27,7 @@ def count(conn, table):
 
 def test_new_job_is_inserted_with_city_and_source(conn):
     out = ingest_one(conn, posting(), when="2026-10-16T00:00:00Z")
-    assert out == "new:1"
+    assert out == Stored("new", 1)
     job = conn.execute("SELECT * FROM job").fetchone()
     assert job["city"] == "Berlin" and job["title_key"] == "ai engineer" and job["repost_count"] == 0
     src = conn.execute("SELECT * FROM job_source").fetchone()
@@ -36,7 +36,7 @@ def test_new_job_is_inserted_with_city_and_source(conn):
 
 def test_same_source_id_again_is_still_listed_and_bumps_last_seen(conn):
     ingest_one(conn, posting(), when="2026-10-16T00:00:00Z")
-    assert ingest_one(conn, posting(text="completely different now"), when="2026-10-17T00:00:00Z") == "still_listed"
+    assert ingest_one(conn, posting(text="completely different now"), when="2026-10-17T00:00:00Z").kind == "still_listed"
     job = conn.execute("SELECT first_seen, last_seen FROM job").fetchone()
     assert (job["first_seen"], job["last_seen"]) == ("2026-10-16T00:00:00Z", "2026-10-17T00:00:00Z")
     assert count(conn, "job") == 1 and count(conn, "job_source") == 1
@@ -46,7 +46,7 @@ def test_same_posting_from_another_source_merges(conn):
     ingest_one(conn, posting(), when="2026-10-16T00:00:00Z")
     out = ingest_one(conn, posting(source="startup_jobs", sid="s9", company="Acme", text=JD.replace("3+", "3+ ")),
                      when="2026-10-16T00:00:00Z")
-    assert out == "merged"
+    assert out.kind == "merged"
     assert count(conn, "job") == 1 and count(conn, "job_source") == 2
     assert conn.execute("SELECT repost_count FROM job").fetchone()[0] == 0
 
@@ -95,16 +95,16 @@ def test_old_id_gone_from_a_sample_source_is_not_a_repost(conn, source):
 def test_single_posting_added_by_hand_is_never_a_repost(conn):
     """check --add / the url endpoint hand ingest_one one board posting, with no fetch around it."""
     ingest(conn, [posting(source="greenhouse", sid="a1")], when="2026-10-16T00:00:00Z")
-    assert ingest_one(conn, posting(source="greenhouse", sid="a2"), when="2026-11-20T00:00:00Z") == "merged"
+    assert ingest_one(conn, posting(source="greenhouse", sid="a2"), when="2026-11-20T00:00:00Z").kind == "merged"
     assert ingest_one(conn, Posting("paste", "", "", "Acme GmbH", "AI Engineer", None, JD),
-                      require_city=False) == "merged"
+                      require_city=False).kind == "merged"
     assert conn.execute("SELECT repost_count FROM job").fetchone()[0] == 0
 
 
 def test_different_role_at_same_company_is_a_new_job(conn):
     ingest_one(conn, posting(sid="a1"))
     out = ingest_one(conn, posting(sid="a2", title="ML Platform Engineer", text="SQL, Airflow, dbt, Snowflake. Pipelines."))
-    assert out == "new:2"
+    assert out == Stored("new", 2)
 
 
 # Titles a feed actually served that the domain-only filter let through: "AI" in a sales
@@ -151,14 +151,14 @@ def test_in_scope_title_accepts_domain_plus_role(title):
 
 @pytest.mark.parametrize("title", LEAKED_TITLES)
 def test_leaked_titles_are_not_ingested(conn, title):
-    assert ingest_one(conn, posting(title=title)) == "skipped_title"
+    assert ingest_one(conn, posting(title=title)).kind == "skipped_title"
     assert count(conn, "job") == 0
 
 
 def test_filters_skip_out_of_scope_titles_and_cities(conn):
-    assert ingest_one(conn, posting(title="Account Executive")) == "skipped_title"
-    assert ingest_one(conn, posting(location="Tokyo, Japan")) == "skipped_city"
-    assert ingest_one(conn, posting(location="Remote"), require_city=False).startswith("new:")
+    assert ingest_one(conn, posting(title="Account Executive")).kind == "skipped_title"
+    assert ingest_one(conn, posting(location="Tokyo, Japan")).kind == "skipped_city"
+    assert ingest_one(conn, posting(location="Remote"), require_city=False).is_new
     assert count(conn, "job") == 1
 
 
@@ -172,7 +172,7 @@ BLANK_COMPANIES = [None, "", "   ", "-", "—", "/", "GmbH"]
 
 @pytest.mark.parametrize("company", BLANK_COMPANIES)
 def test_a_feed_posting_with_no_company_is_refused_and_counted(conn, company):
-    assert ingest_one(conn, posting(company=company)) == "skipped_company"
+    assert ingest_one(conn, posting(company=company)).kind == "skipped_company"
     assert count(conn, "job") == 0
     assert count(conn, "job_source") == 0
 
@@ -182,7 +182,7 @@ def test_a_hand_picked_posting_with_no_company_is_refused_too(conn, company):
     """trust_title waives the title filter for a posting a person chose; it never waives
     this one — a blank-company row plants a duplicate however it got in."""
     p = Posting("paste", "", "", company, "AI Engineer", None, JD)
-    assert ingest_one(conn, p, require_city=False, trust_title=True) == "skipped_company"
+    assert ingest_one(conn, p, require_city=False, trust_title=True).kind == "skipped_company"
     assert count(conn, "job") == 0
 
 
@@ -204,10 +204,10 @@ def test_the_blank_company_count_is_in_the_report_line(conn):
 
 def test_san_francisco_postings_are_ingested_under_their_own_city(conn):
     """SF is active since 2026-11-03 (DECISIONS, HIR-12): feeds keep it, as its own city."""
-    assert ingest_one(conn, posting(sid="sf1", company="Golden Gate Labs", location="San Francisco, CA")).startswith("new:")
+    assert ingest_one(conn, posting(sid="sf1", company="Golden Gate Labs", location="San Francisco, CA")).is_new
     assert ingest_one(conn, posting(sid="sf2", company="Bay Co", title="ML Engineer",
-                                    location="South San Francisco, CA")).startswith("new:")
-    assert ingest_one(conn, posting(sid="b1")).startswith("new:")   # Berlin, unchanged
+                                    location="South San Francisco, CA")).is_new
+    assert ingest_one(conn, posting(sid="b1")).is_new   # Berlin, unchanged
     cities = [r["city"] for r in conn.execute("SELECT city FROM job ORDER BY id")]
     assert cities == ["San Francisco", "San Francisco", "Berlin"]
 
@@ -215,19 +215,19 @@ def test_san_francisco_postings_are_ingested_under_their_own_city(conn):
 def test_a_city_off_the_active_list_is_still_skipped_unless_added_by_hand(conn, monkeypatch):
     """The tracked-vs-active gate is unchanged; only SF's side of it moved."""
     monkeypatch.setattr(geo, "ACTIVE_CITIES", ("Berlin", geo.REMOTE_EU))
-    assert ingest_one(conn, posting(location="San Francisco, CA")) == "skipped_city"
-    assert ingest_one(conn, posting(location="San Francisco, CA"), require_city=False).startswith("new:")
+    assert ingest_one(conn, posting(location="San Francisco, CA")).kind == "skipped_city"
+    assert ingest_one(conn, posting(location="San Francisco, CA"), require_city=False).is_new
     assert conn.execute("SELECT city FROM job").fetchone()["city"] == "San Francisco"
 
 
 def test_manual_add_records_found_via_and_has_no_source_id(conn):
     p = Posting("paste", "", "", "Acme", "AI Engineer", None, JD)
     out = ingest_one(conn, p, require_city=False, found_via="linkedin")
-    assert out == "new:1"
+    assert out == Stored("new", 1)
     src = conn.execute("SELECT source, source_job_id, found_via FROM job_source").fetchone()
     assert (src["source"], src["source_job_id"], src["found_via"]) == ("paste", None, "linkedin")
     # Later, a feed finds the same posting: it merges and the manual job gains feed coverage.
-    assert ingest_one(conn, posting(sid="f1")) == "merged"
+    assert ingest_one(conn, posting(sid="f1")).kind == "merged"
 
 
 def test_ingest_report_counts(conn):
@@ -241,9 +241,9 @@ def test_ingest_report_counts(conn):
 
 def test_eu_remote_postings_are_ingested_as_remote_eu(conn):
     """DECISIONS 2026-10-26: feeds keep EU-remote postings under the place "Remote (EU)"."""
-    assert ingest_one(conn, posting(sid="r1", location="Remote (Germany)")).startswith("new:")
+    assert ingest_one(conn, posting(sid="r1", location="Remote (Germany)")).is_new
     assert conn.execute("SELECT city FROM job").fetchone()["city"] == "Remote (EU)"
-    assert ingest_one(conn, posting(sid="r2", company="Other Co", location="Remote - US")) == "skipped_city"
+    assert ingest_one(conn, posting(sid="r2", company="Other Co", location="Remote - US")).kind == "skipped_city"
 
 
 # --- job family (HIR-186) ---------------------------------------------------------------
@@ -302,7 +302,7 @@ def test_migration_backfill_agrees_with_family_of(tmp_path):
 
 def test_new_job_gets_a_family_on_insert(conn):
     assert ingest_one(conn, posting(title="Senior Machine Learning Engineer"),
-                      when="2026-10-16T00:00:00Z") == "new:1"
+                      when="2026-10-16T00:00:00Z") == Stored("new", 1)
     assert conn.execute("SELECT family FROM job").fetchone()["family"] == "ml-engineer"
 
 
@@ -310,7 +310,7 @@ def test_a_hand_added_job_gets_a_family_too(conn):
     """Manual adds (/api/add/url, /add/text, /add/screenshot) go through ingest_one with
     trust_title, skipping the title filter — they must still be labelled."""
     assert ingest_one(conn, posting(title="Head of Analytics"), when="2026-10-16T00:00:00Z",
-                      trust_title=True) == "new:1"
+                      trust_title=True) == Stored("new", 1)
     assert conn.execute("SELECT family FROM job").fetchone()["family"] == "ai-engineer"
 
 
@@ -364,4 +364,4 @@ def test_ingest_checks_before_the_title_and_city_filters(conn):
 
 def test_the_default_timestamp_passes_its_own_check(conn):
     assert check_timestamp(now_iso())
-    assert ingest_one(conn, posting()) == "new:1"
+    assert ingest_one(conn, posting()) == Stored("new", 1)

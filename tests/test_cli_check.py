@@ -1,9 +1,21 @@
 """`check --add` must not store a posting the check just found (it would duplicate it)."""
 
 import app.__main__ as cli
-from app import db
+from app import add, db
 from app.check import CheckResult
+from app.ingest import Stored
 from app.sources import Posting
+
+
+def never_stores(monkeypatch):
+    """Every add path stores through app/add.py's one hand-add function (HIR-210), so that
+    is where a test asserting "this must not be stored" has to stand."""
+    monkeypatch.setattr(add, "add_by_hand",
+                        lambda *a, **k: (_ for _ in ()).throw(AssertionError("stored")))
+
+
+def stores_as(monkeypatch, job_id: int):
+    monkeypatch.setattr(add, "add_by_hand", lambda *a, **k: Stored("new", job_id))
 
 
 def test_add_skips_a_posting_the_check_found(tmp_path, monkeypatch, capsys):
@@ -15,7 +27,7 @@ def test_add_skips_a_posting_the_check_found(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr(cli, "open_db", lambda: conn)
     monkeypatch.setattr(cli, "check_url", lambda *a, **k: found)
     monkeypatch.setattr(cli, "log_check", lambda *a, **k: None)
-    monkeypatch.setattr(cli, "ingest_one", lambda *a, **k: (_ for _ in ()).throw(AssertionError("ingested")))
+    never_stores(monkeypatch)
     cli.main(["check", page.url, "--add"])
     assert "add: skipped — already job 51" in capsys.readouterr().out
 
@@ -59,7 +71,7 @@ def test_add_refuses_a_posting_with_no_readable_text(tmp_path, monkeypatch, caps
     monkeypatch.setattr(cli, "open_db", lambda: conn)
     monkeypatch.setattr(cli, "check_url", lambda *a, **k: r)
     monkeypatch.setattr(cli, "log_check", lambda *a, **k: None)
-    monkeypatch.setattr(cli, "ingest_one", lambda *a, **k: (_ for _ in ()).throw(AssertionError("ingested")))
+    never_stores(monkeypatch)
     cli.main(["check", empty.url, "--add"])
     assert "add: refused — only 0 characters" in capsys.readouterr().out
 
@@ -74,7 +86,7 @@ def test_add_extracts_only_the_job_it_added(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr(cli, "open_db", lambda: conn)
     monkeypatch.setattr(cli, "check_url", lambda *a, **k: r)
     monkeypatch.setattr(cli, "log_check", lambda *a, **k: None)
-    monkeypatch.setattr(cli, "ingest_one", lambda *a, **k: "new:248")
+    stores_as(monkeypatch, 248)
     monkeypatch.setattr(cli, "run_extraction", lambda conn, limit=None, job_ids=None: calls.append(job_ids))
     cli.main(["check", page.url, "--add"])
     assert calls == [[248]]
@@ -87,7 +99,7 @@ def test_add_text_extracts_only_the_job_it_added(tmp_path, monkeypatch):
     calls = []
     monkeypatch.setattr(cli.sys, "stdin", io.StringIO("Python and RAG. " * 40))
     monkeypatch.setattr(cli, "open_db", lambda: conn)
-    monkeypatch.setattr(cli, "ingest_one", lambda *a, **k: "new:7")
+    stores_as(monkeypatch, 7)
     monkeypatch.setattr(cli, "run_extraction", lambda conn, limit=None, job_ids=None: calls.append(job_ids))
     cli.main(["add-text", "--company", "Acme", "--title", "AI Engineer"])
     assert calls == [[7]]

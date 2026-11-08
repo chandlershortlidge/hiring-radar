@@ -420,3 +420,34 @@ def test_a_second_extraction_on_the_same_database_skips(conn, tmp_path):
     assert "skipped" in r.line()
     # released: the next run extracts the pending jobs
     assert pipeline.extract_pending(conn, TAX, fn, "m", log=lambda *_: None).attempted == 3
+
+
+# --- the default model call (HIR-210) ---------------------------------------------------
+
+
+def test_extract_pending_makes_the_real_call_itself_when_none_is_passed(conn, monkeypatch):
+    """Every caller outside the tests used to build the same one-line wrapper around the
+    stage-2 call. Left out, extract_pending builds it, and uses a client handed to it
+    rather than creating one — which is how the API keeps its own."""
+    seen = {}
+
+    def fake_extract_call(text, tax, client, model):
+        seen["client"], seen["model"] = client, model
+        return Extraction(mentions=[Mention("python", "required", "Python")],
+                          extractor_version=extractor_version(tax, model), taxonomy_version=tax.version)
+
+    monkeypatch.setattr(pipeline, "extract", fake_extract_call)
+    monkeypatch.setattr(pipeline, "make_client", lambda: (_ for _ in ()).throw(AssertionError("made a client")))
+    r = pipeline.extract_pending(conn, TAX, client="the-api's-client", log=lambda *_: None)
+    assert (r.attempted, r.succeeded) == (3, 3)
+    assert seen["client"] == "the-api's-client"
+    assert seen["model"] == pipeline.DEFAULT_MODEL   # ...and the current model, unasked
+
+
+def test_the_default_call_creates_no_client_until_there_is_a_job_to_read(conn, monkeypatch):
+    """So a process with no credentials can still reach extraction with nothing pending —
+    which is what lets the API boot without them."""
+    monkeypatch.setattr(pipeline, "make_client", lambda: (_ for _ in ()).throw(AssertionError("made a client")))
+    conn.execute("DELETE FROM job")
+    conn.commit()
+    assert pipeline.extract_pending(conn, TAX, log=lambda *_: None).attempted == 0
