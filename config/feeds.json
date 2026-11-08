@@ -8,6 +8,8 @@
     {"type": "arbeitsagentur", "enabled": true, "search": "Machine Learning Engineer", "where": "Hamburg", "radius_km": 25, "days": 30},
     {"type": "arbeitsagentur", "enabled": true, "search": "AI Engineer", "where": "Frankfurt", "radius_km": 25, "days": 30},
     {"type": "arbeitsagentur", "enabled": true, "search": "Machine Learning Engineer", "where": "Frankfurt", "radius_km": 25, "days": 30},
+    {"type": "arbeitsagentur", "enabled": true, "search": "AI Engineer", "where": "München", "radius_km": 25, "days": 30},
+    {"type": "arbeitsagentur", "enabled": true, "search": "Machine Learning Engineer", "where": "München", "radius_km": 25, "days": 30},
     {"type": "jsearch", "enabled": true, "search": "AI engineer in Berlin", "country": "de", "date_posted": "week", "num_pages": 1},
     {"type": "jsearch", "enabled": true, "search": "machine learning engineer in Berlin", "country": "de", "date_posted": "week", "num_pages": 1},
     {"type": "jsearch", "enabled": true, "search": "remote AI engineer", "country": "de", "date_posted": "week", "num_pages": 1},
@@ -71,6 +73,9 @@
     {"type": "greenhouse", "enabled": true, "token": "point72", "company": "point72"},
     {"type": "greenhouse", "enabled": true, "token": "wehrtyou", "company": "wehrtyou"},
     {"type": "lever", "enabled": true, "token": "spotify", "company": "spotify"},
-    {"type": "ashby", "enabled": true, "token": "ramp", "company": "ramp"}
+    {"type": "ashby", "enabled": true, "token": "ramp", "company": "ramp"},
+    {"type": "greenhouse", "enabled": true, "token": "agilerobotsse", "company": "agilerobotsse"},
+    {"type": "greenhouse", "enabled": true, "token": "celonis", "company": "celonis"},
+    {"type": "join", "enabled": true, "token": "alexanderthamm", "company": "alexanderthamm"}
   ]
 }

@@ -42,12 +42,13 @@ CITIES: dict[str, tuple[str, ...]] = {
     "New York": ("new york", "nyc", "manhattan", "brooklyn"),
     "Hamburg": ("hamburg",),
     "Frankfurt": ("frankfurt",),
+    "Munich": ("munich", "münchen", "muenchen"),
 }
 
 REMOTE_EU = "Remote (EU)"
 
 ACTIVE_CITIES: tuple[str, ...] = ("Berlin", REMOTE_EU, "San Francisco", "New York", "Hamburg",
-                                  "Frankfurt")
+                                  "Frankfurt", "Munich")
 
 _PATTERNS = {city: re.compile(r"\b(" + "|".join(re.escape(a) for a in aliases) + r")\b", re.I)
              for city, aliases in CITIES.items()}
