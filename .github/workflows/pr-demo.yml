@@ -1,0 +1,195 @@
+name: PR demo
+
+# Evidence for review (HIR-214): before/after screenshots and a screen recording of the
+# dashboard on every PR that can change what it shows, posted as one PR comment.
+#
+# How: the same walkthrough (web/e2e/walkthrough.spec.js, always taken from the PR branch)
+# runs twice — against the app built from the PR's base ("before") and from its head
+# ("after") — each on its own fake demo database (scripts/seed_demo.py; no model calls,
+# no real data, no secrets). The publish job copies the images to the `pr-evidence`
+# branch, because a PR comment can only show an image that has a URL, then writes or
+# updates a single comment.
+#
+# Does NOT: block a merge (nothing here is a required check, and the walkthrough asserts
+# nothing), deploy, touch the VM or the real database, or run for PRs from forks (they
+# get no write token; this repo takes none today).
+
+on:
+  pull_request:
+    paths:
+      - "web/**"
+      - "app/**"
+      - "scripts/seed_demo.py"
+      - ".github/workflows/pr-demo.yml"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pr-demo-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  capture:
+    name: Capture (${{ matrix.side }})
+    if: github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        side: [before, after]
+    steps:
+      # The walkthrough and its Playwright install: always the branch's.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: head
+      # The app being photographed: main as it was when the PR branched, or the branch.
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ matrix.side == 'before' && github.event.pull_request.base.sha || github.event.pull_request.head.sha }}
+          path: app-src
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.13"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Seed the demo database and build the dashboard
+        working-directory: app-src
+        run: |
+          uv sync --frozen
+          HIRING_RADAR_DB="$RUNNER_TEMP/demo.db" uv run python scripts/seed_demo.py
+          cd web && npm ci && npm run build
+
+      - name: Start the server
+        working-directory: app-src
+        run: |
+          HIRING_RADAR_DB="$RUNNER_TEMP/demo.db" nohup uv run python -m app serve --port 8000 > "$RUNNER_TEMP/serve.log" 2>&1 &
+          for i in $(seq 60); do curl -sf http://127.0.0.1:8000/ > /dev/null && exit 0; sleep 1; done
+          cat "$RUNNER_TEMP/serve.log"; exit 1
+
+      - name: Run the walkthrough
+        working-directory: head/web
+        env:
+          DEMO_URL: http://127.0.0.1:8000
+          DEMO_OUT: ${{ github.workspace }}/out
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+          npm run demo
+          # Keep the screenshots and one recording per screen size; drop Playwright's scratch.
+          for p in desktop phone; do
+            cp "$DEMO_OUT/_playwright/walkthrough-walkthrough-$p/video.webm" "$DEMO_OUT/$p.webm" || true
+          done
+          rm -rf "$DEMO_OUT/_playwright"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: demo-${{ matrix.side }}
+          path: out/
+          retention-days: 14
+          if-no-files-found: ignore
+
+  publish:
+    name: Post the evidence
+    needs: capture
+    if: always() && needs.capture.result != 'cancelled' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write        # push to the pr-evidence branch
+      pull-requests: write   # write the comment
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: demo-*
+          path: ev
+
+      - name: Turn the recordings into GIFs
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
+          for side in before after; do
+            for p in desktop phone; do
+              src="ev/demo-$side/$p.webm"; [ -f "$src" ] || continue
+              w=$([ "$p" = desktop ] && echo 960 || echo 360)
+              ffmpeg -loglevel error -y -i "$src" \
+                -vf "fps=8,scale=$w:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=96[p];[b][p]paletteuse=dither=bayer" \
+                "ev/demo-$side/$p.gif"
+            done
+          done
+
+      - name: Copy to the pr-evidence branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          url="https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git"
+          if ! git clone -q --depth 1 --branch pr-evidence "$url" store 2>/dev/null; then
+            git init -q store && git -C store checkout -q --orphan pr-evidence
+            git -C store remote add origin "$url"
+          fi
+          cd store
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          # Only the latest run per PR is kept; the comment always points at it.
+          rm -rf "pr-$PR" && mkdir -p "pr-$PR/${SHA:0:7}"
+          for side in before after; do
+            [ -d "../ev/demo-$side" ] && cp -r "../ev/demo-$side" "pr-$PR/${SHA:0:7}/$side"
+          done
+          find "pr-$PR" -name '*.webm' -delete
+          git add -A && git commit -qm "PR #$PR evidence at ${SHA:0:7}" || exit 0
+          # Two PRs can publish at once; rebase onto the other's push and retry.
+          for i in 1 2 3 4 5; do
+            git push -q origin pr-evidence && exit 0
+            git pull -q --rebase --depth 1 origin pr-evidence || true
+            sleep $((i * 2))
+          done
+          exit 1
+
+      - name: Write or update the PR comment
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+          SHA: ${{ github.event.pull_request.head.sha }}
+          CAPTURE: ${{ needs.capture.result }}
+        run: |
+          base="https://raw.githubusercontent.com/$REPO/pr-evidence/pr-$PR/${SHA:0:7}"
+          img() { [ -f "ev/demo-$1/$2" ] && printf '<img src="%s/%s/%s" width="%s">' "$base" "$1" "$2" "$3" || printf '_not captured_'; }
+          {
+            echo "<!-- pr-demo -->"
+            echo "### What this PR looks like"
+            echo "Fake demo data, same walkthrough on both sides. **Before** = main where this branch started; **after** = this branch at \`${SHA:0:7}\`."
+            [ "$CAPTURE" = success ] || echo "> One side failed to capture; see the PR demo run's log."
+            echo
+            echo "**Recording (after)**"
+            echo
+            echo "$(img after desktop.gif 720) $(img after phone.gif 240)"
+            echo
+            for p in desktop phone; do
+              w=$([ "$p" = desktop ] && echo 420 || echo 200)
+              echo "<details$([ $p = desktop ] && echo ' open')><summary><b>${p^} screenshots</b></summary>"
+              echo
+              echo "| | Before | After |"
+              echo "|---|---|---|"
+              for f in $(ls ev/demo-after/$p ev/demo-before/$p 2>/dev/null | grep '\.png$' | sort -u); do
+                name=$(echo "${f%.png}" | cut -d- -f2-)
+                echo "| $name | $(img before $p/$f $w) | $(img after $p/$f $w) |"
+              done
+              echo
+              echo "</details>"
+            done
+          } > body.md
+          id=$(gh api "repos/$REPO/issues/$PR/comments" --paginate \
+                 --jq '[.[] | select(.body | startswith("<!-- pr-demo -->"))][0].id // empty' | head -n1)
+          if [ -n "$id" ]; then
+            gh api -X PATCH "repos/$REPO/issues/comments/$id" -F body=@body.md > /dev/null
+          else
+            gh api -X POST "repos/$REPO/issues/$PR/comments" -F body=@body.md > /dev/null
+          fi

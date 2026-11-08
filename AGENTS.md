@@ -175,6 +175,8 @@ cd web && npm test && cd ..                       # the frontend's own tests (vi
 uv run python -m app serve                        # http://127.0.0.1:8000 (API + built frontend)
 cd web && npm run dev                             # frontend with hot reload on :5173, proxies /api to :8000
 HIRING_RADAR_DB=/tmp/demo.db uv run python scripts/seed_demo.py   # fake data to look at the UI without model calls
+cd web && DEMO_URL=http://127.0.0.1:8000 npm run demo   # screenshots + recording → web/demo-out/ (server must be running)
+# On a PR, .github/workflows/pr-demo.yml runs that walkthrough on main and on the branch and posts the before/after as a comment
 
 # One-off: import the legacy corpus (needs the screenshot folder from the old Supabase bucket)
 uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --city Berlin --dry-run
