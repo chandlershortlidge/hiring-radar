@@ -1,0 +1,119 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Automotive Cybersecurity\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic AI toolchains\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud platforms\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"containerization and orchestration technologies\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Infrastructure-as-Code\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"ansible\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Ansible\"\n    },\n    {\n      \"skill_id\": \"github-actions\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitHub Actions/GitLab CI\"\n    },\n    {\n      \"skill_id\": \"gitlab-ci\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitHub Actions/GitLab CI\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Security toolchain development and operation\",\n      \"raw_text\": \"developing or operating complex security toolchains\"\n    },\n    {\n      \"label\": \"Static code analysis\",\n      \"raw_text\": \"static and dynamic code analysis\"\n    },\n    {\n      \"label\": \"Dynamic code analysis\",\n      \"raw_text\": \"dynamic code analysis\"\n    },\n    {\n      \"label\": \"Fuzzing\",\n      \"raw_text\": \"fuzzing\"\n    },\n    {\n      \"label\": \"Penetration testing tools\",\n      \"raw_text\": \"penetration testing tools\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Several years of professional experience\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Business-fluent German and English language skills.\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"University degree in Computer Science or a comparable IT-related field.\",\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"The candidate qualifications section has no optional markers; all listed skills are required.\\nInterpreted agentic AI toolchains as agents, not AI coding tools or an explicit requirement for LLM orchestration.\\nCommercial and open-source technologies do not explicitly require open-source LLMs; model references occur only in responsibilities.\\nSeveral years suggests mid seniority, but the unspecified year count warrants review.\\nThe comparable IT-related field widens the degree field, not the accepted qualification type.\\nGitHub Actions/GitLab CI quotes distinguish the qualifying mention from the separate responsibilities mention.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "Automotive Cybersecurity"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic AI toolchains"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containerization and orchestration technologies"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure-as-Code"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "ansible",
+        "requirement": "required",
+        "raw_text": "Ansible"
+      },
+      {
+        "skill_id": "github-actions",
+        "requirement": "required",
+        "raw_text": "GitHub Actions/GitLab CI"
+      },
+      {
+        "skill_id": "gitlab-ci",
+        "requirement": "required",
+        "raw_text": "GitHub Actions/GitLab CI"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Security toolchain development and operation",
+        "raw_text": "developing or operating complex security toolchains"
+      },
+      {
+        "label": "Static code analysis",
+        "raw_text": "static and dynamic code analysis"
+      },
+      {
+        "label": "Dynamic code analysis",
+        "raw_text": "dynamic code analysis"
+      },
+      {
+        "label": "Fuzzing",
+        "raw_text": "fuzzing"
+      },
+      {
+        "label": "Penetration testing tools",
+        "raw_text": "penetration testing tools"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Several years of professional experience",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Business-fluent German and English language skills.",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "University degree in Computer Science or a comparable IT-related field.",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The candidate qualifications section has no optional markers; all listed skills are required.\nInterpreted agentic AI toolchains as agents, not AI coding tools or an explicit requirement for LLM orchestration.\nCommercial and open-source technologies do not explicitly require open-source LLMs; model references occur only in responsibilities.\nSeveral years suggests mid seniority, but the unspecified year count warrants review.\nThe comparable IT-related field widens the degree field, not the accepted qualification type.\nGitHub Actions/GitLab CI quotes distinguish the qualifying mention from the separate responsibilities mention."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "cb7a81c798305bf8aa5d44a28e1dbb66efd12521229a4a2f7675d28ef4de16c4",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

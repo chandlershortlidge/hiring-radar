@@ -1,0 +1,87 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Public Cloud\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vorzugsweise GCP\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"IaC\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Generative AI-Anwendungen\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Bereitstellung und Integration von Generative AI-Anwendungen\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD-Pipeline\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"hast idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Agile Methoden\",\n      \"raw_text\": \"agilen Methoden\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"erste Erfahrungen\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"verhandlungssicher in Deutsch\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"ein abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz\",\n  \"notes\": \"Die Anforderungen stehen unter „Du“; es gibt keinen insgesamt optionalen Anforderungsabschnitt. „vorzugsweise“ macht nur GCP optional, „idealerweise“ den Kenntnispunkt zu Industriestandards und Sicherheitskonzepten.\\nDie Technologieliste unter „Deine Hauptaufgaben“ ist Teil der Aufgabenbeschreibung, kein eigenständiger Tech-Stack-Abschnitt; ausschließlich dort genannte Technologien werden nicht aufgenommen.\\nAI deployment ist zur Prüfung markiert, weil die Bereitstellung von AI-Anwendungen statt ausdrücklich von Modellen verlangt wird.\\nCybersecurity ist zur Prüfung markiert, weil „Sicherheitskonzepten“ die nächstliegende, aber nicht wortgleiche Zuordnung ist.\\nIndustriestandards, Richtlinien und regulatorische Compliance-Anforderungen aus dem Versicherungs- und Finanzumfeld werden wörtlich als Domänenwissen behandelt, nicht als eigenständige technische Skills.\\n„erste Erfahrungen“ begründet junior; „erfahrene“ allein ist nach dem Leitfaden kein Senioritätssignal.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Public Cloud"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "vorzugsweise GCP"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "IaC"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generative AI-Anwendungen"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "Bereitstellung und Integration von Generative AI-Anwendungen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Pipeline"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "nice_to_have",
+        "raw_text": "hast idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Agile Methoden",
+        "raw_text": "agilen Methoden"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "erste Erfahrungen",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "verhandlungssicher in Deutsch",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "ein abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz",
+    "notes": "Die Anforderungen stehen unter „Du“; es gibt keinen insgesamt optionalen Anforderungsabschnitt. „vorzugsweise“ macht nur GCP optional, „idealerweise“ den Kenntnispunkt zu Industriestandards und Sicherheitskonzepten.\nDie Technologieliste unter „Deine Hauptaufgaben“ ist Teil der Aufgabenbeschreibung, kein eigenständiger Tech-Stack-Abschnitt; ausschließlich dort genannte Technologien werden nicht aufgenommen.\nAI deployment ist zur Prüfung markiert, weil die Bereitstellung von AI-Anwendungen statt ausdrücklich von Modellen verlangt wird.\nCybersecurity ist zur Prüfung markiert, weil „Sicherheitskonzepten“ die nächstliegende, aber nicht wortgleiche Zuordnung ist.\nIndustriestandards, Richtlinien und regulatorische Compliance-Anforderungen aus dem Versicherungs- und Finanzumfeld werden wörtlich als Domänenwissen behandelt, nicht als eigenständige technische Skills.\n„erste Erfahrungen“ begründet junior; „erfahrene“ allein ist nach dem Leitfaden kein Senioritätssignal."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "285e53e4d29eac8eaff9ae15f71c35616ac47bbb906ba9bf7dd9ddbb84201537",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

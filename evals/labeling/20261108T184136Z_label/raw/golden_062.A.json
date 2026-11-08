@@ -1,0 +1,97 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"Kenntnisse in REST APIs\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"MS Azure\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud-Services\", \"uncertain\": true},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Umgang mit Docker\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"Backend-Systemen\", \"uncertain\": true},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"Gute Kenntnisse AI\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"GenAI\"},\n    {\"skill_id\": \"workflow-automation\", \"requirement\": \"required\", \"raw_text\": \"Automatisierung\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"OpenAPI\", \"raw_text\": \"OpenAPI\"},\n    {\"label\": \"JSON\", \"raw_text\": \"JSON und modernen Integrationsarchitekturen\"},\n    {\"label\": \"Integration architectures\", \"raw_text\": \"modernen Integrationsarchitekturen\"},\n    {\"label\": \"Microsoft 365\", \"raw_text\": \"Microsoft 365\"},\n    {\"label\": \"Entra ID\", \"raw_text\": \"Entra ID\"},\n    {\"label\": \"Power Platform\", \"raw_text\": \"Power Platform\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior IT Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Studium oder abgeschlossene Berufsausbildung IT\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"All skills come from the single requirements section 'Anforderungen'. It carries no optional heading and no inline markers, so every skill is required.\\n'REST APIs' and 'API-gesteuerten Anwendungen' both map to apis and are collapsed into one criterion. The quote is taken from the requirements bullet, since 'REST APIs' also appears in Aufgaben.\\nThe AI line is an 'oder' list ('AI, GenAI, Automatisierung oder datengetriebenen Anwendungen'). I labeled each item required on the literal reading. AI maps to ai-ml; Automatisierung is a loose fit for workflow-automation.\\nEntra ID (formerly Azure AD) is left unmapped rather than mapped to active-directory, which denotes on-prem AD.\\nI did not map 'modernen Integrationsarchitekturen' to software-architecture.\\nDegree: 'Studium' with no level maps to bachelor. I counted the alternative 'abgeschlossene Berufsausbildung' as a comparable qualification, so degree_or_equivalent is true. This is flagged.\\n'Einschlägige Berufserfahrung' does not affect seniority. Seniority rests on 'Senior' in the title.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Kenntnisse in REST APIs"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "MS Azure"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Services",
+        "uncertain": true
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Umgang mit Docker"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend-Systemen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Gute Kenntnisse AI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "GenAI"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "Automatisierung",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "OpenAPI",
+        "raw_text": "OpenAPI"
+      },
+      {
+        "label": "JSON",
+        "raw_text": "JSON und modernen Integrationsarchitekturen"
+      },
+      {
+        "label": "Integration architectures",
+        "raw_text": "modernen Integrationsarchitekturen"
+      },
+      {
+        "label": "Microsoft 365",
+        "raw_text": "Microsoft 365"
+      },
+      {
+        "label": "Entra ID",
+        "raw_text": "Entra ID"
+      },
+      {
+        "label": "Power Platform",
+        "raw_text": "Power Platform"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior IT Engineer",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Studium oder abgeschlossene Berufsausbildung IT",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "All skills come from the single requirements section 'Anforderungen'. It carries no optional heading and no inline markers, so every skill is required.\n'REST APIs' and 'API-gesteuerten Anwendungen' both map to apis and are collapsed into one criterion. The quote is taken from the requirements bullet, since 'REST APIs' also appears in Aufgaben.\nThe AI line is an 'oder' list ('AI, GenAI, Automatisierung oder datengetriebenen Anwendungen'). I labeled each item required on the literal reading. AI maps to ai-ml; Automatisierung is a loose fit for workflow-automation.\nEntra ID (formerly Azure AD) is left unmapped rather than mapped to active-directory, which denotes on-prem AD.\nI did not map 'modernen Integrationsarchitekturen' to software-architecture.\nDegree: 'Studium' with no level maps to bachelor. I counted the alternative 'abgeschlossene Berufsausbildung' as a comparable qualification, so degree_or_equivalent is true. This is flagged.\n'Einschlägige Berufserfahrung' does not affect seniority. Seniority rests on 'Senior' in the title."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "33093755682123d0ed49a4ffc2183de6911b6f7103173de37c58571d90a92684",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

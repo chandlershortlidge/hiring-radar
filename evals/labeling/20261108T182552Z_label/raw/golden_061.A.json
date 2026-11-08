@@ -1,0 +1,92 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Public Cloud\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"vorzugsweise GCP\", \"uncertain\": true},\n    {\"skill_id\": \"terraform\", \"requirement\": \"required\", \"raw_text\": \"Terraform (IaC)\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"IaC\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Generative AI-Anwendungen\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD-Pipeline\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"Versionskontrollsystemen wie GitLab, GitHub oder Bitbucket\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python als Programmiersprache\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"GitLab\", \"raw_text\": \"GitLab\"},\n    {\"label\": \"Bitbucket\", \"raw_text\": \"Bitbucket\"},\n    {\"label\": \"Agile methods\", \"raw_text\": \"agilen Methoden\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": \"required\", \"german_basis\": \"stated\", \"german_signal\": \"verhandlungssicher in Deutsch\",\n  \"degree\": \"bachelor\", \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true, \"degree_signal\": \"abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"Requirements section is \\\"Du\\\". It has no optional heading, so every item defaults to required.\\nThe technologies listed under Hauptaufgaben are responsibilities only, so they are not labeled: Vertex AI, LangChain, Gemini, Microservices, Cloud Run and Cloud Build. Google Cloud is covered by the GCP mention in the requirements.\\nGCP is nice_to_have because \\\"vorzugsweise\\\" (preferably) is treated as the German equivalent of the inline marker \\\"preferred\\\". It is flagged because the marker list in the guide is English-only.\\nThe guide is silent on German optional markers. I took the literal German meaning and applied the matching English marker.\\ngit takes one criterion that covers both Versionskontrollsystemen and GitHub. GitLab and Bitbucket have no taxonomy id. gitlab-ci is CI tooling, not version control, so it was not used for GitLab.\\nai-deployment was not labeled for \\\"Bereitstellung\\\" of GenAI applications. The text does not name model deployment.\\n\\\"Idealerweise\\\" knowledge of security concepts, compliance and cloud certifications was not labeled. These are domain knowledge or certifications, not taxonomy skills.\\nSeniority is left null. \\\"erste Erfahrungen\\\" applies only to GenAI and sits alongside \\\"einschlägige Erfahrung\\\". \\\"erfahrene\\\" appears in the responsibilities and is not a level signal. Flagged for review.\\nThe degree accepts \\\"vergleichbare Qualifikation\\\", so degree_or_equivalent is true.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Public Cloud"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "vorzugsweise GCP",
+        "uncertain": true
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform (IaC)"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "IaC"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generative AI-Anwendungen"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Pipeline"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Versionskontrollsystemen wie GitLab, GitHub oder Bitbucket"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python als Programmiersprache"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "GitLab",
+        "raw_text": "GitLab"
+      },
+      {
+        "label": "Bitbucket",
+        "raw_text": "Bitbucket"
+      },
+      {
+        "label": "Agile methods",
+        "raw_text": "agilen Methoden"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "verhandlungssicher in Deutsch",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Requirements section is \"Du\". It has no optional heading, so every item defaults to required.\nThe technologies listed under Hauptaufgaben are responsibilities only, so they are not labeled: Vertex AI, LangChain, Gemini, Microservices, Cloud Run and Cloud Build. Google Cloud is covered by the GCP mention in the requirements.\nGCP is nice_to_have because \"vorzugsweise\" (preferably) is treated as the German equivalent of the inline marker \"preferred\". It is flagged because the marker list in the guide is English-only.\nThe guide is silent on German optional markers. I took the literal German meaning and applied the matching English marker.\ngit takes one criterion that covers both Versionskontrollsystemen and GitHub. GitLab and Bitbucket have no taxonomy id. gitlab-ci is CI tooling, not version control, so it was not used for GitLab.\nai-deployment was not labeled for \"Bereitstellung\" of GenAI applications. The text does not name model deployment.\n\"Idealerweise\" knowledge of security concepts, compliance and cloud certifications was not labeled. These are domain knowledge or certifications, not taxonomy skills.\nSeniority is left null. \"erste Erfahrungen\" applies only to GenAI and sits alongside \"einschlägige Erfahrung\". \"erfahrene\" appears in the responsibilities and is not a level signal. Flagged for review.\nThe degree accepts \"vergleichbare Qualifikation\", so degree_or_equivalent is true."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "8a40ba3b7eb5a4e7816d296879815adc0e481dcc22fbee2f5424e8fe664709eb",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

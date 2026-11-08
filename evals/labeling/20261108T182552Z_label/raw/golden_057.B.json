@@ -1,0 +1,64 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"applied AI engineering\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation in production\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"NLP is a plus\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Retrieval\",\n      \"raw_text\": \"retrieval\"\n    },\n    {\n      \"label\": \"Document processing\",\n      \"raw_text\": \"Experience with document processing or NLP is a plus\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years in machine learning or applied AI engineering\",\n  \"german\": \"nice_to_have\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"German is a plus\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The What you bring section defaults to required; the document processing/NLP bullet is optional through its inline plus marker.\\nRetrieval is read literally and left unmapped: the posting does not explicitly name RAG, retrieval pipelines, or vector search.\\nDocument processing has no matching taxonomy entry; OCR and other technologies mentioned only under responsibilities are excluded.\\nThe 3+ years minimum supports inferred mid seniority; no degree is mentioned.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "applied AI engineering"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation in production"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "nice_to_have",
+        "raw_text": "NLP is a plus"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Retrieval",
+        "raw_text": "retrieval"
+      },
+      {
+        "label": "Document processing",
+        "raw_text": "Experience with document processing or NLP is a plus"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years in machine learning or applied AI engineering",
+    "german": "nice_to_have",
+    "german_basis": "stated",
+    "german_signal": "German is a plus",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The What you bring section defaults to required; the document processing/NLP bullet is optional through its inline plus marker.\nRetrieval is read literally and left unmapped: the posting does not explicitly name RAG, retrieval pipelines, or vector search.\nDocument processing has no matching taxonomy entry; OCR and other technologies mentioned only under responsibilities are excluded.\nThe 3+ years minimum supports inferred mid seniority; no degree is mentioned."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "b2915aba66673fb8b50810ddcd7b19b839bf4e29ac22068af4d831834b5b15b2",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

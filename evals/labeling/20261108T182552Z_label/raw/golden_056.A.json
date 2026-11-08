@@ -1,0 +1,77 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"full-time in Software Engineering\"},\n    {\"skill_id\": \"full-stack-development\", \"requirement\": \"required\", \"raw_text\": \"Fullstack Development\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"Backend\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud Solutions\", \"uncertain\": true},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"Architecture\", \"uncertain\": true},\n    {\"skill_id\": \"devops\", \"requirement\": \"required\", \"raw_text\": \"DevOps\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Data Engineering\", \"raw_text\": \"Data Engineering\"},\n    {\"label\": \"Web Development\", \"raw_text\": \"Web Development\"},\n    {\"label\": \"IT-Management\", \"raw_text\": \"IT-Management\"},\n    {\"label\": \"Product Ownership\", \"raw_text\": \"Product Ownership\"}\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"2026/27 Graduate\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"relevant Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"Skills come only from the 'Who you are' bullet, which has no optional heading or inline marker, so all are required. The same tech list also appears in the company description, but only the requirements mention is labeled.\\nThe list is a set of alternatives ('e.g. ... or similar'). Under the literal reading each example is still a requirement under a requirements heading.\\n'Cloud Solutions' is mapped to cloud, which is not an exact alias, so it is flagged.\\n'Architecture' is mapped to software-architecture, which is the closest fit but unqualified in the text, so it is flagged.\\n'Web Development' is left unmapped. full-stack-development's alias is 'web application development', not plain web development, and Fullstack is already labeled separately.\\nData Engineering has no taxonomy entry and is left unmapped. IT-Management and Product Ownership are domain or role areas rather than taxonomy skills.\\nDegree: 'Bachelor's + ≥2yrs' accepts experience in place of the Master's level but still requires a degree, so degree_or_equivalent is false. This is flagged for review.\\nGerman: the posting never mentions German, only English fluency. It is written in English, so German is null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "full-time in Software Engineering"
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "Fullstack Development"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud Solutions",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Architecture",
+        "uncertain": true
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data Engineering",
+        "raw_text": "Data Engineering"
+      },
+      {
+        "label": "Web Development",
+        "raw_text": "Web Development"
+      },
+      {
+        "label": "IT-Management",
+        "raw_text": "IT-Management"
+      },
+      {
+        "label": "Product Ownership",
+        "raw_text": "Product Ownership"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "2026/27 Graduate",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "relevant Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Skills come only from the 'Who you are' bullet, which has no optional heading or inline marker, so all are required. The same tech list also appears in the company description, but only the requirements mention is labeled.\nThe list is a set of alternatives ('e.g. ... or similar'). Under the literal reading each example is still a requirement under a requirements heading.\n'Cloud Solutions' is mapped to cloud, which is not an exact alias, so it is flagged.\n'Architecture' is mapped to software-architecture, which is the closest fit but unqualified in the text, so it is flagged.\n'Web Development' is left unmapped. full-stack-development's alias is 'web application development', not plain web development, and Fullstack is already labeled separately.\nData Engineering has no taxonomy entry and is left unmapped. IT-Management and Product Ownership are domain or role areas rather than taxonomy skills.\nDegree: 'Bachelor's + ≥2yrs' accepts experience in place of the Master's level but still requires a degree, so degree_or_equivalent is false. This is flagged for review.\nGerman: the posting never mentions German, only English fluency. It is written in English, so German is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "d2df138e06782697c16d2fee36b396284bf4fa7d2307fc3d53d8669f29f7c18f",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

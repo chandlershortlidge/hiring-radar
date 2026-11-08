@@ -1,0 +1,41 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"snowflake\", \"requirement\": \"required\", \"raw_text\": \"Du arbeitest mit aktuellen Cloud-, Data- und AI-Technologien – unter anderem mit Snowflake\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\", \"uncertain\": true}\n  ],\n  \"unmapped\": [],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": \"required\", \"german_basis\": \"inferred\", \"german_signal\": null,\n  \"degree\": null, \"degree_requirement\": null,\n  \"degree_or_equivalent\": false, \"degree_signal\": null,\n  \"uncertain\": [\"seniority\", \"degree\"],\n  \"notes\": \"The posting is truncated after 'Deine Aufgaben' ('Lesen Sie die vollständige Jobbeschreibung auf der Seite des Partners'). No requirements or qualifications section is visible, so the labels cover only what is shown.\\nSnowflake and Python come from the 'Moderner Technologie-Stack' bullet under the benefits heading 'Das bieten wir dir' ('Du arbeitest mit ... Snowflake, Python'). I treated this as a tech-stack statement under rule 4, so both are unmarked and required. It is not a dedicated section, so both are flagged uncertain.\\nI did not label 'Cloud-, Data- und AI-Technologien' as `cloud` because it is a generic description of the stack rather than a named skill. Flag for review if tech-stack treatment is applied consistently.\\nSnowflake, Data Pipelines, ETL/ELT, Datenmodelle and APIs also appear in 'Deine Aufgaben' (responsibilities only), so those mentions are not labeled.\\n'Je nach Erfahrung und Interesse' is about choosing a focus, not a level or appetite marker. Seniority is none: there are no years, level or lead signal in the visible text.\\nGerman is inferred as required because the posting is written in German and states no language requirement. The truncated requirements section may change this.\\nDegree is none: no degree, Studium or Abschluss is mentioned in the visible text. The truncated part may contain one.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Du arbeitest mit aktuellen Cloud-, Data- und AI-Technologien – unter anderem mit Snowflake",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority",
+      "degree"
+    ],
+    "notes": "The posting is truncated after 'Deine Aufgaben' ('Lesen Sie die vollständige Jobbeschreibung auf der Seite des Partners'). No requirements or qualifications section is visible, so the labels cover only what is shown.\nSnowflake and Python come from the 'Moderner Technologie-Stack' bullet under the benefits heading 'Das bieten wir dir' ('Du arbeitest mit ... Snowflake, Python'). I treated this as a tech-stack statement under rule 4, so both are unmarked and required. It is not a dedicated section, so both are flagged uncertain.\nI did not label 'Cloud-, Data- und AI-Technologien' as `cloud` because it is a generic description of the stack rather than a named skill. Flag for review if tech-stack treatment is applied consistently.\nSnowflake, Data Pipelines, ETL/ELT, Datenmodelle and APIs also appear in 'Deine Aufgaben' (responsibilities only), so those mentions are not labeled.\n'Je nach Erfahrung und Interesse' is about choosing a focus, not a level or appetite marker. Seniority is none: there are no years, level or lead signal in the visible text.\nGerman is inferred as required because the posting is written in German and states no language requirement. The truncated requirements section may change this.\nDegree is none: no degree, Studium or Abschluss is mentioned in the visible text. The truncated part may contain one."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "c1ba12b549f9781c6aefcd52651f0a7299d7e09c83dacdebbe739a2c179fe95d",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

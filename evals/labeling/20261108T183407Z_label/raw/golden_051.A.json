@@ -1,0 +1,154 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Programmierkenntnisse in Python\"},\n    {\"skill_id\": \"r-lang\", \"requirement\": \"required\", \"raw_text\": \"Python und/oder R\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"sowie SQL\"},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"Tensorflow\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"Pytorch\"},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"LangChain\"},\n    {\"skill_id\": \"llamaindex\", \"requirement\": \"required\", \"raw_text\": \"LlamaIndex\"},\n    {\"skill_id\": \"openai-api\", \"requirement\": \"required\", \"raw_text\": \"OpenAI\"},\n    {\"skill_id\": \"apache-spark\", \"requirement\": \"required\", \"raw_text\": \"Spark\"},\n    {\"skill_id\": \"scala\", \"requirement\": \"required\", \"raw_text\": \"Scala\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Kenntnisse in LLMs\"},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"required\", \"raw_text\": \"Embeddings\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"Retrieval Augmented Generation\"},\n    {\"skill_id\": \"llm-guardrails\", \"requirement\": \"required\", \"raw_text\": \"Guardrails\", \"uncertain\": true},\n    {\"skill_id\": \"nlp\", \"requirement\": \"required\", \"raw_text\": \"Entity Extraction\", \"uncertain\": true},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Verfahren des maschinellen Lernens\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"KI-Konzepten\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud-Services\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"Google\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Keras\", \"raw_text\": \"Keras\"},\n    {\"label\": \"Re-ranking\", \"raw_text\": \"Re-ranking\"},\n    {\"label\": \"Clustering\", \"raw_text\": \"Clustering\"},\n    {\"label\": \"Classification models\", \"raw_text\": \"Classification Models\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"mehrjährigen Berufserfahrung\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Du beherrschst Deutsch auf mind. C1 Niveau\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Dein Studium in Data Science, Wirtschaftsinformatik, Mathematik, Physik oder Statistik hast du erfolgreich abgeschlossen\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"'DEINE Skills' is a requirements section with no optional heading, so every item in it is required. 'DEINE Rolle' is a responsibilities section, so OCR and Automatisierung are not labeled.\\nPython 'und/oder' R: both alternatives are named in a requirements list, so both are labeled required, the most literal reading.\\nThe same applies to 'KI-Konzepten und/oder Verfahren des maschinellen Lernens': machine-learning and ai-ml are both required. The ai-ml mapping of 'KI-Konzepten' (AI concepts) is uncertain.\\nLLMs and Machine Learning also appear in the responsibilities. raw_text quotes the requirement mentions instead.\\n'Guardrails' is mapped to llm-guardrails because the LLM/RAG context makes that the fit. It is flagged uncertain.\\n'Entity Extraction' is mapped to nlp, whose aliases include named entity recognition. structured-data-extraction was the alternative. Flagged uncertain.\\n'Google' among the cloud services is read as GCP. Flagged uncertain.\\nKeras, Re-ranking, Clustering and Classification Models have no taxonomy entry, so they go in unmapped.\\nThe degree fields Data Science and Statistik are degree subjects, not skills asked for.\\nSeniority is inferred from 'mehrjährigen Berufserfahrung' (several years, no number given) and read as roughly 3-5 years, so mid. Flagged uncertain. 'Senior Recruiterin' refers to the recruiter, not the role.\\nDegree: a completed Studium with no level named is labeled bachelor. There is no 'or equivalent' wording, so degree_or_equivalent is false.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Programmierkenntnisse in Python"
+      },
+      {
+        "skill_id": "r-lang",
+        "requirement": "required",
+        "raw_text": "Python und/oder R"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "sowie SQL"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "Tensorflow"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "Pytorch"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "required",
+        "raw_text": "LlamaIndex"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "required",
+        "raw_text": "OpenAI"
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "required",
+        "raw_text": "Spark"
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "required",
+        "raw_text": "Scala"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Kenntnisse in LLMs"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "Embeddings"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "Retrieval Augmented Generation"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "Guardrails",
+        "uncertain": true
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "Entity Extraction",
+        "uncertain": true
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Verfahren des maschinellen Lernens"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "KI-Konzepten",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Services"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Keras",
+        "raw_text": "Keras"
+      },
+      {
+        "label": "Re-ranking",
+        "raw_text": "Re-ranking"
+      },
+      {
+        "label": "Clustering",
+        "raw_text": "Clustering"
+      },
+      {
+        "label": "Classification models",
+        "raw_text": "Classification Models"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "mehrjährigen Berufserfahrung",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Du beherrschst Deutsch auf mind. C1 Niveau",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Dein Studium in Data Science, Wirtschaftsinformatik, Mathematik, Physik oder Statistik hast du erfolgreich abgeschlossen",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "'DEINE Skills' is a requirements section with no optional heading, so every item in it is required. 'DEINE Rolle' is a responsibilities section, so OCR and Automatisierung are not labeled.\nPython 'und/oder' R: both alternatives are named in a requirements list, so both are labeled required, the most literal reading.\nThe same applies to 'KI-Konzepten und/oder Verfahren des maschinellen Lernens': machine-learning and ai-ml are both required. The ai-ml mapping of 'KI-Konzepten' (AI concepts) is uncertain.\nLLMs and Machine Learning also appear in the responsibilities. raw_text quotes the requirement mentions instead.\n'Guardrails' is mapped to llm-guardrails because the LLM/RAG context makes that the fit. It is flagged uncertain.\n'Entity Extraction' is mapped to nlp, whose aliases include named entity recognition. structured-data-extraction was the alternative. Flagged uncertain.\n'Google' among the cloud services is read as GCP. Flagged uncertain.\nKeras, Re-ranking, Clustering and Classification Models have no taxonomy entry, so they go in unmapped.\nThe degree fields Data Science and Statistik are degree subjects, not skills asked for.\nSeniority is inferred from 'mehrjährigen Berufserfahrung' (several years, no number given) and read as roughly 3-5 years, so mid. Flagged uncertain. 'Senior Recruiterin' refers to the recruiter, not the role.\nDegree: a completed Studium with no level named is labeled bachelor. There is no 'or equivalent' wording, so degree_or_equivalent is false."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "f43e4c7c53890d833e10e28e1370cf28ed4ad6b9334ad1addaab9c69ffcb4347",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

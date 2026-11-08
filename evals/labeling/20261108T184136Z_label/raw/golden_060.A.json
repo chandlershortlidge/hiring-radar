@@ -1,0 +1,44 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"cybersecurity\", \"requirement\": \"required\", \"raw_text\": \"Automotive Cybersecurity\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agentic AI toolchains\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"security toolchains\", \"raw_text\": \"complex security toolchains\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Several years of professional experience\",\n  \"german\": \"nice_to_have\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"German language skills are desirable\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"University degree in Computer Science, Electrical Engineering, or a comparable qualification\",\n  \"uncertain\": [\"seniority\", \"degree\"],\n  \"notes\": \"Fuzzing, penetration testing, open-source AI models, user interfaces and closed-loop learning appear only in the responsibilities, so they are not labeled.\\n\\\"commercial and open-source technologies\\\" does not name open-source LLMs specifically, so open-source-llms is not labeled.\\n\\\"complex security toolchains\\\" is covered by cybersecurity at most. It is kept in unmapped rather than mapped to red-team-tooling.\\nSeniority: \\\"Several years\\\" gives no number. I mapped it to mid (roughly 3+ years) as inferred, flagged for review.\\nDegree: \\\"or a comparable qualification\\\" matches the guide's \\\"comparable qualification\\\" wording, so degree_or_equivalent is true. It could also be read as widening the field, so it is flagged.\\nGerman: \\\"desirable\\\" is treated as an optional marker, so the label is nice_to_have.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "Automotive Cybersecurity"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic AI toolchains"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "security toolchains",
+        "raw_text": "complex security toolchains"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Several years of professional experience",
+    "german": "nice_to_have",
+    "german_basis": "stated",
+    "german_signal": "German language skills are desirable",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "University degree in Computer Science, Electrical Engineering, or a comparable qualification",
+    "uncertain": [
+      "seniority",
+      "degree"
+    ],
+    "notes": "Fuzzing, penetration testing, open-source AI models, user interfaces and closed-loop learning appear only in the responsibilities, so they are not labeled.\n\"commercial and open-source technologies\" does not name open-source LLMs specifically, so open-source-llms is not labeled.\n\"complex security toolchains\" is covered by cybersecurity at most. It is kept in unmapped rather than mapped to red-team-tooling.\nSeniority: \"Several years\" gives no number. I mapped it to mid (roughly 3+ years) as inferred, flagged for review.\nDegree: \"or a comparable qualification\" matches the guide's \"comparable qualification\" wording, so degree_or_equivalent is true. It could also be read as widening the field, so it is flagged.\nGerman: \"desirable\" is treated as an optional marker, so the label is nice_to_have."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "45d0c752b3f4d798c5bda0201f303f192eae219e7c06c9eab1bb15be684495b6",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

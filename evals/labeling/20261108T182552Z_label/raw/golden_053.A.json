@@ -1,0 +1,114 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"devops\", \"requirement\": \"required\", \"raw_text\": \"Fundierte DevOps-\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud-Erfahrung\"},\n    {\"skill_id\": \"cybersecurity\", \"requirement\": \"required\", \"raw_text\": \"Praktische Erfahrung im Bereich IT-Security\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"Mindestens ein selbst technisch umgesetztes KI-Projekt\", \"uncertain\": true},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD-Pipelines\", \"uncertain\": true},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"Infrastructure as Code\", \"uncertain\": true},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"containerisierter Umgebungen\", \"uncertain\": true},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Docker\", \"uncertain\": true},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Kubernetes\", \"uncertain\": true},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Machine-Learning-\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM- und Generative-AI-Lösungen\", \"uncertain\": true},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"Anbindung von KI-Services über APIs\", \"uncertain\": true},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"Monitoring-, Observability-\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"OpenShift\", \"raw_text\": \"OpenShift\"},\n    {\"label\": \"SRE\", \"raw_text\": \"SRE-Strukturen\"},\n    {\"label\": \"Database architecture\", \"raw_text\": \"Datenbankarchitekturen\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior DevOps Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"DevOps, cloud, IT security and the AI project are labeled required from the requirements list ('Das bringt Du mit').\\nThe first requirement, 'Einschlägige Berufserfahrung in oben genannten Aufgaben', explicitly asks for experience in the listed tasks.\\nI read that as asking the candidate for the technologies named in the responsibilities, so I labeled them all required and flagged them uncertain, since that section alone would not qualify.\\n'KI-Projekt' is mapped to ai-ml (applied AI) and flagged uncertain.\\n'IT-Security' and 'Security-by-Design' are mapped to cybersecurity.\\n'Generative-AI-Lösungen' is mapped to llms through the 'generative ai solutions' alias.\\nOpenShift, SRE and database architecture have no taxonomy id, so they are listed in unmapped.\\nThe posting is written in German and says nothing about language, so German is labeled required with basis inferred.\\nNo degree is mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "Fundierte DevOps-"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Erfahrung"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "Praktische Erfahrung im Bereich IT-Security"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Mindestens ein selbst technisch umgesetztes KI-Projekt",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Pipelines",
+        "uncertain": true
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure as Code",
+        "uncertain": true
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containerisierter Umgebungen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker",
+        "uncertain": true
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes",
+        "uncertain": true
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Machine-Learning-",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM- und Generative-AI-Lösungen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Anbindung von KI-Services über APIs",
+        "uncertain": true
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring-, Observability-",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "OpenShift",
+        "raw_text": "OpenShift"
+      },
+      {
+        "label": "SRE",
+        "raw_text": "SRE-Strukturen"
+      },
+      {
+        "label": "Database architecture",
+        "raw_text": "Datenbankarchitekturen"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior DevOps Engineer",
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "DevOps, cloud, IT security and the AI project are labeled required from the requirements list ('Das bringt Du mit').\nThe first requirement, 'Einschlägige Berufserfahrung in oben genannten Aufgaben', explicitly asks for experience in the listed tasks.\nI read that as asking the candidate for the technologies named in the responsibilities, so I labeled them all required and flagged them uncertain, since that section alone would not qualify.\n'KI-Projekt' is mapped to ai-ml (applied AI) and flagged uncertain.\n'IT-Security' and 'Security-by-Design' are mapped to cybersecurity.\n'Generative-AI-Lösungen' is mapped to llms through the 'generative ai solutions' alias.\nOpenShift, SRE and database architecture have no taxonomy id, so they are listed in unmapped.\nThe posting is written in German and says nothing about language, so German is labeled required with basis inferred.\nNo degree is mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "b93a430e483554338fa2b3373923ea6eca03f58a4f940465585ccee3d10eed23",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

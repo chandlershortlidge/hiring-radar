@@ -1,0 +1,126 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"full-stack-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Fullstack Software Engineer\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Softwareentwicklung\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\"\n    },\n    {\n      \"skill_id\": \"spring-boot\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Spring Boot\"\n    },\n    {\n      \"skill_id\": \"frontend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Frontend\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud-nativen Architekturen\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"microservices\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Microservices\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RESTful APIs\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Software-Architektur-Methoden\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Praktische Erfahrung im Einsatz von AI-gestützten Entwicklungsansätzen\"\n    },\n    {\n      \"skill_id\": \"github-copilot\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Copilot\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevOps-Prozessen\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Observability-Standards\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Angular\",\n      \"raw_text\": \"Angular\"\n    },\n    {\n      \"label\": \"Cloud Foundry\",\n      \"raw_text\": \"idealerweise Cloud Foundry\"\n    },\n    {\n      \"label\": \"Domain-driven design (DDD)\",\n      \"raw_text\": \"DDD\"\n    },\n    {\n      \"label\": \"BDD\",\n      \"raw_text\": \"BDD\"\n    },\n    {\n      \"label\": \"Arc42\",\n      \"raw_text\": \"Arc42\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"(Senior)\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Verhandlungssichere Deutschkenntnisse auf mind. C1-Niveau\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Optional: Ein abgeschlossenes Hochschulstudium in (Wirtschafts-) Informatik oder eine vergleichbare Ausbildung sind von Vorteil.\",\n  \"notes\": \"Fullstack in the job title is treated literally as a requested skill.\\nThe requirements section is mandatory except for Cloud Foundry, marked „idealerweise“, and the explicitly optional degree.\\nAngular, Cloud Foundry, DDD, BDD and Arc42 have no matching taxonomy entries; BDD is retained as unmapped rather than adding an unnamed broader testing skill.\\nMCP, container technologies, OpenTelemetry, Grafana, MongoDB and PostgreSQL appear only in responsibilities and are excluded.\\n„Eine vergleichbare Ausbildung“ is treated as an accepted equivalent qualification in place of the university degree.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "Fullstack Software Engineer"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Softwareentwicklung"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "spring-boot",
+        "requirement": "required",
+        "raw_text": "Spring Boot"
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "required",
+        "raw_text": "Frontend"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-nativen Architekturen"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "Microservices"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "RESTful APIs"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Software-Architektur-Methoden"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Praktische Erfahrung im Einsatz von AI-gestützten Entwicklungsansätzen"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "Copilot"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps-Prozessen"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Observability-Standards"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Angular",
+        "raw_text": "Angular"
+      },
+      {
+        "label": "Cloud Foundry",
+        "raw_text": "idealerweise Cloud Foundry"
+      },
+      {
+        "label": "Domain-driven design (DDD)",
+        "raw_text": "DDD"
+      },
+      {
+        "label": "BDD",
+        "raw_text": "BDD"
+      },
+      {
+        "label": "Arc42",
+        "raw_text": "Arc42"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "(Senior)",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Verhandlungssichere Deutschkenntnisse auf mind. C1-Niveau",
+    "degree": "bachelor",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": true,
+    "degree_signal": "Optional: Ein abgeschlossenes Hochschulstudium in (Wirtschafts-) Informatik oder eine vergleichbare Ausbildung sind von Vorteil.",
+    "notes": "Fullstack in the job title is treated literally as a requested skill.\nThe requirements section is mandatory except for Cloud Foundry, marked „idealerweise“, and the explicitly optional degree.\nAngular, Cloud Foundry, DDD, BDD and Arc42 have no matching taxonomy entries; BDD is retained as unmapped rather than adding an unnamed broader testing skill.\nMCP, container technologies, OpenTelemetry, Grafana, MongoDB and PostgreSQL appear only in responsibilities and are excluded.\n„Eine vergleichbare Ausbildung“ is treated as an accepted equivalent qualification in place of the university degree."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "bece5b0e1849eceb177fef6d7ab481e71fced606ccaf3842d6f5c7e62735c853",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

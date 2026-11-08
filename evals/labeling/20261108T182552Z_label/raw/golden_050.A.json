@@ -1,0 +1,105 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"Praxiserfahrung im Einsatz von Coding Agents\"},\n    {\"skill_id\": \"claude-code\", \"requirement\": \"required\", \"raw_text\": \"z.B. Claude Code\"},\n    {\"skill_id\": \"codex\", \"requirement\": \"required\", \"raw_text\": \"z.B. Claude Code oder Codex\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Debuggen von Docker-Images\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"required\", \"raw_text\": \"Umgang mit Terraform\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Terraform und Python\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke\", \"uncertain\": true},\n    {\"skill_id\": \"networking\", \"requirement\": \"required\", \"raw_text\": \"netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke\", \"uncertain\": true},\n    {\"skill_id\": \"azure\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Kenntnisse in Azure-Infrastrukturen und - Services\"},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory/ Synapse Pipeline sowie Data Ingestion (ETL/ELT)\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Azure Data Factory\", \"raw_text\": \"Data Factory\"},\n    {\"label\": \"Azure Synapse Pipeline\", \"raw_text\": \"Synapse Pipeline\"},\n    {\"label\": \"Azure Data Lake Storage Gen2\", \"raw_text\": \"Azure Data Lake Storage Gen2\"},\n    {\"label\": \"RBAC/ACL\", \"raw_text\": \"RBAC/ACL\"},\n    {\"label\": \"Identity Management\", \"raw_text\": \"Identity Management\"},\n    {\"label\": \"Azure VNets / Private Endpoints\", \"raw_text\": \"VNets, Service und Private Endpoints\"}\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Fließende Deutschkenntnisse (mind. Level B2-C1)\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Erfolgreiches Studium in Naturwissenschaften, Informatik oder eine vergleichbare Qualifikation\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"Seniority is null because the posting hires at several levels at once ('Professional, Senior Professional und Principal'), which is treated like 'all levels'; flagged for review.\\nThe headings 'Unternehmensbeschreibung' (company description) and 'Stellenbeschreibung' (responsibilities) are not ask sections. DevOps and Scrum appear only in the responsibilities and are not labeled. The coding-agent ask in the responsibilities is repeated under Qualifikationen and is labeled from there.\\nThe 'Interesse daran, ... einzuarbeiten' bullet is appetite under rule 3. Everything it names is nice_to_have: Azure ML, Public Cloud, Data Factory/Synapse and ETL/ELT.\\nAzure is nice_to_have in both of its mentions: the Interesse bullet, and the Kenntnisse bullet marked 'sind von Vorteil' (= is an advantage).\\nCloud is required through 'Erfahrung in der netzwerkseitigen Anbindung von Cloud-Umgebungen', an unmarked requirement; per the any-required-wins rule this overrides 'Public Cloud' in the Interesse bullet. Flagged because the mapping of cloud and networking is interpretive.\\nAI-assisted Coding and Vibe Engineering collapse into ai-developer-tooling, together with 'Coding Agents' (an alias).\\n'Azure Machine Learning' is read as an Azure product name, not as the machine-learning skill. It is covered by azure (nice_to_have).\\n'Debuggen von Docker-Images' is labeled docker only, not testing.\\nDegree: 'vergleichbare Qualifikation' (comparable qualification) is an alternative to the degree, so or_equivalent is true. No level is named, so the degree is bachelor.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Praxiserfahrung im Einsatz von Coding Agents"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "z.B. Claude Code"
+      },
+      {
+        "skill_id": "codex",
+        "requirement": "required",
+        "raw_text": "z.B. Claude Code oder Codex"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Debuggen von Docker-Images"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Umgang mit Terraform"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Terraform und Python"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke",
+        "uncertain": true
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke",
+        "uncertain": true
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Kenntnisse in Azure-Infrastrukturen und - Services"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory/ Synapse Pipeline sowie Data Ingestion (ETL/ELT)"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Azure Data Factory",
+        "raw_text": "Data Factory"
+      },
+      {
+        "label": "Azure Synapse Pipeline",
+        "raw_text": "Synapse Pipeline"
+      },
+      {
+        "label": "Azure Data Lake Storage Gen2",
+        "raw_text": "Azure Data Lake Storage Gen2"
+      },
+      {
+        "label": "RBAC/ACL",
+        "raw_text": "RBAC/ACL"
+      },
+      {
+        "label": "Identity Management",
+        "raw_text": "Identity Management"
+      },
+      {
+        "label": "Azure VNets / Private Endpoints",
+        "raw_text": "VNets, Service und Private Endpoints"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Fließende Deutschkenntnisse (mind. Level B2-C1)",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Erfolgreiches Studium in Naturwissenschaften, Informatik oder eine vergleichbare Qualifikation",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Seniority is null because the posting hires at several levels at once ('Professional, Senior Professional und Principal'), which is treated like 'all levels'; flagged for review.\nThe headings 'Unternehmensbeschreibung' (company description) and 'Stellenbeschreibung' (responsibilities) are not ask sections. DevOps and Scrum appear only in the responsibilities and are not labeled. The coding-agent ask in the responsibilities is repeated under Qualifikationen and is labeled from there.\nThe 'Interesse daran, ... einzuarbeiten' bullet is appetite under rule 3. Everything it names is nice_to_have: Azure ML, Public Cloud, Data Factory/Synapse and ETL/ELT.\nAzure is nice_to_have in both of its mentions: the Interesse bullet, and the Kenntnisse bullet marked 'sind von Vorteil' (= is an advantage).\nCloud is required through 'Erfahrung in der netzwerkseitigen Anbindung von Cloud-Umgebungen', an unmarked requirement; per the any-required-wins rule this overrides 'Public Cloud' in the Interesse bullet. Flagged because the mapping of cloud and networking is interpretive.\nAI-assisted Coding and Vibe Engineering collapse into ai-developer-tooling, together with 'Coding Agents' (an alias).\n'Azure Machine Learning' is read as an Azure product name, not as the machine-learning skill. It is covered by azure (nice_to_have).\n'Debuggen von Docker-Images' is labeled docker only, not testing.\nDegree: 'vergleichbare Qualifikation' (comparable qualification) is an alternative to the degree, so or_equivalent is true. No level is named, so the degree is bachelor."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "9581d44a95735f403411f841fe0e29bdff6b6a125603d863fa47adc752f52e55",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

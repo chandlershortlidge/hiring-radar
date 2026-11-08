@@ -1,0 +1,112 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"praktische Erfahrung mit AI\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Erfahrung mit LLMs\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"javascript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JavaScript\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"REST APIs\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud-Technologien\"\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Workflow Automation\"\n    },\n    {\n      \"skill_id\": \"n8n\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"n8n\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Prompt Engineering\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG-Ansätzen\"\n    },\n    {\n      \"skill_id\": \"conversational-ai\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Interesse an Conversational AI\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Interesse an Conversational AI, Chatbots, Voicebots oder AI Agents\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"JSON\",\n      \"raw_text\": \"JSON\"\n    },\n    {\n      \"label\": \"Webhooks\",\n      \"raw_text\": \"Webhooks\"\n    },\n    {\n      \"label\": \"Azure AI\",\n      \"raw_text\": \"Azure AI\"\n    },\n    {\n      \"label\": \"Microsoft Power Automate\",\n      \"raw_text\": \"Microsoft Power Automate\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"abgeschlossenes Studium der Informatik, Wirtschaftsinformatik, Data Science, AI, Engineering oder vergleichbarer Fachrichtung\",\n  \"notes\": \"The qualifications section has no optional heading; alternatives joined by 'oder' remain required criteria under the guide.\\nConversational AI and AI Agents are nice_to_have because 'Interesse an' governs the entire list. Chatbots and Voicebots are treated as conversational-AI applications, without inferring speech recognition.\\nAzure AI is listed as unmapped because the taxonomy has no specific entry for that platform; Azure itself is separately explicit.\\nDegree fields are not labeled as candidate skills. A comparable field does not constitute an experience alternative to the degree.\\nPractical experience alone supplies no usable seniority signal. German is inferred solely from the German-language posting.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "praktische Erfahrung mit AI"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit LLMs"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST APIs"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Technologien"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "Workflow Automation"
+      },
+      {
+        "skill_id": "n8n",
+        "requirement": "required",
+        "raw_text": "n8n"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG-Ansätzen"
+      },
+      {
+        "skill_id": "conversational-ai",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse an Conversational AI"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse an Conversational AI, Chatbots, Voicebots oder AI Agents"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "JSON",
+        "raw_text": "JSON"
+      },
+      {
+        "label": "Webhooks",
+        "raw_text": "Webhooks"
+      },
+      {
+        "label": "Azure AI",
+        "raw_text": "Azure AI"
+      },
+      {
+        "label": "Microsoft Power Automate",
+        "raw_text": "Microsoft Power Automate"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "abgeschlossenes Studium der Informatik, Wirtschaftsinformatik, Data Science, AI, Engineering oder vergleichbarer Fachrichtung",
+    "notes": "The qualifications section has no optional heading; alternatives joined by 'oder' remain required criteria under the guide.\nConversational AI and AI Agents are nice_to_have because 'Interesse an' governs the entire list. Chatbots and Voicebots are treated as conversational-AI applications, without inferring speech recognition.\nAzure AI is listed as unmapped because the taxonomy has no specific entry for that platform; Azure itself is separately explicit.\nDegree fields are not labeled as candidate skills. A comparable field does not constitute an experience alternative to the degree.\nPractical experience alone supplies no usable seniority signal. German is inferred solely from the German-language posting."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "1d3b1920ae3cbcb603561fed5afcf4d294638653c0c457d7b63f6bd93ab951e7",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

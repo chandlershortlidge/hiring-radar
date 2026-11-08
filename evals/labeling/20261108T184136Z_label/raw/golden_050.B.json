@@ -1,0 +1,165 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"professionellen Softwareentwicklung\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Verständnis für Cloud-Architekturen\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Du beherrschst automatisierte Tests auf unterschiedlichen Ebenen\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM-basierte Agenten\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"modernen Agenten-Frameworks\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Du hast bereits LLM-basierte Agenten oder KI-Funktionen entwickelt und produktiv eingesetzt\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Tool Calling\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"mehrstufigen Workflows\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"data-modeling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Modellierung komplexer Geschäftsdaten\"\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Berechtigungen, Datenschutz und Mandantentrennung\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI-Coding-Tools\"\n    },\n    {\n      \"skill_id\": \"claude-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Claude Code\"\n    },\n    {\n      \"skill_id\": \"cursor\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cursor\"\n    },\n    {\n      \"skill_id\": \"codex\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Codex\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"überprüfst KI-generierte Ergebnisse systematisch\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD-Prozesse\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitHub\"\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Du kennst Dich mit modernen Agenten-Frameworks und Schnittstellen wie MCP\"\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangGraph\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Monitoring\"\n    },\n    {\n      \"skill_id\": \"forecasting\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Forecasting\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"SaaS applications\",\n      \"raw_text\": \"idealerweise mit produktiven Cloud- oder SaaS-Anwendungen\"\n    },\n    {\n      \"label\": \"Retrieval\",\n      \"raw_text\": \"Retrieval\"\n    },\n    {\n      \"label\": \"Specification-driven development\",\n      \"raw_text\": \"entwickelst spezifikationsbasiert\"\n    },\n    {\n      \"label\": \"Playwright\",\n      \"raw_text\": \"Playwright\"\n    },\n    {\n      \"label\": \"A2A\",\n      \"raw_text\": \"A2A\"\n    },\n    {\n      \"label\": \"Accounting and ERP software\",\n      \"raw_text\": \"Accounting- oder ERP-Software\"\n    },\n    {\n      \"label\": \"XRechnung\",\n      \"raw_text\": \"Zusätzlich hilfreich: Kenntnisse in HOAI, Bürocontrolling, Accounting- oder ERP-Software, XRechnung\"\n    },\n    {\n      \"label\": \"ZUGFeRD\",\n      \"raw_text\": \"Zusätzlich hilfreich: Kenntnisse in HOAI, Bürocontrolling, Accounting- oder ERP-Software, XRechnung, ZUGFeRD\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"mindestens 4 Jahre Erfahrung\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Deutschkenntnisse auf C2-Niveau\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Profil supplies required qualifications; Zusätzlich hilfreich introduces optional qualifications.\\nCloud is required because the later Cloud-Architekturen qualification overrides the earlier ideally-qualified mention.\\nMehrstufigen Workflows is provisionally mapped to LLM orchestration in its agent-development context; review flagged.\\nSystematic checking of AI-generated results is provisionally treated as AI output evaluation; review flagged.\\nRetrieval is left unmapped on a literal reading: neither vector retrieval nor retrieval-augmented generation is specified.\\nSaaS is optional; specification-driven development, Playwright and A2A are required; Accounting/ERP software, XRechnung and ZUGFeRD are optional and lack taxonomy entries.\\nHOAI and Bürocontrolling are excluded as domain knowledge. XRechnung and ZUGFeRD are treated as technical electronic-invoice standards.\\nGitHub maps to git through the supplied alias; GitHub Actions is not named.\\nResponsibilities alone do not establish additional requirements.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "professionellen Softwareentwicklung"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Verständnis für Cloud-Architekturen"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "Du beherrschst automatisierte Tests auf unterschiedlichen Ebenen"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-basierte Agenten"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "modernen Agenten-Frameworks"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "Du hast bereits LLM-basierte Agenten oder KI-Funktionen entwickelt und produktiv eingesetzt"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "Tool Calling"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "mehrstufigen Workflows",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "Modellierung komplexer Geschäftsdaten"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "Berechtigungen, Datenschutz und Mandantentrennung"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI-Coding-Tools"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code"
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor"
+      },
+      {
+        "skill_id": "codex",
+        "requirement": "required",
+        "raw_text": "Codex"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "überprüfst KI-generierte Ergebnisse systematisch",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Prozesse"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "GitHub"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "Du kennst Dich mit modernen Agenten-Frameworks und Schnittstellen wie MCP"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring"
+      },
+      {
+        "skill_id": "forecasting",
+        "requirement": "nice_to_have",
+        "raw_text": "Forecasting"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "SaaS applications",
+        "raw_text": "idealerweise mit produktiven Cloud- oder SaaS-Anwendungen"
+      },
+      {
+        "label": "Retrieval",
+        "raw_text": "Retrieval"
+      },
+      {
+        "label": "Specification-driven development",
+        "raw_text": "entwickelst spezifikationsbasiert"
+      },
+      {
+        "label": "Playwright",
+        "raw_text": "Playwright"
+      },
+      {
+        "label": "A2A",
+        "raw_text": "A2A"
+      },
+      {
+        "label": "Accounting and ERP software",
+        "raw_text": "Accounting- oder ERP-Software"
+      },
+      {
+        "label": "XRechnung",
+        "raw_text": "Zusätzlich hilfreich: Kenntnisse in HOAI, Bürocontrolling, Accounting- oder ERP-Software, XRechnung"
+      },
+      {
+        "label": "ZUGFeRD",
+        "raw_text": "Zusätzlich hilfreich: Kenntnisse in HOAI, Bürocontrolling, Accounting- oder ERP-Software, XRechnung, ZUGFeRD"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "mindestens 4 Jahre Erfahrung",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Deutschkenntnisse auf C2-Niveau",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Profil supplies required qualifications; Zusätzlich hilfreich introduces optional qualifications.\nCloud is required because the later Cloud-Architekturen qualification overrides the earlier ideally-qualified mention.\nMehrstufigen Workflows is provisionally mapped to LLM orchestration in its agent-development context; review flagged.\nSystematic checking of AI-generated results is provisionally treated as AI output evaluation; review flagged.\nRetrieval is left unmapped on a literal reading: neither vector retrieval nor retrieval-augmented generation is specified.\nSaaS is optional; specification-driven development, Playwright and A2A are required; Accounting/ERP software, XRechnung and ZUGFeRD are optional and lack taxonomy entries.\nHOAI and Bürocontrolling are excluded as domain knowledge. XRechnung and ZUGFeRD are treated as technical electronic-invoice standards.\nGitHub maps to git through the supplied alias; GitHub Actions is not named.\nResponsibilities alone do not establish additional requirements."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "3c77b64d8b822d4754ae134f5dc577149d1620445b643bb4c9e5bb1751e8228b",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

@@ -1,0 +1,162 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Fundierte Erfahrung im Aufbau und Betrieb von Kubernetes-Plattformen\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud-Infrastrukturen\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Container-Technologien\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Infrastructure as Code\"\n    },\n    {\n      \"skill_id\": \"gitops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitOps\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"helm\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Helm\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Monitoring\"\n    },\n    {\n      \"skill_id\": \"postgresql\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"PostgreSQL\"\n    },\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes- und Cloud-Security\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"STACKIT SKE\",\n      \"raw_text\": \"STACKIT SKE\"\n    },\n    {\n      \"label\": \"AKS\",\n      \"raw_text\": \"AKS\"\n    },\n    {\n      \"label\": \"EKS\",\n      \"raw_text\": \"EKS\"\n    },\n    {\n      \"label\": \"GKE\",\n      \"raw_text\": \"GKE\"\n    },\n    {\n      \"label\": \"OpenShift\",\n      \"raw_text\": \"OpenShift\"\n    },\n    {\n      \"label\": \"Automated deployments\",\n      \"raw_text\": \"automatisierten Deployments\"\n    },\n    {\n      \"label\": \"Argo CD\",\n      \"raw_text\": \"Argo CD\"\n    },\n    {\n      \"label\": \"Kustomize\",\n      \"raw_text\": \"Kustomize\"\n    },\n    {\n      \"label\": \"Logging\",\n      \"raw_text\": \"Logging\"\n    },\n    {\n      \"label\": \"Alerting\",\n      \"raw_text\": \"Alerting\"\n    },\n    {\n      \"label\": \"MongoDB\",\n      \"raw_text\": \"MongoDB\"\n    },\n    {\n      \"label\": \"IAM\",\n      \"raw_text\": \"IAM\"\n    },\n    {\n      \"label\": \"RBAC\",\n      \"raw_text\": \"RBAC\"\n    },\n    {\n      \"label\": \"Network Policies\",\n      \"raw_text\": \"Network Policies\"\n    },\n    {\n      \"label\": \"Secrets Management\",\n      \"raw_text\": \"Secrets Management\"\n    },\n    {\n      \"label\": \"TLS and certificates\",\n      \"raw_text\": \"TLS/Zertifikate\"\n    },\n    {\n      \"label\": \"Container and image security\",\n      \"raw_text\": \"Container-/Image-Security\"\n    },\n    {\n      \"label\": \"Audit Logging\",\n      \"raw_text\": \"Audit Logging\"\n    },\n    {\n      \"label\": \"Least privilege\",\n      \"raw_text\": \"Least-Privilege-Prinzipien\"\n    },\n    {\n      \"label\": \"Cloud and Kubernetes troubleshooting\",\n      \"raw_text\": \"strukturierten Troubleshooting komplexer Cloud- und Kubernetes-Umgebungen\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute Deutsch- und gute Englischkenntnisse in Wort und Schrift\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Abgeschlossene IT-Ausbildung oder abgeschlossenes Studium der (Wirtschafts-)Informatik oder vergleichbar\",\n  \"notes\": \"Dein Profil sets required defaults; no optional section heading occurs.\\nIdealerweise makes the managed-Kubernetes examples and PostgreSQL/MongoDB optional; Kubernetes itself is separately required.\\nArgo CD and Kustomize are required examples in the unmarked qualifications bullet.\\nLogging, alerting and automated deployments are retained as unmapped practices rather than silently equated with broader taxonomy entries.\\nKubernetes-/Cloud-Security is provisionally mapped to cybersecurity; review the breadth of that mapping.\\nAKS, EKS and GKE do not imply separate Azure, AWS or GCP requirements.\\nThe degree is required with an accepted vocational-qualification alternative; unspecified completed university studies map to bachelor.\\nFundierte Erfahrung and umfangreiche Kenntnisse are not explicit proven-experience or years-based seniority signals.\\nTechnologies and practices appearing only under Deine Aufgaben are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Fundierte Erfahrung im Aufbau und Betrieb von Kubernetes-Plattformen"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Infrastrukturen"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "Container-Technologien"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure as Code"
+      },
+      {
+        "skill_id": "gitops",
+        "requirement": "required",
+        "raw_text": "GitOps"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "helm",
+        "requirement": "required",
+        "raw_text": "Helm"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "nice_to_have",
+        "raw_text": "PostgreSQL"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "Kubernetes- und Cloud-Security",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "STACKIT SKE",
+        "raw_text": "STACKIT SKE"
+      },
+      {
+        "label": "AKS",
+        "raw_text": "AKS"
+      },
+      {
+        "label": "EKS",
+        "raw_text": "EKS"
+      },
+      {
+        "label": "GKE",
+        "raw_text": "GKE"
+      },
+      {
+        "label": "OpenShift",
+        "raw_text": "OpenShift"
+      },
+      {
+        "label": "Automated deployments",
+        "raw_text": "automatisierten Deployments"
+      },
+      {
+        "label": "Argo CD",
+        "raw_text": "Argo CD"
+      },
+      {
+        "label": "Kustomize",
+        "raw_text": "Kustomize"
+      },
+      {
+        "label": "Logging",
+        "raw_text": "Logging"
+      },
+      {
+        "label": "Alerting",
+        "raw_text": "Alerting"
+      },
+      {
+        "label": "MongoDB",
+        "raw_text": "MongoDB"
+      },
+      {
+        "label": "IAM",
+        "raw_text": "IAM"
+      },
+      {
+        "label": "RBAC",
+        "raw_text": "RBAC"
+      },
+      {
+        "label": "Network Policies",
+        "raw_text": "Network Policies"
+      },
+      {
+        "label": "Secrets Management",
+        "raw_text": "Secrets Management"
+      },
+      {
+        "label": "TLS and certificates",
+        "raw_text": "TLS/Zertifikate"
+      },
+      {
+        "label": "Container and image security",
+        "raw_text": "Container-/Image-Security"
+      },
+      {
+        "label": "Audit Logging",
+        "raw_text": "Audit Logging"
+      },
+      {
+        "label": "Least privilege",
+        "raw_text": "Least-Privilege-Prinzipien"
+      },
+      {
+        "label": "Cloud and Kubernetes troubleshooting",
+        "raw_text": "strukturierten Troubleshooting komplexer Cloud- und Kubernetes-Umgebungen"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Deutsch- und gute Englischkenntnisse in Wort und Schrift",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossene IT-Ausbildung oder abgeschlossenes Studium der (Wirtschafts-)Informatik oder vergleichbar",
+    "notes": "Dein Profil sets required defaults; no optional section heading occurs.\nIdealerweise makes the managed-Kubernetes examples and PostgreSQL/MongoDB optional; Kubernetes itself is separately required.\nArgo CD and Kustomize are required examples in the unmarked qualifications bullet.\nLogging, alerting and automated deployments are retained as unmapped practices rather than silently equated with broader taxonomy entries.\nKubernetes-/Cloud-Security is provisionally mapped to cybersecurity; review the breadth of that mapping.\nAKS, EKS and GKE do not imply separate Azure, AWS or GCP requirements.\nThe degree is required with an accepted vocational-qualification alternative; unspecified completed university studies map to bachelor.\nFundierte Erfahrung and umfangreiche Kenntnisse are not explicit proven-experience or years-based seniority signals.\nTechnologies and practices appearing only under Deine Aufgaben are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "5ab34e37216cfa01f2d61bab00719e27dffa9d67193883249182b2d7527b9e42",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

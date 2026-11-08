@@ -1,0 +1,102 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"data-science\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung in Data Science\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Machine Learning\"},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"LangChain\"},\n    {\"skill_id\": \"langgraph\", \"requirement\": \"required\", \"raw_text\": \"LangGraph\"},\n    {\"skill_id\": \"llamaindex\", \"requirement\": \"required\", \"raw_text\": \"LlamaIndex\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Generativer KI\"},\n    {\"skill_id\": \"nlp\", \"requirement\": \"required\", \"raw_text\": \"NLP\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agentenbasierten KI-Systemen\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL\"},\n    {\"skill_id\": \"mcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"MCP\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"AI Engineering\", \"raw_text\": \"AI- Engineering\"},\n    {\"label\": \"Low-code/no-code platforms\", \"raw_text\": \"Low-Code-/No-Code-Plattformen\"},\n    {\"label\": \"AI governance (EU AI Act, GDPR)\", \"raw_text\": \"KI-Governance (EU AI Act, DSGVO)\"}\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Mindestens zwei Jahre Erfahrung\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Deutschkenntnisse auf mindestens B12 Niveau\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Abgeschlossenes Studium der Informatik, Data Science, Wirtschaftsinformatik oder einer vergleichbaren Fachrichtung\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"The heading 'Diese Qualifikationen solltest Du mitbringen' marks a requirements section, so items under it default to required.\\n'idealerweise' (ideally) is an inline marker. I read it as governing the whole clause up to 'und MCP', so MCP is nice_to_have.\\nMCP's raw_text is the bare name. The guide requires the marker in the quote only for appetite-rule labels (rule 3), and this label rests on rule 2.\\n'AI- Engineering' has no exact taxonomy entry. I did not map it to ml-engineering or ai-ml, and left it unmapped.\\n'Frameworks wie' names no taxonomy skill. I did not add the 'llm-orchestration' parent, because the posting never names it.\\nI mapped 'agentenbasierten KI-Systemen' to agents. This is a German paraphrase with no exact alias, so it is flagged uncertain.\\nSeniority rests on 'Mindestens zwei Jahre' (at least two years). That is at the 0-2 boundary, so I labeled it junior and flagged it.\\nThe German level 'B12' is likely a typo for B1/B2. It is required either way.\\n'vergleichbaren Fachrichtung' (comparable field) widens the field only, so degree_or_equivalent is false.\\nI left DSGVO/EU AI Act unmapped as governance/regulatory domain knowledge. I did not force it onto data-privacy-and-security.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "Erfahrung in Data Science"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Machine Learning"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "required",
+        "raw_text": "LlamaIndex"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generativer KI"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "NLP"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentenbasierten KI-Systemen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "nice_to_have",
+        "raw_text": "MCP"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "AI Engineering",
+        "raw_text": "AI- Engineering"
+      },
+      {
+        "label": "Low-code/no-code platforms",
+        "raw_text": "Low-Code-/No-Code-Plattformen"
+      },
+      {
+        "label": "AI governance (EU AI Act, GDPR)",
+        "raw_text": "KI-Governance (EU AI Act, DSGVO)"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Mindestens zwei Jahre Erfahrung",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Deutschkenntnisse auf mindestens B12 Niveau",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Abgeschlossenes Studium der Informatik, Data Science, Wirtschaftsinformatik oder einer vergleichbaren Fachrichtung",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The heading 'Diese Qualifikationen solltest Du mitbringen' marks a requirements section, so items under it default to required.\n'idealerweise' (ideally) is an inline marker. I read it as governing the whole clause up to 'und MCP', so MCP is nice_to_have.\nMCP's raw_text is the bare name. The guide requires the marker in the quote only for appetite-rule labels (rule 3), and this label rests on rule 2.\n'AI- Engineering' has no exact taxonomy entry. I did not map it to ml-engineering or ai-ml, and left it unmapped.\n'Frameworks wie' names no taxonomy skill. I did not add the 'llm-orchestration' parent, because the posting never names it.\nI mapped 'agentenbasierten KI-Systemen' to agents. This is a German paraphrase with no exact alias, so it is flagged uncertain.\nSeniority rests on 'Mindestens zwei Jahre' (at least two years). That is at the 0-2 boundary, so I labeled it junior and flagged it.\nThe German level 'B12' is likely a typo for B1/B2. It is required either way.\n'vergleichbaren Fachrichtung' (comparable field) widens the field only, so degree_or_equivalent is false.\nI left DSGVO/EU AI Act unmapped as governance/regulatory domain knowledge. I did not force it onto data-privacy-and-security."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "7a14ef4205926e8046c39fe485646abb1cc37f2bc2dd7d1cc2119868e57deef0",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

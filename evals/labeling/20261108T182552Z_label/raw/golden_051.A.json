@@ -1,0 +1,126 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung in der Softwareentwicklung\"},\n    {\"skill_id\": \"java\", \"requirement\": \"required\", \"raw_text\": \"Softwareentwicklung mit Java\"},\n    {\"skill_id\": \"spring-boot\", \"requirement\": \"required\", \"raw_text\": \"Java (Spring Boot)\"},\n    {\"skill_id\": \"frontend-development\", \"requirement\": \"required\", \"raw_text\": \"im Frontend mit Angular\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Fundierte Kenntnisse in Cloud-nativen Architekturen\", \"uncertain\": true},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Cloud-nativen Architekturen, Kubernetes\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Kubernetes, Docker und idealerweise Cloud Foundry\"},\n    {\"skill_id\": \"microservices\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit Microservices\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"RESTful APIs\"},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"Software-Architektur-Methoden\"},\n    {\"skill_id\": \"github-copilot\", \"requirement\": \"required\", \"raw_text\": \"(z. B. Copilot, Agentic Coding)\"},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"Agentic Coding)\"},\n    {\"skill_id\": \"devops\", \"requirement\": \"required\", \"raw_text\": \"DevOps-Prozessen\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD und Observability-Standards\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"Observability-Standards\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Angular\", \"raw_text\": \"im Frontend mit Angular\"},\n    {\"label\": \"Cloud Foundry (nice_to_have, 'idealerweise')\", \"raw_text\": \"idealerweise Cloud Foundry\"},\n    {\"label\": \"DDD\", \"raw_text\": \"(z. B. DDD, BDD, Arc42)\"},\n    {\"label\": \"BDD\", \"raw_text\": \"(z. B. DDD, BDD, Arc42)\"},\n    {\"label\": \"Arc42\", \"raw_text\": \"(z. B. DDD, BDD, Arc42)\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"(Senior) Fullstack Software Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Verhandlungssichere Deutschkenntnisse auf mind. C1-Niveau\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Optional: Ein abgeschlossenes Hochschulstudium in (Wirtschafts-) Informatik oder eine vergleichbare Ausbildung sind von Vorteil\",\n  \"uncertain\": [\"seniority\", \"degree\"],\n  \"notes\": \"The 'Deine zukünftigen Aufgaben' section is responsibilities only. MCP, OpenTelemetry, Grafana, MongoDB and PostgreSQL appear only there, so they are not labeled.\\nKubernetes, Docker, Copilot and Agentic Coding appear in both responsibilities and requirements; they are labeled from the requirements mentions.\\nThe 'idealerweise' marker attaches only to Cloud Foundry (unmapped). Kubernetes and Docker stay required.\\n'Cloud-nativen Architekturen' is mapped to the broad 'cloud' id. This is a judgment call, since no cloud-native id exists; flagged uncertain.\\n'Agentic Coding' maps to ai-developer-tooling via its alias. 'Copilot' maps to github-copilot via its alias.\\n'Softwareentwicklung' maps to software-engineering via its alias.\\nSeniority: '(Senior)' in the title is read as a stated senior label, by analogy with the guide's '(Junior)' rule. Its parentheses make it optional, and 'Mehrjährige Erfahrung' alone would be an unquantified inference; flagged.\\nDegree: 'Hochschulstudium' with no level is read as bachelor. It is nice_to_have because of 'Optional:' and 'von Vorteil'. 'oder eine vergleichbare Ausbildung' is read as a comparable qualification, so or_equivalent is true; flagged since 'Ausbildung' could be read as only widening the path.\\nEnglish ('gute Englischkenntnisse') is not labeled, per the guide.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Erfahrung in der Softwareentwicklung"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Softwareentwicklung mit Java"
+      },
+      {
+        "skill_id": "spring-boot",
+        "requirement": "required",
+        "raw_text": "Java (Spring Boot)"
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "required",
+        "raw_text": "im Frontend mit Angular"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Fundierte Kenntnisse in Cloud-nativen Architekturen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Cloud-nativen Architekturen, Kubernetes"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Kubernetes, Docker und idealerweise Cloud Foundry"
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit Microservices"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "RESTful APIs"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Software-Architektur-Methoden"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "(z. B. Copilot, Agentic Coding)"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Agentic Coding)"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps-Prozessen"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD und Observability-Standards"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Observability-Standards"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Angular",
+        "raw_text": "im Frontend mit Angular"
+      },
+      {
+        "label": "Cloud Foundry (nice_to_have, 'idealerweise')",
+        "raw_text": "idealerweise Cloud Foundry"
+      },
+      {
+        "label": "DDD",
+        "raw_text": "(z. B. DDD, BDD, Arc42)"
+      },
+      {
+        "label": "BDD",
+        "raw_text": "(z. B. DDD, BDD, Arc42)"
+      },
+      {
+        "label": "Arc42",
+        "raw_text": "(z. B. DDD, BDD, Arc42)"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "(Senior) Fullstack Software Engineer",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Verhandlungssichere Deutschkenntnisse auf mind. C1-Niveau",
+    "degree": "bachelor",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": true,
+    "degree_signal": "Optional: Ein abgeschlossenes Hochschulstudium in (Wirtschafts-) Informatik oder eine vergleichbare Ausbildung sind von Vorteil",
+    "uncertain": [
+      "seniority",
+      "degree"
+    ],
+    "notes": "The 'Deine zukünftigen Aufgaben' section is responsibilities only. MCP, OpenTelemetry, Grafana, MongoDB and PostgreSQL appear only there, so they are not labeled.\nKubernetes, Docker, Copilot and Agentic Coding appear in both responsibilities and requirements; they are labeled from the requirements mentions.\nThe 'idealerweise' marker attaches only to Cloud Foundry (unmapped). Kubernetes and Docker stay required.\n'Cloud-nativen Architekturen' is mapped to the broad 'cloud' id. This is a judgment call, since no cloud-native id exists; flagged uncertain.\n'Agentic Coding' maps to ai-developer-tooling via its alias. 'Copilot' maps to github-copilot via its alias.\n'Softwareentwicklung' maps to software-engineering via its alias.\nSeniority: '(Senior)' in the title is read as a stated senior label, by analogy with the guide's '(Junior)' rule. Its parentheses make it optional, and 'Mehrjährige Erfahrung' alone would be an unquantified inference; flagged.\nDegree: 'Hochschulstudium' with no level is read as bachelor. It is nice_to_have because of 'Optional:' and 'von Vorteil'. 'oder eine vergleichbare Ausbildung' is read as a comparable qualification, so or_equivalent is true; flagged since 'Ausbildung' could be read as only widening the path.\nEnglish ('gute Englischkenntnisse') is not labeled, per the guide."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "bece5b0e1849eceb177fef6d7ab481e71fced606ccaf3842d6f5c7e62735c853",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

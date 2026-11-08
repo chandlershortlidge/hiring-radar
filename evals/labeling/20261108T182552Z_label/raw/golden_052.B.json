@@ -1,0 +1,90 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Entwicklung, Umsetzung und im Betrieb von KI-Lösungen\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Agenten\"\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Workflows\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"API-Integrationen\"\n    },\n    {\n      \"skill_id\": \"n8n\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"n8n\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Prompt Engineering\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG-Architekturen\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Agenten-Orchestrierung\"\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Datenschutzkonzepten und Informationssicherheit\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Low-code/no-code platforms\",\n      \"raw_text\": \"Low-Code/No-Code-Plattformen\"\n    },\n    {\n      \"label\": \"Copilot Studio\",\n      \"raw_text\": \"Copilot Studio\"\n    },\n    {\n      \"label\": \"Power Automate\",\n      \"raw_text\": \"Power Automate\"\n    },\n    {\n      \"label\": \"Security reviews\",\n      \"raw_text\": \"Security Reviews\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"Only “Das bringen Sie mit” asks for candidate qualifications; technologies appearing solely in responsibilities are excluded.\\nEducation fields, including Data Science, Artificial Intelligence, Machine Learning and Deep Learning, are read literally as fields of education, not separate technical skill requirements.\\n“Abgeschlossener technischer Bildungsweg” does not explicitly require university studies or a degree and can encompass vocational education; degree is therefore null, flagged for review.\\nUnquantified “Berufserfahrung” supplies no usable seniority signal; “erste Kontaktpunkte” concerns optional industry exposure rather than overall seniority.\\n“Workflows” is interpreted as workflow automation in the explicit context of developing AI solutions.\\n“idealerweise in regulierten Umfeldern” makes the regulated-environment context optional, not the preceding practical knowledge of privacy and information security. Security Reviews is retained as an explicitly named example without a fitting taxonomy entry.\\nSystemprompts and DSGVO-konforme Systemgestaltung are covered by prompt-engineering and data-privacy-and-security respectively, rather than additional invented skill IDs.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Entwicklung, Umsetzung und im Betrieb von KI-Lösungen"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Agenten"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "Workflows"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "API-Integrationen"
+      },
+      {
+        "skill_id": "n8n",
+        "requirement": "required",
+        "raw_text": "n8n"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG-Architekturen"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "Agenten-Orchestrierung"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "Datenschutzkonzepten und Informationssicherheit"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Low-code/no-code platforms",
+        "raw_text": "Low-Code/No-Code-Plattformen"
+      },
+      {
+        "label": "Copilot Studio",
+        "raw_text": "Copilot Studio"
+      },
+      {
+        "label": "Power Automate",
+        "raw_text": "Power Automate"
+      },
+      {
+        "label": "Security reviews",
+        "raw_text": "Security Reviews"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Only “Das bringen Sie mit” asks for candidate qualifications; technologies appearing solely in responsibilities are excluded.\nEducation fields, including Data Science, Artificial Intelligence, Machine Learning and Deep Learning, are read literally as fields of education, not separate technical skill requirements.\n“Abgeschlossener technischer Bildungsweg” does not explicitly require university studies or a degree and can encompass vocational education; degree is therefore null, flagged for review.\nUnquantified “Berufserfahrung” supplies no usable seniority signal; “erste Kontaktpunkte” concerns optional industry exposure rather than overall seniority.\n“Workflows” is interpreted as workflow automation in the explicit context of developing AI solutions.\n“idealerweise in regulierten Umfeldern” makes the regulated-environment context optional, not the preceding practical knowledge of privacy and information security. Security Reviews is retained as an explicitly named example without a fitting taxonomy entry.\nSystemprompts and DSGVO-konforme Systemgestaltung are covered by prompt-engineering and data-privacy-and-security respectively, rather than additional invented skill IDs."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "00748233d245a4d3761e81e14223fc1a113ad6d45ab1632943a6c27fcdca414e",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

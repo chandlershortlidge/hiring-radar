@@ -1,0 +1,85 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"azure\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Gute Kenntnisse rund um die Azure Data Dienste\", \"uncertain\": true},\n    {\"skill_id\": \"databricks\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Databricks\", \"uncertain\": true},\n    {\"skill_id\": \"business-intelligence\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Interesse an der Entwicklung von DWH / Data Lake und BI\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Azure Data Factory\", \"raw_text\": \"Data Factory\"},\n    {\"label\": \"Azure SQL Database\", \"raw_text\": \"SQL DB\"},\n    {\"label\": \"Azure Data Lake Storage\", \"raw_text\": \"Data Lake Storage\"},\n    {\"label\": \"Azure Functions\", \"raw_text\": \"Functions\"},\n    {\"label\": \"Microsoft Foundry\", \"raw_text\": \"Interesse an Microsoft Foundry\"},\n    {\"label\": \"Data warehouse / data lake\", \"raw_text\": \"DWH / Data Lake\"},\n    {\"label\": \"Data engineering\", \"raw_text\": \"Data-Engineering-Lösungen\"},\n    {\"label\": \"AI-driven personalization / predictive marketing\", \"raw_text\": \"AI-gestützter Personalisierung, Predictive Marketing oder Customer Intelligence\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI Data Engineer\",\n  \"german\": \"nice_to_have\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gutes Deutsch\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"german\"],\n  \"notes\": \"The heading 'Das bringst du idealerweise mit' contains 'idealerweise' (= 'ideally', a listed optional marker). I read it literally as marking the whole section optional, so every item under it, German included, is nice_to_have. This is the key call: it is also the posting's only qualifications section and may be conventional phrasing for requirements. A reviewer should decide.\\nBI and Cloud Architecture sit under 'Starkes Interesse an' (appetite), so they are nice_to_have regardless of the heading. DWH and Data Lake are unmapped.\\nMicrosoft Foundry is under 'Interesse an' (appetite) and has no taxonomy entry, so it is unmapped.\\nAzure Functions is not mapped to `serverless`. Mapping it there would add a broad skill the text does not name.\\n'Leidenschaft für Daten, Azure und AI' is not labeled as ai-ml. It is passion wording, not a named skill requirement. Azure is covered by 'Azure Data Dienste'.\\nAzure and Databricks also appear in responsibilities and benefits. Only the qualifications mention is used.\\nNo degree is mentioned anywhere. The 'Senior' title and lead duty both point to senior.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Gute Kenntnisse rund um die Azure Data Dienste",
+        "uncertain": true
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "nice_to_have",
+        "raw_text": "Databricks",
+        "uncertain": true
+      },
+      {
+        "skill_id": "business-intelligence",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse an der Entwicklung von DWH / Data Lake und BI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Azure Data Factory",
+        "raw_text": "Data Factory"
+      },
+      {
+        "label": "Azure SQL Database",
+        "raw_text": "SQL DB"
+      },
+      {
+        "label": "Azure Data Lake Storage",
+        "raw_text": "Data Lake Storage"
+      },
+      {
+        "label": "Azure Functions",
+        "raw_text": "Functions"
+      },
+      {
+        "label": "Microsoft Foundry",
+        "raw_text": "Interesse an Microsoft Foundry"
+      },
+      {
+        "label": "Data warehouse / data lake",
+        "raw_text": "DWH / Data Lake"
+      },
+      {
+        "label": "Data engineering",
+        "raw_text": "Data-Engineering-Lösungen"
+      },
+      {
+        "label": "AI-driven personalization / predictive marketing",
+        "raw_text": "AI-gestützter Personalisierung, Predictive Marketing oder Customer Intelligence"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI Data Engineer",
+    "german": "nice_to_have",
+    "german_basis": "stated",
+    "german_signal": "Sehr gutes Deutsch",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "german"
+    ],
+    "notes": "The heading 'Das bringst du idealerweise mit' contains 'idealerweise' (= 'ideally', a listed optional marker). I read it literally as marking the whole section optional, so every item under it, German included, is nice_to_have. This is the key call: it is also the posting's only qualifications section and may be conventional phrasing for requirements. A reviewer should decide.\nBI and Cloud Architecture sit under 'Starkes Interesse an' (appetite), so they are nice_to_have regardless of the heading. DWH and Data Lake are unmapped.\nMicrosoft Foundry is under 'Interesse an' (appetite) and has no taxonomy entry, so it is unmapped.\nAzure Functions is not mapped to `serverless`. Mapping it there would add a broad skill the text does not name.\n'Leidenschaft für Daten, Azure und AI' is not labeled as ai-ml. It is passion wording, not a named skill requirement. Azure is covered by 'Azure Data Dienste'.\nAzure and Databricks also appear in responsibilities and benefits. Only the qualifications mention is used.\nNo degree is mentioned anywhere. The 'Senior' title and lead duty both point to senior."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "3230750ded75da38d79155ed47a055da5e8b70f105609bbdca1fc190889f82de",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

@@ -1,0 +1,130 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"GenAI applications\", \"uncertain\": true},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG\"},\n    {\"skill_id\": \"multi-agent-systems\", \"requirement\": \"required\", \"raw_text\": \"multi-agent systems\"},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"fine-tuning\"},\n    {\"skill_id\": \"hugging-face\", \"requirement\": \"required\", \"raw_text\": \"HuggingFace\"},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"LangChain\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"including evaluation\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"deploying production-grade GenAI applications\", \"uncertain\": true},\n    {\"skill_id\": \"data-science\", \"requirement\": \"required\", \"raw_text\": \"data science experience\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"machine learning and data science tools\", \"uncertain\": true},\n    {\"skill_id\": \"pandas\", \"requirement\": \"required\", \"raw_text\": \"pandas\"},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"required\", \"raw_text\": \"scikit-learn\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"GCP\"},\n    {\"skill_id\": \"databricks\", \"requirement\": \"nice_to_have\", \"raw_text\": \"[Preferred] Experience using the Databricks Intelligence Platform\"},\n    {\"skill_id\": \"apache-spark\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Apache Spark™\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Text2SQL\", \"raw_text\": \"Text2SQL\"},\n    {\"label\": \"DSPy\", \"raw_text\": \"DSPy\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Min 4 years' experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Graduate degree in a quantitative discipline (Computer Science, Engineering, Statistics, Operations Research, etc.) or equivalent practical experience\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"All items are under the requirements heading 'What we look for', so they default to required. The inline '[Preferred]' marker makes Databricks and Apache Spark nice_to_have.\\nI mapped 'GenAI applications' to llms through the 'generative ai applications' alias. GenAI is an abbreviation of that alias, so I flagged it uncertain.\\nI mapped 'deploying production-grade GenAI applications' to ai-deployment. The ML deployments bullet supports the same id, so it collapses into this one criterion. Flagged uncertain.\\nI labeled machine-learning from 'common machine learning and data science tools'. This is a borderline broad-skill mention, so I flagged it uncertain.\\nI did not label cloud, because the text names only AWS/Azure/GCP.\\nI did not label LLMOps. It appears only in the mission or company text, not as a candidate requirement.\\nI did not label Statistics. It appears only as a degree discipline, which is domain and not a skill.\\nI labeled 'Graduate degree' as master, reading 'graduate' as postgraduate level. A reviewer could read it as an unspecified degree, which would make it bachelor, so I flagged degree uncertain. 'or equivalent practical experience' makes degree_or_equivalent true.\\nI set seniority to mid, inferred from 'Min 4 years' experience'. 'Senior Manager' is the reporting line, not the role's level.\\nThe posting says nothing about the German language. It is written in English, and I did not infer German from the Germany location.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "GenAI applications",
+        "uncertain": true
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "required",
+        "raw_text": "multi-agent systems"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "required",
+        "raw_text": "HuggingFace"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "including evaluation"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying production-grade GenAI applications",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "data science experience"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning and data science tools",
+        "uncertain": true
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "required",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "nice_to_have",
+        "raw_text": "[Preferred] Experience using the Databricks Intelligence Platform"
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "nice_to_have",
+        "raw_text": "Apache Spark™"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Text2SQL",
+        "raw_text": "Text2SQL"
+      },
+      {
+        "label": "DSPy",
+        "raw_text": "DSPy"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Min 4 years' experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Graduate degree in a quantitative discipline (Computer Science, Engineering, Statistics, Operations Research, etc.) or equivalent practical experience",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "All items are under the requirements heading 'What we look for', so they default to required. The inline '[Preferred]' marker makes Databricks and Apache Spark nice_to_have.\nI mapped 'GenAI applications' to llms through the 'generative ai applications' alias. GenAI is an abbreviation of that alias, so I flagged it uncertain.\nI mapped 'deploying production-grade GenAI applications' to ai-deployment. The ML deployments bullet supports the same id, so it collapses into this one criterion. Flagged uncertain.\nI labeled machine-learning from 'common machine learning and data science tools'. This is a borderline broad-skill mention, so I flagged it uncertain.\nI did not label cloud, because the text names only AWS/Azure/GCP.\nI did not label LLMOps. It appears only in the mission or company text, not as a candidate requirement.\nI did not label Statistics. It appears only as a degree discipline, which is domain and not a skill.\nI labeled 'Graduate degree' as master, reading 'graduate' as postgraduate level. A reviewer could read it as an unspecified degree, which would make it bachelor, so I flagged degree uncertain. 'or equivalent practical experience' makes degree_or_equivalent true.\nI set seniority to mid, inferred from 'Min 4 years' experience'. 'Senior Manager' is the reporting line, not the role's level.\nThe posting says nothing about the German language. It is written in English, and I did not infer German from the Germany location."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "827d98839840b1b68295991c4714631cef49d8220d3f91ed2d0620faa56becc9",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

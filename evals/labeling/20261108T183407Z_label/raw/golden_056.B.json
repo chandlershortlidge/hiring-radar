@@ -1,0 +1,194 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software or data engineering\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Go\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"testing frameworks\"\n    },\n    {\n      \"skill_id\": \"api-design\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"API contract design\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning methodologies\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"reinforced learning\"\n    },\n    {\n      \"skill_id\": \"model-selection\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model identification, selection\"\n    },\n    {\n      \"skill_id\": \"aiops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI operations\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model monitoring\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Generative AI\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic orchestration\"\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangChain\"\n    },\n    {\n      \"skill_id\": \"crewai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CrewAI\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"vector databases\"\n    },\n    {\n      \"skill_id\": \"explainable-ai\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"explainable AI\"\n    },\n    {\n      \"skill_id\": \"data-modeling\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"data modeling\"\n    },\n    {\n      \"skill_id\": \"nosql\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"NoSQL\"\n    },\n    {\n      \"skill_id\": \"bigquery\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"BigQuery\"\n    },\n    {\n      \"skill_id\": \"vertex-ai\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Experience in BigQuery, Vertex AI\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"DevOps\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data engineering\",\n      \"raw_text\": \"data engineering\"\n    },\n    {\n      \"label\": \"Design patterns\",\n      \"raw_text\": \"design patterns\"\n    },\n    {\n      \"label\": \"Model identification\",\n      \"raw_text\": \"model identification\"\n    },\n    {\n      \"label\": \"Vertex AI Agent Builder\",\n      \"raw_text\": \"Vertex AI Agent Builder\"\n    },\n    {\n      \"label\": \"Data residency\",\n      \"raw_text\": \"data residency\"\n    },\n    {\n      \"label\": \"Encryption at rest and in transit\",\n      \"raw_text\": \"encryption at rest/transit\"\n    },\n    {\n      \"label\": \"Customer-managed encryption keys\",\n      \"raw_text\": \"CMEK\"\n    },\n    {\n      \"label\": \"Star Schema\",\n      \"raw_text\": \"Star Schema\"\n    },\n    {\n      \"label\": \"Data Vault\",\n      \"raw_text\": \"Data Vault\"\n    },\n    {\n      \"label\": \"Google Cloud Dataflow\",\n      \"raw_text\": \"Dataflow\"\n    },\n    {\n      \"label\": \"Google Cloud Pub/Sub\",\n      \"raw_text\": \"Pub/Sub\"\n    },\n    {\n      \"label\": \"Trunk-based development\",\n      \"raw_text\": \"trunk-based development\"\n    },\n    {\n      \"label\": \"Blue/green deployments\",\n      \"raw_text\": \"blue/green deployments\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"7 years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor's degree in Computer Science, a related field, or equivalent practical experience.\",\n  \"notes\": \"Minimum qualifications are required; Preferred qualifications are nice_to_have. Technologies appearing only under About the Job are excluded.\\nRead \\\"reinforced learning\\\" as reinforcement learning.\\nMapped \\\"AI operations\\\" literally to AIOps, but flagged it because the model-monitoring context could instead indicate MLOps.\\nVertex AI Agent Builder is treated as a distinct, unmapped product, not as a required mention of its parent Vertex AI platform; the standalone Vertex AI qualification is preferred.\\nData residency, encryption, and CMEK are kept unmapped rather than adding an unnamed broad Data Privacy & Security skill.\\nFinancial-services and regulatory knowledge are excluded as domain knowledge; discovery and PRD wording is read as product-oriented capability rather than a named technical skill.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software or data engineering"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing frameworks"
+      },
+      {
+        "skill_id": "api-design",
+        "requirement": "required",
+        "raw_text": "API contract design"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning methodologies"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "reinforced learning"
+      },
+      {
+        "skill_id": "model-selection",
+        "requirement": "required",
+        "raw_text": "model identification, selection"
+      },
+      {
+        "skill_id": "aiops",
+        "requirement": "required",
+        "raw_text": "AI operations",
+        "uncertain": true
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "model monitoring"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generative AI"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "agentic orchestration"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "crewai",
+        "requirement": "required",
+        "raw_text": "CrewAI"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector databases"
+      },
+      {
+        "skill_id": "explainable-ai",
+        "requirement": "nice_to_have",
+        "raw_text": "explainable AI"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "nice_to_have",
+        "raw_text": "data modeling"
+      },
+      {
+        "skill_id": "nosql",
+        "requirement": "nice_to_have",
+        "raw_text": "NoSQL"
+      },
+      {
+        "skill_id": "bigquery",
+        "requirement": "nice_to_have",
+        "raw_text": "BigQuery"
+      },
+      {
+        "skill_id": "vertex-ai",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience in BigQuery, Vertex AI"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "nice_to_have",
+        "raw_text": "DevOps"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data engineering",
+        "raw_text": "data engineering"
+      },
+      {
+        "label": "Design patterns",
+        "raw_text": "design patterns"
+      },
+      {
+        "label": "Model identification",
+        "raw_text": "model identification"
+      },
+      {
+        "label": "Vertex AI Agent Builder",
+        "raw_text": "Vertex AI Agent Builder"
+      },
+      {
+        "label": "Data residency",
+        "raw_text": "data residency"
+      },
+      {
+        "label": "Encryption at rest and in transit",
+        "raw_text": "encryption at rest/transit"
+      },
+      {
+        "label": "Customer-managed encryption keys",
+        "raw_text": "CMEK"
+      },
+      {
+        "label": "Star Schema",
+        "raw_text": "Star Schema"
+      },
+      {
+        "label": "Data Vault",
+        "raw_text": "Data Vault"
+      },
+      {
+        "label": "Google Cloud Dataflow",
+        "raw_text": "Dataflow"
+      },
+      {
+        "label": "Google Cloud Pub/Sub",
+        "raw_text": "Pub/Sub"
+      },
+      {
+        "label": "Trunk-based development",
+        "raw_text": "trunk-based development"
+      },
+      {
+        "label": "Blue/green deployments",
+        "raw_text": "blue/green deployments"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "7 years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor's degree in Computer Science, a related field, or equivalent practical experience.",
+    "notes": "Minimum qualifications are required; Preferred qualifications are nice_to_have. Technologies appearing only under About the Job are excluded.\nRead \"reinforced learning\" as reinforcement learning.\nMapped \"AI operations\" literally to AIOps, but flagged it because the model-monitoring context could instead indicate MLOps.\nVertex AI Agent Builder is treated as a distinct, unmapped product, not as a required mention of its parent Vertex AI platform; the standalone Vertex AI qualification is preferred.\nData residency, encryption, and CMEK are kept unmapped rather than adding an unnamed broad Data Privacy & Security skill.\nFinancial-services and regulatory knowledge are excluded as domain knowledge; discovery and PRD wording is read as product-oriented capability rather than a named technical skill."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "98068333b0761645354806236d3adcde7dc6c0d3526326954aa9ad29845f7d83",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

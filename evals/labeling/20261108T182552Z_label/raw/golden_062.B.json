@@ -1,0 +1,106 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure-Ressourcen\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Git\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Networking\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Monitoring\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Infrastructure-as-Code-Projekten\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Large Language Models (LLMs)\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"RAG-Technologien und -Architekturen\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Azure DevOps\",\n      \"raw_text\": \"Azure DevOps\"\n    },\n    {\n      \"label\": \"Microsoft Entra ID\",\n      \"raw_text\": \"Entra ID\"\n    },\n    {\n      \"label\": \"Azure Key Vault\",\n      \"raw_text\": \"Key Vaults\"\n    },\n    {\n      \"label\": \"Azure Private Endpoints\",\n      \"raw_text\": \"Private Endpoints\"\n    },\n    {\n      \"label\": \"Azure Landing Zones\",\n      \"raw_text\": \"Landing Zones\"\n    },\n    {\n      \"label\": \"Microsoft Azure AI Stack\",\n      \"raw_text\": \"Microsoft Azure AI Stack\"\n    },\n    {\n      \"label\": \"Azure OpenAI\",\n      \"raw_text\": \"Azure OpenAI\"\n    },\n    {\n      \"label\": \"Azure AI Foundry\",\n      \"raw_text\": \"AI Foundry\"\n    },\n    {\n      \"label\": \"Azure Cognitive Services\",\n      \"raw_text\": \"Cognitive Services\"\n    },\n    {\n      \"label\": \"Azure AI Search\",\n      \"raw_text\": \"AI Search\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"nachweisbare Erfahrung\",\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"abgeschlossenes Studium der Informatik, Data Science, Mathematik oder eine vergleichbare Qualifikation\",\n  \"notes\": \"„Was dich auszeichnet“ enthält Anforderungen; „Idealerweise“ und „von Vorteil“ markieren die jeweiligen Punkte als optional.\\nAzure DevOps wird wörtlich als benanntes Produkt behandelt, nicht als eigenständige Anforderung an die allgemeine DevOps-Praxis; ein passender Produkteintrag fehlt in der Taxonomie.\\nEntra ID und die ausdrücklich benannten Azure-Dienste bleiben unmapped, statt sie mit Active Directory oder OpenAI API gleichzusetzen.\\nCI/CD erscheint nur unter den Aufgaben und wird nicht separat gelabelt.\\n„nachweisbare Erfahrung“ wird gemäß der Regel für „proven experience“ als mid gewertet, obwohl die betreffende Erfahrung bevorzugt ist.\\nDeutsch wird aus der deutschsprachigen Ausschreibung ohne ausdrückliche Sprachanforderung abgeleitet.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure-Ressourcen"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "Networking"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure-as-Code-Projekten"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "Large Language Models (LLMs)"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "RAG-Technologien und -Architekturen"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Azure DevOps",
+        "raw_text": "Azure DevOps"
+      },
+      {
+        "label": "Microsoft Entra ID",
+        "raw_text": "Entra ID"
+      },
+      {
+        "label": "Azure Key Vault",
+        "raw_text": "Key Vaults"
+      },
+      {
+        "label": "Azure Private Endpoints",
+        "raw_text": "Private Endpoints"
+      },
+      {
+        "label": "Azure Landing Zones",
+        "raw_text": "Landing Zones"
+      },
+      {
+        "label": "Microsoft Azure AI Stack",
+        "raw_text": "Microsoft Azure AI Stack"
+      },
+      {
+        "label": "Azure OpenAI",
+        "raw_text": "Azure OpenAI"
+      },
+      {
+        "label": "Azure AI Foundry",
+        "raw_text": "AI Foundry"
+      },
+      {
+        "label": "Azure Cognitive Services",
+        "raw_text": "Cognitive Services"
+      },
+      {
+        "label": "Azure AI Search",
+        "raw_text": "AI Search"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "nachweisbare Erfahrung",
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "abgeschlossenes Studium der Informatik, Data Science, Mathematik oder eine vergleichbare Qualifikation",
+    "notes": "„Was dich auszeichnet“ enthält Anforderungen; „Idealerweise“ und „von Vorteil“ markieren die jeweiligen Punkte als optional.\nAzure DevOps wird wörtlich als benanntes Produkt behandelt, nicht als eigenständige Anforderung an die allgemeine DevOps-Praxis; ein passender Produkteintrag fehlt in der Taxonomie.\nEntra ID und die ausdrücklich benannten Azure-Dienste bleiben unmapped, statt sie mit Active Directory oder OpenAI API gleichzusetzen.\nCI/CD erscheint nur unter den Aufgaben und wird nicht separat gelabelt.\n„nachweisbare Erfahrung“ wird gemäß der Regel für „proven experience“ als mid gewertet, obwohl die betreffende Erfahrung bevorzugt ist.\nDeutsch wird aus der deutschsprachigen Ausschreibung ohne ausdrückliche Sprachanforderung abgeleitet."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "ae8a6d95fe6e790e41ca5471d20cdde1e3cc1795b00fc8ff42ff5a12cc057b89",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

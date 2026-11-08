@@ -1,0 +1,103 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"data-science\", \"requirement\": \"required\", \"raw_text\": \"experience in data science\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"machine learning, or applied AI\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"applied AI\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"hands-on skills in Python\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"Python, SQL\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"GenAI and LLMs\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"strong experience with AWS\"},\n    {\"skill_id\": \"sagemaker\", \"requirement\": \"required\", \"raw_text\": \"SageMaker, S3, EKS\"},\n    {\"skill_id\": \"aws-s3\", \"requirement\": \"required\", \"raw_text\": \"S3, EKS\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud platforms\"},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"MLOps\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"model deployment\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"ML frameworks\", \"raw_text\": \"common ML frameworks\"},\n    {\"label\": \"AWS EKS\", \"raw_text\": \"EKS\"},\n    {\"label\": \"AWS Lambda\", \"raw_text\": \"EKS, Lambda, IAM\"},\n    {\"label\": \"AWS IAM\", \"raw_text\": \"IAM\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Data Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Only the 'YOU COME WITH' section is labeled. Skills named only in 'WHAT YOU'LL DO' (EMR, Lambda as listed there, monitoring) are not labeled from that section.\\n'GenAI' and 'LLMs' both map to llms and are collapsed into one criterion.\\nEKS is not mapped to kubernetes and Lambda is not mapped to serverless, because a specific skill does not imply its parent. Both are in unmapped.\\n'common ML frameworks' has no taxonomy entry. deep-learning's alias is 'deep learning frameworks', which is not what the text says, so it is in unmapped.\\nThe fields named in the years-of-experience bullet (data science, machine learning, applied AI) are taxonomy skills, so they are labeled. The 10+ years figure itself is not a skill.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "experience in data science"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning, or applied AI"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "applied AI"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "hands-on skills in Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "Python, SQL"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "GenAI and LLMs"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "strong experience with AWS"
+      },
+      {
+        "skill_id": "sagemaker",
+        "requirement": "required",
+        "raw_text": "SageMaker, S3, EKS"
+      },
+      {
+        "skill_id": "aws-s3",
+        "requirement": "required",
+        "raw_text": "S3, EKS"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "model deployment"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "ML frameworks",
+        "raw_text": "common ML frameworks"
+      },
+      {
+        "label": "AWS EKS",
+        "raw_text": "EKS"
+      },
+      {
+        "label": "AWS Lambda",
+        "raw_text": "EKS, Lambda, IAM"
+      },
+      {
+        "label": "AWS IAM",
+        "raw_text": "IAM"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Data Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Only the 'YOU COME WITH' section is labeled. Skills named only in 'WHAT YOU'LL DO' (EMR, Lambda as listed there, monitoring) are not labeled from that section.\n'GenAI' and 'LLMs' both map to llms and are collapsed into one criterion.\nEKS is not mapped to kubernetes and Lambda is not mapped to serverless, because a specific skill does not imply its parent. Both are in unmapped.\n'common ML frameworks' has no taxonomy entry. deep-learning's alias is 'deep learning frameworks', which is not what the text says, so it is in unmapped.\nThe fields named in the years-of-experience bullet (data science, machine learning, applied AI) are taxonomy skills, so they are labeled. The 10+ years figure itself is not a skill."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "e889330a9ba759d0463f84b3e68c0043466c746034019b410f06850245d5fadf",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

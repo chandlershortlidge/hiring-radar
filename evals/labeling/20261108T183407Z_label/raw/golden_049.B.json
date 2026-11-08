@@ -1,0 +1,45 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud-, Data- und AI-Technologien\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI-Technologien\"\n    },\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Snowflake\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    }\n  ],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Treated the explicitly labeled “Moderner Technologie-Stack” passage as a tech-stack section, despite its placement within benefits; its unmarked technologies are required.\\nMapped the broad phrase “AI-Technologien” to ai-ml; no specific AI techniques are implied.\\nGeneric references to Data technologies and modern engineering tools do not identify additional concrete skills.\\nExcluded technologies and practices appearing only in the company description or “Deine Aufgaben”.\\nThe supplied posting is truncated before any qualifications section; labels reflect only the supplied text.\\nNo usable seniority signal or degree mention; German is inferred from the posting language.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-, Data- und AI-Technologien"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI-Technologien"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      }
+    ],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Treated the explicitly labeled “Moderner Technologie-Stack” passage as a tech-stack section, despite its placement within benefits; its unmarked technologies are required.\nMapped the broad phrase “AI-Technologien” to ai-ml; no specific AI techniques are implied.\nGeneric references to Data technologies and modern engineering tools do not identify additional concrete skills.\nExcluded technologies and practices appearing only in the company description or “Deine Aufgaben”.\nThe supplied posting is truncated before any qualifications section; labels reflect only the supplied text.\nNo usable seniority signal or degree mention; German is inferred from the posting language."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "c1ba12b549f9781c6aefcd52651f0a7299d7e09c83dacdebbe739a2c179fe95d",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

@@ -1,0 +1,131 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience building GenAI applications\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG\"\n    },\n    {\n      \"skill_id\": \"multi-agent-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"multi-agent systems\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"fine-tuning\"\n    },\n    {\n      \"skill_id\": \"hugging-face\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"HuggingFace\"\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangChain\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying production-grade GenAI applications\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation\"\n    },\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"hands-on industry data science experience\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"common machine learning and data science tools\"\n    },\n    {\n      \"skill_id\": \"pandas\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"pandas\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"scikit-learn\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GCP\"\n    },\n    {\n      \"skill_id\": \"databricks\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"[Preferred] Experience using the Databricks Intelligence Platform\"\n    },\n    {\n      \"skill_id\": \"apache-spark\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"[Preferred] Experience using the Databricks Intelligence Platform and Apache Spark™\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Text2SQL\",\n      \"raw_text\": \"Text2SQL\"\n    },\n    {\n      \"label\": \"DSPy\",\n      \"raw_text\": \"DSPy\"\n    },\n    {\n      \"label\": \"GenAI application optimisation\",\n      \"raw_text\": \"optimisations\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Min 4 years' experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Graduate degree in a quantitative discipline (Computer Science, Engineering, Statistics, Operations Research, etc.) or equivalent practical experience\",\n  \"uncertain\": [\n    \"degree\"\n  ],\n  \"notes\": \"The qualifications section defaults to required; the inline [Preferred] marker makes both Databricks and Apache Spark optional.\\nInterpreted graduate degree as master's-level minimum; flagged because the guide does not explicitly resolve this wording versus its unspecified-degree bachelor rule.\\nGeneric GenAI application optimisations are unmapped rather than narrowed to inference optimization.\\nNo cloud parent skill is added: only AWS, Azure and GCP are named in qualifications. LLMOps appears only in the team description and is excluded.\\nThe Senior Manager reporting line describes the manager, not this role. Germany locations do not establish a German-language requirement.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Experience building GenAI applications"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "required",
+        "raw_text": "multi-agent systems"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "required",
+        "raw_text": "HuggingFace"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying production-grade GenAI applications"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "hands-on industry data science experience"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "common machine learning and data science tools"
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "required",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "nice_to_have",
+        "raw_text": "[Preferred] Experience using the Databricks Intelligence Platform"
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "nice_to_have",
+        "raw_text": "[Preferred] Experience using the Databricks Intelligence Platform and Apache Spark™"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Text2SQL",
+        "raw_text": "Text2SQL"
+      },
+      {
+        "label": "DSPy",
+        "raw_text": "DSPy"
+      },
+      {
+        "label": "GenAI application optimisation",
+        "raw_text": "optimisations"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Min 4 years' experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Graduate degree in a quantitative discipline (Computer Science, Engineering, Statistics, Operations Research, etc.) or equivalent practical experience",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "The qualifications section defaults to required; the inline [Preferred] marker makes both Databricks and Apache Spark optional.\nInterpreted graduate degree as master's-level minimum; flagged because the guide does not explicitly resolve this wording versus its unspecified-degree bachelor rule.\nGeneric GenAI application optimisations are unmapped rather than narrowed to inference optimization.\nNo cloud parent skill is added: only AWS, Azure and GCP are named in qualifications. LLMOps appears only in the team description and is excluded.\nThe Senior Manager reporting line describes the manager, not this role. Germany locations do not establish a German-language requirement."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "827d98839840b1b68295991c4714631cef49d8220d3f91ed2d0620faa56becc9",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

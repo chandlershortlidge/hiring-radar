@@ -1,0 +1,116 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python gehört zu deinem Werkzeugkasten\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit APIs\"},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"Softwarearchitektur\"},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"der Entwicklung professioneller Softwarelösungen\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Large Language Models, Generative AI\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"Prompt Engineering\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"Prompt Engineering, RAG\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"RAG oder AI Agents sind dir vertraut\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Du verstehst Machine Learning\"},\n    {\"skill_id\": \"model-development\", \"requirement\": \"required\", \"raw_text\": \"Modelltraining\", \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"Modelltraining und Evaluation\"},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"nice_to_have\", \"raw_text\": \"idealerweise bereits mit scikit-learn\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"nice_to_have\", \"raw_text\": \"scikit-learn, PyTorch\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"Testing\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"Deployment\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Databases\", \"raw_text\": \"Datenbanken\"},\n    {\"label\": \"Integration of AI models\", \"raw_text\": \"der Integration von AI-Modellen\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Idealerweise hast du bereits 3–5 Jahre in der Softwareentwicklung, im AI Engineering oder Machine Learning gearbeitet\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"verfügst über gute Deutsch- und Englischkenntnisse\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Ein abgeschlossenes Studium in Informatik, Data Science oder einem verwandten Bereich ist willkommen – ebenso eine vergleichbare Qualifikation durch Praxiserfahrung\",\n  \"uncertain\": [\"degree\", \"seniority\"],\n  \"notes\": \"The responsibilities section ('Spannender Aufgabenbereich') is not labeled. Monitoring, automated tests and Evaluation there count only through requirement mentions.\\nThe 'Überzeugende Voraussetzungen' heading marks requirements, so unmarked items default to required.\\nThe inline marker 'idealerweise' attaches to scikit-learn and PyTorch, making them nice_to_have. 'vergleichbaren Technologien' adds no skill.\\nAI Agents, RAG and Prompt Engineering are required. 'sind dir vertraut' asks for familiarity, not appetite.\\nsoftware-engineering is mapped from 'Entwicklung professioneller Softwarelösungen'. The alias 'Softwareentwicklung' also appears in 'zu guter Softwareentwicklung'. Uncertain because it may be read as too generic.\\nmodel-development is mapped from 'Modelltraining' via the alias 'training von ki modellen'. Uncertain.\\n'Deployment' is mapped to ai-deployment because the context is AI apps in production. The bare word is generic, so uncertain.\\n'Sicherheit', 'Skalierbarkeit' and 'zuverlässiger Produktivbetrieb' are left unlabeled. They are too generic; Produktivbetrieb is not specifically of AI models, so mlops was not assigned.\\n'Datenbanken' has no generic databases id in the taxonomy, so it is unmapped.\\nSeniority is mid, inferred from 3–5 years. The years are softened by 'Idealerweise' but remain the only level signal.\\nThe degree is labeled nice_to_have because 'ist willkommen' reads as an optional marker (welcome ≈ plus). It is not one of the listed markers, so this is flagged uncertain. 'vergleichbare Qualifikation durch Praxiserfahrung' sets or_equivalent to true.\\nThe posting is truncated at the benefits section. No requirement content appears to be lost.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python gehört zu deinem Werkzeugkasten"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit APIs"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Softwarearchitektur"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "der Entwicklung professioneller Softwarelösungen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Large Language Models, Generative AI"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering, RAG"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "RAG oder AI Agents sind dir vertraut"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Du verstehst Machine Learning"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "Modelltraining",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Modelltraining und Evaluation"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise bereits mit scikit-learn"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "scikit-learn, PyTorch"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "Testing"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "Deployment",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Databases",
+        "raw_text": "Datenbanken"
+      },
+      {
+        "label": "Integration of AI models",
+        "raw_text": "der Integration von AI-Modellen"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Idealerweise hast du bereits 3–5 Jahre in der Softwareentwicklung, im AI Engineering oder Machine Learning gearbeitet",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "verfügst über gute Deutsch- und Englischkenntnisse",
+    "degree": "bachelor",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": true,
+    "degree_signal": "Ein abgeschlossenes Studium in Informatik, Data Science oder einem verwandten Bereich ist willkommen – ebenso eine vergleichbare Qualifikation durch Praxiserfahrung",
+    "uncertain": [
+      "degree",
+      "seniority"
+    ],
+    "notes": "The responsibilities section ('Spannender Aufgabenbereich') is not labeled. Monitoring, automated tests and Evaluation there count only through requirement mentions.\nThe 'Überzeugende Voraussetzungen' heading marks requirements, so unmarked items default to required.\nThe inline marker 'idealerweise' attaches to scikit-learn and PyTorch, making them nice_to_have. 'vergleichbaren Technologien' adds no skill.\nAI Agents, RAG and Prompt Engineering are required. 'sind dir vertraut' asks for familiarity, not appetite.\nsoftware-engineering is mapped from 'Entwicklung professioneller Softwarelösungen'. The alias 'Softwareentwicklung' also appears in 'zu guter Softwareentwicklung'. Uncertain because it may be read as too generic.\nmodel-development is mapped from 'Modelltraining' via the alias 'training von ki modellen'. Uncertain.\n'Deployment' is mapped to ai-deployment because the context is AI apps in production. The bare word is generic, so uncertain.\n'Sicherheit', 'Skalierbarkeit' and 'zuverlässiger Produktivbetrieb' are left unlabeled. They are too generic; Produktivbetrieb is not specifically of AI models, so mlops was not assigned.\n'Datenbanken' has no generic databases id in the taxonomy, so it is unmapped.\nSeniority is mid, inferred from 3–5 years. The years are softened by 'Idealerweise' but remain the only level signal.\nThe degree is labeled nice_to_have because 'ist willkommen' reads as an optional marker (welcome ≈ plus). It is not one of the listed markers, so this is flagged uncertain. 'vergleichbare Qualifikation durch Praxiserfahrung' sets or_equivalent to true.\nThe posting is truncated at the benefits section. No requirement content appears to be lost."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "378e2b9587bff9ec1b6332f7cb0b23ba8edb4f2806227085a74d9b2a4b40fec9",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

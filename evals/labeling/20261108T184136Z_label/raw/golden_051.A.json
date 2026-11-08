@@ -1,0 +1,137 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Praxis in Softwareentwicklung\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"AI/ML\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit LLMs\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"Software-Architektur\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud-Plattformen\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"GCP\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"LLMs, RAG, Agentic AI\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"Agentic AI\", \"uncertain\": true},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"required\", \"raw_text\": \"Vektordatenbanken\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"Orchestrierungsframeworks\"},\n    {\"skill_id\": \"langgraph\", \"requirement\": \"required\", \"raw_text\": \"LangGraph\"},\n    {\"skill_id\": \"crewai\", \"requirement\": \"required\", \"raw_text\": \"CrewAI\"},\n    {\"skill_id\": \"llamaindex\", \"requirement\": \"required\", \"raw_text\": \"LlamaIndex\"},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"MLOps/LLMOps, CI/CD\"},\n    {\"skill_id\": \"llmops\", \"requirement\": \"required\", \"raw_text\": \"MLOps/LLMOps, CI/CD\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Kubernetes\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"Git\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"automatisiertes Testing\"}\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Fließend in Deutsch und Englisch\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Studium in Informatik, Data Science, Ingenieurwissenschaften oder vergleichbar\",\n  \"uncertain\": [],\n  \"notes\": \"'Generative AI' and 'LLMs' are both in the profile and collapse into one llms criterion; raw_text quotes the LLM mention.\\n'Agentic AI' is mapped to agents, the closest entry (its aliases include 'agentic ai frameworks' and 'ai agents'); flagged uncertain.\\nKnowledge Graphs, APIs, MCP, A2A, Monitoring and AI Governance appear only in the responsibilities, so they are not labeled.\\nmlops and llmops share 'MLOps/LLMOps, CI/CD' because 'MLOps/LLMOps' alone also matches the responsibilities line ('MLOps/LLMOps-Prozesse').\\nrag is quoted as 'LLMs, RAG, Agentic AI' to point at the profile mention rather than the responsibilities one.\\nDegree: 'oder vergleichbar' widens the field of study, not the requirement, so degree_or_equivalent is false. 'Studium' with no level is labeled bachelor.\\nWorkshop-Leitung and Beratungskompetenz are soft skills and are not labeled.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Praxis in Softwareentwicklung"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit LLMs"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Software-Architektur"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Plattformen"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "LLMs, RAG, Agentic AI"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Agentic AI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "Vektordatenbanken"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "Orchestrierungsframeworks"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "crewai",
+        "requirement": "required",
+        "raw_text": "CrewAI"
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "required",
+        "raw_text": "LlamaIndex"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps/LLMOps, CI/CD"
+      },
+      {
+        "skill_id": "llmops",
+        "requirement": "required",
+        "raw_text": "MLOps/LLMOps, CI/CD"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automatisiertes Testing"
+      }
+    ],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI Engineer",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Fließend in Deutsch und Englisch",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Studium in Informatik, Data Science, Ingenieurwissenschaften oder vergleichbar",
+    "uncertain": [],
+    "notes": "'Generative AI' and 'LLMs' are both in the profile and collapse into one llms criterion; raw_text quotes the LLM mention.\n'Agentic AI' is mapped to agents, the closest entry (its aliases include 'agentic ai frameworks' and 'ai agents'); flagged uncertain.\nKnowledge Graphs, APIs, MCP, A2A, Monitoring and AI Governance appear only in the responsibilities, so they are not labeled.\nmlops and llmops share 'MLOps/LLMOps, CI/CD' because 'MLOps/LLMOps' alone also matches the responsibilities line ('MLOps/LLMOps-Prozesse').\nrag is quoted as 'LLMs, RAG, Agentic AI' to point at the profile mention rather than the responsibilities one.\nDegree: 'oder vergleichbar' widens the field of study, not the requirement, so degree_or_equivalent is false. 'Studium' with no level is labeled bachelor.\nWorkshop-Leitung and Beratungskompetenz are soft skills and are not labeled."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "57cb3bcd8cbd150172cc18c6d40a4452393da40f82188d3ed9db420911513f28",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

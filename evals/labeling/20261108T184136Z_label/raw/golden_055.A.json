@@ -1,0 +1,117 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"cybersecurity\", \"requirement\": \"required\", \"raw_text\": \"experience in Automotive Cybersecurity\", \"uncertain\": true},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"building, operating, and maintaining agentic AI toolchains\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud platforms\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"containerization and orchestration technologies\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Docker\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Kubernetes\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"as well as CI/CD\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"Infrastructure-as-Code tools\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"required\", \"raw_text\": \"Infrastructure-as-Code tools (e.g., Terraform\"},\n    {\"skill_id\": \"ansible\", \"requirement\": \"required\", \"raw_text\": \"Terraform, Ansible, GitHub Actions\"},\n    {\"skill_id\": \"github-actions\", \"requirement\": \"required\", \"raw_text\": \"GitHub Actions/GitLab CI\"},\n    {\"skill_id\": \"gitlab-ci\", \"requirement\": \"required\", \"raw_text\": \"GitHub Actions/GitLab CI\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"security toolchains\", \"raw_text\": \"complex security toolchains\"},\n    {\"label\": \"static and dynamic code analysis\", \"raw_text\": \"static and dynamic code analysis\"},\n    {\"label\": \"fuzzing\", \"raw_text\": \"fuzzing, and penetration testing tools\"},\n    {\"label\": \"penetration testing tools\", \"raw_text\": \"penetration testing tools\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Several years of professional experience\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Business-fluent German\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"University degree in Computer Science or a comparable IT-related field\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"Sections: 'What awaits you?' is responsibilities. 'What should you bring along?' is requirements, so every item is required and none has an optional marker.\\nLabeled cybersecurity from 'Automotive Cybersecurity'. It could instead be read as domain knowledge, so it is flagged uncertain.\\nMapped 'agentic AI toolchains' to agents, the nearest taxonomy entry, and flagged it uncertain.\\nDid not label open-source-llms from 'commercial and open-source technologies' because the phrase names no LLM skill.\\n'orchestration technologies' (Docker/Kubernetes) is container orchestration, which the taxonomy lists as an alias of containerization.\\nThe responsibilities section also mentions CI/CD, Terraform, Ansible, GitHub Actions and GitLab CI. raw_text quotes the requirements-section mentions.\\nSeniority rests on 'Several years', which has no exact count. I read it as roughly 3-5 years, giving mid inferred, and flagged it uncertain.\\nDegree: 'comparable IT-related field' widens the field, not the requirement, so degree_or_equivalent is false.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "experience in Automotive Cybersecurity",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "building, operating, and maintaining agentic AI toolchains",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containerization and orchestration technologies"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "as well as CI/CD"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure-as-Code tools"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Infrastructure-as-Code tools (e.g., Terraform"
+      },
+      {
+        "skill_id": "ansible",
+        "requirement": "required",
+        "raw_text": "Terraform, Ansible, GitHub Actions"
+      },
+      {
+        "skill_id": "github-actions",
+        "requirement": "required",
+        "raw_text": "GitHub Actions/GitLab CI"
+      },
+      {
+        "skill_id": "gitlab-ci",
+        "requirement": "required",
+        "raw_text": "GitHub Actions/GitLab CI"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "security toolchains",
+        "raw_text": "complex security toolchains"
+      },
+      {
+        "label": "static and dynamic code analysis",
+        "raw_text": "static and dynamic code analysis"
+      },
+      {
+        "label": "fuzzing",
+        "raw_text": "fuzzing, and penetration testing tools"
+      },
+      {
+        "label": "penetration testing tools",
+        "raw_text": "penetration testing tools"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Several years of professional experience",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Business-fluent German",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "University degree in Computer Science or a comparable IT-related field",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Sections: 'What awaits you?' is responsibilities. 'What should you bring along?' is requirements, so every item is required and none has an optional marker.\nLabeled cybersecurity from 'Automotive Cybersecurity'. It could instead be read as domain knowledge, so it is flagged uncertain.\nMapped 'agentic AI toolchains' to agents, the nearest taxonomy entry, and flagged it uncertain.\nDid not label open-source-llms from 'commercial and open-source technologies' because the phrase names no LLM skill.\n'orchestration technologies' (Docker/Kubernetes) is container orchestration, which the taxonomy lists as an alias of containerization.\nThe responsibilities section also mentions CI/CD, Terraform, Ansible, GitHub Actions and GitLab CI. raw_text quotes the requirements-section mentions.\nSeniority rests on 'Several years', which has no exact count. I read it as roughly 3-5 years, giving mid inferred, and flagged it uncertain.\nDegree: 'comparable IT-related field' widens the field, not the requirement, so degree_or_equivalent is false."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "cb7a81c798305bf8aa5d44a28e1dbb66efd12521229a4a2f7675d28ef4de16c4",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

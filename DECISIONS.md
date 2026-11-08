@@ -5,6 +5,71 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-08 — Hamburg, Frankfurt and Munich are collected; two of them have no boards to add (HIR-165)
+
+Chandler named these three cities on the HIR-165 ticket, so the 2026-11-03 rule below
+(HIR-132) applies as written: a city he has named is launched by the automated path and
+neither it nor its boards waits on approval. `geo.ACTIVE_CITIES` is now
+`("Berlin", "Remote (EU)", "San Francisco", "New York", "Hamburg", "Frankfurt", "Munich")`.
+The stop list's `ACTIVE_CITIES` and spend lines were read against that rule; the specific
+rule governs, and the launch path's own caps (EUR 10 of one-time reading, 5,000 postings a
+day, per city) were the spend limit. No cap was reached.
+
+**What the three launches found, which is the thing worth keeping.** The board policy adds
+an employer board with 5 or more AI roles in the city being launched. Applied to these
+three, it added boards for Munich only:
+
+- **Hamburg:** 284 boards judged, **0 added** — the best had 2 roles in the city.
+- **Frankfurt:** 337 boards judged, **0 added** — same reason.
+- **Munich:** 381 boards judged, **3 added** (Agile Robots, Celonis, Alexander Thamm),
+  about EUR 0.28 of one-time reading and 318 postings on the daily download.
+
+So outside Berlin and Munich, German AI hiring does not sit on company-run Greenhouse,
+Lever, Ashby or JOIN boards in the quantity the policy looks for. These cities' postings
+arrive through the country-wide German feeds instead, which is what the ticket predicted:
+of Hamburg's first 14 postings, 13 came from the Bundesagentur für Arbeit and 1 from
+arbeitnow. Each city therefore also got the two Bundesagentur searches Berlin has ("AI
+Engineer" and "Machine Learning Engineer", 25 km, Munich's spelled "München") and its own
+two board-discovery queries. Nothing here says the policy is wrong — a board with 2 roles
+is left unrecorded rather than rejected, so it can be picked up when it grows.
+
+**The launch quality check: all three read as well as Berlin, or better.** Each city's
+sample was labelled by the same two-model panel as the Berlin run it is measured against
+(`20261103T224145Z_label`), so the panel check added in HIR-149 prints no warning: the
+labeller sets match. Scores are the panel's agreed labels against what the extractor
+actually stored.
+
+| city | postings scored | F1 | vs Berlin 0.938 |
+| -- | -- | -- | -- |
+| Hamburg | 12 of 14 | 0.935 | -0.004 |
+| Frankfurt | 10 of 13 | 0.945 | +0.007 |
+| Munich | 15 of 15 | 0.969 | +0.031 |
+
+None is clearly worse (the check's line is 0.05), so no follow-up is owed on quality. Two
+Hamburg and three Frankfurt postings scored nothing because the two labellers agreed on no
+skill at all for them; with pools of 14 and 13 postings there was nothing to swap in, which
+is the real limit of a check on a city this small, not a quality signal. Munich reads
+*better* than Berlin on the same panel, which is the first city launch where that has
+happened.
+
+**What the new cities actually ask for, which nobody has decided yet.** The labellers
+proposed roughly 100 skills per city that have no entry in the skill list, and they are
+strikingly unlike San Francisco's GPU and inference stack (HIR-128): Hamburg and Frankfurt
+are Microsoft Azure and enterprise integration (Azure AI Foundry, Entra ID, Power Automate,
+Copilot Studio, SAP), and Munich adds robotics and reinforcement learning (MuJoCo, IsaacSim,
+sim-to-real, PPO, vision-language models) from the boards its launch added. None of this is
+on the chart, so the three cities currently look emptier than they are. HIR-219 is the
+batch review; this paragraph is the reason it matters more than its job counts suggest.
+
+**Tracking a city moves its remote postings into it.** "Hamburg, Germany (remote)" read as
+Remote (EU) until today and reads as Hamburg now, because a named city has always won over
+a remote phrase (the 2026-10-26 EU-remote entry). This is the same thing that has always
+happened for Berlin, and no posting is dropped by it — only relabelled. Several test
+fixtures used Hamburg and Munich as their stand-ins for "a German city we do not track";
+they now use Leipzig and Stuttgart.
+
+---
+
 ## 2026-11-07 — The no-company rule is enforced where every job is stored (HIR-207)
 
 The rule of 6 Nov below ("A job is never stored without a company", HIR-198) was only

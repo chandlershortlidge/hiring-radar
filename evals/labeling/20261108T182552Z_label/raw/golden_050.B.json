@@ -1,0 +1,124 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Erfahrung in der netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory/ Synapse Pipeline sowie Data Ingestion (ETL/ELT)\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker-Images\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Azure-Infrastrukturen und - Services\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Erfahrung in der netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Coding Agents\"\n    },\n    {\n      \"skill_id\": \"claude-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Claude Code\"\n    },\n    {\n      \"skill_id\": \"codex\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Codex\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Azure Machine Learning\",\n      \"raw_text\": \"Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning\"\n    },\n    {\n      \"label\": \"Azure Data Factory\",\n      \"raw_text\": \"Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory\"\n    },\n    {\n      \"label\": \"Synapse Pipeline\",\n      \"raw_text\": \"Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory/ Synapse Pipeline\"\n    },\n    {\n      \"label\": \"Azure VNets\",\n      \"raw_text\": \"VNets\"\n    },\n    {\n      \"label\": \"Service Endpoints\",\n      \"raw_text\": \"Service und Private Endpoints\"\n    },\n    {\n      \"label\": \"Private Endpoints\",\n      \"raw_text\": \"Private Endpoints\"\n    },\n    {\n      \"label\": \"Identity Management\",\n      \"raw_text\": \"Identity Management\"\n    },\n    {\n      \"label\": \"RBAC\",\n      \"raw_text\": \"RBAC\"\n    },\n    {\n      \"label\": \"ACL\",\n      \"raw_text\": \"ACL\"\n    },\n    {\n      \"label\": \"Azure Storage\",\n      \"raw_text\": \"Azure Storage\"\n    },\n    {\n      \"label\": \"Azure Data Lake Storage Gen2\",\n      \"raw_text\": \"Azure Data Lake Storage Gen2\"\n    },\n    {\n      \"label\": \"Vibe Engineering\",\n      \"raw_text\": \"Vibe Engineering\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Fließende Deutschkenntnisse (mind. Level B2-C1).\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Erfolgreiches Studium in Naturwissenschaften, Informatik oder eine vergleichbare Qualifikation.\",\n  \"notes\": \"The qualifications section defaults to required; “Interesse daran” makes the learning-oriented data/cloud bullet optional, and “sind von Vorteil” makes the Azure infrastructure bullet optional.\\nCloud also appears in an explicit experience requirement, so required wins. Networking likewise has an explicit required mention.\\nThe posting explicitly recruits multiple experience levels, from Professional through Principal; no single seniority is assigned.\\nCoding-agent tools are independently requested in qualifications. Technologies appearing only in responsibilities, including DevOps, are excluded.\\nAzure Machine Learning is treated literally as a named Azure service, not as a request for generic machine-learning expertise. Azure storage services do not imply object-storage expertise.\\nUnmapped Azure infrastructure technologies are optional; unmapped Azure Machine Learning, Data Factory and Synapse Pipeline are appetite-governed optional skills. Vibe Engineering is required and retained separately because the taxonomy does not explicitly cover that named practice.\\n“Data-Technologien” is too nonspecific to identify an additional technical skill. Debugging Docker images is not expanded into a separate software-testing requirement.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Erfahrung in der netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory/ Synapse Pipeline sowie Data Ingestion (ETL/ELT)"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker-Images"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure-Infrastrukturen und - Services"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "Erfahrung in der netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Coding Agents"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code"
+      },
+      {
+        "skill_id": "codex",
+        "requirement": "required",
+        "raw_text": "Codex"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Azure Machine Learning",
+        "raw_text": "Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning"
+      },
+      {
+        "label": "Azure Data Factory",
+        "raw_text": "Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory"
+      },
+      {
+        "label": "Synapse Pipeline",
+        "raw_text": "Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory/ Synapse Pipeline"
+      },
+      {
+        "label": "Azure VNets",
+        "raw_text": "VNets"
+      },
+      {
+        "label": "Service Endpoints",
+        "raw_text": "Service und Private Endpoints"
+      },
+      {
+        "label": "Private Endpoints",
+        "raw_text": "Private Endpoints"
+      },
+      {
+        "label": "Identity Management",
+        "raw_text": "Identity Management"
+      },
+      {
+        "label": "RBAC",
+        "raw_text": "RBAC"
+      },
+      {
+        "label": "ACL",
+        "raw_text": "ACL"
+      },
+      {
+        "label": "Azure Storage",
+        "raw_text": "Azure Storage"
+      },
+      {
+        "label": "Azure Data Lake Storage Gen2",
+        "raw_text": "Azure Data Lake Storage Gen2"
+      },
+      {
+        "label": "Vibe Engineering",
+        "raw_text": "Vibe Engineering"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Fließende Deutschkenntnisse (mind. Level B2-C1).",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Erfolgreiches Studium in Naturwissenschaften, Informatik oder eine vergleichbare Qualifikation.",
+    "notes": "The qualifications section defaults to required; “Interesse daran” makes the learning-oriented data/cloud bullet optional, and “sind von Vorteil” makes the Azure infrastructure bullet optional.\nCloud also appears in an explicit experience requirement, so required wins. Networking likewise has an explicit required mention.\nThe posting explicitly recruits multiple experience levels, from Professional through Principal; no single seniority is assigned.\nCoding-agent tools are independently requested in qualifications. Technologies appearing only in responsibilities, including DevOps, are excluded.\nAzure Machine Learning is treated literally as a named Azure service, not as a request for generic machine-learning expertise. Azure storage services do not imply object-storage expertise.\nUnmapped Azure infrastructure technologies are optional; unmapped Azure Machine Learning, Data Factory and Synapse Pipeline are appetite-governed optional skills. Vibe Engineering is required and retained separately because the taxonomy does not explicitly cover that named practice.\n“Data-Technologien” is too nonspecific to identify an additional technical skill. Debugging Docker images is not expanded into a separate software-testing requirement."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "9581d44a95735f403411f841fe0e29bdff6b6a125603d863fa47adc752f52e55",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

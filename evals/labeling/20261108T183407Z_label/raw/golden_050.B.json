@@ -1,0 +1,106 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"conversational-ai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Conversational AI\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Prompt Engineering\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"javascript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JavaScript\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"REST APIs/JSON\"\n    },\n    {\n      \"skill_id\": \"n8n\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"n8n (Must-have)\"\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Workflow-Automatisierung\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Microsoft Azure\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud-nativen Architekturen\"\n    },\n    {\n      \"skill_id\": \"speech-recognition\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"STT\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"JSON\",\n      \"raw_text\": \"JSON\"\n    },\n    {\n      \"label\": \"Text-to-speech\",\n      \"raw_text\": \"TTS\"\n    },\n    {\n      \"label\": \"Voice-AI platforms\",\n      \"raw_text\": \"Voice-AI-Plattformen\"\n    },\n    {\n      \"label\": \"Famulor\",\n      \"raw_text\": \"Famulor\"\n    },\n    {\n      \"label\": \"Amazon Lex\",\n      \"raw_text\": \"Amazon Lex\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI Voicebot & Automation Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"sehr gute Deutschkenntnisse\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The qualifications section is “Be our forward thinker”; no section heading marks it optional. Technologies appearing only under “Make it happen” are excluded.\\n“idealerweise” makes the entire TTS/STT and Voice-AI-platforms bullet optional, including Famulor and Amazon Lex.\\nAlternative skills joined by “oder” are each labeled at the requirement level of their bullet.\\n“cloud-nativen Architekturen” is mapped to cloud; no additional software-architecture requirement is inferred.\\nVoicebots is treated as an alternative expression of conversational AI, not a separate criterion. Voice-AI platforms is retained as an unmapped platform category.\\nThe REST APIs quotation includes JSON to distinguish the determining qualifications mention from the responsibilities mention.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "conversational-ai",
+        "requirement": "required",
+        "raw_text": "Conversational AI"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST APIs/JSON"
+      },
+      {
+        "skill_id": "n8n",
+        "requirement": "required",
+        "raw_text": "n8n (Must-have)"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "Workflow-Automatisierung"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud-nativen Architekturen"
+      },
+      {
+        "skill_id": "speech-recognition",
+        "requirement": "nice_to_have",
+        "raw_text": "STT"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "JSON",
+        "raw_text": "JSON"
+      },
+      {
+        "label": "Text-to-speech",
+        "raw_text": "TTS"
+      },
+      {
+        "label": "Voice-AI platforms",
+        "raw_text": "Voice-AI-Plattformen"
+      },
+      {
+        "label": "Famulor",
+        "raw_text": "Famulor"
+      },
+      {
+        "label": "Amazon Lex",
+        "raw_text": "Amazon Lex"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI Voicebot & Automation Engineer",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "sehr gute Deutschkenntnisse",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The qualifications section is “Be our forward thinker”; no section heading marks it optional. Technologies appearing only under “Make it happen” are excluded.\n“idealerweise” makes the entire TTS/STT and Voice-AI-platforms bullet optional, including Famulor and Amazon Lex.\nAlternative skills joined by “oder” are each labeled at the requirement level of their bullet.\n“cloud-nativen Architekturen” is mapped to cloud; no additional software-architecture requirement is inferred.\nVoicebots is treated as an alternative expression of conversational AI, not a separate criterion. Voice-AI platforms is retained as an unmapped platform category.\nThe REST APIs quotation includes JSON to distinguish the determining qualifications mention from the responsibilities mention."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "6b1cfe46c225cc0b3f7269eabf2044154669b60886e2cdf3a41cdb40bcd94e1f",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

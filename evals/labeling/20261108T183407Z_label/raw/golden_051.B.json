@@ -1,0 +1,150 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"r-lang\", \"requirement\": \"required\", \"raw_text\": \"R\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL\"},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"Tensorflow\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"Pytorch\"},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"LangChain\"},\n    {\"skill_id\": \"llamaindex\", \"requirement\": \"required\", \"raw_text\": \"LlamaIndex\"},\n    {\"skill_id\": \"openai-api\", \"requirement\": \"required\", \"raw_text\": \"OpenAI\"},\n    {\"skill_id\": \"apache-spark\", \"requirement\": \"required\", \"raw_text\": \"Spark\"},\n    {\"skill_id\": \"scala\", \"requirement\": \"required\", \"raw_text\": \"Scala\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Kenntnisse in LLMs\"},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"required\", \"raw_text\": \"Embeddings\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"Retrieval Augmented Generation\"},\n    {\"skill_id\": \"llm-guardrails\", \"requirement\": \"required\", \"raw_text\": \"Guardrails\"},\n    {\"skill_id\": \"nlp\", \"requirement\": \"required\", \"raw_text\": \"Entity Extraction\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"KI-Konzepten\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Verfahren des maschinellen Lernens\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud-Services\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"Google\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Keras\", \"raw_text\": \"Keras\"},\n    {\"label\": \"Re-ranking\", \"raw_text\": \"Re-ranking\"},\n    {\"label\": \"Clustering\", \"raw_text\": \"Clustering\"},\n    {\"label\": \"Classification Models\", \"raw_text\": \"Classification Models\"}\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Du beherrschst Deutsch auf mind. C1 Niveau\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Dein Studium in Data Science, Wirtschaftsinformatik, Mathematik, Physik oder Statistik hast du erfolgreich abgeschlossen\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"DEINE Skills is a required qualifications section; no optional skills section is present.\\nPython and/or R and all technologies given as examples are individually labeled required.\\nEntity Extraction maps to NLP; Google maps to GCP in the explicit Cloud-Services context.\\nDegree subjects are not separately labeled as skills; technologies appearing only under DEINE Rolle are excluded.\\nLiteral reading: mehrjährigen Berufserfahrung specifies no numerical experience range or explicit level, so seniority is left null and flagged for review. Senior Recruiterin describes the recruiter, not this position.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "r-lang",
+        "requirement": "required",
+        "raw_text": "R"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "Tensorflow"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "Pytorch"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "required",
+        "raw_text": "LlamaIndex"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "required",
+        "raw_text": "OpenAI"
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "required",
+        "raw_text": "Spark"
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "required",
+        "raw_text": "Scala"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Kenntnisse in LLMs"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "Embeddings"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "Retrieval Augmented Generation"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "Guardrails"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "Entity Extraction"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "KI-Konzepten"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Verfahren des maschinellen Lernens"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Services"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Keras",
+        "raw_text": "Keras"
+      },
+      {
+        "label": "Re-ranking",
+        "raw_text": "Re-ranking"
+      },
+      {
+        "label": "Clustering",
+        "raw_text": "Clustering"
+      },
+      {
+        "label": "Classification Models",
+        "raw_text": "Classification Models"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Du beherrschst Deutsch auf mind. C1 Niveau",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Dein Studium in Data Science, Wirtschaftsinformatik, Mathematik, Physik oder Statistik hast du erfolgreich abgeschlossen",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "DEINE Skills is a required qualifications section; no optional skills section is present.\nPython and/or R and all technologies given as examples are individually labeled required.\nEntity Extraction maps to NLP; Google maps to GCP in the explicit Cloud-Services context.\nDegree subjects are not separately labeled as skills; technologies appearing only under DEINE Rolle are excluded.\nLiteral reading: mehrjährigen Berufserfahrung specifies no numerical experience range or explicit level, so seniority is left null and flagged for review. Senior Recruiterin describes the recruiter, not this position."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "f43e4c7c53890d833e10e28e1370cf28ed4ad6b9334ad1addaab9c69ffcb4347",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

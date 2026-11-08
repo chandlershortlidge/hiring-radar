@@ -1,0 +1,83 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Generative-AI-, LLM-\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG-Lösungen\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"LangChain\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\"},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"Kenntnisse im Bereich MLOps\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"Containerisierung\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Orchestrierung mit Docker\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Orchestrierung mit Docker, Kubernetes\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"Orchestrierung mit Docker, Kubernetes und CI/CD-Pipelines\"}\n  ],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"sehr gute Deutsch- und Englischkenntnisse\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"abgeschlossenes Studium der Informatik, Ingenieurinformatik, Data Science oder einer vergleichbaren Fachrichtung\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"There is no optional section. 'Be our forward thinker' is the requirements list, so every skill under it is required.\\nPrompt engineering, fine-tuning, inference optimization, computer vision (Bildverarbeitung), chunking and reranking appear only in the responsibilities, so they are not labeled.\\nThe generative AI and LLM mentions collapse into one llms criterion; the Generative AI and LLM aliases both map to llms.\\n'Orchestrierung mit Docker, Kubernetes' reads as container orchestration. It is covered by containerization (quoted from 'Containerisierung'), not llm-orchestration.\\nThe 'Frameworks wie LangChain, PyTorch und TensorFlow' line names the specific frameworks only. No deep-learning parent is added.\\nDocker, Kubernetes, CI/CD and MLOps also appear in the responsibilities. Their raw_text quotes the requirements-section wording so the determining mention can be identified.\\nSeniority: 'fundierte Erfahrung' (solid experience) has no years and no stated level. I read it as not equivalent to 'proven experience', so seniority is none; flagged for review.\\nDegree: 'oder einer vergleichbaren Fachrichtung' widens the field, not the requirement, so degree_or_equivalent is false.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generative-AI-, LLM-"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG-Lösungen"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "Kenntnisse im Bereich MLOps"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "Containerisierung"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Orchestrierung mit Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Orchestrierung mit Docker, Kubernetes"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "Orchestrierung mit Docker, Kubernetes und CI/CD-Pipelines"
+      }
+    ],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "sehr gute Deutsch- und Englischkenntnisse",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "abgeschlossenes Studium der Informatik, Ingenieurinformatik, Data Science oder einer vergleichbaren Fachrichtung",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "There is no optional section. 'Be our forward thinker' is the requirements list, so every skill under it is required.\nPrompt engineering, fine-tuning, inference optimization, computer vision (Bildverarbeitung), chunking and reranking appear only in the responsibilities, so they are not labeled.\nThe generative AI and LLM mentions collapse into one llms criterion; the Generative AI and LLM aliases both map to llms.\n'Orchestrierung mit Docker, Kubernetes' reads as container orchestration. It is covered by containerization (quoted from 'Containerisierung'), not llm-orchestration.\nThe 'Frameworks wie LangChain, PyTorch und TensorFlow' line names the specific frameworks only. No deep-learning parent is added.\nDocker, Kubernetes, CI/CD and MLOps also appear in the responsibilities. Their raw_text quotes the requirements-section wording so the determining mention can be identified.\nSeniority: 'fundierte Erfahrung' (solid experience) has no years and no stated level. I read it as not equivalent to 'proven experience', so seniority is none; flagged for review.\nDegree: 'oder einer vergleichbaren Fachrichtung' widens the field, not the requirement, so degree_or_equivalent is false."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "68a7997ddda750b47e906fe75b21e0af08fff1f169dff37e09ee3d1cde570253",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

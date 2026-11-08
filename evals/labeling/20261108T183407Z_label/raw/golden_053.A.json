@@ -1,0 +1,85 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"bash\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Shell Scripting (Bash)\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"nice_to_have\", \"raw_text\": \"T-SQL\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"javascript\", \"requirement\": \"nice_to_have\", \"raw_text\": \"JavaScript\"},\n    {\"skill_id\": \"java\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Java, Jenkins\"},\n    {\"skill_id\": \"networking\", \"requirement\": \"required\", \"raw_text\": \"Sicherer Umgang mit Netzwerkprotokollen\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"System administration\", \"raw_text\": \"Fundierte Kenntnisse in der Systemadministration\"},\n    {\"label\": \"Microsoft SQL Server\", \"raw_text\": \"Microsoft SQL Server\"},\n    {\"label\": \"VPN technologies\", \"raw_text\": \"VPN-Technologien\"},\n    {\"label\": \"Jenkins\", \"raw_text\": \"Jenkins\"},\n    {\"label\": \"Agile methodologies\", \"raw_text\": \"agilen Arbeitsmethoden\"},\n    {\"label\": \"Security standards\", \"raw_text\": \"Sicherheitsstandards\"}\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Abgeschlossene Ausbildung oder Studium im Bereich Informatik oder eine vergleichbare Qualifikation\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"The 'Qualifikationen' heading defaults items to required.\\n'ist wünschenswert' (desirable) is read as an inline optional marker (≈ preferred) for VPN, Bash, T-SQL and Python, so those are nice_to_have.\\n'sind von Vorteil' (is an advantage) is an inline marker making JavaScript, Java, Jenkins and agile nice_to_have.\\nT-SQL is mapped to sql as a SQL dialect; this mapping is uncertain.\\nMicrosoft SQL Server has no taxonomy entry, so it goes to unmapped and sql is not added from it.\\n'Netzwerkprotokollen' is mapped to networking and is uncertain.\\n'Sicherheitsstandards' is left unmapped rather than mapped to cybersecurity, since the posting does not name cybersecurity.\\nJava raw_text is 'Java, Jenkins' so the quote does not resolve to the substring inside 'JavaScript'.\\nKI-Infrastruktur appears only in responsibilities and is not labeled.\\nThe 'Wen wir suchen' role list is job titles, not skills.\\nSeniority is none: the title names no level and the posting gives no years.\\nGerman is inferred as required because the posting is written in German and says nothing about language.\\nDegree: Studium with no level maps to bachelor. A vocational Ausbildung is accepted as an alternative, and 'oder eine vergleichbare Qualifikation' makes it or-equivalent; flagged uncertain because the Ausbildung alternative may also count as equivalent.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "bash",
+        "requirement": "nice_to_have",
+        "raw_text": "Shell Scripting (Bash)"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "nice_to_have",
+        "raw_text": "T-SQL",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "nice_to_have",
+        "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "nice_to_have",
+        "raw_text": "Java, Jenkins"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "Sicherer Umgang mit Netzwerkprotokollen",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "System administration",
+        "raw_text": "Fundierte Kenntnisse in der Systemadministration"
+      },
+      {
+        "label": "Microsoft SQL Server",
+        "raw_text": "Microsoft SQL Server"
+      },
+      {
+        "label": "VPN technologies",
+        "raw_text": "VPN-Technologien"
+      },
+      {
+        "label": "Jenkins",
+        "raw_text": "Jenkins"
+      },
+      {
+        "label": "Agile methodologies",
+        "raw_text": "agilen Arbeitsmethoden"
+      },
+      {
+        "label": "Security standards",
+        "raw_text": "Sicherheitsstandards"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossene Ausbildung oder Studium im Bereich Informatik oder eine vergleichbare Qualifikation",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "The 'Qualifikationen' heading defaults items to required.\n'ist wünschenswert' (desirable) is read as an inline optional marker (≈ preferred) for VPN, Bash, T-SQL and Python, so those are nice_to_have.\n'sind von Vorteil' (is an advantage) is an inline marker making JavaScript, Java, Jenkins and agile nice_to_have.\nT-SQL is mapped to sql as a SQL dialect; this mapping is uncertain.\nMicrosoft SQL Server has no taxonomy entry, so it goes to unmapped and sql is not added from it.\n'Netzwerkprotokollen' is mapped to networking and is uncertain.\n'Sicherheitsstandards' is left unmapped rather than mapped to cybersecurity, since the posting does not name cybersecurity.\nJava raw_text is 'Java, Jenkins' so the quote does not resolve to the substring inside 'JavaScript'.\nKI-Infrastruktur appears only in responsibilities and is not labeled.\nThe 'Wen wir suchen' role list is job titles, not skills.\nSeniority is none: the title names no level and the posting gives no years.\nGerman is inferred as required because the posting is written in German and says nothing about language.\nDegree: Studium with no level maps to bachelor. A vocational Ausbildung is accepted as an alternative, and 'oder eine vergleichbare Qualifikation' makes it or-equivalent; flagged uncertain because the Ausbildung alternative may also count as equivalent."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "58c2e9228e5ed3358d90f46a093c42892bc2bde210f66297856a743335802cb0",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

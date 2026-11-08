@@ -1,0 +1,159 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"mcp\", \"requirement\": \"required\", \"raw_text\": \"MCP-Servern\"},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"KI-Werkzeugen in der Softwareentwicklung\"},\n    {\"skill_id\": \"github-copilot\", \"requirement\": \"required\", \"raw_text\": \"GitHub Copilot\"},\n    {\"skill_id\": \"claude-code\", \"requirement\": \"required\", \"raw_text\": \"Claude Code\"},\n    {\"skill_id\": \"cursor\", \"requirement\": \"required\", \"raw_text\": \"Cursor\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM\"},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"required\", \"raw_text\": \"Embeddings\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG\"},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"Tool Calling\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"Agenten\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"Orchestrierung\", \"uncertain\": true},\n    {\"skill_id\": \"llm-guardrails\", \"requirement\": \"required\", \"raw_text\": \"Guardrails\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"Evaluation\"},\n    {\"skill_id\": \"hallucination-detection\", \"requirement\": \"required\", \"raw_text\": \"Halluzinationen\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud-Umgebungen\"},\n    {\"skill_id\": \"aws-bedrock\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Kenntnisse in AWS Bedrock AgentCore\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Agile ways of working\", \"raw_text\": \"agiler Arbeitsweisen\"},\n    {\"label\": \"SDLC\", \"raw_text\": \"end-to-end SDLC\"},\n    {\"label\": \"Agentic skills\", \"raw_text\": \"agentischen Skills\"},\n    {\"label\": \"Kiro CLI\", \"raw_text\": \"Kiro CLI\"},\n    {\"label\": \"Context window\", \"raw_text\": \"Context Window\"},\n    {\"label\": \"Prompt injection\", \"raw_text\": \"Prompt Injection\"},\n    {\"label\": \"Token cost\", \"raw_text\": \"Kosten je Token\"},\n    {\"label\": \"Scrum\", \"raw_text\": \"Scrum\"},\n    {\"label\": \"Jira\", \"raw_text\": \"Jira\"},\n    {\"label\": \"SAFe (nice_to_have)\", \"raw_text\": \"idealerweise im SAFe-Umfeld\"},\n    {\"label\": \"Microsoft Foundry Agents Service (nice_to_have)\", \"raw_text\": \"Microsoft Foundry Agents Service\"},\n    {\"label\": \"Microsoft Copilot Studio (nice_to_have)\", \"raw_text\": \"Microsoft Copilot Studio\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Mehrjährige Erfahrung in Wissensvermittlung und Beratung im IT-Umfeld\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute Deutschkenntnisse (C1 oder höher)\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"Only the 'Ihre Qualifikationen' section is labeled. The responsibilities mention GitLab CI/CD, Linux, arc42 and tests, but the candidate is not asked for them, so they are not labeled.\\n'Evals' and 'Evaluation' collapse into a single evaluation criterion.\\n'Orchestrierung' is mapped to llm-orchestration because it sits inside the LLM/agent concept list.\\n'Halluzinationen' is mapped to hallucination-detection as the closest taxonomy entry. The posting asks for understanding of hallucinations, so this is flagged.\\nAWS Bedrock AgentCore gets aws-bedrock only, as nice_to_have because of 'von Vorteil'. The parent aws is not added.\\nSeniority: the title names no level. 'Mehrjährige Erfahrung' (multi-year) suggests mid, but it refers to knowledge transfer. 'Mindestens 12 Monate' with AI tools points lower. Flagged for review.\\nNo degree is mentioned in the posting.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "MCP-Servern"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "KI-Werkzeugen in der Softwareentwicklung"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "GitHub Copilot"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code"
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "Embeddings"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "Tool Calling"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Agenten"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "Orchestrierung",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "Guardrails"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Evaluation"
+      },
+      {
+        "skill_id": "hallucination-detection",
+        "requirement": "required",
+        "raw_text": "Halluzinationen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Umgebungen"
+      },
+      {
+        "skill_id": "aws-bedrock",
+        "requirement": "nice_to_have",
+        "raw_text": "Kenntnisse in AWS Bedrock AgentCore"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Agile ways of working",
+        "raw_text": "agiler Arbeitsweisen"
+      },
+      {
+        "label": "SDLC",
+        "raw_text": "end-to-end SDLC"
+      },
+      {
+        "label": "Agentic skills",
+        "raw_text": "agentischen Skills"
+      },
+      {
+        "label": "Kiro CLI",
+        "raw_text": "Kiro CLI"
+      },
+      {
+        "label": "Context window",
+        "raw_text": "Context Window"
+      },
+      {
+        "label": "Prompt injection",
+        "raw_text": "Prompt Injection"
+      },
+      {
+        "label": "Token cost",
+        "raw_text": "Kosten je Token"
+      },
+      {
+        "label": "Scrum",
+        "raw_text": "Scrum"
+      },
+      {
+        "label": "Jira",
+        "raw_text": "Jira"
+      },
+      {
+        "label": "SAFe (nice_to_have)",
+        "raw_text": "idealerweise im SAFe-Umfeld"
+      },
+      {
+        "label": "Microsoft Foundry Agents Service (nice_to_have)",
+        "raw_text": "Microsoft Foundry Agents Service"
+      },
+      {
+        "label": "Microsoft Copilot Studio (nice_to_have)",
+        "raw_text": "Microsoft Copilot Studio"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Mehrjährige Erfahrung in Wissensvermittlung und Beratung im IT-Umfeld",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Deutschkenntnisse (C1 oder höher)",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Only the 'Ihre Qualifikationen' section is labeled. The responsibilities mention GitLab CI/CD, Linux, arc42 and tests, but the candidate is not asked for them, so they are not labeled.\n'Evals' and 'Evaluation' collapse into a single evaluation criterion.\n'Orchestrierung' is mapped to llm-orchestration because it sits inside the LLM/agent concept list.\n'Halluzinationen' is mapped to hallucination-detection as the closest taxonomy entry. The posting asks for understanding of hallucinations, so this is flagged.\nAWS Bedrock AgentCore gets aws-bedrock only, as nice_to_have because of 'von Vorteil'. The parent aws is not added.\nSeniority: the title names no level. 'Mehrjährige Erfahrung' (multi-year) suggests mid, but it refers to knowledge transfer. 'Mindestens 12 Monate' with AI tools points lower. Flagged for review.\nNo degree is mentioned in the posting."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "c603d01a03723a3b30a02c1a66fe533a7f418d0e404cacf5720ce246eecda83f",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

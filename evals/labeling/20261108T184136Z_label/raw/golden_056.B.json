@@ -1,0 +1,131 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"applying RL or IL in physical systems\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"onnx\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ONNX\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying learning-based policies on physical robots\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"large-scale policy training\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Imitation learning (IL)\",\n      \"raw_text\": \"applying RL or IL in physical systems\"\n    },\n    {\n      \"label\": \"PPO\",\n      \"raw_text\": \"PPO\"\n    },\n    {\n      \"label\": \"SAC\",\n      \"raw_text\": \"SAC\"\n    },\n    {\n      \"label\": \"RL frameworks\",\n      \"raw_text\": \"common RL frameworks\"\n    },\n    {\n      \"label\": \"Stable Baselines 3\",\n      \"raw_text\": \"Stable Baselines 3\"\n    },\n    {\n      \"label\": \"RSL-RL\",\n      \"raw_text\": \"RSL-RL\"\n    },\n    {\n      \"label\": \"Physics-based simulation\",\n      \"raw_text\": \"physics-based simulators\"\n    },\n    {\n      \"label\": \"IsaacSim\",\n      \"raw_text\": \"IsaacSim\"\n    },\n    {\n      \"label\": \"MuJoCo\",\n      \"raw_text\": \"MuJoCo\"\n    },\n    {\n      \"label\": \"Control theory\",\n      \"raw_text\": \"control theory\"\n    },\n    {\n      \"label\": \"Motion planning\",\n      \"raw_text\": \"motion planning\"\n    },\n    {\n      \"label\": \"Robot kinematics\",\n      \"raw_text\": \"robot kinematics/dynamics\"\n    },\n    {\n      \"label\": \"Robot dynamics\",\n      \"raw_text\": \"robot kinematics/dynamics\"\n    },\n    {\n      \"label\": \"Sim-to-real transfer\",\n      \"raw_text\": \"sim-to-real transfer\"\n    },\n    {\n      \"label\": \"Locomotion policy training\",\n      \"raw_text\": \"training locomotion and locomanipulation policies\"\n    },\n    {\n      \"label\": \"Locomanipulation policy training\",\n      \"raw_text\": \"training locomotion and locomanipulation policies\"\n    },\n    {\n      \"label\": \"Training and deployment on humanoid robots\",\n      \"raw_text\": \"training and deploying on humanoid robots\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI / Reinforcement Learning Engineer (m/f/d)\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s or PhD in robotics, computer science, engineering, or a related field\",\n  \"notes\": \"Essential Skills defaults to required; Beneficial Skills is optional. The unmapped locomotion, locomanipulation, and humanoid training/deployment entries are nice-to-have; the other unmapped entries are required.\\nPython and C++ are both labeled as named alternatives, without treating either as optional.\\nMapping policy training to Model Development and policy deployment to AI deployment is flagged for review because the posting names robotic policies rather than models.\\nThe preference for high DOF robots describes application-domain experience, not an additional taxonomy skill. Publication history, degrees, years of experience, and soft skills are excluded from skill criteria.\\nResponsibilities-only techniques are excluded. No German-language requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "applying RL or IL in physical systems"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "onnx",
+        "requirement": "required",
+        "raw_text": "ONNX"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying learning-based policies on physical robots",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "large-scale policy training",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Imitation learning (IL)",
+        "raw_text": "applying RL or IL in physical systems"
+      },
+      {
+        "label": "PPO",
+        "raw_text": "PPO"
+      },
+      {
+        "label": "SAC",
+        "raw_text": "SAC"
+      },
+      {
+        "label": "RL frameworks",
+        "raw_text": "common RL frameworks"
+      },
+      {
+        "label": "Stable Baselines 3",
+        "raw_text": "Stable Baselines 3"
+      },
+      {
+        "label": "RSL-RL",
+        "raw_text": "RSL-RL"
+      },
+      {
+        "label": "Physics-based simulation",
+        "raw_text": "physics-based simulators"
+      },
+      {
+        "label": "IsaacSim",
+        "raw_text": "IsaacSim"
+      },
+      {
+        "label": "MuJoCo",
+        "raw_text": "MuJoCo"
+      },
+      {
+        "label": "Control theory",
+        "raw_text": "control theory"
+      },
+      {
+        "label": "Motion planning",
+        "raw_text": "motion planning"
+      },
+      {
+        "label": "Robot kinematics",
+        "raw_text": "robot kinematics/dynamics"
+      },
+      {
+        "label": "Robot dynamics",
+        "raw_text": "robot kinematics/dynamics"
+      },
+      {
+        "label": "Sim-to-real transfer",
+        "raw_text": "sim-to-real transfer"
+      },
+      {
+        "label": "Locomotion policy training",
+        "raw_text": "training locomotion and locomanipulation policies"
+      },
+      {
+        "label": "Locomanipulation policy training",
+        "raw_text": "training locomotion and locomanipulation policies"
+      },
+      {
+        "label": "Training and deployment on humanoid robots",
+        "raw_text": "training and deploying on humanoid robots"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI / Reinforcement Learning Engineer (m/f/d)",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s or PhD in robotics, computer science, engineering, or a related field",
+    "notes": "Essential Skills defaults to required; Beneficial Skills is optional. The unmapped locomotion, locomanipulation, and humanoid training/deployment entries are nice-to-have; the other unmapped entries are required.\nPython and C++ are both labeled as named alternatives, without treating either as optional.\nMapping policy training to Model Development and policy deployment to AI deployment is flagged for review because the posting names robotic policies rather than models.\nThe preference for high DOF robots describes application-domain experience, not an additional taxonomy skill. Publication history, degrees, years of experience, and soft skills are excluded from skill criteria.\nResponsibilities-only techniques are excluded. No German-language requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "7b8ef5f58550e145d86a3c326b85e61e75e9fec87ed631e51e1824ab88eab04f",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}
