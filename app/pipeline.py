@@ -3,7 +3,10 @@
 Does: find jobs whose `extracted_version` is not the current one, extract, and write
 skill_mention + proposed_skill rows and the job's seniority / German / degree, then stamp the job. One job per transaction.
 
-Does NOT: fetch postings, dedup, or decide which taxonomy/model to use (passed in).
+Does NOT: fetch postings, dedup, or decide which taxonomy to use (passed in). The model
+and the call that reaches it are passed in too, but both have a default — the real stage-2
+call against the current model — because every caller outside the tests wants exactly that
+(HIR-210).
 
 Invariants: a job holds exactly one extraction (the latest; older rows are replaced on
 re-extract) but every extraction also appends a permanent `extraction_log` row, which is
@@ -31,8 +34,10 @@ import json
 import sqlite3
 from dataclasses import dataclass, field
 
-from app.extract import EmptyExtractionError, Extraction, extraction_input, extractor_version
-from app.queries import now_iso, open_clause
+from app.extract import (
+    DEFAULT_MODEL, EmptyExtractionError, Extraction, extract, extraction_input, extractor_version, make_client)
+from app.ingest import now_iso
+from app.queries import open_clause
 from app.taxonomy import Taxonomy
 
 BLANK_READ_LIMIT = 2   # reads that come back with nothing at all before the posting is dropped
@@ -241,9 +246,31 @@ def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction, mode
             log_extraction(conn, job_id, ex, model, input_text)
 
 
-def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn, model: str,
-                    limit: int | None = None, log=print, job_ids: list[int] | None = None) -> ExtractReport:
-    """extract_fn(text, tax, model) -> Extraction. Injected so tests never hit the API."""
+def default_extract_fn(client=None):
+    """The real stage-2 call, which is what every caller outside the tests wants.
+
+    Every caller used to build this same one-line wrapper itself (HIR-210). The client is
+    created on the first job rather than up front, so a process with no credentials can
+    still reach this function without a job to read — which is what lets the API boot
+    without them.
+    """
+    held = {"client": client}
+
+    def call(text: str, tax: Taxonomy, model: str) -> Extraction:
+        if held["client"] is None:
+            held["client"] = make_client()
+        return extract(text, tax, held["client"], model)
+
+    return call
+
+
+def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn=None, model: str = DEFAULT_MODEL,
+                    limit: int | None = None, log=print, job_ids: list[int] | None = None,
+                    client=None) -> ExtractReport:
+    """extract_fn(text, tax, model) -> Extraction. Injected so tests never hit the API;
+    left out, the real model call is used (`default_extract_fn`), with `client` if given.
+    """
+    extract_fn = extract_fn or default_extract_fn(client)
     with _extraction_lock(conn) as held:
         if not held:
             log("  extract: another extraction is running on this database; skipping")

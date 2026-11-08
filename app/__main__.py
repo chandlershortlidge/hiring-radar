@@ -31,8 +31,8 @@ load_dotenv(ROOT / ".env")
 
 from app import add, db  # noqa: E402
 from app.check import check_url, checked_coverage, job_coverage, log_check, reach_breakdown  # noqa: E402
-from app.extract import DEFAULT_MODEL, extract, make_client  # noqa: E402
-from app.ingest import ingest_one, job_id_for_screenshot, now_iso, store_screenshot  # noqa: E402
+from app.extract import make_client  # noqa: E402
+from app.ingest import Screenshot, job_id_for_screenshot, now_iso  # noqa: E402
 from app.labels import import_answers  # noqa: E402
 from app.pipeline import extract_pending, unlogged_extractions  # noqa: E402
 from app.poll import FEEDS_PATH, load_feeds, poll_feeds, select_feeds  # noqa: E402
@@ -56,9 +56,7 @@ def run_extraction(conn, limit=None, job_ids=None):
     """Extract pending jobs; `job_ids` narrows to those jobs. The add commands pass the one job
     they added, so adding a posting never triggers a full re-extract after a version bump."""
     tax = Taxonomy.load()
-    client = make_client()
-    report = extract_pending(conn, tax, lambda text, t, m: extract(text, t, client, m), DEFAULT_MODEL, limit,
-                             job_ids=job_ids)
+    report = extract_pending(conn, tax, limit=limit, job_ids=job_ids)
     print(report.line())
     print(report.log_line(unlogged_extractions(conn)))
     if job_ids is None and report.all_blank:
@@ -99,10 +97,10 @@ def cmd_add_text(args):
     conn = open_db()
     p = Posting(source="paste", source_job_id="", url=args.url or "", company=args.company,
                 title=args.title, location_raw=args.location, description_text=text)
-    outcome = ingest_one(conn, p, now_iso(), require_city=False, found_via=args.found_via, trust_title=True)
-    print(outcome)
-    if outcome.startswith("new:") and not args.no_extract:
-        run_extraction(conn, job_ids=[int(outcome[4:])])
+    res = add.add_by_hand(conn, p, args.found_via)
+    print(res.line())
+    if res.is_new and not args.no_extract:
+        run_extraction(conn, job_ids=[res.job_id])
 
 
 def cmd_add_screenshot(args):
@@ -116,13 +114,12 @@ def cmd_add_screenshot(args):
     t = transcribe(data, make_client(), VISION_MODEL)
     p = Posting(source="screenshot", source_job_id="", url=args.url or "", company=args.company,
                 title=args.title, location_raw=args.location, description_text=t.text)
-    outcome = ingest_one(conn, p, now_iso(), require_city=False, found_via=args.found_via, trust_title=True)
-    print(outcome)
-    job_id = int(outcome[4:]) if outcome.startswith("new:") else None
-    if job_id:
-        store_screenshot(conn, job_id, data, t.sha256, t.media_type)
-        if not args.no_extract:
-            run_extraction(conn, job_ids=[job_id])
+    # The image rides the same transaction as the job, so the two cannot come apart and
+    # leave a job the next upload of this file would not recognise (HIR-210).
+    res = add.add_by_hand(conn, p, args.found_via, screenshot=Screenshot(data, t.sha256, t.media_type))
+    print(res.line())
+    if res.is_new and not args.no_extract:
+        run_extraction(conn, job_ids=[res.job_id])
 
 
 def check_urls_from(args) -> list[str]:
@@ -171,11 +168,10 @@ def check_one(conn, url, feeds, args):
         print(f"add: refused — only {d.characters} characters of posting text; "
               f"paste it with add-text instead")
         return
-    outcome = ingest_one(conn, r.posting, now_iso(), require_city=d.require_city,
-                         found_via=args.found_via, trust_title=True)
-    print(f"add: {outcome}")
-    if outcome.startswith("new:") and not args.no_extract:
-        run_extraction(conn, job_ids=[int(outcome[4:])])
+    res = add.add_by_hand(conn, r.posting, args.found_via, require_city=d.require_city)
+    print(f"add: {res.line()}")
+    if res.is_new and not args.no_extract:
+        run_extraction(conn, job_ids=[res.job_id])
 
 
 def cmd_stats(args):
