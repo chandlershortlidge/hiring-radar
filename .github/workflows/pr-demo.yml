@@ -67,7 +67,9 @@ jobs:
       - name: Start the server
         working-directory: app-src
         run: |
-          HIRING_RADAR_DB="$RUNNER_TEMP/demo.db" nohup uv run python -m app serve --port 8000 > "$RUNNER_TEMP/serve.log" 2>&1 &
+          # The venv's python, not `uv run`: a uv process left running holds uv's cache lock,
+          # and setup-uv's end-of-job cache prune then waits 5 minutes on it and fails.
+          HIRING_RADAR_DB="$RUNNER_TEMP/demo.db" nohup .venv/bin/python -m app serve --port 8000 > "$RUNNER_TEMP/serve.log" 2>&1 &
           for i in $(seq 60); do curl -sf http://127.0.0.1:8000/ > /dev/null && exit 0; sleep 1; done
           cat "$RUNNER_TEMP/serve.log"; exit 1
 
@@ -85,6 +87,10 @@ jobs:
             cp "$DEMO_OUT/_playwright/walkthrough-walkthrough-$p/video.webm" "$DEMO_OUT/$p.webm" || true
           done
           rm -rf "$DEMO_OUT/_playwright"
+
+      - name: Stop the server
+        if: always()
+        run: pkill -f "app serve" || true
 
       - uses: actions/upload-artifact@v4
         if: always()
