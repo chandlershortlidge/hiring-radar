@@ -24,6 +24,7 @@ export const sourceCode = (s) => (SOURCE_CODES[s] || [s.toUpperCase().slice(0, 3
 export const PLACES = [
   { name: "Berlin", slug: "berlin", group: "Germany", aliases: ["deutschland", "de"] },
   { name: "Hamburg", slug: "hamburg", group: "Germany", aliases: ["deutschland", "de", "hh"] },
+  { name: "Frankfurt", slug: "frankfurt", group: "Germany", aliases: ["deutschland", "de", "frankfurt am main", "ffm"] },
   { name: "Remote (EU)", slug: "remote-eu", group: "Remote", aliases: ["remote", "eu", "europe", "anywhere"] },
   { name: "San Francisco", slug: "san-francisco", group: "United States", aliases: ["sf", "bay area", "usa", "us", "california"] },
   { name: "New York", slug: "new-york", group: "United States", aliases: ["nyc", "usa", "us", "manhattan", "brooklyn"] },

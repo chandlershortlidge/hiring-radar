@@ -6,7 +6,7 @@ import {
 
 describe("every place carries a slug and a group (HIR-188)", () => {
   it("still lists every collected place, EU-remote and New York included", () => {
-    expect(PLACE_NAMES).toEqual(["Berlin", "Hamburg", "Remote (EU)", "San Francisco", "New York"]);
+    expect(PLACE_NAMES).toEqual(["Berlin", "Hamburg", "Frankfurt", "Remote (EU)", "San Francisco", "New York"]);
   });
 
   it("gives each place a unique slug and a group the picker knows", () => {
@@ -24,7 +24,7 @@ describe("every place carries a slug and a group (HIR-188)", () => {
   });
 
   it("turns 'all of Germany' into every German place, and a city into just itself", () => {
-    expect(placeCities(ALL_GERMANY.slug)).toEqual(["Berlin", "Hamburg"]);
+    expect(placeCities(ALL_GERMANY.slug)).toEqual(["Berlin", "Hamburg", "Frankfurt"]);
     expect(placeCities("san-francisco")).toEqual(["San Francisco"]);
     expect(placeCities("atlantis")).toEqual([]);
   });
@@ -87,7 +87,7 @@ describe("compare mode filters the job list to the compared cities (HIR-196)", (
   });
 
   it("expands a compared place that stands for several cities", () => {
-    expect(compareListCities([ALL_GERMANY.name, "San Francisco"])).toEqual(["Berlin", "Hamburg", "San Francisco"]);
+    expect(compareListCities([ALL_GERMANY.name, "San Francisco"])).toEqual(["Berlin", "Hamburg", "Frankfurt", "San Francisco"]);
     expect(compareListCities(["Berlin", "New York"])).toEqual(["Berlin", "New York"]);
   });
 });
