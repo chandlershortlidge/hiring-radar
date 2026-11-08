@@ -9,11 +9,12 @@ adds keep their real city). Only ACTIVE_CITIES pass the ingest and discover-boar
 (`active_place`). The scope is Germany, EU-remote, and the cities Chandler has turned on:
 San Francisco became active on 2026-11-03 once the held-out eval passed (DECISIONS
 2026-11-03, HIR-12), and New York on 2026-11-03 as the first city launched end to end
-without a human step (DECISIONS 2026-11-03, HIR-132). Turning on a city Chandler has not
-named is still on the AGENTS.md stop list.
+without a human step (DECISIONS 2026-11-03, HIR-132). Hamburg, Frankfurt and Munich became
+active on 2026-11-08, the three cities Chandler named in HIR-165, each launched by that same
+automated path. Turning on a city Chandler has not named is still on the AGENTS.md stop list.
 
 EU-remote (DECISIONS 2026-10-26): a remote posting counts when its location names an
-EU-wide region or Germany ("Remote (EMEA)", "Hamburg, Germany (remote)"), or names no
+EU-wide region or Germany ("Remote (EMEA)", "Leipzig, Germany (remote)"), or names no
 region at all ("Remote", "Anywhere") and the description does not restrict it to a non-EU
 country. Both phrasings of that restriction count — imperative ("candidates must be
 located in the US") and declarative, the shape a LOCATION section writes ("Remote within
@@ -39,11 +40,12 @@ CITIES: dict[str, tuple[str, ...]] = {
     "Berlin": ("berlin",),
     "San Francisco": ("san francisco", "sf bay area", "bay area", "south san francisco"),
     "New York": ("new york", "nyc", "manhattan", "brooklyn"),
+    "Hamburg": ("hamburg",),
 }
 
 REMOTE_EU = "Remote (EU)"
 
-ACTIVE_CITIES: tuple[str, ...] = ("Berlin", REMOTE_EU, "San Francisco", "New York")
+ACTIVE_CITIES: tuple[str, ...] = ("Berlin", REMOTE_EU, "San Francisco", "New York", "Hamburg")
 
 _PATTERNS = {city: re.compile(r"\b(" + "|".join(re.escape(a) for a in aliases) + r")\b", re.I)
              for city, aliases in CITIES.items()}

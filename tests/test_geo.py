@@ -17,7 +17,7 @@ from app.geo import REMOTE_EU, active_place, is_remote_eu, place_of
     "Europe (Remote)",
     "Fully remote / Anywhere",
     "Worldwide",
-    "Hamburg, Germany (remote)",          # JOIN
+    "Leipzig, Germany (remote)",          # JOIN; a German city we do not track
     "Munich (remote, Germany)",           # arbeitnow, remote: true
     "Remote (CET ± 2 hours)",
     "Remote - US; Remote - Germany",      # Greenhouse multi-location
@@ -46,6 +46,9 @@ def test_other_locations_do_not(loc):
 def test_a_city_wins_over_remote():
     assert place_of("Berlin or Remote (EU)") == "Berlin"
     assert active_place("San Francisco, CA (Remote)") == "San Francisco"   # active since HIR-12
+    # Tracking a city moves its remote postings out of Remote (EU) and into the city, the
+    # same way Berlin's always have been (HIR-165 launched these three).
+    assert active_place("Hamburg, Germany (remote)") == "Hamburg"
 
 
 @pytest.mark.parametrize("loc", [
