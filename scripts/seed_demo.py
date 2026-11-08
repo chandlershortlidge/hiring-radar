@@ -33,6 +33,18 @@ WEIGHTS = {"python": 0.9, "llms": 0.75, "rag": 0.5, "aws": 0.4, "docker": 0.4, "
            "sql": 0.3, "langchain": 0.25, "gcp": 0.2, "vector-databases": 0.2, "fastapi": 0.18, "prompt-engineering": 0.18,
            "ci-cd": 0.15, "typescript": 0.15, "react": 0.1, "langgraph": 0.12, "llm-evaluation": 0.12, "mlops": 0.2}
 
+FILLER_WORDS = ("team product customers ship design review build own data platform users weekly roadmap learning "
+                "budget flexible remote office mentor growth feedback quality reliable fast careful clear writing "
+                "planning release support partners research launch improve measure decide explain").split()
+
+
+def filler(k):
+    """~70 words of per-posting filler. Seeded by posting number, not the main rng, so the
+    rest of the demo data is unchanged; random per posting so two jobs at one company don't
+    read as duplicates of each other (app/dedup.py compares the texts)."""
+    r = random.Random(1000 + k)
+    return "About the role: " + " ".join(r.choice(FILLER_WORDS) for _ in range(70)) + ". Synthetic demo data."
+
 
 def main():
     path = Path(os.environ.get("HIRING_RADAR_DB", "/tmp/hiring-radar-demo.db"))
@@ -58,7 +70,10 @@ def main():
         age = rng.choice([0, 0, 1, 1, 2, 3, 5, 8, 14, 25, 40, 70])
         first = (now - timedelta(days=age)).strftime("%Y-%m-%dT%H:%M:%SZ")
         skills = [s for s in ids if rng.random() < WEIGHTS[s] * (1.2 if city == "San Francisco" and s in ("pytorch", "typescript") else 1)]
-        text = f"{company} is hiring a {title} in {city}. Requirements: " + ", ".join(tax.skills[s].display for s in skills) + ". " + f"Posting {k}."
+        # The filler keeps every posting past the dashboard's "too short to chart" floor
+        # (queries.MIN_TEXT_CHARS); without it the charts on a demo DB are empty (HIR-214).
+        text = (f"{company} is hiring a {title} in {city}. Requirements: " + ", ".join(tax.skills[s].display for s in skills)
+                + f". Posting {k}. " + filler(k))
         p = Posting(src, f"{src}-{k}" if src in ("arbeitnow", "startup_jobs", "greenhouse", "lever", "ashby") else "",
                     f"https://example.com/jobs/{k}", company, title, city, text)
         # The hand-added half of the mix is stored through the one hand-add entry point, as
