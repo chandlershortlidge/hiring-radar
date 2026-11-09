@@ -45,8 +45,9 @@ Post one comment on the Linear issue (`save_comment`), written for someone who h
 the code. Five lines, plain words, no file names:
 
 - **Doing:** what will exist when this is done, in one sentence.
-- **You'll see:** what changes for the person using the dashboard, and any cost (a full
-  re-extract is about €3).
+- **You'll see:** what changes for the person using the dashboard, and any cost. When the
+  work will have the model re-read the stored jobs, run `uv run python -m app reread-cost`
+  and give its figure; never a remembered number.
 - **Deciding alone:** the judgment calls you expect to make (AGENTS.md "Deciding alone vs.
   stopping").
 - **Will ask about:** anything on the stop list. If this line isn't "nothing", @mention
@@ -87,8 +88,9 @@ test: *could someone who has never opened the repo say "fine" or "no" to it?*
 - Never assume a rule is known. If a rule matters, restate it in one clause: "the rule
   that a skill needs 3 job postings before it goes on the chart".
 - No file names, function names, ids or dates as shorthand. `proposed_skill` is "the
-  queue of skills the model has suggested"; `extractor_version` bump is "every job gets
-  re-read by the model once, about €3".
+  queue of skills the model has suggested"; `extractor_version` bump is "every job still
+  open gets re-read by the model once, about €X" — with €X from
+  `uv run python -m app reread-cost`, not from memory.
 - A question is: the situation in two sentences, then one line per option with its
   consequence, then your recommendation and why. Three options at most.
 - Reread it as him before sending. If it needs the repo to make sense, rewrite it.
@@ -132,8 +134,9 @@ Uncommitted changes on the tree: stop and ask whose they are. Never stash or dis
   trust the number in the issue.
 - If the issue asks for a **DECISIONS.md** entry, write it before the code it describes,
   newest-first with the date. If a step changes `app/extract.py`, the prompt or the taxonomy,
-  say in the PR body that merging re-reads every job (about €3); the merge is the
-  approval, so don't stop for it. Those same changes trigger the eval gate — step 3a.
+  run `uv run python -m app reread-cost` and say in the PR body that merging re-reads the
+  open jobs, with that command's figure (HIR-221); the merge is the approval, so don't stop
+  for it. Those same changes trigger the eval gate — step 3a.
 - Any step the issue says to show the person before continuing (an eval table, a dry run,
   a confusion matrix): show it and **stop** until they answer.
 - **A commit is a green checkpoint.** One commit per build step of the issue, made when

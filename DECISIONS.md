@@ -5,6 +5,43 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-09 — The cost of a full re-read is computed, never quoted from memory (HIR-221)
+
+Every agent instruction that mentioned the cost of re-reading the stored jobs said "about
+€3". That was true at a few hundred jobs. By the time Hamburg, Frankfurt and Munich had
+launched, the database held 730 jobs and HIR-165's full re-read cost about €10.50 — so a
+pull request saying €3 understated what merging it would spend by more than three times,
+and the reviewer's "at most one re-reading PR per day" rule was reasoning from the wrong
+number. The cost grows with every city, so any constant goes stale by design.
+
+Chandler's answer on the ticket: compute it instead of quoting a constant.
+
+`uv run python -m app reread-cost` now prints the figure: the jobs the queue would hold
+times the average cost of one reading, averaged over the token counts stored for the most
+recent readings we have actually paid for (HIR-170) and priced at the model that would do
+the next one. It makes no model call, so asking is free. On the live database the day this
+merged: 619 open jobs, about €9.01. Validation that the method is right rather than merely
+plausible — priced over all 730 stored jobs it returns €10.63, against the ~€10.50 the
+HIR-165 launch really spent.
+
+Three choices worth knowing:
+
+- **Tokens are measured, prices are looked up.** The average is of token counts, not of
+  euros, so switching models reprices the same reading honestly instead of carrying an old
+  model's prices forward. `app/reread_cost.py` is now the one place model prices are
+  written down; `app/discover.py` takes the city-launch cap's prices from it.
+- **Only open jobs are counted**, because since HIR-195 only open jobs are re-read.
+  The count comes from the extraction queue's own WHERE clause, and a test pins the two
+  together so the figure cannot quietly measure a rule that has changed.
+- **Too few readings is said out loud.** Under 20 stored readings with token counts, the
+  command falls back to a hand-made estimate and labels itself an estimate rather than
+  presenting a guess as a measurement.
+
+To undo: revert the HIR-221 commits. Nothing in the pipeline or the dashboard depends on
+the command — reverting restores the flat €3 wording and loses only the figure.
+
+---
+
 ## 2026-11-08 — Hamburg, Frankfurt and Munich are collected; two of them have no boards to add (HIR-165)
 
 Chandler named these three cities on the HIR-165 ticket, so the 2026-11-03 rule below
