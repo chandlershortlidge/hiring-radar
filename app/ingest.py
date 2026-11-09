@@ -12,18 +12,26 @@ Also applies the title/city filters so feeds' unrelated postings never become ro
 a title needs both an AI/ML domain term and a technical role term. A posting with no
 company is dropped here too (HIR-207): dedup matches on company first, so a blank-company
 row can never be recognised as a duplicate and every repost of it from another source
-becomes a second row. A new job is labelled with its job family (family_of, from the title
+becomes a second row. A posting whose company name reads as a recruitment agency or a job
+portal is dropped as well, but only when it came from a country-wide source (HIR-220):
+board sources are screened before the board is ever added, and a posting a person added by
+hand was chosen deliberately. A new job is labelled with its job family (family_of, from the title
 alone) as it is inserted.
 
 Does NOT: call the model (see app/pipeline.py), fetch anything, or delete rows. It does
 not know where a posting came from either: the settings a hand-added posting is stored
 with live in app/add.py, which is the one entry point for those (HIR-210).
 
+`in_scope_title` and `agency_name_word` are the two pure screens that decide what may be
+stored, and both live here so there is one copy of each: app/discover.py imports
+`agency_name_word` for its board screen rather than keeping its own word list (HIR-220).
+
 Invariants: one DB transaction per posting, and a screenshot passed in shares it — the
 image and the job it belongs to are both stored or neither is, because the "have I added
 this screenshot already?" check reads the image, so a job left without its image would be
 added again from the same file (HIR-210); `job.first_seen` never moves later (a
-backdated sighting may move it earlier); `job.last_seen` never moves earlier; a posting that fails the filters is counted, not stored; no row in `job` is ever written with a blank company; every timestamp written is of the form 2026-11-07T15:42:00Z (check_timestamp).
+backdated sighting may move it earlier); `job.last_seen` never moves earlier; a posting that fails the filters is counted, not stored (the agency screen runs last, so
+the title, city and company counts mean what they always did); no row in `job` is ever written with a blank company; every timestamp written is of the form 2026-11-07T15:42:00Z (check_timestamp).
 """
 
 import re
@@ -96,6 +104,50 @@ def in_scope_title(title: str) -> bool:
     return bool(DOMAIN_PATTERN.search(title) and ROLE_PATTERN.search(title))
 
 
+# A conservative screen for "recruitment agency or job aggregator": its postings are not
+# written by the hiring company, so they distort skill counts the way the aggregator
+# headline rows did (DECISIONS 2026-11-03, HIR-123; HIR-104). Substring match on a
+# lowercased name with every separator removed, so "talent-partners" and "talentpartners"
+# read alike. Conservative on purpose: a missed agency is one noisy feed that can be
+# disabled, while a false positive silently drops a real employer — which is why every
+# verdict is counted and reported (`skipped_agency` below, and discover's own report).
+#
+# Lives here, beside in_scope_title, because both are screens on what may be stored and
+# there must be exactly one of each: app/discover.py applies this same list to a board's
+# token before the board is added, and imports it from here (HIR-220). The dependency
+# cannot run the other way — app/discover.py already imports in_scope_title from this
+# module.
+AGENCY_WORDS = (
+    "recruit", "staffing", "headhunt", "jobboard", "jobportal", "jobsite", "aggregator",
+    "personalberatung", "personalvermittlung", "zeitarbeit", "workforce", "placement",
+    "resourcing", "talentpartner", "talentsolutions", "talentacquisition", "talentgroup",
+    "manpower", "randstad", "adecco", "hays", "michaelpage", "roberthalf", "kellyservices",
+    "experis", "robertwalters", "pagegroup", "huntscanlon", "jobrapido", "jobleads",
+    "learn4good", "ziprecruiter", "indeed", "glassdoor", "monsterjobs",
+)
+
+
+def squashed_name(*parts: str | None) -> str:
+    """The parts lowercased and stripped to letters and digits, joined. Pure."""
+    return "".join(ch for p in parts if p for ch in p.lower() if ch.isalnum())
+
+
+def agency_name_word(*parts: str | None) -> str | None:
+    """The agency/aggregator word these name parts match, or None. Pure."""
+    text = squashed_name(*parts)
+    return next((w for w in AGENCY_WORDS if w in text), None)
+
+
+# The sources the agency screen applies to at ingest: the country-wide ones — the
+# Bundesagentur für Arbeit, arbeitnow, JSearch, Startup Jobs — which hand us whoever
+# published the posting (DECISIONS 2026-11-09, HIR-220). Derived from the registry's kinds,
+# so a country-wide source added later is screened by being registered. Deliberately not
+# the board sources: a board is screened before it is ever added, so screening its postings
+# again would let a board we chose store nothing at all. Nor the manual sources: a person
+# who adds a posting by hand has chosen it, the same reason `trust_title` exists.
+SCREENED_SOURCES = registry.of_kind("feed", "search")
+
+
 # Which of five job families a posting belongs to, from the title alone (HIR-186). Every
 # stored job already passed in_scope_title, so the title is enough to bucket the pool at no
 # model cost; a model-assigned family can replace this later without the column changing.
@@ -140,6 +192,7 @@ NEW = "new"                         # a new job row
 SKIPPED_TITLE = "skipped_title"
 SKIPPED_CITY = "skipped_city"
 SKIPPED_COMPANY = "skipped_company"
+SKIPPED_AGENCY = "skipped_agency"    # a country-wide source published an agency's posting
 
 
 @dataclass(frozen=True)
@@ -155,8 +208,8 @@ class Screenshot:
 class Stored:
     """What storing one posting did, so no caller has to read it out of a string.
 
-    `kind` is one of the seven constants above. `job_id` is the job the posting ended up
-    on, and is None only for the three skipped kinds, where no job was touched.
+    `kind` is one of the eight constants above. `job_id` is the job the posting ended up
+    on, and is None only for the four skipped kinds, where no job was touched.
     """
 
     kind: str
@@ -181,12 +234,13 @@ class Report:
     skipped_title: int = 0
     skipped_city: int = 0
     skipped_company: int = 0
+    skipped_agency: int = 0
     new_job_ids: list[int] = field(default_factory=list)
 
     def line(self) -> str:
         return (f"seen={self.seen} new={self.new} still_listed={self.still_listed} merged={self.merged} "
                 f"reposts={self.reposts} skipped_title={self.skipped_title} skipped_city={self.skipped_city} "
-                f"skipped_company={self.skipped_company}")
+                f"skipped_company={self.skipped_company} skipped_agency={self.skipped_agency}")
 
 
 def _candidates(conn: sqlite3.Connection, company: str | None) -> list[dedup.Candidate]:
@@ -204,7 +258,8 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
                screenshot: Screenshot | None = None) -> Stored:
     """Store one posting; see `Stored` for what comes back.
 
-    trust_title skips the title filter — for postings a person chose by hand.
+    trust_title skips the title filter — for postings a person chose by hand. It does not
+    reach the agency screen, which no manual source goes through in the first place.
     fetched_ids is every source_job_id in the fetch this posting came from; without it
     (a single posting added by hand) nothing counts as a repost.
     screenshot is the image the posting was read off; it is written in the same
@@ -227,6 +282,11 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
     # refused too: they key to the empty string and so could never match anything either.
     if not dedup.company_key(p.company):
         return Stored(SKIPPED_COMPANY)
+    # Last of all, so every count above keeps meaning what it did and this one holds only
+    # postings that would otherwise have been stored. Country-wide sources only; see
+    # SCREENED_SOURCES for why boards and hand-added postings are left out. HIR-220.
+    if p.source in SCREENED_SOURCES and agency_name_word(p.company):
+        return Stored(SKIPPED_AGENCY)
 
     with conn:
         if p.source_job_id:

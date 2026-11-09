@@ -350,7 +350,8 @@ The trigger is mechanical, so nobody has to judge it: **the diff touches
 Then, before the PR is reviewable:
 
 1. `uv run python scripts/run_eval.py --repeats 1` on the branch. Dev split, about 20 model
-   calls per repeat — cents, not the ~€3 that re-reading every job costs on merge.
+   calls per repeat — cents, not the many euros that re-reading every job costs on merge
+   (`uv run python -m app reread-cost` says how many today).
    **One repeat for a routine change, 3 before a release or when 1 repeat trips the gate**
    (DECISIONS 2026-11-04): a single repeat is the cheap read, and when it stops the merge
    you re-run at `--repeats 3` before believing the number, because one repeat is exactly
@@ -525,8 +526,11 @@ which entries); anything the issue left open that costs one commit to reverse. O
 sentence each: what, why, how to undo.
 
 Anything that bumps `extractor_version` (prompt, taxonomy, model) is decided here too.
-Say in the PR body that merging re-reads every job (about €3). **The merge is the
-approval**; nothing waits before the PR.
+Say in the PR body that merging re-reads the open jobs, **and what that costs today**:
+run `uv run python -m app reread-cost` and paste its figure. Never quote a remembered
+number — the cost grows with every city, and a flat "about €3" understated a real re-read
+by more than three times by the time three German cities had launched (HIR-221). **The
+merge is the approval**; nothing waits before the PR.
 
 **An existing rule is never a question.** When an issue and DECISIONS.md (or this file)
 disagree, the rule wins: apply it, note the conflict in one line under "Decisions taken",

@@ -46,6 +46,98 @@ written down in `deploy/README.md` under "Tracing the poll".
 
 ---
 
+## 2026-11-09 — The cost of a full re-read is computed, never quoted from memory (HIR-221)
+
+Every agent instruction that mentioned the cost of re-reading the stored jobs said "about
+€3". That was true at a few hundred jobs. By the time Hamburg, Frankfurt and Munich had
+launched, the database held 730 jobs and HIR-165's full re-read cost about €10.50 — so a
+pull request saying €3 understated what merging it would spend by more than three times,
+and the reviewer's "at most one re-reading PR per day" rule was reasoning from the wrong
+number. The cost grows with every city, so any constant goes stale by design.
+
+Chandler's answer on the ticket: compute it instead of quoting a constant.
+
+`uv run python -m app reread-cost` now prints the figure: the jobs the queue would hold
+times the average cost of one reading, averaged over the token counts stored for the most
+recent readings we have actually paid for (HIR-170) and priced at the model that would do
+the next one. It makes no model call, so asking is free. On the live database the day this
+merged: 619 open jobs, about €9.01. Validation that the method is right rather than merely
+plausible — priced over all 730 stored jobs it returns €10.63, against the ~€10.50 the
+HIR-165 launch really spent.
+
+Three choices worth knowing:
+
+- **Tokens are measured, prices are looked up.** The average is of token counts, not of
+  euros, so switching models reprices the same reading honestly instead of carrying an old
+  model's prices forward. `app/reread_cost.py` is now the one place model prices are
+  written down; `app/discover.py` takes the city-launch cap's prices from it.
+- **Only open jobs are counted**, because since HIR-195 only open jobs are re-read.
+  The count comes from the extraction queue's own WHERE clause, and a test pins the two
+  together so the figure cannot quietly measure a rule that has changed.
+- **Too few readings is said out loud.** Under 20 stored readings with token counts, the
+  command falls back to a hand-made estimate and labels itself an estimate rather than
+  presenting a guess as a measurement.
+
+To undo: revert the HIR-221 commits. Nothing in the pipeline or the dashboard depends on
+the command — reverting restores the flat €3 wording and loses only the figure.
+
+---
+
+## 2026-11-09 — The agency screen also runs at ingest, on every country-wide feed (HIR-220)
+
+The 2026-11-03 entry below (HIR-123, "Rejection is for boards whose problem will not
+change") settled that a recruitment agency or a job portal is never one of our boards: the
+postings it carries are not written by the hiring company, so they distort skill counts the
+way the aggregator headline rows did (HIR-104). But that screen only ever ran when a board
+was *added*. Postings arriving through the country-wide sources — the Bundesagentur für
+Arbeit, arbeitnow, JSearch, Startup Jobs — were never checked against it, so Randstad
+Digital, Robert Half, Michael Page and European Tech Recruit were stored like employers: 7
+of 730 postings when HIR-165 found it, too few to move any skill's share, but a growing
+share as more German cities are added — 13 of Hamburg's first 14 postings and 12 of
+Frankfurt's 13 came from the Bundesagentur feed.
+
+**Chandler's decision, 9 Nov:** the same screen applies at ingest. An agency's posting is
+not stored, temporary staffing (`ARBEITNEHMERÜBERLASSUNG`) included.
+
+**One rule, in one place.** `AGENCY_WORDS` and the match now live in `app/ingest.py`, next
+to `in_scope_title` — the other screen that decides what gets stored — and
+`discover.agency_word` calls it. That direction is forced: `app/discover.py` already
+imports from `app/ingest.py`, so the reverse would be an import cycle. The board screen's
+own behaviour is unchanged; it still matches the board token and the company name together,
+and `discover.AGENCY_WORDS` still resolves for anything reading it there.
+
+**Which sources it covers, and which it does not.** Every source of kind `feed` or `search`
+in `app/sources/registry.py`, which is exactly the four country-wide ones. Chandler named
+three; Startup Jobs is the same kind of source and is screened for the same reason, so it
+is in, and a country-wide source added later is screened by being registered, not by
+anybody remembering this entry. Board sources are **not** screened at ingest: a board is
+screened before it is ever added, so screening its postings again would let a board we
+chose store nothing at all, silently. The manual sources are not screened either — a person
+who adds a posting by hand has chosen it, which is the same reason `trust_title` exists.
+
+**The screen runs last,** after the title, city and company checks, so those three counts
+keep meaning what they did and `skipped_agency` only ever holds postings that would
+otherwise have been stored. The poll report prints it with the others.
+
+**The accepted cost is unchanged from 2026-11-03, and now it bites in more places.** The
+word list is substring-matched on a squashed company name, so a real employer whose name
+contains one of the words is dropped silently. That trade was accepted for boards because a
+missed agency is one noisy feed you can disable while a false positive quietly loses an
+employer. At ingest the same trade now applies to roughly 700 postings a day rather than to
+a few dozen board decisions, so the count in the poll report is the thing that makes it
+auditable: a jump there is the signal that the list caught something it should not have.
+
+**What this does not do:** remove the agency postings already stored, which HIR-220 put out
+of scope deliberately — numbers Chandler has already seen do not silently change underneath
+him. They age out instead, because a refused posting no longer moves its job's `last_seen`:
+the dashboard's open rule drops an arbeitnow-only job 3 days after its last sighting
+(`FEED_OPEN_DAYS`) and a Bundesagentur- or JSearch-only job 60 days after it
+(`MANUAL_OPEN_DAYS`, since absence from a sample proves nothing). So the 7 postings this
+started with disappear from the open view within two months without anything being deleted.
+
+**How to undo:** revert the PR. There is no migration and nothing is deleted, so the only
+effect is that agency postings start being stored again on the next poll.
+
 ## 2026-11-08 — Hamburg, Frankfurt and Munich are collected; two of them have no boards to add (HIR-165)
 
 Chandler named these three cities on the HIR-165 ticket, so the 2026-11-03 rule below
