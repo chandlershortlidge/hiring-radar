@@ -42,7 +42,9 @@ import json
 from dataclasses import dataclass, field
 from pathlib import Path
 
+from app import reread_cost
 from app.check import default_fetch_board, parse_ats_url
+from app.extract import DEFAULT_MODEL
 from app.geo import active_place
 from app.ingest import AGENCY_WORDS, agency_name_word, in_scope_title
 from app.poll import FEEDS_PATH
@@ -195,16 +197,18 @@ MIN_ROLES_TO_ADD = 5          # "add every board with 5 or more roles that pass 
 MAX_LAUNCH_COST_EUR = 10.0    # stop and report rather than add, above this
 MAX_DAILY_POSTINGS = 5000     # ...or above this many postings added to the daily download
 
-# One extraction call, measured against app/extract.py on claude-sonnet-5-5 ($2.00 per
-# MTok in, $10.00 per MTok out). The system prompt with the taxonomy inlined is ~3.9k
-# tokens; a posting runs ~1.7k; the tool schema and the JSON answer make up the rest.
-# Deliberately rounded up: a cap that stops a launch too early is cheap to re-run, one
-# that stops it too late is not.
-EXTRACT_INPUT_TOKENS = 6_500
-EXTRACT_OUTPUT_TOKENS = 700
-USD_PER_MTOK_IN = 2.00
-USD_PER_MTOK_OUT = 10.00
-EUR_PER_USD = 0.93
+# One extraction call, measured against app/extract.py by hand. The system prompt with the
+# taxonomy inlined is ~3.9k tokens; a posting runs ~1.7k; the tool schema and the JSON
+# answer make up the rest. Deliberately rounded up, and deliberately ignoring the prompt
+# cache: a cap that stops a launch too early is cheap to re-run, one that stops it too late
+# is not. The prices live in app/reread_cost.py, which is the one place they are written
+# down (HIR-221); `python -m app reread-cost` prices the same reading from what readings
+# have actually cost, which is the figure to use when the question is "what will this
+# spend", rather than "may this launch go ahead".
+EXTRACT_INPUT_TOKENS = reread_cost.ESTIMATE_INPUT_TOKENS
+EXTRACT_OUTPUT_TOKENS = reread_cost.ESTIMATE_OUTPUT_TOKENS
+EUR_PER_USD = reread_cost.EUR_PER_USD
+USD_PER_MTOK_IN, USD_PER_MTOK_OUT = reread_cost.MODEL_PRICES_USD_PER_MTOK[DEFAULT_MODEL][:2]
 
 # The screen for "recruitment agency or job aggregator", which the policy skips. The word
 # list and the match live in app/ingest.py beside the title filter, because the same rule

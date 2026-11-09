@@ -110,7 +110,8 @@ One message at the end, written for Chandler:
 - **Needs you:** PR, issue, the failing check or open question in plain words.
 - **Stopped:** issue, the question the decider couldn't answer (already on Linear with an
   @mention).
-- **Re-extract:** whether a merge today re-reads every job (~€3), yes or no.
+- **Re-extract:** whether a merge today has the model re-read the open jobs, yes or no —
+  and if yes, what it costs, from `uv run python -m app reread-cost` (HIR-221).
 - **Filed:** new tickets the workers created, with their labels.
 
 Nothing else. No narration of the steps.

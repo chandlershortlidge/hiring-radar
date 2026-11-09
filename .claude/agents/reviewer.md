@@ -124,9 +124,12 @@ For the PR you are given:
      twenty that the labelled postings say is there"). Name both runs. Never merge it
      because the author called it noise.
    - If the diff touches `taxonomy/skills.json`, the extractor prompt or the model: this
-     PR re-reads every job on merge (~€3). Merge at most **one** such PR per calendar day;
-     if one already merged today, leave this one open with a comment "waits for tomorrow's
-     window", no label.
+     PR has the model re-read every open job on merge. Run
+     `uv run python -m app reread-cost` for what that costs today and check the PR body
+     carries that figure rather than a remembered one — a PR that still quotes a flat
+     "about €3" is understating the spend and needs its body fixed before merging
+     (HIR-221). Merge at most **one** such PR per calendar day; if one already merged
+     today, leave this one open with a comment "waits for tomorrow's window", no label.
 4. **Merge** when everything holds — never at all for a PR that trips the rules gate.
    **Read `mergeable_state` first and let it pick the command** (HIR-157):
    `gh api repos/:owner/:repo/pulls/<n> --jq .mergeable_state`.
