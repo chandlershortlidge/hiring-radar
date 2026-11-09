@@ -23,7 +23,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from app import add, db, queries as q
+from app import add, db, langsmith_live, queries as q
 from app.check import check_url, log_check
 from app.extract import make_client
 from app.ingest import Screenshot, Stored, job_id_for_screenshot, now_iso
@@ -174,7 +174,8 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
 
     def finish_add(conn, res: Stored) -> dict:
         if res.is_new:
-            report = extract_pending(conn, tax, client=client(), log=lambda *_: None, job_ids=[res.job_id])
+            report = extract_pending(conn, tax, client=client(), log=lambda *_: None,
+                                     job_ids=[res.job_id], run_kind=langsmith_live.ADD)
             d = q.job_detail(conn, res.job_id, now_iso())
             return {"outcome": "added", "job_id": res.job_id, "skills_found": len(d["skills"]),
                     "proposed": len(d["proposed"]), "failed": [f for f in report.failed if f[0] == res.job_id]}

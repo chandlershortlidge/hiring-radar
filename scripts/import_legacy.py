@@ -36,7 +36,7 @@ from dotenv import load_dotenv  # noqa: E402
 
 load_dotenv(ROOT / ".env")
 
-from app import add, db  # noqa: E402
+from app import add, db, langsmith_live  # noqa: E402
 from app.extract import Extraction, Mention, make_client  # noqa: E402
 from app.ingest import Screenshot, job_id_for_screenshot  # noqa: E402
 from app.pipeline import extract_pending, store_extraction  # noqa: E402
@@ -156,7 +156,8 @@ def main(argv=None):
     print(f"\nimported: A(golden text)={counts['A']} B(transcribed)={counts['B']} C(legacy skills)={counts['C']} "
           f"skipped={counts['skipped']} unmapped_labels={counts['unmapped']}")
     if not args.dry_run and not args.no_extract:
-        report = extract_pending(conn, tax, client=client or make_client())
+        report = extract_pending(conn, tax, client=client or make_client(),
+                                 run_kind=langsmith_live.BACKFILL)
         print(report.line())
 
 
