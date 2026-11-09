@@ -2,7 +2,7 @@
 name = "hiring-radar"
 version = "0.1.0"
 description = "What skills is the AI job market asking for, by city — extracted from job descriptions and evaluated."
-requires-python = ">=3.12"
+requires-python = ">=3.12,<3.15"
 dependencies = [
     "anthropic>=1.15.0",
     "fastapi>=0.143.3",

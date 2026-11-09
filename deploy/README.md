@@ -171,6 +171,16 @@ pending migration first (`app/api.py` → `db.migrate`), so step 3's smoke check
 **A deploy never touches the database or `/etc`.** Changing a unit file, the Caddyfile or
 `/etc/hiring-radar.env` means provisioning or copying it up by hand.
 
+**The VM installs wheels only — it has no compiler.** `.python-version` pins the Python
+every environment uses (3.13, the same one CI runs), and `requires-python` in
+`pyproject.toml` caps the range, because a package without a wheel for the running Python
+is built from source and `cc` does not exist on the instance. Until HIR-235 there was no
+pin, so `uv` on the VM picked the newest Python it could find — 3.15, days old — and the
+first dependency without a 3.15 wheel failed the deploy after the backup and before the
+restart. `tests/test_deploy_install_set.py` now reads `uv.lock` and fails if anything in
+the `--no-dev` set has no wheel for the pinned Python on linux. Raising the pin means
+checking that test still passes; bumping it past the cap means raising the cap too.
+
 ## Deploying by hand
 
 If Actions is unavailable, the same three lines from the Mac:
