@@ -5,6 +5,34 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-09 — One pinned Python everywhere, and the VM installs wheels only (HIR-235)
+
+The deploy of HIR-233 failed on the VM: `uv` tried to compile `zstandard` from source and
+there is no `cc` on the instance. The project only ever said "Python 3.12 or newer", so
+`uv` on the VM picked the newest it could find — 3.15, released days earlier — and the
+first dependency without a 3.15 wheel broke the install, after the pre-deploy backup and
+before the restart. Local machines were on 3.12 and CI on 3.13, so neither saw it.
+
+**`.python-version` pins 3.13 for every environment, and `requires-python` is capped at
+`<3.15`.** One version across local, CI and the VM, and the cap means an unattended
+installer can never again choose a Python nobody has run this on. 3.13 because CI already
+used it. Undo: delete `.python-version` and drop the upper bound — and accept that the VM
+chooses its own Python again. The floor stays 3.12 so nobody's existing environment is
+invalidated by this change alone.
+
+**The VM gets no compiler.** The alternative fix was `apt-get install build-essential` on
+an instance with 969 MB of RAM, which would have it compiling C on every lockfile change.
+A pinned Python with wheels is cheaper and quieter. Undo: install the toolchain in
+`deploy/provision.sh`.
+
+**The regression test reads the lockfile rather than installing anything.**
+`tests/test_deploy_install_set.py` walks the dependencies the deploy's `--no-dev` install
+would fetch and fails if any has no wheel for the pinned Python on linux. It is a second
+and needs no network, where actually running the server's install set in CI is a minute
+and a separate ticket (HIR-234). Undo: delete the file.
+
+---
+
 ## 2026-11-09 — The tracing package ships with the app, and a missing one is tracing off (HIR-233)
 
 `langsmith` was a dev-only dependency. The deploy installs the app with `uv sync --frozen
