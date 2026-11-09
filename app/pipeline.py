@@ -100,6 +100,16 @@ def _extraction_lock(conn: sqlite3.Connection):
             fcntl.flock(fh, fcntl.LOCK_UN)
 
 
+def _pending_clause(version: str, now: str | None = None) -> tuple[str, list]:
+    """WHERE fragment (over alias j) selecting the jobs that need an extraction at `version`.
+
+    The one definition of the queue's membership, so a count of it and the queue itself can
+    never disagree (HIR-221)."""
+    open_sql, open_params = open_clause(now or now_iso())
+    return (f"(j.extracted_version IS NULL OR (j.extracted_version != ? AND {open_sql}))"
+            " AND j.extracted_version IS NOT 'legacy'", [version, *open_params])
+
+
 def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int | None = None,
                             job_ids: list[int] | None = None, now: str | None = None) -> list[sqlite3.Row]:
     """Jobs without a current extraction; `job_ids` narrows to those jobs (the add endpoints).
@@ -112,11 +122,8 @@ def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int |
     day, and nobody browses them, so a version bump must not pay to re-read them (HIR-195).
     A repost the poll sees again gets its last_seen bumped by ingest, counts as open, and
     re-enters the queue on its own."""
-    open_sql, open_params = open_clause(now or now_iso())
-    sql = ("SELECT id, extracted_version, title, description_text FROM job j"
-           f" WHERE (j.extracted_version IS NULL OR (j.extracted_version != ? AND {open_sql}))"
-           " AND j.extracted_version IS NOT 'legacy'")
-    params: list = [version, *open_params]
+    where, params = _pending_clause(version, now)
+    sql = f"SELECT id, extracted_version, title, description_text FROM job j WHERE {where}"
     if job_ids:
         sql += f" AND id IN ({','.join('?' * len(job_ids))})"
         params += list(job_ids)
@@ -127,6 +134,16 @@ def jobs_needing_extraction(conn: sqlite3.Connection, version: str, limit: int |
     if limit:
         sql += f" LIMIT {int(limit)}"
     return conn.execute(sql, params).fetchall()
+
+
+def reread_queue_size(conn: sqlite3.Connection, now: str | None = None) -> int:
+    """How many jobs an extractor change merged now would read, without reading their text.
+
+    Counted against a version stamp no job can be carrying, which is what a bump does to
+    every stamp at once: the answer is the never-read jobs plus the stale-stamped open ones,
+    exactly the queue `jobs_needing_extraction` would build (HIR-221)."""
+    where, params = _pending_clause("(no version: every stamp is stale)", now)
+    return conn.execute(f"SELECT count(*) FROM job j WHERE {where}", params).fetchone()[0]
 
 
 def closed_reread_skips(conn: sqlite3.Connection, version: str,

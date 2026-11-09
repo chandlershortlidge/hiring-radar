@@ -13,6 +13,9 @@
                     --launch CITY applies the written board policy itself and adds what passes
   repair-companies  fill in companies on jobs stored without one and merge the duplicates
                     that appear; a dry run by default, --apply writes (HIR-198)
+  reread-cost       what a change to the extractor or the skill list would cost to merge:
+                    the jobs it would re-read x what a reading has actually cost. Makes no
+                    model call. Put its figure in the PR body (HIR-221)
   migrate           apply pending migrations and exit
 
 Database path: $HIRING_RADAR_DB, default ./data/hiring-radar.db.
@@ -265,6 +268,15 @@ def cmd_repair_companies(args):
         print("\ndry run — nothing written; re-run with --apply")
 
 
+def cmd_reread_cost(args):
+    """The figure that goes in a PR body when the diff touches the extractor or skill list.
+
+    Reads the database only; it never calls the model, so asking the question is free."""
+    from app.reread_cost import report_lines, reread_cost
+    for line in report_lines(reread_cost(open_db())):
+        print(line)
+
+
 def cmd_migrate(args):
     open_db()
     print("ok")
@@ -318,6 +330,9 @@ def main(argv=None):
     p = sub.add_parser("repair-companies", help="fill blank companies off each job's stored link, merge duplicates")
     p.add_argument("--apply", action="store_true", help="write the repairs; without it, a dry run that changes nothing")
     p.set_defaults(fn=cmd_repair_companies)
+    sub.add_parser("reread-cost",
+                   help="what merging an extractor or skill-list change would spend on re-reading"
+                   ).set_defaults(fn=cmd_reread_cost)
     sub.add_parser("migrate").set_defaults(fn=cmd_migrate)
     sub.add_parser("import-labels",
                    help="load each labeller's own answer from evals/labeling/<run>/raw into the database"
