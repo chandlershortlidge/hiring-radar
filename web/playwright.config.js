@@ -1,34 +1,33 @@
-// Playwright config for the PR walkthrough (HIR-214).
+// Playwright config for PR before/after screenshots (HIR-231, replacing HIR-214's demo).
 //
-// Does: drive a real browser through the dashboard and save screenshots plus a screen
-// recording, so a PR carries evidence of what it changes on screen.
-// Does NOT: start the server, seed data, assert on pixels, or run in `npm test` (vitest
-// ignores e2e/). The server is started by the caller — the "PR demo" workflow, or by
-// hand: seed a scratch DB with scripts/seed_demo.py, `python -m app serve`, then
-// `DEMO_URL=http://127.0.0.1:8000 npx playwright test`.
+// Does: open two builds of the dashboard — main's and the branch's — against the LIVE
+// site's data, screenshot the same views of each, and keep only the pairs that differ.
+// Does NOT: start a server, use a demo database, record video, or run in `npm test`
+// (vitest ignores e2e/). See e2e/before-after.spec.js for how the two builds are served.
 //
-// Evidence lands in DEMO_OUT (default demo-out/): <project>/NN-name.png and the video
-// Playwright records per test under <project>/video/.
-import { defineConfig, devices } from "@playwright/test";
-
-const out = process.env.DEMO_OUT || "demo-out";
+// Env: SHOT_BEFORE / SHOT_AFTER (the two web/dist folders), SHOT_LIVE (live site origin),
+// SHOT_AUTH ("user:password" for the site's login), SHOT_OUT (default shots-out/).
+import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
   testDir: "e2e",
-  outputDir: `${out}/_playwright`,
-  // One walkthrough, run in order: parallel workers would interleave two recordings.
+  outputDir: `${process.env.SHOT_OUT || "shots-out"}/_playwright`,
   workers: 1,
   retries: 0,
   reporter: [["list"]],
   use: {
-    baseURL: process.env.DEMO_URL || "http://127.0.0.1:8000",
-    video: "on",
-    screenshot: "off", // the walkthrough takes its own, named ones
+    // A made-up host: every request is answered by the spec itself, never by DNS.
+    baseURL: "http://radar.test",
+    video: "off",
+    screenshot: "off",
     // Use an installed Chrome instead of Playwright's download, where that is blocked.
-    launchOptions: process.env.DEMO_CHROME ? { executablePath: process.env.DEMO_CHROME } : {},
+    launchOptions: process.env.SHOT_CHROME ? { executablePath: process.env.SHOT_CHROME } : {},
   },
   projects: [
-    { name: "desktop", use: { viewport: { width: 1440, height: 900 }, video: { mode: "on", size: { width: 1440, height: 900 } } } },
-    { name: "phone", use: { ...devices["Pixel 7"] } },
+    { name: "desktop", use: { viewport: { width: 1440, height: 900 } } },
+    // Phone-sized, at pixel ratio 1 and not in Chrome's mobile mode. Both mobile mode
+    // (text autosizing) and a pixel ratio above 1 make text land a pixel or two
+    // differently on each load, so two identical builds would always "differ".
+    { name: "phone", use: { viewport: { width: 412, height: 915 }, deviceScaleFactor: 1 } },
   ],
 });

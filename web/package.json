@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "demo": "playwright test"
+    "shots": "playwright test"
   },
   "dependencies": {
     "mammoth": "^1.13.0",
