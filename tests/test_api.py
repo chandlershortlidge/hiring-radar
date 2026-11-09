@@ -311,3 +311,21 @@ def test_family_filter_and_per_family_counts(api):
     assert client.get("/api/jobs", params={"family": "data-scientist"}).json()["total"] == 0
     # Repeated params are an OR, the same shape as seniority.
     assert client.get("/api/jobs", params=[("family", "ai-engineer"), ("family", "research")]).json()["total"] == 2
+
+
+def test_add_by_link_works_when_langsmith_cannot_be_imported(api, monkeypatch):
+    """The dashboard's add-a-job path goes through the same tracing as the poll, so the
+    missing-package crash (HIR-233) has to be harmless here too."""
+    import sys
+
+    from app import langsmith_live
+
+    monkeypatch.setattr(langsmith_live, "enabled", lambda: True)
+    monkeypatch.setattr(langsmith_live, "_import_warned", False)
+    for name in ("langsmith", "langsmith.wrappers"):
+        monkeypatch.setitem(sys.modules, name, None)
+    client, fake = api
+    body = {"text": "Zeta GmbH is hiring an AI Engineer in Berlin. Requirements: Python and DSPy. " * 2,
+            "company": "Zeta GmbH", "title": "AI Engineer", "location": "Berlin", "found_via": "linkedin"}
+    r = client.post("/api/add/text", json=body).json()
+    assert r["outcome"] == "added" and r["skills_found"] == 1 and fake.calls == 1
