@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 
 import app.__main__ as cli
-from app import discover
+from app import discover, ingest
 from app.sources import Posting, brave
 
 FIXTURES = Path(__file__).parent / "fixtures" / "search"
@@ -215,6 +215,13 @@ def test_employer_names_are_not_agencies(token):
 
 def test_the_company_name_is_screened_too():
     assert discover.agency_word(("ashby", "xyz123"), "Randstad Deutschland") == "randstad"
+
+
+def test_the_board_screen_and_the_ingest_screen_are_one_rule():
+    """HIR-220: the word list lives in app/ingest.py and both screens read that one list,
+    so adding a word changes the board policy and what gets stored together, on purpose."""
+    assert discover.AGENCY_WORDS is ingest.AGENCY_WORDS
+    assert discover.agency_word(("ashby", "bestStaffing")) == ingest.agency_name_word("bestStaffing")
 
 
 def test_five_roles_is_the_line_and_fewer_is_left_unrecorded():
