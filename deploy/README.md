@@ -45,7 +45,7 @@ on the VM unless it says otherwise.
 | Code (project root) | `/opt/hiring-radar/app` — a git checkout of `main`, owned by `hiring-radar` |
 | Virtualenv | `/opt/hiring-radar/app/.venv`, built by `uv sync --frozen --no-dev` |
 | Database | `/var/lib/hiring-radar/hiring-radar.db` |
-| Secrets (`ANTHROPIC_API_KEY`, `HIRING_RADAR_DB`, …) | `/etc/hiring-radar.env`, root-only, never in git |
+| Secrets (`ANTHROPIC_API_KEY`, `LANGSMITH_API_KEY`, `HIRING_RADAR_DB`, …) | `/etc/hiring-radar.env`, root-only, never in git |
 | API process | `hiring-radar.service` on `127.0.0.1:8000`, Caddy in front |
 | Daily poll | `hiring-radar-poll.timer` → `hiring-radar-poll.service`, 07:00 Europe/Berlin |
 | Nightly backup | `hiring-radar-backup.timer` → `backup.sh`, 03:30 Europe/Berlin, to `gs://hiring-radar-512318-backups/db/` |
@@ -64,7 +64,42 @@ journalctl -u hiring-radar-poll --since today --no-pager            # today's po
 even with no new jobs. A healthy morning shows it at ~06:00Z. The poll log ends with a `TOTAL`
 line and an `extracted=` line; a feed line with `FAILED` or `WARNING seen=0` needs a look
 (the warning means a company board that used to return postings returned none — usually
-the board changed its page format, as JOIN did in October 2026).
+the board changed its page format, as JOIN did in October 2026). A `grounding:` line means
+the model quoted evidence that is not in the posting — see [Tracing the poll](#tracing-the-poll).
+
+## Tracing the poll
+
+With `LANGSMITH_API_KEY` set in `/etc/hiring-radar.env`, every extraction run is one trace
+in the LangSmith project `hiring-radar-live`, with a child span per job (HIR-160):
+
+| Level | What is on it |
+|---|---|
+| the run | `poll`, `re-read`, `add` or `backfill`; jobs queued, how many were first reads and how many re-reads, jobs attempted/succeeded/failed/dropped, skills found, and the run's grounding totals |
+| a job | the posting that was sent, the skills found, token usage, and its grounding — how many snippets the model quoted as evidence were really in the ad |
+| the model call | tokens, latency and cost, measured by LangSmith from the wrapped Anthropic client |
+
+One trace per run, not per job, so the free plan's 5,000 traces a month (shared with the
+eval) covers a few dozen a month however many cities are added.
+
+Turning it off is removing the key — there is no other switch, and a LangSmith outage can
+only ever print a `[langsmith] … continuing without it` line on stderr. Override the
+project name with `LANGSMITH_LIVE_PROJECT` if you ever want a run kept apart.
+
+**Tags worth filtering on.** `grounding-failure` on a run or a job means the model offered
+a quote that is not in the posting it came from — it invented its evidence. The poll log
+says so too, in a `grounding:` line printed only when it happens. `extraction-failure` and
+`dropped` are jobs the model could not read; `reread` is a run whose queue held jobs being
+read a second time after a version bump.
+
+**The monitoring dashboard is four clicks in the LangSmith UI**, not something this repo
+can create: the LangSmith SDK (0.14) has no dashboard API, so there is nothing to script.
+Once, in `hiring-radar-live` → Dashboards → New:
+
+1. **Cost per day** — metric `Total cost`, grouped by run name, filtered to root runs only.
+2. **Jobs read per day** — metric `Run count`, filtered to `name = job`-prefixed spans (or
+   sum the runs' `succeeded` output).
+3. **Extraction errors per day** — metric `Run count`, filtered to tag `extraction-failure`.
+4. **Grounding failures per day** — metric `Run count`, filtered to tag `grounding-failure`.
 
 ## Run the poll by hand
 
@@ -298,12 +333,17 @@ sudo install -m 600 /dev/null /etc/hiring-radar.env
 sudo tee /etc/hiring-radar.env >/dev/null <<'ENV'
 ANTHROPIC_API_KEY=sk-ant-...
 BRAVE_API_KEY=...
+LANGSMITH_API_KEY=lsv2_...
 HIRING_RADAR_DB=/var/lib/hiring-radar/hiring-radar.db
 ENV
 ```
 
 Root-only, loaded by the systemd units, never in git. `HIRING_RADAR_DB` belongs here and
 not in the unit files so that a unit file can be committed as it stands.
+
+`LANGSMITH_API_KEY` is optional and is the only switch for tracing — see
+[Tracing the poll](#tracing-the-poll). Blank or absent, the poll runs exactly as it did
+before HIR-160 and nothing is sent anywhere.
 
 ### 6. systemd
 
