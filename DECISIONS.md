@@ -5,6 +5,47 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-09 — The live poll is traced: one trace per run, and the grounding check is measured, never enforced (HIR-160)
+
+Every extraction run — the daily poll, a full re-read after a version bump, an add, the
+legacy backfill — is now one LangSmith trace in the project `hiring-radar-live`, with a
+child span per job and the model call nested under its job. Four choices inside that are
+worth keeping.
+
+**One trace per run, not per job.** The free plan allows 5,000 traces a month and the eval
+(HIR-78) shares it. A trace per job would have been about 200 a day in Berlin alone and
+would have run out within a week of adding cities; a trace per run is a few dozen a month
+whatever we add. Jobs are children, so nothing is lost. Undo: open the trace in
+`_extract_pending` instead of `extract_pending`.
+
+**The run's name is the entry point, not a guess about its contents.** `poll`, `re-read`,
+`add`, `backfill`. A poll after a version bump reads new postings *and* re-reads old ones,
+so "is this a re-read" is not a yes/no: the run carries `first_reads` and `reread_queued`
+as numbers and a `reread` tag when the queue held any, and HIR-224's targeted re-read is
+compared against a full one on exactly those numbers.
+
+**Grounding is measured on every live reading and never acted on.** The check (does every
+snippet the model quoted as evidence actually appear in the posting?) moved out of
+`app/evaluation.py` into `app/grounding.py`, below both the eval and the pipeline, so the
+two can never measure it differently. The live pipeline counts it per job and per run, tags
+the failures, and stores the extraction unchanged. Enforcing it in the poll — dropping a
+skill whose quote the check cannot find — was rejected: the extractor already drops those
+itself, and a second, differently-placed rule would let the poll and the eval disagree
+about the same posting. Undo: delete the two `report.grounded/quotes` lines in
+`_extract_pending`.
+
+**Tracing is off unless `LANGSMITH_API_KEY` is set, and a LangSmith failure is never
+fatal.** Same rule HIR-78 settled for the eval, for the same reason: the daily poll cannot
+depend on a third party being reachable, and no test may send anything to a real account.
+Every LangSmith call goes through a `_safe` wrapper that warns on stderr and carries on;
+`tests/conftest.py` already unsets the key for the whole suite.
+
+**What is not scripted.** The monitoring dashboard is set up by hand in the LangSmith UI —
+the SDK (0.14) has no dashboard API, so there is nothing to automate. The four panels are
+written down in `deploy/README.md` under "Tracing the poll".
+
+---
+
 ## 2026-11-08 — Hamburg, Frankfurt and Munich are collected; two of them have no boards to add (HIR-165)
 
 Chandler named these three cities on the HIR-165 ticket, so the 2026-11-03 rule below

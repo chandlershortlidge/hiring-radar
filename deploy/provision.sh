@@ -94,11 +94,17 @@ else
 # Root-only, never in git. Loaded by the systemd units; a login shell does not see it.
 ANTHROPIC_API_KEY=
 BRAVE_API_KEY=
+# Optional. With a key, every poll and re-read is one LangSmith trace with a child per
+# job (HIR-160). Left blank, tracing is off and the poll runs exactly as before.
+LANGSMITH_API_KEY=
 HIRING_RADAR_DB=$DB_PATH
 ENV
   echo "   WROTE A TEMPLATE -- put the real keys in $ENV_FILE before the app is any use"
 fi
 grep -q '^HIRING_RADAR_DB=' "$ENV_FILE" || echo "HIRING_RADAR_DB=$DB_PATH" >> "$ENV_FILE"
+# Appended blank rather than skipped, so an env file written before HIR-160 shows the
+# variable exists. Blank means off; nothing breaks until a real key is pasted in.
+grep -q '^LANGSMITH_API_KEY=' "$ENV_FILE" || echo "LANGSMITH_API_KEY=" >> "$ENV_FILE"
 
 step "6. systemd units"
 # Copied from this repo, so /etc matches what is committed. `diff` the two to spot drift.
