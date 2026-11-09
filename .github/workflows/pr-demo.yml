@@ -1,134 +1,97 @@
-name: PR demo
+name: PR screenshots
 
-# Evidence for review (HIR-214): before/after screenshots and a screen recording of the
-# dashboard on every PR that can change what it shows, posted as one PR comment.
+# Before/after screenshots on PRs that change the frontend (HIR-231, replacing the
+# HIR-214 demo, which filmed fake data and looked the same on every PR).
 #
-# How: the same walkthrough (web/e2e/walkthrough.spec.js, always taken from the PR branch)
-# runs twice — against the app built from the PR's base ("before") and from its head
-# ("after") — each on its own fake demo database (scripts/seed_demo.py; no model calls,
-# no real data, no secrets). The publish job copies the images to the `pr-evidence`
-# branch, because a PR comment can only show an image that has a URL, then writes or
-# updates a single comment.
+# How: build the dashboard from main ("before") and from the branch ("after"), open both
+# against the LIVE site's data, seconds apart in one browser, and keep only the views
+# whose screenshots differ (web/e2e/before-after.spec.js). The images go to the
+# `pr-evidence` branch, because a PR comment can only show an image that has a URL, and
+# one comment on the PR is written or updated.
 #
-# Does NOT: block a merge (nothing here is a required check, and the walkthrough asserts
-# nothing), deploy, touch the VM or the real database, or run for PRs from forks (they
-# get no write token; this repo takes none today).
+# Does NOT: run for backend-only or docs-only PRs, record video, use a demo database,
+# write to the live site (only GET /api requests pass through), deploy, or block a merge.
+#
+# Needs the repository secret SITE_LOGIN = "user:password" for the site's login. Without
+# it the job says so in its log and posts nothing.
 
 on:
   pull_request:
     paths:
-      - "web/**"
-      - "app/**"
-      - "scripts/seed_demo.py"
+      - "web/src/**"
+      - "web/index.html"
+      - "web/public/**"
+      - "web/e2e/**"
+      - "web/playwright.config.js"
       - ".github/workflows/pr-demo.yml"
 
 permissions:
   contents: read
 
 concurrency:
-  group: pr-demo-${{ github.event.pull_request.number }}
+  group: pr-shots-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
+env:
+  SHOT_LIVE: https://34-159-223-190.sslip.io
+
 jobs:
-  capture:
-    name: Capture (${{ matrix.side }})
+  shots:
+    name: Before/after screenshots
     if: github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
-    timeout-minutes: 20
-    strategy:
-      fail-fast: false
-      matrix:
-        side: [before, after]
+    timeout-minutes: 15
+    permissions:
+      contents: write        # push images to the pr-evidence branch
+      pull-requests: write   # write the comment
     steps:
-      # The walkthrough and its Playwright install: always the branch's.
+      - name: Check the site login is set
+        id: login
+        env:
+          SITE_LOGIN: ${{ secrets.SITE_LOGIN }}
+        run: |
+          if [ -z "$SITE_LOGIN" ]; then
+            echo "::warning::SITE_LOGIN secret is not set; no screenshots (the live site needs its login)."
+            echo "ok=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "ok=true" >> "$GITHUB_OUTPUT"
+          fi
+
       - uses: actions/checkout@v4
+        if: steps.login.outputs.ok == 'true'
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           path: head
-      # The app being photographed: main as it was when the PR branched, or the branch.
       - uses: actions/checkout@v4
+        if: steps.login.outputs.ok == 'true'
         with:
-          ref: ${{ matrix.side == 'before' && github.event.pull_request.base.sha || github.event.pull_request.head.sha }}
-          path: app-src
-      - uses: astral-sh/setup-uv@v6
-        with:
-          python-version: "3.13"
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
       - uses: actions/setup-node@v4
+        if: steps.login.outputs.ok == 'true'
         with:
           node-version: 22
 
-      - name: Seed the demo database and build the dashboard
-        working-directory: app-src
+      - name: Build both versions of the dashboard
+        if: steps.login.outputs.ok == 'true'
         run: |
-          uv sync --frozen
-          HIRING_RADAR_DB="$RUNNER_TEMP/demo.db" uv run python scripts/seed_demo.py
-          cd web && npm ci && npm run build
+          for side in base head; do (cd "$side/web" && npm ci && npm run build); done
 
-      - name: Start the server
-        working-directory: app-src
-        run: |
-          # The venv's python, not `uv run`: a uv process left running holds uv's cache lock,
-          # and setup-uv's end-of-job cache prune then waits 5 minutes on it and fails.
-          HIRING_RADAR_DB="$RUNNER_TEMP/demo.db" nohup .venv/bin/python -m app serve --port 8000 > "$RUNNER_TEMP/serve.log" 2>&1 &
-          for i in $(seq 60); do curl -sf http://127.0.0.1:8000/ > /dev/null && exit 0; sleep 1; done
-          cat "$RUNNER_TEMP/serve.log"; exit 1
-
-      - name: Run the walkthrough
+      - name: Take the screenshots
+        if: steps.login.outputs.ok == 'true'
         working-directory: head/web
         env:
-          DEMO_URL: http://127.0.0.1:8000
-          DEMO_OUT: ${{ github.workspace }}/out
+          SHOT_AUTH: ${{ secrets.SITE_LOGIN }}
+          SHOT_BEFORE: ${{ github.workspace }}/base/web/dist
+          SHOT_AFTER: ${{ github.workspace }}/head/web/dist
+          SHOT_OUT: ${{ github.workspace }}/out
         run: |
-          npm ci
           npx playwright install --with-deps chromium
-          npm run demo
-          # Keep the screenshots and one recording per screen size; drop Playwright's scratch.
-          for p in desktop phone; do
-            cp "$DEMO_OUT/_playwright/walkthrough-walkthrough-$p/video.webm" "$DEMO_OUT/$p.webm" || true
-          done
-          rm -rf "$DEMO_OUT/_playwright"
-
-      - name: Stop the server
-        if: always()
-        run: pkill -f "app serve" || true
-
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: demo-${{ matrix.side }}
-          path: out/
-          retention-days: 14
-          if-no-files-found: ignore
-
-  publish:
-    name: Post the evidence
-    needs: capture
-    if: always() && needs.capture.result != 'cancelled' && github.event.pull_request.head.repo.full_name == github.repository
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    permissions:
-      contents: write        # push to the pr-evidence branch
-      pull-requests: write   # write the comment
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          pattern: demo-*
-          path: ev
-
-      - name: Turn the recordings into GIFs
-        run: |
-          sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg > /dev/null
-          for side in before after; do
-            for p in desktop phone; do
-              src="ev/demo-$side/$p.webm"; [ -f "$src" ] || continue
-              w=$([ "$p" = desktop ] && echo 960 || echo 360)
-              ffmpeg -loglevel error -y -i "$src" \
-                -vf "fps=8,scale=$w:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=96[p];[b][p]paletteuse=dither=bayer" \
-                "ev/demo-$side/$p.gif"
-            done
-          done
+          npm run shots
+          rm -rf "$SHOT_OUT/_playwright"
 
       - name: Copy to the pr-evidence branch
+        if: steps.login.outputs.ok == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
@@ -145,11 +108,8 @@ jobs:
           git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
           # Only the latest run per PR is kept; the comment always points at it.
           rm -rf "pr-$PR" && mkdir -p "pr-$PR/${SHA:0:7}"
-          for side in before after; do
-            [ -d "../ev/demo-$side" ] && cp -r "../ev/demo-$side" "pr-$PR/${SHA:0:7}/$side"
-          done
-          find "pr-$PR" -name '*.webm' -delete
-          git add -A && git commit -qm "PR #$PR evidence at ${SHA:0:7}" || exit 0
+          cp -r ../out/. "pr-$PR/${SHA:0:7}/"
+          git add -A && git commit -qm "PR #$PR screenshots at ${SHA:0:7}" || exit 0
           # Two PRs can publish at once; rebase onto the other's push and retry.
           for i in 1 2 3 4 5; do
             git push -q origin pr-evidence && exit 0
@@ -159,38 +119,34 @@ jobs:
           exit 1
 
       - name: Write or update the PR comment
+        if: steps.login.outputs.ok == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
           PR: ${{ github.event.pull_request.number }}
           SHA: ${{ github.event.pull_request.head.sha }}
-          CAPTURE: ${{ needs.capture.result }}
         run: |
           base="https://raw.githubusercontent.com/$REPO/pr-evidence/pr-$PR/${SHA:0:7}"
-          img() { [ -f "ev/demo-$1/$2" ] && printf '<img src="%s/%s/%s" width="%s">' "$base" "$1" "$2" "$3" || printf '_not captured_'; }
+          changed() { [ -f "out/$1/changed.json" ] && jq -r '.[]' "out/$1/changed.json"; }
+          n=$( { changed desktop; changed phone; } | wc -l )
           {
             echo "<!-- pr-demo -->"
-            echo "### What this PR looks like"
-            echo "Fake demo data, same walkthrough on both sides. **Before** = main where this branch started; **after** = this branch at \`${SHA:0:7}\`."
-            [ "$CAPTURE" = success ] || echo "> One side failed to capture; see the PR demo run's log."
-            echo
-            echo "**Recording (after)**"
-            echo
-            echo "$(img after desktop.gif 720) $(img after phone.gif 240)"
-            echo
-            for p in desktop phone; do
-              w=$([ "$p" = desktop ] && echo 420 || echo 200)
-              echo "<details$([ $p = desktop ] && echo ' open')><summary><b>${p^} screenshots</b></summary>"
-              echo
-              echo "| | Before | After |"
-              echo "|---|---|---|"
-              for f in $(ls ev/demo-after/$p ev/demo-before/$p 2>/dev/null | grep '\.png$' | sort -u); do
-                name=$(echo "${f%.png}" | cut -d- -f2-)
-                echo "| $name | $(img before $p/$f $w) | $(img after $p/$f $w) |"
+            echo "### Before / after"
+            if [ "$n" -eq 0 ]; then
+              echo "No visible change on the home, city, compare or job pages (live data, \`${SHA:0:7}\`)."
+            else
+              echo "Live data. Only the views that changed are shown. **Before** = main, **after** = this branch at \`${SHA:0:7}\`."
+              for p in desktop phone; do
+                views=$(changed $p); [ -n "$views" ] || continue
+                w=$([ "$p" = desktop ] && echo 420 || echo 200)
+                echo; echo "**${p^}**"; echo
+                echo "| | Before | After |"
+                echo "|---|---|---|"
+                for v in $views; do
+                  echo "| $v | <img src=\"$base/$p/$v-before.png\" width=\"$w\"> | <img src=\"$base/$p/$v-after.png\" width=\"$w\"> |"
+                done
               done
-              echo
-              echo "</details>"
-            done
+            fi
           } > body.md
           id=$(gh api "repos/$REPO/issues/$PR/comments" --paginate \
                  --jq '[.[] | select(.body | startswith("<!-- pr-demo -->"))][0].id // empty' | head -n1)

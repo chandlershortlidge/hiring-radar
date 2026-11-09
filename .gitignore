@@ -25,4 +25,4 @@ TICKET
 .agents/
 skills-lock.json
 .claude/skills/security-audit/
-demo-out/
+web/shots-out/
