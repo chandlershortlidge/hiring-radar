@@ -1,8 +1,9 @@
 """Score extractions against Goldens and run the eval suite.
 
 Does: per-Golden set comparison on skill ids, micro-averaged precision/recall/F1,
-requirement accuracy on matched skills, a grounding check that every quoted snippet the
-model offered as evidence really appears in the posting, seniority accuracy over Goldens
+requirement accuracy on matched skills, the grounding check of app/grounding.py (every
+quoted snippet the model offered as evidence really appears in the posting) turned into a
+score, seniority accuracy over Goldens
 that carry a seniority label, per-class precision/recall and a confusion matrix for production
 experience (plus signal agreement, so a right class off the wrong clause shows), and rank
 agreement between predicted and gold
@@ -17,11 +18,12 @@ length); scoring is deterministic for a given input; a Golden whose extraction r
 counts as an error and contributes all its expected skills as misses.
 """
 
-import re
 import statistics
 from collections import Counter
 from contextlib import nullcontext
 from dataclasses import dataclass, field
+
+from app import grounding as _grounding
 
 
 @dataclass
@@ -77,37 +79,12 @@ def score_golden(golden_id: str, expected: list[dict], predicted: list[dict],
     )
 
 
-_WS = re.compile(r"\s+")
-
-# app/extract.py's reason string for a quote it could not find in the posting. Matched by
-# value, not imported: evaluation.py scores what it is handed and never imports the
-# extractor (see the module docstring).
-UNGROUNDED_REASON = "raw_text not found in job text"
-
-
-def _quote(item) -> str:
-    """raw_text off a Mention/Proposed dataclass or the dict form of one."""
-    if isinstance(item, dict):
-        return str(item.get("raw_text") or "")
-    return str(getattr(item, "raw_text", "") or "")
-
-
-def grounding(jd_text: str, mentions, proposed, rejected) -> tuple[int, int]:
-    """(grounded, total) over every skill quote the model returned for one Golden.
-
-    An invented quote is a different failure from a wrong skill: it says the model made
-    its evidence up. The extractor already drops a skill whose quote it cannot find, so
-    those arrive here in `rejected` and count against the total. The quotes it kept are
-    re-checked all the same, so a regression in that check shows as a falling score
-    instead of passing silently.
-
-    Whitespace- and case-insensitive, the same comparison the extractor makes.
-    """
-    jd = _WS.sub(" ", jd_text).strip().lower()
-    kept = [_quote(x) for x in list(mentions) + list(proposed)]
-    grounded = sum(1 for q in kept if q and _WS.sub(" ", q).strip().lower() in jd)
-    ungrounded = sum(1 for r in rejected if isinstance(r, dict) and r.get("reason") == UNGROUNDED_REASON)
-    return grounded, len(kept) + ungrounded
+# The grounding check itself lives in app/grounding.py, below both callers, so the eval
+# and the live poll cannot measure it differently (HIR-160). Re-exported here because
+# `evaluation.grounding` and `evaluation.UNGROUNDED_REASON` are what the eval and its
+# tests have always called.
+grounding = _grounding.grounding
+UNGROUNDED_REASON = _grounding.UNGROUNDED_REASON
 
 
 def _rank(values: list[float]) -> list[float]:
