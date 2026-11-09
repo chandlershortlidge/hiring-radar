@@ -16,8 +16,11 @@ Invariants:
     poll, the API and the whole test suite behave exactly as before and no test sends
     anything to LangSmith.
   - A LangSmith failure never fails a run — not opening a trace, not closing one, not
-    posting a span. Every call goes through `_safe`, which warns on stderr and carries on:
-    the daily poll cannot depend on a third party being reachable.
+    posting a span, and not the `import langsmith` itself. Every call goes through `_safe`,
+    which warns on stderr and carries on: the daily poll cannot depend on a third party
+    being reachable, nor on the package being installed (HIR-233). The package is a real
+    project dependency so the VM has it, but a missing or broken one is tracing off, not a
+    failed poll.
   - One trace per run, not per job, however many cities are added — the free plan allows
     5,000 traces a month and the eval shares it (HIR-160). Jobs are children of the run.
   - Only the public job ad already being sent to the model goes out: the job's title and
@@ -68,6 +71,30 @@ def _safe(what: str, fn, *a, **kw):
         return None
 
 
+# True once the "langsmith could not be imported" warning has been printed, so a poll of
+# 200 jobs says it once rather than once per job (HIR-233).
+_import_warned = False
+
+
+def _module(name: str):
+    """Import a langsmith module, or None if it cannot be imported.
+
+    A missing or broken `langsmith` is tracing off, not a failed run: the deploy installs
+    it as a project dependency, but an environment without it must still poll (HIR-233).
+    """
+    global _import_warned
+    try:
+        import importlib
+
+        return importlib.import_module(name)
+    except Exception as e:  # noqa: BLE001 - any import failure is non-fatal
+        if not _import_warned:
+            _import_warned = True
+            print(f"  [langsmith] import failed, continuing without it: "
+                  f"{type(e).__name__}: {e}", file=sys.stderr, flush=True)
+        return None
+
+
 def wrap_client(client):
     """Wrap the Anthropic client so each model call becomes an LLM child span with its
     tokens, latency and cost. A no-op when tracing is off, and idempotent: wrapping an
@@ -75,9 +102,10 @@ def wrap_client(client):
     """
     if client is None or not enabled() or getattr(client, "_hiring_radar_traced", False):
         return client
-    from langsmith.wrappers import wrap_anthropic
-
-    wrapped = _safe("wrap client", wrap_anthropic, client) or client
+    wrappers = _module("langsmith.wrappers")
+    if wrappers is None:
+        return client
+    wrapped = _safe("wrap client", wrappers.wrap_anthropic, client) or client
     try:
         wrapped._hiring_radar_traced = True
     except Exception:  # noqa: BLE001 - a client that refuses attributes just gets re-wrapped
@@ -87,15 +115,18 @@ def wrap_client(client):
 
 @contextmanager
 def _trace(what: str, **kw):
-    """`langsmith.trace`, with every way it can fail turned into None instead of an error.
+    """`langsmith.trace`, with every way it can fail turned into None instead of an error,
+    including the package not being installed at all.
 
     Entered and exited by hand rather than with `with`, so that a failure to open the span
     yields None (callers then do nothing), and a failure to close it is warned about
     instead of replacing whatever the body was doing. An exception from the body is handed
     to the span, so a failed job is visible in LangSmith, and then re-raised unchanged.
     """
-    import langsmith
-
+    langsmith = _module("langsmith")
+    if langsmith is None:
+        yield None
+        return
     cm = _safe(what, langsmith.trace, **kw)
     if cm is None:
         yield None

@@ -5,6 +5,31 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-09 — The tracing package ships with the app, and a missing one is tracing off (HIR-233)
+
+`langsmith` was a dev-only dependency. The deploy installs the app with `uv sync --frozen
+--no-dev`, so the server never had the package; the first traced poll on the VM died with
+`ModuleNotFoundError` before reading a single job, while CI stayed green because tests and
+local runs do have it.
+
+**The package is a real project dependency now, not a dev one.** Tracing is part of how
+the live system is operated (deploy/README.md), so the thing it needs is installed
+wherever the app is. It adds no model cost and no behaviour. Undo: move the line back to
+`[dependency-groups] dev` in `pyproject.toml` and re-lock.
+
+**A failed `import langsmith` counts as a LangSmith failure, not a failed run.** HIR-160's
+invariant was that no LangSmith problem can fail a run, but both imports in the live path
+sat outside the safety net that promise is made of. They now go through one helper that
+returns nothing and warns once per process — `[langsmith] import failed, continuing
+without it` — and the run proceeds exactly as it does with tracing off. Warning once, not
+once per job, is deliberate: a poll reads a few hundred jobs. Undo: import the module
+directly again in `app/langsmith_live.py`.
+
+A test now sets the key, makes the package unimportable, and asserts that the poll still
+stores its mentions; the same is asserted for the dashboard's add-a-job path.
+
+---
+
 ## 2026-11-09 — The live poll is traced: one trace per run, and the grounding check is measured, never enforced (HIR-160)
 
 Every extraction run — the daily poll, a full re-read after a version bump, an add, the

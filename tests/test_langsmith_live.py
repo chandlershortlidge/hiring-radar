@@ -280,3 +280,53 @@ def test_wrap_client_is_idempotent(monkeypatch):
     once = langsmith_live.wrap_client(c)
     twice = langsmith_live.wrap_client(once)
     assert once is c and twice is c and len(calls) == 1
+
+
+# --- the package not being installed at all (HIR-233) -----------------------------
+
+@pytest.fixture
+def no_langsmith_package(monkeypatch):
+    """The VM's state before HIR-233: a key is set, but `import langsmith` fails.
+
+    A None in sys.modules is how Python reports a module that cannot be imported, so this
+    is the ModuleNotFoundError the poll hit, without uninstalling anything.
+    """
+    import sys
+
+    monkeypatch.setattr(langsmith_live, "enabled", lambda: True)
+    monkeypatch.setattr(langsmith_live, "_import_warned", False)
+    for name in ("langsmith", "langsmith.wrappers"):
+        monkeypatch.setitem(sys.modules, name, None)
+
+
+def test_a_poll_runs_and_stores_when_langsmith_cannot_be_imported(
+        conn, no_langsmith_package, capsys):
+    """The crash this issue is about: with the key set and the package missing, the poll
+    read nothing at all. It now reads and stores exactly as with tracing off."""
+    ex = extraction([Mention("python", "required", "Python")])
+    report = pipeline.extract_pending(conn, TAX, fake_extract(ex), "m", log=lambda *_: None,
+                                      run_kind=langsmith_live.POLL)
+    assert (report.attempted, report.succeeded, report.mentions) == (1, 1, 1)
+    assert conn.execute("SELECT count(*) FROM skill_mention").fetchone()[0] == 1
+    assert "[langsmith] import failed, continuing without it" in capsys.readouterr().err
+
+
+def test_the_missing_package_is_reported_once_not_once_per_job(
+        conn, no_langsmith_package, capsys):
+    """A poll of 200 jobs would otherwise print 200 identical warnings."""
+    ingest_one(conn=conn, p=Posting("arbeitnow", "a2", "", "Beta", "ML Engineer", "Berlin",
+                                    POSTING_TEXT))
+    ex = extraction([Mention("python", "required", "Python")])
+    report = pipeline.extract_pending(conn, TAX, fake_extract(ex), "m", log=lambda *_: None,
+                                      run_kind=langsmith_live.POLL)
+    assert report.attempted == 2
+    assert capsys.readouterr().err.count("[langsmith] import failed") == 1
+
+
+def test_wrap_client_returns_the_plain_client_when_the_package_is_missing(
+        no_langsmith_package):
+    class Client:
+        pass
+
+    c = Client()
+    assert langsmith_live.wrap_client(c) is c

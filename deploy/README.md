@@ -85,6 +85,11 @@ Turning it off is removing the key — there is no other switch, and a LangSmith
 only ever print a `[langsmith] … continuing without it` line on stderr. Override the
 project name with `LANGSMITH_LIVE_PROJECT` if you ever want a run kept apart.
 
+The `langsmith` package is a project dependency, so the deploy's `uv sync --frozen
+--no-dev` installs it on the VM. It was dev-only until HIR-233, and the first traced poll
+died on the missing import; a failed import is now tracing off with one warning, like any
+other LangSmith failure.
+
 **Tags worth filtering on.** `grounding-failure` on a run or a job means the model offered
 a quote that is not in the posting it came from — it invented its evidence. The poll log
 says so too, in a `grounding:` line printed only when it happens. `extraction-failure` and
