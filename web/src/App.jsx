@@ -15,6 +15,7 @@ import AddJobDrawer from "./AddJobDrawer.jsx";
 import ReviewDrawer from "./ReviewDrawer.jsx";
 import ProfileDrawer from "./ProfileDrawer.jsx";
 import JobPage from "./JobPage.jsx";
+import Panel from "./Panel.jsx";
 
 // The time windows the server accepts, with the wording a person reads. Keys here and on
 // the server have to match; tests/test_frontend_lists.py fails if they drift (HIR-203).
@@ -197,7 +198,7 @@ export default function App() {
         </div>
       </div></header>
 
-      {pageJob ? <JobPage id={pageJob} onBack={closePage} profile={profile} taxonomy={taxName} demand={demand} /> : <>
+      {pageJob ? <Panel label="This job's page"><JobPage id={pageJob} onBack={closePage} profile={profile} taxonomy={taxName} demand={demand} /></Panel> : <>
 
       {market.view === "home" && (
         <section className="hero landing"><div className="hero-in">
@@ -230,7 +231,7 @@ export default function App() {
             ))}
           </p>
         )}
-        <HomeGrid data={skills} counts={cityCounts} family={market.family} onRequestCity={requestCity} />
+        <Panel label="The market grid"><HomeGrid data={skills} counts={cityCounts} family={market.family} onRequestCity={requestCity} /></Panel>
       </main> : <main className="main">
         {stats && (
           <p className="stats">
@@ -249,7 +250,7 @@ export default function App() {
           </p>
         )}
 
-        <section className="card chart" aria-labelledby="chart-title">
+        <Panel label="The chart"><section className="card chart" aria-labelledby="chart-title">
           <div>
             <h1 id="chart-title">{filters.compare
               ? `${compareCities.join(" vs ")} · ${market.family ? familyLabel(market.family) : "AI & data roles"}`
@@ -299,21 +300,21 @@ export default function App() {
                 onSelectCity={(id, city) => { set({ skillIds: [id] }); goMarket({ ...HOME, view: "city", place: placeByName(city)?.slug || null, family: market.family }); }} />
             : <SkillChart data={skills} selected={filters.skillIds} onSelect={selectSkill} profile={profile}
                 cityLabel={`${winLabel || "tracked"} jobs`} aliases={taxAliases} />}
-        </section>
+        </section></Panel>
 
-        <RelatedSkills filters={listFilters} skillNames={skillNames} onAdd={addSkill} data={related} />
+        <Panel label="Related skills"><RelatedSkills filters={listFilters} skillNames={skillNames} onAdd={addSkill} data={related} /></Panel>
 
-        <JobList filters={listFilters} setFilters={setFilters}
+        <Panel label="The job list"><JobList filters={listFilters} setFilters={setFilters}
           profile={profile} taxonomy={taxName} demand={demand} refreshKey={refresh} openJobId={jumpTo} onOpened={() => setJumpTo(null)} onOpenPage={openPage}
-          taxonomyRows={taxRows} aliases={taxAliases} suggestions={skillSuggestions} onAddSkill={addSkill} />
+          taxonomyRows={taxRows} aliases={taxAliases} suggestions={skillSuggestions} onAddSkill={addSkill} /></Panel>
 
         {/* The skill tree card stood here. Off the MVP page by HIR-187; SkillTree.jsx, api.skillTree
             and /api/skills/tree all still work, and HIR-81 / HIR-89 bring it back per career track. */}
       </main>}</>}
 
-      {drawer === "add" && <AddJobDrawer onClose={() => setDrawer(null)} onAdded={reload} onViewJob={viewJob} />}
-      {drawer === "review" && <ReviewDrawer onClose={() => setDrawer(null)} taxonomyList={tax.skills} skillsTracked={stats?.skills_tracked ?? tax.skills.length} onChanged={reload} onViewJob={viewJob} />}
-      {drawer === "profile" && <ProfileDrawer onClose={() => setDrawer(null)} profile={profile} save={saveProfile} taxonomyList={tax.skills} />}
+      {drawer === "add" && <Panel label="The add-a-job drawer"><AddJobDrawer onClose={() => setDrawer(null)} onAdded={reload} onViewJob={viewJob} /></Panel>}
+      {drawer === "review" && <Panel label="The proposed-skills drawer"><ReviewDrawer onClose={() => setDrawer(null)} taxonomyList={tax.skills} skillsTracked={stats?.skills_tracked ?? tax.skills.length} onChanged={reload} onViewJob={viewJob} /></Panel>}
+      {drawer === "profile" && <Panel label="The profile drawer"><ProfileDrawer onClose={() => setDrawer(null)} profile={profile} save={saveProfile} taxonomyList={tax.skills} /></Panel>}
     </>
   );
 }
