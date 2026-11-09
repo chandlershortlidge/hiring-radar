@@ -1,0 +1,84 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung im Bereich Public Cloud\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"vorzugsweise GCP\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"required\", \"raw_text\": \"Terraform (IaC)\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"IaC\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Generative AI-Anwendungen\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"Bereitstellung und Integration von Generative AI-Anwendungen\", \"uncertain\": true},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD-Pipeline\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Einsatz von Python als Programmiersprache\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Agile methods\", \"raw_text\": \"erste praktische Erfahrungen mit agilen Methoden\"}\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"verfügst über erste Erfahrungen\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"verhandlungssicher in Deutsch\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"The requirements section has no heading in the flattened text (it starts at 'Du hast ...'), so it defaults to required.\\n'vorzugsweise' (preferred) attaches only to GCP, so gcp is nice_to_have; AWS, Azure and Cloud stay required.\\nVertex AI, Gemini Enterprise, Cloud Run, Cloud Build and Python-based microservices appear only in the responsibilities tech list ('unter Einsatz folgender Technologien'), which describes the work, not candidate requirements. Read literally, they are not labeled.\\nCI/CD also appears in the responsibilities, but it is labeled from the requirements mention 'Terraform (CI/CD-Pipeline)'.\\nai-deployment comes from 'Bereitstellung ... von Generative AI-Anwendungen'. This is deployment of GenAI apps; flagged uncertain as a possible over-read.\\nThe 'idealerweise' item covers industry standards, security concepts and regulatory compliance in insurance/finance. This is treated as domain knowledge, so no skill is labeled.\\nAgile methods have no taxonomy entry and are put in unmapped; this may arguably be a soft or practice skill rather than a technical one.\\nSeniority: 'erste Erfahrungen' (first experience) gives junior, inferred. The text is mixed, though: 'erfahrene' in the company description is not a level signal, and 'hast Erfahrung im Bereich Public Cloud' gives no years. Flagged uncertain.\\nDegree: 'oder eine vergleichbare Qualifikation' accepts a comparable qualification instead of the degree, so degree_or_equivalent is true.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Erfahrung im Bereich Public Cloud"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "vorzugsweise GCP"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform (IaC)"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "IaC"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generative AI-Anwendungen"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "Bereitstellung und Integration von Generative AI-Anwendungen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Pipeline"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Einsatz von Python als Programmiersprache"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Agile methods",
+        "raw_text": "erste praktische Erfahrungen mit agilen Methoden"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "verfügst über erste Erfahrungen",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "verhandlungssicher in Deutsch",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The requirements section has no heading in the flattened text (it starts at 'Du hast ...'), so it defaults to required.\n'vorzugsweise' (preferred) attaches only to GCP, so gcp is nice_to_have; AWS, Azure and Cloud stay required.\nVertex AI, Gemini Enterprise, Cloud Run, Cloud Build and Python-based microservices appear only in the responsibilities tech list ('unter Einsatz folgender Technologien'), which describes the work, not candidate requirements. Read literally, they are not labeled.\nCI/CD also appears in the responsibilities, but it is labeled from the requirements mention 'Terraform (CI/CD-Pipeline)'.\nai-deployment comes from 'Bereitstellung ... von Generative AI-Anwendungen'. This is deployment of GenAI apps; flagged uncertain as a possible over-read.\nThe 'idealerweise' item covers industry standards, security concepts and regulatory compliance in insurance/finance. This is treated as domain knowledge, so no skill is labeled.\nAgile methods have no taxonomy entry and are put in unmapped; this may arguably be a soft or practice skill rather than a technical one.\nSeniority: 'erste Erfahrungen' (first experience) gives junior, inferred. The text is mixed, though: 'erfahrene' in the company description is not a level signal, and 'hast Erfahrung im Bereich Public Cloud' gives no years. Flagged uncertain.\nDegree: 'oder eine vergleichbare Qualifikation' accepts a comparable qualification instead of the degree, so degree_or_equivalent is true."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "285e53e4d29eac8eaff9ae15f71c35616ac47bbb906ba9bf7dd9ddbb84201537",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

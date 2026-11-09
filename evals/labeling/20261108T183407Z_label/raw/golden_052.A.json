@@ -1,0 +1,136 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"javascript\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit JavaScript/TypeScript\"},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit JavaScript/TypeScript\"},\n    {\"skill_id\": \"node-js\", \"requirement\": \"required\", \"raw_text\": \"Tiefgreifende Node.js /TypeScript DNA\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit JavaScript/TypeScript (inkl. Node.js im Backend)\", \"uncertain\": true},\n    {\"skill_id\": \"react\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit React\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"sowie Docker\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"und Kubernetes\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"Modernes Web Development & Container\", \"uncertain\": true},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"required\", \"raw_text\": \"wie moderne verteilte Anwendungen laufen\", \"uncertain\": true},\n    {\"skill_id\": \"devops\", \"requirement\": \"required\", \"raw_text\": \"DevOps Praktiker\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD (z.B. GitLab, Jenkins)\"},\n    {\"skill_id\": \"gitlab-ci\", \"requirement\": \"required\", \"raw_text\": \"CI/CD (z.B. GitLab, Jenkins)\", \"uncertain\": true},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"verstehst Prompt Engineering\"},\n    {\"skill_id\": \"chain-of-thought\", \"requirement\": \"required\", \"raw_text\": \"(Chain-of-Thought, Context Window Management)\"},\n    {\"skill_id\": \"hallucination-detection\", \"requirement\": \"required\", \"raw_text\": \"geschärft für Halluzinationen\", \"uncertain\": true},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"Architektur vor Syntax\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Du hast Lust, deine Node.js/TypeScript -Komfortzone zu verlassen und dich von der KI in neue Tech-Stacks (Cloud Native, Python Data Services etc.)\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Du hast Lust, deine Node.js/TypeScript -Komfortzone zu verlassen und dich von der KI in neue Tech-Stacks (Cloud Native, Python Data Services etc.)\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Jenkins\", \"raw_text\": \"CI/CD (z.B. GitLab, Jenkins)\"},\n    {\"label\": \"Context Window Management\", \"raw_text\": \"(Chain-of-Thought, Context Window Management)\"},\n    {\"label\": \"Code Review\", \"raw_text\": \"Dein Code-Review-Blick\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"(Senior) AI-Native Software Engineer / Architect\",\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Skills are taken only from the 'Dein Profil' section. 'Deine Mission' is responsibilities, so its mentions are not labeled: Python/Go/Rust in Polyglot Exploration, and GitLab CI/CD and container work in Automatisierung & DevOps.\\nThe benefits mention GitHub Copilot, ChatGPT Enterprise and Claude as tools provided to staff, not asked of the candidate, so they are not labeled.\\nPython and Cloud Native are nice_to_have under the appetite rule ('Du hast Lust ...' = Lust auf). raw_text includes the appetite phrase, so it is long.\\n'Cloud Native' is mapped to cloud; flagged as uncertain.\\nGitLab in the CI/CD example is mapped to gitlab-ci rather than git, because it is named as a CI/CD tool. Flagged.\\nBackend is labeled because the text names it ('Node.js im Backend'). Flagged as possibly too literal.\\n'Container' in the bullet heading maps to the containerization alias 'container'. Flagged.\\n'verteilte Anwendungen' is mapped to distributed-systems (alias 'verteilte systeme'). Flagged.\\nHallucination-detection is read from 'Code-Review-Blick ist geschärft für Halluzinationen'. Flagged.\\nsoftware-architecture is read from 'Architektur vor Syntax'. 'Schnittstellen' was not mapped to apis.\\n'Modernes Web Development' was not mapped: there is no web-development entry, and full-stack-development's alias 'web application development' does not match literally.\\nai-developer-tooling was not labeled: the profile never names AI coding tools as a skill, only working with 'KI' generically.\\nSeniority is stated as senior from the title: '(Senior)' plus 'Architect'.\\nGerman is inferred as required because the posting is written in German and says nothing about language. There is no degree mention.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit JavaScript/TypeScript"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit JavaScript/TypeScript"
+      },
+      {
+        "skill_id": "node-js",
+        "requirement": "required",
+        "raw_text": "Tiefgreifende Node.js /TypeScript DNA"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit JavaScript/TypeScript (inkl. Node.js im Backend)",
+        "uncertain": true
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit React"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "sowie Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "und Kubernetes"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "Modernes Web Development & Container",
+        "uncertain": true
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "wie moderne verteilte Anwendungen laufen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps Praktiker"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD (z.B. GitLab, Jenkins)"
+      },
+      {
+        "skill_id": "gitlab-ci",
+        "requirement": "required",
+        "raw_text": "CI/CD (z.B. GitLab, Jenkins)",
+        "uncertain": true
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "verstehst Prompt Engineering"
+      },
+      {
+        "skill_id": "chain-of-thought",
+        "requirement": "required",
+        "raw_text": "(Chain-of-Thought, Context Window Management)"
+      },
+      {
+        "skill_id": "hallucination-detection",
+        "requirement": "required",
+        "raw_text": "geschärft für Halluzinationen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Architektur vor Syntax",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Du hast Lust, deine Node.js/TypeScript -Komfortzone zu verlassen und dich von der KI in neue Tech-Stacks (Cloud Native, Python Data Services etc.)",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Du hast Lust, deine Node.js/TypeScript -Komfortzone zu verlassen und dich von der KI in neue Tech-Stacks (Cloud Native, Python Data Services etc.)"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Jenkins",
+        "raw_text": "CI/CD (z.B. GitLab, Jenkins)"
+      },
+      {
+        "label": "Context Window Management",
+        "raw_text": "(Chain-of-Thought, Context Window Management)"
+      },
+      {
+        "label": "Code Review",
+        "raw_text": "Dein Code-Review-Blick"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "(Senior) AI-Native Software Engineer / Architect",
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Skills are taken only from the 'Dein Profil' section. 'Deine Mission' is responsibilities, so its mentions are not labeled: Python/Go/Rust in Polyglot Exploration, and GitLab CI/CD and container work in Automatisierung & DevOps.\nThe benefits mention GitHub Copilot, ChatGPT Enterprise and Claude as tools provided to staff, not asked of the candidate, so they are not labeled.\nPython and Cloud Native are nice_to_have under the appetite rule ('Du hast Lust ...' = Lust auf). raw_text includes the appetite phrase, so it is long.\n'Cloud Native' is mapped to cloud; flagged as uncertain.\nGitLab in the CI/CD example is mapped to gitlab-ci rather than git, because it is named as a CI/CD tool. Flagged.\nBackend is labeled because the text names it ('Node.js im Backend'). Flagged as possibly too literal.\n'Container' in the bullet heading maps to the containerization alias 'container'. Flagged.\n'verteilte Anwendungen' is mapped to distributed-systems (alias 'verteilte systeme'). Flagged.\nHallucination-detection is read from 'Code-Review-Blick ist geschärft für Halluzinationen'. Flagged.\nsoftware-architecture is read from 'Architektur vor Syntax'. 'Schnittstellen' was not mapped to apis.\n'Modernes Web Development' was not mapped: there is no web-development entry, and full-stack-development's alias 'web application development' does not match literally.\nai-developer-tooling was not labeled: the profile never names AI coding tools as a skill, only working with 'KI' generically.\nSeniority is stated as senior from the title: '(Senior)' plus 'Architect'.\nGerman is inferred as required because the posting is written in German and says nothing about language. There is no degree mention."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "6acfbebc7dfc17d32e130e354306e1d90cbf54b81038789bb32259d45fe4c0e4",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

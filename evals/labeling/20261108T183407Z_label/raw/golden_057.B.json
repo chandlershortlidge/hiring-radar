@@ -1,0 +1,24 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Literal reading: the posting contains only a title and responsibilities, with no candidate qualifications or dedicated tech-stack section; technologies mentioned only in those responsibilities are excluded.\\nGerman is inferred as required because the posting is written in German and states no language requirement.\"\n}",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Literal reading: the posting contains only a title and responsibilities, with no candidate qualifications or dedicated tech-stack section; technologies mentioned only in those responsibilities are excluded.\nGerman is inferred as required because the posting is written in German and states no language requirement."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "589819dc2f813a788258ca48055b2f4acec5839b64dd1f554e3ce41aa3a9261c",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

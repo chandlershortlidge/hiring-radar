@@ -1,0 +1,105 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"required\", \"raw_text\": \"applying RL or IL in physical systems\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Proficiency in Python\"},\n    {\"skill_id\": \"cpp\", \"requirement\": \"required\", \"raw_text\": \"Python and/or C++\", \"uncertain\": true},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"onnx\", \"requirement\": \"required\", \"raw_text\": \"ONNX\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Imitation Learning\", \"raw_text\": \"applying RL or IL in physical systems\"},\n    {\"label\": \"PPO\", \"raw_text\": \"common RL algorithms (PPO, SAC, ...)\"},\n    {\"label\": \"SAC\", \"raw_text\": \"common RL algorithms (PPO, SAC, ...)\"},\n    {\"label\": \"RL frameworks\", \"raw_text\": \"common RL frameworks\"},\n    {\"label\": \"Stable Baselines 3\", \"raw_text\": \"Stable Baselines 3\"},\n    {\"label\": \"RSL-RL\", \"raw_text\": \"RSL-RL\"},\n    {\"label\": \"Physics-based simulators\", \"raw_text\": \"physics-based simulators\"},\n    {\"label\": \"IsaacSim\", \"raw_text\": \"IsaacSim\"},\n    {\"label\": \"MuJoCo\", \"raw_text\": \"MuJoCo\"},\n    {\"label\": \"Control theory\", \"raw_text\": \"control theory\"},\n    {\"label\": \"Motion planning\", \"raw_text\": \"motion planning\"},\n    {\"label\": \"Robot kinematics/dynamics\", \"raw_text\": \"robot kinematics/dynamics\"},\n    {\"label\": \"Sim-to-real transfer\", \"raw_text\": \"sim-to-real transfer\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI / Reinforcement Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s or PhD in robotics, computer science, engineering, or a related field\",\n  \"uncertain\": [],\n  \"notes\": \"Python and C++ are both labeled required because they sit unmarked under the 'Essential Skills' heading. 'Python and/or C++' means either language may satisfy the requirement, so C++ is flagged uncertain.\\nThe 'Beneficial Skills' heading is treated as optional, but its items (locomotion training, humanoid robots, publications) map to no taxonomy skill.\\n'preferably on high DOF robots' is a domain qualifier, not a skill.\\nHyperparameter optimization appears only in the responsibilities, so it is not labeled.\\nSim-to-real transfer is not mapped to transfer-learning because it is a different concept; it is listed as unmapped.\\nGerman is not mentioned anywhere in the posting. The posting is in English, and the Munich location is not a basis for a German label.\\nThe degree is 'Master’s or PhD', so the highest level named, phd, is used, matching the golden_040 precedent.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "applying RL or IL in physical systems"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Proficiency in Python"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "Python and/or C++",
+        "uncertain": true
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "onnx",
+        "requirement": "required",
+        "raw_text": "ONNX"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Imitation Learning",
+        "raw_text": "applying RL or IL in physical systems"
+      },
+      {
+        "label": "PPO",
+        "raw_text": "common RL algorithms (PPO, SAC, ...)"
+      },
+      {
+        "label": "SAC",
+        "raw_text": "common RL algorithms (PPO, SAC, ...)"
+      },
+      {
+        "label": "RL frameworks",
+        "raw_text": "common RL frameworks"
+      },
+      {
+        "label": "Stable Baselines 3",
+        "raw_text": "Stable Baselines 3"
+      },
+      {
+        "label": "RSL-RL",
+        "raw_text": "RSL-RL"
+      },
+      {
+        "label": "Physics-based simulators",
+        "raw_text": "physics-based simulators"
+      },
+      {
+        "label": "IsaacSim",
+        "raw_text": "IsaacSim"
+      },
+      {
+        "label": "MuJoCo",
+        "raw_text": "MuJoCo"
+      },
+      {
+        "label": "Control theory",
+        "raw_text": "control theory"
+      },
+      {
+        "label": "Motion planning",
+        "raw_text": "motion planning"
+      },
+      {
+        "label": "Robot kinematics/dynamics",
+        "raw_text": "robot kinematics/dynamics"
+      },
+      {
+        "label": "Sim-to-real transfer",
+        "raw_text": "sim-to-real transfer"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI / Reinforcement Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s or PhD in robotics, computer science, engineering, or a related field",
+    "uncertain": [],
+    "notes": "Python and C++ are both labeled required because they sit unmarked under the 'Essential Skills' heading. 'Python and/or C++' means either language may satisfy the requirement, so C++ is flagged uncertain.\nThe 'Beneficial Skills' heading is treated as optional, but its items (locomotion training, humanoid robots, publications) map to no taxonomy skill.\n'preferably on high DOF robots' is a domain qualifier, not a skill.\nHyperparameter optimization appears only in the responsibilities, so it is not labeled.\nSim-to-real transfer is not mapped to transfer-learning because it is a different concept; it is listed as unmapped.\nGerman is not mentioned anywhere in the posting. The posting is in English, and the Munich location is not a basis for a German label.\nThe degree is 'Master’s or PhD', so the highest level named, phd, is used, matching the golden_040 precedent."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "7b8ef5f58550e145d86a3c326b85e61e75e9fec87ed631e51e1824ab88eab04f",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

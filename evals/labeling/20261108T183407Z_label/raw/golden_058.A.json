@@ -1,0 +1,27 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"german\"],\n  \"notes\": \"The posting appears truncated. It ends after the first 'Aufgaben' (responsibilities) bullet, with no requirements, qualifications or tech-stack section.\\n'Entwicklung KI-gestützter Softwarelösungen und agentischer Workflows' sits only under Aufgaben (responsibilities), so per the guide no skill is labeled from it.\\nThe job title 'Agentic AI Software Engineer' is not a requirements section, so no skill (agents, software-engineering) is labeled from it. This is the literal reading.\\nSeniority: no level, years, or lead/mentoring signal in the text, so null.\\nGerman: the posting body is written in German and says nothing about language, so it is labeled required on an inferred basis. Flagged because the text is truncated and the title is in English.\\nDegree: no degree is mentioned, so null.\"\n}\n```",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "german"
+    ],
+    "notes": "The posting appears truncated. It ends after the first 'Aufgaben' (responsibilities) bullet, with no requirements, qualifications or tech-stack section.\n'Entwicklung KI-gestützter Softwarelösungen und agentischer Workflows' sits only under Aufgaben (responsibilities), so per the guide no skill is labeled from it.\nThe job title 'Agentic AI Software Engineer' is not a requirements section, so no skill (agents, software-engineering) is labeled from it. This is the literal reading.\nSeniority: no level, years, or lead/mentoring signal in the text, so null.\nGerman: the posting body is written in German and says nothing about language, so it is labeled required on an inferred basis. Flagged because the text is truncated and the title is in English.\nDegree: no degree is mentioned, so null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "87896663688d81931f1b0ce9c3fb3e7b0ee905c12dc603e045a1f03d2f5efb7f",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

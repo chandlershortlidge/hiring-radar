@@ -39,7 +39,7 @@ def posting(title, location):
 BOARDS = {
     ("ashby", "newco"): [posting("Senior AI Engineer", "Berlin, Germany"), posting("Sales Lead", "Berlin"),
                          posting("ML Engineer", "Remote - US"), posting("AI Engineer", "San Francisco, CA")],
-    ("lever", "quietco"): [posting("Account Executive", "Berlin"), posting("AI Engineer", "Munich")],
+    ("lever", "quietco"): [posting("Account Executive", "Berlin"), posting("AI Engineer", "Leipzig")],
 }
 
 

@@ -1,0 +1,86 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Kenntnisse in Python\"},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"LangChain\"},\n    {\"skill_id\": \"llamaindex\", \"requirement\": \"required\", \"raw_text\": \"LlamaIndex\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLMs und Generative AI\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"Prompting\"},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"Fine-Tuning\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"API-Entwicklung (REST)\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"Git-basierter Softwareentwicklung\"},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Software-Engineering-Prinzipien\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"Testing, CI/CD\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"modern AI frameworks\", \"raw_text\": \"modernen KI-Frameworks\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Mindestens drei Jahre Berufserfahrung\",\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Abgeschlossenes Studium der Informatik, Wirtschaftsinformatik oder vergleichbare Qualifikation\",\n  \"uncertain\": [],\n  \"notes\": \"'Ihr Profil' is a requirements heading with no optional markers, so every Profil skill is required.\\nAgents, MCP, RAG, monitoring and the SharePoint work appear only under 'Ihre Aufgaben' (responsibilities), so they are not labeled.\\n'modernen KI-Frameworks' is a broad term with no exact taxonomy entry, so it goes to unmapped; agents and llm-orchestration were not assumed. The examples LangChain and LlamaIndex are labeled as skills in their own right.\\n'Testing' also appears in Aufgaben, so raw_text quotes the Profil mention 'Testing, CI/CD'.\\nsoftware-engineering is supported by 'Software-Engineering-Prinzipien'. The Softwareentwicklung mentions in the years-of-experience bullet and the Git bullet support the same skill.\\nGerman is inferred as required: the posting is written in German and says nothing about language.\\n'vergleichbare Qualifikation' accepts a comparable qualification in place of the degree, so degree_or_equivalent is true.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Kenntnisse in Python"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "required",
+        "raw_text": "LlamaIndex"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs und Generative AI"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompting"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "Fine-Tuning"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "API-Entwicklung (REST)"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git-basierter Softwareentwicklung"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Software-Engineering-Prinzipien"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "Testing, CI/CD"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "modern AI frameworks",
+        "raw_text": "modernen KI-Frameworks"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Mindestens drei Jahre Berufserfahrung",
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossenes Studium der Informatik, Wirtschaftsinformatik oder vergleichbare Qualifikation",
+    "uncertain": [],
+    "notes": "'Ihr Profil' is a requirements heading with no optional markers, so every Profil skill is required.\nAgents, MCP, RAG, monitoring and the SharePoint work appear only under 'Ihre Aufgaben' (responsibilities), so they are not labeled.\n'modernen KI-Frameworks' is a broad term with no exact taxonomy entry, so it goes to unmapped; agents and llm-orchestration were not assumed. The examples LangChain and LlamaIndex are labeled as skills in their own right.\n'Testing' also appears in Aufgaben, so raw_text quotes the Profil mention 'Testing, CI/CD'.\nsoftware-engineering is supported by 'Software-Engineering-Prinzipien'. The Softwareentwicklung mentions in the years-of-experience bullet and the Git bullet support the same skill.\nGerman is inferred as required: the posting is written in German and says nothing about language.\n'vergleichbare Qualifikation' accepts a comparable qualification in place of the degree, so degree_or_equivalent is true."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "58f1967ad146366a9bfe8c7427951a3965bd3497434b0d7300e81af9e5e5e7cf",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

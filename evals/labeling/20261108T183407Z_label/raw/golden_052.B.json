@@ -1,0 +1,137 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"node-js\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Node.js im Backend\"\n    },\n    {\n      \"skill_id\": \"javascript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JavaScript\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"mehrjährige Erfahrung mit JavaScript/TypeScript\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Node.js im Backend\"\n    },\n    {\n      \"skill_id\": \"react\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"React\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Container\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Du weißt, wie moderne verteilte Anwendungen laufen.\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevOps Praktiker\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"gitlab-ci\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD (z.B. GitLab, Jenkins)\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Prompt Engineering\"\n    },\n    {\n      \"skill_id\": \"chain-of-thought\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Chain-of-Thought\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Architektur vor Syntax\"\n    },\n    {\n      \"skill_id\": \"hallucination-detection\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Dein Code-Review-Blick ist geschärft für Halluzinationen\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Du hast Lust, deine Node.js/TypeScript -Komfortzone zu verlassen und dich von der KI in neue Tech-Stacks (Cloud Native, Python Data Services etc.) begleiten zu lassen.\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Du hast Lust, deine Node.js/TypeScript -Komfortzone zu verlassen und dich von der KI in neue Tech-Stacks (Cloud Native, Python Data Services etc.) begleiten zu lassen.\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Web development\",\n      \"raw_text\": \"Modernes Web Development\"\n    },\n    {\n      \"label\": \"Jenkins\",\n      \"raw_text\": \"Jenkins\"\n    },\n    {\n      \"label\": \"Context window management\",\n      \"raw_text\": \"Context Window Management\"\n    },\n    {\n      \"label\": \"Code quality assessment\",\n      \"raw_text\": \"Du hast ein geschultes Auge für Codequalität und erkennst Schwachstellen sofort\"\n    },\n    {\n      \"label\": \"Code review\",\n      \"raw_text\": \"Dein Code-Review-Blick ist geschärft für Halluzinationen, Sicherheitslücken und Logikfehler.\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"(Senior) AI-Native Software Engineer / Architect\",\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The profile sections contain no optional heading; the learning-appetite clause makes Cloud Native and Python nice-to-have.\\nCloud Native is provisionally mapped to cloud; flagged because cloud-native development is more specific than the taxonomy entry.\\nWeb Development is left unmapped rather than assuming full-stack competence.\\nGitLab maps to gitlab-ci because it is explicitly given as a CI/CD example.\\nGo, Rust and specification-driven development appear only in responsibilities; named premium AI tools appear only among benefits and are excluded.\\nGerman is inferred solely from the German-language posting; no degree is mentioned.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "node-js",
+        "requirement": "required",
+        "raw_text": "Node.js im Backend"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "mehrjährige Erfahrung mit JavaScript/TypeScript"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Node.js im Backend"
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "React"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "Container"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "Du weißt, wie moderne verteilte Anwendungen laufen."
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps Praktiker"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "gitlab-ci",
+        "requirement": "required",
+        "raw_text": "CI/CD (z.B. GitLab, Jenkins)"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "chain-of-thought",
+        "requirement": "required",
+        "raw_text": "Chain-of-Thought"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Architektur vor Syntax"
+      },
+      {
+        "skill_id": "hallucination-detection",
+        "requirement": "required",
+        "raw_text": "Dein Code-Review-Blick ist geschärft für Halluzinationen"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Du hast Lust, deine Node.js/TypeScript -Komfortzone zu verlassen und dich von der KI in neue Tech-Stacks (Cloud Native, Python Data Services etc.) begleiten zu lassen.",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Du hast Lust, deine Node.js/TypeScript -Komfortzone zu verlassen und dich von der KI in neue Tech-Stacks (Cloud Native, Python Data Services etc.) begleiten zu lassen."
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Web development",
+        "raw_text": "Modernes Web Development"
+      },
+      {
+        "label": "Jenkins",
+        "raw_text": "Jenkins"
+      },
+      {
+        "label": "Context window management",
+        "raw_text": "Context Window Management"
+      },
+      {
+        "label": "Code quality assessment",
+        "raw_text": "Du hast ein geschultes Auge für Codequalität und erkennst Schwachstellen sofort"
+      },
+      {
+        "label": "Code review",
+        "raw_text": "Dein Code-Review-Blick ist geschärft für Halluzinationen, Sicherheitslücken und Logikfehler."
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "(Senior) AI-Native Software Engineer / Architect",
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The profile sections contain no optional heading; the learning-appetite clause makes Cloud Native and Python nice-to-have.\nCloud Native is provisionally mapped to cloud; flagged because cloud-native development is more specific than the taxonomy entry.\nWeb Development is left unmapped rather than assuming full-stack competence.\nGitLab maps to gitlab-ci because it is explicitly given as a CI/CD example.\nGo, Rust and specification-driven development appear only in responsibilities; named premium AI tools appear only among benefits and are excluded.\nGerman is inferred solely from the German-language posting; no degree is mentioned."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "6acfbebc7dfc17d32e130e354306e1d90cbf54b81038789bb32259d45fe4c0e4",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

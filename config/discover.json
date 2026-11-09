@@ -14,6 +14,12 @@
     "\"AI engineer\" \"San Francisco\"",
     "\"machine learning\" \"San Francisco\"",
     "\"AI engineer\" \"New York\"",
-    "\"machine learning\" \"New York\""
+    "\"machine learning\" \"New York\"",
+    "\"AI engineer\" Hamburg",
+    "\"machine learning\" Hamburg",
+    "\"AI engineer\" Frankfurt",
+    "\"machine learning\" Frankfurt",
+    "\"AI engineer\" Munich",
+    "\"machine learning\" Munich"
   ]
 }

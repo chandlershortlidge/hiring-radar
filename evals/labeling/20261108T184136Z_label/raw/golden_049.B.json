@@ -1,0 +1,96 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Large Language Model (LLM)-Frameworks\"\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangChain\"\n    },\n    {\n      \"skill_id\": \"llamaindex\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LlamaIndex\"\n    },\n    {\n      \"skill_id\": \"hugging-face\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Hugging\\nFace\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Retrieval-Augmented-Generation-Systemen\\n(RAG)\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Vektordatenbanken\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"KI-Agenten\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Bereitstellung von KI-Agenten\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"conversational-ai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"automatisierten\\nGesprächssystemen (Chatbots/KI-Bots)\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevOps-Methoden\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Containerisierung\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD-Pipelines\"\n    }\n  ],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Fließend Deutsch und Englisch\\nin Wort und Schrift\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Abgeschlossenes wissenschaftliches Hochschulstudium (min. Bachelor) in\\neinem MINT-Fach, oder vergleichbare Qualifikation als Quereinsteiger,\\nTech Enthusiast oder Vibe Coder mit Proof Record\",\n  \"notes\": \"WAS SIE MITBRINGEN is the requirements section; no optional qualification section or inline optional markers appear.\\nPrompt optimization appears only in responsibilities and is not labeled.\\nAI deployment is interpreted literally to include deployment of AI agents; flagged because the taxonomy examples focus on model deployment.\\nVibe Coder describes an accepted candidate background, not an explicit requirement for AI coding tools.\\nNo usable seniority signal: experience is unquantified, and Proof Record qualifies an alternative educational background rather than explicitly stating proven professional experience.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Large Language Model (LLM)-Frameworks"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "required",
+        "raw_text": "LlamaIndex"
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "required",
+        "raw_text": "Hugging\nFace"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "Retrieval-Augmented-Generation-Systemen\n(RAG)"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "Vektordatenbanken"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "KI-Agenten"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "Bereitstellung von KI-Agenten",
+        "uncertain": true
+      },
+      {
+        "skill_id": "conversational-ai",
+        "requirement": "required",
+        "raw_text": "automatisierten\nGesprächssystemen (Chatbots/KI-Bots)"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps-Methoden"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "Containerisierung"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Pipelines"
+      }
+    ],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Fließend Deutsch und Englisch\nin Wort und Schrift",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossenes wissenschaftliches Hochschulstudium (min. Bachelor) in\neinem MINT-Fach, oder vergleichbare Qualifikation als Quereinsteiger,\nTech Enthusiast oder Vibe Coder mit Proof Record",
+    "notes": "WAS SIE MITBRINGEN is the requirements section; no optional qualification section or inline optional markers appear.\nPrompt optimization appears only in responsibilities and is not labeled.\nAI deployment is interpreted literally to include deployment of AI agents; flagged because the taxonomy examples focus on model deployment.\nVibe Coder describes an accepted candidate background, not an explicit requirement for AI coding tools.\nNo usable seniority signal: experience is unquantified, and Proof Record qualifies an alternative educational background rather than explicitly stating proven professional experience."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "6dd06f7c47c50792b3d000e7cc6dd6fda8fa39c8dae86800035635185f076a3f",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

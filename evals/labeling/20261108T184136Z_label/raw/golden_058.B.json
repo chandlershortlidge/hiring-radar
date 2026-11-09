@@ -1,0 +1,102 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data science, machine learning, or applied AI\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"applied AI\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GenAI and LLMs\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"strong experience with AWS\"\n    },\n    {\n      \"skill_id\": \"sagemaker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SageMaker\"\n    },\n    {\n      \"skill_id\": \"aws-s3\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"S3\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud platforms\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model deployment\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"ML frameworks\",\n      \"raw_text\": \"common ML frameworks\"\n    },\n    {\n      \"label\": \"Amazon EKS\",\n      \"raw_text\": \"EKS\"\n    },\n    {\n      \"label\": \"AWS Lambda\",\n      \"raw_text\": \"Lambda\"\n    },\n    {\n      \"label\": \"AWS IAM\",\n      \"raw_text\": \"IAM\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Data Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"YOU COME WITH is the requirements section; no optional section or inline optional markers appear.\\nThe alternative fields in 'data science, machine learning, or applied AI' are each labeled as named requirements.\\nGenAI and LLMs collapse into the single llms taxonomy entry.\\nML frameworks, EKS, Lambda, and IAM have no exact taxonomy entries; no parent skills are inferred from the AWS service names.\\nTechnologies and practices appearing only in WHAT YOU’LL DO, including EMR, are excluded.\\nNo German-language or degree requirement is mentioned.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "data science, machine learning, or applied AI"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "applied AI"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "GenAI and LLMs"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "strong experience with AWS"
+      },
+      {
+        "skill_id": "sagemaker",
+        "requirement": "required",
+        "raw_text": "SageMaker"
+      },
+      {
+        "skill_id": "aws-s3",
+        "requirement": "required",
+        "raw_text": "S3"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "model deployment"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "ML frameworks",
+        "raw_text": "common ML frameworks"
+      },
+      {
+        "label": "Amazon EKS",
+        "raw_text": "EKS"
+      },
+      {
+        "label": "AWS Lambda",
+        "raw_text": "Lambda"
+      },
+      {
+        "label": "AWS IAM",
+        "raw_text": "IAM"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Data Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "YOU COME WITH is the requirements section; no optional section or inline optional markers appear.\nThe alternative fields in 'data science, machine learning, or applied AI' are each labeled as named requirements.\nGenAI and LLMs collapse into the single llms taxonomy entry.\nML frameworks, EKS, Lambda, and IAM have no exact taxonomy entries; no parent skills are inferred from the AWS service names.\nTechnologies and practices appearing only in WHAT YOU’LL DO, including EMR, are excluded.\nNo German-language or degree requirement is mentioned."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "e889330a9ba759d0463f84b3e68c0043466c746034019b410f06850245d5fadf",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

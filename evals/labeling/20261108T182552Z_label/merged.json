@@ -1,0 +1,1531 @@
+{
+  "golden_049": {
+    "accepted_skills": [
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "Orchestrierung mit Docker, Kubernetes und CI/CD-Pipelines"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "Containerisierung"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Orchestrierung mit Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Orchestrierung mit Docker, Kubernetes"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generative-AI-, LLM-"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "Kenntnisse im Bereich MLOps"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG-Lösungen"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      }
+    ],
+    "accepted_attrs": {
+      "german": {
+        "german": "required",
+        "german_basis": "stated",
+        "german_signal": "sehr gute Deutsch- und Englischkenntnisse"
+      },
+      "degree": {
+        "degree": "bachelor",
+        "degree_requirement": "required",
+        "degree_or_equivalent": false,
+        "degree_signal": "abgeschlossenes Studium der Informatik, Ingenieurinformatik, Data Science oder einer vergleichbaren Fachrichtung"
+      }
+    },
+    "unmapped": []
+  },
+  "golden_050": {
+    "accepted_skills": [
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Praxiserfahrung im Einsatz von Coding Agents"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Kenntnisse in Azure-Infrastrukturen und - Services"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "z.B. Claude Code"
+      },
+      {
+        "skill_id": "codex",
+        "requirement": "required",
+        "raw_text": "z.B. Claude Code oder Codex"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory/ Synapse Pipeline sowie Data Ingestion (ETL/ELT)"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Debuggen von Docker-Images"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Terraform und Python"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Umgang mit Terraform"
+      }
+    ],
+    "accepted_attrs": {
+      "german": {
+        "german": "required",
+        "german_basis": "stated",
+        "german_signal": "Fließende Deutschkenntnisse (mind. Level B2-C1)"
+      },
+      "degree": {
+        "degree": "bachelor",
+        "degree_requirement": "required",
+        "degree_or_equivalent": true,
+        "degree_signal": "Erfolgreiches Studium in Naturwissenschaften, Informatik oder eine vergleichbare Qualifikation"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Azure Data Factory",
+        "raw_text": "Data Factory"
+      },
+      {
+        "labeler": "A",
+        "label": "Azure Synapse Pipeline",
+        "raw_text": "Synapse Pipeline"
+      },
+      {
+        "labeler": "A",
+        "label": "Azure Data Lake Storage Gen2",
+        "raw_text": "Azure Data Lake Storage Gen2"
+      },
+      {
+        "labeler": "A",
+        "label": "RBAC/ACL",
+        "raw_text": "RBAC/ACL"
+      },
+      {
+        "labeler": "A",
+        "label": "Identity Management",
+        "raw_text": "Identity Management"
+      },
+      {
+        "labeler": "A",
+        "label": "Azure VNets / Private Endpoints",
+        "raw_text": "VNets, Service und Private Endpoints"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure Machine Learning",
+        "raw_text": "Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure Data Factory",
+        "raw_text": "Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory"
+      },
+      {
+        "labeler": "B",
+        "label": "Synapse Pipeline",
+        "raw_text": "Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory/ Synapse Pipeline"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure VNets",
+        "raw_text": "VNets"
+      },
+      {
+        "labeler": "B",
+        "label": "Service Endpoints",
+        "raw_text": "Service und Private Endpoints"
+      },
+      {
+        "labeler": "B",
+        "label": "Private Endpoints",
+        "raw_text": "Private Endpoints"
+      },
+      {
+        "labeler": "B",
+        "label": "Identity Management",
+        "raw_text": "Identity Management"
+      },
+      {
+        "labeler": "B",
+        "label": "RBAC",
+        "raw_text": "RBAC"
+      },
+      {
+        "labeler": "B",
+        "label": "ACL",
+        "raw_text": "ACL"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure Storage",
+        "raw_text": "Azure Storage"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure Data Lake Storage Gen2",
+        "raw_text": "Azure Data Lake Storage Gen2"
+      },
+      {
+        "labeler": "B",
+        "label": "Vibe Engineering",
+        "raw_text": "Vibe Engineering"
+      }
+    ]
+  },
+  "golden_051": {
+    "accepted_skills": [
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Agentic Coding)"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "RESTful APIs"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD und Observability-Standards"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps-Prozessen"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Kubernetes, Docker und idealerweise Cloud Foundry"
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "required",
+        "raw_text": "im Frontend mit Angular"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "(z. B. Copilot, Agentic Coding)"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Softwareentwicklung mit Java"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Cloud-nativen Architekturen, Kubernetes"
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit Microservices"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Observability-Standards"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Software-Architektur-Methoden"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Erfahrung in der Softwareentwicklung"
+      },
+      {
+        "skill_id": "spring-boot",
+        "requirement": "required",
+        "raw_text": "Java (Spring Boot)"
+      }
+    ],
+    "accepted_attrs": {
+      "german": {
+        "german": "required",
+        "german_basis": "stated",
+        "german_signal": "Verhandlungssichere Deutschkenntnisse auf mind. C1-Niveau"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Angular",
+        "raw_text": "im Frontend mit Angular"
+      },
+      {
+        "labeler": "A",
+        "label": "Cloud Foundry (nice_to_have, 'idealerweise')",
+        "raw_text": "idealerweise Cloud Foundry"
+      },
+      {
+        "labeler": "A",
+        "label": "DDD",
+        "raw_text": "(z. B. DDD, BDD, Arc42)"
+      },
+      {
+        "labeler": "A",
+        "label": "BDD",
+        "raw_text": "(z. B. DDD, BDD, Arc42)"
+      },
+      {
+        "labeler": "A",
+        "label": "Arc42",
+        "raw_text": "(z. B. DDD, BDD, Arc42)"
+      },
+      {
+        "labeler": "B",
+        "label": "Angular",
+        "raw_text": "Angular"
+      },
+      {
+        "labeler": "B",
+        "label": "Cloud Foundry",
+        "raw_text": "idealerweise Cloud Foundry"
+      },
+      {
+        "labeler": "B",
+        "label": "Domain-driven design (DDD)",
+        "raw_text": "DDD"
+      },
+      {
+        "labeler": "B",
+        "label": "BDD",
+        "raw_text": "BDD"
+      },
+      {
+        "labeler": "B",
+        "label": "Arc42",
+        "raw_text": "Arc42"
+      }
+    ]
+  },
+  "golden_052": {
+    "accepted_skills": [
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "KI-Lösungen (Agenten"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "API-Integrationen"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "Datenschutzkonzepten und Informationssicherheit"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "Agenten-Orchestrierung"
+      },
+      {
+        "skill_id": "n8n",
+        "requirement": "required",
+        "raw_text": "n8n"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG-Architekturen"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": null,
+        "seniority_basis": null,
+        "seniority_signal": null
+      },
+      "german": {
+        "german": "required",
+        "german_basis": "stated",
+        "german_signal": "Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Low-Code/No-Code platforms",
+        "raw_text": "Low-Code/No-Code-Plattformen"
+      },
+      {
+        "labeler": "A",
+        "label": "Microsoft Copilot Studio",
+        "raw_text": "Copilot Studio"
+      },
+      {
+        "labeler": "A",
+        "label": "Microsoft Power Automate",
+        "raw_text": "Power Automate"
+      },
+      {
+        "labeler": "B",
+        "label": "Low-Code/No-Code-Plattformen",
+        "raw_text": "Low-Code/No-Code-Plattformen"
+      },
+      {
+        "labeler": "B",
+        "label": "Copilot Studio",
+        "raw_text": "Copilot Studio"
+      },
+      {
+        "labeler": "B",
+        "label": "Power Automate",
+        "raw_text": "Power Automate"
+      },
+      {
+        "labeler": "B",
+        "label": "Security Reviews",
+        "raw_text": "Security Reviews"
+      }
+    ]
+  },
+  "golden_053": {
+    "accepted_skills": [
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Erfahrung"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "Praktische Erfahrung im Bereich IT-Security"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "Fundierte DevOps-"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Senior DevOps Engineer"
+      },
+      "german": {
+        "german": "required",
+        "german_basis": "inferred",
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "OpenShift",
+        "raw_text": "OpenShift"
+      },
+      {
+        "labeler": "A",
+        "label": "SRE",
+        "raw_text": "SRE-Strukturen"
+      },
+      {
+        "labeler": "A",
+        "label": "Database architecture",
+        "raw_text": "Datenbankarchitekturen"
+      },
+      {
+        "labeler": "B",
+        "label": "Cloud-native architecture",
+        "raw_text": "Cloud-native Architekturen"
+      },
+      {
+        "labeler": "B",
+        "label": "OpenShift",
+        "raw_text": "OpenShift"
+      },
+      {
+        "labeler": "B",
+        "label": "Security by Design",
+        "raw_text": "Security-by-Design-Prinzipien"
+      },
+      {
+        "labeler": "B",
+        "label": "Database architecture",
+        "raw_text": "Datenbankarchitekturen"
+      },
+      {
+        "labeler": "B",
+        "label": "High availability",
+        "raw_text": "Hochverfügbarkeitslösungen"
+      },
+      {
+        "labeler": "B",
+        "label": "Performance optimization",
+        "raw_text": "Performance-Optimierungen"
+      },
+      {
+        "labeler": "B",
+        "label": "Site reliability engineering",
+        "raw_text": "SRE-Strukturen"
+      }
+    ]
+  },
+  "golden_054": {
+    "accepted_skills": [
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "mindestens einer Cloud-Plattform"
+      },
+      {
+        "skill_id": "devsecops",
+        "requirement": "nice_to_have",
+        "raw_text": "DevSecOps"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google Cloud"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "mit LangChain oder einer vergleichbaren Bibliothek"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Praxis mit großen Sprachmodellen"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Fundierte Python-Kenntnisse"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "Retrieval-Augmented Generation"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Erfahrung in der Softwareentwicklung"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "Sicherer Umgang mit SQL"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "nice_to_have",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automatisierte Tests"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "mid",
+        "seniority_basis": "inferred",
+        "seniority_signal": "Mindestens drei Jahre Erfahrung in der Softwareentwicklung mit Python"
+      },
+      "german": {
+        "german": "required",
+        "german_basis": "stated",
+        "german_signal": "Sehr gutes Deutsch (mind. C1) in Wort und Schrift"
+      },
+      "degree": {
+        "degree": "bachelor",
+        "degree_requirement": "required",
+        "degree_or_equivalent": true,
+        "degree_signal": "ein Studium der Data Science, Informatik, Mathematik oder eine vergleichbare Qualifikation mit entsprechender Berufserfahrung"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Object-oriented programming",
+        "raw_text": "objektorientierter Programmierung"
+      },
+      {
+        "labeler": "A",
+        "label": "Data structures and algorithms",
+        "raw_text": "Datenstrukturen, Algorithmen"
+      },
+      {
+        "labeler": "A",
+        "label": "Databases (general)",
+        "raw_text": "unterschiedlichen Datenbanken"
+      },
+      {
+        "labeler": "A",
+        "label": "Document processing",
+        "raw_text": "Dokumentenverarbeitung"
+      },
+      {
+        "labeler": "A",
+        "label": "Azure Document Intelligence",
+        "raw_text": "Azure Document Intelligence"
+      },
+      {
+        "labeler": "B",
+        "label": "Object-oriented programming",
+        "raw_text": "objektorientierter Programmierung"
+      },
+      {
+        "labeler": "B",
+        "label": "Data structures",
+        "raw_text": "Datenstrukturen"
+      },
+      {
+        "labeler": "B",
+        "label": "Algorithms",
+        "raw_text": "Algorithmen"
+      },
+      {
+        "labeler": "B",
+        "label": "Understanding software performance implications",
+        "raw_text": "Verständnis, wie Datenstrukturen, Algorithmen und Designentscheidungen die Performance beeinflussen"
+      },
+      {
+        "labeler": "B",
+        "label": "Databases",
+        "raw_text": "unterschiedlichen Datenbanken"
+      },
+      {
+        "labeler": "B",
+        "label": "Document processing",
+        "raw_text": "Dokumentenverarbeitung"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure Document Intelligence",
+        "raw_text": "Azure Document Intelligence"
+      }
+    ]
+  },
+  "golden_055": {
+    "accepted_skills": [
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Pipeline"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Erfahrung im Bereich Public Cloud"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "vorzugsweise GCP"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "IaC"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generative AI-Anwendungen"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Einsatz von Python als Programmiersprache"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform (IaC)"
+      }
+    ],
+    "accepted_attrs": {
+      "german": {
+        "german": "required",
+        "german_basis": "stated",
+        "german_signal": "verhandlungssicher in Deutsch"
+      },
+      "degree": {
+        "degree": "bachelor",
+        "degree_requirement": "required",
+        "degree_or_equivalent": true,
+        "degree_signal": "abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Agile methods",
+        "raw_text": "erste praktische Erfahrungen mit agilen Methoden"
+      },
+      {
+        "labeler": "B",
+        "label": "Agile Methoden",
+        "raw_text": "agilen Methoden"
+      }
+    ]
+  },
+  "golden_056": {
+    "accepted_skills": [
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps"
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "Fullstack Development"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "full-time in Software Engineering"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "junior",
+        "seniority_basis": "stated",
+        "seniority_signal": "2026/27 Graduate"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Data Engineering",
+        "raw_text": "Data Engineering"
+      },
+      {
+        "labeler": "A",
+        "label": "Web Development",
+        "raw_text": "Web Development"
+      },
+      {
+        "labeler": "A",
+        "label": "IT-Management",
+        "raw_text": "IT-Management"
+      },
+      {
+        "labeler": "A",
+        "label": "Product Ownership",
+        "raw_text": "Product Ownership"
+      },
+      {
+        "labeler": "B",
+        "label": "Data Engineering",
+        "raw_text": "Data Engineering"
+      },
+      {
+        "labeler": "B",
+        "label": "IT Management",
+        "raw_text": "IT-Management"
+      },
+      {
+        "labeler": "B",
+        "label": "Web Development",
+        "raw_text": "Web Development"
+      },
+      {
+        "labeler": "B",
+        "label": "Product Ownership",
+        "raw_text": "Product Ownership"
+      }
+    ]
+  },
+  "golden_057": {
+    "accepted_skills": [
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation in production"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Hands-on experience with LLMs"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "3+ years in machine learning"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "nice_to_have",
+        "raw_text": "document processing or NLP is a plus"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "mid",
+        "seniority_basis": "inferred",
+        "seniority_signal": "3+ years in machine learning or applied AI engineering"
+      },
+      "german": {
+        "german": "nice_to_have",
+        "german_basis": "stated",
+        "german_signal": "German is a plus"
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Document processing",
+        "raw_text": "Experience with document processing"
+      },
+      {
+        "labeler": "B",
+        "label": "Retrieval",
+        "raw_text": "retrieval"
+      },
+      {
+        "labeler": "B",
+        "label": "Document processing",
+        "raw_text": "Experience with document processing or NLP is a plus"
+      }
+    ]
+  },
+  "golden_058": {
+    "accepted_skills": [],
+    "accepted_attrs": {
+      "german": {
+        "german": "required",
+        "german_basis": "stated",
+        "german_signal": "sehr gute Deutsch- und Englischkenntnisse"
+      },
+      "degree": {
+        "degree": "bachelor",
+        "degree_requirement": "required",
+        "degree_or_equivalent": false,
+        "degree_signal": "abgeschlossenes Studium in Maschinenbau, Produktionstechnik, Luft- und Raumfahrttechnik oder einer vergleichbaren Fachrichtung"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "data-driven approaches",
+        "raw_text": "datengetriebenen Ansätzen"
+      },
+      {
+        "labeler": "B",
+        "label": "Datengetriebene Ansätze",
+        "raw_text": "datengetriebenen Ansätzen"
+      }
+    ]
+  },
+  "golden_059": {
+    "accepted_skills": [],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Senior AI Data Engineer"
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Azure Data Factory",
+        "raw_text": "Data Factory"
+      },
+      {
+        "labeler": "A",
+        "label": "Azure SQL Database",
+        "raw_text": "SQL DB"
+      },
+      {
+        "labeler": "A",
+        "label": "Azure Data Lake Storage",
+        "raw_text": "Data Lake Storage"
+      },
+      {
+        "labeler": "A",
+        "label": "Azure Functions",
+        "raw_text": "Functions"
+      },
+      {
+        "labeler": "A",
+        "label": "Microsoft Foundry",
+        "raw_text": "Interesse an Microsoft Foundry"
+      },
+      {
+        "labeler": "A",
+        "label": "Data warehouse / data lake",
+        "raw_text": "DWH / Data Lake"
+      },
+      {
+        "labeler": "A",
+        "label": "Data engineering",
+        "raw_text": "Data-Engineering-Lösungen"
+      },
+      {
+        "labeler": "A",
+        "label": "AI-driven personalization / predictive marketing",
+        "raw_text": "AI-gestützter Personalisierung, Predictive Marketing oder Customer Intelligence"
+      },
+      {
+        "labeler": "B",
+        "label": "Data Engineering",
+        "raw_text": "Konzeption und Umsetzung von innovativen Data-Engineering-Lösungen"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure Data Factory",
+        "raw_text": "Data Factory"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure SQL Database",
+        "raw_text": "SQL DB"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure Data Lake Storage",
+        "raw_text": "Data Lake Storage"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure Functions",
+        "raw_text": "Functions"
+      },
+      {
+        "labeler": "B",
+        "label": "Microsoft Foundry",
+        "raw_text": "Interesse an Microsoft Foundry"
+      },
+      {
+        "labeler": "B",
+        "label": "Data warehousing",
+        "raw_text": "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture"
+      },
+      {
+        "labeler": "B",
+        "label": "Data lake development",
+        "raw_text": "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture"
+      },
+      {
+        "labeler": "B",
+        "label": "AI-assisted personalization",
+        "raw_text": "AI-gestützter Personalisierung"
+      }
+    ]
+  },
+  "golden_060": {
+    "accepted_skills": [
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD, Container-Technologien"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Kenntnisse in Cloud-Infrastrukturen"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "Container-Technologien"
+      },
+      {
+        "skill_id": "gitops",
+        "requirement": "required",
+        "raw_text": "Infrastructure as Code und GitOps, z. B."
+      },
+      {
+        "skill_id": "helm",
+        "requirement": "required",
+        "raw_text": "Helm"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "sowie Infrastructure as Code"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Fundierte Erfahrung im Aufbau und Betrieb von Kubernetes-Plattformen"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit Monitoring"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise mit dem Betrieb zentraler Plattform- und Datenservices wie PostgreSQL"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "z. B. Terraform"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": null,
+        "seniority_basis": null,
+        "seniority_signal": null
+      },
+      "german": {
+        "german": "required",
+        "german_basis": "stated",
+        "german_signal": "Sehr gute Deutsch- und gute Englischkenntnisse in Wort und Schrift"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "STACKIT SKE (nice_to_have)",
+        "raw_text": "idealerweise mit Managed Kubernetes wie STACKIT SKE"
+      },
+      {
+        "labeler": "A",
+        "label": "AKS (nice_to_have)",
+        "raw_text": "AKS"
+      },
+      {
+        "labeler": "A",
+        "label": "EKS (nice_to_have)",
+        "raw_text": "EKS"
+      },
+      {
+        "labeler": "A",
+        "label": "GKE (nice_to_have)",
+        "raw_text": "GKE"
+      },
+      {
+        "labeler": "A",
+        "label": "OpenShift (nice_to_have)",
+        "raw_text": "OpenShift"
+      },
+      {
+        "labeler": "A",
+        "label": "Argo CD",
+        "raw_text": "Argo CD, Helm"
+      },
+      {
+        "labeler": "A",
+        "label": "Kustomize",
+        "raw_text": "Kustomize"
+      },
+      {
+        "labeler": "A",
+        "label": "automated deployments",
+        "raw_text": "automatisierten Deployments"
+      },
+      {
+        "labeler": "A",
+        "label": "logging / alerting",
+        "raw_text": "Logging und Alerting sowie"
+      },
+      {
+        "labeler": "A",
+        "label": "MongoDB (nice_to_have)",
+        "raw_text": "MongoDB"
+      },
+      {
+        "labeler": "A",
+        "label": "IAM/RBAC",
+        "raw_text": "IAM/RBAC"
+      },
+      {
+        "labeler": "A",
+        "label": "Network Policies",
+        "raw_text": "Network Policies"
+      },
+      {
+        "labeler": "A",
+        "label": "Secrets Management",
+        "raw_text": "Secrets Management, TLS/Zertifikate"
+      },
+      {
+        "labeler": "A",
+        "label": "TLS/certificates",
+        "raw_text": "TLS/Zertifikate"
+      },
+      {
+        "labeler": "A",
+        "label": "Container/Image security",
+        "raw_text": "Container-/Image-Security"
+      },
+      {
+        "labeler": "A",
+        "label": "Audit logging",
+        "raw_text": "Audit Logging"
+      },
+      {
+        "labeler": "B",
+        "label": "STACKIT SKE",
+        "raw_text": "STACKIT SKE"
+      },
+      {
+        "labeler": "B",
+        "label": "AKS",
+        "raw_text": "AKS"
+      },
+      {
+        "labeler": "B",
+        "label": "EKS",
+        "raw_text": "EKS"
+      },
+      {
+        "labeler": "B",
+        "label": "GKE",
+        "raw_text": "GKE"
+      },
+      {
+        "labeler": "B",
+        "label": "OpenShift",
+        "raw_text": "OpenShift"
+      },
+      {
+        "labeler": "B",
+        "label": "Automated deployments",
+        "raw_text": "automatisierten Deployments"
+      },
+      {
+        "labeler": "B",
+        "label": "Argo CD",
+        "raw_text": "Argo CD"
+      },
+      {
+        "labeler": "B",
+        "label": "Kustomize",
+        "raw_text": "Kustomize"
+      },
+      {
+        "labeler": "B",
+        "label": "Logging",
+        "raw_text": "Logging"
+      },
+      {
+        "labeler": "B",
+        "label": "Alerting",
+        "raw_text": "Alerting"
+      },
+      {
+        "labeler": "B",
+        "label": "MongoDB",
+        "raw_text": "MongoDB"
+      },
+      {
+        "labeler": "B",
+        "label": "IAM",
+        "raw_text": "IAM"
+      },
+      {
+        "labeler": "B",
+        "label": "RBAC",
+        "raw_text": "RBAC"
+      },
+      {
+        "labeler": "B",
+        "label": "Network Policies",
+        "raw_text": "Network Policies"
+      },
+      {
+        "labeler": "B",
+        "label": "Secrets Management",
+        "raw_text": "Secrets Management"
+      },
+      {
+        "labeler": "B",
+        "label": "TLS and certificates",
+        "raw_text": "TLS/Zertifikate"
+      },
+      {
+        "labeler": "B",
+        "label": "Container and image security",
+        "raw_text": "Container-/Image-Security"
+      },
+      {
+        "labeler": "B",
+        "label": "Audit Logging",
+        "raw_text": "Audit Logging"
+      },
+      {
+        "labeler": "B",
+        "label": "Least privilege",
+        "raw_text": "Least-Privilege-Prinzipien"
+      },
+      {
+        "labeler": "B",
+        "label": "Cloud and Kubernetes troubleshooting",
+        "raw_text": "strukturierten Troubleshooting komplexer Cloud- und Kubernetes-Umgebungen"
+      }
+    ]
+  },
+  "golden_061": {
+    "accepted_skills": [
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Pipeline"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Public Cloud"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Versionskontrollsystemen wie GitLab, GitHub oder Bitbucket"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "IaC"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generative AI-Anwendungen"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python als Programmiersprache"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform (IaC)"
+      }
+    ],
+    "accepted_attrs": {
+      "german": {
+        "german": "required",
+        "german_basis": "stated",
+        "german_signal": "verhandlungssicher in Deutsch"
+      },
+      "degree": {
+        "degree": "bachelor",
+        "degree_requirement": "required",
+        "degree_or_equivalent": true,
+        "degree_signal": "abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "GitLab",
+        "raw_text": "GitLab"
+      },
+      {
+        "labeler": "A",
+        "label": "Bitbucket",
+        "raw_text": "Bitbucket"
+      },
+      {
+        "labeler": "A",
+        "label": "Agile methods",
+        "raw_text": "agilen Methoden"
+      },
+      {
+        "labeler": "B",
+        "label": "GitLab",
+        "raw_text": "GitLab"
+      },
+      {
+        "labeler": "B",
+        "label": "Bitbucket",
+        "raw_text": "Bitbucket"
+      },
+      {
+        "labeler": "B",
+        "label": "Agile Methoden",
+        "raw_text": "agilen Methoden"
+      },
+      {
+        "labeler": "B",
+        "label": "Sicherheitskonzepte",
+        "raw_text": "Sicherheitskonzepten"
+      }
+    ]
+  },
+  "golden_062": {
+    "accepted_skills": [
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Bereitstellung von Azure-Ressourcen"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure-as-Code-Projekten"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "Large Language Models (LLMs)"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "Networking"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "sowie Monitoring"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "RAG-Technologien"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Azure-Ressourcen mit Terraform"
+      }
+    ],
+    "accepted_attrs": {
+      "german": {
+        "german": "required",
+        "german_basis": "inferred",
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "bachelor",
+        "degree_requirement": "required",
+        "degree_or_equivalent": true,
+        "degree_signal": "abgeschlossenes Studium der Informatik, Data Science, Mathematik oder eine vergleichbare Qualifikation"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Azure DevOps",
+        "raw_text": "Azure DevOps"
+      },
+      {
+        "labeler": "A",
+        "label": "Azure Key Vault",
+        "raw_text": "Key Vaults"
+      },
+      {
+        "labeler": "A",
+        "label": "Private Endpoints",
+        "raw_text": "Private Endpoints"
+      },
+      {
+        "labeler": "A",
+        "label": "Azure Landing Zones",
+        "raw_text": "Landing Zones"
+      },
+      {
+        "labeler": "A",
+        "label": "Azure AI Foundry",
+        "raw_text": "AI Foundry"
+      },
+      {
+        "labeler": "A",
+        "label": "Azure Cognitive Services",
+        "raw_text": "Cognitive Services"
+      },
+      {
+        "labeler": "A",
+        "label": "Azure AI Search",
+        "raw_text": "AI Search"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure DevOps",
+        "raw_text": "Azure DevOps"
+      },
+      {
+        "labeler": "B",
+        "label": "Microsoft Entra ID",
+        "raw_text": "Entra ID"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure Key Vault",
+        "raw_text": "Key Vaults"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure Private Endpoints",
+        "raw_text": "Private Endpoints"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure Landing Zones",
+        "raw_text": "Landing Zones"
+      },
+      {
+        "labeler": "B",
+        "label": "Microsoft Azure AI Stack",
+        "raw_text": "Microsoft Azure AI Stack"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure OpenAI",
+        "raw_text": "Azure OpenAI"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure AI Foundry",
+        "raw_text": "AI Foundry"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure Cognitive Services",
+        "raw_text": "Cognitive Services"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure AI Search",
+        "raw_text": "AI Search"
+      }
+    ]
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"praktische Erfahrung mit AI\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit LLMs\"},\n    {\"skill_id\": \"workflow-automation\", \"requirement\": \"required\", \"raw_text\": \"Kenntnisse in Workflow Automation\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"javascript\", \"requirement\": \"required\", \"raw_text\": \"JavaScript\"},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"TypeScript\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"REST APIs\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"kennst dich aus mit Azure\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"vergleichbaren Cloud-Technologien\"},\n    {\"skill_id\": \"n8n\", \"requirement\": \"required\", \"raw_text\": \"n8n\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"LLMs, Prompt Engineering\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG-Ansätzen\"},\n    {\"skill_id\": \"conversational-ai\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Interesse an Conversational AI\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Interesse an Conversational AI, Chatbots, Voicebots oder AI Agents\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"JSON\", \"raw_text\": \"JSON\"},\n    {\"label\": \"Webhooks\", \"raw_text\": \"Webhooks\"},\n    {\"label\": \"Azure AI\", \"raw_text\": \"Azure AI\"},\n    {\"label\": \"Microsoft Power Automate\", \"raw_text\": \"Microsoft Power Automate\"},\n    {\"label\": \"Chatbots\", \"raw_text\": \"Interesse an Conversational AI, Chatbots\"},\n    {\"label\": \"Voicebots\", \"raw_text\": \"Interesse an Conversational AI, Chatbots, Voicebots\"}\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"abgeschlossenes Studium der Informatik, Wirtschaftsinformatik, Data Science, AI, Engineering oder vergleichbarer Fachrichtung\",\n  \"uncertain\": [],\n  \"notes\": \"The requirements section 'Be our forward thinker' has no optional marker, so its items default to required.\\nThe 'or' lists (Python/JavaScript/TypeScript; AI/GenAI/Prozessautomatisierung; LLMs/Prompt Engineering/RAG) are labeled required, one item each, on the literal reading.\\nI mapped 'AI' in 'praktische Erfahrung mit AI' to ai-ml. It is flagged uncertain because generic 'AI' is a loose fit.\\nGenAI and LLMs collapse into llms. I quoted the LLMs mention.\\n'Prozessautomatisierung' and 'Workflow Automation' collapse into workflow-automation. I quoted the explicit mention.\\nThe last bullet starts with 'Interesse an', which is the German appetite phrase, so its skills (conversational-ai, agents) are nice_to_have. Their raw_text includes the appetite phrase.\\nChatbots and Voicebots are kept unmapped rather than folded into conversational-ai.\\n'oder vergleichbaren Cloud-Technologien' names the broad cloud skill, so cloud is labeled alongside azure.\\n'vergleichbarer Fachrichtung' widens the degree field only, so degree_or_equivalent is false. 'abgeschlossenes Studium' names no level, so the degree is bachelor.\\nThe posting is in German and says nothing about language, so German is required with basis inferred.\\nThere is no seniority signal (no years, no level, no lead duty), so seniority is null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "praktische Erfahrung mit AI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit LLMs"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "Kenntnisse in Workflow Automation"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST APIs"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "kennst dich aus mit Azure"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "vergleichbaren Cloud-Technologien"
+      },
+      {
+        "skill_id": "n8n",
+        "requirement": "required",
+        "raw_text": "n8n"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "LLMs, Prompt Engineering"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG-Ansätzen"
+      },
+      {
+        "skill_id": "conversational-ai",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse an Conversational AI"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse an Conversational AI, Chatbots, Voicebots oder AI Agents"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "JSON",
+        "raw_text": "JSON"
+      },
+      {
+        "label": "Webhooks",
+        "raw_text": "Webhooks"
+      },
+      {
+        "label": "Azure AI",
+        "raw_text": "Azure AI"
+      },
+      {
+        "label": "Microsoft Power Automate",
+        "raw_text": "Microsoft Power Automate"
+      },
+      {
+        "label": "Chatbots",
+        "raw_text": "Interesse an Conversational AI, Chatbots"
+      },
+      {
+        "label": "Voicebots",
+        "raw_text": "Interesse an Conversational AI, Chatbots, Voicebots"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "abgeschlossenes Studium der Informatik, Wirtschaftsinformatik, Data Science, AI, Engineering oder vergleichbarer Fachrichtung",
+    "uncertain": [],
+    "notes": "The requirements section 'Be our forward thinker' has no optional marker, so its items default to required.\nThe 'or' lists (Python/JavaScript/TypeScript; AI/GenAI/Prozessautomatisierung; LLMs/Prompt Engineering/RAG) are labeled required, one item each, on the literal reading.\nI mapped 'AI' in 'praktische Erfahrung mit AI' to ai-ml. It is flagged uncertain because generic 'AI' is a loose fit.\nGenAI and LLMs collapse into llms. I quoted the LLMs mention.\n'Prozessautomatisierung' and 'Workflow Automation' collapse into workflow-automation. I quoted the explicit mention.\nThe last bullet starts with 'Interesse an', which is the German appetite phrase, so its skills (conversational-ai, agents) are nice_to_have. Their raw_text includes the appetite phrase.\nChatbots and Voicebots are kept unmapped rather than folded into conversational-ai.\n'oder vergleichbaren Cloud-Technologien' names the broad cloud skill, so cloud is labeled alongside azure.\n'vergleichbarer Fachrichtung' widens the degree field only, so degree_or_equivalent is false. 'abgeschlossenes Studium' names no level, so the degree is bachelor.\nThe posting is in German and says nothing about language, so German is required with basis inferred.\nThere is no seniority signal (no years, no level, no lead duty), so seniority is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "1d3b1920ae3cbcb603561fed5afcf4d294638653c0c457d7b63f6bd93ab951e7",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

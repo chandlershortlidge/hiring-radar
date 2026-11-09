@@ -1,0 +1,144 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Softwareentwicklung\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"KI-Projekten\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"automatisierte Tests\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"großen Sprachmodellen\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Prompt Engineering\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Retrieval-Augmented Generation\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Anbindung von Modellen über APIs\"\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangChain\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud-Plattform\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Microsoft Azure\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Google Cloud\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Agentic AI\"\n    },\n    {\n      \"skill_id\": \"devsecops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"DevSecOps\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Terraform\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Object-oriented programming\",\n      \"raw_text\": \"objektorientierter Programmierung\"\n    },\n    {\n      \"label\": \"Data structures\",\n      \"raw_text\": \"Datenstrukturen\"\n    },\n    {\n      \"label\": \"Algorithms\",\n      \"raw_text\": \"Algorithmen\"\n    },\n    {\n      \"label\": \"Understanding software performance implications\",\n      \"raw_text\": \"Verständnis, wie Datenstrukturen, Algorithmen und Designentscheidungen die Performance beeinflussen\"\n    },\n    {\n      \"label\": \"Databases\",\n      \"raw_text\": \"unterschiedlichen Datenbanken\"\n    },\n    {\n      \"label\": \"Document processing\",\n      \"raw_text\": \"Dokumentenverarbeitung\"\n    },\n    {\n      \"label\": \"Azure Document Intelligence\",\n      \"raw_text\": \"Azure Document Intelligence\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Mindestens drei Jahre Erfahrung\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gutes Deutsch (mind. C1) in Wort und Schrift\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"ein Studium der Data Science, Informatik, Mathematik oder eine vergleichbare Qualifikation mit entsprechender Berufserfahrung\",\n  \"notes\": \"„Was Sie mitbringen“ sets required qualifications; „Ein Plus: Idealerweise“ makes the final qualification paragraph optional.\\nCloud providers and LangChain are individually labeled despite being examples or alternatives, as directed by the guide.\\nOnly responsibilities mention embeddings, vector databases, containers, CI/CD and monitoring; these are not labeled.\\nData Science is named as a degree field, not as an independent skill requirement. Healthcare knowledge and spoken English are excluded.\\nThe unspecified Studium maps to bachelor; the comparable qualification with professional experience is read literally as an accepted degree alternative.\\nGeneral database knowledge, document processing, object-oriented programming, data structures, algorithms and software-performance understanding have no matching taxonomy entries.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Softwareentwicklung"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "KI-Projekten"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automatisierte Tests"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "großen Sprachmodellen"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "Retrieval-Augmented Generation"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Anbindung von Modellen über APIs"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Plattform"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google Cloud"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "Agentic AI"
+      },
+      {
+        "skill_id": "devsecops",
+        "requirement": "nice_to_have",
+        "raw_text": "DevSecOps"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "nice_to_have",
+        "raw_text": "Terraform"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Object-oriented programming",
+        "raw_text": "objektorientierter Programmierung"
+      },
+      {
+        "label": "Data structures",
+        "raw_text": "Datenstrukturen"
+      },
+      {
+        "label": "Algorithms",
+        "raw_text": "Algorithmen"
+      },
+      {
+        "label": "Understanding software performance implications",
+        "raw_text": "Verständnis, wie Datenstrukturen, Algorithmen und Designentscheidungen die Performance beeinflussen"
+      },
+      {
+        "label": "Databases",
+        "raw_text": "unterschiedlichen Datenbanken"
+      },
+      {
+        "label": "Document processing",
+        "raw_text": "Dokumentenverarbeitung"
+      },
+      {
+        "label": "Azure Document Intelligence",
+        "raw_text": "Azure Document Intelligence"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Mindestens drei Jahre Erfahrung",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gutes Deutsch (mind. C1) in Wort und Schrift",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "ein Studium der Data Science, Informatik, Mathematik oder eine vergleichbare Qualifikation mit entsprechender Berufserfahrung",
+    "notes": "„Was Sie mitbringen“ sets required qualifications; „Ein Plus: Idealerweise“ makes the final qualification paragraph optional.\nCloud providers and LangChain are individually labeled despite being examples or alternatives, as directed by the guide.\nOnly responsibilities mention embeddings, vector databases, containers, CI/CD and monitoring; these are not labeled.\nData Science is named as a degree field, not as an independent skill requirement. Healthcare knowledge and spoken English are excluded.\nThe unspecified Studium maps to bachelor; the comparable qualification with professional experience is read literally as an accepted degree alternative.\nGeneral database knowledge, document processing, object-oriented programming, data structures, algorithms and software-performance understanding have no matching taxonomy entries."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "952c852c6a87fa4c34bda6ea2b1cac0e75b830417e8ede8492d1f9c89fc9c424",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

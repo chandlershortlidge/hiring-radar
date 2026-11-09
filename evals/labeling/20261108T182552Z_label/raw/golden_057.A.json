@@ -1,0 +1,68 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"3+ years in machine learning\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"applied AI engineering\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Hands-on experience with LLMs\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"LLMs, retrieval and evaluation in production\", \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"evaluation in production\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong Python\"},\n    {\"skill_id\": \"nlp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"document processing or NLP is a plus\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Document processing\", \"raw_text\": \"Experience with document processing\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years in machine learning or applied AI engineering\",\n  \"german\": \"nice_to_have\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"German is a plus\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Only the 'What you bring' section is labeled. LLM pipelines, OCR and citation logic appear only in the responsibilities and are not labeled from there.\\n'applied AI engineering' is mapped to ai-ml through the alias 'applied ai'. It shares an either/or phrase with machine learning, but the guide has no rule that softens 'X or Y' alternatives, so both are labeled required. Flagged uncertain.\\nBare 'retrieval' next to LLMs and evaluation is mapped to rag. No taxonomy alias names bare 'retrieval', so this is flagged uncertain.\\n'a plus' is an inline marker, so it makes both document processing and NLP nice_to_have. Document processing has no taxonomy entry and goes to unmapped. structured-data-extraction was considered and rejected as too narrow.\\nSeniority is inferred from '3+ years', which falls in the 3–5 years band, so mid.\\nGerman is marked optional with 'German is a plus'. No degree is mentioned anywhere in the posting.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "3+ years in machine learning"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "applied AI engineering",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Hands-on experience with LLMs"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "LLMs, retrieval and evaluation in production",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation in production"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "nice_to_have",
+        "raw_text": "document processing or NLP is a plus"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Document processing",
+        "raw_text": "Experience with document processing"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years in machine learning or applied AI engineering",
+    "german": "nice_to_have",
+    "german_basis": "stated",
+    "german_signal": "German is a plus",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Only the 'What you bring' section is labeled. LLM pipelines, OCR and citation logic appear only in the responsibilities and are not labeled from there.\n'applied AI engineering' is mapped to ai-ml through the alias 'applied ai'. It shares an either/or phrase with machine learning, but the guide has no rule that softens 'X or Y' alternatives, so both are labeled required. Flagged uncertain.\nBare 'retrieval' next to LLMs and evaluation is mapped to rag. No taxonomy alias names bare 'retrieval', so this is flagged uncertain.\n'a plus' is an inline marker, so it makes both document processing and NLP nice_to_have. Document processing has no taxonomy entry and goes to unmapped. structured-data-extraction was considered and rejected as too narrow.\nSeniority is inferred from '3+ years', which falls in the 3–5 years band, so mid.\nGerman is marked optional with 'German is a plus'. No degree is mentioned anywhere in the posting."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "b2915aba66673fb8b50810ddcd7b19b839bf4e29ac22068af4d831834b5b15b2",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

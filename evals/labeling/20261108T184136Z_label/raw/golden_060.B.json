@@ -1,0 +1,43 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Automotive Cybersecurity\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic AI toolchains\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Developing or operating security toolchains\",\n      \"raw_text\": \"developing or operating complex security toolchains\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Several years of professional experience\",\n  \"german\": \"nice_to_have\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"German language skills are desirable.\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"University degree in Computer Science, Electrical Engineering, or a comparable qualification.\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"The candidate requirements are under “What should you bring along?”; no optional section heading appears.\\n“Several years” is interpreted as mid-level experience, but the unspecified number warrants review.\\n“Comparable qualification” is read literally as an accepted alternative to the degree.\\nCommercial and open-source technologies name no specific tools or models; open-source LLM expertise is not inferred.\\nFuzzing, penetration testing, vulnerability analysis, user-interface development, and feedback mechanisms appear only in responsibilities and are excluded.\\nDeveloping or operating security toolchains has no precise taxonomy entry and is retained as unmapped.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "Automotive Cybersecurity"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic AI toolchains"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Developing or operating security toolchains",
+        "raw_text": "developing or operating complex security toolchains"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Several years of professional experience",
+    "german": "nice_to_have",
+    "german_basis": "stated",
+    "german_signal": "German language skills are desirable.",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "University degree in Computer Science, Electrical Engineering, or a comparable qualification.",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The candidate requirements are under “What should you bring along?”; no optional section heading appears.\n“Several years” is interpreted as mid-level experience, but the unspecified number warrants review.\n“Comparable qualification” is read literally as an accepted alternative to the degree.\nCommercial and open-source technologies name no specific tools or models; open-source LLM expertise is not inferred.\nFuzzing, penetration testing, vulnerability analysis, user-interface development, and feedback mechanisms appear only in responsibilities and are excluded.\nDeveloping or operating security toolchains has no precise taxonomy entry and is retained as unmapped."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "45d0c752b3f4d798c5bda0201f303f192eae219e7c06c9eab1bb15be684495b6",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

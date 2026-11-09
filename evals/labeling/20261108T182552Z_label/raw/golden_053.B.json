@@ -1,0 +1,119 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Fundierte DevOps- und Cloud-Erfahrung\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud-Erfahrung\"\n    },\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Praktische Erfahrung im Bereich IT-Security\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"KI-Projekt\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD-Pipelines\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Infrastructure as Code\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"containerisierter Umgebungen\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Machine-Learning-\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Generative-AI-Lösungen\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"APIs\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Observability-\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Cloud-native architecture\",\n      \"raw_text\": \"Cloud-native Architekturen\"\n    },\n    {\n      \"label\": \"OpenShift\",\n      \"raw_text\": \"OpenShift\"\n    },\n    {\n      \"label\": \"Security by Design\",\n      \"raw_text\": \"Security-by-Design-Prinzipien\"\n    },\n    {\n      \"label\": \"Database architecture\",\n      \"raw_text\": \"Datenbankarchitekturen\"\n    },\n    {\n      \"label\": \"High availability\",\n      \"raw_text\": \"Hochverfügbarkeitslösungen\"\n    },\n    {\n      \"label\": \"Performance optimization\",\n      \"raw_text\": \"Performance-Optimierungen\"\n    },\n    {\n      \"label\": \"Site reliability engineering\",\n      \"raw_text\": \"SRE-Strukturen\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior DevOps Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The qualification “Einschlägige Berufserfahrung in oben genannten Aufgaben” explicitly asks for experience in the preceding responsibilities; those technical skills are therefore included as required rather than treated as responsibility-only mentions.\\nNo optional qualification section or inline optional skill markers appear.\\nLLM and Generative AI collapse into one llms criterion; Monitoring and Observability collapse into one observability criterion.\\nCloud-native and database architectures are retained as unmapped specialisms rather than silently broadened to software architecture. CI/CD automation is covered by ci-cd, not inferred to mean workflow automation.\\nGerman is inferred only because the posting is written in German and specifies no language requirement.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "Fundierte DevOps- und Cloud-Erfahrung"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Erfahrung"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "Praktische Erfahrung im Bereich IT-Security"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "KI-Projekt"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Pipelines"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure as Code"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containerisierter Umgebungen"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Machine-Learning-"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generative-AI-Lösungen"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Observability-"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Cloud-native architecture",
+        "raw_text": "Cloud-native Architekturen"
+      },
+      {
+        "label": "OpenShift",
+        "raw_text": "OpenShift"
+      },
+      {
+        "label": "Security by Design",
+        "raw_text": "Security-by-Design-Prinzipien"
+      },
+      {
+        "label": "Database architecture",
+        "raw_text": "Datenbankarchitekturen"
+      },
+      {
+        "label": "High availability",
+        "raw_text": "Hochverfügbarkeitslösungen"
+      },
+      {
+        "label": "Performance optimization",
+        "raw_text": "Performance-Optimierungen"
+      },
+      {
+        "label": "Site reliability engineering",
+        "raw_text": "SRE-Strukturen"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior DevOps Engineer",
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The qualification “Einschlägige Berufserfahrung in oben genannten Aufgaben” explicitly asks for experience in the preceding responsibilities; those technical skills are therefore included as required rather than treated as responsibility-only mentions.\nNo optional qualification section or inline optional skill markers appear.\nLLM and Generative AI collapse into one llms criterion; Monitoring and Observability collapse into one observability criterion.\nCloud-native and database architectures are retained as unmapped specialisms rather than silently broadened to software architecture. CI/CD automation is covered by ci-cd, not inferred to mean workflow automation.\nGerman is inferred only because the posting is written in German and specifies no language requirement."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "b93a430e483554338fa2b3373923ea6eca03f58a4f940465585ccee3d10eed23",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

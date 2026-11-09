@@ -1,0 +1,124 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"generative AI techniques\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"techniques like RAG\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"prompt/context engineering\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"multi-agent orchestration\", \"uncertain\": true},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"fine-tuning\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Good knowledge of Python\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"common ML libraries\", \"uncertain\": true},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"such as LangChain, pandas\"},\n    {\"skill_id\": \"pandas\", \"requirement\": \"required\", \"raw_text\": \"pandas\"},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"required\", \"raw_text\": \"sklearn\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"building agentic systems\", \"uncertain\": true},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"nice_to_have\", \"raw_text\": \"function calling\"},\n    {\"skill_id\": \"llamaindex\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LlamaIndex\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Few-shot learning\", \"raw_text\": \"few shot learning\"},\n    {\"label\": \"Multimodal understanding\", \"raw_text\": \"multimodal understanding\"},\n    {\"label\": \"Pydantic\", \"raw_text\": \"pydantic\"},\n    {\"label\": \"Data engineering tools\", \"raw_text\": \"data engineering tools and technologies\"},\n    {\"label\": \"SAP ERP\", \"raw_text\": \"Experience with ERPs such as SAP\"},\n    {\"label\": \"Oracle ERP\", \"raw_text\": \"and/or Oracle\"}\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Orbit Graduate program\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"fluency in German and English (must)\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Degree in Engineering, Data Analytics/Science, Computer Science, Mathematics, or a related STEM field\",\n  \"uncertain\": [],\n  \"notes\": \"SQL and PQL appear only under 'You will gain expertise in' (program training content), so they are not asked of the candidate and are not labeled. Python is required separately under What You Need.\\nMicrosoft, OpenAI and Databricks appear only in the role/company description as partners, so they are not labeled.\\n'multi-agent orchestration' is mapped to llm-orchestration via the 'agent orchestration' alias. Bonus Points also names 'LLM orchestration' explicitly. multi-agent-systems is not added because the phrase names orchestration, not the systems themselves; this is flagged for review.\\nRAG, prompt engineering, LangChain and generative AI/LLM each appear both in What You Need and in Bonus Points. Any required mention wins, so all four are required and quote the required mention.\\n'common ML libraries' is labeled machine-learning (required) as the broad skill the text names; this is flagged uncertain.\\n'agentic systems' is mapped to agents and flagged uncertain.\\n'intelligent chatbots and automated text processors' are use-case examples, not skills asked of the candidate, so conversational-ai is not labeled.\\nSeniority is stated from 'Associate' and 'Orbit Graduate program', which is consistent with '1-2 years'.\\nThe Bonus Points degree mention ('Degrees combining technical ... and business') names no level and does not change the required bachelor-level degree.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "generative AI techniques"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "techniques like RAG"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompt/context engineering"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "multi-agent orchestration",
+        "uncertain": true
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Good knowledge of Python"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "common ML libraries",
+        "uncertain": true
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "such as LangChain, pandas"
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "required",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "sklearn"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "building agentic systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "nice_to_have",
+        "raw_text": "function calling"
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "nice_to_have",
+        "raw_text": "LlamaIndex"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Few-shot learning",
+        "raw_text": "few shot learning"
+      },
+      {
+        "label": "Multimodal understanding",
+        "raw_text": "multimodal understanding"
+      },
+      {
+        "label": "Pydantic",
+        "raw_text": "pydantic"
+      },
+      {
+        "label": "Data engineering tools",
+        "raw_text": "data engineering tools and technologies"
+      },
+      {
+        "label": "SAP ERP",
+        "raw_text": "Experience with ERPs such as SAP"
+      },
+      {
+        "label": "Oracle ERP",
+        "raw_text": "and/or Oracle"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Orbit Graduate program",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "fluency in German and English (must)",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Degree in Engineering, Data Analytics/Science, Computer Science, Mathematics, or a related STEM field",
+    "uncertain": [],
+    "notes": "SQL and PQL appear only under 'You will gain expertise in' (program training content), so they are not asked of the candidate and are not labeled. Python is required separately under What You Need.\nMicrosoft, OpenAI and Databricks appear only in the role/company description as partners, so they are not labeled.\n'multi-agent orchestration' is mapped to llm-orchestration via the 'agent orchestration' alias. Bonus Points also names 'LLM orchestration' explicitly. multi-agent-systems is not added because the phrase names orchestration, not the systems themselves; this is flagged for review.\nRAG, prompt engineering, LangChain and generative AI/LLM each appear both in What You Need and in Bonus Points. Any required mention wins, so all four are required and quote the required mention.\n'common ML libraries' is labeled machine-learning (required) as the broad skill the text names; this is flagged uncertain.\n'agentic systems' is mapped to agents and flagged uncertain.\n'intelligent chatbots and automated text processors' are use-case examples, not skills asked of the candidate, so conversational-ai is not labeled.\nSeniority is stated from 'Associate' and 'Orbit Graduate program', which is consistent with '1-2 years'.\nThe Bonus Points degree mention ('Degrees combining technical ... and business') names no level and does not change the required bachelor-level degree."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "b0cf2ddbd01c69e33d98f89c5012d2cb1755b3b9b13c5d8956466e2549c36971",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

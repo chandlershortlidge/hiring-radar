@@ -1,0 +1,39 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"fundierte Kenntnisse im Bereich Artificial Intelligence\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"data-driven approaches\", \"raw_text\": \"datengetriebenen Ansätzen\"}\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"erste praktische Berührungspunkte\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"sehr gute Deutsch- und Englischkenntnisse\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"abgeschlossenes Studium in Maschinenbau, Produktionstechnik, Luft- und Raumfahrttechnik oder einer vergleichbaren Fachrichtung\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"I mapped generic 'Artificial Intelligence' to ai-ml because no plain 'AI' entry exists. It is flagged uncertain.\\nArtificial Intelligence is named three times: as 'fundierte Kenntnisse' (required), as 'interessierst dich für' (appetite), and as 'erste praktische Berührungspunkte mit AI-Anwendungen'. The required mention wins, so the three collapse into one criterion.\\n'datengetriebenen Ansätzen' has no taxonomy entry. It is too vague to map to data-science, so it goes to unmapped.\\nDigitalisierung, Smart Factory and Manufacturing Engineering are domain knowledge, not skills, so they are not labeled.\\nSeniority is inferred as junior from 'erste praktische Berührungspunkte' ('first experience'). This is uncertain because the same list also asks for 'fundierte Kenntnisse' and 'Erfahrung im Manufacturing Umfeld', which have no stated level. If that phrase is not accepted as a level signal, the label would be none.\\n'oder einer vergleichbaren Fachrichtung' widens the field of study, not the requirement, so degree_or_equivalent is false.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "fundierte Kenntnisse im Bereich Artificial Intelligence",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "data-driven approaches",
+        "raw_text": "datengetriebenen Ansätzen"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "erste praktische Berührungspunkte",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "sehr gute Deutsch- und Englischkenntnisse",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "abgeschlossenes Studium in Maschinenbau, Produktionstechnik, Luft- und Raumfahrttechnik oder einer vergleichbaren Fachrichtung",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "I mapped generic 'Artificial Intelligence' to ai-ml because no plain 'AI' entry exists. It is flagged uncertain.\nArtificial Intelligence is named three times: as 'fundierte Kenntnisse' (required), as 'interessierst dich für' (appetite), and as 'erste praktische Berührungspunkte mit AI-Anwendungen'. The required mention wins, so the three collapse into one criterion.\n'datengetriebenen Ansätzen' has no taxonomy entry. It is too vague to map to data-science, so it goes to unmapped.\nDigitalisierung, Smart Factory and Manufacturing Engineering are domain knowledge, not skills, so they are not labeled.\nSeniority is inferred as junior from 'erste praktische Berührungspunkte' ('first experience'). This is uncertain because the same list also asks for 'fundierte Kenntnisse' and 'Erfahrung im Manufacturing Umfeld', which have no stated level. If that phrase is not accepted as a level signal, the label would be none.\n'oder einer vergleichbaren Fachrichtung' widens the field of study, not the requirement, so degree_or_equivalent is false."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "f3712052c60fccd18ce9ef5719364e05cc8c6aa686bbe1aee0e410e763920bec",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

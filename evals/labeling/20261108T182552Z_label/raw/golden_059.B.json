@@ -1,0 +1,87 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Azure\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI\"\n    },\n    {\n      \"skill_id\": \"databricks\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Databricks\"\n    },\n    {\n      \"skill_id\": \"business-intelligence\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data Engineering\",\n      \"raw_text\": \"Konzeption und Umsetzung von innovativen Data-Engineering-Lösungen\"\n    },\n    {\n      \"label\": \"Azure Data Factory\",\n      \"raw_text\": \"Data Factory\"\n    },\n    {\n      \"label\": \"Azure SQL Database\",\n      \"raw_text\": \"SQL DB\"\n    },\n    {\n      \"label\": \"Azure Data Lake Storage\",\n      \"raw_text\": \"Data Lake Storage\"\n    },\n    {\n      \"label\": \"Azure Functions\",\n      \"raw_text\": \"Functions\"\n    },\n    {\n      \"label\": \"Microsoft Foundry\",\n      \"raw_text\": \"Interesse an Microsoft Foundry\"\n    },\n    {\n      \"label\": \"Data warehousing\",\n      \"raw_text\": \"Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture\"\n    },\n    {\n      \"label\": \"Data lake development\",\n      \"raw_text\": \"Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture\"\n    },\n    {\n      \"label\": \"AI-assisted personalization\",\n      \"raw_text\": \"AI-gestützter Personalisierung\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI Data Engineer\",\n  \"german\": \"nice_to_have\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gutes Deutsch\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Read “Das bringst du idealerweise mit:” literally as an optional qualifications heading; all qualifications under it, including German, are nice_to_have.\\nBI and Cloud are explicitly named in the architecture qualification; no additional software-architecture parent is inferred.\\nSQL DB and Functions name Azure services, not an explicit SQL-language or serverless requirement; the services are therefore unmapped rather than assigned broader taxonomy IDs.\\nPredictive Marketing and Customer Intelligence are treated as domain knowledge and excluded; AI-assisted personalization is treated as a technical technique and listed as unmapped.\\nTechnologies mentioned only in responsibilities or benefits are excluded. No degree is mentioned.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "nice_to_have",
+        "raw_text": "AI"
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "nice_to_have",
+        "raw_text": "Databricks"
+      },
+      {
+        "skill_id": "business-intelligence",
+        "requirement": "nice_to_have",
+        "raw_text": "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data Engineering",
+        "raw_text": "Konzeption und Umsetzung von innovativen Data-Engineering-Lösungen"
+      },
+      {
+        "label": "Azure Data Factory",
+        "raw_text": "Data Factory"
+      },
+      {
+        "label": "Azure SQL Database",
+        "raw_text": "SQL DB"
+      },
+      {
+        "label": "Azure Data Lake Storage",
+        "raw_text": "Data Lake Storage"
+      },
+      {
+        "label": "Azure Functions",
+        "raw_text": "Functions"
+      },
+      {
+        "label": "Microsoft Foundry",
+        "raw_text": "Interesse an Microsoft Foundry"
+      },
+      {
+        "label": "Data warehousing",
+        "raw_text": "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture"
+      },
+      {
+        "label": "Data lake development",
+        "raw_text": "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture"
+      },
+      {
+        "label": "AI-assisted personalization",
+        "raw_text": "AI-gestützter Personalisierung"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI Data Engineer",
+    "german": "nice_to_have",
+    "german_basis": "stated",
+    "german_signal": "Sehr gutes Deutsch",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Read “Das bringst du idealerweise mit:” literally as an optional qualifications heading; all qualifications under it, including German, are nice_to_have.\nBI and Cloud are explicitly named in the architecture qualification; no additional software-architecture parent is inferred.\nSQL DB and Functions name Azure services, not an explicit SQL-language or serverless requirement; the services are therefore unmapped rather than assigned broader taxonomy IDs.\nPredictive Marketing and Customer Intelligence are treated as domain knowledge and excluded; AI-assisted personalization is treated as a technical technique and listed as unmapped.\nTechnologies mentioned only in responsibilities or benefits are excluded. No degree is mentioned."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "3230750ded75da38d79155ed47a055da5e8b70f105609bbdca1fc190889f82de",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

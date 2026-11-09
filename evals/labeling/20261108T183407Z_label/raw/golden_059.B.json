@@ -1,0 +1,113 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Software Engineering\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Architekturdesign\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Fundierte Erfahrung im Software Engineering, Architekturdesign und CI/CD\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Erfahrung mit KI-Agenten\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"KI-Agenten und deren Orchestrierung\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentischer Entwicklungstools\"\n    },\n    {\n      \"skill_id\": \"claude-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Claude Code\"\n    },\n    {\n      \"skill_id\": \"cursor\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cursor\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud-Erfahrung\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"idealerweise AWS\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Infrastructure as Code\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Bewertung und Qualitätssicherung KI-generierter Ergebnisse\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data Engineering\",\n      \"raw_text\": \"Data Engineering\"\n    },\n    {\n      \"label\": \"AWS Glue\",\n      \"raw_text\": \"idealerweise mit AWS Glue\"\n    },\n    {\n      \"label\": \"Lake Formation\",\n      \"raw_text\": \"idealerweise mit AWS Glue oder Lake Formation\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Verhandlungssichere Deutsch- und gute Englischkenntnisse\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Abgeschlossenes IT-Studium oder vergleichbare Qualifikation\",\n  \"notes\": \"Anforderungen sets a required default; idealerweise makes AWS, AWS Glue and Lake Formation optional. Data Engineering is required, but these three unmapped skills have no taxonomy entries.\\nAlternative programming languages and concrete tool examples are each labeled separately.\\nFundierte Erfahrung does not explicitly state proven experience, years or a level, so seniority is null.\\nBewertung und Qualitätssicherung KI-generierter Ergebnisse is mapped to evaluation; it does not independently ask for software testing.\\nTechnologies and practices appearing only under Aufgaben are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Software Engineering"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Architekturdesign"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "Fundierte Erfahrung im Software Engineering, Architekturdesign und CI/CD"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit KI-Agenten"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "KI-Agenten und deren Orchestrierung"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "agentischer Entwicklungstools"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code"
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Erfahrung"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise AWS"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure as Code"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Bewertung und Qualitätssicherung KI-generierter Ergebnisse"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data Engineering",
+        "raw_text": "Data Engineering"
+      },
+      {
+        "label": "AWS Glue",
+        "raw_text": "idealerweise mit AWS Glue"
+      },
+      {
+        "label": "Lake Formation",
+        "raw_text": "idealerweise mit AWS Glue oder Lake Formation"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Verhandlungssichere Deutsch- und gute Englischkenntnisse",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossenes IT-Studium oder vergleichbare Qualifikation",
+    "notes": "Anforderungen sets a required default; idealerweise makes AWS, AWS Glue and Lake Formation optional. Data Engineering is required, but these three unmapped skills have no taxonomy entries.\nAlternative programming languages and concrete tool examples are each labeled separately.\nFundierte Erfahrung does not explicitly state proven experience, years or a level, so seniority is null.\nBewertung und Qualitätssicherung KI-generierter Ergebnisse is mapped to evaluation; it does not independently ask for software testing.\nTechnologies and practices appearing only under Aufgaben are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "3e9d88a46658b7aefef5af21c67b4e9b42806cae137fdf14ce299f6a4aff377a",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

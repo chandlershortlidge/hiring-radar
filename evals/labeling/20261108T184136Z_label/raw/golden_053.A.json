@@ -1,0 +1,237 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"java\", \"requirement\": \"required\", \"raw_text\": \"Fundierte Erfahrung in Java/Kotlin\"},\n    {\"skill_id\": \"kotlin\", \"requirement\": \"required\", \"raw_text\": \"Fundierte Erfahrung in Java/Kotlin\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"spring-boot\", \"requirement\": \"required\", \"raw_text\": \"Spring (Boot)\"},\n    {\"skill_id\": \"api-design\", \"requirement\": \"required\", \"raw_text\": \"REST API-Design\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"REST API-Design und -Implementierung\", \"uncertain\": true},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"Containerisierungstechnologien\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Docker\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Kubernetes/OpenShift\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud-Plattformen (AWS, Azure, GCP)\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"Cloud-Plattformen (AWS\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"AWS, Azure, GCP\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"GCP\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD-Tools\"},\n    {\"skill_id\": \"gitlab-ci\", \"requirement\": \"required\", \"raw_text\": \"CI/CD-Tools (GitLab\", \"uncertain\": true},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"GitLab, GitHub\", \"uncertain\": true},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"solide Backend-Entwicklungsskills\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Grundverständnis von Large Language Models (LLMs)\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Interesse an Retrieval-Augmented Generation (RAG)\"},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Interesse an Retrieval-Augmented Generation (RAG), Vektordatenbanken und Embedding-Techniken\"},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Kenntnisse in Vektordatenbanken\"},\n    {\"skill_id\": \"weaviate\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Weaviate\"},\n    {\"skill_id\": \"mcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Vertrautheit mit Model Context Protocol (MCP) oder Bereitschaft, sich intensiv einzuarbeiten\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Idealerweise erste Erfahrungen mit Agent-Frameworks\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Agent-Frameworks oder Orchestrierung\", \"uncertain\": true},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Model Fine-tuning\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Prompt Engineering\"},\n    {\"skill_id\": \"mlops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Prompt Engineering oder MLOps\"},\n    {\"skill_id\": \"langchain\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Erfahrung mit LangChain\"},\n    {\"skill_id\": \"llamaindex\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LlamaIndex\"},\n    {\"skill_id\": \"gitops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"GitOps-Prinzipien\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Ausgeprägtes Interesse an KI-Themen\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Jakarta Enterprise Edition\", \"raw_text\": \"Jakarta Enterprise Edition\"},\n    {\"label\": \"Podman\", \"raw_text\": \"Podman\"},\n    {\"label\": \"OpenShift\", \"raw_text\": \"Kubernetes/OpenShift\"},\n    {\"label\": \"Jenkins\", \"raw_text\": \"Jenkins\"},\n    {\"label\": \"AWS CodeBuild/CodePipeline\", \"raw_text\": \"AWS CodeBuild/CodePipeline\"},\n    {\"label\": \"Azure DevOps\", \"raw_text\": \"Azure DevOps\"},\n    {\"label\": \"LangChain4J\", \"raw_text\": \"LangChain4J\"},\n    {\"label\": \"Pinecone\", \"raw_text\": \"Pinecone\"},\n    {\"label\": \"Qdrant\", \"raw_text\": \"Qdrant\"},\n    {\"label\": \"ArgoCD\", \"raw_text\": \"ArgoCD\"},\n    {\"label\": \"Flux\", \"raw_text\": \"Flux\"}\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The 'Backend-Entwicklung' subsection sits under 'Was wir suchen / Technisches Know-how', so it is required. 'KI & ML (Nice-to-have, aber Lernbereitschaft ist Pflicht)' and 'Bonus' are optional headings, so their items are nice_to_have.\\nRAG and embeddings are also governed by the appetite phrase 'Interesse an'. MCP accepts 'Bereitschaft, sich intensiv einzuarbeiten' instead of experience, so it is nice_to_have under rule 3 as well.\\nRAG, MCP and MLOps also appear in the responsibilities; the candidate-facing mentions are all optional, so they stay nice_to_have.\\nChromaDB is an alias of vector-databases and collapses into that single criterion.\\nGitLab/GitHub are listed as CI/CD tools. GitLab is mapped to gitlab-ci; GitHub is mapped to git via its alias (literal reading), though GitHub Actions may be meant. Both flagged uncertain.\\n'Orchestrierung' next to Agent-Frameworks is mapped to llm-orchestration; flagged uncertain.\\nThe apis criterion is inferred from 'REST API ... -Implementierung' alongside api-design; flagged uncertain.\\nbackend-development comes from the closing line 'Wenn du solide Backend-Entwicklungsskills hast' and the required subsection heading; flagged uncertain.\\nai-ml comes from appetite-only wording ('Interesse an KI-Themen' / 'Interesse an KI-Technologien'), so it is nice_to_have; flagged uncertain as generic.\\nSkipped as non-skills: 'agilen Softwareentwicklungsteams' (agile methodology, no taxonomy entry) and the soft skills.\\nSeniority: 'Fundierte'/'Umfassende Erfahrung' are not level signals, so null.\\nGerman: the posting is written in German and says nothing about language, so required/inferred.\\nDegree: none mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Fundierte Erfahrung in Java/Kotlin"
+      },
+      {
+        "skill_id": "kotlin",
+        "requirement": "required",
+        "raw_text": "Fundierte Erfahrung in Java/Kotlin"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "spring-boot",
+        "requirement": "required",
+        "raw_text": "Spring (Boot)"
+      },
+      {
+        "skill_id": "api-design",
+        "requirement": "required",
+        "raw_text": "REST API-Design"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST API-Design und -Implementierung",
+        "uncertain": true
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "Containerisierungstechnologien"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes/OpenShift"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Plattformen (AWS, Azure, GCP)"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "Cloud-Plattformen (AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "AWS, Azure, GCP"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Tools"
+      },
+      {
+        "skill_id": "gitlab-ci",
+        "requirement": "required",
+        "raw_text": "CI/CD-Tools (GitLab",
+        "uncertain": true
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "GitLab, GitHub",
+        "uncertain": true
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "solide Backend-Entwicklungsskills",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "Grundverständnis von Large Language Models (LLMs)"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse an Retrieval-Augmented Generation (RAG)"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse an Retrieval-Augmented Generation (RAG), Vektordatenbanken und Embedding-Techniken"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "nice_to_have",
+        "raw_text": "Kenntnisse in Vektordatenbanken"
+      },
+      {
+        "skill_id": "weaviate",
+        "requirement": "nice_to_have",
+        "raw_text": "Weaviate"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "nice_to_have",
+        "raw_text": "Vertrautheit mit Model Context Protocol (MCP) oder Bereitschaft, sich intensiv einzuarbeiten"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "Idealerweise erste Erfahrungen mit Agent-Frameworks"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "nice_to_have",
+        "raw_text": "Agent-Frameworks oder Orchestrierung",
+        "uncertain": true
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "Model Fine-tuning"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "nice_to_have",
+        "raw_text": "Prompt Engineering oder MLOps"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "nice_to_have",
+        "raw_text": "Erfahrung mit LangChain"
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "nice_to_have",
+        "raw_text": "LlamaIndex"
+      },
+      {
+        "skill_id": "gitops",
+        "requirement": "nice_to_have",
+        "raw_text": "GitOps-Prinzipien"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "nice_to_have",
+        "raw_text": "Ausgeprägtes Interesse an KI-Themen",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Jakarta Enterprise Edition",
+        "raw_text": "Jakarta Enterprise Edition"
+      },
+      {
+        "label": "Podman",
+        "raw_text": "Podman"
+      },
+      {
+        "label": "OpenShift",
+        "raw_text": "Kubernetes/OpenShift"
+      },
+      {
+        "label": "Jenkins",
+        "raw_text": "Jenkins"
+      },
+      {
+        "label": "AWS CodeBuild/CodePipeline",
+        "raw_text": "AWS CodeBuild/CodePipeline"
+      },
+      {
+        "label": "Azure DevOps",
+        "raw_text": "Azure DevOps"
+      },
+      {
+        "label": "LangChain4J",
+        "raw_text": "LangChain4J"
+      },
+      {
+        "label": "Pinecone",
+        "raw_text": "Pinecone"
+      },
+      {
+        "label": "Qdrant",
+        "raw_text": "Qdrant"
+      },
+      {
+        "label": "ArgoCD",
+        "raw_text": "ArgoCD"
+      },
+      {
+        "label": "Flux",
+        "raw_text": "Flux"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The 'Backend-Entwicklung' subsection sits under 'Was wir suchen / Technisches Know-how', so it is required. 'KI & ML (Nice-to-have, aber Lernbereitschaft ist Pflicht)' and 'Bonus' are optional headings, so their items are nice_to_have.\nRAG and embeddings are also governed by the appetite phrase 'Interesse an'. MCP accepts 'Bereitschaft, sich intensiv einzuarbeiten' instead of experience, so it is nice_to_have under rule 3 as well.\nRAG, MCP and MLOps also appear in the responsibilities; the candidate-facing mentions are all optional, so they stay nice_to_have.\nChromaDB is an alias of vector-databases and collapses into that single criterion.\nGitLab/GitHub are listed as CI/CD tools. GitLab is mapped to gitlab-ci; GitHub is mapped to git via its alias (literal reading), though GitHub Actions may be meant. Both flagged uncertain.\n'Orchestrierung' next to Agent-Frameworks is mapped to llm-orchestration; flagged uncertain.\nThe apis criterion is inferred from 'REST API ... -Implementierung' alongside api-design; flagged uncertain.\nbackend-development comes from the closing line 'Wenn du solide Backend-Entwicklungsskills hast' and the required subsection heading; flagged uncertain.\nai-ml comes from appetite-only wording ('Interesse an KI-Themen' / 'Interesse an KI-Technologien'), so it is nice_to_have; flagged uncertain as generic.\nSkipped as non-skills: 'agilen Softwareentwicklungsteams' (agile methodology, no taxonomy entry) and the soft skills.\nSeniority: 'Fundierte'/'Umfassende Erfahrung' are not level signals, so null.\nGerman: the posting is written in German and says nothing about language, so required/inferred.\nDegree: none mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "e42c9276e15f02c93519ac14b33376d4f4f850ee495aaf5fd9fd676890299f42",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

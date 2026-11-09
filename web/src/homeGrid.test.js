@@ -46,8 +46,8 @@ describe("the market cards on the home view (HIR-188)", () => {
   });
 
   it("puts every market in one grid, busiest first, whatever country it is in (HIR-191)", () => {
-    const places = gridPlaces({ Berlin: 100, "San Francisco": 292, "New York": 300, "Remote (EU)": 40 });
-    expect(places.map((p) => p.name)).toEqual(["New York", "San Francisco", "Berlin", "Remote (EU)"]);
+    const places = gridPlaces({ Berlin: 100, Hamburg: 70, Frankfurt: 55, Munich: 80, "San Francisco": 292, "New York": 300, "Remote (EU)": 40 });
+    expect(places.map((p) => p.name)).toEqual(["New York", "San Francisco", "Berlin", "Munich", "Hamburg", "Frankfurt", "Remote (EU)"]);
   });
 
   it("carries each market's country, since there is no row heading to say it any more", () => {
@@ -55,8 +55,8 @@ describe("the market cards on the home view (HIR-188)", () => {
   });
 
   it("breaks a tie by name, so the grid does not reshuffle between visits", () => {
-    const places = gridPlaces({ Berlin: 7, "San Francisco": 7, "New York": 7, "Remote (EU)": 7 });
-    expect(places.map((p) => p.name)).toEqual(["Berlin", "New York", "Remote (EU)", "San Francisco"]);
+    const places = gridPlaces({ Berlin: 7, Hamburg: 7, Frankfurt: 7, Munich: 7, "San Francisco": 7, "New York": 7, "Remote (EU)": 7 });
+    expect(places.map((p) => p.name)).toEqual(["Berlin", "Frankfurt", "Hamburg", "Munich", "New York", "Remote (EU)", "San Francisco"]);
   });
 
   it("still lists a market with no jobs — that is where a new city starts", () => {
@@ -67,6 +67,6 @@ describe("the market cards on the home view (HIR-188)", () => {
   // it in place would quietly reorder the city picker as well.
   it("sorts a copy, leaving the shared place list in its own declared order", () => {
     gridPlaces({ "New York": 999 });
-    expect(PLACES.map((p) => p.name)).toEqual(["Berlin", "Remote (EU)", "San Francisco", "New York"]);
+    expect(PLACES.map((p) => p.name)).toEqual(["Berlin", "Hamburg", "Frankfurt", "Munich", "Remote (EU)", "San Francisco", "New York"]);
   });
 });

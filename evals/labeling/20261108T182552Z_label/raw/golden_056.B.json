@@ -1,0 +1,72 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Software Engineering\"\n    },\n    {\n      \"skill_id\": \"full-stack-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Fullstack Development\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Backend\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud Solutions\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Architecture\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevOps\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data Engineering\",\n      \"raw_text\": \"Data Engineering\"\n    },\n    {\n      \"label\": \"IT Management\",\n      \"raw_text\": \"IT-Management\"\n    },\n    {\n      \"label\": \"Web Development\",\n      \"raw_text\": \"Web Development\"\n    },\n    {\n      \"label\": \"Product Ownership\",\n      \"raw_text\": \"Product Ownership\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"2026/27 Graduate\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)\",\n  \"notes\": \"The 'Who you are' section supplies the skill requirements; none of its items is marked optional. Examples and alternative experience areas are labeled individually as required under the guide.\\nArchitecture is read as software architecture in the context of software and technical experience.\\nData Engineering, IT-Management, Web Development and Product Ownership have no exact taxonomy entries. Web Development is not assumed to mean full-stack development.\\nThe highest degree named is a master's. The alternative still requires a bachelor's degree, so degree_or_equivalent is false.\\nNo German-language qualification is requested; English fluency does not establish a German requirement.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Software Engineering"
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "Fullstack Development"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud Solutions"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Architecture"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data Engineering",
+        "raw_text": "Data Engineering"
+      },
+      {
+        "label": "IT Management",
+        "raw_text": "IT-Management"
+      },
+      {
+        "label": "Web Development",
+        "raw_text": "Web Development"
+      },
+      {
+        "label": "Product Ownership",
+        "raw_text": "Product Ownership"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "2026/27 Graduate",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)",
+    "notes": "The 'Who you are' section supplies the skill requirements; none of its items is marked optional. Examples and alternative experience areas are labeled individually as required under the guide.\nArchitecture is read as software architecture in the context of software and technical experience.\nData Engineering, IT-Management, Web Development and Product Ownership have no exact taxonomy entries. Web Development is not assumed to mean full-stack development.\nThe highest degree named is a master's. The alternative still requires a bachelor's degree, so degree_or_equivalent is false.\nNo German-language qualification is requested; English fluency does not establish a German requirement."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "d2df138e06782697c16d2fee36b396284bf4fa7d2307fc3d53d8669f29f7c18f",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

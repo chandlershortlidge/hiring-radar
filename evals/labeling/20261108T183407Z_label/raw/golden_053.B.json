@@ -1,0 +1,85 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"bash\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Shell Scripting (Bash)\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"T-SQL\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"javascript\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"JavaScript\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Java\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Netzwerkprotokollen\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Systemadministration\",\n      \"raw_text\": \"Systemadministration\"\n    },\n    {\n      \"label\": \"Microsoft SQL Server\",\n      \"raw_text\": \"Microsoft SQL Server\"\n    },\n    {\n      \"label\": \"VPN technologies\",\n      \"raw_text\": \"VPN-Technologien\"\n    },\n    {\n      \"label\": \"Shell scripting\",\n      \"raw_text\": \"Shell Scripting\"\n    },\n    {\n      \"label\": \"Jenkins\",\n      \"raw_text\": \"Jenkins\"\n    },\n    {\n      \"label\": \"Agile working methods\",\n      \"raw_text\": \"agilen Arbeitsmethoden\"\n    },\n    {\n      \"label\": \"Security standards\",\n      \"raw_text\": \"Sicherheitsstandards\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Abgeschlossene Ausbildung oder Studium im Bereich Informatik oder eine vergleichbare Qualifikation\",\n  \"notes\": \"The qualifications section defaults to required. Read “ist wünschenswert” literally as optional for the entire VPN/Shell/Bash/T-SQL/Python item; “sind von Vorteil” makes the JavaScript/Java/Jenkins/agile item optional.\\nT-SQL is provisionally mapped to SQL as a SQL dialect; flagged because the taxonomy does not explicitly list this alias. Microsoft SQL Server remains unmapped rather than implying a separate SQL requirement.\\nShell scripting is retained as an unmapped broad skill alongside the explicitly named Bash example. Security standards are retained as unmapped rather than adding an unnamed cybersecurity parent.\\nThe “Wen wir suchen” list names occupational roles, not a dedicated technology stack; no skills are inferred from those role titles. AI infrastructure occurs only in responsibilities.\\nThe degree is required with an accepted alternative: vocational training or a comparable qualification. No usable seniority signal is present.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "bash",
+        "requirement": "nice_to_have",
+        "raw_text": "Shell Scripting (Bash)"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "nice_to_have",
+        "raw_text": "T-SQL",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "nice_to_have",
+        "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "nice_to_have",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "Netzwerkprotokollen"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Systemadministration",
+        "raw_text": "Systemadministration"
+      },
+      {
+        "label": "Microsoft SQL Server",
+        "raw_text": "Microsoft SQL Server"
+      },
+      {
+        "label": "VPN technologies",
+        "raw_text": "VPN-Technologien"
+      },
+      {
+        "label": "Shell scripting",
+        "raw_text": "Shell Scripting"
+      },
+      {
+        "label": "Jenkins",
+        "raw_text": "Jenkins"
+      },
+      {
+        "label": "Agile working methods",
+        "raw_text": "agilen Arbeitsmethoden"
+      },
+      {
+        "label": "Security standards",
+        "raw_text": "Sicherheitsstandards"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossene Ausbildung oder Studium im Bereich Informatik oder eine vergleichbare Qualifikation",
+    "notes": "The qualifications section defaults to required. Read “ist wünschenswert” literally as optional for the entire VPN/Shell/Bash/T-SQL/Python item; “sind von Vorteil” makes the JavaScript/Java/Jenkins/agile item optional.\nT-SQL is provisionally mapped to SQL as a SQL dialect; flagged because the taxonomy does not explicitly list this alias. Microsoft SQL Server remains unmapped rather than implying a separate SQL requirement.\nShell scripting is retained as an unmapped broad skill alongside the explicitly named Bash example. Security standards are retained as unmapped rather than adding an unnamed cybersecurity parent.\nThe “Wen wir suchen” list names occupational roles, not a dedicated technology stack; no skills are inferred from those role titles. AI infrastructure occurs only in responsibilities.\nThe degree is required with an accepted alternative: vocational training or a comparable qualification. No usable seniority signal is present."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "58c2e9228e5ed3358d90f46a093c42892bc2bde210f66297856a743335802cb0",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

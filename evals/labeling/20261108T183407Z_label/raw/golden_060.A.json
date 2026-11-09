@@ -1,0 +1,174 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"machine learning methodologies\"},\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"required\", \"raw_text\": \"deep learning\"},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"required\", \"raw_text\": \"reinforced learning\"},\n    {\"skill_id\": \"model-selection\", \"requirement\": \"required\", \"raw_text\": \"model identification, selection\", \"uncertain\": true},\n    {\"skill_id\": \"aiops\", \"requirement\": \"required\", \"raw_text\": \"AI operations\", \"uncertain\": true},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"model monitoring\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Generative AI\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"agentic orchestration utilizing frameworks\", \"uncertain\": true},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"LangChain\"},\n    {\"skill_id\": \"crewai\", \"requirement\": \"required\", \"raw_text\": \"CrewAI\"},\n    {\"skill_id\": \"vertex-ai\", \"requirement\": \"required\", \"raw_text\": \"Vertex AI Agent Builder\"},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"required\", \"raw_text\": \"vector databases\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"go\", \"requirement\": \"required\", \"raw_text\": \"Go\"},\n    {\"skill_id\": \"java\", \"requirement\": \"required\", \"raw_text\": \"Java\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"testing frameworks\"},\n    {\"skill_id\": \"api-design\", \"requirement\": \"required\", \"raw_text\": \"API contract design\"},\n    {\"skill_id\": \"data-privacy-and-security\", \"requirement\": \"nice_to_have\", \"raw_text\": \"data residency, encryption at rest/transit (CMEK)\", \"uncertain\": true},\n    {\"skill_id\": \"explainable-ai\", \"requirement\": \"nice_to_have\", \"raw_text\": \"\\\"explainable AI\\\"\"},\n    {\"skill_id\": \"data-modeling\", \"requirement\": \"nice_to_have\", \"raw_text\": \"data modeling\"},\n    {\"skill_id\": \"nosql\", \"requirement\": \"nice_to_have\", \"raw_text\": \"NoSQL\"},\n    {\"skill_id\": \"devops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"high-maturity DevOps culture\"},\n    {\"skill_id\": \"bigquery\", \"requirement\": \"nice_to_have\", \"raw_text\": \"BigQuery\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Design patterns\", \"raw_text\": \"design patterns\"},\n    {\"label\": \"Star Schema\", \"raw_text\": \"Star Schema\"},\n    {\"label\": \"Data Vault\", \"raw_text\": \"Data Vault\"},\n    {\"label\": \"Trunk-based development\", \"raw_text\": \"trunk-based development\"},\n    {\"label\": \"Blue/green deployments\", \"raw_text\": \"blue/green deployments\"},\n    {\"label\": \"Dataflow\", \"raw_text\": \"Dataflow\"},\n    {\"label\": \"Pub/Sub\", \"raw_text\": \"Pub/Sub\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"6 years of experience in software or data engineering.\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor's degree in Computer Science, a related field, or equivalent practical experience.\",\n  \"uncertain\": [],\n  \"notes\": \"'AI operations (e.g., model monitoring)' is mapped to aiops as the literal term. In context it reads more like MLOps, so it is flagged uncertain.\\n'model identification, selection' is mapped to model-selection and flagged uncertain.\\n'agentic orchestration utilizing frameworks' is mapped to llm-orchestration (alias 'agent orchestration'). The agents id was not added because the text names orchestration, not agents themselves; flagged uncertain.\\nThe 'reinforced learning' typo is mapped to reinforcement-learning.\\nPython, Go and Java are labeled required even though the posting asks for only 'one of the following'. This follows the literal reading and the 'cloud platforms (GCP, AWS, or Azure)' precedent.\\nVertex AI appears in both the minimum qualifications (via Agent Builder) and the preferred qualifications, so it collapses to required.\\nTesting is likewise required: 'testing frameworks' sits in the minimum qualifications and 'automated testing' in the preferred ones.\\nCMEK encryption and data residency are mapped to data-privacy-and-security and flagged uncertain. Banking regulation is domain knowledge and is not labeled.\\nCI/CD, Terraform, IaC, GCP and relational databases appear only in the responsibilities or the description, so they are not labeled.\\nGerman is null: the posting is in English, says nothing about German, and German office locations are not a basis.\\nSeniority is inferred senior from '6 years'. The title has no level word.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning methodologies"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "reinforced learning"
+      },
+      {
+        "skill_id": "model-selection",
+        "requirement": "required",
+        "raw_text": "model identification, selection",
+        "uncertain": true
+      },
+      {
+        "skill_id": "aiops",
+        "requirement": "required",
+        "raw_text": "AI operations",
+        "uncertain": true
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "model monitoring"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generative AI"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "agentic orchestration utilizing frameworks",
+        "uncertain": true
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "crewai",
+        "requirement": "required",
+        "raw_text": "CrewAI"
+      },
+      {
+        "skill_id": "vertex-ai",
+        "requirement": "required",
+        "raw_text": "Vertex AI Agent Builder"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector databases"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing frameworks"
+      },
+      {
+        "skill_id": "api-design",
+        "requirement": "required",
+        "raw_text": "API contract design"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "nice_to_have",
+        "raw_text": "data residency, encryption at rest/transit (CMEK)",
+        "uncertain": true
+      },
+      {
+        "skill_id": "explainable-ai",
+        "requirement": "nice_to_have",
+        "raw_text": "\"explainable AI\""
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "nice_to_have",
+        "raw_text": "data modeling"
+      },
+      {
+        "skill_id": "nosql",
+        "requirement": "nice_to_have",
+        "raw_text": "NoSQL"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "nice_to_have",
+        "raw_text": "high-maturity DevOps culture"
+      },
+      {
+        "skill_id": "bigquery",
+        "requirement": "nice_to_have",
+        "raw_text": "BigQuery"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Design patterns",
+        "raw_text": "design patterns"
+      },
+      {
+        "label": "Star Schema",
+        "raw_text": "Star Schema"
+      },
+      {
+        "label": "Data Vault",
+        "raw_text": "Data Vault"
+      },
+      {
+        "label": "Trunk-based development",
+        "raw_text": "trunk-based development"
+      },
+      {
+        "label": "Blue/green deployments",
+        "raw_text": "blue/green deployments"
+      },
+      {
+        "label": "Dataflow",
+        "raw_text": "Dataflow"
+      },
+      {
+        "label": "Pub/Sub",
+        "raw_text": "Pub/Sub"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "6 years of experience in software or data engineering.",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor's degree in Computer Science, a related field, or equivalent practical experience.",
+    "uncertain": [],
+    "notes": "'AI operations (e.g., model monitoring)' is mapped to aiops as the literal term. In context it reads more like MLOps, so it is flagged uncertain.\n'model identification, selection' is mapped to model-selection and flagged uncertain.\n'agentic orchestration utilizing frameworks' is mapped to llm-orchestration (alias 'agent orchestration'). The agents id was not added because the text names orchestration, not agents themselves; flagged uncertain.\nThe 'reinforced learning' typo is mapped to reinforcement-learning.\nPython, Go and Java are labeled required even though the posting asks for only 'one of the following'. This follows the literal reading and the 'cloud platforms (GCP, AWS, or Azure)' precedent.\nVertex AI appears in both the minimum qualifications (via Agent Builder) and the preferred qualifications, so it collapses to required.\nTesting is likewise required: 'testing frameworks' sits in the minimum qualifications and 'automated testing' in the preferred ones.\nCMEK encryption and data residency are mapped to data-privacy-and-security and flagged uncertain. Banking regulation is domain knowledge and is not labeled.\nCI/CD, Terraform, IaC, GCP and relational databases appear only in the responsibilities or the description, so they are not labeled.\nGerman is null: the posting is in English, says nothing about German, and German office locations are not a basis.\nSeniority is inferred senior from '6 years'. The title has no level word."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "12578154f7c30c3fab0e1105b1e3297c09a743b1ccd45ac94dc039442f7bd80e",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

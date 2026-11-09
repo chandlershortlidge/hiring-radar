@@ -1,0 +1,25 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Expected is empty on purpose. The posting is one paragraph of duties ('konzipierst und betreibst du…', 'Du optimierst…', 'integrierst…'). It has no requirements, qualifications, nice-to-have or tech-stack section, so nothing is asked of the candidate. The guide says a technology that appears only in responsibilities is not labeled. Read literally, that excludes every mention. A person should review this, because the whole posting is responsibilities.\\nIf a reviewer treats the duties as implicit requirements, the candidate skills and quotes would be: llms ('LLM-Inferenzplattformen'), quantization ('Quantisierung'), kubernetes ('Kubernetes'), docker ('Docker'), observability ('Observability'). Possibly also inference-optimization (optimizing 'Latenz') and cloud ('privaten Clouds').\\nGerman is 'required', basis 'inferred': the posting is written in German and says nothing about language.\\nSeniority is null: no title level, years, or lead/mentoring duty.\\nDegree is null: no degree, Abschluss or Studium is mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Expected is empty on purpose. The posting is one paragraph of duties ('konzipierst und betreibst du…', 'Du optimierst…', 'integrierst…'). It has no requirements, qualifications, nice-to-have or tech-stack section, so nothing is asked of the candidate. The guide says a technology that appears only in responsibilities is not labeled. Read literally, that excludes every mention. A person should review this, because the whole posting is responsibilities.\nIf a reviewer treats the duties as implicit requirements, the candidate skills and quotes would be: llms ('LLM-Inferenzplattformen'), quantization ('Quantisierung'), kubernetes ('Kubernetes'), docker ('Docker'), observability ('Observability'). Possibly also inference-optimization (optimizing 'Latenz') and cloud ('privaten Clouds').\nGerman is 'required', basis 'inferred': the posting is written in German and says nothing about language.\nSeniority is null: no title level, years, or lead/mentoring duty.\nDegree is null: no degree, Abschluss or Studium is mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "589819dc2f813a788258ca48055b2f4acec5839b64dd1f554e3ce41aa3a9261c",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

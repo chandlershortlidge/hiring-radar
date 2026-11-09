@@ -1,0 +1,112 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"conversational-ai\", \"requirement\": \"required\", \"raw_text\": \"Conversational AI\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"Prompt Engineering\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"mit LLMs\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"javascript\", \"requirement\": \"required\", \"raw_text\": \"JavaScript\"},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"TypeScript und REST APIs/JSON\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"REST APIs/JSON\"},\n    {\"skill_id\": \"n8n\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit n8n (Must-have)\"},\n    {\"skill_id\": \"workflow-automation\", \"requirement\": \"required\", \"raw_text\": \"Workflow-Automatisierung\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Microsoft Azure\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud-nativen Architekturen\", \"uncertain\": true},\n    {\"skill_id\": \"speech-recognition\", \"requirement\": \"nice_to_have\", \"raw_text\": \"idealerweise Erfahrung mit TTS/STT\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Voicebots\", \"raw_text\": \"Voicebots\"},\n    {\"label\": \"JSON\", \"raw_text\": \"REST APIs/JSON\"},\n    {\"label\": \"Text-to-Speech (TTS)\", \"raw_text\": \"idealerweise Erfahrung mit TTS/STT\"},\n    {\"label\": \"Voice AI platforms\", \"raw_text\": \"Voice-AI-Plattformen\"},\n    {\"label\": \"Famulor\", \"raw_text\": \"Famulor\"},\n    {\"label\": \"Amazon Lex\", \"raw_text\": \"Amazon Lex\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI Voicebot & Automation Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"sehr gute Deutschkenntnisse\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The requirements section 'Be our forward thinker' has no optional marker, so items default to required.\\nPython, JavaScript and TypeScript are offered as alternatives ('oder'). Each is labeled required as a named skill.\\nThe TypeScript raw_text is extended to 'TypeScript und REST APIs/JSON' so it is not a substring of the TypeScript-free JavaScript quote. It is still verbatim.\\nTTS/STT carries the inline marker 'idealerweise' (ideally), so it is nice_to_have. STT maps to speech-recognition; TTS has no taxonomy entry.\\n'cloud-nativen Architekturen' is mapped to cloud on a literal reading of 'cloud' architectures. This mapping is uncertain.\\nMonitoring, Webhooks and Intent Recognition appear only in the responsibilities, so they are not labeled.\\nn8n is also mentioned in the responsibilities. The requirement mention is quoted because it is the one that determines the label.\\nSeniority is stated in the title ('Senior'). 'umfassende Berufserfahrung' would not be a level signal on its own.\\nNo degree is mentioned anywhere in the posting.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "conversational-ai",
+        "requirement": "required",
+        "raw_text": "Conversational AI"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "mit LLMs"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript und REST APIs/JSON"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST APIs/JSON"
+      },
+      {
+        "skill_id": "n8n",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit n8n (Must-have)"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "Workflow-Automatisierung"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud-nativen Architekturen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "speech-recognition",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise Erfahrung mit TTS/STT"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Voicebots",
+        "raw_text": "Voicebots"
+      },
+      {
+        "label": "JSON",
+        "raw_text": "REST APIs/JSON"
+      },
+      {
+        "label": "Text-to-Speech (TTS)",
+        "raw_text": "idealerweise Erfahrung mit TTS/STT"
+      },
+      {
+        "label": "Voice AI platforms",
+        "raw_text": "Voice-AI-Plattformen"
+      },
+      {
+        "label": "Famulor",
+        "raw_text": "Famulor"
+      },
+      {
+        "label": "Amazon Lex",
+        "raw_text": "Amazon Lex"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI Voicebot & Automation Engineer",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "sehr gute Deutschkenntnisse",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The requirements section 'Be our forward thinker' has no optional marker, so items default to required.\nPython, JavaScript and TypeScript are offered as alternatives ('oder'). Each is labeled required as a named skill.\nThe TypeScript raw_text is extended to 'TypeScript und REST APIs/JSON' so it is not a substring of the TypeScript-free JavaScript quote. It is still verbatim.\nTTS/STT carries the inline marker 'idealerweise' (ideally), so it is nice_to_have. STT maps to speech-recognition; TTS has no taxonomy entry.\n'cloud-nativen Architekturen' is mapped to cloud on a literal reading of 'cloud' architectures. This mapping is uncertain.\nMonitoring, Webhooks and Intent Recognition appear only in the responsibilities, so they are not labeled.\nn8n is also mentioned in the responsibilities. The requirement mention is quoted because it is the one that determines the label.\nSeniority is stated in the title ('Senior'). 'umfassende Berufserfahrung' would not be a level signal on its own.\nNo degree is mentioned anywhere in the posting."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "6b1cfe46c225cc0b3f7269eabf2044154669b60886e2cdf3a41cdb40bcd94e1f",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

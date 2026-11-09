@@ -17,8 +17,8 @@ from app.geo import REMOTE_EU, active_place, is_remote_eu, place_of
     "Europe (Remote)",
     "Fully remote / Anywhere",
     "Worldwide",
-    "Hamburg, Germany (remote)",          # JOIN
-    "Munich (remote, Germany)",           # arbeitnow, remote: true
+    "Leipzig, Germany (remote)",          # JOIN; a German city we do not track
+    "Stuttgart (remote, Germany)",        # arbeitnow, remote: true; a city we do not track
     "Remote (CET ± 2 hours)",
     "Remote - US; Remote - Germany",      # Greenhouse multi-location
     "Remote (US or Europe)",
@@ -34,7 +34,7 @@ def test_eu_remote_locations_count(loc):
     "Remote, Spain",                      # one other country: residence/entity there
     "Remote - UK",
     "Remote (LATAM)",
-    "Munich, Germany",                    # not remote
+    "Leipzig, Germany",                   # not remote, and a city we do not track
     "Hybrid",
     None,
     "",
@@ -46,6 +46,11 @@ def test_other_locations_do_not(loc):
 def test_a_city_wins_over_remote():
     assert place_of("Berlin or Remote (EU)") == "Berlin"
     assert active_place("San Francisco, CA (Remote)") == "San Francisco"   # active since HIR-12
+    # Tracking a city moves its remote postings out of Remote (EU) and into the city, the
+    # same way Berlin's always have been (HIR-165 launched these three).
+    assert active_place("Hamburg, Germany (remote)") == "Hamburg"
+    assert active_place("Munich (remote, Germany)") == "Munich"
+    assert active_place("München, Germany") == "Munich"
 
 
 @pytest.mark.parametrize("loc", [
@@ -157,7 +162,7 @@ def test_empty_location_falls_back_to_title_then_strong_description_phrases():
     # Plain "remote" in a description is not enough: hybrid postings mention remote days.
     assert place_of(None, title="AI Engineer", text="Two remote days a week.") is None
     # A location that is present is not overridden by the description.
-    assert place_of("Munich, Germany", text="We are a fully remote team.") is None
+    assert place_of("Leipzig, Germany", text="We are a fully remote team.") is None
 
 
 # Synthetic page built from the text of https://kake.co/jobs/senior-ai-llm-engineer-python-56a4536c4a20

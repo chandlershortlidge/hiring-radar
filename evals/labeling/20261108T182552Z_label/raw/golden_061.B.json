@@ -1,0 +1,98 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Public Cloud\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vorzugsweise GCP\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"IaC\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Generative AI-Anwendungen\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Bereitstellung und Integration von Generative AI-Anwendungen\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD-Pipeline\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Versionskontrollsystemen\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"GitLab\",\n      \"raw_text\": \"GitLab\"\n    },\n    {\n      \"label\": \"Bitbucket\",\n      \"raw_text\": \"Bitbucket\"\n    },\n    {\n      \"label\": \"Agile Methoden\",\n      \"raw_text\": \"agilen Methoden\"\n    },\n    {\n      \"label\": \"Sicherheitskonzepte\",\n      \"raw_text\": \"Sicherheitskonzepten\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"erste Erfahrungen\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"verhandlungssicher in Deutsch\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz\",\n  \"notes\": \"Die Anforderungen stehen unter „Du“; kein Abschnitt ist insgesamt optional. „vorzugsweise“ macht nur GCP optional.\\nTechnologien, die ausschließlich im Aufgabengebiet stehen, sind ausgeschlossen; dieses ist keine eigenständige Tech-Stack-Sektion.\\nAI deployment ist zur Prüfung markiert: Gefordert ist die Bereitstellung von Generative-AI-Anwendungen, nicht ausdrücklich von Modellen.\\nVersionskontrolle und GitHub werden unter git zusammengeführt; GitLab bedeutet nicht automatisch GitLab CI.\\nSicherheitskonzepte sind durch „idealerweise“ optional, haben aber keinen eindeutig passenden Taxonomieeintrag. Branchenstandards und regulatorische Compliance werden als Domänenwissen ausgeschlossen.\\nCloud-Zertifizierungen sind Qualifikationsnachweise, keine eigenständigen technischen Skills.\\nSeniority folgt wörtlich „erste Erfahrungen“; „einschlägige Erfahrung“ und „erfahrene“ liefern nach dem Leitfaden kein eindeutiges höheres Level.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Public Cloud"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "vorzugsweise GCP"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "IaC"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generative AI-Anwendungen"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "Bereitstellung und Integration von Generative AI-Anwendungen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Pipeline"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Versionskontrollsystemen"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "GitLab",
+        "raw_text": "GitLab"
+      },
+      {
+        "label": "Bitbucket",
+        "raw_text": "Bitbucket"
+      },
+      {
+        "label": "Agile Methoden",
+        "raw_text": "agilen Methoden"
+      },
+      {
+        "label": "Sicherheitskonzepte",
+        "raw_text": "Sicherheitskonzepten"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "erste Erfahrungen",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "verhandlungssicher in Deutsch",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz",
+    "notes": "Die Anforderungen stehen unter „Du“; kein Abschnitt ist insgesamt optional. „vorzugsweise“ macht nur GCP optional.\nTechnologien, die ausschließlich im Aufgabengebiet stehen, sind ausgeschlossen; dieses ist keine eigenständige Tech-Stack-Sektion.\nAI deployment ist zur Prüfung markiert: Gefordert ist die Bereitstellung von Generative-AI-Anwendungen, nicht ausdrücklich von Modellen.\nVersionskontrolle und GitHub werden unter git zusammengeführt; GitLab bedeutet nicht automatisch GitLab CI.\nSicherheitskonzepte sind durch „idealerweise“ optional, haben aber keinen eindeutig passenden Taxonomieeintrag. Branchenstandards und regulatorische Compliance werden als Domänenwissen ausgeschlossen.\nCloud-Zertifizierungen sind Qualifikationsnachweise, keine eigenständigen technischen Skills.\nSeniority folgt wörtlich „erste Erfahrungen“; „einschlägige Erfahrung“ und „erfahrene“ liefern nach dem Leitfaden kein eindeutiges höheres Level."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "8a40ba3b7eb5a4e7816d296879815adc0e481dcc22fbee2f5424e8fe664709eb",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

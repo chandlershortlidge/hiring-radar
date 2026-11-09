@@ -1,0 +1,154 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"professionellen Softwareentwicklung\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud-Architekturen\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"automatisierte Tests\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM-basierte Agenten\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"Agenten-Frameworks\"},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"Tool Calling\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"Retrieval\", \"uncertain\": true},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"mehrstufigen Workflows\", \"uncertain\": true},\n    {\"skill_id\": \"data-modeling\", \"requirement\": \"required\", \"raw_text\": \"Modellierung komplexer Geschäftsdaten\"},\n    {\"skill_id\": \"data-privacy-and-security\", \"requirement\": \"required\", \"raw_text\": \"Datenschutz\", \"uncertain\": true},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"AI-Coding-Tools\"},\n    {\"skill_id\": \"claude-code\", \"requirement\": \"required\", \"raw_text\": \"Claude Code\"},\n    {\"skill_id\": \"cursor\", \"requirement\": \"required\", \"raw_text\": \"Cursor\"},\n    {\"skill_id\": \"codex\", \"requirement\": \"required\", \"raw_text\": \"Codex\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD-Prozesse\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"GitHub\"},\n    {\"skill_id\": \"mcp\", \"requirement\": \"required\", \"raw_text\": \"MCP, A2A oder LangGraph\"},\n    {\"skill_id\": \"langgraph\", \"requirement\": \"required\", \"raw_text\": \"LangGraph\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"Monitoring\"},\n    {\"skill_id\": \"forecasting\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Forecasting\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Playwright\", \"raw_text\": \"Playwright\"},\n    {\"label\": \"A2A (Agent2Agent protocol)\", \"raw_text\": \"A2A\"},\n    {\"label\": \"XRechnung\", \"raw_text\": \"XRechnung, ZUGFeRD oder Forecasting\"},\n    {\"label\": \"ZUGFeRD\", \"raw_text\": \"ZUGFeRD oder Forecasting\"},\n    {\"label\": \"Accounting/ERP software\", \"raw_text\": \"Accounting- oder ERP-Software\"},\n    {\"label\": \"Secure AI applications\", \"raw_text\": \"sichere KI-Anwendungen\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"mindestens 4 Jahre Erfahrung\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Deutschkenntnisse auf C2-Niveau\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Sections: Aufgaben = responsibilities (MCP/APIs/evaluation there are not labeled from it); Profil = requirements (required); 'Zusätzlich hilfreich:' = optional heading, so nice_to_have.\\nThe 'idealerweise' (ideally) marker softens the Cloud and Testautomatisierung mentions in the first Profil bullet. Both collapse to required: cloud via 'Verständnis für Cloud-Architekturen' and testing via 'Du beherrschst automatisierte Tests'.\\nThe mcp raw_text is extended to 'MCP, A2A oder LangGraph' because 'MCP' alone also appears in the Aufgaben section ('MCP-Schnittstellen'). The longer quote identifies the Profil mention that determines the label, per the guide's rule on bare names appearing in several mentions.\\nXRechnung and ZUGFeRD also appear in Aufgaben, so their raw_text is extended to locate the 'Zusätzlich hilfreich' mentions. Both are invoicing standards, possibly domain knowledge rather than skills, and are left unmapped.\\n'Retrieval' is mapped to rag and 'mehrstufigen Workflows' to llm-orchestration (multi-step orchestration). Both are judgment mappings and flagged uncertain.\\n'Datenschutz' (understanding data-protection requirements) is mapped to data-privacy-and-security. It could be read as domain knowledge, so it is flagged uncertain.\\n'GitHub' is mapped to git via alias. GitHub Actions is not named, so it is not added.\\n'apis' appears only in Aufgaben ('Du gestaltest APIs') and is not labeled.\\nHOAI and Bürocontrolling are domain knowledge, not skills, and are omitted.\\n'sichere KI-Anwendungen' has no clean taxonomy fit; llm-guardrails is not named, so it is left unmapped.\\nThe English C1 requirement is ignored per the guide (only German counts).\\nNo degree is mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "professionellen Softwareentwicklung"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Architekturen"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automatisierte Tests"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-basierte Agenten"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Agenten-Frameworks"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "Tool Calling"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "Retrieval",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "mehrstufigen Workflows",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "Modellierung komplexer Geschäftsdaten"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "Datenschutz",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI-Coding-Tools"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code"
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor"
+      },
+      {
+        "skill_id": "codex",
+        "requirement": "required",
+        "raw_text": "Codex"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Prozesse"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "GitHub"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "MCP, A2A oder LangGraph"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring"
+      },
+      {
+        "skill_id": "forecasting",
+        "requirement": "nice_to_have",
+        "raw_text": "Forecasting"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Playwright",
+        "raw_text": "Playwright"
+      },
+      {
+        "label": "A2A (Agent2Agent protocol)",
+        "raw_text": "A2A"
+      },
+      {
+        "label": "XRechnung",
+        "raw_text": "XRechnung, ZUGFeRD oder Forecasting"
+      },
+      {
+        "label": "ZUGFeRD",
+        "raw_text": "ZUGFeRD oder Forecasting"
+      },
+      {
+        "label": "Accounting/ERP software",
+        "raw_text": "Accounting- oder ERP-Software"
+      },
+      {
+        "label": "Secure AI applications",
+        "raw_text": "sichere KI-Anwendungen"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "mindestens 4 Jahre Erfahrung",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Deutschkenntnisse auf C2-Niveau",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Sections: Aufgaben = responsibilities (MCP/APIs/evaluation there are not labeled from it); Profil = requirements (required); 'Zusätzlich hilfreich:' = optional heading, so nice_to_have.\nThe 'idealerweise' (ideally) marker softens the Cloud and Testautomatisierung mentions in the first Profil bullet. Both collapse to required: cloud via 'Verständnis für Cloud-Architekturen' and testing via 'Du beherrschst automatisierte Tests'.\nThe mcp raw_text is extended to 'MCP, A2A oder LangGraph' because 'MCP' alone also appears in the Aufgaben section ('MCP-Schnittstellen'). The longer quote identifies the Profil mention that determines the label, per the guide's rule on bare names appearing in several mentions.\nXRechnung and ZUGFeRD also appear in Aufgaben, so their raw_text is extended to locate the 'Zusätzlich hilfreich' mentions. Both are invoicing standards, possibly domain knowledge rather than skills, and are left unmapped.\n'Retrieval' is mapped to rag and 'mehrstufigen Workflows' to llm-orchestration (multi-step orchestration). Both are judgment mappings and flagged uncertain.\n'Datenschutz' (understanding data-protection requirements) is mapped to data-privacy-and-security. It could be read as domain knowledge, so it is flagged uncertain.\n'GitHub' is mapped to git via alias. GitHub Actions is not named, so it is not added.\n'apis' appears only in Aufgaben ('Du gestaltest APIs') and is not labeled.\nHOAI and Bürocontrolling are domain knowledge, not skills, and are omitted.\n'sichere KI-Anwendungen' has no clean taxonomy fit; llm-guardrails is not named, so it is left unmapped.\nThe English C1 requirement is ignored per the guide (only German counts).\nNo degree is mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "3c77b64d8b822d4754ae134f5dc577149d1620445b643bb4c9e5bb1751e8228b",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

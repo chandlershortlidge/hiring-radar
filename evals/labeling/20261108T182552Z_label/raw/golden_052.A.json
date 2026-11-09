@@ -1,0 +1,88 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"KI-Lösungen (Agenten\"},\n    {\"skill_id\": \"workflow-automation\", \"requirement\": \"required\", \"raw_text\": \"Workflows, API-Integrationen\", \"uncertain\": true},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"API-Integrationen\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"Entwicklung, Umsetzung und im Betrieb von KI-Lösungen\", \"uncertain\": true},\n    {\"skill_id\": \"n8n\", \"requirement\": \"required\", \"raw_text\": \"n8n\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"Prompt Engineering\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG-Architekturen\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"Agenten-Orchestrierung\"},\n    {\"skill_id\": \"data-privacy-and-security\", \"requirement\": \"required\", \"raw_text\": \"Datenschutzkonzepten und Informationssicherheit\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Low-Code/No-Code platforms\", \"raw_text\": \"Low-Code/No-Code-Plattformen\"},\n    {\"label\": \"Microsoft Copilot Studio\", \"raw_text\": \"Copilot Studio\"},\n    {\"label\": \"Microsoft Power Automate\", \"raw_text\": \"Power Automate\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": \"required\", \"german_basis\": \"stated\", \"german_signal\": \"Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift\",\n  \"degree\": \"bachelor\", \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false, \"degree_signal\": \"Abgeschlossener technischer Bildungsweg\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"Section 'Das bringen Sie mit' is the requirements list, so unmarked items default to required. No heading in the posting marks a section optional.\\nThe degree fields (Informatik, Data Science, AI, Machine Learning, Deep Learning) are fields of study for the education requirement, not skills asked for, so they are not labeled.\\n'Abgeschlossener technischer Bildungsweg' could include vocational training. Under the guide's 'completed studies → bachelor' rule I labeled it bachelor and flagged it uncertain.\\n'vergleichbaren Fachrichtung' widens the field, not the requirement, so degree_or_equivalent is false.\\n'Workflows' in 'KI-Lösungen (Agenten, Workflows, ...)' is mapped to workflow-automation as AI-supported workflows. This is uncertain.\\nai-ml is uncertain: 'Entwicklung ... von KI-Lösungen' is generic applied AI, and labeling it may be considered too broad.\\n'Copilot Studio' is Microsoft Copilot Studio, not GitHub Copilot, so it goes to unmapped. Power Automate and low-code/no-code platforms have no taxonomy entry and also go to unmapped.\\n'Systemprompts' is covered by prompt-engineering, and 'Agenten-Orchestrierung' maps to llm-orchestration via its 'agent orchestration' alias.\\n'idealerweise' attaches only to 'in regulierten Umfeldern', so data privacy/infosec stays required. Its examples (DSGVO-konforme Systemgestaltung, Security Reviews) are domain/practice items with no clear taxonomy match and are not labeled separately.\\nMedTech and regulated industries are domain knowledge, not skills.\\nERP, SharePoint and the other technologies listed in responsibilities only are not labeled.\\nSeniority: 'Berufserfahrung' gives no years and the posting has no level words, so it is null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "KI-Lösungen (Agenten"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "Workflows, API-Integrationen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "API-Integrationen"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Entwicklung, Umsetzung und im Betrieb von KI-Lösungen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "n8n",
+        "requirement": "required",
+        "raw_text": "n8n"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG-Architekturen"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "Agenten-Orchestrierung"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "Datenschutzkonzepten und Informationssicherheit"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Low-Code/No-Code platforms",
+        "raw_text": "Low-Code/No-Code-Plattformen"
+      },
+      {
+        "label": "Microsoft Copilot Studio",
+        "raw_text": "Copilot Studio"
+      },
+      {
+        "label": "Microsoft Power Automate",
+        "raw_text": "Power Automate"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Abgeschlossener technischer Bildungsweg",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Section 'Das bringen Sie mit' is the requirements list, so unmarked items default to required. No heading in the posting marks a section optional.\nThe degree fields (Informatik, Data Science, AI, Machine Learning, Deep Learning) are fields of study for the education requirement, not skills asked for, so they are not labeled.\n'Abgeschlossener technischer Bildungsweg' could include vocational training. Under the guide's 'completed studies → bachelor' rule I labeled it bachelor and flagged it uncertain.\n'vergleichbaren Fachrichtung' widens the field, not the requirement, so degree_or_equivalent is false.\n'Workflows' in 'KI-Lösungen (Agenten, Workflows, ...)' is mapped to workflow-automation as AI-supported workflows. This is uncertain.\nai-ml is uncertain: 'Entwicklung ... von KI-Lösungen' is generic applied AI, and labeling it may be considered too broad.\n'Copilot Studio' is Microsoft Copilot Studio, not GitHub Copilot, so it goes to unmapped. Power Automate and low-code/no-code platforms have no taxonomy entry and also go to unmapped.\n'Systemprompts' is covered by prompt-engineering, and 'Agenten-Orchestrierung' maps to llm-orchestration via its 'agent orchestration' alias.\n'idealerweise' attaches only to 'in regulierten Umfeldern', so data privacy/infosec stays required. Its examples (DSGVO-konforme Systemgestaltung, Security Reviews) are domain/practice items with no clear taxonomy match and are not labeled separately.\nMedTech and regulated industries are domain knowledge, not skills.\nERP, SharePoint and the other technologies listed in responsibilities only are not labeled.\nSeniority: 'Berufserfahrung' gives no years and the posting has no level words, so it is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "00748233d245a4d3761e81e14223fc1a113ad6d45ab1632943a6c27fcdca414e",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

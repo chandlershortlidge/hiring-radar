@@ -1,0 +1,205 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Mehrjährige Erfahrung in Machine Learning\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Deep Learning\"\n    },\n    {\n      \"skill_id\": \"computer-vision\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Fundierte Kenntnisse in Computer Vision\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Know how der Generative AI\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Embeddings\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Fine-Tuning\"\n    },\n    {\n      \"skill_id\": \"quantization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Quantization\"\n    },\n    {\n      \"skill_id\": \"onnx\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ONNX\"\n    },\n    {\n      \"skill_id\": \"cuda\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CUDA\"\n    },\n    {\n      \"skill_id\": \"tensorrt\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorRT\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Deployment\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"mlflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLflow\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Software-Engineering\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Git\"\n    },\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Linux\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Testing\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Object detection\",\n      \"raw_text\": \"Object Detection\"\n    },\n    {\n      \"label\": \"Segmentation\",\n      \"raw_text\": \"Segmentation\"\n    },\n    {\n      \"label\": \"Tracking\",\n      \"raw_text\": \"Tracking\"\n    },\n    {\n      \"label\": \"Vision transformers\",\n      \"raw_text\": \"Vision Transformer\"\n    },\n    {\n      \"label\": \"Multimodal models\",\n      \"raw_text\": \"multimodale Modelle\"\n    },\n    {\n      \"label\": \"Vision-language models\",\n      \"raw_text\": \"Vision-Language Models\"\n    },\n    {\n      \"label\": \"Edge AI\",\n      \"raw_text\": \"Edge AI\"\n    },\n    {\n      \"label\": \"Model optimization\",\n      \"raw_text\": \"Model Optimization\"\n    },\n    {\n      \"label\": \"Model pruning\",\n      \"raw_text\": \"Pruning\"\n    },\n    {\n      \"label\": \"On-premise and hybrid infrastructure\",\n      \"raw_text\": \"On-Premise- und hybrides Infrastrukturen\"\n    },\n    {\n      \"label\": \"Scientific research practice\",\n      \"raw_text\": \"Idealerweise Erfahrung im wissenschaftlichen Arbeiten\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Fachliche Begleitung und Mentoring innerhalb des Teams\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute Deutsch- und Englischkenntnisse\",\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Erfolgreich abgeschlossenes Studium der Informatik, Künstlichen Intelligenz, Data Science, Robotik, Mathematik, Physik oder einer vergleichbaren Fachrichtung, Promotion erwünscht\",\n  \"notes\": \"IHR PROFIL is the requirements section; no section heading marks its contents optional. Technologies appearing only in the introductory responsibilities and IHRE AUFGABEN are excluded.\\nThe inline idealerweise in the ML experience bullet qualifies productive-project experience, not the requirement for Machine Learning and Deep Learning.\\nGenerative AI and LLMs collapse to llms; Computer Vision and OpenCV collapse to computer-vision under the supplied taxonomy.\\nModel Optimization is left unmapped rather than assumed to mean inference optimization; on-premise/hybrid infrastructure is not assumed to mean AI Infrastructure or Cloud.\\nScientific research practice is treated literally as an optional technical practice; publications, patents and open-source contributions are evidence of that practice, not separate technology skills.\\nThe degree label records the highest named level, the optional doctorate (Promotion erwünscht); completed university studies are separately mandatory. A comparable field does not permit experience in place of a degree.\\nSeniority is inferred from the explicit mentoring duty, not from expert wording or the nonspecific Mehrjährige Erfahrung.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Mehrjährige Erfahrung in Machine Learning"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "Deep Learning"
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "Fundierte Kenntnisse in Computer Vision"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Know how der Generative AI"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "Embeddings"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "Fine-Tuning"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "required",
+        "raw_text": "Quantization"
+      },
+      {
+        "skill_id": "onnx",
+        "requirement": "required",
+        "raw_text": "ONNX"
+      },
+      {
+        "skill_id": "cuda",
+        "requirement": "required",
+        "raw_text": "CUDA"
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "required",
+        "raw_text": "TensorRT"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "Deployment"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "required",
+        "raw_text": "MLflow"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Software-Engineering"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "Testing"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Object detection",
+        "raw_text": "Object Detection"
+      },
+      {
+        "label": "Segmentation",
+        "raw_text": "Segmentation"
+      },
+      {
+        "label": "Tracking",
+        "raw_text": "Tracking"
+      },
+      {
+        "label": "Vision transformers",
+        "raw_text": "Vision Transformer"
+      },
+      {
+        "label": "Multimodal models",
+        "raw_text": "multimodale Modelle"
+      },
+      {
+        "label": "Vision-language models",
+        "raw_text": "Vision-Language Models"
+      },
+      {
+        "label": "Edge AI",
+        "raw_text": "Edge AI"
+      },
+      {
+        "label": "Model optimization",
+        "raw_text": "Model Optimization"
+      },
+      {
+        "label": "Model pruning",
+        "raw_text": "Pruning"
+      },
+      {
+        "label": "On-premise and hybrid infrastructure",
+        "raw_text": "On-Premise- und hybrides Infrastrukturen"
+      },
+      {
+        "label": "Scientific research practice",
+        "raw_text": "Idealerweise Erfahrung im wissenschaftlichen Arbeiten"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Fachliche Begleitung und Mentoring innerhalb des Teams",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Deutsch- und Englischkenntnisse",
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Erfolgreich abgeschlossenes Studium der Informatik, Künstlichen Intelligenz, Data Science, Robotik, Mathematik, Physik oder einer vergleichbaren Fachrichtung, Promotion erwünscht",
+    "notes": "IHR PROFIL is the requirements section; no section heading marks its contents optional. Technologies appearing only in the introductory responsibilities and IHRE AUFGABEN are excluded.\nThe inline idealerweise in the ML experience bullet qualifies productive-project experience, not the requirement for Machine Learning and Deep Learning.\nGenerative AI and LLMs collapse to llms; Computer Vision and OpenCV collapse to computer-vision under the supplied taxonomy.\nModel Optimization is left unmapped rather than assumed to mean inference optimization; on-premise/hybrid infrastructure is not assumed to mean AI Infrastructure or Cloud.\nScientific research practice is treated literally as an optional technical practice; publications, patents and open-source contributions are evidence of that practice, not separate technology skills.\nThe degree label records the highest named level, the optional doctorate (Promotion erwünscht); completed university studies are separately mandatory. A comparable field does not permit experience in place of a degree.\nSeniority is inferred from the explicit mentoring duty, not from expert wording or the nonspecific Mehrjährige Erfahrung."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "faba14e5b691e7745635aaf4af635b3aebe0552aea9904efe0dfa8775ceaa89f",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

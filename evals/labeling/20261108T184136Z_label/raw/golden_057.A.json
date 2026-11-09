@@ -1,0 +1,98 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"devsecops\", \"requirement\": \"required\", \"raw_text\": \"Fundierte Erfahrung in DevSecOps\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"DevSecOps, CI/CD\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"CI/CD, Infrastructure as Code und Container\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"Infrastructure as Code und Container\"},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"in Softwareentwicklung\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"oder Testautomatisierung für verteilte Softwarelösungen\"},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"required\", \"raw_text\": \"verteilte Softwarelösungen\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"on-premise und in der Cloud\"},\n    {\"skill_id\": \"csharp\", \"requirement\": \"required\", \"raw_text\": \"C#/.NET\"},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"PowerShell oder TypeScript\"},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"Ausgeprägtes Interesse an AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering\", \"uncertain\": true},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"Interesse an AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \".NET\", \"raw_text\": \"C#/.NET\"},\n    {\"label\": \"PowerShell\", \"raw_text\": \"PowerShell\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": \"required\", \"german_basis\": \"stated\", \"german_signal\": \"Sehr gute Sprachkenntnisse in Deutsch und Englisch in Wort und Schrift\",\n  \"degree\": \"bachelor\", \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true, \"degree_signal\": \"Abgeschlossenes Studium der Informatik, Softwaretechnik oder eine vergleichbare Qualifikation mit einschlägiger Berufserfahrung\",\n  \"uncertain\": [],\n  \"notes\": \"The 'Das bringst Du mit' section is a requirements section, so items under it default to required.\\nThe AI-assistant / agentic-workflow bullet asks for interest and also experience ('sowie Erfahrung mit deren ... Einsatz'). Experience is asked for, so the appetite rule does not soften it: required.\\nAI-Assistenten is mapped to ai-developer-tooling because the context is use in software engineering. agentische Workflows is mapped to agents. Both mappings are uncertain.\\n'Software Engineering' in the same bullet collapses into software-engineering, which is already required via 'Softwareentwicklung'.\\nThe distributed-systems label rests on 'verteilte Softwarelösungen'. That phrase could be read as describing the domain of experience rather than a skill asked for, so it is flagged uncertain.\\n'Container' maps to containerization through its alias.\\nObservability appears only in the responsibilities, so it is not labeled.\\nSeniority is null: 'Fundierte Erfahrung' and 'einschlägiger Berufserfahrung' are not level signals, no years are given, and the title has no level.\\nDegree: 'Abgeschlossenes Studium' names no level, so it is bachelor. 'vergleichbare Qualifikation mit einschlägiger Berufserfahrung' accepts experience in place of the degree, so degree_or_equivalent is true.\\nThe benefits and company sections contain no skills.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "devsecops",
+        "requirement": "required",
+        "raw_text": "Fundierte Erfahrung in DevSecOps"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "DevSecOps, CI/CD"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "CI/CD, Infrastructure as Code und Container"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "Infrastructure as Code und Container"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "in Softwareentwicklung"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "oder Testautomatisierung für verteilte Softwarelösungen"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "verteilte Softwarelösungen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "on-premise und in der Cloud"
+      },
+      {
+        "skill_id": "csharp",
+        "requirement": "required",
+        "raw_text": "C#/.NET"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "PowerShell oder TypeScript"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Ausgeprägtes Interesse an AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Interesse an AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": ".NET",
+        "raw_text": "C#/.NET"
+      },
+      {
+        "label": "PowerShell",
+        "raw_text": "PowerShell"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Sprachkenntnisse in Deutsch und Englisch in Wort und Schrift",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossenes Studium der Informatik, Softwaretechnik oder eine vergleichbare Qualifikation mit einschlägiger Berufserfahrung",
+    "uncertain": [],
+    "notes": "The 'Das bringst Du mit' section is a requirements section, so items under it default to required.\nThe AI-assistant / agentic-workflow bullet asks for interest and also experience ('sowie Erfahrung mit deren ... Einsatz'). Experience is asked for, so the appetite rule does not soften it: required.\nAI-Assistenten is mapped to ai-developer-tooling because the context is use in software engineering. agentische Workflows is mapped to agents. Both mappings are uncertain.\n'Software Engineering' in the same bullet collapses into software-engineering, which is already required via 'Softwareentwicklung'.\nThe distributed-systems label rests on 'verteilte Softwarelösungen'. That phrase could be read as describing the domain of experience rather than a skill asked for, so it is flagged uncertain.\n'Container' maps to containerization through its alias.\nObservability appears only in the responsibilities, so it is not labeled.\nSeniority is null: 'Fundierte Erfahrung' and 'einschlägiger Berufserfahrung' are not level signals, no years are given, and the title has no level.\nDegree: 'Abgeschlossenes Studium' names no level, so it is bachelor. 'vergleichbare Qualifikation mit einschlägiger Berufserfahrung' accepts experience in place of the degree, so degree_or_equivalent is true.\nThe benefits and company sections contain no skills."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "ebe55f43cfd6a7b581b801de8e7cf927ebf34a595678b56e8e8ed3e3be62135a",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

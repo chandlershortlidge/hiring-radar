@@ -1,0 +1,134 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung in der Softwareentwicklung\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Fundierte Python-Kenntnisse\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"automatisierte Tests\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Praxis mit großen Sprachmodellen\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"Prompt Engineering\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"Retrieval-Augmented Generation\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"Anbindung von Modellen über APIs\", \"uncertain\": true},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"mit LangChain oder einer vergleichbaren Bibliothek\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"Sicherer Umgang mit SQL\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"mindestens einer Cloud-Plattform\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Microsoft Azure\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"Google Cloud\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Agentic AI\", \"uncertain\": true},\n    {\"skill_id\": \"devsecops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"DevSecOps\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Kubernetes\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Terraform\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Object-oriented programming\", \"raw_text\": \"objektorientierter Programmierung\"},\n    {\"label\": \"Data structures and algorithms\", \"raw_text\": \"Datenstrukturen, Algorithmen\"},\n    {\"label\": \"Databases (general)\", \"raw_text\": \"unterschiedlichen Datenbanken\"},\n    {\"label\": \"Document processing\", \"raw_text\": \"Dokumentenverarbeitung\"},\n    {\"label\": \"Azure Document Intelligence\", \"raw_text\": \"Azure Document Intelligence\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Mindestens drei Jahre Erfahrung in der Softwareentwicklung mit Python\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gutes Deutsch (mind. C1) in Wort und Schrift\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"ein Studium der Data Science, Informatik, Mathematik oder eine vergleichbare Qualifikation mit entsprechender Berufserfahrung\",\n  \"uncertain\": [],\n  \"notes\": \"Embeddings, Vektordatenbanken, CI/CD, Container and Monitoring appear only in 'Was Sie bewegen' (responsibilities), so they are not labeled.\\n'Ein Plus: Idealerweise' marks the whole final paragraph optional, so everything in it is nice_to_have. Gesundheitswesen is domain knowledge and is skipped.\\nAzure Document Intelligence goes to unmapped. It does not add the parent azure label; azure is required anyway from the cloud bullet.\\n'Anbindung von Modellen über APIs' is mapped to apis. It could arguably fold into llms (alias 'llm apis') instead, so it is flagged.\\n'Agentic AI' is mapped to agents and flagged; the closest aliases are 'agentic ai frameworks' and 'ai agents'.\\n'KI-Projekten, die produktiv gegangen sind' is read as experience/domain context rather than a named skill, so ai-ml and mlops are not labeled.\\nThe software-engineering raw_text is trimmed to 'Erfahrung in der Softwareentwicklung' so it does not also carry the python mention.\\nLangChain stays required even though 'oder einer vergleichbaren Bibliothek' allows an alternative: it is a named example in a requirements bullet with no optional marker.\\n'Google Cloud' is mapped to gcp (alias 'google cloud platform').\\nThe degree accepts 'vergleichbare Qualifikation mit entsprechender Berufserfahrung', which counts as an equivalent, so degree_or_equivalent is true.\\nSeniority is inferred from 'Mindestens drei Jahre', which falls in the 3–5 year band, giving mid.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Erfahrung in der Softwareentwicklung"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Fundierte Python-Kenntnisse"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automatisierte Tests"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Praxis mit großen Sprachmodellen"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "Retrieval-Augmented Generation"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Anbindung von Modellen über APIs",
+        "uncertain": true
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "mit LangChain oder einer vergleichbaren Bibliothek"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "Sicherer Umgang mit SQL"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "mindestens einer Cloud-Plattform"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google Cloud"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "Agentic AI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "devsecops",
+        "requirement": "nice_to_have",
+        "raw_text": "DevSecOps"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "nice_to_have",
+        "raw_text": "Terraform"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Object-oriented programming",
+        "raw_text": "objektorientierter Programmierung"
+      },
+      {
+        "label": "Data structures and algorithms",
+        "raw_text": "Datenstrukturen, Algorithmen"
+      },
+      {
+        "label": "Databases (general)",
+        "raw_text": "unterschiedlichen Datenbanken"
+      },
+      {
+        "label": "Document processing",
+        "raw_text": "Dokumentenverarbeitung"
+      },
+      {
+        "label": "Azure Document Intelligence",
+        "raw_text": "Azure Document Intelligence"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Mindestens drei Jahre Erfahrung in der Softwareentwicklung mit Python",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gutes Deutsch (mind. C1) in Wort und Schrift",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "ein Studium der Data Science, Informatik, Mathematik oder eine vergleichbare Qualifikation mit entsprechender Berufserfahrung",
+    "uncertain": [],
+    "notes": "Embeddings, Vektordatenbanken, CI/CD, Container and Monitoring appear only in 'Was Sie bewegen' (responsibilities), so they are not labeled.\n'Ein Plus: Idealerweise' marks the whole final paragraph optional, so everything in it is nice_to_have. Gesundheitswesen is domain knowledge and is skipped.\nAzure Document Intelligence goes to unmapped. It does not add the parent azure label; azure is required anyway from the cloud bullet.\n'Anbindung von Modellen über APIs' is mapped to apis. It could arguably fold into llms (alias 'llm apis') instead, so it is flagged.\n'Agentic AI' is mapped to agents and flagged; the closest aliases are 'agentic ai frameworks' and 'ai agents'.\n'KI-Projekten, die produktiv gegangen sind' is read as experience/domain context rather than a named skill, so ai-ml and mlops are not labeled.\nThe software-engineering raw_text is trimmed to 'Erfahrung in der Softwareentwicklung' so it does not also carry the python mention.\nLangChain stays required even though 'oder einer vergleichbaren Bibliothek' allows an alternative: it is a named example in a requirements bullet with no optional marker.\n'Google Cloud' is mapped to gcp (alias 'google cloud platform').\nThe degree accepts 'vergleichbare Qualifikation mit entsprechender Berufserfahrung', which counts as an equivalent, so degree_or_equivalent is true.\nSeniority is inferred from 'Mindestens drei Jahre', which falls in the 3–5 year band, giving mid."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "952c852c6a87fa4c34bda6ea2b1cac0e75b830417e8ede8492d1f9c89fc9c424",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}

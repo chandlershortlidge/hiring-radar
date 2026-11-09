@@ -1,0 +1,141 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"generative AI techniques\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"prompt/context engineering\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"multi-agent orchestration\"\n    },\n    {\n      \"skill_id\": \"multi-agent-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"multi-agent orchestration\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"fine-tuning\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Good knowledge of Python\"\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"common ML libraries (such as LangChain\"\n    },\n    {\n      \"skill_id\": \"pandas\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"pandas\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"sklearn\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"building agentic systems\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"function calling\"\n    },\n    {\n      \"skill_id\": \"llamaindex\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LlamaIndex\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Few-shot learning\",\n      \"raw_text\": \"few shot learning\"\n    },\n    {\n      \"label\": \"Context engineering\",\n      \"raw_text\": \"prompt/context engineering\"\n    },\n    {\n      \"label\": \"Multimodal understanding\",\n      \"raw_text\": \"multimodal understanding\"\n    },\n    {\n      \"label\": \"Pydantic\",\n      \"raw_text\": \"pydantic\"\n    },\n    {\n      \"label\": \"Data engineering\",\n      \"raw_text\": \"data engineering tools and technologies\"\n    },\n    {\n      \"label\": \"Technical proof-of-concept projects\",\n      \"raw_text\": \"Hands-on experience with technical Proof of Concept projects\"\n    },\n    {\n      \"label\": \"ROI modeling\",\n      \"raw_text\": \"modeling ROI and TCO for business case justification\"\n    },\n    {\n      \"label\": \"TCO modeling\",\n      \"raw_text\": \"modeling ROI and TCO for business case justification\"\n    },\n    {\n      \"label\": \"ERP systems\",\n      \"raw_text\": \"ERPs\"\n    },\n    {\n      \"label\": \"SAP\",\n      \"raw_text\": \"SAP\"\n    },\n    {\n      \"label\": \"Oracle\",\n      \"raw_text\": \"Oracle\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Orbit Graduate program\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"fluency in German and English (must)\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Degree in Engineering, Data Analytics/Science, Computer Science, Mathematics, or a related STEM field.\",\n  \"notes\": \"What You Need defaults to required; Bonus Points is optional. Required mentions of RAG, prompt engineering, orchestration, and LangChain override their bonus mentions.\\nSQL, PQL, and Celonis coding appear as skills to be taught, not candidate prerequisites; technologies appearing only in role descriptions or responsibilities are excluded.\\nRead prompt/context engineering literally as naming both prompt engineering and context engineering; the latter has no taxonomy entry.\\nMulti-agent orchestration maps to LLM orchestration; whether it additionally names multi-agent systems is flagged for review.\\nCommon ML libraries is treated as a tool category, not a separate request for the parent skill machine learning. Its concrete examples are included.\\nIntelligent chatbots and automated text processors are described as use-case examples, not separate candidate skills.\\nOracle is left unmapped rather than interpreted as a specific database product because the posting identifies it as an ERP example.\\nProof-of-concept work and ROI/TCO modeling are treated literally as technical practices without matching taxonomy entries; these and the ERP entries occur under Bonus Points and are optional.\\nDegree fields, business acumen, supply-chain knowledge, sales experience, and soft skills are excluded from skills under the guide.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "generative AI techniques"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompt/context engineering"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "multi-agent orchestration"
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "required",
+        "raw_text": "multi-agent orchestration",
+        "uncertain": true
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Good knowledge of Python"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "common ML libraries (such as LangChain"
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "required",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "sklearn"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "building agentic systems"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "nice_to_have",
+        "raw_text": "function calling"
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "nice_to_have",
+        "raw_text": "LlamaIndex"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Few-shot learning",
+        "raw_text": "few shot learning"
+      },
+      {
+        "label": "Context engineering",
+        "raw_text": "prompt/context engineering"
+      },
+      {
+        "label": "Multimodal understanding",
+        "raw_text": "multimodal understanding"
+      },
+      {
+        "label": "Pydantic",
+        "raw_text": "pydantic"
+      },
+      {
+        "label": "Data engineering",
+        "raw_text": "data engineering tools and technologies"
+      },
+      {
+        "label": "Technical proof-of-concept projects",
+        "raw_text": "Hands-on experience with technical Proof of Concept projects"
+      },
+      {
+        "label": "ROI modeling",
+        "raw_text": "modeling ROI and TCO for business case justification"
+      },
+      {
+        "label": "TCO modeling",
+        "raw_text": "modeling ROI and TCO for business case justification"
+      },
+      {
+        "label": "ERP systems",
+        "raw_text": "ERPs"
+      },
+      {
+        "label": "SAP",
+        "raw_text": "SAP"
+      },
+      {
+        "label": "Oracle",
+        "raw_text": "Oracle"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Orbit Graduate program",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "fluency in German and English (must)",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Degree in Engineering, Data Analytics/Science, Computer Science, Mathematics, or a related STEM field.",
+    "notes": "What You Need defaults to required; Bonus Points is optional. Required mentions of RAG, prompt engineering, orchestration, and LangChain override their bonus mentions.\nSQL, PQL, and Celonis coding appear as skills to be taught, not candidate prerequisites; technologies appearing only in role descriptions or responsibilities are excluded.\nRead prompt/context engineering literally as naming both prompt engineering and context engineering; the latter has no taxonomy entry.\nMulti-agent orchestration maps to LLM orchestration; whether it additionally names multi-agent systems is flagged for review.\nCommon ML libraries is treated as a tool category, not a separate request for the parent skill machine learning. Its concrete examples are included.\nIntelligent chatbots and automated text processors are described as use-case examples, not separate candidate skills.\nOracle is left unmapped rather than interpreted as a specific database product because the posting identifies it as an ERP example.\nProof-of-concept work and ROI/TCO modeling are treated literally as technical practices without matching taxonomy entries; these and the ERP entries occur under Bonus Points and are optional.\nDegree fields, business acumen, supply-chain knowledge, sales experience, and soft skills are excluded from skills under the guide."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "b0cf2ddbd01c69e33d98f89c5012d2cb1755b3b9b13c5d8956466e2549c36971",
+  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+}
