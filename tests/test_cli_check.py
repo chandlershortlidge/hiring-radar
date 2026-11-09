@@ -87,7 +87,8 @@ def test_add_extracts_only_the_job_it_added(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr(cli, "check_url", lambda *a, **k: r)
     monkeypatch.setattr(cli, "log_check", lambda *a, **k: None)
     stores_as(monkeypatch, 248)
-    monkeypatch.setattr(cli, "run_extraction", lambda conn, limit=None, job_ids=None: calls.append(job_ids))
+    monkeypatch.setattr(cli, "run_extraction",
+                        lambda conn, limit=None, job_ids=None, **kw: calls.append(job_ids))
     cli.main(["check", page.url, "--add"])
     assert calls == [[248]]
 
@@ -100,6 +101,7 @@ def test_add_text_extracts_only_the_job_it_added(tmp_path, monkeypatch):
     monkeypatch.setattr(cli.sys, "stdin", io.StringIO("Python and RAG. " * 40))
     monkeypatch.setattr(cli, "open_db", lambda: conn)
     stores_as(monkeypatch, 7)
-    monkeypatch.setattr(cli, "run_extraction", lambda conn, limit=None, job_ids=None: calls.append(job_ids))
+    monkeypatch.setattr(cli, "run_extraction",
+                        lambda conn, limit=None, job_ids=None, **kw: calls.append(job_ids))
     cli.main(["add-text", "--company", "Acme", "--title", "AI Engineer"])
     assert calls == [[7]]

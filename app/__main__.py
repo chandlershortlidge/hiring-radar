@@ -29,7 +29,7 @@ from dotenv import load_dotenv
 ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(ROOT / ".env")
 
-from app import add, db  # noqa: E402
+from app import add, db, langsmith_live  # noqa: E402
 from app.check import check_url, checked_coverage, job_coverage, log_check, reach_breakdown  # noqa: E402
 from app.extract import make_client  # noqa: E402
 from app.ingest import Screenshot, job_id_for_screenshot, now_iso  # noqa: E402
@@ -52,13 +52,17 @@ def open_db():
     return conn
 
 
-def run_extraction(conn, limit=None, job_ids=None):
+def run_extraction(conn, limit=None, job_ids=None, run_kind=langsmith_live.REREAD):
     """Extract pending jobs; `job_ids` narrows to those jobs. The add commands pass the one job
-    they added, so adding a posting never triggers a full re-extract after a version bump."""
+    they added, so adding a posting never triggers a full re-extract after a version bump.
+
+    `run_kind` only names the run in LangSmith (HIR-160)."""
     tax = Taxonomy.load()
-    report = extract_pending(conn, tax, limit=limit, job_ids=job_ids)
+    report = extract_pending(conn, tax, limit=limit, job_ids=job_ids, run_kind=run_kind)
     print(report.line())
     print(report.log_line(unlogged_extractions(conn)))
+    if (line := report.grounding_line()):
+        print(line)
     if job_ids is None and report.all_blank:
         sys.exit(f"ERROR: extraction produced zero skills across all {report.attempted} jobs"
                  " — the extractor is broken (prompt, schema, key or model), not the postings."
@@ -83,11 +87,11 @@ def cmd_poll(args):
     print(f"TOTAL {r.line()}")
     if args.no_extract:
         return
-    run_extraction(conn)
+    run_extraction(conn, run_kind=langsmith_live.POLL)
 
 
 def cmd_extract(args):
-    run_extraction(open_db(), args.limit)
+    run_extraction(open_db(), args.limit, run_kind=langsmith_live.REREAD)
 
 
 def cmd_add_text(args):
@@ -100,7 +104,7 @@ def cmd_add_text(args):
     res = add.add_by_hand(conn, p, args.found_via)
     print(res.line())
     if res.is_new and not args.no_extract:
-        run_extraction(conn, job_ids=[res.job_id])
+        run_extraction(conn, job_ids=[res.job_id], run_kind=langsmith_live.ADD)
 
 
 def cmd_add_screenshot(args):
@@ -119,7 +123,7 @@ def cmd_add_screenshot(args):
     res = add.add_by_hand(conn, p, args.found_via, screenshot=Screenshot(data, t.sha256, t.media_type))
     print(res.line())
     if res.is_new and not args.no_extract:
-        run_extraction(conn, job_ids=[res.job_id])
+        run_extraction(conn, job_ids=[res.job_id], run_kind=langsmith_live.ADD)
 
 
 def check_urls_from(args) -> list[str]:
@@ -171,7 +175,7 @@ def check_one(conn, url, feeds, args):
     res = add.add_by_hand(conn, r.posting, args.found_via, require_city=d.require_city)
     print(f"add: {res.line()}")
     if res.is_new and not args.no_extract:
-        run_extraction(conn, job_ids=[res.job_id])
+        run_extraction(conn, job_ids=[res.job_id], run_kind=langsmith_live.ADD)
 
 
 def cmd_stats(args):

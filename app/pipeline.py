@@ -3,6 +3,11 @@
 Does: find jobs whose `extracted_version` is not the current one, extract, and write
 skill_mention + proposed_skill rows and the job's seniority / German / degree, then stamp the job. One job per transaction.
 
+Each run is also one LangSmith trace with a child per job, carrying that job's tokens,
+cost and whether the evidence the model quoted was really in the posting (app/grounding.py,
+app/langsmith_live.py, HIR-160). Tracing is off unless LANGSMITH_API_KEY is set, and a
+LangSmith failure never fails a run.
+
 Does NOT: fetch postings, dedup, or decide which taxonomy to use (passed in). The model
 and the call that reaches it are passed in too, but both have a default — the real stage-2
 call against the current model — because every caller outside the tests wants exactly that
@@ -12,7 +17,9 @@ Invariants: a job holds exactly one extraction (the latest; older rows are repla
 re-extract) but every extraction also appends a permanent `extraction_log` row, which is
 never replaced — the current answer is what the dashboard reads, the log is the record of
 every reading we paid for (HIR-170); a job is processed once per extractor_version, including jobs with zero skills; a failed extraction leaves the job unstamped and no partial rows, and is reported,
-not raised; re-running is safe. A read that comes back with nothing at all is counted on
+not raised; re-running is safe. The grounding check is measured and never enforced: a
+quote the extractor kept is stored whatever the check says, so the poll cannot come to a
+different answer from the eval about the same posting. A read that comes back with nothing at all is counted on
 the job (`blank_extractions`) and the posting is deleted on the second one — try twice,
 then drop (HIR-172, Chandler's decision of 5 Nov). The two must be consecutive: storing a
 successful extraction resets the count to 0 in the same transaction that stamps the job, so
@@ -34,8 +41,10 @@ import json
 import sqlite3
 from dataclasses import dataclass, field
 
+from app import langsmith_live
 from app.extract import (
     DEFAULT_MODEL, EmptyExtractionError, Extraction, extract, extraction_input, extractor_version, make_client)
+from app.grounding import grounding
 from app.ingest import now_iso
 from app.queries import open_clause
 from app.taxonomy import Taxonomy
@@ -56,6 +65,17 @@ class ExtractReport:
     logged: int = 0
     reread_queued: int = 0     # stale-stamped jobs in this run's queue (still open)
     skipped_closed: int = 0    # stale-stamped jobs left out because they are closed (HIR-195)
+    # Grounding over this run's quotes: how many snippets the model offered as evidence,
+    # and how many were really in the posting (app/grounding.py). Counted, never acted on
+    # — a quote the extractor kept is stored whatever this says (HIR-160).
+    quotes: int = 0
+    grounded: int = 0
+
+    @property
+    def grounding_failures(self) -> int:
+        """Quotes this run could not find in the posting they came from. Above zero is the
+        shape of a model inventing its evidence, which the skills themselves do not show."""
+        return self.quotes - self.grounded
 
     @property
     def all_blank(self) -> bool:
@@ -76,6 +96,17 @@ class ExtractReport:
         reading that produced them. `unlogged` only ever shrinks — it counts extractions made
         before this logging existed, which cannot be filled in without paying to read again."""
         return f"extraction log: logged={self.logged} missing={unlogged}"
+
+    def grounding_line(self) -> str | None:
+        """The run's grounding, or None when there is nothing to say.
+
+        Printed only when a quote went missing, so a clean run stays quiet and a model
+        inventing evidence is not something you have to open LangSmith to notice
+        (AGENTS.md "Reporting a run": silence on failures is not cleanliness)."""
+        if not self.grounding_failures:
+            return None
+        return (f"grounding: {self.grounding_failures} of {self.quotes} quoted snippets were not in "
+                f"the posting they came from — the model is inventing evidence on some jobs")
 
 
 @contextlib.contextmanager
@@ -254,11 +285,14 @@ def default_extract_fn(client=None):
     still reach this function without a job to read — which is what lets the API boot
     without them.
     """
-    held = {"client": client}
+    # Wrapped for tracing here, where every real stage-2 call goes through, so no caller
+    # has to remember to do it and none can wrap twice (HIR-160). A no-op without a
+    # LANGSMITH_API_KEY, which is how the tests and anyone without a key run.
+    held = {"client": langsmith_live.wrap_client(client)}
 
     def call(text: str, tax: Taxonomy, model: str) -> Extraction:
         if held["client"] is None:
-            held["client"] = make_client()
+            held["client"] = langsmith_live.wrap_client(make_client())
         return extract(text, tax, held["client"], model)
 
     return call
@@ -266,54 +300,93 @@ def default_extract_fn(client=None):
 
 def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn=None, model: str = DEFAULT_MODEL,
                     limit: int | None = None, log=print, job_ids: list[int] | None = None,
-                    client=None) -> ExtractReport:
+                    client=None, run_kind: str = langsmith_live.REREAD) -> ExtractReport:
     """extract_fn(text, tax, model) -> Extraction. Injected so tests never hit the API;
     left out, the real model call is used (`default_extract_fn`), with `client` if given.
+
+    `run_kind` only names this run in LangSmith — "poll", "add", "backfill", or the
+    default, draining the queue after a version bump, which is a re-read (HIR-160). It
+    changes nothing about what is read or stored, and without a LANGSMITH_API_KEY it is
+    never looked at.
     """
     extract_fn = extract_fn or default_extract_fn(client)
     with _extraction_lock(conn) as held:
         if not held:
+            # No trace: a run that read nothing and paid nothing is not a run.
             log("  extract: another extraction is running on this database; skipping")
             return ExtractReport(skipped_busy=True)
-        return _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids)
+        with langsmith_live.run(run_kind,
+                                metadata={"model": model, "taxonomy_version": tax.version,
+                                          "extractor_version": extractor_version(tax, model)},
+                                inputs={"limit": limit, "job_ids": job_ids}) as trace:
+            report = _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids, trace)
+            trace.finish({
+                "attempted": report.attempted, "succeeded": report.succeeded,
+                "failed": len(report.failed), "dropped": len(report.dropped),
+                "mentions": report.mentions, "proposed": report.proposed,
+                "reread_queued": report.reread_queued, "skipped_closed": report.skipped_closed,
+                "quotes": report.quotes, "grounded": report.grounded,
+                "grounding_failures": report.grounding_failures,
+            })
+            if report.grounding_failures:
+                trace.tag("grounding-failure")
+        return report
 
 
-def _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids) -> ExtractReport:
+def _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids, trace=None) -> ExtractReport:
+    trace = trace if trace is not None else langsmith_live.Run(None)
     version = extractor_version(tax, model)
     now = now_iso()
     report = ExtractReport()
     rows = jobs_needing_extraction(conn, version, limit, job_ids, now)
     report.reread_queued = sum(1 for r in rows if r["extracted_version"] is not None)
     report.skipped_closed = closed_reread_skips(conn, version, job_ids, now)
+    # On the trace as well as in the log: HIR-224's targeted re-read is compared against a
+    # full one, and the comparison is these two numbers.
+    trace.note({"queued": len(rows), "first_reads": len(rows) - report.reread_queued,
+                "reread_queued": report.reread_queued, "skipped_closed": report.skipped_closed})
+    if report.reread_queued:
+        trace.tag("reread")
     if report.reread_queued or report.skipped_closed:
         log(f"  re-reads: {report.reread_queued} open jobs queued;"
             f" {report.skipped_closed} closed jobs skipped (keep their old skills)")
     for row in rows:
         report.attempted += 1
         sent = extraction_input(row["title"], row["description_text"])
-        try:
-            ex = extract_fn(sent, tax, model)
-        except EmptyExtractionError as e:
-            # A blank read is the posting's own failure, not the connection's: try it twice,
-            # then drop it (HIR-172, Chandler's decision of 5 Nov).
-            blanks = _count_blank_read(conn, row["id"])
-            report.failed.append((row["id"], f"{type(e).__name__}: {e}"))
-            log(f"  job {row['id']}: FAILED {type(e).__name__}: {str(e)[:200]}"
-                f" (blank read {blanks} of {BLANK_READ_LIMIT})")
-            if blanks >= BLANK_READ_LIMIT:
-                _drop_job(conn, row["id"])
-                report.dropped.append((row["id"], f"{blanks} blank reads"))
-                log(f"  job {row['id']}: DROPPED after {blanks} blank reads")
-            continue
-        except Exception as e:  # keep going; the job stays pending for the next run
-            report.failed.append((row["id"], f"{type(e).__name__}: {e}"))
-            log(f"  job {row['id']}: FAILED {type(e).__name__}: {str(e)[:200]}")
-            continue
-        if not ex.mentions:
-            log(f"  job {row['id']}: 0 skills")  # legitimate for a partial posting; recorded, not retried
-        store_extraction(conn, row["id"], ex, model, sent)
-        report.logged += 1
-        report.succeeded += 1
-        report.mentions += len(ex.mentions)
-        report.proposed += len(ex.proposed)
+        with trace.job(row["id"], row["title"], sent) as span:
+            try:
+                ex = extract_fn(sent, tax, model)
+            except EmptyExtractionError as e:
+                # A blank read is the posting's own failure, not the connection's: try it twice,
+                # then drop it (HIR-172, Chandler's decision of 5 Nov).
+                blanks = _count_blank_read(conn, row["id"])
+                report.failed.append((row["id"], f"{type(e).__name__}: {e}"))
+                log(f"  job {row['id']}: FAILED {type(e).__name__}: {str(e)[:200]}"
+                    f" (blank read {blanks} of {BLANK_READ_LIMIT})")
+                dropped = blanks >= BLANK_READ_LIMIT
+                if dropped:
+                    _drop_job(conn, row["id"])
+                    report.dropped.append((row["id"], f"{blanks} blank reads"))
+                    log(f"  job {row['id']}: DROPPED after {blanks} blank reads")
+                span.failed(f"{type(e).__name__}: {e}", dropped=dropped)
+                continue
+            except Exception as e:  # keep going; the job stays pending for the next run
+                report.failed.append((row["id"], f"{type(e).__name__}: {e}"))
+                log(f"  job {row['id']}: FAILED {type(e).__name__}: {str(e)[:200]}")
+                span.failed(f"{type(e).__name__}: {e}")
+                continue
+            if not ex.mentions:
+                log(f"  job {row['id']}: 0 skills")  # legitimate for a partial posting; recorded, not retried
+            # The same check the eval scores, run on every live reading (HIR-160). It is
+            # measured, not enforced: the extractor has already dropped the quotes it could
+            # not find, and re-deciding that here would make the poll disagree with the eval.
+            grounded, quotes = grounding(sent, ex.mentions, ex.proposed, ex.rejected)
+            report.grounded += grounded
+            report.quotes += quotes
+            span.result(ex, grounded, quotes)
+            store_extraction(conn, row["id"], ex, model, sent)
+            report.logged += 1
+            report.succeeded += 1
+            report.mentions += len(ex.mentions)
+            report.proposed += len(ex.proposed)
     return report
