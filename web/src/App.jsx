@@ -185,7 +185,7 @@ export default function App() {
   return (
     <>
       <header className="hdr"><div className="hdr-in">
-        <div className="brand"><a href="/" onClick={(e) => { e.preventDefault(); goMarket(HOME); }} className="home" aria-label="hiring-radar home"><Radar /><b>hiring-radar</b></a><span className="sub">AI-engineering skills, {PLACE_NAMES.join(" + ")}</span></div>
+        <div className="brand"><a href="/" onClick={(e) => { e.preventDefault(); goMarket(HOME); }} className="home" aria-label="hiring-radar home"><Radar /><b>hiring-radar</b></a><span className="sub" title={PLACE_NAMES.join(" · ")}>Skills employers ask for, across {PLACE_NAMES.length} markets</span></div>
         <div className="hdr-actions">
           {market.view !== "home" && <a className="pill" href="/" onClick={(e) => { e.preventDefault(); goMarket(HOME); }}>All markets</a>}
           <button type="button" className={`pill${profile ? " on" : ""}`} onClick={() => setDrawer("profile")} aria-label="Your profile">
