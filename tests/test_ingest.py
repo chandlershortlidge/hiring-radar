@@ -1,9 +1,9 @@
 import pytest
 
 from app import db, geo
-from app.ingest import (FAMILIES, Stored, check_timestamp, family_of, in_scope_title,
-                        ingest, ingest_one, now_iso)
-from app.sources import Posting
+from app.ingest import (FAMILIES, SCREENED_SOURCES, Stored, agency_name_word, check_timestamp,
+                        family_of, in_scope_title, ingest, ingest_one, now_iso)
+from app.sources import Posting, registry
 
 JD = ("AI Engineer. Requirements: 3+ years Python, experience with LLM applications, RAG "
       "pipelines and vector databases. Nice to have: Kubernetes, AWS. We build agents in Berlin.")
@@ -365,3 +365,77 @@ def test_ingest_checks_before_the_title_and_city_filters(conn):
 def test_the_default_timestamp_passes_its_own_check(conn):
     assert check_timestamp(now_iso())
     assert ingest_one(conn, posting()) == Stored("new", 1)
+
+
+# --- the agency screen at ingest (HIR-220) --------------------------------------------
+
+# One real example per country-wide source, taken from what was actually stored before the
+# screen existed (HIR-220: Randstad Digital in Hamburg, Robert Half in Munich, Michael Page
+# and European Tech Recruit in Berlin), paired with a real employer on the same source so
+# each case proves the screen discriminates rather than just refusing everything.
+AGENCY_BY_SOURCE = [
+    ("arbeitsagentur", "Randstad Digital Germany GmbH", "randstad", "Celonis SE"),
+    ("arbeitnow", "Robert Half Deutschland", "roberthalf", "Agile Robots SE"),
+    ("jsearch", "Michael Page International", "michaelpage", "Alexander Thamm GmbH"),
+    ("startup_jobs", "European Tech Recruit", "recruit", "Acme GmbH"),
+]
+
+
+@pytest.mark.parametrize("source,agency,word,employer", AGENCY_BY_SOURCE)
+def test_an_agency_posting_from_a_country_wide_source_is_refused(conn, source, agency, word, employer):
+    """Chandler's decision of 9 Nov: the screen that keeps an agency's board out also keeps
+    its postings out, whichever country-wide source carried them."""
+    assert agency_name_word(agency) == word          # the rule says why, not just no
+    assert ingest_one(conn, posting(source=source, sid="x1", company=agency)).kind == "skipped_agency"
+    assert count(conn, "job") == 0 and count(conn, "job_source") == 0
+
+
+@pytest.mark.parametrize("source,agency,word,employer", AGENCY_BY_SOURCE)
+def test_a_real_employer_on_the_same_source_still_passes(conn, source, agency, word, employer):
+    assert ingest_one(conn, posting(source=source, sid="y1", company=employer)).is_new
+    assert count(conn, "job") == 1
+
+
+def test_temporary_staffing_is_refused_too(conn):
+    """The Hamburg posting that named itself ARBEITNEHMERÜBERLASSUNG — temporary staffing is
+    in, per the decision, and it is the company name that decides, not the description."""
+    p = posting(source="arbeitsagentur", sid="z1", company="Hanse Zeitarbeit GmbH",
+                text=JD + " ARBEITNEHMERÜBERLASSUNG")
+    assert ingest_one(conn, p).kind == "skipped_agency"
+
+
+def test_a_board_posting_is_not_screened_at_ingest(conn):
+    """Deliberate: a board passes the same screen before it is ever added, so screening its
+    postings again would let a board we chose store nothing at all, silently."""
+    assert "greenhouse" not in SCREENED_SOURCES
+    out = ingest_one(conn, posting(source="greenhouse", sid="g1", company="Randstad Digital"))
+    assert out.is_new
+
+
+def test_a_hand_added_posting_is_not_screened(conn):
+    """A person who adds a posting has chosen it — the same reason trust_title exists."""
+    p = Posting("paste", "", "", "Robert Half Deutschland", "AI Engineer", None, JD)
+    assert ingest_one(conn, p, require_city=False, trust_title=True).is_new
+
+
+def test_the_agency_count_is_in_the_report_line(conn):
+    """Where a person sees it: the poll's per-feed line."""
+    r = ingest(conn, [posting(sid="a1", company="Hays Technology"),
+                      posting(sid="a2", company="Celonis SE")])
+    assert (r.seen, r.new, r.skipped_agency) == (2, 1, 1)
+    assert "skipped_agency=1" in r.line() and "new=1" in r.line()
+
+
+def test_the_screen_runs_after_the_title_city_and_company_checks(conn):
+    """So those three counts keep meaning what they did, and skipped_agency only ever holds
+    postings that would otherwise have been stored."""
+    assert ingest_one(conn, posting(company="Randstad", title="Account Executive")).kind == "skipped_title"
+    assert ingest_one(conn, posting(company="Randstad", location="Tokyo, Japan")).kind == "skipped_city"
+    assert ingest_one(conn, posting(company="GmbH")).kind == "skipped_company"
+
+
+def test_the_screened_sources_are_the_country_wide_ones(conn):
+    """Derived from the registry's kinds, so a country-wide source added later is screened
+    by being registered rather than by anyone remembering to come back here."""
+    assert set(SCREENED_SOURCES) == set(registry.of_kind("feed", "search"))
+    assert not set(SCREENED_SOURCES) & set(registry.BOARD_SOURCES + registry.MANUAL_SOURCES)

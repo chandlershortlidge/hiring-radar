@@ -29,7 +29,9 @@ a rejection hides a board from every future search.
 
 Invariants: `search_queries`, `harvest`, `new_boards`, `relevant_roles`, `feeds_entry`,
 `agency_word`, `estimate_extraction_cost_eur`, `launch_decisions` and `launch_caps` are
-pure. `run` does network I/O only through the injected `search` and `fetch_board`, so
+pure. `agency_word` is this module's view of one shared rule: the word list it matches
+lives in app/ingest.py, which applies it to postings from the country-wide sources too
+(HIR-220), so changing the list changes both screens at once — on purpose. `run` does network I/O only through the injected `search` and `fetch_board`, so
 tests never touch the network. A failed board fetch is reported and the run goes on, and
 is never added — an empty role list from a dead board must not read as "too few roles".
 A query with no results is reported, not skipped silently. A cap breach adds nothing at
@@ -42,7 +44,7 @@ from pathlib import Path
 
 from app.check import default_fetch_board, parse_ats_url
 from app.geo import active_place
-from app.ingest import in_scope_title
+from app.ingest import AGENCY_WORDS, agency_name_word, in_scope_title
 from app.poll import FEEDS_PATH
 from app.sources import registry
 
@@ -204,29 +206,15 @@ USD_PER_MTOK_IN = 2.00
 USD_PER_MTOK_OUT = 10.00
 EUR_PER_USD = 0.93
 
-# A conservative screen for "recruitment agency or job aggregator", which the policy skips.
-# Substring match on the board token and the company name, both lowercased with separators
-# removed, so "talent-partners" and "talentpartners" read alike. Conservative on purpose:
-# a missed agency is one noisy feed that can be disabled, while a false positive silently
-# drops a real employer. Every verdict is reported, so the screen is auditable.
-AGENCY_WORDS = (
-    "recruit", "staffing", "headhunt", "jobboard", "jobportal", "jobsite", "aggregator",
-    "personalberatung", "personalvermittlung", "zeitarbeit", "workforce", "placement",
-    "resourcing", "talentpartner", "talentsolutions", "talentacquisition", "talentgroup",
-    "manpower", "randstad", "adecco", "hays", "michaelpage", "roberthalf", "kellyservices",
-    "experis", "robertwalters", "pagegroup", "huntscanlon", "jobrapido", "jobleads",
-    "learn4good", "ziprecruiter", "indeed", "glassdoor", "monsterjobs",
-)
-
-
-def _squashed(*parts: str | None) -> str:
-    return "".join(ch for p in parts if p for ch in p.lower() if ch.isalnum())
-
-
+# The screen for "recruitment agency or job aggregator", which the policy skips. The word
+# list and the match live in app/ingest.py beside the title filter, because the same rule
+# now also decides whether a country-wide source's posting is stored (DECISIONS 2026-11-09,
+# HIR-220); `AGENCY_WORDS` is re-exported here so this module stays the one place the board
+# policy is read from. Behaviour is unchanged: the board token and the company name are
+# matched together, and every verdict is reported, so the screen stays auditable.
 def agency_word(board: Board, company: str | None = None) -> str | None:
     """The agency/aggregator word this board's name matches, or None. Pure."""
-    text = _squashed(board[1], company)
-    return next((w for w in AGENCY_WORDS if w in text), None)
+    return agency_name_word(board[1], company)
 
 
 def estimate_extraction_cost_eur(n_postings: int) -> float:

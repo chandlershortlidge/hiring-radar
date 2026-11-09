@@ -341,6 +341,22 @@ def test_poll_totals_include_the_blank_company_count(tmp_path):
     assert conn.execute("SELECT count(*) FROM job WHERE company IS NULL OR trim(company)=''").fetchone()[0] == 0
 
 
+def test_poll_totals_include_the_agency_count(tmp_path):
+    """HIR-220: the nightly report is where a person sees how many postings the agency
+    screen turned away, and a jump there is the signal the word list caught an employer."""
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+    feeds = [{"type": "arbeitsagentur", "search": "KI"}, {"type": "arbeitnow"}]
+    agency = [Posting("arbeitsagentur", "x1", "", "Randstad Digital Germany", "AI Engineer",
+                      "Hamburg", "Python please")]
+    good = [Posting("arbeitnow", "y1", "", "Celonis SE", "AI Engineer", "Berlin", "Python please")]
+
+    r = poll.poll_feeds(conn, feeds, fetch=lambda f: agency if f["type"] == "arbeitsagentur" else good,
+                        log=lambda *_: None)
+    assert (r.seen, r.new, r.skipped_agency) == (2, 1, 1)
+    assert conn.execute("SELECT count(*) FROM job").fetchone()[0] == 1
+
+
 def test_load_feeds_skips_disabled(tmp_path):
     p = tmp_path / "feeds.json"
     p.write_text(json.dumps({"feeds": [{"type": "arbeitnow", "enabled": True}, {"type": "lever", "enabled": False, "token": "x"}]}))
