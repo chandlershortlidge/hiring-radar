@@ -5,6 +5,51 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-10 — A labelling run never overwrites another run's Goldens (HIR-167)
+
+Every labelling run numbers its picks from the highest Golden that existed when the run
+started (`new_goldens.existing()`). Two runs begun before either applied therefore claim
+the **same ids for different postings**. The two batches of 3 Nov were started five
+minutes apart and both numbered `golden_049`–`golden_063`; the three runs of 8 Nov all
+start at `golden_049` as well. `apply` wrote each Golden by id with no check, so the
+second run to apply would have overwritten the first's fifteen Goldens with fifteen
+unrelated postings. Nothing would have said so: the only symptom is a Golden set smaller
+than expected, which is exactly the number HIR-167 was growing.
+
+**`apply` refuses when a Golden on disk holds a different posting.** Compared by
+`source_sha256`, not by id, so the ordinary loop — fix a decision, run `apply` again —
+still overwrites the same posting as before. The refusal names each clash, both companies
+and the next free id. It runs *before* the "every item is decided" refusal, because the
+clash is a property of the run's numbering and not of its decisions: discovering it after
+someone has worked through 157 items is the cost the refusal exists to save. Undo: drop
+the `taken` block in `cmd_apply`.
+
+**The Berlin batch of 3 Nov was renumbered to `golden_064`–`golden_078`**, leaving the New
+York batch on `golden_049`–`golden_063` where it sits as the earlier of the two. Ids were
+shifted in `picks.json`, `items.json`, `merged.json`, `summary.json`, `summary.md` and the
+`## N. golden_NNN` headings of `review_queue.md`, and the 30 files in `raw/` were renamed;
+their contents carry no ids. **The decisions already written into the queue were not
+touched** — they are keyed by item number, which no part of this changes, and the
+renumbering asserted the parsed item-number-to-decision map was identical before and
+after. This is why renumbering happens *before* a queue is finished rather than after.
+
+**The clash had already reached the label store.** `test_the_real_run_folders_all_import`
+asserted that the 3 Nov runs held 15 postings with five labeller answers each. They hold
+30 postings; the "five answers" were three from New York plus two from Berlin, on two
+unrelated postings that shared an id. The test now asserts 30 distinct ids and that no id
+carries answers from both runs. Rows in `label_answer` were never lost — the run is part
+of the key — but any count or join by `golden_id` alone was merging the two batches.
+
+**Not renumbered: the three runs of 8 Nov**, which still share `golden_049`–`golden_063`
+with the New York batch. They belong to the next batch of this work (HIR-168) and `apply`
+now refuses rather than destroying anything.
+
+**Chandler's decision, 2026-11-09**, asked because the ticket's own step 2 would have
+destroyed half its input: renumber the clashing batch, and make the command refuse to
+overwrite an existing Golden so this cannot happen again.
+
+---
+
 ## 2026-11-09 — One pinned Python everywhere, and the VM installs wheels only (HIR-235)
 
 The deploy of HIR-233 failed on the VM: `uv` tried to compile `zstandard` from source and
