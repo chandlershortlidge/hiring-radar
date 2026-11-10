@@ -5,6 +5,58 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-10 — The key alone turns tracing on; `LANGSMITH_TRACING` is no longer needed too (HIR-238)
+
+With the HIR-236 flush fix deployed and `LANGSMITH_API_KEY` set, the next poll still sent
+nothing to `hiring-radar-live`. `langsmith.trace` only posts a span when it reads
+`LANGSMITH_TRACING=true` (or `*_TRACING_V2`) from the environment — a second switch,
+separate from the key, that `langsmith_live.enabled()` never checked and the README never
+mentioned. Adding `LANGSMITH_TRACING=true` to `/etc/hiring-radar.env` by hand made the
+17:17 poll's trace arrive, confirming that was the whole gap.
+
+**`langsmith_live.run()` forces the SDK's switch on for its own duration, via
+`langsmith.tracing_context(enabled=True)`, whenever the key is set.** That context is
+ambient (the same mechanism nesting already relies on), so it covers the run span, every
+job span opened inside it, and the model-call span `wrap_anthropic` opens under each job —
+all without touching `LANGSMITH_TRACING`. Undo: delete `_force_enabled` and the `with
+_force_enabled():` around `run()`'s body in `app/langsmith_live.py`.
+
+**Not `enabled=True` on `langsmith.trace()` itself**, as a first reading of the fix
+suggested: the installed SDK's `trace()` has no such parameter — passing one lands in
+`**kwargs`, which only warns and is silently dropped, so tracing would have stayed exactly
+as broken. `tracing_context` is the SDK's real override point.
+
+The VM's `/etc/hiring-radar.env` keeps `LANGSMITH_TRACING=true` from the manual workaround;
+it is harmless now, just redundant. `deploy/README.md`'s "Tracing the poll" section says so.
+
+---
+
+## 2026-11-10 — Every run flushes its own client before the trace can be lost (HIR-236)
+
+The 07:00 poll on 10 Nov ran with tracing on and the package installed (HIR-233), read 5
+jobs, and printed no warning — yet nothing reached `hiring-radar-live`. LangSmith's SDK
+sends a run from a background thread; the poll is a systemd oneshot, so the process exited
+and killed that thread before it had sent anything. A manual trace on the VM, made the same
+way but followed by an explicit `client.flush()`, did arrive — the queue was never the
+problem, only the missing wait for it to drain.
+
+**`langsmith_live.run()` flushes the run's own client when the trace closes, capped at 30
+seconds.** One place, because every live caller — the poll, a re-read, add-by-link, a
+backfill — already opens its run through this one function; fixing it there means no
+caller has to remember to flush, including the ones not written yet. The 30-second cap is
+so an unreachable LangSmith delays a run, never hangs the 07:00 timer. Undo: delete
+`_flush` and the call to it at the end of `run()` in `app/langsmith_live.py`.
+
+**The flush goes through the same `_safe` net as everything else here.** HIR-160's
+invariant is that no LangSmith problem fails a run; a flush that times out or raises prints
+`[langsmith] flush failed, continuing without it` and the run's result is unaffected. Undo:
+call `run_tree.client.flush(...)` directly, outside `_safe`.
+
+A test gives the run a fake client and checks flush is called exactly once, with the capped
+timeout; another makes that fake client's flush raise and checks the run still succeeds.
+
+---
+
 ## 2026-11-09 — One pinned Python everywhere, and the VM installs wheels only (HIR-235)
 
 The deploy of HIR-233 failed on the VM: `uv` tried to compile `zstandard` from source and

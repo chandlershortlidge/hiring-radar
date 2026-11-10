@@ -15,6 +15,12 @@ Invariants:
   - Off unless LANGSMITH_API_KEY is set. With it unset every call here is a no-op, so the
     poll, the API and the whole test suite behave exactly as before and no test sends
     anything to LangSmith.
+  - The key alone turns tracing on. `langsmith.trace` itself only posts when it reads
+    `LANGSMITH_TRACING` (or `*_TRACING_V2`) as on, so without forcing that, a key with
+    neither set traced nothing even though every call here ran (HIR-238: the 10 Nov VM
+    needed both set, though the docstring above and the README promised just the key).
+    `run()` overrides the SDK's switch for its whole span — the run, every job, and the
+    model call nested under it — rather than requiring both.
   - A LangSmith failure never fails a run — not opening a trace, not closing one, not
     posting a span, and not the `import langsmith` itself. Every call goes through `_safe`,
     which warns on stderr and carries on: the daily poll cannot depend on a third party
@@ -23,6 +29,9 @@ Invariants:
     failed poll.
   - One trace per run, not per job, however many cities are added — the free plan allows
     5,000 traces a month and the eval shares it (HIR-160). Jobs are children of the run.
+  - A run flushes its own client when it closes, capped at FLUSH_TIMEOUT_S. The SDK sends
+    from a background thread, and the poll is a oneshot process that used to exit before
+    that thread had sent anything, losing every trace silently (HIR-236).
   - Only the public job ad already being sent to the model goes out: the job's title and
     posting text, its database id, and the model's own answer. Nothing about a person.
 
@@ -50,6 +59,11 @@ POLL = "poll"
 REREAD = "re-read"
 ADD = "add"
 BACKFILL = "backfill"
+
+# The SDK sends runs from a background thread; a oneshot process (the poll) can exit and
+# kill that thread before anything is sent (HIR-236). Capped so an unreachable LangSmith
+# delays a run by at most this long rather than hanging the 07:00 timer.
+FLUSH_TIMEOUT_S = 30
 
 
 def enabled() -> bool:
@@ -228,15 +242,60 @@ class Run:
             yield JobSpan(child)
 
 
+def _flush(run_tree) -> None:
+    run_tree.client.flush(timeout=FLUSH_TIMEOUT_S)
+
+
+@contextmanager
+def _force_enabled():
+    """Override `LANGSMITH_TRACING` for this block: `langsmith.trace` reads that env var
+    (not the key) to decide whether a span actually posts, so without this the key alone
+    was not enough (HIR-238). The override is LangSmith's own ambient tracing context, the
+    same mechanism `_trace`'s nesting already relies on, so it stays in effect for every
+    span opened anywhere inside the block — a run, its jobs, and the model calls nested
+    under them — not just the one `trace()` call made directly inside it.
+
+    A no-op when langsmith can't be imported or the override itself fails to open; either
+    way the block still runs, just untraced, like any other LangSmith failure here.
+    """
+    langsmith = _module("langsmith")
+    if langsmith is None:
+        yield
+        return
+    try:
+        cm = langsmith.tracing_context(enabled=True)
+        cm.__enter__()
+    except Exception as e:  # noqa: BLE001 - opening the override is non-fatal
+        print(f"  [langsmith] force tracing on failed, continuing without it: "
+              f"{type(e).__name__}: {e}", file=sys.stderr, flush=True)
+        yield
+        return
+    try:
+        yield
+    except BaseException:
+        _safe("force tracing on", cm.__exit__, *sys.exc_info())
+        raise
+    _safe("force tracing on", cm.__exit__, None, None, None)
+
+
 @contextmanager
 def run(kind: str, metadata: dict | None = None, inputs: dict | None = None):
-    """One trace for a whole extraction run. Yields a `Run`; a do-nothing one when off."""
+    """One trace for a whole extraction run. Yields a `Run`; a do-nothing one when off.
+
+    Flushes the run's client once the trace itself has closed, so the poll, a re-read, an
+    add-by-link and a backfill all get this for free (HIR-236) rather than each caller
+    having to remember it. Through `_safe`, so a stuck or unreachable LangSmith delays the
+    run by at most FLUSH_TIMEOUT_S and never fails it.
+    """
     if not enabled():
         yield Run(None)
         return
-    with _trace("open run", name=kind, run_type="chain",
-                inputs=dict(inputs or {}),
-                project_name=project_name(),
-                tags=[kind],
-                metadata=dict(metadata or {})) as run_tree:
-        yield Run(run_tree)
+    with _force_enabled():
+        with _trace("open run", name=kind, run_type="chain",
+                    inputs=dict(inputs or {}),
+                    project_name=project_name(),
+                    tags=[kind],
+                    metadata=dict(metadata or {})) as run_tree:
+            yield Run(run_tree)
+    if run_tree is not None:
+        _safe("flush", _flush, run_tree)

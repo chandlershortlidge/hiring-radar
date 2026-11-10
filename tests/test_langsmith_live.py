@@ -107,6 +107,17 @@ def test_a_proposed_skill_quote_is_checked_too(conn):
 
 # --- the on state, against a fake tree --------------------------------------------
 
+class FakeClient:
+    """Stands in for the langsmith Client whose background thread sends the run: records
+    every flush call so a test can check it happened, and how long it was willing to wait."""
+
+    def __init__(self):
+        self.flush_calls: list[float | None] = []
+
+    def flush(self, timeout=None):
+        self.flush_calls.append(timeout)
+
+
 class FakeTree:
     """Stands in for a langsmith RunTree: records what was put on it."""
 
@@ -115,6 +126,7 @@ class FakeTree:
         self.outputs: dict = {}
         self.metadata: dict = {}
         self.tags: list[str] = []
+        self.client = FakeClient()
 
     def add_outputs(self, outputs):
         self.outputs.update(outputs)
@@ -219,6 +231,89 @@ def test_a_skipped_run_opens_no_trace(conn, traced, monkeypatch):
                         lambda c: contextlib.nullcontext(False))
     report = pipeline.extract_pending(conn, TAX, fake_extract(extraction()), "m", log=lambda *_: None)
     assert report.skipped_busy is True and traced == []
+
+
+# --- flushing so the trace survives a oneshot process exiting (HIR-236) -----------
+
+def test_a_run_flushes_its_client_once_when_it_closes(conn, traced):
+    ex = extraction([Mention("python", "required", "Python")])
+    pipeline.extract_pending(conn, TAX, fake_extract(ex), "m", log=lambda *_: None)
+    run = traced[0]
+    assert run.client.flush_calls == [langsmith_live.FLUSH_TIMEOUT_S]
+
+
+def test_a_flush_that_raises_does_not_fail_the_run(conn, traced, monkeypatch, capsys):
+    def boom(self, timeout=None):
+        raise RuntimeError("langsmith is down")
+
+    monkeypatch.setattr(FakeClient, "flush", boom)
+    ex = extraction([Mention("python", "required", "Python")])
+    report = pipeline.extract_pending(conn, TAX, fake_extract(ex), "m", log=lambda *_: None)
+    assert report.succeeded == 1
+    assert "langsmith is down" in capsys.readouterr().err
+
+
+# --- the key alone turns tracing on, LANGSMITH_TRACING or not (HIR-238) ----------
+
+@pytest.fixture
+def no_tracing_env_var(monkeypatch):
+    """`langsmith.trace` reads this to decide whether to post; the fix is that the key
+    alone must be enough, so every test in this section removes it first."""
+    monkeypatch.delenv("LANGSMITH_TRACING", raising=False)
+    monkeypatch.delenv("LANGSMITH_TRACING_V2", raising=False)
+    monkeypatch.delenv("LANGCHAIN_TRACING_V2", raising=False)
+
+
+def test_force_enabled_overrides_the_env_var(no_tracing_env_var):
+    """Exercises the real langsmith package (no network: nothing here opens a span, just
+    the ambient switch `langsmith.trace` itself reads)."""
+    import langsmith.utils as ls_utils
+
+    assert ls_utils.tracing_is_enabled() is False
+    with langsmith_live._force_enabled():
+        assert ls_utils.tracing_is_enabled() is True
+    assert ls_utils.tracing_is_enabled() is False
+
+
+def test_force_enabled_is_a_no_op_without_the_langsmith_package(no_langsmith_package):
+    with langsmith_live._force_enabled():
+        pass  # does not raise
+
+
+def test_a_failure_opening_the_override_does_not_fail_the_run(
+        no_tracing_env_var, monkeypatch, capsys):
+    import langsmith
+
+    def boom(**kw):
+        raise RuntimeError("langsmith is down")
+
+    monkeypatch.setattr(langsmith, "tracing_context", boom)
+    with langsmith_live._force_enabled():
+        pass  # does not raise
+    assert "langsmith is down" in capsys.readouterr().err
+
+
+def test_a_run_forces_tracing_on_for_itself_and_every_job_inside_it(
+        conn, no_tracing_env_var, monkeypatch):
+    """Reads the real `tracing_is_enabled()` from inside a fake `_trace`, so this proves
+    `run()` overrides the SDK's own switch for the run span and every job nested in it —
+    not only for one `trace()` call made directly inside `run()` — without a real client."""
+    import langsmith.utils as ls_utils
+
+    monkeypatch.setattr(langsmith_live, "enabled", lambda: True)
+    seen = []
+
+    @contextlib.contextmanager
+    def fake_trace(what, **kw):
+        seen.append(ls_utils.tracing_is_enabled())
+        yield FakeTree(kw.get("name", what))
+
+    monkeypatch.setattr(langsmith_live, "_trace", fake_trace)
+    ex = extraction([Mention("python", "required", "Python")])
+    pipeline.extract_pending(conn, TAX, fake_extract(ex), "m", log=lambda *_: None,
+                             run_kind=langsmith_live.POLL)
+    assert seen == [True, True]  # the run's own span, then its one job
+    assert ls_utils.tracing_is_enabled() is False  # the override does not leak past run()
 
 
 # --- a LangSmith failure never fails a run ----------------------------------------
