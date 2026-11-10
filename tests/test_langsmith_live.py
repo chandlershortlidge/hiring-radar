@@ -107,6 +107,17 @@ def test_a_proposed_skill_quote_is_checked_too(conn):
 
 # --- the on state, against a fake tree --------------------------------------------
 
+class FakeClient:
+    """Stands in for the langsmith Client whose background thread sends the run: records
+    every flush call so a test can check it happened, and how long it was willing to wait."""
+
+    def __init__(self):
+        self.flush_calls: list[float | None] = []
+
+    def flush(self, timeout=None):
+        self.flush_calls.append(timeout)
+
+
 class FakeTree:
     """Stands in for a langsmith RunTree: records what was put on it."""
 
@@ -115,6 +126,7 @@ class FakeTree:
         self.outputs: dict = {}
         self.metadata: dict = {}
         self.tags: list[str] = []
+        self.client = FakeClient()
 
     def add_outputs(self, outputs):
         self.outputs.update(outputs)
@@ -219,6 +231,26 @@ def test_a_skipped_run_opens_no_trace(conn, traced, monkeypatch):
                         lambda c: contextlib.nullcontext(False))
     report = pipeline.extract_pending(conn, TAX, fake_extract(extraction()), "m", log=lambda *_: None)
     assert report.skipped_busy is True and traced == []
+
+
+# --- flushing so the trace survives a oneshot process exiting (HIR-236) -----------
+
+def test_a_run_flushes_its_client_once_when_it_closes(conn, traced):
+    ex = extraction([Mention("python", "required", "Python")])
+    pipeline.extract_pending(conn, TAX, fake_extract(ex), "m", log=lambda *_: None)
+    run = traced[0]
+    assert run.client.flush_calls == [langsmith_live.FLUSH_TIMEOUT_S]
+
+
+def test_a_flush_that_raises_does_not_fail_the_run(conn, traced, monkeypatch, capsys):
+    def boom(self, timeout=None):
+        raise RuntimeError("langsmith is down")
+
+    monkeypatch.setattr(FakeClient, "flush", boom)
+    ex = extraction([Mention("python", "required", "Python")])
+    report = pipeline.extract_pending(conn, TAX, fake_extract(ex), "m", log=lambda *_: None)
+    assert report.succeeded == 1
+    assert "langsmith is down" in capsys.readouterr().err
 
 
 # --- a LangSmith failure never fails a run ----------------------------------------
