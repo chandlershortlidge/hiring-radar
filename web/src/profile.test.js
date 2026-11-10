@@ -33,6 +33,14 @@ describe("fit", () => {
     expect(fit(me(), j).missing).toEqual(["aws", "docker", "kafka"]);
   });
 
+  it("ties missing skills alphabetically by id, not by the order they arrived in", () => {
+    // Deliberately not alphabetical, and not the order the test above happens to use, so a
+    // tie-break that silently fell back to input order instead of comparing ids could not
+    // slip past by coincidence.
+    const j = job({ required_skills: ["kafka", "aws"] });
+    expect(fit(me(), j, { kafka: 12, aws: 12 }).missing).toEqual(["aws", "kafka"]);
+  });
+
   it("calls a job with no required skills unknown, not a zero fit", () => {
     const f = fit(me(), job({ nice_skills: ["python"] }));
     expect(f.score).toBe(null);
@@ -149,6 +157,13 @@ describe("gates", () => {
   it("gates nothing without a profile", () => {
     expect(fails(null, job({ german: "required" }), "german")).toBe(false);
     expect(gates(null, job({ german: "required" }))).toEqual([]);
+  });
+
+  it("fires no gate for an unrecognized gate name, even when every real check would fail", () => {
+    // Pins that each branch above is its own `gate === "..."` guard, not a catch-all that
+    // could be forced on -- the seniority check only ever applies to the seniority gate.
+    const demanding = job({ seniority: "senior", german: "required", production: "required" });
+    expect(fails(me(), demanding, "not-a-real-gate")).toBe(false);
   });
 });
 
@@ -329,6 +344,31 @@ describe("rankJobs", () => {
     // A quarter of one required skill cannot outweigh a whole one: 1/2 + nice stays under 2/2.
     const better = job({ id: 3, required_skills: ["python", "rag"] });
     expect(ids(rankJobs(me(), [sweetened, better]))).toEqual([3, 2]);
+  });
+
+  it("earns no nice-to-have bonus for a nice-to-have skill the profile does not have", () => {
+    const bare = job({ id: 1, required_skills: ["python", "aws"] });
+    const uncoveredNice = job({ id: 2, required_skills: ["python", "aws"], nice_skills: ["kafka"] });
+    // "kafka" is not among the profile's skills, so it must earn no bonus: these two tie
+    // and keep the order they were given in, same as two jobs with no nice_skills at all.
+    expect(ids(rankJobs(me(), [bare, uncoveredNice]))).toEqual([1, 2]);
+  });
+
+  it("divides the nice-to-have bonus by the job's own required count, not multiplies by it", () => {
+    const profile = me({ skills: ["python", "kafka"] });
+    const smaller = job({ id: 1, required_skills: ["python", "aws"], nice_skills: ["kafka"] });
+    const bigger = job({ id: 2, required_skills: ["python", "aws", "docker"], nice_skills: ["kafka"] });
+    // Both list fewer required skills than SKILL_FLOOR and cover the same count (1), so
+    // they tie on rank_score before the nice-to-have bonus is applied.
+    expect(fit(profile, smaller).rank_score).toBeCloseTo(fit(profile, bigger).rank_score, 10);
+    // The bonus must then favor the job with FEWER required skills (a bigger fraction of a
+    // smaller list), not the job with more of them.
+    expect(ids(rankJobs(profile, [bigger, smaller]))).toEqual([1, 2]);
+  });
+
+  it("keeps relative order among tied jobs even with other jobs ranked around them", () => {
+    const jobs = [fitJob(1, 0, 5), fitJob(10, 3, 4), fitJob(11, 3, 4), fitJob(2, 5, 5)];
+    expect(ids(rankJobs(haveAll, jobs))).toEqual([2, 10, 11, 1]);
   });
 
   it("never lets nice-to-have coverage beat a better score, however much of it there is", () => {

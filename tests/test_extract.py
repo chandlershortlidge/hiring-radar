@@ -92,6 +92,39 @@ def test_non_object_items_are_rejected(tax):
     assert r[0]["reason"] == "not an object"
 
 
+def test_required_already_set_is_never_downgraded_by_a_later_nice_to_have(tax):
+    # The reverse of test_duplicate_skill_keeps_one_and_required_wins: once required is
+    # recorded for a skill, a later nice_to_have report of the same skill must not
+    # overwrite it.
+    m, _, _ = ex.parse_skills([item("kubernetes", "Kubernetes", "required"),
+                               item("kubernetes", "Kubernetes", "nice_to_have")], tax, JD)
+    assert m == [ex.Mention("kubernetes", "required", "Kubernetes")]
+
+
+def test_duplicate_proposed_skill_keeps_the_required_one(tax):
+    # The same "required wins" rule, on the proposed (unmapped) side rather than mentions.
+    m, p, _ = ex.parse_skills([item("new:Rust", "Rust", "nice_to_have"),
+                               item("new:Rust", "Rust", "required")], tax, JD)
+    assert m == []
+    assert p == [ex.Proposed("Rust", "required", "Rust")]
+
+
+@pytest.mark.parametrize("bad_item,reason", [
+    ("not a dict", "not an object"),
+    (item("python", "Python", "mandatory"), "bad requirement"),
+    (item("python", "text nobody wrote"), "raw_text not found in job text"),
+    (item("new:Unmapped Thing", "LangChain"), None),  # accepted into proposed, not rejected
+])
+def test_a_bad_or_unresolved_skill_does_not_stop_the_rest_of_the_list(tax, bad_item, reason):
+    # Each `continue` in parse_skills must never become a `break`: one malformed or
+    # unmapped item must not silently drop every skill listed after it -- the "job stored
+    # with too few skills" class of bug.
+    m, _, r = ex.parse_skills([bad_item, item("langchain", "LangChain")], tax, JD)
+    assert "langchain" in [x.skill_id for x in m]
+    if reason is not None:
+        assert r[0]["reason"] == reason
+
+
 # --- request + version -----------------------------------------------------------
 
 def test_request_uses_auto_tool_choice_and_caches_system_prompt(tax):
@@ -157,6 +190,15 @@ def test_extract_end_to_end_with_fake_client(tax):
     assert len(client.requests) == 1  # no retries
 
 
+def test_extract_sends_the_actual_job_text_to_the_model(tax):
+    # The request the fake client received must carry the real posting, not a stand-in --
+    # a silent jd_text -> None on the way into build_request would still produce a
+    # well-formed request and a well-formed (empty) response.
+    client = FakeClient(response([item("python", "Python")]))
+    ex.extract(JD, tax, client, model="m")
+    assert JD in client.requests[0]["messages"][0]["content"]
+
+
 def test_extract_carries_the_models_whole_tool_call_and_the_model_name(tax):
     """What HIR-170 logs: the tool call as it arrived, including the item validation threw away.
 
@@ -173,6 +215,17 @@ def test_extract_carries_the_models_whole_tool_call_and_the_model_name(tax):
                                   response(n_blocks=0), response(n_blocks=2), response(name="other")])
 def test_extract_raises_on_anything_but_one_tool_call(tax, resp):
     with pytest.raises(ex.ExtractionError):
+        ex.extract(JD, tax, FakeClient(resp), model="m")
+
+
+def test_extract_raises_on_cutoff_even_with_a_real_partial_tool_call(tax):
+    # The parametrized cases above all carry an empty tool call, which would still raise
+    # EmptyExtractionError if the stop_reason check were removed entirely -- masking
+    # whether that check does anything on its own. A partial call that already carries a
+    # real skill only fails because of the stop_reason check, so this is the one that
+    # actually pins it.
+    resp = response(items=[item("python", "Python")], stop="max_tokens")
+    with pytest.raises(ex.ExtractionError, match="stop_reason"):
         ex.extract(JD, tax, FakeClient(resp), model="m")
 
 
