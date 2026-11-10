@@ -1,7 +1,8 @@
 """Command line: `uv run python -m app <command>`.
 
-  poll              fetch all enabled feeds, ingest, extract skills for new jobs; --only ashby:jupus polls one feed
-  extract           extract skills for any job still missing them (e.g. after a taxonomy bump)
+  poll              fetch all enabled feeds, ingest, extract skills for new jobs; --only ashby:jupus polls one feed.
+                    Readings run as one Anthropic Message Batch — half price, waits for it to finish (HIR-222)
+  extract           extract skills for any job still missing them (e.g. after a taxonomy bump); batches, as poll does
   add-text          add one job from pasted text (reads stdin): --company --title --location --found-via
   add-screenshot    add one job from an image file (stage 1 vision → stage 2): same flags + path
   check             is this careers-page URL already in the DB? If not, why no feed stored it. --add ingests it;
@@ -55,15 +56,19 @@ def open_db():
     return conn
 
 
-def run_extraction(conn, limit=None, job_ids=None, run_kind=langsmith_live.REREAD):
+def run_extraction(conn, limit=None, job_ids=None, run_kind=langsmith_live.REREAD, batch=False):
     """Extract pending jobs; `job_ids` narrows to those jobs. The add commands pass the one job
     they added, so adding a posting never triggers a full re-extract after a version bump.
 
-    `run_kind` only names the run in LangSmith (HIR-160)."""
+    `run_kind` only names the run in LangSmith (HIR-160). `batch=True` submits the queue
+    as one Anthropic Message Batch instead of one call per job (HIR-222) — the poll and a
+    full re-read pass it; the add commands never do, since a person is waiting for that job."""
     tax = Taxonomy.load()
-    report = extract_pending(conn, tax, limit=limit, job_ids=job_ids, run_kind=run_kind)
+    report = extract_pending(conn, tax, limit=limit, job_ids=job_ids, run_kind=run_kind, batch=batch)
     print(report.line())
     print(report.log_line(unlogged_extractions(conn)))
+    if (line := report.cost_line()):
+        print(line)
     if (line := report.grounding_line()):
         print(line)
     if job_ids is None and report.all_blank:
@@ -90,11 +95,11 @@ def cmd_poll(args):
     print(f"TOTAL {r.line()}")
     if args.no_extract:
         return
-    run_extraction(conn, run_kind=langsmith_live.POLL)
+    run_extraction(conn, run_kind=langsmith_live.POLL, batch=True)
 
 
 def cmd_extract(args):
-    run_extraction(open_db(), args.limit, run_kind=langsmith_live.REREAD)
+    run_extraction(open_db(), args.limit, run_kind=langsmith_live.REREAD, batch=True)
 
 
 def cmd_add_text(args):
