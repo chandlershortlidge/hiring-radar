@@ -113,6 +113,7 @@ def test_duplicate_proposed_skill_keeps_the_required_one(tax):
     ("not a dict", "not an object"),
     (item("python", "Python", "mandatory"), "bad requirement"),
     (item("python", "text nobody wrote"), "raw_text not found in job text"),
+    (item("cobol", "Python"), "unknown skill_id"),  # not new:-prefixed and not resolvable
     (item("new:Unmapped Thing", "LangChain"), None),  # accepted into proposed, not rejected
 ])
 def test_a_bad_or_unresolved_skill_does_not_stop_the_rest_of_the_list(tax, bad_item, reason):
