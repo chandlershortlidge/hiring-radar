@@ -5,6 +5,32 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-10 — Every run flushes its own client before the trace can be lost (HIR-236)
+
+The 07:00 poll on 10 Nov ran with tracing on and the package installed (HIR-233), read 5
+jobs, and printed no warning — yet nothing reached `hiring-radar-live`. LangSmith's SDK
+sends a run from a background thread; the poll is a systemd oneshot, so the process exited
+and killed that thread before it had sent anything. A manual trace on the VM, made the same
+way but followed by an explicit `client.flush()`, did arrive — the queue was never the
+problem, only the missing wait for it to drain.
+
+**`langsmith_live.run()` flushes the run's own client when the trace closes, capped at 30
+seconds.** One place, because every live caller — the poll, a re-read, add-by-link, a
+backfill — already opens its run through this one function; fixing it there means no
+caller has to remember to flush, including the ones not written yet. The 30-second cap is
+so an unreachable LangSmith delays a run, never hangs the 07:00 timer. Undo: delete
+`_flush` and the call to it at the end of `run()` in `app/langsmith_live.py`.
+
+**The flush goes through the same `_safe` net as everything else here.** HIR-160's
+invariant is that no LangSmith problem fails a run; a flush that times out or raises prints
+`[langsmith] flush failed, continuing without it` and the run's result is unaffected. Undo:
+call `run_tree.client.flush(...)` directly, outside `_safe`.
+
+A test gives the run a fake client and checks flush is called exactly once, with the capped
+timeout; another makes that fake client's flush raise and checks the run still succeeds.
+
+---
+
 ## 2026-11-09 — One pinned Python everywhere, and the VM installs wheels only (HIR-235)
 
 The deploy of HIR-233 failed on the VM: `uv` tried to compile `zstandard` from source and

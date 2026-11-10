@@ -23,6 +23,9 @@ Invariants:
     failed poll.
   - One trace per run, not per job, however many cities are added — the free plan allows
     5,000 traces a month and the eval shares it (HIR-160). Jobs are children of the run.
+  - A run flushes its own client when it closes, capped at FLUSH_TIMEOUT_S. The SDK sends
+    from a background thread, and the poll is a oneshot process that used to exit before
+    that thread had sent anything, losing every trace silently (HIR-236).
   - Only the public job ad already being sent to the model goes out: the job's title and
     posting text, its database id, and the model's own answer. Nothing about a person.
 
@@ -50,6 +53,11 @@ POLL = "poll"
 REREAD = "re-read"
 ADD = "add"
 BACKFILL = "backfill"
+
+# The SDK sends runs from a background thread; a oneshot process (the poll) can exit and
+# kill that thread before anything is sent (HIR-236). Capped so an unreachable LangSmith
+# delays a run by at most this long rather than hanging the 07:00 timer.
+FLUSH_TIMEOUT_S = 30
 
 
 def enabled() -> bool:
@@ -228,9 +236,19 @@ class Run:
             yield JobSpan(child)
 
 
+def _flush(run_tree) -> None:
+    run_tree.client.flush(timeout=FLUSH_TIMEOUT_S)
+
+
 @contextmanager
 def run(kind: str, metadata: dict | None = None, inputs: dict | None = None):
-    """One trace for a whole extraction run. Yields a `Run`; a do-nothing one when off."""
+    """One trace for a whole extraction run. Yields a `Run`; a do-nothing one when off.
+
+    Flushes the run's client once the trace itself has closed, so the poll, a re-read, an
+    add-by-link and a backfill all get this for free (HIR-236) rather than each caller
+    having to remember it. Through `_safe`, so a stuck or unreachable LangSmith delays the
+    run by at most FLUSH_TIMEOUT_S and never fails it.
+    """
     if not enabled():
         yield Run(None)
         return
@@ -240,3 +258,5 @@ def run(kind: str, metadata: dict | None = None, inputs: dict | None = None):
                 tags=[kind],
                 metadata=dict(metadata or {})) as run_tree:
         yield Run(run_tree)
+    if run_tree is not None:
+        _safe("flush", _flush, run_tree)
