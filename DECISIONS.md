@@ -5,6 +5,32 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-10 — The key alone turns tracing on; `LANGSMITH_TRACING` is no longer needed too (HIR-238)
+
+With the HIR-236 flush fix deployed and `LANGSMITH_API_KEY` set, the next poll still sent
+nothing to `hiring-radar-live`. `langsmith.trace` only posts a span when it reads
+`LANGSMITH_TRACING=true` (or `*_TRACING_V2`) from the environment — a second switch,
+separate from the key, that `langsmith_live.enabled()` never checked and the README never
+mentioned. Adding `LANGSMITH_TRACING=true` to `/etc/hiring-radar.env` by hand made the
+17:17 poll's trace arrive, confirming that was the whole gap.
+
+**`langsmith_live.run()` forces the SDK's switch on for its own duration, via
+`langsmith.tracing_context(enabled=True)`, whenever the key is set.** That context is
+ambient (the same mechanism nesting already relies on), so it covers the run span, every
+job span opened inside it, and the model-call span `wrap_anthropic` opens under each job —
+all without touching `LANGSMITH_TRACING`. Undo: delete `_force_enabled` and the `with
+_force_enabled():` around `run()`'s body in `app/langsmith_live.py`.
+
+**Not `enabled=True` on `langsmith.trace()` itself**, as a first reading of the fix
+suggested: the installed SDK's `trace()` has no such parameter — passing one lands in
+`**kwargs`, which only warns and is silently dropped, so tracing would have stayed exactly
+as broken. `tracing_context` is the SDK's real override point.
+
+The VM's `/etc/hiring-radar.env` keeps `LANGSMITH_TRACING=true` from the manual workaround;
+it is harmless now, just redundant. `deploy/README.md`'s "Tracing the poll" section says so.
+
+---
+
 ## 2026-11-10 — Every run flushes its own client before the trace can be lost (HIR-236)
 
 The 07:00 poll on 10 Nov ran with tracing on and the package installed (HIR-233), read 5

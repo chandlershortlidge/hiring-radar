@@ -85,6 +85,12 @@ Turning it off is removing the key — there is no other switch, and a LangSmith
 only ever print a `[langsmith] … continuing without it` line on stderr. Override the
 project name with `LANGSMITH_LIVE_PROJECT` if you ever want a run kept apart.
 
+The LangSmith SDK has its own tracing switch, `LANGSMITH_TRACING=true`, which `run()` now
+turns on by itself whenever the key is set (HIR-238) — the 10 Nov VM needed both, with the
+key alone silently tracing nothing. If `LANGSMITH_TRACING=true` is already in
+`/etc/hiring-radar.env` from that workaround, it is harmless to leave; it just no longer
+does anything.
+
 The `langsmith` package is a project dependency, so the deploy's `uv sync --frozen
 --no-dev` installs it on the VM. It was dev-only until HIR-233, and the first traced poll
 died on the missing import; a failed import is now tracing off with one warning, like any
