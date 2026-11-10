@@ -17,7 +17,9 @@ Invariants: the cost is per *reading*, measured in tokens and priced at the mode
 would do the next reading — so swapping models reprices honestly instead of carrying an
 old model's euros forward. Too few logged readings to average is reported as an estimate,
 never silently smoothed over. The job count is the queue's own definition
-(`pipeline.reread_queue_size`), so it can't drift from what actually runs.
+(`pipeline.reread_queue_size`), so it can't drift from what actually runs. Priced at the
+Batch API's half rate, since a re-read always runs as a batch now (HIR-222); the logged
+token counts themselves are unaffected by how a reading was billed.
 """
 
 import json
@@ -38,6 +40,11 @@ MODEL_PRICES_USD_PER_MTOK: dict[str, tuple[float, float, float, float]] = {
 }
 
 EUR_PER_USD = 0.93
+
+# The Message Batches API charges half the standard input and output price, and the
+# discount stacks with prompt caching (HIR-222). Every re-read now goes through a batch
+# (app/pipeline.py), so this is the rate `reread_cost` prices at.
+BATCH_DISCOUNT = 0.5
 
 # The fallback, used only when the database holds too few readings to average. Measured
 # against app/extract.py by hand and rounded up; the same figures the city-launch spending
@@ -85,14 +92,22 @@ class RereadCost:
         return self.readings > 0
 
 
-def price_eur(tokens: Tokens, model: str) -> float:
+def price_eur(tokens: Tokens, model: str, batch: bool = False) -> float:
     """What one reading of that token shape costs, in euros, on `model`. Pure.
 
     An unpriced model falls back to the current default's prices rather than raising: a
     missing row in the table must not stop someone finding out roughly what a merge costs.
+
+    `batch=True` halves every rate (HIR-222): the Message Batches API's own discount,
+    which applies to input, output and cached tokens alike and stacks with the cache
+    discount already baked into `usd_read`/`usd_write`.
     """
     usd_in, usd_out, usd_read, usd_write = MODEL_PRICES_USD_PER_MTOK.get(
         model, MODEL_PRICES_USD_PER_MTOK[DEFAULT_MODEL])
+    if batch:
+        usd_in, usd_out, usd_read, usd_write = (
+            usd_in * BATCH_DISCOUNT, usd_out * BATCH_DISCOUNT,
+            usd_read * BATCH_DISCOUNT, usd_write * BATCH_DISCOUNT)
     usd = (tokens.input * usd_in + tokens.output * usd_out
            + tokens.cache_read * usd_read + tokens.cache_write * usd_write) / 1e6
     return usd * EUR_PER_USD
@@ -142,7 +157,9 @@ def reread_cost(conn: sqlite3.Connection, now: str | None = None,
         tokens, readings = mean_tokens(usages), len(usages)
     else:
         tokens, readings = Tokens(input=ESTIMATE_INPUT_TOKENS, output=ESTIMATE_OUTPUT_TOKENS), 0
-    per = price_eur(tokens, model)
+    # Logged usages are real token counts regardless of how they were read; the re-read
+    # this merge would trigger always runs as a batch now (HIR-222), so price it as one.
+    per = price_eur(tokens, model, batch=True)
     return RereadCost(jobs=jobs, tokens=tokens, readings=readings, found=len(usages),
                       model=model, eur_per_reading=per, eur_total=per * jobs)
 
@@ -155,14 +172,15 @@ def report_lines(cost: RereadCost) -> list[str]:
     if cost.measured:
         lines.append(f"Measured from the last {cost.readings} readings we paid for: "
                      f"{cost.tokens.total():,.0f} tokens per reading on average "
-                     f"(€{cost.eur_per_reading:.4f} each at {cost.model} prices).")
+                     f"(€{cost.eur_per_reading:.4f} each at {cost.model} Batch API prices, "
+                     f"half the standard rate — a re-read always runs as a batch, HIR-222).")
     else:
         lines.append(f"ESTIMATE, not measured: only {cost.found} stored reading"
                      f"{'' if cost.found == 1 else 's'} carry token counts, fewer than the "
                      f"{MIN_READINGS_TO_AVERAGE} needed to average. This uses a hand-made guess "
                      f"of {ESTIMATE_INPUT_TOKENS:,} tokens in and {ESTIMATE_OUTPUT_TOKENS:,} out "
-                     f"per reading (€{cost.eur_per_reading:.4f} each at {cost.model} prices). "
-                     f"Treat it as the right order of magnitude, not a quote.")
+                     f"per reading (€{cost.eur_per_reading:.4f} each at {cost.model} Batch API "
+                     f"prices). Treat it as the right order of magnitude, not a quote.")
     lines.append("")
     lines.append("Closed jobs are not re-read, so they are not counted (HIR-195). "
                  "Paste the figure above into the pull request body.")
