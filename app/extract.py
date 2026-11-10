@@ -459,8 +459,11 @@ def make_client():
     return anthropic.Anthropic()
 
 
-def extract(jd_text: str, tax: Taxonomy, client, model: str = DEFAULT_MODEL) -> Extraction:
-    response = client.messages.create(**build_request(tax, jd_text, model))
+def extraction_from_message(response, tax: Taxonomy, jd_text: str, model: str) -> Extraction:
+    """Turn one model response into a validated Extraction. `response` is a `Message`,
+    whichever call produced it: `client.messages.create`'s return value, or one item's
+    `result.message` from the Batch API (app/pipeline.py, HIR-222) — both carry the same
+    shape, so a batched reading is validated exactly like a direct one."""
     if response.stop_reason in ("max_tokens", "refusal"):
         raise ExtractionError(f"call did not complete: stop_reason={response.stop_reason!r}")
     blocks = [b for b in response.content if getattr(b, "type", None) == "tool_use" and b.name == TOOL["name"]]
@@ -497,3 +500,8 @@ def extract(jd_text: str, tax: Taxonomy, client, model: str = DEFAULT_MODEL) -> 
         raw_output=dict(blocks[0].input),
         model=model,
     )
+
+
+def extract(jd_text: str, tax: Taxonomy, client, model: str = DEFAULT_MODEL) -> Extraction:
+    response = client.messages.create(**build_request(tax, jd_text, model))
+    return extraction_from_message(response, tax, jd_text, model)

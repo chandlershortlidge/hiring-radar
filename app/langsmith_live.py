@@ -163,7 +163,8 @@ class JobSpan:
     def __init__(self, run_tree):
         self.run_tree = run_tree
 
-    def result(self, extraction, grounded: int, quotes: int, usage: dict | None = None) -> None:
+    def result(self, extraction, grounded: int, quotes: int, usage: dict | None = None,
+              usage_metadata: dict | None = None) -> None:
         """Put the answer, its token usage and its grounding on this job's span.
 
         `grounded`/`quotes` are app/grounding.py's count for this one posting: how many of
@@ -174,12 +175,18 @@ class JobSpan:
 
         `usage` overrides the extraction's own token counts, for a caller that knows
         something the extraction object does not (the Batch API's half price, HIR-222).
+
+        `usage_metadata`, when given, is LangSmith's own cost-tracking shape
+        (`langsmith.schemas.UsageMetadata`: token counts plus explicit `input_cost` /
+        `output_cost` / `total_cost`). A batch reading has no nested LLM span of its own —
+        the wrapped client only ever sees `messages.create`, never the Batch API — so
+        without this LangSmith prices it at the standard rate, or shows nothing at all.
         """
         if self.run_tree is None:
             return
         used = usage if usage is not None else dict(getattr(extraction, "usage", {}) or {})
         failures = quotes - grounded
-        _safe("job outputs", self.run_tree.add_outputs, {
+        outputs = {
             "skills": [m.skill_id for m in getattr(extraction, "mentions", [])],
             "n_mentions": len(getattr(extraction, "mentions", [])),
             "n_proposed": len(getattr(extraction, "proposed", [])),
@@ -189,7 +196,10 @@ class JobSpan:
             "grounding_failures": failures,
             "grounding": (grounded / quotes) if quotes else None,
             "usage": used,
-        })
+        }
+        if usage_metadata:
+            outputs["usage_metadata"] = usage_metadata
+        _safe("job outputs", self.run_tree.add_outputs, outputs)
         if failures:
             _safe("job tags", self.run_tree.add_tags, ["grounding-failure"])
 

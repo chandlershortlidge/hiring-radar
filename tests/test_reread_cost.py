@@ -69,6 +69,15 @@ def test_an_unpriced_model_falls_back_to_the_default_rather_than_raising():
             == pytest.approx(reread_cost.price_eur(tokens, reread_cost.DEFAULT_MODEL)))
 
 
+def test_batch_pricing_halves_every_rate():
+    """The Message Batches API's discount applies to input, output and cached tokens
+    alike, and stacks with the cache discount already in the standard rate (HIR-222)."""
+    tokens = reread_cost.Tokens(input=1e6, output=1e6, cache_read=1e6, cache_write=1e6)
+    standard = reread_cost.price_eur(tokens, MODEL)
+    batch = reread_cost.price_eur(tokens, MODEL, batch=True)
+    assert batch == pytest.approx(standard / 2)
+
+
 # --- averaging the readings we paid for -----------------------------------------------
 
 def test_the_average_is_of_the_token_counts_the_provider_reported():
@@ -102,15 +111,26 @@ def test_only_the_most_recent_readings_are_averaged(conn):
 # --- the whole figure -----------------------------------------------------------------
 
 def test_the_cost_is_the_queue_times_the_average_reading(conn):
-    # 3 open jobs never read; every reading cost 1M in + 1M out = $12 = €11.16.
+    # 3 open jobs never read; every reading cost 1M in + 1M out = $12 at the standard rate,
+    # halved to $6 = €5.58 since a re-read always runs as a batch now (HIR-222).
     log_readings(conn, reread_cost.MIN_READINGS_TO_AVERAGE,
                  {"input_tokens": 1_000_000, "output_tokens": 1_000_000})
     cost = reread_cost.reread_cost(conn, model=MODEL)
     assert cost.jobs == 3
     assert cost.measured
     assert cost.readings == reread_cost.MIN_READINGS_TO_AVERAGE
-    assert cost.eur_per_reading == pytest.approx(12.00 * 0.93)
-    assert cost.eur_total == pytest.approx(3 * 12.00 * 0.93)
+    assert cost.eur_per_reading == pytest.approx(6.00 * 0.93)
+    assert cost.eur_total == pytest.approx(3 * 6.00 * 0.93)
+
+
+def test_reread_cost_prices_at_the_batch_rate_not_the_standard_one(conn):
+    """A re-read always submits as a batch (HIR-222), so the figure quoted for a merge
+    must be half the standard rate, not the full price `price_eur` gives by default."""
+    log_readings(conn, reread_cost.MIN_READINGS_TO_AVERAGE,
+                 {"input_tokens": 1_000_000, "output_tokens": 1_000_000})
+    cost = reread_cost.reread_cost(conn, model=MODEL)
+    standard = reread_cost.price_eur(cost.tokens, MODEL)
+    assert cost.eur_per_reading == pytest.approx(standard * reread_cost.BATCH_DISCOUNT)
 
 
 def test_too_few_readings_is_reported_as_an_estimate_not_smoothed_over(conn):
@@ -176,7 +196,7 @@ def test_the_report_leads_with_the_figure_for_the_pull_request(conn):
     log_readings(conn, reread_cost.MIN_READINGS_TO_AVERAGE,
                  {"input_tokens": 1_000_000, "output_tokens": 1_000_000})
     lines = reread_cost.report_lines(reread_cost.reread_cost(conn, model=MODEL))
-    assert "would re-read 3 jobs: about €33.48." in lines[0]
+    assert "would re-read 3 jobs: about €16.74." in lines[0]   # half of €33.48, HIR-222
     assert any("Measured from the last 20 readings" in l for l in lines)
 
 
