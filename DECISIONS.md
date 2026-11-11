@@ -5,6 +5,197 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-11 — Taxonomy v11: 27 entries from the queue after the German launch; the bar counts distinct postings (HIR-219)
+
+The queue was re-read from the live site's backup of 11 Nov 02:30Z (916 jobs, all but
+four at the current extractor stamp, so the HIR-128 caveat about stale stamps does not
+apply): 504 pending suggestions, 366 labels once case, punctuation and parentheses are
+normalised. Thirty reach the 2026-10-20 bar of 3 jobs counting rows.
+
+**The bar counts distinct postings, not stored rows.** Three pairs of rows are one
+posting each, stored twice because the company was spelled two ways or the title
+changed slightly: Zeta Global / zetaglobal ("Senior Data Scientist, Data Cloud
+Acceleration", jobs 167 and 357), Control Risks / Control Risks Group Holdings ("AI
+Engineer", near-identical text, 813 and 908), and Botgenossen's "KI Entwickler / AI
+Engineer" (378 and 799). Counted once, **AWS Glue, Power Platform and Neo4j are at 2 and
+stay pending.** Caspar Health's backend role (228, 293, and an aggregator's copy, 289)
+is also one posting; Ruby on Rails is counted with it once and stays over the bar.
+Hamburger Energienetze's 360 and 832 are two different roles and both count. The rule is
+the bar's own purpose — frequency, independent evidence — as applied in HIR-128 ("4
+distinct postings") and HIR-108 (same company and title is the same posting, judged by
+reading, not by the matcher's threshold). The stored rows are left alone; deleting jobs
+is a stop-list item, so the missed duplicates are a follow-up ticket.
+
+**27 entries land, v11, 244 skills.** With their distinct-posting counts and parents:
+
+- Microsoft and Azure: `azure-ai-foundry` 5 [azure], `microsoft-entra-id` 5 [azure,
+  active-directory], `azure-key-vault` 4 [azure], `azure-devops` 3 [azure, ci-cd],
+  `azure-ai-search` 3 [azure, vector-search], `microsoft-fabric` 3 [azure], `power-bi` 3
+  [business-intelligence], `dotnet` 3, `semantic-kernel` 3 [llm-orchestration].
+- Web and backend: `angular` 6 [frontend-development], `ruby-on-rails` 5 [ruby], `ruby` 4,
+  `nestjs` 4 [node-js], `mongodb` 3 [nosql], `oauth` 6 (with the "OAuth 2.0" and
+  "OAuth/OIDC" spellings merged).
+- Platform and delivery: `jenkins` 4 [ci-cd], `argocd` 3 [gitops] ("ArgoCD" and "Argo CD"
+  merged; bare "Argo" stays pending, it can mean Argo Workflows), `openshift` 3
+  [kubernetes], `playwright` 3 [testing], `bazel` 3, `hadoop` 3, `secrets-management` 3
+  [devsecops].
+- Training and models: `megatron-lm` 4 ("Megatron" merged) [distributed-training], `fsdp`
+  3 [distributed-training], `slurm` 4 [ai-infrastructure], `transformers` 3
+  [deep-learning], `pydanticai` 3 [agents].
+
+Whether platform and web tooling belongs on an AI-engineering chart is not a separate
+test: taxonomy/README says a skill is a language, framework, tool, platform, technique or
+practice a job can ask for, and 2026-10-20 says the queue's count decides. Every one of
+these was asked for by AI-titled postings.
+
+**Judgment calls.** `microsoft-entra-id` is its own entry with `active-directory` as a
+parent, not an alias of it: Entra ID is the cloud identity service once called Azure AD,
+and "Active Directory" on its own usually means the on-premises directory; aliases are
+for the same thing spelled differently. "Azure AD" and "Azure Active Directory" are its
+aliases. `transformers` is the model architecture ("transformer-based architectures",
+"transformer"); the Hugging Face library is covered by `hugging-face`, and
+"sentence-transformers" is left pending. `fsdp` lands here rather than under HIR-131,
+because this ticket's brief is everything at the bar (the HIR-72 `opentelemetry`
+precedent); Datadog is at 2 and HIR-131 stays open for it. `ruby-on-rails` takes `ruby`
+as its parent, as `spring-boot` sits under `java`.
+
+**Scrum is rejected**, though at 3: it was ruled a working method, not a skill, on HIR-72
+(2026-11-01). That is about what it is, not how often it appears. This change does not
+touch the database: its three pending rows are rejected from the review queue on the live
+site, which also keeps the label from being re-queued.
+
+**Seven held-out Golden labels added to five Goldens**, on the 2026-10-20 precedent that
+a label the taxonomy could not express before is a missing gold label, not tuning:
+golden_029 `jenkins`, `azure-devops`, `playwright` (required, "Ihr Profil"); golden_035
+`transformers` (required, "Must-haves"); golden_038 `ruby` (required, an example language
+beside the already-labelled Python and JavaScript); golden_046 `oauth` (nice to have,
+"wünschenswert"); golden_047 `dotnet` (required, beside the labelled C#). Not labelled:
+golden_028's PydanticAI and golden_038's Rails app and "transformer neural networks", which
+sit in the responsibilities or the company description (LABELING.md).
+
+Merging re-reads 163 of 722 open postings once, about €1.17, measured by
+`reread-cost` against the same backup (HIR-224 keeps the other 559 readings).
+
+## 2026-11-11 — Adding skills re-reads only the postings that name them; "current" can mean "carried over" (HIR-224)
+
+Any edit to the skill list changes the extractor's version stamp, and since HIR-195 a new
+stamp re-reads every open job — 722 of them, about €5.19, on the live database today. Most
+skill-list edits are a batch of accepted suggestions (HIR-128, HIR-219), and a skill that
+was just added can only change the reading of a posting whose text names it. Chandler's
+yes on the ticket (9 Nov).
+
+**What triggers a targeted re-read.** The old stamp and the new one must differ *only* in
+skills or spellings added to the skill list. Everything else the stamp covers — the
+prompt's rules, the tool schema, the model, the input format, the layout of the skill list
+in the prompt — must be identical, and every skill the old list had must still be there
+with the same display name and at least the same spellings. Anything else (a skill
+removed, renamed, a spelling taken away, any prompt change) re-reads every open job, as
+before. Changing a skill's *parents* never touched the stamp — parents are not in the
+prompt — so that is unchanged too.
+
+**What gets re-read.** An open job whose title plus posting text (what the model is sent)
+contains one of the new names, case-insensitive and word-bounded: every new skill's id,
+display name and aliases, and every alias added to an existing skill. Matching is generous
+on purpose: an extra re-read costs under a cent; a missed one leaves a skill off a
+posting.
+
+**The alias gap, closed from the suggestion queue (Chandler, 11 Nov).** The model can
+resolve a skill from wording that contains none of its names ("transformer-based
+architectures" for Transformers). So a job is *also* re-read when the queue of skills the
+model has suggested holds a pending suggestion of an added skill for it — the new skill
+list resolves the suggested label, or the label contains one of the skill's names —
+whatever words the posting used. And `reread-cost` lists, per added skill, the model's own
+labels and quotes from those suggestions (across the whole queue) that the entry does not
+yet catch: short ones only, none that already contain one of the skill's names. They are
+offered as aliases in the PR, never added by themselves. What remains uncaught is a
+posting that names the skill only in other words *and* was never given it as a
+suggestion; it gets the skill at its next full re-read.
+
+**What "current" means for a carried-over job.** `job.extracted_version` keeps its meaning
+— "this job needs no reading at this version" — and the job is moved to the new stamp
+without a model call. A new column, `job.read_version`, says which version actually
+produced its skills, so no row claims a reading that never happened: a carried-over job
+shows the old stamp there, its skill rows keep the stamp they were written under, and the
+reading log is untouched. A job read in full gets the same value in both columns.
+"Stored extractions with no logged reading" now checks `read_version`, since that is the
+reading the log should hold.
+
+**How the old skill list is known.** A version stamp is a hash, so the skill list behind
+it cannot be recovered from it. The app now records, for every version it runs under, the
+skill list the prompt carried and a hash of everything else (a new table,
+`extractor_snapshot`). It records on every extraction run and when the dashboard process
+starts, so the version live before a skill-list merge is recorded by the deploy of this
+change or any later poll. A stamp with no recorded snapshot — e.g. a database restored from
+before this change — re-reads in full: the safe direction. "Everything else" is the stamp
+of the same code with a fixed one-skill list, so any new ingredient a later change adds to
+the stamp is covered without anyone remembering to add it here.
+
+**The re-read cost follows.** `reread-cost`, run on a branch with a skill-list change,
+counts only the jobs that branch would really re-read. It knows the old list from the
+database's snapshots, or, if the database has none for that stamp, from `origin/main`'s
+skill list in git. On a branch with no extractor change it prints the full figure, as
+before, labelled as what a change other than added skills would cost.
+
+**The eval gate is unchanged**: any edit to the skill list still needs the dev eval, which
+reads its own Goldens and has nothing to do with which stored jobs are re-read.
+
+To undo: revert the HIR-224 commits; migration 019's column and table can stay, nothing
+else reads them, and every open job behaves as before on the next version change.
+
+---
+
+## 2026-11-10 — The key alone turns tracing on; `LANGSMITH_TRACING` is no longer needed too (HIR-238)
+
+With the HIR-236 flush fix deployed and `LANGSMITH_API_KEY` set, the next poll still sent
+nothing to `hiring-radar-live`. `langsmith.trace` only posts a span when it reads
+`LANGSMITH_TRACING=true` (or `*_TRACING_V2`) from the environment — a second switch,
+separate from the key, that `langsmith_live.enabled()` never checked and the README never
+mentioned. Adding `LANGSMITH_TRACING=true` to `/etc/hiring-radar.env` by hand made the
+17:17 poll's trace arrive, confirming that was the whole gap.
+
+**`langsmith_live.run()` forces the SDK's switch on for its own duration, via
+`langsmith.tracing_context(enabled=True)`, whenever the key is set.** That context is
+ambient (the same mechanism nesting already relies on), so it covers the run span, every
+job span opened inside it, and the model-call span `wrap_anthropic` opens under each job —
+all without touching `LANGSMITH_TRACING`. Undo: delete `_force_enabled` and the `with
+_force_enabled():` around `run()`'s body in `app/langsmith_live.py`.
+
+**Not `enabled=True` on `langsmith.trace()` itself**, as a first reading of the fix
+suggested: the installed SDK's `trace()` has no such parameter — passing one lands in
+`**kwargs`, which only warns and is silently dropped, so tracing would have stayed exactly
+as broken. `tracing_context` is the SDK's real override point.
+
+The VM's `/etc/hiring-radar.env` keeps `LANGSMITH_TRACING=true` from the manual workaround;
+it is harmless now, just redundant. `deploy/README.md`'s "Tracing the poll" section says so.
+
+---
+
+## 2026-11-10 — Every run flushes its own client before the trace can be lost (HIR-236)
+
+The 07:00 poll on 10 Nov ran with tracing on and the package installed (HIR-233), read 5
+jobs, and printed no warning — yet nothing reached `hiring-radar-live`. LangSmith's SDK
+sends a run from a background thread; the poll is a systemd oneshot, so the process exited
+and killed that thread before it had sent anything. A manual trace on the VM, made the same
+way but followed by an explicit `client.flush()`, did arrive — the queue was never the
+problem, only the missing wait for it to drain.
+
+**`langsmith_live.run()` flushes the run's own client when the trace closes, capped at 30
+seconds.** One place, because every live caller — the poll, a re-read, add-by-link, a
+backfill — already opens its run through this one function; fixing it there means no
+caller has to remember to flush, including the ones not written yet. The 30-second cap is
+so an unreachable LangSmith delays a run, never hangs the 07:00 timer. Undo: delete
+`_flush` and the call to it at the end of `run()` in `app/langsmith_live.py`.
+
+**The flush goes through the same `_safe` net as everything else here.** HIR-160's
+invariant is that no LangSmith problem fails a run; a flush that times out or raises prints
+`[langsmith] flush failed, continuing without it` and the run's result is unaffected. Undo:
+call `run_tree.client.flush(...)` directly, outside `_safe`.
+
+A test gives the run a fake client and checks flush is called exactly once, with the capped
+timeout; another makes that fake client's flush raise and checks the run still succeeds.
+
+---
+
 ## 2026-11-10 — A labelling run never overwrites another run's Goldens (HIR-167)
 
 Every labelling run numbers its picks from the highest Golden that existed when the run

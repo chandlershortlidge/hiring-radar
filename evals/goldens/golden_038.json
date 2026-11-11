@@ -45,6 +45,11 @@
       "raw_text": "Ruby, Python"
     },
     {
+      "skill_id": "ruby",
+      "requirement": "required",
+      "raw_text": "for example, Ruby"
+    },
+    {
       "skill_id": "software-engineering",
       "requirement": "required",
       "raw_text": "excellent software engineering skills"

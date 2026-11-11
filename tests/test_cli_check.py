@@ -105,3 +105,49 @@ def test_add_text_extracts_only_the_job_it_added(tmp_path, monkeypatch):
                         lambda conn, limit=None, job_ids=None, **kw: calls.append(job_ids))
     cli.main(["add-text", "--company", "Acme", "--title", "AI Engineer"])
     assert calls == [[7]]
+
+
+# --- the Batch API: poll and a full re-read use it, adding a job by hand never does ----
+# (HIR-222)
+
+def test_add_text_never_asks_for_the_batch_api(tmp_path, monkeypatch):
+    import io
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+    kwargs = []
+    monkeypatch.setattr(cli.sys, "stdin", io.StringIO("Python and RAG. " * 40))
+    monkeypatch.setattr(cli, "open_db", lambda: conn)
+    stores_as(monkeypatch, 7)
+    monkeypatch.setattr(cli, "run_extraction",
+                        lambda conn, limit=None, job_ids=None, **kw: kwargs.append(kw))
+    cli.main(["add-text", "--company", "Acme", "--title", "AI Engineer"])
+    assert not kwargs[0].get("batch")
+
+
+def test_check_add_never_asks_for_the_batch_api(tmp_path, monkeypatch):
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+    page = Posting("url", "", "https://acme.com/j/3", "Acme", "AI Engineer", "Berlin", "Python and RAG. " * 40)
+    r = CheckResult(url=page.url, verdict="not_found", how="", diagnosis="not a hosted ATS page", posting=page)
+    kwargs = []
+    monkeypatch.setattr(cli, "open_db", lambda: conn)
+    monkeypatch.setattr(cli, "check_url", lambda *a, **k: r)
+    monkeypatch.setattr(cli, "log_check", lambda *a, **k: None)
+    stores_as(monkeypatch, 249)
+    monkeypatch.setattr(cli, "run_extraction",
+                        lambda conn, limit=None, job_ids=None, **kw: kwargs.append(kw))
+    cli.main(["check", page.url, "--add"])
+    assert not kwargs[0].get("batch")
+
+
+def test_poll_and_extract_both_submit_the_queue_as_one_batch(tmp_path, monkeypatch):
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+    kwargs = []
+    monkeypatch.setattr(cli, "open_db", lambda: conn)
+    monkeypatch.setattr(cli, "load_feeds", lambda: [])
+    monkeypatch.setattr(cli, "run_extraction",
+                        lambda conn, limit=None, job_ids=None, **kw: kwargs.append(kw))
+    cli.main(["poll"])
+    cli.main(["extract"])
+    assert kwargs[0]["batch"] and kwargs[1]["batch"]

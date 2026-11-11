@@ -8,6 +8,11 @@ cost and whether the evidence the model quoted was really in the posting (app/gr
 app/langsmith_live.py, HIR-160). Tracing is off unless LANGSMITH_API_KEY is set, and a
 LangSmith failure never fails a run.
 
+A poll or a re-read (`extract_pending(..., batch=True)`) submits every pending job as one
+Anthropic Message Batch, waits for it, and stores each result through the same validation
+and storage as a direct call — half the price, and the request itself is unchanged
+(HIR-222). Adding one job by hand never batches: a person is waiting for that one.
+
 Does NOT: fetch postings, dedup, or decide which taxonomy to use (passed in). The model
 and the call that reaches it are passed in too, but both have a default — the real stage-2
 call against the current model — because every caller outside the tests wants exactly that
@@ -39,18 +44,22 @@ import fcntl
 import hashlib
 import json
 import sqlite3
+import time
 from dataclasses import dataclass, field
 
-from app import langsmith_live
+from app import langsmith_live, targeted_reread
 from app.extract import (
-    DEFAULT_MODEL, EmptyExtractionError, Extraction, extract, extraction_input, extractor_version, make_client)
+    DEFAULT_MODEL, EmptyExtractionError, Extraction, ExtractionError, build_request, extract,
+    extraction_from_message, extraction_input, extractor_version, make_client)
 from app.grounding import grounding
 from app.ingest import now_iso
 from app.queries import open_clause
+from app.reread_cost import MODEL_PRICES_USD_PER_MTOK, BATCH_DISCOUNT, Tokens, USAGE_KEYS, price_eur
 from app.taxonomy import Taxonomy
 
 BLANK_READ_LIMIT = 2   # reads that come back with nothing at all before the posting is dropped
 ALL_BLANK_MIN = 3      # a run at least this big where no job yields a single skill is an outage, not sparse postings
+BATCH_POLL_INTERVAL_S = 20   # how often a batch run checks whether the Batch API has finished
 
 
 @dataclass
@@ -64,7 +73,11 @@ class ExtractReport:
     dropped: list[tuple[int, str]] = field(default_factory=list)
     logged: int = 0
     reread_queued: int = 0     # stale-stamped jobs in this run's queue (still open)
+    carried_over: int = 0      # stale-stamped open jobs moved to the new stamp unread (HIR-224)
     skipped_closed: int = 0    # stale-stamped jobs left out because they are closed (HIR-195)
+    # What this run actually spent, in euros, on its successful readings — priced at the
+    # Batch API's half rate for a batch run, the standard rate otherwise (HIR-222).
+    cost_eur: float = 0.0
     # Grounding over this run's quotes: how many snippets the model offered as evidence,
     # and how many were really in the posting (app/grounding.py). Counted, never acted on
     # — a quote the extractor kept is stored whatever this says (HIR-160).
@@ -96,6 +109,14 @@ class ExtractReport:
         reading that produced them. `unlogged` only ever shrinks — it counts extractions made
         before this logging existed, which cannot be filled in without paying to read again."""
         return f"extraction log: logged={self.logged} missing={unlogged}"
+
+    def cost_line(self) -> str | None:
+        """What this run actually spent, measured from the readings' own token counts —
+        None when nothing was read. Reflects the Batch API's half price for a poll or a
+        re-read (HIR-222); add-by-link, which never batches, is priced at the standard rate."""
+        if not self.succeeded:
+            return None
+        return f"cost: €{self.cost_eur:.2f} ({self.succeeded} reading{'' if self.succeeded == 1 else 's'})"
 
     def grounding_line(self) -> str | None:
         """The run's grounding, or None when there is nothing to say.
@@ -239,12 +260,14 @@ def log_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction, model:
 def unlogged_extractions(conn: sqlite3.Connection) -> int:
     """Stored extractions with no row recording the reading that produced them.
 
-    Only extractions made before HIR-170 landed; it never grows during a run."""
+    Only extractions made before HIR-170 landed; it never grows during a run. Checked
+    against `read_version`, the reading the job's skills came from: a carried-over job's
+    extracted_version names a version that never read it (HIR-224)."""
     return conn.execute(
-        "SELECT count(*) FROM job j WHERE j.extracted_version IS NOT NULL"
-        " AND j.extracted_version != 'legacy'"
+        "SELECT count(*) FROM job j WHERE j.read_version IS NOT NULL"
+        " AND j.read_version != 'legacy'"
         " AND NOT EXISTS (SELECT 1 FROM extraction_log l WHERE l.job_id = j.id"
-        "                 AND l.extractor_version = j.extracted_version)").fetchone()[0]
+        "                 AND l.extractor_version = j.read_version)").fetchone()[0]
 
 
 def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction, model: str = "",
@@ -280,12 +303,14 @@ def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction, mode
             # row. A reading that worked proves the posting is readable, so the earlier blank
             # stops counting against it (HIR-199); without this, blank -> success -> blank
             # deleted a job whose skills were already on the dashboard.
-            "UPDATE job SET extracted_version=?, blank_extractions=0,"
+            # read_version: this is a real reading, so the job's skills now come from it
+            # (HIR-224; a carry-over moves extracted_version alone).
+            "UPDATE job SET extracted_version=?, read_version=?, blank_extractions=0,"
             " seniority=?, seniority_basis=?, seniority_signal=?,"
             " german=?, german_basis=?, german_signal=?,"
             " degree=?, degree_requirement=?, degree_or_equivalent=?, degree_signal=?,"
             " production=?, production_basis=?, production_signal=? WHERE id=?",
-            (ex.extractor_version, sen.level, sen.basis, sen.signal, ger.requirement, ger.basis, ger.signal,
+            (ex.extractor_version, ex.extractor_version, sen.level, sen.basis, sen.signal, ger.requirement, ger.basis, ger.signal,
              deg.level, deg.requirement, int(deg.or_equivalent), deg.signal,
              prod.requirement, prod.basis, prod.signal, job_id))
         # Same transaction as the answer itself: an extraction that is stored but not logged,
@@ -315,9 +340,100 @@ def default_extract_fn(client=None):
     return call
 
 
+def default_batch_fn(client=None, poll_interval: float = BATCH_POLL_INTERVAL_S):
+    """The real Batch API submission, which is what a poll or a re-read wants (HIR-222).
+
+    `requests` is a list of `{"custom_id": str(job_id), "params": build_request(...)}`.
+    Submits them as one Message Batch, blocks until the batch has finished (usually much
+    sooner than its 24-hour window), and returns `{custom_id: result}` for every item —
+    `result.type` is "succeeded", "errored", "canceled" or "expired". The client is
+    created on the first call rather than up front, for the same reason as
+    `default_extract_fn`: a process with no credentials can still reach this function
+    without a batch to submit.
+    """
+    held = {"client": client}
+
+    def call(requests: list[dict]) -> dict:
+        if held["client"] is None:
+            held["client"] = make_client()
+        batch = held["client"].messages.batches.create(requests=requests)
+        while batch.processing_status != "ended":
+            time.sleep(poll_interval)
+            batch = held["client"].messages.batches.retrieve(batch.id)
+        return {item.custom_id: item.result for item in held["client"].messages.batches.results(batch.id)}
+
+    return call
+
+
+def _batch_usage_metadata(usage: dict, model: str) -> dict:
+    """LangSmith's own usage/cost shape (`langsmith.schemas.UsageMetadata`) for one batch
+    reading, priced at the Batch API's half rate. The automatic Anthropic wrapper never
+    sees a batch call (app/langsmith_live.py), so without this LangSmith prices the job at
+    the standard rate, or shows no cost for it at all (HIR-222)."""
+    usd_in, usd_out, usd_read, usd_write = MODEL_PRICES_USD_PER_MTOK.get(
+        model, MODEL_PRICES_USD_PER_MTOK[DEFAULT_MODEL])
+    inp, out = usage.get("input_tokens") or 0, usage.get("output_tokens") or 0
+    cread, cwrite = usage.get("cache_read_input_tokens") or 0, usage.get("cache_creation_input_tokens") or 0
+    input_cost = (inp * usd_in + cread * usd_read + cwrite * usd_write) / 1e6 * BATCH_DISCOUNT
+    output_cost = out * usd_out / 1e6 * BATCH_DISCOUNT
+    return {"input_tokens": inp, "output_tokens": out, "total_tokens": inp + out + cread + cwrite,
+            "input_cost": input_cost, "output_cost": output_cost, "total_cost": input_cost + output_cost}
+
+
+def _apply_job_result(conn, row, sent, ex_or_exc, model, trace, report, log, batch: bool = False) -> None:
+    """Apply one job's reading to the report and the database — success or failure,
+    however the reading was obtained. Shared by the per-job loop and the batch loop so a
+    reading taken one at a time or recovered from a batch is validated and stored under
+    exactly the same rules: blank-read counting and drop-after-two, grounding, storage
+    (HIR-222). `ex_or_exc` is an `Extraction` on success, or the exception that was raised
+    reading it.
+    """
+    with trace.job(row["id"], row["title"], sent) as span:
+        if isinstance(ex_or_exc, BaseException):
+            e = ex_or_exc
+            if isinstance(e, EmptyExtractionError):
+                # A blank read is the posting's own failure, not the connection's: try it twice,
+                # then drop it (HIR-172, Chandler's decision of 5 Nov).
+                blanks = _count_blank_read(conn, row["id"])
+                report.failed.append((row["id"], f"{type(e).__name__}: {e}"))
+                log(f"  job {row['id']}: FAILED {type(e).__name__}: {str(e)[:200]}"
+                    f" (blank read {blanks} of {BLANK_READ_LIMIT})")
+                dropped = blanks >= BLANK_READ_LIMIT
+                if dropped:
+                    _drop_job(conn, row["id"])
+                    report.dropped.append((row["id"], f"{blanks} blank reads"))
+                    log(f"  job {row['id']}: DROPPED after {blanks} blank reads")
+                span.failed(f"{type(e).__name__}: {e}", dropped=dropped)
+            else:  # keep going; the job stays pending for the next run
+                report.failed.append((row["id"], f"{type(e).__name__}: {e}"))
+                log(f"  job {row['id']}: FAILED {type(e).__name__}: {str(e)[:200]}")
+                span.failed(f"{type(e).__name__}: {e}")
+            return
+        ex = ex_or_exc
+        if not ex.mentions:
+            log(f"  job {row['id']}: 0 skills")  # legitimate for a partial posting; recorded, not retried
+        # The same check the eval scores, run on every live reading (HIR-160). It is
+        # measured, not enforced: the extractor has already dropped the quotes it could
+        # not find, and re-deciding that here would make the poll disagree with the eval.
+        grounded, quotes = grounding(sent, ex.mentions, ex.proposed, ex.rejected)
+        report.grounded += grounded
+        report.quotes += quotes
+        usage_metadata = _batch_usage_metadata(ex.usage, model) if batch and ex.usage else None
+        span.result(ex, grounded, quotes, usage_metadata=usage_metadata)
+        store_extraction(conn, row["id"], ex, model, sent)
+        report.logged += 1
+        report.succeeded += 1
+        report.mentions += len(ex.mentions)
+        report.proposed += len(ex.proposed)
+        if ex.usage:
+            tokens = Tokens(*(float(ex.usage.get(k) or 0) for k in USAGE_KEYS))
+            report.cost_eur += price_eur(tokens, model, batch=batch)
+
+
 def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn=None, model: str = DEFAULT_MODEL,
                     limit: int | None = None, log=print, job_ids: list[int] | None = None,
-                    client=None, run_kind: str = langsmith_live.REREAD) -> ExtractReport:
+                    client=None, run_kind: str = langsmith_live.REREAD, batch: bool = False,
+                    batch_fn=None) -> ExtractReport:
     """extract_fn(text, tax, model) -> Extraction. Injected so tests never hit the API;
     left out, the real model call is used (`default_extract_fn`), with `client` if given.
 
@@ -325,8 +441,12 @@ def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn=None, mo
     default, draining the queue after a version bump, which is a re-read (HIR-160). It
     changes nothing about what is read or stored, and without a LANGSMITH_API_KEY it is
     never looked at.
+
+    `batch=True` submits the whole queue as one Anthropic Message Batch instead of one
+    call per job — half the price (HIR-222). The daily poll and any re-read pass it; a job
+    added by hand never does, since a person is waiting for that one. `batch_fn` is the
+    injection point for tests, the same way `extract_fn` is for the per-job call.
     """
-    extract_fn = extract_fn or default_extract_fn(client)
     with _extraction_lock(conn) as held:
         if not held:
             # No trace: a run that read nothing and paid nothing is not a run.
@@ -336,8 +456,18 @@ def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn=None, mo
                                 metadata={"model": model, "taxonomy_version": tax.version,
                                           "extractor_version": extractor_version(tax, model)},
                                 inputs={"limit": limit, "job_ids": job_ids}) as trace:
-            report = _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids, trace)
+            carried = 0
+            if not job_ids:
+                carried = _carry_over(conn, tax, model, log, trace)
+            if batch:
+                batch_fn = batch_fn or default_batch_fn(client)
+                report = _extract_pending_batch(conn, tax, batch_fn, model, limit, log, job_ids, trace)
+            else:
+                extract_fn = extract_fn or default_extract_fn(client)
+                report = _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids, trace)
+            report.carried_over = carried
             trace.finish({
+                "carried_over": report.carried_over,
                 "attempted": report.attempted, "succeeded": report.succeeded,
                 "failed": len(report.failed), "dropped": len(report.dropped),
                 "mentions": report.mentions, "proposed": report.proposed,
@@ -348,6 +478,23 @@ def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn=None, mo
             if report.grounding_failures:
                 trace.tag("grounding-failure")
         return report
+
+
+def _carry_over(conn, tax, model, log, trace) -> int:
+    """Move the open jobs a skill-list addition cannot change to the current stamp, unread,
+    before the queue is built (HIR-224). Returns how many it moved."""
+    p = targeted_reread.carry_over(conn, tax, model)
+    if p.carry:
+        reread = len(p.reread)
+        log(f"  targeted re-read: {reread} of {p.stale} open jobs name a new skill"
+            f" ({', '.join(p.added_ids)}) or had it suggested ({len(p.by_suggestion)});"
+            f" {len(p.carry)} keep their reading")
+        # The comparison HIR-224 asks for: this run against the full re-read it replaced.
+        trace.note({"targeted_reread": f"re-read {reread} of {p.stale} jobs",
+                    "added_skills": p.added_ids, "carried_over": len(p.carry),
+                    "reread_by_suggestion": len(p.by_suggestion)})
+        trace.tag("targeted-reread", *(f"added:{sid}" for sid in p.added_ids))
+    return len(p.carry)
 
 
 def _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids, trace=None) -> ExtractReport:
@@ -370,40 +517,60 @@ def _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids, trace=No
     for row in rows:
         report.attempted += 1
         sent = extraction_input(row["title"], row["description_text"])
-        with trace.job(row["id"], row["title"], sent) as span:
-            try:
-                ex = extract_fn(sent, tax, model)
-            except EmptyExtractionError as e:
-                # A blank read is the posting's own failure, not the connection's: try it twice,
-                # then drop it (HIR-172, Chandler's decision of 5 Nov).
-                blanks = _count_blank_read(conn, row["id"])
-                report.failed.append((row["id"], f"{type(e).__name__}: {e}"))
-                log(f"  job {row['id']}: FAILED {type(e).__name__}: {str(e)[:200]}"
-                    f" (blank read {blanks} of {BLANK_READ_LIMIT})")
-                dropped = blanks >= BLANK_READ_LIMIT
-                if dropped:
-                    _drop_job(conn, row["id"])
-                    report.dropped.append((row["id"], f"{blanks} blank reads"))
-                    log(f"  job {row['id']}: DROPPED after {blanks} blank reads")
-                span.failed(f"{type(e).__name__}: {e}", dropped=dropped)
-                continue
-            except Exception as e:  # keep going; the job stays pending for the next run
-                report.failed.append((row["id"], f"{type(e).__name__}: {e}"))
-                log(f"  job {row['id']}: FAILED {type(e).__name__}: {str(e)[:200]}")
-                span.failed(f"{type(e).__name__}: {e}")
-                continue
-            if not ex.mentions:
-                log(f"  job {row['id']}: 0 skills")  # legitimate for a partial posting; recorded, not retried
-            # The same check the eval scores, run on every live reading (HIR-160). It is
-            # measured, not enforced: the extractor has already dropped the quotes it could
-            # not find, and re-deciding that here would make the poll disagree with the eval.
-            grounded, quotes = grounding(sent, ex.mentions, ex.proposed, ex.rejected)
-            report.grounded += grounded
-            report.quotes += quotes
-            span.result(ex, grounded, quotes)
-            store_extraction(conn, row["id"], ex, model, sent)
-            report.logged += 1
-            report.succeeded += 1
-            report.mentions += len(ex.mentions)
-            report.proposed += len(ex.proposed)
+        try:
+            ex_or_exc = extract_fn(sent, tax, model)
+        except Exception as e:  # keep going; the job stays pending for the next run
+            ex_or_exc = e
+        _apply_job_result(conn, row, sent, ex_or_exc, model, trace, report, log)
+    return report
+
+
+def _result_to_extraction(result, tax, sent, model):
+    """One batch item's result -> an `Extraction` on success, or the exception a direct
+    call would have raised for the same outcome — so `_apply_job_result` handles a batched
+    reading under exactly the same rules as a direct one (HIR-222)."""
+    if result is None:
+        return RuntimeError("batch result missing for this job")
+    if result.type == "succeeded":
+        try:
+            return extraction_from_message(result.message, tax, sent, model)
+        except ExtractionError as e:
+            return e
+    if result.type == "errored":
+        return RuntimeError(f"batch item errored: {result.error}")
+    if result.type == "expired":
+        return RuntimeError("batch item expired before it was processed")
+    return RuntimeError(f"batch item {result.type}")  # canceled
+
+
+def _extract_pending_batch(conn, tax, batch_fn, model, limit, log, job_ids, trace=None) -> ExtractReport:
+    """Submit the whole queue as one Anthropic Message Batch, wait for it, then apply
+    every result through `_apply_job_result` — the same validation and storage a direct
+    call uses, at half the price (HIR-222)."""
+    trace = trace if trace is not None else langsmith_live.Run(None)
+    version = extractor_version(tax, model)
+    now = now_iso()
+    report = ExtractReport()
+    rows = jobs_needing_extraction(conn, version, limit, job_ids, now)
+    report.reread_queued = sum(1 for r in rows if r["extracted_version"] is not None)
+    report.skipped_closed = closed_reread_skips(conn, version, job_ids, now)
+    trace.note({"queued": len(rows), "first_reads": len(rows) - report.reread_queued,
+                "reread_queued": report.reread_queued, "skipped_closed": report.skipped_closed})
+    if report.reread_queued:
+        trace.tag("reread")
+    if report.reread_queued or report.skipped_closed:
+        log(f"  re-reads: {report.reread_queued} open jobs queued;"
+            f" {report.skipped_closed} closed jobs skipped (keep their old skills)")
+    if not rows:
+        return report
+    sent_by_id = {row["id"]: extraction_input(row["title"], row["description_text"]) for row in rows}
+    requests = [{"custom_id": str(job_id), "params": build_request(tax, sent, model)}
+                for job_id, sent in sent_by_id.items()]
+    log(f"  batch: submitting {len(requests)} reading{'' if len(requests) == 1 else 's'}")
+    results = batch_fn(requests)
+    for row in rows:
+        report.attempted += 1
+        sent = sent_by_id[row["id"]]
+        ex_or_exc = _result_to_extraction(results.get(str(row["id"])), tax, sent, model)
+        _apply_job_result(conn, row, sent, ex_or_exc, model, trace, report, log, batch=True)
     return report

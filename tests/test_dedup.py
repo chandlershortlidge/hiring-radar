@@ -64,6 +64,33 @@ def test_find_match_picks_the_closest():
     assert dedup.find_match("Acme", "AI Engineer", JD, cands).job_id == 2
 
 
+def test_find_match_does_not_stop_scanning_after_a_company_mismatch():
+    # A continue -> break mutation on the company check would make this the same
+    # regression as a stopped loop: a true duplicate further down the candidate list
+    # would be missed entirely because the scan never reaches it.
+    cands = [dedup.Candidate(1, "Other Co", "AI Engineer", JD), dedup.Candidate(2, "Acme", "AI Engineer", JD_REPOST)]
+    m = dedup.find_match("Acme", "AI Engineer", JD, cands)
+    assert m and m.job_id == 2
+
+
+def test_find_match_does_not_stop_scanning_after_a_same_company_non_match():
+    # Same regression, on the other `continue`: a same-company posting that is a
+    # different role must not stop the scan before it reaches the real duplicate.
+    cands = [dedup.Candidate(1, "Acme", "Data Engineer", JD_OTHER), dedup.Candidate(2, "Acme", "AI Engineer", JD_REPOST)]
+    m = dedup.find_match("Acme", "AI Engineer", JD, cands)
+    assert m and m.job_id == 2
+
+
+def test_find_match_honors_a_custom_similarity_threshold():
+    # The default threshold (0.7) must not match these two different roles; a custom
+    # threshold set at their measured similarity must -- proving the argument actually
+    # reaches the comparison instead of being ignored in favor of the module default.
+    sim = dedup.similarity(JD, JD_OTHER)
+    cands = [dedup.Candidate(1, "Acme", "Senior Data Engineer", JD_OTHER)]
+    assert dedup.find_match("Acme", "AI Engineer", JD, cands) is None
+    assert dedup.find_match("Acme", "AI Engineer", JD, cands, threshold=sim) is not None
+
+
 # --- the containment path (HIR-113) -------------------------------------------------------
 
 def test_containment_sees_a_snippet_inside_a_full_posting_where_jaccard_cannot():
@@ -144,6 +171,15 @@ def test_too_little_text_cannot_establish_identity():
     assert len(dedup.shingles(fragment)) < dedup.MIN_CONTAINED
     assert dedup.title_key(fragment_title) != dedup.title_key(full_title)
     assert not dedup.is_same_posting(fragment_title, fragment, full_title, full)
+
+
+def test_a_blank_posting_is_never_treated_as_contained_in_another():
+    assert dedup.containment("", JD) == 0.0
+    assert dedup.containment(JD, "") == 0.0
+    # A different title, so the result rests on the containment path rather than the
+    # exact-title path (HIR-108), which would merge on title alone.
+    cands = [dedup.Candidate(1, "Acme", "Senior Data Engineer", JD)]
+    assert dedup.find_match("Acme", "AI Engineer", "", cands) is None
 
 
 def test_a_translated_posting_is_still_a_duplicate_no_text_measure_can_see():

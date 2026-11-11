@@ -274,6 +274,8 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
 - `app/__main__.py` — the CLI (`python -m app ...`, including `serve`).
 - `.claude/skills/check-url/` — `/check-url <url>`: runs `check` and acts on the verdict
   (adds the board to `config/feeds.json` and polls; stops on filter judgment calls).
+- `.claude/skills/mutation-test/` — `/mutation-test`: breaks code on purpose in a scratch
+  copy to find tests that pass anyway; files the real gaps as one ticket, or verifies a fix.
 - `config/feeds.json` — which feeds to poll. Add a company's Greenhouse/Lever/Ashby/JOIN board here.
 - `taxonomy/skills.json` — the skill taxonomy. The source of truth for what a skill is.
   See `taxonomy/README.md` for how to edit it.
@@ -632,7 +634,8 @@ running, each blind to the other's workers: the shared state is the Linear issue
 
 `.claude/skills/` holds the repeatable procedures. `/work-issue HIR-n` takes a Linear
 issue to a PR; `/work-issue-orchestrator` runs a batch of issues through work, review and
-merge; `/check-url` audits feed coverage for careers-page URLs. `.claude/agents/` holds
+merge; `/check-url` audits feed coverage for careers-page URLs; `/mutation-test` checks
+whether tests catch deliberate breaks (on demand, ~25 min, never per PR). `.claude/agents/` holds
 the `decider` (answers questions from the rules) and the `reviewer` (merges autopilot PRs). When a procedure
 has been typed into a session twice, it belongs here; when one fails, fix the skill, not
 the conversation.
