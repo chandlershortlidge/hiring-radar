@@ -223,6 +223,9 @@ class Mention:
     skill_id: str
     requirement: str
     raw_text: str
+    # Same number on two or more mentions of one job = alternatives: any one meets the
+    # requirement (HIR-251). None = the skill stands alone.
+    alternative_group: int | None = None
 
 
 @dataclass(frozen=True)
