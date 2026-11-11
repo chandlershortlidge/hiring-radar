@@ -109,7 +109,7 @@ DECISION: yes
 
 Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Goldens
 
-DECISION: yes
+DECISION: no intern posting, parked not rejected: the rule for how an internship is labelled does not exist yet (Chandler is filing it, 2026-11-11), and the other 13 postings of this run cannot be written while its items are unanswered. Delete this entry from excluded.json to put the posting back in the queue once the rule lands.
 
 ## 8. golden_056 - scope `in_scope` (in-scope)
 
@@ -120,7 +120,7 @@ DECISION: yes
 
 Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Goldens
 
-DECISION: yes
+DECISION: no intern posting, parked not rejected: the rule for how an internship is labelled does not exist yet (Chandler is filing it, 2026-11-11), and the other 13 postings of this run cannot be written while its items are unanswered. Delete this entry from excluded.json to put the posting back in the queue once the rule lands.
 
 ## 9. golden_057 - scope `in_scope` (in-scope)
 
@@ -340,7 +340,7 @@ DECISION: {"requirement": "required", "raw_text": "building LLM benchmarks"}
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: drop
+DECISION: B
 
 ## 29. golden_059 - skill `testing` (disagreement)
 

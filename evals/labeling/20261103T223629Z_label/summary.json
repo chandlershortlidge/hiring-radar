@@ -50,7 +50,7 @@
     "spot-check": 80
   },
   "spot_check": {
-    "n": 80,
+    "n": 12,
     "pool": 137,
     "seed": 0,
     "sample": [
@@ -454,7 +454,34 @@
         "skill",
         "agents"
       ]
-    ]
+    ],
+    "errors": 1,
+    "rate": 0.08333333333333333,
+    "wilson_95": [
+      0.014865094404917095,
+      0.35387991114111694
+    ],
+    "wrong": [
+      "golden_057 attribute `degree` -> {\"degree\": \"bachelor\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Bachelor's or master's degree in computer science, engineering, or a related field\"}"
+    ],
+    "sample_items": [
+      83,
+      95,
+      105,
+      111,
+      114,
+      116,
+      123,
+      127,
+      129,
+      131,
+      139,
+      140,
+      142,
+      143,
+      145
+    ],
+    "answered_by": "human"
   },
   "signal_mismatches": [
     "golden_054 degree: A \"Bachelor's or Master's degree in Computer Science, Engineering, or a related technical field\" vs B \"Completed a Bachelor's or Master's degree in Computer Science, Engineering, or a related technical field.\"",

@@ -1,0 +1,53 @@
+{
+  "id": "golden_060",
+  "split": "dev",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": "master",
+  "degree_requirement": "required",
+  "degree_or_equivalent": false,
+  "degree_signal": "Masters in Financial Engineering, Statistics, Computer Science or other disciplines involving rigorous quantitative analysis",
+  "attrs_reviewed": true,
+  "source_sha256": "5c923543a32ca8005918d9d57eb316c9338d85a0a53f8d5c40c71f8eb1e0c7c0",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Cubist Data Scientist\n\nROLE\n\nWe are passionate about data. We collaborate to build elegant, effective, scalable and highly reliable solutions to empower predictive modelling in finance.\n\nCubist’s Data Services (CDS) group is looking for a Data Scientist to join our dedicated data team. Our group is responsible for the timely delivery of comprehensive and error-free data to some of the most demanding and successful systematic Portfolio Managers in the world.\n\nAs a Data Scientist in the team, this individual will play a vital role in ensuring the smooth day-to-day implementation of a large research infrastructure, and the live production trading of billions of dollars of capital across global capital markets, including equities, futures, options and other financial instruments. \n\nRESPONSIBILITIES \n\n- Onboarding novel datasets from a huge variety of sources into our platform\n\n- Develop, test and deploy data pipelines, applications and services\n\n- Re-shaping, aggregating, enhancing and creating features from datasets\n\n- Engaging with vendors and internal stakeholders to understand characteristics of datasets\n\n- Defining and automating qualitative data alerts and reports\n\n- Partnering closely with investment teams to ensure their data requirements are met\n\n- Perform preliminary analysis and research to be shared with investment teams\n\nREQUIREMENTS \n\n- Masters in Financial Engineering, Statistics, Computer Science or other disciplines involving rigorous quantitative analysis\n\n- Strong programming skills in Python and SQL\n\n- Experience working with AWS, Linux and Airflow preferred but not required\n\n- Financial industry experience preferred but not required\n\n- Strong organization, communication and interpersonal skills\n\n- Attention to detail and a love of processes\n\n- Strong oral and written communication skills\n\n- Ability to exercise sound judgment in assessing and determining how to handle queries, calls and issues\n\n- Ability to multitask and prioritize assignments\n\n- Commitment to the highest ethical standards",
+  "expected": [
+    {
+      "skill_id": "airflow",
+      "requirement": "nice_to_have",
+      "raw_text": "Airflow"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "nice_to_have",
+      "raw_text": "AWS"
+    },
+    {
+      "skill_id": "linux",
+      "requirement": "nice_to_have",
+      "raw_text": "Linux"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "sql",
+      "requirement": "required",
+      "raw_text": "SQL"
+    }
+  ]
+}

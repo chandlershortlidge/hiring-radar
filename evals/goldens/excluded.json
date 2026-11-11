@@ -25,6 +25,32 @@
         "claude-opus-5-5",
         "gpt-6.1-sol"
       ]
+    },
+    {
+      "golden_id": "golden_055",
+      "source_sha256": "26894eeb294503525996df6fd4f4884e5a34ce0425afdf3e3478e7e171436b65",
+      "company": "ramp",
+      "title": "Applied Scientist Intern",
+      "reason": "intern posting, parked not rejected: the rule for how an internship is labelled does not exist yet (Chandler is filing it, 2026-11-11), and the other 13 postings of this run cannot be written while its items are unanswered. Delete this entry from excluded.json to put the posting back in the queue once the rule lands.",
+      "excluded_on": "2026-11-11",
+      "run": "20261103T223629Z_label",
+      "labeled_by": [
+        "claude-opus-5-5",
+        "gpt-6.1-sol"
+      ]
+    },
+    {
+      "golden_id": "golden_056",
+      "source_sha256": "fb2201a9406383c71cdc8cb3cd63511e02fa04d55d09d6e355eb7f2bbcc5af8c",
+      "company": "point72",
+      "title": "Machine Learning Researcher - Intern",
+      "reason": "intern posting, parked not rejected: the rule for how an internship is labelled does not exist yet (Chandler is filing it, 2026-11-11), and the other 13 postings of this run cannot be written while its items are unanswered. Delete this entry from excluded.json to put the posting back in the queue once the rule lands.",
+      "excluded_on": "2026-11-11",
+      "run": "20261103T223629Z_label",
+      "labeled_by": [
+        "claude-opus-5-5",
+        "gpt-6.1-sol"
+      ]
     }
   ]
 }
