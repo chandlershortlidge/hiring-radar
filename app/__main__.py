@@ -282,7 +282,10 @@ def cmd_reread_cost(args):
 
     Reads the database only; it never calls the model, so asking the question is free."""
     from app.reread_cost import report_lines, reread_cost
-    for line in report_lines(reread_cost(open_db())):
+    from app.taxonomy import Taxonomy
+    # This checkout's own skill list: on a branch that only adds skills, the figure counts
+    # only the jobs that would really be re-read (HIR-224).
+    for line in report_lines(reread_cost(open_db(), tax=Taxonomy.load())):
         print(line)
 
 

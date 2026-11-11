@@ -5,6 +5,74 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-11 — Adding skills re-reads only the postings that name them; "current" can mean "carried over" (HIR-224)
+
+Any edit to the skill list changes the extractor's version stamp, and since HIR-195 a new
+stamp re-reads every open job — 722 of them, about €5.19, on the live database today. Most
+skill-list edits are a batch of accepted suggestions (HIR-128, HIR-219), and a skill that
+was just added can only change the reading of a posting whose text names it. Chandler's
+yes on the ticket (9 Nov).
+
+**What triggers a targeted re-read.** The old stamp and the new one must differ *only* in
+skills or spellings added to the skill list. Everything else the stamp covers — the
+prompt's rules, the tool schema, the model, the input format, the layout of the skill list
+in the prompt — must be identical, and every skill the old list had must still be there
+with the same display name and at least the same spellings. Anything else (a skill
+removed, renamed, a spelling taken away, any prompt change) re-reads every open job, as
+before. Changing a skill's *parents* never touched the stamp — parents are not in the
+prompt — so that is unchanged too.
+
+**What gets re-read.** An open job whose title plus posting text (what the model is sent)
+contains one of the new names, case-insensitive and word-bounded: every new skill's id,
+display name and aliases, and every alias added to an existing skill. Matching is generous
+on purpose: an extra re-read costs under a cent; a missed one leaves a skill off a
+posting.
+
+**The alias gap, closed from the suggestion queue (Chandler, 11 Nov).** The model can
+resolve a skill from wording that contains none of its names ("transformer-based
+architectures" for Transformers). So a job is *also* re-read when the queue of skills the
+model has suggested holds a pending suggestion of an added skill for it — the new skill
+list resolves the suggested label, or the label contains one of the skill's names —
+whatever words the posting used. And `reread-cost` lists, per added skill, the model's own
+labels and quotes from those suggestions (across the whole queue) that the entry does not
+yet catch: short ones only, none that already contain one of the skill's names. They are
+offered as aliases in the PR, never added by themselves. What remains uncaught is a
+posting that names the skill only in other words *and* was never given it as a
+suggestion; it gets the skill at its next full re-read.
+
+**What "current" means for a carried-over job.** `job.extracted_version` keeps its meaning
+— "this job needs no reading at this version" — and the job is moved to the new stamp
+without a model call. A new column, `job.read_version`, says which version actually
+produced its skills, so no row claims a reading that never happened: a carried-over job
+shows the old stamp there, its skill rows keep the stamp they were written under, and the
+reading log is untouched. A job read in full gets the same value in both columns.
+"Stored extractions with no logged reading" now checks `read_version`, since that is the
+reading the log should hold.
+
+**How the old skill list is known.** A version stamp is a hash, so the skill list behind
+it cannot be recovered from it. The app now records, for every version it runs under, the
+skill list the prompt carried and a hash of everything else (a new table,
+`extractor_snapshot`). It records on every extraction run and when the dashboard process
+starts, so the version live before a skill-list merge is recorded by the deploy of this
+change or any later poll. A stamp with no recorded snapshot — e.g. a database restored from
+before this change — re-reads in full: the safe direction. "Everything else" is the stamp
+of the same code with a fixed one-skill list, so any new ingredient a later change adds to
+the stamp is covered without anyone remembering to add it here.
+
+**The re-read cost follows.** `reread-cost`, run on a branch with a skill-list change,
+counts only the jobs that branch would really re-read. It knows the old list from the
+database's snapshots, or, if the database has none for that stamp, from `origin/main`'s
+skill list in git. On a branch with no extractor change it prints the full figure, as
+before, labelled as what a change other than added skills would cost.
+
+**The eval gate is unchanged**: any edit to the skill list still needs the dev eval, which
+reads its own Goldens and has nothing to do with which stored jobs are re-read.
+
+To undo: revert the HIR-224 commits; migration 019's column and table can stay, nothing
+else reads them, and every open job behaves as before on the next version change.
+
+---
+
 ## 2026-11-10 — The key alone turns tracing on; `LANGSMITH_TRACING` is no longer needed too (HIR-238)
 
 With the HIR-236 flush fix deployed and `LANGSMITH_API_KEY` set, the next poll still sent

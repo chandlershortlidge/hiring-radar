@@ -13,5 +13,6 @@
   "015_blank_extractions.sql": "9f23d1c0dd90dc390321179b9d030d50be16fc0f0fc3b9ca27373da2b7486d36",
   "016_extraction_log.sql": "ce4303e82511b7396bafceead418bee6b2fcfe3f7cc5a4f8dbc5052fb8f6a968",
   "017_job_family.sql": "063cafec05a5cc340a9569e6f32887c2478b366b3934feeacfe51e743ff82951",
-  "018_append_only_guards.sql": "8f9ea6a0a50715b5338f95b4dc195f5de581052558fb9c1381ad5db4dff3ad53"
+  "018_append_only_guards.sql": "8f9ea6a0a50715b5338f95b4dc195f5de581052558fb9c1381ad5db4dff3ad53",
+  "019_targeted_reread.sql": "2874f97c9e8c50fccdd3facdea8a12fac0057d5e16118f76451d1419458ef275"
 }

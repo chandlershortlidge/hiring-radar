@@ -25,13 +25,14 @@ from pydantic import BaseModel, Field
 
 from app import add, db, langsmith_live, queries as q
 from app.check import check_url, log_check
-from app.extract import make_client
+from app.extract import DEFAULT_MODEL as EXTRACT_MODEL, make_client
 from app.ingest import Screenshot, Stored, job_id_for_screenshot, now_iso
 from app.pipeline import extract_pending
 from app.poll import load_feeds
 from app.skill_tree import skill_tree
 from app.sources import Posting
 from app.taxonomy import Taxonomy
+from app.targeted_reread import record_snapshot
 from app.transcribe import DEFAULT_MODEL as VISION_MODEL, TranscriptionError, transcribe
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -41,10 +42,28 @@ WEB_DIST = ROOT / "web" / "dist"
 FoundVia = Literal["linkedin", "indeed", "company_site", "referral", "other"]
 
 
+def _record_snapshot(db_path: Path, tax: Taxonomy) -> None:
+    """Remember the skill list this version runs under (HIR-224). Every deploy restarts this
+    process, so the version that was live before a skill-list merge is always on record and
+    the next poll can re-read only the postings the added skills could change. Never stops
+    the dashboard from starting: without a record the next change simply re-reads in full."""
+    try:
+        db_path.parent.mkdir(parents=True, exist_ok=True)
+        c = db.connect(db_path)
+        try:
+            db.migrate(c)
+            record_snapshot(c, tax, EXTRACT_MODEL)
+        finally:
+            c.close()
+    except Exception as e:  # noqa: BLE001 — a missing record only costs a full re-read
+        print(f"warning: could not record the extractor snapshot: {type(e).__name__}: {e}")
+
+
 def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client_factory=make_client) -> FastAPI:
     app = FastAPI(title="hiring-radar", version="0.1.0")
     tax = taxonomy or Taxonomy.load()
     state = {"client": None}
+    _record_snapshot(db_path, tax)
 
     def client():
         if state["client"] is None:
