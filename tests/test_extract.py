@@ -224,11 +224,20 @@ def test_extract_raises_on_cutoff_even_with_a_real_partial_tool_call(tax):
     # EmptyExtractionError if the stop_reason check were removed entirely -- masking
     # whether that check does anything on its own. A partial call that already carries a
     # real skill only fails because of the stop_reason check, so this is the one that
-    # actually pins it.
+    # actually proves that this specific rule is doing the work.
     resp = response(items=[item("python", "Python")], stop="max_tokens")
     with pytest.raises(ex.ExtractionError, match="stop_reason"):
         ex.extract(JD, tax, FakeClient(resp), model="m")
 
+
+def test_extract_raises_on_partial_refusal(tax):
+    # The refusal case in the parameterized test has an empty skill list
+    # which the empty answer rule rejects it anyway, 
+    # so only this test depends on the refusal rule.
+    resp = response(items=[item("python", "Python")], stop="refusal")
+    with pytest.raises(ex.ExtractionError, match="stop_reason"):
+        ex.extract(JD, tax, FakeClient(resp), model="m")
+    
 
 def test_extract_raises_when_the_model_answers_with_text_instead_of_calling_the_tool(tax):
     # The failure path "auto" introduces that forced tool_choice could not produce.
