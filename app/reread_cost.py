@@ -92,6 +92,8 @@ class RereadCost:
     carried: int = 0
     added_ids: tuple[str, ...] = ()
     unchanged: bool = False   # the branch's extractor is the one the jobs were read with
+    by_suggestion: int = 0    # re-read because the model had suggested an added skill there
+    offers: tuple[tuple[str, tuple[str, ...]], ...] = ()  # (skill id, spellings to offer)
 
     @property
     def measured(self) -> bool:
@@ -175,7 +177,9 @@ def reread_cost(conn: sqlite3.Connection, now: str | None = None,
         p = tr.plan(conn, tax, model, snaps, now)
         if p.stale:
             jobs = full - p.stale + len(p.reread)   # never-read jobs are read either way
-            targeted = dict(full_jobs=full, carried=len(p.carry), added_ids=tuple(p.added_ids))
+            targeted = dict(full_jobs=full, carried=len(p.carry), added_ids=tuple(p.added_ids),
+                            by_suggestion=len(p.by_suggestion),
+                            offers=tuple((sid, tuple(ws)) for sid, ws in p.offers.items()))
         else:
             targeted = dict(full_jobs=full, unchanged=True)
     usages = logged_usages(conn)
@@ -218,6 +222,15 @@ def report_lines(cost: RereadCost) -> list[str]:
                      f"names none of them keep their reading, {cost.carried} of them (HIR-224). "
                      f"A full re-read would be {cost.full_jobs} jobs, about "
                      f"€{cost.eur_per_reading * cost.full_jobs:.2f}.")
+        if cost.by_suggestion:
+            lines.append(f"{cost.by_suggestion} of the re-reads are jobs whose text never names "
+                         f"the skill but where the model had already suggested it.")
+    if cost.offers:
+        lines.append("")
+        lines.append("Spellings the model used when it suggested these skills, not yet in the "
+                     "skill list — offer them as aliases in the pull request:")
+        for sid, words in cost.offers:
+            lines.append(f"  {sid}: {', '.join(words)}")
     lines.append("")
     lines.append("Closed jobs are not re-read, so they are not counted (HIR-195). "
                  "Paste the figure above into the pull request body.")

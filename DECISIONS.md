@@ -26,10 +26,19 @@ prompt — so that is unchanged too.
 contains one of the new names, case-insensitive and word-bounded: every new skill's id,
 display name and aliases, and every alias added to an existing skill. Matching is generous
 on purpose: an extra re-read costs under a cent; a missed one leaves a skill off a
-posting. **The known limit:** the model can resolve a skill from wording that does not
-contain any of its names ("transformer-based architectures" for Transformers). Such a
-posting is carried over and gets that skill only when it is next read in full. Write the
-aliases the batch review already knows about into the entry, and the match catches them.
+posting.
+
+**The alias gap, closed from the suggestion queue (Chandler, 11 Nov).** The model can
+resolve a skill from wording that contains none of its names ("transformer-based
+architectures" for Transformers). So a job is *also* re-read when the queue of skills the
+model has suggested holds a pending suggestion of an added skill for it — the new skill
+list resolves the suggested label, or the label contains one of the skill's names —
+whatever words the posting used. And `reread-cost` lists, per added skill, the model's own
+labels and quotes from those suggestions (across the whole queue) that the entry does not
+yet catch: short ones only, none that already contain one of the skill's names. They are
+offered as aliases in the PR, never added by themselves. What remains uncaught is a
+posting that names the skill only in other words *and* was never given it as a
+suggestion; it gets the skill at its next full re-read.
 
 **What "current" means for a carried-over job.** `job.extracted_version` keeps its meaning
 — "this job needs no reading at this version" — and the job is moved to the new stamp

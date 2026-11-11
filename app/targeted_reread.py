@@ -93,12 +93,20 @@ def snapshot_from_git(model: str, ref: str = "origin/main") -> Snapshot | None:
 
 
 def added_names(old: Snapshot, new: Snapshot) -> tuple[list[str], list[str]] | None:
-    """(names to look for, skill ids they belong to) when `new` only *adds* to `old`;
-    None when anything else differs, which means a full re-read. Pure."""
+    """(all names to look for, the skill ids they belong to); None means a full re-read."""
+    by_id = added_skills(old, new)
+    if by_id is None:
+        return None
+    return [n for names in by_id.values() for n in names], list(by_id)
+
+
+def added_skills(old: Snapshot, new: Snapshot) -> dict[str, list[str]] | None:
+    """{skill id: names to look for} when `new` only *adds* to `old` — every id, display
+    name and alias of a new skill, and each alias added to an existing one. None when
+    anything else differs, which means a full re-read. Pure."""
     if old.core != new.core:
         return None
-    names: list[str] = []
-    ids: list[str] = []
+    out: dict[str, list[str]] = {}
     for sid, (display, aliases) in old.skills.items():
         if sid not in new.skills:
             return None                       # removed
@@ -107,13 +115,11 @@ def added_names(old: Snapshot, new: Snapshot) -> tuple[list[str], list[str]] | N
             return None                       # renamed, or a spelling taken away
         extra = [a for a in new_aliases if a not in aliases]
         if extra:
-            names += extra
-            ids.append(sid)
+            out[sid] = extra
     for sid in sorted(new.skills.keys() - old.skills.keys()):
         display, aliases = new.skills[sid]
-        names += [sid, sid.replace("-", " "), display, *aliases]
-        ids.append(sid)
-    return names, ids
+        out[sid] = [sid, sid.replace("-", " "), display, *aliases]
+    return out
 
 
 def _norm(s: str) -> str:
@@ -136,6 +142,12 @@ class Plan:
     carry: list[int] = field(default_factory=list)    # carried over, no model call
     reread: list[int] = field(default_factory=list)   # read again in full
     added_ids: list[str] = field(default_factory=list)  # skills behind a targeted re-read
+    # Re-read only because the model had already suggested an added skill for the job,
+    # in words the text match missed (HIR-224, Chandler 11 Nov).
+    by_suggestion: list[int] = field(default_factory=list)
+    # {added skill id: spellings from the suggestion queue that are not yet one of its
+    # names} — offered as aliases in the PR, never added by themselves.
+    offers: dict[str, list[str]] = field(default_factory=dict)
 
     @property
     def stale(self) -> int:
@@ -144,7 +156,11 @@ class Plan:
 
 def plan(conn: sqlite3.Connection, tax: Taxonomy, model: str,
          snapshots: dict[str, Snapshot], now: str | None = None) -> Plan:
-    """Sort the queue's stale-stamped open jobs into carry-over and re-read. Reads only."""
+    """Sort the queue's stale-stamped open jobs into carry-over and re-read. Reads only.
+
+    A job under a stamp the current list only adds to is re-read when its text names an
+    added skill, or when the model had already suggested one of them for it (a pending
+    row in the suggestion queue), whatever words the posting used."""
     from app.pipeline import _pending_clause  # the queue's one definition (HIR-221)
     current = snapshot(tax, model)
     out = Plan(current.version)
@@ -152,26 +168,76 @@ def plan(conn: sqlite3.Connection, tax: Taxonomy, model: str,
     rows = conn.execute(
         f"SELECT id, extracted_version, title, description_text FROM job j"
         f" WHERE {where} AND j.extracted_version IS NOT NULL ORDER BY id", params).fetchall()
-    patterns: dict[str, re.Pattern | None | bool] = {}
-    added: set[str] = set()
+    suggestions = _suggestions_by_job(conn)
+    # Per stamp: None = no targeted path (full re-read); else {added id: its pattern}.
+    per_stamp: dict[str, dict[str, re.Pattern] | None] = {}
+    added: dict[str, re.Pattern] = {}
     for r in rows:
         stamp = r["extracted_version"]
-        if stamp not in patterns:
+        if stamp not in per_stamp:
             old = snapshots.get(stamp)
-            diff = added_names(old, current) if old else None
-            # False = no targeted path for this stamp: re-read in full.
-            patterns[stamp] = False if diff is None else names_pattern(diff[0])
-            if diff is not None:
-                added.update(diff[1])
-        pat = patterns[stamp]
-        if pat is False:
+            by_id = added_skills(old, current) if old else None
+            per_stamp[stamp] = None if by_id is None else {
+                sid: pat for sid, names in by_id.items() if (pat := names_pattern(names))}
+            added.update(per_stamp[stamp] or {})
+        pats = per_stamp[stamp]
+        if pats is None:
             out.reread.append(r["id"])
-        elif pat is not None and pat.search(_norm(extraction_input(r["title"], r["description_text"]))):
+            continue
+        text = _norm(extraction_input(r["title"], r["description_text"]))
+        if any(p.search(text) for p in pats.values()):
             out.reread.append(r["id"])
+        elif any(_owner(label, tax, pats) for label, _ in suggestions.get(r["id"], [])):
+            out.reread.append(r["id"])
+            out.by_suggestion.append(r["id"])
         else:
             out.carry.append(r["id"])
     out.added_ids = sorted(added)
+    out.offers = _offers(suggestions, tax, added)
     return out
+
+
+# A quote longer than this is a sentence from the posting, not a spelling worth offering.
+OFFER_MAX_CHARS = 40
+
+
+def _suggestions_by_job(conn: sqlite3.Connection) -> dict[int, list[tuple[str, str]]]:
+    """Every pending suggestion in the queue: {job id: [(label, quoted posting words)]}."""
+    out: dict[int, list[tuple[str, str]]] = {}
+    for r in conn.execute("SELECT job_id, label, raw_text FROM proposed_skill WHERE status = 'pending'"):
+        out.setdefault(r[0], []).append((r[1] or "", r[2] or ""))
+    return out
+
+
+def _owner(label: str, tax: Taxonomy, patterns: dict[str, re.Pattern]) -> str | None:
+    """Which added skill a suggested label is, if any: the new skill list resolves it to
+    one, or it contains one of an added skill's names ("Ruby on Rails 7" for Ruby on Rails)."""
+    sid = tax.resolve(label)
+    if sid in patterns:
+        return sid
+    for sid, pat in patterns.items():
+        if pat.search(_norm(label)):
+            return sid
+    return None
+
+
+def _offers(suggestions: dict, tax: Taxonomy, added: dict[str, re.Pattern]) -> dict[str, list[str]]:
+    """Spellings to offer as aliases: the model's own label and quote, across the whole
+    queue, for every pending suggestion of an added skill — short ones only, and only those
+    that contain none of the skill's names: "react oder angular" adds nothing an Angular
+    entry does not already catch, "ng" would."""
+    offers: dict[str, set[str]] = {}
+    for items in suggestions.values():
+        for label, raw in items:
+            sid = _owner(label, tax, added)
+            if sid is None:
+                continue
+            for word in (label, raw):
+                w = _norm(word).lower()
+                if w and len(w) <= OFFER_MAX_CHARS and tax.resolve(w) is None \
+                        and not added[sid].search(w):
+                    offers.setdefault(sid, set()).add(w)
+    return {sid: sorted(ws) for sid, ws in sorted(offers.items())}
 
 
 def carry_over(conn: sqlite3.Connection, tax: Taxonomy, model: str, now: str | None = None) -> Plan:

@@ -166,6 +166,42 @@ def test_adding_one_posting_by_hand_never_moves_other_jobs(conn):
     assert job(conn, 2)["extracted_version"] == extractor_version(TAX, "m")
 
 
+# --- the suggestion queue closes the alias gap (Chandler, 11 Nov) ------------------------
+
+def _suggest(conn, job_id, label, raw):
+    conn.execute("INSERT INTO proposed_skill (job_id, label, raw_text) VALUES (?,?,?)", (job_id, label, raw))
+    conn.commit()
+
+
+def test_a_job_the_model_suggested_the_skill_for_is_reread_whatever_its_words(conn):
+    read_all_at(conn, TAX)
+    # Job 3's text never says "Rust", but the model suggested it from other wording.
+    _suggest(conn, 3, "Rust", "systems language with a borrow checker")
+    fn = reads()
+    r = pipeline.extract_pending(conn, TAX_RUST, fn, "m", **QUIET)
+    assert sorted(t[-6:] for t in fn.seen) == sorted([TEXTS[1][-6:], TEXTS[3][-6:]])
+    assert r.carried_over == 1
+
+
+def test_a_suggestion_for_some_other_skill_does_not_trigger_a_reread(conn):
+    read_all_at(conn, TAX)
+    _suggest(conn, 3, "Kubernetes", "k8s")
+    r = pipeline.extract_pending(conn, TAX_RUST, reads(), "m", **QUIET)
+    assert (r.attempted, r.carried_over) == (1, 2)
+
+
+def test_the_models_own_words_are_offered_as_aliases(conn):
+    read_all_at(conn, TAX)
+    _suggest(conn, 3, "Rust", "rustlang")
+    _suggest(conn, 2, "Rust (language)", "Rust programming")  # both already contain "Rust"
+    _suggest(conn, 2, "Kubernetes", "k8s")                    # another skill's words
+    _suggest(conn, 1, "Rust", "x" * 60)                       # a sentence, not a spelling
+    cost = reread_cost.reread_cost(conn, model="m", tax=TAX_RUST, git_ref=None)
+    assert cost.offers == (("rust", ("rustlang",)),)
+    text = "\n".join(reread_cost.report_lines(cost))
+    assert "offer them as aliases" in text and "rust: rustlang" in text
+
+
 # --- the pure parts --------------------------------------------------------------------
 
 def test_the_core_hash_ignores_the_skill_list_and_nothing_else(monkeypatch):

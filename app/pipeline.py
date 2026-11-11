@@ -487,10 +487,12 @@ def _carry_over(conn, tax, model, log, trace) -> int:
     if p.carry:
         reread = len(p.reread)
         log(f"  targeted re-read: {reread} of {p.stale} open jobs name a new skill"
-            f" ({', '.join(p.added_ids)}); {len(p.carry)} keep their reading")
+            f" ({', '.join(p.added_ids)}) or had it suggested ({len(p.by_suggestion)});"
+            f" {len(p.carry)} keep their reading")
         # The comparison HIR-224 asks for: this run against the full re-read it replaced.
         trace.note({"targeted_reread": f"re-read {reread} of {p.stale} jobs",
-                    "added_skills": p.added_ids, "carried_over": len(p.carry)})
+                    "added_skills": p.added_ids, "carried_over": len(p.carry),
+                    "reread_by_suggestion": len(p.by_suggestion)})
         trace.tag("targeted-reread", *(f"added:{sid}" for sid in p.added_ids))
     return len(p.carry)
 
