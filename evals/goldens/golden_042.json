@@ -13,6 +13,7 @@
   "degree_or_equivalent": true,
   "degree_signal": "MSc or higher in ML, Computer Science or a related discipline, or equivalent professional experience",
   "attrs_reviewed": false,
+  "groups_reviewed": true,
   "source_sha256": "7ef6343a23c635f3b9084211683eb4b41e06f869d1972e0f40408445026d8857",
   "labeled_by": [
     "claude-opus-5-5",
@@ -36,7 +37,8 @@
     {
       "skill_id": "jax",
       "requirement": "required",
-      "raw_text": "JAX"
+      "raw_text": "JAX",
+      "alternative_group": 1
     },
     {
       "skill_id": "machine-learning",
@@ -46,12 +48,14 @@
     {
       "skill_id": "pytorch",
       "requirement": "required",
-      "raw_text": "PyTorch"
+      "raw_text": "PyTorch",
+      "alternative_group": 1
     },
     {
       "skill_id": "tensorflow",
       "requirement": "required",
-      "raw_text": "TensorFlow"
+      "raw_text": "TensorFlow",
+      "alternative_group": 1
     }
   ]
 }

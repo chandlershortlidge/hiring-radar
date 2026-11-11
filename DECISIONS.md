@@ -35,6 +35,13 @@ Chandler, in session: *"Expertise in Python, Rust, Go, Java or other programming
   exist; the skill and requirement measures are unaffected.
 - **When a skill appears both alone and in a group** (asked for outright, and again as one
   option), the standalone ask wins: it is a requirement on its own.
+- **Labelling guide.** A new section in `evals/LABELING.md` states the rule for answer keys,
+  mirroring the extractor's rule (Chandler: "yes, proceed"). All 30 keys with the wording
+  (19 dev, 11 held-out) were re-checked and carry `groups_reviewed: true`; 21 have at least
+  one group. No `requirement`, `raw_text` or skill changed in any key. Known gap, left
+  alone: two keys from the 3 Nov batch (golden_074, golden_078) label the "AWS, GCP or
+  Azure" members nice-to-have under a required cloud ask, which the requirement rules don't
+  support. That is a label question, not a grouping one.
 
 Undo: drop the group field from the extractor's tool schema and the match code; the
 stored column can stay empty.

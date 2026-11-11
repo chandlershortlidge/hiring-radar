@@ -13,6 +13,7 @@
   "degree_or_equivalent": false,
   "degree_signal": "Open to current undergraduate students, graduate students, and recent graduates of a Computer Science, Software Engineering, or related program.",
   "attrs_reviewed": true,
+  "groups_reviewed": true,
   "source_sha256": "412cd655dde21203efa8cb609bce85b50a48a334d9e342ed3eb6a7695b77090d",
   "labeled_by": [
     "claude-opus-5-5",
@@ -34,12 +35,14 @@
     {
       "skill_id": "claude-code",
       "requirement": "required",
-      "raw_text": "tools like Claude Code"
+      "raw_text": "tools like Claude Code",
+      "alternative_group": 1
     },
     {
       "skill_id": "cursor",
       "requirement": "required",
-      "raw_text": "Cursor, Copilot"
+      "raw_text": "Cursor, Copilot",
+      "alternative_group": 1
     },
     {
       "skill_id": "full-stack-development",
@@ -49,7 +52,8 @@
     {
       "skill_id": "github-copilot",
       "requirement": "required",
-      "raw_text": "Copilot"
+      "raw_text": "Copilot",
+      "alternative_group": 1
     }
   ]
 }
