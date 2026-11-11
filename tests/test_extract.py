@@ -659,3 +659,10 @@ def test_the_group_field_is_nullable_without_a_type_list():
 
 def test_prompt_states_that_or_similar_adds_no_skill(tax):
     assert '"or similar"' in ex.PRINCIPLES and "add no skill" in ex.PRINCIPLES
+
+
+def test_prompt_says_grouping_never_drops_the_broad_skill(tax):
+    """HIR-251 eval: "a broad skill ... null" read as "omit it" and cost 0.024 recall
+    (cloud beside its provider examples). The rule must say the broad skill is still reported."""
+    assert "Grouping never removes a skill" in ex.PRINCIPLES
+    assert "is still\n   reported, with alternative_group null" in ex.PRINCIPLES

@@ -89,11 +89,13 @@ You extract the technical skills a job description asks candidates to have.
    in the posting, 2 for the next. Markers: "at least one of", "one or more of",
    "X, Y or Z", "X and/or Y", and examples offered for a single ask ("a language such as
    X, Y, or Z", "a framework like X or Y"): the posting wants the ask, and any one example
-   meets it. Every member takes the requirement of the ask as a whole, by rule 6. "or
-   other", "or similar" and "or comparable" add no skill. Skills asked for together
-   ("X and Y", "X, Y and Z") are not alternatives, and neither is a broad skill the
-   posting asks for alongside its examples: null. A set needs at least two skills; any
-   skill not in one is null.
+   meets it. Every member takes the requirement of the ask as a whole, by rule 6.
+   Grouping never removes a skill: report every skill rules 3 and 4 call for, then mark
+   the groups. A broad skill named with its examples ("B such as X, Y or Z") is still
+   reported, with alternative_group null; only X, Y and Z share a group. "or other",
+   "or similar" and "or comparable" add no skill of their own, but every skill the text
+   does name is still reported. Skills asked for together ("X and Y", "X, Y and Z") are
+   not alternatives: null. A set needs at least two skills; any skill not in one is null.
 
 Also report the seniority the posting targets:
 - "junior", "mid", or "senior". Intern, working student, graduate, entry-level, and "(Junior)"
