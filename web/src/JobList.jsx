@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { api } from "./api.js";
 import { Down, Ext, Repost, Search, Star, Up, X } from "./icons.jsx";
 import { cap, dateShort, degreeLine, familyLabel, germanLine, productionLine, sourceCode, timeAgo } from "./format.js";
-import { fails, fit, gates, jobSeniority, rankJobs } from "./profile.js";
+import { fails, fit, gates, jobSeniority, metSkills, rankJobs, skillSides } from "./profile.js";
 import { copyLines, sortJobs, useSaved } from "./saved.js";
 import AddSkillChip from "./AddSkillChip.jsx";
 
@@ -220,13 +220,27 @@ export function fitBadge(cov) {
   return `${pct(cov.score)}% · ${cov.covered}/${cov.total}`;
 }
 
+// The missing requirements as words. A group of alternatives is one requirement, so it is
+// named as one: "Python, Rust, Go or Java" (HIR-251). Requirements stay comma-separated, so
+// a group is set off in parentheses when more than one requirement is listed.
+export function missingNames(missing, taxonomy) {
+  const name = (id) => taxonomy[id] || id;
+  const unit = (u) => {
+    if (!Array.isArray(u)) return name(u);
+    const names = u.map(name);
+    const words = `${names.slice(0, -1).join(", ")} or ${names[names.length - 1]}`;
+    return missing.length > 1 ? `(${words})` : words;
+  };
+  return missing.map(unit).join(", ");
+}
+
 // The gap, in the badge's tooltip: the required skills the profile lacks, most-asked-for
 // first, so the first name in the list is the one worth learning next. "A full match" is
 // only ever said of a job that listed a normal number of asks; covering both asks of a
 // two-ask posting is not a match, it is a posting we know little about.
 export function fitTitle(cov, taxonomy) {
   const head = `You cover ${cov.covered} of ${cov.total} required skills`;
-  if (cov.missing.length) return `${head}. Missing, most asked for first: ${cov.missing.map((id) => taxonomy[id] || id).join(", ")}`;
+  if (cov.missing.length) return `${head}. Missing, most asked for first: ${missingNames(cov.missing, taxonomy)}`;
   if (cov.thin) return `${head} — but ${FEW_SKILLS}, so this is not a full match`;
   return `${head} — a full match`;
 }
@@ -239,13 +253,19 @@ export function Detail({ job, d, profile, taxonomy, cov, onOpenPage }) {
   const req = d.skills.filter((s) => s.requirement === "required");
   const nice = d.skills.filter((s) => s.requirement !== "required");
   const have = new Set(profile?.skills || []);
+  const met = metSkills(profile, d);
   const url = d.sources.find((s) => s.url)?.url;
+  // A required group's members say so on hover: any one of them meets the ask (HIR-251).
+  const { groups } = skillSides(d);
+  const others = (id) => groups.find((g) => g.includes(id))?.filter((x) => x !== id).map((x) => taxonomy[x] || x);
   const chip = (s) => {
     const on = quote?.skill_id === s.skill_id;
-    const miss = profile && s.requirement === "required" && !have.has(s.skill_id);
+    const miss = profile && s.requirement === "required" && !met.has(s.skill_id);
+    const alt = s.requirement === "required" && others(s.skill_id);
+    const status = profile ? (have.has(s.skill_id) ? "In your profile" : met.has(s.skill_id) ? "Not in your profile, but you have an alternative" : "Not in your profile") : "Show the quote";
     return (
       <button key={s.skill_id} type="button" className={`chip${s.requirement !== "required" ? " nice" : ""}${on ? " on" : ""}${miss ? " missing" : ""}`}
-        title={profile ? (have.has(s.skill_id) ? "In your profile" : "Not in your profile") : "Show the quote"}
+        title={alt ? `${status}. Any one of these meets the ask: also ${alt.join(", ")}` : status}
         onClick={() => setQuote(on ? null : s)}>
         {profile && have.has(s.skill_id) && <span className="tick">✓</span>}{s.display}
       </button>
@@ -264,7 +284,7 @@ export function Detail({ job, d, profile, taxonomy, cov, onOpenPage }) {
         </div>
       )}
       {cov && cov.total > 0 && (
-        <div className="cover">You cover <b>{cov.covered} of {cov.total}</b> required skills{cov.thin ? "" : ` (${pct(cov.score)}%)`}{cov.missing.length ? ` · missing, most asked for first: ${cov.missing.map((id) => taxonomy[id] || id).join(", ")}` : cov.thin ? ` · ${FEW_SKILLS}, so Best fit does not treat this as a full match` : " · full match"}.</div>
+        <div className="cover">You cover <b>{cov.covered} of {cov.total}</b> required skills{cov.thin ? "" : ` (${pct(cov.score)}%)`}{cov.missing.length ? ` · missing, most asked for first: ${missingNames(cov.missing, taxonomy)}` : cov.thin ? ` · ${FEW_SKILLS}, so Best fit does not treat this as a full match` : " · full match"}.</div>
       )}
       {cov?.gated_by && (
         <div className="cover">Out of reach as the posting is written: it {MISS_LABELS[cov.gated_by]}. Best fit sorts it to the bottom.</div>

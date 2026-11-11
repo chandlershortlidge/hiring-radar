@@ -60,7 +60,7 @@ describe("fit", () => {
       { skill_id: "python", requirement: "required" },
       { skill_id: "aws", requirement: "nice_to_have" },
     ] };
-    expect(skillSides(detail)).toEqual({ required: ["python"], nice: ["aws"] });
+    expect(skillSides(detail)).toEqual({ required: ["python"], nice: ["aws"], groups: [] });
     expect(fit(me(), detail).score).toBe(1);
   });
 });
