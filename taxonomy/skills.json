@@ -1,5 +1,5 @@
 {
-  "version": 10,
+  "version": 11,
   "skills": [
     {
       "id": "a-b-testing",
@@ -2037,6 +2037,281 @@
       "display": "Zapier",
       "aliases": [],
       "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "angular",
+      "display": "Angular",
+      "aliases": [],
+      "parents": [
+        "frontend-development"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "ruby",
+      "display": "Ruby",
+      "aliases": [],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "ruby-on-rails",
+      "display": "Ruby on Rails",
+      "aliases": [
+        "rails"
+      ],
+      "parents": [
+        "ruby"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "azure-ai-foundry",
+      "display": "Azure AI Foundry",
+      "aliases": [
+        "azure ai studio"
+      ],
+      "parents": [
+        "azure"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "jenkins",
+      "display": "Jenkins",
+      "aliases": [],
+      "parents": [
+        "ci-cd"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "slurm",
+      "display": "Slurm",
+      "aliases": [],
+      "parents": [
+        "ai-infrastructure"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "azure-key-vault",
+      "display": "Azure Key Vault",
+      "aliases": [
+        "key vault"
+      ],
+      "parents": [
+        "azure"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "microsoft-entra-id",
+      "display": "Microsoft Entra ID",
+      "aliases": [
+        "entra id",
+        "azure ad",
+        "azure active directory"
+      ],
+      "parents": [
+        "azure",
+        "active-directory"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "mongodb",
+      "display": "MongoDB",
+      "aliases": [],
+      "parents": [
+        "nosql"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "dotnet",
+      "display": ".NET",
+      "aliases": [
+        "dotnet"
+      ],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "microsoft-fabric",
+      "display": "Microsoft Fabric",
+      "aliases": [],
+      "parents": [
+        "azure"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "nestjs",
+      "display": "NestJS",
+      "aliases": [
+        "nest.js"
+      ],
+      "parents": [
+        "node-js"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "azure-devops",
+      "display": "Azure DevOps",
+      "aliases": [
+        "azure dev ops"
+      ],
+      "parents": [
+        "azure",
+        "ci-cd"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "playwright",
+      "display": "Playwright",
+      "aliases": [],
+      "parents": [
+        "testing"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "power-bi",
+      "display": "Power BI",
+      "aliases": [
+        "powerbi",
+        "microsoft power bi"
+      ],
+      "parents": [
+        "business-intelligence"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "fsdp",
+      "display": "FSDP",
+      "aliases": [
+        "fully sharded data parallel"
+      ],
+      "parents": [
+        "distributed-training"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "pydanticai",
+      "display": "PydanticAI",
+      "aliases": [
+        "pydantic ai"
+      ],
+      "parents": [
+        "agents"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "openshift",
+      "display": "OpenShift",
+      "aliases": [],
+      "parents": [
+        "kubernetes"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "azure-ai-search",
+      "display": "Azure AI Search",
+      "aliases": [
+        "azure cognitive search"
+      ],
+      "parents": [
+        "azure",
+        "vector-search"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "transformers",
+      "display": "Transformers",
+      "aliases": [
+        "transformer",
+        "transformer architecture",
+        "transformer-based architectures"
+      ],
+      "parents": [
+        "deep-learning"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "megatron-lm",
+      "display": "Megatron-LM",
+      "aliases": [
+        "megatron"
+      ],
+      "parents": [
+        "distributed-training"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "hadoop",
+      "display": "Hadoop",
+      "aliases": [
+        "apache hadoop"
+      ],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "semantic-kernel",
+      "display": "Semantic Kernel",
+      "aliases": [],
+      "parents": [
+        "llm-orchestration"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "oauth",
+      "display": "OAuth",
+      "aliases": [
+        "oauth 2.0",
+        "oauth2",
+        "oauth/oidc"
+      ],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "bazel",
+      "display": "Bazel",
+      "aliases": [],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "secrets-management",
+      "display": "Secrets Management",
+      "aliases": [],
+      "parents": [
+        "devsecops"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "argocd",
+      "display": "Argo CD",
+      "aliases": [
+        "argocd"
+      ],
+      "parents": [
+        "gitops"
+      ],
       "reviewed": true
     }
   ]

@@ -47,6 +47,11 @@
       "raw_text": "KI-Services"
     },
     {
+      "skill_id": "azure-devops",
+      "requirement": "required",
+      "raw_text": "Azure DevOps"
+    },
+    {
       "skill_id": "ci-cd",
       "requirement": "required",
       "raw_text": "CI/CD-Pipelines"
@@ -72,9 +77,19 @@
       "raw_text": "Java"
     },
     {
+      "skill_id": "jenkins",
+      "requirement": "required",
+      "raw_text": "Jenkins"
+    },
+    {
       "skill_id": "llms",
       "requirement": "required",
       "raw_text": "LLM-APIs"
+    },
+    {
+      "skill_id": "playwright",
+      "requirement": "required",
+      "raw_text": "Playwright"
     },
     {
       "skill_id": "python",

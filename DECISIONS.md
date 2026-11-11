@@ -5,6 +5,77 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-11 — Taxonomy v11: 27 entries from the queue after the German launch; the bar counts distinct postings (HIR-219)
+
+The queue was re-read from the live site's backup of 11 Nov 02:30Z (916 jobs, all but
+four at the current extractor stamp, so the HIR-128 caveat about stale stamps does not
+apply): 504 pending suggestions, 366 labels once case, punctuation and parentheses are
+normalised. Thirty reach the 2026-10-20 bar of 3 jobs counting rows.
+
+**The bar counts distinct postings, not stored rows.** Three pairs of rows are one
+posting each, stored twice because the company was spelled two ways or the title
+changed slightly: Zeta Global / zetaglobal ("Senior Data Scientist, Data Cloud
+Acceleration", jobs 167 and 357), Control Risks / Control Risks Group Holdings ("AI
+Engineer", near-identical text, 813 and 908), and Botgenossen's "KI Entwickler / AI
+Engineer" (378 and 799). Counted once, **AWS Glue, Power Platform and Neo4j are at 2 and
+stay pending.** Caspar Health's backend role (228, 293, and an aggregator's copy, 289)
+is also one posting; Ruby on Rails is counted with it once and stays over the bar.
+Hamburger Energienetze's 360 and 832 are two different roles and both count. The rule is
+the bar's own purpose — frequency, independent evidence — as applied in HIR-128 ("4
+distinct postings") and HIR-108 (same company and title is the same posting, judged by
+reading, not by the matcher's threshold). The stored rows are left alone; deleting jobs
+is a stop-list item, so the missed duplicates are a follow-up ticket.
+
+**27 entries land, v11, 244 skills.** With their distinct-posting counts and parents:
+
+- Microsoft and Azure: `azure-ai-foundry` 5 [azure], `microsoft-entra-id` 5 [azure,
+  active-directory], `azure-key-vault` 4 [azure], `azure-devops` 3 [azure, ci-cd],
+  `azure-ai-search` 3 [azure, vector-search], `microsoft-fabric` 3 [azure], `power-bi` 3
+  [business-intelligence], `dotnet` 3, `semantic-kernel` 3 [llm-orchestration].
+- Web and backend: `angular` 6 [frontend-development], `ruby-on-rails` 5 [ruby], `ruby` 4,
+  `nestjs` 4 [node-js], `mongodb` 3 [nosql], `oauth` 6 (with the "OAuth 2.0" and
+  "OAuth/OIDC" spellings merged).
+- Platform and delivery: `jenkins` 4 [ci-cd], `argocd` 3 [gitops] ("ArgoCD" and "Argo CD"
+  merged; bare "Argo" stays pending, it can mean Argo Workflows), `openshift` 3
+  [kubernetes], `playwright` 3 [testing], `bazel` 3, `hadoop` 3, `secrets-management` 3
+  [devsecops].
+- Training and models: `megatron-lm` 4 ("Megatron" merged) [distributed-training], `fsdp`
+  3 [distributed-training], `slurm` 4 [ai-infrastructure], `transformers` 3
+  [deep-learning], `pydanticai` 3 [agents].
+
+Whether platform and web tooling belongs on an AI-engineering chart is not a separate
+test: taxonomy/README says a skill is a language, framework, tool, platform, technique or
+practice a job can ask for, and 2026-10-20 says the queue's count decides. Every one of
+these was asked for by AI-titled postings.
+
+**Judgment calls.** `microsoft-entra-id` is its own entry with `active-directory` as a
+parent, not an alias of it: Entra ID is the cloud identity service once called Azure AD,
+and "Active Directory" on its own usually means the on-premises directory; aliases are
+for the same thing spelled differently. "Azure AD" and "Azure Active Directory" are its
+aliases. `transformers` is the model architecture ("transformer-based architectures",
+"transformer"); the Hugging Face library is covered by `hugging-face`, and
+"sentence-transformers" is left pending. `fsdp` lands here rather than under HIR-131,
+because this ticket's brief is everything at the bar (the HIR-72 `opentelemetry`
+precedent); Datadog is at 2 and HIR-131 stays open for it. `ruby-on-rails` takes `ruby`
+as its parent, as `spring-boot` sits under `java`.
+
+**Scrum is rejected**, though at 3: it was ruled a working method, not a skill, on HIR-72
+(2026-11-01). That is about what it is, not how often it appears. This change does not
+touch the database: its three pending rows are rejected from the review queue on the live
+site, which also keeps the label from being re-queued.
+
+**Seven held-out Golden labels added to five Goldens**, on the 2026-10-20 precedent that
+a label the taxonomy could not express before is a missing gold label, not tuning:
+golden_029 `jenkins`, `azure-devops`, `playwright` (required, "Ihr Profil"); golden_035
+`transformers` (required, "Must-haves"); golden_038 `ruby` (required, an example language
+beside the already-labelled Python and JavaScript); golden_046 `oauth` (nice to have,
+"wünschenswert"); golden_047 `dotnet` (required, beside the labelled C#). Not labelled:
+golden_028's PydanticAI and golden_038's Rails app and "transformer neural networks", which
+sit in the responsibilities or the company description (LABELING.md).
+
+Merging re-reads 163 of 722 open postings once, about €1.17, measured by
+`reread-cost` against the same backup (HIR-224 keeps the other 559 readings).
+
 ## 2026-11-11 — Adding skills re-reads only the postings that name them; "current" can mean "carried over" (HIR-224)
 
 Any edit to the skill list changes the extractor's version stamp, and since HIR-195 a new
