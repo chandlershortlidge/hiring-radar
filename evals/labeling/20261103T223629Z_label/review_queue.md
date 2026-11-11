@@ -208,7 +208,7 @@ DECISION: yes
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 17. golden_052 - skill `ai-ml` (disagreement)
 
@@ -219,7 +219,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: {"requirement": "nice_to_have", "raw_text": "curious about emerging AI technologies"}
 
 ## 18. golden_052 - skill `evaluation` (disagreement)
 
@@ -230,7 +230,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 19. golden_052 - skill `ml-engineering` (disagreement)
 
@@ -241,7 +241,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 20. golden_053 - skill `data-science` (disagreement)
 
@@ -252,7 +252,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 21. golden_054 - skill `software-engineering` (disagreement)
 
@@ -263,7 +263,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 22. golden_055 - attribute `degree` (disagreement)
 
@@ -318,7 +318,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: {"requirement": "required", "raw_text": "experience in AI/ML engineering"}
 
 ## 27. golden_058 - skill `llms` (disagreement)
 
@@ -329,7 +329,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: {"requirement": "required", "raw_text": "building LLM benchmarks"}
 
 ## 28. golden_059 - skill `software-architecture` (disagreement)
 
@@ -340,7 +340,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: drop
 
 ## 29. golden_059 - skill `testing` (disagreement)
 
@@ -351,7 +351,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: drop
 
 ## 30. golden_063 - skill `data-privacy-and-security` (disagreement)
 
@@ -362,7 +362,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: {"requirement": "required", "raw_text": "data flows, security, governance"}
 
 ## 31. golden_049 - attribute `seniority` (uncertain)
 
@@ -373,7 +373,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 32. golden_049 - skill `python` (uncertain)
 
@@ -384,7 +384,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: {"requirement": "required", "raw_text": "Strong programming skills in Python"}
 
 ## 33. golden_050 - attribute `seniority` (uncertain)
 
@@ -395,7 +395,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: {"seniority": "mid", "seniority_basis": "inferred", "seniority_signal": "two or more years work experience"}
 
 ## 34. golden_050 - skill `llms` (uncertain)
 
@@ -406,7 +406,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 35. golden_051 - skill `ai-deployment` (uncertain)
 
@@ -428,7 +428,7 @@ DECISION: drop
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 37. golden_051 - skill `software-engineering` (uncertain)
 
@@ -439,7 +439,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 38. golden_052 - skill `agents` (uncertain)
 
@@ -450,7 +450,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: {"requirement": "nice_to_have", "raw_text": "curious about emerging AI technologies, including large language models and agentic systems"}
 
 ## 39. golden_052 - skill `ai-deployment` (uncertain)
 
@@ -461,7 +461,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 40. golden_052 - skill `llms` (uncertain)
 
@@ -472,7 +472,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: {"requirement": "nice_to_have", "raw_text": "curious about emerging AI technologies, including large language models"}
 
 ## 41. golden_053 - attribute `seniority` (uncertain)
 
@@ -483,7 +483,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 42. golden_053 - skill `bigquery` (uncertain)
 
@@ -494,7 +494,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: {"requirement": "nice_to_have", "raw_text": "preferably Redshift, Snowflake, BigQuery"}
 
 ## 43. golden_053 - skill `snowflake` (uncertain)
 
@@ -505,7 +505,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 44. golden_054 - skill `cpp` (uncertain)
 
@@ -516,7 +516,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 45. golden_054 - skill `python` (uncertain)
 
@@ -527,7 +527,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 46. golden_054 - skill `scikit-learn` (uncertain)
 
@@ -538,7 +538,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 47. golden_055 - skill `ai-ml` (uncertain)
 
@@ -582,7 +582,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 51. golden_057 - skill `machine-learning` (uncertain)
 
@@ -604,7 +604,7 @@ DECISION: ok
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 53. golden_058 - skill `agents` (uncertain)
 
@@ -615,7 +615,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 54. golden_058 - skill `fine-tuning` (uncertain)
 
@@ -626,7 +626,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 55. golden_059 - skill `ai-ml` (uncertain)
 
@@ -637,7 +637,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 56. golden_059 - skill `evaluation` (uncertain)
 
@@ -648,7 +648,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 57. golden_059 - skill `ml-engineering` (uncertain)
 
@@ -659,7 +659,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 58. golden_059 - skill `software-engineering` (uncertain)
 
@@ -670,7 +670,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 59. golden_059 - skill `tool-calling` (uncertain)
 
@@ -692,7 +692,7 @@ DECISION: ok
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: {"degree": "master", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "Master's or PhD in machine learning, computer science, statistics, or related fields"}
 
 ## 61. golden_061 - skill `git` (uncertain)
 
@@ -703,7 +703,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 62. golden_061 - skill `jax` (uncertain)
 
@@ -725,7 +725,7 @@ DECISION: ok
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 64. golden_061 - skill `python` (uncertain)
 
@@ -736,7 +736,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 65. golden_061 - skill `pytorch` (uncertain)
 
@@ -747,7 +747,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 66. golden_061 - skill `software-engineering` (uncertain)
 
@@ -758,7 +758,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 67. golden_061 - skill `tensorflow` (uncertain)
 
@@ -791,7 +791,7 @@ DECISION: ok
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 70. golden_062 - skill `ai-deployment` (uncertain)
 
@@ -802,7 +802,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 71. golden_062 - skill `fine-tuning` (uncertain)
 
@@ -813,7 +813,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 72. golden_062 - skill `open-source-llms` (uncertain)
 
@@ -824,7 +824,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 73. golden_062 - skill `rag` (uncertain)
 
@@ -835,7 +835,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 74. golden_063 - skill `ai-deployment` (uncertain)
 
@@ -846,7 +846,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: drop
 
 ## 75. golden_063 - skill `ai-infrastructure` (uncertain)
 
@@ -857,7 +857,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: drop
 
 ## 76. golden_063 - skill `ai-ml` (uncertain)
 
@@ -868,7 +868,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 77. golden_063 - skill `workflow-automation` (uncertain)
 
@@ -879,7 +879,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: drop
 
 ## 78. golden_049 - attribute `degree` (spot-check)
 
@@ -1219,7 +1219,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: ?
 
 ## 112. golden_055 - skill `machine-learning` (spot-check)
 
@@ -1249,7 +1249,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: ?
 
 ## 115. golden_055 - skill `pandas` (spot-check)
 
@@ -1269,7 +1269,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: ?
 
 ## 117. golden_055 - skill `pytorch` (spot-check)
 
@@ -1339,7 +1339,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "Bachelor's or master's degree in computer science, engineering, or a related field"}
 
 ## 124. golden_057 - attribute `german` (spot-check)
 

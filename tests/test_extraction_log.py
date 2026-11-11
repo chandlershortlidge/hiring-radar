@@ -236,14 +236,28 @@ def test_an_unreadable_file_is_reported_and_the_rest_still_load(conn, tmp_path):
 
 def test_the_real_run_folders_all_import(conn):
     """Against the run folders actually in the repo, not a fixture: every file parses, and the
-    3 Nov postings come back with every labeller's answer."""
+    3 Nov postings come back with every labeller's answer.
+
+    The two runs of 3 Nov cover 30 different postings, 15 each. They used to be numbered
+    `golden_049`-`golden_063` apiece, so a count by golden_id alone reported 15 postings
+    with 5 answers each and hid the fact that two unrelated postings shared every id
+    (HIR-167). The Berlin run now sits on `golden_064`-`golden_078`.
+    """
     r = labels.import_answers(conn, log=lambda *_: None)
     assert r.skipped == []
     assert r.runs >= 4 and r.inserted == r.files
     nov3 = conn.execute(
         "SELECT count(DISTINCT golden_id) FROM label_answer WHERE run LIKE '20261103%'").fetchone()[0]
-    assert nov3 == 15
-    # Five answers per posting on 3 Nov: a panel of three, then a second run with two.
+    assert nov3 == 30
+    # The New York run had a third labeller over its spot-checks, so three answers; the
+    # Berlin run has the two blind labellers only. No id carries answers from both runs.
     assert conn.execute(
         "SELECT count(*) FROM label_answer WHERE run LIKE '20261103%' AND golden_id='golden_049'"
-    ).fetchone()[0] == 5
+    ).fetchone()[0] == 3
+    assert conn.execute(
+        "SELECT count(*) FROM label_answer WHERE run LIKE '20261103%' AND golden_id='golden_064'"
+    ).fetchone()[0] == 2
+    both = conn.execute(
+        "SELECT golden_id FROM label_answer WHERE run LIKE '20261103%'"
+        " GROUP BY golden_id HAVING count(DISTINCT run) > 1").fetchall()
+    assert both == []

@@ -1,0 +1,159 @@
+{
+  "id": "golden_075",
+  "split": "dev",
+  "seniority": "mid",
+  "seniority_basis": "inferred",
+  "seniority_signal": "Mehrjährige praktische Erfahrung",
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "gute Deutsch- und gute Englischkenntnisse",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Ein abgeschlossenes Studium der (Wirtschafts-)Informatik, der Ingenieurwissenschaften oder eine vergleichbare, durch praktische Erfahrung erworbene Qualifikation",
+  "attrs_reviewed": true,
+  "source_sha256": "b2aa3013858a2ae23ceb4f14bf1dcaf102a7e41af0a3b84aacfe2052956f64f0",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "seniority",
+    "skill:agents",
+    "skill:frontend-development",
+    "skill:observability",
+    "skill:openai-api",
+    "skill:workflow-automation"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Fullstack Software Engineer Tech & AI (m/w/d)\n\nGSK Stockmann\n\nJobbeschreibung\n\nSie möchten moderne Webanwendungen entwickeln und Ihre Arbeit unmittelbar in produktiven Legal-Tech- und KI-Lösungen wiederfinden? Dann sind Sie bei uns richtig. In unserem Team entwickeln wir eigene Anwendungen, Automatisierungen und KI-Tools, die unsere juristische Arbeit nachhaltig unterstützen. Dafür suchen wir eine erfahrene Fullstack-Persönlichkeit, die nutzerfreundliche Frontends mit leistungsfähigen Backends verbindet und Anwendungen von der Idee bis zum produktiven Einsatz begleitet.\n\nDer Schwerpunkt der Position liegt klar auf der Softwareentwicklung. Themen wie Cloud, Deployment und Betrieb denken Sie pragmatisch mit, ohne dass die Rolle als reine DevOps- oder Administratorenposition ausgestaltet ist. Gemeinsam mit unseren Legal Professionals und den Fachbereichen setzen Sie neue Anforderungen in praxisnahe digitale Lösungen um.\n\nDas erwartet Sie\n\n- Konzeption, Entwicklung und Betreuung interner Legal-Tech- und KI-Anwendungen über den gesamten Entwicklungszyklus hinweg\n- Entwicklung intuitiver und nutzerfreundlicher Frontends, beispielsweise mit TypeScript und React oder vergleichbaren modernen Frameworks\n- Realisierung robuster Backends, APIs, Automatisierungen und Datenintegrationen, vorzugsweise mit Python und gängigen Web-Frameworks\n- Integration moderner KI-Technologien wie Azure OpenAI, LLMs, RAG-Anwendungen oder agentischer Systeme in konkrete, fachlich relevante Use Cases\n- Sicherstellung der Qualität unserer Lösungen durch sauberen, testbaren Code, Code Reviews, nachvollziehbare Dokumentation und geeignete Monitoring-Mechanismen\n- Begleitung der Anwendungen auf Microsoft Azure bis in den produktiven Einsatz sowie kontinuierliche Weiterentwicklung bestehender Build-, Test- und Deployment-Prozesse gemeinsam mit dem Team\n- Enge Zusammenarbeit mit unseren Legal Professionals und Fachbereichen, um Arbeitsabläufe zu verstehen und Anforderungen in funktionale, sichere und wartbare Produkte zu übersetzen\n\nDas wünschen wir uns\n\n- Ein abgeschlossenes Studium der (Wirtschafts-)Informatik, der Ingenieurwissenschaften oder eine vergleichbare, durch praktische Erfahrung erworbene Qualifikation sowie gute Deutsch- und gute Englischkenntnisse.\n- Mehrjährige praktische Erfahrung in der Fullstack- oder Softwareentwicklung sowie Verantwortung für Anwendungen, die produktiv eingesetzt werden\n- Fundierte Kenntnisse in TypeScript oder JavaScript und Erfahrung mit React oder einem vergleichbaren modernen Frontend-Framework\n- Gute Programmierkenntnisse in Python sowie Erfahrung in der Backend-Entwicklung, beispielsweise mit Django, FastAPI oder vergleichbaren Frameworks\n- Praxis in der Entwicklung und Integration von REST-APIs, Webanwendungen, Datenbanken und Automatisierungslösungen\n- Ein gutes Verständnis für Softwarearchitektur, automatisierte Tests, Versionskontrolle und moderne Entwicklungsworkflows\n- Erfahrung mit Cloud-Anwendungen, vorzugsweise auf Microsoft Azure, sowie die Bereitschaft, Deployment, Logging, Monitoring und Fehleranalyse für die eigenen Anwendungen mitzuverantworten\n- Vertrautheit mit CI/CD und containerisierten Anwendungen sowie tiefgehende Platform- oder DevOps-Spezialisierung sind wünschenswert\n- Interesse an KI-Anwendungen und idealerweise erste praktische Erfahrung mit Azure OpenAI, LLMs, RAG-Architekturen, Prompt Engineering oder agentischen Systemen\n- Eine selbstständige, strukturierte und pragmatische Arbeitsweise, Freude an Verantwortung in einem kleinen Team sowie ein gutes Gespür für Nutzerbedürfnisse\nZögern Sie nicht, sich zu bewerben, auch wenn Sie nicht alle Anforderungen erfüllen – entscheidend sind für uns Ihre Motivation und Ihr Entwicklungspotenzial.\n\nBenefits bei GSK\n\n- 30 Urlaubstage & freie Tage an Heiligabend/Silvester\n- Betriebliche Altersvorsorge\n- Ergonomischer Arbeitsplatz\n- Familienservice – Unterstützung für Beruf & Alltag\n- Flexible Arbeitszeiten für Ihre Balance\n- Förderung Ihrer persönlichen & fachlichen",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "nice_to_have",
+      "raw_text": "agentischen Systemen"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "REST-APIs"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "nice_to_have",
+      "raw_text": "vorzugsweise auf Microsoft Azure"
+    },
+    {
+      "skill_id": "backend-development",
+      "requirement": "required",
+      "raw_text": "Backend-Entwicklung"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "nice_to_have",
+      "raw_text": "Vertrautheit mit CI/CD"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Erfahrung mit Cloud-Anwendungen"
+    },
+    {
+      "skill_id": "containerization",
+      "requirement": "nice_to_have",
+      "raw_text": "containerisierten Anwendungen"
+    },
+    {
+      "skill_id": "devops",
+      "requirement": "nice_to_have",
+      "raw_text": "DevOps-Spezialisierung"
+    },
+    {
+      "skill_id": "fastapi",
+      "requirement": "nice_to_have",
+      "raw_text": "FastAPI oder vergleichbaren Frameworks"
+    },
+    {
+      "skill_id": "frontend-development",
+      "requirement": "required",
+      "raw_text": "modernen Frontend-Framework"
+    },
+    {
+      "skill_id": "full-stack-development",
+      "requirement": "required",
+      "raw_text": "Fullstack- oder Softwareentwicklung"
+    },
+    {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "Versionskontrolle"
+    },
+    {
+      "skill_id": "javascript",
+      "requirement": "required",
+      "raw_text": "TypeScript oder JavaScript"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "nice_to_have",
+      "raw_text": "LLMs, RAG-Architekturen"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "nice_to_have",
+      "raw_text": "die Bereitschaft, Deployment, Logging, Monitoring und Fehleranalyse für die eigenen Anwendungen mitzuverantworten"
+    },
+    {
+      "skill_id": "openai-api",
+      "requirement": "nice_to_have",
+      "raw_text": "idealerweise erste praktische Erfahrung mit Azure OpenAI"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "nice_to_have",
+      "raw_text": "Prompt Engineering"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Programmierkenntnisse in Python"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "nice_to_have",
+      "raw_text": "RAG-Architekturen"
+    },
+    {
+      "skill_id": "react",
+      "requirement": "nice_to_have",
+      "raw_text": "Erfahrung mit React"
+    },
+    {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "Softwarearchitektur"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "oder Softwareentwicklung"
+    },
+    {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "automatisierte Tests"
+    },
+    {
+      "skill_id": "typescript",
+      "requirement": "required",
+      "raw_text": "Fundierte Kenntnisse in TypeScript"
+    },
+    {
+      "skill_id": "workflow-automation",
+      "requirement": "required",
+      "raw_text": "Automatisierungslösungen"
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "id": "golden_073",
+  "split": "dev",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Senior Machine Learning Engineer",
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "cb4b9abb303a035f021241206ee2ff92fd6956717ee58175e5b88fc82ae4e960",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:ai-deployment"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Senior Machine Learning Engineer\n\nReady for a challenge?\n\nThen Just Eat Takeaway.com might be the place for you. We’re a leading global online delivery platform, and our vision is to empower everyday convenience.\n\nWhether it’s a Friday-night feast, a post-gym poke bowl, or grabbing some groceries, our tech platform connects tens of millions of customers with hundreds of thousands of restaurant, grocery and convenience partners across the globe.\n\nAbout this role\n\nWe are looking for senior machine learning engineers with passion for using machine learning to create intelligent applications. As a Senior Machine Learning Engineer, you will be part of the Data Science team inside the Product and Tech group with +2200 brilliant developers, engineers, analysts and researchers. Honestly, it is a great environment!\nYou will work with brilliant people with world class knowledge, and a passion for sharing knowledge and solving interesting and complex problems. You will collaboratively design, build, and productionize machine learning systems. As a member of the logistics data science team, you will develop solutions to supply and demand challenges while optimizing logistics algorithms to ensure a reliable, efficient, and profitable service. From predicting ETAs to solving pricing problems, our ML pipelines form the backbone of our delivery operations.\n\n* Please note that this position is located in Berlin (3 days a week from our Berlin office and 2 days working from home)\n\nThese are some of the key components to the role:\n\n• Researching, implementing, and deploying innovative ML techniques applicable to logistics problems.\n• Scaling and transferring novel machine learning solutions to improve our decision making processes and solutions in their different product use cases.\n• Implementing and launching Data Science applications that coordinate with front facing solutions; constant improvements using performant and efficient ML models.\n• Implementing tools, data pipelines, and evaluation frameworks to enable development, iteration, and launch of ML ideas within the product scope.\n\nWhat will you bring to the team?\n\n• Strong experience in Machine Learning, developing real time data streaming technologies for forecast or logistics products\n• Strong coding and software engineering skills in Python\n• Able to work independently and solve complex problems, with a demonstrated ability to productise and deploy using cloud services (eg. Amazon Web Services, Google Cloud Platform).\n• Strong background in working with microservices and event-driven architecture, serverless computing, and cloud architecture patterns.\n• Familiarity with tools and packages including Kubernetes (deployment in production) is expected. A plus would be additional experience with Airflow/Mlflow/Docker/Flink\n• Experience collaborating closely with multi-functional teams, driving forward best practices.\n• Real-time production systems at scale (millions of requests/transactions per day) experience\n\nAt JET, this is on the menu:\n\nOur teams forge connections internally and work with some of the best-known brands on the planet, giving us truly international impact in a dynamic environment.\nFun, fast-paced and supportive, the JET culture is about movement, growth and about celebrating every aspect of our JETers. Thanks to them we stay one step ahead of the competition.\n\nInclusion, Diversity & Belonging\n\nNo matter who you are, what you look like, who you love, or where you are from, you can find your place at Just Eat Takeaway.com. We’re committed to creating an inclusive culture, encouraging diversity of people and thinking, in which all employees feel they truly belong and can bring their most colourful selves to work every day.\n\nWhat else are we delivering?\n\nWant to know more about our JETers, culture or company? Have a look at our career site where you can find people's stories, blogs, podcasts and more JET morsels.\n\nAre you ready to take your seat? Apply now!\n\nRecruiter LinkedIN tag: #LI-AO1",
+  "expected": [
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "productise and deploy using cloud services"
+    },
+    {
+      "skill_id": "airflow",
+      "requirement": "nice_to_have",
+      "raw_text": "Airflow"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "nice_to_have",
+      "raw_text": "Amazon Web Services"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "cloud services"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "nice_to_have",
+      "raw_text": "Docker"
+    },
+    {
+      "skill_id": "event-driven-systems",
+      "requirement": "required",
+      "raw_text": "event-driven architecture"
+    },
+    {
+      "skill_id": "flink",
+      "requirement": "nice_to_have",
+      "raw_text": "Flink"
+    },
+    {
+      "skill_id": "gcp",
+      "requirement": "nice_to_have",
+      "raw_text": "Google Cloud Platform"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "Strong experience in Machine Learning"
+    },
+    {
+      "skill_id": "microservices",
+      "requirement": "required",
+      "raw_text": "microservices"
+    },
+    {
+      "skill_id": "mlflow",
+      "requirement": "nice_to_have",
+      "raw_text": "Mlflow"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "serverless",
+      "requirement": "required",
+      "raw_text": "serverless computing"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "software engineering skills"
+    }
+  ]
+}
