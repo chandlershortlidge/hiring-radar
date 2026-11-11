@@ -63,9 +63,11 @@
       "key": "deep-learning",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "answered_by": "human",
+      "third_agreed": true
     },
     "84": {
       "n": 84,
@@ -195,9 +197,11 @@
       "key": "rag",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "answered_by": "human",
+      "third_agreed": true
     },
     "96": {
       "n": 96,
@@ -305,9 +309,11 @@
       "key": "deep-learning",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "answered_by": "human",
+      "third_agreed": true
     },
     "106": {
       "n": 106,
@@ -371,9 +377,11 @@
       "key": "llms",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "answered_by": "human",
+      "third_agreed": true
     },
     "112": {
       "n": 112,
@@ -404,9 +412,11 @@
       "key": "numpy",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "answered_by": "human",
+      "third_agreed": true
     },
     "115": {
       "n": 115,
@@ -426,9 +436,11 @@
       "key": "python",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "answered_by": "human",
+      "third_agreed": true
     },
     "117": {
       "n": 117,
@@ -503,9 +515,11 @@
       "key": "degree",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "answered_by": "human",
+      "third_agreed": true
     },
     "124": {
       "n": 124,
@@ -547,9 +561,11 @@
       "key": "tensorflow",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "answered_by": "human",
+      "third_agreed": true
     },
     "128": {
       "n": 128,
@@ -569,9 +585,11 @@
       "key": "seniority",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "answered_by": "human",
+      "third_agreed": true
     },
     "130": {
       "n": 130,
@@ -591,9 +609,11 @@
       "key": "reinforcement-learning",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "answered_by": "human",
+      "third_agreed": true
     },
     "132": {
       "n": 132,
@@ -679,9 +699,11 @@
       "key": "linux",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "answered_by": "human",
+      "third_agreed": true
     },
     "140": {
       "n": 140,
@@ -690,9 +712,11 @@
       "key": "machine-learning",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "answered_by": "human",
+      "third_agreed": true
     },
     "141": {
       "n": 141,
@@ -712,9 +736,11 @@
       "key": "reinforcement-learning",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "answered_by": "human",
+      "third_agreed": true
     },
     "143": {
       "n": 143,
@@ -723,9 +749,11 @@
       "key": "degree",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "answered_by": "human",
+      "third_agreed": true
     },
     "144": {
       "n": 144,
@@ -745,9 +773,11 @@
       "key": "linux",
       "reason": "spot-check",
       "mode": "third",
-      "by": "model",
+      "by": "human",
       "model": "gemini-4-argon",
-      "decision": "ok"
+      "decision": null,
+      "answered_by": "human",
+      "third_agreed": true
     },
     "146": {
       "n": 146,
@@ -920,5 +950,29 @@
         "rate": 0.0
       }
     }
+  },
+  "spot_check_sample": {
+    "n": 15,
+    "asked": 15,
+    "seed": 0,
+    "pool": 80,
+    "items": [
+      83,
+      95,
+      105,
+      111,
+      114,
+      116,
+      123,
+      127,
+      129,
+      131,
+      139,
+      140,
+      142,
+      143,
+      145
+    ],
+    "answered_by": "human"
   }
 }

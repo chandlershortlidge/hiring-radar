@@ -1,0 +1,66 @@
+{
+  "id": "golden_066",
+  "split": "dev",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Staff Forward Deployed Engineer",
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": false,
+  "source_sha256": "e47b015da331797b742e77de2f9d0f8d34a3df08f73273f8571b5ceec4fbf8d2",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:apis",
+    "skill:cloud",
+    "skill:software-engineering"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Staff Forward Deployed Engineer – AI-Native Software Development\n\n<p>At JetBrains, code is our passion. Ever since we started, back in 2000, we have strived to make the strongest, most effective developer tools on earth. By automating routine checks and corrections, our tools speed up production, freeing developers to grow, discover, and create.</p>\n<p>We just unveiled JetBrains Central,&nbsp; a platform for agent-driven software development that connects tools, agents, and infrastructure. It enables automated AI workflows to run, be monitored, and be managed across teams – with clear visibility into results, costs, and performance.</p>\n<p>JetBrains Central provides three core capabilities:<br><strong>Governance and control: </strong>Policy enforcement, identity and access management, observability, auditability, and cost attribution for agent-driven work. Some of these functionalities are already available via the <a href=\"http://console.jetbrains.cloud/\">JetBrains Central Console</a>.<br><strong>Agent execution infrastructure:&nbsp;</strong>Cloud agent runtimes and computation provisioning that allow agents to run reliably across development environments.<br><strong>Agent optimization and context:</strong> Shared semantic context across repositories and projects, enabling agents to access relevant knowledge, and task routing to the most appropriate models or tools.</p>\n<p>Inside the Professional Services department, we are building a team of Forward Deployed Engineers to help our customers adopt AI-native development with JetBrains Central and enable JetBrains consulting partners to transform their customers’ AI-native software development lifecycle.</p>\n<h2><strong>About the role</strong></h2>\n<p>As a Principal Forward Deployed Engineer, you will work directly with early adopter customers to deploy JetBrains Central platform into complex enterprise environments and help them move from experimental AI usage to governed, scalable AI-native development.</p>\n<p>You will act as a trusted advisor to customer engineering teams and consulting partners, while also mentoring other Forward Deployed Engineers and helping with complex deployments. In this role, you will help establish best practices for enterprise AI adoption and influence how organizations implement AI-driven software development.</p>\n<p>This role is often a strong fit for engineers who have previously served as Principal or Staff Engineers, Heads of Engineering, CTOs, or Solutions Architects and who enjoy working directly with customers while staying deeply involved with complex technical systems.</p>\n<p>This role combines consulting, architecture, and hands-on engineering. Your work in the field will directly influence how our platform evolves and how enterprises adopt AI-driven development.</p>\n<p>You will work directly with the world’s most innovative companies — our client base includes 420 of the Fortune 500 — ensuring they maximize the value of their JetBrains investments.</p>\n<h2><strong>What you’ll do</strong></h2>\n<ul>\n<li>Deploy JetBrains Central platform into enterprise development environments, CI/CD systems, and internal developer platforms.</li>\n<li>Help organizations transition from ad-hoc AI experimentation to governed AI-native development workflows.</li>\n<li>Implement enterprise AI governance, including security policies, access management, and data privacy controls.</li>\n<li>Enable observability for AI-driven development to help organizations understand their AI usage and its impact on productivity, as well as their code-generation patterns.</li>\n<li>Design sustainable AI adoption strategies, including usage controls and cost visibility across multiple model providers.</li>\n<li>Integrate our cloud-based agent execution layer, allowing AI agents to run securely and at scale.</li>\n<li>Collaborate closely with JetBrains product teams to shape the platform based on real-world deployments and customer feedback.</li>\n<li>Create delivery frameworks and train JetBrains partners to deliver the desired scope of service.</li>\n<li>Mentor and support other Forward Deployed Engineers, sharing architectural expertise and helping to scale the team’s deployment practices.</li>\n</ul>\n<h2><strong>You will thrive in this role if you are</strong></h2>\n<ul>\n<li>A consultant at heart who can communicate effectively with both engineers and technical leadership.</li>\n<li>Able to see the whole picture of the software development lifecycle across developer tools, infrastructure, APIs, and cloud systems.</li>\n<li>Experienced at integrating complex software systems into enterprise environments.</li>\n<li>Curious about the future of AI agents and AI-native software development.</li>\n<li>Comfortable working with early adopters and overcoming ambiguous technical challenges.</li>\n<li>Motivated to mentor other engineers and contribute to building a new technical discipline.</li>\n</ul>\n<h2><strong>What you will bring</strong></h2>\n<ul>\n<li>Experience in software-related projects, ideally in a customer-facing or consulting environment.</li>\n<li>Familiarity with Java or Python.</li>\n<li>Experience building or integrating developer platforms, infrastructure systems, or software solutions.</li>\n<li>Familiarity with modern development workflows (CI/CD, developer environments, internal developer platforms, etc.).</li>\n<li>Experience working directly with customers or technical stakeholders.</li>\n<li>Strong problem-solving skills and the ability to operate in fast-evolving technical environments.</li>\n<li>Ability and desire to travel to meet customers.</li>\n</ul>\n<h2><strong>These would be a plus, but are not blockers</strong></h2>\n<ul>\n<li>Experience with industry-specific solutions (fintech, telco, retail, etc.)</li>\n<li>Experience with AI/LLM platforms, agent frameworks, or AI-assisted development tools.<br>Experience in solutions engineering, consulting, or forward-deployed engineering roles.</li>\n<li>Familiarity with the JetBrains ecosystem or developer productivity tooling.</li>\n</ul>\n<p><span style=\"color: rgb(255, 255, 255);\">#LI-KP1</span></p><div class=\"content-conclusion\"><p><strong>We are an equal opportunity employer</strong><br><br>We know great ideas can come from anyone, anywhere. That’s why we do our best to create an open and inclusive workplace – one that welcomes everyone regardless of their background, identity, religion, age, accessibility needs, or orientation.</p>\n<p><em data-stringify-type=\"italic\">We process the data provided in your job application in accordance with the&nbsp;<a href=\"https://www.jetbrains.com/legal/docs/privacy/privacy-recruitment/\">Recruitment Privacy Policy.</a></em></p></div>\nFind Jobs in Germany on Arbeitnow",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "nice_to_have",
+      "raw_text": "agent frameworks"
+    },
+    {
+      "skill_id": "ai-developer-tooling",
+      "requirement": "nice_to_have",
+      "raw_text": "AI-assisted development tools"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "modern development workflows (CI/CD"
+    },
+    {
+      "skill_id": "java",
+      "requirement": "required",
+      "raw_text": "Java"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "nice_to_have",
+      "raw_text": "AI/LLM platforms"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Experience in software-related projects"
+    }
+  ]
+}

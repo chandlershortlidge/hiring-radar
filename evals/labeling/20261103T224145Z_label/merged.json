@@ -1,5 +1,5 @@
 {
-  "golden_049": {
+  "golden_064": {
     "accepted_skills": [
       {
         "skill_id": "ai-developer-tooling",
@@ -113,7 +113,7 @@
       }
     ]
   },
-  "golden_050": {
+  "golden_065": {
     "accepted_skills": [
       {
         "skill_id": "ci-cd",
@@ -202,7 +202,7 @@
       }
     ]
   },
-  "golden_051": {
+  "golden_066": {
     "accepted_skills": [
       {
         "skill_id": "agents",
@@ -301,7 +301,7 @@
       }
     ]
   },
-  "golden_052": {
+  "golden_067": {
     "accepted_skills": [
       {
         "skill_id": "apis",
@@ -585,7 +585,7 @@
       }
     ]
   },
-  "golden_053": {
+  "golden_068": {
     "accepted_skills": [
       {
         "skill_id": "apache-spark",
@@ -679,7 +679,7 @@
       },
       {
         "skill_id": "llms",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "Generative AI"
       },
       {
@@ -704,7 +704,7 @@
       },
       {
         "skill_id": "prompt-engineering",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "Prompt Engineering"
       },
       {
@@ -829,7 +829,7 @@
       }
     ]
   },
-  "golden_054": {
+  "golden_069": {
     "accepted_skills": [
       {
         "skill_id": "apis",
@@ -973,7 +973,7 @@
       }
     ]
   },
-  "golden_055": {
+  "golden_070": {
     "accepted_skills": [
       {
         "skill_id": "ci-cd",
@@ -1092,7 +1092,7 @@
       }
     ]
   },
-  "golden_056": {
+  "golden_071": {
     "accepted_skills": [
       {
         "skill_id": "deep-learning",
@@ -1135,7 +1135,7 @@
     },
     "unmapped": []
   },
-  "golden_057": {
+  "golden_072": {
     "accepted_skills": [
       {
         "skill_id": "agents",
@@ -1149,7 +1149,7 @@
       },
       {
         "skill_id": "aws-bedrock",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "AWS Bedrock"
       },
       {
@@ -1184,7 +1184,7 @@
       },
       {
         "skill_id": "mysql",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "MySQL"
       },
       {
@@ -1195,11 +1195,11 @@
       {
         "skill_id": "observability",
         "requirement": "required",
-        "raw_text": "Observability: Datadog"
+        "raw_text": "Production: you own what you ship. Reading traces, diagnosing failure modes, tuning cost and latency"
       },
       {
         "skill_id": "postgresql",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "PostgreSQL"
       },
       {
@@ -1214,7 +1214,7 @@
       },
       {
         "skill_id": "react",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "React"
       },
       {
@@ -1224,7 +1224,7 @@
       },
       {
         "skill_id": "vertex-ai",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "Google Vertex"
       }
     ],
@@ -1354,7 +1354,7 @@
       }
     ]
   },
-  "golden_058": {
+  "golden_073": {
     "accepted_skills": [
       {
         "skill_id": "airflow",
@@ -1363,7 +1363,7 @@
       },
       {
         "skill_id": "aws",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "Amazon Web Services"
       },
       {
@@ -1388,7 +1388,7 @@
       },
       {
         "skill_id": "gcp",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "Google Cloud Platform"
       },
       {
@@ -1463,16 +1463,16 @@
       }
     ]
   },
-  "golden_059": {
+  "golden_074": {
     "accepted_skills": [
       {
         "skill_id": "aws",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "AWS"
       },
       {
         "skill_id": "azure",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "such as Azure"
       },
       {
@@ -1627,7 +1627,7 @@
       }
     ]
   },
-  "golden_060": {
+  "golden_075": {
     "accepted_skills": [
       {
         "skill_id": "apis",
@@ -1666,7 +1666,7 @@
       },
       {
         "skill_id": "fastapi",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "FastAPI oder vergleichbaren Frameworks"
       },
       {
@@ -1706,7 +1706,7 @@
       },
       {
         "skill_id": "react",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "Erfahrung mit React"
       },
       {
@@ -1791,7 +1791,7 @@
       }
     ]
   },
-  "golden_061": {
+  "golden_076": {
     "accepted_skills": [
       {
         "skill_id": "apis",
@@ -1825,7 +1825,7 @@
       },
       {
         "skill_id": "fastapi",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "FastAPI"
       },
       {
@@ -1944,11 +1944,11 @@
       }
     ]
   },
-  "golden_062": {
+  "golden_077": {
     "accepted_skills": [
       {
         "skill_id": "business-intelligence",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "Business Intelligence"
       }
     ],
@@ -1988,7 +1988,7 @@
       }
     ]
   },
-  "golden_063": {
+  "golden_078": {
     "accepted_skills": [
       {
         "skill_id": "aws",
@@ -1997,7 +1997,7 @@
       },
       {
         "skill_id": "azure",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "Azure"
       },
       {
@@ -2017,7 +2017,7 @@
       },
       {
         "skill_id": "gcp",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "GCP"
       },
       {

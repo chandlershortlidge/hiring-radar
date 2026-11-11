@@ -1431,6 +1431,36 @@ def cmd_apply(args):
             skills.pop(item["golden_id"], None)
             attrs.pop(item["golden_id"], None)
 
+    # Two runs numbered independently claim the same ids (HIR-167): every labeling run
+    # numbers its picks from the highest Golden that existed when it started, so two runs
+    # begun before either applied both start at the same id for different postings. Writing
+    # by id alone then overwrites the first run's Goldens with the second's, silently - the
+    # only symptom is a set that is smaller than it should be. A slot already held by a
+    # different posting is a refusal, not a warning. Re-applying the same posting is fine:
+    # that is the ordinary loop of fixing a decision and running apply again.
+    taken = []
+    for gid in sorted(skills):
+        path = GOLDENS / f"{gid}.json"
+        if not path.exists():
+            continue
+        was = json.loads(path.read_text()).get("source_sha256")
+        if was and was != picks[gid]["source_sha256"]:
+            taken.append((gid, was, path))
+    if taken:
+        free = f"golden_{ng.existing()[1] + 1:03d}"
+        lines = [f"{len(taken)} of these Goldens already exist for a different posting:"]
+        for gid, was, path in taken:
+            held = json.loads(path.read_text())
+            lines.append(f"  {gid}: on disk {held.get('company')!r} "
+                         f"({was[:10]}), this run {picks[gid]['company']!r} "
+                         f"({picks[gid]['source_sha256'][:10]})")
+        raise SystemExit("\n".join(lines) + (
+            f"\n\nThis run was numbered before another run applied its Goldens, so the two "
+            f"claim the same ids. Writing them would overwrite the postings already there. "
+            f"Renumber this run's picks from {free} (picks.json, items.json, merged.json, "
+            f"review_queue.md and raw/) and run apply again; the decisions in the queue are "
+            f"keyed by item number, so renumbering does not disturb them."))
+
     # An out-of-scope posting's items are never read, so demanding decisions on them would
     # be busy-work on labels that cannot reach a Golden.
     missing = [n for n, item in enumerate(items, 1)

@@ -1,0 +1,142 @@
+{
+  "id": "golden_067",
+  "split": "dev",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Staff Machine Learning Engineer",
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": false,
+  "source_sha256": "a6685196f0f7a7a17073a2e2a658bf9f2dad51b1f23e9254f14ace858dce3582",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:agents",
+    "skill:ai-deployment",
+    "skill:inference-optimization",
+    "skill:model-serving"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Staff Machine Learning Engineer, LLM Inference Optimization\n\nAbout Nebius:\n\nNebius is leading a new era in cloud infrastructure for the global AI economy. We are building a full-stack AI cloud platform that supports developers and enterprises from data and model training through to production deployment, without the cost and complexity of building large in-house AI/ML infrastructure.\n\nBuilt by engineers, for engineers. From large-scale GPU orchestration to inference optimization, we own the hard problems across compute, storage, networking and applied AI.\n\nListed on Nasdaq (NBIS) and headquartered in Amsterdam, we have a global footprint with R&D hubs across Europe, the UK, North America and Israel. Our team of 1,500+ includes hundreds of engineers with deep expertise across hardware, software and AI R&D.\n\nRole Summary\n\nNebius Token Factory is building production-grade inference for open-source, customer, and internally optimized models. This role owns the path from model artifact to fast, reliable, cost-efficient endpoint. The work sits at the intersection of model internals, inference engines, serving architecture, benchmarking, and production deployment.\n\n \n\nWhat You Will Do\n\n-\n\nOwn a platform-level optimization pillar such as quantization, speculative decoding, KV-cache optimization, engine selection, or long-context serving.\n\n-\n\nCreate reusable evaluation, benchmarking, and rollout frameworks across multiple model families.\n\n-\n\nProvide technical direction to MLEs, Applied Scientists, GPU kernel engineers, and infrastructure engineers on shared performance goals.\n\n-\n\nOptimize LLM and VLM endpoints for latency, throughput, memory efficiency, GPU utilization, quality, and cost per token.\n\n-\n\nDeploy, configure, benchmark, and extend inference engines such as vLLM, SGLang, TensorRT-LLM, Triton Inference Server, NVIDIA Dynamo, or similar systems.\n\n-\n\nBuild and productionize model-compression workflows, including quantization, quantization-aware training, distillation, low-bit serving, and accuracy recovery.\n\n-\n\nImplement or integrate speculative decoding, draft-model approaches, KV-cache optimization, prefix caching, chunked prefill, continuous batching, and disaggregated prefill/decode serving.\n\n-\n\nBuild reproducible benchmark harnesses for TTFT, TPOT, tokens per second per GPU, p95/p99 latency, GPU memory, reliability, and cost per token.\n\n-\n\nPartner with GPU kernel engineers and platform engineers to diagnose bottlenecks across model code, kernels, runtime, scheduler, gateway, and cluster layers.\n\n-\n\nWrite clear design docs, performance reports, rollout plans, and customer-facing technical explanations.\n\nRequired Qualifications\n\n-\n\nStrong Python and PyTorch engineering skills.\n\n-\n\nHands-on experience deploying or optimizing LLM, VLM, or high-throughput transformer inference systems.\n\n-\n\nPractical knowledge of at least one modern inference stack such as vLLM, SGLang, TensorRT-LLM, Triton Inference Server, NVIDIA Dynamo, Ray Serve, KServe, or equivalent internal systems.\n\n-\n\nStrong understanding of transformer inference bottlenecks, including KV cache, attention, memory bandwidth, batching, parallelism, and long-context serving.\n\n-\n\nAbility to reason quantitatively about latency, throughput, quality, utilization, and cost tradeoffs.\n\n-\n\nStrong communication skills and ability to collaborate with research, kernel, infrastructure, product, and customer teams.\n\nPreferred Qualifications\n\n-\n\nExperience with quantization-aware training, post-training quantization, FP8, INT8, INT4, NVFP4, MXFP4, AWQ, GPTQ, SmoothQuant, or related techniques.\n\n-\n\nExperience with distillation, speculative decoding, EAGLE, Medusa, multi-token prediction, or other inference acceleration methods.\n\n-\n\nExperience with agentic workloads, including tool calling, structured outputs, streaming APIs, high concurrency, and multi-step orchestration.\n\n-\n\nCUDA or Triton familiarity, even if the role is not primarily a kernel-engineering role.\n\n-\n\nOpen-source contributions to vLLM, SGLang, TensorRT-LLM, FlashInfer, LMCache, PyTorch, Triton, Ray, KServe, or related projects.\n\n \n\nBenefits & Perks:\n\n- Competitive compensation\n\n- Career growth and learning opportunities\n\n- Flexibility and ownership\n\n- Collaborative and innovative culture\n\n- Opportunity to work on impactful AI projects\n\n- International environment and talented teams\n\nWhat's it like to work at Nebius:\n\nFast moving - Bold thinking - Constant growth - Meaningful impact - Trust and real ownership - Opportunity to shape the future of AI \n\nEqual Opportunity Statement:\n\nNebius is an equal opportunity employer. We are committed to fostering an inclusive and diverse workplace and to providing equal employment opportunities in all aspects of employment. We do not discriminate on the basis of race, color, religion, sex (including pregnancy), national origin, ancestry, age, disability, genetic information, marital status, veteran status, sexual orientation, gender identity or expression, or any other characteristic protected by applicable law.\n\nApplicants must be authorized to work in the country in which they apply and will be required to provide proof of employment eligibility as a condition of hire. \n\nIf you need accommodations during the application process, please let us know.",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "nice_to_have",
+      "raw_text": "agentic workloads"
+    },
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "deploying or optimizing LLM, VLM, or high-throughput transformer inference systems"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "nice_to_have",
+      "raw_text": "streaming APIs"
+    },
+    {
+      "skill_id": "cuda",
+      "requirement": "nice_to_have",
+      "raw_text": "CUDA"
+    },
+    {
+      "skill_id": "inference-optimization",
+      "requirement": "required",
+      "raw_text": "optimizing LLM, VLM, or high-throughput transformer inference systems"
+    },
+    {
+      "skill_id": "knowledge-distillation",
+      "requirement": "nice_to_have",
+      "raw_text": "Experience with distillation"
+    },
+    {
+      "skill_id": "kserve",
+      "requirement": "required",
+      "raw_text": "Ray Serve, KServe"
+    },
+    {
+      "skill_id": "llm-orchestration",
+      "requirement": "nice_to_have",
+      "raw_text": "multi-step orchestration"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "deploying or optimizing LLM"
+    },
+    {
+      "skill_id": "model-serving",
+      "requirement": "required",
+      "raw_text": "transformer inference bottlenecks, including KV cache, attention, memory bandwidth, batching, parallelism, and long-context serving"
+    },
+    {
+      "skill_id": "nvidia-dynamo",
+      "requirement": "required",
+      "raw_text": "NVIDIA Dynamo, Ray Serve"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Strong Python"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch engineering skills"
+    },
+    {
+      "skill_id": "quantization",
+      "requirement": "nice_to_have",
+      "raw_text": "post-training quantization"
+    },
+    {
+      "skill_id": "ray",
+      "requirement": "nice_to_have",
+      "raw_text": "Triton, Ray"
+    },
+    {
+      "skill_id": "ray-serve",
+      "requirement": "required",
+      "raw_text": "Ray Serve"
+    },
+    {
+      "skill_id": "sglang",
+      "requirement": "required",
+      "raw_text": "stack such as vLLM, SGLang"
+    },
+    {
+      "skill_id": "speculative-decoding",
+      "requirement": "nice_to_have",
+      "raw_text": "distillation, speculative decoding"
+    },
+    {
+      "skill_id": "tensorrt",
+      "requirement": "required",
+      "raw_text": "stack such as vLLM, SGLang, TensorRT-LLM"
+    },
+    {
+      "skill_id": "tool-calling",
+      "requirement": "nice_to_have",
+      "raw_text": "tool calling"
+    },
+    {
+      "skill_id": "triton-inference-server",
+      "requirement": "required",
+      "raw_text": "Triton Inference Server, NVIDIA Dynamo, Ray Serve"
+    },
+    {
+      "skill_id": "vllm",
+      "requirement": "required",
+      "raw_text": "inference stack such as vLLM"
+    }
+  ]
+}

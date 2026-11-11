@@ -1,0 +1,46 @@
+{
+  "id": "golden_077",
+  "split": "dev",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "inferred",
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "5f4171b964dd49668ea4b19274db66e297a3eb08584fa2e4912c9207056f604d",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "german",
+    "skill:ai-ml",
+    "skill:data-science"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "PreSales Engineer Data & AI (m/w/d),Bielefeld,Berlin\n\nIT, die verbindet. Kultur, die bleibt. Wir sind OEDIV - Partner für IT-Infrastruktur und Managed Services im deutschen Mittelstand. Seit 30 Jahren leben wir echte Verbindung indem wir unsere Kunden mit tiefem technischen Know-how, viel Flexibilität und echtem Teamgeist begleiten. Unsere Schwerpunkte: Microsoft- und SAP-Technologien, Security, Data & AI betrieben auf stabiler, skalierbarer Infrastruktur. Als Teil der Oetker-Gruppe stehen wir für Verlässlichkeit, Qualität und langfristige Partnerschaften - mit unseren Kunden genauso wie mit unseren Mitarbeitenden. Bei uns findest du nicht nur spannende Projekte, sondern ein Umfeld, in dem du wirklich etwas bewegen kannst. Auf Augenhöhe. Im Team. Mit dir. Das sind Deine Aufgaben: Du baust als technischer Sparringspartner und ,,Trusted Advisor\" eine starke Beziehung zu potenziellen Kunden im Vertriebsprozess auf und überzeugst sie vom Wert unserer Data-&-AI-Lösungen Du nutzt Dein tiefes technisches Verständnis, um den Vertrieb gezielt zu unterstützen, indem Du anspruchsvolle Use-Cases und Proofs-of-Concept (PoCs) entwirfst und präsentierst, die auf die spezifischen Bedürfnisse der Interessenten zugeschnitten sind Du analysierst die technischen Anforderungen und bestehenden Systemlandschaften potenzieller Kunden, um Herausforderungen zu identifizieren und die optimale Lösungsarchitektur mit unseren Produkten zu entwerfen Du agierst als wichtige Schnittstelle zwischen dem Markt und unserer Produktentwicklung und übersetzt technisches Feedback sowie Anforderungen aus Vertriebsgesprächen in klare Impulse für das Produkt- und Entwicklungsteam Du identifizierst in enger Zusammenarbeit mit dem Vertriebsteam Geschäftsmöglichkeiten und inspirierst potenzielle Kunden mit Deiner technischen Expertise, indem Du innovative Anwendungsfelder aufzeigst und maßgeblich zum Vertragsabschluss beiträgst Das bringst Du mit: Du hast einen starken technischen Hintergrund, beispielsweise aus der Datenanalyse, dem Data Engineering, Business Intelligence oder als Data Scientist, und die klare Motivation, Deine technische Expertise in einer strategischen, kundenorientierten Vertriebsrolle einzusetzen Du besitzt eine ausgeprägte Leidenschaft für Daten und KI und hast bereits in Projekten in diesem Umfeld gearbeitet, außerdem verstehst Du die technischen Herausforderungen von der Theorie bis zur Praxis Du kannst hervorragend zwischen technischen Details und geschäftlichem Nutzen ,,übersetzen\" und komplexe Sachverhalte sowohl mit Entwicklern als auch mit Fachbereichsleitern auf Augenhöhe diskutieren Du bist ein exzellenter Zuhörer und kreativer Problemlöser, der in den Anforderungen potenzieller Kunden spannende Herausforderungen sieht und Freude daran hat, passgenaue und überzeugende Lösungen zu entwickeln Du bringst hohe Eigeninitiative, exzellente Präsentations- und Kommunikationsfähigkeiten sowie den Antrieb mit, die Verantwortung für den technischen Erfolg im Vertriebsprozess zu übernehmen Das erwartet Dich: Eine gelebte Du-Kultur und ein unternehmensweites Wir-Gefühl Regelmäßige After-Work Events und Betriebsfeste Individuelles Onboarding für neue Mitarbeitende mit übergreifenden Welcome-Veranstaltungen und einer Rechenzentrumsführung   Vielfältige Karriere- und Weiterbildungsmöglichkeiten sowie externer Englisch- und Deutschunterricht JobRad und Fahrradstellplätze, ein subventioniertes Deutschland- und regionales JobTicket sowie eine sehr gute Anbindung an die Autobahn mit kostenfreien Parkmöglichkeiten im Parkhaus am Hauptstandort Bielefeld Corporate Benefits und Vergünstigungen im Dr. Oetker Shop Verschiedene Gesundheitsmaßnahmen (bspw. Mental Health First Aid Programm) und eine ergonomische Arbeitsplatzausstattung in einer hochmodernen Arbeitsumgebung sowie klimatisierten Büros Durch unser bezuschusstes Firmenfitness-Programm über Hansefit erhältst Du Zugang zu einer großen Auswahl an Sport-, Fitness- und Wellnessangeboten Barrierefreie Arbeitsumgebung in Bielefeld (Behindertentoilette, breite Gänge und Türen, Behindertenparklätze, ebenerdiges Gebäude, Fahrstühle) Rundumversorgung für das leibliche Wohl: Kostenlose Kaffeespezialitäten, gekühltes Wasser und frisches Obst sowie ein eigenes Restaurant inklusive Frühstücksangebot am Hauptstandort Bielefeld Für unsere weiteren Standorte den ,,Pluxee Restaurant Pass\" mit einem flächendeckenden Partnernetzwerk Ein attraktives Gehaltspaket inkl. betrieblicher und tariflicher Altersvorsorge sowie Urlaubs- und Weihnachtsgeld Eine unbefristete Anstellung mit einer tariflichen 37h-Woche, außertariflich sind es 40h 30 Urlaubstage, tarifliche Sonderurlaubstage sowie zusätzlichen Urlaub am 24.12. und 31.12. 12 Tage im Monat mobiles Arbeiten, flexible Arbeitszeitgestaltung mit Gleitzeitkonto und verschiedenen Teilzeitmodellen Der Hauptsitz von OEDIV ist Bielefeld und daher Dein Arbeitsort. Aber auch ein Arbeiten an unserem Co-Working Space in Berlin ist möglich. Eintrittsdatum: ab sofort Möchtest du die Vielfalt der Oetker-Gruppe erleben? Dann klicke Dich über den Button \"Jetzt bewerben\" schnell und einfach zu uns! OEDIV KG Selina Patzke www.oediv.de/karriere",
+  "expected": [
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "ausgeprägte Leidenschaft für Daten und KI und hast bereits in Projekten in diesem Umfeld gearbeitet"
+    },
+    {
+      "skill_id": "business-intelligence",
+      "requirement": "nice_to_have",
+      "raw_text": "Business Intelligence"
+    },
+    {
+      "skill_id": "data-science",
+      "requirement": "nice_to_have",
+      "raw_text": "beispielsweise aus der Datenanalyse, dem Data Engineering, Business Intelligence oder als Data Scientist"
+    }
+  ]
+}

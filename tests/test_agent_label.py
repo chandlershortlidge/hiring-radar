@@ -1628,3 +1628,59 @@ def test_the_cli_only_offers_the_two_real_splits():
     assert al.SPLITS == ("heldout", "dev")
     with pytest.raises(SystemExit):
         al.main(["apply", "--run", "nope", "--split", "holdout"])
+
+
+def test_apply_refuses_to_overwrite_a_golden_held_by_a_different_posting(tmp_path, monkeypatch):
+    """Two runs numbered before either applied claim the same ids (HIR-167).
+
+    Each run numbers its picks from the highest Golden that existed when it started, so the
+    second run to apply would overwrite the first's Goldens with different postings, and the
+    only symptom would be a set smaller than expected. apply refuses instead.
+    """
+    goldens, run_dir = _scope_run(tmp_path, monkeypatch, [("Acme", "Senior AI Engineer", POSTING)])
+    _answer(run_dir / "review_queue.md", lambda n, b: "yes" if n == 1 else "ok")
+
+    # another run got here first and put a different posting in this run's slot
+    held = {"id": "golden_001", "company": "Other GmbH", "title": "AI Engineer",
+            "source_sha256": "f" * 64, "split": "dev", "expected": []}
+    (goldens / "golden_001.json").write_text(json.dumps(held) + "\n")
+
+    with pytest.raises(SystemExit) as e:
+        al.main(["apply", "--run", run_dir.name, "--split", "dev"])
+    msg = str(e.value)
+    assert "already exist for a different posting" in msg
+    assert "golden_001" in msg and "Other GmbH" in msg
+    # nothing was written: the posting already there is untouched
+    assert json.loads((goldens / "golden_001.json").read_text()) == held
+
+
+def test_apply_reports_the_id_clash_before_it_demands_the_decisions(tmp_path, monkeypatch):
+    """The clash is a property of the run's numbering, not of its decisions, so it is
+    reported while the queue is still unanswered — otherwise it surfaces only after someone
+    has worked through every item, which is the whole cost this refusal exists to save."""
+    goldens, run_dir = _scope_run(tmp_path, monkeypatch, [("Acme", "Senior AI Engineer", POSTING)])
+    # only the scope item is answered; every other item is still `?`
+    _answer(run_dir / "review_queue.md", lambda n, b: "yes" if n == 1 else "?")
+    held = {"id": "golden_001", "company": "Other GmbH", "title": "AI Engineer",
+            "source_sha256": "f" * 64, "split": "dev", "expected": []}
+    (goldens / "golden_001.json").write_text(json.dumps(held) + "\n")
+
+    with pytest.raises(SystemExit) as e:
+        al.main(["apply", "--run", run_dir.name, "--split", "dev"])
+    msg = str(e.value)
+    assert "already exist for a different posting" in msg
+    assert "still say `?`" not in msg
+
+
+def test_apply_overwrites_the_same_posting_so_rerunning_after_a_fix_still_works(tmp_path, monkeypatch):
+    """The guard keys on the posting, not the id, so the ordinary fix-and-apply-again loop
+    is unaffected: the same posting in its own slot is written over as before."""
+    goldens, run_dir = _scope_run(tmp_path, monkeypatch, [("Acme", "Senior AI Engineer", POSTING)])
+    _answer(run_dir / "review_queue.md", lambda n, b: "yes" if n == 1 else "ok")
+
+    al.main(["apply", "--run", run_dir.name, "--split", "dev"])
+    first = json.loads((goldens / "golden_001.json").read_text())
+    assert first["source_sha256"]
+
+    al.main(["apply", "--run", run_dir.name, "--split", "dev"])  # no refusal
+    assert json.loads((goldens / "golden_001.json").read_text())["source_sha256"] == first["source_sha256"]
