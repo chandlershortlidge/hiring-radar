@@ -47,7 +47,7 @@ import sqlite3
 import time
 from dataclasses import dataclass, field
 
-from app import langsmith_live
+from app import langsmith_live, targeted_reread
 from app.extract import (
     DEFAULT_MODEL, EmptyExtractionError, Extraction, ExtractionError, build_request, extract,
     extraction_from_message, extraction_input, extractor_version, make_client)
@@ -73,6 +73,7 @@ class ExtractReport:
     dropped: list[tuple[int, str]] = field(default_factory=list)
     logged: int = 0
     reread_queued: int = 0     # stale-stamped jobs in this run's queue (still open)
+    carried_over: int = 0      # stale-stamped open jobs moved to the new stamp unread (HIR-224)
     skipped_closed: int = 0    # stale-stamped jobs left out because they are closed (HIR-195)
     # What this run actually spent, in euros, on its successful readings — priced at the
     # Batch API's half rate for a batch run, the standard rate otherwise (HIR-222).
@@ -259,12 +260,14 @@ def log_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction, model:
 def unlogged_extractions(conn: sqlite3.Connection) -> int:
     """Stored extractions with no row recording the reading that produced them.
 
-    Only extractions made before HIR-170 landed; it never grows during a run."""
+    Only extractions made before HIR-170 landed; it never grows during a run. Checked
+    against `read_version`, the reading the job's skills came from: a carried-over job's
+    extracted_version names a version that never read it (HIR-224)."""
     return conn.execute(
-        "SELECT count(*) FROM job j WHERE j.extracted_version IS NOT NULL"
-        " AND j.extracted_version != 'legacy'"
+        "SELECT count(*) FROM job j WHERE j.read_version IS NOT NULL"
+        " AND j.read_version != 'legacy'"
         " AND NOT EXISTS (SELECT 1 FROM extraction_log l WHERE l.job_id = j.id"
-        "                 AND l.extractor_version = j.extracted_version)").fetchone()[0]
+        "                 AND l.extractor_version = j.read_version)").fetchone()[0]
 
 
 def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction, model: str = "",
@@ -300,12 +303,14 @@ def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction, mode
             # row. A reading that worked proves the posting is readable, so the earlier blank
             # stops counting against it (HIR-199); without this, blank -> success -> blank
             # deleted a job whose skills were already on the dashboard.
-            "UPDATE job SET extracted_version=?, blank_extractions=0,"
+            # read_version: this is a real reading, so the job's skills now come from it
+            # (HIR-224; a carry-over moves extracted_version alone).
+            "UPDATE job SET extracted_version=?, read_version=?, blank_extractions=0,"
             " seniority=?, seniority_basis=?, seniority_signal=?,"
             " german=?, german_basis=?, german_signal=?,"
             " degree=?, degree_requirement=?, degree_or_equivalent=?, degree_signal=?,"
             " production=?, production_basis=?, production_signal=? WHERE id=?",
-            (ex.extractor_version, sen.level, sen.basis, sen.signal, ger.requirement, ger.basis, ger.signal,
+            (ex.extractor_version, ex.extractor_version, sen.level, sen.basis, sen.signal, ger.requirement, ger.basis, ger.signal,
              deg.level, deg.requirement, int(deg.or_equivalent), deg.signal,
              prod.requirement, prod.basis, prod.signal, job_id))
         # Same transaction as the answer itself: an extraction that is stored but not logged,
@@ -451,13 +456,18 @@ def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn=None, mo
                                 metadata={"model": model, "taxonomy_version": tax.version,
                                           "extractor_version": extractor_version(tax, model)},
                                 inputs={"limit": limit, "job_ids": job_ids}) as trace:
+            carried = 0
+            if not job_ids:
+                carried = _carry_over(conn, tax, model, log, trace)
             if batch:
                 batch_fn = batch_fn or default_batch_fn(client)
                 report = _extract_pending_batch(conn, tax, batch_fn, model, limit, log, job_ids, trace)
             else:
                 extract_fn = extract_fn or default_extract_fn(client)
                 report = _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids, trace)
+            report.carried_over = carried
             trace.finish({
+                "carried_over": report.carried_over,
                 "attempted": report.attempted, "succeeded": report.succeeded,
                 "failed": len(report.failed), "dropped": len(report.dropped),
                 "mentions": report.mentions, "proposed": report.proposed,
@@ -468,6 +478,21 @@ def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn=None, mo
             if report.grounding_failures:
                 trace.tag("grounding-failure")
         return report
+
+
+def _carry_over(conn, tax, model, log, trace) -> int:
+    """Move the open jobs a skill-list addition cannot change to the current stamp, unread,
+    before the queue is built (HIR-224). Returns how many it moved."""
+    p = targeted_reread.carry_over(conn, tax, model)
+    if p.carry:
+        reread = len(p.reread)
+        log(f"  targeted re-read: {reread} of {p.stale} open jobs name a new skill"
+            f" ({', '.join(p.added_ids)}); {len(p.carry)} keep their reading")
+        # The comparison HIR-224 asks for: this run against the full re-read it replaced.
+        trace.note({"targeted_reread": f"re-read {reread} of {p.stale} jobs",
+                    "added_skills": p.added_ids, "carried_over": len(p.carry)})
+        trace.tag("targeted-reread", *(f"added:{sid}" for sid in p.added_ids))
+    return len(p.carry)
 
 
 def _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids, trace=None) -> ExtractReport:
