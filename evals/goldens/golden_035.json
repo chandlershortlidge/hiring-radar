@@ -150,6 +150,11 @@
       "raw_text": "tool calling"
     },
     {
+      "skill_id": "transformers",
+      "requirement": "required",
+      "raw_text": "high-throughput transformer"
+    },
+    {
       "skill_id": "triton-inference-server",
       "requirement": "required",
       "raw_text": "Triton Inference Server"

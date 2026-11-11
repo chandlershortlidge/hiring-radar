@@ -70,6 +70,11 @@
       "raw_text": "DevOps-Projekten"
     },
     {
+      "skill_id": "dotnet",
+      "requirement": "required",
+      "raw_text": ".NET Core"
+    },
+    {
       "skill_id": "fastapi",
       "requirement": "required",
       "raw_text": "FastAPI"

@@ -270,13 +270,44 @@ def test_v8_entries_resolve_with_their_spellings():
 
 def test_v8_leaves_out_the_labels_it_deliberately_left_out():
     # Bare "Triton" is out for good: two unrelated products share the word (see above).
-    # FSDP and Datadog are out only of *this* change — both crossed the 3-job bar while it
-    # was in flight and are filed as HIR-131, so the chart gains them in a ticket of their
-    # own rather than silently here. DECISIONS 2026-11-03.
+    # FSDP and Datadog were out only of *that* change (HIR-131, DECISIONS 2026-11-03).
+    # FSDP landed in v11 with the HIR-219 batch; Datadog is still at 2 postings.
     t = Taxonomy.load()
     assert t.resolve("Triton") is None
-    assert t.resolve("FSDP") is None
     assert t.resolve("Datadog") is None
+
+
+def test_v11_adds_the_queue_batch_after_the_german_launch():
+    # The 27 suggestions at 3+ distinct postings on 11 Nov. DECISIONS 2026-11-11 (HIR-219).
+    t = Taxonomy.load()
+    for label, expected in [
+        ("Angular", "angular"), ("Ruby on Rails", "ruby-on-rails"), ("Ruby", "ruby"),
+        ("Azure AI Foundry", "azure-ai-foundry"), ("Azure AI Studio", "azure-ai-foundry"),
+        ("Jenkins", "jenkins"), ("SLURM", "slurm"), ("Azure Key Vault", "azure-key-vault"),
+        ("Microsoft Entra ID", "microsoft-entra-id"), ("Entra ID", "microsoft-entra-id"),
+        ("Azure AD", "microsoft-entra-id"), ("MongoDB", "mongodb"), (".NET", "dotnet"),
+        ("Microsoft Fabric", "microsoft-fabric"), ("Nest.js", "nestjs"), ("NestJS", "nestjs"),
+        ("Azure DevOps", "azure-devops"), ("Playwright", "playwright"), ("PowerBI", "power-bi"),
+        ("FSDP", "fsdp"), ("PydanticAI", "pydanticai"), ("OpenShift", "openshift"),
+        ("Azure AI Search", "azure-ai-search"), ("Transformers", "transformers"),
+        ("Megatron", "megatron-lm"), ("Megatron-LM", "megatron-lm"), ("Hadoop", "hadoop"),
+        ("Semantic Kernel", "semantic-kernel"), ("OAuth 2.0", "oauth"), ("OAuth/OIDC", "oauth"),
+        ("Bazel", "bazel"), ("Secrets Management", "secrets-management"),
+        ("ArgoCD", "argocd"), ("Argo CD", "argocd"),
+    ]:
+        assert t.resolve(label) == expected, label
+    # Entra ID is its own entry under Active Directory, not a spelling of it.
+    assert "active-directory" in t.ancestors("microsoft-entra-id")
+    assert t.resolve("Active Directory") == "active-directory"
+    assert "ruby" in t.ancestors("ruby-on-rails")
+
+
+def test_v11_leaves_out_what_is_below_the_bar_or_not_a_skill():
+    # At 2 distinct postings once a posting stored twice is counted once; Scrum is a working
+    # method (HIR-72); bare Argo may be Argo Workflows. DECISIONS 2026-11-11 (HIR-219).
+    t = Taxonomy.load()
+    for label in ["AWS Glue", "Power Platform", "Neo4j", "Scrum", "Argo", "sentence-transformers"]:
+        assert t.resolve(label) is None, label
 
 
 def test_ray_serve_hangs_under_ray_without_losing_distributed_systems():
