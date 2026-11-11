@@ -1,0 +1,137 @@
+{
+  "id": "golden_076",
+  "split": "dev",
+  "seniority": "mid",
+  "seniority_basis": "inferred",
+  "seniority_signal": "mind. 3 Jahre Erfahrung",
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "sehr gute Deutschkenntnisse (mind. C1) in Wort und Schrift notwendig",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "abgeschlossenes Studium (Informatik, Software Engineering, Ingenieurwesen o. ä.) oder eine vergleichbare technische Vorbildung",
+  "attrs_reviewed": true,
+  "source_sha256": "5321d037c05614ab503a07ac759174654d6cfde46ca5102f649d3405b5842f78",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "degree",
+    "skill:ai-deployment",
+    "skill:ai-developer-tooling",
+    "skill:ai-ml",
+    "skill:evaluation",
+    "skill:mlops",
+    "skill:observability",
+    "skill:software-engineering",
+    "skill:terraform"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "AI Solutions Engineer (m/w/d) mit Fokus auf AWS/Bedrock\n\nWir suchen ab sofort eine*n AI Solutions Engineer (m/w/d) mit Fokus auf AWS und Bedrock, unbefristet, in Voll- oder Teilzeit (mind. 35 Std./Woche). Du entwickelst, integrierst und bringst Daten- und KI-Anwendungen für unsere Kund*innen in den produktiven Einsatz: von der technischen Architektur bis zum laufenden Betrieb. \n\nArbeitsort ist Berlin, mit der Möglichkeit, hybrid zu arbeiten - aus dem Homeoffice und gelegentlich beim Kunden vor Ort. Bitte beachte, dass für diese Stelle sehr gute Deutschkenntnisse (mind. C1) in Wort und Schrift notwendig sind.\n \nWas wir tun\n\nAlle machen jetzt KI wir machen es schon lange! Als eines der ersten Beratungsunternehmen im Bereich angewandter Künstlicher Intelligenz befähigen wir seit 2017 Organisationen dazu, Daten und KI wertstiftend einzusetzen. Dabei gehen wir ganzheitlich vor und vereinen Daten- und KI-Strategien mit technischer Umsetzung von der ersten Idee bis zum produktiven System. Zusätzlich befähigen wir Unternehmen und deren Mitarbeitende dazu, produktiv und verantwortungsvoll mit den implementierten KI-Lösungen umzugehen. Wir begreifen KI als Transformation und arbeiten deshalb gezielt an der Schnittstelle von Mensch, Strategie, Technologie und Design auf Projekten in Industrie, Wirtschaft, öffentlicher Verwaltung und Kultur.\n\nWen wir suchen\n\n- Du bringst mind. 3 Jahre Erfahrung in der Software- oder KI-Entwicklung mit und hast ein abgeschlossenes Studium (Informatik, Software Engineering, Ingenieurwesen o. ä.) oder eine vergleichbare technische Vorbildung.\n\n- Du entwickelst sicher in Python, baust REST-APIs z. B. mit FastAPI und Pydantic und arbeitest mit SQL-Datenbanken.\n\n- Du hast Cloud-Infrastruktur auf AWS aufgesetzt und betrieben, inklusive Docker, CI/CD-Pipelines und Infrastructure-as-Code (z. B. Terraform oder AWS CDK/CloudFormation).\n\n- Du hast LLM-Anwendungen mit Amazon Bedrock in den produktiven Einsatz gebracht und dabei Vektordatenbanken angebunden.\n\n- Du nutzt Agentic Coding und KI-gestützte Tools routiniert in deinem Coding-Alltag.\n\n- Du gehst offen und empathisch auf Menschen zu und kommunizierst zielgruppenorientiert, insbesondere wenn's mal technisch komplex wird.\n\nDeine Aufgaben\n\n- Du baust die Brücke zwischen Prototyp und Produktion: Du entwirfst Software- und Daten-Architekturen für datengetriebene Lösungen und übersetzt fachliche Kundenanforderungen in technische Spezifikationen.\n\n- Du entwickelst und implementierst gemeinsam im Team KI- und Daten-Anwendungen, vor allem auf AWS.\n\n- Du überführst ML-Modelle und KI-Prototypen in produktive, skalierbare Lösungen.\n\n- Du übernimmst Verantwortung für technische Arbeitspakete und Architektur-Entscheidungen, unterstützt dein Team bei API-Design, Deployment und Security und baust CI/CD-Pipelines sowie Infrastructure-as-Code mit auf.\n\n- Du bringst dich aktiv ins gemeinsame Lernen im Team ein, z. B. durch Wissensaustausch zu neuen Tools und Ansätzen.\n\n \n\nWas dir bei der Arbeit helfen wird\n\n- Erfahrung mit MLOps und Observability für KI-Systeme\n\n- Erfahrung in der systematischer Evaluation von Enterprise-KI-Anwendungen und KI-Pipelines\n\n- Erfahrung in agiler Softwareentwicklung (Scrum, Kanban oder SAFe) und strukturierter technischer Dokumentation\n\n- Ein Blick für nachhaltige Code-Qualität und Enterprise-Standards\n\n- Kommunikationsstärke und Spaß am Kundenkontakt\n\n- Freude daran, dein Wissen im Team zu teilen\n\n \n \nWas wir dir bieten\n\n- Ein tolles, vielseitiges und buntes Team denn KI ist nur so vielfältig, kreativ und inklusiv wie die Menschen dahinter;\n\n- Eine offene und wertschätzende Kultur mit vielen Gestaltungsmöglichkeiten im Team und Unternehmen;\n\n- Individuelle Entwicklungsmöglichkeiten;\n\n- Hybrides Arbeiten im Home Office UND im wunderschönen Vogelnest (unser Office) im Zentrum Berlins;\n\n- Vertrauensarbeitszeiten und flexible Arbeitszeitmodelle, für echte Vereinbarkeit von Familie, Freizeit und Beruf;\n\n- Team-Events, Sabbaticals, Gesundheitsvorsorge durch ergonomische Arbeitsplätze, Urban Sports Club-Mitgliedschaft und Bikeleasing, Bibliotheksmitgliedschaft, betriebliche Altersvorsorge, sehr gutes Tech-Equipment und vieles mehr...\n\n \n\nVielfalt finden wir super. Daher begrüßen wir alle Bewerbungen unabhängig von Nationalität, ethnischer und sozialer Herkunft, Religion/Weltanschauung, Behinderung, Alter sowie sexueller Orientierung und geschlechtlicher Identität.\n\nBei Fragen melde dich gern bei unserer Kollegin Carina (carina.herger@birdsonmars.com).\n\nCome fly with us!",
+  "expected": [
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "LLM-Anwendungen mit Amazon Bedrock in den produktiven Einsatz gebracht"
+    },
+    {
+      "skill_id": "ai-developer-tooling",
+      "requirement": "required",
+      "raw_text": "Agentic Coding und KI-gestützte Tools"
+    },
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "KI-Entwicklung"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "REST-APIs"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "Cloud-Infrastruktur auf AWS"
+    },
+    {
+      "skill_id": "aws-bedrock",
+      "requirement": "required",
+      "raw_text": "Amazon Bedrock"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "Docker, CI/CD-Pipelines"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Cloud-Infrastruktur"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Docker"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "nice_to_have",
+      "raw_text": "Evaluation"
+    },
+    {
+      "skill_id": "fastapi",
+      "requirement": "nice_to_have",
+      "raw_text": "FastAPI"
+    },
+    {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "required",
+      "raw_text": "Infrastructure-as-Code (z. B."
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "LLM-Anwendungen"
+    },
+    {
+      "skill_id": "mlops",
+      "requirement": "nice_to_have",
+      "raw_text": "MLOps"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "nice_to_have",
+      "raw_text": "Observability"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Software- oder KI-Entwicklung"
+    },
+    {
+      "skill_id": "sql",
+      "requirement": "required",
+      "raw_text": "SQL-Datenbanken"
+    },
+    {
+      "skill_id": "terraform",
+      "requirement": "nice_to_have",
+      "raw_text": "Infrastructure-as-Code (z. B. Terraform oder AWS CDK/CloudFormation)"
+    },
+    {
+      "skill_id": "vector-databases",
+      "requirement": "required",
+      "raw_text": "Vektordatenbanken"
+    }
+  ]
+}

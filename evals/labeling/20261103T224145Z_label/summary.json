@@ -454,7 +454,28 @@
         "skill",
         "fastapi"
       ]
-    ]
+    ],
+    "errors": 11,
+    "rate": 0.1375,
+    "wilson_95": [
+      0.07854714324339108,
+      0.22967100066986607
+    ],
+    "wrong": [
+      "golden_065 skill `llms` -> {\"requirement\": \"nice_to_have\", \"raw_text\": \"initial experience or a very strong interest in designing algorithms and building Generative AI applications\"}",
+      "golden_068 skill `embeddings` -> {\"requirement\": \"nice_to_have\", \"raw_text\": \"Erfahrung oder großes Interesse an Generative AI und Large Language Models, beispielsweise in den Bereichen RAG, Embeddings\"}",
+      "golden_068 skill `llm-guardrails` -> {\"requirement\": \"nice_to_have\", \"raw_text\": \"Erfahrung oder großes Interesse an Generative AI und Large Language Models, beispielsweise in den Bereichen RAG, Embeddings, Vector Stores, Prompt Engineering und Guardrails\"}",
+      "golden_068 skill `rag` -> {\"requirement\": \"nice_to_have\", \"raw_text\": \"Erfahrung oder großes Interesse an Generative AI und Large Language Models, beispielsweise in den Bereichen RAG\"}",
+      "golden_072 skill `aws` -> {\"requirement\": \"nice_to_have\", \"raw_text\": \"Kubernetes on AWS\"}",
+      "golden_072 skill `gemini` -> {\"requirement\": \"nice_to_have\", \"raw_text\": \"Google Vertex (Gemini)\"}",
+      "golden_072 skill `kubernetes` -> {\"requirement\": \"nice_to_have\", \"raw_text\": \"Kubernetes\"}",
+      "golden_072 skill `node-js` -> {\"requirement\": \"nice_to_have\", \"raw_text\": \"Node.js\"}",
+      "golden_074 skill `gcp` -> {\"requirement\": \"nice_to_have\", \"raw_text\": \"at least one major cloud platform, such as Azure, AWS or GCP\"}",
+      "golden_076 skill `terraform` -> {\"requirement\": \"nice_to_have\", \"raw_text\": \"Infrastructure-as-Code (z. B. Terraform oder AWS CDK/CloudFormation)\"}",
+      "golden_078 skill `aws` -> {\"requirement\": \"nice_to_have\", \"raw_text\": \"cloud infrastructure on AWS, GCP, or Azure\"}"
+    ],
+    "sample_items": null,
+    "answered_by": null
   },
   "signal_mismatches": [
     "golden_065 german: A 'German (Nice-to-have)' vs B 'German (Nice-to-have): Proficiency in German is a strong plus for collaborating with clients and partners.'",

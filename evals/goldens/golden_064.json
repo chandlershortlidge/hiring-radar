@@ -1,0 +1,121 @@
+{
+  "id": "golden_064",
+  "split": "dev",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": false,
+  "german": "nice_to_have",
+  "german_basis": "stated",
+  "german_signal": "German language skills",
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "f46627240d0f04682a0fbb1b89291ce580f788e37dfeadae3eae4dc2fb4d1189",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:ai-deployment",
+    "skill:ai-ml",
+    "skill:testing"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "AI Engineer (LLM) - Remote\ndexter health · Germany (Remote)\n\nabout outcomes more than titles.\n\nMust-have\n\n• Strong software engineering skills, especially in Python or a comparable backend language\n• Experience building AI-powered product features or LLM-based workflows\n• Ability to turn ambiguous product ideas into working software quickly\n• Strong understanding of how to design, test, validate, and improve AI outputs\n• Experience integrating AI workflows into production systems\n• Strong debugging instincts across application logic, data, model outputs, and user-facing behavior\n• Experience with evaluation, testing, validation, or quality checks for AI-generated outputs\n• Serious experience using AI development tools such as Claude Code, Codex, Cursor, Copilot, or similar as part of your daily workflow\n• High intelligence, fast learning speed, bias to action, and ownership mindset\n• Comfortable with ambiguity, fast decisions, and a high-trust startup environment\n• Clear written and spoken English\n\nNice-to-have\n\n• Experience with frontend or fullstack product development\n• Experience with self-hosted LLMs, model serving, inference optimization, or similar systems\n• Experience with open-source LLMs and related deployment workflows\n• Experience improving latency, cost, quality, or reliability of AI systems\n• Experience with healthcare software, healthcare data, or regulated environments\n• Experience working with structured data extraction, documentation automation, voice workflows, or workflow automation\n• German language skills\n• Knowledge of nursing homes or elderly care workflows",
+  "expected": [
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "integrating AI workflows into production systems"
+    },
+    {
+      "skill_id": "ai-developer-tooling",
+      "requirement": "required",
+      "raw_text": "AI development tools"
+    },
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "building AI-powered product features"
+    },
+    {
+      "skill_id": "claude-code",
+      "requirement": "required",
+      "raw_text": "Claude Code"
+    },
+    {
+      "skill_id": "codex",
+      "requirement": "required",
+      "raw_text": "Codex"
+    },
+    {
+      "skill_id": "cursor",
+      "requirement": "required",
+      "raw_text": "Cursor"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "Experience with evaluation"
+    },
+    {
+      "skill_id": "frontend-development",
+      "requirement": "nice_to_have",
+      "raw_text": "frontend"
+    },
+    {
+      "skill_id": "full-stack-development",
+      "requirement": "nice_to_have",
+      "raw_text": "fullstack product development"
+    },
+    {
+      "skill_id": "github-copilot",
+      "requirement": "required",
+      "raw_text": "Copilot"
+    },
+    {
+      "skill_id": "inference-optimization",
+      "requirement": "nice_to_have",
+      "raw_text": "inference optimization"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "LLM-based workflows"
+    },
+    {
+      "skill_id": "model-serving",
+      "requirement": "nice_to_have",
+      "raw_text": "model serving"
+    },
+    {
+      "skill_id": "open-source-llms",
+      "requirement": "nice_to_have",
+      "raw_text": "self-hosted LLMs"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Strong software engineering skills"
+    },
+    {
+      "skill_id": "structured-data-extraction",
+      "requirement": "nice_to_have",
+      "raw_text": "structured data extraction"
+    },
+    {
+      "skill_id": "workflow-automation",
+      "requirement": "nice_to_have",
+      "raw_text": "workflow automation"
+    }
+  ]
+}

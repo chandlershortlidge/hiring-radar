@@ -1,0 +1,96 @@
+{
+  "id": "golden_070",
+  "split": "dev",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Staff AI Engineer",
+  "seniority_reviewed": true,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "0753f34f30334c36a2efa31b120e1e0d346ce1b8ff16d43a050e69f6f54f1e44",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:ai-deployment",
+    "skill:model-development",
+    "skill:software-architecture"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "About the Position\n\nAs a Staff AI Engineer, you’ll serve as a technical leader for our LLM-powered products at the forefront of marketing and advertising technologies. You’ll own critical architectural decisions, set quality bars, and lead multi‑team initiatives that drive measurable outcomes.\n\nAs our Staff AI Engineer, you will lead the vision and execution of our data platform and LLM-powered products. You’ll own critical architectural decisions across data pipelines, model integration, model deployment and evals: turning high-level product and business requirements into robust, scalable data products that drive measurable outcomes for our Fortune 500 customers. This role spans data backend and ML engineering: from the reliability and cost efficiency of our pipelines to the outcome and performance of LLM-enabled features. You’ll raise the bar for data literacy across the department, craft and collaboration.\n\nYou’ll be accountable for the health, cost, and evolution of key data product and data platforms, partnering closely with full-stack engineers, product, design, and devops to deliver outcomes our customers can trust.\n\nThis role presents an exciting opportunity to shape the future of AI-driven technologies and make meaningful contributions to real-world applications.\n\nThe role is linked with our location in Berlin, but we are flexible about remote work in Germany.\n\nWhat You’ll Be Doing\n\n- Lead end-to-end architecture for data platforms and pipelines: scraping, data extraction, transformation, storage, serving, and ML/LLM integration, balancing performance, reliability, security, and cost.\n\n- Incrementally scale pipelines and systems: design safe rollout plans and north star data-quality metrics to handle customer and traffic growth without impacting production.\n\n- Translate business goals into actionable data products: assess high-level requirements, carve clear problem spaces, draft crisp RFCs, and sequence work into deliverable projects for the team.\n\n- Establish and enforce engineering standards: testing strategy, evals, observability, data contracts, and security practices across services. Think through short-term and long-term goals to come up with fast go-to-market products, while planning ahead for productization.\n\n- Up‑level the org: lead architecture reviews, codify patterns, mentor Senior Engineers, and multiply impact through documentation, code reviews, and pairing.\n\n- Startup‑ready: flexible, comfortable with ambiguity and constant change; proactive about process, documentation, and reliability without over‑engineering.\n\n- Lead the collaboration and define how AI engineers work cross-functionally with software engineers, devops, product managers and designers, to conceptualize and shape innovative and impactful solutions. Provide mentorship to junior team members and cultivate a culture of collaboration and innovation.\n\n- Ship meaningful experiments: prototype data/ML capabilities, evaluate feasibility and ROI, and make pragmatic calls on productionalizing with an eye on operating costs and risk.\n\nQualifications\n\n- 8+ years building and operating production data systems, including leading cross-cutting architectural changes, and deploying LLMs in real‑world scenarios at scale.\n\n- Deep experience with Python and modern service architectures; strong system design and data modeling fundamentals.\n\n- Extensive experience with training and deploying machine learning models, particularly within the NLP/LLM domain. Familiarity with infrastructure as code, CI/CD, and cloud infrastructure.\n\n- Fluency in operational maturity: SLOs, on‑call/incident practices, and observability.\n\n- Strong analytical and problem-solving abilities, with a bias towards action and outcomes.\n\n- Experience with data preprocessing, feature engineering, and model evaluation techniques.\n\n- Excellent communication skills, with the ability to explain complex technical concepts to non-technical stakeholders.\n\n- Demonstrated leadership experience, with the ability to guide and inspire a team.\n\nAbout Bluefish:\n\nBluefish believes that AI represents the next major chapter of the internet – and that consumers will increasingly use AI to consume information and media online. On this new AI internet, brands will need new tools and technologies to tell their stories to consumers online – and a new marketing ecosystem will be created around AI. Bluefish is building the platform that helps brands engage consumers on this new AI channel, with powerful enterprise tools to manage AI brand safety and engage consumers with thoughtful and personalized AI marketing experiences. \n\nThe Bluefish team is a tight-knit group of mar-tech industry veterans who previously helped build foundational ad-tech platforms now owned by Meta and Microsoft. Bluefish, the leading AI marketing platform for the Fortune 500, recently announced a $43 million Series B growth financing co-led by Threshold Ventures and NEA with participation from multiple enterprise investors including Amex Ventures, TIAA Ventures, Salesforce Ventures, and continued participation from Bloomberg Beta. We are a globally distributed team, with business operations based in New York City and engineering based in Europe and New York.   \n\nWhy Bluefish & Our Values:\n\n- Unique opportunity to join on the ground floor of a fast-moving startup building at the center of AI \n\n- Tackle challenging and abstract problems while disrupting the $300BN legacy mar-tech industry \n\n- Join an experienced high-performing team where you will have immediate ownership and impact \n\n- Experience a true meritocracy with significant career growth upside as the business scales \n\nOur Values:\n\n- Demonstrated grit and resourcefulness - you find creative solutions, adapt quickly, and aren’t afraid to roll up your sleeves in a fast-paced, evolving environment.\n\n- Thoughtful and strategic thinker with the ability to anticipate needs, ask the right questions, and deliver insights that truly drive value.\n\n- Proven ability to collaborate across functions and roles, fostering open communication and shared ownership of outcomes.\n\n- Commitment to craftsmanship - you take pride in delivering high-quality work, paying attention to the small details while keeping the big picture in mind.\n\n- Self-starter with a proactive mindset and a strong sense of accountability - able to drive projects forward independently while staying aligned with team goals.\n\n- Comfortable navigating ambiguity and learning new tools, processes, or technologies to get the job done.",
+  "expected": [
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "cloud infrastructure"
+    },
+    {
+      "skill_id": "data-modeling",
+      "requirement": "required",
+      "raw_text": "data modeling"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "model evaluation"
+    },
+    {
+      "skill_id": "feature-engineering",
+      "requirement": "required",
+      "raw_text": "feature engineering"
+    },
+    {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "required",
+      "raw_text": "infrastructure as code"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "deploying LLMs"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "machine learning models"
+    },
+    {
+      "skill_id": "model-development",
+      "requirement": "required",
+      "raw_text": "training and deploying machine learning models"
+    },
+    {
+      "skill_id": "nlp",
+      "requirement": "required",
+      "raw_text": "NLP/LLM domain"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "observability"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "system design"
+    }
+  ]
+}

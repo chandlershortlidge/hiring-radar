@@ -1,0 +1,60 @@
+{
+  "id": "golden_071",
+  "split": "dev",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Senior AI Engineer",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "inferred",
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "492cb01f169ce6848cfcb4b1ba4a8a6dd893fad4085aa64ed61967c88c3d841d",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:ai-ml",
+    "skill:software-engineering"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Senior AI Engineer - Agentic Software Development (w/m/d)\n\n**Senior AI Engineer** für anspruchsvolle **KI-Lösungen** mit agentischem Ansatz gesucht. Mind. 5 Jahre Softwareentwicklung, davon 3 Jahre KI. Kenntnisse in **Python**, **TypeScript**, **Machine Learning** und **Deep Learning** erforderlich. On-Premises-Infrastruktur mit GPU-Clustern.",
+  "expected": [
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "3 Jahre KI"
+    },
+    {
+      "skill_id": "deep-learning",
+      "requirement": "required",
+      "raw_text": "Deep Learning"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "Machine Learning"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Softwareentwicklung"
+    },
+    {
+      "skill_id": "typescript",
+      "requirement": "required",
+      "raw_text": "TypeScript"
+    }
+  ]
+}

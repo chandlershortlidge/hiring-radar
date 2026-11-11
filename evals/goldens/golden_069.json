@@ -1,0 +1,111 @@
+{
+  "id": "golden_069",
+  "split": "dev",
+  "seniority": "mid",
+  "seniority_basis": "inferred",
+  "seniority_signal": "3 to 5 years",
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": false,
+  "source_sha256": "2fdf02ac628390b08b2d6e736522566a398c2a266e1a56dbca7a8cddf5290a80",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:agents",
+    "skill:data-privacy-and-security",
+    "skill:multi-agent-systems"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "AI Integration Engineer (m/f/d)\nEGYM • Berlin, Berlin, Germany (Hybrid)\n\nAbout the job\n\nJoin EGYM as our AI Integration Engineer (m/f/d) in Munich or Berlin! In this pivotal role, you build the practical backbone of AI adoption at EGYM, turning high-impact use cases into secure, reliable, and production-grade systems. If you're a strong technical builder who wants to work at the cutting edge of applied AI and Agentic AI workflow automations, this is your opportunity to make a significant impact on our path to becoming an AI-native company.\n\nYour daily workout\n\n- Prototyping and Production: You design and build AI-powered proof of concepts for prioritized internal use cases, then take the ones that prove their value through to production\n- AI Implementations: You work with internal MCP servers and implement LLM-based workflows including RAG systems and intelligent automations\n- System Integration: You integrate AI solutions into existing systems including Google Workspace, Slack, ERP, CRM, and internal platforms, handling the auth flows and access scopes each one requires\n- Technical Architecture: You translate use cases into technical architectures, including how they will be hosted, secured, and run over time\n- Cloud Deployment and Management: You design and deploy on Google Cloud, making sensible use of services such as Cloud Run, Secret Manager, and Identity and Access Management, and reasoning about cost\n- Compliance and Security: You work with IT and Security to meet review and compliance requirements, respecting each system's access controls and data ownership\n- CI/CD and Tool Stability: You move successful prototypes toward stable internal tools with proper deployment and hosting, version control, and CI/CD\n- Production Hardening: You support teams in taking vibe-coded prototypes and turning them into production-ready applications, hardening them with proper architecture, security, testing, and deployment so they can run reliably at scale\n\nYour fitness level\n\n- Experience: You gained solid hands-on software engineering experience (3 to 5 years), comfortable owning code from prototype through to production\n- AI and LLM Expertise: You have practical experience building LLM-based systems such as MCP Servers, RAG pipelines, agentic workflows, ideally with at least one running in a real environment\n- Cloud and Security Knowledge: You have a working knowledge of a major cloud platform, Google Cloud preferred, plus a strong grasp of authentication, authorization, and data security\n- Technical Skills: You are fluent in Python, Java or comparable languages and the common AI tooling ecosystem, with the ability to integrate across enterprise APIs\n- Pragmatic Approach: You possess a pragmatic, product-minded approach focused on real user impact\n- Communicator and Collaborator: You have strong communication in English, able to explain technical trade-offs to non-technical stakeholders\n\nNice to have\n\n- Frameworks and Lowcode: You acquired experience with multi-agent frameworks such as CrewAI and low-code platforms such as Dataleap or n8n\n- System reliability: You are familiar with CI/CD, observability, and reliability practices for AI or data systems",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "agentic workflows"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "integrate across enterprise APIs"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "nice_to_have",
+      "raw_text": "familiar with CI/CD"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "a major cloud platform"
+    },
+    {
+      "skill_id": "crewai",
+      "requirement": "nice_to_have",
+      "raw_text": "CrewAI"
+    },
+    {
+      "skill_id": "data-privacy-and-security",
+      "requirement": "required",
+      "raw_text": "data security"
+    },
+    {
+      "skill_id": "gcp",
+      "requirement": "nice_to_have",
+      "raw_text": "Google Cloud preferred"
+    },
+    {
+      "skill_id": "java",
+      "requirement": "required",
+      "raw_text": "Java"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "LLM-based systems"
+    },
+    {
+      "skill_id": "mcp",
+      "requirement": "required",
+      "raw_text": "MCP Servers"
+    },
+    {
+      "skill_id": "multi-agent-systems",
+      "requirement": "nice_to_have",
+      "raw_text": "multi-agent frameworks"
+    },
+    {
+      "skill_id": "n8n",
+      "requirement": "nice_to_have",
+      "raw_text": "n8n"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "nice_to_have",
+      "raw_text": "observability"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG pipelines"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "software engineering"
+    }
+  ]
+}
