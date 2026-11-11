@@ -1,0 +1,121 @@
+{
+  "id": "golden_078",
+  "split": "dev",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": true,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "7bb06b6a2bf0c135be67420ff5f58ede9ae6b7866d6f1b289cdd6d6a7400a0ea",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "seniority",
+    "skill:agents",
+    "skill:ai-ml",
+    "skill:aws",
+    "skill:livekit",
+    "skill:observability",
+    "skill:react",
+    "skill:temporal"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Software Engineer, Voice AI / Backend\n\nABOUT THE ROLE\n\nJoin a small, fast-moving engineering team building voice AI agents for customer-facing workflows. You will own projects end-to-end across applied AI, real-time audio, and distributed systems, helping turn complex customer needs into reliable production software.\n\n\nWHAT YOU'LL DO\n\n - Build reliable voice AI systems, including retrieval-augmented generation, dynamic model routing, and evaluation of transcription systems.\n\n - Design and operate a distributed call scheduler that manages concurrency, race conditions, time zones, retries, and provider limits.\n\n - Extend agents across voice, messaging, and email, maintaining shared memory and state across real-time and asynchronous conversations.\n\n - Develop memory and reasoning systems that preserve context through customer workflows.\n\n - Build AI-assisted tools for configuring agents, diagnosing issues, and connecting to business systems such as CRMs, calendars, and email.\n\n - Improve observability and resilience by making failures traceable and ensuring graceful recovery when calls, workers, or providers fail.\n\n\nWHAT WE'RE LOOKING FOR\n\n - Production experience building and owning distributed systems, with a track record of shipping product software and delivering projects end-to-end.\n\n - Strong software fundamentals and experience with Python, FastAPI, or TypeScript in production systems.\n\n - Experience with real-time systems, audio processing, or voice infrastructure, and with production LLM, AI model, or agentic systems.\n\n - Experience with PostgreSQL, Redis, or similar data stores, plus cloud infrastructure on AWS, GCP, or Azure.\n\n - Ability to design or debug systems involving concurrency, load balancing, and fault tolerance.\n\n - Familiarity with tools such as LiveKit, Temporal, message queues, workflow orchestration, React, and observability platforms is valuable.\n\n - Independent, action-oriented approach, sound judgment about code quality and reliability, and a focus on team and customer outcomes.\n\n\nCOMPENSATION & BENEFITS\n\n€85,000 to €160,000 annually, plus equity. Visa sponsorship is available, and relocation support is offered.\n\n\nLOCATION\n\nOn-site in Berlin, Germany.",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "agentic systems"
+    },
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "AI model"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "nice_to_have",
+      "raw_text": "cloud infrastructure on AWS, GCP, or Azure"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "nice_to_have",
+      "raw_text": "Azure"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "cloud infrastructure"
+    },
+    {
+      "skill_id": "distributed-systems",
+      "requirement": "required",
+      "raw_text": "building and owning distributed systems"
+    },
+    {
+      "skill_id": "fastapi",
+      "requirement": "required",
+      "raw_text": "FastAPI"
+    },
+    {
+      "skill_id": "gcp",
+      "requirement": "nice_to_have",
+      "raw_text": "GCP"
+    },
+    {
+      "skill_id": "livekit",
+      "requirement": "nice_to_have",
+      "raw_text": "LiveKit"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "production LLM"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "nice_to_have",
+      "raw_text": "observability platforms"
+    },
+    {
+      "skill_id": "postgresql",
+      "requirement": "required",
+      "raw_text": "PostgreSQL"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "react",
+      "requirement": "nice_to_have",
+      "raw_text": "React"
+    },
+    {
+      "skill_id": "redis",
+      "requirement": "required",
+      "raw_text": "Redis"
+    },
+    {
+      "skill_id": "temporal",
+      "requirement": "nice_to_have",
+      "raw_text": "Temporal"
+    },
+    {
+      "skill_id": "typescript",
+      "requirement": "required",
+      "raw_text": "TypeScript"
+    }
+  ]
+}

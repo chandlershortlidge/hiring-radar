@@ -1,0 +1,147 @@
+{
+  "id": "golden_074",
+  "split": "dev",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Senior GenAI Engineer",
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "ac6cd00956ff044cc8192ed5f277e9603ac0c06dda7af4a52a81ce854456cf00",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:ai-deployment",
+    "skill:evaluation",
+    "skill:gcp",
+    "skill:llms"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Senior GenAI Engineer (m/w/d)\n\n<p><span>We are building production GenAI applications that solve real business problems across Abacus. As part of the AI for Automation team within Data, Analytics &amp; AI, you will help turn strong use cases into reliable, scalable solutions with measurable business impact. You will design, prototype, and ship end-to-end AI solutions together with engineers, data scientists, delivery leads, and business stakeholders.</span></p><div><h5><span>Your main responsibilities include</span></h5></div><div><ul><li><p><span>Designing and implementing GenAI solutions for real business use cases, from classical NLP approaches to LLM-based applications, depending on what the problem actually needs.</span></p></li></ul></div><div><ul><li><p><span>Building and optimizing RAG pipelines: document ingestion, embeddings, vector search and retrieval quality.</span></p></li></ul></div><div><ul><li><p><span>Developing prompt engineering strategies and managing prompt lifecycles for production use.</span></p></li></ul></div><div><ul><li><p><span>Designing and implementing GenAI workflow automations and integrations (Azure AI Foundry, LangGraph, or similar).</span></p></li></ul></div><div><ul><li><p>Rapidly prototype new GenAI use cases, validate ideas early with clear success criteria, and iterate before moving solutions into production.</p></li></ul></div><div><ul><li><p><span>Collaborating with Delivery Leads, Data Engineers, Platform Engineers, Data Scientists and business stakeholders to deliver end-to-end GenAI applications.</span></p></li></ul></div><div><ul><li><p><span>Taking ownership of solution design and delivery for defined work packages, components or functions within larger AI initiatives.</span></p></li></ul></div><div><ul><li><p><span>Integrating external data sources and APIs to extend AI capabilities.</span></p></li></ul></div><div><ul><li><p><span>Bringing emerging AI techniques, tools and research back to the team and helping us evaluate what is worth investing in.</span></p></li></ul></div><h5><span>Fuel for your success in the role</span></h5><div><p>You have shipped GenAI solutions into production and understand the realities behind them: messy data, stakeholder alignment, and continuous evaluation. You are excited about where the field is going and bring that curiosity into the team. You enjoy exploring new technologies while helping junior engineers grow.</p></div><div><p></p></div><div><p><span><strong>In addition, your profile includes</strong></span></p></div><div><ul><li><p><span>hands-on experience in software engineering or machine learning / deep learning, with a meaningful portion in GenAI or NLP.</span></p></li></ul></div><div><div><ul><li><p><span>Strong Python skills. You write clean, production-quality code and you review other people's code constructively.</span></p></li></ul></div><div><ul><li><p>Experience building production-grade GenAI applications: RAG pipelines, agent orchestration, fine-tuning, prompt engineering and vector databases.</p></li></ul></div><div><ul><li><p><span>Experience working with at least one major cloud platform, such as Azure, AWS or GCP, in a production context.</span></p></li></ul></div><div><ul><li><p><span>Comfortable operating in a modern engineering environment: you have worked with containerization, CI/CD pipelines and cloud-native tooling, and you know your way around at least some of it.</span></p></li></ul></div><div><ul><li><p><span>Comfortable working in English in a professional setting, written and verbal.</span></p></li></ul><p><span><strong>A plus for this role</strong></span></p></div><div><ul><li><p><span>Familiarity with LLM frameworks (LangChain, LangGraph, or similar) and workflow automation tools (n8n, Azure AI Foundry, or similar).</span></p></li></ul></div><div><ul><li><p><span>Experience working in cross-functional teams with non-technical stakeholders.</span></p></li></ul></div><h5><span><strong>What We Offer</strong></span></h5><ul><li><p>A modern office at the EUREF Campus with a wide range of restaurants and cafés, conveniently located next to Schöneberg S-Bahn station</p></li><li><p>Flexible working hours</p></li><li><p>Annual performance bonus based on company results</p></li><li><p>30 days of annual leave plus an extra day off on New Year's Eve</p></li><li><p>Free Germany Ticket for public transport and subsidized meals on campus, including a daily lunch allowance from Abacus</p></li><li><p>Access to Wellhub with a monthly contribution towards gyms and fitness classes, plus the OpenUp mental health platform</p></li><li><p>Complimentary private supplementary health insurance</p></li><li><p>Free coffee and fresh fruit in the office</p></li><li><p>Global team events and an international, collaborative work environment</p></li></ul><h5><span><strong>Interested?</strong></span></h5><p>We'd love to hear from you! Simply submit your CV via the application link below.</p></div><div><p>Follow us on <a target=\"_blank\" href=\"https://www.instagram.com/abacusmedicinegroup/\">Instagram</a> and <a target=\"_blank\" href=\"https://www.linkedin.com/company/abacus-medicine/about/\">LinkedIn</a> and get an insight into everyday life at Abacus Medicine. For job openings, check our <a target=\"_blank\" href=\"https://abacusmedicinegroup.com/career/\">Career page</a>.</p><p></p></div><p><strong><em>Moving Healthcare. Moving You.</em></strong></p><p>In Abacus Medicine Group, you’ll experience the power of Moving Healthcare. With our change mindset, we're moving the industry and improving healthcare as we broaden access to medicine.</p><p>But it's not just about moving healthcare, it's about Moving You. You’ll be part of a caring community of more than 1,750<span> </span>people across the World. With us, you will be valued, empowered, and have a direct impact on driving change. Let's access the future of medicine and make a difference together. Your move.</p>",
+  "expected": [
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "shipped GenAI solutions into production"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "nice_to_have",
+      "raw_text": "AWS"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "nice_to_have",
+      "raw_text": "such as Azure"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD pipelines"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "major cloud platform"
+    },
+    {
+      "skill_id": "containerization",
+      "requirement": "required",
+      "raw_text": "containerization"
+    },
+    {
+      "skill_id": "deep-learning",
+      "requirement": "required",
+      "raw_text": "deep learning"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "continuous evaluation"
+    },
+    {
+      "skill_id": "fine-tuning",
+      "requirement": "required",
+      "raw_text": "fine-tuning"
+    },
+    {
+      "skill_id": "gcp",
+      "requirement": "nice_to_have",
+      "raw_text": "at least one major cloud platform, such as Azure, AWS or GCP"
+    },
+    {
+      "skill_id": "langchain",
+      "requirement": "nice_to_have",
+      "raw_text": "LangChain"
+    },
+    {
+      "skill_id": "langgraph",
+      "requirement": "nice_to_have",
+      "raw_text": "LangChain, LangGraph"
+    },
+    {
+      "skill_id": "llm-orchestration",
+      "requirement": "required",
+      "raw_text": "agent orchestration"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "production-grade GenAI applications"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "machine learning"
+    },
+    {
+      "skill_id": "n8n",
+      "requirement": "nice_to_have",
+      "raw_text": "n8n"
+    },
+    {
+      "skill_id": "nlp",
+      "requirement": "required",
+      "raw_text": "in GenAI or NLP"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "fine-tuning, prompt engineering"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Strong Python skills"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "GenAI applications: RAG pipelines"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "software engineering"
+    },
+    {
+      "skill_id": "vector-databases",
+      "requirement": "required",
+      "raw_text": "vector databases"
+    },
+    {
+      "skill_id": "workflow-automation",
+      "requirement": "nice_to_have",
+      "raw_text": "workflow automation tools"
+    }
+  ]
+}
