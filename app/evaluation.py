@@ -11,7 +11,8 @@ skill frequencies across the suite (the chart is a frequency ranking, so we meas
 directly). Runs a suite N times and summarizes mean and spread.
 
 Does NOT: call a model itself (an extract function is injected), read files, or score
-anything the chart doesn't use (no non-skill audit, no alternative groups).
+anything the chart doesn't use (no non-skill audit). Alternative groups (HIR-251) are
+scored, as pair agreement, on Goldens marked `groups_reviewed` only.
 
 Invariants: micro-averaging (every skill criterion weighs the same, regardless of JD
 length); scoring is deterministic for a given input; a Golden whose extraction raised
@@ -50,6 +51,10 @@ class GoldenScore:
     # not whether the skill was the right one, so it stays separate from fp/fn.
     grounded: int = 0
     quotes: int = 0
+    # Alternative groups (HIR-251): (expected pairs, predicted pairs) of matched skills that
+    # share a group, or None when the Golden's groups were never reviewed. Only reviewed
+    # Goldens are scored, since an unreviewed one would call every predicted group wrong.
+    group_pairs: tuple | None = None
 
 
 def score_golden(golden_id: str, expected: list[dict], predicted: list[dict],
@@ -57,10 +62,12 @@ def score_golden(golden_id: str, expected: list[dict], predicted: list[dict],
                  german: tuple | None = None, degree: tuple | None = None,
                  seniority_labeled: bool | None = None, production: tuple | None = None,
                  production_signal: tuple | None = None,
-                 grounding: tuple[int, int] = (0, 0)) -> GoldenScore:
+                 grounding: tuple[int, int] = (0, 0), groups_reviewed: bool = False) -> GoldenScore:
     exp = {e["skill_id"]: e["requirement"] for e in expected}
     pred = {p["skill_id"]: p["requirement"] for p in predicted}
     tp = sorted(exp.keys() & pred.keys())
+    group_pairs = ((group_pairs_of(expected, tp), group_pairs_of(predicted, tp))
+                   if groups_reviewed else None)
     return GoldenScore(
         golden_id=golden_id,
         tp=tp,
@@ -76,7 +83,23 @@ def score_golden(golden_id: str, expected: list[dict], predicted: list[dict],
         production_signal=production_signal,
         grounded=grounding[0],
         quotes=grounding[1],
+        group_pairs=group_pairs,
     )
+
+
+def group_pairs_of(mentions: list[dict], among: list[str]) -> frozenset:
+    """Unordered pairs of skills in `among` that share an alternative group in `mentions`.
+
+    Pairs, not group numbers, because numbers are arbitrary per posting: what has to agree
+    is which skills were offered as alternatives to each other. Restricted to skills both
+    sides found, so a missed skill costs recall once, not again here."""
+    keep = set(among)
+    by_group: dict = {}
+    for m in mentions:
+        g = m.get("alternative_group")
+        if g is not None and m["skill_id"] in keep:
+            by_group.setdefault(g, set()).add(m["skill_id"])
+    return frozenset((a, b) for ids in by_group.values() for a in ids for b in ids if a < b)
 
 
 # The grounding check itself lives in app/grounding.py, below both callers, so the eval
@@ -172,6 +195,12 @@ def summarize(scores: list[GoldenScore], expected_by_id: dict[str, list[dict]],
            if s.production is not None and s.production[0] == s.production[1] and s.production[0] is not None]
     sig_ok = sum(1 for e, p in sig if e and p and (e in p or p in e)) if sig else 0
 
+    reviewed = [s.group_pairs for s in scores if s.group_pairs is not None]
+    g_tp = sum(len(e & p) for e, p in reviewed)
+    g_fp = sum(len(p - e) for e, p in reviewed)
+    g_fn = sum(len(e - p) for e, p in reviewed)
+    group_f1 = 2 * g_tp / (2 * g_tp + g_fp + g_fn) if g_tp + g_fp + g_fn else None
+
     quotes = sum(s.quotes for s in scores)
     grounding_acc = sum(s.grounded for s in scores) / quotes if quotes else None
 
@@ -198,6 +227,8 @@ def summarize(scores: list[GoldenScore], expected_by_id: dict[str, list[dict]],
         "production_signal_n": len(sig),
         "grounding_accuracy": grounding_acc,
         "grounding_n": quotes,
+        "group_f1": group_f1,
+        "group_n": len(reviewed),
         "rank_spearman": rho,
         f"top{k}_overlap": len(set(gold_top) & set(pred_top)) / k if gold_top else None,
         "gold_top": gold_top, "pred_top": pred_top,
@@ -282,7 +313,8 @@ def _score_one(g: dict, extract_fn, span):
             **attribute_pairs(g, prediction))
         return [], prediction, score
 
-    pred = [{"skill_id": m.skill_id, "requirement": m.requirement, "raw_text": m.raw_text} for m in ex.mentions]
+    pred = [{"skill_id": m.skill_id, "requirement": m.requirement, "raw_text": m.raw_text,
+             "alternative_group": getattr(m, "alternative_group", None)} for m in ex.mentions]
     sen = getattr(ex, "seniority", None)
     ger = getattr(ex, "german", None)
     deg = getattr(ex, "degree", None)
@@ -302,6 +334,7 @@ def _score_one(g: dict, extract_fn, span):
     score = score_golden(g["id"], g["expected"], pred,
                          grounding=grounding(g["job_description"], ex.mentions,
                                              ex.proposed, ex.rejected),
+                         groups_reviewed=bool(g.get("groups_reviewed")),
                          **attribute_pairs(g, prediction))
     return pred, prediction, score
 
@@ -329,7 +362,7 @@ def run_once(goldens: list[dict], extract_fn, trace=None) -> RunResult:
 
 
 METRICS = ("precision", "recall", "f1", "requirement_accuracy", "seniority_accuracy", "german_accuracy", "degree_accuracy",
-           "production_accuracy", "production_signal_agreement", "grounding_accuracy",
+           "production_accuracy", "production_signal_agreement", "grounding_accuracy", "group_f1",
            "rank_spearman", "top10_overlap")
 
 
