@@ -42,6 +42,12 @@ Chandler, in session: *"Expertise in Python, Rust, Go, Java or other programming
   alone: two keys from the 3 Nov batch (golden_074, golden_078) label the "AWS, GCP or
   Azure" members nice-to-have under a required cloud ask, which the requirement rules don't
   support. That is a label question, not a grouping one.
+- **Score gate, accepted over the line (Chandler, 2026-11-12: "approved").** The first run
+  lost 0.024 recall because the instruction's "a broad skill … null" read as "omit it";
+  one sentence was reworded and re-scored once. Recall then sat within the limit, but
+  top-10 overlap stayed 0.033 down: 8/8/8 of 10 against main's 8/8/9, one tie at 10th
+  place in one repeat. Accepted as noise. Judging that check by skills lost rather than a
+  0.02 drop is filed as its own ticket.
 
 Undo: drop the group field from the extractor's tool schema and the match code; the
 stored column can stay empty.
