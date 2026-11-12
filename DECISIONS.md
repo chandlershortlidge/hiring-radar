@@ -5,6 +5,55 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-11 — Alternative groups come back: "any one of these" is one requirement (HIR-251)
+
+Reverses part of the 2026-10-16 rebuild entry, which dropped alternative groups as feeding
+out-of-scope features. They feed one in-scope feature: the job list's skill match.
+
+Chandler, in session: *"Expertise in Python, Rust, Go, Java or other programming language"
+— they are all required, but having ONE on the CV counts for all of them. One of them is
+100% required, so you can't have none of them, but you don't need all, just one.*
+
+- **Storage.** Each extracted skill may carry a group number, scoped to its posting. Tools
+  with the same number are alternatives: any one meets the requirement. No number means
+  the skill stands alone, as before. A group has at least two members; a lone survivor
+  (its partners rejected or unknown) loses its number.
+- **Chart: unchanged.** Every member of a required group stays *required* and counts as
+  one job for its own bar. Recording them nice-to-have would have left "Python, Java or
+  C++" postings asking for no language at all; fractions would break the rule that every
+  chart number is a count of jobs.
+- **Skill match ("you cover X of Y required skills").** A required group counts as **one**
+  requirement, met if the profile has any member. A missing group is named as
+  "Python, Rust, Go or Java". This matches the user's picked skills, not a CV; CV matching
+  stays out of scope.
+- **"or other / or similar" is not recorded.** Only the named tools form the group; there
+  is no general "programming languages" skill. Adding one would be its own ticket.
+- **Answer keys.** Only postings whose wording contains "one of", "such as" or "or
+  similar" are re-checked for groups (Chandler: "yes, only those"); then a fresh
+  baseline is scored.
+  Scores from before groups are not comparable on the grouping measure, which did not
+  exist; the skill and requirement measures are unaffected.
+- **When a skill appears both alone and in a group** (asked for outright, and again as one
+  option), the standalone ask wins: it is a requirement on its own.
+- **Labelling guide.** A new section in `evals/LABELING.md` states the rule for answer keys,
+  mirroring the extractor's rule (Chandler: "yes, proceed"). All 30 keys with the wording
+  (19 dev, 11 held-out) were re-checked and carry `groups_reviewed: true`; 21 have at least
+  one group. No `requirement`, `raw_text` or skill changed in any key. Known gap, left
+  alone: two keys from the 3 Nov batch (golden_074, golden_078) label the "AWS, GCP or
+  Azure" members nice-to-have under a required cloud ask, which the requirement rules don't
+  support. That is a label question, not a grouping one.
+- **Score gate, accepted over the line (Chandler, 2026-11-12: "approved").** The first run
+  lost 0.024 recall because the instruction's "a broad skill … null" read as "omit it";
+  one sentence was reworded and re-scored once. Recall then sat within the limit, but
+  top-10 overlap stayed 0.033 down: 8/8/8 of 10 against main's 8/8/9, one tie at 10th
+  place in one repeat. Accepted as noise. Judging that check by skills lost rather than a
+  0.02 drop is filed as its own ticket.
+
+Undo: drop the group field from the extractor's tool schema and the match code; the
+stored column can stay empty.
+
+---
+
 ## 2026-11-11 — Taxonomy v11: 27 entries from the queue after the German launch; the bar counts distinct postings (HIR-219)
 
 The queue was re-read from the live site's backup of 11 Nov 02:30Z (916 jobs, all but

@@ -99,6 +99,31 @@ place, the mentions collapse into one criterion:
   they disagree. Where the skill's bare name appears in several mentions, quote enough of
   the determining one to identify it.
 
+## alternative_group: skills offered in place of each other
+
+Added 2026-11-11 (HIR-251, Chandler's yes). When the posting accepts **any one of several
+skills** for one ask, each of them gets the same `alternative_group` number — 1 for the
+first such set in the posting, 2 for the next. Every other criterion has no
+`alternative_group`.
+
+- **Markers:** "at least one of", "one or more of", "X, Y or Z", "X and/or Y", and examples
+  offered for a single ask ("a language such as X, Y or Z", "a framework like X or Y"). The
+  posting wants the ask, and any one example meets it.
+- **Each member keeps its own criterion and label.** A group changes no `requirement`:
+  every member is labeled by the rules above.
+- **"or other", "or similar", "or comparable" add nothing** — no extra skill, no broad
+  parent.
+- **Not alternatives:** skills asked for together ("X and Y", "X, Y and Z"), and a broad
+  skill named alongside its examples. "cloud platforms (GCP, AWS or Azure)" groups `gcp`,
+  `aws` and `azure`; `cloud` stays out of the group.
+- **A group needs at least two skills.** A skill also asked for on its own elsewhere in the
+  posting (including as an unmarked tech-stack entry) is a requirement on its own: it leaves
+  the group.
+- A Golden whose groups have been checked carries `groups_reviewed: true`. Only those
+  Goldens are scored on grouping; the others are not scored on it at all.
+
+This matches extraction rule 9 in `PRINCIPLES` (`app/extract.py`).
+
 
 ## Seniority
 

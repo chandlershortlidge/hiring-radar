@@ -17,6 +17,8 @@ Invariants:
     inconsistent collapses to "not mentioned", never to a guess.
   - Every returned mention has a skill_id that exists in the taxonomy it was run with.
   - Each skill_id appears at most once per job; if any mention is required, it is required.
+  - Alternative groups (HIR-251) are numbered 1..n per job and have at least two members;
+    a skill asked for on its own as well as in a group is kept on its own.
   - Every mention's raw_text is found in the job text (whitespace/case-insensitive);
     unsupported items are reported in `rejected`, not silently kept.
   - A call that does not produce exactly one record_skills tool call raises
@@ -82,6 +84,18 @@ You extract the technical skills a job description asks candidates to have.
 7. raw_text is the exact phrase from the job description that supports the skill, copied
    verbatim.
 8. Report each skill id at most once. Report every skill you find.
+9. alternative_group: when the posting accepts any one of several skills in place of each
+   other, give each of them the same alternative_group number — 1 for the first such set
+   in the posting, 2 for the next. Markers: "at least one of", "one or more of",
+   "X, Y or Z", "X and/or Y", and examples offered for a single ask ("a language such as
+   X, Y, or Z", "a framework like X or Y"): the posting wants the ask, and any one example
+   meets it. Every member takes the requirement of the ask as a whole, by rule 6.
+   Grouping never removes a skill: report every skill rules 3 and 4 call for, then mark
+   the groups. A broad skill named with its examples ("B such as X, Y or Z") is still
+   reported, with alternative_group null; only X, Y and Z share a group. "or other",
+   "or similar" and "or comparable" add no skill of their own, but every skill the text
+   does name is still reported. Skills asked for together ("X and Y", "X, Y and Z") are
+   not alternatives: null. A set needs at least two skills; any skill not in one is null.
 
 Also report the seniority the posting targets:
 - "junior", "mid", or "senior". Intern, working student, graduate, entry-level, and "(Junior)"
@@ -175,8 +189,10 @@ TOOL = {
                         "skill_id": {"type": "string", "description": "A taxonomy id, or new:<Label>."},
                         "requirement": {"type": "string", "enum": ["required", "nice_to_have"]},
                         "raw_text": {"type": "string"},
+                        "alternative_group": {"anyOf": [{"type": "integer"}, {"type": "null"}],
+                                              "description": "Same number = any one of these meets the ask; null otherwise."},
                     },
-                    "required": ["skill_id", "requirement", "raw_text"],
+                    "required": ["skill_id", "requirement", "raw_text", "alternative_group"],
                     "additionalProperties": False,
                 },
             },
@@ -223,6 +239,9 @@ class Mention:
     skill_id: str
     requirement: str
     raw_text: str
+    # Same number on two or more mentions of one job = alternatives: any one meets the
+    # requirement (HIR-251). None = the skill stands alone.
+    alternative_group: int | None = None
 
 
 @dataclass(frozen=True)
@@ -367,12 +386,36 @@ def parse_skills(items: list, tax: Taxonomy, jd_text: str) -> tuple[list[Mention
                 continue
             sid = known
 
+        group = item.get("alternative_group")
+        group = group if isinstance(group, int) and not isinstance(group, bool) and group >= 1 else None
         prev = by_id.get(sid)
-        if prev is None or (prev.requirement == "nice_to_have" and req == "required"):
-            by_id[sid] = Mention(sid, req, raw)
+        if prev is None or _stronger(req, group, prev):
+            by_id[sid] = Mention(sid, req, raw, group)
 
-    mentions = sorted(by_id.values(), key=lambda m: m.skill_id)
+    mentions = sorted(_settle_groups(by_id.values()), key=lambda m: m.skill_id)
     return mentions, sorted(proposed.values(), key=lambda p: p.label.lower()), rejected
+
+
+def _stronger(req: str, group: int | None, prev: Mention) -> bool:
+    """Does a second mention of the same skill outrank the one kept? Required beats
+    nice-to-have; at the same level, asked for on its own beats being one of a group,
+    since a standalone ask is a requirement by itself (DECISIONS 2026-11-11)."""
+    if req != prev.requirement:
+        return req == "required"
+    return group is None and prev.alternative_group is not None
+
+
+def _settle_groups(mentions) -> list[Mention]:
+    """Renumber groups 1..n in order of the model's numbers, and drop the number from a
+    group left with one member (its partners were rejected, unknown, or kept standalone):
+    an alternative to nothing is a plain mention."""
+    mentions = list(mentions)
+    sizes: dict[int, int] = {}
+    for m in mentions:
+        if m.alternative_group is not None:
+            sizes[m.alternative_group] = sizes.get(m.alternative_group, 0) + 1
+    renumber = {g: i for i, g in enumerate(sorted(g for g, n in sizes.items() if n > 1), start=1)}
+    return [Mention(m.skill_id, m.requirement, m.raw_text, renumber.get(m.alternative_group)) for m in mentions]
 
 
 def parse_seniority(data: dict, jd_text: str) -> Seniority:
