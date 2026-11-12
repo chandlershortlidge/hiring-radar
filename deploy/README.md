@@ -49,7 +49,7 @@ on the VM unless it says otherwise.
 | API process | `hiring-radar.service` on `127.0.0.1:8000`, Caddy in front |
 | Daily poll | `hiring-radar-poll.timer` → `hiring-radar-poll.service`, 07:00 Europe/Berlin |
 | Nightly backup | `hiring-radar-backup.timer` → `backup.sh`, 03:30 Europe/Berlin, to `gs://hiring-radar-512318-backups/db/` |
-| Caretaker | `hiring-radar-caretaker.timer` → `python -m app caretaker`, 10:00 Europe/Berlin: checks every job source, logs to `caretaker_log`, posts Monday's summary to Linear when `LINEAR_API_KEY` is set (HIR-257). Report-only: never edits `config/feeds.json` |
+| Caretaker | `hiring-radar-caretaker.timer` → `python -m app caretaker`, 10:00 Europe/Berlin: checks every job source, logs to `caretaker_log`, posts the Monday summary to Linear when `LINEAR_API_KEY` is set (HIR-257). The same post starts with the week's pull requests (needs you, merged, sent back and fixed), read from GitHub's public API and the checkout's git history, with no token (HIR-264). Report-only: never edits `config/feeds.json` |
 
 `systemctl list-units | grep hiring` shows the exact unit names.
 

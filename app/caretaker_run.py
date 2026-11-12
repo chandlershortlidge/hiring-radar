@@ -4,7 +4,10 @@ Does:
   - read today's and recent `feed_run` rows (written by the poll), each board's history in
     job_source, the city totals and the reading queue;
   - hand them to the rules in app/caretaker.py and write every finding to `caretaker_log`;
-  - on Mondays, build last week's summary from that log and post it as one Linear issue;
+  - on Mondays, build last week's summary from that log and post it as one Linear issue,
+    the Monday summary; the pull-request half of that post (what needs Chandler, what
+    merged, what was sent back and fixed: app/merged_work.py, HIR-264) is handed in as
+    text and goes first, so the week is one message, not two;
   - post at once only what cannot wait a week (collection down two days running, spend cap).
 
 Does NOT: change config/feeds.json, re-run the collection, or open a pull request. It runs
@@ -180,10 +183,13 @@ def post_json(url: str, payload: dict, headers: dict) -> dict:
         return json.loads(r.read())
 
 
-def report(conn: sqlite3.Connection, day: str, post=None, log=print) -> None:
+def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=None) -> None:
     """Send the urgent note and, on Mondays, the weekly summary. `post(title, body)` returns
     the Linear identifier; None when there is no Linear key, and then the text goes to the
-    journal only. Each send is logged so a second run the same day does not repeat it."""
+    journal only. Each send is logged so a second run the same day does not repeat it.
+    `changes(start, end)` returns the pull-request half of the Monday summary as Markdown
+    (app/merged_work.week_text); it is injected so tests never reach GitHub, and None
+    leaves the post as the job-source report alone."""
     if (items := urgent_now(conn, day)):
         body = "The caretaker found something that cannot wait for Monday:\n\n" + \
                "\n".join(f"- {i}" for i in items) + "\n"
@@ -193,8 +199,8 @@ def report(conn: sqlite3.Connection, day: str, post=None, log=print) -> None:
                                  {"posted": posted, "items": items})], day)
     if (week := weekly_due(conn, day)):
         start, end = week
-        body = weekly_text(conn, start, end)
-        posted = post(f"Caretaker weekly summary: {start} to {end}", body) if post else None
+        body = (changes(start, end) + "\n" if changes else "") + weekly_text(conn, start, end)
+        posted = post(f"Monday summary: {start} to {end}", body) if post else None
         log(body + (f"\nposted as {posted}" if posted else "\n(not posted: no Linear key)"))
         write_log(conn, [Finding("caretaker", "weekly_summary", "none", "Weekly summary made.",
                                  {"posted": posted, "week_start": start})], day)
