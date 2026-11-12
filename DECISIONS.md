@@ -43,6 +43,14 @@ needs Chandler. The fix on his Mac (two `/permissions` entries) is documented un
 "Starting a session"; until it is in, the reviewer reports "merge refused by the session's
 safety check; setup step missing" and the label does the merge.
 
+**Escalate to a stronger agent before a person** (added to the ticket by Chandler the same
+day). Rules questions go to the decider; hard technical ones (a design choice inside the
+ticket, a bug the worker cannot find, a test it cannot make pass after two tries) go to a
+new read-only `senior` agent on the strongest model; a finding that survives one fix round
+is fixed by a fresh worker on the strongest model. Each escalation is listed in the PR
+body under "Escalations". The model ladder (Fable 5.1, then Opus 5.5 and Sonnet 5.5 at
+xhigh) is now written once, in AGENTS.md, instead of in the work-issue skill.
+
 Undo: delete the workflow and the label step in the reviewer; restore the old stop list
 from git history.
 

@@ -607,8 +607,42 @@ conflict, a PR body missing its eval table or its cost figure — is sent back w
 fix asked for. The reviewer labels the PR `sent-back` and writes the fixes in one comment
 headed **Review: sent back**. The author fixes it (the same session, or a fresh worker on
 the same branch — `/work-issue` "Fixing a sent-back PR"), and a **fresh** reviewer reviews
-again. At most two rounds: a third send-back becomes `needs-chandler` **with no
-@mention**, and reaches Chandler in the Monday summary, not as a ping.
+again. The second fix round is not the same author's: a finding that survives one fix is
+handed to a **fresh worker on the strongest model** (the ladder below), on the same branch.
+At most two rounds: a third send-back becomes `needs-chandler` **with no @mention**, and
+reaches Chandler in the Monday summary, not as a ping.
+
+**Escalate to a stronger agent before a person** (Chandler, 2026-11-12, HIR-262). A worker
+runs on whatever model its session started with; when it is stuck, it climbs a ladder, and
+Chandler is the last rung only for an item on his list:
+
+- **A rules question** ("am I allowed to…", "which rule applies") → the `decider`
+  (`.claude/agents/decider.md`).
+- **A hard technical question** — a design choice inside the ticket's scope, a bug it
+  cannot find, a test it cannot make pass after two tries → the `senior` agent
+  (`.claude/agents/senior.md`): strongest model, the repo read-only, plus the worker's
+  notes. It answers with a decision and a reason; the worker carries it out and records it
+  under "Decisions taken".
+- **A reviewer finding that survives one fix round** → a fresh worker on the strongest
+  model (above).
+- Only when the senior agent or the decider says the question is one of the six items on
+  Chandler's list does it reach him — already rewritten as one plain question with options
+  and a recommendation.
+
+Every escalation is recorded in the PR body under **Escalations**: who asked, what, what
+was answered — so the Monday summary can say how often it happened.
+
+**The model ladder — the one place it is written.** The decider, the reviewer and the
+senior agent pin the strongest model; a fresh worker sent to fix a second round is started
+on it. If a spawn fails because that model is unavailable (credits, access, outage), spawn
+the same agent again on the next rung down, and say which one answered under "Decisions
+taken":
+
+1. Fable 5.1 (`claude-fable-5-1`; the Agent tool's `fable`)
+2. Opus 5.5 (`claude-opus-5-5`), effort `xhigh`
+3. Sonnet 5.5 (`claude-sonnet-5-5`), effort `xhigh`
+
+Retry on availability errors only. A wrong answer is not a reason to try a bigger model.
 
 **Questions go to the decider agent before they go to Chandler.** `.claude/agents/decider.md`
 (Fable) reads only AGENTS.md, DECISIONS.md, taxonomy/README.md and evals/LABELING.md, and
@@ -710,7 +744,8 @@ running, each blind to the other's workers: the shared state is the Linear issue
 issue to a PR; `/work-issue-orchestrator` runs a batch of issues through work, review and
 merge; `/check-url` audits feed coverage for careers-page URLs; `/mutation-test` checks
 whether tests catch deliberate breaks (on demand, ~25 min, never per PR). `.claude/agents/` holds
-the `decider` (answers questions from the rules) and the `reviewer` (merges autopilot PRs, or
+the `decider` (answers questions from the rules), the `senior` agent (answers hard technical
+questions, strongest model) and the `reviewer` (merges autopilot PRs, or
 sends them back to their author). When a procedure
 has been typed into a session twice, it belongs here; when one fails, fix the skill, not
 the conversation.

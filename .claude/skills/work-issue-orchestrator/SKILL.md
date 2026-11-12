@@ -81,11 +81,14 @@ The reviewer's reply starts with the verdict:
 
 - **`MERGED` / `MERGING`** — done. A safety-check refusal of its merge command is not a
   failure: its `review-passed` label hands the merge to GitHub (AGENTS.md "Who merges").
-- **`SENT BACK`** — the fixes are in its PR comment headed `**Review: sent back**`. Send
-  the worker one message (SendMessage): "PR #n was sent back; do the fixes in the latest
-  `Review: sent back` comment per your skill's 'Fixing a sent-back PR', then report." If
-  that worker has finished or is gone, start a fresh one the same way as in step 2 with
-  `/work-issue HIR-n` — it finds the open, sent-back PR and fixes it on the same branch.
+- **`SENT BACK`** — the fixes are in its PR comment headed `**Review: sent back**`. The
+  first time, send the worker one message (SendMessage): "PR #n was sent back; do the
+  fixes in the latest `Review: sent back` comment per your skill's 'Fixing a sent-back
+  PR', then report." If that worker has finished or is gone, start a fresh one the same
+  way as in step 2 with `/work-issue HIR-n` — it finds the open, sent-back PR and fixes it
+  on the same branch. **The second time, always a fresh worker on the strongest model**
+  (`model: "fable"`; the ladder in AGENTS.md if it is unavailable), never the original
+  one.
   When it reports, start a **fresh** reviewer with the PR number and nothing else. The
   reviewer counts the rounds: a third failure comes back as `NEEDS CHANDLER`, with no
   @mention.

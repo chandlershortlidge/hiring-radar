@@ -17,6 +17,12 @@ merge: questions you stopped on, one line each, with the options. Also posted on
 Linear issue with an @mention. Anything else goes to the decider, not here. "None" if
 nothing blocks. -->
 
+## Escalations
+
+<!-- Every question handed to the decider or the senior agent (AGENTS.md "Escalate to a
+stronger agent before a person"), one line each: who asked, what, what was answered.
+"None" if there were none. -->
+
 ## Follow-ups
 
 <!-- Things worth knowing that do NOT need an answer. Never phrase these as questions.

@@ -267,9 +267,13 @@ does.
      normal end state to report. If it says "merge refused by the session's safety check;
      setup step missing", the PR still merges through GitHub; pass that sentence on
      verbatim in your reply, once.
-   - **`SENT BACK`** — the fixes are in its PR comment headed `**Review: sent back**`. Do
-     them now ("Fixing a sent-back PR" below), wait for CI, and start a **fresh** reviewer
-     — never the same one, and never with your account of the fixes. The reviewer counts
+   - **`SENT BACK`** — the fixes are in its PR comment headed `**Review: sent back**`. The
+     first time, do them now ("Fixing a sent-back PR" below), wait for CI, and start a
+     **fresh** reviewer — never the same one, and never with your account of the fixes.
+     The second time, the fix is not yours: start a fresh subagent on the strongest model
+     (`model: "fable"`, the ladder in AGENTS.md if it is unavailable) with the prompt
+     `/work-issue HIR-n` and nothing else; it finds the sent-back PR and fixes it on the
+     same branch. Then the fresh reviewer. The reviewer counts
      the rounds; after the second send-back a third failure comes back as `NEEDS
      CHANDLER` with no @mention.
    - **`NEEDS CHANDLER`** — leave the label alone and say so in your final reply.
@@ -309,21 +313,27 @@ and no `review-passed` (the orchestrator does that when the original worker is g
 Hand the question to the `decider` subagent (`.claude/agents/decider.md`). It reads only
 the rule files and replies ANSWER + RULE, or NO RULE + the question rewritten for Chandler.
 
-Model ladder: the definition pins Fable (`claude-fable-5-1`). If the spawn fails because
-that model is unavailable (credits, access, outage), spawn the same agent again with the
-next tier down, in this order, and say which one answered in "Decisions taken":
-
-1. `claude-fable-5-1`
-2. `claude-opus-5-5`, effort `xhigh`
-3. `claude-sonnet-5-5`, effort `xhigh`
-
-Retry on availability errors only. A wrong answer is not a reason to try a bigger model;
-a question the decider can't settle is a NO RULE, not a model problem.
+If the spawn fails because the model is unavailable, use the model ladder in AGENTS.md
+"Escalate to a stronger agent before a person" — written there and nowhere else. A
+question the decider can't settle is a NO RULE, not a model problem.
 
 ANSWER → apply it, one line under "Decisions taken" naming the rule (or the closest rule,
 for a judgment the decider made where none fit exactly). NO RULE → post the
 rewritten question on the Linear issue with an @mention of Chandler, do what doesn't
 depend on it, stop. When his answer arrives, add it to DECISIONS.md in the same PR.
+
+## A hard technical question: the senior agent
+
+A design choice inside the ticket's scope, a bug you cannot find, or a test you cannot make
+pass after two tries is not a question for Chandler and not one for the decider. Hand it to
+the `senior` subagent (`.claude/agents/senior.md`) with the ticket id, the question, and
+your notes: what you tried, what happened, the files involved. It answers DECISION +
+REASON — carry it out and add a line under "Decisions taken" — or ON CHANDLER'S LIST with
+the question already rewritten for him: post that on the Linear issue with an @mention, do
+what doesn't depend on it, and stop.
+
+Every call to the senior agent or the decider goes in the PR body under **Escalations**,
+one line each: who asked, what, what was answered. "None" if there were none.
 
 ## When to break off and ask
 
