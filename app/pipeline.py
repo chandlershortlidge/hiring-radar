@@ -497,6 +497,15 @@ def _carry_over(conn, tax, model, log, trace) -> int:
     return len(p.carry)
 
 
+def progress_line(done, total, every=100):
+    """Shows progress while the app re-reads many jobs ("extracted 300 of 2100")"""
+    if done == 0:
+        return None
+    if done % every == 0:
+        return f"  extracted {done} of {total}"
+    return None
+
+
 def _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids, trace=None) -> ExtractReport:
     trace = trace if trace is not None else langsmith_live.Run(None)
     version = extractor_version(tax, model)
@@ -522,6 +531,9 @@ def _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids, trace=No
         except Exception as e:  # keep going; the job stays pending for the next run
             ex_or_exc = e
         _apply_job_result(conn, row, sent, ex_or_exc, model, trace, report, log)
+        line = progress_line(report.attempted, len(rows))
+        if line:
+            log(line)
     return report
 
 
