@@ -13,6 +13,7 @@
   "degree_or_equivalent": false,
   "degree_signal": null,
   "attrs_reviewed": false,
+  "groups_reviewed": true,
   "source_sha256": "ea242088cabbd5bb12dd83a76c49933256c925ee63336ef233cbfbf5b5158f60",
   "labeled_by": [
     "claude-opus-5-5",

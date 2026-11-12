@@ -365,12 +365,15 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
     skill_counts: dict[int, dict] = {i: {"required": 0, "nice_to_have": 0} for i in ids}
     required: dict[int, list] = {i: [] for i in ids}
     nice: dict[int, list] = {i: [] for i in ids}
+    groups: dict[int, dict] = {i: {} for i in ids}
     if ids:
         for s in conn.execute(
-                f"SELECT job_id, skill_id, requirement FROM skill_mention"
+                f"SELECT job_id, skill_id, requirement, alternative_group FROM skill_mention"
                 f" WHERE job_id IN ({','.join('?' * len(ids))}) ORDER BY skill_id", ids):
             skill_counts[s["job_id"]][s["requirement"]] += 1
             (required if s["requirement"] == "required" else nice)[s["job_id"]].append(s["skill_id"])
+            if s["requirement"] == "required" and s["alternative_group"] is not None:
+                groups[s["job_id"]].setdefault(s["alternative_group"], []).append(s["skill_id"])
     jobs = []
     for r in rows:
         d = dict(r)
@@ -385,6 +388,10 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
         # reaches this process, so the ranking cannot happen here.
         d["required_skills"] = required[r["id"]]
         d["nice_skills"] = nice[r["id"]]
+        # Required skills that are alternatives to each other ("Python, Go or Java"): the
+        # match counts each list as one requirement, met by any member (HIR-251). Lists of
+        # two or more ids, in group-number order; every id is also in required_skills.
+        d["required_groups"] = [g for _, g in sorted(groups[r["id"]].items()) if len(g) > 1]
         jobs.append(d)
     return {"total": total, "jobs": jobs, "limit": limit, "offset": offset}
 
@@ -407,7 +414,7 @@ def job_detail(conn: sqlite3.Connection, job_id: int, now: str) -> dict | None:
     d["too_short"] = not d["legacy"] and (d.pop("text_len") or 0) < MIN_TEXT_CHARS
     d["degree_or_equivalent"] = bool(d["degree_or_equivalent"])
     d["skills"] = [dict(m) for m in conn.execute(
-        "SELECT skill_id, requirement, raw_text FROM skill_mention WHERE job_id = ?"
+        "SELECT skill_id, requirement, raw_text, alternative_group FROM skill_mention WHERE job_id = ?"
         " ORDER BY requirement = 'required' DESC, skill_id", (job_id,))]
     d["proposed"] = [dict(p) for p in conn.execute(
         "SELECT id, label, raw_text, status FROM proposed_skill WHERE job_id = ? ORDER BY id", (job_id,))]

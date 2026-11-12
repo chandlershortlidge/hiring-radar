@@ -13,6 +13,7 @@
   "degree_or_equivalent": false,
   "degree_signal": null,
   "attrs_reviewed": false,
+  "groups_reviewed": true,
   "source_sha256": "d73c05e01759ce9d0ddd08e9ca22ac2f98f3dcdb917c99cc5a963c36c7a81857",
   "labeled_by": [
     "claude-opus-5-5",
@@ -72,7 +73,8 @@
     {
       "skill_id": "kserve",
       "requirement": "required",
-      "raw_text": "KServe"
+      "raw_text": "KServe",
+      "alternative_group": 1
     },
     {
       "skill_id": "llm-orchestration",
@@ -97,7 +99,8 @@
     {
       "skill_id": "nvidia-dynamo",
       "requirement": "required",
-      "raw_text": "NVIDIA Dynamo"
+      "raw_text": "NVIDIA Dynamo",
+      "alternative_group": 1
     },
     {
       "skill_id": "python",
@@ -122,12 +125,14 @@
     {
       "skill_id": "ray-serve",
       "requirement": "required",
-      "raw_text": "Ray Serve"
+      "raw_text": "Ray Serve",
+      "alternative_group": 1
     },
     {
       "skill_id": "sglang",
       "requirement": "required",
-      "raw_text": "inference stack, such as vLLM, SGLang"
+      "raw_text": "inference stack, such as vLLM, SGLang",
+      "alternative_group": 1
     },
     {
       "skill_id": "software-architecture",
@@ -142,7 +147,8 @@
     {
       "skill_id": "tensorrt",
       "requirement": "required",
-      "raw_text": "TensorRT-LLM"
+      "raw_text": "TensorRT-LLM",
+      "alternative_group": 1
     },
     {
       "skill_id": "tool-calling",
@@ -157,12 +163,14 @@
     {
       "skill_id": "triton-inference-server",
       "requirement": "required",
-      "raw_text": "Triton Inference Server"
+      "raw_text": "Triton Inference Server",
+      "alternative_group": 1
     },
     {
       "skill_id": "vllm",
       "requirement": "required",
-      "raw_text": "inference stack, such as vLLM"
+      "raw_text": "inference stack, such as vLLM",
+      "alternative_group": 1
     }
   ],
   "spot_checked_by_human": [

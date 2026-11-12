@@ -316,3 +316,43 @@ def test_a_label_of_none_is_a_label_and_a_none_prediction_matches_it():
     assert ev.attribute_hits(g, {"error": "boom"})["german_accuracy"] is True
     assert ev.attribute_hits(g, {"error": "boom"})["production_accuracy"] is True
     assert ev.attribute_hits(g, {"error": "boom"})["seniority_accuracy"] is None
+
+
+# --- alternative groups (HIR-251) ------------------------------------------------
+
+def grp(sid, group=None):
+    return {"skill_id": sid, "requirement": "required", "alternative_group": group}
+
+
+def test_group_pairs_ignore_numbering_and_skills_one_side_missed():
+    a = [grp("py", 1), grp("go", 1), grp("java", 1), grp("docker")]
+    b = [grp("py", 5), grp("go", 5), grp("docker")]
+    among = ["docker", "go", "py"]  # java was missed, so its pairs are not scored here
+    assert ev.group_pairs_of(a, among) == ev.group_pairs_of(b, among) == {("go", "py")}
+
+
+def test_group_score_counts_only_reviewed_goldens():
+    exp = [grp("py", 1), grp("go", 1), grp("docker")]
+    wrong = [grp("py"), grp("go", 1), grp("docker", 1)]
+    reviewed = ev.score_golden("g1", exp, wrong, groups_reviewed=True)
+    unreviewed = ev.score_golden("g2", [grp("py"), grp("go")], [grp("py", 1), grp("go", 1)])
+    assert unreviewed.group_pairs is None
+    s = ev.summarize([reviewed, unreviewed], {}, {})
+    assert s["group_n"] == 1
+    # expected {go-py}, predicted {docker-go}: nothing agrees.
+    assert s["group_f1"] == 0.0
+
+
+def test_group_score_is_none_when_no_reviewed_golden_has_a_group_on_either_side():
+    s = ev.summarize([ev.score_golden("g", [grp("py")], [grp("py")], groups_reviewed=True)], {}, {})
+    assert (s["group_f1"], s["group_n"]) == (None, 1)
+
+
+def test_the_run_stores_the_predicted_group_and_scores_a_reviewed_golden():
+    g = {"id": "g1", "job_description": "Python or Go", "groups_reviewed": True,
+         "expected": [grp("py", 1), grp("go", 1)]}
+    ex = SimpleNamespace(mentions=[Mention("py", "required", "Python", 1), Mention("go", "required", "Go", 1)],
+                         proposed=[], rejected=[], usage={})
+    run = ev.run_once([g], lambda text: ex)
+    assert [m["alternative_group"] for m in run.predictions["g1"]["mentions"]] == [1, 1]
+    assert run.summary["group_f1"] == 1.0

@@ -1,0 +1,85 @@
+{
+  "id": "golden_052",
+  "split": "dev",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Senior Machine Learning Engineer",
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": false,
+  "source_sha256": "e79c1579696409821db0747a1a642fc5f7590a6c351c76fe592c8dd54f446214",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:agents",
+    "skill:ai-deployment",
+    "skill:ai-ml",
+    "skill:evaluation",
+    "skill:llms",
+    "skill:ml-engineering"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": null,
+  "job_description": "Senior Machine Learning Engineer, Personalization\n\nThe Personalization team makes deciding what to play next easier and more enjoyable for every listener. From Blend to Discover Weekly, we’re behind some of Spotify’s most-loved features. We built them by understanding the world of music and podcasts better than anyone else. Join us and you’ll keep millions of users listening by making great recommendations to each and every one of them.\n\nGrowlithe is a fast-moving squad within Spotify's Conversation Product Area, focused on bringing emerging Search and agentic experiences to life. We explore, define, build, validate, and optimize new ideas to help listeners discover the content they love. Our work spans personalized Search, music video discovery and ranking, audiobook Search expansion, and the foundations of more social Search experiences.\n\nWe're looking for a Senior Machine Learning Engineer to help shape the next generation of Search at Spotify. You'll work at the intersection of machine learning, personalization, and product development, turning complex challenges into intuitive discovery experiences for millions of listeners.\nWhat You'll Do\n- Build and improve machine learning models that make Spotify Search more relevant, personalized, and engaging for listeners.\n\n- Develop and optimize ranking and backend retrieval systems that help listeners discover music, videos, audiobooks, and other content.\n\n- Explore emerging AI and agentic approaches to create more intuitive and conversational Search experiences.\n\n- Design, implement, and evaluate machine learning solutions, taking ideas from early experimentation through production.\n\n- Partner with engineers, product managers, designers, and researchers to identify opportunities and deliver meaningful improvements to Search.\n\n- Use experimentation, data analysis, and performance metrics to understand model behavior, validate hypotheses, and improve the listener experience.\n\n- Contribute to scalable machine learning infrastructure and engineering practices that support reliable, high-quality Search experiences.\n\n- Share knowledge, challenge assumptions constructively, and help shape the technical direction of machine learning within the squad.\nWho You Are\n- You have experience building, deploying, and improving machine learning systems in production environments.\n\n- You have a strong understanding of machine learning approaches for information retrieval, search ranking, recommendation systems, or personalization.\n\n- You are proficient in Python and comfortable working with modern machine learning frameworks and data processing tools.\n\n- You have experience and a desire to lean into backend engineering at Spotify scale.\n\n- You understand how to design and evaluate experiments, interpret model performance, and translate technical findings into product improvements.\n\n- You have experience working with large-scale datasets and understand the challenges of building reliable, scalable machine learning systems.\n\n- You are curious about emerging AI technologies, including large language models and agentic systems, and interested in their potential to improve discovery experiences.\n\n- You enjoy working across disciplines, communicating technical ideas clearly, and learning from different perspectives.\n\n- You are comfortable navigating ambiguity, taking ownership of complex challenges, and balancing experimentation with practical delivery.\nWhere You'll Be\n- This role is based in Eastern Standard Time\n\n- We offer you the flexibility to work where you work best! There will be some in person meetings, but still allows for flexibility to work from home.\nSpotify is an equal opportunity employer. You are welcome at Spotify for who you are, no matter where you come from, what you look like, or what’s playing in your headphones. Our platform is for everyone, and so is our workplace. The more voices we have represented and amplified in our business, the more we will all thrive, contribute, and be forward-thinking! So bring us your personal experience, your perspectives, and your background. It’s in our differences that we will find the power to keep revolutionizing the way the world listens.\n \nAt Spotify, we are passionate about inclusivity and making sure our entire recruitment process is accessible to everyone. We have ways to request reasonable accommodations during the interview process and help assist in what you need. If you need accommodations at any stage of the application or interview process, please let us know - we’re here to support you in any way we can.",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "nice_to_have",
+      "raw_text": "curious about emerging AI technologies, including large language models and agentic systems"
+    },
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "deploying, and improving machine learning systems"
+    },
+    {
+      "skill_id": "ai-ml",
+      "requirement": "nice_to_have",
+      "raw_text": "curious about emerging AI technologies"
+    },
+    {
+      "skill_id": "backend-development",
+      "requirement": "required",
+      "raw_text": "backend engineering"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "interpret model performance"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "nice_to_have",
+      "raw_text": "curious about emerging AI technologies, including large language models"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "machine learning approaches"
+    },
+    {
+      "skill_id": "ml-engineering",
+      "requirement": "required",
+      "raw_text": "building, deploying, and improving machine learning systems"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "recommender-systems",
+      "requirement": "required",
+      "raw_text": "recommendation systems"
+    }
+  ]
+}
