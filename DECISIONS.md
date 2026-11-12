@@ -5,6 +5,88 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-12 — The lead agent: a weekday run that picks the work, and what it may not do (HIR-266)
+
+Chandler, 12 Nov: the next weeks are run by agents; he is told what he needs to know and
+nothing else. The caretaker and the robot visitor notice problems and agents can merge
+reviewed work, but nothing decided what to work on next or started it.
+
+**What it is.** One skill, `/lead-agent`, started by a scheduled cloud run every weekday
+after the collection (07:00), the robot visitor (09:00) and the caretaker (10:00). It
+writes no code. It reads the state, sorts new tickets, unsticks stuck pull requests, picks
+up to 3 tickets from Todo in the approved launch order and hands them to the existing
+orchestrator, reviewer and merge path. Each run starts with no memory: what it knows is
+in Linear, GitHub and this repo.
+
+**The hard limits are code, the rest is instructions.** Same reasoning as the caretaker
+(entry below): a "never" that a model might skip becomes a test. `scripts/lead_pick.py`
+is handed the Todo tickets and the log and answers which may start. It refuses a ticket
+labelled `attended`, `hands-on` or `parked`; a ticket that has failed twice; a ticket
+whose spend is unknown or would pass what is left of the day's cap; a fourth ticket; a
+third ticket in one area. With the cap at zero, or already spent, it picks nothing. The
+numbers live in `config/lead_agent.json` (cap €2 a day, 3 tickets, 2 per area). Raising
+the cap is a recurring cost, so it is Chandler's (his list, item 5).
+
+**What counts as spend.** Model calls the app makes because of work the lead agent
+started: a dev eval a worker runs, and the re-read of stored jobs a merge sets off. The
+agents' own sessions are not counted; they run on Chandler's Claude plan, not per call.
+
+**Reaching the server: a cloud run cannot, and is not given a way** (the ticket's "find
+out first"). The only route to the VM is the deploy job's identity, which GitHub grants
+to the `main` branch of this repo and nothing else; a cloud session has no such identity,
+and handing it one is a credential decision, which is Chandler's. Three consequences:
+
+- A ticket that needs the live database (HIR-174 is the example) is not picked. The lead
+  agent labels it `attended` and lists it under "Needs you".
+- The cost of a re-read can only be measured against the live database, so a cloud run
+  cannot quote it. A ticket that changes the skill list therefore has an unknown spend
+  and is not started; it is listed under "Needs you" as a spend question. When last
+  measured (HIR-221) a full re-read also cost more than the €2 cap on its own, so under
+  the starting cap these tickets would wait either way.
+- The Sunday audit reports "no database checked" until Chandler decides whether a cloud
+  run may fetch a backup.
+
+**The day's log is the memory.** One comment a day on a standing Linear issue titled
+"Lead agent log", one line per ticket in a fixed shape (`- HIR-n | picked: why | result:
+… | spend: €…`). The next run counts failures and today's spend from those lines, and the
+Monday summary (HIR-264) reads them. The first run creates the issue, labelled `attended`
+so no agent ever picks it. A ticket that ends on a question for Chandler gets `attended`
+too, which is what stops it being picked again before he answers.
+
+**Unsticking, without a second way to merge.** A pull request that was sent back and not
+picked up gets a fresh worker; one that passed review but did not merge, or was never
+reviewed because its run died, gets a fresh reviewer. The lead agent never runs a merge
+command itself, so "who merges" is unchanged. This replaces the old scheduled run
+"hiring-radar: review and merge autopilot PRs" (disabled since 3 Nov), which is deleted
+when the weekday run is created.
+
+**Wednesday's mutation test and Sunday's audit stay as the scheduled tasks Chandler
+created on 12 Nov.** They already run with their own instructions. The lead agent's part
+is the morning after: it labels the tickets they filed, and moves an audit ticket marked
+High to Todo. Undo: fold their instructions into the lead agent's skill and delete the
+two tasks.
+
+**Chandler's lanes.** The ticket points to a project document on hands-on tickets; none
+exists. Until one does, "a brief ready" is one Linear comment on the hands-on ticket
+headed **Hands-on brief**: what to build first, where the code it touches lives, the
+smallest first step, how to tell it works. The lead agent keeps two such tickets briefed
+and never touches their code. On Fridays it names one change merged that week as the
+design-review candidate, in the log.
+
+**When it messages Chandler.** Only the three cases the ticket lists (site down and the
+rollback failed, collection down two days running, the spend cap hit), as a comment on
+the log issue that @mentions him. Everything else waits for Monday.
+
+**Not switched on by this change.** Agents' instructions load from `main`, so a schedule
+created before the merge would run a skill that is not there. After Chandler merges, the
+schedule is created: weekdays 10:30 Berlin, prompt `/lead-agent`, repo attached with push
+access, Linear connected. Not yet shown: that a cloud run has the Linear tools and can
+start workers in their own worktrees. If the first run cannot read Linear it stops and
+does nothing, which is the safe failure.
+
+**Off switch.** Pausing the scheduled task stops everything. The label `attended` on a
+ticket takes it away from agents. Both are in AGENTS.md "The lead agent".
+
 ## 2026-11-12 — The caretaker runs on the VM as plain code, report-only first (HIR-257)
 
 Chandler, 12 Nov: "we need more agents to notice this stuff and just deal with it." The
