@@ -201,7 +201,7 @@ export default function App() {
           <button type="button" className="pill" onClick={() => setDrawer("review")} aria-label={`${stats?.proposed_pending ?? 0} proposed skills to review`}>
             <span className="count">{stats?.proposed_pending ?? 0}</span><span className="lbl">proposed skills</span>
           </button>
-          <button type="button" className="btn outline" onClick={() => setDrawer("add")}><Plus /><span className="lbl">Add a job</span></button>
+          <button type="button" className="btn outline" onClick={() => setDrawer("add")} aria-label="Add a job"><Plus /><span className="lbl">Add a job</span></button>
         </div>
       </div></header>
 
