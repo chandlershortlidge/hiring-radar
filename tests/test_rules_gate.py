@@ -41,6 +41,7 @@ Did you authorize these?
         ".github/workflows/ci.yml",
         ".github/workflows/rules-gate.yml",
         "scripts/rules_gate.py",
+        "scripts/merge_reviewed.py",
     ],
 )
 def test_the_watched_paths_trip_the_gate(path):
