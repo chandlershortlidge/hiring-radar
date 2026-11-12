@@ -11,4 +11,4 @@ help: ## List the available commands
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk -F':.*## ' '{printf "  make %-8s %s\n", $$1, $$2}'
 
 ssh: ## Open a shell on the hiring-radar VM
-	gcloud compute ssh $(VM) --zone $(ZONE)
+	gcloud compute ssh $(VM) --zone $(ZONE) --tunnel-through-iap
