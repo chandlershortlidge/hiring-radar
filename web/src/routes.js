@@ -49,3 +49,13 @@ export function pathFor(route) {
   if (route.view === "city" && route.place) return route.family ? `/${route.place}/${route.family}` : `/${route.place}`;
   return "/";
 }
+
+// Where changing the job family leads from the market you are on (HIR-197). On the home
+// view it stays the home view: the bar reads "[family] in [city]", so nothing opens until
+// the city is picked too. A city view with no city is not a place either — it used to open
+// a dashboard for every city at once — so it is treated as the home view.
+export function withFamily(market, family) {
+  if (market.view === "compare") return { ...market, family };
+  if (market.view === "city" && market.place) return { ...HOME, view: "city", place: market.place, family };
+  return { ...HOME, family };
+}
