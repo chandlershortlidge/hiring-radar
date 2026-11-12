@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 import pytest
 
@@ -35,6 +36,14 @@ def page(text=JD, title="AI Engineer - Acme", ld=None):
     return (f"<html><head><title>{title}</title>{ld_tag}</head><body><nav>Home Jobs About</nav>"
             f"<main><h1>{title}</h1><p>{text}</p></main><footer>© Acme 2026 · Imprint · Privacy</footer>"
             f"</body></html>")
+
+
+PAGES = Path(__file__).parent / "fixtures" / "pages"
+
+
+def saved_page(name):
+    """A saved copy of a real page (tests/fixtures/pages), as the checker would fetch it."""
+    return (PAGES / name).read_text(encoding="utf-8")
 
 
 def no_fetch(*a, **k):
@@ -113,6 +122,28 @@ def test_json_ld_multi_office_keeps_every_location():
     p, _ = posting_from_html("u", page(ld=ld))
     assert p.location_raw == "Cologne, Germany; Berlin, Germany"
     assert city_of(p.location_raw) == "Berlin"
+
+
+def test_json_ld_address_given_as_a_list_is_read():
+    # get-in-it.de writes a Place's address as a list, even when there is only one.
+    place = {"@type": "Place", "address": [
+        {"@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE"},
+        {"@type": "PostalAddress", "addressLocality": "Hamburg", "addressCountry": "DE"}, "", None]}
+    ld = {"@type": "JobPosting", "title": "Data Scientist", "description": JD, "jobLocation": place}
+    p, _ = posting_from_html("u", page(ld=ld))
+    assert p.location_raw == "Berlin, DE; Hamburg, DE"
+    ld["jobLocation"] = {"@type": "Place", "address": []}
+    assert posting_from_html("u", page(ld=ld))[0].location_raw is None
+
+
+def test_get_in_it_page_gives_a_berlin_location():
+    """HIR-268: the saved page of the posting that was read as having no location."""
+    url = "https://www.get-in-it.de/jobsuche/p314335-07f00735/07f00735"
+    p, how = posting_from_html(url, saved_page("get_in_it.html"))
+    assert how == "json-ld"
+    assert (p.company, p.title) == ("smartclip", "Data Scientist (w/m/d) – Applied AI")
+    assert p.location_raw == "Berlin, Berlin, DE"
+    assert geo.active_place(p.location_raw, p.title, p.description_text) == "Berlin"
 
 
 def test_json_ld_in_graph_and_flag_overrides():

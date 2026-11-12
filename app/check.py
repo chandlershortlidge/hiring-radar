@@ -221,15 +221,25 @@ def _job_postings(obj) -> list[dict]:
     return _job_postings(obj.get("@graph", []))
 
 
-def _place_of(loc) -> str | None:
-    if not isinstance(loc, dict):
-        return None
-    addr = loc.get("address")
+def _address_text(addr) -> str | None:
     if isinstance(addr, str):
         return addr.strip() or None
     if isinstance(addr, dict):
         parts = [addr.get("addressLocality"), addr.get("addressRegion"), addr.get("addressCountry")]
         return ", ".join(p.strip() for p in parts if isinstance(p, str) and p.strip()) or None
+    return None
+
+
+def _place_of(loc) -> str | None:
+    """One jobLocation → its address as text. schema.org allows a Place several addresses,
+    and get-in-it.de writes even a single one as a list (HIR-268); each is kept."""
+    if not isinstance(loc, dict):
+        return None
+    addr = loc.get("address")
+    if isinstance(addr, list):
+        return "; ".join(t for t in map(_address_text, addr) if t) or None
+    if isinstance(addr, (str, dict)):
+        return _address_text(addr)
     return loc.get("name")
 
 
