@@ -5,6 +5,55 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-12 — The Monday summary: the week's pull requests join the caretaker's post (HIR-264)
+
+Since HIR-262 a reviewed change merges without a message to Chandler. He hears about the
+week once, on Monday. The caretaker already posts one Linear issue every Monday about the
+job sources (entry below); this puts the pull requests in that same post rather than
+sending a second one. The robot visitor's weekly part (HIR-260) is to be added to the same
+post.
+
+**What the post now holds, in this order.** "Needs you": every open pull request labelled
+`needs-chandler`, oldest first, one line each: its title, since when it has waited, and the
+first line of its "Needs Chandler" section when that asks something. The label is the
+whole test, so a pull request that was sent back three times and pinged nobody is listed.
+Then what merged from last Monday to Sunday, grouped by where a visitor would notice it.
+Then the merged ones that carry the `sent-back` label. Then the job-source report,
+unchanged. The post is titled "Monday summary: <start> to <end>" (it was "Caretaker weekly
+summary"). "Needs you" goes first, although the ticket lists it third, because it is the
+only part he has to act on and a busy week puts thirty lines above it. Undo: reorder the
+three blocks in `sections` in `app/merged_work.py`.
+
+**Where it runs: inside the caretaker's Monday run on the VM, as plain code.** Same
+reasons as the caretaker: no model call, nothing to skip. The alternatives were a GitHub
+workflow, which would be a second message and a change to the automated checks, or the
+lead agent, which cannot reach the server. A line of the summary is the pull request's own
+title with the ticket prefix removed; titles in this repo are already plain sentences, so
+no model rewrites them.
+
+**No token.** The repository is public, so the pull-request list is read from GitHub's
+public API unsigned: two or three requests a week. Unsigned requests are limited to 60 an
+hour, and asking GitHub for each change's files would be one request per merged change
+(31 in the week this was written), so the files are read from the server's own checkout
+with git instead (the merge commit against main just before it), after one `git fetch`
+that touches no working file. If the checkout cannot answer for a change, it is listed
+under "Not sorted", never dropped. If GitHub cannot be read at all, the post says so and
+links the `needs-chandler` list, and the job-source report still goes out.
+
+**The grouping is a guess from file paths, not a judgment.** First match wins: the chart
+(the chart, compare, tree and related-skills views, the skill list), the job list (the
+list, a job's page, the add-a-job drawer, intake, duplicates, the feeds' readers), cities
+(the city picker, the city rules, which boards are polled), elsewhere on the site (any
+other front-end file), nothing a visitor would see. Test files never decide. "Elsewhere on
+the site" is a fifth group the ticket did not name: a change to the profile drawer is
+visible but is none of the ticket's three. A change to the shared queries behind every view
+lands in "nothing a visitor would see" unless it also touches a view. Undo or adjust: the
+`GROUPS` table at the top of `app/merged_work.py`.
+
+**Not in it yet.** How often a worker escalated to the senior agent or the decider, and
+the lead agent's daily log lines (both said to feed Monday by HIR-262 and HIR-266). The
+ticket's three parts come from GitHub's labels and merge history alone.
+
 ## 2026-11-12 — The lead agent: a weekday run that picks the work, and what it may not do (HIR-266)
 
 Chandler, 12 Nov: the next weeks are run by agents; he is told what he needs to know and

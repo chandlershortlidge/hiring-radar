@@ -18,8 +18,9 @@
                     the jobs it would re-read x what a reading has actually cost. Makes no
                     model call. Put its figure in the PR body (HIR-221)
   caretaker         the morning check of every job source after the poll: logs what is broken and
-                    what it would fix (report-only); Mondays, posts last week's summary to Linear
-                    when LINEAR_API_KEY is set (HIR-257)
+                    what it would fix (report-only); Mondays, posts the Monday summary to Linear
+                    when LINEAR_API_KEY is set: what needs Chandler, what merged, what was
+                    sent back and fixed, then the job sources (HIR-257, HIR-264)
   migrate           apply pending migrations and exit
 
 Database path: $HIRING_RADAR_DB, default ./data/hiring-radar.db.
@@ -315,7 +316,8 @@ def cmd_caretaker(args):
     linear_key = os.environ.get("LINEAR_API_KEY", "").strip()
     post = None if (args.no_post or not linear_key) else caretaker_run.linear_poster(
         linear_key, os.environ.get("LINEAR_TEAM_ID", caretaker_run.LINEAR_TEAM_ID))
-    caretaker_run.report(conn, day, post)
+    from app import merged_work
+    caretaker_run.report(conn, day, post, changes=merged_work.week_text)
 
 
 def cmd_migrate(args):

@@ -177,7 +177,7 @@ def test_monday_summary_posts_once(conn):
     posted = []
     run.report(conn, DAY, lambda t, b: posted.append((t, b)) or "HIR-900", log=lambda *_: None)
     run.report(conn, DAY, lambda t, b: posted.append((t, b)) or "HIR-901", log=lambda *_: None)
-    assert [t for t, _ in posted] == ["Caretaker weekly summary: 2026-11-09 to 2026-11-15"]
+    assert [t for t, _ in posted] == ["Monday summary: 2026-11-09 to 2026-11-15"]
 
 
 def test_no_summary_on_other_days_and_no_post_without_a_key(conn):
