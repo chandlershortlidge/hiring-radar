@@ -5,6 +5,57 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-12 — Agents merge their own reviewed work; Chandler is asked only about six things (HIR-262)
+
+Chandler, 12 Nov: "I am NOT reading 99% of these PRs anyway." Of the last ~35 merged PRs
+about 28 carried `needs-chandler`. Of eight read closely, six had passed review and were
+stuck only because the reviewer's `gh pr merge` was refused by Claude Code's own safety
+check inside its session; two had small findings the author could have fixed.
+
+**One list of what Chandler is asked** replaces the old stop list, and lives only in
+AGENTS.md "What Chandler is asked": roadmap; anything that changes the score or how it is
+measured (labelling guide, the extractor's instructions or model, eval rules and stop
+lines, his hand labels); product decisions about what visitors see; things that cannot be
+undone; money (one-off above €10, or any recurring cost); the agents' own rules. The
+decider, reviewer, both skills and the PR template point there instead of copying it.
+Everything else is decided by an agent, reviewed by another, and merged.
+
+Mapped from the old stop list: a city he has not named → roadmap; extractor prompt or
+model changes, which used to merge with "the merge is the approval" → now his (item 2);
+a skill-list change still merges on review unless its re-read costs more than €10. "What
+the public site stores or sends to a provider" is no longer listed on its own; a new
+provider is usually a new recurring cost (item 5). Undo: add it back as a line in the list.
+
+**Findings go back to the author.** The reviewer now ends in PASS, SENT BACK (label
+`sent-back`, a comment headed `**Review: sent back**` listing exact fixes) or CHANDLER.
+The author fixes, a fresh reviewer re-reviews; a third send-back becomes `needs-chandler`
+with no @mention, for the Monday summary (HIR-264).
+
+**GitHub merges what the reviewer passed.** The reviewer labels a passed PR
+`review-passed`; `.github/workflows/merge-reviewed.yml` merges it when it is clean, has no
+`needs-chandler`, and touches no rule file and not the labelling guide. That makes a
+session's safety check irrelevant to whether reviewed work lands. Two consequences of
+merging with the workflow's own token, both handled: such a merge fires no `push`, so the
+script starts CI on main by hand (CI now accepts a manual start, and deploys on it); and a
+push with that token starts no checks, so the workflow never updates a branch — the
+reviewer still does. The merge script is itself on the rules-gate list, so loosening it
+needs Chandler. The fix on his Mac (two `/permissions` entries) is documented under
+"Starting a session"; until it is in, the reviewer reports "merge refused by the session's
+safety check; setup step missing" and the label does the merge.
+
+**Escalate to a stronger agent before a person** (added to the ticket by Chandler the same
+day). Rules questions go to the decider; hard technical ones (a design choice inside the
+ticket, a bug the worker cannot find, a test it cannot make pass after two tries) go to a
+new read-only `senior` agent on the strongest model; a finding that survives one fix round
+is fixed by a fresh worker on the strongest model. Each escalation is listed in the PR
+body under "Escalations". The model ladder (Fable 5.1, then Opus 5.5 and Sonnet 5.5 at
+xhigh) is now written once, in AGENTS.md, instead of in the work-issue skill.
+
+Undo: delete the workflow and the label step in the reviewer; restore the old stop list
+from git history.
+
+---
+
 ## 2026-11-11 — Alternative groups come back: "any one of these" is one requirement (HIR-251)
 
 Reverses part of the 2026-10-16 rebuild entry, which dropped alternative groups as feeding
