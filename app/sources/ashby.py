@@ -1,6 +1,11 @@
 """Ashby job boards: https://api.ashbyhq.com/posting-api/job-board/<name>
 
 Public, no key. Provides `descriptionPlain` and `descriptionHtml`. Ids are UUIDs.
+
+A posting has one primary office (`location`) and any number of others
+(`secondaryLocations`). All of them are kept, "; "-joined as Greenhouse does, so a posting
+whose first office is untracked still maps to a tracked city (HIR-268: Qonto lists Paris
+first and Berlin second).
 """
 
 from app.html_text import html_to_text
@@ -11,6 +16,13 @@ SOURCE = "ashby"
 
 def board_url(name: str) -> str:
     return f"https://api.ashbyhq.com/posting-api/job-board/{name}"
+
+
+def _locations(j: dict) -> str | None:
+    """Every office the posting lists, primary first, "; "-joined, each once."""
+    places = [j.get("location")] + [s.get("location") for s in j.get("secondaryLocations") or []
+                                    if isinstance(s, dict)]
+    return "; ".join(dict.fromkeys(p.strip() for p in places if isinstance(p, str) and p.strip())) or None
 
 
 def parse(payload: dict, company: str | None = None) -> list[Posting]:
@@ -25,7 +37,7 @@ def parse(payload: dict, company: str | None = None) -> list[Posting]:
             url=j.get("jobUrl", ""),
             company=company,
             title=j["title"].strip(),
-            location_raw=j.get("location"),
+            location_raw=_locations(j),
             description_text=text.strip(),
             posted_at=j.get("publishedAt"),
         ))
