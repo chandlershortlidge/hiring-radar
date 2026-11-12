@@ -18,7 +18,12 @@ is the only state both of you can see. Your own batch table is not shared state:
 decide a collision from it alone.
 
 - If issues were named, use those. Otherwise take Linear issues in the roadmap project,
-  state Todo, no open blockers (`blockedBy` all Done), not labelled `attended`.
+  state Todo, no open blockers (`blockedBy` all Done), not labelled `attended`, `hands-on`
+  or `parked`.
+- **`hands-on` and `parked` are never worked, even when named** (HIR-266). `hands-on`
+  means Chandler writes the code himself; `parked` means not before launch, and only he
+  un-parks, by removing the label. Drop such an issue from the batch and say so in the
+  table.
 - **Skip anything already In Progress.** A worker claims its issue by setting it In
   Progress before it does anything else, so In Progress means "another session has this"
   — drop it from the batch and say so in the table, even when it was named on the command

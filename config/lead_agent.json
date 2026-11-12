@@ -1,0 +1,6 @@
+{
+  "_comment": "The lead agent's limits (HIR-266), read by scripts/lead_pick.py. daily_cap_eur is the model-call spend the lead agent may start in one day; 0 stops every run. Raising it is a recurring cost, so it is Chandler's call (AGENTS.md \"What Chandler is asked\", item 5).",
+  "daily_cap_eur": 2.0,
+  "max_tickets": 3,
+  "max_per_area": 2
+}
