@@ -5,6 +5,51 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-12 — The caretaker runs on the VM as plain code, report-only first (HIR-257)
+
+Chandler, 12 Nov: "we need more agents to notice this stuff and just deal with it." The
+caretaker checks every job source each morning after the 07:00 poll, fixes the routine
+breakages (a company board that moved, a board gone empty) and reports once a week.
+
+**Where it runs: a systemd timer on the VM, not a GitHub Action or a cloud task.** The
+issue offered those two. Both run somewhere without the database, and every check reads
+what the poll actually got — which lives only in the SQLite file on the VM. The VM already
+runs the poll and the backup this way and already holds the Brave key the board search
+needs. Undo: delete the timer; nothing else depends on it.
+
+**Plain Python, not an AI agent.** Every check is a rule over numbers the poll already has
+(errors, posting counts, field lists, city totals), and the board search reuses the
+discovery code. Plain code makes no model calls, cannot edit its own rules or anyone
+else's, and every "never does" line is a test rather than an instruction a model might
+skip. Undo: put an agent around `app/caretaker.py` later; the rules stay the same.
+
+**The rules it applies** (constants at the top of `app/caretaker.py`):
+
+- A company board is *dead* when it errors or returns nothing, it gave us postings before,
+  and the newest of them was last seen 3 or more days ago. A board that answers 404/410 is
+  *gone* at once. Either way the caretaker first searches for the company's new board.
+- A new board counts as *the same company* when the company name and the board token
+  match after dropping case, spaces and punctuation, and it has at least one posting the
+  poll would keep. Found → switch the board's token; the stored jobs are untouched.
+- Dead and no new board found → pause: `enabled: false` plus a `paused` note in
+  `config/feeds.json`. The entry stays. Paused boards are re-checked every Monday and
+  switched back on when they have a posting we would keep. A board a person disabled (no
+  `paused` note) is never switched on.
+- A country-wide feed or search is *low* when it returns under half its median over its
+  last 5+ good runs. Reported only.
+- A city is *dropping* when its open-job count falls by more than 30% overnight from at
+  least 20. Reported only.
+- Model-call spend is zero; Brave searches are counted at €0.005 each against a €0.50
+  daily cap. The cap is checked before every search; hitting it stops the search and is
+  reported at once.
+
+**Report-only for the first week**, as the issue asks: it writes what it would have done.
+Acting mode — applying the feeds.json change through a pull request — is a separate step.
+
+**Built in two halves.** The append-only log the weekly summary reads needs a new
+migration, and an open PR (#146) already adds one; migrations are one branch at a time,
+so the log, the timer and the poll's per-feed record wait for #146 to merge or close.
+
 ## 2026-11-11 — Taxonomy v11: 27 entries from the queue after the German launch; the bar counts distinct postings (HIR-219)
 
 The queue was re-read from the live site's backup of 11 Nov 02:30Z (916 jobs, all but
