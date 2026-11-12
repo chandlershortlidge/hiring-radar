@@ -5,6 +5,26 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-12 — New York gets two Google for Jobs searches, like Berlin (HIR-255)
+
+**Why.** New York added about one job a day after its launch. Its boards were healthy
+(HIR-254: ~16 company boards, ~67 open AI/ML roles), but Berlin's daily flow comes from
+country-wide searches (Arbeitsagentur, JSearch, Arbeitnow, startup.jobs) and New York had
+none. A fixed set of company boards turns over slowly.
+
+**Decided (Chandler, in session, 12 Nov).** Two JSearch feeds: "AI engineer in New York" and
+"machine learning engineer in New York", `country: us`, one results page a day each — the
+same shape as the Berlin searches.
+
+**Spend.** JSearch's free plan is a hard 200 requests a month. Each daily feed is ~30, so
+the five feeds use ~150; hitting the cap stops results until the month resets, with no bill.
+A sixth daily feed would leave little room, so any further JSearch feed needs this sum redone.
+
+**Rejected for now.** Adzuna (HIR-48), a new source and more work; more company boards,
+which still turn over slowly.
+
+---
+
 ## 2026-11-12 — Agents merge their own reviewed work; Chandler is asked only about six things (HIR-262)
 
 Chandler, 12 Nov: "I am NOT reading 99% of these PRs anyway." Of the last ~35 merged PRs
