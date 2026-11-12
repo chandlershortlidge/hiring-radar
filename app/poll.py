@@ -2,7 +2,8 @@
 
 Does: read config/feeds.json, call each adapter, hand postings to ingest, and run
 extract_pending. Feeds that fail are logged and skipped so one bad source doesn't block
-the rest.
+the rest. Each feed's result (worked or not, how many postings, which fields they carried)
+is also kept in `feed_run`, which the morning caretaker reads (HIR-257).
 
 Does NOT: schedule itself (the systemd timer on the VM / `python -m app poll` does), or
 retry a failed feed within a run.
@@ -13,6 +14,7 @@ nothing pending.
 
 import json
 import sqlite3
+from datetime import datetime, timezone
 from pathlib import Path
 
 from app.ingest import Report, ingest
@@ -49,18 +51,45 @@ def select_feeds(feeds: list[dict], only: list[str]) -> list[dict]:
     return [f for f in feeds if feed_label(f) in only]
 
 
+# Posting fields an adapter fills when the source gives them. One that was there last week
+# and is missing today means the source changed its shape under the adapter (HIR-257).
+OPTIONAL_FIELDS = ("company", "location_raw", "posted_at", "url")
+
+
+def posting_fields(postings: list) -> list[str]:
+    """Pure: the optional fields at least one posting filled, in OPTIONAL_FIELDS order."""
+    return [f for f in OPTIONAL_FIELDS if any(getattr(p, f, None) for p in postings)]
+
+
+def record_run(conn: sqlite3.Connection, feed: dict, postings: list | None,
+               error: str | None = None, day: str | None = None) -> None:
+    """Keep one feed's result in feed_run. `postings` is None when the fetch raised."""
+    source = registry.BY_NAME.get(feed["type"])
+    conn.execute("INSERT INTO feed_run (day, label, kind, ok, seen, error, fields) VALUES (?,?,?,?,?,?,?)",
+                 (day or datetime.now(timezone.utc).date().isoformat(), feed_label(feed),
+                  source.kind if source else "unknown", int(postings is not None),
+                  len(postings or []), error, json.dumps(posting_fields(postings or []))))
+    conn.commit()
+
+
+def board_history(conn: sqlite3.Connection, feed: dict) -> tuple[int, str | None]:
+    """How many job_source rows this company-board feed produced, and when any of them was
+    last seen. (0, None) for search feeds and boards that never gave us anything."""
+    token = feed.get("token")
+    if not token:
+        return 0, None
+    row = conn.execute("SELECT count(*), max(last_seen) FROM job_source WHERE source=? AND url LIKE ?",
+                       (feed["type"], f"%/{token}/%")).fetchone()
+    return (int(row[0]), row[1]) if row else (0, None)
+
+
 def _known_postings(conn: sqlite3.Connection, feed: dict) -> int:
     """How many job_source rows this company-board feed produced before. 0 for search feeds.
 
     A board that once yielded postings and now yields none is almost never an empty board;
     it is usually the page format changing under the adapter (JOIN did this in October 2026),
     which the adapter reports as "no jobs" rather than an error."""
-    token = feed.get("token")
-    if not token:
-        return 0
-    row = conn.execute("SELECT count(*) FROM job_source WHERE source=? AND url LIKE ?",
-                       (feed["type"], f"%/{token}/%")).fetchone()
-    return int(row[0]) if row else 0
+    return board_history(conn, feed)[0]
 
 
 def poll_feeds(conn: sqlite3.Connection, feeds: list[dict], fetch=fetch_feed, log=print) -> Report:
@@ -71,7 +100,9 @@ def poll_feeds(conn: sqlite3.Connection, feeds: list[dict], fetch=fetch_feed, lo
             postings = fetch(feed)
         except Exception as e:
             log(f"{label}: FAILED {type(e).__name__}: {str(e)[:200]}")
+            record_run(conn, feed, None, f"{type(e).__name__}: {str(e)[:200]}")
             continue
+        record_run(conn, feed, postings)
         r = ingest(conn, postings)
         log(f"{label}: {r.line()}")
         if r.seen == 0 and (known := _known_postings(conn, feed)):

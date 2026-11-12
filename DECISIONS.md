@@ -48,7 +48,23 @@ Acting mode — applying the feeds.json change through a pull request — is a s
 
 **Built in two halves.** The append-only log the weekly summary reads needs a new
 migration, and an open PR (#146) already adds one; migrations are one branch at a time,
-so the log, the timer and the poll's per-feed record wait for #146 to merge or close.
+so the log, the timer and the poll's per-feed record waited for #146 to merge (it did,
+12 Nov).
+
+**The record and the log.** The poll now keeps one row per feed per run (`feed_run`:
+worked or not, postings seen, fields carried); until now it printed this and forgot it,
+so "silent for three days" could not be asked. The caretaker writes every finding to
+`caretaker_log`. Both are append-only, enforced by the database as for the extraction log.
+A city's "yesterday" count is the dashboard's open rule evaluated 24 hours earlier on
+today's data, so no daily snapshot table is needed.
+
+**When it runs and how it reports.** A timer at 10:00 Berlin: three hours after the poll
+starts, so the poll's readings are normally done (a reading still running then shows up
+as "jobs still waiting to be read", which is the half-finished case the issue asks to
+notice anyway). On Mondays it posts last week's summary as one Linear issue in the
+Hiring-radar team; the collection down two days running or the spending cap hit is posted
+at once, at most once a day. With no `LINEAR_API_KEY` on the server it writes the text to
+its journal instead. Undo: disable the timer.
 
 ## 2026-11-11 — Taxonomy v11: 27 entries from the queue after the German launch; the bar counts distinct postings (HIR-219)
 

@@ -49,6 +49,7 @@ on the VM unless it says otherwise.
 | API process | `hiring-radar.service` on `127.0.0.1:8000`, Caddy in front |
 | Daily poll | `hiring-radar-poll.timer` → `hiring-radar-poll.service`, 07:00 Europe/Berlin |
 | Nightly backup | `hiring-radar-backup.timer` → `backup.sh`, 03:30 Europe/Berlin, to `gs://hiring-radar-512318-backups/db/` |
+| Caretaker | `hiring-radar-caretaker.timer` → `python -m app caretaker`, 10:00 Europe/Berlin: checks every job source, logs to `caretaker_log`, posts Monday's summary to Linear when `LINEAR_API_KEY` is set (HIR-257). Report-only: never edits `config/feeds.json` |
 
 `systemctl list-units | grep hiring` shows the exact unit names.
 
@@ -372,7 +373,7 @@ before HIR-160 and nothing is sent anywhere.
 sudo install -m 644 /opt/hiring-radar/app/deploy/hiring-radar*.service \
   /opt/hiring-radar/app/deploy/hiring-radar*.timer /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable --now hiring-radar hiring-radar-poll.timer hiring-radar-backup.timer
+sudo systemctl enable --now hiring-radar hiring-radar-poll.timer hiring-radar-backup.timer hiring-radar-caretaker.timer
 curl -fsS localhost:8000/api/stats >/dev/null && echo "api up"
 ```
 

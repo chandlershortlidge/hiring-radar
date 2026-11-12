@@ -1,0 +1,13 @@
+[Unit]
+Description=hiring-radar caretaker: morning check of every job source (HIR-257)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=hiring-radar
+Group=hiring-radar
+WorkingDirectory=/opt/hiring-radar/app
+EnvironmentFile=/etc/hiring-radar.env
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/hiring-radar/app/.venv/bin/python -m app caretaker

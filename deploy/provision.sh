@@ -105,6 +105,9 @@ grep -q '^HIRING_RADAR_DB=' "$ENV_FILE" || echo "HIRING_RADAR_DB=$DB_PATH" >> "$
 # Appended blank rather than skipped, so an env file written before HIR-160 shows the
 # variable exists. Blank means off; nothing breaks until a real key is pasted in.
 grep -q '^LANGSMITH_API_KEY=' "$ENV_FILE" || echo "LANGSMITH_API_KEY=" >> "$ENV_FILE"
+# The caretaker posts its Monday summary to Linear with this key (HIR-257); blank, it
+# prints the summary to its journal instead.
+grep -q '^LINEAR_API_KEY=' "$ENV_FILE" || echo "LINEAR_API_KEY=" >> "$ENV_FILE"
 
 step "6. systemd units"
 # Copied from this repo, so /etc matches what is committed. `diff` the two to spot drift.
@@ -119,7 +122,7 @@ for unit in "$HERE"/hiring-radar*.service "$HERE"/hiring-radar*.timer; do
   fi
 done
 if [ "$changed" -eq 1 ]; then systemctl daemon-reload; fi
-systemctl enable --now hiring-radar hiring-radar-poll.timer hiring-radar-backup.timer
+systemctl enable --now hiring-radar hiring-radar-poll.timer hiring-radar-backup.timer hiring-radar-caretaker.timer
 if [ "$changed" -eq 1 ]; then systemctl restart hiring-radar; fi
 # The first request creates the database and applies every migration, so this is setup,
 # not only a check.

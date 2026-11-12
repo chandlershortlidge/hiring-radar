@@ -14,5 +14,6 @@
   "016_extraction_log.sql": "ce4303e82511b7396bafceead418bee6b2fcfe3f7cc5a4f8dbc5052fb8f6a968",
   "017_job_family.sql": "063cafec05a5cc340a9569e6f32887c2478b366b3934feeacfe51e743ff82951",
   "018_append_only_guards.sql": "8f9ea6a0a50715b5338f95b4dc195f5de581052558fb9c1381ad5db4dff3ad53",
-  "019_targeted_reread.sql": "2874f97c9e8c50fccdd3facdea8a12fac0057d5e16118f76451d1419458ef275"
+  "019_targeted_reread.sql": "2874f97c9e8c50fccdd3facdea8a12fac0057d5e16118f76451d1419458ef275",
+  "021_caretaker.sql": "9f298f562b116cdbce214bc18cf73cbdc115238503e634543441fc65741d5f7e"
 }

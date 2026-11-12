@@ -28,6 +28,7 @@ from datetime import date, timedelta
 from pathlib import Path
 from statistics import median
 
+from app import poll
 from app.check import default_fetch_board
 from app.discover import harvest, relevant_roles
 from app.sources import Posting
@@ -88,13 +89,11 @@ class Finding:
 
 # --- reading what the poll got ----------------------------------------------------------
 
-OPTIONAL_FIELDS = ("company", "location_raw", "posted_at", "url")
-
-
 def posting_fields(postings: list[Posting]) -> frozenset[str]:
-    """The optional Posting fields that at least one posting filled. A field that was there
-    last week and is gone today means the source changed its shape under the adapter."""
-    return frozenset(f for f in OPTIONAL_FIELDS if any(getattr(p, f) for p in postings))
+    """The optional Posting fields that at least one posting filled (the poll records the
+    same list in feed_run). A field that was there last week and is gone today means the
+    source changed its shape under the adapter."""
+    return frozenset(poll.posting_fields(postings))
 
 
 def _days_before(day: str, n: int) -> str:
