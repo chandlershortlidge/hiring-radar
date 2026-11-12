@@ -17,6 +17,9 @@
   reread-cost       what a change to the extractor or the skill list would cost to merge:
                     the jobs it would re-read x what a reading has actually cost. Makes no
                     model call. Put its figure in the PR body (HIR-221)
+  caretaker         the morning check of every job source after the poll: logs what is broken and
+                    what it would fix (report-only); Mondays, posts last week's summary to Linear
+                    when LINEAR_API_KEY is set (HIR-257)
   migrate           apply pending migrations and exit
 
 Database path: $HIRING_RADAR_DB, default ./data/hiring-radar.db.
@@ -289,6 +292,32 @@ def cmd_reread_cost(args):
         print(line)
 
 
+def cmd_caretaker(args):
+    """Report-only morning run (HIR-257). Reads feeds.json, never writes it."""
+    from datetime import datetime, timezone
+
+    from app import caretaker_run
+    from app.discover import REJECTED_PATH, rejected_boards
+    from app.sources import brave
+    conn = open_db()
+    day = args.day or datetime.now(timezone.utc).date().isoformat()
+    try:
+        key = brave.api_key()
+        search = lambda q: brave.fetch(q, key)  # noqa: E731
+    except brave.MissingKey:
+        search = None
+    rejected = rejected_boards(json.loads(REJECTED_PATH.read_text())) if REJECTED_PATH.exists() else set()
+    found = caretaker_run.morning(conn, day, json.loads(FEEDS_PATH.read_text()), rejected, search)
+    for f in found:
+        print(f"{f.action:>16}  {f.subject}: {f.detail}")
+    if not found:
+        print("every source worked")
+    linear_key = os.environ.get("LINEAR_API_KEY", "").strip()
+    post = None if (args.no_post or not linear_key) else caretaker_run.linear_poster(
+        linear_key, os.environ.get("LINEAR_TEAM_ID", caretaker_run.LINEAR_TEAM_ID))
+    caretaker_run.report(conn, day, post)
+
+
 def cmd_migrate(args):
     open_db()
     print("ok")
@@ -345,6 +374,10 @@ def main(argv=None):
     sub.add_parser("reread-cost",
                    help="what merging an extractor or skill-list change would spend on re-reading"
                    ).set_defaults(fn=cmd_reread_cost)
+    p = sub.add_parser("caretaker", help="morning check of every job source; report-only (HIR-257)")
+    p.add_argument("--day", default=None, help="judge this day's poll (YYYY-MM-DD, UTC); default today")
+    p.add_argument("--no-post", action="store_true", help="print the summaries, post nothing to Linear")
+    p.set_defaults(fn=cmd_caretaker)
     sub.add_parser("migrate").set_defaults(fn=cmd_migrate)
     sub.add_parser("import-labels",
                    help="load each labeller's own answer from evals/labeling/<run>/raw into the database"

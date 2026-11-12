@@ -5,6 +5,67 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-12 — The caretaker runs on the VM as plain code, report-only first (HIR-257)
+
+Chandler, 12 Nov: "we need more agents to notice this stuff and just deal with it." The
+caretaker checks every job source each morning after the 07:00 poll, fixes the routine
+breakages (a company board that moved, a board gone empty) and reports once a week.
+
+**Where it runs: a systemd timer on the VM, not a GitHub Action or a cloud task.** The
+issue offered those two. Both run somewhere without the database, and every check reads
+what the poll actually got — which lives only in the SQLite file on the VM. The VM already
+runs the poll and the backup this way and already holds the Brave key the board search
+needs. Undo: delete the timer; nothing else depends on it.
+
+**Plain Python, not an AI agent.** Every check is a rule over numbers the poll already has
+(errors, posting counts, field lists, city totals), and the board search reuses the
+discovery code. Plain code makes no model calls, cannot edit its own rules or anyone
+else's, and every "never does" line is a test rather than an instruction a model might
+skip. Undo: put an agent around `app/caretaker.py` later; the rules stay the same.
+
+**The rules it applies** (constants at the top of `app/caretaker.py`):
+
+- A company board is *dead* when it errors or returns nothing, it gave us postings before,
+  and the newest of them was last seen 3 or more days ago. A board that answers 404/410 is
+  *gone* at once. Either way the caretaker first searches for the company's new board.
+- A new board counts as *the same company* when the company name and the board token
+  match after dropping case, spaces and punctuation, and it has at least one posting the
+  poll would keep. Found → switch the board's token; the stored jobs are untouched.
+- Dead and no new board found → pause: `enabled: false` plus a `paused` note in
+  `config/feeds.json`. The entry stays. Paused boards are re-checked every Monday and
+  switched back on when they have a posting we would keep. A board a person disabled (no
+  `paused` note) is never switched on.
+- A country-wide feed or search is *low* when it returns under half its median over its
+  last 5+ good runs. Reported only.
+- A city is *dropping* when its open-job count falls by more than 30% overnight from at
+  least 20. Reported only.
+- Model-call spend is zero; Brave searches are counted at €0.005 each against a €0.50
+  daily cap. The cap is checked before every search; hitting it stops the search and is
+  reported at once.
+
+**Report-only for the first week**, as the issue asks: it writes what it would have done.
+Acting mode — applying the feeds.json change through a pull request — is a separate step.
+
+**Built in two halves.** The append-only log the weekly summary reads needs a new
+migration, and an open PR (#146) already adds one; migrations are one branch at a time,
+so the log, the timer and the poll's per-feed record waited for #146 to merge (it did,
+12 Nov).
+
+**The record and the log.** The poll now keeps one row per feed per run (`feed_run`:
+worked or not, postings seen, fields carried); until now it printed this and forgot it,
+so "silent for three days" could not be asked. The caretaker writes every finding to
+`caretaker_log`. Both are append-only, enforced by the database as for the extraction log.
+A city's "yesterday" count is the dashboard's open rule evaluated 24 hours earlier on
+today's data, so no daily snapshot table is needed.
+
+**When it runs and how it reports.** A timer at 10:00 Berlin: three hours after the poll
+starts, so the poll's readings are normally done (a reading still running then shows up
+as "jobs still waiting to be read", which is the half-finished case the issue asks to
+notice anyway). On Mondays it posts last week's summary as one Linear issue in the
+Hiring-radar team; the collection down two days running or the spending cap hit is posted
+at once, at most once a day. With no `LINEAR_API_KEY` on the server it writes the text to
+its journal instead. Undo: disable the timer.
+
 ## 2026-11-12 — New York gets two Google for Jobs searches, like Berlin (HIR-255)
 
 **Why.** New York added about one job a day after its launch. Its boards were healthy
