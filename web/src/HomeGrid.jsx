@@ -1,4 +1,5 @@
 import { gridPlaces, pctInt } from "./format.js";
+import { pathFor } from "./routes.js";
 
 // What a first-time visitor sees instead of a dashboard for a city they never chose
 // (HIR-188): one card per market, each with its job count and the three skills its jobs ask
@@ -27,10 +28,17 @@ export const topSkills = (skills, city, total, n = TOP) => (skills || [])
 // The bars are a share of the jobs we have actually read in that city (`city_totals`),
 // which is the slightly smaller set — a handful of postings are stored as a fragment too
 // short to chart. Each number is right for what it says; the stats line explains the gap.
+//
+// With a job family chosen (HIR-197) the open count is not split by family, so the card
+// shows that family's `city_totals` instead, and the grid sorts by it. `data.family` is the
+// family the numbers were fetched for, so count, bars and order always describe the same jobs.
+export const cardCounts = (counts, data) => (data?.family ? data.city_totals || {} : counts);
+
 export default function HomeGrid({ data, counts, family, onRequestCity }) {
   const charted = data?.city_totals || {};
-  const places = gridPlaces(counts);
-  const href = (place) => (family ? `/${place.slug}/${family}` : `/${place.slug}`);
+  const shown = cardCounts(counts, data);
+  const places = gridPlaces(shown);
+  const href = (place) => pathFor({ view: "city", place: place.slug, family });
 
   return (
     <section className="markets" aria-labelledby="markets-title">
@@ -40,7 +48,7 @@ export default function HomeGrid({ data, counts, family, onRequestCity }) {
       </div>
       <div className="market-cards">
         {places.map((p) => {
-          const total = counts[p.name] || 0;
+          const total = shown[p.name] || 0;
           const top = topSkills(data?.skills, p.name, charted[p.name] || 0);
           const max = Math.max(1, ...top.map((s) => s.pct));
           return (

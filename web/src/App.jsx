@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { api } from "./api.js";
 import { COMPARE_DEFAULT, DEGREE_FILTERS, GERMAN_FILTERS, PLACE_NAMES, PRODUCTION_FILTERS, SENIORITIES, cap, compareAdd, compareRemove, dateTime, familyLabel, listFilters as deriveListFilters, placeByName, placeBySlug, placeCities, pctInt, timeAgo } from "./format.js";
-import { HOME, parsePath, pathFor } from "./routes.js";
+import { HOME, parsePath, pathFor, withFamily } from "./routes.js";
 import { pushRecent, readLast, readRecent, writeLast } from "./lastPlace.js";
 import { useProfile } from "./profile.js";
 import { Person, Plus, Radar } from "./icons.jsx";
@@ -99,7 +99,9 @@ export default function App() {
 
   const reload = useCallback(() => { api.stats().then(setStats); setRefresh((n) => n + 1); }, []);
   useEffect(() => { api.taxonomy().then(setTax); reload(); }, [reload]);
-  useEffect(() => { let live = true; api.skills(filters).then((r) => { if (live) setSkills(r); }); return () => { live = false; }; }, [filters, refresh]);
+  // The answer is tagged with the family it was asked for, so the market cards never show a
+  // new family's order over the previous family's numbers while a request is in flight.
+  useEffect(() => { let live = true; api.skills(filters).then((r) => { if (live) setSkills({ ...r, family: filters.families[0] || null }); }); return () => { live = false; }; }, [filters, refresh]);
   // The related-skills rows, fetched here and not in the panel: the panel draws them and the
   // chip row's add-skill popover suggests them, both from this one request and in its order.
   useEffect(() => {
@@ -130,7 +132,12 @@ export default function App() {
 
   // Everything the query bar can do, as moves between addresses.
   const goPlace = (slug) => goMarket({ ...HOME, view: "city", place: slug, family: market.family });
-  const goFamily = (f) => goMarket(market.view === "compare" ? { ...market, family: f } : { ...HOME, view: "city", place: market.place, family: f });
+  // On the home view a family pick is not a move: the address stays "/", nothing is pushed
+  // to the history, and only the market cards follow it (HIR-197).
+  const goFamily = (f) => {
+    const next = withFamily(market, f);
+    if (next.view === "home") { setRoute(next); setMarket(next); } else goMarket(next);
+  };
   // Compare opens on the city you are looking at plus the one picked in the compare
   // dropdown, so it takes one pick to see two markets (HIR-191). The dropdown hides the
   // city you are already on, but "All of Germany" resolves to the busiest German city,
