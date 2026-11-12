@@ -49,6 +49,26 @@ def test_ashby_parse_prefers_plain_description():
     assert p.description_text == "Requirements:\n- Python\n- RAG"
 
 
+def test_ashby_keeps_every_office_so_a_second_office_in_berlin_counts():
+    """HIR-268: Qonto's posting lists Paris first and Berlin second. Keeping only the first
+    office dropped it as Paris."""
+    from app.geo import active_place
+    [p] = ashby.parse(load("ashby_second_office.json"), company="Qonto")
+    assert p.title == "Senior Android Engineer - AI Agents"
+    assert p.location_raw == ("Paris, France; Berlin, Germany; Milan, Italy; Lisbon, Portugal; "
+                              "Barcelona, Spain; Belgrade, Serbia")
+    assert active_place(p.location_raw, p.title, p.description_text) == "Berlin"
+
+
+def test_ashby_office_list_skips_blanks_and_repeats():
+    job = {"id": "1", "title": "AI Engineer", "descriptionPlain": "text", "location": " Berlin ",
+           "secondaryLocations": [{"location": "Berlin"}, {"location": ""}, {"address": {}}, "Munich"]}
+    [p] = ashby.parse({"jobs": [job]})
+    assert p.location_raw == "Berlin"
+    [p] = ashby.parse({"jobs": [{**job, "location": None, "secondaryLocations": None}]})
+    assert p.location_raw is None
+
+
 def test_arbeitnow_parse_and_pagination():
     payload = load("arbeitnow.json")
     ps = arbeitnow.parse(payload)
