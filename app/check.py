@@ -378,7 +378,7 @@ def posting_from_html(url: str, markup: str, company: str | None = None,
             text = html_to_text(jp.get("description") or "")
             return Posting(
                 source="url", source_job_id="", url=url,
-                company=company or org_name,
+                company=company or (org_name or "").strip() or None,
                 title=title or (jp.get("title") or "").strip() or p.title.strip(),
                 location_raw=location or _location_of(jp),
                 description_text=text or html_to_text(markup),
