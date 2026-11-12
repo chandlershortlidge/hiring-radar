@@ -266,6 +266,54 @@ def test_generic_site_name_is_skipped_for_the_next_rule():
     assert p.company == "NewCo"
 
 
+# One posting address per polled source, as that source stores it (HIR-211). The hostname
+# of each names where the posting is hosted, never who is hiring.
+POLLED_SOURCE_ADDRESSES = {
+    "greenhouse": "https://job-boards.greenhouse.io/acme/jobs/4012345",
+    "lever": "https://jobs.lever.co/acme/0a1b2c3d-0000-4000-8000-000000000001",
+    "ashby": "https://jobs.ashbyhq.com/acme/0a1b2c3d-0000-4000-8000-000000000001",
+    "join": "https://join.com/companies/acme/16814436-ai-engineer",
+    "startup_jobs": "https://startup.jobs/senior-ai-engineer-acme-1234567",
+    "arbeitnow": "https://www.arbeitnow.com/jobs/companies/acme/senior-ai-engineer-berlin-123456",
+    "arbeitsagentur": "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003490922-S",
+    "jsearch": "https://jsearch.p.rapidapi.com/job-details?job_id=abc",
+}
+
+
+def test_every_polled_source_has_an_address_in_the_hostname_test():
+    """A source added to the registry without an address here fails, so the list of names
+    that are not employers cannot fall behind the sources again."""
+    from app.sources import registry
+    assert set(POLLED_SOURCE_ADDRESSES) == set(registry.of_kind("board", "feed", "search"))
+
+
+@pytest.mark.parametrize("source", sorted(POLLED_SOURCE_ADDRESSES))
+def test_a_polled_sources_own_address_never_names_the_company(source):
+    assert check.company_from_page(POLLED_SOURCE_ADDRESSES[source], check._PageParser()) == (None, None)
+
+
+@pytest.mark.parametrize("url", [
+    "https://www.arbeitnow.ch/jobs/companies/acme/ai-engineer-zurich-1",   # Arbeitnow's Swiss host
+    "https://api.openwebninja.com/jsearch/job-details?job_id=abc",         # JSearch's other provider
+    "https://de.trabajo.org/job-1234-ai-engineer",                         # job sites JSearch links to
+    "https://www.learn4good.com/jobs/berlin/germany/software_development/1/e/",
+    "https://www.jobleads.com/de/job/ai-engineer--berlin--abc",
+    "https://de.jooble.org/desc/123",
+])
+def test_job_sites_jsearch_links_to_never_name_the_company(url):
+    assert check.company_from_page(url, check._PageParser()) == (None, None)
+
+
+def test_a_board_page_declaring_its_own_name_is_not_the_company():
+    markup = tagged('<meta property="og:site_name" content="Bundesagentur für Arbeit">',
+                    title="Senior AI Engineer (w/m/d)")
+    parser = check._PageParser()
+    parser.feed(markup)
+    parser.close()
+    url = POLLED_SOURCE_ADDRESSES["arbeitsagentur"]
+    assert check.company_from_page(url, parser) == (None, None)
+
+
 @pytest.mark.parametrize("title", ["AI Engineer | NewCo", "AI Engineer – NewCo",
                                    "AI Engineer - NewCo", "AI Engineer at NewCo"])
 def test_company_from_title_tail_each_separator_and_the_title_is_trimmed(title):
