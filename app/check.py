@@ -92,6 +92,18 @@ _WORKABLE_PATH_RE = re.compile(r"^/(?P<account>[^/]+)/j/(?P<code>[0-9A-Za-z]+)")
 _GENERIC_SITE_NAMES = frozenset({
     "linkedin", "indeed", "stepstone", "glassdoor", "xing", "personio", "workday",
     "myworkdayjobs", "greenhouse", "lever", "ashby", "ashbyhq", "join",
+    # Every source this project polls (app/sources/registry.py), by its site name and by
+    # the hostname label its posting links carry. A feed job stored blank whose page has
+    # gone must stay blank, not become a job at "Arbeitsagentur" (HIR-211).
+    # tests/test_check.py fails when a polled source has no address covered here.
+    "arbeitsagentur", "bundesagentur für arbeit", "arbeitnow",
+    "startup", "startup jobs", "startup.jobs",
+    "jsearch", "rapidapi", "openwebninja",
+    # JSearch is a search over other job sites and links to whichever one carried the
+    # posting. These are the ones its stored links have named so far that are job sites,
+    # not employers.
+    "learn4good", "trabajo", "jobleads", "jooble", "speedyapply", "freelance", "devjobs",
+    "absolventa", "efinancialcareers", "nortjobs",
 })
 # Title tails that name a careers section rather than a company ("AI Engineer | Careers").
 _GENERIC_TITLE_TAILS = frozenset({"jobs", "job", "careers", "career", "karriere", "join us", "jobs & careers"})
