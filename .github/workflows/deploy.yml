@@ -1,0 +1,69 @@
+name: Deploy
+
+# Put one commit on the VM: build its frontend, reset the VM's checkout to it, and run
+# deploy/remote-deploy.sh (backup → deps → frontend → restart → smoke check).
+#
+# Moved out of ci.yml unchanged (HIR-258) so the same steps serve three callers:
+#   ci.yml          every push to main deploys that commit
+#   site-watch.yml  a rollback deploys the last commit the robot visitor passed
+#   site-watch.yml  a drill run by hand deploys a deliberately broken test commit
+#
+# The one change from the old inline job: the VM fetches the commit itself, not only
+# main, so a rollback target or a drill commit on a test branch can be checked out.
+
+on:
+  workflow_call:
+    inputs:
+      sha:
+        description: The commit to deploy.
+        required: true
+        type: string
+
+jobs:
+  deploy:
+    name: Deploy to VM
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+      id-token: write
+    concurrency:
+      group: deploy
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.sha }}
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Build frontend
+        working-directory: web
+        run: npm ci && npm run build && tar -czf ../web-dist.tgz dist
+      - uses: google-github-actions/auth@v2
+        with:
+          project_id: hiring-radar-512318
+          workload_identity_provider: projects/128016795965/locations/global/workloadIdentityPools/github/providers/hiring-radar-repo
+          service_account: github-deployer@hiring-radar-512318.iam.gserviceaccount.com
+      - uses: google-github-actions/setup-gcloud@v2
+      # One IAP/OS Login connection, not two: the tarball arrives on this ssh
+      # invocation's stdin instead of a separate `gcloud compute scp` (HIR-106).
+      # A truncated pipe fails `tar -xzf` in remote-deploy.sh, so the job goes red.
+      - name: Deploy on VM
+        env:
+          SHA: ${{ inputs.sha }}
+        run: |
+          # The sha goes into a command run as root on the VM: a full hex sha and nothing else.
+          [[ "$SHA" =~ ^[0-9a-f]{40}$ ]] || { echo "::error::not a full commit sha: $SHA"; exit 1; }
+          gcloud compute ssh hiring-radar --zone=europe-west3-a --tunnel-through-iap --quiet \
+            --strict-host-key-checking=no --ssh-key-expire-after=30m --command "
+            set -e
+            cat > /tmp/web-dist.tgz
+            sudo -u hiring-radar -H git -C /opt/hiring-radar/app fetch origin main
+            sudo -u hiring-radar -H git -C /opt/hiring-radar/app cat-file -e $SHA^{commit} 2>/dev/null \
+              || sudo -u hiring-radar -H git -C /opt/hiring-radar/app fetch origin $SHA
+            sudo -u hiring-radar -H git -C /opt/hiring-radar/app reset --hard $SHA
+            sudo bash /opt/hiring-radar/app/deploy/remote-deploy.sh /tmp/web-dist.tgz
+          " < web-dist.tgz

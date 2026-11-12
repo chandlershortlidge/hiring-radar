@@ -1,0 +1,232 @@
+name: Site watch
+
+# The robot visitor on the live site (HIR-258). Three ways in:
+#
+#   a release       ci.yml calls this with mode=deploy for every push to main: deploy the
+#                   commit, run the robot. A failure rolls the site back to the last commit
+#                   the robot passed (the `site-good` tag), checks the rolled-back site and
+#                   files an autopilot ticket. If the rolled-back site fails too, the ticket
+#                   goes to Chandler. ci.yml holds the `release` lock around this whole
+#                   workflow, so a second merge waits until this one is watched.
+#   every morning   after the 07:00 Berlin collection. A failure files a ticket; nothing is
+#                   rolled back, because the code did not change — the data did.
+#   by hand         "Run workflow". Leave `deploy_sha` empty to just check the live site.
+#                   Give it a commit to run the drill from the ticket's "Done when": that
+#                   commit is deployed, watched and rolled back exactly like a release.
+#
+# Does NOT: write to the site (the robot only reads; see web/e2e/site-watch.spec.js),
+# spend on model calls, touch stored data, or retry a failure hoping it passes.
+#
+# Needs the repository secrets SITE_LOGIN ("user:password", already used by pr-demo.yml)
+# and LINEAR_API_KEY (to file tickets; without it the run goes red and the ticket text is
+# in the log). Without SITE_LOGIN the robot cannot get in: the run goes red and nothing
+# is rolled back, since that says nothing about the deploy.
+
+on:
+  workflow_call:
+    inputs:
+      mode:
+        type: string
+        required: true
+      sha:
+        type: string
+        required: true
+  schedule:
+    - cron: "0 8 * * *" # 09:00 Berlin in winter, 10:00 in summer: after the morning collection
+  workflow_dispatch:
+    inputs:
+      deploy_sha:
+        description: "Drill only: a full commit sha to deploy and watch (empty = just check the live site)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+env:
+  SITE: https://34-159-223-190.sslip.io
+
+jobs:
+  plan:
+    name: What this run is
+    runs-on: ubuntu-latest
+    outputs:
+      mode: ${{ steps.p.outputs.mode }}
+      sha: ${{ steps.p.outputs.sha }}
+    steps:
+      - id: p
+        env:
+          CALL_MODE: ${{ inputs.mode }}
+          CALL_SHA: ${{ inputs.sha }}
+          DRILL_SHA: ${{ github.event.inputs.deploy_sha }}
+          EVENT: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT" = workflow_dispatch ] && [ -n "$DRILL_SHA" ]; then
+            mode=deploy; sha=$DRILL_SHA
+          elif [ "$CALL_MODE" = deploy ]; then
+            mode=deploy; sha=$CALL_SHA
+          else
+            mode=morning; sha=$GITHUB_SHA
+          fi
+          [[ "$sha" =~ ^[0-9a-f]{40}$ ]] || { echo "::error::not a full commit sha: $sha"; exit 1; }
+          echo "mode=$mode" >> "$GITHUB_OUTPUT"; echo "sha=$sha" >> "$GITHUB_OUTPUT"
+
+  deploy:
+    name: Deploy
+    needs: plan
+    if: needs.plan.outputs.mode == 'deploy'
+    permissions:
+      contents: read
+      id-token: write
+    uses: ./.github/workflows/deploy.yml
+    with:
+      sha: ${{ needs.plan.outputs.sha }}
+
+  robot:
+    name: Robot visitor
+    needs: [plan, deploy]
+    # After a deploy only if it succeeded; a failed deploy is already a red run of its own.
+    if: always() && needs.plan.result == 'success' && (needs.deploy.result == 'success' || needs.deploy.result == 'skipped')
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      ok: ${{ steps.robot.outputs.ok }}
+      good: ${{ steps.good.outputs.good }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - id: robot
+        uses: ./.github/actions/robot-visitor
+        with:
+          site: ${{ env.SITE }}
+          login: ${{ secrets.SITE_LOGIN }}
+          artifact: watch-first
+      # The rollback target: the last commit the robot passed after a deploy. Before that
+      # tag exists (the first release after this workflow lands), the commit before this one.
+      - id: good
+        env:
+          SHA: ${{ needs.plan.outputs.sha }}
+        run: |
+          git fetch -q --tags --force
+          good=$(git rev-parse -q --verify "refs/tags/site-good^{commit}" || git rev-parse "$SHA^1")
+          echo "good=$good" >> "$GITHUB_OUTPUT"
+          echo "rollback target if needed: $good"
+
+  rollback:
+    name: Roll back to the last good version
+    needs: [plan, robot]
+    if: needs.plan.outputs.mode == 'deploy' && needs.robot.outputs.ok == 'false'
+    permissions:
+      contents: read
+      id-token: write
+    uses: ./.github/workflows/deploy.yml
+    with:
+      sha: ${{ needs.robot.outputs.good }}
+
+  recheck:
+    name: Robot visitor on the rolled-back site
+    needs: rollback
+    if: always() && needs.rollback.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    outputs:
+      ok: ${{ steps.robot.outputs.ok }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: robot
+        uses: ./.github/actions/robot-visitor
+        with:
+          site: ${{ env.SITE }}
+          login: ${{ secrets.SITE_LOGIN }}
+          artifact: watch-recheck
+
+  report:
+    name: Record the result
+    needs: [plan, robot, rollback, recheck]
+    if: always() && needs.robot.result == 'success'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # move the site-good tag; publish screenshots to the pr-evidence branch
+    steps:
+      - name: No site login — nothing was checked
+        if: needs.robot.outputs.ok == 'nologin'
+        run: |
+          echo "::error::SITE_LOGIN secret is not set, so the robot visitor could not check the site. Nothing was rolled back."
+          exit 1
+
+      - uses: actions/checkout@v4
+
+      - name: Passed — remember this commit as the rollback target
+        if: needs.robot.outputs.ok == 'true'
+        env:
+          MODE: ${{ needs.plan.outputs.mode }}
+          SHA: ${{ needs.plan.outputs.sha }}
+        run: |
+          echo "The robot visitor passed every path on the live site."
+          # Only a deploy moves the tag: the morning run checks whatever is live, which is
+          # already the tagged commit or the one a rollback put back.
+          if [ "$MODE" = deploy ]; then
+            git fetch -q origin "$SHA"
+            git tag -f site-good "$SHA" && git push -q -f origin refs/tags/site-good
+            echo "site-good → $SHA"
+          fi
+
+      # Same folder as on the robot's runner, so the screenshot paths in report.json match.
+      - uses: actions/download-artifact@v4
+        if: needs.robot.outputs.ok == 'false'
+        with:
+          name: watch-first
+          path: web/watch-out
+      - name: Publish the screenshots
+        if: needs.robot.outputs.ok == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN: ${{ github.run_id }}
+        run: |
+          [ -d web/watch-out/results ] || exit 0
+          url="https://x-access-token:${GH_TOKEN}@github.com/${REPO}.git"
+          if ! git clone -q --depth 1 --branch pr-evidence "$url" store 2>/dev/null; then
+            git init -q store && git -C store checkout -q --orphan pr-evidence
+            git -C store remote add origin "$url"
+          fi
+          dest="$PWD/store/site-watch/$RUN"
+          mkdir -p "$dest"
+          (cd web/watch-out/results && find . -name '*.png' -exec cp --parents {} "$dest/" \;)
+          cd store
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add -A && git commit -qm "Site watch run $RUN screenshots" || exit 0
+          for i in 1 2 3 4 5; do
+            git push -q origin pr-evidence && exit 0
+            git pull -q --rebase --depth 1 origin pr-evidence || true
+            sleep $((i * 2))
+          done
+          exit 1
+      - name: File the ticket
+        if: needs.robot.outputs.ok == 'false'
+        env:
+          LINEAR_API_KEY: ${{ secrets.LINEAR_API_KEY }}
+          MODE: ${{ needs.plan.outputs.mode }}
+          SHA: ${{ needs.plan.outputs.sha }}
+          GOOD: ${{ needs.robot.outputs.good }}
+          ROLLBACK: ${{ needs.rollback.result }}
+          RECHECK: ${{ needs.recheck.outputs.ok }}
+          REPO: ${{ github.repository }}
+          RUN: ${{ github.run_id }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          git fetch -q origin "$SHA" 2>/dev/null || true
+          change="${SHA:0:7} $(git log -1 --format=%s "$SHA" 2>/dev/null || echo '(subject unknown)')"
+          if [ "$MODE" = morning ]; then kind=morning
+          elif [ "$ROLLBACK" = success ] && [ "$RECHECK" = true ]; then kind=deploy
+          else kind=rollback-failed
+          fi
+          echo "Filing a '$kind' ticket."
+          python3 scripts/site_watch_ticket.py --kind "$kind" \
+            --report web/watch-out/report.json --results-root web/watch-out/results \
+            --evidence-base "https://raw.githubusercontent.com/$REPO/pr-evidence/site-watch/$RUN" \
+            --run-url "$RUN_URL" --change "$change" --rolled-back-to "${GOOD:0:7}"
+          # A broken site is a red run, whatever happened to the ticket.
+          exit 1
