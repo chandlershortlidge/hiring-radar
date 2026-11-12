@@ -312,6 +312,10 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   longer reproduces what a run recorded, the Goldens were relabelled since and it says so
   instead of reporting a count. `--version-check` answers whether the baseline already
   measured this extractor (the gate's one exemption). Calls no model and writes nothing.
+- `scripts/lead_pick.py` — the lead agent's hard limits (HIR-266): given the Todo tickets
+  and the lead agent's log, answers which may start today and why the rest may not
+  (labels, a third try, the daily cap in `config/lead_agent.json`, 3 a day, 2 per area).
+  Pure; talks to nothing and starts nothing.
 - `scripts/new_goldens.py` — draft unlabeled held-out Goldens from DB jobs
   (`--german N` or `--ids ...`); run_eval skips files with `"draft": true`.
 - `scripts/agent_label.py` — held-out Goldens via two blind labeler agents: pick → label A
@@ -715,7 +719,7 @@ not by the author. A real conflict drops the PR back to its author, which is the
 that is still the worker's.
 
 **Every merge follows a review from the run that opened the PR.** There is no timer and no
-scheduled cloud reviewer: an autopilot `/work-issue` waits for CI at the end of its own run
+scheduled cloud reviewer (the lead agent, below, only picks up what a dead run left): an autopilot `/work-issue` waits for CI at the end of its own run
 and starts the `reviewer` agent on the PR it just opened; inside an orchestrator the
 orchestrator does that instead. GitHub's merger acts only on the reviewer's label. A run
 that stops before a review passes leaves its PR labelled `needs-chandler` **without an
@@ -732,6 +736,36 @@ changing a description it did not write in this session uses `save_issue` with `
 (`append`, `insert_after`, or a single-match `replace`), or just adds a comment. A full
 `description` field replace is only for a description this session wrote.
 
+### The lead agent
+
+**Every weekday a scheduled cloud run decides what is worked on and starts it** (HIR-266,
+DECISIONS 2026-11-12). `/lead-agent` (`.claude/skills/lead-agent/`) reads the checks and
+the open pull requests, labels tickets nobody labelled, unsticks pull requests whose run
+died, picks up to 3 tickets from Todo in the approved launch order (the Linear document
+"Autopilot: launch order to 16 Dec"), hands them to `/work-issue-orchestrator`, and
+writes one comment a day on the Linear issue "Lead agent log". It writes no code and runs
+no merge command.
+
+**Its hard limits are code**, not instructions: `scripts/lead_pick.py` decides which
+tickets may start, and the lead agent starts nothing else. Never a ticket labelled
+`attended`, `hands-on` or `parked`; never a third try at a ticket that failed twice;
+nothing once the day's model-call cap is spent (`config/lead_agent.json`, €2 a day; `0`
+stops every run); never a ticket whose model-call cost it cannot know. Raising the cap is
+Chandler's (his list, item 5).
+
+**The four ticket labels.** `autopilot` (or none): agents build, review and merge.
+`attended`: Chandler is in it; no agent picks it. `hands-on`: Chandler writes the code; no
+agent touches it. `parked`: not before launch; only Chandler removes the label.
+
+**The off switch.** Pausing the scheduled task on Chandler's Claude account stops
+everything the lead agent does. Adding the label `attended` to a ticket takes that one
+ticket away from agents.
+
+**It is the one exception to "every merge follows a review from the run that opened the
+PR"** (above): when that run died, the lead agent starts a fresh worker on a sent-back
+pull request or a fresh reviewer on an unreviewed or unmerged one. The reviewer still does
+the merging.
+
 `/work-issue-orchestrator HIR-a HIR-b …` runs a batch: pick, one worker per issue in
 parallel worktrees, reviewer merges the autopilot PRs or sends them back to their worker, `attended` ones pause for
 Chandler's go and wait for his merge, one report. More than one orchestrator may be
@@ -742,7 +776,7 @@ running, each blind to the other's workers: the shared state is the Linear issue
 
 `.claude/skills/` holds the repeatable procedures. `/work-issue HIR-n` takes a Linear
 issue to a PR; `/work-issue-orchestrator` runs a batch of issues through work, review and
-merge; `/check-url` audits feed coverage for careers-page URLs; `/mutation-test` checks
+merge; `/lead-agent` is the weekday run that picks the batch ("The lead agent", above); `/check-url` audits feed coverage for careers-page URLs; `/mutation-test` checks
 whether tests catch deliberate breaks (on demand, ~25 min, never per PR). `.claude/agents/` holds
 the `decider` (answers questions from the rules), the `senior` agent (answers hard technical
 questions, strongest model) and the `reviewer` (merges autopilot PRs, or
