@@ -152,9 +152,9 @@ test("a job card, its permanent page, and the original posting link", async ({ p
 
 test("the add-a-job drawer opens (never submitted)", async ({ page, problems }) => {
   await openBusiestCity(page);
-  // By place, not by name: at phone width the button's words are hidden and it has no
-  // other name, so "Add a job" finds nothing there.
-  await page.locator(".hdr-actions button.btn.outline").click();
+  // By name, at both widths: the button carries its name even where a phone hides its
+  // words (HIR-263). If this stops finding it, a screen reader has lost it too.
+  await page.getByRole("button", { name: "Add a job", exact: true }).click();
   const drawer = page.getByRole("dialog");
   await expect(drawer).toBeVisible();
   await expect(drawer.locator("#url")).toBeVisible();
