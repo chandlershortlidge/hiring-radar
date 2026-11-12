@@ -31,7 +31,14 @@ import sys
 RULE_DIRS = (".claude/", ".github/workflows/")
 # `scripts/rules_gate.py` is on the list too: it is this gate's own code, and a PR that
 # rewrote it to always pass would otherwise walk straight through (HIR-142 decision).
-RULE_FILES = ("AGENTS.md", ".github/pull_request_template.md", "scripts/rules_gate.py")
+# `scripts/merge_reviewed.py` decides when GitHub merges a reviewed PR with no session
+# involved (HIR-262), so loosening it is a change to who merges.
+RULE_FILES = (
+    "AGENTS.md",
+    ".github/pull_request_template.md",
+    "scripts/rules_gate.py",
+    "scripts/merge_reviewed.py",
+)
 
 # The block's fixed wording. The reviewer writes it; this script only looks for it, so the
 # words have to be fixed or there would be nothing to look for.

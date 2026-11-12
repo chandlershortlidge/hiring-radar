@@ -1,0 +1,64 @@
+name: Uptime
+
+# Is the site answering? Every five minutes, from GitHub's machines rather than the VM, so
+# a dead VM, a dead app or a broken Caddy all show (HIR-258).
+#
+# Checks the page and the stats API through the site's login. One miss is retried a minute
+# later; two in a row file one autopilot ticket "the site does not answer". While that
+# ticket is open, further misses add nothing to it, so an outage is one ticket, not one
+# comment every five minutes.
+#
+# GitHub runs schedules on a best-effort basis: five minutes is the shortest it allows and
+# a run can start late at busy hours. An outside uptime service would be steadier, but it
+# would mean a new company holding the site's login (HIR-258 Decisions taken).
+#
+# Needs SITE_LOGIN and LINEAR_API_KEY, like site-watch.yml. Costs nothing: Actions minutes
+# are free on a public repository.
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: uptime
+  cancel-in-progress: false
+
+env:
+  SITE: https://34-159-223-190.sslip.io
+
+jobs:
+  check:
+    name: Site answers
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - id: probe
+        env:
+          SITE_LOGIN: ${{ secrets.SITE_LOGIN }}
+        run: |
+          if [ -z "$SITE_LOGIN" ]; then echo "::error::SITE_LOGIN secret is not set"; exit 1; fi
+          probe() {
+            for path in / /api/stats; do
+              code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 -u "$SITE_LOGIN" "$SITE$path") || code="no answer"
+              [ "$code" = 200 ] || { echo "HTTP $code from $path"; return 1; }
+            done
+          }
+          if seen=$(probe); then echo "up"; exit 0; fi
+          echo "first miss: $seen; retrying in 60s"; sleep 60
+          if seen=$(probe); then echo "up on retry"; exit 0; fi
+          echo "down: $seen"
+          echo "seen=$seen" >> "$GITHUB_OUTPUT"
+          exit 1
+      - uses: actions/checkout@v4
+        if: failure() && steps.probe.outputs.seen != ''
+      - name: File the ticket
+        if: failure() && steps.probe.outputs.seen != ''
+        env:
+          LINEAR_API_KEY: ${{ secrets.LINEAR_API_KEY }}
+          SEEN: ${{ steps.probe.outputs.seen }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: python3 scripts/site_watch_ticket.py --kind uptime --detail "$SEEN" --run-url "$RUN_URL"

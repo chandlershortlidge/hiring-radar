@@ -12,6 +12,9 @@ on:
   # repository needs no CI change — `test` and `build-web` would already run on
   # the queue's combined commits, while `deploy` stays gated on `push` to main.
   merge_group:
+  # Started by .github/workflows/merge-reviewed.yml after it merges a PR (HIR-262). A merge
+  # made with a workflow's token fires no `push`, so without this the deploy would not run.
+  workflow_dispatch:
 
 jobs:
   test:
@@ -41,44 +44,25 @@ jobs:
       - run: npm ci
       - run: npm run build
 
-  deploy:
-    name: Deploy to VM
+  # Deploy, then the robot visitor on the live site; a failure rolls back and files a
+  # ticket (HIR-258). The deploy steps themselves are in deploy.yml, unchanged.
+  #
+  # The `release` lock spans the whole deploy-and-watch, so a second merge waits until the
+  # first is watched: otherwise a rollback for one could overwrite the next deploy. (The
+  # deploy job inside holds its own `deploy` lock; the two names must differ, or the inner
+  # job would wait for the outer one forever.)
+  release:
+    name: Deploy and watch
     needs: [test, build-web]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    timeout-minutes: 15
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
     permissions:
-      contents: read
-      id-token: write
+      contents: write # the robot's result moves the site-good tag and publishes screenshots
+      id-token: write # the deploy's login to Google Cloud
     concurrency:
-      group: deploy
+      group: release
       cancel-in-progress: false
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: npm
-          cache-dependency-path: web/package-lock.json
-      - name: Build frontend
-        working-directory: web
-        run: npm ci && npm run build && tar -czf ../web-dist.tgz dist
-      - uses: google-github-actions/auth@v2
-        with:
-          project_id: hiring-radar-512318
-          workload_identity_provider: projects/128016795965/locations/global/workloadIdentityPools/github/providers/hiring-radar-repo
-          service_account: github-deployer@hiring-radar-512318.iam.gserviceaccount.com
-      - uses: google-github-actions/setup-gcloud@v2
-      # One IAP/OS Login connection, not two: the tarball arrives on this ssh
-      # invocation's stdin instead of a separate `gcloud compute scp` (HIR-106).
-      # A truncated pipe fails `tar -xzf` in remote-deploy.sh, so the job goes red.
-      - name: Deploy on VM
-        run: |
-          gcloud compute ssh hiring-radar --zone=europe-west3-a --tunnel-through-iap --quiet \
-            --strict-host-key-checking=no --ssh-key-expire-after=30m --command "
-            set -e
-            cat > /tmp/web-dist.tgz
-            sudo -u hiring-radar -H git -C /opt/hiring-radar/app fetch origin main
-            sudo -u hiring-radar -H git -C /opt/hiring-radar/app reset --hard ${{ github.sha }}
-            sudo bash /opt/hiring-radar/app/deploy/remote-deploy.sh /tmp/web-dist.tgz
-          " < web-dist.tgz
+    uses: ./.github/workflows/site-watch.yml
+    with:
+      mode: deploy
+      sha: ${{ github.sha }}
+    secrets: inherit

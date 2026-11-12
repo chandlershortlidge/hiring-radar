@@ -465,6 +465,52 @@ def test_remote_flags_become_part_of_the_location():
     assert place_of("Remote (US)") is None
 
 
+# --- JSearch: a US search's remote jobs are not Remote (EU) (HIR-255) -------------
+
+def _js(**kw):
+    return {"job_id": "abc", "job_title": "AI Engineer", "job_description": "x",
+            "employer_name": "Acme", **kw}
+
+
+def test_jsearch_us_remote_anywhere_is_not_eu_remote():
+    """Seen live on the first New York search: remote, job_location "Anywhere", no
+    job_country. Before the fix this read as "Anywhere; Remote" → Remote (EU)."""
+    from app.geo import active_place
+    from app.sources import jsearch
+    item = _js(job_city=None, job_location="Anywhere", job_country=None, job_is_remote=True)
+    loc = jsearch.parse({"data": [item]}, country="us")[0].location_raw
+    assert loc == "Remote (US)"
+    assert active_place(loc) is None
+    # job_country on the posting wins over the search's country, with the same result
+    loc = jsearch.parse({"data": [{**item, "job_country": "US"}]}, country="de")[0].location_raw
+    assert active_place(loc) is None
+
+
+def test_jsearch_us_remote_keeps_a_real_city():
+    from app.geo import active_place
+    from app.sources import jsearch
+    item = _js(job_city="New York", job_location="New York, NY", job_country="US", job_is_remote=True)
+    loc = jsearch.parse({"data": [item]}, country="us")[0].location_raw
+    assert loc == "New York; Remote (US)"
+    assert active_place(loc) == "New York"
+
+
+def test_jsearch_german_search_remote_unchanged():
+    """The German searches keep reading a country-less remote posting as Remote (EU)."""
+    from app.geo import active_place
+    from app.sources import jsearch
+    item = _js(job_city=None, job_location="Anywhere", job_country=None, job_is_remote=True)
+    assert active_place(jsearch.parse({"data": [item]}, country="de")[0].location_raw) == "Remote (EU)"
+    assert active_place(jsearch.parse({"data": [item]})[0].location_raw) == "Remote (EU)"
+
+
+def test_jsearch_us_onsite_new_york():
+    from app.geo import active_place
+    from app.sources import jsearch
+    item = _js(job_city="New York", job_location="New York, NY", job_country="US", job_is_remote=False)
+    assert active_place(jsearch.parse({"data": [item]}, country="us")[0].location_raw) == "New York"
+
+
 # --- arbeitnow: remote never invents a country (HIR-98) --------------------------
 
 def _arbeitnow_remote_places():
