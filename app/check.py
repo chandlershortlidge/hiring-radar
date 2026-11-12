@@ -10,7 +10,10 @@ Does:
     against stored jobs (the page may have been stored via another source, e.g. arbeitnow);
   - for a page that is not a known ATS, read the posting out of JSON-LD `JobPosting` when
     the page has it, otherwise the stripped page text; a Personio tenant serving no
-    JSON-LD still gives up its company and city, out of the payload it embeds;
+    JSON-LD still gives up its company and city, out of the payload it embeds; a page
+    with neither gives a location when its text has a "Location:" / "Standort:" line;
+  - read a Workable job link (apply.workable.com) through Workable's public job API,
+    because its page is built in the browser and holds no posting text (HIR-268);
   - diagnose a miss: board not in config/feeds.json; board polled but the title or city
     filter would have dropped it; board polled and it would have passed (a feed bug, or
     posted since the last poll); not a feed-reachable page at all.
@@ -76,6 +79,12 @@ _EMBED_TOKEN_RE = re.compile(r"greenhouse\.io/embed/job_board(?:/js)?\?(?:[^\"'\
 # (`acto.jobs.personio.com`, `adsquare.jobs.personio.de`). Not an ATS pattern: a Personio
 # job URL is read as a page, not resolved to a board — see `_personio_fields`.
 _PERSONIO_HOST_RE = re.compile(r"(?:^|\.)jobs\.personio\.(?:com|de)$", re.I)
+
+# Workable job links: https://apply.workable.com/<account>/j/<shortcode>/ (optional /apply).
+# Not an ATS pattern either: there is no Workable source, the posting is stored as a page
+# (source=url) — but read through Workable's public job API, see `posting_from_workable`.
+_WORKABLE_HOST = "apply.workable.com"
+_WORKABLE_PATH_RE = re.compile(r"^/(?P<account>[^/]+)/j/(?P<code>[0-9A-Za-z]+)")
 
 # Platform names that can sit in a page's site name, title tail or hostname without naming
 # the employer: the job boards and ATS vendors this project meets. A page declaring one of
@@ -389,6 +398,57 @@ def posting_from_html(url: str, markup: str, company: str | None = None,
     ), how
 
 
+def workable_api_url(url: str) -> str | None:
+    """A Workable job link (`apply.workable.com/<account>/j/<shortcode>`) → the public API
+    address that returns that posting as JSON. Anything else → None."""
+    u = urllib.parse.urlsplit(url.strip())
+    if (u.hostname or "").lower() != _WORKABLE_HOST:
+        return None
+    m = _WORKABLE_PATH_RE.match(u.path)
+    return f"https://{_WORKABLE_HOST}/api/v2/accounts/{m['account']}/jobs/{m['code']}" if m else None
+
+
+def _workable_place(loc) -> str | None:
+    """{"city": "Berlin", "region": "Berlin", "country": "Germany"} → "Berlin, Germany"."""
+    if not isinstance(loc, dict):
+        return None
+    parts = [p.strip() for p in (loc.get("city"), loc.get("region"), loc.get("country"))
+             if isinstance(p, str) and p.strip()]
+    return ", ".join(dict.fromkeys(parts)) or None
+
+
+def posting_from_workable(url: str, payload: dict, company: str | None = None,
+                          title: str | None = None, location: str | None = None) -> Posting:
+    """Build a Posting from Workable's public job API (HIR-268). Pure.
+
+    Workable builds its job page in the browser, so the fetched page holds only a
+    truncated meta description. The API holds the whole posting: the title, every
+    location ("; "-joined, plus "Remote" for a remote posting), and the text in the three
+    sections the page shows under these same headings. It does not name the company, so
+    that is passed in — the caller reads it off the page. `title`/`location` override.
+
+    Raises ValueError when the payload has no title or no text, so the caller can fall
+    back to the page.
+    """
+    sections = [payload.get("description") or ""]
+    sections += [f"<h3>{heading}</h3>{payload[key]}"
+                 for heading, key in (("Requirements", "requirements"), ("Benefits", "benefits"))
+                 if payload.get(key)]
+    text = html_to_text("".join(sections))
+    api_title = (payload.get("title") or "").strip()
+    if not text or not (title or api_title):
+        raise ValueError("Workable API returned no title or no text")
+    places = [_workable_place(l) for l in payload.get("locations") or [payload.get("location")]]
+    places.append("Remote" if payload.get("remote") is True else None)
+    return Posting(
+        source="url", source_job_id="", url=url, company=company,
+        title=title or api_title,
+        location_raw=location or "; ".join(dict.fromkeys(p for p in places if p)) or None,
+        description_text=text,
+        posted_at=payload.get("published"),
+    )
+
+
 def containment(stored: str, page: str) -> float:
     """Share of `stored`'s shingles present in `page`. 1.0 = the whole stored JD is on the page."""
     a = dedup.shingles(stored)
@@ -530,6 +590,16 @@ def check_url(conn: sqlite3.Connection, url: str, feeds: list[dict], company: st
     if posting is None:
         posting, how = posting_from_html(url, markup if markup is not None else fetch_page(url),
                                          company, title, location, notes=result.notes)
+        # A Workable page is built in the browser, so the page gave the company (its title
+        # tail) and little else; the title, location and text come from Workable's API.
+        api_url = workable_api_url(url)
+        if api_url:
+            try:
+                posting = posting_from_workable(url, json.loads(fetch_page(api_url)),
+                                                posting.company, title, location)
+                how = "the Workable API"
+            except Exception as e:  # API unreachable or empty → keep what the page gave
+                result.notes.append(f"Workable API read failed: {type(e).__name__}: {str(e)[:120]}")
         result.notes.append(f"read posting from {how}")
     else:
         # Lever and Ashby boards don't name the company; the board token is its slug

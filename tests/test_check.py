@@ -468,6 +468,96 @@ def test_page_yielding_no_company_cannot_text_match_and_says_so(conn):
     assert any("pass --company" in n for n in r.notes)
 
 
+# --- Workable links are read through Workable's API (HIR-268) -------------------------------
+
+WORKABLE_URL = "https://apply.workable.com/control-risks-6/j/7E5B35DAF9/"
+WORKABLE_API = "https://apply.workable.com/api/v2/accounts/control-risks-6/jobs/7E5B35DAF9"
+
+
+def workable_fetch(api=None):
+    """A fetcher serving the saved Workable page and API answer; `api` replaces the answer
+    (a string to serve, or an exception to raise)."""
+    def fetch(url):
+        if url == WORKABLE_URL:
+            return saved_page("workable_page.html")
+        assert url == WORKABLE_API, url
+        if isinstance(api, Exception):
+            raise api
+        return saved_page("workable_api.json") if api is None else api
+    return fetch
+
+
+@pytest.mark.parametrize("url,expected", [
+    (WORKABLE_URL, WORKABLE_API),
+    ("https://apply.workable.com/control-risks-6/j/7E5B35DAF9", WORKABLE_API),
+    ("https://APPLY.workable.com/control-risks-6/j/7E5B35DAF9/apply/?utm_source=linkedin", WORKABLE_API),
+    ("https://apply.workable.com/control-risks-6/", None),          # the company's job list
+    ("https://www.workable.com/j/7E5B35DAF9", None),
+    ("https://acme.com/control-risks-6/j/7E5B35DAF9", None),
+])
+def test_workable_api_url(url, expected):
+    assert check.workable_api_url(url) == expected
+
+
+def test_workable_link_is_read_through_the_api(conn):
+    """The saved page and API answer of the Control Risks posting (job 742). The page alone
+    gave a 255-character description and no location."""
+    page_only, _ = posting_from_html(WORKABLE_URL, saved_page("workable_page.html"))
+    assert page_only.location_raw is None and len(page_only.description_text) < 300
+
+    r = check_url(conn, WORKABLE_URL, FEEDS, fetch_page=workable_fetch(), fetch_board=no_fetch)
+    p = r.posting
+    assert (p.source, p.company, p.title) == ("url", "Control Risks", "AI Engineer")
+    assert p.location_raw == "Berlin, Germany"
+    assert geo.active_place(p.location_raw, p.title, p.description_text) == "Berlin"
+    assert p.posted_at == "2026-11-10T00:00:00.000Z"
+    assert len(p.description_text) > 5000
+    assert p.description_text.startswith("As AI Engineer you will own the AI and data layer")
+    for heading in ("\nRequirements\n", "\nBenefits\n", "Knowledge graph architecture and implementation"):
+        assert heading in p.description_text
+    assert "<" not in p.description_text
+    assert "read posting from the Workable API" in r.notes
+    assert r.verdict == "not_found" and r.diagnosis.startswith("not a hosted ATS page")
+    assert "dropped" not in r.diagnosis          # the location no longer fails the city filter
+
+
+def test_workable_flags_override_the_api(conn):
+    r = check_url(conn, WORKABLE_URL, FEEDS, company="Told Co", title="ML Engineer", location="Munich",
+                  fetch_page=workable_fetch(), fetch_board=no_fetch)
+    assert (r.posting.company, r.posting.title, r.posting.location_raw) == ("Told Co", "ML Engineer", "Munich")
+
+
+@pytest.mark.parametrize("api", [OSError("HTTP Error 404: Not Found"), "<html>not json</html>",
+                                 json.dumps({"title": "AI Engineer", "description": ""})])
+def test_workable_api_failure_falls_back_to_the_page_and_is_noted(conn, api):
+    r = check_url(conn, WORKABLE_URL, FEEDS, fetch_page=workable_fetch(api), fetch_board=no_fetch)
+    assert r.posting.company == "Control Risks" and r.posting.location_raw is None
+    assert any(n.startswith("Workable API read failed:") for n in r.notes)
+    assert "read posting from meta-description" in r.notes
+
+
+def test_workable_locations_and_remote():
+    payload = {"title": "AI Engineer", "description": "<p>Build agents.</p>", "remote": True,
+               "location": {"city": "Paris", "country": "France"},
+               "locations": [{"city": "Paris", "region": "Île-de-France", "country": "France"},
+                             {"city": "Berlin", "region": "Berlin", "country": "Germany"}, None]}
+    p = check.posting_from_workable("u", payload, company="Acme")
+    assert p.location_raw == "Paris, Île-de-France, France; Berlin, Germany; Remote"
+    assert p.description_text == "Build agents."          # no empty section headings
+    del payload["locations"]
+    payload["remote"] = False
+    assert check.posting_from_workable("u", payload).location_raw == "Paris, France"
+    del payload["location"]
+    assert check.posting_from_workable("u", payload).location_raw is None
+
+
+def test_non_workable_page_makes_one_fetch(conn):
+    calls = []
+    check_url(conn, "https://acme.com/careers/ai", FEEDS,
+              fetch_page=lambda u: calls.append(u) or page(), fetch_board=no_fetch)
+    assert calls == ["https://acme.com/careers/ai"]
+
+
 def test_greenhouse_embed_url_exact_hit_but_no_board_check(conn):
     url = "https://acme.com/careers?gh_jid=4012345"
     r = check_url(conn, url, FEEDS, fetch_page=lambda u: page(), fetch_board=no_fetch)
