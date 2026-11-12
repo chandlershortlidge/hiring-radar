@@ -13,6 +13,7 @@
   "degree_or_equivalent": false,
   "degree_signal": null,
   "attrs_reviewed": false,
+  "groups_reviewed": true,
   "source_sha256": "a6685196f0f7a7a17073a2e2a658bf9f2dad51b1f23e9254f14ace858dce3582",
   "labeled_by": [
     "claude-opus-5-5",
@@ -61,7 +62,8 @@
     {
       "skill_id": "kserve",
       "requirement": "required",
-      "raw_text": "Ray Serve, KServe"
+      "raw_text": "Ray Serve, KServe",
+      "alternative_group": 1
     },
     {
       "skill_id": "llm-orchestration",
@@ -81,7 +83,8 @@
     {
       "skill_id": "nvidia-dynamo",
       "requirement": "required",
-      "raw_text": "NVIDIA Dynamo, Ray Serve"
+      "raw_text": "NVIDIA Dynamo, Ray Serve",
+      "alternative_group": 1
     },
     {
       "skill_id": "python",
@@ -106,12 +109,14 @@
     {
       "skill_id": "ray-serve",
       "requirement": "required",
-      "raw_text": "Ray Serve"
+      "raw_text": "Ray Serve",
+      "alternative_group": 1
     },
     {
       "skill_id": "sglang",
       "requirement": "required",
-      "raw_text": "stack such as vLLM, SGLang"
+      "raw_text": "stack such as vLLM, SGLang",
+      "alternative_group": 1
     },
     {
       "skill_id": "speculative-decoding",
@@ -121,7 +126,8 @@
     {
       "skill_id": "tensorrt",
       "requirement": "required",
-      "raw_text": "stack such as vLLM, SGLang, TensorRT-LLM"
+      "raw_text": "stack such as vLLM, SGLang, TensorRT-LLM",
+      "alternative_group": 1
     },
     {
       "skill_id": "tool-calling",
@@ -131,12 +137,14 @@
     {
       "skill_id": "triton-inference-server",
       "requirement": "required",
-      "raw_text": "Triton Inference Server, NVIDIA Dynamo, Ray Serve"
+      "raw_text": "Triton Inference Server, NVIDIA Dynamo, Ray Serve",
+      "alternative_group": 1
     },
     {
       "skill_id": "vllm",
       "requirement": "required",
-      "raw_text": "inference stack such as vLLM"
+      "raw_text": "inference stack such as vLLM",
+      "alternative_group": 1
     }
   ]
 }

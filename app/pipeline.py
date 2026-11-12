@@ -280,10 +280,10 @@ def store_extraction(conn: sqlite3.Connection, job_id: int, ex: Extraction, mode
     with conn:
         conn.execute("DELETE FROM skill_mention WHERE job_id=?", (job_id,))  # one current extraction per job
         conn.executemany(
-            "INSERT INTO skill_mention (job_id, skill_id, requirement, raw_text, taxonomy_version, extractor_version)"
-            " VALUES (?,?,?,?,?,?)",
-            [(job_id, m.skill_id, m.requirement, m.raw_text, ex.taxonomy_version, ex.extractor_version)
-             for m in ex.mentions])
+            "INSERT INTO skill_mention (job_id, skill_id, requirement, raw_text, alternative_group,"
+            " taxonomy_version, extractor_version) VALUES (?,?,?,?,?,?,?)",
+            [(job_id, m.skill_id, m.requirement, m.raw_text, m.alternative_group, ex.taxonomy_version,
+              ex.extractor_version) for m in ex.mentions])
         conn.execute("DELETE FROM extraction_reject WHERE job_id=?", (job_id,))
         conn.executemany(
             "INSERT INTO extraction_reject (job_id, reason, skill_id, raw_text, item, extractor_version)"
