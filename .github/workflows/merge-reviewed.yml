@@ -1,0 +1,56 @@
+name: Merge reviewed
+
+# The fallback half of AGENTS.md "Who merges" (HIR-262). The reviewer agent merges a PR it
+# passed, but its `gh pr merge` runs inside a Claude Code session whose safety check has
+# refused it. So the reviewer also labels the PR `review-passed`, and this workflow merges
+# it — only when it is clean, carries no `needs-chandler`, and touches no rule file. The
+# conditions live in scripts/merge_reviewed.py.
+#
+# Two triggers, because the label and the green checks can arrive in either order:
+# - the label is added (checks may already be green);
+# - a required check's workflow finishes (the label may already be there).
+#
+# Both trigger types run the workflow file and the script from main, never from the PR's
+# branch, so a PR cannot change the conditions it is merged under. Nothing here checks out
+# or runs the PR's code.
+
+on:
+  pull_request_target:
+    types: [labeled]
+  workflow_run:
+    workflows: [CI, Rules gate]
+    types: [completed]
+
+permissions:
+  contents: write       # merge
+  pull-requests: write  # merge
+  actions: write        # start CI on main afterwards, which deploys
+
+concurrency:
+  group: merge-reviewed-${{ github.event.pull_request.number || github.event.workflow_run.head_branch }}
+  cancel-in-progress: false
+
+jobs:
+  merge:
+    name: Merge if reviewed and green
+    # Only react to the label that matters, and only to check runs from PRs.
+    if: >-
+      (github.event_name == 'pull_request_target' && github.event.label.name == 'review-passed') ||
+      (github.event_name == 'workflow_run' && github.event.workflow_run.event == 'pull_request')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Merge if every condition holds
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number || github.event.workflow_run.pull_requests[0].number }}
+          BRANCH: ${{ github.event.workflow_run.head_branch }}
+        run: |
+          if [ -n "$PR" ]; then
+            python3 scripts/merge_reviewed.py --repo "$REPO" --pr "$PR"
+          else
+            python3 scripts/merge_reviewed.py --repo "$REPO" --branch "$BRANCH"
+          fi

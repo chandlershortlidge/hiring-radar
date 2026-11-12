@@ -92,15 +92,50 @@ export function fails(profile, job, gate) {
 export const gates = (profile, job) => GATES.filter((g) => fails(profile, job, g));
 
 // A job's required and nice-to-have skill ids, from either shape the API returns: a list
-// row (`required_skills` / `nice_skills`) or a job detail (`skills` with `requirement`).
+// row (`required_skills` / `nice_skills` / `required_groups`) or a job detail (`skills`
+// with `requirement` and `alternative_group`). `groups` lists the required skills that are
+// alternatives to each other — "Python, Go or Java" — as arrays of two or more ids; every
+// id in them is also in `required` (HIR-251).
 export function skillSides(job) {
   if (job.skills) {
+    const required = job.skills.filter((s) => s.requirement === "required");
+    const byGroup = new Map();
+    for (const s of required) {
+      if (s.alternative_group == null) continue;
+      if (!byGroup.has(s.alternative_group)) byGroup.set(s.alternative_group, []);
+      byGroup.get(s.alternative_group).push(s.skill_id);
+    }
     return {
-      required: job.skills.filter((s) => s.requirement === "required").map((s) => s.skill_id),
+      required: required.map((s) => s.skill_id),
       nice: job.skills.filter((s) => s.requirement !== "required").map((s) => s.skill_id),
+      groups: [...byGroup.entries()].sort((a, b) => a[0] - b[0]).map(([, ids]) => ids).filter((ids) => ids.length > 1),
     };
   }
-  return { required: job.required_skills || [], nice: job.nice_skills || [] };
+  return { required: job.required_skills || [], nice: job.nice_skills || [], groups: job.required_groups || [] };
+}
+
+// What the match counts as one requirement each: a skill asked for on its own (an id), or a
+// group of alternatives (an array of ids), met by any one member. A posting asking for
+// "Python, Rust, Go or Java" and Docker has two requirements, not five (DECISIONS 2026-11-11).
+export function requirementUnits(job) {
+  const { required, groups } = skillSides(job);
+  const grouped = new Set(groups.flat());
+  return [...required.filter((id) => !grouped.has(id)), ...groups];
+}
+
+const unitMet = (unit, have) => (Array.isArray(unit) ? unit.some((id) => have.has(id)) : have.has(unit));
+// A group is as asked-for as its most asked-for member; ties break on its first id.
+const unitDemand = (unit, demand) => (Array.isArray(unit) ? Math.max(...unit.map((id) => demand[id] || 0)) : demand[unit] || 0);
+const unitKey = (unit) => (Array.isArray(unit) ? unit[0] : unit);
+
+// The required skill ids that need no learning: the ones the profile has, plus every member
+// of a group the profile meets through another member. The detail view marks the rest missing.
+export function metSkills(profile, job) {
+  const have = new Set(profile?.skills || []);
+  const { required, groups } = skillSides(job);
+  const met = new Set(required.filter((id) => have.has(id)));
+  for (const g of groups) if (unitMet(g, have)) g.forEach((id) => met.add(id));
+  return met;
 }
 
 // z for a 95% one-sided-ish normal interval. The number only has to be the same everywhere
@@ -147,7 +182,8 @@ export function wilsonLower(covered, total, z = Z) {
 // where `total` is the job's required-skill count, `covered` how many of them the profile
 // has, `score` their ratio (null when the job has no required skills at all — a fragment
 // or a legacy import — because 0/0 is "unknown", not "no fit"), `missing` the required
-// skill ids the profile lacks, most-asked-for first, and `gated_by` the first hard ask the
+// skill ids the profile lacks, most-asked-for first — a group of alternatives counts as one
+// requirement and appears in `missing` as an array of its ids (HIR-251) — and `gated_by` the first hard ask the
 // profile fails, or null. A gate does not change the score: it says the score is moot.
 //
 // `rank_score` is what *orders* jobs: the Wilson lower bound of covered over
@@ -166,10 +202,15 @@ export function wilsonLower(covered, total, z = Z) {
 // it the ids keep the order they arrived in, so the result stays deterministic either way.
 export function fit(profile, job, demand = null) {
   if (!profile) return null;
-  const { required } = skillSides(job);
+  const required = requirementUnits(job);
   const have = new Set(profile.skills);
-  const missing = required.filter((id) => !have.has(id));
-  if (demand) missing.sort((a, b) => (demand[b] || 0) - (demand[a] || 0) || (a < b ? -1 : a > b ? 1 : 0));
+  const missing = required.filter((unit) => !unitMet(unit, have));
+  if (demand) {
+    missing.sort((a, b) => {
+      const ka = unitKey(a), kb = unitKey(b);
+      return unitDemand(b, demand) - unitDemand(a, demand) || (ka < kb ? -1 : ka > kb ? 1 : 0);
+    });
+  }
   const covered = required.length - missing.length;
   return {
     score: required.length ? covered / required.length : null,

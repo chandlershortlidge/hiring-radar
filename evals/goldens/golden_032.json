@@ -13,6 +13,7 @@
   "degree_or_equivalent": false,
   "degree_signal": null,
   "attrs_reviewed": false,
+  "groups_reviewed": true,
   "source_sha256": "bcc6bb20989961fd6e7516ef218934c4ca66e05e5343d7f0fe5709bfd69c2cfa",
   "labeled_by": [
     "claude-opus-5-5",
@@ -55,7 +56,8 @@
     {
       "skill_id": "autogen",
       "requirement": "required",
-      "raw_text": "AutoGen"
+      "raw_text": "AutoGen",
+      "alternative_group": 1
     },
     {
       "skill_id": "aws",
@@ -65,7 +67,8 @@
     {
       "skill_id": "aws-bedrock",
       "requirement": "required",
-      "raw_text": "Bedrock"
+      "raw_text": "Bedrock",
+      "alternative_group": 1
     },
     {
       "skill_id": "aws-s3",
@@ -90,7 +93,8 @@
     {
       "skill_id": "crewai",
       "requirement": "required",
-      "raw_text": "CrewAI"
+      "raw_text": "CrewAI",
+      "alternative_group": 1
     },
     {
       "skill_id": "evaluation",
@@ -105,7 +109,8 @@
     {
       "skill_id": "java",
       "requirement": "required",
-      "raw_text": "Java"
+      "raw_text": "Java",
+      "alternative_group": 2
     },
     {
       "skill_id": "kubernetes",
@@ -115,12 +120,14 @@
     {
       "skill_id": "langchain",
       "requirement": "required",
-      "raw_text": "LangChain"
+      "raw_text": "LangChain",
+      "alternative_group": 1
     },
     {
       "skill_id": "langgraph",
       "requirement": "required",
-      "raw_text": "LangGraph"
+      "raw_text": "LangGraph",
+      "alternative_group": 1
     },
     {
       "skill_id": "llm-guardrails",
@@ -150,7 +157,8 @@
     {
       "skill_id": "python",
       "requirement": "required",
-      "raw_text": "Python"
+      "raw_text": "Python",
+      "alternative_group": 2
     },
     {
       "skill_id": "rag",
@@ -185,7 +193,8 @@
     {
       "skill_id": "vertex-ai",
       "requirement": "required",
-      "raw_text": "Google Vertex AI"
+      "raw_text": "Google Vertex AI",
+      "alternative_group": 1
     }
   ],
   "spot_checked_by_human": [
