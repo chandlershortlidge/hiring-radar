@@ -10,7 +10,10 @@ Does:
     against stored jobs (the page may have been stored via another source, e.g. arbeitnow);
   - for a page that is not a known ATS, read the posting out of JSON-LD `JobPosting` when
     the page has it, otherwise the stripped page text; a Personio tenant serving no
-    JSON-LD still gives up its company and city, out of the payload it embeds;
+    JSON-LD still gives up its company and city, out of the payload it embeds; a page
+    with neither gives a location when its text has a "Location:" / "Standort:" line;
+  - read a Workable job link (apply.workable.com) through Workable's public job API,
+    because its page is built in the browser and holds no posting text (HIR-268);
   - diagnose a miss: board not in config/feeds.json; board polled but the title or city
     filter would have dropped it; board polled and it would have passed (a feed bug, or
     posted since the last poll); not a feed-reachable page at all.
@@ -77,12 +80,30 @@ _EMBED_TOKEN_RE = re.compile(r"greenhouse\.io/embed/job_board(?:/js)?\?(?:[^\"'\
 # job URL is read as a page, not resolved to a board — see `_personio_fields`.
 _PERSONIO_HOST_RE = re.compile(r"(?:^|\.)jobs\.personio\.(?:com|de)$", re.I)
 
+# Workable job links: https://apply.workable.com/<account>/j/<shortcode>/ (optional /apply).
+# Not an ATS pattern either: there is no Workable source, the posting is stored as a page
+# (source=url) — but read through Workable's public job API, see `posting_from_workable`.
+_WORKABLE_HOST = "apply.workable.com"
+_WORKABLE_PATH_RE = re.compile(r"^/(?P<account>[^/]+)/j/(?P<code>[0-9A-Za-z]+)")
+
 # Platform names that can sit in a page's site name, title tail or hostname without naming
 # the employer: the job boards and ATS vendors this project meets. A page declaring one of
 # these declares where it is hosted, not who is hiring (HIR-198).
 _GENERIC_SITE_NAMES = frozenset({
     "linkedin", "indeed", "stepstone", "glassdoor", "xing", "personio", "workday",
     "myworkdayjobs", "greenhouse", "lever", "ashby", "ashbyhq", "join",
+    # Every source this project polls (app/sources/registry.py), by its site name and by
+    # the hostname label its posting links carry. A feed job stored blank whose page has
+    # gone must stay blank, not become a job at "Arbeitsagentur" (HIR-211).
+    # tests/test_check.py fails when a polled source has no address covered here.
+    "arbeitsagentur", "bundesagentur für arbeit", "arbeitnow",
+    "startup", "startup jobs", "startup.jobs",
+    "jsearch", "rapidapi", "openwebninja",
+    # JSearch is a search over other job sites and links to whichever one carried the
+    # posting. These are the ones its stored links have named so far that are job sites,
+    # not employers.
+    "learn4good", "trabajo", "jobleads", "jooble", "speedyapply", "freelance", "devjobs",
+    "absolventa", "efinancialcareers", "nortjobs",
 })
 # Title tails that name a careers section rather than a company ("AI Engineer | Careers").
 _GENERIC_TITLE_TAILS = frozenset({"jobs", "job", "careers", "career", "karriere", "join us", "jobs & careers"})
@@ -91,6 +112,30 @@ _GENERIC_TITLE_TAILS = frozenset({"jobs", "job", "careers", "career", "karriere"
 _TITLE_TAIL_RE = re.compile(r"\s*\|\s*|\s+[–—-]\s+|\s+at\s+")
 # acme.co.uk → acme: hostname labels that are a public-suffix part, not the company.
 _SECOND_LEVEL_TLDS = frozenset({"co", "com", "org", "net", "ac", "gov"})
+# SAP SuccessFactors career sites (jobs.bayer.com) title every posting page
+# "<job title> Stellendetails | <company>" ("Job Details" in English): page furniture that
+# is not part of the job title (HIR-268). Matched at the end, or just before the "|".
+_JOB_DETAILS_SUFFIX_RE = re.compile(r"\s+(?:Stellendetails|Job Details)(?=\s*(?:\||$))", re.I)
+# A posting with no structured data that still states its place on a line of its own:
+# "Location: Deutschland : Berlin : Berlin" (jobs.bayer.com), "Standort: Berlin".
+_LOCATION_LINE_RE = re.compile(
+    r"^[ \t]*(?:Location|Standort|Arbeitsort|Einsatzort)[ \t]*:[ \t]*(?P<v>\S[^\n]*)$", re.I | re.M)
+# Zero-width and non-breaking characters a rich-text editor leaves around such a line.
+_INVISIBLE_RE = re.compile("[" + "".join(map(chr, (0x200B, 0x200C, 0x200D, 0x2060, 0xFEFF, 0xA0))) + "]")
+_MAX_LOCATION_LINE = 80   # characters; a longer "Location: …" line is a sentence, not a place
+
+
+def location_from_text(text: str) -> str | None:
+    """The value of the first "Location:" / "Standort:" line in a page's text, or None.
+
+    Only a short line counts, so a sentence that happens to start with the label is not
+    stored as a place. What the line says is returned as written; whether it names a
+    tracked city is `app.geo`'s call, as for every other location."""
+    for m in _LOCATION_LINE_RE.finditer(_INVISIBLE_RE.sub(" ", text)):
+        value = " ".join(m["v"].split())
+        if value and len(value) <= _MAX_LOCATION_LINE:
+            return value
+    return None
 
 
 def split_title_tail(title: str) -> tuple[str, str | None]:
@@ -221,15 +266,25 @@ def _job_postings(obj) -> list[dict]:
     return _job_postings(obj.get("@graph", []))
 
 
-def _place_of(loc) -> str | None:
-    if not isinstance(loc, dict):
-        return None
-    addr = loc.get("address")
+def _address_text(addr) -> str | None:
     if isinstance(addr, str):
         return addr.strip() or None
     if isinstance(addr, dict):
         parts = [addr.get("addressLocality"), addr.get("addressRegion"), addr.get("addressCountry")]
         return ", ".join(p.strip() for p in parts if isinstance(p, str) and p.strip()) or None
+    return None
+
+
+def _place_of(loc) -> str | None:
+    """One jobLocation → its address as text. schema.org allows a Place several addresses,
+    and get-in-it.de writes even a single one as a list (HIR-268); each is kept."""
+    if not isinstance(loc, dict):
+        return None
+    addr = loc.get("address")
+    if isinstance(addr, list):
+        return "; ".join(t for t in map(_address_text, addr) if t) or None
+    if isinstance(addr, (str, dict)):
+        return _address_text(addr)
     return loc.get("name")
 
 
@@ -299,10 +354,14 @@ def posting_from_html(url: str, markup: str, company: str | None = None,
     almost no body text; when its meta description is longer, that is the description.
     Explicit flags override JSON-LD fields.
 
-    A Personio tenant that serves no JSON-LD is the one page-text case where company and
-    location can still be read off the page, out of the payload Personio embeds
-    (`_personio_fields`); `--company`/`--location` override that too. `how` keeps naming
-    where the *description* came from, which on those pages is still the page text.
+    A Personio tenant that serves no JSON-LD can still give its company and location, out
+    of the payload Personio embeds (`_personio_fields`); `--company`/`--location` override
+    that too. `how` keeps naming where the *description* came from, which on those pages
+    is still the page text.
+
+    Any other page without JSON-LD gives a location only when its text states one on a
+    labelled line (`location_from_text`), and its title loses a "Stellendetails" /
+    "Job Details" suffix (HIR-268, jobs.bayer.com).
     """
     p = _PageParser()
     p.feed(markup)
@@ -325,13 +384,18 @@ def posting_from_html(url: str, markup: str, company: str | None = None,
                 description_text=text or html_to_text(markup),
                 posted_at=jp.get("datePosted"),
             ), "json-ld"
-    text, how = html_to_text(markup), "page-text"
+    body_text = html_to_text(markup)
+    text, how = body_text, "page-text"
     if len(p.meta_description) > len(text):
         text, how = p.meta_description, "meta-description"
     page_company = page_location = None
     if _PERSONIO_HOST_RE.search(urllib.parse.urlparse(url).hostname or ""):
         page_company, page_location = _personio_fields(markup)
-    page_title = p.title.strip()
+    if not (location or page_location):
+        page_location = location_from_text(body_text)
+        if page_location and notes is not None:
+            notes.append(f"location read from the page's location line: {page_location!r}")
+    page_title = _JOB_DETAILS_SUFFIX_RE.sub("", p.title.strip())
     if not (company or page_company):
         page_company, rule = company_from_page(url, p)
         if page_company:
@@ -344,6 +408,57 @@ def posting_from_html(url: str, markup: str, company: str | None = None,
         title=title or page_title, location_raw=location or page_location,
         description_text=text,
     ), how
+
+
+def workable_api_url(url: str) -> str | None:
+    """A Workable job link (`apply.workable.com/<account>/j/<shortcode>`) → the public API
+    address that returns that posting as JSON. Anything else → None."""
+    u = urllib.parse.urlsplit(url.strip())
+    if (u.hostname or "").lower() != _WORKABLE_HOST:
+        return None
+    m = _WORKABLE_PATH_RE.match(u.path)
+    return f"https://{_WORKABLE_HOST}/api/v2/accounts/{m['account']}/jobs/{m['code']}" if m else None
+
+
+def _workable_place(loc) -> str | None:
+    """{"city": "Berlin", "region": "Berlin", "country": "Germany"} → "Berlin, Germany"."""
+    if not isinstance(loc, dict):
+        return None
+    parts = [p.strip() for p in (loc.get("city"), loc.get("region"), loc.get("country"))
+             if isinstance(p, str) and p.strip()]
+    return ", ".join(dict.fromkeys(parts)) or None
+
+
+def posting_from_workable(url: str, payload: dict, company: str | None = None,
+                          title: str | None = None, location: str | None = None) -> Posting:
+    """Build a Posting from Workable's public job API (HIR-268). Pure.
+
+    Workable builds its job page in the browser, so the fetched page holds only a
+    truncated meta description. The API holds the whole posting: the title, every
+    location ("; "-joined, plus "Remote" for a remote posting), and the text in the three
+    sections the page shows under these same headings. It does not name the company, so
+    that is passed in — the caller reads it off the page. `title`/`location` override.
+
+    Raises ValueError when the payload has no title or no text, so the caller can fall
+    back to the page.
+    """
+    sections = [payload.get("description") or ""]
+    sections += [f"<h3>{heading}</h3>{payload[key]}"
+                 for heading, key in (("Requirements", "requirements"), ("Benefits", "benefits"))
+                 if payload.get(key)]
+    text = html_to_text("".join(sections))
+    api_title = (payload.get("title") or "").strip()
+    if not text or not (title or api_title):
+        raise ValueError("Workable API returned no title or no text")
+    places = [_workable_place(loc) for loc in payload.get("locations") or [payload.get("location")]]
+    places.append("Remote" if payload.get("remote") is True else None)
+    return Posting(
+        source="url", source_job_id="", url=url, company=company,
+        title=title or api_title,
+        location_raw=location or "; ".join(dict.fromkeys(p for p in places if p)) or None,
+        description_text=text,
+        posted_at=payload.get("published"),
+    )
 
 
 def containment(stored: str, page: str) -> float:
@@ -487,6 +602,16 @@ def check_url(conn: sqlite3.Connection, url: str, feeds: list[dict], company: st
     if posting is None:
         posting, how = posting_from_html(url, markup if markup is not None else fetch_page(url),
                                          company, title, location, notes=result.notes)
+        # A Workable page is built in the browser, so the page gave the company (its title
+        # tail) and little else; the title, location and text come from Workable's API.
+        api_url = workable_api_url(url)
+        if api_url:
+            try:
+                posting = posting_from_workable(url, json.loads(fetch_page(api_url)),
+                                                posting.company, title, location)
+                how = "the Workable API"
+            except Exception as e:  # API unreachable or empty → keep what the page gave
+                result.notes.append(f"Workable API read failed: {type(e).__name__}: {str(e)[:120]}")
         result.notes.append(f"read posting from {how}")
     else:
         # Lever and Ashby boards don't name the company; the board token is its slug

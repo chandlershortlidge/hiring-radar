@@ -113,6 +113,21 @@ def test_unresolved_rows_are_listed_and_left_alone(conn):
     assert conn.execute("SELECT company FROM job WHERE id=?", (a,)).fetchone()["company"] is None
 
 
+def test_a_gone_job_board_posting_stays_blank_not_named_after_the_board(conn):
+    """Job 95 (HIR-211): an employment-agency posting stored with no company whose page
+    now answers 410. The board's name is not the employer, so the row is left blank."""
+    def gone(url):
+        raise OSError("HTTP Error 410: Gone")
+    a = add_blank_job(conn, "https://www.arbeitsagentur.de/jobsuche/jobdetail/10001-1003490922-S",
+                      "2026-11-04T10:00:00Z", title="Senior AI Engineer (w/m/d)")
+    conn.execute("UPDATE job_source SET source='arbeitsagentur' WHERE job_id=?", (a,))
+    lines = repair_companies(conn, fetch_page=gone)
+    conn.commit()
+    assert lines[0].company is None
+    assert "unresolved" in lines[0].line() and "410" in lines[0].line()
+    assert conn.execute("SELECT company FROM job WHERE id=?", (a,)).fetchone()["company"] is None
+
+
 def test_jobs_with_a_company_are_not_touched(conn):
     add_blank_job(conn, "https://jamino.de/jobs/1", "2026-11-04T10:00:00Z", company="Already Set")
     assert repair_companies(conn, fetch_page=lambda u: PAGE) == []
