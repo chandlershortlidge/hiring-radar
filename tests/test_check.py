@@ -112,6 +112,13 @@ def test_json_ld_job_posting_wins_over_page_text():
     assert p.description_text == JD          # not the nav/footer
     assert "Imprint" not in p.description_text
 
+def test_company_name_missing_from_page():
+    ld = {"@context": "https://schema.org", "@type": "JobPosting", "title": "AI Engineer",
+          "hiringOrganization": {"@type": "Organization", "name": " "},
+          "description": "<p>" + JD + "</p>"}
+    p, how = posting_from_html("https://acme.com/j/1", page(ld=ld))
+    assert p.company is None
+
 
 def test_json_ld_multi_office_keeps_every_location():
     # Phenom (careers.bcg.com) lists offices in jobLocation order; Berlin is not first.
