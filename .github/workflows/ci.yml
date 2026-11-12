@@ -44,6 +44,41 @@ jobs:
       - run: npm ci
       - run: npm run build
 
+  # The CI half of AGENTS.md "The eval gate" (HIR-134). A PR that changes the extractor or
+  # the skill list must add a dev eval result, unless the committed baseline already
+  # measured this exact extractor. No key and no model call: it reads the PR's file list
+  # and, only when that would decide it, runs eval_table.py's own version check. The
+  # reviewer agent checks the same rule, but a PR opened by hand never meets the reviewer.
+  #
+  # Like "Rules gate", a red result only stops a merge once "Eval gate" is on the
+  # repository's required-checks list, and that list is Chandler's to change.
+  eval-gate:
+    name: Eval gate
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+    steps:
+      - uses: actions/checkout@v4
+      # The API's file list, as in rules-gate.yml: no fetch depth, no base-ref guessing.
+      # A rename is listed under both names, so moving a gated file away still counts.
+      - name: Collect the PR's changed files
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          gh api "repos/$REPO/pulls/$PR/files" --paginate --jq \
+            '.[] | "\(.status)\t\(.filename)", (select(.previous_filename) | "renamed-from\t\(.previous_filename)")' \
+            > changes.txt
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.13"
+      - run: uv sync --frozen
+      - name: Did this PR bring a dev eval result?
+        run: uv run python scripts/eval_gate.py --changes-file changes.txt
+
   # Deploy, then the robot visitor on the live site; a failure rolls back and files a
   # ticket (HIR-258). The deploy steps themselves are in deploy.yml, unchanged.
   #
