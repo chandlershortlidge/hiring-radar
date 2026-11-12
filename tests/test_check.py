@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 import pytest
 
@@ -35,6 +36,14 @@ def page(text=JD, title="AI Engineer - Acme", ld=None):
     return (f"<html><head><title>{title}</title>{ld_tag}</head><body><nav>Home Jobs About</nav>"
             f"<main><h1>{title}</h1><p>{text}</p></main><footer>© Acme 2026 · Imprint · Privacy</footer>"
             f"</body></html>")
+
+
+PAGES = Path(__file__).parent / "fixtures" / "pages"
+
+
+def saved_page(name):
+    """A saved copy of a real page (tests/fixtures/pages), as the checker would fetch it."""
+    return (PAGES / name).read_text(encoding="utf-8")
 
 
 def no_fetch(*a, **k):
@@ -115,6 +124,28 @@ def test_json_ld_multi_office_keeps_every_location():
     assert city_of(p.location_raw) == "Berlin"
 
 
+def test_json_ld_address_given_as_a_list_is_read():
+    # get-in-it.de writes a Place's address as a list, even when there is only one.
+    place = {"@type": "Place", "address": [
+        {"@type": "PostalAddress", "addressLocality": "Berlin", "addressCountry": "DE"},
+        {"@type": "PostalAddress", "addressLocality": "Hamburg", "addressCountry": "DE"}, "", None]}
+    ld = {"@type": "JobPosting", "title": "Data Scientist", "description": JD, "jobLocation": place}
+    p, _ = posting_from_html("u", page(ld=ld))
+    assert p.location_raw == "Berlin, DE; Hamburg, DE"
+    ld["jobLocation"] = {"@type": "Place", "address": []}
+    assert posting_from_html("u", page(ld=ld))[0].location_raw is None
+
+
+def test_get_in_it_page_gives_a_berlin_location():
+    """HIR-268: the saved page of the posting that was read as having no location."""
+    url = "https://www.get-in-it.de/jobsuche/p314335-07f00735/07f00735"
+    p, how = posting_from_html(url, saved_page("get_in_it.html"))
+    assert how == "json-ld"
+    assert (p.company, p.title) == ("smartclip", "Data Scientist (w/m/d) – Applied AI")
+    assert p.location_raw == "Berlin, Berlin, DE"
+    assert geo.active_place(p.location_raw, p.title, p.description_text) == "Berlin"
+
+
 def test_json_ld_in_graph_and_flag_overrides():
     ld = {"@graph": [{"@type": "WebSite"}, {"@type": ["JobPosting"], "title": "Engineer", "description": JD}]}
     p, how = posting_from_html("u", page(ld=ld), company="Override Co", title="ML Engineer")
@@ -140,6 +171,75 @@ def test_script_rendered_page_falls_back_to_meta_description():
 def test_page_text_wins_over_a_shorter_meta_description():
     p, how = posting_from_html("u", page().replace("<head>", '<head><meta name="description" content="Jobs at Acme">'))
     assert how == "page-text"
+
+
+# --- location and title read off a page with no structured data (HIR-268) -------------------
+
+def test_bayer_page_gives_a_berlin_location_and_a_clean_title():
+    """The saved page of the posting that was read with no location and a title ending in
+    "Stellendetails". The page has no JSON-LD; its posting text has a "Location:" line."""
+    url = "https://jobs.bayer.com/job/Berlin-Agentic-AI-Internship-%28All-Genders%29-Berl/1447659333/"
+    notes = []
+    p, how = posting_from_html(url, saved_page("bayer.html"), notes=notes)
+    assert how == "page-text"
+    assert (p.company, p.title) == ("Bayer AG", "Agentic AI Internship (All Genders)")
+    assert p.location_raw == "Deutschland : Berlin : Berlin"
+    assert geo.active_place(p.location_raw, p.title, p.description_text) == "Berlin"
+    assert "location read from the page's location line: 'Deutschland : Berlin : Berlin'" in notes
+
+
+@pytest.mark.parametrize("line,expected", [
+    ("Location: Berlin", "Berlin"),
+    ("Standort:   Berlin,  Deutschland", "Berlin, Deutschland"),
+    ("  einsatzort : München", "München"),
+    # zero-width and non-breaking spaces around the value, as on jobs.bayer.com
+    (f"Location:{chr(0x200B)} {chr(0xA0)} Deutschland : Berlin : Berlin{chr(0x200B)}",
+     "Deutschland : Berlin : Berlin"),
+])
+def test_location_line_is_read_from_page_text(line, expected):
+    assert check.location_from_text(f"AI Engineer\n{line}\nRequirements\n- Python") == expected
+
+
+@pytest.mark.parametrize("text", [
+    "We build agents in Berlin.",                         # a place, but not on a labelled line
+    "Our location: Berlin",                               # the label must start the line
+    "Location:\nBerlin",                                  # nothing on the line itself
+    "Location: " + "we are a remote-first company with offices in many places " * 2,   # a sentence
+])
+def test_text_without_a_short_location_line_gives_no_location(text):
+    assert check.location_from_text(text) is None
+
+
+def test_first_usable_location_line_wins():
+    text = "Location: " + "x" * 100 + "\nStandort: Berlin\nLocation: Munich"
+    assert check.location_from_text(text) == "Berlin"
+
+
+def test_location_flag_and_json_ld_are_not_overridden_by_a_location_line():
+    markup = page().replace("<main>", "<main><p>Location: Munich</p>")
+    assert posting_from_html("u", markup)[0].location_raw == "Munich"
+    assert posting_from_html("u", markup, location="Berlin")[0].location_raw == "Berlin"
+    ld = {"@type": "JobPosting", "title": "AI Engineer", "description": JD,
+          "jobLocation": {"@type": "Place", "address": {"addressLocality": "Berlin"}}}
+    assert posting_from_html("u", page(ld=ld).replace("<main>", "<main><p>Location: Munich</p>")
+                             )[0].location_raw == "Berlin"
+
+
+@pytest.mark.parametrize("title,expected", [
+    ("AI Engineer Stellendetails | NewCo", "AI Engineer"),
+    ("AI Engineer Job Details | NewCo", "AI Engineer"),
+    ("AI Engineer Stellendetails", "AI Engineer"),
+    ("Job Details Analyst | NewCo", "Job Details Analyst"),       # only a suffix is page furniture
+])
+def test_job_details_suffix_is_not_part_of_the_title(title, expected):
+    assert posting_from_html("u", page(title=title), company="NewCo" if "|" not in title else None
+                             )[0].title == expected
+
+
+def test_job_details_suffix_goes_even_when_the_tail_stays_in_the_title():
+    # --company given, so the title's tail is not used and stays; the suffix still goes.
+    p, _ = posting_from_html("u", page(title="AI Engineer Stellendetails | NewCo"), company="Told Co")
+    assert p.title == "AI Engineer | NewCo"
 
 
 # --- company read off the page (HIR-198) ---------------------------------------------------
@@ -368,6 +468,96 @@ def test_page_yielding_no_company_cannot_text_match_and_says_so(conn):
     assert r.verdict == "not_found"
     assert r.diagnosis.startswith("not a hosted ATS page")
     assert any("pass --company" in n for n in r.notes)
+
+
+# --- Workable links are read through Workable's API (HIR-268) -------------------------------
+
+WORKABLE_URL = "https://apply.workable.com/control-risks-6/j/7E5B35DAF9/"
+WORKABLE_API = "https://apply.workable.com/api/v2/accounts/control-risks-6/jobs/7E5B35DAF9"
+
+
+def workable_fetch(api=None):
+    """A fetcher serving the saved Workable page and API answer; `api` replaces the answer
+    (a string to serve, or an exception to raise)."""
+    def fetch(url):
+        if url == WORKABLE_URL:
+            return saved_page("workable_page.html")
+        assert url == WORKABLE_API, url
+        if isinstance(api, Exception):
+            raise api
+        return saved_page("workable_api.json") if api is None else api
+    return fetch
+
+
+@pytest.mark.parametrize("url,expected", [
+    (WORKABLE_URL, WORKABLE_API),
+    ("https://apply.workable.com/control-risks-6/j/7E5B35DAF9", WORKABLE_API),
+    ("https://APPLY.workable.com/control-risks-6/j/7E5B35DAF9/apply/?utm_source=linkedin", WORKABLE_API),
+    ("https://apply.workable.com/control-risks-6/", None),          # the company's job list
+    ("https://www.workable.com/j/7E5B35DAF9", None),
+    ("https://acme.com/control-risks-6/j/7E5B35DAF9", None),
+])
+def test_workable_api_url(url, expected):
+    assert check.workable_api_url(url) == expected
+
+
+def test_workable_link_is_read_through_the_api(conn):
+    """The saved page and API answer of the Control Risks posting (job 742). The page alone
+    gave a 255-character description and no location."""
+    page_only, _ = posting_from_html(WORKABLE_URL, saved_page("workable_page.html"))
+    assert page_only.location_raw is None and len(page_only.description_text) < 300
+
+    r = check_url(conn, WORKABLE_URL, FEEDS, fetch_page=workable_fetch(), fetch_board=no_fetch)
+    p = r.posting
+    assert (p.source, p.company, p.title) == ("url", "Control Risks", "AI Engineer")
+    assert p.location_raw == "Berlin, Germany"
+    assert geo.active_place(p.location_raw, p.title, p.description_text) == "Berlin"
+    assert p.posted_at == "2026-11-10T00:00:00.000Z"
+    assert len(p.description_text) > 5000
+    assert p.description_text.startswith("As AI Engineer you will own the AI and data layer")
+    for heading in ("\nRequirements\n", "\nBenefits\n", "Knowledge graph architecture and implementation"):
+        assert heading in p.description_text
+    assert "<" not in p.description_text
+    assert "read posting from the Workable API" in r.notes
+    assert r.verdict == "not_found" and r.diagnosis.startswith("not a hosted ATS page")
+    assert "dropped" not in r.diagnosis          # the location no longer fails the city filter
+
+
+def test_workable_flags_override_the_api(conn):
+    r = check_url(conn, WORKABLE_URL, FEEDS, company="Told Co", title="ML Engineer", location="Munich",
+                  fetch_page=workable_fetch(), fetch_board=no_fetch)
+    assert (r.posting.company, r.posting.title, r.posting.location_raw) == ("Told Co", "ML Engineer", "Munich")
+
+
+@pytest.mark.parametrize("api", [OSError("HTTP Error 404: Not Found"), "<html>not json</html>",
+                                 json.dumps({"title": "AI Engineer", "description": ""})])
+def test_workable_api_failure_falls_back_to_the_page_and_is_noted(conn, api):
+    r = check_url(conn, WORKABLE_URL, FEEDS, fetch_page=workable_fetch(api), fetch_board=no_fetch)
+    assert r.posting.company == "Control Risks" and r.posting.location_raw is None
+    assert any(n.startswith("Workable API read failed:") for n in r.notes)
+    assert "read posting from meta-description" in r.notes
+
+
+def test_workable_locations_and_remote():
+    payload = {"title": "AI Engineer", "description": "<p>Build agents.</p>", "remote": True,
+               "location": {"city": "Paris", "country": "France"},
+               "locations": [{"city": "Paris", "region": "Île-de-France", "country": "France"},
+                             {"city": "Berlin", "region": "Berlin", "country": "Germany"}, None]}
+    p = check.posting_from_workable("u", payload, company="Acme")
+    assert p.location_raw == "Paris, Île-de-France, France; Berlin, Germany; Remote"
+    assert p.description_text == "Build agents."          # no empty section headings
+    del payload["locations"]
+    payload["remote"] = False
+    assert check.posting_from_workable("u", payload).location_raw == "Paris, France"
+    del payload["location"]
+    assert check.posting_from_workable("u", payload).location_raw is None
+
+
+def test_non_workable_page_makes_one_fetch(conn):
+    calls = []
+    check_url(conn, "https://acme.com/careers/ai", FEEDS,
+              fetch_page=lambda u: calls.append(u) or page(), fetch_board=no_fetch)
+    assert calls == ["https://acme.com/careers/ai"]
 
 
 def test_greenhouse_embed_url_exact_hit_but_no_board_check(conn):

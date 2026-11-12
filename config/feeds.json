@@ -78,6 +78,8 @@
     {"type": "ashby", "enabled": true, "token": "ramp", "company": "ramp"},
     {"type": "greenhouse", "enabled": true, "token": "agilerobotsse", "company": "agilerobotsse"},
     {"type": "greenhouse", "enabled": true, "token": "celonis", "company": "celonis"},
-    {"type": "join", "enabled": true, "token": "alexanderthamm", "company": "alexanderthamm"}
+    {"type": "join", "enabled": true, "token": "alexanderthamm", "company": "alexanderthamm"},
+    {"type": "ashby", "enabled": true, "token": "qonto", "company": "Qonto"},
+    {"type": "join", "enabled": true, "token": "get-incacom", "company": "inca"}
   ]
 }
