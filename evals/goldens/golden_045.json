@@ -13,6 +13,7 @@
   "degree_or_equivalent": false,
   "degree_signal": null,
   "attrs_reviewed": false,
+  "groups_reviewed": true,
   "source_sha256": "285df4cfcea3065100b41dbc42c9c4da46279246070bb9838627006ae92bf7a4",
   "labeled_by": [
     "claude-opus-5-5",
@@ -36,7 +37,8 @@
     {
       "skill_id": "agent-state-management",
       "requirement": "nice_to_have",
-      "raw_text": "memory systems"
+      "raw_text": "memory systems",
+      "alternative_group": 3
     },
     {
       "skill_id": "agents",
@@ -61,7 +63,8 @@
     {
       "skill_id": "claude-code",
       "requirement": "required",
-      "raw_text": "Claude Code"
+      "raw_text": "Claude Code",
+      "alternative_group": 2
     },
     {
       "skill_id": "cloud",
@@ -71,12 +74,14 @@
     {
       "skill_id": "cursor",
       "requirement": "required",
-      "raw_text": "Cursor"
+      "raw_text": "Cursor",
+      "alternative_group": 2
     },
     {
       "skill_id": "embeddings",
       "requirement": "nice_to_have",
-      "raw_text": "embeddings"
+      "raw_text": "embeddings",
+      "alternative_group": 1
     },
     {
       "skill_id": "evaluation",
@@ -96,12 +101,14 @@
     {
       "skill_id": "llm-orchestration",
       "requirement": "nice_to_have",
-      "raw_text": "orchestration frameworks"
+      "raw_text": "orchestration frameworks",
+      "alternative_group": 3
     },
     {
       "skill_id": "llms",
       "requirement": "nice_to_have",
-      "raw_text": "LLMs"
+      "raw_text": "LLMs",
+      "alternative_group": 1
     },
     {
       "skill_id": "model-selection",
@@ -121,12 +128,14 @@
     {
       "skill_id": "pytorch",
       "requirement": "nice_to_have",
-      "raw_text": "PyTorch"
+      "raw_text": "PyTorch",
+      "alternative_group": 1
     },
     {
       "skill_id": "rag",
       "requirement": "nice_to_have",
-      "raw_text": "RAG pipelines"
+      "raw_text": "RAG pipelines",
+      "alternative_group": 1
     },
     {
       "skill_id": "software-architecture",
@@ -136,12 +145,14 @@
     {
       "skill_id": "tensorflow",
       "requirement": "nice_to_have",
-      "raw_text": "TensorFlow"
+      "raw_text": "TensorFlow",
+      "alternative_group": 1
     },
     {
       "skill_id": "vector-databases",
       "requirement": "nice_to_have",
-      "raw_text": "vector databases"
+      "raw_text": "vector databases",
+      "alternative_group": 3
     }
   ],
   "spot_checked_by_human": [

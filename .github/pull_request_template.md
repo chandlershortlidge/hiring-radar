@@ -12,8 +12,16 @@ to say "fine" or "no". Mechanical choices don't belong here. "None" is a valid a
 
 ## Needs Chandler
 
-<!-- Only things that block the merge: questions you stopped on, one line each, with the
-options. Also posted on the Linear issue with an @mention. "None" if nothing blocks. -->
+<!-- Only items on Chandler's list (AGENTS.md "What Chandler is asked") that block the
+merge: questions you stopped on, one line each, with the options. Also posted on the
+Linear issue with an @mention. Anything else goes to the decider, not here. "None" if
+nothing blocks. -->
+
+## Escalations
+
+<!-- Every question handed to the decider or the senior agent (AGENTS.md "Escalate to a
+stronger agent before a person"), one line each: who asked, what, what was answered.
+"None" if there were none. -->
 
 ## Follow-ups
 
@@ -37,7 +45,7 @@ extractor change is measured against.
 Or, if `scripts/eval_table.py --version-check` said MATCH: paste its two version lines and
 say the run was skipped because the committed baseline already scored this extractor.
 
-Either stop line puts the PR on the stop list - a per-Golden attribute score (seniority,
+Either stop line puts the PR on Chandler's list - a per-Golden attribute score (seniority,
 German, degree, production) that lost more than 2 Goldens, or a skill score down more than
 0.02. Say so here, label the PR needs-chandler, and don't merge. The "Goldens worse /
 better" column is what decides the attribute rows; their delta is context, so don't read a

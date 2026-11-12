@@ -12,6 +12,9 @@ on:
   # repository needs no CI change — `test` and `build-web` would already run on
   # the queue's combined commits, while `deploy` stays gated on `push` to main.
   merge_group:
+  # Started by .github/workflows/merge-reviewed.yml after it merges a PR (HIR-262). A merge
+  # made with a workflow's token fires no `push`, so without this the deploy would not run.
+  workflow_dispatch:
 
 jobs:
   test:
@@ -51,7 +54,7 @@ jobs:
   release:
     name: Deploy and watch
     needs: [test, build-web]
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
     permissions:
       contents: write # the robot's result moves the site-good tag and publishes screenshots
       id-token: write # the deploy's login to Google Cloud

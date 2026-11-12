@@ -1,0 +1,121 @@
+{
+  "id": "golden_059",
+  "split": "dev",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Bachelor's degree in Computer Science, Engineering, or a related field, or equivalent practical experience required",
+  "attrs_reviewed": false,
+  "source_sha256": "fbb56066f9fc8f4e325dc7de9aa4f9e0f80dc3b2dc682c139f1f0efd48adad2b",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:ai-ml",
+    "skill:evaluation",
+    "skill:ml-engineering",
+    "skill:software-architecture",
+    "skill:software-engineering",
+    "skill:testing",
+    "skill:tool-calling"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Applied AI Engineer\n\nAt Hudson River Trading (HRT) the Applied AI team’s mission is to increase the speed and quality of work across the firm’s most consequential workflows. We build AI systems that help researchers and developers iterate faster, automate increasingly complex work, and enable autonomous exploration at a scale that would not otherwise be possible.\n\nWe apply frontier models and agentic systems to how quantitative research, software development, and other critical work at HRT gets done. We combine cutting-edge commercial and open-source models and tools with infrastructure, research, and systems of our own.\n\nOur work spans the full stack required to make this successful: AI infrastructure, research engineering, post-training and reinforcement learning, agent evaluation, security and alignment, and deployment into real workflows.\n\nResponsibilities\n\nDepending on your experience and interests, your work may include:\n\n- Building scalable infrastructure for training, evaluating, and operating language models and AI agents\n\n- Developing research environments, evaluation systems, and experimentation platforms that allow us to measure and improve agent performance\n\n- Improving model and agent capabilities through post-training, reinforcement learning, prompting, tool design, and workflow optimization\n\n- Designing sandboxing, policy enforcement, monitoring, and other safeguards for increasingly capable autonomous systems\n\n- Partnering with teams across HRT to identify work AI can newly perform, develop effective solutions, and turn successful experiments into durable systems\n\n- Evaluating new models, techniques, and products, and making informed decisions about when to build, buy, or adapt them\n\n- Sharing technical knowledge and establishing effective practices for building and working with AI across HRT\n\nProfile\n\n- You are an excellent engineer who can turn ambiguous problems into working systems\n\n- You learn unfamiliar technical and business domains quickly and enjoy moving between them\n\n- You care about advancing what AI systems can reliably accomplish\n\n- You use rigorous measurement and experiment design to guide decisions\n\n- You are comfortable operating across research and production engineering\n\n- You communicate clearly and collaborate well with people from different technical backgrounds\n\n- You are curious about the capabilities, limitations, and risks of increasingly autonomous systems\n\nWe do not expect any candidate to have prior experience in every area covered by the team. We value demonstrated depth, strong engineering judgment, and the ability to learn.\n\nQualifications\n\nRequired:\n\n- Bachelor's degree in Computer Science, Engineering, or a related field, or equivalent practical experience required\n\n- Strong Python proficiency required\n\n- Excellent software design, debugging, and problem-solving skills required\n\n- Experience building and operating substantial software systems required\n\n- Demonstrated engagement with modern AI systems, tools, or research required\n\nExperience in one or more of the following is helpful:\n\n- Machine learning research or engineering, including post-training, fine-tuning, reinforcement learning, or alignment\n\n- AI-agent architecture, evaluation, or tool-use environments\n\n- Distributed systems, model serving, orchestration, or high-throughput research infrastructure\n\n- Security sandboxing, policy enforcement, adversarial testing, or governance for AI systems\n\n- Forward-deployed engineering: working closely with users to discover, build, and operationalize new capabilities\n\n- Linux, systems performance, networking, C++, or TypeScript\n\nThe estimated base salary range for this position is 200,000 to 300,000 USD per year (or local equivalent). The base pay offered may vary depending on multiple individualized factors, including location, job-related knowledge, skills, and experience. This role will also be eligible for discretionary performance-based bonuses and a competitive benefits package.\n\nCulture\n\nHudson River Trading (HRT) brings a scientific approach to trading financial products. We have built one of the world's most sophisticated computing environments for research and development. Our researchers are at the forefront of innovation in the world of algorithmic trading.\n\nAt HRT we welcome a variety of expertise: mathematics and computer science, physics and engineering, media and tech. We’re a community of self-starters who are motivated by the excitement of being at the cutting edge of automation in every part of our organization—from trading, to business operations, to recruiting and beyond. We value openness and transparency, and celebrate great ideas from HRT veterans and new hires alike. At HRT we’re friends and colleagues – whether we are sharing a meal, playing the latest board game, or writing elegant code. We embrace a culture of togetherness that extends far beyond the walls of our office.\n\nFeel like you belong at HRT? Our goal is to find the best people and bring them together to do great work in a place where everyone is valued. HRT is proud of our diverse staff; we have offices all over the globe and benefit from our varied and unique perspectives. HRT is an equal opportunity employer; so whoever you are we’d love to get to know you.\n\nPlease be advised: Use of AI tools by an applicant during interviews or assessments is strictly prohibited, unless otherwise instructed or agreed upon. We employ various methods to evaluate the authenticity of candidate responses. If we determine that AI assistance was used by an applicant during an interview or an assessment, we reserve the right to immediately end the interview or assessment, disqualify the applicant’s candidacy and/or rescind any job offers extended.\n\nYou can review our Global Applicant Privacy Notice, which explains how we process applicant information.",
+  "expected": [
+    {
+      "skill_id": "agent-architecture",
+      "requirement": "nice_to_have",
+      "raw_text": "AI-agent architecture"
+    },
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "Demonstrated engagement with modern AI systems"
+    },
+    {
+      "skill_id": "cpp",
+      "requirement": "nice_to_have",
+      "raw_text": "C++"
+    },
+    {
+      "skill_id": "distributed-systems",
+      "requirement": "nice_to_have",
+      "raw_text": "Distributed systems"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "nice_to_have",
+      "raw_text": "AI-agent architecture, evaluation"
+    },
+    {
+      "skill_id": "fine-tuning",
+      "requirement": "nice_to_have",
+      "raw_text": "fine-tuning"
+    },
+    {
+      "skill_id": "linux",
+      "requirement": "nice_to_have",
+      "raw_text": "Linux"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "nice_to_have",
+      "raw_text": "Machine learning research"
+    },
+    {
+      "skill_id": "ml-engineering",
+      "requirement": "nice_to_have",
+      "raw_text": "Machine learning research or engineering"
+    },
+    {
+      "skill_id": "model-serving",
+      "requirement": "nice_to_have",
+      "raw_text": "model serving"
+    },
+    {
+      "skill_id": "networking",
+      "requirement": "nice_to_have",
+      "raw_text": "networking"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Strong Python proficiency"
+    },
+    {
+      "skill_id": "reinforcement-learning",
+      "requirement": "nice_to_have",
+      "raw_text": "reinforcement learning, or alignment"
+    },
+    {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "software design"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "building and operating substantial software systems"
+    },
+    {
+      "skill_id": "tool-calling",
+      "requirement": "nice_to_have",
+      "raw_text": "tool-use environments"
+    },
+    {
+      "skill_id": "typescript",
+      "requirement": "nice_to_have",
+      "raw_text": "TypeScript"
+    }
+  ]
+}
