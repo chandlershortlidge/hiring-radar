@@ -9,8 +9,8 @@ Keys and hosts:
 says where it is from.
 
 Budget: the free plan is 200 requests a month, hard limit. One request = one results page
-(~10 postings). Keep `num_pages` at 1 per feed and poll once a day: two feeds a day is
-~60 requests a month.
+(~10 postings). Keep `num_pages` at 1 per feed and poll once a day: each feed is ~30
+requests a month, so five feeds (three German, two New York since HIR-255) is ~150.
 
 Query: `query` is free text ("AI engineer in Berlin"); `country` (ISO code), `date_posted`
 (`all`, `today`, `3days`, `week`, `month`), `page`, `num_pages`.
@@ -109,18 +109,26 @@ def is_headline(title: str, employer_name: str | None = None) -> bool:
         and _WEDGED_PUBLISHER.search(title))
 
 
-def _location(j: dict) -> str | None:
+def _location(j: dict, country: str | None = None) -> str | None:
     """`job_is_remote: true` becomes "Remote (<country>)" so geo can judge the region;
-    otherwise the city, then the location text."""
+    otherwise the city, then the location text.
+
+    The country is the posting's own `job_country`, else the country the search was run
+    in. For a US posting only a real `job_city` is kept beside it: JSearch fills
+    `job_location` with "Anywhere" for region-less remote postings, and geo reads a bare
+    "Anywhere" as remote-from-the-EU — so a US search's remote jobs landed in Remote (EU)
+    (seen live on the first New York search, HIR-255)."""
     loc = j.get("job_city") or j.get("job_location")
     if j.get("job_is_remote") is True:
-        where = j.get("job_country")
+        where = j.get("job_country") or (country.upper() if country else None)
+        if where == "US":
+            return "; ".join(x for x in (j.get("job_city"), f"Remote ({where})") if x)
         where = {"DE": "Germany"}.get(where, where)
         return "; ".join(x for x in (loc, f"Remote ({where})" if where else "Remote") if x)
     return loc
 
 
-def parse(payload) -> list[Posting]:
+def parse(payload, country: str | None = None) -> list[Posting]:
     items = payload.get("data") if isinstance(payload, dict) else None
     out = []
     for j in items or []:
@@ -136,7 +144,7 @@ def parse(payload) -> list[Posting]:
             url=j.get("job_apply_link") or j.get("job_google_link") or "",
             company=j.get("employer_name"),
             title=title,
-            location_raw=_location(j),
+            location_raw=_location(j, country),
             description_text=text,
             posted_at=j.get("job_posted_at_datetime_utc"),
         ))
@@ -164,4 +172,4 @@ def fetch(query: str, country: str | None = "de", date_posted: str | None = "wee
         raise RuntimeError("JSEARCH_API_KEY is not set")
     url, headers = request(query, country, date_posted, 1, num_pages,
                            host or os.environ.get("JSEARCH_HOST", "openwebninja"), key)
-    return parse(fetch_json(url, headers=headers, timeout=60))
+    return parse(fetch_json(url, headers=headers, timeout=60), country)
