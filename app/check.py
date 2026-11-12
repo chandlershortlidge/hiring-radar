@@ -91,6 +91,30 @@ _GENERIC_TITLE_TAILS = frozenset({"jobs", "job", "careers", "career", "karriere"
 _TITLE_TAIL_RE = re.compile(r"\s*\|\s*|\s+[–—-]\s+|\s+at\s+")
 # acme.co.uk → acme: hostname labels that are a public-suffix part, not the company.
 _SECOND_LEVEL_TLDS = frozenset({"co", "com", "org", "net", "ac", "gov"})
+# SAP SuccessFactors career sites (jobs.bayer.com) title every posting page
+# "<job title> Stellendetails | <company>" ("Job Details" in English): page furniture that
+# is not part of the job title (HIR-268). Matched at the end, or just before the "|".
+_JOB_DETAILS_SUFFIX_RE = re.compile(r"\s+(?:Stellendetails|Job Details)(?=\s*(?:\||$))", re.I)
+# A posting with no structured data that still states its place on a line of its own:
+# "Location: Deutschland : Berlin : Berlin" (jobs.bayer.com), "Standort: Berlin".
+_LOCATION_LINE_RE = re.compile(
+    r"^[ \t]*(?:Location|Standort|Arbeitsort|Einsatzort)[ \t]*:[ \t]*(?P<v>\S[^\n]*)$", re.I | re.M)
+# Zero-width and non-breaking characters a rich-text editor leaves around such a line.
+_INVISIBLE_RE = re.compile("[​‌‍⁠﻿\xa0]")
+_MAX_LOCATION_LINE = 80   # characters; a longer "Location: …" line is a sentence, not a place
+
+
+def location_from_text(text: str) -> str | None:
+    """The value of the first "Location:" / "Standort:" line in a page's text, or None.
+
+    Only a short line counts, so a sentence that happens to start with the label is not
+    stored as a place. What the line says is returned as written; whether it names a
+    tracked city is `app.geo`'s call, as for every other location."""
+    for m in _LOCATION_LINE_RE.finditer(_INVISIBLE_RE.sub(" ", text)):
+        value = " ".join(m["v"].split())
+        if value and len(value) <= _MAX_LOCATION_LINE:
+            return value
+    return None
 
 
 def split_title_tail(title: str) -> tuple[str, str | None]:
@@ -309,10 +333,14 @@ def posting_from_html(url: str, markup: str, company: str | None = None,
     almost no body text; when its meta description is longer, that is the description.
     Explicit flags override JSON-LD fields.
 
-    A Personio tenant that serves no JSON-LD is the one page-text case where company and
-    location can still be read off the page, out of the payload Personio embeds
-    (`_personio_fields`); `--company`/`--location` override that too. `how` keeps naming
-    where the *description* came from, which on those pages is still the page text.
+    A Personio tenant that serves no JSON-LD can still give its company and location, out
+    of the payload Personio embeds (`_personio_fields`); `--company`/`--location` override
+    that too. `how` keeps naming where the *description* came from, which on those pages
+    is still the page text.
+
+    Any other page without JSON-LD gives a location only when its text states one on a
+    labelled line (`location_from_text`), and its title loses a "Stellendetails" /
+    "Job Details" suffix (HIR-268, jobs.bayer.com).
     """
     p = _PageParser()
     p.feed(markup)
@@ -335,13 +363,18 @@ def posting_from_html(url: str, markup: str, company: str | None = None,
                 description_text=text or html_to_text(markup),
                 posted_at=jp.get("datePosted"),
             ), "json-ld"
-    text, how = html_to_text(markup), "page-text"
+    body_text = html_to_text(markup)
+    text, how = body_text, "page-text"
     if len(p.meta_description) > len(text):
         text, how = p.meta_description, "meta-description"
     page_company = page_location = None
     if _PERSONIO_HOST_RE.search(urllib.parse.urlparse(url).hostname or ""):
         page_company, page_location = _personio_fields(markup)
-    page_title = p.title.strip()
+    if not (location or page_location):
+        page_location = location_from_text(body_text)
+        if page_location and notes is not None:
+            notes.append(f"location read from the page's location line: {page_location!r}")
+    page_title = _JOB_DETAILS_SUFFIX_RE.sub("", p.title.strip())
     if not (company or page_company):
         page_company, rule = company_from_page(url, p)
         if page_company:

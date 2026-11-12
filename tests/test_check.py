@@ -173,6 +173,73 @@ def test_page_text_wins_over_a_shorter_meta_description():
     assert how == "page-text"
 
 
+# --- location and title read off a page with no structured data (HIR-268) -------------------
+
+def test_bayer_page_gives_a_berlin_location_and_a_clean_title():
+    """The saved page of the posting that was read with no location and a title ending in
+    "Stellendetails". The page has no JSON-LD; its posting text has a "Location:" line."""
+    url = "https://jobs.bayer.com/job/Berlin-Agentic-AI-Internship-%28All-Genders%29-Berl/1447659333/"
+    notes = []
+    p, how = posting_from_html(url, saved_page("bayer.html"), notes=notes)
+    assert how == "page-text"
+    assert (p.company, p.title) == ("Bayer AG", "Agentic AI Internship (All Genders)")
+    assert p.location_raw == "Deutschland : Berlin : Berlin"
+    assert geo.active_place(p.location_raw, p.title, p.description_text) == "Berlin"
+    assert "location read from the page's location line: 'Deutschland : Berlin : Berlin'" in notes
+
+
+@pytest.mark.parametrize("line,expected", [
+    ("Location: Berlin", "Berlin"),
+    ("Standort:   Berlin,  Deutschland", "Berlin, Deutschland"),
+    ("  einsatzort : München", "München"),
+    ("Location:​ \xa0 Deutschland : Berlin : Berlin​", "Deutschland : Berlin : Berlin"),
+])
+def test_location_line_is_read_from_page_text(line, expected):
+    assert check.location_from_text(f"AI Engineer\n{line}\nRequirements\n- Python") == expected
+
+
+@pytest.mark.parametrize("text", [
+    "We build agents in Berlin.",                         # a place, but not on a labelled line
+    "Our location: Berlin",                               # the label must start the line
+    "Location:\nBerlin",                                  # nothing on the line itself
+    "Location: " + "we are a remote-first company with offices in many places " * 2,   # a sentence
+])
+def test_text_without_a_short_location_line_gives_no_location(text):
+    assert check.location_from_text(text) is None
+
+
+def test_first_usable_location_line_wins():
+    text = "Location: " + "x" * 100 + "\nStandort: Berlin\nLocation: Munich"
+    assert check.location_from_text(text) == "Berlin"
+
+
+def test_location_flag_and_json_ld_are_not_overridden_by_a_location_line():
+    markup = page().replace("<main>", "<main><p>Location: Munich</p>")
+    assert posting_from_html("u", markup)[0].location_raw == "Munich"
+    assert posting_from_html("u", markup, location="Berlin")[0].location_raw == "Berlin"
+    ld = {"@type": "JobPosting", "title": "AI Engineer", "description": JD,
+          "jobLocation": {"@type": "Place", "address": {"addressLocality": "Berlin"}}}
+    assert posting_from_html("u", page(ld=ld).replace("<main>", "<main><p>Location: Munich</p>")
+                             )[0].location_raw == "Berlin"
+
+
+@pytest.mark.parametrize("title,expected", [
+    ("AI Engineer Stellendetails | NewCo", "AI Engineer"),
+    ("AI Engineer Job Details | NewCo", "AI Engineer"),
+    ("AI Engineer Stellendetails", "AI Engineer"),
+    ("Job Details Analyst | NewCo", "Job Details Analyst"),       # only a suffix is page furniture
+])
+def test_job_details_suffix_is_not_part_of_the_title(title, expected):
+    assert posting_from_html("u", page(title=title), company="NewCo" if "|" not in title else None
+                             )[0].title == expected
+
+
+def test_job_details_suffix_goes_even_when_the_tail_stays_in_the_title():
+    # --company given, so the title's tail is not used and stays; the suffix still goes.
+    p, _ = posting_from_html("u", page(title="AI Engineer Stellendetails | NewCo"), company="Told Co")
+    assert p.title == "AI Engineer | NewCo"
+
+
 # --- company read off the page (HIR-198) ---------------------------------------------------
 
 def tagged(tag, title="AI Engineer"):
