@@ -109,7 +109,7 @@ _JOB_DETAILS_SUFFIX_RE = re.compile(r"\s+(?:Stellendetails|Job Details)(?=\s*(?:
 _LOCATION_LINE_RE = re.compile(
     r"^[ \t]*(?:Location|Standort|Arbeitsort|Einsatzort)[ \t]*:[ \t]*(?P<v>\S[^\n]*)$", re.I | re.M)
 # Zero-width and non-breaking characters a rich-text editor leaves around such a line.
-_INVISIBLE_RE = re.compile("[​‌‍⁠﻿\xa0]")
+_INVISIBLE_RE = re.compile("[" + "".join(map(chr, (0x200B, 0x200C, 0x200D, 0x2060, 0xFEFF, 0xA0))) + "]")
 _MAX_LOCATION_LINE = 80   # characters; a longer "Location: …" line is a sentence, not a place
 
 
@@ -438,7 +438,7 @@ def posting_from_workable(url: str, payload: dict, company: str | None = None,
     api_title = (payload.get("title") or "").strip()
     if not text or not (title or api_title):
         raise ValueError("Workable API returned no title or no text")
-    places = [_workable_place(l) for l in payload.get("locations") or [payload.get("location")]]
+    places = [_workable_place(loc) for loc in payload.get("locations") or [payload.get("location")]]
     places.append("Remote" if payload.get("remote") is True else None)
     return Posting(
         source="url", source_job_id="", url=url, company=company,

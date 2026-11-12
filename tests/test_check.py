@@ -192,7 +192,9 @@ def test_bayer_page_gives_a_berlin_location_and_a_clean_title():
     ("Location: Berlin", "Berlin"),
     ("Standort:   Berlin,  Deutschland", "Berlin, Deutschland"),
     ("  einsatzort : München", "München"),
-    ("Location:​ \xa0 Deutschland : Berlin : Berlin​", "Deutschland : Berlin : Berlin"),
+    # zero-width and non-breaking spaces around the value, as on jobs.bayer.com
+    (f"Location:{chr(0x200B)} {chr(0xA0)} Deutschland : Berlin : Berlin{chr(0x200B)}",
+     "Deutschland : Berlin : Berlin"),
 ])
 def test_location_line_is_read_from_page_text(line, expected):
     assert check.location_from_text(f"AI Engineer\n{line}\nRequirements\n- Python") == expected
