@@ -1,0 +1,88 @@
+{
+  "id": "golden_061",
+  "split": "dev",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": "master",
+  "degree_requirement": "required",
+  "degree_or_equivalent": false,
+  "degree_signal": "Master's or PhD in machine learning, computer science, statistics, or related fields",
+  "attrs_reviewed": true,
+  "source_sha256": "3344504e283ce527f497091539656ad09287183363e93d1caf1046667bc2f57b",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "degree",
+    "skill:git",
+    "skill:jax",
+    "skill:machine-learning",
+    "skill:python",
+    "skill:pytorch",
+    "skill:software-engineering",
+    "skill:tensorflow",
+    "skill:testing"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": null,
+  "job_description": "Quantitative Researcher - Machine Learning\n\nJOB RESPONSIBILITIES:\n\nA highly collaborative, fast-growing team at Internal Alpha Capture (IAC), Point72 is developing AI-driven equity trading signals that leverage rigorous research, state-of-the-art machine learning methods, proprietary data sources, and unparalleled computing power.\n\nWe are looking for exceptional machine learning researchers to join our efforts. Researchers will work closely with our experienced team members and apply the full breadth of their machine learning knowledge to unique, proprietary datasets, and develop novel trading signals that have high impact. Prior experience in the financial industry is not required.\n\nKey responsibilities may include:\n\n- Managing all aspects of the research process, including ideation, method selection, implementation, evaluation, and eventual application.\n\n- Identifying, adapting, and extending existing models in the broad field of machine learning; conducting novel research as needed, to develop new signals that can enhance portfolio returns, or predict other variables of interests.\n\n- Staying up to date on the advances in AI/ML and related technological innovations to provide recommendations on new models and tools and identify emerging opportunities.\n\nDESIRABLE CANDIDATES:\n\n- Master’s or PhD in machine learning, computer science, statistics, or related fields.\n\n- Knowledge and experience in any of the following areas are strongly preferred: modern sequence models, graph neutral nets, reinforcement learning, LLMs.\n\n- Prior research experience utilizing machine learning over large, possibly noisy, data sets.\n\n- Strong analytical and quantitative skills, and a detail-oriented mindset.\n\n- Strong proficiency in machine learning libraries such as Torch, JAX or TensorFlow.\n\n- Competence in Python, cluster environment, and general software engineering principles (source control, testing, collaborative workflow).\n\n- Excellent written and verbal communication skills, willing to proactively engage other team members in helping to foster a highly collaborative, team-oriented research environment.\n\n- Commitment to the highest ethical standards.",
+  "expected": [
+    {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "source control"
+    },
+    {
+      "skill_id": "jax",
+      "requirement": "required",
+      "raw_text": "JAX"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "nice_to_have",
+      "raw_text": "LLMs"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "Prior research experience utilizing machine learning"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "Torch"
+    },
+    {
+      "skill_id": "reinforcement-learning",
+      "requirement": "nice_to_have",
+      "raw_text": "reinforcement learning"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "software engineering principles"
+    },
+    {
+      "skill_id": "tensorflow",
+      "requirement": "required",
+      "raw_text": "TensorFlow"
+    },
+    {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "testing"
+    }
+  ]
+}
