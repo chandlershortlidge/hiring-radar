@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { HOME, parsePath, pathFor } from "./routes.js";
+import { HOME, parsePath, pathFor, withFamily } from "./routes.js";
 import { ALL_GERMANY, PLACES, placeCities } from "./format.js";
 
 describe("the address bar says which market you are looking at (HIR-188)", () => {
@@ -61,5 +61,37 @@ describe("the address bar says which market you are looking at (HIR-188)", () =>
     expect(pathFor(parsePath("/compare/berlin+new-york"))).toBe("/compare/berlin+new-york");
     expect(pathFor(parsePath("/jobs/7"))).toBe("/jobs/7");
     expect(pathFor(HOME)).toBe("/");
+  });
+});
+
+describe("picking a job family (HIR-197)", () => {
+  it("stays on the home view, at /, until a city is picked", () => {
+    const next = withFamily(HOME, "ai-engineer");
+    expect(next).toEqual({ ...HOME, family: "ai-engineer" });
+    expect(pathFor(next)).toBe("/");
+  });
+
+  it("carries the family into the city picked next", () => {
+    const home = withFamily(HOME, "ai-engineer");
+    expect(pathFor({ ...HOME, view: "city", place: "berlin", family: home.family })).toBe("/berlin/ai-engineer");
+  });
+
+  it("goes back to every role on the home view without leaving it", () => {
+    expect(withFamily(withFamily(HOME, "research"), null)).toEqual(HOME);
+  });
+
+  it("updates in place on a city and in a comparison, as before", () => {
+    const city = { ...HOME, view: "city", place: "berlin", family: null };
+    expect(withFamily(city, "ml-engineer")).toEqual({ ...city, family: "ml-engineer" });
+    const compare = { ...HOME, view: "compare", cities: ["Berlin", "New York"] };
+    expect(withFamily(compare, "research")).toEqual({ ...compare, family: "research" });
+  });
+
+  // The bug: a city view with no city drew the dashboard for every city at once.
+  it("never makes a city view without a city", () => {
+    const noPlace = { ...HOME, view: "city", place: null, family: "ai-engineer" };
+    expect(pathFor(noPlace)).toBe("/");
+    expect(parsePath(pathFor(noPlace))).toEqual(HOME);
+    expect(withFamily(noPlace, "research").view).toBe("home");
   });
 });
