@@ -145,7 +145,7 @@ def test_tool_is_strict_with_closed_schemas(tax):
     assert schema["additionalProperties"] is False
     item = schema["properties"]["skills"]["items"]
     assert item["additionalProperties"] is False
-    assert item["required"] == ["skill_id", "requirement", "raw_text"]
+    assert item["required"] == ["skill_id", "requirement", "raw_text", "alternative_group"]
 
 
 def test_prompt_asks_for_the_tool_call(tax):
@@ -224,11 +224,20 @@ def test_extract_raises_on_cutoff_even_with_a_real_partial_tool_call(tax):
     # EmptyExtractionError if the stop_reason check were removed entirely -- masking
     # whether that check does anything on its own. A partial call that already carries a
     # real skill only fails because of the stop_reason check, so this is the one that
-    # actually pins it.
+    # actually proves that this specific rule is doing the work.
     resp = response(items=[item("python", "Python")], stop="max_tokens")
     with pytest.raises(ex.ExtractionError, match="stop_reason"):
         ex.extract(JD, tax, FakeClient(resp), model="m")
 
+
+def test_extract_raises_on_partial_refusal(tax):
+    # The refusal case in the parameterized test has an empty skill list
+    # which the empty answer rule rejects it anyway, 
+    # so only this test depends on the refusal rule.
+    resp = response(items=[item("python", "Python")], stop="refusal")
+    with pytest.raises(ex.ExtractionError, match="stop_reason"):
+        ex.extract(JD, tax, FakeClient(resp), model="m")
+    
 
 def test_extract_raises_when_the_model_answers_with_text_instead_of_calling_the_tool(tax):
     # The failure path "auto" introduces that forced tool_choice could not produce.
@@ -582,3 +591,87 @@ def test_extraction_input_leaves_text_that_already_opens_with_the_title():
 def test_extraction_input_without_a_title_is_the_text():
     assert ex.extraction_input(None, "Python") == "Python"
     assert ex.extraction_input("  ", "Python") == "Python"
+
+
+# --- alternative groups (HIR-251) ------------------------------------------------
+
+GROUP_JD = """Requirements:
+- Expertise in Python, Rust or Kubernetes, or a similar tool
+- Experience with LangChain
+Nice to have: React or ReAct"""
+
+
+def grouped(sid, raw, group, req="required"):
+    return {**item(sid, raw, req), "alternative_group": group}
+
+
+def test_members_of_a_group_keep_its_number_and_a_lone_skill_has_none(tax):
+    m, _, _ = ex.parse_skills([grouped("python", "Python", 1), grouped("kubernetes", "Kubernetes", 1),
+                               grouped("langchain", "LangChain", None)], tax, GROUP_JD)
+    assert {x.skill_id: x.alternative_group for x in m} == {"python": 1, "kubernetes": 1, "langchain": None}
+
+
+def test_an_item_without_the_field_is_a_lone_skill(tax):
+    """Readings stored before groups existed carry no field; they re-parse unchanged."""
+    m, _, _ = ex.parse_skills([item("python", "Python")], tax, GROUP_JD)
+    assert m == [ex.Mention("python", "required", "Python", None)]
+
+
+def test_groups_are_renumbered_from_one_in_the_models_order(tax):
+    m, _, _ = ex.parse_skills([grouped("python", "Python", 7), grouped("kubernetes", "Kubernetes", 7),
+                               grouped("react", "React", 3, "nice_to_have"),
+                               grouped("react-agent-pattern", "ReAct", 3, "nice_to_have")], tax, GROUP_JD)
+    assert {x.skill_id: x.alternative_group for x in m} == {
+        "react": 1, "react-agent-pattern": 1, "python": 2, "kubernetes": 2}
+
+
+def test_a_group_left_with_one_member_loses_its_number(tax):
+    """Rust is not in this taxonomy: it goes to the queue, and Python is an alternative to nothing."""
+    m, p, _ = ex.parse_skills([grouped("python", "Python", 1), grouped("new:Rust", "Rust", 1)], tax, GROUP_JD)
+    assert m == [ex.Mention("python", "required", "Python", None)]
+    assert [x.label for x in p] == ["Rust"]
+
+
+def test_a_rejected_partner_also_leaves_a_lone_member(tax):
+    m, _, r = ex.parse_skills([grouped("python", "Python", 1), grouped("kubernetes", "not in the text", 1)],
+                              tax, GROUP_JD)
+    assert m == [ex.Mention("python", "required", "Python", None)] and len(r) == 1
+
+
+@pytest.mark.parametrize("bad", [0, -1, True, "1", 1.5])
+def test_a_malformed_group_number_counts_as_none(tax, bad):
+    m, _, _ = ex.parse_skills([grouped("python", "Python", bad), grouped("kubernetes", "Kubernetes", bad)],
+                              tax, GROUP_JD)
+    assert {x.alternative_group for x in m} == {None}
+
+
+def test_a_standalone_ask_beats_the_same_skill_as_an_option(tax):
+    """Asked for on its own and again as one option: it is a requirement by itself."""
+    m, _, _ = ex.parse_skills([grouped("python", "Python", 1), grouped("kubernetes", "Kubernetes", 1),
+                               grouped("python", "Python", None)], tax, GROUP_JD)
+    assert {x.skill_id: x.alternative_group for x in m} == {"python": None, "kubernetes": None}
+
+
+def test_required_still_beats_nice_to_have_whatever_the_group(tax):
+    m, _, _ = ex.parse_skills([grouped("python", "Python", None, "nice_to_have"),
+                               grouped("python", "Python", 1), grouped("kubernetes", "Kubernetes", 1)],
+                              tax, GROUP_JD)
+    assert {x.skill_id: (x.requirement, x.alternative_group) for x in m} == {
+        "python": ("required", 1), "kubernetes": ("required", 1)}
+
+
+def test_the_group_field_is_nullable_without_a_type_list():
+    """Strict tool schemas reject a type list combined with other keywords; anyOf is the safe shape."""
+    field = ex.TOOL["input_schema"]["properties"]["skills"]["items"]["properties"]["alternative_group"]
+    assert field["anyOf"] == [{"type": "integer"}, {"type": "null"}]
+
+
+def test_prompt_states_that_or_similar_adds_no_skill(tax):
+    assert '"or similar"' in ex.PRINCIPLES and "add no skill" in ex.PRINCIPLES
+
+
+def test_prompt_says_grouping_never_drops_the_broad_skill(tax):
+    """HIR-251 eval: "a broad skill ... null" read as "omit it" and cost 0.024 recall
+    (cloud beside its provider examples). The rule must say the broad skill is still reported."""
+    assert "Grouping never removes a skill" in ex.PRINCIPLES
+    assert "is still\n   reported, with alternative_group null" in ex.PRINCIPLES

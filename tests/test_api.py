@@ -280,7 +280,8 @@ def test_skill_validation_over_a_list(api):
 # Regenerate it the same way — against the last commit before the change under test — rather
 # than from the current code, or it stops being a before/after. A later migration that puts a
 # new field on every job row is the one allowed edit: HIR-186 added `family` to the stored
-# rows (derived from each row's title), leaving every other field as captured.
+# rows (derived from each row's title), leaving every other field as captured; HIR-251 added
+# `required_groups` (always [] here: no fixture job has alternatives) the same way.
 SNAPSHOT = json.loads((Path(__file__).parent / "fixtures" / "single_skill_api_snapshot.json").read_text())
 
 

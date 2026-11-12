@@ -33,7 +33,7 @@
     {"type": "lever", "enabled": true, "token": "vestiairecollective", "company": "Vestiaire Collective"},
     {"type": "greenhouse", "enabled": true, "token": "commercetools", "company": "commercetools"},
     {"type": "greenhouse", "enabled": true, "token": "awin", "company": "Awin"},
-    {"type": "greenhouse", "enabled": true, "token": "doctolib", "company": "Doctolib"},
+    {"type": "ashby", "enabled": true, "token": "doctolib", "company": "Doctolib"},
     {"type": "greenhouse", "enabled": true, "token": "sumup", "company": "SumUp"},
     {"type": "greenhouse", "enabled": true, "token": "lawzero", "company": "LawZero"},
     {"type": "greenhouse", "enabled": true, "token": "smartlyio", "company": "Smartly.io"},

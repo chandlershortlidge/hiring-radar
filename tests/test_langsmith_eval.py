@@ -203,7 +203,7 @@ def test_the_mapping_step_is_a_child_span_showing_kept_and_rejected():
     assert (child.name, child.run_type) == ("taxonomy_mapping", "parser")
     assert child.inputs == {"taxonomy_version": 7}
     assert child.outputs["kept"] == [{"skill_id": "python", "requirement": "required",
-                                      "raw_text": "Python"}]
+                                      "raw_text": "Python", "alternative_group": None}]
     assert child.outputs["proposed"][0]["label"] == "Polars"
     assert child.outputs["rejected"][0]["reason"] == "unknown skill_id"
 
