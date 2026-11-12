@@ -102,6 +102,21 @@ Once per clone, so `.githooks/pre-commit` actually runs:
 git config core.hooksPath .githooks
 ```
 
+Once per Mac, so the reviewer's merge is not refused by the session itself (HIR-262).
+Claude Code's auto-mode safety check refuses `gh pr merge` as "Merge Without Review" before
+the command reaches GitHub, and it reads its exceptions only from the user's own settings
+(`~/.claude/settings.json`), never from this repo — so no PR can fix it. Chandler adds two
+entries through `/permissions`:
+
+- an allow rule: `Bash(gh pr merge *)`
+- an auto-mode allow rule, in prose: *merging a reviewed, green PR into main of this repo
+  is the project's documented process.*
+
+Until both are there the reviewer's merge is refused, and it says exactly "merge refused by
+the session's safety check; setup step missing" — a setup gap, not a review outcome. The
+PR still merges: the reviewer's `review-passed` label hands it to GitHub ("Who merges",
+below).
+
 Then, for the rest of the session:
 
 - **One ticket per branch, per folder, per commit.** `TICKET` holds one id; the branch
@@ -383,7 +398,8 @@ so this is not a judgment call:
   hundreds of mentions a run, so they keep the **0.02** drop rule. A smaller move is noise;
   note it in the PR and carry on.
 
-Either kind of stop is on the stop list below: say so in the PR, don't merge, and ask.
+Either kind of stop is on the list of what Chandler is asked ("What Chandler is asked",
+below, item 2): say so in the PR, don't merge, and ask.
 
 Flips are counted by rescoring both runs' stored predictions, so if the table says they
 **could not be counted**, read it: either a run has no `predictions.jsonl`, or the Goldens
@@ -528,12 +544,15 @@ when the phrase is genuinely ambiguous; the shape of a taxonomy change (parent/c
 which entries); anything the issue left open that costs one commit to reverse. One
 sentence each: what, why, how to undo.
 
-Anything that bumps `extractor_version` (prompt, taxonomy, model) is decided here too.
-Say in the PR body that merging re-reads the open jobs, **and what that costs today**:
+A skill-list change that bumps `extractor_version` is decided here too; a change to the
+extractor's instructions or its model is not — that is on Chandler's list (item 2 below).
+Either way, say in the PR body that merging re-reads the open jobs, **and what that costs
+today**:
 run `uv run python -m app reread-cost` and paste its figure. Never quote a remembered
 number — the cost grows with every city, and a flat "about €3" understated a real re-read
 by more than three times by the time three German cities had launched (HIR-221). **The
-merge is the approval**; nothing waits before the PR.
+merge is the approval**; nothing waits before the PR — unless the figure is above €10,
+which is item 5 of Chandler's list.
 
 **An existing rule is never a question.** When an issue and DECISIONS.md (or this file)
 disagree, the rule wins: apply it, note the conflict in one line under "Decisions taken",
@@ -541,24 +560,62 @@ carry on. Before asking anything, check whether a standing rule already answers 
 only when no rule covers the case — then the answer becomes a rule, and the question
 is never asked again.
 
-**Stop and ask, even unattended** — irreversible, expensive, or policy:
-- any edit to `evals/LABELING.md` or to an attribute's definition (invalidates every eval)
-- `ACTIVE_CITIES`; what the public site stores, shows, or sends to a provider; spend
-- deleting or rewriting stored jobs, Goldens, or eval results
-- an eval score over either stop line against the last committed run: a per-Golden
-  attribute score that lost **more than 2 Goldens**, or a skill score **down more than
-  0.02** (the eval gate above; the run itself is not a question, only a result this size is)
-- the branch and `TICKET` disagree; a hot-spot file is already changed on another branch
-- a PR that changes the agents' own rules — `.claude/`, `AGENTS.md`, the PR template,
-  `.github/workflows/` (the rules gate above). The reviewer is what asks, by adding the
-  block to the PR; no run of any label merges such a PR.
+### What Chandler is asked
+
+**This is the one list** (Chandler, 2026-11-12, HIR-262). The decider, the reviewer, the
+work-issue and orchestrator skills and the PR template point here; none keeps its own copy.
+Everything not on it is decided by an agent, reviewed by another agent, and merged.
+
+1. **Roadmap** — what gets built, dropped or reordered; launching a city he has not named
+   (`ACTIVE_CITIES`); opening the site to the public.
+2. **Anything that changes the score or how it is measured** — the labelling guide
+   (`evals/LABELING.md`) or an attribute's definition; the extractor's instructions
+   (`PRINCIPLES`, the prompt, the tool schema) or its model; the eval's rules and stop
+   lines; his own hand labels (Goldens, unless the issue asks for them); and an eval result
+   over either stop line (the eval gate above: a per-Golden attribute score that lost more
+   than 2 Goldens, or a skill score down more than 0.02).
+3. **Product decisions about what visitors see** — adding or removing a feature, the
+   homepage and visual direction, the wording of public claims. Bug fixes, polish and
+   layout repairs are not decisions and merge.
+4. **Things that cannot be undone** — deleting or rewriting stored jobs, Goldens or eval
+   results.
+5. **Money** — a one-off spend above €10 (a re-read whose `reread-cost` figure is above
+   €10 counts), or any new recurring cost.
+6. **Agents changing their own rules** — the rules gate above: one short "Did you
+   authorize these?" list in the PR.
+
+How the list is used:
+
+- **A question on the list** goes to the decider first, like any question; only what it
+  cannot answer from a written rule reaches Chandler, as a Linear comment that @mentions
+  him. **A question not on the list never reaches him**: the decider answers it from the
+  rules, or by the closest rule and precedent when none fits exactly, and the worker
+  records the answer under "Decisions taken".
+- **A PR whose change is on the list** gets `needs-chandler` and an @mention, and waits
+  for him. It is the only kind of PR that pings him.
+- **Which files trip it** is the reviewer's check (`.claude/agents/reviewer.md`, step 3).
+  The labelling guide is also refused by GitHub's own merger
+  (`scripts/merge_reviewed.py`), so it stops even if the reviewer slips.
+
+**Stops that are not questions for Chandler** — the run stops and says so in the session,
+but asks him nothing: the branch and `TICKET` disagree ("Starting a session"); a hot-spot
+file is already changed on another open PR (wait for that PR to merge).
+
+**Findings go back to the author, not to Chandler** (HIR-262). A reviewer finding that is
+not on the list — a missed test, an unmet "Done when" item, a scope slip, a red check, a
+conflict, a PR body missing its eval table or its cost figure — is sent back with the exact
+fix asked for. The reviewer labels the PR `sent-back` and writes the fixes in one comment
+headed **Review: sent back**. The author fixes it (the same session, or a fresh worker on
+the same branch — `/work-issue` "Fixing a sent-back PR"), and a **fresh** reviewer reviews
+again. At most two rounds: a third send-back becomes `needs-chandler` **with no
+@mention**, and reaches Chandler in the Monday summary, not as a ping.
 
 **Questions go to the decider agent before they go to Chandler.** `.claude/agents/decider.md`
 (Fable) reads only AGENTS.md, DECISIONS.md, taxonomy/README.md and evals/LABELING.md, and
 answers the question from them. It returns either an answer with the rule it rests on (the worker
-applies it and notes it under "Decisions taken"), or "no rule covers this" plus the
-question rewritten per "How to write anything Chandler reads". Only the second kind
-reaches Chandler: a comment on the Linear issue that @mentions him, two sentences of
+applies it and notes it under "Decisions taken"), or — only for a question on Chandler's
+list — "no rule covers this" plus the question rewritten per "How to write anything
+Chandler reads". Only the second kind reaches Chandler: a comment on the Linear issue that @mentions him, two sentences of
 situation, one line per option with its consequence, a recommendation. His answer is
 written into DECISIONS.md so it is never asked again. Meanwhile the worker does any step
 that doesn't depend on the answer, and stops.
@@ -570,19 +627,30 @@ reads before merging, not a thing anyone applies by hand. A NO RULE from the dec
 still stops the run — guessing is not autopilot.
 
 An issue runs **attended** only when Chandler wants to be in it: `/work-issue HIR-n
-attended`, or the Linear label `attended` on the issue (he applies that one, or an agent
-filing an issue that plainly needs him — a direction call, a public-facing change, work
-he asked to be involved in). Attended means the brief waits for his "go" and the PR waits
-for his merge.
+attended`, or the Linear label `attended` on the issue. He applies that label, or an agent
+filing an issue whose work is on his list above. Attended means the brief waits for his
+"go" and the PR waits for his merge.
 
-What keeps the default safe is the stop list above and the reviewer's file stop-list,
-which apply to every run regardless of label.
+What keeps the default safe is his list above, the reviewer's file checks and the rules
+gate, which apply to every run regardless of label.
 
 **Who merges.** A worker never merges its own PR. For an `autopilot` issue the
 `reviewer` agent (`.claude/agents/reviewer.md`, fresh context, Fable) merges when CI is
-green, the diff stays in scope and off the stop-list files, "Needs Chandler" is empty,
-every decision has an undo and every follow-up a ticket; otherwise it labels the PR
-`needs-chandler` and @mentions Chandler on the issue. A PR that changes the agents' own
+green, the diff stays in scope and off Chandler's list, "Needs Chandler" is empty,
+every decision has an undo and every follow-up a ticket. A finding not on his list is sent
+back to the author (above); one on his list gets `needs-chandler` and an @mention.
+
+**The reviewer also labels a passed PR `review-passed`, and GitHub merges it from there**
+(HIR-262). `.github/workflows/merge-reviewed.yml` runs `scripts/merge_reviewed.py` when that
+label is added and whenever a required check finishes, and merges the PR when it is
+`clean`, carries no `needs-chandler`, and touches neither a rule file nor the labelling
+guide. It is the fallback for a session whose own safety check refuses `gh pr merge` (the
+Mac setup under "Starting a session"); no session setting can block it. Removing the label
+or adding `needs-chandler` stops it. **Only the reviewer adds `review-passed`** — a worker
+labelling its own PR is merging its own PR. The workflow cannot bring a branch up to date
+(a push made with a workflow's token starts no checks), so that stays the reviewer's job,
+below; and because a merge made with that token fires no `push`, the script starts the CI
+workflow on main itself, which is what deploys. A PR that changes the agents' own
 rules is never merged by any run — the rules gate above. At most one PR that re-reads every
 job (taxonomy, prompt, model) merges per day. PRs for `attended` issues always wait for
 a person.
@@ -612,11 +680,17 @@ produced the duplicate edits of 3 Nov; the point is that it happens once, at the
 not by the author. A real conflict drops the PR back to its author, which is the one case
 that is still the worker's.
 
-**Every merge happens from the run that reviewed it.** There is no timer and no scheduled
-cloud reviewer: an autopilot `/work-issue` waits for CI at the end of its own run and
-starts the `reviewer` agent on the PR it just opened; inside an orchestrator the
-orchestrator does that instead. A run that stops before merging leaves its PR labelled
-`needs-chandler` and says so, rather than leaving it for something to pick up later.
+**Every merge follows a review from the run that opened the PR.** There is no timer and no
+scheduled cloud reviewer: an autopilot `/work-issue` waits for CI at the end of its own run
+and starts the `reviewer` agent on the PR it just opened; inside an orchestrator the
+orchestrator does that instead. GitHub's merger acts only on the reviewer's label. A run
+that stops before a review passes leaves its PR labelled `needs-chandler` **without an
+@mention** and says so in its reply, rather than leaving it for something to pick up later.
+
+**How Chandler hears about it: once a week, not per PR.** A Monday summary — what merged,
+in plain words, grouped by what a visitor would notice; what was sent back and fixed; the
+short "needs you" list. No message for work that merged. Until that summary exists
+(HIR-264), the open PRs labelled `needs-chandler` are the "needs you" list.
 
 **A Linear description is appended to, never replaced** (HIR-124). Two agents overwrote
 HIR-112's description on 3 Nov. Any agent — worker, decider, reviewer, orchestrator —
@@ -625,7 +699,7 @@ changing a description it did not write in this session uses `save_issue` with `
 `description` field replace is only for a description this session wrote.
 
 `/work-issue-orchestrator HIR-a HIR-b …` runs a batch: pick, one worker per issue in
-parallel worktrees, reviewer merges the autopilot PRs, `attended` ones pause for
+parallel worktrees, reviewer merges the autopilot PRs or sends them back to their worker, `attended` ones pause for
 Chandler's go and wait for his merge, one report. More than one orchestrator may be
 running, each blind to the other's workers: the shared state is the Linear issue status
 (the claim) and the open PRs (what files are taken), never a session's own table.
@@ -636,7 +710,8 @@ running, each blind to the other's workers: the shared state is the Linear issue
 issue to a PR; `/work-issue-orchestrator` runs a batch of issues through work, review and
 merge; `/check-url` audits feed coverage for careers-page URLs; `/mutation-test` checks
 whether tests catch deliberate breaks (on demand, ~25 min, never per PR). `.claude/agents/` holds
-the `decider` (answers questions from the rules) and the `reviewer` (merges autopilot PRs). When a procedure
+the `decider` (answers questions from the rules) and the `reviewer` (merges autopilot PRs, or
+sends them back to their author). When a procedure
 has been typed into a session twice, it belongs here; when one fails, fix the skill, not
 the conversation.
 

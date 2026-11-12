@@ -72,11 +72,25 @@ running, the one you overwrite may belong to a session you cannot see.
 PR number **and nothing else** (HIR-137). It reads the ticket itself, from the issue id in
 the branch name — do not paste the issue's labels, its "Done when" list, or your own
 account of what the worker did into its prompt. Your framing between the ticket and the
-reviewer is exactly what it is meant to be reading around. It sets the PR to merge on its
-own or labels it `needs-chandler`. The worker inside an
+reviewer is exactly what it is meant to be reading around. The worker inside an
 orchestrator does *not* review its own PR at the end of its run (its skill's step 5c tells
 it to skip that when you started it) — reviewing is yours, so every autopilot PR gets
-exactly one reviewer.
+exactly one reviewer at a time.
+
+The reviewer's reply starts with the verdict:
+
+- **`MERGED` / `MERGING`** — done. A safety-check refusal of its merge command is not a
+  failure: its `review-passed` label hands the merge to GitHub (AGENTS.md "Who merges").
+- **`SENT BACK`** — the fixes are in its PR comment headed `**Review: sent back**`. Send
+  the worker one message (SendMessage): "PR #n was sent back; do the fixes in the latest
+  `Review: sent back` comment per your skill's 'Fixing a sent-back PR', then report." If
+  that worker has finished or is gone, start a fresh one the same way as in step 2 with
+  `/work-issue HIR-n` — it finds the open, sent-back PR and fixes it on the same branch.
+  When it reports, start a **fresh** reviewer with the PR number and nothing else. The
+  reviewer counts the rounds: a third failure comes back as `NEEDS CHANDLER`, with no
+  @mention.
+- **`NEEDS CHANDLER`** — an item on his list (AGENTS.md "What Chandler is asked"), or a
+  third failed review. Report it; never relabel it.
 
 **Attended PR:** do not review, do not merge. List it under "Ready for you" with the PR
 link and the worker's one-line summary.
@@ -94,8 +108,8 @@ and this one is personal (HIR-136). The reviewer merges a PR whose checks are al
 outright; on any other PR it arms GitHub's auto-merge and brings the branch up to date, and
 that one is not merged the moment the reviewer passes it — it merges when the checks on the
 updated branch go green (HIR-157). Treat both "merged" and "set to merge" as done for
-reporting, and check back once on the second — a PR with a real conflict, or one that kept
-losing the race to other merges, is back with its author and belongs under "Needs you".
+reporting, and check back once on the second. A PR with a real conflict comes back `SENT
+BACK`, like any other finding: the author resolves it.
 
 Start queued issues as slots free up and their blockers merge. Before each one, re-read
 the open PRs (step 1): other sessions have been merging while you worked.
@@ -107,7 +121,9 @@ One message at the end, written for Chandler:
 - **Merged or merging:** PR, issue, one line of what changed on the dashboard (or
   "internal"), and whether it is merged or still waiting on its checks.
 - **Ready for you:** attended PRs waiting for your merge, one line each.
-- **Needs you:** PR, issue, the failing check or open question in plain words.
+- **Sent back and fixed:** PR, issue, one line of what the reviewer asked for.
+- **Needs you:** only items on Chandler's list, and PRs that failed review three times —
+  PR, issue, the item or what is still wrong, in plain words.
 - **Stopped:** issue, the question the decider couldn't answer (already on Linear with an
   @mention).
 - **Re-extract:** whether a merge today has the model re-read the open jobs, yes or no —

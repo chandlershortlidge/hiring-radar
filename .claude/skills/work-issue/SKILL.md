@@ -50,7 +50,8 @@ the code. Five lines, plain words, no file names:
   and give its figure; never a remembered number.
 - **Deciding alone:** the judgment calls you expect to make (AGENTS.md "Deciding alone vs.
   stopping").
-- **Will ask about:** anything on the stop list. If this line isn't "nothing", @mention
+- **Will ask about:** anything on Chandler's list (AGENTS.md "What Chandler is asked" —
+  the one source; don't copy it). If this line isn't "nothing", @mention
   Chandler in the comment and wait for the answer before step 3.
 - **Not doing:** what the issue's out-of-scope says, in plain words.
 
@@ -63,12 +64,13 @@ session and continue — the PR body's first line then says "autopilot run, labe
 
 Autopilot means: post the brief on Linear for the record but do **not** wait for a "go";
 start at once. Every question goes to the decider; if it returns ANSWER, apply it and
-continue. Only a NO RULE reaches Chandler (Linear comment, @mention), and then stop. The
+continue. Only a NO RULE — which the decider gives only for an item on Chandler's list —
+reaches Chandler (Linear comment, @mention), and then stop. The
 person sees nothing until the PR exists. You still never merge your own PR — at the end of
 the run a fresh `reviewer` agent does it (step 5c).
 
-What makes this safe is not the label but the stop list (AGENTS.md "Stop and ask, even
-unattended") and the reviewer's file stop-list: those apply to every run, whatever the
+What makes this safe is not the label but Chandler's list (AGENTS.md "What Chandler is
+asked"), the reviewer's checks and the rules gate: those apply to every run, whatever the
 default.
 
 **Show the brief in the session as well as on Linear.** Posting the comment is not
@@ -175,7 +177,7 @@ Then, in one commit of its own:
 - the table, pasted verbatim into the PR body under `## Eval (dev)`.
 
 `eval_table.py` exits non-zero when a metric fell more than 0.02 against the baseline.
-That is a stop-list item, not a judgment call: commit the result directory anyway so the
+That is on Chandler's list (item 2), not a judgment call: commit the result directory anyway so the
 number is on the record, put the table in the PR body with the flagged metric, label the
 PR `needs-chandler`, @mention Chandler on the issue in plain words ("the model got worse at
 X by Y against the last measured run"), and stop. Do not re-run the eval hoping for a
@@ -236,7 +238,8 @@ one this session wrote.
 ## 5b. Follow-up tickets
 
 Any ticket you file (a Follow-up that deserves one, a bug found on the way) gets the
-`autopilot` label when it is one bounded change with no stop-list item, per AGENTS.md.
+`autopilot` label when it is one bounded change with nothing on Chandler's list, per
+AGENTS.md; `attended` only when its work is on that list.
 Decide it at filing time; Chandler does not sort issues by hand.
 
 ## 5c. Review and merge, before the run ends (autopilot only, HIR-124)
@@ -257,17 +260,41 @@ does.
    (HIR-137), so it needs nothing from you: do not summarise your work to it, do not paste
    the issue's labels or its "Done when" list, do not tell it what you concluded, and do
    not argue with its verdict.
-3. On a pass it merges the PR outright when the checks are already green (the usual case,
-   since you waited for CI in step 1), and otherwise arms GitHub's auto-merge and brings
-   the branch up to date — then GitHub merges when the checks on the updated branch go
-   green, so "merging" is also a normal end state to report, not only "merged" (HIR-157).
-   Report whichever it did. On a fail it labels the PR `needs-chandler` — leave that label
-   alone and say so in your final reply.
+3. Its reply starts with the verdict:
+   - **`MERGED` / `MERGING`** — done. It labels the PR `review-passed`, merges it when the
+     checks are already green, and otherwise brings the branch up to date so GitHub merges
+     it when the checks on the updated branch pass (HIR-157, HIR-262). "Merging" is a
+     normal end state to report. If it says "merge refused by the session's safety check;
+     setup step missing", the PR still merges through GitHub; pass that sentence on
+     verbatim in your reply, once.
+   - **`SENT BACK`** — the fixes are in its PR comment headed `**Review: sent back**`. Do
+     them now ("Fixing a sent-back PR" below), wait for CI, and start a **fresh** reviewer
+     — never the same one, and never with your account of the fixes. The reviewer counts
+     the rounds; after the second send-back a third failure comes back as `NEEDS
+     CHANDLER` with no @mention.
+   - **`NEEDS CHANDLER`** — leave the label alone and say so in your final reply.
 
-If you cannot get this far — CI never goes green, the reviewer can't be started, the run
-is stopping for a NO RULE — **label the PR `needs-chandler` yourself and say in your final
-reply that the PR is unmerged and why**. A PR left with no label and no reviewer is the
-one outcome this step exists to prevent.
+If you cannot get this far — CI never goes green after your fixes, the reviewer can't be
+started, the run is stopping for a NO RULE — **label the PR `needs-chandler` yourself and
+say in your final reply that the PR is unmerged and why**. @mention Chandler only for a NO
+RULE; the rest reach him in the Monday summary. A PR left with no label and no reviewer is
+the one outcome this step exists to prevent.
+
+## Fixing a sent-back PR
+
+You are here because a reviewer sent your PR back, or because you were started as a fresh
+worker with `/work-issue HIR-n` on an issue whose open PR carries the label `sent-back`
+and no `review-passed` (the orchestrator does that when the original worker is gone).
+
+1. Work on the PR's existing branch, in its own worktree (step 2, with the branch that
+   exists rather than a new one). Never open a second PR.
+2. Read the latest comment headed `**Review: sent back**`. Do exactly the fixes it lists,
+   nothing more; a fix you think is wrong is a question for the decider, not a skip.
+3. One commit per fix or one for all, each green, pushed. Add a line per fix to the PR
+   body's "Decisions taken" only when the fix involved a judgment call.
+4. Leave the `sent-back` label on: it is the record of what was sent back and fixed, for
+   the Monday summary. Then step 5c from 1, unless an orchestrator started you: then stop
+   and report, and it starts the reviewer.
 
 ## 6. Finish
 
@@ -293,13 +320,14 @@ next tier down, in this order, and say which one answered in "Decisions taken":
 Retry on availability errors only. A wrong answer is not a reason to try a bigger model;
 a question the decider can't settle is a NO RULE, not a model problem.
 
-ANSWER → apply it, one line under "Decisions taken" naming the rule. NO RULE → post the
+ANSWER → apply it, one line under "Decisions taken" naming the rule (or the closest rule,
+for a judgment the decider made where none fit exactly). NO RULE → post the
 rewritten question on the Linear issue with an @mention of Chandler, do what doesn't
 depend on it, stop. When his answer arrives, add it to DECISIONS.md in the same PR.
 
 ## When to break off and ask
 
-The stop list in AGENTS.md "Deciding alone vs. stopping", plus: the work has grown past
+Chandler's list in AGENTS.md "What Chandler is asked", plus: the work has grown past
 the issue (propose the split). An issue that contradicts a standing rule is **not** a
 reason to ask: the rule wins, note it under "Decisions taken". Asking
 is a Linear comment with an @mention, one sentence and the options; then do whatever
