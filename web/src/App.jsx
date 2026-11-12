@@ -20,6 +20,7 @@ import Panel from "./Panel.jsx";
 // The time windows the server accepts, with the wording a person reads. Keys here and on
 // the server have to match; tests/test_frontend_lists.py fails if they drift (HIR-203).
 const WINDOWS = { open: "Currently open", "30d": "Last 30 days", "90d": "Last 90 days", all: "All" };
+const REQUIREMENTS = { required: "Required only", all: "Required + nice-to-have" };
 const DEFAULT = { cities: [], compare: false, seniorities: [], families: [], requirement: "required", window: "open", german: "any", degree: "any", production: "any", skillIds: [], query: "", text: "" };
 
 // Where a request to add a city goes. There is no form for it, so it opens the repo's
@@ -271,8 +272,7 @@ export default function App() {
           <div className="controls">
             <div className="ctl"><span>Requirement</span>
               <div className="seg" role="group" aria-label="Requirement">
-                <button type="button" aria-pressed={filters.requirement === "required"} onClick={() => set({ requirement: "required" })}>Required only</button>
-                <button type="button" aria-pressed={filters.requirement === "all"} onClick={() => set({ requirement: "all" })}>Required + nice-to-have</button>
+                {Object.entries(REQUIREMENTS).map(([k, v]) => <button key={k} type="button" aria-pressed={filters.requirement === k} onClick={() => set({ requirement: k })}>{v}</button>)}
               </div>
             </div>
             <div className="ctl"><span>Seniority</span>
