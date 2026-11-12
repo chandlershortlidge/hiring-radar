@@ -117,12 +117,16 @@ def uptime_ticket(args) -> dict:
             "If the site is already back, find what stopped it (the VM, the app service, Caddy) "
             "and close this with the cause.")
     return {"title": "Site watch: the site does not answer", "body": body,
-            "autopilot": True, "priority": 1, "assignee": None}
+            "autopilot": True, "priority": 1, "assignee": None,
+            # Checked every five minutes: while the ticket is open, more misses add nothing.
+            "comment_again": False}
 
 
 def rollback_failed_ticket(args, fails: list[dict]) -> dict:
     paths = "\n".join(f"- {f['test']} ({' and '.join(f['projects'])}): {f['error'][:300]}" for f in fails) or "- (no report)"
-    body = ("@Chandler Shortlidge the site is broken and the automatic rollback did not fix it.\n\n"
+    # Assigning it to Chandler is what notifies him; an "@name" typed into an API body is
+    # plain text, not a mention.
+    body = ("The site is broken and the automatic rollback did not fix it.\n\n"
             f"**Deploy that broke it:** {args.change or 'unknown'}\n"
             f"**Rolled back to:** {args.rolled_back_to or 'unknown'}, and the robot visitor still fails:\n\n"
             f"{paths}\n\nRun: {args.run_url or 'unknown'}")
@@ -162,6 +166,8 @@ class Linear:
 
     def file(self, t: dict) -> str:
         existing = self.open_issue(t["title"])
+        if existing and not t.get("comment_again", True):
+            return f"already open as {existing['identifier']}; nothing added"
         if existing:
             self.q("""mutation($issue: String!, $body: String!) { commentCreate(input: {issueId: $issue, body: $body}) { success } }""",
                    issue=existing["id"], body="Seen again.\n\n" + t["body"])

@@ -142,6 +142,14 @@ def test_uptime_ticket(tmp_path):
     assert issue["labelIds"] == ["label-autopilot"]
 
 
+def test_an_outage_already_ticketed_adds_nothing():
+    # Uptime is checked every five minutes; a comment each time would bury the ticket.
+    fake = FakeLinear(open_title="Site watch: the site does not answer")
+    run(["--kind", "uptime", "--detail", "HTTP 502"], fake)
+    assert fake.created() == []
+    assert not [p for p in fake.sent if "commentCreate" in p["query"]]
+
+
 def test_a_red_run_with_no_failing_path_still_files_a_ticket(tmp_path):
     fake = FakeLinear()
     run(["--kind", "deploy", "--report", str(tmp_path / "missing.json")], fake)
