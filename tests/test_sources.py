@@ -69,6 +69,46 @@ def test_ashby_office_list_skips_blanks_and_repeats():
     assert p.location_raw is None
 
 
+def _hir289(title):
+    """One real posting from the boards as fetched on 2026-11-13 (HIR-289)."""
+    [job] = [j for j in load("ashby_hir289.json")["jobs"] if j["title"].strip() == title]
+    [p] = ashby.parse({"jobs": [job]})
+    return p
+
+
+def test_ashby_reads_the_city_from_the_address_when_the_office_name_lacks_it():
+    """Mercor names its office "Mercor HQ, 181 Fremont Street"; only the address says San
+    Francisco. Reading the name alone dropped the posting as no tracked city."""
+    from app.geo import place_of
+    p = _hir289("Ops Recruiter")
+    assert p.location_raw == "Mercor HQ, 181 Fremont Street; San Francisco"
+    assert place_of(p.location_raw) == "San Francisco"
+
+
+def test_ashby_address_city_remote_is_not_a_remote_signal():
+    """Plaid's "London Office" carries "Remote" as its address city; that is not a remote
+    posting a Berlin resident can take, so it is left out."""
+    from app.geo import place_of
+    p = _hir289("Technical Support Engineer")
+    assert p.location_raw == "London Office"
+    assert place_of(p.location_raw, p.title, p.description_text) is None
+
+
+def test_ashby_address_city_already_in_the_name_is_not_repeated():
+    # openai writes "Munich, Germany" with address city "Munich".
+    p = _hir289("Applied AI Engineering Manager, Startups | Core")
+    assert p.location_raw == "London, UK; Munich, Germany; Paris, France"
+
+
+def test_ashby_country_only_office_gets_its_city_from_the_address():
+    """jupus names some offices by country alone ("Czech Republic"); the address names the
+    city. The same shape is what /check-url met on 2026-10-17, when a jupus posting
+    listed only "Germany" and read as no tracked city."""
+    p = _hir289("Senior Applied AI Engineer")
+    assert p.location_raw.split("; ")[:6] == ["Cologne", "Czech Republic", "Prague", "United Kingdom",
+                                              "Manchester", "Berlin"]
+
+
 def test_arbeitnow_parse_and_pagination():
     payload = load("arbeitnow.json")
     ps = arbeitnow.parse(payload)

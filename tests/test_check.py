@@ -417,6 +417,25 @@ def test_personio_falls_back_to_the_first_office_address():
     assert p.location_raw == "Berlin (Remote)"     # the office's name, not its city ("Remote")
 
 
+def test_personio_additional_offices_follow_the_main_office():
+    """HIR-289: cloover.jobs.personio.com/job/2841191 has main office Wien and additional
+    office Berlin. Reading the main office alone dropped it as no tracked city."""
+    markup = personio_page(office="Wien", company="Cloover").replace(
+        r'\"main_office\":\"Wien\",', r'\"main_office\":\"Wien\",\"additional_offices\":[\"Berlin\"],')
+    p, _ = posting_from_html("https://cloover.jobs.personio.com/job/2841191", markup)
+    assert p.location_raw == "Wien; Berlin"
+    assert city_of(p.location_raw) == "Berlin"
+
+
+def test_personio_additional_offices_skip_blanks_and_repeats():
+    # super-ai.jobs.personio.de/job/1592103: main Berlin, additional "Remote (Europe)".
+    markup = personio_page(office="Berlin").replace(
+        r'\"main_office\":\"Berlin\",',
+        r'\"main_office\":\"Berlin\",\"additional_offices\":[\"Berlin\",\"\",\"Remote (Europe)\"],')
+    p, _ = posting_from_html("https://super-ai.jobs.personio.de/job/1592103", markup)
+    assert p.location_raw == "Berlin; Remote (Europe)"
+
+
 def test_personio_flags_still_override_the_payload():
     p, _ = posting_from_html("https://acto.jobs.personio.com/job/1", personio_page(),
                              company="Override Co", location="Munich")
