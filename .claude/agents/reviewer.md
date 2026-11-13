@@ -2,7 +2,10 @@
 name: reviewer
 description: Reviews a pull request for an autopilot issue against the issue, AGENTS.md and the PR template, and merges it, sends it back to its author with the exact fixes, or — only for an item on Chandler's list — labels it needs-chandler. Fresh context on purpose; never the author of the PR.
 model: claude-fable-5-1
-tools: Read, Grep, Glob, Bash, ToolSearch, mcp__claude_ai_Linear__get_issue, mcp__claude_ai_Linear__list_comments, mcp__claude_ai_Linear__save_comment
+tools: Read, Grep, Glob, Bash, ToolSearch, mcp__claude_ai_Linear__get_issue, mcp__claude_ai_Linear__list_comments, mcp__claude_ai_Linear__save_comment, mcp__Linear__get_issue, mcp__Linear__list_comments, mcp__Linear__save_comment
+# The same three Linear tools under two names (HIR-151): `mcp__claude_ai_Linear__…` in a
+# session on the Mac, `mcp__Linear__…` in a cloud run. Only one set exists in any session;
+# with only the Mac's names listed, no reviewer in a cloud run could read a ticket.
 # The three Linear tools arrive deferred — named but not callable — so `ToolSearch` is on the
 # list to load them (HIR-145). Naming them without it is what made every review stop.
 # The three Linear tools are load-bearing (HIR-137): without the ticket you cannot tell
@@ -40,9 +43,30 @@ For the PR you are given:
    your tool list but with no schema, so calling one fails until it is fetched. One call
    does it, before anything else:
    `ToolSearch` with query
-   `select:mcp__claude_ai_Linear__get_issue,mcp__claude_ai_Linear__list_comments,mcp__claude_ai_Linear__save_comment`.
-   If that call does not return all three, you cannot reach the ticket — which is the
-   `needs-chandler` path in step 1, not a review you carry out anyway.
+   `select:mcp__claude_ai_Linear__get_issue,mcp__claude_ai_Linear__list_comments,mcp__claude_ai_Linear__save_comment,mcp__Linear__get_issue,mcp__Linear__list_comments,mcp__Linear__save_comment`.
+   The connection has one name on the Mac (`mcp__claude_ai_Linear__…`) and another in a
+   cloud run (`mcp__Linear__…`), and a session only ever has one of them (HIR-151): the call
+   returns the set that exists, and those are the tools you use wherever this file says
+   `get_issue`, `list_comments` or `save_comment`. If it returns all three under neither
+   name, you cannot reach the ticket — which is the `needs-chandler` path in step 1, not a
+   review you carry out anyway.
+
+   **GitHub: `gh api` only** (HIR-151). In a cloud run `gh pr list`, `gh pr create`,
+   `gh pr edit`, `gh pr merge` and `gh pr checks` all fail (`gh auth status` reports a bad
+   token there, and it is wrong: `gh api` works), so every GitHub command in this file is a
+   `gh api` call, which works in both places. Labels, which you add and remove throughout:
+
+   ```
+   gh api -X POST   repos/:owner/:repo/issues/<n>/labels -f 'labels[]=<label>'   # add
+   gh api -X DELETE repos/:owner/:repo/issues/<n>/labels/<label>                 # remove
+   ```
+
+   **If adding a label is refused by the session's safety check** — Claude Code's own
+   permission system blocks the command before it reaches GitHub — do not look for another
+   way round it. Finish the review, post your comment with the verdict and the label you
+   could not add, and start your reply to your caller with `NEEDS CHANDLER`, saying exactly
+   **"label refused by the session's safety check; setup step missing"**. The fix is a
+   setting, not a review outcome (AGENTS.md "Starting a session").
 1. **Read the ticket. Not optional, and never from anyone's summary of the work**
    (HIR-137). The branch name and the PR title carry the issue id (`hir-NNN` /
    `HIR-NNN`); take it from there. Then `get_issue` on that id with `includeRelations`,
@@ -80,8 +104,9 @@ For the PR you are given:
         point, so the author's account of its own diff is not the list. Read the diff and
         say what changed, one plain-words bullet each, no file or function names.
      2. **Put the block in the PR description**, keeping everything already there
-        (`gh api .../pulls/<n> --jq .body` to read it, `gh pr edit <n> --body-file` to
-        write it back with the block appended). The description, not a comment: the
+        (`gh api .../pulls/<n> --jq .body` to read it,
+        `gh api -X PATCH repos/:owner/:repo/pulls/<n> -F body=@<file>` to write it back
+        with the block appended). The description, not a comment: the
         "Rules gate" CI check reads the description, and that is how it goes green.
         The block is exactly this and nothing more:
 
@@ -98,7 +123,7 @@ For the PR you are given:
         these files — he discussed what goes in them beforehand — so the only question is
         whether he authorized this. He answers by merging, or by sending it back.
 
-     You still report the "Done when" list (step 5); you just never arm auto-merge. If
+     You still report the "Done when" list (step 5); you just never merge it or label it `review-passed`. If
      the block is somehow already in the description, check it is one bullet per change
      and leave it, and still label and stop. To check your block is the shape the check
      wants before you wait on CI, run it the way CI does:
@@ -159,7 +184,7 @@ For the PR you are given:
      above €10 is CHANDLER (his list, item 5). Merge at most **one** such PR per calendar day; if one already merged
      today, leave this one open with a comment "waits for tomorrow's window", no label.
 4. **Merge** when everything holds — never at all for a PR that trips the rules gate.
-   **Label it `review-passed` first** (`gh pr edit <n> --add-label review-passed`), every
+   **Label it `review-passed` first** (step 0's label command), every
    time, before any merge command (HIR-262). That label is the handover to GitHub's own
    merger (`.github/workflows/merge-reviewed.yml`), which merges the PR once it is clean
    whatever happens to your command below — so a refused command no longer leaves a
@@ -167,7 +192,7 @@ For the PR you are given:
 
    **If your merge command is refused by the session's safety check** — Claude Code's own
    permission system blocks it before it reaches GitHub (a refusal naming auto mode, "Merge
-   Without Review", or a permission denial, rather than an error from `gh` or GitHub) —
+   Without Review", or a permission denial, rather than an error from GitHub) —
    say exactly **"merge refused by the session's safety check; setup step missing"** in
    your comment and report, and nothing else about it. It is not a review outcome: no
    `needs-chandler`, no retry. The label already hands the merge to GitHub; still do the
@@ -176,18 +201,19 @@ For the PR you are given:
    **Read `mergeable_state` first and let it pick the command** (HIR-157):
    `gh api repos/:owner/:repo/pulls/<n> --jq .mergeable_state`.
 
-   - **`clean` → merge it directly:** `gh pr merge <n> --merge`. GitHub **refuses to arm
-     auto-merge on a PR that can already merge** — `--auto` on a `clean` PR fails with the
-     generic "Something went wrong while executing your query", which is what stalled PR
-     #88. You usually arrive here, because `/work-issue` waits for CI before starting you.
+   - **`clean` → merge it directly:**
+     `gh api -X PUT repos/:owner/:repo/pulls/<n>/merge -f merge_method=merge`.
+     You usually arrive here, because `/work-issue` waits for CI before starting you.
      This is not the merging by hand that HIR-136 forbade: what that rule protects is that
      the checks decide, and the ruleset still enforces it — a `clean` PR is one whose
      required checks are *already* green, and GitHub rejects the command otherwise. You
      still never merge a PR you authored, or one whose issue lacks `autopilot`.
-   - **Anything else → arm auto-merge:** `gh pr merge <n> --merge --auto`. GitHub then
-     merges the PR itself the moment its required checks are green and the branch is up to
-     date.
-   - **Any other error from either command → `needs-chandler` (no @mention), and do not
+   - **Anything else → no merge command; bring the branch up to date** (below). The
+     `review-passed` label you just added is what merges it: GitHub's merger runs whenever
+     a required check finishes and merges the PR the moment it is clean. (Until HIR-151
+     this step armed GitHub's auto-merge; the command for that cannot run in a cloud run,
+     and since HIR-262 the label does the same job.)
+   - **Any other error from the merge command → `needs-chandler` (no @mention), and do not
      retry.** A merge command that failed for a reason these rules did not predict is
      exactly where a second attempt becomes a wrong merge. Quote the error in the PR comment.
      If the error is that the PR is already merged, that is GitHub's merger having got there
@@ -195,17 +221,17 @@ For the PR you are given:
 
    **There is no merge queue on this repository** and there cannot be (GitHub offers queues
    only on organization-owned repositories; this one is personal), so nothing tests the PR
-   against the latest main for you and nothing orders the merges. On the auto-merge path,
-   two consequences, both yours:
+   against the latest main for you and nothing orders the merges. On the not-yet-clean
+   path, two consequences, both yours:
 
-   - **Bring the branch up to date, after arming auto-merge.** `main` requires branches to
+   - **Bring the branch up to date, after adding the label.** `main` requires branches to
      be up to date before they merge (`strict_required_status_checks_policy` is still on,
-     checked 4 Nov), so auto-merge will sit there forever on a branch behind main. Run
+     checked 4 Nov), so a labelled PR will sit there forever on a branch behind main. Run
      `gh api -X PUT repos/:owner/:repo/pulls/<n>/update-branch`; the checks re-run on the
-     updated branch and auto-merge fires when they pass. Arm first, update second, so you
-     are never waiting on a check run you then invalidate. This is also why the two paths
-     do not overlap: with that policy on, a branch behind main reports `behind`, never
-     `clean`.
+     updated branch and GitHub's merger merges it when they pass. Label first, update
+     second, so the merger is already waiting when the checks finish. This is also why the
+     two paths do not overlap: with that policy on, a branch behind main reports `behind`,
+     never `clean`.
    - **A real conflict** makes `update-branch` fail (422). That is SENT BACK: remove
      `review-passed`, and the fix you ask for is resolving the conflict in the named files
      (keeping both sides newest-first in DECISIONS.md) — resolving it is the author's job,

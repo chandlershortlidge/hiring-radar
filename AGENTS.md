@@ -103,12 +103,15 @@ git config core.hooksPath .githooks
 ```
 
 Once per Mac, so the reviewer's merge is not refused by the session itself (HIR-262).
-Claude Code's auto-mode safety check refuses `gh pr merge` as "Merge Without Review" before
-the command reaches GitHub, and it reads its exceptions only from the user's own settings
-(`~/.claude/settings.json`), never from this repo — so no PR can fix it. Chandler adds two
-entries through `/permissions`:
+Claude Code's auto-mode safety check refuses the reviewer's merge command as "Merge Without
+Review" before the command reaches GitHub, and it reads its exceptions only from the user's
+own settings (`~/.claude/settings.json`), never from this repo — so no PR can fix it.
+Chandler adds two entries through `/permissions`:
 
-- an allow rule: `Bash(gh pr merge *)`
+- an allow rule for the merge command. Since HIR-151 the reviewer merges with
+  `gh api -X PUT repos/:owner/:repo/pulls/<n>/merge`, the one form that also works in a
+  cloud run, so the rule is `Bash(gh api -X PUT repos/:owner/:repo/pulls/*)`; the older
+  `Bash(gh pr merge *)` no longer matches anything the reviewer runs
 - an auto-mode allow rule, in prose: *merging a reviewed, green PR into main of this repo
   is the project's documented process.*
 
@@ -693,7 +696,7 @@ back to the author (above); one on his list gets `needs-chandler` and an @mentio
 (HIR-262). `.github/workflows/merge-reviewed.yml` runs `scripts/merge_reviewed.py` when that
 label is added and whenever a required check finishes, and merges the PR when it is
 `clean`, carries no `needs-chandler`, and touches neither a rule file nor the labelling
-guide. It is the fallback for a session whose own safety check refuses `gh pr merge` (the
+guide. It is the fallback for a session whose own safety check refuses the merge command (the
 Mac setup under "Starting a session"); no session setting can block it. Removing the label
 or adding `needs-chandler` stops it. **Only the reviewer adds `review-passed`** — a worker
 labelling its own PR is merging its own PR. The workflow cannot bring a branch up to date
@@ -704,15 +707,25 @@ rules is never merged by any run — the rules gate above. At most one PR that r
 job (taxonomy, prompt, model) merges per day. PRs for `attended` issues always wait for
 a person.
 
-**No person presses anything: the reviewer merges, or arms auto-merge and GitHub does it**
-(HIR-136, HIR-157). The reviewer reads `mergeable_state` and that picks the command. A
+**No person presses anything: the reviewer merges, or labels the PR and GitHub does it**
+(HIR-136, HIR-157, HIR-151). The reviewer reads `mergeable_state` and that picks the path. A
 `clean` PR — required checks already green, branch up to date — is **merged directly**,
-`gh pr merge <n> --merge`, because GitHub refuses to arm auto-merge on a PR that can
-already merge, and the reviewer usually arrives after CI has finished. Any other state gets
-`gh pr merge <n> --merge --auto`, which tells GitHub to merge the PR the moment its
-required checks are green. Neither is a human merge, and neither can get round the checks:
-the ruleset requires all three, so a merge command on a PR whose checks are not green is
-refused by GitHub. Any other error from either command is `needs-chandler` with no retry.
+`gh api -X PUT repos/:owner/:repo/pulls/<n>/merge -f merge_method=merge`, and the reviewer
+usually arrives after CI has finished. Any other state gets no merge command: the
+`review-passed` label is already on, the reviewer brings the branch up to date, and
+GitHub's merger (above) merges the PR the moment its required checks are green. Neither is
+a human merge, and neither can get round the checks: the ruleset requires all three, so a
+merge command on a PR whose checks are not green is refused by GitHub. Any other error from
+the merge command is `needs-chandler` with no retry.
+
+**The agents talk to GitHub through `gh api` only** (HIR-151). In a scheduled cloud run
+`gh pr list`, `gh pr create`, `gh pr edit`, `gh pr checks` and `gh pr merge` all fail, and
+`gh auth status` wrongly reports a bad token, while `gh api` works there and on the Mac. So
+the reviewer, the skills and the lead agent use `gh api` for pull requests, labels and
+merges. That is also why the reviewer no longer arms GitHub's auto-merge, which has no
+`gh api` form: the `review-passed` label does that job in both places. The Linear
+connection likewise has two names — `mcp__claude_ai_Linear__…` on the Mac, `mcp__Linear__…`
+in a cloud run — and the reviewer is allowed both.
 There is **no merge queue** on this repository and there cannot be — GitHub offers queues
 only on organization-owned repositories, and this one belongs to a personal account.
 HIR-124 wrote a queue into these rules anyway, which is why every autopilot PR stalled
@@ -720,7 +733,7 @@ until HIR-136.
 
 Because nothing is testing each PR against the latest main for us, **being behind main is
 the reviewer's job**: `main` requires branches to be up to date before they merge
-(`strict_required_status_checks_policy`, still on as of 4 Nov), so after arming auto-merge
+(`strict_required_status_checks_policy`, still on as of 4 Nov), so after labelling the PR
 the reviewer brings the branch up to date and the checks re-run. That is also why the two
 merge paths above never overlap — with that policy on, a branch behind main reports
 `behind`, never `clean`. A
