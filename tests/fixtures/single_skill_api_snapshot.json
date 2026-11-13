@@ -39,7 +39,10 @@
           "status": "open",
           "title": "AI Engineer",
           "too_short": false,
-          "required_groups": []
+          "required_groups": [],
+          "places": [
+            "San Francisco"
+          ]
         },
         {
           "city": "Berlin",
@@ -80,7 +83,10 @@
           "status": "open",
           "title": "AI Engineer",
           "too_short": false,
-          "required_groups": []
+          "required_groups": [],
+          "places": [
+            "Berlin"
+          ]
         }
       ],
       "limit": 20,
@@ -130,7 +136,10 @@
           "status": "open",
           "title": "AI Engineer",
           "too_short": false,
-          "required_groups": []
+          "required_groups": [],
+          "places": [
+            "San Francisco"
+          ]
         },
         {
           "city": "Berlin",
@@ -171,7 +180,10 @@
           "status": "open",
           "title": "AI Engineer",
           "too_short": false,
-          "required_groups": []
+          "required_groups": [],
+          "places": [
+            "Berlin"
+          ]
         }
       ],
       "limit": 20,
@@ -223,7 +235,10 @@
           "status": "open",
           "title": "AI Engineer",
           "too_short": false,
-          "required_groups": []
+          "required_groups": [],
+          "places": [
+            "Berlin"
+          ]
         }
       ],
       "limit": 20,
@@ -324,7 +339,10 @@
           "status": "open",
           "title": "AI Engineer",
           "too_short": false,
-          "required_groups": []
+          "required_groups": [],
+          "places": [
+            "Berlin"
+          ]
         },
         {
           "city": "Berlin",
@@ -364,7 +382,10 @@
           "status": "open",
           "title": "AI Engineer",
           "too_short": false,
-          "required_groups": []
+          "required_groups": [],
+          "places": [
+            "Berlin"
+          ]
         },
         {
           "city": "Berlin",
@@ -406,7 +427,10 @@
           "status": "open",
           "title": "AI Engineer",
           "too_short": false,
-          "required_groups": []
+          "required_groups": [],
+          "places": [
+            "Berlin"
+          ]
         },
         {
           "city": "Berlin",
@@ -448,7 +472,10 @@
           "status": "open",
           "title": "AI Engineer",
           "too_short": false,
-          "required_groups": []
+          "required_groups": [],
+          "places": [
+            "Berlin"
+          ]
         },
         {
           "city": "Berlin",
@@ -491,7 +518,10 @@
           "status": "open",
           "title": "AI Engineer",
           "too_short": false,
-          "required_groups": []
+          "required_groups": [],
+          "places": [
+            "Berlin"
+          ]
         },
         {
           "city": "Berlin",
@@ -534,7 +564,10 @@
           "status": "open",
           "title": "AI Engineer",
           "too_short": false,
-          "required_groups": []
+          "required_groups": [],
+          "places": [
+            "Berlin"
+          ]
         }
       ],
       "limit": 50,

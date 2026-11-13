@@ -8,6 +8,9 @@ Does: for each posting decide, in order —
      board feeds (REPOST_SOURCES) can say that; a second id listed at the same time is a
      concurrent duplicate and just merges;
   3. otherwise insert a new job.
+Every place a sighting names is recorded against its job in `job_place`, on all three
+paths, so a posting for Berlin and Munich — or a Munich copy merged into a Berlin job —
+counts under both (HIR-289); `job.city` stays the first place.
 Also applies the title/city filters so feeds' unrelated postings never become rows:
 a title needs both an AI/ML domain term and a technical role term. A posting with no
 company is dropped here too (HIR-207): dedup matches on company first, so a blank-company
@@ -40,7 +43,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
 from app import dedup
-from app.geo import active_place, place_of
+from app.geo import active_place, place_of, places_of
 from app.sources import Posting, registry
 
 # A title is in scope only when it names an AI/ML domain AND a technical role. Either half
@@ -295,6 +298,7 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
             if row:
                 conn.execute("UPDATE job_source SET last_seen=? WHERE id=?", (when, row["id"]))
                 conn.execute("UPDATE job SET last_seen=max(last_seen, ?) WHERE id=?", (when, row["job_id"]))
+                _add_places(conn, row["job_id"], p)
                 return Stored(STILL_LISTED, row["job_id"])
 
         match = dedup.find_match(p.company, p.title, p.description_text, _candidates(conn, p.company))
@@ -311,6 +315,7 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
                 (job_id, p.source, p.source_job_id or None, p.url or None, found_via, when, when, p.posted_at))
             conn.execute("UPDATE job SET last_seen=max(last_seen, ?), first_seen=min(first_seen, ?) WHERE id=?",
                          (when, when, job_id))
+            _add_places(conn, job_id, p)
             if is_repost:
                 conn.execute("UPDATE job SET repost_count = repost_count + 1 WHERE id=?", (job_id,))
                 return Stored(REPOST, job_id)
@@ -326,9 +331,18 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
             "INSERT INTO job_source (job_id, source, source_job_id, url, found_via, first_seen, last_seen, posted_at)"
             " VALUES (?,?,?,?,?,?,?,?)",
             (job_id, p.source, p.source_job_id or None, p.url or None, found_via, when, when, p.posted_at))
+        _add_places(conn, job_id, p)
         if screenshot is not None:
             _insert_screenshot(conn, job_id, screenshot)
         return Stored(NEW, job_id)
+
+
+def _add_places(conn: sqlite3.Connection, job_id: int, p: Posting) -> None:
+    """Record every place this sighting names against the job (HIR-289). Only adds: a
+    place an earlier sighting named stays. `job.city` reaches the table by trigger
+    (migration 022), so a new job's first place is already there."""
+    conn.executemany("INSERT OR IGNORE INTO job_place (job_id, place) VALUES (?, ?)",
+                     [(job_id, place) for place in places_of(p.location_raw, p.title, p.description_text)])
 
 
 def ingest(conn: sqlite3.Connection, postings: list[Posting], when: str | None = None,

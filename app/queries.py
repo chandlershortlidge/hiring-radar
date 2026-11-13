@@ -21,6 +21,7 @@ import sqlite3
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 
+from app.geo import CITIES, REMOTE_EU
 from app.ingest import FAMILIES as ingest_families
 from app.sources import registry
 
@@ -123,7 +124,9 @@ def job_set_clause(f: Filters, now: str, include_legacy: bool = False) -> tuple[
     text is shorter than MIN_TEXT_CHARS, a fragment rather than a posting."""
     parts, params = ([] if include_legacy else [_NOT_LEGACY, _LONG_ENOUGH]), []
     if f.cities:
-        parts.append(f"j.city IN ({','.join('?' * len(f.cities))})")
+        # Any of the job's places, not only its first: a Berlin + Munich job is in both (HIR-289).
+        parts.append(f"EXISTS (SELECT 1 FROM job_place jpl WHERE jpl.job_id = j.id"
+                     f" AND jpl.place IN ({','.join('?' * len(f.cities))}))")
         params += list(f.cities)
     if f.seniorities:
         parts.append(f"j.seniority IN ({','.join('?' * len(f.seniorities))})")
@@ -193,8 +196,9 @@ def stats(conn: sqlite3.Connection, now: str, skills_tracked: int) -> dict:
     oc, op = open_clause(now)
     total = conn.execute("SELECT count(*) FROM job").fetchone()[0]
     open_total = conn.execute(f"SELECT count(*) FROM job j WHERE {oc}", op).fetchone()[0]
-    by_city = {r["city"]: r["n"] for r in conn.execute(
-        f"SELECT j.city, count(*) n FROM job j WHERE {oc} AND j.city IS NOT NULL GROUP BY j.city", op)}
+    by_city = {r["place"]: r["n"] for r in conn.execute(
+        f"SELECT jpl.place, count(*) n FROM job j JOIN job_place jpl ON jpl.job_id = j.id WHERE {oc}"
+        f" GROUP BY jpl.place", op)}
     by_family = {r["family"]: r["n"] for r in conn.execute(
         f"SELECT j.family, count(*) n FROM job j WHERE {oc} AND j.family IS NOT NULL GROUP BY j.family", op)}
     companies = conn.execute("SELECT count(DISTINCT lower(company)) FROM job WHERE company IS NOT NULL").fetchone()[0]
@@ -241,9 +245,20 @@ def skill_frequency(conn: sqlite3.Connection, f: Filters, now: str) -> dict:
     mc, mp = _mention_clause(f)
     total = conn.execute(f"SELECT count(*) FROM job j WHERE {jc}", jp).fetchone()[0]
     rows = conn.execute(
-        f"SELECT m.skill_id, j.city, count(DISTINCT j.id) n FROM skill_mention m JOIN job j ON j.id = m.job_id"
-        f" WHERE {jc} AND {mc} GROUP BY m.skill_id, j.city", jp + mp).fetchall()
-    return {"total": total, "skills": _skill_rows(rows, total)}
+        f"SELECT m.skill_id, count(DISTINCT j.id) n FROM skill_mention m JOIN job j ON j.id = m.job_id"
+        f" WHERE {jc} AND {mc} GROUP BY m.skill_id", jp + mp).fetchall()
+    # Per place on a query of its own: a job in two places counts once in `count` and once
+    # in each place's `by_city` (HIR-289), so the two cannot come from one grouping.
+    by_place: dict[str, dict] = {}
+    for r in conn.execute(
+            f"SELECT m.skill_id, jpl.place, count(DISTINCT j.id) n FROM skill_mention m"
+            f" JOIN job j ON j.id = m.job_id JOIN job_place jpl ON jpl.job_id = j.id"
+            f" WHERE {jc} AND {mc} GROUP BY m.skill_id, jpl.place", jp + mp):
+        by_place.setdefault(r["skill_id"], {})[r["place"]] = r["n"]
+    skills = _skill_rows(rows, total, with_cities=False)
+    for s in skills:
+        s["by_city"] = by_place.get(s["skill_id"], {})
+    return {"total": total, "skills": skills}
 
 
 def related_skills(conn: sqlite3.Connection, f: Filters, now: str) -> dict:
@@ -307,11 +322,28 @@ def related_skills(conn: sqlite3.Connection, f: Filters, now: str) -> dict:
 def city_totals(conn: sqlite3.Connection, f: Filters, now: str) -> dict[str, int]:
     """Jobs per city in the filtered set — the denominators for compare mode."""
     jc, jp = job_set_clause(f, now)
-    return {r["city"]: r["n"] for r in conn.execute(
-        f"SELECT j.city, count(*) n FROM job j WHERE {jc} AND j.city IS NOT NULL GROUP BY j.city", jp)}
+    return {r["place"]: r["n"] for r in conn.execute(
+        f"SELECT jpl.place, count(*) n FROM job j JOIN job_place jpl ON jpl.job_id = j.id WHERE {jc}"
+        f" GROUP BY jpl.place", jp)}
 
 
 # --- jobs -------------------------------------------------------------------------------
+
+_PLACE_ORDER = {p: i for i, p in enumerate([*CITIES, REMOTE_EU])}
+
+
+def _places(conn: sqlite3.Connection, ids: list[int]) -> dict[int, list[str]]:
+    """{job id: every place it is posted for}, in geo's order, so the job's own city (the
+    first place) leads (HIR-289)."""
+    out: dict[int, list[str]] = {i: [] for i in ids}
+    if ids:
+        for r in conn.execute(f"SELECT job_id, place FROM job_place WHERE job_id IN ({','.join('?' * len(ids))})",
+                              ids):
+            out[r["job_id"]].append(r["place"])
+    for v in out.values():
+        v.sort(key=lambda p: (_PLACE_ORDER.get(p, len(_PLACE_ORDER)), p))
+    return out
+
 
 SORTS = {
     "newest": "j.first_seen DESC, j.id DESC",
@@ -374,9 +406,11 @@ def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newes
             (required if s["requirement"] == "required" else nice)[s["job_id"]].append(s["skill_id"])
             if s["requirement"] == "required" and s["alternative_group"] is not None:
                 groups[s["job_id"]].setdefault(s["alternative_group"], []).append(s["skill_id"])
+    places = _places(conn, ids)
     jobs = []
     for r in rows:
         d = dict(r)
+        d["places"] = places[r["id"]]
         d["legacy"] = d.pop("extracted_version") == LEGACY_VERSION
         d["too_short"] = not d["legacy"] and d.pop("text_len") < MIN_TEXT_CHARS
         d["degree_or_equivalent"] = bool(d["degree_or_equivalent"])
@@ -406,6 +440,7 @@ def job_detail(conn: sqlite3.Connection, job_id: int, now: str) -> dict | None:
     if not r:
         return None
     d = dict(r)
+    d["places"] = _places(conn, [job_id])[job_id]
     d["sources"] = [dict(s) for s in conn.execute(
         "SELECT source, source_job_id, url, found_via, first_seen, last_seen, posted_at FROM job_source"
         " WHERE job_id = ? ORDER BY first_seen", (job_id,))]
