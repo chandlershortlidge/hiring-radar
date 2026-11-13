@@ -451,6 +451,50 @@ def test_personio_json_ld_tenant_is_unchanged():
     assert how == "json-ld" and p.company == "Juni" and p.location_raw == "Berlin, DE"
 
 
+def super_ai_page():
+    """super-ai.jobs.personio.de/job/1592103 as served on 2026-11-13: JSON-LD with one place
+    per office, the office without a street address ("Remote (Europe)") left empty, and
+    the payload naming both offices."""
+    ld = {"@type": "JobPosting", "title": "AI Engineer", "description": JD,
+          "hiringOrganization": {"name": "super.AI"},
+          "jobLocation": [
+              {"@type": "Place", "address": {"@type": "PostalAddress", "streetAddress": "Friedrichstr. 114A",
+                                             "addressLocality": "Berlin", "addressRegion": "Berlin",
+                                             "postalCode": "10117", "addressCountry": "DE"}},
+              {"@type": "Place", "address": {"@type": "PostalAddress", "addressLocality": "",
+                                             "addressCountry": ""}}],
+          "jobLocationType": None, "applicantLocationRequirements": None}
+    return personio_page(office="Berlin", company="super.AI", ld=ld).replace(
+        r'\"main_office\":\"Berlin\",',
+        r'\"main_office\":\"Berlin\",\"additional_offices\":[\"Remote (Europe)\"],')
+
+
+def test_personio_json_ld_gains_the_office_with_no_street_address():
+    """HIR-292: the JSON-LD place for "Remote (Europe)" is empty, so only Berlin was read."""
+    p, how = posting_from_html("https://super-ai.jobs.personio.de/job/1592103", super_ai_page())
+    assert how == "json-ld" and p.company == "super.AI"
+    assert p.location_raw == "Berlin, Berlin, DE; Remote (Europe)"    # Berlin is not listed twice
+
+
+def test_personio_json_ld_untracked_city_with_a_remote_office_is_eu_remote():
+    # The case the ticket warns of: the only office with an address is a city we don't track.
+    markup = super_ai_page().replace("Berlin", "Wien").replace('"DE"', '"AT"')
+    p, _ = posting_from_html("https://super-ai.jobs.personio.de/job/1592103", markup)
+    assert p.location_raw == "Wien, Wien, AT; Remote (Europe)"
+    assert city_of(p.location_raw) is None and geo.is_remote_eu(p.location_raw)
+
+
+def test_personio_json_ld_location_flag_still_wins():
+    p, _ = posting_from_html("https://super-ai.jobs.personio.de/job/1592103", super_ai_page(),
+                             location="Munich")
+    assert p.location_raw == "Munich"
+
+
+def test_json_ld_on_another_host_does_not_read_the_payload():
+    p, _ = posting_from_html("https://acme.com/j/1", super_ai_page())
+    assert p.location_raw == "Berlin, Berlin, DE"
+
+
 def test_a_payload_on_another_host_is_ignored():
     # The Personio payload (company "Acto", office Berlin) is not read off a non-Personio
     # host; the company instead comes from HIR-198's title-tail fallback.
