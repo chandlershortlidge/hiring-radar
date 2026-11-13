@@ -1,5 +1,6 @@
-"""The pull-request half of the Monday summary (HIR-264): what needs Chandler, what merged
-last week, and what the reviewer sent back that was then fixed and merged.
+"""The pull-request half of the Monday summary (HIR-264): what needs Chandler, what was
+decided for him (HIR-278), what merged last week, and what the reviewer sent back that was
+then fixed and merged.
 
 Does:
   - read this repository's pull requests from GitHub's public API (no token: the repo is
@@ -8,7 +9,10 @@ Does:
     so the hourly limit on unsigned API requests is never a concern;
   - sort each merged change into one group by those files — the chart, the job list, the
     cities, elsewhere on the site, or nothing a visitor would see;
-  - write the three sections as Markdown, for app/caretaker_run.py to put in the one
+  - copy each merged change's "Decided for you" lines — the small calls on his list that
+    the senior agent made so he was not asked (AGENTS.md "What Chandler is asked") — as
+    the author wrote them;
+  - write the four sections as Markdown, for app/caretaker_run.py to put in the one
     Monday post next to the job-source report.
 
 Does NOT: post anything, write to GitHub, label or merge a pull request, call a model, or
@@ -18,6 +22,9 @@ the reviewer set; it never sets one.
 Invariants:
   - "Needs you" is every *open* pull request labelled `needs-chandler`, whether or not it
     ever @mentioned him. That label is the whole test.
+  - "Decided for you" comes only from changes that merged in the week: a call in a pull
+    request still open has not taken effect. A call made in a ticket with no pull request
+    is not read here; the lead agent adds those to the Monday post.
   - A merged change appears in exactly one group. A change whose files could not be read is
     listed as unsorted, never dropped and never guessed.
   - If GitHub cannot be read, `week_text` says so in plain words instead of raising: the
@@ -99,6 +106,25 @@ def question(body: str | None) -> str:
     return ""
 
 
+def decided(body: str | None) -> list[str]:
+    """The lines under the pull request's "Decided for you" heading, one per call, as
+    written; [] when the section is absent, empty or says "None"."""
+    m = re.search(r"^##\s*Decided for you\s*$(.*?)(?=^##\s|\Z)", body or "", flags=re.M | re.S | re.I)
+    if not m:
+        return []
+    text = re.sub(r"<!--.*?-->", "", m.group(1), flags=re.S)
+    out = []
+    for line in text.splitlines():
+        line = line.strip().lstrip("-*> ").strip()
+        if line and not (not out and line.lower().rstrip(".") == "none"):
+            out.append(line[:400])
+    return out
+
+
+def decided_lines(merged: list[dict]) -> list[str]:
+    return [f"- {line} ({_link(pr)})" for pr in merged for line in decided(pr.get("body"))]
+
+
 def _link(pr: dict) -> str:
     return f"[{plain_title(pr['title'])}]({pr['html_url']})"
 
@@ -114,7 +140,7 @@ def needs_lines(waiting: list[dict]) -> list[str]:
 
 
 def sections(merged: list[dict], waiting: list[dict], start: str, end: str) -> str:
-    """Markdown for the three parts. `merged` items carry `files` (a list, or None when
+    """Markdown for the four parts. `merged` items carry `files` (a list, or None when
     they could not be read); `waiting` are the open pull requests labelled needs-chandler."""
     lines = ["# Needs you", ""]
     if waiting:
@@ -123,6 +149,14 @@ def sections(merged: list[dict], waiting: list[dict], start: str, end: str) -> s
         lines += needs_lines(waiting)
     else:
         lines.append("Nothing is waiting for you.")
+    lines += ["", "# Decided for you", ""]
+    if (calls := decided_lines(merged)):
+        n = len(calls)
+        lines += [f"{n} small call{'s' if n != 1 else ''} the senior agent made instead of asking you. "
+                  "Each says how to undo it; reverse one and that kind of call comes back to you.", ""]
+        lines += calls
+    else:
+        lines.append("Nothing was decided for you.")
     lines += ["", f"# What merged, {start} to {end}", ""]
     if not merged:
         lines.append("Nothing merged.")
@@ -197,7 +231,7 @@ def fetch(start: str, end: str, get=get_json, files_of=git_files,
 
 
 def week_text(start: str, end: str, get=get_json, files_of=git_files, refresh=git_refresh) -> str:
-    """The three sections, or one plain paragraph saying GitHub could not be read."""
+    """The four sections, or one plain paragraph saying GitHub could not be read."""
     try:
         merged, waiting = fetch(start, end, get, files_of, refresh)
     except Exception as e:  # noqa: BLE001 - any failure here must not stop the Monday post

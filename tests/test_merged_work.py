@@ -26,13 +26,25 @@ FILES = {
     "sha4": ["web/src/ProfileDrawer.jsx"],
     "sha5": ["scripts/lead_pick.py", "DECISIONS.md"],
 }
+# The planted small call (HIR-278): one stored job repaired, tried on a copy first.
+SMALL_CALL = (
+    "## Decisions taken\n\nNone\n\n"
+    "## Decided for you\n\n<!-- Small calls the senior agent decided. -->\n"
+    "- Replaced one stored job's 255-character teaser with the full posting, because the "
+    "teaser hid its skills; tried on a copy of the database first. Undo: restore that job "
+    "from last night's backup.\n"
+    "* A second call, with its own undo.\n\n"
+    "## Needs Chandler\n\nNone\n")
+
 CLOSED = [
-    pr(1, "HIR-301: bars on the chart keep their order", "2026-11-10T09:00:00Z"),
+    pr(1, "HIR-301: bars on the chart keep their order", "2026-11-10T09:00:00Z",
+       body="## Decided for you\n\nNone\n\n## Needs Chandler\n\nNone\n"),
     pr(2, "HIR-302: a job card shows its city", "2026-11-11T09:00:00Z", labels=("sent-back", "review-passed")),
-    pr(3, "HIR-303: Potsdam postings read as Berlin", "2026-11-12T09:00:00Z"),
+    pr(3, "HIR-303: Potsdam postings read as Berlin", "2026-11-12T09:00:00Z", body=SMALL_CALL),
     pr(4, "HIR-304: the profile drawer closes on Escape", "2026-11-13T09:00:00Z"),
     pr(5, "HIR-305: the lead agent counts a failed ticket once", "2026-11-15T23:59:00Z"),
-    pr(6, "HIR-306: merged the Monday after", "2026-11-16T07:00:00Z"),
+    pr(6, "HIR-306: merged the Monday after", "2026-11-16T07:00:00Z",
+       body="## Decided for you\n\n- Decided the week after.\n"),
     pr(7, "HIR-307: merged the week before", "2026-11-08T23:00:00Z", updated="2026-11-08T23:00:00Z"),
     pr(8, "HIR-308: closed without merging", None, updated="2026-11-12T10:00:00Z"),
 ]
@@ -43,7 +55,8 @@ OPEN = [
        body="## Decisions taken\n\nNone\n\n## Needs Chandler\n\n<!-- hint -->\n"
             "- This changes how postings are scored: merge, or send back?\n\n## Escalations\n",
        created="2026-11-11T08:00:00Z"),
-    pr(22, "HIR-322: still in review", labels=("sent-back",)),
+    pr(22, "HIR-322: still in review", labels=("sent-back",),
+       body="## Decided for you\n\n- Decided in a pull request that has not merged.\n"),
 ]
 
 
@@ -80,6 +93,26 @@ def test_needs_you_lists_every_open_pr_with_the_label_pinged_or_not():
     assert needs.rstrip().endswith("waiting since 2026-11-13.")       # "None." is not a question
 
 
+def test_a_small_call_decided_without_him_is_reported_under_decided_for_you():
+    calls = [line for line in section(text(), "Decided for you").splitlines() if line.startswith("- ")]
+    link = "([Potsdam postings read as Berlin](https://github.com/x/y/pull/3))"
+    assert calls == [
+        "- Replaced one stored job's 255-character teaser with the full posting, because the "
+        "teaser hid its skills; tried on a copy of the database first. Undo: restore that job "
+        f"from last night's backup. {link}",
+        f"- A second call, with its own undo. {link}"]     # "None", next week's and the open PR's are not there
+    assert "2 small calls the senior agent made instead of asking you" in section(text(), "Decided for you")
+
+
+def test_decided_for_you_reads_only_its_own_section():
+    assert mw.decided("## Decided for you\n\n<!-- hint -->\n\n## Needs Chandler\n\n- A question?\n") == []
+    assert mw.decided("## Decided for you\nNone.\n") == []
+    assert mw.decided("## Decisions taken\n\n- Not a small call.\n") == []
+    assert mw.decided(None) == []
+    assert mw.decided("## decided for you\n> - Kept.\n- None of the old rows changed.\n") == [
+        "Kept.", "None of the old rows changed."]         # only a bare first "None" means empty
+
+
 def test_only_last_weeks_merges_are_listed_each_in_one_group():
     body = text()
     merged = section(body, "What merged")
@@ -108,6 +141,7 @@ def test_sent_back_and_fixed_is_the_merged_prs_that_carry_the_label():
 def test_a_quiet_week_says_so_in_each_part():
     body = mw.week_text(START, END, lambda url: [], FILES.get, refresh=lambda: None)
     assert "Nothing is waiting for you." in body
+    assert "Nothing was decided for you." in body
     assert "Nothing merged." in body
     assert "Nothing was sent back." in body
 
@@ -199,7 +233,7 @@ def test_monday_posts_one_message_with_the_three_parts_and_the_source_report(tmp
     body = posted[0][1]
     heads = [line for line in body.splitlines() if line.startswith("# ")]
     assert [h.split(":")[0].split(",")[0] for h in heads] == [
-        "# Needs you", "# What merged", "# Sent back and fixed", "# Caretaker"]
+        "# Needs you", "# Decided for you", "# What merged", "# Sent back and fixed", "# Caretaker"]
     assert "Every source worked all week." in body
 
 

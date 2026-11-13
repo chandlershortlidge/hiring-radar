@@ -50,8 +50,9 @@ the code. Five lines, plain words, no file names:
   and give its figure; never a remembered number.
 - **Deciding alone:** the judgment calls you expect to make (AGENTS.md "Deciding alone vs.
   stopping").
-- **Will ask about:** anything on Chandler's list (AGENTS.md "What Chandler is asked" —
-  the one source; don't copy it). If this line isn't "nothing", @mention
+- **Will ask about:** anything on the big side of Chandler's list (AGENTS.md "What
+  Chandler is asked" — the one source; don't copy it). A small call on that list is not
+  asked: the senior agent decides it ("A small call on Chandler's list", below). If this line isn't "nothing", @mention
   Chandler in the comment and wait for the answer before step 3.
 - **Not doing:** what the issue's out-of-scope says, in plain words.
 
@@ -64,8 +65,8 @@ session and continue — the PR body's first line then says "autopilot run, labe
 
 Autopilot means: post the brief on Linear for the record but do **not** wait for a "go";
 start at once. Every question goes to the decider; if it returns ANSWER, apply it and
-continue. Only a NO RULE — which the decider gives only for an item on Chandler's list —
-reaches Chandler (Linear comment, @mention), and then stop. The
+continue; if it returns SMALL CALL, the senior agent decides it. Only a NO RULE — which
+the decider gives only for the big side of Chandler's list — reaches Chandler (Linear comment, @mention), and then stop. The
 person sees nothing until the PR exists. You still never merge your own PR — at the end of
 the run a fresh `reviewer` agent does it (step 5c).
 
@@ -218,7 +219,7 @@ is a real conflict: the reviewer cannot update a branch that conflicts, so it ha
 back to you. Resolve it then, keeping both sides newest-first in DECISIONS.md.
 
 PR body, in the template's sections: Testing, Risk, How to revert, **Decisions taken**,
-plus **`## Eval (dev)`** whenever step 3a applied — the reviewer refuses a PR that touches
+**Decided for you** (the senior agent's small calls, or "None"), plus **`## Eval (dev)`** whenever step 3a applied — the reviewer refuses a PR that touches
 the extractor or the skill list and has no such section, so an absent table reads as an
 eval nobody ran, not as a clean one.
 **Needs Chandler** and **Follow-ups** per AGENTS.md "Deciding alone vs. stopping". "Needs
@@ -245,8 +246,8 @@ one this session wrote.
 ## 5b. Follow-up tickets
 
 Any ticket you file (a Follow-up that deserves one, a bug found on the way) gets the
-`autopilot` label when it is one bounded change with nothing on Chandler's list, per
-AGENTS.md; `attended` only when its work is on that list.
+`autopilot` label when it is one bounded change with nothing on the big side of
+Chandler's list, per AGENTS.md; `attended` only when its work is on that big side.
 Decide it at filing time; Chandler does not sort issues by hand.
 
 ## 5c. Review and merge, before the run ends (autopilot only, HIR-124)
@@ -320,7 +321,8 @@ and no `review-passed` (the orchestrator does that when the original worker is g
 ## Before any question reaches Chandler: the decider
 
 Hand the question to the `decider` subagent (`.claude/agents/decider.md`). It reads only
-the rule files and replies ANSWER + RULE, or NO RULE + the question rewritten for Chandler.
+the rule files and replies ANSWER + RULE, SMALL CALL ("A small call on Chandler's list",
+below), or NO RULE + the question rewritten for Chandler.
 
 If the spawn fails because the model is unavailable, use the model ladder in AGENTS.md
 "Escalate to a stronger agent before a person" — written there and nowhere else. A
@@ -341,12 +343,33 @@ REASON — carry it out and add a line under "Decisions taken" — or ON CHANDLE
 the question already rewritten for him: post that on the Linear issue with an @mention, do
 what doesn't depend on it, and stop.
 
+## A small call on Chandler's list: the senior agent decides (HIR-278)
+
+Chandler's list has a small side (AGENTS.md "What Chandler is asked", "Small calls"):
+repairing a few stored jobs, a small recurring cost, a wording choice, the order of bugs.
+He is not asked those. When the decider replies SMALL CALL:
+
+1. Gather the proof it named, before asking anyone. For stored data: run the change on a
+   **copy** of the database (never the live one), keep what you ran and what it changed,
+   and list the backup bucket to show last night's backup is there (`rtk proxy` in front
+   of the command: the hook clips cloud listings). For money: the figure and where the
+   cost is switched off.
+2. Hand the question, the decider's reply and that proof to the `senior` agent. You never
+   decide it yourself, and you do not argue with its answer.
+3. **DECISION + DECIDED FOR YOU** → carry it out. Copy its "Decided for you" line,
+   unchanged, into the PR body under **Decided for you**, put the proof in the PR body
+   under Testing, and add the usual line under Escalations. With no PR (a one-off run, a
+   ticket that is only a question), post the line as a comment on the ticket headed
+   **Decided for you**. No @mention: he reads it on Monday.
+4. **ON CHANDLER'S LIST** → it was big after all. Post the rewritten question on the
+   Linear issue with an @mention, do what doesn't depend on it, and stop.
+
 Every call to the senior agent or the decider goes in the PR body under **Escalations**,
 one line each: who asked, what, what was answered. "None" if there were none.
 
 ## When to break off and ask
 
-Chandler's list in AGENTS.md "What Chandler is asked", plus: the work has grown past
+The big side of Chandler's list in AGENTS.md "What Chandler is asked", plus: the work has grown past
 the issue (propose the split). An issue that contradicts a standing rule is **not** a
 reason to ask: the rule wins, note it under "Decisions taken". Asking
 is a Linear comment with an @mention, one sentence and the options; then do whatever

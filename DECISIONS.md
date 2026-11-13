@@ -5,6 +5,53 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-13 — Small calls on Chandler's list are decided by the senior agent and reported on Monday (HIR-278)
+
+Chandler, 12 Nov, after two questions in one afternoon that he answered with the agent's
+own recommendation: "Why am I even bothering with these? All I did was follow what you said
+anyway." A question whose answer is always "do what you recommend" is an interruption.
+
+**The list of what he is asked now has a small side and a big side** (AGENTS.md "What
+Chandler is asked", the one copy). Small: repairing or replacing up to 5 stored jobs when
+the change was tried on a copy of the database and last night's backup exists; a new
+recurring cost up to €10 a week that he can switch off, or an unplanned one-off spend up
+to €10; a wording, layout or error-message choice; the order of bugs inside a milestone.
+Everything else on the list is big and still waits for him. Nothing about the score, how
+it is measured, or the agents' own rules is small. When in doubt, a call is big.
+
+**Three agents, none of them the one that asked.** The decider says which side a question
+is on. The senior agent decides a small one and takes its own recommendation; it sends the
+call back as big when the proof is missing. The reviewer checks the call, the proof and the
+undo like any other line of the pull request. The line goes in the pull request under
+"Decided for you" and the Monday summary prints every such line from the week's merged
+pull requests, each with how to undo it. If he reverses one, that kind of call moves back
+to the big side and the reversal is recorded here.
+
+**The figures (5 jobs, €10, €10 a week) are Claude's proposal from the 12 Nov chat**, not
+numbers Chandler gave. They are in one place, AGENTS.md, and a test keeps a second copy
+out of the agents' and skills' files.
+
+**Two readings where the ticket left room.** Deleting a stored job is not "repairing or
+replacing" one, so a deletion stays big at any count, backup or not; to change that, add
+"or removing" to item 4's small side. And a re-read up to €10 that a ticket's own
+skill-list change sets off stays as it was (the pull request states the figure and the
+merge is the approval): it is not reported under "Decided for you", which would otherwise
+fill with one line per skill-list change.
+
+**One row of the ticket was left out: "a pull request that only carries out a rule change
+he already approved in a ticket merges after review".** The ticket said to drop it if it
+could not be made safe. It cannot: agents act under Chandler's own GitHub and Linear
+logins (a comment an agent posts shows him as its author), so no label, comment or
+approval can show that he, not an agent, approved a ticket. The rules gate and GitHub's
+merger are unchanged: a pull request touching the agents' rules or the labelling guide
+still never merges without him.
+
+**Not applied to the waiting tickets by this change.** The rule is not in force until he
+merges it, so the open tickets waiting for him were sorted on paper only (the sort is a
+comment on HIR-278); the labels move afterwards.
+
+---
+
 ## 2026-11-13 — Checks run on a laptop are copied to the server, so they are counted (HIR-294)
 
 The caretaker counts misses in the server's database, and every /check-url run so far was

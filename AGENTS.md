@@ -580,37 +580,86 @@ is never asked again.
 
 ### What Chandler is asked
 
-**This is the one list** (Chandler, 2026-11-12, HIR-262). The decider, the reviewer, the
-work-issue and orchestrator skills and the PR template point here; none keeps its own copy.
+**This is the one list** (Chandler, 2026-11-12, HIR-262; split into a small and a big side
+2026-11-13, HIR-278). The decider, the senior agent, the reviewer, the work-issue,
+orchestrator and lead-agent skills and the PR template point here; none keeps its own copy.
 Everything not on it is decided by an agent, reviewed by another agent, and merged.
 
-1. **Roadmap** — what gets built, dropped or reordered; launching a city he has not named
-   (`ACTIVE_CITIES`); opening the site to the public.
-2. **Anything that changes the score or how it is measured** — the labelling guide
-   (`evals/LABELING.md`) or an attribute's definition; the extractor's instructions
-   (`PRINCIPLES`, the prompt, the tool schema) or its model; the eval's rules and stop
-   lines; his own hand labels (Goldens, unless the issue asks for them); and an eval result
-   over either stop line (the eval gate above: a per-Golden attribute score that lost more
-   than 2 Goldens, or a skill score down more than 0.02).
-3. **Product decisions about what visitors see** — adding or removing a feature, the
-   homepage and visual direction, the wording of public claims. Bug fixes, polish and
-   layout repairs are not decisions and merge.
-4. **Things that cannot be undone** — deleting or rewriting stored jobs, Goldens or eval
-   results.
-5. **Money** — a one-off spend above €10 (a re-read whose `reread-cost` figure is above
-   €10 counts), or any new recurring cost.
-6. **Agents changing their own rules** — the rules gate above: one short "Did you
-   authorize these?" list in the PR.
+Each item has a **big** side, which waits for him. Four of the six also have a **small**
+side: the senior agent decides those and he reads about them on Monday ("Small calls",
+below). **When in doubt about which side a call is on, it is big.**
+
+1. **Roadmap** — *big:* what gets built or dropped; launching a city he has not named
+   (`ACTIVE_CITIES`); opening the site to the public. *Small:* the order of bugs inside a
+   milestone.
+2. **Anything that changes the score or how it is measured** — *all big, nothing small:*
+   the labelling guide (`evals/LABELING.md`) or an attribute's definition; the extractor's
+   instructions (`PRINCIPLES`, the prompt, the tool schema) or its model; the eval's rules
+   and stop lines; his own hand labels (Goldens, unless the issue asks for them); and an
+   eval result over either stop line (the eval gate above: a per-Golden attribute score
+   that lost more than 2 Goldens, or a skill score down more than 0.02).
+3. **Product decisions about what visitors see** — *big:* adding or removing a feature, the
+   homepage and visual direction, the wording of public claims. *Small:* a wording or
+   layout fix, an error message, or which existing filter a bug fix restores, when there
+   is a real choice between two ways to do it. Bug fixes, polish and layout repairs with
+   nothing to choose are not decisions and merge.
+4. **Things that cannot be undone** — *big:* deleting stored jobs, at any count; repairing
+   or replacing more than 5 of them; any change to a Golden or an eval result; anything
+   done with no backup. *Small:* repairing or replacing up to 5 stored jobs, when the
+   change was tried on a copy of the database first and last night's backup exists.
+5. **Money** — *big:* a one-off spend above €10 (a re-read whose `reread-cost` figure is
+   above €10 counts); a recurring cost above €10 a week, or one he cannot switch off.
+   *Small:* a new recurring cost up to €10 a week that he can switch off, and a one-off
+   spend up to €10 that no ticket called for. (A re-read up to €10 that a ticket's own
+   change sets off is neither: the PR states the figure and the merge is the approval,
+   "Deciding alone vs. stopping" above.)
+6. **Agents changing their own rules** — *all big, nothing small:* the rules gate above:
+   one short "Did you authorize these?" list in the PR.
+
+**Small calls: the senior agent decides, Monday reports** (Chandler, 2026-11-12, HIR-278:
+a question whose answer is always "do what you recommend" is an interruption, not a
+decision).
+
+- **Who decides.** The decider says which side a question is on (its `SMALL CALL` reply).
+  The **senior agent** then decides it and takes its own recommendation. Never the worker
+  that asked, and never the decider.
+- **What the senior agent needs.** The proof the small side names, in the worker's notes:
+  for stored data, what was run on the copy of the database and what it changed, and the
+  listing that shows last night's backup; for money, the figure and the switch that turns
+  the cost off. Without it the senior agent answers `ON CHANDLER'S LIST`, which is the
+  big side.
+- **Where it is written.** In the PR body under **Decided for you**, one line: what was
+  decided, why, and how to undo it, in words he can read without the repo. With no PR, the
+  same line as a comment on the ticket, headed **Decided for you**. It also goes under
+  "Escalations", like any call to the senior agent.
+- **The reviewer checks it** like any other line of the PR: the call is on the small side,
+  the proof is in the PR body, the undo is real. Proof missing is a send-back; a call that
+  is not small is `needs-chandler`.
+- **Monday.** The summary's **Decided for you** part lists every such line from the week's
+  merged PRs (`app/merged_work.py` reads the PR bodies); the lead agent adds the ones
+  made in a ticket with no PR.
+- **If he reverses one on Monday**, that kind of call moves to the big side: the agent
+  applying his answer records it in DECISIONS.md and changes this list, in a PR that
+  passes the rules gate like any other.
+- **What stays in code whatever this list says.** A PR that touches the labelling guide or
+  the agents' own rule files is never merged by GitHub's merger
+  (`scripts/merge_reviewed.py`) and never passes the rules gate without his answer.
+  HIR-278 asked for one more small call, "a PR that only carries out a rule change he
+  already approved in a ticket merges after review". It was left out: agents act under
+  his own GitHub and Linear logins, so no label or comment can show that he, not an agent,
+  approved a ticket.
 
 How the list is used:
 
-- **A question on the list** goes to the decider first, like any question; only what it
-  cannot answer from a written rule reaches Chandler, as a Linear comment that @mentions
-  him. **A question not on the list never reaches him**: the decider answers it from the
-  rules, or by the closest rule and precedent when none fits exactly, and the worker
-  records the answer under "Decisions taken".
-- **A PR whose change is on the list** gets `needs-chandler` and an @mention, and waits
-  for him. It is the only kind of PR that pings him.
+- **A question on the list** goes to the decider first, like any question. A written rule
+  answers it; with no rule, the decider says which side it is on. Small goes to the senior
+  agent (above). Only a big one reaches Chandler, as a Linear comment that @mentions him.
+  **A question not on the list never reaches him**: the decider answers it from the rules,
+  or by the closest rule and precedent when none fits exactly, and the worker records the
+  answer under "Decisions taken".
+- **A PR whose change is on the big side** gets `needs-chandler` and an @mention, and waits
+  for him. It is the only kind of PR that pings him. A PR whose only items on the list are
+  small calls the senior agent decided merges after review.
 - **Which files trip it** is the reviewer's check (`.claude/agents/reviewer.md`, step 3).
   The labelling guide is also refused by GitHub's own merger
   (`scripts/merge_reviewed.py`), so it stops even if the reviewer slips.
@@ -632,7 +681,7 @@ reaches Chandler in the Monday summary, not as a ping.
 
 **Escalate to a stronger agent before a person** (Chandler, 2026-11-12, HIR-262). A worker
 runs on whatever model its session started with; when it is stuck, it climbs a ladder, and
-Chandler is the last rung only for an item on his list:
+Chandler is the last rung only for an item on the big side of his list:
 
 - **A rules question** ("am I allowed to…", "which rule applies") → the `decider`
   (`.claude/agents/decider.md`).
@@ -643,7 +692,9 @@ Chandler is the last rung only for an item on his list:
   under "Decisions taken".
 - **A reviewer finding that survives one fix round** → a fresh worker on the strongest
   model (above).
-- Only when the senior agent or the decider says the question is one of the six items on
+- **A small call on Chandler's list** ("What Chandler is asked", above) → the decider
+  names it, the `senior` agent decides it, and it is reported on Monday.
+- Only when the senior agent or the decider says the question is on the big side of
   Chandler's list does it reach him — already rewritten as one plain question with options
   and a recommendation.
 
@@ -665,9 +716,10 @@ Retry on availability errors only. A wrong answer is not a reason to try a bigge
 **Questions go to the decider agent before they go to Chandler.** `.claude/agents/decider.md`
 (Fable) reads only AGENTS.md, DECISIONS.md, taxonomy/README.md and evals/LABELING.md, and
 answers the question from them. It returns either an answer with the rule it rests on (the worker
-applies it and notes it under "Decisions taken"), or — only for a question on Chandler's
-list — "no rule covers this" plus the question rewritten per "How to write anything
-Chandler reads". Only the second kind reaches Chandler: a comment on the Linear issue that @mentions him, two sentences of
+applies it and notes it under "Decisions taken"), or "small call" (the senior agent decides
+it, above), or — only for a question on the big side of Chandler's list — "no rule covers
+this" plus the question rewritten per "How to write anything Chandler reads". Only the
+last kind reaches Chandler: a comment on the Linear issue that @mentions him, two sentences of
 situation, one line per option with its consequence, a recommendation. His answer is
 written into DECISIONS.md so it is never asked again. Meanwhile the worker does any step
 that doesn't depend on the answer, and stops.
@@ -680,7 +732,7 @@ still stops the run — guessing is not autopilot.
 
 An issue runs **attended** only when Chandler wants to be in it: `/work-issue HIR-n
 attended`, or the Linear label `attended` on the issue. He applies that label, or an agent
-filing an issue whose work is on his list above. Attended means the brief waits for his
+filing an issue whose work is on the big side of his list above. Attended means the brief waits for his
 "go" and the PR waits for his merge.
 
 What keeps the default safe is his list above, the reviewer's file checks and the rules
@@ -688,9 +740,9 @@ gate, which apply to every run regardless of label.
 
 **Who merges.** A worker never merges its own PR. For an `autopilot` issue the
 `reviewer` agent (`.claude/agents/reviewer.md`, fresh context, Fable) merges when CI is
-green, the diff stays in scope and off Chandler's list, "Needs Chandler" is empty,
+green, the diff stays in scope and off the big side of Chandler's list, "Needs Chandler" is empty,
 every decision has an undo and every follow-up a ticket. A finding not on his list is sent
-back to the author (above); one on his list gets `needs-chandler` and an @mention.
+back to the author (above); one on its big side gets `needs-chandler` and an @mention.
 
 **The reviewer also labels a passed PR `review-passed`, and GitHub merges it from there**
 (HIR-262). `.github/workflows/merge-reviewed.yml` runs `scripts/merge_reviewed.py` when that
@@ -751,7 +803,8 @@ that stops before a review passes leaves its PR labelled `needs-chandler` **with
 
 **How Chandler hears about it: once a week, not per PR.** A Monday summary — what merged,
 in plain words, grouped by what a visitor would notice; what was sent back and fixed; the
-short "needs you" list. No message for work that merged. Until that summary exists
+short "needs you" list; and "Decided for you", the small calls the senior agent made, each
+with how to undo it (HIR-278). No message for work that merged. Until that summary exists
 (HIR-264), the open PRs labelled `needs-chandler` are the "needs you" list.
 
 **A Linear description is appended to, never replaced** (HIR-124). Two agents overwrote

@@ -10,10 +10,17 @@ then, by design. -->
 what, why, how to undo. Plain words — a reader who hasn't seen the code should be able
 to say "fine" or "no". Mechanical choices don't belong here. "None" is a valid answer. -->
 
+## Decided for you
+
+<!-- Small calls on Chandler's list that the senior agent decided so he was not asked
+(AGENTS.md "What Chandler is asked", "Small calls"). One line each, copied unchanged from
+the senior agent's reply: what was decided, why, how to undo it. No file or function
+names: the Monday summary prints these lines as they are. "None" if there were none. -->
+
 ## Needs Chandler
 
-<!-- Only items on Chandler's list (AGENTS.md "What Chandler is asked") that block the
-merge: questions you stopped on, one line each, with the options. Also posted on the
+<!-- Only items on the big side of Chandler's list (AGENTS.md "What Chandler is asked")
+that block the merge: questions you stopped on, one line each, with the options. Also posted on the
 Linear issue with an @mention. Anything else goes to the decider, not here. "None" if
 nothing blocks. -->
 

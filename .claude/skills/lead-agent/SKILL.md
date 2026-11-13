@@ -21,7 +21,9 @@ write nothing anywhere.
 These hold in every step. When one would be broken, stop that action, and put the matter
 under "Needs you" in the log (step 7) as one plain question with a recommendation.
 
-- Anything on the six-item list in AGENTS.md "What Chandler is asked".
+- Anything on the big side of the list in AGENTS.md "What Chandler is asked". A small
+  call on that list is not yours either: a worker takes it to the senior agent (that
+  section, "Small calls", HIR-278), and you report it in the log.
 - Reorder the launch order, remove a `parked` or `attended` label, or move a ticket out of
   Backlog unless the launch-order document lists it or a check filed it (the caretaker,
   the robot visitor, a mutation test, an audit).
@@ -76,7 +78,8 @@ someone who has not read the code: what a visitor would see, since when, the run
 
 **Sort.** Every ticket created since the last log comment that has none of `autopilot`,
 `attended`, `hands-on`, `parked` gets one of the first two, by the list in AGENTS.md
-"What Chandler is asked": work on that list → `attended`; everything else → `autopilot`.
+"What Chandler is asked": work on the big side of that list → `attended`; everything
+else, small calls included → `autopilot`. When in doubt which side, it is big.
 You never apply `hands-on` or `parked`; those are Chandler's. Two more cases get
 `attended`, because a cloud run cannot do them (DECISIONS 2026-11-12, HIR-266):
 
@@ -173,6 +176,7 @@ the Monday summary read it:
 - HIR-m | picked: <…> | result: <result> | spend: €<0.00>
 
 Needs you: <one plain sentence per item, or "nothing">
+Decided for you: <each small call the senior agent made today: what, why, how to undo, and "(PR #n)" or "(no PR)"; or "nothing">
 Sorted: <tickets labelled or moved today, with the label, or "nothing">
 Unstuck: <pull requests given a fresh worker or reviewer, or "nothing">
 Design review: <Fridays only>
@@ -190,6 +194,13 @@ Design review: <Fridays only>
 `spend` is what the ticket's pull request says it cost in model calls (its eval), in
 euros; `€0.00` when it made none. A day with nothing picked still gets a comment, with
 the script's `stop` or "nothing in Todo that may run" in place of the ticket lines.
+
+`Decided for you` is copied, not written: each line comes unchanged from a pull request's
+"Decided for you" section or from a ticket comment headed **Decided for you** (AGENTS.md
+"Small calls"). On Mondays, after the log, add one comment to that morning's "Monday
+summary" issue headed **Decided for you, outside pull requests**, with last week's log
+lines marked "(no PR)". The summary lists the ones in merged pull requests by itself; a
+week with none gets no comment.
 
 Write for someone who has not read the code: no file names, no function names.
 
