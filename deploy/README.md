@@ -53,6 +53,12 @@ on the VM unless it says otherwise.
 
 `systemctl list-units | grep hiring` shows the exact unit names.
 
+**Checks run on the Mac arrive over this SSH login** (HIR-294). The caretaker's miss count
+reads this database, so `python -m app check` on the Mac ends by piping its check log to
+`python -m app receive-checks` here, run as `hiring-radar` (`app/send_checks.py` holds the
+exact command). It stores only the checks this database does not have, so a repeat is
+harmless. `HIRING_RADAR_SEND_CHECKS=0` on the Mac switches it off.
+
 ## Is it healthy?
 
 ```
