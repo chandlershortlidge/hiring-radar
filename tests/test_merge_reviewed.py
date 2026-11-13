@@ -66,10 +66,12 @@ def test_a_labelling_guide_pr_never_merges_here_even_when_passed():
 class FakeGh:
     """Answers `gh` calls from a script of PR states; records the commands that act."""
 
-    def __init__(self, states, files=CODE, running=((),)):
+    def __init__(self, states, files=CODE, running=((),), finished=(), status=None):
         self.states = list(states)
         self.files = files
         self.running = list(running)  # per look: names of the checks not finished yet
+        self.finished = finished  # every look: (name, conclusion) of the finished checks
+        self.status = status or {"state": "pending", "total_count": 0}  # no commit statuses
         self.acts = []
 
     def __call__(self, *args):
@@ -77,7 +79,11 @@ class FakeGh:
             return "\n".join(self.files)
         if args[0] == "api" and "/check-runs" in args[1]:
             names = self.running.pop(0) if len(self.running) > 1 else self.running[0]
-            return "\n".join(names)
+            rows = [f"{name}\tin_progress\t" for name in names]
+            rows += [f"{name}\tcompleted\t{conclusion}" for name, conclusion in self.finished]
+            return "\n".join(rows)
+        if args[0] == "api" and args[1].endswith("/status"):
+            return json.dumps(self.status)
         if args[0] == "api":
             state = self.states.pop(0) if len(self.states) > 1 else self.states[0]
             return json.dumps(state)
@@ -186,6 +192,118 @@ def test_run_stops_waiting_when_the_pr_is_stopped_meanwhile(monkeypatch):
     waits = []
     assert mr.run("o/r", 7, sleep=waits.append) is False
     assert waits == [mr.PENDING_WAIT_S] and gh.acts == []
+
+
+OWN = (mr.OWN_CHECK,)
+TESTS_GREEN = (("Python tests", "success"), ("Rules gate", "success"), ("Deploy and watch", "skipped"))
+
+
+def test_the_own_check_name_is_the_job_name_in_the_workflow():
+    workflow = (ROOT / ".github" / "workflows" / "merge-reviewed.yml").read_text()
+    assert f"name: {mr.OWN_CHECK}\n" in workflow
+
+
+def test_run_merges_when_its_own_check_is_the_only_one_still_running(monkeypatch):
+    # HIR-293: the label started the merger, so its own run was a check on the PR. It
+    # waited on itself for the full 15 minutes, GitHub said 'unstable' throughout, and a
+    # reviewed, green PR stayed open (PR #170, 13 Nov).
+    gh = FakeGh([pr(mergeable_state="unstable")], running=[OWN], finished=TESTS_GREEN)
+    monkeypatch.setattr(mr, "_gh", gh)
+    waits = []
+    assert mr.run("o/r", 7, sleep=waits.append) is True
+    assert waits == []
+    merge = gh.acts[0]
+    assert merge[:2] == ("pr", "merge") and "--match-head-commit" in merge and "abc123" in merge
+
+
+def test_run_waits_for_the_other_check_but_not_for_its_own(monkeypatch):
+    # Screenshots still running next to the merger's own check: wait for the screenshots,
+    # then merge although the PR still reads 'unstable' (its own check is why).
+    gh = FakeGh(
+        [pr(mergeable_state="unstable")],
+        running=[OWN + SHOTS, OWN],
+        finished=TESTS_GREEN,
+    )
+    monkeypatch.setattr(mr, "_gh", gh)
+    waits = []
+    assert mr.run("o/r", 7, sleep=waits.append) is True
+    assert waits == [mr.PENDING_WAIT_S]
+
+
+def test_run_does_not_merge_past_a_failed_check_because_its_own_is_running(monkeypatch):
+    gh = FakeGh(
+        [pr(mergeable_state="unstable")],
+        running=[OWN],
+        finished=TESTS_GREEN + (("Before/after screenshots", "failure"),),
+    )
+    monkeypatch.setattr(mr, "_gh", gh)
+    waits = []
+    assert mr.run("o/r", 7, sleep=waits.append) is False
+    assert gh.acts == []
+    assert waits == [mr.UNKNOWN_WAIT_S] * mr.SETTLE_RETRIES  # never the 15 minutes
+
+
+@pytest.mark.parametrize("state", ["pending", "failure"])
+def test_run_does_not_merge_past_a_commit_status_that_is_not_green(monkeypatch, state):
+    # The older kind of check, which the check list does not show.
+    gh = FakeGh(
+        [pr(mergeable_state="unstable")],
+        running=[OWN],
+        finished=TESTS_GREEN,
+        status={"state": state, "total_count": 1},
+    )
+    monkeypatch.setattr(mr, "_gh", gh)
+    assert mr.run("o/r", 7, sleep=lambda s: None) is False
+    assert gh.acts == []
+
+
+def test_run_merges_with_its_own_check_running_when_the_commit_statuses_are_green(monkeypatch):
+    gh = FakeGh(
+        [pr(mergeable_state="unstable")],
+        running=[OWN],
+        finished=TESTS_GREEN,
+        status={"state": "success", "total_count": 1},
+    )
+    monkeypatch.setattr(mr, "_gh", gh)
+    assert mr.run("o/r", 7, sleep=lambda s: None) is True
+
+
+def test_run_ignores_an_earlier_merger_run_that_failed(monkeypatch):
+    # A merger run that hit a GitHub error leaves a red check of its own name behind. That
+    # is not a verdict on the PR, and must not keep the next run from merging it.
+    gh = FakeGh(
+        [pr(mergeable_state="unstable")],
+        finished=TESTS_GREEN + ((mr.OWN_CHECK, "failure"),),
+    )
+    monkeypatch.setattr(mr, "_gh", gh)
+    assert mr.run("o/r", 7, sleep=lambda s: None) is True
+
+
+@pytest.mark.parametrize(
+    "kwargs, files",
+    [
+        ({"mergeable_state": "blocked"}, CODE),  # a required check failed or is running
+        ({"mergeable_state": "behind"}, CODE),
+        ({"mergeable_state": "dirty"}, CODE),
+        ({"mergeable_state": "unstable", "labels": ()}, CODE),
+        ({"mergeable_state": "unstable", "labels": ("review-passed", "needs-chandler")}, CODE),
+        ({"mergeable_state": "unstable"}, CODE + ["AGENTS.md"]),
+        ({"mergeable_state": "unstable"}, ["evals/LABELING.md"]),
+    ],
+)
+def test_its_own_check_running_excuses_nothing_else(monkeypatch, kwargs, files):
+    gh = FakeGh([pr(**kwargs)], files=files, running=[OWN], finished=TESTS_GREEN)
+    monkeypatch.setattr(mr, "_gh", gh)
+    waits = []
+    assert mr.run("o/r", 7, sleep=waits.append) is False
+    assert waits == [] and gh.acts == []
+
+
+def test_decide_reads_unstable_as_clean_only_when_told_its_own_check_is_why():
+    assert mr.decide(pr(mergeable_state="unstable"), CODE)[0] is False
+    assert mr.decide(pr(mergeable_state="unstable"), CODE, own_check_only=True)[0] is True
+    assert mr.decide(pr(mergeable_state="blocked"), CODE, own_check_only=True)[0] is False
+    assert mr.decide(pr(mergeable_state="behind"), CODE, own_check_only=True)[0] is False
 
 
 def test_main_with_no_pr_for_the_branch_is_a_quiet_no(monkeypatch, capsys):
