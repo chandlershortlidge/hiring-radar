@@ -21,14 +21,16 @@ Does:
   - log each check (`log_check`) and report coverage over the logged checks
     (`checked_coverage`): of the URLs a person checked, how many a feed already had;
     `reach_breakdown` sorts the misses by whether a feed can reach them *now*;
-  - count jobs a feed has seen (`job_coverage`), leaving out the legacy screenshot imports.
+  - count jobs a feed has seen (`job_coverage`), leaving out the legacy screenshot imports;
+  - file each check under one reason from a fixed list (`miss_reason`, HIR-290) and log it
+    with the company, city and careers system, so misses can be counted (app/misses.py).
 
 Does NOT: write anything but the url_check log (the CLI's --add hands the resolved Posting
 to app.ingest), call a model, or fetch LinkedIn (its pages are not readable without a login
 and the project does not scrape it).
 
 Invariants: `parse_ats_url`, `token_from_embed`, `posting_from_html`, `containment`,
-`diagnose` and `feed_had_it` are pure; `check_url` reads the DB and never writes it, and does network I/O
+`diagnose`, `feed_had_it`, `careers_system` and `miss_reason` are pure; `check_url` reads the DB and never writes it, and does network I/O
 only through the injected fetchers, so tests never touch the network. Coverage counts only
 the first check of each URL: the /check-url skill re-checks after adding a board and
 polling, and that re-check must not count as the feed having had the posting.
@@ -45,7 +47,7 @@ from dataclasses import dataclass, field
 from html.parser import HTMLParser
 
 from app import dedup
-from app.geo import ACTIVE_CITIES, active_place, city_of
+from app.geo import ACTIVE_CITIES, active_place, city_of, place_of
 from app.html_text import html_to_text
 from app.ingest import in_scope_title
 from app.sources import Posting, fetch_text, registry
@@ -667,12 +669,146 @@ def feed_had_it(result: CheckResult) -> bool:
     return result.verdict == "found" and any(s not in MANUAL_SOURCES for s in result.sources)
 
 
+# --- why a checked posting was missed (HIR-290) -------------------------------------------
+#
+# Every check is filed under one reason from this fixed list, by rule, from what the check
+# already worked out — never written freely. Order is the order reports print them in.
+NOT_IN_SOURCES, TITLE_FILTER, LOCATION_FILTER, UNREADABLE_SYSTEM, LINKEDIN_ONLY, ALREADY_HAD, OTHER = (
+    "not_in_sources", "title_filter", "location_filter", "unreadable_system", "linkedin_only",
+    "already_had", "other")
+MISS_REASONS = (NOT_IN_SOURCES, TITLE_FILTER, LOCATION_FILTER, UNREADABLE_SYSTEM, LINKEDIN_ONLY,
+                ALREADY_HAD, OTHER)
+REASON_TEXT = {
+    NOT_IN_SOURCES: "company was not in our sources",
+    TITLE_FILTER: "company was in our sources, but the title filter dropped the job",
+    LOCATION_FILTER: "company was in our sources, but the location was read wrong or not at all",
+    UNREADABLE_SYSTEM: "the careers system is one we cannot read yet",
+    LINKEDIN_ONLY: "the job only exists on LinkedIn",
+    ALREADY_HAD: "the job was already in the poll (not a miss)",
+    OTHER: "other",
+}
+
+# Careers systems a company hosts its jobs on that no adapter polls yet, by hostname.
+_UNREAD_SYSTEMS = (
+    ("personio", re.compile(r"(?:^|\.)jobs\.personio\.(?:com|de)$")),
+    ("workable", re.compile(r"(?:^|\.)workable\.com$")),
+    ("recruitee", re.compile(r"(?:^|\.)recruitee\.com$")),
+    ("smartrecruiters", re.compile(r"(?:^|\.)smartrecruiters\.com$")),
+    ("workday", re.compile(r"(?:^|\.)myworkdayjobs\.com$")),
+    ("peopleforce", re.compile(r"(?:^|\.)peopleforce\.io$")),
+    ("kenjo", re.compile(r"(?:^|\.)kenjo\.io$")),
+    ("gem", re.compile(r"(?:^|\.)gem\.com$")),
+    ("teamtailor", re.compile(r"(?:^|\.)teamtailor\.com$")),
+    ("softgarden", re.compile(r"(?:^|\.)softgarden\.(?:io|de)$")),
+)
+# Job boards and recruiters: the posting is someone else's copy, not the employer's page.
+_JOB_BOARD_HOST_RE = re.compile(
+    r"(?:^|\.)(?:get-in-it\.de|arbeitnow\.[a-z.]+|all-european-careers\.com|michaelpage\.[a-z.]+"
+    r"|thryvetalent\.com|stepstone\.[a-z.]+|indeed\.[a-z.]+|glassdoor\.[a-z.]+|xing\.com"
+    r"|jobgether\.com|joinrs\.com)$")
+_SUPPORTED_HOSTS = (("greenhouse", "greenhouse.io"), ("lever", "lever.co"),
+                    ("ashby", "ashbyhq.com"), ("join", "join.com"))
+JOB_BOARD, OWN_SITE = "job board", "own site"
+
+
+def careers_system(url: str) -> str:
+    """Pure: which careers system a checked URL is on — an adapter's name (greenhouse, …),
+    a system we don't read yet (personio, workday, …), "linkedin", "job board", or
+    "own site" for a company's own careers pages."""
+    ref = parse_ats_url(url)
+    if ref is not None:
+        return ref.source
+    host = (urllib.parse.urlsplit(url.strip()).hostname or "").lower()
+    if host == "linkedin.com" or host.endswith(".linkedin.com"):
+        return "linkedin"
+    for name, pat in _UNREAD_SYSTEMS:
+        if pat.search(host):
+            return name
+    for name, domain in _SUPPORTED_HOSTS:
+        if host == domain or host.endswith("." + domain):
+            return name
+    return JOB_BOARD if _JOB_BOARD_HOST_RE.search(host) else OWN_SITE
+
+
+_BOARD_RE = re.compile(r"^board (?P<board>\S+) ")
+
+
+def miss_reason(url: str, verdict: str, had_it: bool, diagnosis: str | None) -> tuple[str, str]:
+    """Pure: (reason, detail) for one check. `diagnosis` is `diagnose`'s sentence, so a
+    check logged before reasons were recorded gets the same answer as a new one.
+
+    The detail names what a fix ticket needs: the board for a missing source, the filter
+    and the field it read for a dropped job, the system or host for one we cannot read."""
+    if verdict == "found":
+        if had_it:
+            return ALREADY_HAD, ""
+        # Added by hand before this check and no feed has it since: still a miss, filed by
+        # where the link points, as a first check of it would have been.
+        ref = parse_ats_url(url)
+        if ref is not None and ref.token:
+            return NOT_IN_SOURCES, f"board {ref.source}:{ref.token} (job was added by hand before this check)"
+        d = "not a hosted ATS page"
+    else:
+        d = diagnosis or ""
+    board = _BOARD_RE.match(d)
+    if board and "is not in config/feeds.json" in d:
+        return NOT_IN_SOURCES, f"board {board['board']}"
+    if board and "no longer lists job" in d:
+        return OTHER, f"closed or re-posted under a new id on board {board['board']}"
+    if board and "ingest would drop it: " in d:
+        clauses = d.split("ingest would drop it: ", 1)[1].split("; ")
+        title = [c for c in clauses if c.startswith("title ")]
+        if title:
+            return TITLE_FILTER, "; ".join(title + [c for c in clauses if c not in title])
+        return LOCATION_FILTER, "; ".join(clauses)
+    if board and "passes both filters" in d:
+        return OTHER, f"board {board['board']} is polled and the job passes both filters: posted since the last poll, or a feed bug"
+    if "via an embed URL" in d:
+        return OTHER, "a Greenhouse link embedded on a company page that does not name the board"
+    if d.startswith("not a hosted ATS page"):
+        system = careers_system(url)
+        host = urllib.parse.urlsplit(url.strip()).hostname or ""
+        dropped = d.split("it would also be dropped: ", 1)[1] if "would also be dropped" in d else ""
+        if system == "linkedin":
+            return LINKEDIN_ONLY, ""
+        if system == JOB_BOARD:
+            return OTHER, f"posted on a job board or recruiter site ({host})"
+        if system in dict(_SUPPORTED_HOSTS):
+            # A link on a system we poll, in a form the checker could not read as one job
+            # (a company page, or a link format it did not know when it was checked).
+            return UNREADABLE_SYSTEM, f"a {system} link the checker could not read as one job ({host})"
+        where = host if system == OWN_SITE else system
+        return UNREADABLE_SYSTEM, where + (f"; would also be dropped: {dropped}" if dropped else "")
+    return OTHER, f"unrecognised check result: {d[:120]}"
+
+
+def miss_fields(conn: sqlite3.Connection, result: CheckResult) -> dict:
+    """The miss record for one check: company, city, careers system, reason and its detail.
+    The company and city come from the stored job when the check found one, else from the
+    posting the check read."""
+    reason, detail = miss_reason(result.url, result.verdict, feed_had_it(result), result.diagnosis)
+    company = city = None
+    if result.job_id is not None:
+        row = conn.execute("SELECT company, city FROM job WHERE id=?", (result.job_id,)).fetchone()
+        if row:
+            company, city = row["company"], row["city"]
+    elif result.posting is not None:
+        p = result.posting
+        company = p.company
+        city = place_of(p.location_raw, p.title, p.description_text)
+    return {"company": company, "city": city, "careers_system": careers_system(result.url),
+            "reason": reason, "reason_detail": detail or None}
+
+
 def log_check(conn: sqlite3.Connection, result: CheckResult, found_via: str | None, now: str) -> None:
+    m = miss_fields(conn, result)
     conn.execute(
-        "INSERT INTO url_check (url, checked_at, found_via, verdict, job_id, feed_had_it, diagnosis)"
-        " VALUES (?, ?, ?, ?, ?, ?, ?)",
+        "INSERT INTO url_check (url, checked_at, found_via, verdict, job_id, feed_had_it, diagnosis,"
+        " company, city, careers_system, reason, reason_detail)"
+        " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         (result.url, now, found_via, result.verdict, result.job_id, int(feed_had_it(result)),
-         result.diagnosis or None))
+         result.diagnosis or None, m["company"], m["city"], m["careers_system"], m["reason"],
+         m["reason_detail"]))
     conn.commit()
 
 
