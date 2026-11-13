@@ -24,6 +24,16 @@ reviewed PR open forever. It waits for nothing else: a failed check, a branch be
 or a missing label is still an immediate no, and what may merge is unchanged — only
 `clean` does.
 
+And `clean` has one stand-in (HIR-293). When the label is what starts this script, its own
+run is a check on the PR ("Merge if reviewed and green"), and it cannot finish while it
+waits — so GitHub goes on saying `unstable` for as long as the script looks, however green
+everything else is (PR #170, 13 Nov: it waited on itself for 15 minutes and gave up). So
+the script leaves its own check out of what it waits for, and when that check is the only
+thing on the commit that is not green — every other check finished and passed, no commit
+status pending or failed — it reads `unstable` as the `clean` it would be without itself,
+and merges. A failed check of any other name is still a no. Required checks need no
+second look here: one that is running or failed makes GitHub say `blocked`, not `unstable`.
+
 Removing `review-passed` or adding `needs-chandler` before then is how a person or an
 agent stops it. It never arms GitHub's auto-merge and never updates the branch: a merge
 or push made with the workflow's token starts no further workflows, so the checks on an
@@ -65,10 +75,22 @@ PENDING_WAIT_S = 20
 PENDING_MAX_WAIT_S = 15 * 60
 # After the last check finishes GitHub can go on saying 'unstable' for a few seconds.
 SETTLE_RETRIES = 3
+# This script's own job, as it appears among a PR's checks when the label started it: the
+# job name in .github/workflows/merge-reviewed.yml (a test keeps the two the same). By name
+# rather than by this run's id, so a second merger run queued behind this one for the same
+# PR is left out too. A PR cannot borrow the name for a check of its own: that takes a
+# workflow file, and a PR that touches one never merges here.
+OWN_CHECK = "Merge if reviewed and green"
+# How a finished check that is not in the way concludes.
+GREEN = ("success", "neutral", "skipped")
 
 
-def decide(pr, files):
-    """(merge, reason) for a PR as the REST API returns it and its changed-file list."""
+def decide(pr, files, own_check_only=False):
+    """(merge, reason) for a PR as the REST API returns it and its changed-file list.
+
+    `own_check_only`: this script's own check is the only thing on the head commit that is
+    not green (`_held_only_by_own_check`), so 'unstable' stands for 'clean'.
+    """
     labels = {lbl["name"] for lbl in pr.get("labels", [])}
     if pr.get("state") != "open":
         return False, "the PR is not open"
@@ -85,6 +107,8 @@ def decide(pr, files):
     if guide:
         return False, "it changes the labelling guide, which always waits for Chandler: " + ", ".join(guide)
     state = pr.get("mergeable_state")
+    if state == "unstable" and own_check_only:
+        return True, "reviewed, every check but the merger's own green, branch up to date, no rule files"
     if state != "clean":
         return False, f"GitHub says '{state}', not 'clean' (checks still running or failed, or the branch is behind)"
     return True, "reviewed, checks green, branch up to date, no rule files"
@@ -111,11 +135,33 @@ def _pr_for_branch(repo, branch):
     return int(nums[0]) if nums else None
 
 
-def _running_checks(repo, sha):
-    """Names of the checks on a commit that have not finished yet."""
+def _checks(repo, sha):
+    """(name, status, conclusion) for the latest run of every check on a commit."""
     out = _gh("api", f"repos/{repo}/commits/{sha}/check-runs?per_page=100", "--paginate",
-              "--jq", '.check_runs[] | select(.status != "completed") | .name')
-    return [line for line in out.splitlines() if line.strip()]
+              "--jq", '.check_runs[] | [.name, .status, .conclusion // ""] | @tsv')
+    return [tuple((line.split("\t") + ["", ""])[:3]) for line in out.splitlines() if line.strip()]
+
+
+def _statuses_green(repo, sha):
+    """No commit status (the older kind of check, which check-runs does not list) is
+    pending or failed. A commit with none at all reports 'pending' with a count of 0."""
+    status = _api(f"repos/{repo}/commits/{sha}/status")
+    return status.get("total_count", 0) == 0 or status.get("state") == "success"
+
+
+def _held_only_by_own_check(repo, sha, checks):
+    """True when this script's own check is the one thing on the commit that is not green.
+
+    It has to be there and not green: otherwise something else is keeping the PR
+    'unstable' — GitHub not caught up yet, or a thing this script cannot see — and the
+    answer stays with GitHub.
+    """
+    def green(c):
+        return c[1] == "completed" and c[2] in GREEN
+
+    own_in_the_way = any(c[0] == OWN_CHECK and not green(c) for c in checks)
+    others_green = all(green(c) for c in checks if c[0] != OWN_CHECK)
+    return own_in_the_way and others_green and _statuses_green(repo, sha)
 
 
 def _pr(repo, n, sleep):
@@ -138,8 +184,15 @@ def run(repo, n, sleep=time.sleep):
     files = _files(repo, n)
 
     waited = quiet = 0
+    own_check_only = False
     while _only_waiting_on_checks(pr, files) and waited < PENDING_MAX_WAIT_S:
-        running = _running_checks(repo, pr["head"]["sha"])
+        sha = pr["head"]["sha"]
+        checks = _checks(repo, sha)
+        # Its own check never finishes while this script waits, so it is not waited for.
+        running = [c[0] for c in checks if c[1] != "completed" and c[0] != OWN_CHECK]
+        if not running and _held_only_by_own_check(repo, sha, checks):
+            own_check_only = True
+            break
         if running:
             quiet = 0
             wait = PENDING_WAIT_S
@@ -156,7 +209,9 @@ def run(repo, n, sleep=time.sleep):
         pr = _pr(repo, n, sleep)
         files = _files(repo, n)  # a push while we waited changes what the PR touches
 
-    merge, reason = decide(pr, files)
+    # `pr` here is the same look the checks were read for; --match-head-commit below
+    # refuses the merge if the head has moved since.
+    merge, reason = decide(pr, files, own_check_only)
     if not merge:
         print(f"PR #{n} not merged: {reason}.")
         return False
