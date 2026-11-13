@@ -26,7 +26,7 @@ def skill_change_calculation(skill_current_28, open_current_28, skill_previous_2
         jobs in both periods.
     """
 
-    if open_current_28 < min_jobs or open_previous_28 < min_skill_jobs:
+    if open_current_28 < min_jobs or open_previous_28 < min_jobs:
         return None
 
     if skill_current_28 < min_skill_jobs and skill_previous_28 < min_skill_jobs:
