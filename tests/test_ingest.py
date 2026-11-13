@@ -439,3 +439,46 @@ def test_the_screened_sources_are_the_country_wide_ones(conn):
     by being registered rather than by anyone remembering to come back here."""
     assert set(SCREENED_SOURCES) == set(registry.of_kind("feed", "search"))
     assert not set(SCREENED_SOURCES) & set(registry.BOARD_SOURCES + registry.MANUAL_SOURCES)
+
+
+# --- every place a job is posted for (HIR-289) ------------------------------------------
+
+def places(conn, job_id=1):
+    return {r[0] for r in conn.execute("SELECT place FROM job_place WHERE job_id=?", (job_id,))}
+
+
+def test_a_new_job_records_every_tracked_city_it_names(conn):
+    ingest_one(conn, posting(source="ashby", location="Cologne; Berlin; Frankfurt; Munich; Hamburg"))
+    assert conn.execute("SELECT city FROM job").fetchone()[0] == "Berlin"     # the first stays the job's city
+    assert places(conn) == {"Berlin", "Hamburg", "Frankfurt", "Munich"}
+
+
+def test_a_merged_copy_for_another_city_adds_that_city(conn):
+    """openai posts one role once per city; the Munich copy merges into the San Francisco
+    job and the job now counts under Munich too."""
+    ingest_one(conn, posting(source="ashby", sid="sf", location="San Francisco"))
+    assert ingest_one(conn, posting(source="ashby", sid="muc", location="Munich, Germany")).kind == "merged"
+    assert conn.execute("SELECT city FROM job").fetchone()[0] == "San Francisco"
+    assert places(conn) == {"San Francisco", "Munich"}
+
+
+def test_a_still_listed_posting_adds_cities_it_names_now(conn):
+    """Perplexity's AI Researcher was stored as San Francisco before every office was read;
+    the next sighting of the same posting names Berlin too, and that is added."""
+    ingest_one(conn, posting(source="ashby", location="San Francisco"))
+    assert ingest_one(conn, posting(source="ashby", location="Berlin; San Francisco; New York")).kind == "still_listed"
+    assert places(conn) == {"San Francisco", "Berlin", "New York"}
+
+
+def test_a_place_is_never_taken_away(conn):
+    ingest_one(conn, posting(location="Berlin; Munich"))
+    ingest_one(conn, posting(location="Munich"))
+    assert places(conn) == {"Berlin", "Munich"}
+
+
+def test_a_job_written_without_ingest_still_has_its_city_as_a_place(conn):
+    conn.execute("INSERT INTO job (company, title, city, description_text, first_seen, last_seen)"
+                 " VALUES ('Acme', 'AI Engineer', 'Berlin', 'jd', '2026-11-01T00:00:00Z', '2026-11-01T00:00:00Z')")
+    assert places(conn) == {"Berlin"}
+    conn.execute("DELETE FROM job")
+    assert conn.execute("SELECT count(*) FROM job_place").fetchone()[0] == 0

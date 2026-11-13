@@ -171,14 +171,14 @@ function Row({ job: j, open, onToggle, profile, taxonomy, demand, onOpenPage, sa
           {cov && cov.score !== null && <span className={`fit${cov.score === 1 && !cov.thin ? " full" : ""}`} title={fitTitle(cov, taxonomy)}>{fitBadge(cov)}</span>}
           {j.title}{j.seniority && <span className="dim" style={{ marginLeft: 8, fontSize: 12 }}>{cap(j.seniority)}</span>}{j.family && <span className="dim" style={{ marginLeft: 8, fontSize: 12 }} title="Job family, from the title">{familyLabel(j.family)}</span>}
         </span>
-        <span className="ci muted">{j.city || "—"}</span>
+        <span className="ci muted" title={placeLabel(j).title}>{placeLabel(j).text}</span>
         <span className="fs muted" style={{ fontSize: 13 }}>{timeAgo(j.first_seen)}</span>
         <span className="st">
           <span className={`status ${j.status}`}><i />{cap(j.status)}</span>
           {j.repost_count > 0 && <span className="repost" title={`Reposted ${j.repost_count}×`}><Repost />×{j.repost_count}</span>}
         </span>
         <span className="srcs">{j.sources.map((s, i) => { const [code, full] = sourceCode(s.source); return <span key={i} className="src" title={full} aria-label={full}>{code}</span>; })}</span>
-        <span className="meta-m muted">{j.city || "—"} · {timeAgo(j.first_seen)} · {cap(j.status)}{j.repost_count > 0 ? ` · reposted ×${j.repost_count}` : ""} · {j.sources.map((s) => sourceCode(s.source)[0]).join(" ")}</span>
+        <span className="meta-m muted">{placeLabel(j).text} · {timeAgo(j.first_seen)} · {cap(j.status)}{j.repost_count > 0 ? ` · reposted ×${j.repost_count}` : ""} · {j.sources.map((s) => sourceCode(s.source)[0]).join(" ")}</span>
         <button type="button" className="exp" aria-label={`${open ? "Hide" : "Show"} skills for ${j.company}`} onClick={(e) => { e.stopPropagation(); onToggle(); }}>{open ? <Up /> : <Down />}</button>
       </div>
       {open && <Detail job={j} d={detail} profile={profile} taxonomy={taxonomy} cov={cov} onOpenPage={onOpenPage} />}
@@ -215,6 +215,14 @@ const FEW_SKILLS = "few skills listed";
 
 // The badge: a percentage and the count, except on a thinly listed job, where the
 // percentage is exactly the misleading part and the count stands alone.
+// A job posted for several cities (HIR-289) shows its first one and how many more; the
+// tooltip names them all. Older API responses carry only `city`.
+export function placeLabel(j) {
+  const places = j.places && j.places.length ? j.places : (j.city ? [j.city] : []);
+  if (!places.length) return { text: "—", title: undefined };
+  return { text: places.length > 1 ? `${places[0]} +${places.length - 1}` : places[0], title: places.join(", ") };
+}
+
 export function fitBadge(cov) {
   if (cov.thin) return `${cov.covered}/${cov.total} · ${FEW_SKILLS}`;
   return `${pct(cov.score)}% · ${cov.covered}/${cov.total}`;

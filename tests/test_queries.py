@@ -161,6 +161,31 @@ def test_filters_city_and_seniority(conn):
     assert q.city_totals(conn, q.Filters(window="all"), NOW) == {"Berlin": 4, "San Francisco": 1}
 
 
+def test_a_job_posted_for_two_cities_counts_under_both(conn):
+    """HIR-289: jupus posts one Senior Applied AI Engineer for Berlin, Hamburg, Frankfurt and
+    Munich. It is in every one of those cities' filters and per-city counts, and still one
+    job in the all-markets total."""
+    add(conn, "jupus", "Senior Applied AI Engineer", "Cologne; Berlin; Frankfurt; Munich; Hamburg",
+        "ashby", ts(0), [("python", "required")])
+    s = q.stats(conn, NOW, 1)
+    assert s["open"] == 4
+    assert s["open_by_city"] == {"Berlin": 3, "San Francisco": 1, "Hamburg": 1, "Frankfurt": 1, "Munich": 1}
+    for city in ("Berlin", "Munich", "Hamburg", "Frankfurt"):
+        jobs = q.list_jobs(conn, q.Filters(cities=(city,)), NOW)["jobs"]
+        assert "jupus" in {j["company"] for j in jobs}
+    jobs = q.list_jobs(conn, q.Filters(cities=("Berlin", "Munich")), NOW)["jobs"]
+    assert [j["company"] for j in jobs].count("jupus") == 1     # once, not once per city
+    [jupus] = [j for j in jobs if j["company"] == "jupus"]
+    assert jupus["city"] == "Berlin" and jupus["places"] == ["Berlin", "Hamburg", "Frankfurt", "Munich"]
+    assert q.job_detail(conn, jupus["id"], NOW)["places"] == jupus["places"]
+    r = q.skill_frequency(conn, q.Filters(), NOW)
+    python = {x["skill_id"]: x for x in r["skills"]}["python"]
+    assert r["total"] == 4 and python["count"] == 3              # Acme, Gamma, jupus
+    assert python["by_city"] == {"Berlin": 2, "San Francisco": 1, "Hamburg": 1, "Frankfurt": 1, "Munich": 1}
+    assert q.city_totals(conn, q.Filters(), NOW)["Munich"] == 1
+    assert q.skill_frequency(conn, q.Filters(cities=("Munich",)), NOW)["total"] == 1
+
+
 def test_list_jobs_filters_search_sort_and_status(conn):
     r = q.list_jobs(conn, q.Filters(window="all"), NOW)
     assert r["total"] == 5 and [j["company"] for j in r["jobs"]][:2] == ["Gamma", "Acme"]  # newest first

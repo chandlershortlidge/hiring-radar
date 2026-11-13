@@ -169,6 +169,13 @@ def test_sharp_city_drop_overnight_is_reported(conn):
     assert ("city:Hamburg", "city_drop") in {(f.subject, f.finding) for f in found}
 
 
+def test_city_counts_count_a_two_city_job_in_both(conn):
+    # HIR-289: the caretaker counts places the way the dashboard does.
+    ingest_one(conn, posting("ashby", "two", 1, "Two", city="Berlin; Munich"), when="2026-11-16T06:00:00Z")
+    counts = run.city_counts(conn, "2026-11-16T09:00:00Z")
+    assert counts["Munich"] == 1 and counts["Berlin"] == 2     # Healthy and Two
+
+
 # --- reporting ---------------------------------------------------------------------------
 
 def test_monday_summary_posts_once(conn):

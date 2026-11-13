@@ -184,6 +184,18 @@ def test_merge_moves_a_table_nobody_listed_by_hand(conn):
     assert [(r["job_id"], r["note"]) for r in rows] == [(a, "keep me")]
 
 
+def test_merge_moves_the_dropped_jobs_places_to_the_kept_one(conn):
+    # HIR-289: a job's places are rows of their own; merging keeps every one of them.
+    a = add_blank_job(conn, "https://x/1", "2026-11-04T10:00:00Z", company="Acme")
+    b = add_blank_job(conn, "https://x/2", "2026-11-05T10:00:00Z", company="Acme")
+    conn.execute("INSERT INTO job_place (job_id, place) VALUES (?, 'Munich')", (b,))
+    conn.commit()
+    merge_jobs(conn, a, b)
+    conn.commit()
+    rows = conn.execute("SELECT job_id, place FROM job_place ORDER BY place").fetchall()
+    assert [(r["job_id"], r["place"]) for r in rows] == [(a, "Berlin"), (a, "Munich")]
+
+
 def test_merge_refuses_to_run_with_foreign_keys_off(conn):
     a = add_blank_job(conn, "https://x/1", "2026-11-04T10:00:00Z", company="Acme")
     b = add_blank_job(conn, "https://x/2", "2026-11-05T10:00:00Z", company="Acme")

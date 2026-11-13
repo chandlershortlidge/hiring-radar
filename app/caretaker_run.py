@@ -64,9 +64,10 @@ def city_counts(conn: sqlite3.Connection, at: str) -> dict[str, int]:
     already knew then, so yesterday's figure can be asked of today's database."""
     from app.queries import open_clause
     oc, params = open_clause(at)
-    rows = conn.execute(f"SELECT j.city, count(*) n FROM job j WHERE {oc} AND j.city IS NOT NULL "
-                        "AND j.first_seen <= ? GROUP BY j.city", [*params, at]).fetchall()
-    return {r["city"]: r["n"] for r in rows}
+    # Every place a job is posted for, as the dashboard counts them (HIR-289).
+    rows = conn.execute(f"SELECT jpl.place, count(*) n FROM job j JOIN job_place jpl ON jpl.job_id = j.id"
+                        f" WHERE {oc} AND j.first_seen <= ? GROUP BY jpl.place", [*params, at]).fetchall()
+    return {r["place"]: r["n"] for r in rows}
 
 
 def pending_count(conn: sqlite3.Connection) -> int:

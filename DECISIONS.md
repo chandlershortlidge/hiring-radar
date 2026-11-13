@@ -5,6 +5,29 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-13 — A job posted for several cities counts under each of them (HIR-289)
+
+A job used to hold one city: the first tracked city its location named, in a fixed order
+with Berlin first. A posting for Berlin, Hamburg, Frankfurt and Munich counted only for
+Berlin; one for San Francisco and New York only for San Francisco; and when a company posts
+one role once per city, the copies merge into one job that kept the first copy's city.
+Against the boards on 13 Nov, about 400 Ashby postings name two or more of our cities.
+
+**Now every place a job is posted for is stored next to it** (`job_place`, migration 022),
+and the city filter, the per-city counts, the compare-mode totals and the caretaker's city
+counts all read that list. `job.city` is unchanged and means "the first place"; the job
+list shows it with "+n" when there are more. Places are only ever added: each sighting of
+a posting adds the places it names now, so a merged copy adds its city and a job stored
+before every office was read (HIR-268) gains the rest on the next poll.
+
+**What this changes in the numbers.** A two-city job is one job in the all-markets total
+and one job in each city's count, so the per-city counts can add up to more than the
+total; a skill's count stays a count of distinct jobs. "A city match wins" over remote is
+unchanged: "Berlin or remote" is Berlin only.
+
+**Undo:** point `job_set_clause`, `stats`, `city_totals`, `skill_frequency` and
+`caretaker_run.city_counts` back at `job.city`; the table can stay.
+
 ## 2026-11-12 — The Monday summary: the week's pull requests join the caretaker's post (HIR-264)
 
 Since HIR-262 a reviewed change merges without a message to Chandler. He hears about the

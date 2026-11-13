@@ -335,12 +335,31 @@ def _personio_fields(markup: str) -> tuple[str | None, str | None]:
     is the fallback, by its `name` and not its `city`, because a remote posting puts
     "Remote" in `city` and the city in `state`. Company is blank on some tenants — those
     still need `--company`.
+
+    `additional_offices` (a list of office names) follows the main office, "; "-joined as
+    every other reader does, so a posting whose main office is untracked still maps to a
+    tracked city (HIR-289: Cloover lists Wien first and Berlin second).
     """
     flat = markup.replace('\\"', '"')
     company = _personio_field(flat, r'"company_name"\s*:\s*"(?P<v>[^"]*)"')
-    location = (_personio_field(flat, r'"main_office"\s*:\s*"(?P<v>[^"]*)"')
-                or _personio_field(flat, r'"office_addresses"\s*:\s*\[\s*\{\s*"name"\s*:\s*"(?P<v>[^"]*)"'))
+    main = (_personio_field(flat, r'"main_office"\s*:\s*"(?P<v>[^"]*)"')
+            or _personio_field(flat, r'"office_addresses"\s*:\s*\[\s*\{\s*"name"\s*:\s*"(?P<v>[^"]*)"'))
+    places = [main] + _personio_list(flat, "additional_offices")
+    location = "; ".join(dict.fromkeys(p for p in places if p)) or None
     return company, location
+
+
+def _personio_list(flat: str, key: str) -> list[str]:
+    """A list of strings out of Personio's payload (`"additional_offices":["Berlin"]`).
+    Empty when absent, unreadable or not a list of strings."""
+    m = re.search(r'"' + key + r'"\s*:\s*(?P<v>\[[^\]]*\])', flat)
+    if not m:
+        return []
+    try:
+        values = json.loads(m["v"])
+    except ValueError:
+        return []
+    return [v.strip() for v in values if isinstance(v, str) and v.strip()] if isinstance(values, list) else []
 
 
 def posting_from_html(url: str, markup: str, company: str | None = None,
