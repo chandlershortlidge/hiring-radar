@@ -344,11 +344,34 @@ def _personio_fields(markup: str) -> tuple[str | None, str | None]:
     """
     flat = markup.replace('\\"', '"')
     company = _personio_field(flat, r'"company_name"\s*:\s*"(?P<v>[^"]*)"')
+    return company, "; ".join(_personio_offices(flat)) or None
+
+
+def _personio_offices(flat: str) -> list[str]:
+    """The office names of Personio's payload, main office first, blanks and repeats dropped."""
     main = (_personio_field(flat, r'"main_office"\s*:\s*"(?P<v>[^"]*)"')
             or _personio_field(flat, r'"office_addresses"\s*:\s*\[\s*\{\s*"name"\s*:\s*"(?P<v>[^"]*)"'))
     places = [main] + _personio_list(flat, "additional_offices")
-    location = "; ".join(dict.fromkeys(p for p in places if p)) or None
-    return company, location
+    return list(dict.fromkeys(p for p in places if p))
+
+
+def _with_personio_offices(location: str | None, markup: str) -> str | None:
+    """A Personio JSON-LD location plus every payload office it did not already name (HIR-292).
+
+    Personio writes one JSON-LD place per office, but an office with no street address
+    ("Remote (Europe)") arrives with an empty address and is dropped, so
+    super-ai.jobs.personio.de/job/1592103 read as Berlin alone. The payload still has
+    the office by name. An office is already named when the JSON-LD text contains its
+    name or one of its places is the same tracked city ("Berlin (Remote)" next to
+    "Berlin, DE"), so a city is not listed twice.
+    """
+    named = [s.strip() for s in (location or "").split(";") if s.strip()]
+    cities = {city_of(s) for s in named} - {None}
+    for office in _personio_offices(markup.replace('\\"', '"')):
+        if any(office.casefold() in s.casefold() for s in named) or city_of(office) in cities:
+            continue
+        named.append(office)
+    return "; ".join(named) or None
 
 
 def _personio_list(flat: str, key: str) -> list[str]:
@@ -378,7 +401,8 @@ def posting_from_html(url: str, markup: str, company: str | None = None,
     A Personio tenant that serves no JSON-LD can still give its company and location, out
     of the payload Personio embeds (`_personio_fields`); `--company`/`--location` override
     that too. `how` keeps naming where the *description* came from, which on those pages
-    is still the page text.
+    is still the page text. A Personio tenant that does serve JSON-LD keeps its JSON-LD
+    location and gains the payload offices it left out (`_with_personio_offices`).
 
     Any other page without JSON-LD gives a location only when its text states one on a
     labelled line (`location_from_text`), and its title loses a "Stellendetails" /
@@ -387,6 +411,7 @@ def posting_from_html(url: str, markup: str, company: str | None = None,
     p = _PageParser()
     p.feed(markup)
     p.close()
+    personio = bool(_PERSONIO_HOST_RE.search(urllib.parse.urlparse(url).hostname or ""))
     for raw in p.ld_json:
         try:
             nodes = _job_postings(json.loads(raw))
@@ -397,11 +422,14 @@ def posting_from_html(url: str, markup: str, company: str | None = None,
             org = jp.get("hiringOrganization")
             org_name = org.get("name") if isinstance(org, dict) else (org if isinstance(org, str) else None)
             text = html_to_text(jp.get("description") or "")
+            ld_location = _location_of(jp)
+            if personio and not location:
+                ld_location = _with_personio_offices(ld_location, markup)
             return Posting(
                 source="url", source_job_id="", url=url,
                 company=company or (org_name or "").strip() or None,
                 title=title or (jp.get("title") or "").strip() or p.title.strip(),
-                location_raw=location or _location_of(jp),
+                location_raw=location or ld_location,
                 description_text=text or html_to_text(markup),
                 posted_at=jp.get("datePosted"),
             ), "json-ld"
@@ -410,7 +438,7 @@ def posting_from_html(url: str, markup: str, company: str | None = None,
     if len(p.meta_description) > len(text):
         text, how = p.meta_description, "meta-description"
     page_company = page_location = None
-    if _PERSONIO_HOST_RE.search(urllib.parse.urlparse(url).hostname or ""):
+    if personio:
         page_company, page_location = _personio_fields(markup)
     if not (location or page_location):
         page_location = location_from_text(body_text)
