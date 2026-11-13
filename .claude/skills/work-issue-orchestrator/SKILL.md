@@ -32,7 +32,8 @@ decide a collision from it alone.
 - Every issue runs autopilot unless it carries the `attended` label (HIR-120). The worker
   sets the `autopilot` label itself; you don't label anything.
 - **Check the open PRs before starting each worker, not once per batch.** List them
-  (`gh pr list --state open --json number,title,headRefName`) and the files each one
+  (`gh api "repos/:owner/:repo/pulls?state=open" --jq '.[] | [.number, .title, .head.ref] | @tsv'`
+  — `gh api`, not `gh pr list`, which fails in a cloud run, HIR-151) and the files each one
   changes (`gh api repos/:owner/:repo/pulls/<n>/files`). Hold back any issue that would
   touch a file an open PR already changes, or a hot spot (`app/migrations/`,
   `app/extract.py`, `app/pipeline.py`, `app/dedup.py`, `taxonomy/skills.json`) an open PR
@@ -113,7 +114,7 @@ with the metric named and the two runs compared.
 
 **There is no merge queue** — GitHub offers one only on organization-owned repositories
 and this one is personal (HIR-136). The reviewer merges a PR whose checks are already green
-outright; on any other PR it arms GitHub's auto-merge and brings the branch up to date, and
+outright; on any other PR it labels it `review-passed` and brings the branch up to date, and
 that one is not merged the moment the reviewer passes it — it merges when the checks on the
 updated branch go green (HIR-157). Treat both "merged" and "set to merge" as done for
 reporting, and check back once on the second. A PR with a real conflict comes back `SENT

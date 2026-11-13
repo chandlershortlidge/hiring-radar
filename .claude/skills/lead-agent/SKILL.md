@@ -37,7 +37,9 @@ under "Needs you" in the log (step 7) as one plain question with a recommendatio
 1. The Linear tools answer (`list_issues` on team Hiring-radar). If not, stop: say "Linear
    not reachable" as the run's whole output and do nothing else. A run that cannot read
    the tickets must not guess at them.
-2. `gh auth status` works and `git status` is clean on `main` at `origin/main`.
+2. `gh api user --jq .login` answers and `git status` is clean on `main` at `origin/main`.
+   (Not `gh auth status`: in a cloud run it reports a bad token while `gh api` works. For
+   the same reason every pull-request command below is `gh api`, never `gh pr …`, HIR-151.)
 3. Find the open Linear issue titled exactly **Lead agent log**. If there is none, create
    it: team Hiring-radar, the roadmap project, state Backlog, label `attended` (so no
    agent picks it), description "One comment per weekday from the lead agent (HIR-266).
@@ -54,9 +56,13 @@ under "Needs you" in the log (step 7) as one plain question with a recommendatio
   What you can read is what it posts to Linear: its Monday summary issue and its
   at-once posts (collection down two days running, its spending cap hit).
 - **The main branch:** `gh run list --branch main --workflow ci.yml --limit 3`.
-- **Open pull requests:** `gh pr list --state open --json
-  number,title,headRefName,labels,updatedAt,mergeStateStatus,statusCheckRollup`.
-- **Yesterday's merges:** `gh pr list --state merged --search "merged:>=<last weekday>"`.
+- **Open pull requests:** `gh api "repos/:owner/:repo/pulls?state=open"` (number, title,
+  `head.ref`, `head.sha`, labels, `updated_at`); then per pull request
+  `gh api repos/:owner/:repo/pulls/<n> --jq .mergeable_state` and
+  `gh api repos/:owner/:repo/commits/<head sha>/check-runs` for its checks.
+- **Yesterday's merges:**
+  `gh api "repos/:owner/:repo/pulls?state=closed&sort=updated&direction=desc&per_page=50"`,
+  keeping those whose `merged_at` is on or after the last weekday.
 - **The launch order:** the Linear document "Autopilot: launch order to 16 Dec" in the
   roadmap project. Its rule and its order are binding; you never edit it.
 - **Tickets:** every issue in the team in Todo, and every issue created since the last
