@@ -8,7 +8,11 @@ Does:
     the Monday summary; the pull-request half of that post (what needs Chandler, what
     merged, what was sent back and fixed: app/merged_work.py, HIR-264) is handed in as
     text and goes first, so the week is one message, not two;
-  - post at once only what cannot wait a week (collection down two days running, spend cap).
+  - post at once only what cannot wait a week (collection down two days running, spend cap);
+  - count the job links checked by hand that we had missed, by reason (app/misses.py,
+    HIR-290): the last 7 days go into the Monday summary, and a reason that reaches
+    misses.WEEKLY_TICKET_THRESHOLD in 7 days gets a Linear ticket of its own, at most once
+    per misses.TICKET_QUIET_DAYS per reason.
 
 Does NOT: change config/feeds.json, re-run the collection, or open a pull request. It runs
 report-only: every finding is logged with what it *would* do (`mode='report'`, `done=0`).
@@ -25,7 +29,7 @@ import urllib.request
 from datetime import date, datetime, timedelta, timezone
 
 from app import caretaker as ct
-from app import poll
+from app import misses, poll
 from app.caretaker import Budget, FeedRun, Finding
 from app.sources import registry
 
@@ -33,7 +37,7 @@ MODE = "report"
 # The Hiring-radar team on Linear; LINEAR_TEAM_ID overrides it.
 LINEAR_TEAM_ID = "536d7e60-8726-44aa-9e3a-b273910d72d5"
 # Log rows that are bookkeeping, not findings; the weekly summary leaves them out.
-BOOKKEEPING = ("spend", "weekly_summary", "urgent_sent")
+BOOKKEEPING = ("spend", "weekly_summary", "urgent_sent", "miss_ticket")
 
 
 def _day(d: str, n: int) -> str:
@@ -200,11 +204,35 @@ def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=Non
                                  {"posted": posted, "items": items})], day)
     if (week := weekly_due(conn, day)):
         start, end = week
-        body = (changes(start, end) + "\n" if changes else "") + weekly_text(conn, start, end)
+        body = ((changes(start, end) + "\n" if changes else "") + weekly_text(conn, start, end)
+                + "\n" + misses.week_section(misses.records(conn, start, end), start, end))
         posted = post(f"Monday summary: {start} to {end}", body) if post else None
         log(body + (f"\nposted as {posted}" if posted else "\n(not posted: no Linear key)"))
         write_log(conn, [Finding("caretaker", "weekly_summary", "none", "Weekly summary made.",
                                  {"posted": posted, "week_start": start})], day)
+    miss_tickets(conn, day, post, log)
+
+
+def miss_tickets(conn: sqlite3.Connection, day: str, post=None, log=print) -> list[str]:
+    """File one Linear ticket for each miss reason that reached the weekly threshold in the
+    7 days up to `day`, unless that reason was ticketed in the last TICKET_QUIET_DAYS days.
+    Returns the reasons ticketed. Each is logged, so a second run the same day, or the
+    next morning with the same misses, does not file it again."""
+    start = _day(day, 6)
+    week = misses.records(conn, start, day)
+    recent = {r["data"].get("reason") for r in log_rows(conn, _day(day, misses.TICKET_QUIET_DAYS - 1), day)
+              if r["finding"] == "miss_ticket"}
+    filed = []
+    for reason, n in misses.over_threshold(week):
+        if reason in recent:
+            continue
+        title, body = misses.ticket_text(reason, n, week, start, day)
+        posted = post(title, body) if post else None
+        log(f"{title}\n" + (f"posted as {posted}" if posted else "(not posted: no Linear key)"))
+        write_log(conn, [Finding("misses", "miss_ticket", "none", title,
+                                 {"posted": posted, "reason": reason, "count": n})], day)
+        filed.append(reason)
+    return filed
 
 
 def linear_poster(key: str, team_id: str):

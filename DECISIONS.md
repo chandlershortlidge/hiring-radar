@@ -5,6 +5,38 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-13 — Every checked job link is filed under one miss reason, and counted (HIR-290)
+
+Each check already explained why a job was missed, and the explanation was then lost in
+the terminal. Now every check — /check-url and the dashboard's add-by-link box alike —
+stores one reason from a fixed list of seven, chosen by rule from what the check found
+(`app/check.py`, `miss_reason`), with the company, city and careers system and the detail a
+fix needs (the board, or the filter and the field it read). `miss-reasons` counts them for
+any dates; the caretaker's Monday summary carries the week's count and its biggest reason.
+
+**The rules where the list leaves room.** A company's own careers website counts as "a
+careers system we cannot read yet": no adapter reads it, which is the fix. A copy on a job
+board or recruiter site (get-in-it, Michael Page, ...) is "other", named by its site: the
+list has no reason for it, and it was 10 of the 12 "other" in the history — if that keeps
+up, the list wants an eighth reason. A job someone had already added by hand, which no feed
+has, is still a miss, filed by where its link points. Only the first check of a URL counts,
+as for the coverage line: /check-url re-checks after adding a board, and that re-check is
+not a second record. Checks from before this change get their reason from the sentence they
+stored; nothing is written back to them.
+
+**The ticket line: 5 misses for one reason in 7 days, then quiet for 28 days.** The 81
+links checked 17 Oct to 12 Nov ran 4–19 a week for "careers system we cannot read" and
+0–12 for "not in our sources", while every other reason stayed at 4 or under in any 7 days.
+At 5, a ticket comes only for a reason that keeps coming back; the 28-day quiet stops the
+same reason being re-filed every morning, or every week, while its ticket is open. Both
+numbers are constants in `app/misses.py`.
+
+**Where it runs.** The caretaker reads the server's database, so it counts checks run
+there (the dashboard's box). A /check-url run against a database copy on a laptop is
+recorded in that copy only.
+
+---
+
 ## 2026-11-13 — A job posted for several cities counts under each of them (HIR-289)
 
 A job used to hold one city: the first tracked city its location named, in a fixed order

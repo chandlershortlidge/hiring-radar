@@ -9,6 +9,8 @@
                     every check is logged for the coverage line in `stats`. Takes many URLs, or --file urls.txt
   stats             counts by city and source; share of jobs a feed has seen (legacy imports excluded);
                     checked URLs split by whether a feed can reach them now
+  miss-reasons      why checked jobs were missed: count per reason, per city, per careers system;
+                    --since/--until YYYY-MM-DD pick the range (HIR-290)
   discover-boards   web-search for Greenhouse/Lever/Ashby/JOIN boards we don't poll, check each live, report;
                     --add source:token appends to feeds.json, --reject source:token --reason R remembers a no;
                     --launch CITY applies the written board policy itself and adds what passes
@@ -211,6 +213,12 @@ def cmd_stats(args):
     print(f"proposed skills pending review: {pending}")
 
 
+def cmd_miss_reasons(args):
+    from app import misses
+    for line in misses.report_lines(misses.records(open_db(), args.since, args.until), args.since, args.until):
+        print(line)
+
+
 def cmd_discover_boards(args):
     from datetime import date
 
@@ -361,6 +369,10 @@ def main(argv=None):
     p.add_argument("--found-via", default="company_site", choices=["linkedin", "indeed", "company_site", "referral", "other"])
     p.add_argument("--no-extract", action="store_true"); p.set_defaults(fn=cmd_check)
     sub.add_parser("stats").set_defaults(fn=cmd_stats)
+    p = sub.add_parser("miss-reasons", help="why checked jobs were missed: count per reason, city, careers system")
+    p.add_argument("--since", default=None, metavar="YYYY-MM-DD", help="first day counted (default: the first check)")
+    p.add_argument("--until", default=None, metavar="YYYY-MM-DD", help="last day counted (default: today)")
+    p.set_defaults(fn=cmd_miss_reasons)
     p = sub.add_parser("discover-boards", help="find company job boards we don't poll yet (Brave search)")
     p.add_argument("--add", action="append", default=[], metavar="SOURCE:TOKEN")
     p.add_argument("--reject", action="append", default=[], metavar="SOURCE:TOKEN")
