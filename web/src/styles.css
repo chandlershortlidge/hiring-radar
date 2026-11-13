@@ -424,6 +424,10 @@ a.card.market:hover { border-color: var(--ink); }
   .chart { padding: 16px; } .chart h1 { font-size: 17px; }
   .page-head { padding: 16px; } .page-head h1 { font-size: 17px; } .page-links { align-items: flex-start; } .posting-wrap { padding: 16px; }
   .bars-head, .bar-row { grid-template-columns: 120px minmax(0,1fr); gap: 10px; }
+  /* The skill chart's scale has five markers; at this width the 4th runs into "…% of jobs".
+     Keep the start, the middle and the end. Scoped to .bars-head: the compare chart's
+     scale already has three and is not touched (HIR-190). */
+  .bars-head .axis span:nth-child(even) { display: none; }
   .search input { width: 100%; }
   /* beats the desktop clamp above, which is more specific than the line before this one */
   .jobs-head .search input { width: 100%; min-width: 0; }
