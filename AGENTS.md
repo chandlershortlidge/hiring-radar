@@ -312,6 +312,9 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   longer reproduces what a run recorded, the Goldens were relabelled since and it says so
   instead of reporting a count. `--version-check` answers whether the baseline already
   measured this extractor (the gate's one exemption). Calls no model and writes nothing.
+- `scripts/eval_gate.py` — the eval gate's CI check (HIR-134): given a PR's changed files,
+  passes unless the extractor or the skill list changed with no new dev result added and
+  no MATCH from `eval_table.py`'s version check. Pure `decide`; calls no model.
 - `scripts/lead_pick.py` — the lead agent's hard limits (HIR-266): given the Todo tickets
   and the lead agent's log, answers which may start today and why the rest may not
   (labels, a third try, the daily cap in `config/lead_agent.json`, 3 a day, 2 per area).
@@ -419,6 +422,14 @@ run cannot produce new information. Skip it, and paste those two version lines i
 body instead of the table. If it answers DIFFERENT, the gate applies, and that includes the
 case where the branch changed nothing but main itself was never measured: then the run also
 re-baselines main, which is the gap this rule exists to close.
+
+**CI checks the cheap half** (HIR-134). The reviewer reads the PR body, but a PR opened by
+hand never meets the reviewer. So the "Eval gate" job in `.github/workflows/ci.yml` runs
+`scripts/eval_gate.py` on every PR: when the diff touches either file, it fails unless the
+PR adds a new `evals/results/*_dev_*/summary.json` or `--version-check` answers MATCH. It
+needs no key and calls no model, and it does not read the scores — the stop lines stay with
+`eval_table.py` and the reviewer. As with the rules gate, a red check only blocks a merge
+once "Eval gate" is on the repository's required-checks list, which is Chandler's to change.
 
 The held-out split stays release-only (the rule just above). This gate is the dev split.
 
