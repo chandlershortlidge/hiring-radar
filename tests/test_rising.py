@@ -7,3 +7,4 @@ def test_skill_change_calculation():
     assert skill_change_calculation(4, 100, 3, 100) is None
     assert skill_change_calculation(30, 100, 30, 100) == {'total_change': 0.0, 'current_share': 30.0, 'previous_share': 30.0}
     assert skill_change_calculation(5, 100, 5, 10) is None
+    assert skill_change_calculation(0, 0, 29, 100) is None
