@@ -130,8 +130,8 @@ Uncommitted changes on the tree: stop and ask whose they are. Never stash or dis
 - Follow the issue's steps in order. Hot spots (`app/migrations/`, `app/extract.py`,
   `app/pipeline.py`, `app/dedup.py`, `taxonomy/skills.json`) are one branch at a time: if
   another open branch touches one, say so before editing it. The open PRs are what you
-  check, not what the session remembers: `gh pr list --state open` then
-  `gh api repos/:owner/:repo/pulls/<n>/files` for each.
+  check, not what the session remembers: `gh api "repos/:owner/:repo/pulls?state=open"`
+  then `gh api repos/:owner/:repo/pulls/<n>/files` for each.
 - A new migration takes the next free number — check `ls app/migrations/` first, don't
   trust the number in the issue.
 - If the issue asks for a **DECISIONS.md** entry, write it before the code it describes,
@@ -200,8 +200,15 @@ Report numbers you saw, not numbers you expect.
 
 ```bash
 git push -u origin HEAD
-gh pr create --base main --fill
+gh api -X POST repos/:owner/:repo/pulls -f base=main -f head="$(git branch --show-current)" \
+  -f title="<HIR-n: what changed>" -F body=@<file with the PR body>
 ```
+
+Every GitHub command in this skill is `gh api` (HIR-151): `gh pr create`, `gh pr list`,
+`gh pr edit`, `gh pr checks` and `gh pr merge` fail in a cloud run, where `gh auth status`
+wrongly reports a bad token, and `gh api` works there and on the Mac. To change the body
+later: `gh api -X PATCH repos/:owner/:repo/pulls/<n> -F body=@<file>`. To add a label:
+`gh api -X POST repos/:owner/:repo/issues/<n>/labels -f 'labels[]=<label>'`.
 
 **Do not merge `origin/main` into your branch first** (HIR-124, HIR-136). The reviewer
 brings the branch up to date at the end, once, just before the merge — a branch that is
@@ -252,7 +259,9 @@ Otherwise, an autopilot run finishes the job rather than leaving a PR for someth
 to notice. There is no timer and no scheduled cloud reviewer; if you don't do this, nobody
 does.
 
-1. Wait for CI on the PR's head commit (`gh pr checks <n> --watch`).
+1. Wait for CI on the PR's head commit: poll
+   `gh api repos/:owner/:repo/commits/<head sha>/check-runs --jq '.check_runs[] | [.name, .status, .conclusion] | @tsv'`
+   until every check is `completed`.
 2. Start the **`reviewer`** subagent (`.claude/agents/reviewer.md`) with the PR number and
    nothing else. It has fresh context and has not seen your work — that is the point, and
    it is why this does not count as merging your own PR. It fetches the ticket itself from
