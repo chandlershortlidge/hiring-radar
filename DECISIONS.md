@@ -5,6 +5,33 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-13 — Checks run on a laptop are copied to the server, so they are counted (HIR-294)
+
+The caretaker counts misses in the server's database, and every /check-url run so far was
+on the Mac: its copy held all 81 links checked 17 Oct to 12 Nov, so the Monday count and
+the automatic tickets saw almost none of them. This replaces "Where it runs" in the
+HIR-290 entry below.
+
+**Now `check` ends by sending this machine's check log to the server** (`app/send_checks.py`).
+The check itself is unchanged: it still looks in the database it was run against. Three
+ways were weighed. Running the check on the server would change what it looks in, and the
+skill adds a board and polls it locally before the server has that board. A web endpoint
+that accepts records is a new way in from the internet and a password to keep on the Mac.
+Copying the records over the SSH login that `make ssh` already uses needs neither.
+
+**It sends the whole log every time, and the server keeps what it does not have** (same
+link, same time of check). So nothing has to remember what was sent: a run with no network
+prints one line and the next run catches up, and the first run sends the history. A record
+goes up with its reason, company, city and careers system already worked out, because the
+server cannot look up the laptop's job to recover them. The first check of a link is still
+the one that counts, by the order the server stored them; a link checked in the dashboard's
+box before its older laptop check arrived is counted by the box's check.
+
+**Switching it off:** `HIRING_RADAR_SEND_CHECKS=0`. The tests set it, so no test logs in
+to the server. A machine without `gcloud` (a cloud run) sends nothing and says nothing.
+
+---
+
 ## 2026-11-13 — Every checked job link is filed under one miss reason, and counted (HIR-290)
 
 Each check already explained why a job was missed, and the explanation was then lost in

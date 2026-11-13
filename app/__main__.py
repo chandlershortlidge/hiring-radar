@@ -6,7 +6,9 @@
   add-text          add one job from pasted text (reads stdin): --company --title --location --found-via
   add-screenshot    add one job from an image file (stage 1 vision → stage 2): same flags + path
   check             is this careers-page URL already in the DB? If not, why no feed stored it. --add ingests it;
-                    every check is logged for the coverage line in `stats`. Takes many URLs, or --file urls.txt
+                    every check is logged for the coverage line in `stats`. Takes many URLs, or --file urls.txt.
+                    Ends by copying the check log to the server, where misses are counted (HIR-294)
+  receive-checks    the server's end of that copy: reads check records on stdin, stores the new ones
   stats             counts by city and source; share of jobs a feed has seen (legacy imports excluded);
                     checked URLs split by whether a feed can reach them now
   miss-reasons      why checked jobs were missed: count per reason, per city, per careers system;
@@ -39,7 +41,7 @@ from dotenv import load_dotenv
 ROOT = Path(__file__).resolve().parent.parent
 load_dotenv(ROOT / ".env")
 
-from app import add, db, langsmith_live  # noqa: E402
+from app import add, db, langsmith_live, send_checks  # noqa: E402
 from app.check import check_url, checked_coverage, job_coverage, log_check, reach_breakdown  # noqa: E402
 from app.extract import make_client  # noqa: E402
 from app.ingest import Screenshot, job_id_for_screenshot, now_iso  # noqa: E402
@@ -164,6 +166,16 @@ def cmd_check(args):
             check_one(conn, url, feeds, args)
         except Exception as e:  # one dead page must not stop a batch
             print(f"error: {type(e).__name__}: {str(e)[:200]}")
+    send_checks.after_check(conn, DB_PATH)
+
+
+def cmd_receive_checks(args):
+    try:
+        records = json.loads(sys.stdin.read())["checks"]
+        added, held = send_checks.receive(open_db(), records)
+    except (ValueError, KeyError, TypeError) as e:
+        sys.exit(f"receive-checks: {type(e).__name__}: {str(e)[:200]}")
+    print(json.dumps({"added": added, "already_held": held}))
 
 
 def check_one(conn, url, feeds, args):
@@ -368,6 +380,8 @@ def main(argv=None):
     p.add_argument("--add", action="store_true", help="ingest the posting if not already stored (and extract)")
     p.add_argument("--found-via", default="company_site", choices=["linkedin", "indeed", "company_site", "referral", "other"])
     p.add_argument("--no-extract", action="store_true"); p.set_defaults(fn=cmd_check)
+    sub.add_parser("receive-checks", help="store check records sent from another machine (stdin, JSON)"
+                   ).set_defaults(fn=cmd_receive_checks)
     sub.add_parser("stats").set_defaults(fn=cmd_stats)
     p = sub.add_parser("miss-reasons", help="why checked jobs were missed: count per reason, city, careers system")
     p.add_argument("--since", default=None, metavar="YYYY-MM-DD", help="first day counted (default: the first check)")
