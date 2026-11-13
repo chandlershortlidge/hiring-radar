@@ -178,7 +178,7 @@ function Row({ job: j, open, onToggle, profile, taxonomy, demand, onOpenPage, sa
           {j.repost_count > 0 && <span className="repost" title={`Reposted ${j.repost_count}×`}><Repost />×{j.repost_count}</span>}
         </span>
         <span className="srcs">{j.sources.map((s, i) => { const [code, full] = sourceCode(s.source); return <span key={i} className="src" title={full} aria-label={full}>{code}</span>; })}</span>
-        <span className="meta-m muted">{placeLabel(j).text} ·{timeAgo(j.first_seen)} · {cap(j.status)}{j.repost_count > 0 ? ` · reposted ×${j.repost_count}` : ""} · {j.sources.map((s) => sourceCode(s.source)[0]).join(" ")}</span>
+        <span className="meta-m muted">{placeLabel(j).text} · {timeAgo(j.first_seen)} · {cap(j.status)}{j.repost_count > 0 ? ` · reposted ×${j.repost_count}` : ""} · {j.sources.map((s) => sourceCode(s.source)[0]).join(" ")}</span>
         <button type="button" className="exp" aria-label={`${open ? "Hide" : "Show"} skills for ${j.company}`} onClick={(e) => { e.stopPropagation(); onToggle(); }}>{open ? <Up /> : <Down />}</button>
       </div>
       {open && <Detail job={j} d={detail} profile={profile} taxonomy={taxonomy} cov={cov} onOpenPage={onOpenPage} />}
