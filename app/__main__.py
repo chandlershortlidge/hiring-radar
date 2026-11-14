@@ -39,7 +39,25 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 ROOT = Path(__file__).resolve().parent.parent
+
+
+def main_checkout_env(root: Path) -> Path | None:
+    """The main checkout's `.env` when `root` is a git worktree, else None. `.env` is
+    gitignored, so a worktree made for a ticket starts without one and the key was simply
+    missing there (HIR-127). In a worktree `.git` is a file naming its git directory, and
+    that directory's `commondir` points at the main checkout's `.git`."""
+    try:
+        gitdir = root / (root / ".git").read_text().split("gitdir:", 1)[1].strip()
+        common = (gitdir / (gitdir / "commondir").read_text().strip()).resolve()
+    except (OSError, IndexError):
+        return None                      # a normal checkout (`.git` is a directory), or no git at all
+    return common.parent / ".env"
+
+
+# Earlier wins: the real environment, then this checkout's .env, then the main checkout's.
 load_dotenv(ROOT / ".env")
+if (_shared_env := main_checkout_env(ROOT)):
+    load_dotenv(_shared_env)
 
 from app import add, db, langsmith_live, send_checks  # noqa: E402
 from app.check import check_url, checked_coverage, job_coverage, log_check, reach_breakdown  # noqa: E402
@@ -64,6 +82,14 @@ def open_db():
     return conn
 
 
+def require_anthropic_key():
+    """Stop with one clear line when the key is missing. Without this the SDK looks for a
+    credentials file instead and every job fails on its own with an error that never
+    names the key: 510 identical lines on one poll (HIR-127)."""
+    if not os.environ.get("ANTHROPIC_API_KEY", "").strip():
+        sys.exit("ANTHROPIC_API_KEY is not set: add it to .env (see .env.example)")
+
+
 def run_extraction(conn, limit=None, job_ids=None, run_kind=langsmith_live.REREAD, batch=False):
     """Extract pending jobs; `job_ids` narrows to those jobs. The add commands pass the one job
     they added, so adding a posting never triggers a full re-extract after a version bump.
@@ -71,6 +97,7 @@ def run_extraction(conn, limit=None, job_ids=None, run_kind=langsmith_live.REREA
     `run_kind` only names the run in LangSmith (HIR-160). `batch=True` submits the queue
     as one Anthropic Message Batch instead of one call per job (HIR-222) — the poll and a
     full re-read pass it; the add commands never do, since a person is waiting for that job."""
+    require_anthropic_key()
     tax = Taxonomy.load()
     report = extract_pending(conn, tax, limit=limit, job_ids=job_ids, run_kind=run_kind, batch=batch)
     print(report.line())
@@ -94,6 +121,8 @@ def cmd_import_labels(args):
 
 
 def cmd_poll(args):
+    if not args.no_extract:
+        require_anthropic_key()  # before the fetch, so no job is stored that cannot then be read
     try:
         feeds = select_feeds(load_feeds(), args.only)
     except ValueError as e:
@@ -125,6 +154,7 @@ def cmd_add_text(args):
 
 def cmd_add_screenshot(args):
     data = Path(args.path).read_bytes()
+    require_anthropic_key()  # the transcription below is a model call too
     conn = open_db()
     import hashlib
     existing = job_id_for_screenshot(conn, hashlib.sha256(data).hexdigest())

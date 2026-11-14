@@ -1,5 +1,9 @@
 """`check --add` must not store a posting the check just found (it would duplicate it)."""
 
+import subprocess
+
+import pytest
+
 import app.__main__ as cli
 from app import add, db
 from app.check import CheckResult
@@ -144,6 +148,7 @@ def test_poll_and_extract_both_submit_the_queue_as_one_batch(tmp_path, monkeypat
     conn = db.connect(tmp_path / "t.db")
     db.migrate(conn)
     kwargs = []
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
     monkeypatch.setattr(cli, "open_db", lambda: conn)
     monkeypatch.setattr(cli, "load_feeds", lambda: [])
     monkeypatch.setattr(cli, "run_extraction",
@@ -151,3 +156,76 @@ def test_poll_and_extract_both_submit_the_queue_as_one_batch(tmp_path, monkeypat
     cli.main(["poll"])
     cli.main(["extract"])
     assert kwargs[0]["batch"] and kwargs[1]["batch"]
+
+
+# --- a missing Anthropic key stops the run with one line, before any work (HIR-127) ----
+
+MISSING_KEY = "ANTHROPIC_API_KEY is not set: add it to .env"
+
+
+def refuses(monkeypatch, *names):
+    for name in names:
+        monkeypatch.setattr(cli, name, lambda *a, **k: (_ for _ in ()).throw(AssertionError(name)))
+
+
+@pytest.mark.parametrize("key", [None, "", "  "])
+def test_poll_without_a_key_stops_before_fetching_anything(monkeypatch, key):
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    if key is not None:
+        monkeypatch.setenv("ANTHROPIC_API_KEY", key)
+    refuses(monkeypatch, "load_feeds", "open_db", "poll_feeds")
+    with pytest.raises(SystemExit, match=MISSING_KEY):
+        cli.main(["poll"])
+
+
+def test_poll_that_skips_extraction_needs_no_key(tmp_path, monkeypatch):
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    monkeypatch.setattr(cli, "open_db", lambda: conn)
+    monkeypatch.setattr(cli, "load_feeds", lambda: [])
+    cli.main(["poll", "--no-extract"])
+
+
+def test_extract_without_a_key_stops_before_the_first_job(tmp_path, monkeypatch):
+    conn = db.connect(tmp_path / "t.db")
+    db.migrate(conn)
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    monkeypatch.setattr(cli, "open_db", lambda: conn)
+    refuses(monkeypatch, "extract_pending")
+    with pytest.raises(SystemExit, match=MISSING_KEY):
+        cli.main(["extract"])
+
+
+def test_add_screenshot_without_a_key_stops_before_transcribing(tmp_path, monkeypatch):
+    shot = tmp_path / "shot.png"
+    shot.write_bytes(b"not really a png")
+    monkeypatch.delenv("ANTHROPIC_API_KEY", raising=False)
+    refuses(monkeypatch, "open_db", "make_client", "transcribe")
+    with pytest.raises(SystemExit, match=MISSING_KEY):
+        cli.main(["add-screenshot", str(shot), "--company", "Acme", "--title", "AI Engineer"])
+
+
+# --- a worktree finds the main checkout's .env (HIR-127) -------------------------------
+
+def git(cwd, *args):
+    subprocess.run(["git", "-c", "user.name=t", "-c", "user.email=t@example.com", *args],
+                   cwd=cwd, check=True, capture_output=True)
+
+
+def test_a_worktree_is_pointed_at_the_main_checkouts_env(tmp_path):
+    main = tmp_path / "main"
+    main.mkdir()
+    git(main, "init", "-q")
+    git(main, "commit", "-q", "--allow-empty", "-m", "first")
+    git(main, "worktree", "add", "-q", str(tmp_path / "ticket"))
+    assert cli.main_checkout_env(tmp_path / "ticket") == main.resolve() / ".env"
+    assert cli.main_checkout_env(main) is None          # the main checkout has its own .env
+
+
+def test_a_folder_that_is_not_a_worktree_has_no_shared_env(tmp_path):
+    assert cli.main_checkout_env(tmp_path) is None                  # no git at all
+    (tmp_path / ".git").write_text("gitdir: ../elsewhere/.git/modules/x\n")
+    assert cli.main_checkout_env(tmp_path) is None                  # a .git file that leads nowhere
+    (tmp_path / ".git").write_text("not a git file\n")
+    assert cli.main_checkout_env(tmp_path) is None
