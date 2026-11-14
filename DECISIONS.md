@@ -5,6 +5,33 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-14 — The hand-built JSearch fixture is gone; odd records are made from the real one (HIR-41)
+
+HIR-41 asked for a recorded JSearch response to replace the fixture written from the
+docs. The recording already existed (`tests/fixtures/feeds/jsearch_recorded.json`,
+HIR-96, 1 Nov), and the hand-built `jsearch.json` had been kept beside it only for three
+records a real response never contains: no apply link, no city, empty description.
+
+**What changed.** `jsearch.json` is deleted. The test for those records now takes a real
+recorded posting and removes that one field, so every other field keeps the live shape.
+Tests only; nothing a visitor sees, no re-read. Undo: revert the commit.
+
+**No new request was spent, and the recording is not trimmed.** The ticket said to record
+one response and cut it to 2–3 postings. A recording was already there, so spending one
+of the 200 monthly requests would have bought nothing; and the headline tests (HIR-96)
+need the JobLeads row and its clean SumUp twin, so the 10 postings stay.
+
+**Shape differences from the docs** are listed in the `app/sources/jsearch.py` docstring.
+The ones that matter: `job_city` is null on 8 of 10 postings; `job_location` is Google's
+display text with the publisher appended ("Berlin     •  über LinkedIn"), not "Berlin,
+Germany"; and an undocumented `job_uid` equals the stable id we already cut out of
+`job_id` (now a test, on all 10 postings). None of them broke `parse`.
+
+**`/jsearch/search` vs `/jsearch/search-v2` stays unchecked.** We call the first and it
+returns postings daily. Comparing the two costs a live request; nobody asked for that.
+
+---
+
 ## 2026-11-14 — Monday carries the decisions waiting in tickets, and a comment from Chandler is the answer (HIR-277)
 
 Chandler, 12 Nov, about the questions sitting in tickets: "I'll get those on Monday,

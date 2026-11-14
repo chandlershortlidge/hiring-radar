@@ -299,8 +299,8 @@ def test_poll_passes_the_title_filter_to_arbeitsagentur(monkeypatch):
     assert got["title_filter"] is in_scope_title
 
 
-# --- jsearch (jsearch_recorded.json is a real response; jsearch.json is hand-built
-#     for the degenerate records a real response does not contain) -----------------
+# --- jsearch (jsearch_recorded.json is a real response; the degenerate records a real
+#     response does not contain are made from it in the test, HIR-41) ---------------
 
 def test_jsearch_parse_reads_a_recorded_response():
     from app.sources import jsearch
@@ -375,17 +375,46 @@ def test_jsearch_parse_drops_learn4good_wedge_rows():
     assert "arbeitnow" in ps[0].title
 
 
+def _recorded_job(employer="VRG GmbH"):
+    """One real posting from the recorded response, as a dict a test may change."""
+    return next(dict(j) for j in load("jsearch_recorded.json")["data"]
+                if j["employer_name"] == employer)
+
+
 def test_jsearch_parse_maps_fields_and_skips_empty():
+    """HIR-41: the odd records a real response never contains (no apply link, no city, no
+    date, no description) are each a real recorded posting with that one field taken
+    away, so every other field keeps the live shape rather than the documented one."""
     from app.sources import jsearch
-    first, second = jsearch.parse(load("jsearch.json"))   # third has no description
-    assert first.source == "jsearch" and first.source_job_id == "abc123=="
-    assert first.title == "AI Engineer (m/w/d)" and first.company == "Beispiel GmbH"
-    assert first.url == "https://www.linkedin.com/jobs/view/123" and first.location_raw == "Berlin"
-    assert first.posted_at == "2026-10-16T09:00:00.000Z" and "- RAG" in first.description_text
-    # No apply link → Google link; no city → location string.
-    assert second.url.startswith("https://www.google.com/") and second.location_raw == "Germany"
+    real = _recorded_job()
+    (full,) = jsearch.parse({"data": [{**real, "job_title": real["job_title"] + " "}]})
+    assert full.source == "jsearch" and full.source_job_id == "sIN54BNcqB79FH2dAAAAAA=="
+    assert full.title == "Machine Learning-Engineer (m/w/d)" and full.company == "VRG GmbH"
+    assert full.url.startswith("https://www.simplyhired.de/job/") and full.location_raw == "Berlin"
+    assert full.posted_at == "2026-10-28T00:00:00.000Z"
+    assert "Machine-Learning-Funktionen" in full.description_text
+    # No apply link → Google link; no city → location string; no date → None.
+    bare = {**real, "job_city": None, "job_posted_at_datetime_utc": None}
+    del bare["job_apply_link"]
+    (second,) = jsearch.parse({"data": [bare]})
+    assert second.url == real["job_google_link"] and second.url.startswith("https://www.google.com/")
+    assert second.location_raw == real["job_location"] and second.location_raw.startswith("Berlin")
     assert second.posted_at is None
+    for gone in ("job_description", "job_title", "job_id"):
+        assert jsearch.parse({"data": [{**real, gone: ""}]}) == []
+        assert jsearch.parse({"data": [{k: v for k, v in real.items() if k != gone}]}) == []
     assert jsearch.parse({"status": "ERROR"}) == [] and jsearch.parse([]) == []
+
+
+def test_jsearch_stable_id_matches_the_recorded_job_uid():
+    """HIR-41: a real response carries `job_uid`, which the docs do not list. It is the
+    same stable part `stable_id` cuts out of `job_id`, on every recorded posting — so the
+    id we store is the provider's own, not a guess at their encoding."""
+    from app.sources import jsearch
+    data = load("jsearch_recorded.json")["data"]
+    assert len(data) == 10
+    for j in data:
+        assert jsearch.stable_id(j["job_id"]) == j["job_uid"]
 
 
 def test_jsearch_request_per_host():
@@ -413,9 +442,10 @@ def test_jsearch_fetch_needs_a_key_and_makes_one_call(monkeypatch):
     with pytest.raises(RuntimeError):
         jsearch.fetch("AI engineer in Berlin")
     calls = []
-    monkeypatch.setattr(jsearch, "fetch_json", lambda url, headers=None, timeout=30: calls.append(url) or load("jsearch.json"))
+    monkeypatch.setattr(jsearch, "fetch_json", lambda url, headers=None, timeout=30: calls.append(url) or load("jsearch_recorded.json"))
     monkeypatch.setenv("JSEARCH_API_KEY", "k")
-    assert len(jsearch.fetch("AI engineer in Berlin")) == 2 and len(calls) == 1
+    # 10 recorded postings, one of them an aggregator headline that parse drops.
+    assert len(jsearch.fetch("AI engineer in Berlin")) == 9 and len(calls) == 1
 
 
 # Two ids JSearch returned for the same StepStone posting on two calls (live, 2026-10-18).
