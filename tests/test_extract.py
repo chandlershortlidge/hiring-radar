@@ -4,6 +4,7 @@ from types import SimpleNamespace
 import pytest
 
 from app import extract as ex
+from app import grounding
 from app.taxonomy import Taxonomy
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -63,6 +64,15 @@ def test_unknown_id_is_rejected(tax):
 def test_raw_text_must_appear_in_jd(tax):
     m, _, r = ex.parse_skills([item("python", "Python 3.12 expertise")], tax, JD)
     assert m == [] and r[0]["reason"] == "raw_text not found in job text"
+
+
+def test_ungrounded_reject_reason_is_the_one_grounding_counts(tax):
+    # Regression (HIR-228): the grounding count matches rejects on this exact string.
+    # If the extractor wrote a different wording, those rejects would stop counting
+    # against the score and it would rise without the model improving.
+    _, _, r = ex.parse_skills([item("python", "Python 3.12 expertise")], tax, JD)
+    assert r[0]["reason"] == grounding.UNGROUNDED_REASON
+    assert grounding.grounding(JD, [], [], r) == (0, 1)
 
 
 def test_raw_text_match_ignores_whitespace_and_case(tax):
