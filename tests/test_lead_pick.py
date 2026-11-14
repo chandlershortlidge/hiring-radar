@@ -1,7 +1,9 @@
-"""lead_pick: the lead agent's hard limits (HIR-266).
+"""lead_pick: the lead agent's hard limits (HIR-266, HIR-280).
 
-`pick` is pure. Each "never" in the ticket is a test here: the three labels, the third
-try, the spending cap, the daily and per-area counts, and the launch order's ordering.
+`pick` is pure. Each "never" in the tickets is a test here: the three labels, the third
+try, the spending cap, one ticket per area at a time, the pile of decisions waiting for
+Chandler, one re-read a day, a red check, the usage limit, and the launch order's
+ordering. There is no count of tickets per day (HIR-280).
 """
 
 import importlib.util
@@ -30,6 +32,7 @@ def ticket(n, **over):
         "created": "2026-11-01",
         "area": f"area-{n}",
         "est_eur": 0,
+        "may_add_decision": False,
     }
     base.update(over)
     return base
@@ -137,21 +140,155 @@ def test_unknown_spend_is_never_started():
     assert "Chandler" in out["skipped"][0]["why"]
 
 
-def test_at_most_three_a_day():
-    out = run([ticket(n) for n in range(1, 6)])
-    assert len(out["picked"]) == 3
-    assert all("3 tickets already picked" in s["why"] for s in out["skipped"])
+def test_eight_tickets_that_do_not_collide_are_all_started():
+    # HIR-280 "Done when": no fixed number of tickets a day.
+    out = run([ticket(n) for n in range(1, 9)])
+    assert ids(out["picked"]) == [f"HIR-{n}" for n in range(1, 9)]
+    assert out["skipped"] == []
 
 
-def test_at_most_two_in_one_area():
-    out = run([ticket(1, area="web"), ticket(2, area="web"), ticket(3, area="web"), ticket(4, area="feeds")])
-    assert ids(out["picked"]) == ["HIR-1", "HIR-2", "HIR-4"]
-    assert "same area (web)" in out["skipped"][0]["why"]
+def test_two_tickets_in_one_area_run_one_after_the_other():
+    out = run([ticket(1, area="web"), ticket(2, area="web"), ticket(3, area="feeds")])
+    assert ids(out["picked"]) == ["HIR-1", "HIR-3"]
+    assert out["skipped"] == [
+        {"id": "HIR-2", "why": "HIR-1 is changing the same area (web); this one waits for it to merge"}]
+
+
+@pytest.mark.parametrize("state", ["In Progress", "In Review"])
+def test_a_ticket_under_way_holds_its_area_until_it_merges(state):
+    under_way = ticket(1, area="web", state=state)
+    out = run([under_way, ticket(2, area="web"), ticket(3, area="feeds")])
+    assert ids(out["picked"]) == ["HIR-3"]
+    assert "HIR-1 is changing the same area (web)" in out["skipped"][-1]["why"]
+    # The next run, once HIR-1 has merged and left the list, starts the second.
+    assert ids(run([ticket(2, area="web")])["picked"]) == ["HIR-2"]
+
+
+def test_a_ticket_in_todo_that_was_not_picked_holds_no_area():
+    parked = ticket(1, area="web", labels=["parked"])
+    assert ids(run([parked, ticket(2, area="web")])["picked"]) == ["HIR-2"]
 
 
 def test_tickets_with_no_area_do_not_crowd_each_other_out():
     out = run([ticket(n, area=None) for n in range(1, 4)])
     assert len(out["picked"]) == 3
+
+
+def test_with_ten_decisions_waiting_a_ticket_likely_to_add_one_is_held_and_a_bug_fix_runs():
+    # HIR-280 "Done when".
+    feature = ticket(1, may_add_decision=True)
+    bug_fix = ticket(2, may_add_decision=False)
+    out = run([feature, bug_fix], decisions_waiting=10)
+    assert ids(out["picked"]) == ["HIR-2"]
+    assert out["skipped"] == [{"id": "HIR-1", "why": (
+        "likely to add a decision for Chandler, and 10 are already waiting or under way "
+        "(the limit is 10)")}]
+    assert out["decisions_waiting"] == 10
+
+
+def test_with_nine_decisions_waiting_one_likely_ticket_runs_and_the_next_is_held():
+    out = run([ticket(1, may_add_decision=True), ticket(2, may_add_decision=True)], decisions_waiting=9)
+    assert ids(out["picked"]) == ["HIR-1"]
+    assert "likely to add a decision" in out["skipped"][0]["why"]
+
+
+def test_a_ticket_that_does_not_say_counts_as_likely_to_add_a_decision():
+    unsaid = ticket(1)
+    del unsaid["may_add_decision"]
+    assert run([unsaid], decisions_waiting=10)["picked"] == []
+    assert ids(run([unsaid], decisions_waiting=9)["picked"]) == ["HIR-1"]
+
+
+def test_the_decision_limit_can_be_set():
+    likely = ticket(1, may_add_decision=True)
+    assert run([likely], decisions_waiting=3, max_decisions=3)["picked"] == []
+    assert ids(run([likely], decisions_waiting=2, max_decisions=3)["picked"]) == ["HIR-1"]
+
+
+def test_one_re_read_of_the_stored_jobs_a_day():
+    out = run([ticket(1, rereads=True, est_eur=0.5), ticket(2, rereads=True, est_eur=0.5), ticket(3)])
+    assert ids(out["picked"]) == ["HIR-1", "HIR-3"]
+    assert "re-read" in out["picked"][0]["why"]
+    assert "one a day" in out["skipped"][0]["why"]
+
+
+def test_a_re_read_started_by_an_earlier_run_today_counts():
+    started = f"- HIR-9 | picked: milestone 1; {lp.REREAD} | result: merging | spend: €0.50"
+    out = run([ticket(1, rereads=True)], [{"date": TODAY, "body": started}])
+    assert out["picked"] == []
+    assert ids(run([ticket(1, rereads=True)], [{"date": "2026-11-11", "body": started}])["picked"]) == ["HIR-1"]
+    held = started.replace("merging", "not-started")
+    assert ids(run([ticket(1, rereads=True)], [{"date": TODAY, "body": held}])["picked"]) == ["HIR-1"]
+
+
+def test_while_a_check_is_red_only_its_repair_is_started():
+    out = run([ticket(1), ticket(2, repair=True)], red=["the robot visitor"])
+    assert ids(out["picked"]) == ["HIR-2"]
+    assert out["skipped"] == [
+        {"id": "HIR-1", "why": "the robot visitor must be green first; only the repair is started"}]
+    both = run([ticket(1)], red=["the main branch's checks", "the robot visitor"])
+    assert both["picked"] == []
+    assert "the main branch's checks and the robot visitor must be green" in both["skipped"][0]["why"]
+
+
+def test_a_usage_limit_hit_today_stops_the_rest_of_the_day():
+    body = line("HIR-9", "not-started") + "\nUsage limit: reached, 14:30 run.\n"
+    out = run([ticket(1)], [{"date": TODAY, "body": body}])
+    assert out["picked"] == [] and "usage limit" in out["stop"]
+    assert ids(run([ticket(1)], [{"date": "2026-11-11", "body": body}])["picked"]) == ["HIR-1"]
+
+
+def test_the_days_spend_is_added_up_over_every_run_of_the_day():
+    log = [{"date": TODAY, "body": line("HIR-8", "merged", "0.90")},
+           {"date": TODAY, "body": line("HIR-9", "running", "0.90")}]
+    out = run([ticket(1, est_eur=0.30), ticket(2)], log)
+    assert out["spent_eur"] == 1.8
+    assert ids(out["picked"]) == ["HIR-2"]
+
+
+def test_the_queue_says_how_many_to_pull_into_todo():
+    # Three can run alone; two are picked, one waits for its area: pull 4 to keep 5 waiting.
+    tickets = [ticket(1, area="web"), ticket(2, area="web"), ticket(3),
+               ticket(4, labels=["attended"]), ticket(5, blocked=True), ticket(6, state="Backlog")]
+    assert run(tickets)["queue"] == {"run_alone_in_todo": 3, "left_after_pick": 1, "pull": 4}
+    waiting = [ticket(n, area="web") for n in range(1, 8)]
+    assert run(waiting)["queue"] == {"run_alone_in_todo": 7, "left_after_pick": 6, "pull": 0}
+    assert run([], cap=0)["queue"]["pull"] == 5
+
+
+def test_monday_gets_the_weeks_three_numbers():
+    monday = "2026-11-16"
+    log = [
+        {"date": "2026-11-08", "body": line("HIR-1", "merged")},       # the week before
+        {"date": "2026-11-09", "body": line("HIR-2", "merged") + "\n" + line("HIR-3", "failed")},
+        {"date": "2026-11-10", "body": line("HIR-3", "merged") + "\n" + line("HIR-4", "not-started")},
+        {"date": "2026-11-15", "body": line("HIR-5", "waiting")},      # a Sunday run
+        {"date": monday, "body": line("HIR-6", "merged")},              # this week
+    ]
+    tickets = [ticket(n) for n in range(10, 14)] + [ticket(14, state="Backlog"),
+               ticket(15, state="Backlog"), ticket(16, labels=["attended"]), ticket(17, state="In Progress")]
+    out = lp.pick(tickets, log, monday, 2.0, decisions_waiting=7)
+    assert out["monday"] == ("Agents ran 3 tickets last week (2026-11-09 to 2026-11-15). "
+                             "6 tickets left can run without you. 7 decisions are waiting for you.")
+
+
+def test_monday_says_plainly_when_the_run_alone_queue_is_nearly_empty():
+    out = lp.pick([ticket(1), ticket(2, labels=["attended"])], [], "2026-11-16", 2.0, decisions_waiting=1)
+    assert out["monday"] == (
+        "Agents ran 0 tickets last week (2026-11-09 to 2026-11-15). "
+        "1 ticket left can run without you. 1 decision is waiting for you. "
+        "The queue of tickets that can run without you is nearly empty: the project is now "
+        "waiting on your decisions, not on agents.")
+
+
+def test_only_monday_gets_the_weeks_numbers():
+    assert "monday" not in run([ticket(1)])           # TODAY is a Thursday
+    assert "monday" in lp.pick([], [], "2026-11-16", 0)  # even when the cap stops the run
+
+
+def test_a_weekend_day_is_a_day_like_any_other():
+    out = lp.pick([ticket(1)], [], "2026-11-14", 2.0)   # a Saturday
+    assert ids(out["picked"]) == ["HIR-1"]
 
 
 def test_order_is_milestone_then_visitor_bug_then_priority_then_oldest():
@@ -161,7 +298,7 @@ def test_order_is_milestone_then_visitor_bug_then_priority_then_oldest():
     older = ticket(4, priority=3, created="2026-10-01")
     newer = ticket(5, priority=3, created="2026-11-05")
     no_priority = ticket(6, priority=0, created="2026-01-01")
-    out = run([later_milestone, no_priority, newer, older, plain, visitor], max_tickets=6)
+    out = run([later_milestone, no_priority, newer, older, plain, visitor])
     assert ids(out["picked"]) == ["HIR-3", "HIR-2", "HIR-4", "HIR-5", "HIR-6", "HIR-1"]
 
 
@@ -187,13 +324,49 @@ def test_log_lines_are_read_from_a_real_looking_comment():
 def test_the_config_holds_the_starting_limits():
     config = json.loads((ROOT / "config" / "lead_agent.json").read_text())
     assert config["daily_cap_eur"] == 2.0
-    assert config["max_tickets"] == 3
-    assert config["max_per_area"] == 2
+    assert config["max_decisions_waiting"] == 10
+    assert config["queue_min"] == 5
+    # No count of tickets per day or per area (HIR-280).
+    assert set(config) == {"_comment", "daily_cap_eur", "max_decisions_waiting", "queue_min"}
+
+
+@pytest.mark.parametrize("left_out", ["decisions_waiting", "red"])
+def test_cli_refuses_a_state_that_did_not_look(left_out, tmp_path, capsys):
+    whole = {"today": TODAY, "decisions_waiting": 0, "red": [], "log": [], "tickets": [ticket(1)]}
+    del whole[left_out]
+    state = tmp_path / "state.json"
+    state.write_text(json.dumps(whole))
+    with pytest.raises(SystemExit):
+        lp.main([str(state)])
+    assert left_out in capsys.readouterr().err
+
+
+def test_cli_passes_the_decisions_and_the_red_checks_on(tmp_path, capsys):
+    state = tmp_path / "state.json"
+    state.write_text(json.dumps({
+        "today": TODAY, "decisions_waiting": 10, "red": ["the robot visitor"], "log": [],
+        "tickets": [ticket(1, may_add_decision=True, repair=True), ticket(2, repair=True), ticket(3)]}))
+    assert lp.main([str(state)]) == 0
+    out = json.loads(capsys.readouterr().out)
+    assert ids(out["picked"]) == ["HIR-2"]
+    assert sorted(ids(out["skipped"])) == ["HIR-1", "HIR-3"]
+
+
+def test_the_lead_agents_procedure_hands_the_script_what_it_needs():
+    """The script's limits only hold if the procedure supplies their inputs (HIR-280)."""
+    skill = (ROOT / ".claude" / "skills" / "lead-agent" / "SKILL.md").read_text()
+    for field in ("decisions_waiting", "red", "area", "may_add_decision", "rereads", "repair",
+                  "queue.pull", "monday", "Usage limit: reached", "result: running"):
+        assert f"`{field}`" in skill, field
+    # The once-a-weekday limits are gone.
+    assert "up to 3" not in skill and "day's 3" not in skill
+    assert "a run has happened today: stop" not in skill
 
 
 def test_cli_reads_the_cap_from_the_config_and_zero_stops_it(tmp_path, capsys):
     state = tmp_path / "state.json"
-    state.write_text(json.dumps({"today": TODAY, "log": [], "tickets": [ticket(1)]}))
+    state.write_text(json.dumps({"today": TODAY, "decisions_waiting": 0, "red": [], "log": [],
+                                 "tickets": [ticket(1)]}))
     assert lp.main([str(state)]) == 0
     assert ids(json.loads(capsys.readouterr().out)["picked"]) == ["HIR-1"]
     assert lp.main([str(state), "--cap", "0"]) == 0

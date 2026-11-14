@@ -1,9 +1,12 @@
-"""Which tickets the lead agent may start today (HIR-266).
+"""Which tickets the lead agent may start in this run (HIR-266, HIR-280).
 
 The lead agent (.claude/skills/lead-agent) is a model following instructions. Its hard
 limits are here instead, as code with tests, so a "never" cannot be skipped
-(DECISIONS 2026-11-12, HIR-266). The agent gathers the Todo tickets and its own log from
+(DECISIONS 2026-11-12, HIR-266). The agent gathers the tickets and its own log from
 Linear, hands them to this script, and starts exactly what it answers.
+
+There is no fixed number of tickets per run or per day (Chandler, 2026-11-12, HIR-280):
+every ticket that can run without him is started, unless one of these says no.
 
 It answers no to:
 
@@ -12,8 +15,16 @@ It answers no to:
 - a ticket that has already failed twice (two failures go to Monday's summary, never a
   third try);
 - a ticket whose spend is unknown, or would pass what is left of the day's cap;
-- a fourth ticket in one day, or a third in one area;
-- everything, when the daily cap is zero or already spent.
+- a ticket in an area where another ticket is already under way (In Progress or In
+  Review) or was picked earlier in this run: two changes to the same part of the code
+  run one after the other, never together;
+- a ticket likely to add a decision for Chandler, while the decisions already waiting for
+  him, plus the likely ones picked in this run, are at the limit (10);
+- a second ticket in one day that makes the model re-read the stored jobs;
+- every ticket that is not a repair, while the main branch's checks or the robot visitor
+  are red;
+- everything, when the daily cap is zero or already spent, or when a run earlier today
+  hit the Claude plan's usage limit.
 
 Order among the rest is the launch order's rule: milestone, then bugs a visitor would
 notice, then priority, then oldest.
@@ -21,32 +32,53 @@ notice, then priority, then oldest.
 Input, one JSON object (a file path, or stdin):
 
     {"today": "2026-11-12",
+     "decisions_waiting": 4,
+     "red": ["the robot visitor"],
      "log": [{"date": "2026-11-11", "body": "<a log comment's text>"}, ...],
      "tickets": [{"id": "HIR-197", "state": "Todo", "labels": ["autopilot", "Bug"],
                   "blocked": false, "milestone_rank": 0, "visitor_bug": true,
-                  "priority": 2, "created": "2026-11-05", "area": "web",
-                  "est_eur": 0}, ...]}
+                  "priority": 2, "created": "2026-11-05", "area": "web-chart",
+                  "est_eur": 0, "may_add_decision": false, "rereads": false,
+                  "repair": false}, ...]}
 
-`milestone_rank` is the ticket's place in the launch-order document (0 = "always on", then
-1, 2, ... by milestone). `priority` is Linear's (1 Urgent ... 4 Low, 0 none). `est_eur` is
-the model-call spend starting the ticket would cause; null when it cannot be known.
+`decisions_waiting` is how many real decisions are waiting for Chandler now; the agent
+counts them (its skill says how). `red` names each check that is failing (the main
+branch's checks, the robot visitor); empty when all are green. Both are required: a run
+that did not look must not be read as "nothing waiting, nothing red".
+
+`tickets` holds every ticket in Todo and every ticket under way (In Progress, In Review):
+the ones under way are never picked, but each holds its area. `milestone_rank` is the
+ticket's place in the launch-order document (0 = "always on", then 1, 2, ... by
+milestone). `priority` is Linear's (1 Urgent ... 4 Low, 0 none). `est_eur` is the
+model-call spend starting the ticket would cause; null when it cannot be known.
+`may_add_decision` is whether the work is likely to end on a decision for Chandler; left
+out, it counts as true. `rereads` is whether merging it makes the model re-read the
+stored jobs. `repair` marks the ticket that fixes what `red` names.
 
 The log lines it reads, one per ticket, written by the lead agent:
 
     - HIR-197 | picked: always on; a bug a visitor would notice | result: merged | spend: €0.00
 
+and, anywhere in a log comment, a line starting `Usage limit: reached`.
+
 Output: JSON with `stop` (null, or why nothing may start), `picked` and `skipped`, each
-entry with the ticket id and a plain-words reason, plus `spent_eur` and `cap_eur`.
+entry with the ticket id and a plain-words reason, plus `spent_eur`, `cap_eur`,
+`decisions_waiting`, `queue` (how many tickets that can run alone are in Todo, how many
+of those are still there after this pick, and how many more to pull into Todo to keep 5
+waiting) and, when `today` is a Monday, `monday`: the three numbers for the weekly
+summary as plain sentences.
 
 Does NOT: talk to Linear or GitHub, start anything, write anything, or call a model. It
-does not judge what a ticket's area, milestone or spend is; the agent supplies those.
-Standard library only.
+does not judge what a ticket's area, milestone or spend is, whether it may add a
+decision, or how many decisions are waiting; the agent supplies those. Standard library
+only.
 
-    python scripts/lead_pick.py state.json            # cap from config/lead_agent.json
+    python scripts/lead_pick.py state.json            # limits from config/lead_agent.json
     python scripts/lead_pick.py state.json --cap 0    # the "cap set to zero" check
 """
 
 import argparse
+import datetime
 import json
 import re
 import sys
@@ -59,21 +91,36 @@ NEVER_LABELS = ("attended", "hands-on", "parked")
 # A ticket is tried at most this many times; after that it is Monday's, not a retry.
 MAX_FAILURES = 2
 FAILED = "failed"
+# A ticket in one of these states is being worked: it is never picked, and it holds its
+# area until it merges.
+UNDER_WAY = ("In Progress", "In Review")
+# A log line with this result was held back before any work began; the ticket did not run.
+NOT_STARTED = "not-started"
+# What a pick reason says when merging the ticket re-reads the stored jobs. The day's log
+# is searched for it, so the wording is fixed.
+REREAD = "sets off a re-read of the stored jobs"
 
 LOG_LINE = re.compile(
-    r"^\s*[-*]\s*(HIR-\d+)\s*\|.*?\|\s*result:\s*([a-z-]+)\s*\|\s*spend:\s*€\s*([0-9]+(?:\.[0-9]+)?)",
+    r"^\s*[-*]\s*(HIR-\d+)\s*\|(.*?)\|\s*result:\s*([a-z-]+)\s*\|\s*spend:\s*€\s*([0-9]+(?:\.[0-9]+)?)",
     re.MULTILINE,
 )
+# Written by the lead agent when the run, or one of its workers, was refused for usage.
+USAGE_LINE = re.compile(r"^\s*Usage limit:\s*reached", re.MULTILINE | re.IGNORECASE)
 PRIORITY_NAME = {1: "Urgent", 2: "High", 3: "Medium", 4: "Low"}
+
+
+def _lines(log):
+    """[(date, ticket id, pick reason, result, spend)] for every ticket line in the log."""
+    lines = []
+    for entry in log:
+        for ticket, why, result, spend in LOG_LINE.findall(entry.get("body") or ""):
+            lines.append((entry.get("date"), ticket, why.strip(), result, float(spend)))
+    return lines
 
 
 def read_log(log):
     """[(date, ticket id, result, spend)] for every ticket line in the log comments."""
-    lines = []
-    for entry in log:
-        for ticket, result, spend in LOG_LINE.findall(entry.get("body") or ""):
-            lines.append((entry.get("date"), ticket, result, float(spend)))
-    return lines
+    return [(date, ticket, result, spend) for date, ticket, _, result, spend in _lines(log)]
 
 
 def failures(log):
@@ -86,8 +133,58 @@ def failures(log):
 
 
 def spent_on(log, today):
-    """Model-call spend the log records for `today`."""
+    """Model-call spend the log records for `today`, over every run of that day."""
     return round(sum(spend for date, _, _, spend in read_log(log) if date == today), 2)
+
+
+def reread_started_on(log, today):
+    """Did a run today already start a ticket that re-reads the stored jobs?"""
+    return any(date == today and REREAD in why and result != NOT_STARTED
+               for date, _, why, result, _ in _lines(log))
+
+
+def usage_limit_hit_on(log, today):
+    """Did a run today say the Claude plan's usage limit was reached?"""
+    return any(entry.get("date") == today and USAGE_LINE.search(entry.get("body") or "")
+               for entry in log)
+
+
+def ran_between(log, start, end):
+    """How many different tickets were started from `start` to `end` (days, inclusive)."""
+    return len({ticket for date, ticket, result, _ in read_log(log)
+                if date and start <= date <= end and result != NOT_STARTED})
+
+
+def runs_alone(ticket, failed):
+    """Could an agent take this ticket with nobody asked: no label that bars it, nothing
+    open blocking it, not failed twice. Says nothing about whether its turn has come."""
+    labels = {str(name).lower() for name in ticket.get("labels") or []}
+    return (not any(name in labels for name in NEVER_LABELS)
+            and not ticket.get("blocked")
+            and failed.get(ticket["id"], 0) < MAX_FAILURES)
+
+
+def monday_text(log, today, tickets, decisions_waiting, queue_min=5):
+    """The weekly summary's three numbers as plain sentences, for the seven days up to
+    yesterday: tickets run, tickets left that can run alone (in Todo or Backlog), decisions
+    waiting. Says so plainly when fewer than `queue_min` are left."""
+    day = datetime.date.fromisoformat(today)
+    start = (day - datetime.timedelta(days=7)).isoformat()
+    end = (day - datetime.timedelta(days=1)).isoformat()
+    ran = ran_between(log, start, end)
+    failed = failures(log)
+    left = sum(1 for t in tickets if t.get("state") in ("Todo", "Backlog") and runs_alone(t, failed))
+
+    def n(count, noun):
+        return f"{count} {noun}{'' if count == 1 else 's'}"
+
+    text = (f"Agents ran {n(ran, 'ticket')} last week ({start} to {end}). "
+            f"{n(left, 'ticket')} left can run without you. "
+            f"{n(decisions_waiting, 'decision')} {'is' if decisions_waiting == 1 else 'are'} waiting for you.")
+    if left < queue_min:
+        text += (" The queue of tickets that can run without you is nearly empty: the project is"
+                 " now waiting on your decisions, not on agents.")
+    return text
 
 
 def _order(ticket):
@@ -108,23 +205,44 @@ def _why(ticket):
         parts.append("a bug a visitor would notice")
     parts.append(f"priority {PRIORITY_NAME.get(ticket.get('priority') or 0, 'none')}")
     parts.append(f"filed {ticket.get('created') or 'date unknown'}")
+    if ticket.get("rereads"):
+        parts.append(REREAD)
     return "; ".join(parts)
 
 
-def pick(tickets, log, today, cap_eur, max_tickets=3, max_per_area=2):
-    """The day's answer: what may start, what may not and why."""
+def pick(tickets, log, today, cap_eur, decisions_waiting=0, red=(), max_decisions=10, queue_min=5):
+    """The run's answer: what may start, what may not and why."""
     spent = spent_on(log, today)
-    result = {"stop": None, "picked": [], "skipped": [], "spent_eur": spent, "cap_eur": cap_eur}
+    failed = failures(log)
+    alone = [t for t in tickets if t.get("state") == "Todo" and runs_alone(t, failed)]
+    result = {
+        "stop": None, "picked": [], "skipped": [], "spent_eur": spent, "cap_eur": cap_eur,
+        "decisions_waiting": decisions_waiting,
+        "queue": {"run_alone_in_todo": len(alone), "left_after_pick": len(alone),
+                  "pull": max(0, queue_min - len(alone))},
+    }
+    if datetime.date.fromisoformat(today).weekday() == 0:
+        result["monday"] = monday_text(log, today, tickets, decisions_waiting, queue_min)
     if cap_eur <= 0:
         result["stop"] = "the daily spending cap is set to zero, so nothing is started"
         return result
     if spent >= cap_eur:
         result["stop"] = f"today's spending cap of €{cap_eur:.2f} is reached (€{spent:.2f} spent)"
         return result
+    if usage_limit_hit_on(log, today):
+        result["stop"] = ("a run earlier today hit the Claude plan's usage limit, so nothing more "
+                          "is started today")
+        return result
 
-    failed = failures(log)
+    red = [str(name) for name in red or []]
     left = cap_eur - spent
-    per_area = {}
+    reread_today = reread_started_on(log, today)
+    # Each area holds one ticket at a time: the one under way, or the first picked here.
+    busy = {}
+    for ticket in tickets:
+        if ticket.get("state") in UNDER_WAY and ticket.get("area"):
+            busy.setdefault(ticket["area"], ticket["id"])
+    likely = 0  # picked in this run and likely to add a decision for Chandler
 
     def skip(ticket, why):
         result["skipped"].append({"id": ticket["id"], "why": why})
@@ -134,6 +252,7 @@ def pick(tickets, log, today, cap_eur, max_tickets=3, max_per_area=2):
         barred = [name for name in NEVER_LABELS if name in labels]
         area = ticket.get("area") or ticket["id"]  # no area given: it shares one with nothing
         est = ticket.get("est_eur")
+        may_decide = ticket.get("may_add_decision", True)  # in doubt, it may
         if ticket.get("state") != "Todo":
             skip(ticket, f"not in Todo ({ticket.get('state')})")
         elif barred:
@@ -142,24 +261,37 @@ def pick(tickets, log, today, cap_eur, max_tickets=3, max_per_area=2):
             skip(ticket, "blocked by an open ticket")
         elif failed.get(ticket["id"], 0) >= MAX_FAILURES:
             skip(ticket, "failed twice already; it goes to Monday's summary, not a third try")
+        elif red and not ticket.get("repair"):
+            skip(ticket, f"{' and '.join(red)} must be green first; only the repair is started")
         elif est is None:
             skip(ticket, "its model-call spend cannot be known from here; a spend question for Chandler")
         elif est > left + 1e-9:
             skip(ticket, f"would spend €{est:.2f} with €{left:.2f} left under today's cap")
-        elif len(result["picked"]) >= max_tickets:
-            skip(ticket, f"{max_tickets} tickets already picked today")
-        elif per_area.get(area, 0) >= max_per_area:
-            skip(ticket, f"{max_per_area} tickets in the same area ({area}) already picked today")
+        elif area in busy:
+            skip(ticket, f"{busy[area]} is changing the same area ({area}); this one waits for it to merge")
+        elif may_decide and decisions_waiting + likely >= max_decisions:
+            skip(ticket, f"likely to add a decision for Chandler, and {decisions_waiting + likely} "
+                         f"are already waiting or under way (the limit is {max_decisions})")
+        elif ticket.get("rereads") and reread_today:
+            skip(ticket, "a re-read of the stored jobs was already started today; one a day")
         else:
             left -= est
-            per_area[area] = per_area.get(area, 0) + 1
+            busy[area] = ticket["id"]
+            likely += 1 if may_decide else 0
+            reread_today = reread_today or bool(ticket.get("rereads"))
             result["picked"].append({"id": ticket["id"], "why": _why(ticket), "est_eur": est})
+
+    picked = {entry["id"] for entry in result["picked"]}
+    still = sum(1 for t in alone if t["id"] not in picked)
+    result["queue"]["left_after_pick"] = still
+    result["queue"]["pull"] = max(0, queue_min - still)
     return result
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="Which tickets the lead agent may start today.")
-    parser.add_argument("state", nargs="?", default="-", help="JSON file with today, log and tickets (- = stdin)")
+    parser = argparse.ArgumentParser(description="Which tickets the lead agent may start in this run.")
+    parser.add_argument("state", nargs="?", default="-",
+                        help="JSON file with today, decisions_waiting, red, log and tickets (- = stdin)")
     parser.add_argument("--cap", type=float, default=None, help="daily cap in euros (default: config/lead_agent.json)")
     args = parser.parse_args(argv)
 
@@ -167,13 +299,19 @@ def main(argv=None):
     cap = config["daily_cap_eur"] if args.cap is None else args.cap
     text = sys.stdin.read() if args.state == "-" else Path(args.state).read_text()
     state = json.loads(text)
+    missing = [key for key in ("today", "decisions_waiting", "red") if key not in state]
+    if missing:
+        parser.error(f"the state has no {' or '.join(missing)}; a run that did not look must not "
+                     "be read as nothing waiting and nothing red")
     answer = pick(
         state.get("tickets", []),
         state.get("log", []),
         state["today"],
         cap,
-        max_tickets=config["max_tickets"],
-        max_per_area=config["max_per_area"],
+        decisions_waiting=state["decisions_waiting"],
+        red=state["red"],
+        max_decisions=config["max_decisions_waiting"],
+        queue_min=config["queue_min"],
     )
     print(json.dumps(answer, indent=2, ensure_ascii=False))
     return 0

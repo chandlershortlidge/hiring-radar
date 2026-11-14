@@ -1,6 +1,6 @@
 {
-  "_comment": "The lead agent's limits (HIR-266), read by scripts/lead_pick.py. daily_cap_eur is the model-call spend the lead agent may start in one day; 0 stops every run. Raising it is a recurring cost, so it is Chandler's call (AGENTS.md \"What Chandler is asked\", item 5).",
+  "_comment": "The lead agent's limits (HIR-266, HIR-280), read by scripts/lead_pick.py. daily_cap_eur is the model-call spend the lead agent may start in one day, over all of that day's runs; 0 stops every run. Raising it is a recurring cost, so it is Chandler's call (AGENTS.md \"What Chandler is asked\", item 5). max_decisions_waiting is the pile of real decisions waiting for Chandler at which tickets likely to add one are held (his number, 12 Nov). queue_min is how many run-alone tickets the lead agent keeps waiting in Todo. There is no count of tickets per day.",
   "daily_cap_eur": 2.0,
-  "max_tickets": 3,
-  "max_per_area": 2
+  "max_decisions_waiting": 10,
+  "queue_min": 5
 }
