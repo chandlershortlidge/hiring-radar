@@ -37,11 +37,16 @@ decide it and neither does the worker: the worker hands it to the `senior` agent
 proof.
 
 **NO RULE:** — only for a question on the big side of that list that no written rule
-settles. Then the question rewritten for Chandler, who has not opened the repo and
+settles. Name the item. Then the question for Chandler, who has not opened the repo and
 does not remember rule dates: two sentences of situation; one line per option (three at
 most) saying what changes on the dashboard or what it costs; your recommendation and why.
 No file names, function names, ids or dates as shorthand. End with the one-line rule you
 would add to DECISIONS.md once he answers, so the question is never asked again.
+
+A big call reaches him in one of two forms: three lines to approve, or a full question to
+think about (the same section, "Big calls come in two kinds", HIR-297). You do not say
+which and you do not write that form: the worker takes your NO RULE to the `senior`
+agent, which says the kind and writes what he reads.
 
 You write nothing: no file, no Linear issue, no comment. Your caller posts your answer,
 and when it does it appends to the issue or adds a comment rather than replacing a
