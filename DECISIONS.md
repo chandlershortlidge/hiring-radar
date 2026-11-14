@@ -5,6 +5,49 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-14 — Monday carries the decisions waiting in tickets, and a comment from Chandler is the answer (HIR-277)
+
+Chandler, 12 Nov, about the questions sitting in tickets: "I'll get those on Monday,
+right?" They did not: the Monday summary lists only open pull requests that need him,
+and about 30 open tickets hold a question for him.
+
+**What changed.** On Mondays the lead agent adds one comment to the summary, "Decisions
+waiting for you": at most 10 questions (his number, "a max of probably like 10", to be
+tried and adjusted; `monday_questions_max` in `config/lead_agent.json`), each one plain
+sentence with options and a recommendation; a count of the rest with a link; and up to 3
+lines of work he does with an agent, "Yours this week". A week with none says "No
+decisions waiting".
+
+**The list is code, the sentences are not.** `monday_decisions` in `scripts/lead_pick.py`
+says which tickets, in what order and how many: what blocks the current launch milestone,
+then what blocks a ticket in Todo, then the oldest; never a `hands-on` or `parked` ticket;
+never one already answered. The lead agent writes the wording and may not add, drop or
+reorder. Undo: remove the comment from the lead agent's Monday step.
+
+**How his answer is recognised.** Agents write under his Linear login, so a comment's
+author proves nothing (the reason HIR-278 left out "a ticket approval lets a rule change
+merge"). The senior agent decided: a comment is his answer only on a ticket where an
+agent asked him something, only when newer than that question and not an agent's own
+comment (`answer_candidates`, by how the comment starts), and only when it picks an
+option or leaves nothing to choose. Not a fixed word he must type: an agent could type it
+too, and it is a convention he would have to learn. An `attended` ticket nobody asked him
+about is never read for an answer, so his off-switch label cannot be lifted by a comment.
+
+**What applying an answer does, and why that is safe.** The lead agent marks the ticket
+with a comment headed "Answered" (that mark is what stops the question being asked
+again), and removes `attended` only when the work left can run alone; a worker then
+writes the rule into this file in a normal pull request. A misread answer therefore moves
+one ticket into the ordinary path, where review, the big side of his list and the rules
+gate still apply, and it is shown to him the next Monday under "Applied from your
+answers". If a line appears there that he did not write, or he reverses an applied answer
+within the week, move to a stricter mark and record it here.
+
+**Small questions are not asked.** A waiting question that is on the small side of his
+list goes through the decider to the senior agent and is reported under "Decided for
+you" (HIR-278), not listed.
+
+---
+
 ## 2026-11-14 — The lead agent runs at full speed: no count of tickets per day, slowed only by collisions and the pile of decisions (HIR-280)
 
 Chandler, 12 Nov: "Is there a reason we are waiting? Can we not be building 24/7?" and

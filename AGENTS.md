@@ -808,7 +808,9 @@ that stops before a review passes leaves its PR labelled `needs-chandler` **with
 in plain words, grouped by what a visitor would notice; what was sent back and fixed; the
 short "needs you" list; and "Decided for you", the small calls the senior agent made, each
 with how to undo it (HIR-278). No message for work that merged. Until that summary exists
-(HIR-264), the open PRs labelled `needs-chandler` are the "needs you" list.
+(HIR-264), the open PRs labelled `needs-chandler` are the "needs you" list. The summary's
+"needs you" part covers pull requests only; the decisions waiting in tickets reach him in
+the same Monday post, in a comment the lead agent adds ("The lead agent", below; HIR-277).
 
 **A Linear description is appended to, never replaced** (HIR-124). Two agents overwrote
 HIR-112's description on 3 Nov. Any agent — worker, decider, reviewer, orchestrator —
@@ -853,6 +855,28 @@ run uses Chandler's plan; it reports the limit in the log and does not retry).
 ran, how many are left that can run without him, how many decisions are waiting. When
 fewer than 5 are left it says so plainly: the project is then waiting on his decisions,
 not on agents.
+
+**Monday also carries the decisions waiting in tickets** (HIR-277, DECISIONS 2026-11-14).
+The lead agent adds one comment to the Monday summary, headed **Decisions waiting for
+you**: at most 10 questions (`config/lead_agent.json`), each one plain sentence with
+short options and a recommendation, answerable without opening the ticket; then how many
+more are waiting; then up to 3 lines of work he does with an agent, under **Yours this
+week**. Which tickets, in what order and how many is code (`monday_decisions` in
+`scripts/lead_pick.py`): what blocks the current launch milestone, then what blocks a
+ticket in Todo, then the oldest. The lead agent writes the sentences and answers nothing.
+
+**His answer is a comment on the ticket, and the next run applies it.** Agents write
+under his Linear login, so the author of a comment proves nothing. A comment counts as
+his answer only on a ticket where an agent asked him a question, only when it is newer
+than that question and is not an agent's own comment (`answer_candidates` in the same
+script rules those out by how they start), and only when it picks an option or leaves
+the agent nothing to choose. The lead agent then marks the ticket with a comment headed
+**Answered**, so it is never asked again, and removes `attended` when the work left can
+run alone; a worker writes the answer into DECISIONS.md in a normal pull request. This
+moves a ticket into the ordinary path and nothing more: review, the big side of his
+list and the rules gate apply to what follows, and each applied answer is shown to him
+the next Monday under **Applied from your answers**. An `attended` ticket nobody asked
+him about keeps its label whatever is written on it.
 
 **The four ticket labels.** `autopilot` (or none): agents build, review and merge.
 `attended`: Chandler is in it; no agent picks it. `hands-on`: Chandler writes the code; no
