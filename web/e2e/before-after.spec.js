@@ -81,6 +81,7 @@ async function shot(page, path, button) {
     // What the drawer fetches for itself (proposed skills, skill counts) has arrived.
     await page.waitForTimeout(300);
     for (let i = 0; waiting > 0 && i < 100; i++) await page.waitForTimeout(200);
+    await page.evaluate(() => document.fonts.ready).catch(() => {});
     await page.waitForTimeout(800);
   } catch {
     problem = "the drawer did not open";
@@ -94,7 +95,7 @@ async function shot(page, path, button) {
 
 test("before and after", async ({ page, request }, info) => {
   test.skip(!LIVE || !AUTH, "SHOT_LIVE / SHOT_AUTH not set");
-  test.setTimeout(180_000);
+  test.setTimeout(360_000); // every view differing means every view is taken twice
 
   // One real job for the job page: the newest one on the live site.
   const res = await request.get(`${LIVE}/api/jobs?limit=1`, { headers: authHeader() });
@@ -120,12 +121,19 @@ test("before and after", async ({ page, request }, info) => {
   for (const [name, path, button] of views) {
     const png = {};
     let problem = null;
-    for (const side of ["before", "after"]) {
-      await serve(page, SIDES[side]);
-      const got = await shot(page, path, button);
-      png[side] = got.png;
-      // Only the branch's build is judged: a PR that repairs a drawer broken on main must pass.
-      if (side === "after") problem = got.problem;
+    // A pair that differs is taken once more before it counts. On the first run of this
+    // against the live site, two identical builds "differed" on 3 of 16 views because one
+    // weight of the web font had not arrived for one of the two loads. A real difference
+    // is there the second time too; a late font is not.
+    for (let attempt = 0; attempt < 2; attempt++) {
+      for (const side of ["before", "after"]) {
+        await serve(page, SIDES[side]);
+        const got = await shot(page, path, button);
+        png[side] = got.png;
+        // Only the branch's build is judged: a PR that repairs a drawer broken on main must pass.
+        if (side === "after") problem = got.problem;
+      }
+      if (!problem && Buffer.compare(png.before, png.after) === 0) break;
     }
     if (problem) broken.push({ view: name, problem });
     if (problem || Buffer.compare(png.before, png.after) !== 0) {
