@@ -5,6 +5,55 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-14 — What's rising: two 4-week periods, and nothing shown until both are fully collected (HIR-232)
+
+The panel compares, for one city and job family, the share of open jobs requiring each
+skill in the last 28 days with the 28 days before. The shares, the change and the "can
+this be trusted" thresholds are `app/rising.py` (HIR-279, written by hand); this entry is
+about everything around it.
+
+**Open during a period** is "first seen by its end, and still open at its start by the
+dashboard's own open rule". The ticket wrote it as "last seen ≥ window start"; the
+dashboard's rule also gives a feed job 3 days and a hand-added job 60 days after its last
+sighting, and the ticket asks for the same rule, so the period start is asked through
+`open_clause` and not compared with `last_seen` directly. Without that a hand-added job the
+dashboard still shows as open would drop out of the later period and pull every share.
+
+**A place is held back until it has been collected for both periods.** Everything open on
+a place's first day is "first seen" that day, so its first weeks make every skill look as
+if it rose. `geo.COLLECTING_SINCE` holds the day collection began for each active place,
+and the panel says "not enough data yet", with the date it will fill in, until that day is
+no later than the start of the earlier period (56 days). **This holds for Berlin too**:
+collection began on 18 October, so Berlin fills in on 13 December, the two US cities on 29
+December, and Hamburg, Frankfurt and Munich on 3 January. Until then the panel shows no
+numbers anywhere. Several cities at once ("All of Germany") wait for the newest of them.
+The dates are written down, not read from the stored jobs, because a job stored for Berlin
+in October and later found to name Munich as well carries its October date into Munich. A
+test fails while an active place has no date, so a launch cannot forget it.
+
+**A skill is held back the same way.** Postings that closed before a skill joined the list
+were never read with it, so it would rise from nothing. `taxonomy/added.json` holds the
+day each id was added (filled in from the history of the skill list for the 244 there
+today; `scripts/record_skill_ids.py`, which every skill-list change already runs, dates
+new ones), and a skill is compared only once that day is no later than the start of the
+earlier period. A test fails while an id has no date. A separate file and not a field in
+`skills.json`, so recording a date is not a change to the skill list and sets off neither
+the eval nor a re-read.
+
+**Three display choices, each one constant in `app/queries.py`:** 5 risers and 5 fallers
+at most, largest move first; a move under 1 percentage point is not listed, since the two
+shares could print as the same whole percent; the panel reads city and job family only and
+ignores the seniority, German, degree and time-window controls, so each period keeps the
+most jobs behind it. Undo any of them by changing the constant or the filter passed in
+`app/api.py`.
+
+**Known limit, not fixed here.** A skill that gains new spellings, or a change to the
+extractor's instructions, also re-reads only the jobs still open, so the earlier period
+keeps the older reading and the skill can show a small rise that is ours and not the
+market's. Filed as a follow-up.
+
+---
+
 ## 2026-11-14 — The hand-built JSearch fixture is gone; odd records are made from the real one (HIR-41)
 
 HIR-41 asked for a recorded JSearch response to replace the fixture written from the

@@ -18,6 +18,15 @@ from pathlib import Path
 
 DEFAULT_PATH = Path(__file__).resolve().parent.parent / "taxonomy" / "skills.json"
 CASE_SENSITIVE = {"ReAct", "React"}
+# The day each skill id joined the list (HIR-232): {id: "YYYY-MM-DD"}. Postings that closed
+# before that day were never read with the skill, so a comparison over time must not reach
+# back past it. scripts/record_skill_ids.py writes the date for a new id.
+ADDED_PATH = DEFAULT_PATH.with_name("added.json")
+
+
+def load_added(path: Path = ADDED_PATH) -> dict[str, str]:
+    """{skill id: the day it was added}. Says nothing about a skill it does not list."""
+    return json.loads(Path(path).read_text())
 
 
 @dataclass(frozen=True)
