@@ -103,3 +103,80 @@ def test_every_agent_and_skill_points_at_the_list_and_keeps_no_copy(path):
     assert "What Chandler is asked" in text and "small" in text.lower()
     # The limits live in AGENTS.md only: a second copy is one that drifts.
     assert "5 stored jobs" not in text and "€10 a week" not in text
+
+
+# --- the big side comes in two kinds: to think about, to approve (HIR-297) -----------------
+
+def the_two_kinds():
+    """AGENTS.md's paragraph block on the two kinds of big call, as one line of text."""
+    section = AGENTS_MD.read_text().split("**Big calls come in two kinds")[1].split("How the list is used:")[0]
+    return " ".join(section.split())
+
+
+def test_the_list_says_what_he_thinks_through_and_what_he_only_approves():
+    text = the_two_kinds()
+    for skill in ("how quality is measured", "the model and its instructions", "cost engineering",
+                  "how the system is designed", "data-science work on the collected data"):
+        assert skill in text, skill
+    for chore in ("launch chores (domain, legal pages, analytics)", "deleting stored data",
+                  "changes to the agents' own rules"):
+        assert chore in text, chore
+
+
+def test_a_recommendation_to_approve_is_three_fixed_lines():
+    text = the_two_kinds()
+    assert "> **Recommend:**" in text and "> **What it is:**" in text and "> **Why:**" in text
+    assert "three lines at most" in text and "No options list" in text
+    assert "If it cannot be said in those three lines, it is not ready to ask." in text
+
+
+def test_a_question_to_think_about_says_what_he_would_learn():
+    assert "**What you would learn**" in the_two_kinds()
+
+
+def test_the_senior_agent_says_the_kind_and_doubt_never_costs_his_thinking_time():
+    text = the_two_kinds()
+    assert "The **senior agent**" in text
+    assert "When unsure whether a call teaches a career skill, it is to approve" in text
+    assert "Anything about how quality is measured is always to think about, never downgraded." in text
+
+
+def test_the_split_puts_nothing_on_the_list_and_decides_nothing_without_him():
+    # The ticket's "Out of scope": what is small does not change, no big call is decided alone.
+    text = the_two_kinds()
+    assert "puts nothing on the list and takes nothing off it" in text
+    assert "no big call is decided without his yes" in text
+
+
+def test_monday_and_the_speed_limit_are_written_where_the_list_is():
+    text = " ".join(AGENTS_MD.read_text().split())
+    assert "**To think about**, at most 3 a week" in text and "**To approve**, the rest of the" in text
+    assert "Only the to-think-about pile slows the lead agent down." in text
+    assert "Recommendations waiting for his yes do not count" in text
+
+
+@pytest.mark.parametrize("path", POINT_AT_THE_LIST, ids=lambda p: p.parent.name + "/" + p.name)
+def test_every_agent_and_skill_knows_the_two_kinds_and_keeps_no_copy_of_the_career_list(path):
+    text = " ".join(path.read_text().split())
+    assert "to approve" in text.lower() and "to think about" in text.lower()
+    assert "Big calls come in two kinds" in text
+    # What counts as a career skill is written in AGENTS.md only.
+    assert "data-science work" not in text and "cost engineering" not in text
+
+
+def test_a_rules_pull_request_opens_with_the_three_lines_and_the_reviewer_checks_them():
+    gate = " ".join(AGENTS_MD.read_text().split("### The rules gate")[1].split("### Pitfalls")[0].split())
+    assert "at the very top of the description" in gate and "The author writes those three lines" in gate
+    reviewer = " ".join(REVIEWER.read_text().split())
+    assert "The three lines to approve, at the very top of the description" in reviewer
+    assert "Missing, or not in that form → SENT BACK" in reviewer
+    template = (ROOT / ".github" / "pull_request_template.md").read_text()
+    assert "**Recommend:**" in template and "**What it is:**" in template and "**Why:**" in template
+
+
+def test_the_senior_agent_has_a_reply_for_each_kind():
+    senior = " ".join((ROOT / ".claude" / "agents" / "senior.md").read_text().split())
+    assert "**TO APPROVE:**" in senior and "**TO THINK ABOUT:**" in senior
+    assert "**What you would learn:**" in senior
+    decider = " ".join((ROOT / ".claude" / "agents" / "decider.md").read_text().split())
+    assert "You do not say which" in decider

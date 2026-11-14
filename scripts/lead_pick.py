@@ -1,5 +1,6 @@
 """Which tickets the lead agent may start in this run (HIR-266, HIR-280), and which of
-the decisions waiting for Chandler go into Monday's comment (HIR-277).
+the decisions waiting for Chandler go into Monday's comment (HIR-277), under which of its
+two headings (HIR-297).
 
 The lead agent (.claude/skills/lead-agent) is a model following instructions. Its hard
 limits are here instead, as code with tests, so a "never" cannot be skipped
@@ -19,8 +20,9 @@ It answers no to:
 - a ticket in an area where another ticket is already under way (In Progress or In
   Review) or was picked earlier in this run: two changes to the same part of the code
   run one after the other, never together;
-- a ticket likely to add a decision for Chandler, while the decisions already waiting for
-  him, plus the likely ones picked in this run, are at the limit (10);
+- a ticket likely to add a decision for Chandler to think about, while the decisions
+  already waiting for him to think about, plus the likely ones picked in this run, are at
+  the limit (10). Recommendations waiting for his yes do not count (HIR-297);
 - a second ticket in one day that makes the model re-read the stored jobs;
 - every ticket that is not a repair, while the main branch's checks or the robot visitor
   are red;
@@ -35,7 +37,8 @@ Input, one JSON object (a file path, or stdin):
     {"today": "2026-11-12",
      "decisions_waiting": 4,
      "red": ["the robot visitor"],
-     "decisions": [{"id": "HIR-131", "kind": "question", "labels": ["attended"],
+     "approvals_waiting": 9,
+     "decisions": [{"id": "HIR-131", "kind": "think", "labels": ["attended"],
                     "answered": false, "blocks_milestone": true, "blocks_todo": false,
                     "since": "2026-11-03"}, ...],
      "log": [{"date": "2026-11-11", "body": "<a log comment's text>"}, ...],
@@ -45,8 +48,10 @@ Input, one JSON object (a file path, or stdin):
                   "est_eur": 0, "may_add_decision": false, "rereads": false,
                   "repair": false}, ...]}
 
-`decisions_waiting` is how many real decisions are waiting for Chandler now; the agent
-counts them (its skill says how). `red` names each check that is failing (the main
+`decisions_waiting` is how many decisions are waiting for Chandler to think about now
+(AGENTS.md "What Chandler is asked", "Big calls come in two kinds"); the agent counts them
+(its skill says how). `approvals_waiting`, optional, is how many recommendations are
+waiting for his yes: it holds nothing back and only appears in Monday's sentence. `red` names each check that is failing (the main
 branch's checks, the robot visitor); empty when all are green. Both are required: a run
 that did not look must not be read as "nothing waiting, nothing red".
 
@@ -55,14 +60,16 @@ the ones under way are never picked, but each holds its area. `milestone_rank` i
 ticket's place in the launch-order document (0 = "always on", then 1, 2, ... by
 milestone). `priority` is Linear's (1 Urgent ... 4 Low, 0 none). `est_eur` is the
 model-call spend starting the ticket would cause; null when it cannot be known.
-`may_add_decision` is whether the work is likely to end on a decision for Chandler; left
-out, it counts as true. `rereads` is whether merging it makes the model re-read the
+`may_add_decision` is whether the work is likely to end on a decision for Chandler to
+think about; left out, it counts as true. `rereads` is whether merging it makes the model re-read the
 stored jobs. `repair` marks the ticket that fixes what `red` names.
 
 `decisions` is optional: the open `attended` tickets, handed over by the run that writes
-Monday's "Decisions waiting for you" comment (HIR-277). `kind` is `question` (a decision
-he has to make) or `yours` (work he does with an agent: an eval session, a cost session);
-left out, it is a question. `answered` is true once he has answered and the lead agent has
+Monday's "Decisions waiting for you" comment (HIR-277). `kind` is `think` (a big call he
+works out, because doing so teaches a skill he would be hired for), `approve` (any other
+big call: a recommendation he says yes or no to) or `yours` (work he does with an agent:
+an eval session, a cost session). Left out, or the older `question`, it is `approve`: when
+unsure, his time for thinking is not spent (HIR-297). `answered` is true once he has answered and the lead agent has
 recorded it on the ticket. `blocks_milestone`: the ticket is in the launch order's current
 milestone, or blocks a ticket that is. `blocks_todo`: it blocks a ticket in Todo. `since`
 is the day the ticket was filed. Left out altogether, the answer has no
@@ -88,14 +95,16 @@ entry with the ticket id and a plain-words reason, plus `spent_eur`, `cap_eur`,
 of those are still there after this pick, and how many more to pull into Todo to keep 5
 waiting) and, when `today` is a Monday, `monday`: the three numbers for the weekly
 summary as plain sentences. When the state has `decisions`, also `monday_decisions`:
-`ask` (the ticket ids to put as questions, in order, at most 10), `more` (how many
-questions did not fit), `yours` (the ids for "Yours this week", at most 3) and `text`
-(the line that follows the questions: how many more are waiting, or "No decisions
-waiting").
+`think` (the ticket ids for the heading "To think about", in order, at most 3), `approve`
+(the ids for "To approve", in order: the rest of the 10), `ask` (the two together),
+`more` (how many did not fit, with `more_think` and `more_approve` saying which kind),
+`yours` (the ids for "Yours this week", at most 3) and `text` (the line that follows the
+questions: how many more are waiting, or "No decisions waiting").
 
 Does NOT: talk to Linear or GitHub, start anything, write anything, or call a model. It
 does not judge what a ticket's area, milestone or spend is, whether it may add a
-decision, or how many decisions are waiting; the agent supplies those. It does not write
+decision, how many decisions are waiting or which kind each is; the agent supplies those
+(the kind is the senior agent's to say). It does not write
 the questions either: it only says which tickets, in what order, and how many. Standard
 library only.
 
@@ -190,10 +199,11 @@ def runs_alone(ticket, failed):
             and failed.get(ticket["id"], 0) < MAX_FAILURES)
 
 
-def monday_text(log, today, tickets, decisions_waiting, queue_min=5):
+def monday_text(log, today, tickets, decisions_waiting, queue_min=5, approvals_waiting=None):
     """The weekly summary's three numbers as plain sentences, for the seven days up to
     yesterday: tickets run, tickets left that can run alone (in Todo or Backlog), decisions
-    waiting. Says so plainly when fewer than `queue_min` are left."""
+    waiting for him to think about and, when the run counted them, recommendations waiting
+    for his yes (HIR-297). Says so plainly when fewer than `queue_min` are left."""
     day = datetime.date.fromisoformat(today)
     start = (day - datetime.timedelta(days=7)).isoformat()
     end = (day - datetime.timedelta(days=1)).isoformat()
@@ -206,7 +216,9 @@ def monday_text(log, today, tickets, decisions_waiting, queue_min=5):
 
     text = (f"Agents ran {n(ran, 'ticket')} last week ({start} to {end}). "
             f"{n(left, 'ticket')} left can run without you. "
-            f"{n(decisions_waiting, 'decision')} {'is' if decisions_waiting == 1 else 'are'} waiting for you.")
+            f"{n(decisions_waiting, 'decision')} to think about "
+            f"{'is' if decisions_waiting == 1 else 'are'} waiting for you")
+    text += "." if approvals_waiting is None else f", and {approvals_waiting} to approve."
     if left < queue_min:
         text += (" The queue of tickets that can run without you is nearly empty: the project is"
                  " now waiting on your decisions, not on agents.")
@@ -220,7 +232,9 @@ def monday_text(log, today, tickets, decisions_waiting, queue_min=5):
 # not in this list on purpose: it is his answer.
 AGENT_HEADING = re.compile(
     r"^(brief|doing:|decided for you|review:|lead agent|hands-on brief|answered|pace|"
-    r"decisions waiting for you|needs chandler|follow-ups)(?![a-z])", re.IGNORECASE)
+    r"decisions waiting for you|needs chandler|follow-ups|"
+    # the two headings a question is put to him under (HIR-297)
+    r"to approve|to think about)(?![a-z])", re.IGNORECASE)
 # The comment a worker leaves when its pull request is open.
 PR_LINK = re.compile(r"github\.com/[^\s/]+/[^\s/]+/pull/\d+")
 
@@ -250,14 +264,23 @@ def answer_candidates(question_at, comments):
 NOT_A_QUESTION = ("hands-on", "parked")
 
 
-def monday_decisions(decisions, max_questions=10, max_yours=3):
-    """Which waiting decisions Monday's comment asks, in what order (HIR-277).
+# The kinds of waiting ticket. Anything else, or nothing, is APPROVE: when it is not known
+# whether working a call out teaches a career skill, his thinking time is not spent on it.
+THINK, APPROVE, YOURS = "think", "approve", "yours"
 
-    At most `max_questions`, so the list can be answered in one sitting: first what blocks
-    the current launch milestone, then what blocks a ticket in Todo, then the oldest. A
-    ticket he has already answered is never asked again; `hands-on` and `parked` tickets
-    are not questions. Work he does with an agent is not a question either: up to
-    `max_yours` of those go under "Yours this week", in the same order."""
+
+def monday_decisions(decisions, max_questions=10, max_yours=3, max_think=3):
+    """Which waiting decisions Monday's comment asks, under which heading, in what order
+    (HIR-277, HIR-297).
+
+    At most `max_questions` in all, so the list can be answered in one sitting. Under "To
+    think about" at most `max_think` a week: those are the ones he works out. Under "To
+    approve" the rest of the `max_questions`: each is three lines and a yes or no. Within
+    a heading: first what blocks the current launch milestone, then what blocks a ticket
+    in Todo, then the oldest. A ticket he has already answered is never asked again;
+    `hands-on` and `parked` tickets are not questions. Work he does with an agent is not a
+    question either: up to `max_yours` of those go under "Yours this week", in the same
+    order."""
     def order(item):
         return (0 if item.get("blocks_milestone") else 1,
                 0 if item.get("blocks_todo") else 1,
@@ -271,16 +294,22 @@ def monday_decisions(decisions, max_questions=10, max_yours=3):
             continue
         waiting.append(item)
     waiting.sort(key=order)
-    questions = [item["id"] for item in waiting if item.get("kind", "question") != "yours"]
-    yours = [item["id"] for item in waiting if item.get("kind") == "yours"]
-    ask, more = questions[:max_questions], len(questions[max_questions:])
+    yours = [item["id"] for item in waiting if item.get("kind") == YOURS]
+    thinking = [item["id"] for item in waiting if item.get("kind") == THINK]
+    approving = [item["id"] for item in waiting if item.get("kind") not in (THINK, YOURS)]
+    think = thinking[:min(max_think, max_questions)]
+    approve = approving[:max_questions - len(think)]
+    more_think, more_approve = len(thinking) - len(think), len(approving) - len(approve)
+    ask, more = think + approve, more_think + more_approve
     if not ask:
         text = "No decisions waiting"
     elif more:
         text = f"{more} more {'is' if more == 1 else 'are'} waiting for you."
     else:
         text = "That is every decision waiting for you."
-    return {"ask": ask, "more": more, "yours": yours[:max_yours], "text": text}
+    return {"think": think, "approve": approve, "ask": ask, "more": more,
+            "more_think": more_think, "more_approve": more_approve,
+            "yours": yours[:max_yours], "text": text}
 
 
 def _order(ticket):
@@ -307,7 +336,8 @@ def _why(ticket):
 
 
 def pick(tickets, log, today, cap_eur, decisions_waiting=0, red=(), max_decisions=10, queue_min=5,
-         decisions=None, max_questions=10, max_yours=3, answers=None):
+         decisions=None, max_questions=10, max_yours=3, answers=None, max_think=3,
+         approvals_waiting=None):
     """The run's answer: what may start, what may not and why."""
     spent = spent_on(log, today)
     failed = failures(log)
@@ -319,9 +349,10 @@ def pick(tickets, log, today, cap_eur, decisions_waiting=0, red=(), max_decision
                   "pull": max(0, queue_min - len(alone))},
     }
     if datetime.date.fromisoformat(today).weekday() == 0:
-        result["monday"] = monday_text(log, today, tickets, decisions_waiting, queue_min)
+        result["monday"] = monday_text(log, today, tickets, decisions_waiting, queue_min,
+                                       approvals_waiting)
     if decisions is not None:
-        result["monday_decisions"] = monday_decisions(decisions, max_questions, max_yours)
+        result["monday_decisions"] = monday_decisions(decisions, max_questions, max_yours, max_think)
     if answers is not None:
         result["answer_candidates"] = [
             {"id": item["id"],
@@ -374,8 +405,9 @@ def pick(tickets, log, today, cap_eur, decisions_waiting=0, red=(), max_decision
         elif area in busy:
             skip(ticket, f"{busy[area]} is changing the same area ({area}); this one waits for it to merge")
         elif may_decide and decisions_waiting + likely >= max_decisions:
-            skip(ticket, f"likely to add a decision for Chandler, and {decisions_waiting + likely} "
-                         f"are already waiting or under way (the limit is {max_decisions})")
+            skip(ticket, f"likely to add a decision for Chandler to think about, and "
+                         f"{decisions_waiting + likely} are already waiting or under way "
+                         f"(the limit is {max_decisions})")
         elif ticket.get("rereads") and reread_today:
             skip(ticket, "a re-read of the stored jobs was already started today; one a day")
         else:
@@ -420,6 +452,8 @@ def main(argv=None):
         answers=state.get("answers"),
         max_questions=config["monday_questions_max"],
         max_yours=config["monday_yours_max"],
+        max_think=config["monday_think_max"],
+        approvals_waiting=state.get("approvals_waiting"),
     )
     print(json.dumps(answer, indent=2, ensure_ascii=False))
     return 0
