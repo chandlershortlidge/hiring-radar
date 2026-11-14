@@ -50,7 +50,7 @@ most jobs behind it. Undo any of them by changing the constant or the filter pas
 **Known limit, not fixed here.** A skill that gains new spellings, or a change to the
 extractor's instructions, also re-reads only the jobs still open, so the earlier period
 keeps the older reading and the skill can show a small rise that is ours and not the
-market's. Filed as a follow-up.
+market's. Filed as HIR-303.
 
 ---
 
