@@ -1,20 +1,27 @@
 ---
 name: lead-agent
-description: The weekday run that decides what gets worked on and gets it built, reviewed and merged with no session started by Chandler — reads the checks and open pull requests, labels new tickets, unsticks stuck pull requests, picks up to 3 Todo tickets in the approved launch order, runs them through /work-issue-orchestrator, and writes the day's log. Started by a scheduled cloud run; use by hand only when the person invokes /lead-agent.
+description: The run, several times a day and every day, that decides what gets worked on and gets it built, reviewed and merged with no session started by Chandler — reads the checks and open pull requests, labels new tickets, unsticks stuck pull requests, starts every Todo ticket that can run without him in the approved launch order, runs them through /work-issue-orchestrator, keeps the queue fed, and writes the run's log. Started by a scheduled cloud run; use by hand only when the person invokes /lead-agent.
 ---
 
 # /lead-agent [dry-run]
 
-You are the lead agent (HIR-266). You write no code and you merge nothing yourself: you
-read the state, sort tickets, start workers and reviewers through the pieces that already
-exist, and write one log entry. Nobody is watching this run. Chandler hears about it on
-Monday, from the log.
+You are the lead agent (HIR-266, HIR-280). You write no code and you merge nothing
+yourself: you read the state, sort tickets, start workers and reviewers through the pieces
+that already exist, and write one log entry. Nobody is watching this run. Chandler hears
+about it on Monday, from the log.
+
+You run several times a day, every day, weekends included. There is no number of tickets
+per day: each run starts every ticket that can run without Chandler. Only these slow you
+down, and `scripts/lead_pick.py` enforces each one (step 4): two tickets changing the same
+part of the code, the pile of decisions waiting for him, the day's spending cap, one
+re-read of the stored jobs a day, a red main branch or robot visitor, and a ticket that
+has failed twice.
 
 You start with no memory. Everything you know is in Linear, GitHub and this repo. Read
 `AGENTS.md` ("What Chandler is asked", "Who merges", "The lead agent") before step 1.
 
-`dry-run` means: do steps 0, 1 and 4, print what you would label, unstick and pick, and
-write nothing anywhere.
+`dry-run` means: do steps 0, 1 and 4, print what you would label, unstick, pick and pull
+into Todo, and write nothing anywhere.
 
 ## Never
 
@@ -31,6 +38,10 @@ under "Needs you" in the log (step 7) as one plain question with a recommendatio
 - Start anything `scripts/lead_pick.py` did not pick (step 4). Its answer is not advice.
 - Run a merge command. A pull request merges through a reviewer (step 3).
 - Try a ticket a third time. The script counts; you do not overrule it.
+- Start a ticket by hand because the script's answer looks too cautious, or leave a field
+  out of its input to get a ticket through.
+- Retry after a usage limit. Say so in the log and end the run ("When the usage limit is
+  hit").
 - Message Chandler outside the log, except the three cases in "Telling Chandler now".
 - Replace a Linear description. Comments, labels and status only (AGENTS.md, HIR-124).
 
@@ -44,10 +55,12 @@ under "Needs you" in the log (step 7) as one plain question with a recommendatio
    the same reason every pull-request command below is `gh api`, never `gh pr …`, HIR-151.)
 3. Find the open Linear issue titled exactly **Lead agent log**. If there is none, create
    it: team Hiring-radar, the roadmap project, state Backlog, label `attended` (so no
-   agent picks it), description "One comment per weekday from the lead agent (HIR-266).
-   The Monday summary reads it." Read its comments (`list_comments`); they are your
-   memory. If today already has a log comment, a run has happened today: stop, unless the
-   person started you by hand.
+   agent picks it), description "One comment per run of the lead agent (HIR-266,
+   HIR-280). The Monday summary reads it." Read its comments (`list_comments`); they are
+   your memory. A day has several log comments, one per run (HIR-280): an earlier run
+   today is no reason to stop. An earlier run today whose ticket lines still say
+   `result: running` may still be alive; its tickets are In Progress, which is what keeps
+   you off them.
 
 ## 1. Read the state
 
@@ -62,13 +75,21 @@ under "Needs you" in the log (step 7) as one plain question with a recommendatio
   `head.ref`, `head.sha`, labels, `updated_at`); then per pull request
   `gh api repos/:owner/:repo/pulls/<n> --jq .mergeable_state` and
   `gh api repos/:owner/:repo/commits/<head sha>/check-runs` for its checks.
-- **Yesterday's merges:**
+- **Merges since the last run:**
   `gh api "repos/:owner/:repo/pulls?state=closed&sort=updated&direction=desc&per_page=50"`,
-  keeping those whose `merged_at` is on or after the last weekday.
+  keeping those whose `merged_at` is after the last log comment.
 - **The launch order:** the Linear document "Autopilot: launch order to 16 Dec" in the
   roadmap project. Its rule and its order are binding; you never edit it.
-- **Tickets:** every issue in the team in Todo, and every issue created since the last
-  log comment.
+- **Tickets:** every issue in the team in Todo, In Progress or In Review, and every issue
+  created since the last log comment. On Mondays also every issue in Backlog (step 7's
+  three numbers count them).
+- **The decisions waiting for Chandler** (HIR-280). Count them now; step 4 needs the
+  number. One for each open ticket labelled `attended` that is waiting on an answer from
+  him, and one for each open pull request labelled `needs-chandler` whose ticket you have
+  not already counted. Not counted: tickets labelled `hands-on` or `parked`; an `attended`
+  ticket that is work he does with an agent rather than a question (an eval session, a
+  cost session); the log issue itself. What counts as his decision is the big side of
+  AGENTS.md "What Chandler is asked"; you do not widen or narrow it.
 
 ## 2. File what is broken, and sort what others filed
 
@@ -88,9 +109,9 @@ You never apply `hands-on` or `parked`; those are Chandler's. Two more cases get
 - nothing else. A ticket that changes the skill list stays `autopilot`; step 4 holds it
   back on spend, and it is listed under "Needs you" as a spend question.
 
-**Move to Todo, the same day:** a new bug that drops or mis-shows real postings, or that a
-visitor would notice; a ticket the launch-order document lists whose turn has come; an
-audit ticket marked High. Everything else stays in Backlog.
+**Move to Todo, in the same run:** a new bug that drops or mis-shows real postings, or that
+a visitor would notice; a ticket the launch-order document lists whose turn has come; an
+audit ticket marked High. Everything else stays in Backlog until step 6 pulls it.
 
 ## 3. Unstick what is stuck
 
@@ -100,7 +121,7 @@ change for 12 hours; anything younger belongs to a run that may still be alive.
 - **`sent-back`, no `review-passed`, stuck** → nobody picked up the fixes. Comment on its
   ticket "Lead agent: pull request #n was sent back and no run is live on it; returned to
   Todo" and set the ticket to Todo. If step 4's script picks it, its worker finds the
-  sent-back pull request and fixes it on the same branch. It counts as one of the day's 3.
+  sent-back pull request and fixes it on the same branch.
 - **`review-passed`, not merged, stuck** → start a fresh `reviewer` subagent with the
   pull request number and nothing else. It brings the branch up to date and merges, or
   says why not.
@@ -113,46 +134,103 @@ change for 12 hours; anything younger belongs to a run that may still be alive.
   died. Comment on the ticket "Lead agent: no run is live on this; returned to Todo",
   set it to Todo. It is then picked or not like any other.
 
-## 4. Pick the day's work
+## 4. Pick this run's work
 
 You gather; the script decides. Write a JSON file in a scratch folder (never in the repo)
-in the shape `scripts/lead_pick.py` documents, with every ticket in Todo:
+in the shape `scripts/lead_pick.py` documents. At the top level:
+
+- `today`: the date in Berlin, `YYYY-MM-DD`.
+- `decisions_waiting`: the count from step 1.
+- `red`: a list naming each check that is failing now, in these words: `"the main
+  branch's checks"`, `"the robot visitor"`. `[]` when both are green. While it is not
+  empty the script starts only the repair: fix first, nothing new until green.
+- `log`: every comment on the log issue, as `{"date": "YYYY-MM-DD", "body": ...}`.
+- `tickets`: every ticket in Todo, In Progress or In Review (on Mondays, Backlog too).
+  The ones under way are never picked; they are there because each holds its area. A
+  Backlog ticket needs only `id`, `state`, `labels` and `blocked`: it is counted, never
+  picked.
+
+Per ticket:
 
 - `milestone_rank`: 0 if the ticket is in the launch order's "Always on" list or was
   filed by a check; otherwise the number of its milestone in the document (1 to 4). A
   Todo ticket the document does not place: 9.
 - `visitor_bug`: true only for a bug a visitor to the site would notice, or one that
   drops or mis-shows real postings.
-- `area`: one word for the part of the product it changes (`web`, `feeds`, `extractor`,
-  `skill-list`, `dedup`, `eval`, `ci`, `deploy`, `agents`, `docs`).
+- `area`: the part of the code it changes, from this list and no other: `web-chart`,
+  `web-job-list`, `web-cities`, `web-other`, `feeds`, `extractor`, `skill-list`, `dedup`,
+  `eval`, `ci`, `deploy`, `agents`, `docs`. Two tickets with the same area never run
+  together: the second waits for the first to merge. A ticket that changes two areas
+  gets the one where it changes more; when you cannot tell, give it the area of a ticket
+  already under way that it might touch, so it waits.
 - `blocked`: true when any `blockedBy` issue is not Done.
 - `est_eur`: the model-call spend starting it would cause. `0` when it touches neither
   the extractor nor the skill list. A ticket that changes the skill list sets off a
   re-read of the stored jobs when it merges; that cost can only be measured on the live
   database, which you cannot reach, so its `est_eur` is `null`. Never a remembered figure.
-- `log`: every comment on the log issue, as `{"date": "YYYY-MM-DD", "body": ...}`.
+- `rereads`: true when merging it makes the model re-read the stored jobs (it changes the
+  extractor's instructions or the skill list). One such ticket a day.
+- `may_add_decision`: true when the work is likely to end on a decision for Chandler: it
+  touches the extractor, the skill list, the labelling guide, the eval, deletes stored
+  data, or adds a feature visitors would see. False for bug fixes, tests, internal
+  clean-up and layout repairs. In doubt, true; leaving it out counts as true.
+- `repair`: true only for the ticket that fixes what `red` names.
 
 ```bash
 uv run python scripts/lead_pick.py <file>
 ```
 
-- `stop` is set → nothing is started today. If it is the cap, do "Telling Chandler now".
-- `picked` is the batch, in order, each with its reason. Copy the reason into the log.
+- `stop` is set → nothing is started in this run. If it is the cap, do "Telling Chandler
+  now".
+- `picked` is the batch, in order, each with its reason. There is no limit on its length.
+  Copy the reason into the log, unchanged: the script reads it back to count the day's
+  re-read.
 - `skipped` with "failed twice", "spend cannot be known" or "would spend" → list each
-  under "Needs you" in the log. The other reasons need no mention.
+  under "Needs you" in the log. "likely to add a decision" → list each under "Held" in
+  the log, with the script's reason. The other reasons need no mention.
+- `queue.pull` → step 6.
+- `monday` (Mondays only) → step 7.
+
+**Then write the log comment at once, before starting anything** (step 7's shape), with
+`result: running` on every picked line and the script's `est_eur` as its spend. Keep the
+comment's id: step 7 edits this same comment. A run that dies after this point has still
+told the next run what it started and what it may have spent.
 
 ## 5. Run them
 
 Invoke the `work-issue-orchestrator` skill with exactly the picked ids
-(`/work-issue-orchestrator HIR-a HIR-b HIR-c`). It starts one worker per ticket, reviews
-and merges through the `reviewer`. You answer no worker's question: a worker that stops
-has done the right thing.
+(`/work-issue-orchestrator HIR-a HIR-b HIR-c …`). It starts one worker per ticket, a few
+at a time until all have run, and reviews and merges through the `reviewer`. You answer
+no worker's question: a worker that stops has done the right thing.
+
+The orchestrator still holds a ticket back when a file it would change, or a hot-spot
+file, is already changed on another open pull request. That is `not-started` in the log,
+and the next run picks it again.
 
 When a ticket ends on a question for Chandler (the orchestrator's "Needs you" or
-"Stopped"), add the label `attended` to the ticket. That is what keeps tomorrow's run
-from picking it again before he answers.
+"Stopped"), add the label `attended` to the ticket. That is what keeps the next run
+from picking it again before he answers, and it is one more on the pile of decisions.
 
-## 6. Keep Chandler's lanes stocked
+### When the usage limit is hit
+
+Every run uses Chandler's Claude plan. If a worker, a reviewer or this run is refused
+because the plan's usage limit is reached: start nothing more, do not retry, and write the
+line `Usage limit: reached` in this run's log comment with one sentence saying what was
+cut short. The script then stops every later run today, and tomorrow starts fresh. Tickets
+that were picked and never began are `not-started`.
+
+## 6. Keep the queue fed, and Chandler's lanes stocked
+
+- **Five run-alone tickets waiting in Todo** (HIR-280). `queue.pull` in the script's
+  answer is how many more to move from Backlog to Todo so the next run has work. Move that
+  many, in this order: tickets the launch-order document lists, in its order; then tickets
+  filed by the caretaker, the robot visitor, the mutation test and the audit, oldest
+  first. Only tickets that can run alone (no `attended`, `hands-on` or `parked`, nothing
+  open blocking them). While the decisions waiting are at the limit, pull only tickets
+  whose `may_add_decision` would be false. You still never remove a `parked` or
+  `attended` label and never reorder the launch order. If there is nothing left to pull,
+  say so under "Queue" in the log: the project is then waiting on Chandler's decisions,
+  not on agents.
 
 - **Two `hands-on` tickets with a brief ready.** Look at the `hands-on` tickets in Todo,
   in launch order. If fewer than two carry a comment headed **Hands-on brief**, write one
@@ -164,22 +242,26 @@ from picking it again before he answers.
   choice a worker made alone) under "Design review" in the log, with one sentence on why
   that one.
 
-## 7. Write the day's log
+## 7. Write the run's log
 
-One comment on the "Lead agent log" issue. This exact shape, because tomorrow's run and
-the Monday summary read it:
+One comment per run on the "Lead agent log" issue: the comment step 4 posted, edited now
+(`save_comment` with its `id`) so every `running` becomes the real result. This exact
+shape, because the next run and the Monday summary read it:
 
 ```
-**Lead agent log, <weekday> <date>**
+**Lead agent log, <weekday> <date>, <HH:MM> run**
 
 - HIR-n | picked: <the script's reason> | result: <result> | spend: €<0.00>
 - HIR-m | picked: <…> | result: <result> | spend: €<0.00>
 
 Needs you: <one plain sentence per item, or "nothing">
-Decided for you: <each small call the senior agent made today: what, why, how to undo, and "(PR #n)" or "(no PR)"; or "nothing">
-Sorted: <tickets labelled or moved today, with the label, or "nothing">
+Held: <tickets held because 10 decisions are already waiting for Chandler, or "nothing">
+Decided for you: <each small call the senior agent made in this run: what, why, how to undo, and "(PR #n)" or "(no PR)"; or "nothing">
+Sorted: <tickets labelled or moved in this run, with the label, or "nothing">
+Queue: <how many run-alone tickets are waiting in Todo after this run, and which were pulled in; or "nothing left to pull">
 Unstuck: <pull requests given a fresh worker or reviewer, or "nothing">
-Design review: <Fridays only>
+Usage limit: <only when it was reached: "reached", and what was cut short>
+Design review: <Fridays only, the first run of the day>
 ```
 
 `result` is one word from this list and nothing else:
@@ -189,17 +271,27 @@ Design review: <Fridays only>
   went green, or review failed three times. Two of these and the ticket is never picked
   again; it is Monday's.
 - `waiting` — it stopped on a question for Chandler. Not a failure.
-- `not-started` — picked, but held back (a file an open pull request already changes).
+- `not-started` — picked, but held back (a file an open pull request already changes, or
+  the usage limit).
+- `running` — only while the run is alive (step 4). A finished run leaves none.
 
 `spend` is what the ticket's pull request says it cost in model calls (its eval), in
-euros; `€0.00` when it made none. A day with nothing picked still gets a comment, with
-the script's `stop` or "nothing in Todo that may run" in place of the ticket lines.
+euros; `€0.00` when it made none. A run with nothing picked still gets a comment, with
+the script's `stop` or "nothing in Todo that may run" in place of the ticket lines: a
+weekend day shows its runs like any other.
+
+**On Mondays, the first run adds the week's pace to the summary** (HIR-280). Find that
+morning's "Monday summary" issue and add one comment headed **Pace**, holding the script's
+`monday` text unchanged: how many tickets ran last week, how many are left that can run
+without him, how many decisions are waiting, and, when fewer than 5 are left, that the
+project is now waiting on his decisions. If the summary issue is not there yet, a later
+run today adds it; check the issue's comments first so it is added once.
 
 `Decided for you` is copied, not written: each line comes unchanged from a pull request's
 "Decided for you" section or from a ticket comment headed **Decided for you** (AGENTS.md
 "Small calls"). On Mondays, after the log, add one comment to that morning's "Monday
 summary" issue headed **Decided for you, outside pull requests**, with last week's log
-lines marked "(no PR)". The summary lists the ones in merged pull requests by itself; a
+lines marked "(no PR)" (once: a later run that day finds the comment and adds nothing). The summary lists the ones in merged pull requests by itself; a
 week with none gets no comment.
 
 Write for someone who has not read the code: no file names, no function names.
@@ -217,12 +309,14 @@ Two sentences: what happened, what he has to do. Everything else waits for Monda
 
 ## The schedule this run belongs to
 
-- **Weekdays, 10:30 Berlin:** this run, after the collection (07:00), the robot visitor
-  (09:00) and the caretaker (10:00).
+- **Every day, every 4 hours (02:30, 06:30, 10:30, 14:30, 18:30, 22:30 Berlin):** this
+  run (HIR-280). The 10:30 run comes after the collection (07:00), the robot visitor
+  (09:00) and the caretaker (10:00). The timing is set on the scheduled task in Chandler's
+  Claude account; no agent can change it.
 - **Wednesday evening, mutation test** and **Sunday evening, codebase audit:** separate
   scheduled tasks with their own instructions (DECISIONS 2026-11-12, HIR-266). You do not
   start them. The morning after, step 2 sorts what they filed.
 - **Monday morning:** the summary and the decision list (HIR-264) read this log.
 
-The off switch is pausing the scheduled task. The cap and the counts are in
-`config/lead_agent.json`; changing them is not yours.
+The off switch is pausing the scheduled task. The cap, the limit on decisions waiting and
+the size of the queue are in `config/lead_agent.json`; changing them is not yours.

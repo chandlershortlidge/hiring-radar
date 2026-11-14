@@ -5,6 +5,85 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-14 — The lead agent runs at full speed: no count of tickets per day, slowed only by collisions and the pile of decisions (HIR-280)
+
+Chandler, 12 Nov: "Is there a reason we are waiting? Can we not be building 24/7?" and
+"Run as many tickets as we can, as long as we're not creating conflicts or creating a
+pile-up of really big decisions that I need to make. The real speed should be based on how
+many decisions I would have to make on Monday, with a max of probably like 10." The limits
+of 3 tickets a weekday and 2 per area (entry of 12 Nov, HIR-266) were an agent's cautious
+first setting, not his.
+
+**What changed.** The lead agent runs several times a day, every day, and each run starts
+every ticket in Todo that can run without him. The count of tickets per day and the
+"a run already happened today, stop" rule are gone. Six things slow it down, each in
+`scripts/lead_pick.py` with a test: collisions, the decision pile, the daily spending cap
+(unchanged at €2, his to raise), one re-read of the stored jobs a day, a red main branch
+or robot visitor, two failures.
+
+**"The same part of the code" is one word per ticket, and one ticket per word at a time.**
+The lead agent names each ticket's area from a fixed list; a ticket under way (In Progress
+or In Review) holds its area until it merges, and so does the first ticket picked in a
+run. The list splits the website into four (chart, job list, cities, the rest) so two
+unrelated site fixes do not queue behind each other. The old rule let two tickets share an
+area in one day, which is exactly the "run together" the ticket rules out. The
+orchestrator's finer check (a file already changed on an open pull request) stays as the
+second net. Undo: let an area hold two (`busy` in `pick`).
+
+**What counts toward the 10.** The lead agent counts, in each run: every open ticket
+labelled `attended` that is waiting on an answer from Chandler, plus every open pull
+request labelled `needs-chandler` whose ticket is not already counted. Not counted:
+`hands-on` and `parked` tickets, and `attended` tickets that are work he does with an
+agent rather than a question. This is the same set the Monday decision list is to show
+(HIR-277); it does not change what is his decision (HIR-278, out of scope here). The
+script is handed the number and refuses to run without it, so a run that did not count
+cannot be read as "nothing waiting".
+
+**"Likely to add a decision" is the lead agent's judgment, with the doubt going one way.**
+Tickets touching the extractor, the skill list, the labelling guide, the eval, stored-data
+deletes or a new visitor-facing feature are likely; bug fixes, tests, internal clean-up
+and layout repairs are not. A ticket the agent does not mark counts as likely. Likely
+tickets picked in the same run count toward the 10 as they are picked, so a run at 9 does
+not start five of them and land on 14. Undo: drop `likely` from the sum in `pick`.
+
+**A red check lets the repair through, and only the repair.** The ticket says "fix that
+first; start nothing new until it is green". Stopping every ticket would also stop the
+fix, so the lead agent marks the ticket that repairs what is red and the script starts
+that one alone.
+
+**One log comment per run, written before the work starts.** With several runs a day, and
+a run that can outlast the gap to the next one, the log comment is posted at pick time
+with each ticket's result as `running` and its estimated spend, then edited at the end.
+A second run that overlaps the first then sees the first's spend, so two runs cannot each
+spend the day's cap. Tickets are still protected from a double start by the In Progress
+claim (HIR-124).
+
+**The usage limit.** Every run uses Chandler's Claude plan. A run that is refused for
+usage writes `Usage limit: reached` in its log comment and stops; the script then starts
+nothing more that day. That is the ticket's "fall back to fewer runs; do not retry in a
+loop" as code. Undo: remove `usage_limit_hit_on` from `pick`.
+
+**Keeping the queue fed.** The script answers how many run-alone tickets are still in
+Todo after its pick and how many to pull to keep 5 waiting; the lead agent pulls that many
+from Backlog, launch order first, then tickets the checks filed. It still never un-parks a
+ticket or reorders the launch order.
+
+**Monday's three numbers come from the script, and the lead agent posts them.** The Monday
+post is plain code on the server, which cannot read Linear's tickets (HIR-264), so, like
+the "Decided for you, outside pull requests" comment (HIR-278), the lead agent adds one
+comment headed **Pace** to the Monday summary issue. Its text is the script's, word for
+word: tickets run last week (different tickets with a log line, not counting ones held
+back before they began), tickets left that can run without him (Todo and Backlog), and
+decisions waiting. Fewer than 5 left adds: "the project is now waiting on your decisions,
+not on agents."
+
+**Not done by this change: the schedule itself.** The scheduled task "hiring-radar: lead
+agent" lives in Chandler's Claude account and no agent can edit it. Until he changes it
+from weekdays 10:30 to every day, every 4 hours (02:30, 06:30, 10:30, 14:30, 18:30, 22:30
+Berlin), the lead agent still runs once a weekday; that one run now starts everything it
+may. The orchestrator still runs 3 workers at a time: a batch of 8 is all started in one
+run, three at a time, which is a limit on machines at once, not on tickets per day.
+
 ## 2026-11-13 — Small calls on Chandler's list are decided by the senior agent and reported on Monday (HIR-278)
 
 Chandler, 12 Nov, after two questions in one afternoon that he answered with the agent's
