@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { api } from "./api.js";
-import { COMPARE_DEFAULT, DEGREE_FILTERS, GERMAN_FILTERS, PLACE_NAMES, PRODUCTION_FILTERS, SENIORITIES, cap, compareAdd, compareRemove, dateTime, familyLabel, listFilters as deriveListFilters, placeByName, placeBySlug, placeCities, pctInt, timeAgo } from "./format.js";
+import { COMPARE_DEFAULT, DEGREE_FILTERS, GERMAN_FILTERS, PLACE_NAMES, PRODUCTION_FILTERS, SENIORITIES, cap, compareAdd, compareRemove, familyLabel, listFilters as deriveListFilters, placeByName, placeBySlug, placeCities, pctInt, timeAgo } from "./format.js";
 import { HOME, parsePath, pathFor, withFamily } from "./routes.js";
 import { pushRecent, readLast, readRecent, writeLast } from "./lastPlace.js";
 import { useProfile } from "./profile.js";
@@ -241,23 +241,6 @@ export default function App() {
         )}
         <Panel label="The market grid"><HomeGrid data={skills} counts={cityCounts} family={market.family} onRequestCity={requestCity} /></Panel>
       </main> : <main className="main">
-        {stats && (
-          <p className="stats">
-            <span>{stats.jobs} jobs</span><span>·</span>
-            <span><abbr title={`A feed-sourced job counts as open while a feed still listed it in the last ${stats.open_rule.feed_days} days. A job added by hand is assumed open for ${stats.open_rule.manual_days} days.`}>{stats.open} currently open</abbr>
-              {Object.keys(stats.open_by_city).length > 1 && ` (${Object.entries(stats.open_by_city).map(([c, n]) => `${c} ${n}`).join(" · ")})`}</span><span>·</span>
-            <span>{stats.companies} companies</span><span>·</span>
-            <span>{stats.skills_tracked} skills tracked</span><span>·</span>
-            {stats.open > 0 && <><span>of those open now:</span><span>·</span>
-            <span><abbr title="Open jobs that ask for German outright or are written in German">{stats.open_german_required} need German</abbr></span><span>·</span>
-            <span><abbr title="Open jobs that name a degree, don't mark it optional, and don't accept equivalent experience">{stats.open_degree_required} need a degree</abbr></span><span>·</span>
-            <span><abbr title="Open jobs that ask the candidate for prior experience shipping or operating software real users depended on">{stats.open_production_required} need production experience</abbr></span><span>·</span></>}
-            {stats.legacy > 0 && <><span><abbr title="Imported from the old project with the old extractor's skills; listed but not counted in the chart">{stats.legacy} legacy, not charted</abbr></span><span>·</span></>}
-            {stats.too_short > 0 && <><span><abbr title="Only a fragment of the posting was stored; listed but not counted in the chart">{stats.too_short} too short, not charted</abbr></span><span>·</span></>}
-            <span>{stats.last_updated ? `last updated ${timeAgo(stats.last_updated)} (${dateTime(stats.last_updated)})` : "no jobs yet"}</span>
-          </p>
-        )}
-
         <Panel label="The chart"><section className="card chart" aria-labelledby="chart-title">
           <div>
             <h1 id="chart-title">{filters.compare

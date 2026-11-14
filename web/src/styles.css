@@ -44,8 +44,6 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
 
 /* layout */
 .main { max-width: 1200px; margin: 0 auto; padding: 16px 24px 48px; display: flex; flex-direction: column; gap: 16px; }
-.stats { margin: 0; font: 12.5px var(--mono); color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 0 6px; }
-.stats abbr { text-decoration: underline dotted; cursor: help; }
 .card { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
 .chart { padding: 24px; display: flex; flex-direction: column; gap: 20px; }
 .chart h1 { margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
