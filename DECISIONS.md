@@ -5,6 +5,38 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-14 — A posting dropped as unreadable is remembered, until the extractor changes (HIR-176)
+
+The "try twice, then drop" rule of 5 Nov (HIR-172) deletes a posting the model reads as
+blank twice in a row. Deleting left no trace, and feeds list the same posting again every
+day: it was stored as a new job, read twice, and dropped again, about two model calls a
+day for ever, under a job id that changed each time.
+
+**What changed.** When a posting is dropped, the ids its feeds listed it under are kept
+(`dropped_posting`, migration 024). The daily poll passes over a feed posting with such an
+id and counts it: `skipped_unreadable=N` on each feed's line and on the poll's total.
+Nothing on the chart or the job list changes, and no stored job is re-read.
+
+**Not permanent.** Each remembered drop carries the extractor version that read it blank.
+Every extraction run forgets the drops made under another version, so a change of prompt,
+model or skill list gives the posting two fresh tries. This was the ticket's own
+recommendation. The forgetting happens in the extraction step, which runs after the
+download, so the posting comes back on the poll after the first run under the new
+version, one day later. That keeps the download step from needing to know the model or
+the skill list.
+
+**Feeds only.** A posting a person adds by hand is stored and read even if its feed copy
+was dropped, and a hand-added posting that is dropped is not remembered: the person chose
+it, the same reason hand-adds skip the title filter.
+
+**Known limit.** The memory is the feed's id, not the text. A posting the employer
+rewrites under the same id stays passed over until the extractor next changes.
+
+To undo: stop `ingest` passing `skip_dropped=True` and the daily loop returns; the table
+can stay, unread.
+
+---
+
 ## 2026-11-14 — The hand-built JSearch fixture is gone; odd records are made from the real one (HIR-41)
 
 HIR-41 asked for a recorded JSearch response to replace the fixture written from the
