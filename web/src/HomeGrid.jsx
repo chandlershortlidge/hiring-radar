@@ -27,7 +27,7 @@ export const topSkills = (skills, city, total, n = TOP) => (skills || [])
 // `counts` is open jobs per city, the same number the city picker shows, so the two agree.
 // The bars are a share of the jobs we have actually read in that city (`city_totals`),
 // which is the slightly smaller set — a handful of postings are stored as a fragment too
-// short to chart. Each number is right for what it says; the stats line explains the gap.
+// short to chart. Each number is right for what it says.
 //
 // With a job family chosen (HIR-197) the open count is not split by family, so the card
 // shows that family's `city_totals` instead, and the grid sorts by it. `data.family` is the
