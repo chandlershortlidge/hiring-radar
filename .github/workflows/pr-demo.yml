@@ -9,13 +9,8 @@ name: PR screenshots
 # `pr-evidence` branch, because a PR comment can only show an image that has a URL, and
 # one comment on the PR is written or updated.
 #
-# The views include the three drawers (add a job, profile, proposed skills), opened by
-# their buttons. A drawer that does not open on the branch turns this job red (HIR-230);
-# the comment is still written and names it.
-#
 # Does NOT: run for backend-only or docs-only PRs, record video, use a demo database,
-# write to the live site (only GET /api requests pass through), submit a drawer, or deploy.
-# A visible difference never fails it: only a drawer that does not open.
+# write to the live site (only GET /api requests pass through), deploy, or block a merge.
 #
 # Needs the repository secret SITE_LOGIN = "user:password" for the site's login. Without
 # it the job says so in its log and posts nothing.
@@ -92,14 +87,11 @@ jobs:
           SHOT_OUT: ${{ github.workspace }}/out
         run: |
           npx playwright install --with-deps chromium
-          # Red when a drawer does not open on the branch (HIR-230); the pictures taken up
-          # to then are still published by the two steps below.
-          code=0; npm run shots || code=$?
+          npm run shots
           rm -rf "$SHOT_OUT/_playwright"
-          exit $code
 
       - name: Copy to the pr-evidence branch
-        if: ${{ !cancelled() && steps.login.outputs.ok == 'true' }}
+        if: steps.login.outputs.ok == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
@@ -127,7 +119,7 @@ jobs:
           exit 1
 
       - name: Write or update the PR comment
-        if: ${{ !cancelled() && steps.login.outputs.ok == 'true' }}
+        if: steps.login.outputs.ok == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
@@ -140,13 +132,8 @@ jobs:
           {
             echo "<!-- pr-demo -->"
             echo "### Before / after"
-            # A drawer that did not open on this branch (HIR-230): said first, in words.
-            for p in desktop phone; do
-              [ -f "out/$p/broken.json" ] || continue
-              jq -r --arg p "$p" '.[] | "**Broken on this branch (\($p)):** \(.view) — \(.problem). This check stays red until it opens.\n"' "out/$p/broken.json"
-            done
             if [ "$n" -eq 0 ]; then
-              echo "No visible change on the home, city, compare or job pages, or in the add-a-job, profile or proposed-skills drawers (live data, \`${SHA:0:7}\`)."
+              echo "No visible change on the home, city, compare or job pages (live data, \`${SHA:0:7}\`)."
             else
               echo "Live data. Only the views that changed are shown. **Before** = main, **after** = this branch at \`${SHA:0:7}\`."
               for p in desktop phone; do

@@ -6,8 +6,9 @@
 // a city, clicks the drawer's button and captures the drawer with the page behind it.
 // Fails when a drawer does not open on the branch's build: no drawer, a blank page, or the
 // "couldn't load" box a part of the page shows when it crashed (Panel.jsx). Those views
-// are saved whether or not they differ and listed in broken.json, so the PR comment shows
-// the break. HIR-227 (Add a job blanked the page) reached the live site because nothing
+// are saved whether or not they differ, and the failure message names the drawer and what
+// went wrong. The workflow posts no comment on a failed run: the red check and its log are
+// the report. HIR-227 (Add a job blanked the page) reached the live site because nothing
 // before a merge ever opened that drawer.
 // Does NOT: write anything to the live site — only GET /api requests are passed through,
 // everything else is refused, and no drawer is ever submitted. Does not judge the plain
@@ -119,6 +120,5 @@ test("before and after", async ({ page, request }, info) => {
     }
   }
   writeFileSync(`${dir}/changed.json`, JSON.stringify(changed));
-  writeFileSync(`${dir}/broken.json`, JSON.stringify(broken));
   expect(broken, broken.map((b) => `${b.view}: ${b.problem}`).join("\n")).toEqual([]);
 });
