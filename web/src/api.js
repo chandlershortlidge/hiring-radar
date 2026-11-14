@@ -41,6 +41,8 @@ export const api = {
   // request rather than sent and ignored (app/skill_tree.py says the same).
   skillTree: (f) => call(`/api/skills/tree${qs({ ...filterParams(f), requirement: null })}`),
   relatedSkills: (f) => call(`/api/skills/related${qs({ ...filterParams(f), skill: f.skillIds })}`),
+  // What's rising reads place and family only, so nothing else is sent (HIR-232).
+  risingSkills: (f) => call(`/api/skills/rising${qs({ city: f.cities, family: f.families })}`),
   jobs: (f, { sort, limit, offset }) =>
     call(`/api/jobs${qs({ ...filterParams(f), skill: f.skillIds, q: f.query, text: f.text, sort, limit, offset })}`),
   job: (id) => call(`/api/jobs/${id}`),
