@@ -54,7 +54,9 @@ For each issue, start a subagent with `isolation: "worktree"` and the prompt
 work-issue skill: brief, own branch, green commits, PR, follow-up tickets.
 
 **Autopilot issue:** the worker needs nothing from anyone. Do not answer its questions;
-a worker that stops on a NO RULE has done the right thing — note it and move on.
+a worker that stops on a NO RULE has done the right thing — note it and move on. A small
+call on Chandler's list (AGENTS.md "What Chandler is asked", "Small calls", HIR-278) is
+not a stop: the worker takes it to the senior agent, and you do not decide it either.
 
 **Attended issue:** the worker posts its brief and waits for a "go". Relay the brief to
 Chandler in this session, verbatim, and pass his answer back to that worker (SendMessage).
@@ -98,8 +100,8 @@ The reviewer's reply starts with the verdict:
   When it reports, start a **fresh** reviewer with the PR number and nothing else. The
   reviewer counts the rounds: a third failure comes back as `NEEDS CHANDLER`, with no
   @mention.
-- **`NEEDS CHANDLER`** — an item on his list (AGENTS.md "What Chandler is asked"), or a
-  third failed review. Report it; never relabel it.
+- **`NEEDS CHANDLER`** — an item on the big side of his list (AGENTS.md "What Chandler is
+  asked"), or a third failed review. Report it; never relabel it.
 
 **Attended PR:** do not review, do not merge. List it under "Ready for you" with the PR
 link and the worker's one-line summary.
@@ -131,8 +133,10 @@ One message at the end, written for Chandler:
   "internal"), and whether it is merged or still waiting on its checks.
 - **Ready for you:** attended PRs waiting for your merge, one line each.
 - **Sent back and fixed:** PR, issue, one line of what the reviewer asked for.
-- **Needs you:** only items on Chandler's list, and PRs that failed review three times —
-  PR, issue, the item or what is still wrong, in plain words.
+- **Needs you:** only items on the big side of Chandler's list, and PRs that failed review
+  three times — PR, issue, the item or what is still wrong, in plain words.
+- **Decided for you:** the small calls the senior agent made in this batch, copied from
+  each PR's "Decided for you" — what, why, how to undo. "None" if there were none.
 - **Stopped:** issue, the question the decider couldn't answer (already on Linear with an
   @mention).
 - **Re-extract:** whether a merge today has the model re-read the open jobs, yes or no —
