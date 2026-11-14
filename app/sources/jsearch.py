@@ -20,11 +20,32 @@ carries `job_id`, `job_title`, `employer_name`, `job_description` (plain text),
 `job_apply_link`, `job_google_link`, `job_city`, `job_location`, `job_country`,
 `job_posted_at_datetime_utc`, `job_publisher`, plus salary/benefit fields we do not use.
 
+What a real response has that the docs' sample did not show (HIR-41, from the recorded
+response below):
+- `job_city` and `job_country` are null on most postings (8 of 10), so the location
+  usually comes from `job_location`.
+- `job_location` is not "Berlin, Germany" but the text Google shows, in the search's
+  language, with the publisher appended: "Berlin     •  über LinkedIn"; a region-less
+  remote posting is "Beliebiger Ort   •  über XING" ("Anywhere" only on English searches).
+  Geo still reads the city out of it; the suffix is stored as it comes.
+- `job_uid` is the stable part of `job_id` as a field of its own (see `stable_id` below;
+  equal on all 10 recorded postings). `stable_id` stays the source of the id, because the
+  field is undocumented and stored ids must not change if it disappears.
+- `job_posted_at_datetime_utc` is a date at midnight, never a time of day.
+- `parameters` echoes a `language: "de"` we did not send.
+- Also present, and unused by us: `apply_options`, `job_highlights`,
+  `job_employment_type(s)`, `job_posted_at`, `job_posted_at_timestamp`,
+  `job_latitude`/`job_longitude`, `employer_logo`, `employer_website`.
+Not checked: the docs name both `/jsearch/search` and `/jsearch/search-v2`. We call
+`/jsearch/search` and the daily polls return postings from it; whether v2 differs is
+unknown, and finding out costs a request nobody has asked to spend.
+
 Fixtures: tests/fixtures/feeds/jsearch_recorded.json is a real response (recorded
-2026-11-01, query "machine learning engineer in Berlin"). tests/fixtures/feeds/jsearch.json
-and tests/fixtures/feeds/jsearch_learn4good.json stay hand-built — the former for the
-degenerate records a real response does not contain (no apply link, no city, empty
-description), the latter because no recorded learn4good response exists yet (HIR-107) and
+2026-11-01, query "machine learning engineer in Berlin", `request_id` blanked). The
+hand-built jsearch.json is gone (HIR-41): the degenerate records a real response does not
+contain (no apply link, no city, empty description) are made in the test from a real
+recorded posting with that field removed. tests/fixtures/feeds/jsearch_learn4good.json
+stays hand-built because no recorded learn4good response exists yet (HIR-107) and
 fetching a live one would spend part of the 200-request/month budget.
 
 Aggregator headlines are dropped, in either of two shapes seen live. JobLeads hands Google

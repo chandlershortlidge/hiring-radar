@@ -1,8 +1,9 @@
 {
-  "_comment": "The lead agent's limits (HIR-266, HIR-280), read by scripts/lead_pick.py. daily_cap_eur is the model-call spend the lead agent may start in one day, over all of that day's runs; 0 stops every run. Raising it is a recurring cost, so it is Chandler's call (AGENTS.md \"What Chandler is asked\", item 5). max_decisions_waiting is the pile of real decisions waiting for Chandler at which tickets likely to add one are held (his number, 12 Nov). queue_min is how many run-alone tickets the lead agent keeps waiting in Todo. There is no count of tickets per day. monday_questions_max is the most questions Monday's \"Decisions waiting for you\" comment asks, so it can be answered in one sitting (his number, 12 Nov, to be tried and adjusted; HIR-277). monday_yours_max is the most lines under \"Yours this week\" in that comment.",
+  "_comment": "The lead agent's limits (HIR-266, HIR-280), read by scripts/lead_pick.py. daily_cap_eur is the model-call spend the lead agent may start in one day, over all of that day's runs; 0 stops every run. Raising it is a recurring cost, so it is Chandler's call (AGENTS.md \"What Chandler is asked\", item 5). max_decisions_waiting is the pile of real decisions waiting for Chandler at which tickets likely to add one are held (his number, 12 Nov). queue_min is how many run-alone tickets the lead agent keeps waiting in Todo. There is no count of tickets per day. monday_questions_max is the most questions Monday's \"Decisions waiting for you\" comment asks, so it can be answered in one sitting (his number, 12 Nov, to be tried and adjusted; HIR-277). monday_yours_max is the most lines under \"Yours this week\" in that comment. monday_think_max is the most questions under that comment's heading \"To think about\" in one week; the rest of monday_questions_max goes under \"To approve\" (HIR-297). max_decisions_waiting counts only the decisions he has to think about.",
   "daily_cap_eur": 2.0,
   "max_decisions_waiting": 10,
   "queue_min": 5,
   "monday_questions_max": 10,
-  "monday_yours_max": 3
+  "monday_yours_max": 3,
+  "monday_think_max": 3
 }

@@ -181,8 +181,8 @@ def test_with_ten_decisions_waiting_a_ticket_likely_to_add_one_is_held_and_a_bug
     out = run([feature, bug_fix], decisions_waiting=10)
     assert ids(out["picked"]) == ["HIR-2"]
     assert out["skipped"] == [{"id": "HIR-1", "why": (
-        "likely to add a decision for Chandler, and 10 are already waiting or under way "
-        "(the limit is 10)")}]
+        "likely to add a decision for Chandler to think about, and 10 are already waiting "
+        "or under way (the limit is 10)")}]
     assert out["decisions_waiting"] == 10
 
 
@@ -269,14 +269,29 @@ def test_monday_gets_the_weeks_three_numbers():
                ticket(15, state="Backlog"), ticket(16, labels=["attended"]), ticket(17, state="In Progress")]
     out = lp.pick(tickets, log, monday, 2.0, decisions_waiting=7)
     assert out["monday"] == ("Agents ran 3 tickets last week (2026-11-09 to 2026-11-15). "
-                             "6 tickets left can run without you. 7 decisions are waiting for you.")
+                             "6 tickets left can run without you. "
+                             "7 decisions to think about are waiting for you.")
+
+
+def test_monday_says_how_many_wait_to_think_about_and_how_many_to_approve():
+    # HIR-297: only the first pile slows agents down, so the sentence keeps them apart.
+    out = lp.pick([ticket(n) for n in range(1, 7)], [], "2026-11-16", 2.0,
+                  decisions_waiting=2, approvals_waiting=9)
+    assert out["monday"].endswith("2 decisions to think about are waiting for you, and 9 to approve.")
+
+
+def test_recommendations_waiting_for_a_yes_hold_nothing_back():
+    """The speed limit counts only the pile he has to think about (HIR-297)."""
+    likely = ticket(1, may_add_decision=True)
+    assert ids(run([likely], decisions_waiting=2, approvals_waiting=40)["picked"]) == ["HIR-1"]
+    assert run([likely], decisions_waiting=10, approvals_waiting=0)["picked"] == []
 
 
 def test_monday_says_plainly_when_the_run_alone_queue_is_nearly_empty():
     out = lp.pick([ticket(1), ticket(2, labels=["attended"])], [], "2026-11-16", 2.0, decisions_waiting=1)
     assert out["monday"] == (
         "Agents ran 0 tickets last week (2026-11-09 to 2026-11-15). "
-        "1 ticket left can run without you. 1 decision is waiting for you. "
+        "1 ticket left can run without you. 1 decision to think about is waiting for you. "
         "The queue of tickets that can run without you is nearly empty: the project is now "
         "waiting on your decisions, not on agents.")
 
@@ -328,8 +343,9 @@ def test_the_config_holds_the_starting_limits():
     assert config["queue_min"] == 5
     # No count of tickets per day or per area (HIR-280).
     assert config["monday_questions_max"] == 10 and config["monday_yours_max"] == 3
+    assert config["monday_think_max"] == 3  # HIR-297: at most 3 a week to think about
     assert set(config) == {"_comment", "daily_cap_eur", "max_decisions_waiting", "queue_min",
-                           "monday_questions_max", "monday_yours_max"}
+                           "monday_questions_max", "monday_yours_max", "monday_think_max"}
 
 
 @pytest.mark.parametrize("left_out", ["decisions_waiting", "red"])
@@ -422,7 +438,8 @@ def test_a_ticket_chandler_answered_is_not_asked_again():
 def test_hands_on_and_parked_tickets_are_not_questions(label):
     out = lp.monday_decisions([waiting(1, labels=["attended", label]),
                                waiting(2, kind="yours", labels=[label])])
-    assert out == {"ask": [], "more": 0, "yours": [], "text": "No decisions waiting"}
+    assert out == {"think": [], "approve": [], "ask": [], "more": 0, "more_think": 0,
+                   "more_approve": 0, "yours": [], "text": "No decisions waiting"}
 
 
 def test_work_chandler_does_with_an_agent_goes_under_yours_at_most_three():
@@ -436,6 +453,60 @@ def test_a_ticket_that_does_not_say_its_kind_is_a_question():
     item = waiting(1)
     del item["kind"]
     assert lp.monday_decisions([item])["ask"] == ["HIR-1"]
+
+
+# --- the two headings: to think about, to approve (HIR-297) --------------------------------
+
+def test_a_planted_launch_chore_is_to_approve_and_a_labelling_guide_question_is_to_think_about():
+    # HIR-297 "Done when": choosing a domain arrives under "To approve", a question about
+    # the labelling guide under "To think about".
+    domain = waiting(301, kind="approve")
+    guide = waiting(302, kind="think")
+    out = lp.monday_decisions([domain, guide])
+    assert out["approve"] == ["HIR-301"] and out["think"] == ["HIR-302"]
+    assert out["ask"] == ["HIR-302", "HIR-301"]  # what he thinks about comes first
+
+
+def test_at_most_three_a_week_to_think_about_and_the_rest_of_the_ten_to_approve():
+    out = lp.monday_decisions([waiting(n, kind="think") for n in range(1, 6)]
+                              + [waiting(n, kind="approve") for n in range(11, 21)])
+    assert out["think"] == ["HIR-1", "HIR-2", "HIR-3"]
+    assert len(out["approve"]) == 7 and len(out["ask"]) == 10
+    assert out["more_think"] == 2 and out["more_approve"] == 3 and out["more"] == 5
+    assert out["text"] == "5 more are waiting for you."
+
+
+def test_with_nothing_to_think_about_all_ten_places_go_to_approvals():
+    out = lp.monday_decisions([waiting(n, kind="approve") for n in range(1, 13)])
+    assert out["think"] == [] and len(out["approve"]) == 10 and out["more_approve"] == 2
+
+
+@pytest.mark.parametrize("kind", [None, "question", "something else"])
+def test_a_ticket_whose_kind_is_not_known_is_to_approve_not_to_think_about(kind):
+    """When unsure whether a call teaches a career skill, his thinking time is not spent."""
+    item = waiting(1)
+    if kind is None:
+        del item["kind"]
+    else:
+        item["kind"] = kind
+    out = lp.monday_decisions([item])
+    assert out["approve"] == ["HIR-1"] and out["think"] == []
+
+
+def test_each_heading_keeps_the_order_launch_blockers_then_todo_blockers_then_oldest():
+    out = lp.monday_decisions([
+        waiting(1, kind="think", since="2026-10-01"),
+        waiting(2, kind="think", since="2026-11-10", blocks_milestone=True),
+        waiting(3, kind="approve", since="2026-10-02"),
+        waiting(4, kind="approve", since="2026-11-11", blocks_todo=True),
+    ])
+    assert out["think"] == ["HIR-2", "HIR-1"] and out["approve"] == ["HIR-4", "HIR-3"]
+
+
+def test_the_think_limit_can_be_set_and_an_answered_ticket_takes_no_place():
+    items = [waiting(n, kind="think", answered=n == 1) for n in range(1, 5)]
+    assert lp.monday_decisions(items, max_think=2)["think"] == ["HIR-2", "HIR-3"]
+    assert lp.monday_decisions(items, max_questions=1)["ask"] == ["HIR-2"]
 
 
 def test_a_week_with_nothing_waiting_says_so():
@@ -468,6 +539,19 @@ def test_cli_reads_the_decisions_and_their_limits_from_the_config(tmp_path, caps
     assert len(out["ask"]) == 10 and out["more"] == 2 and len(out["yours"]) == 3
 
 
+def test_cli_reads_the_think_limit_and_the_approvals_count(tmp_path, capsys):
+    state = tmp_path / "state.json"
+    state.write_text(json.dumps({
+        "today": "2026-11-16", "decisions_waiting": 5, "approvals_waiting": 4, "red": [],
+        "log": [], "tickets": [],
+        "decisions": [waiting(n, kind="think") for n in range(1, 6)]
+                     + [waiting(10 + n, kind="approve") for n in range(4)]}))
+    assert lp.main([str(state)]) == 0
+    out = json.loads(capsys.readouterr().out)
+    assert len(out["monday_decisions"]["think"]) == 3 and len(out["monday_decisions"]["approve"]) == 4
+    assert "5 decisions to think about are waiting for you, and 4 to approve." in out["monday"]
+
+
 # --- telling Chandler's answer from an agent's comment (HIR-277) ---------------------------
 
 ASKED = "2026-11-16T10:31:00.000Z"
@@ -496,6 +580,8 @@ def test_a_comment_older_than_the_question_is_not_an_answer_to_it():
     "**Answered**\nChandler, 17 Nov: option A.",
     "**Pace**\nAgents ran 3 tickets last week.",
     "**Decisions waiting for you**\n\n1. A question.",
+    "**To approve**\n\n**Recommend:** buy the .com domain.",
+    "**To think about**\n\nThe labelling guide does not say how to score a posting.",
     "Opened https://github.com/chandlershortlidge/hiring-radar/pull/177, 1600 tests pass.",
     "   ",
 ])
@@ -547,10 +633,13 @@ def test_the_lead_agents_procedure_writes_the_decisions_comment_and_applies_answ
     skill = " ".join((ROOT / ".claude" / "skills" / "lead-agent" / "SKILL.md").read_text().split())
     for field in ("decisions", "kind", "answered", "blocks_milestone", "blocks_todo", "since",
                   "monday_decisions", "ask", "more", "yours", "text",
+                  "think", "approve", "approvals_waiting",
                   "answers", "question_at", "answer_candidates"):
         assert f"`{field}`" in skill, field
     # The one exception to "never remove `attended`" is written where the never is.
     assert "except `attended` on a ticket that carries an agent's question" in skill
     for words in ("**Decisions waiting for you**", "**Yours this week**", "**Answered**",
-                  "No decisions waiting"):
+                  "No decisions waiting", "**To think about**", "**To approve**",
+                  "**Recommend:**", "**What it is:**", "**Why:**", "What you would learn",
+                  '`"think"`', '`"approve"`'):
         assert words in skill, words

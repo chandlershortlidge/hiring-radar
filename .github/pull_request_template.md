@@ -2,7 +2,17 @@
 template, .github/workflows/, scripts/rules_gate.py — do NOT write the "Did you authorize
 these?" block yourself. The reviewer writes it and adds it here, and the PR waits for
 Chandler either way (AGENTS.md "The rules gate"). The "Rules gate" check stays red until
-then, by design. -->
+then, by design.
+
+What you DO write for such a PR, as the first three lines of this description, is the
+recommendation to approve (AGENTS.md "What Chandler is asked", "Big calls come in two
+kinds"), one sentence each, plain words, no ticket ids:
+
+**Recommend:** <what to do>.
+**What it is:** <one sentence>.
+**Why:** <one sentence>.
+
+Write them above this comment, as plain text. Any other PR has no such lines. -->
 
 ## Decisions taken
 
@@ -20,7 +30,9 @@ names: the Monday summary prints these lines as they are. "None" if there were n
 ## Needs Chandler
 
 <!-- Only items on the big side of Chandler's list (AGENTS.md "What Chandler is asked")
-that block the merge: questions you stopped on, one line each, with the options. Also posted on the
+that block the merge, each as the senior agent wrote it under its heading: **To approve**
+(three lines: Recommend / What it is / Why) or **To think about** (the full question, with
+options and what he would learn). Also posted on the
 Linear issue with an @mention. Anything else goes to the decider, not here. "None" if
 nothing blocks. -->
 

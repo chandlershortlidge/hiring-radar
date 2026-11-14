@@ -5,6 +5,86 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-14 — The hand-built JSearch fixture is gone; odd records are made from the real one (HIR-41)
+
+HIR-41 asked for a recorded JSearch response to replace the fixture written from the
+docs. The recording already existed (`tests/fixtures/feeds/jsearch_recorded.json`,
+HIR-96, 1 Nov), and the hand-built `jsearch.json` had been kept beside it only for three
+records a real response never contains: no apply link, no city, empty description.
+
+**What changed.** `jsearch.json` is deleted. The test for those records now takes a real
+recorded posting and removes that one field, so every other field keeps the live shape.
+Tests only; nothing a visitor sees, no re-read. Undo: revert the commit.
+
+**No new request was spent, and the recording is not trimmed.** The ticket said to record
+one response and cut it to 2–3 postings. A recording was already there, so spending one
+of the 200 monthly requests would have bought nothing; and the headline tests (HIR-96)
+need the JobLeads row and its clean SumUp twin, so the 10 postings stay.
+
+**Shape differences from the docs** are listed in the `app/sources/jsearch.py` docstring.
+The ones that matter: `job_city` is null on 8 of 10 postings; `job_location` is Google's
+display text with the publisher appended ("Berlin     •  über LinkedIn"), not "Berlin,
+Germany"; and an undocumented `job_uid` equals the stable id we already cut out of
+`job_id` (now a test, on all 10 postings). None of them broke `parse`.
+
+**`/jsearch/search` vs `/jsearch/search-v2` stays unchecked.** We call the first and it
+returns postings daily. Comparing the two costs a live request; nobody asked for that.
+
+---
+
+## 2026-11-14 — Chandler thinks through only what teaches a career skill; every other big call is three lines to approve (HIR-297)
+
+Chandler, 14 Nov: "I think we could shrink the scope of tickets that I make decisions
+about to stuff that will help me learn important career-related skills. Otherwise, maybe
+I just get a recommendation of what to do with an *extremely short* brief on what it is
+and why it's being recommended."
+
+**What changed.** The big side of his list (entry of 13 Nov, HIR-278) now comes in two
+kinds. **To think about**: a big call whose working-out teaches something an AI engineer
+or data scientist is hired for (how quality is measured; the model and its instructions;
+cost engineering; how the system is designed; data-science work on the collected data).
+It comes as a full question, with what he would learn by digging in. **To approve**:
+every other big call. It still needs his yes, and it comes as three lines, Recommend /
+What it is / Why, answered yes or no. The list itself is unchanged: nothing became big,
+nothing became small, and no big call is decided without him.
+
+**Who says which kind.** The senior agent, by the list in AGENTS.md "What Chandler is
+asked". Unsure means to approve, because his time for thinking is the scarce thing.
+Anything about how quality is measured is always to think about. The list of career
+skills is an agent's reading of his goals (a job as an AI engineer or data scientist;
+evals, cost, design reviews, the Claude connection); he edits it in AGENTS.md.
+
+**Monday.** The comment "Decisions waiting for you" has two headings: To think about, at
+most 3 a week (`monday_think_max` in `config/lead_agent.json`), and To approve, the rest
+of the 10. `monday_decisions` in `scripts/lead_pick.py` fills them. A waiting ticket
+that does not say its kind is to approve.
+
+**The speed limit counts only what he has to think about.** The lead agent holds back a
+ticket likely to add a decision only while 10 to-think-about decisions are waiting.
+Approvals do not slow agents down. The figure 10 is his and was not changed here; with 3
+shown a week it is more than three weeks of thinking, so he may want it lower. Undo:
+count both kinds again in the lead agent's step 1.
+
+**How a question says its kind.** The comment that puts it to him starts with the heading
+**To approve** or **To think about**. The lead agent reads the kind from that heading; a
+waiting question with neither goes to the senior agent for its kind. Both headings are
+on the list of agent comment openings, so neither is ever read as his answer. Chosen over
+a Linear label because the comment already has to exist and a label can drift from it.
+Undo: none needed; a heading is text.
+
+**A pull request that changes the agents' rules** carries the three lines at the top of
+its description, written by its author, above the reviewer's "Did you authorize these?"
+list. The author writes them because the recommendation is the author's; the reviewer
+still writes the list of changes, so the second reader's account is untouched, and sends
+the pull request back when the three lines are missing. The check in CI still looks only
+for the reviewer's block.
+
+**The tickets already waiting** were sorted on paper (comment on HIR-297), as HIR-278
+did, because the rule is not in force until he merges it; a follow-up ticket applies the
+sort.
+
+---
+
 ## 2026-11-14 — Monday carries the decisions waiting in tickets, and a comment from Chandler is the answer (HIR-277)
 
 Chandler, 12 Nov, about the questions sitting in tickets: "I'll get those on Monday,

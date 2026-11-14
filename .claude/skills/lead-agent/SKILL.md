@@ -13,7 +13,7 @@ about it on Monday, from the log.
 You run several times a day, every day, weekends included. There is no number of tickets
 per day: each run starts every ticket that can run without Chandler. Only these slow you
 down, and `scripts/lead_pick.py` enforces each one (step 4): two tickets changing the same
-part of the code, the pile of decisions waiting for him, the day's spending cap, one
+part of the code, the pile of decisions waiting for him to think about, the day's spending cap, one
 re-read of the stored jobs a day, a red main branch or robot visitor, and a ticket that
 has failed twice.
 
@@ -86,10 +86,19 @@ under "Needs you" in the log (step 7) as one plain question with a recommendatio
 - **Tickets:** every issue in the team in Todo, In Progress or In Review, and every issue
   created since the last log comment. On Mondays also every issue in Backlog (step 7's
   three numbers count them).
-- **The decisions waiting for Chandler** (HIR-280). Count them now; step 4 needs the
-  number. One for each open ticket labelled `attended` that is waiting on an answer from
-  him, and one for each open pull request labelled `needs-chandler` whose ticket you have
-  not already counted. Not counted: tickets labelled `hands-on` or `parked`; an `attended`
+- **The decisions waiting for Chandler** (HIR-280, HIR-297). Count them now, in two
+  piles; step 4 needs both numbers. One for each open ticket labelled `attended` that is
+  waiting on an answer from him, and one for each open pull request labelled
+  `needs-chandler` whose ticket you have not already counted. Each is one of two kinds
+  (AGENTS.md "What Chandler is asked", "Big calls come in two kinds"): **to think about**
+  or **to approve**. `decisions_waiting` is the to-think-about pile only, because only
+  that pile slows you down; `approvals_waiting` is the other. The kind is the heading of
+  the comment that put the question to him, **To think about** or **To approve**. A pull
+  request that waits only because it changes the agents' own rules is to approve; one
+  that waits on an eval result over a stop line is to think about. A waiting question
+  that names no kind goes to the `senior` agent, which says the kind and writes it in
+  that kind's form: post its reply on the ticket under that heading, with no @mention
+  (he reads it on Monday). You never choose the kind yourself. Not counted: tickets labelled `hands-on` or `parked`; an `attended`
   ticket that is work he does with an agent rather than a question (an eval session, a
   cost session); the log issue itself; a ticket he has already answered (step 2a: its
   newest **Answered** comment is newer than its question). What counts as his decision is
@@ -200,7 +209,9 @@ You gather; the script decides. Write a JSON file in a scratch folder (never in 
 in the shape `scripts/lead_pick.py` documents. At the top level:
 
 - `today`: the date in Berlin, `YYYY-MM-DD`.
-- `decisions_waiting`: the count from step 1.
+- `decisions_waiting`: the count from step 1 of decisions waiting for him **to think
+  about**. `approvals_waiting`: the count of recommendations waiting for his yes. The
+  second holds nothing back; it is there so Monday's pace says both.
 - `red`: a list naming each check that is failing now, in these words: `"the main
   branch's checks"`, `"the robot visitor"`. `[]` when both are green. While it is not
   empty the script starts only the repair: fix first, nothing new until green.
@@ -211,8 +222,9 @@ in the shape `scripts/lead_pick.py` documents. At the top level:
   picked.
 - `decisions`: only in the Monday run that writes the decisions comment (step 7). Every
   open `attended` ticket except the log issue, each as `id`, `labels`, `kind`
-  (`"question"` for a decision he has to make, `"yours"` for work he does with an agent:
-  an eval session, a cost session), `answered` (true when step 2a has recorded his
+  (`"think"` for a decision he thinks through, `"approve"` for a recommendation he says
+  yes or no to, both as step 1 read them; `"yours"` for work he does with an agent: an
+  eval session, a cost session), `answered` (true when step 2a has recorded his
   answer), `blocks_milestone` (it is in the launch order's current milestone, or blocks a
   ticket that is), `blocks_todo` (it blocks a ticket in Todo) and `since` (the day it was
   filed). Hand over all of them, answered ones too: the script leaves those out, you do
@@ -240,10 +252,12 @@ Per ticket:
   database, which you cannot reach, so its `est_eur` is `null`. Never a remembered figure.
 - `rereads`: true when merging it makes the model re-read the stored jobs (it changes the
   extractor's instructions or the skill list). One such ticket a day.
-- `may_add_decision`: true when the work is likely to end on a decision for Chandler: it
-  touches the extractor, the skill list, the labelling guide, the eval, deletes stored
-  data, or adds a feature visitors would see. False for bug fixes, tests, internal
-  clean-up and layout repairs. In doubt, true; leaving it out counts as true.
+- `may_add_decision`: true when the work is likely to end on a decision for Chandler **to
+  think about** (HIR-297): it touches the extractor, the skill list, the labelling guide
+  or the eval, changes the data model, or designs an agent or a tool. False for bug
+  fixes, tests, internal clean-up and layout repairs, and for work that can only end on a
+  recommendation for him to approve (a feature visitors would see, deleting stored data,
+  a spend). In doubt, true; leaving it out counts as true.
 - `repair`: true only for the ticket that fixes what `red` names.
 
 ```bash
@@ -280,7 +294,8 @@ and the next run picks it again.
 
 When a ticket ends on a question for Chandler (the orchestrator's "Needs you" or
 "Stopped"), add the label `attended` to the ticket. That is what keeps the next run
-from picking it again before he answers, and it is one more on the pile of decisions.
+from picking it again before he answers. It is one more on the pile of decisions only
+when it is to think about; a recommendation to approve adds nothing to that pile.
 
 ### When the usage limit is hit
 
@@ -326,7 +341,7 @@ shape, because the next run and the Monday summary read it:
 - HIR-m | picked: <…> | result: <result> | spend: €<0.00>
 
 Needs you: <one plain sentence per item, or "nothing">
-Held: <tickets held because 10 decisions are already waiting for Chandler, or "nothing">
+Held: <tickets held because 10 decisions are already waiting for Chandler to think about, or "nothing">
 Decided for you: <each small call the senior agent made in this run: what, why, how to undo, and "(PR #n)" or "(no PR)"; or "nothing">
 Sorted: <tickets labelled or moved in this run, with the label, or "nothing">
 Queue: <how many run-alone tickets are waiting in Todo after this run, and which were pulled in; or "nothing left to pull">
@@ -354,7 +369,7 @@ weekend day shows its runs like any other.
 **On Mondays, the first run adds the week's pace to the summary** (HIR-280). Find that
 morning's "Monday summary" issue and add one comment headed **Pace**, holding the script's
 `monday` text unchanged: how many tickets ran last week, how many are left that can run
-without him, how many decisions are waiting, and, when fewer than 5 are left, that the
+without him, how many decisions are waiting to think about and how many to approve, and, when fewer than 5 are left, that the
 project is now waiting on his decisions. If the summary issue is not there yet, a later
 run today adds it; check the issue's comments first so it is added once.
 
@@ -374,12 +389,20 @@ comment in this shape:
 ```
 **Decisions waiting for you**
 
-1. <the question in one plain sentence> Options: <A> / <B>. Recommended: <A>, because <one reason>. ([HIR-n](<the ticket's link>))
-2. <…>
+**To think about**
+
+1. <the situation in two sentences> Options: <A, what it changes and costs> / <B, …>. Recommended: <A>, because <one reason>. What you would learn: <one line>. ([HIR-n](<the ticket's link>))
+
+**To approve**
+
+2. **Recommend:** <what to do, one sentence>.
+   **What it is:** <one sentence, plain words>.
+   **Why:** <one sentence>. ([HIR-n](<the ticket's link>))
+3. <…>
 
 <the script's `text`, unchanged> Full list: https://linear.app/hiring-radar/team/HIR/label/attended
 
-Answer in a comment on the ticket. The next run applies it, and the question is not asked again.
+Answer in a comment on the ticket; for "To approve", yes or no is enough. The next run applies it, and the question is not asked again.
 
 **Yours this week**
 
@@ -390,17 +413,25 @@ Answer in a comment on the ticket. The next run applies it, and the question is 
 - <what was taken as your answer, and what happened to the ticket> ([HIR-n](<link>))
 ```
 
-- The questions are exactly the tickets in `monday_decisions`' `ask`, in that order, and
-  nothing else; the lines under **Yours this week** are exactly its `yours`. `more` is
-  how many questions did not fit; they wait for next Monday. You do not add, drop or
+- The questions under **To think about** are exactly the tickets in `monday_decisions`'
+  `think` (at most 3 a week), those under **To approve** exactly its `approve` (the rest
+  of the 10), each in that order and nothing else; `ask` is the two lists together. The
+  lines under **Yours this week** are exactly its `yours`. `more` is how many did not
+  fit; they wait for next Monday. A heading with nothing under it is left out. You do not add, drop or
   reorder: the script keeps the list to what he can answer in one sitting.
 - When `ask` is empty, the first part is the heading and the script's `text`, "No
   decisions waiting", with no list, no link and no "Answer in a comment" line. A part
   with nothing under it is left out.
-- **Each question must be answerable from the comment alone.** One plain sentence saying
-  what has to be decided and what it changes for him or for a visitor, two or three short
-  options, and your recommendation with one reason. Take it from the ticket and its
-  comments; where a comment already holds the question rewritten for him, use that. The
+- **Each one must be answerable from the comment alone**, in the form for its kind
+  (AGENTS.md "What Chandler is asked", "Big calls come in two kinds"; the forms are
+  there). **To think about**: the situation, two or three short options with what each
+  changes and costs, your recommendation with one reason, and what he would learn by
+  digging in. **To approve**: the three lines and nothing else, no options and no
+  background. If a ticket's question cannot be said in those three lines, write the
+  closest three lines you can and name the ticket under "Needs you" in the log as not
+  ready to ask. Take it from the ticket and
+  its comments; where a comment already holds it written for him under its heading, use
+  that unchanged. The
   ticket's link goes at the end, never as the subject. No file names, no function names,
   no rule numbers, no ticket ids inside the sentence. If his last comment on the ticket
   did not settle it (step 2a), say in the question what it left open.

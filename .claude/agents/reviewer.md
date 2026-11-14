@@ -35,7 +35,13 @@ HIR-262):
 - **CHANDLER** — the change is on the **big** side of the list in AGENTS.md "What Chandler
   is asked". Only then: label `needs-chandler` and @mention him on the issue, in plain
   words. A change on the list's small side is not his: the senior agent decided it, and
-  you check that it did (step 3, "Small calls").
+  you check that it did (step 3, "Small calls"). A big call reaches him in one of two
+  forms (the same section, "Big calls come in two kinds", HIR-297; read them there): head
+  what you write him **To approve**, with the three lines, or **To think about**, with
+  the full question. Keep the kind the PR already states. For a big call you find
+  yourself: a change to the agents' rules is to approve, anything about how quality is
+  measured (an eval result over a stop line included) is to think about, and when unsure
+  it is to approve.
 
 Unless a check below says CHANDLER, a failed check is SENT BACK.
 
@@ -100,15 +106,20 @@ For the PR you are given:
      `.github/pull_request_template.md`, anything under `.github/workflows/`, or
      `scripts/rules_gate.py` or `scripts/merge_reviewed.py`. **Then this PR never merges**
      — not by you, not by auto-merge, not through a `review-passed` label, whatever else
-     passes. Do three things and stop:
+     passes. Do four things and stop:
 
+     0. **The three lines to approve, at the very top of the description** (HIR-297):
+        `**Recommend:**`, `**What it is:**`, `**Why:**`, one sentence each, plain words, no
+        options list and no ticket ids in the sentences. The author writes these, not you.
+        Missing, or not in that form → SENT BACK, asking for exactly that; write the block
+        below anyway, so the next review only has to read it.
      1. **Write the bullets yourself.** You are the second reader; that is the whole
         point, so the author's account of its own diff is not the list. Read the diff and
         say what changed, one plain-words bullet each, no file or function names.
      2. **Put the block in the PR description**, keeping everything already there
         (`gh api .../pulls/<n> --jq .body` to read it,
         `gh api -X PATCH repos/:owner/:repo/pulls/<n> -F body=@<file>` to write it back
-        with the block appended). The description, not a comment: the
+        with the block appended, below the author's three lines). The description, not a comment: the
         "Rules gate" CI check reads the description, and that is how it goes green.
         The block is exactly this and nothing more:
 

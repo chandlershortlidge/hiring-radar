@@ -99,8 +99,12 @@ test: *could someone who has never opened the repo say "fine" or "no" to it?*
   queue of skills the model has suggested"; `extractor_version` bump is "every job still
   open gets re-read by the model once, about €X" — with €X from
   `uv run python -m app reread-cost`, not from memory.
-- A question is: the situation in two sentences, then one line per option with its
-  consequence, then your recommendation and why. Three options at most.
+- A big call reaches him in one of two forms, and the senior agent says which
+  (AGENTS.md "What Chandler is asked", "Big calls come in two kinds", HIR-297). **To approve**: three lines,
+  Recommend / What it is / Why, one sentence each, answered yes or no. **To think
+  about**: the situation in two sentences, one line per option with its consequence and
+  cost (three at most), your recommendation and why, and what he would learn by digging
+  in. You write neither yourself: the senior agent's reply is what you post.
 - Reread it as him before sending. If it needs the repo to make sense, rewrite it.
 
 ## 2. Session start (AGENTS.md "Starting a session", HIR-88 / HIR-94)
@@ -223,12 +227,20 @@ sessions were merging is what produced the duplicate edits of 3 Nov. What *is* s
 is a real conflict: the reviewer cannot update a branch that conflicts, so it hands the PR
 back to you. Resolve it then, keeping both sides newest-first in DECISIONS.md.
 
+**A PR that changes the agents' own rules** (AGENTS.md "The rules gate") opens with the
+three lines of a recommendation to approve, at the very top of its body: **Recommend:**,
+**What it is:**, **Why:**, one sentence each, in words he can read without the repo
+(AGENTS.md "What Chandler is asked", "Big calls come in two kinds"). You write those; the
+reviewer writes the "Did you authorize these?" list under them, and sends the PR back if
+the three lines are missing.
+
 PR body, in the template's sections: Testing, Risk, How to revert, **Decisions taken**,
 **Decided for you** (the senior agent's small calls, or "None"), plus **`## Eval (dev)`** whenever step 3a applied — the reviewer refuses a PR that touches
 the extractor or the skill list and has no such section, so an absent table reads as an
 eval nobody ran, not as a clean one.
 **Needs Chandler** and **Follow-ups** per AGENTS.md "Deciding alone vs. stopping". "Needs
-Chandler" holds only what blocks the merge. A known limit, a later ticket or a suggestion
+Chandler" holds only what blocks the merge, each item under the heading **To approve** or
+**To think about**, as the senior agent wrote it. A known limit, a later ticket or a suggestion
 is a Follow-up, stated as a fact, never as a question — if it doesn't need an answer,
 don't ask for one. Follow-ups come in two lists, **"Changes what you'd see"** first
 (chart, job list, counts, which jobs get in or out — these are decisions in disguise and
@@ -327,16 +339,19 @@ and no `review-passed` (the orchestrator does that when the original worker is g
 
 Hand the question to the `decider` subagent (`.claude/agents/decider.md`). It reads only
 the rule files and replies ANSWER + RULE, SMALL CALL ("A small call on Chandler's list",
-below), or NO RULE + the question rewritten for Chandler.
+below), or NO RULE + the question for Chandler.
 
 If the spawn fails because the model is unavailable, use the model ladder in AGENTS.md
 "Escalate to a stronger agent before a person" — written there and nowhere else. A
 question the decider can't settle is a NO RULE, not a model problem.
 
 ANSWER → apply it, one line under "Decisions taken" naming the rule (or the closest rule,
-for a judgment the decider made where none fit exactly). NO RULE → post the
-rewritten question on the Linear issue with an @mention of Chandler, do what doesn't
-depend on it, stop. When his answer arrives, add it to DECISIONS.md in the same PR.
+for a judgment the decider made where none fit exactly). NO RULE → the call is big, and
+the senior agent says which kind of big call it is (AGENTS.md "What Chandler is asked", "Big calls come in two kinds"): hand it the question and the
+decider's reply. It answers ON CHANDLER'S LIST with either **TO APPROVE** and three lines,
+or **TO THINK ABOUT** and a full question. Post that, unchanged, on the Linear issue under
+the heading **To approve** or **To think about**, with an @mention of Chandler; do what
+doesn't depend on it, stop. When his answer arrives, add it to DECISIONS.md in the same PR.
 
 ## A hard technical question: the senior agent
 
@@ -345,8 +360,9 @@ pass after two tries is not a question for Chandler and not one for the decider.
 the `senior` subagent (`.claude/agents/senior.md`) with the ticket id, the question, and
 your notes: what you tried, what happened, the files involved. It answers DECISION +
 REASON — carry it out and add a line under "Decisions taken" — or ON CHANDLER'S LIST with
-the question already rewritten for him: post that on the Linear issue with an @mention, do
-what doesn't depend on it, and stop.
+the call already written for him as TO APPROVE (three lines) or TO THINK ABOUT (a full
+question): post that on the Linear issue under the heading **To approve** or **To think
+about**, with an @mention, do what doesn't depend on it, and stop.
 
 ## A small call on Chandler's list: the senior agent decides (HIR-278)
 
@@ -366,8 +382,9 @@ He is not asked those. When the decider replies SMALL CALL:
    under Testing, and add the usual line under Escalations. With no PR (a one-off run, a
    ticket that is only a question), post the line as a comment on the ticket headed
    **Decided for you**. No @mention: he reads it on Monday.
-4. **ON CHANDLER'S LIST** → it was big after all. Post the rewritten question on the
-   Linear issue with an @mention, do what doesn't depend on it, and stop.
+4. **ON CHANDLER'S LIST** → it was big after all. Post its reply on the Linear issue
+   under the heading it names, **To approve** or **To think about**, with an @mention, do
+   what doesn't depend on it, and stop.
 
 Every call to the senior agent or the decider goes in the PR body under **Escalations**,
 one line each: who asked, what, what was answered. "None" if there were none.
@@ -377,5 +394,6 @@ one line each: who asked, what, what was answered. "None" if there were none.
 The big side of Chandler's list in AGENTS.md "What Chandler is asked", plus: the work has grown past
 the issue (propose the split). An issue that contradicts a standing rule is **not** a
 reason to ask: the rule wins, note it under "Decisions taken". Asking
-is a Linear comment with an @mention, one sentence and the options; then do whatever
+is a Linear comment with an @mention, in the form for its kind (three lines to approve, or
+a full question to think about; the senior agent writes it); then do whatever
 doesn't depend on the answer, and stop.

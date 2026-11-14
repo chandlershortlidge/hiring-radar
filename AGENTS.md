@@ -483,6 +483,13 @@ second reader saying what changed. Chandler does not read these files. He discus
 in them beforehand, so the only question is whether he authorized this one. He answers by
 merging, or by sending it back.
 
+**Above the block, at the very top of the description, sit the three lines of a
+recommendation to approve** (HIR-297; the form is in "What Chandler is asked", "Big calls
+come in two kinds"): Recommend, What it is, Why. A rule change is a call he approves, not
+one he is asked to think through. **The author writes those three lines**, because the
+recommendation is the author's; the reviewer checks they are there and in form, sends the
+PR back when they are not, and still writes the bullets itself.
+
 **Two enforcers, because one of them is itself a rule file.** The reviewer applies the rule
 (`.claude/agents/reviewer.md`). And `scripts/rules_gate.py` runs in CI on every PR
 (`.github/workflows/rules-gate.yml`, check name "Rules gate"): it reads the PR's own changed
@@ -584,13 +591,16 @@ is never asked again.
 ### What Chandler is asked
 
 **This is the one list** (Chandler, 2026-11-12, HIR-262; split into a small and a big side
-2026-11-13, HIR-278). The decider, the senior agent, the reviewer, the work-issue,
+2026-11-13, HIR-278; the big side split into what he thinks through and what he only
+approves 2026-11-14, HIR-297). The decider, the senior agent, the reviewer, the work-issue,
 orchestrator and lead-agent skills and the PR template point here; none keeps its own copy.
 Everything not on it is decided by an agent, reviewed by another agent, and merged.
 
 Each item has a **big** side, which waits for him. Four of the six also have a **small**
 side: the senior agent decides those and he reads about them on Monday ("Small calls",
-below). **When in doubt about which side a call is on, it is big.**
+below). **When in doubt about which side a call is on, it is big.** A big call then
+reaches him in one of two forms, a full question or three lines to approve ("Big calls
+come in two kinds", below).
 
 1. **Roadmap** — *big:* what gets built or dropped; launching a city he has not named
    (`ACTIVE_CITIES`); opening the site to the public. *Small:* the order of bugs inside a
@@ -652,11 +662,61 @@ decision).
   his own GitHub and Linear logins, so no label or comment can show that he, not an agent,
   approved a ticket.
 
+**Big calls come in two kinds: to think about, and to approve** (Chandler, 2026-11-14,
+HIR-297: "shrink the scope of tickets that I make decisions about to stuff that will help
+me learn important career-related skills. Otherwise ... a recommendation of what to do
+with an *extremely short* brief on what it is and why"). This sorts the big side only. It
+puts nothing on the list and takes nothing off it: a call that was not big is still not
+asked, a small call is still decided for him, and no big call is decided without his yes.
+
+- **To think about: he works it out.** A big call is this kind only if working it out
+  teaches something an AI engineer or data scientist is hired for. On this project:
+  - how quality is measured: the labelling guide, answer keys, the eval's rules and stop
+    lines, reading eval results;
+  - the model and its instructions: what the extractor is told, which model reads
+    postings, and the trade-off against cost;
+  - cost engineering: batching, caching, when to re-read, cheaper models;
+  - how the system is designed: data model changes, how agents and their tools are built,
+    the Claude connection (MCP), observability;
+  - data-science work on the collected data.
+
+  It comes as a real question: the situation in two sentences; one line per option (three
+  at most) with what it changes and what it costs; a recommendation and why; and one line,
+  **What you would learn**, saying what digging in would teach him. He may ask for a
+  walkthrough or do it hands-on.
+- **To approve: he says yes or no.** Every other big call: roadmap order, launch chores
+  (domain, legal pages, analytics), visual and wording choices beyond the small side,
+  which jobs count as in scope, duplicate and location rules, deleting stored data, spend
+  above the small limit, and changes to the agents' own rules. He still has to say yes,
+  but he is not asked to think it through. The form is fixed, three lines at most:
+
+  > **Recommend:** <what to do, one sentence>.
+  > **What it is:** <one sentence, plain words>.
+  > **Why:** <one sentence>.
+
+  He answers yes or no; a no gets one follow-up line from him or nothing. No options list,
+  no background, no ticket ids in the sentences (a link at the end is fine). **If it
+  cannot be said in those three lines, it is not ready to ask.**
+- **Who says which kind.** The **senior agent**, by the two lists above. **When unsure
+  whether a call teaches a career skill, it is to approve**: his time for thinking is the
+  scarce thing. **Anything about how quality is measured is always to think about, never
+  downgraded.** A change to the agents' own rules is to approve; designing a new agent or
+  tool is to think about. The reviewer cannot call the senior agent: it keeps the kind a
+  PR already states, and for a big call it finds itself it uses those fixed cases, and
+  otherwise to approve.
+- **How a question says its kind.** The comment that puts it to him, and each line under
+  a PR's "Needs Chandler", starts with the heading **To approve** or **To think about**.
+  Monday's list and the lead agent's count read the kind from that heading.
+- **Where each kind shows.** Monday's "Decisions waiting for you" has the two headings:
+  **To think about**, at most 3 a week, and **To approve**, the rest of the weekly 10
+  ("The lead agent", below). Only the to-think-about pile slows the lead agent down.
+
 How the list is used:
 
 - **A question on the list** goes to the decider first, like any question. A written rule
   answers it; with no rule, the decider says which side it is on. Small goes to the senior
-  agent (above). Only a big one reaches Chandler, as a Linear comment that @mentions him.
+  agent (above). Only a big one reaches Chandler, as a Linear comment that @mentions him,
+  in the form for its kind ("Big calls come in two kinds", above).
   **A question not on the list never reaches him**: the decider answers it from the rules,
   or by the closest rule and precedent when none fits exactly, and the worker records the
   answer under "Decisions taken".
@@ -698,8 +758,8 @@ Chandler is the last rung only for an item on the big side of his list:
 - **A small call on Chandler's list** ("What Chandler is asked", above) → the decider
   names it, the `senior` agent decides it, and it is reported on Monday.
 - Only when the senior agent or the decider says the question is on the big side of
-  Chandler's list does it reach him — already rewritten as one plain question with options
-  and a recommendation.
+  Chandler's list does it reach him — already written by the senior agent in the form for
+  its kind: three lines to approve, or a full question to think about.
 
 Every escalation is recorded in the PR body under **Escalations**: who asked, what, what
 was answered — so the Monday summary can say how often it happened.
@@ -721,9 +781,11 @@ Retry on availability errors only. A wrong answer is not a reason to try a bigge
 answers the question from them. It returns either an answer with the rule it rests on (the worker
 applies it and notes it under "Decisions taken"), or "small call" (the senior agent decides
 it, above), or — only for a question on the big side of Chandler's list — "no rule covers
-this" plus the question rewritten per "How to write anything Chandler reads". Only the
-last kind reaches Chandler: a comment on the Linear issue that @mentions him, two sentences of
-situation, one line per option with its consequence, a recommendation. His answer is
+this", with the situation and its recommendation. The worker takes that to the senior
+agent, which says which kind of big call it is and writes it in that kind's form ("Big
+calls come in two kinds", above). Only that reaches Chandler: a comment on the Linear
+issue that @mentions him, headed **To approve** (the three lines) or **To think about**
+(the full question). His answer is
 written into DECISIONS.md so it is never asked again. Meanwhile the worker does any step
 that doesn't depend on the answer, and stops.
 
@@ -836,9 +898,11 @@ decisions that I need to make"). What slows it down, and nothing else:
 1. **Collisions.** One ticket per area of the code at a time; the second waits for the
    first to merge. The orchestrator's check on files already changed by an open pull
    request stays.
-2. **The decision pile.** While 10 or more real decisions are waiting for Chandler (the
-   big side of his list, above), a ticket likely to add another is held, and the log says
-   so. Tickets that cannot produce a decision for him keep running.
+2. **The decision pile.** While 10 or more decisions are waiting for Chandler to think
+   about (that kind of big call only; "Big calls come in two kinds", above, HIR-297), a
+   ticket likely to add another is held, and the log says so. Recommendations waiting for
+   his yes do not count, and tickets that cannot produce a decision for him to think
+   about keep running.
 3. **Money.** The day's model-call cap (`config/lead_agent.json`, €2 a day over all of
    that day's runs; `0` stops every run). Raising it is Chandler's (his list, item 5).
 4. **One re-read a day** of the stored jobs.
@@ -852,14 +916,16 @@ it cannot know; nothing more on a day when a run hit the Claude plan's usage lim
 run uses Chandler's plan; it reports the limit in the log and does not retry).
 
 **Monday.** The lead agent adds the week's pace to the Monday summary: how many tickets
-ran, how many are left that can run without him, how many decisions are waiting. When
+ran, how many are left that can run without him, how many decisions are waiting to think
+about and how many to approve. When
 fewer than 5 are left it says so plainly: the project is then waiting on his decisions,
 not on agents.
 
 **Monday also carries the decisions waiting in tickets** (HIR-277, DECISIONS 2026-11-14).
 The lead agent adds one comment to the Monday summary, headed **Decisions waiting for
-you**: at most 10 questions (`config/lead_agent.json`), each one plain sentence with
-short options and a recommendation, answerable without opening the ticket; then how many
+you**: at most 10 (`config/lead_agent.json`), under two headings (HIR-297). **To think
+about**, at most 3 a week, each a full question answerable without opening the ticket;
+**To approve**, the rest of the 10, each the three lines of a recommendation. Then how many
 more are waiting; then up to 3 lines of work he does with an agent, under **Yours this
 week**. Which tickets, in what order and how many is code (`monday_decisions` in
 `scripts/lead_pick.py`): what blocks the current launch milestone, then what blocks a

@@ -134,7 +134,11 @@ One message at the end, written for Chandler:
 - **Ready for you:** attended PRs waiting for your merge, one line each.
 - **Sent back and fixed:** PR, issue, one line of what the reviewer asked for.
 - **Needs you:** only items on the big side of Chandler's list, and PRs that failed review
-  three times — PR, issue, the item or what is still wrong, in plain words.
+  three times — PR, issue, the item or what is still wrong, in plain words. The big calls
+  go under two headings (AGENTS.md "What Chandler is asked", "Big calls come in two
+  kinds", HIR-297): **To think about**, each a full question, and **To approve**, each
+  the three lines of a recommendation, copied as the senior agent or the reviewer wrote
+  them. Never reword one kind into the other.
 - **Decided for you:** the small calls the senior agent made in this batch, copied from
   each PR's "Decided for you" — what, why, how to undo. "None" if there were none.
 - **Stopped:** issue, the question the decider couldn't answer (already on Linear with an
