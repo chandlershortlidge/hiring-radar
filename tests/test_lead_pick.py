@@ -327,7 +327,9 @@ def test_the_config_holds_the_starting_limits():
     assert config["max_decisions_waiting"] == 10
     assert config["queue_min"] == 5
     # No count of tickets per day or per area (HIR-280).
-    assert set(config) == {"_comment", "daily_cap_eur", "max_decisions_waiting", "queue_min"}
+    assert config["monday_questions_max"] == 10 and config["monday_yours_max"] == 3
+    assert set(config) == {"_comment", "daily_cap_eur", "max_decisions_waiting", "queue_min",
+                           "monday_questions_max", "monday_yours_max"}
 
 
 @pytest.mark.parametrize("left_out", ["decisions_waiting", "red"])
@@ -372,3 +374,183 @@ def test_cli_reads_the_cap_from_the_config_and_zero_stops_it(tmp_path, capsys):
     assert lp.main([str(state), "--cap", "0"]) == 0
     out = json.loads(capsys.readouterr().out)
     assert out["picked"] == [] and "zero" in out["stop"]
+
+
+# --- Monday's "Decisions waiting for you" comment (HIR-277) --------------------------------
+
+def waiting(n, **over):
+    base = {"id": f"HIR-{n}", "kind": "question", "labels": ["attended"], "answered": False,
+            "blocks_milestone": False, "blocks_todo": False, "since": "2026-11-01"}
+    base.update(over)
+    return base
+
+
+def test_mondays_comment_asks_at_most_ten_and_counts_the_rest():
+    out = lp.monday_decisions([waiting(n) for n in range(1, 14)])
+    assert len(out["ask"]) == 10
+    assert out["more"] == 3 and out["text"] == "3 more are waiting for you."
+    assert lp.monday_decisions([waiting(n) for n in range(1, 12)])["text"] == "1 more is waiting for you."
+
+
+def test_ten_or_fewer_are_all_asked():
+    out = lp.monday_decisions([waiting(n) for n in range(1, 11)])
+    assert len(out["ask"]) == 10 and out["more"] == 0
+    assert out["text"] == "That is every decision waiting for you."
+
+
+def test_order_is_launch_blockers_then_todo_blockers_then_oldest():
+    out = lp.monday_decisions([
+        waiting(1, since="2026-10-01"),
+        waiting(2, since="2026-11-10", blocks_todo=True),
+        waiting(3, since="2026-11-12", blocks_milestone=True),
+        waiting(4, since="2026-10-20"),
+        waiting(5, since="2026-11-11", blocks_milestone=True, blocks_todo=True),
+    ])
+    assert out["ask"] == ["HIR-5", "HIR-3", "HIR-2", "HIR-1", "HIR-4"]
+
+
+def test_a_ticket_chandler_answered_is_not_asked_again():
+    """Answered on Tuesday, recorded by the next run, gone from the following Monday."""
+    out = lp.monday_decisions([waiting(1, answered=True), waiting(2)])
+    assert out["ask"] == ["HIR-2"] and out["more"] == 0
+    # An answered ticket does not use up one of the ten places either.
+    many = lp.monday_decisions([waiting(n, answered=n <= 3) for n in range(1, 14)])
+    assert len(many["ask"]) == 10 and many["more"] == 0
+
+
+@pytest.mark.parametrize("label", ["hands-on", "parked", "Parked"])
+def test_hands_on_and_parked_tickets_are_not_questions(label):
+    out = lp.monday_decisions([waiting(1, labels=["attended", label]),
+                               waiting(2, kind="yours", labels=[label])])
+    assert out == {"ask": [], "more": 0, "yours": [], "text": "No decisions waiting"}
+
+
+def test_work_chandler_does_with_an_agent_goes_under_yours_at_most_three():
+    out = lp.monday_decisions(
+        [waiting(n, kind="yours", since=f"2026-11-0{n}") for n in range(1, 6)] + [waiting(9)])
+    assert out["ask"] == ["HIR-9"]
+    assert out["yours"] == ["HIR-1", "HIR-2", "HIR-3"]
+
+
+def test_a_ticket_that_does_not_say_its_kind_is_a_question():
+    item = waiting(1)
+    del item["kind"]
+    assert lp.monday_decisions([item])["ask"] == ["HIR-1"]
+
+
+def test_a_week_with_nothing_waiting_says_so():
+    assert lp.monday_decisions([])["text"] == "No decisions waiting"
+    # Work that is his to do is not a decision waiting.
+    assert lp.monday_decisions([waiting(1, kind="yours")])["text"] == "No decisions waiting"
+
+
+def test_the_monday_limits_can_be_set():
+    out = lp.monday_decisions([waiting(n) for n in range(1, 6)], max_questions=2, max_yours=1)
+    assert len(out["ask"]) == 2 and out["more"] == 3
+
+
+def test_a_run_that_did_not_gather_the_decisions_gets_no_answer_about_them():
+    """Left out is not the same as none: no `monday_decisions`, so nothing to post."""
+    assert "monday_decisions" not in run([ticket(1)])
+    assert run([ticket(1)], decisions=[])["monday_decisions"]["text"] == "No decisions waiting"
+    # Even when the cap stops the run, Monday's comment can still be written.
+    assert "monday_decisions" in lp.pick([], [], "2026-11-16", 0, decisions=[waiting(1)])
+
+
+def test_cli_reads_the_decisions_and_their_limits_from_the_config(tmp_path, capsys):
+    state = tmp_path / "state.json"
+    state.write_text(json.dumps({
+        "today": "2026-11-16", "decisions_waiting": 12, "red": [], "log": [], "tickets": [],
+        "decisions": [waiting(n) for n in range(1, 13)]
+                     + [waiting(20 + n, kind="yours") for n in range(4)]}))
+    assert lp.main([str(state)]) == 0
+    out = json.loads(capsys.readouterr().out)["monday_decisions"]
+    assert len(out["ask"]) == 10 and out["more"] == 2 and len(out["yours"]) == 3
+
+
+# --- telling Chandler's answer from an agent's comment (HIR-277) ---------------------------
+
+ASKED = "2026-11-16T10:31:00.000Z"
+
+
+def comment(at, body):
+    return {"at": at, "body": body}
+
+
+def test_a_plain_comment_after_the_question_may_be_his_answer():
+    his = comment("2026-11-17T08:00:00.000Z", "Go with option A.")
+    assert lp.answer_candidates(ASKED, [his]) == [his]
+
+
+def test_a_comment_older_than_the_question_is_not_an_answer_to_it():
+    assert lp.answer_candidates(ASKED, [comment("2026-11-12T09:00:00.000Z", "Option A.")]) == []
+    assert lp.answer_candidates(ASKED, [comment(ASKED, "The question itself.")]) == []
+
+
+@pytest.mark.parametrize("body", [
+    "**Brief (autopilot run)**\n\n- **Doing:** a thing",
+    "**Decided for you**\nRepaired 3 stored jobs.",
+    "**Review: sent back**\n\n1. Add the test.",
+    "Lead agent: no run is live on this; returned to Todo",
+    "**Hands-on brief**\nStart with the form.",
+    "**Answered**\nChandler, 17 Nov: option A.",
+    "**Pace**\nAgents ran 3 tickets last week.",
+    "**Decisions waiting for you**\n\n1. A question.",
+    "Opened https://github.com/chandlershortlidge/hiring-radar/pull/177, 1600 tests pass.",
+    "   ",
+])
+def test_an_agents_own_comment_is_never_his_answer(body):
+    assert lp.answer_candidates(ASKED, [comment("2026-11-17T08:00:00.000Z", body)]) == []
+
+
+def test_an_answer_an_agent_session_wrote_down_for_him_counts():
+    noted = comment("2026-11-17T08:00:00.000Z", "**Decision (Chandler, 17 Nov, in the session): option A.**")
+    assert lp.answer_candidates(ASKED, [noted]) == [noted]
+
+
+def test_a_word_that_only_starts_like_a_heading_is_still_his():
+    his = comment("2026-11-17T08:00:00.000Z", "Briefly: yes, do it. Reviewing the rest later.")
+    assert lp.answer_candidates(ASKED, [his]) == [his]
+
+
+def test_a_ticket_nobody_asked_him_about_has_no_answer():
+    """Its `attended` label is his own off switch; a comment on it lifts nothing."""
+    plain = comment("2026-11-17T08:00:00.000Z", "Go ahead.")
+    assert lp.answer_candidates(None, [plain]) == []
+    assert lp.answer_candidates("", [plain]) == []
+    assert lp.answer_candidates(ASKED, []) == []
+
+
+def test_the_run_gets_the_candidates_per_ticket_only_when_it_handed_the_comments_over():
+    assert "answer_candidates" not in run([ticket(1)])
+    his = comment("2026-11-17T08:00:00.000Z", "Option B.")
+    out = run([], answers=[
+        {"id": "HIR-5", "question_at": ASKED, "comments": [his, comment("2026-11-17T09:00:00.000Z", "**Answered**")]},
+        {"id": "HIR-6", "question_at": None, "comments": [his]}])
+    assert out["answer_candidates"] == [{"id": "HIR-5", "candidates": [his]},
+                                        {"id": "HIR-6", "candidates": []}]
+
+
+def test_cli_passes_the_answers_on(tmp_path, capsys):
+    state = tmp_path / "state.json"
+    state.write_text(json.dumps({
+        "today": TODAY, "decisions_waiting": 1, "red": [], "log": [], "tickets": [],
+        "answers": [{"id": "HIR-5", "question_at": ASKED,
+                     "comments": [comment("2026-11-17T08:00:00.000Z", "Option B.")]}]}))
+    assert lp.main([str(state)]) == 0
+    assert json.loads(capsys.readouterr().out)["answer_candidates"][0]["candidates"][0]["body"] == "Option B."
+
+
+def test_the_lead_agents_procedure_writes_the_decisions_comment_and_applies_answers():
+    """The comment's limits hold only if the procedure hands the script the tickets and
+    posts what it answers; an answered ticket is only left out if a run records it."""
+    skill = " ".join((ROOT / ".claude" / "skills" / "lead-agent" / "SKILL.md").read_text().split())
+    for field in ("decisions", "kind", "answered", "blocks_milestone", "blocks_todo", "since",
+                  "monday_decisions", "ask", "more", "yours", "text",
+                  "answers", "question_at", "answer_candidates"):
+        assert f"`{field}`" in skill, field
+    # The one exception to "never remove `attended`" is written where the never is.
+    assert "except `attended` on a ticket that carries an agent's question" in skill
+    for words in ("**Decisions waiting for you**", "**Yours this week**", "**Answered**",
+                  "No decisions waiting"):
+        assert words in skill, words

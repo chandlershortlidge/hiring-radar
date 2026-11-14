@@ -31,9 +31,12 @@ under "Needs you" in the log (step 7) as one plain question with a recommendatio
 - Anything on the big side of the list in AGENTS.md "What Chandler is asked". A small
   call on that list is not yours either: a worker takes it to the senior agent (that
   section, "Small calls", HIR-278), and you report it in the log.
-- Reorder the launch order, remove a `parked` or `attended` label, or move a ticket out of
-  Backlog unless the launch-order document lists it or a check filed it (the caretaker,
-  the robot visitor, a mutation test, an audit).
+- Reorder the launch order, remove a `parked` or `attended` label (except `attended` on a
+  ticket that carries an agent's question to him which he has answered, step 2a), or move
+  a ticket out of Backlog unless the launch-order document lists it or a check filed it
+  (the caretaker, the robot visitor, a mutation test, an audit).
+- Answer a question that is waiting for him, act on your own recommendation, or change a
+  pull request's `needs-chandler` label.
 - Write, edit or commit code, in any ticket. Never start a worker on a `hands-on` ticket.
 - Start anything `scripts/lead_pick.py` did not pick (step 4). Its answer is not advice.
 - Run a merge command. A pull request merges through a reviewer (step 3).
@@ -88,8 +91,10 @@ under "Needs you" in the log (step 7) as one plain question with a recommendatio
   him, and one for each open pull request labelled `needs-chandler` whose ticket you have
   not already counted. Not counted: tickets labelled `hands-on` or `parked`; an `attended`
   ticket that is work he does with an agent rather than a question (an eval session, a
-  cost session); the log issue itself. What counts as his decision is the big side of
-  AGENTS.md "What Chandler is asked"; you do not widen or narrow it.
+  cost session); the log issue itself; a ticket he has already answered (step 2a: its
+  newest **Answered** comment is newer than its question). What counts as his decision is
+  the big side of AGENTS.md "What Chandler is asked"; you do not widen or narrow it. To
+  know which are waiting, read each open `attended` ticket's comments (`list_comments`).
 
 ## 2. File what is broken, and sort what others filed
 
@@ -112,6 +117,61 @@ You never apply `hands-on` or `parked`; those are Chandler's. Two more cases get
 **Move to Todo, in the same run:** a new bug that drops or mis-shows real postings, or that
 a visitor would notice; a ticket the launch-order document lists whose turn has come; an
 audit ticket marked High. Everything else stays in Backlog until step 6 pulls it.
+
+## 2a. Apply Chandler's answers (HIR-277)
+
+Every run, so a question he answered on Tuesday is gone before the next Monday.
+
+**Which tickets.** Only an open `attended` ticket that carries a question an agent put to
+him: a comment that @mentions him with the question, or a Monday **Decisions waiting for
+you** comment that listed the ticket. An `attended` ticket nobody asked him about is his
+own off switch or a session he runs: you never read it for an answer and never touch its
+label.
+
+**Is there an answer.** Linear shows every agent's comment under his name, so the author
+tells you nothing. Hand the script `answers` (step 4's file; it may be run here first,
+with the same file): per such ticket its `id`, `question_at` (when the newest question
+was posted) and its comments as `at` and `body`. Its `answer_candidates` are the comments
+newer than the question that are not an agent's own.
+
+- No candidate → he has not answered. Leave the ticket alone.
+- A candidate that picks one of the options, or says what to do in words that leave you
+  nothing to choose → that is his answer.
+- A candidate that does neither → not an answer. Leave the label, keep the ticket on the
+  list, and say in next Monday's question what his comment left open. No @mention.
+
+When in doubt, it is not an answer.
+
+**Apply it**, in this order:
+
+1. Comment on the ticket, headed **Answered**: his answer in one sentence with its date,
+   then one sentence on what work is left ("nothing" if so). This comment is the mark:
+   from now on the ticket is `answered` for step 1's count and for Monday's list.
+2. Work is left and it can run alone (nothing in it on the big side of AGENTS.md "What
+   Chandler is asked", no live database or server needed) → remove `attended`, add
+   `autopilot`, set the ticket to Todo. It is then picked like any other, and its worker
+   reads the **Answered** comment and writes the answer into the decisions log in its
+   pull request where it is a rule. When the only work left is to write that rule down,
+   that is the work.
+3. Work is left and it is still his (the big side, or it needs the live database or the
+   server) → `attended` stays. The ticket is now `kind` `"yours"`, not a question.
+4. Nothing is left and the answer is no rule (he dropped it, or it needed only his word)
+   → set the ticket to Canceled when he dropped it, Done otherwise.
+
+You write no rule down yourself and you merge nothing: an entry in the decisions log
+merges after review like any change; an answer that changes the agents' own rules or the
+labelling guide still waits for his merge (AGENTS.md "The rules gate"). If the ticket has
+an open pull request labelled `needs-chandler`, leave the label; its worker moves the
+question out of "Needs Chandler" and a fresh reviewer decides.
+
+List every ticket you applied an answer to under "Sorted" in the log.
+
+**A question that is small is not asked.** Before a ticket is counted or listed as
+waiting for him, its question must be on the big side of his list. One that could be on
+the small side goes to the `decider`; if it says SMALL CALL, hand the ticket to the
+`senior` agent, post its decision on the ticket headed **Decided for you**, and treat
+the ticket as answered (2 to 4 above). It is then reported, not asked. In doubt, it is
+big and it is his.
 
 ## 3. Unstick what is stuck
 
@@ -149,6 +209,16 @@ in the shape `scripts/lead_pick.py` documents. At the top level:
   The ones under way are never picked; they are there because each holds its area. A
   Backlog ticket needs only `id`, `state`, `labels` and `blocked`: it is counted, never
   picked.
+- `decisions`: only in the Monday run that writes the decisions comment (step 7). Every
+  open `attended` ticket except the log issue, each as `id`, `labels`, `kind`
+  (`"question"` for a decision he has to make, `"yours"` for work he does with an agent:
+  an eval session, a cost session), `answered` (true when step 2a has recorded his
+  answer), `blocks_milestone` (it is in the launch order's current milestone, or blocks a
+  ticket that is), `blocks_todo` (it blocks a ticket in Todo) and `since` (the day it was
+  filed). Hand over all of them, answered ones too: the script leaves those out, you do
+  not. In any other run leave the field out; never pass an empty list you did not gather.
+- `answers`: every run, the tickets step 2a reads, each with `question_at` and its
+  comments. The script answers with `answer_candidates`.
 
 Per ticket:
 
@@ -190,6 +260,7 @@ uv run python scripts/lead_pick.py <file>
   the log, with the script's reason. The other reasons need no mention.
 - `queue.pull` → step 6.
 - `monday` (Mondays only) → step 7.
+- `monday_decisions` (only when you handed over `decisions`) → step 7.
 
 **Then write the log comment at once, before starting anything** (step 7's shape), with
 `result: running` on every picked line and the script's `est_eur` as its spend. Keep the
@@ -294,6 +365,51 @@ summary" issue headed **Decided for you, outside pull requests**, with last week
 lines marked "(no PR)" (once: a later run that day finds the comment and adds nothing). The summary lists the ones in merged pull requests by itself; a
 week with none gets no comment.
 
+**On Mondays, one run adds the decisions waiting in tickets to the summary** (HIR-277).
+The summary itself lists only pull requests; a question that lives in a ticket reaches him
+here or nowhere. Once that morning's "Monday summary" issue exists and carries no comment
+headed **Decisions waiting for you**, hand the script `decisions` (step 4) and add one
+comment in this shape:
+
+```
+**Decisions waiting for you**
+
+1. <the question in one plain sentence> Options: <A> / <B>. Recommended: <A>, because <one reason>. ([HIR-n](<the ticket's link>))
+2. <…>
+
+<the script's `text`, unchanged> Full list: https://linear.app/hiring-radar/team/HIR/label/attended
+
+Answer in a comment on the ticket. The next run applies it, and the question is not asked again.
+
+**Yours this week**
+
+- <what the session is and why it is next, in one line> ([HIR-n](<link>))
+
+**Applied from your answers**
+
+- <what was taken as your answer, and what happened to the ticket> ([HIR-n](<link>))
+```
+
+- The questions are exactly the tickets in `monday_decisions`' `ask`, in that order, and
+  nothing else; the lines under **Yours this week** are exactly its `yours`. `more` is
+  how many questions did not fit; they wait for next Monday. You do not add, drop or
+  reorder: the script keeps the list to what he can answer in one sitting.
+- When `ask` is empty, the first part is the heading and the script's `text`, "No
+  decisions waiting", with no list, no link and no "Answer in a comment" line. A part
+  with nothing under it is left out.
+- **Each question must be answerable from the comment alone.** One plain sentence saying
+  what has to be decided and what it changes for him or for a visitor, two or three short
+  options, and your recommendation with one reason. Take it from the ticket and its
+  comments; where a comment already holds the question rewritten for him, use that. The
+  ticket's link goes at the end, never as the subject. No file names, no function names,
+  no rule numbers, no ticket ids inside the sentence. If his last comment on the ticket
+  did not settle it (step 2a), say in the question what it left open.
+- **A recommendation is not an answer.** You never act on your own recommendation, and
+  you answer none of these for him.
+- **Applied from your answers** lists every ticket that got an **Answered** comment (step
+  2a) in the last seven days, each as the comment's own first sentence. It is how he sees
+  a misreading within a week.
+
 Write for someone who has not read the code: no file names, no function names.
 
 ## Telling Chandler now
@@ -316,7 +432,8 @@ Two sentences: what happened, what he has to do. Everything else waits for Monda
 - **Wednesday evening, mutation test** and **Sunday evening, codebase audit:** separate
   scheduled tasks with their own instructions (DECISIONS 2026-11-12, HIR-266). You do not
   start them. The morning after, step 2 sorts what they filed.
-- **Monday morning:** the summary and the decision list (HIR-264) read this log.
+- **Monday morning:** the summary (HIR-264) reads this log; the 10:30 run adds the pace and
+  the decisions waiting in tickets to it (step 7).
 
 The off switch is pausing the scheduled task. The cap, the limit on decisions waiting and
 the size of the queue are in `config/lead_agent.json`; changing them is not yours.
