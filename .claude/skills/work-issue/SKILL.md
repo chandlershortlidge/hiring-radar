@@ -25,6 +25,11 @@ it — but read `.claude/skills/work-issue/SKILL.md` and `AGENTS.md` from `origi
   available, stop and ask the person to paste the issue text; don't guess the scope.
 - If it is **blocked by** an open issue, say so and stop. If it is **In Progress** with a
   status note at the top, continue from where the note says it stopped.
+- Read its comments too (`list_comments`). A comment headed **Answered** is Chandler's
+  answer to the ticket's question, as the lead agent recorded it (HIR-277): follow it,
+  write it into DECISIONS.md in this PR where it is a rule, and if the ticket's open PR
+  holds that question under "Needs Chandler", move it to "Decisions taken" with his
+  answer quoted.
 - Its "Build" / "Steps" section is the plan. Its "Tests" section is the test list. Its
   "Out of scope" section is binding. Anything you'd add beyond those: ask first.
 

@@ -1,4 +1,5 @@
-"""Which tickets the lead agent may start in this run (HIR-266, HIR-280).
+"""Which tickets the lead agent may start in this run (HIR-266, HIR-280), and which of
+the decisions waiting for Chandler go into Monday's comment (HIR-277).
 
 The lead agent (.claude/skills/lead-agent) is a model following instructions. Its hard
 limits are here instead, as code with tests, so a "never" cannot be skipped
@@ -34,6 +35,9 @@ Input, one JSON object (a file path, or stdin):
     {"today": "2026-11-12",
      "decisions_waiting": 4,
      "red": ["the robot visitor"],
+     "decisions": [{"id": "HIR-131", "kind": "question", "labels": ["attended"],
+                    "answered": false, "blocks_milestone": true, "blocks_todo": false,
+                    "since": "2026-11-03"}, ...],
      "log": [{"date": "2026-11-11", "body": "<a log comment's text>"}, ...],
      "tickets": [{"id": "HIR-197", "state": "Todo", "labels": ["autopilot", "Bug"],
                   "blocked": false, "milestone_rank": 0, "visitor_bug": true,
@@ -55,6 +59,23 @@ model-call spend starting the ticket would cause; null when it cannot be known.
 out, it counts as true. `rereads` is whether merging it makes the model re-read the
 stored jobs. `repair` marks the ticket that fixes what `red` names.
 
+`decisions` is optional: the open `attended` tickets, handed over by the run that writes
+Monday's "Decisions waiting for you" comment (HIR-277). `kind` is `question` (a decision
+he has to make) or `yours` (work he does with an agent: an eval session, a cost session);
+left out, it is a question. `answered` is true once he has answered and the lead agent has
+recorded it on the ticket. `blocks_milestone`: the ticket is in the launch order's current
+milestone, or blocks a ticket that is. `blocks_todo`: it blocks a ticket in Todo. `since`
+is the day the ticket was filed. Left out altogether, the answer has no
+`monday_decisions`: a run that did not look must not be read as "No decisions waiting".
+
+`answers` is optional too: one entry per open `attended` ticket that carries a question
+an agent put to Chandler, as `{"id", "question_at", "comments": [{"at", "body"}, ...]}`.
+`question_at` is when the newest such question was posted (the comment that @mentions
+him, or the Monday comment that listed the ticket), `at` when each comment was; both as
+Linear gives them. The answer then has `answer_candidates`: per ticket, the comments
+that are newer than the question and are not an agent's own. None means he has not
+answered; one or more means the agent reads them and judges.
+
 The log lines it reads, one per ticket, written by the lead agent:
 
     - HIR-197 | picked: always on; a bug a visitor would notice | result: merged | spend: €0.00
@@ -66,12 +87,17 @@ entry with the ticket id and a plain-words reason, plus `spent_eur`, `cap_eur`,
 `decisions_waiting`, `queue` (how many tickets that can run alone are in Todo, how many
 of those are still there after this pick, and how many more to pull into Todo to keep 5
 waiting) and, when `today` is a Monday, `monday`: the three numbers for the weekly
-summary as plain sentences.
+summary as plain sentences. When the state has `decisions`, also `monday_decisions`:
+`ask` (the ticket ids to put as questions, in order, at most 10), `more` (how many
+questions did not fit), `yours` (the ids for "Yours this week", at most 3) and `text`
+(the line that follows the questions: how many more are waiting, or "No decisions
+waiting").
 
 Does NOT: talk to Linear or GitHub, start anything, write anything, or call a model. It
 does not judge what a ticket's area, milestone or spend is, whether it may add a
-decision, or how many decisions are waiting; the agent supplies those. Standard library
-only.
+decision, or how many decisions are waiting; the agent supplies those. It does not write
+the questions either: it only says which tickets, in what order, and how many. Standard
+library only.
 
     python scripts/lead_pick.py state.json            # limits from config/lead_agent.json
     python scripts/lead_pick.py state.json --cap 0    # the "cap set to zero" check
@@ -187,6 +213,76 @@ def monday_text(log, today, tickets, decisions_waiting, queue_min=5):
     return text
 
 
+# How an agent's own comment on a ticket starts (the brief, a small call, a review, the
+# lead agent's notes and Monday comments, the mark that an answer was recorded). Linear
+# shows every agent's comment under Chandler's name, so the first line is what tells them
+# apart. A comment an agent session wrote down for him, "Decision (Chandler, <date>)", is
+# not in this list on purpose: it is his answer.
+AGENT_HEADING = re.compile(
+    r"^(brief|doing:|decided for you|review:|lead agent|hands-on brief|answered|pace|"
+    r"decisions waiting for you|needs chandler|follow-ups)(?![a-z])", re.IGNORECASE)
+# The comment a worker leaves when its pull request is open.
+PR_LINK = re.compile(r"github\.com/[^\s/]+/[^\s/]+/pull/\d+")
+
+
+def answer_candidates(question_at, comments):
+    """The comments on a ticket that may be Chandler's answer to the question an agent put
+    to him at `question_at` (HIR-277): newer than the question and not an agent's own.
+
+    A ticket nobody asked him about (`question_at` empty) has none, whatever its comments
+    say: its `attended` label is his own and no agent lifts it. This only rules comments
+    out; whether a candidate really settles the question is the lead agent's reading."""
+    if not question_at:
+        return []
+    found = []
+    for comment in comments or []:
+        body = (comment.get("body") or "").strip()
+        if not body or (comment.get("at") or "") <= question_at:
+            continue
+        first_line = body.splitlines()[0].lstrip("*#`>_ ")
+        if AGENT_HEADING.match(first_line) or PR_LINK.search(body):
+            continue
+        found.append(comment)
+    return found
+
+
+# Labels that mean a ticket is not a question for Chandler, whatever else it carries.
+NOT_A_QUESTION = ("hands-on", "parked")
+
+
+def monday_decisions(decisions, max_questions=10, max_yours=3):
+    """Which waiting decisions Monday's comment asks, in what order (HIR-277).
+
+    At most `max_questions`, so the list can be answered in one sitting: first what blocks
+    the current launch milestone, then what blocks a ticket in Todo, then the oldest. A
+    ticket he has already answered is never asked again; `hands-on` and `parked` tickets
+    are not questions. Work he does with an agent is not a question either: up to
+    `max_yours` of those go under "Yours this week", in the same order."""
+    def order(item):
+        return (0 if item.get("blocks_milestone") else 1,
+                0 if item.get("blocks_todo") else 1,
+                item.get("since") or "9999",
+                item["id"])
+
+    waiting = []
+    for item in decisions:
+        labels = {str(name).lower() for name in item.get("labels") or []}
+        if item.get("answered") or any(name in labels for name in NOT_A_QUESTION):
+            continue
+        waiting.append(item)
+    waiting.sort(key=order)
+    questions = [item["id"] for item in waiting if item.get("kind", "question") != "yours"]
+    yours = [item["id"] for item in waiting if item.get("kind") == "yours"]
+    ask, more = questions[:max_questions], len(questions[max_questions:])
+    if not ask:
+        text = "No decisions waiting"
+    elif more:
+        text = f"{more} more {'is' if more == 1 else 'are'} waiting for you."
+    else:
+        text = "That is every decision waiting for you."
+    return {"ask": ask, "more": more, "yours": yours[:max_yours], "text": text}
+
+
 def _order(ticket):
     priority = ticket.get("priority") or 0
     return (
@@ -210,7 +306,8 @@ def _why(ticket):
     return "; ".join(parts)
 
 
-def pick(tickets, log, today, cap_eur, decisions_waiting=0, red=(), max_decisions=10, queue_min=5):
+def pick(tickets, log, today, cap_eur, decisions_waiting=0, red=(), max_decisions=10, queue_min=5,
+         decisions=None, max_questions=10, max_yours=3, answers=None):
     """The run's answer: what may start, what may not and why."""
     spent = spent_on(log, today)
     failed = failures(log)
@@ -223,6 +320,13 @@ def pick(tickets, log, today, cap_eur, decisions_waiting=0, red=(), max_decision
     }
     if datetime.date.fromisoformat(today).weekday() == 0:
         result["monday"] = monday_text(log, today, tickets, decisions_waiting, queue_min)
+    if decisions is not None:
+        result["monday_decisions"] = monday_decisions(decisions, max_questions, max_yours)
+    if answers is not None:
+        result["answer_candidates"] = [
+            {"id": item["id"],
+             "candidates": answer_candidates(item.get("question_at"), item.get("comments"))}
+            for item in answers]
     if cap_eur <= 0:
         result["stop"] = "the daily spending cap is set to zero, so nothing is started"
         return result
@@ -312,6 +416,10 @@ def main(argv=None):
         red=state["red"],
         max_decisions=config["max_decisions_waiting"],
         queue_min=config["queue_min"],
+        decisions=state.get("decisions"),
+        answers=state.get("answers"),
+        max_questions=config["monday_questions_max"],
+        max_yours=config["monday_yours_max"],
     )
     print(json.dumps(answer, indent=2, ensure_ascii=False))
     return 0
