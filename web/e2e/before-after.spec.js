@@ -31,6 +31,11 @@ const TYPES = { ".html": "text/html", ".js": "text/javascript", ".css": "text/cs
   ".png": "image/png", ".ico": "image/x-icon", ".json": "application/json", ".woff2": "font/woff2" };
 const authHeader = () => ({ authorization: "Basic " + Buffer.from(AUTH).toString("base64") });
 
+// Requests to the live site that have not been answered yet. A drawer fetches its own data
+// after it opens, long after the page's "network idle" moment has passed, so that moment
+// can't be waited for a second time; this count can.
+let waiting = 0;
+
 async function serve(page, dist) {
   const root = resolve(dist);
   await page.unroute("**/*");
@@ -42,8 +47,17 @@ async function serve(page, dist) {
     if (url.host !== "radar.test") return route.abort();
     if (url.pathname.startsWith("/api/")) {
       if (req.method() !== "GET") return route.abort(); // never write to the live site
-      const res = await route.fetch({ url: LIVE + url.pathname + url.search, headers: authHeader() });
-      return route.fulfill({ response: res });
+      waiting += 1;
+      try {
+        const res = await route.fetch({ url: LIVE + url.pathname + url.search, headers: authHeader() });
+        return await route.fulfill({ response: res });
+      } catch {
+        // The page moved on to the next view before the live site answered: nobody is
+        // waiting for this answer, and an error thrown here would fail the whole run.
+        return route.abort().catch(() => {});
+      } finally {
+        waiting -= 1;
+      }
     }
     let file = join(root, normalize(url.pathname));
     if (!file.startsWith(root) || !existsSync(file) || statSync(file).isDirectory()) file = join(root, "index.html");
@@ -65,7 +79,8 @@ async function shot(page, path, button) {
     await page.getByRole("button", { name: button }).click({ timeout: 10_000 });
     await page.getByRole("dialog").waitFor({ state: "visible", timeout: 10_000 });
     // What the drawer fetches for itself (proposed skills, skill counts) has arrived.
-    await page.waitForLoadState("networkidle", { timeout: 20_000 }).catch(() => {});
+    await page.waitForTimeout(300);
+    for (let i = 0; waiting > 0 && i < 100; i++) await page.waitForTimeout(200);
     await page.waitForTimeout(800);
   } catch {
     problem = "the drawer did not open";
