@@ -11,6 +11,7 @@
 // while rendering is the address bar, so that is all the stand-in window provides.
 import { describe, it, expect, beforeAll, afterAll, vi } from "vitest";
 import { renderToStaticMarkup } from "react-dom/server";
+import { readFileSync } from "node:fs";
 import App from "./App.jsx";
 
 let buttons;
@@ -38,4 +39,19 @@ describe("the header's buttons", () => {
   it("leaves no header button whose only name is words a phone hides", () => {
     for (const b of buttons) expect(b).toMatch(/aria-label="[^"]+"/);
   });
+});
+
+// HIR-284: the run-on line of statistics above the chart ("944 jobs · 739 currently open
+// (Berlin 256 · …) · 397 companies · 244 skills tracked · … · last updated 14 h ago") was
+// removed on Chandler's call: nobody reads it. Open jobs per city live on the home page's
+// market cards instead. The block only rendered once /api/stats had answered, which the
+// static render above never reaches, so this holds the line on the source: none of the
+// wording that existed only in that block may come back.
+describe("the statistics line above the chart", () => {
+  const source = readFileSync(new URL("./App.jsx", import.meta.url), "utf8");
+
+  it.each(["skills tracked", "too short, not charted", "legacy, not charted", "of those open now", "last updated", "need German", 'className="stats"'])(
+    'is gone: the page no longer says "%s"', (words) => {
+      expect(source).not.toContain(words);
+    });
 });
