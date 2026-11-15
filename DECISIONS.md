@@ -24,7 +24,8 @@ picks it up, and its first lines say so and name the two earlier tickets. It is 
 assigned to Chandler and pings nobody: it reaches him in the Monday summary. The count is
 of tickets closed as done, not cancelled ones, and it is by title, which is the visitor
 path that failed. Thirty days because a path that broke twice last spring is not a loop;
-the ticket gave no number. Undo: set `REPEAT_FIXES` in `scripts/site_watch_ticket.py`
+the ticket gave no number. If the earlier fixes cannot be counted (Linear refuses the
+question), the ticket is filed for an agent as before: a ticket beats none. Undo: set `REPEAT_FIXES` in `scripts/site_watch_ticket.py`
 out of reach, or change `REPEAT_DAYS`.
 
 **Known limit.** While such a ticket waits and the robot's morning run stays red, the lead

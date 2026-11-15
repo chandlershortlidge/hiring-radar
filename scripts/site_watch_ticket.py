@@ -196,7 +196,12 @@ class Linear:
             self.q("""mutation($issue: String!, $body: String!) { commentCreate(input: {issueId: $issue, body: $body}) { success } }""",
                    issue=existing["id"], body="Seen again.\n\n" + t["body"])
             return f"commented on {existing['identifier']}"
-        fixed = self.fixed_recently(t["title"]) if t.get("stop_after_two_fixes") else []
+        fixed = []
+        if t.get("stop_after_two_fixes"):
+            try:
+                fixed = self.fixed_recently(t["title"])
+            except Exception as e:  # noqa: BLE001 - a ticket for an agent beats no ticket at all
+                print(f"could not count earlier fixes ({e}); filing as an ordinary ticket", file=sys.stderr)
         if len(fixed) >= REPEAT_FIXES:
             t = after_two_fixes(t, fixed)
         fields = {"teamId": TEAM_ID, "title": t["title"], "description": t["body"], "priority": t["priority"]}

@@ -228,3 +228,17 @@ def test_rollback_failed_is_unchanged_by_earlier_fixes(tmp_path):
     run(["--kind", "rollback-failed", "--report", str(tmp_path / "none.json")], fake)
     [issue] = fake.created()
     assert issue["assigneeId"] == swt.CHANDLER_ID and "labelIds" not in issue
+
+
+def test_when_earlier_fixes_cannot_be_counted_the_ticket_is_still_filed_for_an_agent(tmp_path, capsys):
+    class NoCount(FakeLinear):
+        def __call__(self, payload):
+            if "completedAt" in payload["query"]:
+                return {"errors": [{"message": "bad filter"}]}
+            return super().__call__(payload)
+
+    fake = NoCount()
+    rep = write_report(tmp_path, report(spec("compare mode", ("desktop", "unexpected"))))
+    assert run(["--kind", "deploy", "--report", rep], fake) == 0
+    assert fake.created()[0]["labelIds"] == ["label-autopilot"]
+    assert "could not count earlier fixes" in capsys.readouterr().err
