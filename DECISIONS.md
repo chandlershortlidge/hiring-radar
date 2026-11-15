@@ -5,6 +5,53 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-15 — A break the robot visitor finds a third time is Chandler's, and the Monday summary reports the robot's week (HIR-260)
+
+HIR-258 made the robot visitor file a ticket when the live site breaks. This closes the
+loop the ticket left open: who fixes it, what stops a fix-break-fix loop, and how Chandler
+hears about it.
+
+**Who fixes it: nothing new.** The robot's tickets are labelled `autopilot`, and since
+HIR-266 the lead agent pulls such tickets into Todo and starts them, repairs first while
+the robot is red. The fix is an ordinary pull request with a test and a review. The robot
+confirms it by running after the deploy: a fix that did not work fails there, is rolled
+back, and gets a new ticket under the same title.
+
+**Two fixes, then it stops.** When the robot (or the outside uptime check) is about to
+file a ticket and two tickets with that exact title were already closed as done in the
+last 30 days, the new ticket is labelled `attended` instead of `autopilot`, so no agent
+picks it up, and its first lines say so and name the two earlier tickets. It is not
+assigned to Chandler and pings nobody: it reaches him in the Monday summary. The count is
+of tickets closed as done, not cancelled ones, and it is by title, which is the visitor
+path that failed. Thirty days because a path that broke twice last spring is not a loop;
+the ticket gave no number. If the earlier fixes cannot be counted (Linear refuses the
+question), the ticket is filed for an agent as before: a ticket beats none. Undo: set `REPEAT_FIXES` in `scripts/site_watch_ticket.py`
+out of reach, or change `REPEAT_DAYS`.
+
+**Known limit.** While such a ticket waits and the robot's morning run stays red, the lead
+agent starts repairs only (its own rule: a red robot visitor holds everything else). After
+a deploy this does not arise, because the rollback leaves the site passing. Changing that
+is a change to the lead agent's rules, so it is its own ticket.
+
+**The Monday summary gets a robot-visitor part.** What broke last week (and whether the
+change was rolled back), what was fixed (and whether it has broken again since), and what
+is still open. It sits after the pull requests and before the job sources. A third-time
+break goes above everything else in the post, under "Broke again after two fixes: needs
+you", for the reason "Needs you" went first in HIR-264: it is the one part he must act on.
+"Site down and rollback failed" is unchanged: that ticket is assigned to him the moment it
+happens.
+
+**The server now reads Linear, with the key it already posts with.** HIR-264 and HIR-280
+say the Monday post "cannot read Linear's tickets"; it never tried. The robot's week
+exists only as its tickets, so the caretaker's Monday run asks Linear for them: one
+request a week, read-only. If Linear cannot be read, or there is no key, the section says
+so in one line and the rest of the post still goes out. What a ticket is (robot or not,
+rolled back or not) is read from the fixed title and wording `scripts/site_watch_ticket.py`
+writes; a test fails if that wording drifts. Undo: drop `site_watch=` from the caretaker
+command in `app/__main__.py`.
+
+---
+
 ## 2026-11-14 — A posting dropped as unreadable is remembered, until the extractor changes (HIR-176)
 
 The "try twice, then drop" rule of 5 Nov (HIR-172) deletes a posting the model reads as

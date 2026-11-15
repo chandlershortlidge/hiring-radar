@@ -187,6 +187,35 @@ def test_monday_summary_posts_once(conn):
     assert [t for t, _ in posted] == ["Monday summary: 2026-11-09 to 2026-11-15"]
 
 
+def test_monday_summary_puts_the_robot_visitors_needs_you_first_and_its_week_after_the_pull_requests(conn):
+    # HIR-260: a break that came back after two fixes is the one robot line Chandler must
+    # act on, so it goes above the pull requests; the week's report goes after them.
+    poll_today(conn, feeds_doc()["feeds"])
+    morning(conn)
+    posted, asked = [], []
+
+    def site_watch(start, end):
+        asked.append((start, end))
+        return "# The live site: needs you\n\n- x\n", "# The robot visitor\n\n## What broke\n"
+
+    run.report(conn, DAY, lambda t, b: posted.append(b) or "HIR-900", log=lambda *_: None,
+               changes=lambda s, e: "# Needs you\n\nNothing.\n", site_watch=site_watch)
+    [body] = posted
+    assert asked == [("2026-11-09", "2026-11-15")]
+    order = [body.index(h) for h in ("# The live site: needs you", "# Needs you", "# The robot visitor", "# Caretaker")]
+    assert order == sorted(order) and order[0] == 0
+
+
+def test_monday_summary_with_nothing_waiting_from_the_robot_starts_with_the_pull_requests(conn):
+    poll_today(conn, feeds_doc()["feeds"])
+    morning(conn)
+    posted = []
+    run.report(conn, DAY, lambda t, b: posted.append(b) or "HIR-900", log=lambda *_: None,
+               changes=lambda s, e: "# Needs you\n\nNothing.\n",
+               site_watch=lambda s, e: ("", "# The robot visitor\n\nNothing broke on the live site all week.\n"))
+    assert posted[0].startswith("# Needs you") and "Nothing broke on the live site all week." in posted[0]
+
+
 def test_no_summary_on_other_days_and_no_post_without_a_key(conn):
     assert run.weekly_due(conn, "2026-11-17") is None
     out = []

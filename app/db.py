@@ -3,6 +3,9 @@
 Does: open the database with foreign keys on, and apply any numbered SQL files in
 app/migrations/ that have not been applied yet, in order, each in its own transaction.
 
+Also: open a database for reading only (`connect_readonly`), for a command that must be
+safe to point at the live database from any branch (HIR-265). That path never migrates.
+
 Does NOT: define queries for jobs or skills (those live with the code that needs them),
 roll migrations back, or support any database other than SQLite.
 
@@ -29,6 +32,19 @@ def connect(path: str | Path, same_thread: bool = True) -> sqlite3.Connection:
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     conn.execute("PRAGMA journal_mode = WAL")
+    return conn
+
+
+def connect_readonly(path: str | Path) -> sqlite3.Connection:
+    """Open an existing database so that nothing can be written through the connection.
+
+    SQLite's own `mode=ro`: every write is refused by the database engine, and a missing
+    file is an error instead of a new empty database. No `journal_mode` pragma either,
+    because setting it is itself a write. Callers never run `migrate` on this connection
+    (it would fail): a command that only reads must not record a branch's unmerged
+    migration as applied (HIR-265)."""
+    conn = sqlite3.connect(f"{Path(path).resolve().as_uri()}?mode=ro", uri=True)
+    conn.row_factory = sqlite3.Row
     return conn
 
 

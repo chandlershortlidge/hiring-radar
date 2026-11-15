@@ -16,7 +16,11 @@ Kinds:
                      fix it. The one kind that goes straight to Chandler: Urgent, assigned
                      to him, and not labelled autopilot.
 
-Every other ticket is labelled `autopilot`, so an agent picks it up without him.
+Every other ticket is labelled `autopilot`, so an agent picks it up without him — until
+the same break comes back after two fixes (HIR-260). When REPEAT_FIXES tickets with the
+same title were closed as done in the last REPEAT_DAYS days, the next one is labelled
+`attended` instead: no agent picks it up, nobody is pinged, and the caretaker's Monday
+summary lists it for Chandler (app/site_watch_week.py). DECISIONS 2026-11-15.
 
 Does NOT: retry, roll anything back, or touch the site. Without LINEAR_API_KEY it prints
 the ticket it would have filed and exits 2, so the workflow run goes red and the text is
@@ -40,6 +44,8 @@ TEAM_ID = "536d7e60-8726-44aa-9e3a-b273910d72d5"  # Hiring-radar
 CHANDLER_ID = "cbb0f6cd-bb63-498d-acb6-f852fd2d86ec"
 ERROR_CHARS = 3000
 ANSI = re.compile(r"\x1b\[[0-9;]*m")
+REPEAT_FIXES = 2   # this many fixes of the same break...
+REPEAT_DAYS = 30   # ...inside this many days, and the next ticket is Chandler's, not an agent's
 
 WHAT_HAPPENED = {
     "deploy": "The robot visitor failed right after a deploy. **The deploy was rolled back** to the "
@@ -108,7 +114,7 @@ def robot_ticket(kind: str, f: dict, args) -> dict:
               "Fix through a normal pull request with a test; the robot visitor confirms the fix "
               "on the live site on its next run (or run the site-watch workflow by hand)."]
     return {"title": f"Site watch: \"{f['test']}\" fails", "body": "\n".join(lines),
-            "autopilot": True, "priority": 2, "assignee": None}
+            "autopilot": True, "priority": 2, "assignee": None, "stop_after_two_fixes": True}
 
 
 def uptime_ticket(args) -> dict:
@@ -117,7 +123,7 @@ def uptime_ticket(args) -> dict:
             "If the site is already back, find what stopped it (the VM, the app service, Caddy) "
             "and close this with the cause.")
     return {"title": "Site watch: the site does not answer", "body": body,
-            "autopilot": True, "priority": 1, "assignee": None,
+            "autopilot": True, "priority": 1, "assignee": None, "stop_after_two_fixes": True,
             # Checked every five minutes: while the ticket is open, more misses add nothing.
             "comment_again": False}
 
@@ -132,6 +138,15 @@ def rollback_failed_ticket(args, fails: list[dict]) -> dict:
             f"{paths}\n\nRun: {args.run_url or 'unknown'}")
     return {"title": "Site down and rollback failed", "body": body,
             "autopilot": False, "priority": 1, "assignee": CHANDLER_ID}
+
+
+def after_two_fixes(t: dict, fixed: list[str]) -> dict:
+    """The ticket for a break that came back after REPEAT_FIXES fixes: the same title (so a
+    further failure comments on it), but for Chandler's Monday summary, not for an agent."""
+    note = (f"**This has broken again after {len(fixed)} fixes in the last {REPEAT_DAYS} days** "
+            f"({', '.join(fixed)}). No agent picks it up this time: it is labelled `attended` "
+            "and waits for Chandler in the Monday summary.")
+    return {**t, "body": note + "\n\n" + t["body"], "autopilot": False, "label": "attended"}
 
 
 class Linear:
@@ -159,6 +174,15 @@ class Linear:
         nodes = d["issues"]["nodes"]
         return nodes[0] if nodes else None
 
+    def fixed_recently(self, title: str) -> list[str]:
+        """Identifiers of tickets with this exact title closed as done (not cancelled) in
+        the last REPEAT_DAYS days, oldest first."""
+        d = self.q("""query($team: ID!, $title: String!) {
+            issues(first: 20, filter: {team: {id: {eq: $team}}, title: {eq: $title},
+                   state: {type: {eq: "completed"}}, completedAt: {gte: "-P%dD"}}) { nodes { identifier completedAt } } }"""
+                   % REPEAT_DAYS, team=TEAM_ID, title=title)
+        return [n["identifier"] for n in sorted(d["issues"]["nodes"], key=lambda n: n.get("completedAt") or "")]
+
     def label_id(self, name: str) -> str | None:
         d = self.q("""query($name: String!) { issueLabels(first: 1, filter: {name: {eq: $name}}) { nodes { id } } }""", name=name)
         nodes = d["issueLabels"]["nodes"]
@@ -172,13 +196,25 @@ class Linear:
             self.q("""mutation($issue: String!, $body: String!) { commentCreate(input: {issueId: $issue, body: $body}) { success } }""",
                    issue=existing["id"], body="Seen again.\n\n" + t["body"])
             return f"commented on {existing['identifier']}"
+        fixed = []
+        if t.get("stop_after_two_fixes"):
+            try:
+                fixed = self.fixed_recently(t["title"])
+            except Exception as e:  # noqa: BLE001 - a ticket for an agent beats no ticket at all
+                print(f"could not count earlier fixes ({e}); filing as an ordinary ticket", file=sys.stderr)
+        if len(fixed) >= REPEAT_FIXES:
+            t = after_two_fixes(t, fixed)
         fields = {"teamId": TEAM_ID, "title": t["title"], "description": t["body"], "priority": t["priority"]}
-        if t["autopilot"] and (lid := self.label_id("autopilot")):
+        label = t.get("label") or ("autopilot" if t["autopilot"] else None)
+        if label and (lid := self.label_id(label)):
             fields["labelIds"] = [lid]
         if t["assignee"]:
             fields["assigneeId"] = t["assignee"]
         d = self.q("""mutation($input: IssueCreateInput!) { issueCreate(input: $input) { issue { identifier } } }""", input=fields)
-        return f"filed {d['issueCreate']['issue']['identifier']}"
+        filed = f"filed {d['issueCreate']['issue']['identifier']}"
+        if len(fixed) >= REPEAT_FIXES:
+            filed += f" for Chandler's Monday summary, not for an agent: broke again after {', '.join(fixed)}"
+        return filed
 
 
 def tickets(args) -> list[dict]:
