@@ -30,7 +30,11 @@ then drop (HIR-172, Chandler's decision of 5 Nov). The two must be consecutive: 
 successful extraction resets the count to 0 in the same transaction that stamps the job, so
 a reading that worked clears the blank before it (HIR-199). Migration 015's comment says the
 count is never reset and is wrong on that point; a committed migration is never edited, so
-this docstring and the DECISIONS entry of 6 Nov are the current rule. Every other failure is retried for ever,
+this docstring and the DECISIONS entry of 6 Nov are the current rule. A dropped posting's feed ids are remembered
+in `dropped_posting`, so the feed that lists it again tomorrow does not get it stored and read
+twice more (HIR-176); the memory is kept per extractor_version and every run forgets the rows of
+another version, so a changed prompt, model or skill list gives the posting two fresh tries.
+Every other failure is retried for ever,
 since it says nothing about the posting. Only one extraction runs per database at a time: a second
 run (a poll started while an add is extracting, say) skips instead of paying for the same jobs
 twice, and its jobs stay pending for the next run. A version bump re-reads only jobs that are
@@ -54,6 +58,7 @@ from app.extract import (
 from app.grounding import grounding
 from app.ingest import now_iso
 from app.queries import open_clause
+from app.sources import registry
 from app.reread_cost import MODEL_PRICES_USD_PER_MTOK, BATCH_DISCOUNT, Tokens, USAGE_KEYS, price_eur
 from app.taxonomy import Taxonomy
 
@@ -222,13 +227,32 @@ def _count_blank_read(conn: sqlite3.Connection, job_id: int) -> int:
     return conn.execute("SELECT blank_extractions FROM job WHERE id = ?", (job_id,)).fetchone()[0]
 
 
-def _drop_job(conn: sqlite3.Connection, job_id: int) -> None:
-    """Delete a posting the model has read as blank twice in a row; its rows cascade with it."""
+def _drop_job(conn: sqlite3.Connection, job_id: int, version: str) -> None:
+    """Delete a posting the model has read as blank twice in a row; its rows cascade with it.
+
+    The ids its feeds listed it under are remembered first, in the same transaction, so
+    ingest can pass over the feed's next listing of it (HIR-176). Hand-added sightings are
+    not remembered: a person adding the posting again has chosen it."""
     if not conn.execute("PRAGMA foreign_keys").fetchone()[0]:
         raise RuntimeError("foreign keys are off: dropping a job would orphan its rows. "
                            "Open the database with app.db.connect.")
+    manual = registry.MANUAL_SOURCES
     with conn:
+        conn.execute(
+            "INSERT OR REPLACE INTO dropped_posting (source, source_job_id, extractor_version, dropped_at)"
+            " SELECT source, source_job_id, ?, ? FROM job_source"
+            f" WHERE job_id = ? AND source_job_id IS NOT NULL AND source NOT IN ({','.join('?' * len(manual))})",
+            (version, now_iso(), job_id, *manual))
         conn.execute("DELETE FROM job WHERE id = ?", (job_id,))
+
+
+def forget_stale_drops(conn: sqlite3.Connection, version: str) -> int:
+    """Forget the dropped postings that an older extractor read blank; returns how many.
+
+    A posting the model could not read under one prompt, model or skill list may be
+    readable under the next, which is exactly when a fresh try is wanted (HIR-176)."""
+    with conn:
+        return conn.execute("DELETE FROM dropped_posting WHERE extractor_version != ?", (version,)).rowcount
 
 
 def _reject_fields(item) -> tuple[str | None, str | None]:
@@ -380,13 +404,15 @@ def _batch_usage_metadata(usage: dict, model: str) -> dict:
             "input_cost": input_cost, "output_cost": output_cost, "total_cost": input_cost + output_cost}
 
 
-def _apply_job_result(conn, row, sent, ex_or_exc, model, trace, report, log, batch: bool = False) -> None:
+def _apply_job_result(conn, row, sent, ex_or_exc, model, trace, report, log, batch: bool = False,
+                      version: str = "") -> None:
     """Apply one job's reading to the report and the database — success or failure,
     however the reading was obtained. Shared by the per-job loop and the batch loop so a
     reading taken one at a time or recovered from a batch is validated and stored under
     exactly the same rules: blank-read counting and drop-after-two, grounding, storage
     (HIR-222). `ex_or_exc` is an `Extraction` on success, or the exception that was raised
-    reading it.
+    reading it. `version` is the extractor version of this run, kept with a dropped
+    posting so the drop is forgotten when the version changes (HIR-176).
     """
     with trace.job(row["id"], row["title"], sent) as span:
         if isinstance(ex_or_exc, BaseException):
@@ -400,7 +426,7 @@ def _apply_job_result(conn, row, sent, ex_or_exc, model, trace, report, log, bat
                     f" (blank read {blanks} of {BLANK_READ_LIMIT})")
                 dropped = blanks >= BLANK_READ_LIMIT
                 if dropped:
-                    _drop_job(conn, row["id"])
+                    _drop_job(conn, row["id"], version)
                     report.dropped.append((row["id"], f"{blanks} blank reads"))
                     log(f"  job {row['id']}: DROPPED after {blanks} blank reads")
                 span.failed(f"{type(e).__name__}: {e}", dropped=dropped)
@@ -456,6 +482,10 @@ def extract_pending(conn: sqlite3.Connection, tax: Taxonomy, extract_fn=None, mo
                                 metadata={"model": model, "taxonomy_version": tax.version,
                                           "extractor_version": extractor_version(tax, model)},
                                 inputs={"limit": limit, "job_ids": job_ids}) as trace:
+            forgotten = forget_stale_drops(conn, extractor_version(tax, model))
+            if forgotten:
+                log(f"  {forgotten} posting{'' if forgotten == 1 else 's'} dropped as unreadable by an"
+                    f" earlier extractor version will be stored and tried again on the next poll")
             carried = 0
             if not job_ids:
                 carried = _carry_over(conn, tax, model, log, trace)
@@ -530,7 +560,7 @@ def _extract_pending(conn, tax, extract_fn, model, limit, log, job_ids, trace=No
             ex_or_exc = extract_fn(sent, tax, model)
         except Exception as e:  # keep going; the job stays pending for the next run
             ex_or_exc = e
-        _apply_job_result(conn, row, sent, ex_or_exc, model, trace, report, log)
+        _apply_job_result(conn, row, sent, ex_or_exc, model, trace, report, log, version=version)
         line = progress_line(report.attempted, len(rows))
         if line:
             log(line)
@@ -584,5 +614,5 @@ def _extract_pending_batch(conn, tax, batch_fn, model, limit, log, job_ids, trac
         report.attempted += 1
         sent = sent_by_id[row["id"]]
         ex_or_exc = _result_to_extraction(results.get(str(row["id"])), tax, sent, model)
-        _apply_job_result(conn, row, sent, ex_or_exc, model, trace, report, log, batch=True)
+        _apply_job_result(conn, row, sent, ex_or_exc, model, trace, report, log, batch=True, version=version)
     return report

@@ -5,9 +5,12 @@ can be checked by hand. No model call anywhere — the command only reads the da
 """
 
 import json
+import shutil
+import sqlite3
 
 import pytest
 
+import app.__main__ as cli
 from app import db, pipeline, reread_cost
 from app.ingest import ingest_one
 from app.sources import Posting
@@ -204,3 +207,93 @@ def test_one_job_is_not_called_jobs(conn):
     conn.execute("DELETE FROM job WHERE id IN (2, 3)")
     conn.commit()
     assert "re-read 1 job:" in reread_cost.report_lines(reread_cost.reread_cost(conn))[0]
+
+
+# --- the command only reads: it never migrates the database it is pointed at (HIR-265) --
+
+def schema_state(path):
+    """Everything a migration could change: the applied-migrations list and the schema."""
+    c = sqlite3.connect(path)
+    try:
+        return (c.execute("SELECT version FROM schema_migrations ORDER BY version").fetchall(),
+                c.execute("SELECT type, name, sql FROM sqlite_master ORDER BY type, name").fetchall())
+    finally:
+        c.close()
+
+
+def database_behind(tmp_path, keep):
+    """A database built from only the migrations `keep` accepts, as a checkout that did
+    not have the others yet would have left it."""
+    older = tmp_path / "migrations"
+    older.mkdir()
+    for f in sorted(db.MIGRATIONS_DIR.glob("*.sql")):
+        if keep(int(f.name[:3])):
+            shutil.copy(f, older / f.name)
+    path = tmp_path / "behind.db"
+    c = db.connect(path)
+    db.migrate(c, older)
+    c.close()
+    return path
+
+
+def newest_migration():
+    return max(int(f.name[:3]) for f in db.MIGRATIONS_DIR.glob("*.sql"))
+
+
+def test_the_command_leaves_a_database_one_migration_behind_exactly_as_it_was(
+        tmp_path, monkeypatch, capsys):
+    newest = newest_migration()
+    path = database_behind(tmp_path, lambda v: v != newest)
+    before = schema_state(path)
+    assert (newest,) not in before[0]
+    monkeypatch.setattr(cli, "DB_PATH", path)
+    cli.main(["reread-cost"])
+    out = capsys.readouterr().out
+    assert "would re-read 0 jobs: about €0.00." in out
+    assert "applied migrations" not in out
+    assert schema_state(path) == before
+
+
+def test_the_commands_figure_on_an_up_to_date_database_is_the_one_it_always_gave(
+        tmp_path, conn, monkeypatch, capsys):
+    log_readings(conn, reread_cost.MIN_READINGS_TO_AVERAGE,
+                 {"input_tokens": 1_000_000, "output_tokens": 1_000_000})
+    expected = reread_cost.report_lines(reread_cost.reread_cost(conn, tax=cli.Taxonomy.load()))
+    assert "would re-read 3 jobs: about €16.74." in expected[0]
+    conn.close()
+    before = schema_state(tmp_path / "t.db")
+    monkeypatch.setattr(cli, "DB_PATH", tmp_path / "t.db")
+    cli.main(["reread-cost"])
+    assert capsys.readouterr().out.splitlines() == expected
+    assert schema_state(tmp_path / "t.db") == before
+
+
+def test_a_database_too_old_for_the_estimate_is_reported_and_left_alone(tmp_path, monkeypatch):
+    """Before migration 16 there is no log of paid readings to average."""
+    path = database_behind(tmp_path, lambda v: v < 16)
+    before = schema_state(path)
+    monkeypatch.setattr(cli, "DB_PATH", path)
+    with pytest.raises(SystemExit) as stop:
+        cli.main(["reread-cost"])
+    assert "older than this code" in str(stop.value)
+    assert "Nothing was changed" in str(stop.value)
+    assert schema_state(path) == before
+
+
+def test_the_command_does_not_create_a_database_that_is_not_there(tmp_path, monkeypatch):
+    path = tmp_path / "nowhere" / "missing.db"
+    monkeypatch.setattr(cli, "DB_PATH", path)
+    with pytest.raises(SystemExit) as stop:
+        cli.main(["reread-cost"])
+    assert "no database at" in str(stop.value)
+    assert not path.parent.exists()
+
+
+def test_a_read_only_connection_refuses_every_write(tmp_path, conn):
+    conn.close()
+    ro = db.connect_readonly(tmp_path / "t.db")
+    assert ro.execute("SELECT count(*) FROM job").fetchone()[0] == 3
+    with pytest.raises(sqlite3.OperationalError, match="readonly"):
+        ro.execute("DELETE FROM job")
+    with pytest.raises(sqlite3.OperationalError):
+        db.connect_readonly(tmp_path / "missing.db")

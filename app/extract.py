@@ -37,6 +37,7 @@ import os
 import re
 from dataclasses import dataclass, field
 
+from app.grounding import UNGROUNDED_REASON
 from app.taxonomy import Taxonomy
 
 DEFAULT_MODEL = os.environ.get("HIRING_RADAR_MODEL", "claude-sonnet-5-5")
@@ -367,7 +368,7 @@ def parse_skills(items: list, tax: Taxonomy, jd_text: str) -> tuple[list[Mention
             rejected.append({"item": item, "reason": "bad requirement"})
             continue
         if not raw or _norm(raw) not in jd:
-            rejected.append({"item": item, "reason": "raw_text not found in job text"})
+            rejected.append({"item": item, "reason": UNGROUNDED_REASON})
             continue
 
         if sid.lower().startswith(NEW_PREFIX):
