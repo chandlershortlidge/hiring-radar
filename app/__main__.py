@@ -25,7 +25,8 @@
   caretaker         the morning check of every job source after the poll: logs what is broken and
                     what it would fix (report-only); Mondays, posts the Monday summary to Linear
                     when LINEAR_API_KEY is set: what needs Chandler, what merged, what was
-                    sent back and fixed, then the job sources (HIR-257, HIR-264)
+                    sent back and fixed, what broke on the live site (read from the robot
+                    visitor's Linear tickets), then the job sources (HIR-257, HIR-264, HIR-260)
   migrate           apply pending migrations and exit
 
 Database path: $HIRING_RADAR_DB, default ./data/hiring-radar.db.
@@ -389,8 +390,11 @@ def cmd_caretaker(args):
     linear_key = os.environ.get("LINEAR_API_KEY", "").strip()
     post = None if (args.no_post or not linear_key) else caretaker_run.linear_poster(
         linear_key, os.environ.get("LINEAR_TEAM_ID", caretaker_run.LINEAR_TEAM_ID))
-    from app import merged_work
-    caretaker_run.report(conn, day, post, changes=merged_work.week_text)
+    from app import merged_work, site_watch_week
+    team = os.environ.get("LINEAR_TEAM_ID", caretaker_run.LINEAR_TEAM_ID)
+    caretaker_run.report(
+        conn, day, post, changes=merged_work.week_text,
+        site_watch=lambda start, end: site_watch_week.week_text(start, end, linear_key, team, caretaker_run.post_json))
 
 
 def cmd_migrate(args):

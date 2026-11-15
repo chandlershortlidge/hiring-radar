@@ -7,7 +7,9 @@ Does:
   - on Mondays, build last week's summary from that log and post it as one Linear issue,
     the Monday summary; the pull-request half of that post (what needs Chandler, what
     merged, what was sent back and fixed: app/merged_work.py, HIR-264) is handed in as
-    text and goes first, so the week is one message, not two;
+    text and goes first, so the week is one message, not two; the robot visitor's week
+    (app/site_watch_week.py, HIR-260) is handed in the same way and goes after it, except
+    a break that came back after two fixes, which goes above everything;
   - post at once only what cannot wait a week (collection down two days running, spend cap);
   - count the job links checked by hand that we had missed, by reason (app/misses.py,
     HIR-290): the last 7 days go into the Monday summary, and a reason that reaches
@@ -188,13 +190,16 @@ def post_json(url: str, payload: dict, headers: dict) -> dict:
         return json.loads(r.read())
 
 
-def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=None) -> None:
+def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=None, site_watch=None) -> None:
     """Send the urgent note and, on Mondays, the weekly summary. `post(title, body)` returns
     the Linear identifier; None when there is no Linear key, and then the text goes to the
     journal only. Each send is logged so a second run the same day does not repeat it.
     `changes(start, end)` returns the pull-request half of the Monday summary as Markdown
     (app/merged_work.week_text); it is injected so tests never reach GitHub, and None
-    leaves the post as the job-source report alone."""
+    leaves the post as the job-source report alone. `site_watch(start, end)` returns the
+    robot visitor's two pieces (app/site_watch_week.week_text, HIR-260): what waits for
+    Chandler, which goes above everything else, and the week's report, which goes after the
+    pull requests; injected so tests never reach Linear, and None leaves both out."""
     if (items := urgent_now(conn, day)):
         body = "The caretaker found something that cannot wait for Monday:\n\n" + \
                "\n".join(f"- {i}" for i in items) + "\n"
@@ -204,7 +209,11 @@ def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=Non
                                  {"posted": posted, "items": items})], day)
     if (week := weekly_due(conn, day)):
         start, end = week
-        body = ((changes(start, end) + "\n" if changes else "") + weekly_text(conn, start, end)
+        robot_first, robot_week = site_watch(start, end) if site_watch else ("", "")
+        body = ((robot_first + "\n" if robot_first else "")
+                + (changes(start, end) + "\n" if changes else "")
+                + (robot_week + "\n" if robot_week else "")
+                + weekly_text(conn, start, end)
                 + "\n" + misses.week_section(misses.records(conn, start, end), start, end))
         posted = post(f"Monday summary: {start} to {end}", body) if post else None
         log(body + (f"\nposted as {posted}" if posted else "\n(not posted: no Linear key)"))

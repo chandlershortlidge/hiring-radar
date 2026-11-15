@@ -60,17 +60,21 @@ def test_screenshot_url_is_relative_to_the_results_folder(tmp_path):
 class FakeLinear:
     """Answers the three queries the script makes; `open` is the title of an already-open issue."""
 
-    def __init__(self, open_title=None):
-        self.open_title, self.sent = open_title, []
+    def __init__(self, open_title=None, fixed=()):
+        # `fixed`: identifiers of tickets with the asked title closed as done in the window.
+        self.open_title, self.fixed, self.sent = open_title, list(fixed), []
 
     def __call__(self, payload):
         self.sent.append(payload)
         q, v = payload["query"], payload["variables"]
+        if "issues(" in q and "completedAt" in q:
+            return {"data": {"issues": {"nodes": [{"identifier": i, "completedAt": f"2026-11-{n:02d}T10:00:00Z"}
+                                                  for n, i in enumerate(self.fixed, 1)]}}}
         if "issues(" in q:
             nodes = [{"id": "uuid-1", "identifier": "HIR-900"}] if v["title"] == self.open_title else []
             return {"data": {"issues": {"nodes": nodes}}}
         if "issueLabels" in q:
-            return {"data": {"issueLabels": {"nodes": [{"id": "label-autopilot"}]}}}
+            return {"data": {"issueLabels": {"nodes": [{"id": f"label-{v['name']}"}]}}}
         if "issueCreate" in q:
             return {"data": {"issueCreate": {"issue": {"identifier": "HIR-901"}}}}
         if "commentCreate" in q:
@@ -170,3 +174,71 @@ def test_a_linear_error_is_raised_not_swallowed():
     lin = swt.Linear("k", post=lambda p: {"errors": [{"message": "bad"}]})
     with pytest.raises(RuntimeError, match="bad"):
         lin.open_issue("x")
+
+
+# --- the same break after two fixes (HIR-260) ---------------------------------------------
+
+def test_one_earlier_fix_still_goes_to_an_agent(tmp_path):
+    fake = FakeLinear(fixed=["HIR-300"])
+    rep = write_report(tmp_path, report(spec("compare mode", ("desktop", "unexpected"))))
+    run(["--kind", "deploy", "--report", rep], fake)
+    [issue] = fake.created()
+    assert issue["labelIds"] == ["label-autopilot"]
+    assert "broken again" not in issue["description"]
+
+
+def test_the_third_break_after_two_fixes_is_not_handed_to_an_agent(tmp_path, capsys):
+    fake = FakeLinear(fixed=["HIR-300", "HIR-310"])
+    rep = write_report(tmp_path, report(spec("compare mode", ("desktop", "unexpected"))))
+    assert run(["--kind", "deploy", "--report", rep], fake) == 0
+    [issue] = fake.created()
+    assert issue["title"] == 'Site watch: "compare mode" fails'      # same title: a 4th failure comments
+    assert issue["labelIds"] == ["label-attended"]
+    assert "assigneeId" not in issue                                 # Monday, not a ping
+    assert issue["description"].startswith(
+        "**This has broken again after 2 fixes in the last 30 days** (HIR-300, HIR-310)")
+    assert "rolled back" in issue["description"]                     # the ordinary ticket text follows
+    assert "Monday summary" in capsys.readouterr().out
+
+
+def test_fixes_are_counted_per_title_among_done_tickets_of_the_last_30_days(tmp_path):
+    fake = FakeLinear(fixed=["HIR-300", "HIR-310"])
+    rep = write_report(tmp_path, report(spec("compare mode", ("desktop", "unexpected"))))
+    run(["--kind", "morning", "--report", rep], fake)
+    [q] = [p for p in fake.sent if "completedAt" in p["query"]]
+    assert q["variables"]["title"] == 'Site watch: "compare mode" fails'
+    assert 'type: {eq: "completed"}' in q["query"] and '"-P30D"' in q["query"]
+
+
+def test_an_outage_after_two_fixes_is_not_handed_to_an_agent():
+    fake = FakeLinear(fixed=["HIR-300", "HIR-310"])
+    run(["--kind", "uptime", "--detail", "HTTP 502"], fake)
+    assert fake.created()[0]["labelIds"] == ["label-attended"]
+
+
+def test_an_open_ticket_is_commented_on_without_counting_fixes(tmp_path):
+    fake = FakeLinear(open_title='Site watch: "compare mode" fails', fixed=["HIR-300", "HIR-310"])
+    rep = write_report(tmp_path, report(spec("compare mode", ("desktop", "unexpected"))))
+    run(["--kind", "morning", "--report", rep], fake)
+    assert fake.created() == [] and not [p for p in fake.sent if "completedAt" in p["query"]]
+
+
+def test_rollback_failed_is_unchanged_by_earlier_fixes(tmp_path):
+    fake = FakeLinear(fixed=["HIR-300", "HIR-310"])
+    run(["--kind", "rollback-failed", "--report", str(tmp_path / "none.json")], fake)
+    [issue] = fake.created()
+    assert issue["assigneeId"] == swt.CHANDLER_ID and "labelIds" not in issue
+
+
+def test_when_earlier_fixes_cannot_be_counted_the_ticket_is_still_filed_for_an_agent(tmp_path, capsys):
+    class NoCount(FakeLinear):
+        def __call__(self, payload):
+            if "completedAt" in payload["query"]:
+                return {"errors": [{"message": "bad filter"}]}
+            return super().__call__(payload)
+
+    fake = NoCount()
+    rep = write_report(tmp_path, report(spec("compare mode", ("desktop", "unexpected"))))
+    assert run(["--kind", "deploy", "--report", rep], fake) == 0
+    assert fake.created()[0]["labelIds"] == ["label-autopilot"]
+    assert "could not count earlier fixes" in capsys.readouterr().err
