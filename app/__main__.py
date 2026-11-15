@@ -20,7 +20,8 @@
                     that appear; a dry run by default, --apply writes (HIR-198)
   reread-cost       what a change to the extractor or the skill list would cost to merge:
                     the jobs it would re-read x what a reading has actually cost. Makes no
-                    model call. Put its figure in the PR body (HIR-221)
+                    model call. Put its figure in the PR body (HIR-221). Opens the database
+                    read-only and never applies migrations (HIR-265)
   caretaker         the morning check of every job source after the poll: logs what is broken and
                     what it would fix (report-only); Mondays, posts the Monday summary to Linear
                     when LINEAR_API_KEY is set: what needs Chandler, what merged, what was
@@ -334,12 +335,34 @@ def cmd_repair_companies(args):
 def cmd_reread_cost(args):
     """The figure that goes in a PR body when the diff touches the extractor or skill list.
 
-    Reads the database only; it never calls the model, so asking the question is free."""
+    Reads the database only; it never calls the model, so asking the question is free.
+
+    Opened read-only and never migrated (HIR-265). Every other command opens the database
+    with `open_db`, which applies this checkout's pending migrations; this one is run from
+    ticket branches against the live database, where that recorded a branch's unmerged
+    migration as applied."""
+    import sqlite3
+
     from app.reread_cost import report_lines, reread_cost
     from app.taxonomy import Taxonomy
-    # This checkout's own skill list: on a branch that only adds skills, the figure counts
-    # only the jobs that would really be re-read (HIR-224).
-    for line in report_lines(reread_cost(open_db(), tax=Taxonomy.load())):
+    if not DB_PATH.exists():
+        sys.exit(f"reread-cost: no database at {DB_PATH}. Nothing was created; point "
+                 "HIRING_RADAR_DB at the database to estimate for.")
+    conn = db.connect_readonly(DB_PATH)
+    try:
+        # This checkout's own skill list: on a branch that only adds skills, the figure
+        # counts only the jobs that would really be re-read (HIR-224).
+        cost = reread_cost(conn, tax=Taxonomy.load())
+    except sqlite3.OperationalError as e:
+        if "no such table" not in str(e) and "no such column" not in str(e):
+            raise
+        sys.exit(f"reread-cost: the database at {DB_PATH} is older than this code and lacks "
+                 f"something the estimate reads ({e}). Nothing was changed: reread-cost never "
+                 "updates a database. Bring it up to date with `python -m app migrate` from "
+                 "main, then ask again.")
+    finally:
+        conn.close()
+    for line in report_lines(cost):
         print(line)
 
 
