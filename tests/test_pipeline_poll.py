@@ -467,3 +467,99 @@ def test_the_default_call_creates_no_client_until_there_is_a_job_to_read(conn, m
     conn.execute("DELETE FROM job")
     conn.commit()
     assert pipeline.extract_pending(conn, TAX, log=lambda *_: None).attempted == 0
+
+
+# --- HIR-176: a posting dropped for reading blank twice is not stored again by its feed ---
+
+def _feed_postings():
+    return [Posting("arbeitnow", f"a{i}", "", f"Co{i}", "AI Engineer", "Berlin", f"Python and RAG job {i}")
+            for i in range(3)]
+
+
+def _drop_all(conn, model="m"):
+    for _ in range(pipeline.BLANK_READ_LIMIT):
+        pipeline.extract_pending(conn, TAX, _blank, model, log=lambda *_: None)
+    assert conn.execute("SELECT count(*) FROM job").fetchone()[0] == 0
+
+
+def _poll(conn, postings, lines=None):
+    log = lines.append if lines is not None else (lambda *_: None)
+    return poll.poll_feeds(conn, [{"type": "arbeitnow"}], fetch=lambda f: postings, log=log)
+
+
+def test_a_dropped_posting_is_not_stored_again_by_the_feed_that_carried_it(conn):
+    """The daily loop: the feed lists the dropped posting again the next day. It must not
+    become a new job, so there is nothing to read twice more."""
+    _drop_all(conn)
+    lines = []
+    r = _poll(conn, _feed_postings(), lines)
+    assert (r.seen, r.new, r.skipped_unreadable) == (3, 0, 3)
+    assert conn.execute("SELECT count(*) FROM job").fetchone()[0] == 0
+    assert pipeline.extract_pending(conn, TAX, _blank, "m", log=lambda *_: None).attempted == 0
+    # Where a person sees it: the per-feed line and the poll's total.
+    assert "skipped_unreadable=3" in lines[0] and "skipped_unreadable=3" in r.line()
+
+
+def test_only_the_dropped_posting_is_passed_over(conn):
+    """A posting the feed has never listed before is stored as usual next to a dropped one."""
+    _drop_all(conn)
+    fresh = Posting("arbeitnow", "b9", "", "NewCo", "AI Engineer", "Berlin", "Python and RAG, new")
+    r = _poll(conn, _feed_postings()[:1] + [fresh])
+    assert (r.new, r.skipped_unreadable) == (1, 1)
+
+
+def test_the_same_id_on_another_source_is_not_passed_over(conn):
+    """The memory is the feed's own id, so it is keyed by source as well: a0 on another
+    feed is another posting."""
+    _drop_all(conn)
+    other = Posting("startup_jobs", "a0", "", "Co0", "AI Engineer", "Berlin", "Python and RAG job 0")
+    assert ingest_one(conn, other, skip_dropped=True).is_new
+
+
+def test_a_change_of_extractor_version_gives_a_dropped_posting_a_fresh_try(conn):
+    """Not permanent: what one prompt, model or skill list reads blank the next may read.
+    The run under the new version forgets the drop, and the poll after it stores the posting."""
+    _drop_all(conn, model="m")
+    assert _poll(conn, _feed_postings()).skipped_unreadable == 3
+    lines = []
+    pipeline.extract_pending(conn, TAX, fake_extract([]), "m2", log=lines.append)
+    assert any("3 postings dropped as unreadable" in l for l in lines)
+    assert conn.execute("SELECT count(*) FROM dropped_posting").fetchone()[0] == 0
+    r = _poll(conn, _feed_postings())
+    assert (r.new, r.skipped_unreadable) == (3, 0)
+
+
+def test_a_run_at_the_same_version_keeps_the_memory(conn):
+    _drop_all(conn)
+    pipeline.extract_pending(conn, TAX, fake_extract([]), "m", log=lambda *_: None)
+    assert conn.execute("SELECT count(*) FROM dropped_posting").fetchone()[0] == 3
+    assert _poll(conn, _feed_postings()).skipped_unreadable == 3
+
+
+def test_a_posting_added_by_hand_is_stored_even_if_its_feed_copy_was_dropped(conn):
+    """A person who adds a posting has chosen it; only a feed's fetch is passed over."""
+    _drop_all(conn)
+    assert ingest_one(conn, _feed_postings()[0]).is_new   # the hand-add path: no skip_dropped
+    # ...and from then on the feed follows it like any stored posting.
+    r = _poll(conn, _feed_postings()[:1])
+    assert (r.still_listed, r.skipped_unreadable) == (1, 0)
+
+
+def test_a_dropped_hand_added_posting_is_not_remembered(tmp_path):
+    """Pasted text has no feed id, and a hand-added link is the person's choice each time."""
+    c = db.connect(tmp_path / "t.db")
+    db.migrate(c)
+    ingest_one(c, Posting("paste", "", "", "Acme", "AI Engineer", None, "Python"), require_city=False, trust_title=True)
+    ingest_one(c, Posting("url", "u1", "https://x/u1", "Beta", "AI Engineer", "Berlin", "RAG"), trust_title=True)
+    _drop_all(c)
+    assert c.execute("SELECT count(*) FROM dropped_posting").fetchone()[0] == 0
+
+
+def test_a_job_merged_from_two_feeds_is_remembered_under_both(conn):
+    """Either feed would otherwise bring it back the next day."""
+    twin = Posting("startup_jobs", "s7", "", "Co0", "AI Engineer", "Berlin", "Python and RAG job 0")
+    assert ingest_one(conn, twin).kind == "merged"
+    _drop_all(conn)
+    kept = {tuple(r) for r in conn.execute("SELECT source, source_job_id FROM dropped_posting")}
+    assert {("arbeitnow", "a0"), ("startup_jobs", "s7")} <= kept
+    assert ingest_one(conn, twin, skip_dropped=True).kind == "skipped_unreadable"
