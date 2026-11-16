@@ -1,5 +1,11 @@
 # Decisions Log
 
+**New entries are not added to this file.** Since 16 Nov 2026 (HIR-305) each decision is
+its own file in [`decisions/`](decisions/), named `YYYY-MM-DD-hir-N-short-title.md`, so
+two pull requests that each record a decision never change the same lines. To read the
+log: the files in `decisions/` (the names sort by date, newest last), then the entries
+below, which stay here as they are.
+
 What we decided, why, and what we tried that didn't work — so nobody (person or agent)
 re-treads a dead end or undoes a decision without knowing the reason. Newest first.
 

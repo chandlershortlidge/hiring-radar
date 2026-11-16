@@ -99,7 +99,8 @@ country group — the picker, the market grid, compare and the URLs all read tha
 This is a rebuild of
 [job-skills-dashboard](https://github.com/chandlershortlidge/job-skills-dashboard), a
 one-day hackathon project whose extraction plateaued for structural reasons.
-[DECISIONS.md](DECISIONS.md) records what went wrong and every choice made since.
+[DECISIONS.md](DECISIONS.md) records what went wrong and every choice made up to
+16 Nov 2026; each later one is its own file in [decisions/](decisions/).
 
 ---
 
