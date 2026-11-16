@@ -35,7 +35,7 @@ def confidence_adjusted_score(covered, total, z=Z):
 
 
 SKILLS_FLOOR = 4
-def are_job_skills_thinly_listed(skill_count, floor=SKILLS_FLOOR):
+def are_job_skills_thinly_listed(skill_count):
     """Say whether a job lists too few required skills to be ranked on its own numbers.
 
     Example: a job listing 3 skills is thinly listed, because the floor is 4.
@@ -43,35 +43,31 @@ def are_job_skills_thinly_listed(skill_count, floor=SKILLS_FLOOR):
 
     Args:
         skill_count: how many required skills the job lists.
-        floor: how many skills a job needs to be ranked on its own numbers.
-            The default is the project's skill floor, 4.
 
     Returns:
-        True when the job lists at least 1 skill and fewer than floor.
+        True when the job lists at least 1 skill and fewer than the skill floor, 4.
         False otherwise. A job listing 0 skills is False: that is "unknown",
         a different case from a short list.
     """
     if skill_count == 0:
         return False
-    if skill_count < floor:
+    if skill_count < SKILLS_FLOOR:
         return True
 
     return False 
 
 
-def skills_rank_scorer(covered, total, floor=SKILLS_FLOOR):
+def skills_rank_scorer(covered, total):
     """Score a job for ranking, so a job with only a few listed skills cannot look perfect.
 
     A job listing fewer skills than the floor is scored as if it listed
-    floor skills: 2 of 2 is scored as 2 of 4. A job at or above the floor is
+    4 skills: 2 of 2 is scored as 2 of 4. A job at or above the floor is
     scored on its own numbers. The score itself comes from
     confidence_adjusted_score.
 
     Args:
         covered: how many of the job's required skills the CV covers.
         total: how many required skills the job lists.
-        floor: the fewest skills a job is scored on. The default is the
-            project's skill floor, 4.
 
     Returns:
         A number from 0 to 1, where higher means a better match. None when
@@ -79,7 +75,7 @@ def skills_rank_scorer(covered, total, floor=SKILLS_FLOOR):
     """
     if total == 0:
         return None
-    if total <= floor:
-        return confidence_adjusted_score(covered, floor)
+    if total <= SKILLS_FLOOR:
+        return confidence_adjusted_score(covered, SKILLS_FLOOR)
     return confidence_adjusted_score(covered, total)
     
