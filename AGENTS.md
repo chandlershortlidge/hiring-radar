@@ -334,6 +334,14 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   a time, 10 decisions waiting, one re-read a day, a red check, a usage limit hit today).
   No count of tickets per day. Also answers how many tickets to pull into Todo and, on
   Mondays, the week's three numbers. Pure; talks to nothing and starts nothing.
+  Also says which pull requests that collide with main may be given a repair worker
+  (`repairs`, HIR-305): never after two failed repairs, never Chandler's own tickets.
+- `scripts/collision.py` — what a repair of a collided pull request may settle without
+  judgment (HIR-305): run mid-merge, it keeps both sides where both only added text at one
+  place in a prose file, and lists every other collided file for the senior agent,
+  untouched. Reads git's three versions, not the conflict markers. Commits nothing.
+- `decisions/` — the decisions log since 16 Nov 2026, one file per decision (HIR-305;
+  "What this project is", above). `tests/test_decisions.py` checks the names and headings.
 - `scripts/new_goldens.py` — draft unlabeled held-out Goldens from DB jobs
   (`--german N` or `--ids ...`); run_eval skips files with `"draft": true`.
 - `scripts/agent_label.py` — held-out Goldens via two blind labeler agents: pick → label A
@@ -881,6 +889,22 @@ produced the duplicate edits of 3 Nov; the point is that it happens once, at the
 not by the author. A real conflict drops the PR back to its author, which is the one case
 that is still the worker's.
 
+**A pull request that collides with main is repaired by the next lead agent run**
+(HIR-305, decisions/2026-11-16-hir-305). GitHub reports such a pull request as `dirty`,
+and nothing merges it until main is brought into its branch. The lead agent hands every
+one to `scripts/lead_pick.py`, which says which may be repaired (never a third try, never
+a `hands-on` or `parked` ticket, never an `attended` one he is working in, never one a run
+may still be on), and starts a worker with `/work-issue HIR-n repair`; a fresh reviewer
+follows, unless the pull request is waiting for Chandler or for a reviewer's fixes. The
+worker's rules are in `/work-issue` "Repairing a collided pull request", and the first of
+them is code: `scripts/collision.py` keeps both sides only where both merely added text
+at the same place in a prose file (a log, a list). Every other collision (the same lines
+changed on both sides, a deleted file, anything in code or data) is not guessed at: it
+goes to the senior agent, and if the senior agent cannot settle it without deciding
+something on Chandler's list, to him as three lines to approve. A pull request that is
+waiting for him is repaired too, with its labels untouched, because he cannot merge a
+conflicted one.
+
 **Every merge follows a review from the run that opened the PR.** There is no timer and no
 scheduled cloud reviewer (the lead agent, below, only picks up what a dead run left): an autopilot `/work-issue` waits for CI at the end of its own run
 and starts the `reviewer` agent on the PR it just opened; inside an orchestrator the
@@ -978,6 +1002,8 @@ ticket away from agents.
 PR"** (above): when that run died, the lead agent starts a fresh worker on a sent-back
 pull request or a fresh reviewer on an unreviewed or unmerged one, including one whose
 reviewers could not open the ticket (above, HIR-306). The reviewer still does the merging.
+It also starts the repair of a pull request that collides with main ("Who merges", above,
+HIR-305), whether or not the run that opened it is still alive.
 
 `/work-issue-orchestrator HIR-a HIR-b …` runs a batch: pick, one worker per issue in
 parallel worktrees, reviewer merges the autopilot PRs or sends them back to their worker, `attended` ones pause for

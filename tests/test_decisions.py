@@ -9,6 +9,7 @@ requests opened before the change may still add to it (decisions/2026-11-16-hir-
 """
 
 import re
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -32,6 +33,39 @@ def test_an_entry_is_named_by_date_and_ticket_and_its_heading_agrees(path):
     assert heading, "first line: ## YYYY-MM-DD — what was decided (HIR-N)"
     assert heading.group(1) == name.group(1), "the heading's date is not the file name's"
     assert name.group(2) in re.findall(r"HIR-(\d+)", path.read_text().splitlines()[0])
+
+
+def test_two_branches_that_each_record_a_decision_merge_without_a_collision(tmp_path):
+    """The reason for the folder, on a real merge: two entries added as two files merge;
+    the same two entries added at the top of one shared file do not."""
+    def git(*args, ok=True):
+        done = subprocess.run(["git", *args], cwd=tmp_path, capture_output=True, text=True)
+        assert not ok or done.returncode == 0, done.stderr
+        return done.returncode
+
+    git("init", "-q", "-b", "main")
+    for key, value in (("user.email", "t@example.com"), ("user.name", "t"), ("commit.gpgsign", "false")):
+        git("config", key, value)
+    (tmp_path / "LOG.md").write_text("# Log\n\n## old entry\n")
+    git("add", "-A")
+    git("commit", "-q", "-m", "base")
+    for ticket in ("401", "402"):
+        git("switch", "-q", "-c", f"hir-{ticket}", "main")
+        (tmp_path / "decisions").mkdir(exist_ok=True)
+        (tmp_path / "decisions" / f"2026-11-20-hir-{ticket}-a-rule.md").write_text(
+            f"## 2026-11-20 — a rule (HIR-{ticket})\n")
+        git("add", "-A")
+        git("commit", "-q", "-m", f"folder {ticket}")
+        git("switch", "-q", "-c", f"old-{ticket}", "main")
+        (tmp_path / "LOG.md").write_text(f"# Log\n\n## 2026-11-20 — a rule (HIR-{ticket})\n\n## old entry\n")
+        git("commit", "-q", "-am", f"shared file {ticket}")
+
+    git("switch", "-q", "main")
+    assert git("merge", "-q", "--no-edit", "hir-401") == 0
+    assert git("merge", "-q", "--no-edit", "hir-402") == 0
+    assert len(list((tmp_path / "decisions").glob("*.md"))) == 2
+    assert git("merge", "-q", "--no-edit", "old-401") == 0
+    assert git("merge", "-q", "--no-edit", "old-402", ok=False) != 0  # the old way collides
 
 
 def test_the_old_log_points_at_the_folder():

@@ -53,7 +53,9 @@ run it, so it would help only merges made on a laptop.
 lists the open pull requests GitHub reports as conflicted (`mergeable_state` `dirty`).
 `scripts/lead_pick.py` says which may be repaired in this run; for each the lead agent
 starts a worker with `/work-issue HIR-n repair`, which brings the latest main into the
-pull request's branch, and then a fresh reviewer, as after any change.
+pull request's branch, and then a fresh reviewer, as after any change. (A pull request a
+reviewer had already sent back gets no reviewer yet: once repaired, its ticket goes back
+to Todo so a worker does the fixes that are still open.)
 
 The repair worker's rules, in `/work-issue` "Repairing a collided pull request":
 
