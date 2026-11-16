@@ -13,8 +13,14 @@ Kinds:
     morning          the robot failed on the daily run; nothing was rolled back
     uptime           the site did not answer the outside check
     rollback-failed  a deploy broke the site AND putting the previous version back did not
-                     fix it. The one kind that goes straight to Chandler: Urgent, assigned
-                     to him, and not labelled autopilot.
+                     fix it. Goes straight to Chandler: Urgent, assigned to him, and not
+                     labelled autopilot.
+    rollback-not-done  the robot failed right after a deploy and the rollback job itself
+                     failed, so the site is still on the new version (HIR-317). The ticket
+                     says why: `--rollback-problem login` when the server refused the login
+                     on every try, otherwise that the job failed before it finished. Goes
+                     straight to Chandler like rollback-failed: a version the robot failed
+                     is live.
 
 Every other ticket is labelled `autopilot`, so an agent picks it up without him — until
 the same break comes back after two fixes (HIR-260). When REPEAT_FIXES tickets with the
@@ -140,6 +146,29 @@ def rollback_failed_ticket(args, fails: list[dict]) -> dict:
             "autopilot": False, "priority": 1, "assignee": CHANDLER_ID}
 
 
+ROLLBACK_PROBLEM = {
+    "login": "**The rollback could not log in to the server.** The server refused the login on "
+             "every try, so nothing was run on it and the old version was not put back.",
+    "other": "**The rollback job failed before it finished.** Whether the old version is back is "
+             "not known; the \"Roll back to the last good version\" job in the run below says where it stopped.",
+}
+
+
+def rollback_not_done_ticket(args, fails: list[dict]) -> dict:
+    """The robot failed after a deploy and the rollback never completed. Not "the site is
+    down": the site is on the new version, with whatever the robot found on it."""
+    paths = "\n".join(f"- {f['test']} ({' and '.join(f['projects'])}): {f['error'][:300]}" for f in fails) or "- (no report)"
+    body = ("A deploy failed the robot visitor and the automatic rollback did not run.\n\n"
+            f"{ROLLBACK_PROBLEM[args.rollback_problem]}\n\n"
+            f"**The site is still on the new version:** {args.change or 'unknown'}\n"
+            f"**The rollback would have put back:** {args.rolled_back_to or 'unknown'}\n\n"
+            f"What the robot visitor found on the new version (it was not run a second time):\n\n"
+            f"{paths}\n\nRun: {args.run_url or 'unknown'}\n\n"
+            "Re-running the failed run deploys the same version again and repeats the checks.")
+    return {"title": "Deploy failed the robot visitor and the rollback did not run", "body": body,
+            "autopilot": False, "priority": 1, "assignee": CHANDLER_ID}
+
+
 def after_two_fixes(t: dict, fixed: list[str]) -> dict:
     """The ticket for a break that came back after REPEAT_FIXES fixes: the same title (so a
     further failure comments on it), but for Chandler's Monday summary, not for an agent."""
@@ -224,6 +253,8 @@ def tickets(args) -> list[dict]:
         return [uptime_ticket(args)]
     if args.kind == "rollback-failed":
         return [rollback_failed_ticket(args, fails)]
+    if args.kind == "rollback-not-done":
+        return [rollback_not_done_ticket(args, fails)]
     if not fails:
         # The robot went red without a failing path in its report (it crashed, or never ran):
         # still a ticket, or the red run is the only trace.
@@ -234,7 +265,7 @@ def tickets(args) -> list[dict]:
 
 def main(argv=None, linear=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--kind", required=True, choices=["deploy", "morning", "uptime", "rollback-failed"])
+    ap.add_argument("--kind", required=True, choices=["deploy", "morning", "uptime", "rollback-failed", "rollback-not-done"])
     ap.add_argument("--report", help="the robot visitor's report.json")
     ap.add_argument("--results-root", help="the folder the report's screenshot paths sit under")
     ap.add_argument("--evidence-base", help="public URL the results folder was copied to")
@@ -242,6 +273,8 @@ def main(argv=None, linear=None) -> int:
     ap.add_argument("--change", help="the version that was live: short sha and subject")
     ap.add_argument("--rolled-back-to", help="the version a rollback put back")
     ap.add_argument("--detail", help="uptime: what the check saw")
+    ap.add_argument("--rollback-problem", choices=sorted(ROLLBACK_PROBLEM), default="other",
+                    help="rollback-not-done: why the rollback did not run")
     args = ap.parse_args(argv)
 
     todo = tickets(args)

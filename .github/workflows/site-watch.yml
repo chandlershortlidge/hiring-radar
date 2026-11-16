@@ -6,7 +6,9 @@ name: Site watch
 #                   commit, run the robot. A failure rolls the site back to the last commit
 #                   the robot passed (the `site-good` tag), checks the rolled-back site and
 #                   files an autopilot ticket. If the rolled-back site fails too, the ticket
-#                   goes to Chandler. ci.yml holds the `release` lock around this whole
+#                   goes to Chandler. If the rollback itself fails (say, the server refuses
+#                   its login three times), a different ticket goes to Chandler and says
+#                   so: the site is then still on the new version (HIR-317). ci.yml holds the `release` lock around this whole
 #                   workflow, so a second merge waits until this one is watched.
 #   every morning   after the 07:00 Berlin collection. A failure files a ticket; nothing is
 #                   rolled back, because the code did not change — the data did.
@@ -212,6 +214,7 @@ jobs:
           SHA: ${{ needs.plan.outputs.sha }}
           GOOD: ${{ needs.robot.outputs.good }}
           ROLLBACK: ${{ needs.rollback.result }}
+          ROLLBACK_LOGIN: ${{ needs.rollback.outputs.login }}
           RECHECK: ${{ needs.recheck.outputs.ok }}
           REPO: ${{ github.repository }}
           RUN: ${{ github.run_id }}
@@ -221,12 +224,17 @@ jobs:
           change="${SHA:0:7} $(git log -1 --format=%s "$SHA" 2>/dev/null || echo '(subject unknown)')"
           if [ "$MODE" = morning ]; then kind=morning
           elif [ "$ROLLBACK" = success ] && [ "$RECHECK" = true ]; then kind=deploy
-          else kind=rollback-failed
+          elif [ "$ROLLBACK" = success ]; then kind=rollback-failed
+          # The rollback job itself failed: the old version is not back, and "site down and
+          # rollback failed" would be the wrong thing to say (HIR-317).
+          else kind=rollback-not-done
           fi
+          problem=other; [ "$ROLLBACK_LOGIN" = refused ] && problem=login
           echo "Filing a '$kind' ticket."
           python3 scripts/site_watch_ticket.py --kind "$kind" \
             --report web/watch-out/report.json --results-root web/watch-out/results \
             --evidence-base "https://raw.githubusercontent.com/$REPO/pr-evidence/site-watch/$RUN" \
-            --run-url "$RUN_URL" --change "$change" --rolled-back-to "${GOOD:0:7}"
+            --run-url "$RUN_URL" --change "$change" --rolled-back-to "${GOOD:0:7}" \
+            --rollback-problem "$problem"
           # A broken site is a red run, whatever happened to the ticket.
           exit 1

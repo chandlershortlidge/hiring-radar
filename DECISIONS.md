@@ -74,6 +74,72 @@ failure again.
 
 ---
 
+---
+
+## 2026-11-16 — A refused server login is tried again, and a rollback that never ran says so (HIR-317)
+
+**What happened.** On Sunday 15 Nov a deploy went live at 10:02 Berlin, the robot visitor
+failed on it, and the automatic rollback started at 10:05. Its login to the server was
+refused ("Permission denied (publickey)") and the job stopped there. The site stayed on the
+new version, the main branch stayed red, and agents started no other work for a day. The
+ticket it filed said "the site is broken and the automatic rollback did not fix it", which
+was wrong twice: nothing had been rolled back, and the robot was never run a second time.
+
+**The cause, as far as the record shows.** Every deploy or rollback job makes a new login
+key on GitHub's machine, registers it with Google's login service (OS Login) and connects
+seconds later. In the failed job the key was made at 09:05:31 UTC and refused at 09:05:41;
+in the deploy four minutes earlier the same sequence was accepted after 4 seconds. Same
+account, same permissions, same server, a different throwaway key each time, and the
+12 Nov drill and every deploy before it worked: so this is not a missing permission.
+**Likely, not proven:** the new key had not yet reached the server when the login was
+tried. Google's documentation gives no time for this, but gcloud's own error text for the
+case says "It is possible that your SSH key has not propagated to the instance yet. Try
+running this command again." **A second candidate cannot be ruled out from a cloud run**,
+which has no access to the server: the server looks up the key at login time, and in the
+same two minutes it was slow enough that the chart's numbers did not arrive within 15
+seconds (see below), so the lookup itself may have failed. Both are passing conditions,
+and the same fix covers both.
+
+**The fix: try a refused login again, 3 tries, 15 seconds apart.** `deploy/vm-ssh.sh` is
+now the one way a workflow logs in to the server; `deploy.yml` calls it, and deploy,
+rollback and drill all go through `deploy.yml`. It tries again only when the login itself
+was refused (ssh's own exit code 255 together with "Permission denied (publickey"), which
+is the one failure where nothing has run on the server. A deploy that started and then
+failed, or a connection that dropped part-way, is not tried again: that would be
+"retrying a failure hoping it passes", which the site watch does not do. A real permission
+problem still fails, 30 seconds later, with exit code 75 and a line saying the login was
+refused three times. The key is registered once and reused by the later tries, so each try
+gives the same key more time. Rejected: **a fixed key stored as a GitHub secret**, which is
+the long-lived credential the 1 Nov entry (HIR-74) refused; **registering the key in a
+separate step and sleeping**, which needs a guessed wait on every deploy and still fails if
+the guess is short; **a no-op login first, then the deploy**, which makes two connections
+where HIR-106 deliberately made one.
+
+The script is fetched from the commit the workflow itself runs at, into `.deploy-tools/`,
+not from the commit being deployed: a rollback deploys an older commit, and one from before
+today has no such script.
+
+**A rollback that never ran files its own ticket.** New ticket kind `rollback-not-done`,
+titled "Deploy failed the robot visitor and the rollback did not run". It says the site is
+still on the new version, lists what the robot found on it, and gives the reason: "the
+rollback could not log in to the server" when the login was refused three times, otherwise
+"the rollback job failed before it finished; whether the old version is back is not
+known". Like "Site down and rollback failed" it is Urgent and assigned to Chandler, since
+a version that failed the robot is live and no agent can reach the server. "Site down and
+rollback failed" is kept for what it says: the old version was put back and the robot
+still fails. Undo: revert the PR; the old single-try login and the single ticket return.
+
+**Why the robot visitor failed on that deploy.** Not a phone-layout break. Both failures
+(the job-card path, then the filter path on the retry) are the same thing: the page loaded,
+the job list loaded, and the chart's numbers had not arrived after 15 seconds, between
+10:03:55 and 10:04:50 Berlin. The three phone-width paths before them passed, the same
+paths passed at desktop width a minute earlier, and the same version passed at 16:09 and
+again on 16 Nov. Two things were happening on the server in those minutes: it had been
+restarted 90 seconds before, and the daily check of every job source starts at 10:00. So
+the robot is not flaky in itself; the server was slow to answer one request for about a
+minute. Filed as its own ticket (HIR-318), with a second finding from the screenshots: while the
+chart waits for its numbers it shows "No jobs match these filters yet", which is false.
+
 ## 2026-11-15 — A break the robot visitor finds a third time is Chandler's, and the Monday summary reports the robot's week (HIR-260)
 
 HIR-258 made the robot visitor file a ticket when the live site breaks. This closes the

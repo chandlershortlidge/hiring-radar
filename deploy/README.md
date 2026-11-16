@@ -178,6 +178,19 @@ The deploy job (`.github/workflows/deploy.yml`):
    prints the last 30 journal lines, so the workflow goes red. A tarball that arrives
    truncated fails `tar -xzf` in the same script, so that is loud too.
 
+   The connection is made by `deploy/vm-ssh.sh` (HIR-317), the one way a workflow logs in
+   to the VM. Each job registers a new throwaway key with OS Login and connects seconds
+   later, and now and then the VM refuses it ("Permission denied (publickey)"). The script
+   tries a refused login again, 3 tries 15 seconds apart, and the log shows
+   `server login: try N of 3`. It tries nothing else again: a deploy that started and
+   failed stays failed. Three refusals exit with code 75. The job fetches the script from
+   the workflow's own commit into `.deploy-tools/`, because a rollback deploys an older
+   commit that may not have it.
+
+When the robot fails after a deploy and the rollback job itself fails, the ticket is
+"Deploy failed the robot visitor and the rollback did not run": the site is still on the
+new version, and the ticket says whether the rollback could not log in or failed later.
+
 `github-deployer` holds exactly three roles: `roles/compute.viewer` and
 `roles/iap.tunnelResourceAccessor` on the project, and `roles/compute.osAdminLogin` on the
 instance only. **OS Login** (`enable-oslogin=TRUE` on the instance) is what turns that role
