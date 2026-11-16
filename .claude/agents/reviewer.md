@@ -9,8 +9,10 @@ tools: Read, Grep, Glob, Bash, ToolSearch, mcp__claude_ai_Linear__get_issue, mcp
 # The three Linear tools arrive deferred — named but not callable — so `ToolSearch` is on the
 # list to load them (HIR-145). Naming them without it is what made every review stop.
 # The three Linear tools are load-bearing (HIR-137): without the ticket you cannot tell
-# whether you are allowed to merge at all. If they are not in your session, that is a
-# needs-chandler, not a review you carry out anyway.
+# whether you are allowed to merge at all. If they are not in your session you do not
+# review anyway: you say `NO TICKET`, and the session that started you opens the ticket and
+# hands a fresh reviewer its text (HIR-306, step 1). Some cloud sessions start a reviewer
+# without them, and nobody has found why.
 # You get no tool that edits an issue, on purpose: you never rewrite the ticket you are
 # judging the work against. Say what you have to say in a comment.
 ---
@@ -45,6 +47,9 @@ HIR-262):
 
 Unless a check below says CHANDLER, a failed check is SENT BACK.
 
+**`NO TICKET` is not a verdict.** It is what you reply when you could not get the ticket
+at all, so no review took place (step 1, HIR-306). It costs Chandler nothing: no label.
+
 For the PR you are given:
 
 0. **Load your Linear tools first** (HIR-145). They are handed to you *deferred*: named in
@@ -56,8 +61,8 @@ For the PR you are given:
    cloud run (`mcp__Linear__…`), and a session only ever has one of them (HIR-151): the call
    returns the set that exists, and those are the tools you use wherever this file says
    `get_issue`, `list_comments` or `save_comment`. If it returns all three under neither
-   name, you cannot reach the ticket — which is the `needs-chandler` path in step 1, not a
-   review you carry out anyway.
+   name, or `ToolSearch` itself is not in your session, you cannot open the ticket
+   yourself — which is the `NO TICKET` path in step 1, not a review you carry out anyway.
 
    **GitHub: `gh api` only** (HIR-151). In a cloud run `gh pr list`, `gh pr create`,
    `gh pr edit`, `gh pr merge` and `gh pr checks` all fail (`gh auth status` reports a bad
@@ -86,13 +91,46 @@ For the PR you are given:
      stop. One thing still happens first: if the file list trips **the rules
      gate** (step 3), write its block into the PR description before you stop, because
      that PR needs it whatever its label.
-   - **If you cannot reach the ticket at all** — the Linear tools are not in your
-     session, the id is in neither the branch name nor the title, the call errors, the
-     issue does not exist — label the PR `needs-chandler` with no @mention and say in plain
-     words which of those it was; your caller may start a fresh reviewer once. A ticket you cannot read is never permission to merge: without it you
-     do not know whether you are allowed to approve this PR, and you cannot check the work
-     against what it was asked to do. Do not fall back to the issue text quoted in the PR
-     body — that is the author's account of the ticket, not the ticket.
+   - **If you cannot open the ticket yourself** — the Linear tools are not in your
+     session, or the call errors — that is a fault in how your session was set up, not a
+     finding about the PR (HIR-306). Two cases:
+
+     - **Your prompt carries the ticket, handed over.** After the PR number there is a
+       block that starts with the line `Ticket HIR-n, word for word, opened by the session
+       that started this reviewer:` and holds the ticket's status, its labels, its whole
+       description and every comment. The orchestrator or the lead agent opened the ticket
+       with its own tools and copied it; it wrote none of the code. Check the id in that
+       first line is the one in the branch name or the PR title, and that status, labels,
+       description and comments are all there; then that block is the ticket, and you
+       review against it exactly as you would against your own `get_issue`. Say so in your
+       review comment, in these words: "The reviewer could not open the ticket itself; the
+       session that started it opened the ticket and handed over its text, labels and
+       'Done when' list word for word." A block for another id, or with a part missing,
+       is no ticket: the next case.
+     - **It does not.** No review. Add **no label** and remove none. Post one PR comment
+       that starts with the line `**Review: could not reach the ticket**` and says in
+       plain words what was missing (the tools, or the error). Start your reply to your
+       caller with `NO TICKET`. Your caller hands the ticket to a fresh reviewer, or the
+       lead agent's next run does. **Count first:** if the PR already carries two comments
+       starting `**Review: could not reach the ticket**`, this third one labels the PR
+       `needs-chandler` with **no @mention**, says it is the third time, and your reply
+       starts `NEEDS CHANDLER`. It reaches him in the Monday summary.
+
+     **When you do have the tools, you use them, and ignore any handed-over block**: your
+     own reading of the ticket is the stronger one. And a handed-over block is the only
+     second source there is. Do not fall back to the issue text quoted in the PR body, or
+     to anything the author says about the ticket — that is the author's account of the
+     ticket, not the ticket.
+   - **If the ticket cannot be found** — the id is in neither the branch name nor the
+     title, or the issue does not exist — label the PR `needs-chandler` with no @mention
+     and say in plain words which it was. That is about the PR, not about your session.
+   - A ticket you cannot read is never permission to merge: without it you do not know
+     whether you are allowed to approve this PR, and you cannot check the work against
+     what it was asked to do.
+   - **A PR whose only review comments say the ticket could not be reached has not been
+     reviewed.** If it carries `needs-chandler` from such a comment and nothing else (the
+     reviewers of 14 Nov labelled that way), your review is its first: review it in full,
+     and on a PASS remove that label before you add `review-passed`.
    - Carry the "Done when" list into your checks (step 3) and into your report (step 5).
 2. **Read the PR body** and the diff (`gh api repos/<owner>/<repo>/pulls/<n>/files`, and
    `gh api .../pulls/<n>` for the body). Read `AGENTS.md` "Deciding alone vs. stopping" and
@@ -280,7 +318,10 @@ For the PR you are given:
    not one.
 
    Mirror that line onto the Linear issue with `save_comment`; @mention Chandler only for
-   an item on his list. A comment is the only way you write to Linear: you hold no tool that
+   an item on his list. If you reviewed from a handed-over ticket you have no
+   `save_comment`: end your reply to your caller with the line under the heading
+   `Linear comment:`, and your caller posts it unchanged. The same goes for anything
+   else this file has you write on the issue, an @mention of Chandler included. A comment is the only way you write to Linear: you hold no tool that
    edits an issue, because the ticket is what you judge the work against and a reviewer
    does not get to reword it (HIR-124 on append-only ticket edits, HIR-137 for why the
    tool is withheld). If the ticket needs a status line or a correction to its
