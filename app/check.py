@@ -717,6 +717,8 @@ REASON_TEXT = {
 }
 
 # Careers systems a company hosts its jobs on that no adapter polls yet, by hostname.
+# A system that gets a reader leaves this list: tests/test_sources_registry.py fails if a
+# name or a domain here is also a board in the registry.
 _UNREAD_SYSTEMS = (
     ("personio", re.compile(r"(?:^|\.)jobs\.personio\.(?:com|de)$")),
     ("workable", re.compile(r"(?:^|\.)workable\.com$")),
@@ -734,8 +736,9 @@ _JOB_BOARD_HOST_RE = re.compile(
     r"(?:^|\.)(?:get-in-it\.de|arbeitnow\.[a-z.]+|all-european-careers\.com|michaelpage\.[a-z.]+"
     r"|thryvetalent\.com|stepstone\.[a-z.]+|indeed\.[a-z.]+|glassdoor\.[a-z.]+|xing\.com"
     r"|jobgether\.com|joinrs\.com)$")
-_SUPPORTED_HOSTS = (("greenhouse", "greenhouse.io"), ("lever", "lever.co"),
-                    ("ashby", "ashbyhq.com"), ("join", "join.com"))
+# The systems an adapter reads, with the domain each lives on: the registry's boards, so a
+# new board system counts as "one we read" the moment it is added there (HIR-313).
+_SUPPORTED_HOSTS = tuple(registry.BOARD_DOMAINS.items())
 JOB_BOARD, OWN_SITE = "job board", "own site"
 
 

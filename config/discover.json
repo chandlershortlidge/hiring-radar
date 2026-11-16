@@ -1,13 +1,6 @@
 {
-  "_comment": "discover-boards: every (domain x query) pair is one Brave search, `site:<domain> <query>`, one page of `count` results. Brave bills per search ($5 per 1,000, $5 monthly credit), so domains x queries is the cost of a run.",
+  "_comment": "discover-boards: every (board address x query) pair is one Brave search, `site:<address> <query>`, one page of `count` results. The board addresses are not listed here: they come from the one list of sources (app/sources/registry.py, five today). Brave bills per search ($5 per 1,000, $5 monthly credit), so addresses x queries is the cost of a run.",
   "count": 20,
-  "domains": [
-    "job-boards.greenhouse.io",
-    "boards.greenhouse.io",
-    "jobs.lever.co",
-    "jobs.ashbyhq.com",
-    "join.com/companies"
-  ],
   "queries": [
     "\"AI engineer\" Berlin",
     "\"machine learning\" Berlin",
