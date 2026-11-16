@@ -180,3 +180,63 @@ def test_the_senior_agent_has_a_reply_for_each_kind():
     assert "**What you would learn:**" in senior
     decider = " ".join((ROOT / ".claude" / "agents" / "decider.md").read_text().split())
     assert "You do not say which" in decider
+
+
+# --- a reviewer that cannot open the ticket (HIR-306) --------------------------------------
+
+ORCHESTRATOR = ROOT / ".claude" / "skills" / "work-issue-orchestrator" / "SKILL.md"
+LEAD = ROOT / ".claude" / "skills" / "lead-agent" / "SKILL.md"
+WORK_ISSUE = ROOT / ".claude" / "skills" / "work-issue" / "SKILL.md"
+NO_REVIEW_COMMENT = "**Review: could not reach the ticket**"
+HANDOVER_LINE = "word for word, opened by the session that started this reviewer:"
+
+
+def flat(path):
+    return " ".join(path.read_text().split())
+
+
+def test_a_reviewer_without_the_ticket_labels_nothing_and_says_no_ticket():
+    """On 14 Nov two reviewers had no Linear tools and the first labelled the PR
+    needs-chandler; it waited eleven hours for nothing but a second try."""
+    reviewer = flat(REVIEWER)
+    case = reviewer.split("**It does not.**")[1].split("**When you do have the tools")[0]
+    assert "Add **no label**" in case
+    assert NO_REVIEW_COMMENT in case
+    assert "`NO TICKET`" in case
+    # Only the third such comment on one PR reaches Chandler, and without an @mention.
+    assert "already carries two comments" in case and "**no @mention**" in case
+
+
+def test_a_missing_ticket_is_still_never_permission_to_merge():
+    reviewer = flat(REVIEWER)
+    assert "A ticket you cannot read is never permission to merge" in reviewer
+    assert "Do not fall back to the issue text quoted in the PR body" in reviewer
+
+
+def test_the_reviewer_prefers_its_own_reading_and_says_when_the_ticket_was_handed_over():
+    reviewer = flat(REVIEWER)
+    assert HANDOVER_LINE in reviewer
+    assert "When you do have the tools, you use them, and ignore any handed-over block" in reviewer
+    assert "The reviewer could not open the ticket itself" in reviewer
+
+
+def test_the_orchestrator_hands_over_the_ticket_and_the_author_never_does():
+    orchestrator = flat(ORCHESTRATOR)
+    assert HANDOVER_LINE in orchestrator
+    assert "Copy, never summarise" in orchestrator
+    assert "A worker never hands over the ticket for its own PR" in orchestrator
+    worker = flat(WORK_ISSUE).split("- **`NO TICKET`**")[1].split("If you cannot get this far")[0]
+    assert "You never hand it the ticket's text" in worker
+    assert "add no label" in worker
+    # The block is written once; the lead agent points at it.
+    assert HANDOVER_LINE not in flat(LEAD) and HANDOVER_LINE not in flat(WORK_ISSUE)
+
+
+def test_the_next_run_reviews_it_again_whatever_its_label():
+    lead = flat(LEAD)
+    case = lead.split(f"Every review comment on it starts `{NO_REVIEW_COMMENT}`")[1]
+    case = case.split("- **`needs-chandler`**, any other")[0]
+    assert "Whatever its labels, and stuck or not" in case
+    assert "you still never change that label yourself" in case
+    # No review took place, so it does not count towards "failed twice".
+    assert "that is not `failed`" in lead

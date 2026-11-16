@@ -5,7 +5,8 @@ services lists the companies using it. The search feeds never link to company AT
 (DECISIONS 2026-10-19), so the only way to find a new board is a page that mentions it.
 
 Does:
-  - build one `site:<domain> <query>` search per (domain × query) in config/discover.json;
+  - build one `site:<address> <query>` search per (board address × query): the addresses
+    are the board systems' in the source registry, the queries are config/discover.json's;
   - harvest result URLs into distinct (source, token) boards via check.parse_ats_url,
     counting the URLs that are not a board job page;
   - drop boards already in config/feeds.json (enabled or not) or in
@@ -59,7 +60,7 @@ BOARD_SOURCES = registry.BOARD_SOURCES
 
 
 def search_queries(config: dict) -> list[str]:
-    return [f"site:{d} {q}" for d in config["domains"] for q in config["queries"]]
+    return [f"site:{d} {q}" for d in registry.BOARD_SEARCH_SITES for q in config["queries"]]
 
 
 def harvest(urls: list[str]) -> tuple[list[Board], int]:

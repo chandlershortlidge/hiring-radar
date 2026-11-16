@@ -304,9 +304,16 @@ does.
      the rounds; after the second send-back a third failure comes back as `NEEDS
      CHANDLER` with no @mention.
    - **`NEEDS CHANDLER`** — leave the label alone and say so in your final reply.
+   - **`NO TICKET`** — the reviewer's session had no way to open the ticket, so no review
+     took place (HIR-306). Start **one** fresh reviewer, with the PR number and nothing
+     else. You never hand it the ticket's text, labels or "Done when" list yourself: you
+     are the author. If the second says `NO TICKET` too, stop: add no label, and say in
+     your final reply that the PR is unreviewed because no reviewer could open the
+     ticket. The lead agent's next run opens the ticket itself and reviews it.
 
 If you cannot get this far — CI never goes green after your fixes, the reviewer can't be
-started, the run is stopping for a NO RULE — **label the PR `needs-chandler` yourself and
+started, the run is stopping for a NO RULE (a `NO TICKET` is none of these: it is left
+unlabelled, above) — **label the PR `needs-chandler` yourself and
 say in your final reply that the PR is unmerged and why**. @mention Chandler only for a NO
 RULE; the rest reach him in the Monday summary. A PR left with no label and no reviewer is
 the one outcome this step exists to prevent.

@@ -809,6 +809,17 @@ green, the diff stays in scope and off the big side of Chandler's list, "Needs C
 every decision has an undo and every follow-up a ticket. A finding not on his list is sent
 back to the author (above); one on its big side gets `needs-chandler` and an @mention.
 
+**A reviewer that cannot open the ticket is handed it, by a session that did not write
+the code** (HIR-306, DECISIONS 2026-11-16). Some cloud sessions start a reviewer without
+the Linear tools; why is not known. That reviewer does not review and labels nothing: it
+comments `**Review: could not reach the ticket**` and replies `NO TICKET`. The
+orchestrator, or the lead agent, then opens the ticket itself and starts a fresh reviewer
+with the ticket word for word (status, labels, description, comments), and the review
+comment says the ticket came that way. The author of a PR never supplies the ticket, and
+the PR body is never the ticket. If that fails too, the lead agent's next run reviews the
+PR again, whatever its label; only a third "could not reach the ticket" on one PR is
+labelled `needs-chandler`.
+
 **The reviewer also labels a passed PR `review-passed`, and GitHub merges it from there**
 (HIR-262). `.github/workflows/merge-reviewed.yml` runs `scripts/merge_reviewed.py` when that
 label is added and whenever a required check finishes, and merges the PR when it is
@@ -954,8 +965,8 @@ ticket away from agents.
 
 **It is the one exception to "every merge follows a review from the run that opened the
 PR"** (above): when that run died, the lead agent starts a fresh worker on a sent-back
-pull request or a fresh reviewer on an unreviewed or unmerged one. The reviewer still does
-the merging.
+pull request or a fresh reviewer on an unreviewed or unmerged one, including one whose
+reviewers could not open the ticket (above, HIR-306). The reviewer still does the merging.
 
 `/work-issue-orchestrator HIR-a HIR-b …` runs a batch: pick, one worker per issue in
 parallel worktrees, reviewer merges the autopilot PRs or sends them back to their worker, `attended` ones pause for

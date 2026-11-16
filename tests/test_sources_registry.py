@@ -14,7 +14,7 @@ import re
 
 import pytest
 
-from app import check, db, discover, ingest, poll, queries
+from app import caretaker, check, db, discover, ingest, poll, queries
 from app.sources import registry
 
 # The kind each source had when the lists were written out by hand, before the registry
@@ -108,6 +108,90 @@ def test_url_patterns_only_name_board_sources():
     name has to be a board in the registry, or its token could not be fetched."""
     for source, _host, _path in check._ATS_PATTERNS:
         assert source in registry.BOARD_SOURCES, source
+
+
+# --- where each board system lives on the web (HIR-313) ---
+#
+# The registry holds each board system's domain and search addresses; the link checker,
+# the caretaker and the board search derive theirs from it. The one list that cannot be
+# derived is the shape of a job link, so these tests are what catches a board added to the
+# registry and forgotten there.
+
+def _missing_link_pattern(boards) -> list[str]:
+    """The board systems with no job-link pattern in the link checker."""
+    patterned = {source for source, _host, _path in check._ATS_PATTERNS}
+    return [name for name in boards if name not in patterned]
+
+
+def test_every_board_source_has_a_link_pattern():
+    """The other direction of the test above: a board added to the registry without a
+    pattern would be polled, but a pasted link from it would read as a plain page."""
+    missing = _missing_link_pattern(registry.BOARD_SOURCES)
+    assert not missing, f"board source(s) with no job-link pattern in app/check.py _ATS_PATTERNS: {missing}"
+
+
+def test_a_board_without_a_link_pattern_is_named():
+    """The check above does fail, and says which system, when one is forgotten."""
+    assert _missing_link_pattern(registry.BOARD_SOURCES + ("personio",)) == ["personio"]
+
+
+def test_every_board_has_a_domain_and_a_search_address_and_nothing_else_does():
+    for s in registry.SOURCES:
+        if s.kind == "board":
+            assert s.domain and s.search_sites, f"board source {s.name} needs a domain and a search address"
+        else:
+            assert s.domain is None and s.search_sites == (), s.name
+
+
+def test_each_board_search_address_is_one_its_link_pattern_reads():
+    """A search under an address whose results the link checker cannot read as that
+    system's boards would cost a search and find nothing."""
+    host_of = {source: host for source, host, _path in check._ATS_PATTERNS}
+    for s in registry.SOURCES:
+        for site in s.search_sites:
+            host = site.split("/")[0]
+            assert host_of[s.name].match(host), f"{s.name}: {site}"
+            assert host == s.domain or host.endswith("." + s.domain), f"{s.name}: {site}"
+
+
+def test_board_addresses_are_the_ones_written_by_hand_before():
+    """Pinned to the values the three hand-written copies had, so moving them into the
+    registry provably changed nothing."""
+    assert registry.BOARD_DOMAINS == {"greenhouse": "greenhouse.io", "lever": "lever.co",
+                                      "ashby": "ashbyhq.com", "join": "join.com"}
+    assert registry.BOARD_MAIN_SITE == {"greenhouse": "job-boards.greenhouse.io", "lever": "jobs.lever.co",
+                                        "ashby": "jobs.ashbyhq.com", "join": "join.com/companies"}
+    assert registry.BOARD_SEARCH_SITES == ("job-boards.greenhouse.io", "boards.greenhouse.io", "jobs.lever.co",
+                                           "jobs.ashbyhq.com", "join.com/companies")
+
+
+def test_caretaker_and_board_search_look_where_the_registry_says():
+    """Exactly the board systems in the registry: no more (a system we cannot fetch) and
+    no fewer (a board the caretaker would refuse to pause, a system never searched)."""
+    assert caretaker.BOARD_DOMAINS is registry.BOARD_MAIN_SITE
+    assert set(caretaker.BOARD_DOMAINS) == set(registry.BOARD_SOURCES)
+    queries_ = discover.search_queries({"queries": ["q"]})
+    assert queries_ == [f"site:{site} q" for site in registry.BOARD_SEARCH_SITES]
+    searched = {s.name for s in registry.SOURCES for site in s.search_sites if f"site:{site} q" in queries_}
+    assert searched == set(registry.BOARD_SOURCES)
+
+
+def test_systems_we_read_are_exactly_the_board_sources():
+    assert dict(check._SUPPORTED_HOSTS) == registry.BOARD_DOMAINS
+    assert set(dict(check._SUPPORTED_HOSTS)) == set(registry.BOARD_SOURCES)
+
+
+def test_no_system_is_both_read_and_not_read_yet():
+    """When a system gets a reader it must leave the "cannot read yet" list, or the
+    missed-job report keeps counting it as unreadable and asks for a reader that exists."""
+    unread = {name for name, _pat in check._UNREAD_SYSTEMS}
+    assert not unread & set(registry.BOARD_SOURCES), sorted(unread & set(registry.BOARD_SOURCES))
+    # By address too: the "cannot read yet" patterns are tried first, so one that matched
+    # a board system's domain would win over the reader.
+    for board, domain in registry.BOARD_DOMAINS.items():
+        for name, pat in check._UNREAD_SYSTEMS:
+            for host in (domain, "jobs." + domain):
+                assert not pat.search(host), f"{board} ({host}) is also matched as unread system {name}"
 
 
 # --- dispatch: what used to be the if-chain in poll.fetch_feed ---
