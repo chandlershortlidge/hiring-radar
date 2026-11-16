@@ -22,7 +22,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, timedelta, timezone
 
 from app.geo import CITIES, REMOTE_EU
-from app.ingest import FAMILIES as ingest_families
+from app.ingest import FAMILIES as ingest_families, SALES_TITLE_PHRASES
 from app.sources import registry
 
 # Complete feeds list every live posting on every poll, so not seeing a job for
@@ -72,6 +72,12 @@ _NOT_LEGACY = "(j.extracted_version IS NULL OR j.extracted_version != 'legacy')"
 # the job would only shrink every share on the chart. DECISIONS 2026-10-21.
 MIN_TEXT_CHARS = 400
 _LONG_ENOUGH = f"length(j.description_text) >= {MIN_TEXT_CHARS}"
+# Stored postings whose title names a sales role are out of the chart, like the two kinds
+# above; ingest no longer stores them, and nothing is deleted (DECISIONS 2026-11-16,
+# HIR-246). Built from ingest's own tuple so the two cannot drift; tests/test_queries.py
+# checks this SQL and ingest.sales_title agree title by title.
+_NOT_SALES = "(" + " AND ".join(
+    f"lower(coalesce(j.title, '')) NOT LIKE '%{p}%'" for p in SALES_TITLE_PHRASES) + ")"
 # related_skills: how many of the selected skill's jobs a skill must share before it is
 # worth showing (below that, one odd stack of skills reads as a 4x lift), and how many of
 # the ranked rows the panel gets. DECISIONS 2026-10-28.
@@ -119,10 +125,11 @@ def open_clause(now: str) -> tuple[str, list]:
 def job_set_clause(f: Filters, now: str, include_legacy: bool = False) -> tuple[str, list]:
     """WHERE fragment (over alias j) selecting the jobs the filters describe.
 
-    Unless include_legacy, two kinds of job are out of the chart (the job list shows them):
-    legacy imports, whose skills never came from the evaluated extractor, and jobs whose
-    text is shorter than MIN_TEXT_CHARS, a fragment rather than a posting."""
-    parts, params = ([] if include_legacy else [_NOT_LEGACY, _LONG_ENOUGH]), []
+    Unless include_legacy, three kinds of job are out of the chart (the job list shows them):
+    legacy imports, whose skills never came from the evaluated extractor, jobs whose
+    text is shorter than MIN_TEXT_CHARS, a fragment rather than a posting, and jobs whose
+    title names a sales role, which are outside the market the chart measures (HIR-246)."""
+    parts, params = ([] if include_legacy else [_NOT_LEGACY, _LONG_ENOUGH, _NOT_SALES]), []
     if f.cities:
         # Any of the job's places, not only its first: a Berlin + Munich job is in both (HIR-289).
         parts.append(f"EXISTS (SELECT 1 FROM job_place jpl WHERE jpl.job_id = j.id"

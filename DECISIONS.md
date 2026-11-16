@@ -5,6 +5,62 @@ re-treads a dead end or undoes a decision without knowing the reason. Newest fir
 
 ---
 
+## 2026-11-16 — Sales postings are outside the market the charts measure: dropped by title at collection, hidden from the charts where already stored (HIR-246)
+
+**The rule (Chandler, 16 Nov: "yes, as recommended").** A posting for *selling* AI is not
+part of what this project measures. The charts show what engineers are asked to know; a
+quota-carrying seller's posting names the same technologies as things to sell, and counting
+it records a demand the posting never makes. This is the consulting rule of 2026-10-19
+applied to sales: a job counts when it builds something.
+
+**Where it is applied: the title, in two places, from one list.**
+`SALES_TITLE_PHRASES` in `app/ingest.py`: `presales`, `pre-sales`, `pre sales`,
+`sales engineer`, `sales architect`, matched anywhere in the lowercased title.
+
+- *At collection.* `in_scope_title` refuses such a title, so no feed stores one, `check`
+  reports it as a title the filter drops, and `discover-boards` does not count it towards a
+  board. Counted under `skipped_title`, like every other title the filter refuses.
+- *In the charts.* `job_set_clause` in `app/queries.py` leaves out stored jobs with such a
+  title, beside the two kinds already left out (legacy imports and fragments). That covers
+  the skill chart, the per-city totals, the related-skills panel and the skill tree. The
+  job list still shows them, as it shows the other two kinds. The SQL is built from the
+  same tuple, so there is one copy of the rule and no migration.
+
+**Nothing is deleted and no stored row changes.** Deleting stored jobs is Chandler's call
+at any count, and his answer was to hide. Rejected: a marker column set by a migration (a
+second copy of the rule in SQL, and stored data changed, for the same chart); filtering at
+extraction (leaves stored postings in, and changes the extractor, which re-reads every job).
+
+**Why "sales" needs a role word after it, and "pre-sales" does not.** The approved wording
+was "by title (sales, pre-sales)". A bare `sales` anywhere would also drop "Machine
+Learning Engineer, Sales Forecasting", an engineer who builds for a sales team, and a
+wrong guess here silently drops a real engineering job. "Sales Engineer" and "Sales
+Architect" name the seller's role itself. Titles such as "Sales Manager, AI" never passed
+the filter: they have no technical role word. To undo or widen: edit the tuple; both
+places follow.
+
+**Known limits.**
+
+- *A sales job whose title names no sales word still counts.* Ramp's "AI Solutions
+  Engineer" (New York), one of the two postings the ticket names, calls itself "a
+  quota-carrying technical sales role" in its text and nowhere in its title, and
+  "Solutions Engineer" is also the title of roles that build. It stays on the charts until
+  something reads the text (HIR-319). OEDIV's "PreSales Engineer Data & AI" is caught.
+- *A posting added by hand with such a title is stored but stays off the charts.* Manual
+  adds skip the title filter (the 2026-10-19 exception for roles that build), and the
+  chart rule reads only the title.
+- *German titles* ("Vertriebsingenieur") are not on the list; the approved wording named
+  the English words only.
+- The dashboard's count of open jobs still includes the hidden postings, as it includes
+  legacy imports and fragments.
+- *How many stored postings this hides was not counted*: the run that made the change had
+  no copy of the database.
+
+**The answer keys are unchanged.** Chandler ruled on 2026-11-10 that both postings stay in
+the dev answer-key set, so that accuracy on them is measured, not assumed. Nothing here
+touches a Golden or `evals/goldens/excluded.json`. The extractor is still asked to read a
+sales posting correctly; the charts just no longer count it.
+
 ## 2026-11-16 — A reviewer that cannot open the ticket is handed its text by whoever started it, and that failure is no longer Chandler's (HIR-306)
 
 **What happened.** On 14 Nov the 22:30 lead-agent run started three reviewers from one

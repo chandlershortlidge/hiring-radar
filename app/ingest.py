@@ -12,7 +12,8 @@ Every place a sighting names is recorded against its job in `job_place`, on all 
 paths, so a posting for Berlin and Munich — or a Munich copy merged into a Berlin job —
 counts under both (HIR-289); `job.city` stays the first place.
 Also applies the title/city filters so feeds' unrelated postings never become rows:
-a title needs both an AI/ML domain term and a technical role term. A posting with no
+a title needs both an AI/ML domain term and a technical role term, and must not name a
+sales role (sales_title, HIR-246). A posting with no
 company is dropped here too (HIR-207): dedup matches on company first, so a blank-company
 row can never be recognised as a duplicate and every repost of it from another source
 becomes a second row. A feed posting that was already dropped for reading blank twice is
@@ -106,8 +107,25 @@ def check_timestamp(when: str) -> str:
     return when
 
 
+# Titles that say the job is selling, not building (DECISIONS 2026-11-16, HIR-246): the
+# charts measure what engineers are asked to know, and a seller's posting names the same
+# technologies as things to sell. Plain lowercase substrings, not a regex, because
+# app/queries.py builds its SQL from this same tuple to keep already-stored postings out of
+# the charts, and SQLite has LIKE but no regex: one list, two readers. `sales` counts only
+# directly before a role word, so "ML Engineer, Sales Forecasting" (builds for a sales
+# team) stays in; `presales` in any spelling counts anywhere. ASCII only, and no `%`, `_`
+# or quote characters: they go into LIKE patterns verbatim.
+SALES_TITLE_PHRASES = ("presales", "pre-sales", "pre sales", "sales engineer", "sales architect")
+
+
+def sales_title(title: str | None) -> bool:
+    """True when the title names a sales role. Pure."""
+    low = (title or "").lower()
+    return any(p in low for p in SALES_TITLE_PHRASES)
+
+
 def in_scope_title(title: str) -> bool:
-    return bool(DOMAIN_PATTERN.search(title) and ROLE_PATTERN.search(title))
+    return bool(DOMAIN_PATTERN.search(title) and ROLE_PATTERN.search(title)) and not sales_title(title)
 
 
 # A conservative screen for "recruitment agency or job aggregator": its postings are not
