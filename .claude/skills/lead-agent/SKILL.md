@@ -196,7 +196,19 @@ change for 12 hours; anything younger belongs to a run that may still be alive.
   says why not.
 - **No review label at all, checks green, stuck, its ticket labelled `autopilot`** → its
   run died before review. Start a fresh `reviewer` the same way.
-- **`needs-chandler`** → leave it. List it under "Needs you".
+- **Every review comment on it starts `**Review: could not reach the ticket**`, or it was
+  labelled `needs-chandler` by a reviewer that said it could not open the ticket and has
+  no other review comment** → it has had no review (HIR-306). Whatever its labels, and
+  stuck or not, unless an earlier run that may still be alive lists its ticket as
+  `running`: open its ticket yourself and start a fresh `reviewer` with the pull request
+  number and the ticket word for word, exactly as the orchestrator's step 3 does for
+  `NO TICKET` (the block is written there and nowhere else). You wrote none of the code,
+  which is why you may. Post the reviewer's `Linear comment:` line on the ticket. This is
+  the one case where you start a reviewer on a pull request labelled `needs-chandler`:
+  you still never change that label yourself; the reviewer removes it if the work passes.
+  Does not apply to a pull request that changes the agents' own rules (below). List it
+  under "Unstuck".
+- **`needs-chandler`**, any other → leave it. List it under "Needs you".
 - **A pull request that changes the agents' own rules** (AGENTS.md "The rules gate") →
   leave it, whatever its labels. List it under "Needs you".
 - **A ticket In Progress with no open pull request and no change for 24 hours** → its run
@@ -358,7 +370,10 @@ Design review: <Fridays only, the first run of the day>
   again; it is Monday's.
 - `waiting` — it stopped on a question for Chandler. Not a failure.
 - `not-started` — picked, but held back (a file an open pull request already changes, or
-  the usage limit).
+  the usage limit). Also a ticket whose pull request is built but got no review because
+  no reviewer could open the ticket (the orchestrator's "Not reviewed", HIR-306): that
+  is not `failed`, because no review took place to fail, and the next run's step 3
+  reviews it.
 - `running` — only while the run is alive (step 4). A finished run leaves none.
 
 `spend` is what the ticket's pull request says it cost in model calls (its eval), in
