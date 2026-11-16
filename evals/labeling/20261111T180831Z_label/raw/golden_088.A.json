@@ -1,0 +1,80 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"recommender-systems\", \"requirement\": \"required\", \"raw_text\": \"production recommendation, ranking, or personalization systems\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Strong ML fundamentals\"},\n    {\"skill_id\": \"a-b-testing\", \"requirement\": \"required\", \"raw_text\": \"online experimentation\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Experience integrating LLMs\"},\n    {\"skill_id\": \"model-serving\", \"requirement\": \"nice_to_have\", \"raw_text\": \"real-time serving\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Engagement modeling\", \"raw_text\": \"engagement modeling\"},\n    {\"label\": \"Model calibration\", \"raw_text\": \"model calibration\"},\n    {\"label\": \"Offline and online metrics\", \"raw_text\": \"offline and online metrics\"},\n    {\"label\": \"Feature stores\", \"raw_text\": \"feature stores\"},\n    {\"label\": \"Multi-stage retrieval and ranking\", \"raw_text\": \"multi-stage retrieval and ranking\"},\n    {\"label\": \"Large-scale ranking and training infrastructure\", \"raw_text\": \"large-scale ranking and training infrastructure\"}\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"Sections: 'WHAT WE'RE LOOKING FOR' defaults to required. 'NICE TO HAVE' makes its items nice_to_have.\\nrecommender-systems: the bullet names recommendation systems directly. 'Ranking' and 'personalization' are treated as part of the same skill, not separate taxonomy ids.\\nmachine-learning: labeled from 'Strong ML fundamentals'.\\na-b-testing: 'online experimentation' is mapped to A/B testing as the closest taxonomy entry. It is not an alias, so it is flagged uncertain.\\nmodel-serving: 'real-time serving' sits under NICE TO HAVE and is mapped to model-serving. Flagged uncertain because the wording is generic.\\nrag: not labeled. 'retrieval ... pipelines' and 'multi-stage retrieval' do not name RAG, so a parent or related skill is not added.\\nai-infrastructure: not labeled. 'training infrastructure' is not an AI infrastructure alias and is recorded in unmapped instead.\\nAppetite wording: 'curiosity about reimagining it from first principles' expresses appetite toward personalization in general, not toward a taxonomy skill, so no label is affected.\\nResponsibilities: 'evaluation foundations' appears only under WHAT YOU'LL DO, so evaluation is not labeled.\\nSeniority: the title 'Member of Technical Staff' names no level. 'experienced' and 'Deep, hands-on experience' are not level signals under the guide, and no years of experience are given.\\nSeniority, tech leadership: the leadership-experience bullet applies only conditionally ('For tech leadership roles'), so it is not used as a basis. Seniority is therefore null and flagged for review.\\nNo mention of German or of any degree.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "required",
+        "raw_text": "production recommendation, ranking, or personalization systems"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Strong ML fundamentals"
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "required",
+        "raw_text": "online experimentation",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Experience integrating LLMs"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "real-time serving",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Engagement modeling",
+        "raw_text": "engagement modeling"
+      },
+      {
+        "label": "Model calibration",
+        "raw_text": "model calibration"
+      },
+      {
+        "label": "Offline and online metrics",
+        "raw_text": "offline and online metrics"
+      },
+      {
+        "label": "Feature stores",
+        "raw_text": "feature stores"
+      },
+      {
+        "label": "Multi-stage retrieval and ranking",
+        "raw_text": "multi-stage retrieval and ranking"
+      },
+      {
+        "label": "Large-scale ranking and training infrastructure",
+        "raw_text": "large-scale ranking and training infrastructure"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Sections: 'WHAT WE'RE LOOKING FOR' defaults to required. 'NICE TO HAVE' makes its items nice_to_have.\nrecommender-systems: the bullet names recommendation systems directly. 'Ranking' and 'personalization' are treated as part of the same skill, not separate taxonomy ids.\nmachine-learning: labeled from 'Strong ML fundamentals'.\na-b-testing: 'online experimentation' is mapped to A/B testing as the closest taxonomy entry. It is not an alias, so it is flagged uncertain.\nmodel-serving: 'real-time serving' sits under NICE TO HAVE and is mapped to model-serving. Flagged uncertain because the wording is generic.\nrag: not labeled. 'retrieval ... pipelines' and 'multi-stage retrieval' do not name RAG, so a parent or related skill is not added.\nai-infrastructure: not labeled. 'training infrastructure' is not an AI infrastructure alias and is recorded in unmapped instead.\nAppetite wording: 'curiosity about reimagining it from first principles' expresses appetite toward personalization in general, not toward a taxonomy skill, so no label is affected.\nResponsibilities: 'evaluation foundations' appears only under WHAT YOU'LL DO, so evaluation is not labeled.\nSeniority: the title 'Member of Technical Staff' names no level. 'experienced' and 'Deep, hands-on experience' are not level signals under the guide, and no years of experience are given.\nSeniority, tech leadership: the leadership-experience bullet applies only conditionally ('For tech leadership roles'), so it is not used as a basis. Seniority is therefore null and flagged for review.\nNo mention of German or of any degree."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "2955c01a4194fe08ff50df9b440e459a8d4447be4577ff9dcbc789b59c43c495",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

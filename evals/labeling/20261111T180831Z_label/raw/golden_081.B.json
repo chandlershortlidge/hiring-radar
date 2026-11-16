@@ -1,0 +1,144 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building and shipping production machine learning systems\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"developing production machine learning models\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"modern deep learning frameworks\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"apache-spark\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Spark\"\n    },\n    {\n      \"skill_id\": \"airflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Airflow\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building, deploying, monitoring, and maintaining production ML systems end-to-end\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"monitoring, and maintaining production ML systems\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"maintaining production ML systems end-to-end\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering skills\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"ai-infrastructure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"modern ML infrastructure\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Reinforcement Learning\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Large Language Models (LLMs)\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI-assisted development tools\"\n    },\n    {\n      \"skill_id\": \"claude-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Claude Code\"\n    },\n    {\n      \"skill_id\": \"codex\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Codex\"\n    },\n    {\n      \"skill_id\": \"cursor\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cursor\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Distributed data processing\",\n      \"raw_text\": \"distributed data processing technologies\"\n    },\n    {\n      \"label\": \"Optimization / Operations Research\",\n      \"raw_text\": \"Optimization / Operations Research\"\n    },\n    {\n      \"label\": \"Vision-Language Models\",\n      \"raw_text\": \"Vision-Language Models (VLMs)\"\n    },\n    {\n      \"label\": \"Estimation\",\n      \"raw_text\": \"estimation\"\n    },\n    {\n      \"label\": \"Ranking\",\n      \"raw_text\": \"ranking\"\n    },\n    {\n      \"label\": \"Prediction\",\n      \"raw_text\": \"prediction\"\n    },\n    {\n      \"label\": \"Decision-making methods\",\n      \"raw_text\": \"decision-making problems\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer, Drive\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Bachelor's, Master's, or PhD\",\n  \"notes\": \"The candidate-qualification section has no optional heading; inline 'strong plus' and 'helpful but not required' apply only to their respective bullets.\\nThe required expertise alternatives are each labeled required under the guide's treatment of named alternatives. The required LLM mention takes precedence over the later strong-plus mention.\\nProduction ML deployment, monitoring, maintenance, and ML infrastructure are mapped literally to AI deployment, observability, MLOps, and AI Infrastructure.\\nEstimation, ranking, prediction, and decision-making are retained as unmapped techniques explicitly named in the applied-ML qualification; prediction is not assumed to mean time-series forecasting.\\nResponsibilities and motivational statements are not treated as independent skill requirements. Logistics, marketplaces, and delivery-platform experience are excluded as domain knowledge.\\nThe degree label takes the highest level named, although bachelor's and master's degrees are also accepted.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "building and shipping production machine learning systems"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "developing production machine learning models"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "modern deep learning frameworks"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "required",
+        "raw_text": "Spark"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "required",
+        "raw_text": "Airflow"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "building, deploying, monitoring, and maintaining production ML systems end-to-end"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring, and maintaining production ML systems"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "maintaining production ML systems end-to-end"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering skills"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "required",
+        "raw_text": "modern ML infrastructure"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "Reinforcement Learning"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Large Language Models (LLMs)"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI-assisted development tools"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code"
+      },
+      {
+        "skill_id": "codex",
+        "requirement": "required",
+        "raw_text": "Codex"
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Distributed data processing",
+        "raw_text": "distributed data processing technologies"
+      },
+      {
+        "label": "Optimization / Operations Research",
+        "raw_text": "Optimization / Operations Research"
+      },
+      {
+        "label": "Vision-Language Models",
+        "raw_text": "Vision-Language Models (VLMs)"
+      },
+      {
+        "label": "Estimation",
+        "raw_text": "estimation"
+      },
+      {
+        "label": "Ranking",
+        "raw_text": "ranking"
+      },
+      {
+        "label": "Prediction",
+        "raw_text": "prediction"
+      },
+      {
+        "label": "Decision-making methods",
+        "raw_text": "decision-making problems"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer, Drive",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor's, Master's, or PhD",
+    "notes": "The candidate-qualification section has no optional heading; inline 'strong plus' and 'helpful but not required' apply only to their respective bullets.\nThe required expertise alternatives are each labeled required under the guide's treatment of named alternatives. The required LLM mention takes precedence over the later strong-plus mention.\nProduction ML deployment, monitoring, maintenance, and ML infrastructure are mapped literally to AI deployment, observability, MLOps, and AI Infrastructure.\nEstimation, ranking, prediction, and decision-making are retained as unmapped techniques explicitly named in the applied-ML qualification; prediction is not assumed to mean time-series forecasting.\nResponsibilities and motivational statements are not treated as independent skill requirements. Logistics, marketplaces, and delivery-platform experience are excluded as domain knowledge.\nThe degree label takes the highest level named, although bachelor's and master's degrees are also accepted."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "853e5ec9154bdaa444b6962ddc1c05f2e311189befdde7edda497a01f18fe10e",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

@@ -1,0 +1,111 @@
+{
+  "id": "golden_083",
+  "split": "heldout",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": true,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Bachelor’s degree or an equivalent combination of education, training, and/or experience",
+  "attrs_reviewed": true,
+  "source_sha256": "adb636b31f5634776a8f0c06ba6a91f498b3e3747523647bd72e70a4dbd3d292",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:ai-infrastructure",
+    "skill:cybersecurity",
+    "skill:llms"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Security Engineer / Research Engineer, RL Security\n\nAbout Anthropic\n\nAnthropic’s mission is to create reliable, interpretable, and steerable AI systems. We want AI to be safe and beneficial for our users and for society as a whole. Our team is a quickly growing group of committed researchers, engineers, policy experts, and business leaders working together to build beneficial AI systems.\n\nAbout the role\n\nReinforcement learning is how Claude learns to reason, write code, and act autonomously over long horizons. At frontier scale, an RL run is a large distributed system: training, sampling, and environment execution run concurrently across a large fleet of accelerators and hosts. As an engineer in RL Engineering, you'll work on keeping that system secure as it scales.\n\nThis is a hands-on engineering role. You'll work in the RL codebase and the infrastructure underneath it, alongside the engineers and researchers who build and use it. The system is large and changes as fast as the research does, so security work here has to keep up with that pace without costing performance or velocity.\n\nWe're hiring from two backgrounds: security engineers who want to work on large-scale ML systems, and ML systems or research engineers who want to work on security. Strong candidates have depth in one and real interest in the other.\n\nKey responsibilities\n\n-\n\nDesign, build, and operate security controls for RL training systems and the infrastructure they run on\n\n-\n\nWork across the stack (orchestration, environments, training, inference) wherever the work is needed\n\n-\n\nReview designs and code across the RL stack, find security problems, and fix them\n\n-\n\nBuild shared libraries and tooling that other RL engineers and researchers build on\n\n-\n\nBuild the observability needed to understand what these systems are doing\n\n-\n\nWork with researchers and performance engineers to make sure security changes preserve training correctness and performance\n\n-\n\nWrite clear design documents for what you build\n\nMinimum qualifications\n\n-\n\nStrong software engineering skills in Python and at least one systems language such as Rust, C++, or Go\n\n-\n\nExperience designing, building, and operating large-scale distributed systems or security systems in production\n\n-\n\nStrong understanding of security fundamentals\n\n-\n\nWorking knowledge of Linux, containers, and cloud infrastructure\n\n-\n\nExperience debugging complex problems across many hosts and services\n\n-\n\nAbility to reason about tradeoffs between security, performance, and reliability\n\n-\n\nStrong written communication, including design documents\n\nPreferred qualifications\n\n-\n\nExperience running ML training or inference infrastructure at scale\n\n-\n\nExperience with infrastructure security, such as isolation, access control, networking, or identity\n\n-\n\nExperience with container orchestration such as Kubernetes, and with sandboxed or virtualized code execution at scale\n\n-\n\nExperience building observability for large fleets\n\n-\n\nExperience supporting research teams or other fast-moving internal users\n\n-\n\nFamiliarity with reinforcement learning or large language model training workloads\n\nThe annual compensation range for this role is listed below. \n\nFor sales roles, the range provided is the role’s On Target Earnings (\"OTE\") range, meaning that the range includes both the sales commissions/sales bonuses target and annual base salary for the role.\n\nAnnual Salary:\n\n$320,000—$405,000 USD\n\nLogistics\n\nMinimum education: Bachelor’s degree or an equivalent combination of education, training, and/or experience\n\nRequired field of study: A field relevant to the role as demonstrated through coursework, training, or professional experience\n\nMinimum years of experience: Years of experience required will correlate with the internal job level requirements for the position\n\nLocation-based hybrid policy: Currently, we expect all staff to be in one of our offices at least 25% of the time. However, some roles may require more time in our offices.\n\nVisa sponsorship: We do sponsor visas! However, we aren't able to successfully sponsor visas for every role and every candidate. But if we make you an offer, we will make every reasonable effort to get you a visa, and we retain an immigration lawyer to help with this.\n\nWe encourage you to apply even if you do not believe you meet every single qualification. Not all strong candidates will meet every single qualification as listed.  Research shows that people who identify as being from underrepresented groups are more prone to experiencing imposter syndrome and doubting the strength of their candidacy, so we urge you not to exclude yourself prematurely and to submit an application if you're interested in this work. We think AI systems like the ones we're building have enormous social and ethical implications. We think this makes representation even more important, and we strive to include a range of diverse perspectives on our team.\n\nYour safety matters to us. To protect yourself from potential scams, remember that Anthropic recruiters only contact you from @anthropic.com email addresses. In some cases, we may partner with vetted recruiting agencies who will identify themselves as working on behalf of Anthropic. Be cautious of emails from other domains. Legitimate Anthropic recruiters will never ask for money, fees, or banking information before your first day. If you're ever unsure about a communication, don't click any links—visit anthropic.com/careers directly for confirmed position openings.\n\nHow we're different\n\nWe believe that the highest-impact AI research will be big science. At Anthropic we work as a single cohesive team on just a few large-scale research efforts. And we value impact — advancing our long-term goals of steerable, trustworthy AI — rather than work on smaller and more specific puzzles. We view AI research as an empirical science, which has as much in common with physics and biology as with traditional efforts in computer science. We're an extremely collaborative group, and we host frequent research discussions to ensure that we are pursuing the highest-impact work at any given time. As such, we greatly value communication skills.\n\nThe easiest way to understand our research directions is to read our recent research. This research continues many of the directions our team worked on prior to Anthropic, including: GPT-3, Circuit-Based Interpretability, Multimodal Neurons, Scaling Laws, AI & Compute, Concrete Problems in AI Safety, and Learning from Human Preferences.\n\nCome work with us!\n\nAnthropic is a public benefit corporation headquartered in San Francisco. We offer competitive compensation and benefits, optional equity donation matching, generous vacation and parental leave, flexible working hours, and a lovely office space in which to collaborate with colleagues. Guidance on Candidates' AI Usage: Learn about our policy for using AI in our application process.",
+  "expected": [
+    {
+      "skill_id": "ai-infrastructure",
+      "requirement": "nice_to_have",
+      "raw_text": "ML training or inference infrastructure"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "cloud infrastructure"
+    },
+    {
+      "skill_id": "containerization",
+      "requirement": "required",
+      "raw_text": "containers"
+    },
+    {
+      "skill_id": "cpp",
+      "requirement": "required",
+      "raw_text": "C++"
+    },
+    {
+      "skill_id": "cybersecurity",
+      "requirement": "required",
+      "raw_text": "security fundamentals"
+    },
+    {
+      "skill_id": "distributed-systems",
+      "requirement": "required",
+      "raw_text": "large-scale distributed systems"
+    },
+    {
+      "skill_id": "go",
+      "requirement": "required",
+      "raw_text": "Go"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "nice_to_have",
+      "raw_text": "Kubernetes"
+    },
+    {
+      "skill_id": "linux",
+      "requirement": "required",
+      "raw_text": "Linux"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "nice_to_have",
+      "raw_text": "large language model training workloads"
+    },
+    {
+      "skill_id": "networking",
+      "requirement": "nice_to_have",
+      "raw_text": "networking"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "nice_to_have",
+      "raw_text": "Experience building observability for large fleets"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "reinforcement-learning",
+      "requirement": "nice_to_have",
+      "raw_text": "Familiarity with reinforcement learning"
+    },
+    {
+      "skill_id": "rust",
+      "requirement": "required",
+      "raw_text": "Rust"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Strong software engineering skills"
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"Deep familiarity with SQL\"},\n    {\"skill_id\": \"data-visualization\", \"requirement\": \"required\", \"raw_text\": \"data visualization tools\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Understanding of modern machine learning techniques\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"Experience evaluating model performance\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Ability to code and iterate independently in Python\"},\n    {\"skill_id\": \"data-science\", \"requirement\": \"required\", \"raw_text\": \"6+ years of industry experience in Data Science\", \"uncertain\": true},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"nice_to_have\", \"raw_text\": \"data pipelines\"},\n    {\"skill_id\": \"dbt\", \"requirement\": \"nice_to_have\", \"raw_text\": \"dbt\"},\n    {\"skill_id\": \"airflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Airflow\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"classification\", \"raw_text\": \"classification\"},\n    {\"label\": \"clustering\", \"raw_text\": \"clustering\"},\n    {\"label\": \"optimization\", \"raw_text\": \"optimization\"},\n    {\"label\": \"exploratory data analysis\", \"raw_text\": \"exploratory data analysis\"},\n    {\"label\": \"data mining\", \"raw_text\": \"data mining\"},\n    {\"label\": \"quantitative analysis\", \"raw_text\": \"quantitative analysis\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Data Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor’s degree or equivalent work experience\",\n  \"uncertain\": [],\n  \"notes\": \"The 'WHAT EXCITES US' heading expresses the company's enthusiasm, not the candidate's appetite (golden_038 limit), so it is read as the requirements section and its unmarked items are required.\\nThe 'WHAT EXCITES YOU' section is candidate appetite ('excited by'). The only taxonomy skill in it, data visualization, is also asked for in the requirements section, so it collapses to required with the requirement quote.\\n'is a plus' attaches to the data pipelines / dbt / Airflow bullet, so all three are nice_to_have.\\n'Evaluating model performance' is mapped to evaluation through its 'model evaluation' alias. This is flagged uncertain because it is phrased as experience in an activity.\\nData Science appears only as the field of the years-of-experience requirement. It is labeled required but flagged uncertain, since it may read as domain or role experience rather than a skill.\\nDashboards, monitoring, experiment design and data models appear only in the responsibilities section, so they are not labeled.\\nStatistics appears only as a degree field, so it is not labeled.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "Deep familiarity with SQL"
+      },
+      {
+        "skill_id": "data-visualization",
+        "requirement": "required",
+        "raw_text": "data visualization tools"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Understanding of modern machine learning techniques"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Experience evaluating model performance",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Ability to code and iterate independently in Python"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "6+ years of industry experience in Data Science",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "data pipelines"
+      },
+      {
+        "skill_id": "dbt",
+        "requirement": "nice_to_have",
+        "raw_text": "dbt"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Airflow"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "classification",
+        "raw_text": "classification"
+      },
+      {
+        "label": "clustering",
+        "raw_text": "clustering"
+      },
+      {
+        "label": "optimization",
+        "raw_text": "optimization"
+      },
+      {
+        "label": "exploratory data analysis",
+        "raw_text": "exploratory data analysis"
+      },
+      {
+        "label": "data mining",
+        "raw_text": "data mining"
+      },
+      {
+        "label": "quantitative analysis",
+        "raw_text": "quantitative analysis"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Data Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor’s degree or equivalent work experience",
+    "uncertain": [],
+    "notes": "The 'WHAT EXCITES US' heading expresses the company's enthusiasm, not the candidate's appetite (golden_038 limit), so it is read as the requirements section and its unmarked items are required.\nThe 'WHAT EXCITES YOU' section is candidate appetite ('excited by'). The only taxonomy skill in it, data visualization, is also asked for in the requirements section, so it collapses to required with the requirement quote.\n'is a plus' attaches to the data pipelines / dbt / Airflow bullet, so all three are nice_to_have.\n'Evaluating model performance' is mapped to evaluation through its 'model evaluation' alias. This is flagged uncertain because it is phrased as experience in an activity.\nData Science appears only as the field of the years-of-experience requirement. It is labeled required but flagged uncertain, since it may read as domain or role experience rather than a skill.\nDashboards, monitoring, experiment design and data models appear only in the responsibilities section, so they are not labeled.\nStatistics appears only as a degree field, so it is not labeled."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "cb9f5b8e42196928843ff44a6dd23d8256cd1f1b8da80ae4648d3fb6158068a2",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}
