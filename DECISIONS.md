@@ -1,7 +1,870 @@
 # Decisions Log
 
+**New entries are not added to this file.** Since 16 Nov 2026 (HIR-305) each decision is
+its own file in [`decisions/`](decisions/), named `YYYY-MM-DD-hir-N-short-title.md`, so
+two pull requests that each record a decision never change the same lines. To read the
+log: the files in `decisions/` (the names sort by date, newest last), then the entries
+below, which stay here as they are.
+
 What we decided, why, and what we tried that didn't work — so nobody (person or agent)
 re-treads a dead end or undoes a decision without knowing the reason. Newest first.
+
+---
+
+## 2026-11-16 — A reviewer that cannot open the ticket is handed its text by whoever started it, and that failure is no longer Chandler's (HIR-306)
+
+**What happened.** On 14 Nov the 22:30 lead-agent run started three reviewers from one
+cloud session. The first (pull request #184, 21:45 to 21:48 UTC) opened its ticket and
+passed the work. The next two (#185, 21:55 and 21:56 UTC) each reported that the Linear
+tools, and `ToolSearch`, the tool that loads them, were not in their session. Both
+refused to review, correctly, and the first labelled the pull request `needs-chandler`.
+It waited eleven hours for a reviewer from the Mac, which passed it unchanged.
+
+**The cause was not found, and cannot be from what is left.** A cloud session's
+transcripts are gone when it ends; what remains is the pull request comments, the Linear
+comments and the lead agent's log. They rule out three things and prove none:
+
+- *Not the reviewer's definition.* `.claude/agents/reviewer.md` did not change between
+  the reviewer that had the tools and the two that did not (last edit merged 14 Nov
+  18:44 Berlin, before the run), and all three ran in one session, which loads it once.
+- *Not Linear being down for the session.* The worker on that same ticket posted a
+  Linear comment from the same session at 21:53:56, two minutes before the first failed
+  reviewer, and the lead agent wrote its log afterwards.
+- *Not cloud runs as such.* The 18:30 and 02:30 runs that day, and the 14:30 run on
+  16 Nov (whose transcript was read for this ticket), started reviewers the same way,
+  as the `reviewer` agent with the pull request number and nothing else, and each was
+  handed the three Linear tools as deferred tools and loaded them with `ToolSearch`.
+
+What the two reports fit, without proving it: `ToolSearch` appears to be offered only to
+an agent that has deferred tools to load, and the Linear tools are the reviewer's only
+ones. "No Linear tools and no `ToolSearch`" would then be one fault, not two: the
+session did not hand the Linear connection to those two subagents when they were started. Why it did so twice in two
+minutes and not eight minutes earlier is in the harness, not in this repository, and it
+is not known whether it will recur. **Tried and not possible:** reading the 14 Nov
+session's own record of how each reviewer was started; it no longer exists.
+
+**So the fix does not depend on the cause.** Three changes, all in the agents' rules:
+
+1. **The session that started the reviewer hands over the ticket.** A reviewer with no
+   way to open the ticket adds no label, posts one comment starting
+   `**Review: could not reach the ticket**`, and replies `NO TICKET`. The orchestrator
+   (or the lead agent, when it starts a reviewer itself) then opens the ticket with its
+   own tools and starts a fresh reviewer with the pull request number and the ticket
+   word for word: status, labels, the whole description, every comment. It adds nothing
+   of its own. The reviewer uses that text only when it cannot open the ticket itself,
+   checks that it is for the ticket the branch names, and says in its review comment
+   that this is how it got the ticket. HIR-137's rule is narrowed, not dropped: the
+   reviewer still never takes the ticket from the **author** of the pull request or from
+   the pull request body, and a `/work-issue` worker reviewing at the end of its own run
+   never hands it over. The orchestrator wrote none of the code, which is why it may.
+2. **"Could not reach the ticket" is a setup failure, not a verdict.** It costs no
+   `needs-chandler`. The pull request is left as it is and the next lead-agent run
+   reviews it again, handing over the ticket from the start. Only when a pull request
+   already carries two such comments does a third failure label it `needs-chandler`
+   (no @mention), so a fault that never clears still reaches Chandler on Monday.
+3. **The next run picks it up whatever its label and however recently it was touched**:
+   an open pull request whose review comments are all "could not reach the ticket" has
+   had no review. This is the one case where the lead agent starts a reviewer on a pull
+   request labelled `needs-chandler`; the reviewer, not the lead agent, removes the label
+   if it passes.
+
+In the lead agent's log such a ticket is `not-started`, not `failed`: two `failed` lines
+stop a ticket for good, and no review took place to fail.
+
+**Not changed:** what the reviewer checks, and that nothing merges without a review. An
+issue that does not exist, or a pull request that names no issue, is still
+`needs-chandler`: that is a finding about the pull request, not a setup failure.
+
+To undo: revert the commit; the reviewer then labels `needs-chandler` on the first
+failure again.
+
+---
+
+---
+
+## 2026-11-16 — A refused server login is tried again, and a rollback that never ran says so (HIR-317)
+
+**What happened.** On Sunday 15 Nov a deploy went live at 10:02 Berlin, the robot visitor
+failed on it, and the automatic rollback started at 10:05. Its login to the server was
+refused ("Permission denied (publickey)") and the job stopped there. The site stayed on the
+new version, the main branch stayed red, and agents started no other work for a day. The
+ticket it filed said "the site is broken and the automatic rollback did not fix it", which
+was wrong twice: nothing had been rolled back, and the robot was never run a second time.
+
+**The cause, as far as the record shows.** Every deploy or rollback job makes a new login
+key on GitHub's machine, registers it with Google's login service (OS Login) and connects
+seconds later. In the failed job the key was made at 09:05:31 UTC and refused at 09:05:41;
+in the deploy four minutes earlier the same sequence was accepted after 4 seconds. Same
+account, same permissions, same server, a different throwaway key each time, and the
+12 Nov drill and every deploy before it worked: so this is not a missing permission.
+**Likely, not proven:** the new key had not yet reached the server when the login was
+tried. Google's documentation gives no time for this, but gcloud's own error text for the
+case says "It is possible that your SSH key has not propagated to the instance yet. Try
+running this command again." **A second candidate cannot be ruled out from a cloud run**,
+which has no access to the server: the server looks up the key at login time, and in the
+same two minutes it was slow enough that the chart's numbers did not arrive within 15
+seconds (see below), so the lookup itself may have failed. Both are passing conditions,
+and the same fix covers both.
+
+**The fix: try a refused login again, 3 tries, 15 seconds apart.** `deploy/vm-ssh.sh` is
+now the one way a workflow logs in to the server; `deploy.yml` calls it, and deploy,
+rollback and drill all go through `deploy.yml`. It tries again only when the login itself
+was refused (ssh's own exit code 255 together with "Permission denied (publickey"), which
+is the one failure where nothing has run on the server. A deploy that started and then
+failed, or a connection that dropped part-way, is not tried again: that would be
+"retrying a failure hoping it passes", which the site watch does not do. A real permission
+problem still fails, 30 seconds later, with exit code 75 and a line saying the login was
+refused three times. The key is registered once and reused by the later tries, so each try
+gives the same key more time. Rejected: **a fixed key stored as a GitHub secret**, which is
+the long-lived credential the 1 Nov entry (HIR-74) refused; **registering the key in a
+separate step and sleeping**, which needs a guessed wait on every deploy and still fails if
+the guess is short; **a no-op login first, then the deploy**, which makes two connections
+where HIR-106 deliberately made one.
+
+The script is fetched from the commit the workflow itself runs at, into `.deploy-tools/`,
+not from the commit being deployed: a rollback deploys an older commit, and one from before
+today has no such script.
+
+**A rollback that never ran files its own ticket.** New ticket kind `rollback-not-done`,
+titled "Deploy failed the robot visitor and the rollback did not run". It says the site is
+still on the new version, lists what the robot found on it, and gives the reason: "the
+rollback could not log in to the server" when the login was refused three times, otherwise
+"the rollback job failed before it finished; whether the old version is back is not
+known". Like "Site down and rollback failed" it is Urgent and assigned to Chandler, since
+a version that failed the robot is live and no agent can reach the server. "Site down and
+rollback failed" is kept for what it says: the old version was put back and the robot
+still fails. Undo: revert the PR; the old single-try login and the single ticket return.
+
+**Why the robot visitor failed on that deploy.** Not a phone-layout break. Both failures
+(the job-card path, then the filter path on the retry) are the same thing: the page loaded,
+the job list loaded, and the chart's numbers had not arrived after 15 seconds, between
+10:03:55 and 10:04:50 Berlin. The three phone-width paths before them passed, the same
+paths passed at desktop width a minute earlier, and the same version passed at 16:09 and
+again on 16 Nov. Two things were happening on the server in those minutes: it had been
+restarted 90 seconds before, and the daily check of every job source starts at 10:00. So
+the robot is not flaky in itself; the server was slow to answer one request for about a
+minute. Filed as its own ticket (HIR-318), with a second finding from the screenshots: while the
+chart waits for its numbers it shows "No jobs match these filters yet", which is false.
+
+## 2026-11-15 — A break the robot visitor finds a third time is Chandler's, and the Monday summary reports the robot's week (HIR-260)
+
+HIR-258 made the robot visitor file a ticket when the live site breaks. This closes the
+loop the ticket left open: who fixes it, what stops a fix-break-fix loop, and how Chandler
+hears about it.
+
+**Who fixes it: nothing new.** The robot's tickets are labelled `autopilot`, and since
+HIR-266 the lead agent pulls such tickets into Todo and starts them, repairs first while
+the robot is red. The fix is an ordinary pull request with a test and a review. The robot
+confirms it by running after the deploy: a fix that did not work fails there, is rolled
+back, and gets a new ticket under the same title.
+
+**Two fixes, then it stops.** When the robot (or the outside uptime check) is about to
+file a ticket and two tickets with that exact title were already closed as done in the
+last 30 days, the new ticket is labelled `attended` instead of `autopilot`, so no agent
+picks it up, and its first lines say so and name the two earlier tickets. It is not
+assigned to Chandler and pings nobody: it reaches him in the Monday summary. The count is
+of tickets closed as done, not cancelled ones, and it is by title, which is the visitor
+path that failed. Thirty days because a path that broke twice last spring is not a loop;
+the ticket gave no number. If the earlier fixes cannot be counted (Linear refuses the
+question), the ticket is filed for an agent as before: a ticket beats none. Undo: set `REPEAT_FIXES` in `scripts/site_watch_ticket.py`
+out of reach, or change `REPEAT_DAYS`.
+
+**Known limit.** While such a ticket waits and the robot's morning run stays red, the lead
+agent starts repairs only (its own rule: a red robot visitor holds everything else). After
+a deploy this does not arise, because the rollback leaves the site passing. Changing that
+is a change to the lead agent's rules, so it is its own ticket.
+
+**The Monday summary gets a robot-visitor part.** What broke last week (and whether the
+change was rolled back), what was fixed (and whether it has broken again since), and what
+is still open. It sits after the pull requests and before the job sources. A third-time
+break goes above everything else in the post, under "Broke again after two fixes: needs
+you", for the reason "Needs you" went first in HIR-264: it is the one part he must act on.
+"Site down and rollback failed" is unchanged: that ticket is assigned to him the moment it
+happens.
+
+**The server now reads Linear, with the key it already posts with.** HIR-264 and HIR-280
+say the Monday post "cannot read Linear's tickets"; it never tried. The robot's week
+exists only as its tickets, so the caretaker's Monday run asks Linear for them: one
+request a week, read-only. If Linear cannot be read, or there is no key, the section says
+so in one line and the rest of the post still goes out. What a ticket is (robot or not,
+rolled back or not) is read from the fixed title and wording `scripts/site_watch_ticket.py`
+writes; a test fails if that wording drifts. Undo: drop `site_watch=` from the caretaker
+command in `app/__main__.py`.
+
+---
+
+## 2026-11-14 — A posting dropped as unreadable is remembered, until the extractor changes (HIR-176)
+
+The "try twice, then drop" rule of 5 Nov (HIR-172) deletes a posting the model reads as
+blank twice in a row. Deleting left no trace, and feeds list the same posting again every
+day: it was stored as a new job, read twice, and dropped again, about two model calls a
+day for ever, under a job id that changed each time.
+
+**What changed.** When a posting is dropped, the ids its feeds listed it under are kept
+(`dropped_posting`, migration 024). The daily poll passes over a feed posting with such an
+id and counts it: `skipped_unreadable=N` on each feed's line and on the poll's total.
+Nothing on the chart or the job list changes, and no stored job is re-read.
+
+**Not permanent.** Each remembered drop carries the extractor version that read it blank.
+Every extraction run forgets the drops made under another version, so a change of prompt,
+model or skill list gives the posting two fresh tries. This was the ticket's own
+recommendation. The forgetting happens in the extraction step, which runs after the
+download, so the posting comes back on the poll after the first run under the new
+version, one day later. That keeps the download step from needing to know the model or
+the skill list.
+
+**Feeds only.** A posting a person adds by hand is stored and read even if its feed copy
+was dropped, and a hand-added posting that is dropped is not remembered: the person chose
+it, the same reason hand-adds skip the title filter.
+
+**Known limit.** The memory is the feed's id, not the text. A posting the employer
+rewrites under the same id stays passed over until the extractor next changes.
+
+To undo: stop `ingest` passing `skip_dropped=True` and the daily loop returns; the table
+can stay, unread.
+
+---
+
+## 2026-11-14 — The hand-built JSearch fixture is gone; odd records are made from the real one (HIR-41)
+
+HIR-41 asked for a recorded JSearch response to replace the fixture written from the
+docs. The recording already existed (`tests/fixtures/feeds/jsearch_recorded.json`,
+HIR-96, 1 Nov), and the hand-built `jsearch.json` had been kept beside it only for three
+records a real response never contains: no apply link, no city, empty description.
+
+**What changed.** `jsearch.json` is deleted. The test for those records now takes a real
+recorded posting and removes that one field, so every other field keeps the live shape.
+Tests only; nothing a visitor sees, no re-read. Undo: revert the commit.
+
+**No new request was spent, and the recording is not trimmed.** The ticket said to record
+one response and cut it to 2–3 postings. A recording was already there, so spending one
+of the 200 monthly requests would have bought nothing; and the headline tests (HIR-96)
+need the JobLeads row and its clean SumUp twin, so the 10 postings stay.
+
+**Shape differences from the docs** are listed in the `app/sources/jsearch.py` docstring.
+The ones that matter: `job_city` is null on 8 of 10 postings; `job_location` is Google's
+display text with the publisher appended ("Berlin     •  über LinkedIn"), not "Berlin,
+Germany"; and an undocumented `job_uid` equals the stable id we already cut out of
+`job_id` (now a test, on all 10 postings). None of them broke `parse`.
+
+**`/jsearch/search` vs `/jsearch/search-v2` stays unchecked.** We call the first and it
+returns postings daily. Comparing the two costs a live request; nobody asked for that.
+
+---
+
+## 2026-11-14 — Chandler thinks through only what teaches a career skill; every other big call is three lines to approve (HIR-297)
+
+Chandler, 14 Nov: "I think we could shrink the scope of tickets that I make decisions
+about to stuff that will help me learn important career-related skills. Otherwise, maybe
+I just get a recommendation of what to do with an *extremely short* brief on what it is
+and why it's being recommended."
+
+**What changed.** The big side of his list (entry of 13 Nov, HIR-278) now comes in two
+kinds. **To think about**: a big call whose working-out teaches something an AI engineer
+or data scientist is hired for (how quality is measured; the model and its instructions;
+cost engineering; how the system is designed; data-science work on the collected data).
+It comes as a full question, with what he would learn by digging in. **To approve**:
+every other big call. It still needs his yes, and it comes as three lines, Recommend /
+What it is / Why, answered yes or no. The list itself is unchanged: nothing became big,
+nothing became small, and no big call is decided without him.
+
+**Who says which kind.** The senior agent, by the list in AGENTS.md "What Chandler is
+asked". Unsure means to approve, because his time for thinking is the scarce thing.
+Anything about how quality is measured is always to think about. The list of career
+skills is an agent's reading of his goals (a job as an AI engineer or data scientist;
+evals, cost, design reviews, the Claude connection); he edits it in AGENTS.md.
+
+**Monday.** The comment "Decisions waiting for you" has two headings: To think about, at
+most 3 a week (`monday_think_max` in `config/lead_agent.json`), and To approve, the rest
+of the 10. `monday_decisions` in `scripts/lead_pick.py` fills them. A waiting ticket
+that does not say its kind is to approve.
+
+**The speed limit counts only what he has to think about.** The lead agent holds back a
+ticket likely to add a decision only while 10 to-think-about decisions are waiting.
+Approvals do not slow agents down. The figure 10 is his and was not changed here; with 3
+shown a week it is more than three weeks of thinking, so he may want it lower. Undo:
+count both kinds again in the lead agent's step 1.
+
+**How a question says its kind.** The comment that puts it to him starts with the heading
+**To approve** or **To think about**. The lead agent reads the kind from that heading; a
+waiting question with neither goes to the senior agent for its kind. Both headings are
+on the list of agent comment openings, so neither is ever read as his answer. Chosen over
+a Linear label because the comment already has to exist and a label can drift from it.
+Undo: none needed; a heading is text.
+
+**A pull request that changes the agents' rules** carries the three lines at the top of
+its description, written by its author, above the reviewer's "Did you authorize these?"
+list. The author writes them because the recommendation is the author's; the reviewer
+still writes the list of changes, so the second reader's account is untouched, and sends
+the pull request back when the three lines are missing. The check in CI still looks only
+for the reviewer's block.
+
+**The tickets already waiting** were sorted on paper (comment on HIR-297), as HIR-278
+did, because the rule is not in force until he merges it; a follow-up ticket applies the
+sort.
+
+---
+
+## 2026-11-14 — Monday carries the decisions waiting in tickets, and a comment from Chandler is the answer (HIR-277)
+
+Chandler, 12 Nov, about the questions sitting in tickets: "I'll get those on Monday,
+right?" They did not: the Monday summary lists only open pull requests that need him,
+and about 30 open tickets hold a question for him.
+
+**What changed.** On Mondays the lead agent adds one comment to the summary, "Decisions
+waiting for you": at most 10 questions (his number, "a max of probably like 10", to be
+tried and adjusted; `monday_questions_max` in `config/lead_agent.json`), each one plain
+sentence with options and a recommendation; a count of the rest with a link; and up to 3
+lines of work he does with an agent, "Yours this week". A week with none says "No
+decisions waiting".
+
+**The list is code, the sentences are not.** `monday_decisions` in `scripts/lead_pick.py`
+says which tickets, in what order and how many: what blocks the current launch milestone,
+then what blocks a ticket in Todo, then the oldest; never a `hands-on` or `parked` ticket;
+never one already answered. The lead agent writes the wording and may not add, drop or
+reorder. Undo: remove the comment from the lead agent's Monday step.
+
+**How his answer is recognised.** Agents write under his Linear login, so a comment's
+author proves nothing (the reason HIR-278 left out "a ticket approval lets a rule change
+merge"). The senior agent decided: a comment is his answer only on a ticket where an
+agent asked him something, only when newer than that question and not an agent's own
+comment (`answer_candidates`, by how the comment starts), and only when it picks an
+option or leaves nothing to choose. Not a fixed word he must type: an agent could type it
+too, and it is a convention he would have to learn. An `attended` ticket nobody asked him
+about is never read for an answer, so his off-switch label cannot be lifted by a comment.
+
+**What applying an answer does, and why that is safe.** The lead agent marks the ticket
+with a comment headed "Answered" (that mark is what stops the question being asked
+again), and removes `attended` only when the work left can run alone; a worker then
+writes the rule into this file in a normal pull request. A misread answer therefore moves
+one ticket into the ordinary path, where review, the big side of his list and the rules
+gate still apply, and it is shown to him the next Monday under "Applied from your
+answers". If a line appears there that he did not write, or he reverses an applied answer
+within the week, move to a stricter mark and record it here.
+
+**Small questions are not asked.** A waiting question that is on the small side of his
+list goes through the decider to the senior agent and is reported under "Decided for
+you" (HIR-278), not listed.
+
+---
+
+## 2026-11-14 — The lead agent runs at full speed: no count of tickets per day, slowed only by collisions and the pile of decisions (HIR-280)
+
+Chandler, 12 Nov: "Is there a reason we are waiting? Can we not be building 24/7?" and
+"Run as many tickets as we can, as long as we're not creating conflicts or creating a
+pile-up of really big decisions that I need to make. The real speed should be based on how
+many decisions I would have to make on Monday, with a max of probably like 10." The limits
+of 3 tickets a weekday and 2 per area (entry of 12 Nov, HIR-266) were an agent's cautious
+first setting, not his.
+
+**What changed.** The lead agent runs several times a day, every day, and each run starts
+every ticket in Todo that can run without him. The count of tickets per day and the
+"a run already happened today, stop" rule are gone. Six things slow it down, each in
+`scripts/lead_pick.py` with a test: collisions, the decision pile, the daily spending cap
+(unchanged at €2, his to raise), one re-read of the stored jobs a day, a red main branch
+or robot visitor, two failures.
+
+**"The same part of the code" is one word per ticket, and one ticket per word at a time.**
+The lead agent names each ticket's area from a fixed list; a ticket under way (In Progress
+or In Review) holds its area until it merges, and so does the first ticket picked in a
+run. The list splits the website into four (chart, job list, cities, the rest) so two
+unrelated site fixes do not queue behind each other. The old rule let two tickets share an
+area in one day, which is exactly the "run together" the ticket rules out. The
+orchestrator's finer check (a file already changed on an open pull request) stays as the
+second net. Undo: let an area hold two (`busy` in `pick`).
+
+**What counts toward the 10.** The lead agent counts, in each run: every open ticket
+labelled `attended` that is waiting on an answer from Chandler, plus every open pull
+request labelled `needs-chandler` whose ticket is not already counted. Not counted:
+`hands-on` and `parked` tickets, and `attended` tickets that are work he does with an
+agent rather than a question. This is the same set the Monday decision list is to show
+(HIR-277); it does not change what is his decision (HIR-278, out of scope here). The
+script is handed the number and refuses to run without it, so a run that did not count
+cannot be read as "nothing waiting".
+
+**"Likely to add a decision" is the lead agent's judgment, with the doubt going one way.**
+Tickets touching the extractor, the skill list, the labelling guide, the eval, stored-data
+deletes or a new visitor-facing feature are likely; bug fixes, tests, internal clean-up
+and layout repairs are not. A ticket the agent does not mark counts as likely. Likely
+tickets picked in the same run count toward the 10 as they are picked, so a run at 9 does
+not start five of them and land on 14. Undo: drop `likely` from the sum in `pick`.
+
+**A red check lets the repair through, and only the repair.** The ticket says "fix that
+first; start nothing new until it is green". Stopping every ticket would also stop the
+fix, so the lead agent marks the ticket that repairs what is red and the script starts
+that one alone.
+
+**One log comment per run, written before the work starts.** With several runs a day, and
+a run that can outlast the gap to the next one, the log comment is posted at pick time
+with each ticket's result as `running` and its estimated spend, then edited at the end.
+A second run that overlaps the first then sees the first's spend, so two runs cannot each
+spend the day's cap. Tickets are still protected from a double start by the In Progress
+claim (HIR-124).
+
+**The usage limit.** Every run uses Chandler's Claude plan. A run that is refused for
+usage writes `Usage limit: reached` in its log comment and stops; the script then starts
+nothing more that day. That is the ticket's "fall back to fewer runs; do not retry in a
+loop" as code. Undo: remove `usage_limit_hit_on` from `pick`.
+
+**Keeping the queue fed.** The script answers how many run-alone tickets are still in
+Todo after its pick and how many to pull to keep 5 waiting; the lead agent pulls that many
+from Backlog, launch order first, then tickets the checks filed. It still never un-parks a
+ticket or reorders the launch order.
+
+**Monday's three numbers come from the script, and the lead agent posts them.** The Monday
+post is plain code on the server, which cannot read Linear's tickets (HIR-264), so, like
+the "Decided for you, outside pull requests" comment (HIR-278), the lead agent adds one
+comment headed **Pace** to the Monday summary issue. Its text is the script's, word for
+word: tickets run last week (different tickets with a log line, not counting ones held
+back before they began), tickets left that can run without him (Todo and Backlog), and
+decisions waiting. Fewer than 5 left adds: "the project is now waiting on your decisions,
+not on agents."
+
+**Not done by this change: the schedule itself.** The scheduled task "hiring-radar: lead
+agent" lives in Chandler's Claude account and no agent can edit it. Until he changes it
+from weekdays 10:30 to every day, every 4 hours (02:30, 06:30, 10:30, 14:30, 18:30, 22:30
+Berlin), the lead agent still runs once a weekday; that one run now starts everything it
+may. The orchestrator still runs 3 workers at a time: a batch of 8 is all started in one
+run, three at a time, which is a limit on machines at once, not on tickets per day.
+
+## 2026-11-13 — Small calls on Chandler's list are decided by the senior agent and reported on Monday (HIR-278)
+
+Chandler, 12 Nov, after two questions in one afternoon that he answered with the agent's
+own recommendation: "Why am I even bothering with these? All I did was follow what you said
+anyway." A question whose answer is always "do what you recommend" is an interruption.
+
+**The list of what he is asked now has a small side and a big side** (AGENTS.md "What
+Chandler is asked", the one copy). Small: repairing or replacing up to 5 stored jobs when
+the change was tried on a copy of the database and last night's backup exists; a new
+recurring cost up to €10 a week that he can switch off, or an unplanned one-off spend up
+to €10; a wording, layout or error-message choice; the order of bugs inside a milestone.
+Everything else on the list is big and still waits for him. Nothing about the score, how
+it is measured, or the agents' own rules is small. When in doubt, a call is big.
+
+**Three agents, none of them the one that asked.** The decider says which side a question
+is on. The senior agent decides a small one and takes its own recommendation; it sends the
+call back as big when the proof is missing. The reviewer checks the call, the proof and the
+undo like any other line of the pull request. The line goes in the pull request under
+"Decided for you" and the Monday summary prints every such line from the week's merged
+pull requests, each with how to undo it. If he reverses one, that kind of call moves back
+to the big side and the reversal is recorded here.
+
+**The figures (5 jobs, €10, €10 a week) are Claude's proposal from the 12 Nov chat**, not
+numbers Chandler gave. They are in one place, AGENTS.md, and a test keeps a second copy
+out of the agents' and skills' files.
+
+**Two readings where the ticket left room.** Deleting a stored job is not "repairing or
+replacing" one, so a deletion stays big at any count, backup or not; to change that, add
+"or removing" to item 4's small side. And a re-read up to €10 that a ticket's own
+skill-list change sets off stays as it was (the pull request states the figure and the
+merge is the approval): it is not reported under "Decided for you", which would otherwise
+fill with one line per skill-list change.
+
+**One row of the ticket was left out: "a pull request that only carries out a rule change
+he already approved in a ticket merges after review".** The ticket said to drop it if it
+could not be made safe. It cannot: agents act under Chandler's own GitHub and Linear
+logins (a comment an agent posts shows him as its author), so no label, comment or
+approval can show that he, not an agent, approved a ticket. The rules gate and GitHub's
+merger are unchanged: a pull request touching the agents' rules or the labelling guide
+still never merges without him.
+
+**Not applied to the waiting tickets by this change.** The rule is not in force until he
+merges it, so the open tickets waiting for him were sorted on paper only (the sort is a
+comment on HIR-278); the labels move afterwards.
+
+---
+
+## 2026-11-13 — Checks run on a laptop are copied to the server, so they are counted (HIR-294)
+
+The caretaker counts misses in the server's database, and every /check-url run so far was
+on the Mac: its copy held all 81 links checked 17 Oct to 12 Nov, so the Monday count and
+the automatic tickets saw almost none of them. This replaces "Where it runs" in the
+HIR-290 entry below.
+
+**Now `check` ends by sending this machine's check log to the server** (`app/send_checks.py`).
+The check itself is unchanged: it still looks in the database it was run against. Three
+ways were weighed. Running the check on the server would change what it looks in, and the
+skill adds a board and polls it locally before the server has that board. A web endpoint
+that accepts records is a new way in from the internet and a password to keep on the Mac.
+Copying the records over the SSH login that `make ssh` already uses needs neither.
+
+**It sends the whole log every time, and the server keeps what it does not have** (same
+link, same time of check). So nothing has to remember what was sent: a run with no network
+prints one line and the next run catches up, and the first run sends the history. A record
+goes up with its reason, company, city and careers system already worked out, because the
+server cannot look up the laptop's job to recover them. The first check of a link is still
+the one that counts, by the order the server stored them; a link checked in the dashboard's
+box before its older laptop check arrived is counted by the box's check.
+
+**Switching it off:** `HIRING_RADAR_SEND_CHECKS=0`. The tests set it, so no test logs in
+to the server. A machine without `gcloud` (a cloud run) sends nothing and says nothing.
+
+---
+
+## 2026-11-13 — Every checked job link is filed under one miss reason, and counted (HIR-290)
+
+Each check already explained why a job was missed, and the explanation was then lost in
+the terminal. Now every check — /check-url and the dashboard's add-by-link box alike —
+stores one reason from a fixed list of seven, chosen by rule from what the check found
+(`app/check.py`, `miss_reason`), with the company, city and careers system and the detail a
+fix needs (the board, or the filter and the field it read). `miss-reasons` counts them for
+any dates; the caretaker's Monday summary carries the week's count and its biggest reason.
+
+**The rules where the list leaves room.** A company's own careers website counts as "a
+careers system we cannot read yet": no adapter reads it, which is the fix. A copy on a job
+board or recruiter site (get-in-it, Michael Page, ...) is "other", named by its site: the
+list has no reason for it, and it was 10 of the 12 "other" in the history — if that keeps
+up, the list wants an eighth reason. A job someone had already added by hand, which no feed
+has, is still a miss, filed by where its link points. Only the first check of a URL counts,
+as for the coverage line: /check-url re-checks after adding a board, and that re-check is
+not a second record. Checks from before this change get their reason from the sentence they
+stored; nothing is written back to them.
+
+**The ticket line: 5 misses for one reason in 7 days, then quiet for 28 days.** The 81
+links checked 17 Oct to 12 Nov ran 4–19 a week for "careers system we cannot read" and
+0–12 for "not in our sources", while every other reason stayed at 4 or under in any 7 days.
+At 5, a ticket comes only for a reason that keeps coming back; the 28-day quiet stops the
+same reason being re-filed every morning, or every week, while its ticket is open. Both
+numbers are constants in `app/misses.py`.
+
+**Where it runs.** The caretaker reads the server's database, so it counts checks run
+there (the dashboard's box). A /check-url run against a database copy on a laptop is
+recorded in that copy only.
+
+---
+
+## 2026-11-13 — A job posted for several cities counts under each of them (HIR-289)
+
+A job used to hold one city: the first tracked city its location named, in a fixed order
+with Berlin first. A posting for Berlin, Hamburg, Frankfurt and Munich counted only for
+Berlin; one for San Francisco and New York only for San Francisco; and when a company posts
+one role once per city, the copies merge into one job that kept the first copy's city.
+Against the boards on 13 Nov, about 400 Ashby postings name two or more of our cities.
+
+**Now every place a job is posted for is stored next to it** (`job_place`, migration 022),
+and the city filter, the per-city counts, the compare-mode totals and the caretaker's city
+counts all read that list. `job.city` is unchanged and means "the first place"; the job
+list shows it with "+n" when there are more. Places are only ever added: each sighting of
+a posting adds the places it names now, so a merged copy adds its city and a job stored
+before every office was read (HIR-268) gains the rest on the next poll.
+
+**What this changes in the numbers.** A two-city job is one job in the all-markets total
+and one job in each city's count, so the per-city counts can add up to more than the
+total; a skill's count stays a count of distinct jobs. "A city match wins" over remote is
+unchanged: "Berlin or remote" is Berlin only.
+
+**Undo:** point `job_set_clause`, `stats`, `city_totals`, `skill_frequency` and
+`caretaker_run.city_counts` back at `job.city`; the table can stay.
+
+## 2026-11-12 — The Monday summary: the week's pull requests join the caretaker's post (HIR-264)
+
+Since HIR-262 a reviewed change merges without a message to Chandler. He hears about the
+week once, on Monday. The caretaker already posts one Linear issue every Monday about the
+job sources (entry below); this puts the pull requests in that same post rather than
+sending a second one. The robot visitor's weekly part (HIR-260) is to be added to the same
+post.
+
+**What the post now holds, in this order.** "Needs you": every open pull request labelled
+`needs-chandler`, oldest first, one line each: its title, since when it has waited, and the
+first line of its "Needs Chandler" section when that asks something. The label is the
+whole test, so a pull request that was sent back three times and pinged nobody is listed.
+Then what merged from last Monday to Sunday, grouped by where a visitor would notice it.
+Then the merged ones that carry the `sent-back` label. Then the job-source report,
+unchanged. The post is titled "Monday summary: <start> to <end>" (it was "Caretaker weekly
+summary"). "Needs you" goes first, although the ticket lists it third, because it is the
+only part he has to act on and a busy week puts thirty lines above it. Undo: reorder the
+three blocks in `sections` in `app/merged_work.py`.
+
+**Where it runs: inside the caretaker's Monday run on the VM, as plain code.** Same
+reasons as the caretaker: no model call, nothing to skip. The alternatives were a GitHub
+workflow, which would be a second message and a change to the automated checks, or the
+lead agent, which cannot reach the server. A line of the summary is the pull request's own
+title with the ticket prefix removed; titles in this repo are already plain sentences, so
+no model rewrites them.
+
+**No token.** The repository is public, so the pull-request list is read from GitHub's
+public API unsigned: two or three requests a week. Unsigned requests are limited to 60 an
+hour, and asking GitHub for each change's files would be one request per merged change
+(31 in the week this was written), so the files are read from the server's own checkout
+with git instead (the merge commit against main just before it), after one `git fetch`
+that touches no working file. If the checkout cannot answer for a change, it is listed
+under "Not sorted", never dropped. If GitHub cannot be read at all, the post says so and
+links the `needs-chandler` list, and the job-source report still goes out.
+
+**The grouping is a guess from file paths, not a judgment.** First match wins: the chart
+(the chart, compare, tree and related-skills views, the skill list), the job list (the
+list, a job's page, the add-a-job drawer, intake, duplicates, the feeds' readers), cities
+(the city picker, the city rules, which boards are polled), elsewhere on the site (any
+other front-end file), nothing a visitor would see. Test files never decide. "Elsewhere on
+the site" is a fifth group the ticket did not name: a change to the profile drawer is
+visible but is none of the ticket's three. A change to the shared queries behind every view
+lands in "nothing a visitor would see" unless it also touches a view. Undo or adjust: the
+`GROUPS` table at the top of `app/merged_work.py`.
+
+**Not in it yet.** How often a worker escalated to the senior agent or the decider, and
+the lead agent's daily log lines (both said to feed Monday by HIR-262 and HIR-266). The
+ticket's three parts come from GitHub's labels and merge history alone.
+
+## 2026-11-12 — The lead agent: a weekday run that picks the work, and what it may not do (HIR-266)
+
+Chandler, 12 Nov: the next weeks are run by agents; he is told what he needs to know and
+nothing else. The caretaker and the robot visitor notice problems and agents can merge
+reviewed work, but nothing decided what to work on next or started it.
+
+**What it is.** One skill, `/lead-agent`, started by a scheduled cloud run every weekday
+after the collection (07:00), the robot visitor (09:00) and the caretaker (10:00). It
+writes no code. It reads the state, sorts new tickets, unsticks stuck pull requests, picks
+up to 3 tickets from Todo in the approved launch order and hands them to the existing
+orchestrator, reviewer and merge path. Each run starts with no memory: what it knows is
+in Linear, GitHub and this repo.
+
+**The hard limits are code, the rest is instructions.** Same reasoning as the caretaker
+(entry below): a "never" that a model might skip becomes a test. `scripts/lead_pick.py`
+is handed the Todo tickets and the log and answers which may start. It refuses a ticket
+labelled `attended`, `hands-on` or `parked`; a ticket that has failed twice; a ticket
+whose spend is unknown or would pass what is left of the day's cap; a fourth ticket; a
+third ticket in one area. With the cap at zero, or already spent, it picks nothing. The
+numbers live in `config/lead_agent.json` (cap €2 a day, 3 tickets, 2 per area). Raising
+the cap is a recurring cost, so it is Chandler's (his list, item 5).
+
+**What counts as spend.** Model calls the app makes because of work the lead agent
+started: a dev eval a worker runs, and the re-read of stored jobs a merge sets off. The
+agents' own sessions are not counted; they run on Chandler's Claude plan, not per call.
+
+**Reaching the server: a cloud run cannot, and is not given a way** (the ticket's "find
+out first"). The only route to the VM is the deploy job's identity, which GitHub grants
+to the `main` branch of this repo and nothing else; a cloud session has no such identity,
+and handing it one is a credential decision, which is Chandler's. Three consequences:
+
+- A ticket that needs the live database (HIR-174 is the example) is not picked. The lead
+  agent labels it `attended` and lists it under "Needs you".
+- The cost of a re-read can only be measured against the live database, so a cloud run
+  cannot quote it. A ticket that changes the skill list therefore has an unknown spend
+  and is not started; it is listed under "Needs you" as a spend question. When last
+  measured (HIR-221) a full re-read also cost more than the €2 cap on its own, so under
+  the starting cap these tickets would wait either way.
+- The Sunday audit reports "no database checked" until Chandler decides whether a cloud
+  run may fetch a backup.
+
+**The day's log is the memory.** One comment a day on a standing Linear issue titled
+"Lead agent log", one line per ticket in a fixed shape (`- HIR-n | picked: why | result:
+… | spend: €…`). The next run counts failures and today's spend from those lines, and the
+Monday summary (HIR-264) reads them. The first run creates the issue, labelled `attended`
+so no agent ever picks it. A ticket that ends on a question for Chandler gets `attended`
+too, which is what stops it being picked again before he answers.
+
+**Unsticking, without a second way to merge.** A pull request that was sent back and not
+picked up gets a fresh worker; one that passed review but did not merge, or was never
+reviewed because its run died, gets a fresh reviewer. The lead agent never runs a merge
+command itself, so "who merges" is unchanged. This replaces the old scheduled run
+"hiring-radar: review and merge autopilot PRs" (disabled since 3 Nov), which is deleted
+when the weekday run is created.
+
+**Wednesday's mutation test and Sunday's audit stay as the scheduled tasks Chandler
+created on 12 Nov.** They already run with their own instructions. The lead agent's part
+is the morning after: it labels the tickets they filed, and moves an audit ticket marked
+High to Todo. Undo: fold their instructions into the lead agent's skill and delete the
+two tasks.
+
+**Chandler's lanes.** The ticket points to a project document on hands-on tickets; none
+exists. Until one does, "a brief ready" is one Linear comment on the hands-on ticket
+headed **Hands-on brief**: what to build first, where the code it touches lives, the
+smallest first step, how to tell it works. The lead agent keeps two such tickets briefed
+and never touches their code. On Fridays it names one change merged that week as the
+design-review candidate, in the log.
+
+**When it messages Chandler.** Only the three cases the ticket lists (site down and the
+rollback failed, collection down two days running, the spend cap hit), as a comment on
+the log issue that @mentions him. Everything else waits for Monday.
+
+**Not switched on by this change.** Agents' instructions load from `main`, so a schedule
+created before the merge would run a skill that is not there. After Chandler merges, the
+schedule is created: weekdays 10:30 Berlin, prompt `/lead-agent`, repo attached with push
+access, Linear connected. Not yet shown: that a cloud run has the Linear tools and can
+start workers in their own worktrees. If the first run cannot read Linear it stops and
+does nothing, which is the safe failure.
+
+**Off switch.** Pausing the scheduled task stops everything. The label `attended` on a
+ticket takes it away from agents. Both are in AGENTS.md "The lead agent".
+
+## 2026-11-12 — The caretaker runs on the VM as plain code, report-only first (HIR-257)
+
+Chandler, 12 Nov: "we need more agents to notice this stuff and just deal with it." The
+caretaker checks every job source each morning after the 07:00 poll, fixes the routine
+breakages (a company board that moved, a board gone empty) and reports once a week.
+
+**Where it runs: a systemd timer on the VM, not a GitHub Action or a cloud task.** The
+issue offered those two. Both run somewhere without the database, and every check reads
+what the poll actually got — which lives only in the SQLite file on the VM. The VM already
+runs the poll and the backup this way and already holds the Brave key the board search
+needs. Undo: delete the timer; nothing else depends on it.
+
+**Plain Python, not an AI agent.** Every check is a rule over numbers the poll already has
+(errors, posting counts, field lists, city totals), and the board search reuses the
+discovery code. Plain code makes no model calls, cannot edit its own rules or anyone
+else's, and every "never does" line is a test rather than an instruction a model might
+skip. Undo: put an agent around `app/caretaker.py` later; the rules stay the same.
+
+**The rules it applies** (constants at the top of `app/caretaker.py`):
+
+- A company board is *dead* when it errors or returns nothing, it gave us postings before,
+  and the newest of them was last seen 3 or more days ago. A board that answers 404/410 is
+  *gone* at once. Either way the caretaker first searches for the company's new board.
+- A new board counts as *the same company* when the company name and the board token
+  match after dropping case, spaces and punctuation, and it has at least one posting the
+  poll would keep. Found → switch the board's token; the stored jobs are untouched.
+- Dead and no new board found → pause: `enabled: false` plus a `paused` note in
+  `config/feeds.json`. The entry stays. Paused boards are re-checked every Monday and
+  switched back on when they have a posting we would keep. A board a person disabled (no
+  `paused` note) is never switched on.
+- A country-wide feed or search is *low* when it returns under half its median over its
+  last 5+ good runs. Reported only.
+- A city is *dropping* when its open-job count falls by more than 30% overnight from at
+  least 20. Reported only.
+- Model-call spend is zero; Brave searches are counted at €0.005 each against a €0.50
+  daily cap. The cap is checked before every search; hitting it stops the search and is
+  reported at once.
+
+**Report-only for the first week**, as the issue asks: it writes what it would have done.
+Acting mode — applying the feeds.json change through a pull request — is a separate step.
+
+**Built in two halves.** The append-only log the weekly summary reads needs a new
+migration, and an open PR (#146) already adds one; migrations are one branch at a time,
+so the log, the timer and the poll's per-feed record waited for #146 to merge (it did,
+12 Nov).
+
+**The record and the log.** The poll now keeps one row per feed per run (`feed_run`:
+worked or not, postings seen, fields carried); until now it printed this and forgot it,
+so "silent for three days" could not be asked. The caretaker writes every finding to
+`caretaker_log`. Both are append-only, enforced by the database as for the extraction log.
+A city's "yesterday" count is the dashboard's open rule evaluated 24 hours earlier on
+today's data, so no daily snapshot table is needed.
+
+**When it runs and how it reports.** A timer at 10:00 Berlin: three hours after the poll
+starts, so the poll's readings are normally done (a reading still running then shows up
+as "jobs still waiting to be read", which is the half-finished case the issue asks to
+notice anyway). On Mondays it posts last week's summary as one Linear issue in the
+Hiring-radar team; the collection down two days running or the spending cap hit is posted
+at once, at most once a day. With no `LINEAR_API_KEY` on the server it writes the text to
+its journal instead. Undo: disable the timer.
+
+## 2026-11-12 — New York gets two Google for Jobs searches, like Berlin (HIR-255)
+
+**Why.** New York added about one job a day after its launch. Its boards were healthy
+(HIR-254: ~16 company boards, ~67 open AI/ML roles), but Berlin's daily flow comes from
+country-wide searches (Arbeitsagentur, JSearch, Arbeitnow, startup.jobs) and New York had
+none. A fixed set of company boards turns over slowly.
+
+**Decided (Chandler, in session, 12 Nov).** Two JSearch feeds: "AI engineer in New York" and
+"machine learning engineer in New York", `country: us`, one results page a day each — the
+same shape as the Berlin searches.
+
+**Spend.** JSearch's free plan is a hard 200 requests a month. Each daily feed is ~30, so
+the five feeds use ~150; hitting the cap stops results until the month resets, with no bill.
+A sixth daily feed would leave little room, so any further JSearch feed needs this sum redone.
+
+**Rejected for now.** Adzuna (HIR-48), a new source and more work; more company boards,
+which still turn over slowly.
+
+---
+
+## 2026-11-12 — Agents merge their own reviewed work; Chandler is asked only about six things (HIR-262)
+
+Chandler, 12 Nov: "I am NOT reading 99% of these PRs anyway." Of the last ~35 merged PRs
+about 28 carried `needs-chandler`. Of eight read closely, six had passed review and were
+stuck only because the reviewer's `gh pr merge` was refused by Claude Code's own safety
+check inside its session; two had small findings the author could have fixed.
+
+**One list of what Chandler is asked** replaces the old stop list, and lives only in
+AGENTS.md "What Chandler is asked": roadmap; anything that changes the score or how it is
+measured (labelling guide, the extractor's instructions or model, eval rules and stop
+lines, his hand labels); product decisions about what visitors see; things that cannot be
+undone; money (one-off above €10, or any recurring cost); the agents' own rules. The
+decider, reviewer, both skills and the PR template point there instead of copying it.
+Everything else is decided by an agent, reviewed by another, and merged.
+
+Mapped from the old stop list: a city he has not named → roadmap; extractor prompt or
+model changes, which used to merge with "the merge is the approval" → now his (item 2);
+a skill-list change still merges on review unless its re-read costs more than €10. "What
+the public site stores or sends to a provider" is no longer listed on its own; a new
+provider is usually a new recurring cost (item 5). Undo: add it back as a line in the list.
+
+**Findings go back to the author.** The reviewer now ends in PASS, SENT BACK (label
+`sent-back`, a comment headed `**Review: sent back**` listing exact fixes) or CHANDLER.
+The author fixes, a fresh reviewer re-reviews; a third send-back becomes `needs-chandler`
+with no @mention, for the Monday summary (HIR-264).
+
+**GitHub merges what the reviewer passed.** The reviewer labels a passed PR
+`review-passed`; `.github/workflows/merge-reviewed.yml` merges it when it is clean, has no
+`needs-chandler`, and touches no rule file and not the labelling guide. That makes a
+session's safety check irrelevant to whether reviewed work lands. Two consequences of
+merging with the workflow's own token, both handled: such a merge fires no `push`, so the
+script starts CI on main by hand (CI now accepts a manual start, and deploys on it); and a
+push with that token starts no checks, so the workflow never updates a branch — the
+reviewer still does. The merge script is itself on the rules-gate list, so loosening it
+needs Chandler. The fix on his Mac (two `/permissions` entries) is documented under
+"Starting a session"; until it is in, the reviewer reports "merge refused by the session's
+safety check; setup step missing" and the label does the merge.
+
+**Escalate to a stronger agent before a person** (added to the ticket by Chandler the same
+day). Rules questions go to the decider; hard technical ones (a design choice inside the
+ticket, a bug the worker cannot find, a test it cannot make pass after two tries) go to a
+new read-only `senior` agent on the strongest model; a finding that survives one fix round
+is fixed by a fresh worker on the strongest model. Each escalation is listed in the PR
+body under "Escalations". The model ladder (Fable 5.1, then Opus 5.5 and Sonnet 5.5 at
+xhigh) is now written once, in AGENTS.md, instead of in the work-issue skill.
+
+Undo: delete the workflow and the label step in the reviewer; restore the old stop list
+from git history.
+
+---
+
+## 2026-11-11 — Alternative groups come back: "any one of these" is one requirement (HIR-251)
+
+Reverses part of the 2026-10-16 rebuild entry, which dropped alternative groups as feeding
+out-of-scope features. They feed one in-scope feature: the job list's skill match.
+
+Chandler, in session: *"Expertise in Python, Rust, Go, Java or other programming language"
+— they are all required, but having ONE on the CV counts for all of them. One of them is
+100% required, so you can't have none of them, but you don't need all, just one.*
+
+- **Storage.** Each extracted skill may carry a group number, scoped to its posting. Tools
+  with the same number are alternatives: any one meets the requirement. No number means
+  the skill stands alone, as before. A group has at least two members; a lone survivor
+  (its partners rejected or unknown) loses its number.
+- **Chart: unchanged.** Every member of a required group stays *required* and counts as
+  one job for its own bar. Recording them nice-to-have would have left "Python, Java or
+  C++" postings asking for no language at all; fractions would break the rule that every
+  chart number is a count of jobs.
+- **Skill match ("you cover X of Y required skills").** A required group counts as **one**
+  requirement, met if the profile has any member. A missing group is named as
+  "Python, Rust, Go or Java". This matches the user's picked skills, not a CV; CV matching
+  stays out of scope.
+- **"or other / or similar" is not recorded.** Only the named tools form the group; there
+  is no general "programming languages" skill. Adding one would be its own ticket.
+- **Answer keys.** Only postings whose wording contains "one of", "such as" or "or
+  similar" are re-checked for groups (Chandler: "yes, only those"); then a fresh
+  baseline is scored.
+  Scores from before groups are not comparable on the grouping measure, which did not
+  exist; the skill and requirement measures are unaffected.
+- **When a skill appears both alone and in a group** (asked for outright, and again as one
+  option), the standalone ask wins: it is a requirement on its own.
+- **Labelling guide.** A new section in `evals/LABELING.md` states the rule for answer keys,
+  mirroring the extractor's rule (Chandler: "yes, proceed"). All 30 keys with the wording
+  (19 dev, 11 held-out) were re-checked and carry `groups_reviewed: true`; 21 have at least
+  one group. No `requirement`, `raw_text` or skill changed in any key. Known gap, left
+  alone: two keys from the 3 Nov batch (golden_074, golden_078) label the "AWS, GCP or
+  Azure" members nice-to-have under a required cloud ask, which the requirement rules don't
+  support. That is a label question, not a grouping one.
+- **Score gate, accepted over the line (Chandler, 2026-11-12: "approved").** The first run
+  lost 0.024 recall because the instruction's "a broad skill … null" read as "omit it";
+  one sentence was reworded and re-scored once. Recall then sat within the limit, but
+  top-10 overlap stayed 0.033 down: 8/8/8 of 10 against main's 8/8/9, one tie at 10th
+  place in one repeat. Accepted as noise. Judging that check by skills lost rather than a
+  0.02 drop is filed as its own ticket.
+
+Undo: drop the group field from the extractor's tool schema and the match code; the
+stored column can stay empty.
 
 ---
 

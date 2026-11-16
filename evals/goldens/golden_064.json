@@ -13,6 +13,7 @@
   "degree_or_equivalent": false,
   "degree_signal": null,
   "attrs_reviewed": true,
+  "groups_reviewed": true,
   "source_sha256": "f46627240d0f04682a0fbb1b89291ce580f788e37dfeadae3eae4dc2fb4d1189",
   "labeled_by": [
     "claude-opus-5-5",
@@ -45,17 +46,20 @@
     {
       "skill_id": "claude-code",
       "requirement": "required",
-      "raw_text": "Claude Code"
+      "raw_text": "Claude Code",
+      "alternative_group": 1
     },
     {
       "skill_id": "codex",
       "requirement": "required",
-      "raw_text": "Codex"
+      "raw_text": "Codex",
+      "alternative_group": 1
     },
     {
       "skill_id": "cursor",
       "requirement": "required",
-      "raw_text": "Cursor"
+      "raw_text": "Cursor",
+      "alternative_group": 1
     },
     {
       "skill_id": "evaluation",
@@ -75,12 +79,14 @@
     {
       "skill_id": "github-copilot",
       "requirement": "required",
-      "raw_text": "Copilot"
+      "raw_text": "Copilot",
+      "alternative_group": 1
     },
     {
       "skill_id": "inference-optimization",
       "requirement": "nice_to_have",
-      "raw_text": "inference optimization"
+      "raw_text": "inference optimization",
+      "alternative_group": 2
     },
     {
       "skill_id": "llms",
@@ -90,12 +96,14 @@
     {
       "skill_id": "model-serving",
       "requirement": "nice_to_have",
-      "raw_text": "model serving"
+      "raw_text": "model serving",
+      "alternative_group": 2
     },
     {
       "skill_id": "open-source-llms",
       "requirement": "nice_to_have",
-      "raw_text": "self-hosted LLMs"
+      "raw_text": "self-hosted LLMs",
+      "alternative_group": 2
     },
     {
       "skill_id": "python",

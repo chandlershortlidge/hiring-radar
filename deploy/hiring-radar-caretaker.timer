@@ -1,0 +1,9 @@
+[Unit]
+Description=Run the hiring-radar caretaker daily at 10:00 Berlin, after the 07:00 poll
+
+[Timer]
+OnCalendar=*-*-* 10:00:00 Europe/Berlin
+Persistent=true
+
+[Install]
+WantedBy=timers.target

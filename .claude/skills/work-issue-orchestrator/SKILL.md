@@ -18,7 +18,12 @@ is the only state both of you can see. Your own batch table is not shared state:
 decide a collision from it alone.
 
 - If issues were named, use those. Otherwise take Linear issues in the roadmap project,
-  state Todo, no open blockers (`blockedBy` all Done), not labelled `attended`.
+  state Todo, no open blockers (`blockedBy` all Done), not labelled `attended`, `hands-on`
+  or `parked`.
+- **`hands-on` and `parked` are never worked, even when named** (HIR-266). `hands-on`
+  means Chandler writes the code himself; `parked` means not before launch, and only he
+  un-parks, by removing the label. Drop such an issue from the batch and say so in the
+  table.
 - **Skip anything already In Progress.** A worker claims its issue by setting it In
   Progress before it does anything else, so In Progress means "another session has this"
   — drop it from the batch and say so in the table, even when it was named on the command
@@ -27,7 +32,8 @@ decide a collision from it alone.
 - Every issue runs autopilot unless it carries the `attended` label (HIR-120). The worker
   sets the `autopilot` label itself; you don't label anything.
 - **Check the open PRs before starting each worker, not once per batch.** List them
-  (`gh pr list --state open --json number,title,headRefName`) and the files each one
+  (`gh api "repos/:owner/:repo/pulls?state=open" --jq '.[] | [.number, .title, .head.ref] | @tsv'`
+  — `gh api`, not `gh pr list`, which fails in a cloud run, HIR-151) and the files each one
   changes (`gh api repos/:owner/:repo/pulls/<n>/files`). Hold back any issue that would
   touch a file an open PR already changes, or a hot spot (`app/migrations/`,
   `app/extract.py`, `app/pipeline.py`, `app/dedup.py`, `taxonomy/skills.json`) an open PR
@@ -48,7 +54,9 @@ For each issue, start a subagent with `isolation: "worktree"` and the prompt
 work-issue skill: brief, own branch, green commits, PR, follow-up tickets.
 
 **Autopilot issue:** the worker needs nothing from anyone. Do not answer its questions;
-a worker that stops on a NO RULE has done the right thing — note it and move on.
+a worker that stops on a NO RULE has done the right thing — note it and move on. A small
+call on Chandler's list (AGENTS.md "What Chandler is asked", "Small calls", HIR-278) is
+not a stop: the worker takes it to the senior agent, and you do not decide it either.
 
 **Attended issue:** the worker posts its brief and waits for a "go". Relay the brief to
 Chandler in this session, verbatim, and pass his answer back to that worker (SendMessage).
@@ -72,11 +80,66 @@ running, the one you overwrite may belong to a session you cannot see.
 PR number **and nothing else** (HIR-137). It reads the ticket itself, from the issue id in
 the branch name — do not paste the issue's labels, its "Done when" list, or your own
 account of what the worker did into its prompt. Your framing between the ticket and the
-reviewer is exactly what it is meant to be reading around. It sets the PR to merge on its
-own or labels it `needs-chandler`. The worker inside an
+reviewer is exactly what it is meant to be reading around. The worker inside an
 orchestrator does *not* review its own PR at the end of its run (its skill's step 5c tells
 it to skip that when you started it) — reviewing is yours, so every autopilot PR gets
-exactly one reviewer.
+exactly one reviewer at a time.
+
+The reviewer's reply starts with the verdict:
+
+- **`MERGED` / `MERGING`** — done. A safety-check refusal of its merge command is not a
+  failure: its `review-passed` label hands the merge to GitHub (AGENTS.md "Who merges").
+- **`SENT BACK`** — the fixes are in its PR comment headed `**Review: sent back**`. The
+  first time, send the worker one message (SendMessage): "PR #n was sent back; do the
+  fixes in the latest `Review: sent back` comment per your skill's 'Fixing a sent-back
+  PR', then report." If that worker has finished or is gone, start a fresh one the same
+  way as in step 2 with `/work-issue HIR-n` — it finds the open, sent-back PR and fixes it
+  on the same branch. **The second time, always a fresh worker on the strongest model**
+  (`model: "fable"`; the ladder in AGENTS.md if it is unavailable), never the original
+  one.
+  When it reports, start a **fresh** reviewer with the PR number and nothing else. The
+  reviewer counts the rounds: a third failure comes back as `NEEDS CHANDLER`, with no
+  @mention.
+- **`NEEDS CHANDLER`** — an item on the big side of his list (AGENTS.md "What Chandler is
+  asked"), or a third failed review. Report it; never relabel it.
+- **`NO TICKET`** — not a verdict; no review took place. Below.
+
+**`NO TICKET`: the reviewer could not open the ticket, so you hand it over** (HIR-306).
+Some cloud sessions start a reviewer without the Linear tools. That is a setup failure,
+not a review: the reviewer has added no label and posted a comment starting
+`**Review: could not reach the ticket**`. You have the tools and you wrote none of the
+code, so:
+
+1. Open the ticket yourself: `get_issue` on the id in the PR's branch name, with
+   `includeRelations`, and `list_comments`.
+2. Start a **fresh** reviewer whose prompt is the PR number, then this block and nothing
+   else:
+
+   ```
+   <PR number>
+
+   Ticket HIR-n, word for word, opened by the session that started this reviewer:
+
+   Status: <status>
+   Labels: <every label, comma-separated, or "none">
+   Blocked by: <ids and their status, or "nothing">
+
+   Description:
+   <the whole description, unchanged>
+
+   Comments, oldest first:
+   <each comment in full: its time, then its body, unchanged>
+   ```
+
+   Copy, never summarise, shorten or reorder, and add no word of your own about the work:
+   the "Done when" list reaches the reviewer inside the description, as Chandler wrote it.
+   This is the one exception to "the PR number and nothing else", and it is yours alone.
+   **A worker never hands over the ticket for its own PR.**
+3. Its reply may end with a line under `Linear comment:`; post that line on the ticket,
+   unchanged (`save_comment`). It has no tool to do so itself.
+4. If it says `NO TICKET` again, or you cannot read the ticket either, stop there: add no
+   label, and list the PR under "Not reviewed" in your report. The lead agent's next run
+   reviews it (its step 3).
 
 **Attended PR:** do not review, do not merge. List it under "Ready for you" with the PR
 link and the worker's one-line summary.
@@ -91,11 +154,11 @@ with the metric named and the two runs compared.
 
 **There is no merge queue** — GitHub offers one only on organization-owned repositories
 and this one is personal (HIR-136). The reviewer merges a PR whose checks are already green
-outright; on any other PR it arms GitHub's auto-merge and brings the branch up to date, and
+outright; on any other PR it labels it `review-passed` and brings the branch up to date, and
 that one is not merged the moment the reviewer passes it — it merges when the checks on the
 updated branch go green (HIR-157). Treat both "merged" and "set to merge" as done for
-reporting, and check back once on the second — a PR with a real conflict, or one that kept
-losing the race to other merges, is back with its author and belongs under "Needs you".
+reporting, and check back once on the second. A PR with a real conflict comes back `SENT
+BACK`, like any other finding: the author resolves it.
 
 Start queued issues as slots free up and their blockers merge. Before each one, re-read
 the open PRs (step 1): other sessions have been merging while you worked.
@@ -107,7 +170,18 @@ One message at the end, written for Chandler:
 - **Merged or merging:** PR, issue, one line of what changed on the dashboard (or
   "internal"), and whether it is merged or still waiting on its checks.
 - **Ready for you:** attended PRs waiting for your merge, one line each.
-- **Needs you:** PR, issue, the failing check or open question in plain words.
+- **Sent back and fixed:** PR, issue, one line of what the reviewer asked for.
+- **Needs you:** only items on the big side of Chandler's list, and PRs that failed review
+  three times — PR, issue, the item or what is still wrong, in plain words. The big calls
+  go under two headings (AGENTS.md "What Chandler is asked", "Big calls come in two
+  kinds", HIR-297): **To think about**, each a full question, and **To approve**, each
+  the three lines of a recommendation, copied as the senior agent or the reviewer wrote
+  them. Never reword one kind into the other.
+- **Decided for you:** the small calls the senior agent made in this batch, copied from
+  each PR's "Decided for you" — what, why, how to undo. "None" if there were none.
+- **Not reviewed:** a PR no reviewer could open the ticket for, even with the ticket
+  handed over (step 3, `NO TICKET`). PR, issue, and that the next lead-agent run reviews
+  it. It is not a failed review and not Chandler's.
 - **Stopped:** issue, the question the decider couldn't answer (already on Linear with an
   @mention).
 - **Re-extract:** whether a merge today has the model re-read the open jobs, yes or no —

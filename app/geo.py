@@ -2,7 +2,8 @@
 
 Does: recognize the tracked cities (and their common spellings) inside a location string;
 recognize remote postings a Berlin resident can take ("Remote (EU)"); say which places
-are active.
+are active. A posting can name several tracked cities ("Berlin; Munich"): `places_of`
+returns all of them, `place_of` the first, which is what `job.city` holds (HIR-289).
 
 A city can be tracked without being active. `city_of` recognizes every tracked city (manual
 adds keep their real city). Only ACTIVE_CITIES pass the ingest and discover-boards filters
@@ -151,8 +152,24 @@ def is_remote_eu(location_raw: str | None, title: str | None = None, text: str |
 
 
 def place_of(location_raw: str | None, title: str | None = None, text: str | None = None) -> str | None:
-    """A tracked city, else REMOTE_EU, else None."""
-    return city_of(location_raw) or (REMOTE_EU if is_remote_eu(location_raw, title, text) else None)
+    """A tracked city, else REMOTE_EU, else None: the first of `places_of`."""
+    return (places_of(location_raw, title, text) or [None])[0]
+
+
+def places_of(location_raw: str | None, title: str | None = None, text: str | None = None) -> list[str]:
+    """Every place the posting names, in CITIES order: each tracked city its location
+    mentions, or [REMOTE_EU] when it names none and is EU-remote, or []. The first is
+    `place_of`; a city match still wins over remote, so "Berlin or remote" is ["Berlin"]
+    (HIR-289: a Berlin + Munich posting counts under both)."""
+    cities = [c for c, pat in _PATTERNS.items() if location_raw and pat.search(location_raw)]
+    if cities:
+        return cities
+    return [REMOTE_EU] if is_remote_eu(location_raw, title, text) else []
+
+
+def active_places(location_raw: str | None, title: str | None = None, text: str | None = None) -> list[str]:
+    """places_of, keeping only ACTIVE_CITIES."""
+    return [p for p in places_of(location_raw, title, text) if p in ACTIVE_CITIES]
 
 
 def active_place(location_raw: str | None, title: str | None = None, text: str | None = None) -> str | None:

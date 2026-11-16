@@ -13,6 +13,7 @@
   "degree_or_equivalent": false,
   "degree_signal": null,
   "attrs_reviewed": true,
+  "groups_reviewed": true,
   "source_sha256": "7bb06b6a2bf0c135be67420ff5f58ede9ae6b7866d6f1b289cdd6d6a7400a0ea",
   "labeled_by": [
     "claude-opus-5-5",
@@ -45,12 +46,14 @@
     {
       "skill_id": "aws",
       "requirement": "nice_to_have",
-      "raw_text": "cloud infrastructure on AWS, GCP, or Azure"
+      "raw_text": "cloud infrastructure on AWS, GCP, or Azure",
+      "alternative_group": 3
     },
     {
       "skill_id": "azure",
       "requirement": "nice_to_have",
-      "raw_text": "Azure"
+      "raw_text": "Azure",
+      "alternative_group": 3
     },
     {
       "skill_id": "cloud",
@@ -65,12 +68,14 @@
     {
       "skill_id": "fastapi",
       "requirement": "required",
-      "raw_text": "FastAPI"
+      "raw_text": "FastAPI",
+      "alternative_group": 1
     },
     {
       "skill_id": "gcp",
       "requirement": "nice_to_have",
-      "raw_text": "GCP"
+      "raw_text": "GCP",
+      "alternative_group": 3
     },
     {
       "skill_id": "livekit",
@@ -90,12 +95,14 @@
     {
       "skill_id": "postgresql",
       "requirement": "required",
-      "raw_text": "PostgreSQL"
+      "raw_text": "PostgreSQL",
+      "alternative_group": 2
     },
     {
       "skill_id": "python",
       "requirement": "required",
-      "raw_text": "Python"
+      "raw_text": "Python",
+      "alternative_group": 1
     },
     {
       "skill_id": "react",
@@ -105,7 +112,8 @@
     {
       "skill_id": "redis",
       "requirement": "required",
-      "raw_text": "Redis"
+      "raw_text": "Redis",
+      "alternative_group": 2
     },
     {
       "skill_id": "temporal",
@@ -115,7 +123,8 @@
     {
       "skill_id": "typescript",
       "requirement": "required",
-      "raw_text": "TypeScript"
+      "raw_text": "TypeScript",
+      "alternative_group": 1
     }
   ]
 }

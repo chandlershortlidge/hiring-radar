@@ -13,6 +13,7 @@
   "degree_or_equivalent": false,
   "degree_signal": null,
   "attrs_reviewed": false,
+  "groups_reviewed": true,
   "source_sha256": "2fdf02ac628390b08b2d6e736522566a398c2a266e1a56dbca7a8cddf5290a80",
   "labeled_by": [
     "claude-opus-5-5",
@@ -65,7 +66,8 @@
     {
       "skill_id": "java",
       "requirement": "required",
-      "raw_text": "Java"
+      "raw_text": "Java",
+      "alternative_group": 1
     },
     {
       "skill_id": "llms",
@@ -95,7 +97,8 @@
     {
       "skill_id": "python",
       "requirement": "required",
-      "raw_text": "Python"
+      "raw_text": "Python",
+      "alternative_group": 1
     },
     {
       "skill_id": "rag",

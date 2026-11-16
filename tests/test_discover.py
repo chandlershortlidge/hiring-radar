@@ -11,7 +11,7 @@ from app import discover, ingest
 from app.sources import Posting, brave
 
 FIXTURES = Path(__file__).parent / "fixtures" / "search"
-CONFIG = {"count": 20, "domains": ["jobs.lever.co", "jobs.ashbyhq.com"], "queries": ['"AI engineer" Berlin']}
+CONFIG = {"count": 20, "queries": ['"AI engineer" Berlin']}
 FEEDS_DOC = {"_comment": "c", "feeds": [
     {"type": "arbeitnow", "enabled": True},
     {"type": "lever", "enabled": True, "token": "vestiairecollective", "company": "Vestiaire"},
@@ -64,9 +64,21 @@ def test_shipped_config_searches_for_every_active_city():
         assert any(city in q for q in queries), city
 
 
-def test_search_queries_cross_domains_and_queries():
-    assert discover.search_queries(CONFIG) == ['site:jobs.lever.co "AI engineer" Berlin',
-                                               'site:jobs.ashbyhq.com "AI engineer" Berlin']
+def test_search_queries_cross_board_addresses_and_queries():
+    """The addresses are the registry's (HIR-313); these five are the ones the settings
+    file listed by hand before, in the same order, so a run searches what it did."""
+    assert discover.search_queries(CONFIG) == ['site:job-boards.greenhouse.io "AI engineer" Berlin',
+                                               'site:boards.greenhouse.io "AI engineer" Berlin',
+                                               'site:jobs.lever.co "AI engineer" Berlin',
+                                               'site:jobs.ashbyhq.com "AI engineer" Berlin',
+                                               'site:join.com/companies "AI engineer" Berlin']
+
+
+def test_the_settings_file_keeps_no_address_list_of_its_own():
+    """A `domains` list there would be read by nothing and look like the one in charge."""
+    import json
+
+    assert "domains" not in json.loads(discover.CONFIG_PATH.read_text())
 
 
 def test_harvest_dedups_boards_and_counts_urls_that_name_no_board():
@@ -94,7 +106,7 @@ def test_run_classifies_and_reports_failures_without_stopping():
     seen = []
     r = discover.run(CONFIG, FEEDS_DOC, REJECTED_DOC,
                      search=lambda q: seen.append(q) or (URLS if "lever" in q else []), fetch_board=fetch_board)
-    assert len(seen) == 2 and r.queries[1][1] == 0
+    assert len(seen) == 5 and r.queries[1][1] == 0
     assert (r.urls, r.found, r.known, r.rejected, r.unparsed) == (9, 6, 2, 1, 2)
     by = {c.board: c for c in r.candidates}
     assert by[("ashby", "newco")].relevant == ["Senior AI Engineer (Berlin)",

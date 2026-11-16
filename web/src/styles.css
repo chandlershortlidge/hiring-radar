@@ -44,8 +44,6 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
 
 /* layout */
 .main { max-width: 1200px; margin: 0 auto; padding: 16px 24px 48px; display: flex; flex-direction: column; gap: 16px; }
-.stats { margin: 0; font: 12.5px var(--mono); color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 0 6px; }
-.stats abbr { text-decoration: underline dotted; cursor: help; }
 .card { background: var(--paper); border: 1px solid var(--line); border-radius: 8px; }
 .chart { padding: 24px; display: flex; flex-direction: column; gap: 20px; }
 .chart h1 { margin: 0; font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
@@ -424,6 +422,10 @@ a.card.market:hover { border-color: var(--ink); }
   .chart { padding: 16px; } .chart h1 { font-size: 17px; }
   .page-head { padding: 16px; } .page-head h1 { font-size: 17px; } .page-links { align-items: flex-start; } .posting-wrap { padding: 16px; }
   .bars-head, .bar-row { grid-template-columns: 120px minmax(0,1fr); gap: 10px; }
+  /* The skill chart's scale has five markers; at this width the 4th runs into "…% of jobs".
+     Keep the start, the middle and the end. Scoped to .bars-head: the compare chart's
+     scale already has three and is not touched (HIR-190). */
+  .bars-head .axis span:nth-child(even) { display: none; }
   .search input { width: 100%; }
   /* beats the desktop clamp above, which is more specific than the line before this one */
   .jobs-head .search input { width: 100%; min-width: 0; }

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { api } from "./api.js";
-import { COMPARE_DEFAULT, DEGREE_FILTERS, GERMAN_FILTERS, PLACE_NAMES, PRODUCTION_FILTERS, SENIORITIES, cap, compareAdd, compareRemove, dateTime, familyLabel, listFilters as deriveListFilters, placeByName, placeBySlug, placeCities, pctInt, timeAgo } from "./format.js";
-import { HOME, parsePath, pathFor } from "./routes.js";
+import { COMPARE_DEFAULT, DEGREE_FILTERS, GERMAN_FILTERS, PLACE_NAMES, PRODUCTION_FILTERS, SENIORITIES, cap, compareAdd, compareRemove, familyLabel, listFilters as deriveListFilters, placeByName, placeBySlug, placeCities, pctInt, timeAgo } from "./format.js";
+import { HOME, parsePath, pathFor, withFamily } from "./routes.js";
 import { pushRecent, readLast, readRecent, writeLast } from "./lastPlace.js";
 import { useProfile } from "./profile.js";
 import { Person, Plus, Radar } from "./icons.jsx";
@@ -20,6 +20,7 @@ import Panel from "./Panel.jsx";
 // The time windows the server accepts, with the wording a person reads. Keys here and on
 // the server have to match; tests/test_frontend_lists.py fails if they drift (HIR-203).
 const WINDOWS = { open: "Currently open", "30d": "Last 30 days", "90d": "Last 90 days", all: "All" };
+const REQUIREMENTS = { required: "Required only", all: "Required + nice-to-have" };
 const DEFAULT = { cities: [], compare: false, seniorities: [], families: [], requirement: "required", window: "open", german: "any", degree: "any", production: "any", skillIds: [], query: "", text: "" };
 
 // Where a request to add a city goes. There is no form for it, so it opens the repo's
@@ -99,7 +100,9 @@ export default function App() {
 
   const reload = useCallback(() => { api.stats().then(setStats); setRefresh((n) => n + 1); }, []);
   useEffect(() => { api.taxonomy().then(setTax); reload(); }, [reload]);
-  useEffect(() => { let live = true; api.skills(filters).then((r) => { if (live) setSkills(r); }); return () => { live = false; }; }, [filters, refresh]);
+  // The answer is tagged with the family it was asked for, so the market cards never show a
+  // new family's order over the previous family's numbers while a request is in flight.
+  useEffect(() => { let live = true; api.skills(filters).then((r) => { if (live) setSkills({ ...r, family: filters.families[0] || null }); }); return () => { live = false; }; }, [filters, refresh]);
   // The related-skills rows, fetched here and not in the panel: the panel draws them and the
   // chip row's add-skill popover suggests them, both from this one request and in its order.
   useEffect(() => {
@@ -130,7 +133,12 @@ export default function App() {
 
   // Everything the query bar can do, as moves between addresses.
   const goPlace = (slug) => goMarket({ ...HOME, view: "city", place: slug, family: market.family });
-  const goFamily = (f) => goMarket(market.view === "compare" ? { ...market, family: f } : { ...HOME, view: "city", place: market.place, family: f });
+  // On the home view a family pick is not a move: the address stays "/", nothing is pushed
+  // to the history, and only the market cards follow it (HIR-197).
+  const goFamily = (f) => {
+    const next = withFamily(market, f);
+    if (next.view === "home") { setRoute(next); setMarket(next); } else goMarket(next);
+  };
   // Compare opens on the city you are looking at plus the one picked in the compare
   // dropdown, so it takes one pick to see two markets (HIR-191). The dropdown hides the
   // city you are already on, but "All of Germany" resolves to the busiest German city,
@@ -194,7 +202,7 @@ export default function App() {
           <button type="button" className="pill" onClick={() => setDrawer("review")} aria-label={`${stats?.proposed_pending ?? 0} proposed skills to review`}>
             <span className="count">{stats?.proposed_pending ?? 0}</span><span className="lbl">proposed skills</span>
           </button>
-          <button type="button" className="btn outline" onClick={() => setDrawer("add")}><Plus /><span className="lbl">Add a job</span></button>
+          <button type="button" className="btn outline" onClick={() => setDrawer("add")} aria-label="Add a job"><Plus /><span className="lbl">Add a job</span></button>
         </div>
       </div></header>
 
@@ -233,23 +241,6 @@ export default function App() {
         )}
         <Panel label="The market grid"><HomeGrid data={skills} counts={cityCounts} family={market.family} onRequestCity={requestCity} /></Panel>
       </main> : <main className="main">
-        {stats && (
-          <p className="stats">
-            <span>{stats.jobs} jobs</span><span>·</span>
-            <span><abbr title={`A feed-sourced job counts as open while a feed still listed it in the last ${stats.open_rule.feed_days} days. A job added by hand is assumed open for ${stats.open_rule.manual_days} days.`}>{stats.open} currently open</abbr>
-              {Object.keys(stats.open_by_city).length > 1 && ` (${Object.entries(stats.open_by_city).map(([c, n]) => `${c} ${n}`).join(" · ")})`}</span><span>·</span>
-            <span>{stats.companies} companies</span><span>·</span>
-            <span>{stats.skills_tracked} skills tracked</span><span>·</span>
-            {stats.open > 0 && <><span>of those open now:</span><span>·</span>
-            <span><abbr title="Open jobs that ask for German outright or are written in German">{stats.open_german_required} need German</abbr></span><span>·</span>
-            <span><abbr title="Open jobs that name a degree, don't mark it optional, and don't accept equivalent experience">{stats.open_degree_required} need a degree</abbr></span><span>·</span>
-            <span><abbr title="Open jobs that ask the candidate for prior experience shipping or operating software real users depended on">{stats.open_production_required} need production experience</abbr></span><span>·</span></>}
-            {stats.legacy > 0 && <><span><abbr title="Imported from the old project with the old extractor's skills; listed but not counted in the chart">{stats.legacy} legacy, not charted</abbr></span><span>·</span></>}
-            {stats.too_short > 0 && <><span><abbr title="Only a fragment of the posting was stored; listed but not counted in the chart">{stats.too_short} too short, not charted</abbr></span><span>·</span></>}
-            <span>{stats.last_updated ? `last updated ${timeAgo(stats.last_updated)} (${dateTime(stats.last_updated)})` : "no jobs yet"}</span>
-          </p>
-        )}
-
         <Panel label="The chart"><section className="card chart" aria-labelledby="chart-title">
           <div>
             <h1 id="chart-title">{filters.compare
@@ -264,8 +255,7 @@ export default function App() {
           <div className="controls">
             <div className="ctl"><span>Requirement</span>
               <div className="seg" role="group" aria-label="Requirement">
-                <button type="button" aria-pressed={filters.requirement === "required"} onClick={() => set({ requirement: "required" })}>Required only</button>
-                <button type="button" aria-pressed={filters.requirement === "all"} onClick={() => set({ requirement: "all" })}>Required + nice-to-have</button>
+                {Object.entries(REQUIREMENTS).map(([k, v]) => <button key={k} type="button" aria-pressed={filters.requirement === k} onClick={() => set({ requirement: k })}>{v}</button>)}
               </div>
             </div>
             <div className="ctl"><span>Seniority</span>

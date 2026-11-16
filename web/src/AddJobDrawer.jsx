@@ -80,7 +80,8 @@ export default function AddJobDrawer({ onClose, onAdded, onViewJob }) {
   );
 }
 
-function Result({ r, onViewJob, onText }) {
+// Exported for the tests: what the drawer says about one server reply.
+export function Result({ r, onViewJob, onText }) {
   if (r.outcome === "added") return (
     <div className="note" role="status"><Check />
       <span><b>Added — {r.skills_found} skill{r.skills_found === 1 ? "" : "s"} found{r.proposed ? `, ${r.proposed} proposed for review` : ""}.</b>{" "}
@@ -106,8 +107,14 @@ function Result({ r, onViewJob, onText }) {
   if (r.outcome === "unreadable") return (
     <div className="note warn" role="alert"><Warn /><span><b>Couldn't read that page.</b> {r.verdict}. Try <a href="#" onClick={(e) => { e.preventDefault(); onText(); }}>Paste text</a> instead.</span></div>
   );
-  if (r.outcome?.startsWith("dropped")) return (
-    <div className="note warn" role="alert"><Warn /><span><b>Not stored.</b> {r.outcome.replace("dropped:", "").replace(/_/g, " ")} — the posting fell outside the title or city filter.</span></div>
+  // The posting was read fine and turned away on purpose (app/ingest.py's skipped kinds).
+  // A hand-added job can only meet these two: its title is taken as read, and the agency
+  // screen applies to feeds alone.
+  if (r.outcome === "skipped_company") return (
+    <div className="note warn" role="alert"><Warn /><span><b>Not stored — we need a company name.</b> Type the company in and try again.</span></div>
+  );
+  if (r.outcome === "skipped_city") return (
+    <div className="note warn" role="alert"><Warn /><span><b>Not stored — this posting is in a city we don't track.</b> Only jobs in the places in the City list are collected.</span></div>
   );
   return <div className="note warn" role="alert"><Warn /><span><b>Something went wrong.</b> {r.message || r.outcome}</span></div>;
 }

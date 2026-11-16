@@ -109,7 +109,7 @@ DECISION: yes
 
 Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Goldens
 
-DECISION: yes
+DECISION: no intern posting, parked not rejected: the rule for how an internship is labelled does not exist yet (Chandler is filing it, 2026-11-11), and the other 13 postings of this run cannot be written while its items are unanswered. Delete this entry from excluded.json to put the posting back in the queue once the rule lands.
 
 ## 8. golden_056 - scope `in_scope` (in-scope)
 
@@ -120,7 +120,7 @@ DECISION: yes
 
 Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Goldens
 
-DECISION: yes
+DECISION: no intern posting, parked not rejected: the rule for how an internship is labelled does not exist yet (Chandler is filing it, 2026-11-11), and the other 13 postings of this run cannot be written while its items are unanswered. Delete this entry from excluded.json to put the posting back in the queue once the rule lands.
 
 ## 9. golden_057 - scope `in_scope` (in-scope)
 
@@ -340,7 +340,7 @@ DECISION: {"requirement": "required", "raw_text": "building LLM benchmarks"}
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: drop
+DECISION: B
 
 ## 29. golden_059 - skill `testing` (disagreement)
 
@@ -889,7 +889,7 @@ DECISION: drop
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: {"degree": "master", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "Masters/PhD in a quantitative discipline"}
 
 ## 79. golden_049 - attribute `german` (spot-check)
 
@@ -979,7 +979,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: {"requirement": "nice_to_have", "raw_text": "AWS"}
 
 ## 88. golden_051 - skill `azure` (spot-check)
 
@@ -989,7 +989,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: {"requirement": "nice_to_have", "raw_text": "Azure"}
 
 ## 89. golden_051 - skill `cloud` (spot-check)
 
@@ -1599,7 +1599,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ok
+DECISION: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "Bachelor, Master’s or PhD graduate or candidate in computer science or another quantitative discipline"}
 
 ## 150. golden_062 - attribute `german` (spot-check)
 

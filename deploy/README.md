@@ -49,8 +49,15 @@ on the VM unless it says otherwise.
 | API process | `hiring-radar.service` on `127.0.0.1:8000`, Caddy in front |
 | Daily poll | `hiring-radar-poll.timer` → `hiring-radar-poll.service`, 07:00 Europe/Berlin |
 | Nightly backup | `hiring-radar-backup.timer` → `backup.sh`, 03:30 Europe/Berlin, to `gs://hiring-radar-512318-backups/db/` |
+| Caretaker | `hiring-radar-caretaker.timer` → `python -m app caretaker`, 10:00 Europe/Berlin: checks every job source, logs to `caretaker_log`, posts the Monday summary to Linear when `LINEAR_API_KEY` is set (HIR-257). The same post starts with the week's pull requests (needs you, merged, sent back and fixed), read from GitHub's public API and the checkout's git history, with no token (HIR-264). Then the robot visitor's week (what broke on the live site, what was rolled back, what was fixed), read from its Linear tickets with the same `LINEAR_API_KEY`, one read-only request a week; a break that came back after two fixes is listed above everything else (HIR-260). Report-only: never edits `config/feeds.json` |
 
 `systemctl list-units | grep hiring` shows the exact unit names.
+
+**Checks run on the Mac arrive over this SSH login** (HIR-294). The caretaker's miss count
+reads this database, so `python -m app check` on the Mac ends by piping its check log to
+`python -m app receive-checks` here, run as `hiring-radar` (`app/send_checks.py` holds the
+exact command). It stores only the checks this database does not have, so a repeat is
+harmless. `HIRING_RADAR_SEND_CHECKS=0` on the Mac switches it off.
 
 ## Is it healthy?
 
@@ -136,11 +143,22 @@ journalctl -u hiring-radar -n 100 --no-pager
 ## How deploys work
 
 Merging to `main` deploys. `.github/workflows/ci.yml` runs the Python tests and the
-frontend build on every push and PR; on a push to `main` that passes both, the `deploy` job
-runs. It is serialized (`concurrency: deploy`, no cancel-in-progress), so two merges deploy
-one after the other rather than racing.
+frontend build on every push and PR; on a push to `main` that passes both, the `release`
+job runs `.github/workflows/site-watch.yml`: deploy the commit (`deploy.yml`), then the
+robot visitor clicks through the live site (HIR-258). If the robot fails, the site is
+rolled back to the last commit it passed (the `site-good` git tag) by deploying that
+commit the same way, and a Linear ticket is filed; if the rolled-back site fails too, the
+ticket is Urgent and assigned to Chandler. The whole release is serialized
+(`concurrency: release`, no cancel-in-progress), so a second merge waits until the first
+is deployed and watched.
 
-The job:
+A rollback puts the old code back but not the old database: a migration the broken
+commit applied stays applied. Most migrations only add, and old code runs on the newer
+schema; a migration that rebuilds, drops or renames something (007, 008, 015 and 016 did)
+can leave the old code unable to read it. Then the robot fails on the rolled-back site
+too, and that is the "rollback failed" ticket that goes straight to Chandler.
+
+The deploy job (`.github/workflows/deploy.yml`):
 
 1. Builds `web/dist` on the runner and tars it — the e2-micro cannot run a Vite build in
    969 MB of RAM.
@@ -152,12 +170,26 @@ The job:
    service-account key anywhere, and no GitHub secret to rotate.
 3. Opens **one** `gcloud compute ssh` connection over IAP and does everything in it: the
    tarball goes in on that connection's stdin (`cat > /tmp/web-dist.tgz`), then `main` is
-   fetched and `git reset --hard` to the merged commit, then
+   fetched (and the commit itself, when it is a rollback target or a drill commit not on
+   `main`) and `git reset --hard` to it, then
    `sudo bash deploy/remote-deploy.sh /tmp/web-dist.tgz`. `remote-deploy.sh` takes a
    backup first, then `uv sync --frozen --no-dev`, unpacks `web/dist`, restarts the API, and
    polls `/api/stats` for up to 60 s. If the app does not answer it exits non-zero and
    prints the last 30 journal lines, so the workflow goes red. A tarball that arrives
    truncated fails `tar -xzf` in the same script, so that is loud too.
+
+   The connection is made by `deploy/vm-ssh.sh` (HIR-317), the one way a workflow logs in
+   to the VM. Each job registers a new throwaway key with OS Login and connects seconds
+   later, and now and then the VM refuses it ("Permission denied (publickey)"). The script
+   tries a refused login again, 3 tries 15 seconds apart, and the log shows
+   `server login: try N of 3`. It tries nothing else again: a deploy that started and
+   failed stays failed. Three refusals exit with code 75. The job fetches the script from
+   the workflow's own commit into `.deploy-tools/`, because a rollback deploys an older
+   commit that may not have it.
+
+When the robot fails after a deploy and the rollback job itself fails, the ticket is
+"Deploy failed the robot visitor and the rollback did not run": the site is still on the
+new version, and the ticket says whether the rollback could not log in or failed later.
 
 `github-deployer` holds exactly three roles: `roles/compute.viewer` and
 `roles/iap.tunnelResourceAccessor` on the project, and `roles/compute.osAdminLogin` on the
@@ -372,7 +404,7 @@ before HIR-160 and nothing is sent anywhere.
 sudo install -m 644 /opt/hiring-radar/app/deploy/hiring-radar*.service \
   /opt/hiring-radar/app/deploy/hiring-radar*.timer /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable --now hiring-radar hiring-radar-poll.timer hiring-radar-backup.timer
+sudo systemctl enable --now hiring-radar hiring-radar-poll.timer hiring-radar-backup.timer hiring-radar-caretaker.timer
 curl -fsS localhost:8000/api/stats >/dev/null && echo "api up"
 ```
 
@@ -424,6 +456,6 @@ gcloud compute instances add-iam-policy-binding hiring-radar --zone "$ZONE" \
   --member="serviceAccount:$SA" --role=roles/compute.osAdminLogin
 ```
 
-`workload_identity_provider` and `service_account` in `.github/workflows/ci.yml` must match
+`workload_identity_provider` and `service_account` in `.github/workflows/deploy.yml` must match
 what this creates — the provider is named by project **number**, not id. The attribute
 condition is the security boundary: only `main` of this repo can assume the account.

@@ -7,6 +7,13 @@ board list used by the CLI add, the API add, discovery and dedup's repost rule; 
 complete-feed list behind the dashboard's open rule; the search and manual lists; and the
 poller's dispatch. Adding a source is one entry here plus one name in a new migration.
 
+A board entry also carries where that board system lives on the web (HIR-313): its
+`domain`, which is how the link check knows a link is on a system we read, and its
+`search_sites`, which is where the caretaker and the weekly board search look for a
+company's board. The one thing about a board that cannot live here is the shape of its job
+links (a different pattern per system, in app/check.py); tests/test_sources_registry.py
+fails, naming the system, when a board here has no link pattern there.
+
 Does NOT: read config/feeds.json (poll does), touch the database, decide what gets
 ingested, or filter postings. A `fetch` here is the thin I/O wrapper of one adapter.
 
@@ -90,15 +97,21 @@ class Source:
     name: str                       # the value stored in job_source.source
     kind: str                       # one of KINDS
     fetch: FeedFetch | None = None  # None for a manual source: a person brings the posting
+    # Boards only. `domain` is the board system's own web domain: a link on it, or on any
+    # subdomain of it, is on a system we read. `search_sites` are the `site:` targets a web
+    # search for a company's board uses, main one first (the caretaker searches only that one).
+    domain: str | None = None
+    search_sites: tuple[str, ...] = ()
 
 
 # Order is load-bearing only in that derived lists keep it; it is boards, then complete
 # feeds, then searches, then the manual ways a person adds a job.
 SOURCES: tuple[Source, ...] = (
-    Source("greenhouse", "board", _greenhouse),
-    Source("lever", "board", _lever),
-    Source("ashby", "board", _ashby),
-    Source("join", "board", _join),
+    Source("greenhouse", "board", _greenhouse, "greenhouse.io",
+           ("job-boards.greenhouse.io", "boards.greenhouse.io")),
+    Source("lever", "board", _lever, "lever.co", ("jobs.lever.co",)),
+    Source("ashby", "board", _ashby, "ashbyhq.com", ("jobs.ashbyhq.com",)),
+    Source("join", "board", _join, "join.com", ("join.com/companies",)),
     Source("startup_jobs", "feed", _startup_jobs),
     Source("arbeitnow", "feed", _arbeitnow),
     Source("arbeitsagentur", "search", _arbeitsagentur),
@@ -123,6 +136,13 @@ def of_kind(*kinds: str) -> tuple[str, ...]:
 # One company's own job board: what discovery adds, what the link check fetches by token,
 # and the only sources whose vanished id means a repost rather than a concurrent duplicate.
 BOARD_SOURCES: tuple[str, ...] = of_kind("board")
+_BOARDS = tuple(s for s in SOURCES if s.kind == "board")
+# Board system -> its web domain: the systems the link check counts as "one we read".
+BOARD_DOMAINS: dict[str, str] = {s.name: s.domain for s in _BOARDS}
+# Board system -> the one address a moved board is searched for under (the caretaker).
+BOARD_MAIN_SITE: dict[str, str] = {s.name: s.search_sites[0] for s in _BOARDS}
+# Every address the weekly board search looks under, in registry order.
+BOARD_SEARCH_SITES: tuple[str, ...] = tuple(site for s in _BOARDS for site in s.search_sites)
 # Complete sources: they list every live posting on every poll, so not seeing a job for
 # FEED_OPEN_DAYS means it closed (the dashboard's open rule, app/queries.py).
 COMPLETE_SOURCES: tuple[str, ...] = of_kind("board", "feed")

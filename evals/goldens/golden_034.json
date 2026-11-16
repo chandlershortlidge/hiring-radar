@@ -13,6 +13,7 @@
   "degree_or_equivalent": false,
   "degree_signal": null,
   "attrs_reviewed": false,
+  "groups_reviewed": true,
   "source_sha256": "6a481fc8051cf14dac09df434675f0ad568aac5233a6fae0176444624e6e6101",
   "labeled_by": [
     "claude-opus-5-5",
@@ -29,12 +30,14 @@
     {
       "skill_id": "aws",
       "requirement": "required",
-      "raw_text": "AWS"
+      "raw_text": "AWS",
+      "alternative_group": 1
     },
     {
       "skill_id": "azure",
       "requirement": "required",
-      "raw_text": "Microsoft Azure"
+      "raw_text": "Microsoft Azure",
+      "alternative_group": 1
     },
     {
       "skill_id": "cloud",
@@ -44,7 +47,8 @@
     {
       "skill_id": "cpp",
       "requirement": "required",
-      "raw_text": "C++"
+      "raw_text": "C++",
+      "alternative_group": 2
     },
     {
       "skill_id": "infrastructure-as-code",
@@ -59,7 +63,8 @@
     {
       "skill_id": "python",
       "requirement": "required",
-      "raw_text": "Python"
+      "raw_text": "Python",
+      "alternative_group": 2
     },
     {
       "skill_id": "terraform",

@@ -10,7 +10,10 @@ Does:
     against stored jobs (the page may have been stored via another source, e.g. arbeitnow);
   - for a page that is not a known ATS, read the posting out of JSON-LD `JobPosting` when
     the page has it, otherwise the stripped page text; a Personio tenant serving no
-    JSON-LD still gives up its company and city, out of the payload it embeds;
+    JSON-LD still gives up its company and city, out of the payload it embeds; a page
+    with neither gives a location when its text has a "Location:" / "Standort:" line;
+  - read a Workable job link (apply.workable.com) through Workable's public job API,
+    because its page is built in the browser and holds no posting text (HIR-268);
   - diagnose a miss: board not in config/feeds.json; board polled but the title or city
     filter would have dropped it; board polled and it would have passed (a feed bug, or
     posted since the last poll); not a feed-reachable page at all.
@@ -18,14 +21,16 @@ Does:
   - log each check (`log_check`) and report coverage over the logged checks
     (`checked_coverage`): of the URLs a person checked, how many a feed already had;
     `reach_breakdown` sorts the misses by whether a feed can reach them *now*;
-  - count jobs a feed has seen (`job_coverage`), leaving out the legacy screenshot imports.
+  - count jobs a feed has seen (`job_coverage`), leaving out the legacy screenshot imports;
+  - file each check under one reason from a fixed list (`miss_reason`, HIR-290) and log it
+    with the company, city and careers system, so misses can be counted (app/misses.py).
 
 Does NOT: write anything but the url_check log (the CLI's --add hands the resolved Posting
 to app.ingest), call a model, or fetch LinkedIn (its pages are not readable without a login
 and the project does not scrape it).
 
 Invariants: `parse_ats_url`, `token_from_embed`, `posting_from_html`, `containment`,
-`diagnose` and `feed_had_it` are pure; `check_url` reads the DB and never writes it, and does network I/O
+`diagnose`, `feed_had_it`, `careers_system` and `miss_reason` are pure; `check_url` reads the DB and never writes it, and does network I/O
 only through the injected fetchers, so tests never touch the network. Coverage counts only
 the first check of each URL: the /check-url skill re-checks after adding a board and
 polling, and that re-check must not count as the feed having had the posting.
@@ -42,7 +47,7 @@ from dataclasses import dataclass, field
 from html.parser import HTMLParser
 
 from app import dedup
-from app.geo import ACTIVE_CITIES, active_place, city_of
+from app.geo import ACTIVE_CITIES, active_place, city_of, place_of
 from app.html_text import html_to_text
 from app.ingest import in_scope_title
 from app.sources import Posting, fetch_text, registry
@@ -77,12 +82,30 @@ _EMBED_TOKEN_RE = re.compile(r"greenhouse\.io/embed/job_board(?:/js)?\?(?:[^\"'\
 # job URL is read as a page, not resolved to a board — see `_personio_fields`.
 _PERSONIO_HOST_RE = re.compile(r"(?:^|\.)jobs\.personio\.(?:com|de)$", re.I)
 
+# Workable job links: https://apply.workable.com/<account>/j/<shortcode>/ (optional /apply).
+# Not an ATS pattern either: there is no Workable source, the posting is stored as a page
+# (source=url) — but read through Workable's public job API, see `posting_from_workable`.
+_WORKABLE_HOST = "apply.workable.com"
+_WORKABLE_PATH_RE = re.compile(r"^/(?P<account>[^/]+)/j/(?P<code>[0-9A-Za-z]+)")
+
 # Platform names that can sit in a page's site name, title tail or hostname without naming
 # the employer: the job boards and ATS vendors this project meets. A page declaring one of
 # these declares where it is hosted, not who is hiring (HIR-198).
 _GENERIC_SITE_NAMES = frozenset({
     "linkedin", "indeed", "stepstone", "glassdoor", "xing", "personio", "workday",
     "myworkdayjobs", "greenhouse", "lever", "ashby", "ashbyhq", "join",
+    # Every source this project polls (app/sources/registry.py), by its site name and by
+    # the hostname label its posting links carry. A feed job stored blank whose page has
+    # gone must stay blank, not become a job at "Arbeitsagentur" (HIR-211).
+    # tests/test_check.py fails when a polled source has no address covered here.
+    "arbeitsagentur", "bundesagentur für arbeit", "arbeitnow",
+    "startup", "startup jobs", "startup.jobs",
+    "jsearch", "rapidapi", "openwebninja",
+    # JSearch is a search over other job sites and links to whichever one carried the
+    # posting. These are the ones its stored links have named so far that are job sites,
+    # not employers.
+    "learn4good", "trabajo", "jobleads", "jooble", "speedyapply", "freelance", "devjobs",
+    "absolventa", "efinancialcareers", "nortjobs",
 })
 # Title tails that name a careers section rather than a company ("AI Engineer | Careers").
 _GENERIC_TITLE_TAILS = frozenset({"jobs", "job", "careers", "career", "karriere", "join us", "jobs & careers"})
@@ -91,6 +114,30 @@ _GENERIC_TITLE_TAILS = frozenset({"jobs", "job", "careers", "career", "karriere"
 _TITLE_TAIL_RE = re.compile(r"\s*\|\s*|\s+[–—-]\s+|\s+at\s+")
 # acme.co.uk → acme: hostname labels that are a public-suffix part, not the company.
 _SECOND_LEVEL_TLDS = frozenset({"co", "com", "org", "net", "ac", "gov"})
+# SAP SuccessFactors career sites (jobs.bayer.com) title every posting page
+# "<job title> Stellendetails | <company>" ("Job Details" in English): page furniture that
+# is not part of the job title (HIR-268). Matched at the end, or just before the "|".
+_JOB_DETAILS_SUFFIX_RE = re.compile(r"\s+(?:Stellendetails|Job Details)(?=\s*(?:\||$))", re.I)
+# A posting with no structured data that still states its place on a line of its own:
+# "Location: Deutschland : Berlin : Berlin" (jobs.bayer.com), "Standort: Berlin".
+_LOCATION_LINE_RE = re.compile(
+    r"^[ \t]*(?:Location|Standort|Arbeitsort|Einsatzort)[ \t]*:[ \t]*(?P<v>\S[^\n]*)$", re.I | re.M)
+# Zero-width and non-breaking characters a rich-text editor leaves around such a line.
+_INVISIBLE_RE = re.compile("[" + "".join(map(chr, (0x200B, 0x200C, 0x200D, 0x2060, 0xFEFF, 0xA0))) + "]")
+_MAX_LOCATION_LINE = 80   # characters; a longer "Location: …" line is a sentence, not a place
+
+
+def location_from_text(text: str) -> str | None:
+    """The value of the first "Location:" / "Standort:" line in a page's text, or None.
+
+    Only a short line counts, so a sentence that happens to start with the label is not
+    stored as a place. What the line says is returned as written; whether it names a
+    tracked city is `app.geo`'s call, as for every other location."""
+    for m in _LOCATION_LINE_RE.finditer(_INVISIBLE_RE.sub(" ", text)):
+        value = " ".join(m["v"].split())
+        if value and len(value) <= _MAX_LOCATION_LINE:
+            return value
+    return None
 
 
 def split_title_tail(title: str) -> tuple[str, str | None]:
@@ -221,15 +268,25 @@ def _job_postings(obj) -> list[dict]:
     return _job_postings(obj.get("@graph", []))
 
 
-def _place_of(loc) -> str | None:
-    if not isinstance(loc, dict):
-        return None
-    addr = loc.get("address")
+def _address_text(addr) -> str | None:
     if isinstance(addr, str):
         return addr.strip() or None
     if isinstance(addr, dict):
         parts = [addr.get("addressLocality"), addr.get("addressRegion"), addr.get("addressCountry")]
         return ", ".join(p.strip() for p in parts if isinstance(p, str) and p.strip()) or None
+    return None
+
+
+def _place_of(loc) -> str | None:
+    """One jobLocation → its address as text. schema.org allows a Place several addresses,
+    and get-in-it.de writes even a single one as a list (HIR-268); each is kept."""
+    if not isinstance(loc, dict):
+        return None
+    addr = loc.get("address")
+    if isinstance(addr, list):
+        return "; ".join(t for t in map(_address_text, addr) if t) or None
+    if isinstance(addr, (str, dict)):
+        return _address_text(addr)
     return loc.get("name")
 
 
@@ -280,12 +337,54 @@ def _personio_fields(markup: str) -> tuple[str | None, str | None]:
     is the fallback, by its `name` and not its `city`, because a remote posting puts
     "Remote" in `city` and the city in `state`. Company is blank on some tenants — those
     still need `--company`.
+
+    `additional_offices` (a list of office names) follows the main office, "; "-joined as
+    every other reader does, so a posting whose main office is untracked still maps to a
+    tracked city (HIR-289: Cloover lists Wien first and Berlin second).
     """
     flat = markup.replace('\\"', '"')
     company = _personio_field(flat, r'"company_name"\s*:\s*"(?P<v>[^"]*)"')
-    location = (_personio_field(flat, r'"main_office"\s*:\s*"(?P<v>[^"]*)"')
-                or _personio_field(flat, r'"office_addresses"\s*:\s*\[\s*\{\s*"name"\s*:\s*"(?P<v>[^"]*)"'))
-    return company, location
+    return company, "; ".join(_personio_offices(flat)) or None
+
+
+def _personio_offices(flat: str) -> list[str]:
+    """The office names of Personio's payload, main office first, blanks and repeats dropped."""
+    main = (_personio_field(flat, r'"main_office"\s*:\s*"(?P<v>[^"]*)"')
+            or _personio_field(flat, r'"office_addresses"\s*:\s*\[\s*\{\s*"name"\s*:\s*"(?P<v>[^"]*)"'))
+    places = [main] + _personio_list(flat, "additional_offices")
+    return list(dict.fromkeys(p for p in places if p))
+
+
+def _with_personio_offices(location: str | None, markup: str) -> str | None:
+    """A Personio JSON-LD location plus every payload office it did not already name (HIR-292).
+
+    Personio writes one JSON-LD place per office, but an office with no street address
+    ("Remote (Europe)") arrives with an empty address and is dropped, so
+    super-ai.jobs.personio.de/job/1592103 read as Berlin alone. The payload still has
+    the office by name. An office is already named when the JSON-LD text contains its
+    name or one of its places is the same tracked city ("Berlin (Remote)" next to
+    "Berlin, DE"), so a city is not listed twice.
+    """
+    named = [s.strip() for s in (location or "").split(";") if s.strip()]
+    cities = {city_of(s) for s in named} - {None}
+    for office in _personio_offices(markup.replace('\\"', '"')):
+        if any(office.casefold() in s.casefold() for s in named) or city_of(office) in cities:
+            continue
+        named.append(office)
+    return "; ".join(named) or None
+
+
+def _personio_list(flat: str, key: str) -> list[str]:
+    """A list of strings out of Personio's payload (`"additional_offices":["Berlin"]`).
+    Empty when absent, unreadable or not a list of strings."""
+    m = re.search(r'"' + key + r'"\s*:\s*(?P<v>\[[^\]]*\])', flat)
+    if not m:
+        return []
+    try:
+        values = json.loads(m["v"])
+    except ValueError:
+        return []
+    return [v.strip() for v in values if isinstance(v, str) and v.strip()] if isinstance(values, list) else []
 
 
 def posting_from_html(url: str, markup: str, company: str | None = None,
@@ -299,14 +398,20 @@ def posting_from_html(url: str, markup: str, company: str | None = None,
     almost no body text; when its meta description is longer, that is the description.
     Explicit flags override JSON-LD fields.
 
-    A Personio tenant that serves no JSON-LD is the one page-text case where company and
-    location can still be read off the page, out of the payload Personio embeds
-    (`_personio_fields`); `--company`/`--location` override that too. `how` keeps naming
-    where the *description* came from, which on those pages is still the page text.
+    A Personio tenant that serves no JSON-LD can still give its company and location, out
+    of the payload Personio embeds (`_personio_fields`); `--company`/`--location` override
+    that too. `how` keeps naming where the *description* came from, which on those pages
+    is still the page text. A Personio tenant that does serve JSON-LD keeps its JSON-LD
+    location and gains the payload offices it left out (`_with_personio_offices`).
+
+    Any other page without JSON-LD gives a location only when its text states one on a
+    labelled line (`location_from_text`), and its title loses a "Stellendetails" /
+    "Job Details" suffix (HIR-268, jobs.bayer.com).
     """
     p = _PageParser()
     p.feed(markup)
     p.close()
+    personio = bool(_PERSONIO_HOST_RE.search(urllib.parse.urlparse(url).hostname or ""))
     for raw in p.ld_json:
         try:
             nodes = _job_postings(json.loads(raw))
@@ -317,21 +422,29 @@ def posting_from_html(url: str, markup: str, company: str | None = None,
             org = jp.get("hiringOrganization")
             org_name = org.get("name") if isinstance(org, dict) else (org if isinstance(org, str) else None)
             text = html_to_text(jp.get("description") or "")
+            ld_location = _location_of(jp)
+            if personio and not location:
+                ld_location = _with_personio_offices(ld_location, markup)
             return Posting(
                 source="url", source_job_id="", url=url,
-                company=company or org_name,
+                company=company or (org_name or "").strip() or None,
                 title=title or (jp.get("title") or "").strip() or p.title.strip(),
-                location_raw=location or _location_of(jp),
+                location_raw=location or ld_location,
                 description_text=text or html_to_text(markup),
                 posted_at=jp.get("datePosted"),
             ), "json-ld"
-    text, how = html_to_text(markup), "page-text"
+    body_text = html_to_text(markup)
+    text, how = body_text, "page-text"
     if len(p.meta_description) > len(text):
         text, how = p.meta_description, "meta-description"
     page_company = page_location = None
-    if _PERSONIO_HOST_RE.search(urllib.parse.urlparse(url).hostname or ""):
+    if personio:
         page_company, page_location = _personio_fields(markup)
-    page_title = p.title.strip()
+    if not (location or page_location):
+        page_location = location_from_text(body_text)
+        if page_location and notes is not None:
+            notes.append(f"location read from the page's location line: {page_location!r}")
+    page_title = _JOB_DETAILS_SUFFIX_RE.sub("", p.title.strip())
     if not (company or page_company):
         page_company, rule = company_from_page(url, p)
         if page_company:
@@ -344,6 +457,57 @@ def posting_from_html(url: str, markup: str, company: str | None = None,
         title=title or page_title, location_raw=location or page_location,
         description_text=text,
     ), how
+
+
+def workable_api_url(url: str) -> str | None:
+    """A Workable job link (`apply.workable.com/<account>/j/<shortcode>`) → the public API
+    address that returns that posting as JSON. Anything else → None."""
+    u = urllib.parse.urlsplit(url.strip())
+    if (u.hostname or "").lower() != _WORKABLE_HOST:
+        return None
+    m = _WORKABLE_PATH_RE.match(u.path)
+    return f"https://{_WORKABLE_HOST}/api/v2/accounts/{m['account']}/jobs/{m['code']}" if m else None
+
+
+def _workable_place(loc) -> str | None:
+    """{"city": "Berlin", "region": "Berlin", "country": "Germany"} → "Berlin, Germany"."""
+    if not isinstance(loc, dict):
+        return None
+    parts = [p.strip() for p in (loc.get("city"), loc.get("region"), loc.get("country"))
+             if isinstance(p, str) and p.strip()]
+    return ", ".join(dict.fromkeys(parts)) or None
+
+
+def posting_from_workable(url: str, payload: dict, company: str | None = None,
+                          title: str | None = None, location: str | None = None) -> Posting:
+    """Build a Posting from Workable's public job API (HIR-268). Pure.
+
+    Workable builds its job page in the browser, so the fetched page holds only a
+    truncated meta description. The API holds the whole posting: the title, every
+    location ("; "-joined, plus "Remote" for a remote posting), and the text in the three
+    sections the page shows under these same headings. It does not name the company, so
+    that is passed in — the caller reads it off the page. `title`/`location` override.
+
+    Raises ValueError when the payload has no title or no text, so the caller can fall
+    back to the page.
+    """
+    sections = [payload.get("description") or ""]
+    sections += [f"<h3>{heading}</h3>{payload[key]}"
+                 for heading, key in (("Requirements", "requirements"), ("Benefits", "benefits"))
+                 if payload.get(key)]
+    text = html_to_text("".join(sections))
+    api_title = (payload.get("title") or "").strip()
+    if not text or not (title or api_title):
+        raise ValueError("Workable API returned no title or no text")
+    places = [_workable_place(loc) for loc in payload.get("locations") or [payload.get("location")]]
+    places.append("Remote" if payload.get("remote") is True else None)
+    return Posting(
+        source="url", source_job_id="", url=url, company=company,
+        title=title or api_title,
+        location_raw=location or "; ".join(dict.fromkeys(p for p in places if p)) or None,
+        description_text=text,
+        posted_at=payload.get("published"),
+    )
 
 
 def containment(stored: str, page: str) -> float:
@@ -487,6 +651,16 @@ def check_url(conn: sqlite3.Connection, url: str, feeds: list[dict], company: st
     if posting is None:
         posting, how = posting_from_html(url, markup if markup is not None else fetch_page(url),
                                          company, title, location, notes=result.notes)
+        # A Workable page is built in the browser, so the page gave the company (its title
+        # tail) and little else; the title, location and text come from Workable's API.
+        api_url = workable_api_url(url)
+        if api_url:
+            try:
+                posting = posting_from_workable(url, json.loads(fetch_page(api_url)),
+                                                posting.company, title, location)
+                how = "the Workable API"
+            except Exception as e:  # API unreachable or empty → keep what the page gave
+                result.notes.append(f"Workable API read failed: {type(e).__name__}: {str(e)[:120]}")
         result.notes.append(f"read posting from {how}")
     else:
         # Lever and Ashby boards don't name the company; the board token is its slug
@@ -523,12 +697,149 @@ def feed_had_it(result: CheckResult) -> bool:
     return result.verdict == "found" and any(s not in MANUAL_SOURCES for s in result.sources)
 
 
+# --- why a checked posting was missed (HIR-290) -------------------------------------------
+#
+# Every check is filed under one reason from this fixed list, by rule, from what the check
+# already worked out — never written freely. Order is the order reports print them in.
+NOT_IN_SOURCES, TITLE_FILTER, LOCATION_FILTER, UNREADABLE_SYSTEM, LINKEDIN_ONLY, ALREADY_HAD, OTHER = (
+    "not_in_sources", "title_filter", "location_filter", "unreadable_system", "linkedin_only",
+    "already_had", "other")
+MISS_REASONS = (NOT_IN_SOURCES, TITLE_FILTER, LOCATION_FILTER, UNREADABLE_SYSTEM, LINKEDIN_ONLY,
+                ALREADY_HAD, OTHER)
+REASON_TEXT = {
+    NOT_IN_SOURCES: "company was not in our sources",
+    TITLE_FILTER: "company was in our sources, but the title filter dropped the job",
+    LOCATION_FILTER: "company was in our sources, but the location was read wrong or not at all",
+    UNREADABLE_SYSTEM: "the careers system is one we cannot read yet",
+    LINKEDIN_ONLY: "the job only exists on LinkedIn",
+    ALREADY_HAD: "the job was already in the poll (not a miss)",
+    OTHER: "other",
+}
+
+# Careers systems a company hosts its jobs on that no adapter polls yet, by hostname.
+# A system that gets a reader leaves this list: tests/test_sources_registry.py fails if a
+# name or a domain here is also a board in the registry.
+_UNREAD_SYSTEMS = (
+    ("personio", re.compile(r"(?:^|\.)jobs\.personio\.(?:com|de)$")),
+    ("workable", re.compile(r"(?:^|\.)workable\.com$")),
+    ("recruitee", re.compile(r"(?:^|\.)recruitee\.com$")),
+    ("smartrecruiters", re.compile(r"(?:^|\.)smartrecruiters\.com$")),
+    ("workday", re.compile(r"(?:^|\.)myworkdayjobs\.com$")),
+    ("peopleforce", re.compile(r"(?:^|\.)peopleforce\.io$")),
+    ("kenjo", re.compile(r"(?:^|\.)kenjo\.io$")),
+    ("gem", re.compile(r"(?:^|\.)gem\.com$")),
+    ("teamtailor", re.compile(r"(?:^|\.)teamtailor\.com$")),
+    ("softgarden", re.compile(r"(?:^|\.)softgarden\.(?:io|de)$")),
+)
+# Job boards and recruiters: the posting is someone else's copy, not the employer's page.
+_JOB_BOARD_HOST_RE = re.compile(
+    r"(?:^|\.)(?:get-in-it\.de|arbeitnow\.[a-z.]+|all-european-careers\.com|michaelpage\.[a-z.]+"
+    r"|thryvetalent\.com|stepstone\.[a-z.]+|indeed\.[a-z.]+|glassdoor\.[a-z.]+|xing\.com"
+    r"|jobgether\.com|joinrs\.com)$")
+# The systems an adapter reads, with the domain each lives on: the registry's boards, so a
+# new board system counts as "one we read" the moment it is added there (HIR-313).
+_SUPPORTED_HOSTS = tuple(registry.BOARD_DOMAINS.items())
+JOB_BOARD, OWN_SITE = "job board", "own site"
+
+
+def careers_system(url: str) -> str:
+    """Pure: which careers system a checked URL is on — an adapter's name (greenhouse, …),
+    a system we don't read yet (personio, workday, …), "linkedin", "job board", or
+    "own site" for a company's own careers pages."""
+    ref = parse_ats_url(url)
+    if ref is not None:
+        return ref.source
+    host = (urllib.parse.urlsplit(url.strip()).hostname or "").lower()
+    if host == "linkedin.com" or host.endswith(".linkedin.com"):
+        return "linkedin"
+    for name, pat in _UNREAD_SYSTEMS:
+        if pat.search(host):
+            return name
+    for name, domain in _SUPPORTED_HOSTS:
+        if host == domain or host.endswith("." + domain):
+            return name
+    return JOB_BOARD if _JOB_BOARD_HOST_RE.search(host) else OWN_SITE
+
+
+_BOARD_RE = re.compile(r"^board (?P<board>\S+) ")
+
+
+def miss_reason(url: str, verdict: str, had_it: bool, diagnosis: str | None) -> tuple[str, str]:
+    """Pure: (reason, detail) for one check. `diagnosis` is `diagnose`'s sentence, so a
+    check logged before reasons were recorded gets the same answer as a new one.
+
+    The detail names what a fix ticket needs: the board for a missing source, the filter
+    and the field it read for a dropped job, the system or host for one we cannot read."""
+    if verdict == "found":
+        if had_it:
+            return ALREADY_HAD, ""
+        # Added by hand before this check and no feed has it since: still a miss, filed by
+        # where the link points, as a first check of it would have been.
+        ref = parse_ats_url(url)
+        if ref is not None and ref.token:
+            return NOT_IN_SOURCES, f"board {ref.source}:{ref.token} (job was added by hand before this check)"
+        d = "not a hosted ATS page"
+    else:
+        d = diagnosis or ""
+    board = _BOARD_RE.match(d)
+    if board and "is not in config/feeds.json" in d:
+        return NOT_IN_SOURCES, f"board {board['board']}"
+    if board and "no longer lists job" in d:
+        return OTHER, f"closed or re-posted under a new id on board {board['board']}"
+    if board and "ingest would drop it: " in d:
+        clauses = d.split("ingest would drop it: ", 1)[1].split("; ")
+        title = [c for c in clauses if c.startswith("title ")]
+        if title:
+            return TITLE_FILTER, "; ".join(title + [c for c in clauses if c not in title])
+        return LOCATION_FILTER, "; ".join(clauses)
+    if board and "passes both filters" in d:
+        return OTHER, f"board {board['board']} is polled and the job passes both filters: posted since the last poll, or a feed bug"
+    if "via an embed URL" in d:
+        return OTHER, "a Greenhouse link embedded on a company page that does not name the board"
+    if d.startswith("not a hosted ATS page"):
+        system = careers_system(url)
+        host = urllib.parse.urlsplit(url.strip()).hostname or ""
+        dropped = d.split("it would also be dropped: ", 1)[1] if "would also be dropped" in d else ""
+        if system == "linkedin":
+            return LINKEDIN_ONLY, ""
+        if system == JOB_BOARD:
+            return OTHER, f"posted on a job board or recruiter site ({host})"
+        if system in dict(_SUPPORTED_HOSTS):
+            # A link on a system we poll, in a form the checker could not read as one job
+            # (a company page, or a link format it did not know when it was checked).
+            return UNREADABLE_SYSTEM, f"a {system} link the checker could not read as one job ({host})"
+        where = host if system == OWN_SITE else system
+        return UNREADABLE_SYSTEM, where + (f"; would also be dropped: {dropped}" if dropped else "")
+    return OTHER, f"unrecognised check result: {d[:120]}"
+
+
+def miss_fields(conn: sqlite3.Connection, result: CheckResult) -> dict:
+    """The miss record for one check: company, city, careers system, reason and its detail.
+    The company and city come from the stored job when the check found one, else from the
+    posting the check read."""
+    reason, detail = miss_reason(result.url, result.verdict, feed_had_it(result), result.diagnosis)
+    company = city = None
+    if result.job_id is not None:
+        row = conn.execute("SELECT company, city FROM job WHERE id=?", (result.job_id,)).fetchone()
+        if row:
+            company, city = row["company"], row["city"]
+    elif result.posting is not None:
+        p = result.posting
+        company = p.company
+        city = place_of(p.location_raw, p.title, p.description_text)
+    return {"company": company, "city": city, "careers_system": careers_system(result.url),
+            "reason": reason, "reason_detail": detail or None}
+
+
 def log_check(conn: sqlite3.Connection, result: CheckResult, found_via: str | None, now: str) -> None:
+    m = miss_fields(conn, result)
     conn.execute(
-        "INSERT INTO url_check (url, checked_at, found_via, verdict, job_id, feed_had_it, diagnosis)"
-        " VALUES (?, ?, ?, ?, ?, ?, ?)",
+        "INSERT INTO url_check (url, checked_at, found_via, verdict, job_id, feed_had_it, diagnosis,"
+        " company, city, careers_system, reason, reason_detail)"
+        " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
         (result.url, now, found_via, result.verdict, result.job_id, int(feed_had_it(result)),
-         result.diagnosis or None))
+         result.diagnosis or None, m["company"], m["city"], m["careers_system"], m["reason"],
+         m["reason_detail"]))
     conn.commit()
 
 

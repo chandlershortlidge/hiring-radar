@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "shots": "playwright test"
+    "shots": "playwright test",
+    "watch": "playwright test -c playwright.watch.config.js"
   },
   "dependencies": {
     "mammoth": "^1.13.0",

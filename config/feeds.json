@@ -13,6 +13,8 @@
     {"type": "jsearch", "enabled": true, "search": "AI engineer in Berlin", "country": "de", "date_posted": "week", "num_pages": 1},
     {"type": "jsearch", "enabled": true, "search": "machine learning engineer in Berlin", "country": "de", "date_posted": "week", "num_pages": 1},
     {"type": "jsearch", "enabled": true, "search": "remote AI engineer", "country": "de", "date_posted": "week", "num_pages": 1},
+    {"type": "jsearch", "enabled": true, "search": "AI engineer in New York", "country": "us", "date_posted": "week", "num_pages": 1},
+    {"type": "jsearch", "enabled": true, "search": "machine learning engineer in New York", "country": "us", "date_posted": "week", "num_pages": 1},
     {"type": "startup_jobs", "enabled": true, "search": "AI engineer", "country": "DE"},
     {"type": "startup_jobs", "enabled": true, "search": "machine learning engineer", "country": "DE"},
     {"type": "greenhouse", "enabled": false, "token": "example-token", "company": "Example GmbH"},
@@ -33,7 +35,7 @@
     {"type": "lever", "enabled": true, "token": "vestiairecollective", "company": "Vestiaire Collective"},
     {"type": "greenhouse", "enabled": true, "token": "commercetools", "company": "commercetools"},
     {"type": "greenhouse", "enabled": true, "token": "awin", "company": "Awin"},
-    {"type": "greenhouse", "enabled": true, "token": "doctolib", "company": "Doctolib"},
+    {"type": "ashby", "enabled": true, "token": "doctolib", "company": "Doctolib"},
     {"type": "greenhouse", "enabled": true, "token": "sumup", "company": "SumUp"},
     {"type": "greenhouse", "enabled": true, "token": "lawzero", "company": "LawZero"},
     {"type": "greenhouse", "enabled": true, "token": "smartlyio", "company": "Smartly.io"},
@@ -76,6 +78,8 @@
     {"type": "ashby", "enabled": true, "token": "ramp", "company": "ramp"},
     {"type": "greenhouse", "enabled": true, "token": "agilerobotsse", "company": "agilerobotsse"},
     {"type": "greenhouse", "enabled": true, "token": "celonis", "company": "celonis"},
-    {"type": "join", "enabled": true, "token": "alexanderthamm", "company": "alexanderthamm"}
+    {"type": "join", "enabled": true, "token": "alexanderthamm", "company": "alexanderthamm"},
+    {"type": "ashby", "enabled": true, "token": "qonto", "company": "Qonto"},
+    {"type": "join", "enabled": true, "token": "get-incacom", "company": "inca"}
   ]
 }

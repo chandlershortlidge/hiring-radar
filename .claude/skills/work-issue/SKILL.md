@@ -3,7 +3,11 @@ name: work-issue
 description: Take one Linear issue (HIR-n) from ticket to pull request — read the issue, get on its branch, follow its build steps, test, open the PR, update Linear. Runs unattended (autopilot) by default; add "attended" to be asked for a go. Use when the person says "work HIR-n", "do HIR-n", "pick up HIR-n", or invokes /work-issue.
 ---
 
-# /work-issue HIR-n [attended]
+# /work-issue HIR-n [attended | repair]
+
+`repair` is a different, much smaller job (HIR-305): the issue's open pull request
+collides with main, and you only bring main into its branch. Skip everything below and
+go to "Repairing a collided pull request".
 
 One procedure for every issue, so the person never has to spell it out. The issue is the
 plan; this skill only sequences the steps. AGENTS.md rules apply throughout (smallest
@@ -25,6 +29,12 @@ it — but read `.claude/skills/work-issue/SKILL.md` and `AGENTS.md` from `origi
   available, stop and ask the person to paste the issue text; don't guess the scope.
 - If it is **blocked by** an open issue, say so and stop. If it is **In Progress** with a
   status note at the top, continue from where the note says it stopped.
+- Read its comments too (`list_comments`). A comment headed **Answered** is Chandler's
+  answer to the ticket's question, as the lead agent recorded it (HIR-277): follow it,
+  write it into the decisions log in this PR (a new file in `decisions/`, step 3) where
+  it is a rule, and if the ticket's open PR
+  holds that question under "Needs Chandler", move it to "Decisions taken" with his
+  answer quoted.
 - Its "Build" / "Steps" section is the plan. Its "Tests" section is the test list. Its
   "Out of scope" section is binding. Anything you'd add beyond those: ask first.
 
@@ -50,7 +60,9 @@ the code. Five lines, plain words, no file names:
   and give its figure; never a remembered number.
 - **Deciding alone:** the judgment calls you expect to make (AGENTS.md "Deciding alone vs.
   stopping").
-- **Will ask about:** anything on the stop list. If this line isn't "nothing", @mention
+- **Will ask about:** anything on the big side of Chandler's list (AGENTS.md "What
+  Chandler is asked" — the one source; don't copy it). A small call on that list is not
+  asked: the senior agent decides it ("A small call on Chandler's list", below). If this line isn't "nothing", @mention
   Chandler in the comment and wait for the answer before step 3.
 - **Not doing:** what the issue's out-of-scope says, in plain words.
 
@@ -63,12 +75,13 @@ session and continue — the PR body's first line then says "autopilot run, labe
 
 Autopilot means: post the brief on Linear for the record but do **not** wait for a "go";
 start at once. Every question goes to the decider; if it returns ANSWER, apply it and
-continue. Only a NO RULE reaches Chandler (Linear comment, @mention), and then stop. The
+continue; if it returns SMALL CALL, the senior agent decides it. Only a NO RULE — which
+the decider gives only for the big side of Chandler's list — reaches Chandler (Linear comment, @mention), and then stop. The
 person sees nothing until the PR exists. You still never merge your own PR — at the end of
 the run a fresh `reviewer` agent does it (step 5c).
 
-What makes this safe is not the label but the stop list (AGENTS.md "Stop and ask, even
-unattended") and the reviewer's file stop-list: those apply to every run, whatever the
+What makes this safe is not the label but Chandler's list (AGENTS.md "What Chandler is
+asked"), the reviewer's checks and the rules gate: those apply to every run, whatever the
 default.
 
 **Show the brief in the session as well as on Linear.** Posting the comment is not
@@ -91,8 +104,12 @@ test: *could someone who has never opened the repo say "fine" or "no" to it?*
   queue of skills the model has suggested"; `extractor_version` bump is "every job still
   open gets re-read by the model once, about €X" — with €X from
   `uv run python -m app reread-cost`, not from memory.
-- A question is: the situation in two sentences, then one line per option with its
-  consequence, then your recommendation and why. Three options at most.
+- A big call reaches him in one of two forms, and the senior agent says which
+  (AGENTS.md "What Chandler is asked", "Big calls come in two kinds", HIR-297). **To approve**: three lines,
+  Recommend / What it is / Why, one sentence each, answered yes or no. **To think
+  about**: the situation in two sentences, one line per option with its consequence and
+  cost (three at most), your recommendation and why, and what he would learn by digging
+  in. You write neither yourself: the senior agent's reply is what you post.
 - Reread it as him before sending. If it needs the repo to make sense, rewrite it.
 
 ## 2. Session start (AGENTS.md "Starting a session", HIR-88 / HIR-94)
@@ -128,12 +145,15 @@ Uncommitted changes on the tree: stop and ask whose they are. Never stash or dis
 - Follow the issue's steps in order. Hot spots (`app/migrations/`, `app/extract.py`,
   `app/pipeline.py`, `app/dedup.py`, `taxonomy/skills.json`) are one branch at a time: if
   another open branch touches one, say so before editing it. The open PRs are what you
-  check, not what the session remembers: `gh pr list --state open` then
-  `gh api repos/:owner/:repo/pulls/<n>/files` for each.
+  check, not what the session remembers: `gh api "repos/:owner/:repo/pulls?state=open"`
+  then `gh api repos/:owner/:repo/pulls/<n>/files` for each.
 - A new migration takes the next free number — check `ls app/migrations/` first, don't
   trust the number in the issue.
-- If the issue asks for a **DECISIONS.md** entry, write it before the code it describes,
-  newest-first with the date. If a step changes `app/extract.py`, the prompt or the taxonomy,
+- If the issue asks for a **DECISIONS.md** entry (an entry in the decisions log), write it
+  before the code it describes, **as a new file in `decisions/`, never as a block added
+  to `DECISIONS.md`** (HIR-305): `decisions/YYYY-MM-DD-hir-n-short-title.md`, first line
+  `## YYYY-MM-DD — what was decided (HIR-n)`. One file per decision is what keeps two
+  pull requests from colliding on the log. If a step changes `app/extract.py`, the prompt or the taxonomy,
   run `uv run python -m app reread-cost` and say in the PR body that merging re-reads the
   open jobs, with that command's figure (HIR-221); the merge is the approval, so don't stop
   for it. Those same changes trigger the eval gate — step 3a.
@@ -175,7 +195,7 @@ Then, in one commit of its own:
 - the table, pasted verbatim into the PR body under `## Eval (dev)`.
 
 `eval_table.py` exits non-zero when a metric fell more than 0.02 against the baseline.
-That is a stop-list item, not a judgment call: commit the result directory anyway so the
+That is on Chandler's list (item 2), not a judgment call: commit the result directory anyway so the
 number is on the record, put the table in the PR body with the flagged metric, label the
 PR `needs-chandler`, @mention Chandler on the issue in plain words ("the model got worse at
 X by Y against the last measured run"), and stop. Do not re-run the eval hoping for a
@@ -198,22 +218,38 @@ Report numbers you saw, not numbers you expect.
 
 ```bash
 git push -u origin HEAD
-gh pr create --base main --fill
+gh api -X POST repos/:owner/:repo/pulls -f base=main -f head="$(git branch --show-current)" \
+  -f title="<HIR-n: what changed>" -F body=@<file with the PR body>
 ```
+
+Every GitHub command in this skill is `gh api` (HIR-151): `gh pr create`, `gh pr list`,
+`gh pr edit`, `gh pr checks` and `gh pr merge` fail in a cloud run, where `gh auth status`
+wrongly reports a bad token, and `gh api` works there and on the Mac. To change the body
+later: `gh api -X PATCH repos/:owner/:repo/pulls/<n> -F body=@<file>`. To add a label:
+`gh api -X POST repos/:owner/:repo/issues/<n>/labels -f 'labels[]=<label>'`.
 
 **Do not merge `origin/main` into your branch first** (HIR-124, HIR-136). The reviewer
 brings the branch up to date at the end, once, just before the merge — a branch that is
 behind main is not something to fix before review. Merging main in by hand while other
 sessions were merging is what produced the duplicate edits of 3 Nov. What *is* still yours
 is a real conflict: the reviewer cannot update a branch that conflicts, so it hands the PR
-back to you. Resolve it then, keeping both sides newest-first in DECISIONS.md.
+back to you. Resolve it then, by the rules in "Repairing a collided pull request" below
+(HIR-305): they hold for the author exactly as for a repair worker.
+
+**A PR that changes the agents' own rules** (AGENTS.md "The rules gate") opens with the
+three lines of a recommendation to approve, at the very top of its body: **Recommend:**,
+**What it is:**, **Why:**, one sentence each, in words he can read without the repo
+(AGENTS.md "What Chandler is asked", "Big calls come in two kinds"). You write those; the
+reviewer writes the "Did you authorize these?" list under them, and sends the PR back if
+the three lines are missing.
 
 PR body, in the template's sections: Testing, Risk, How to revert, **Decisions taken**,
-plus **`## Eval (dev)`** whenever step 3a applied — the reviewer refuses a PR that touches
+**Decided for you** (the senior agent's small calls, or "None"), plus **`## Eval (dev)`** whenever step 3a applied — the reviewer refuses a PR that touches
 the extractor or the skill list and has no such section, so an absent table reads as an
 eval nobody ran, not as a clean one.
 **Needs Chandler** and **Follow-ups** per AGENTS.md "Deciding alone vs. stopping". "Needs
-Chandler" holds only what blocks the merge. A known limit, a later ticket or a suggestion
+Chandler" holds only what blocks the merge, each item under the heading **To approve** or
+**To think about**, as the senior agent wrote it. A known limit, a later ticket or a suggestion
 is a Follow-up, stated as a fact, never as a question — if it doesn't need an answer,
 don't ask for one. Follow-ups come in two lists, **"Changes what you'd see"** first
 (chart, job list, counts, which jobs get in or out — these are decisions in disguise and
@@ -236,7 +272,8 @@ one this session wrote.
 ## 5b. Follow-up tickets
 
 Any ticket you file (a Follow-up that deserves one, a bug found on the way) gets the
-`autopilot` label when it is one bounded change with no stop-list item, per AGENTS.md.
+`autopilot` label when it is one bounded change with nothing on the big side of
+Chandler's list, per AGENTS.md; `attended` only when its work is on that big side.
 Decide it at filing time; Chandler does not sort issues by hand.
 
 ## 5c. Review and merge, before the run ends (autopilot only, HIR-124)
@@ -249,7 +286,9 @@ Otherwise, an autopilot run finishes the job rather than leaving a PR for someth
 to notice. There is no timer and no scheduled cloud reviewer; if you don't do this, nobody
 does.
 
-1. Wait for CI on the PR's head commit (`gh pr checks <n> --watch`).
+1. Wait for CI on the PR's head commit: poll
+   `gh api repos/:owner/:repo/commits/<head sha>/check-runs --jq '.check_runs[] | [.name, .status, .conclusion] | @tsv'`
+   until every check is `completed`.
 2. Start the **`reviewer`** subagent (`.claude/agents/reviewer.md`) with the PR number and
    nothing else. It has fresh context and has not seen your work — that is the point, and
    it is why this does not count as merging your own PR. It fetches the ticket itself from
@@ -257,17 +296,103 @@ does.
    (HIR-137), so it needs nothing from you: do not summarise your work to it, do not paste
    the issue's labels or its "Done when" list, do not tell it what you concluded, and do
    not argue with its verdict.
-3. On a pass it merges the PR outright when the checks are already green (the usual case,
-   since you waited for CI in step 1), and otherwise arms GitHub's auto-merge and brings
-   the branch up to date — then GitHub merges when the checks on the updated branch go
-   green, so "merging" is also a normal end state to report, not only "merged" (HIR-157).
-   Report whichever it did. On a fail it labels the PR `needs-chandler` — leave that label
-   alone and say so in your final reply.
+3. Its reply starts with the verdict:
+   - **`MERGED` / `MERGING`** — done. It labels the PR `review-passed`, merges it when the
+     checks are already green, and otherwise brings the branch up to date so GitHub merges
+     it when the checks on the updated branch pass (HIR-157, HIR-262). "Merging" is a
+     normal end state to report. If it says "merge refused by the session's safety check;
+     setup step missing", the PR still merges through GitHub; pass that sentence on
+     verbatim in your reply, once.
+   - **`SENT BACK`** — the fixes are in its PR comment headed `**Review: sent back**`. The
+     first time, do them now ("Fixing a sent-back PR" below), wait for CI, and start a
+     **fresh** reviewer — never the same one, and never with your account of the fixes.
+     The second time, the fix is not yours: start a fresh subagent on the strongest model
+     (`model: "fable"`, the ladder in AGENTS.md if it is unavailable) with the prompt
+     `/work-issue HIR-n` and nothing else; it finds the sent-back PR and fixes it on the
+     same branch. Then the fresh reviewer. The reviewer counts
+     the rounds; after the second send-back a third failure comes back as `NEEDS
+     CHANDLER` with no @mention.
+   - **`NEEDS CHANDLER`** — leave the label alone and say so in your final reply.
+   - **`NO TICKET`** — the reviewer's session had no way to open the ticket, so no review
+     took place (HIR-306). Start **one** fresh reviewer, with the PR number and nothing
+     else. You never hand it the ticket's text, labels or "Done when" list yourself: you
+     are the author. If the second says `NO TICKET` too, stop: add no label, and say in
+     your final reply that the PR is unreviewed because no reviewer could open the
+     ticket. The lead agent's next run opens the ticket itself and reviews it.
 
-If you cannot get this far — CI never goes green, the reviewer can't be started, the run
-is stopping for a NO RULE — **label the PR `needs-chandler` yourself and say in your final
-reply that the PR is unmerged and why**. A PR left with no label and no reviewer is the
-one outcome this step exists to prevent.
+If you cannot get this far — CI never goes green after your fixes, the reviewer can't be
+started, the run is stopping for a NO RULE (a `NO TICKET` is none of these: it is left
+unlabelled, above) — **label the PR `needs-chandler` yourself and
+say in your final reply that the PR is unmerged and why**. @mention Chandler only for a NO
+RULE; the rest reach him in the Monday summary. A PR left with no label and no reviewer is
+the one outcome this step exists to prevent.
+
+## Fixing a sent-back PR
+
+You are here because a reviewer sent your PR back, or because you were started as a fresh
+worker with `/work-issue HIR-n` on an issue whose open PR carries the label `sent-back`
+and no `review-passed` (the orchestrator does that when the original worker is gone).
+
+1. Work on the PR's existing branch, in its own worktree (step 2, with the branch that
+   exists rather than a new one). Never open a second PR.
+2. Read the latest comment headed `**Review: sent back**`. Do exactly the fixes it lists,
+   nothing more; a fix you think is wrong is a question for the decider, not a skip.
+3. One commit per fix or one for all, each green, pushed. Add a line per fix to the PR
+   body's "Decisions taken" only when the fix involved a judgment call.
+4. Leave the `sent-back` label on: it is the record of what was sent back and fixed, for
+   the Monday summary. Then step 5c from 1, unless an orchestrator started you: then stop
+   and report, and it starts the reviewer.
+
+## Repairing a collided pull request
+
+You are here because the lead agent started you with `/work-issue HIR-n repair`
+(HIR-305), or because your own pull request came back with a real conflict. GitHub
+reports the pull request as conflicted with main (`mergeable_state` `dirty`); nothing
+merges it until main is brought into its branch. That is the whole job. It is the one
+case where a worker merges main into a branch.
+
+As a repair worker you post no brief, change no label and do not touch the issue's
+status: it is In Progress or In Review because its work is done or waiting, and that is
+not a second session's claim. You fix nothing the reviewer asked for and add no work of
+your own. If the issue has no open pull request, or its pull request no longer collides,
+say so and stop.
+
+1. Work on the pull request's existing branch, in its own worktree (step 2, with the
+   branch that exists). Never open a second pull request.
+2. `git fetch origin main`, then `git merge origin/main`. If it finishes with no
+   conflict, go to 5.
+3. `uv run python scripts/collision.py --apply`. It reads git's three versions of every
+   collided file and does the one thing that needs no judgment: **where both sides only
+   added text at the same place in a prose file (a log, a list in a `.md` file), it
+   keeps both** and stages the file. Everything else it lists under `for_senior`, with
+   why, and leaves untouched: the same lines changed on both sides, a file one side
+   deleted, and any collision in a code or data file, even one where both sides only
+   added lines.
+4. **A file under `for_senior` you do not resolve by your own reading, however obvious
+   it looks.** Hand each to the `senior` agent with the ticket id, the file, what the
+   script said, and what each side was doing: the branch's version
+   (`git show :2:<path>`), main's (`git show :3:<path>`), their common ancestor
+   (`git show :1:<path>`), and which merged pull request changed it on main
+   (`git log -3 origin/main -- <path>`).
+   - **DECISION** → make exactly that edit, `git add` the file, and add a line to the
+     pull request body's "Decisions taken" and "Escalations".
+   - **ON CHANDLER'S LIST** → the senior agent cannot settle it without deciding
+     something that is his. `git merge --abort`, so the branch is as you found it. Post
+     its three lines, unchanged, on the Linear issue under the heading **To approve**,
+     with an @mention; label the pull request `needs-chandler`; reply `WAITING` and
+     stop.
+5. If the branch added an entry to `DECISIONS.md`, leave it where it is: moving it to
+   `decisions/` is not a repair.
+6. `uv run pytest -q`, and `cd web && npm run build` when `web/` is in the merge. Green →
+   commit the merge (`HIR-n: bring main in, repair the collision; <n> tests pass`) and
+   push. Red after two tries at the cause → the `senior` agent ("A hard technical
+   question", below); still red → `git merge --abort` if nothing is committed, reply
+   `FAILED` with the failing test, and stop. Never push a red merge.
+7. Comment on the pull request, headed `**Repair: main brought in**`: each file that
+   collided and how it was settled (kept both, or the senior agent's decision in one
+   sentence). Then reply with one word first, `REPAIRED`, `WAITING` or `FAILED`, and one
+   line of what happened. You start no reviewer: whoever started you does. If the pull
+   request is your own and you are here from step 5c, carry on there.
 
 ## 6. Finish
 
@@ -280,27 +405,63 @@ one outcome this step exists to prevent.
 ## Before any question reaches Chandler: the decider
 
 Hand the question to the `decider` subagent (`.claude/agents/decider.md`). It reads only
-the rule files and replies ANSWER + RULE, or NO RULE + the question rewritten for Chandler.
+the rule files and replies ANSWER + RULE, SMALL CALL ("A small call on Chandler's list",
+below), or NO RULE + the question for Chandler.
 
-Model ladder: the definition pins Fable (`claude-fable-5-1`). If the spawn fails because
-that model is unavailable (credits, access, outage), spawn the same agent again with the
-next tier down, in this order, and say which one answered in "Decisions taken":
+If the spawn fails because the model is unavailable, use the model ladder in AGENTS.md
+"Escalate to a stronger agent before a person" — written there and nowhere else. A
+question the decider can't settle is a NO RULE, not a model problem.
 
-1. `claude-fable-5-1`
-2. `claude-opus-5-5`, effort `xhigh`
-3. `claude-sonnet-5-5`, effort `xhigh`
+ANSWER → apply it, one line under "Decisions taken" naming the rule (or the closest rule,
+for a judgment the decider made where none fit exactly). NO RULE → the call is big, and
+the senior agent says which kind of big call it is (AGENTS.md "What Chandler is asked", "Big calls come in two kinds"): hand it the question and the
+decider's reply. It answers ON CHANDLER'S LIST with either **TO APPROVE** and three lines,
+or **TO THINK ABOUT** and a full question. Post that, unchanged, on the Linear issue under
+the heading **To approve** or **To think about**, with an @mention of Chandler; do what
+doesn't depend on it, stop. When his answer arrives, add it to the decisions log (a new
+file in `decisions/`) in the same PR.
 
-Retry on availability errors only. A wrong answer is not a reason to try a bigger model;
-a question the decider can't settle is a NO RULE, not a model problem.
+## A hard technical question: the senior agent
 
-ANSWER → apply it, one line under "Decisions taken" naming the rule. NO RULE → post the
-rewritten question on the Linear issue with an @mention of Chandler, do what doesn't
-depend on it, stop. When his answer arrives, add it to DECISIONS.md in the same PR.
+A design choice inside the ticket's scope, a bug you cannot find, or a test you cannot make
+pass after two tries is not a question for Chandler and not one for the decider. Hand it to
+the `senior` subagent (`.claude/agents/senior.md`) with the ticket id, the question, and
+your notes: what you tried, what happened, the files involved. It answers DECISION +
+REASON — carry it out and add a line under "Decisions taken" — or ON CHANDLER'S LIST with
+the call already written for him as TO APPROVE (three lines) or TO THINK ABOUT (a full
+question): post that on the Linear issue under the heading **To approve** or **To think
+about**, with an @mention, do what doesn't depend on it, and stop.
+
+## A small call on Chandler's list: the senior agent decides (HIR-278)
+
+Chandler's list has a small side (AGENTS.md "What Chandler is asked", "Small calls"):
+repairing a few stored jobs, a small recurring cost, a wording choice, the order of bugs.
+He is not asked those. When the decider replies SMALL CALL:
+
+1. Gather the proof it named, before asking anyone. For stored data: run the change on a
+   **copy** of the database (never the live one), keep what you ran and what it changed,
+   and list the backup bucket to show last night's backup is there (`rtk proxy` in front
+   of the command: the hook clips cloud listings). For money: the figure and where the
+   cost is switched off.
+2. Hand the question, the decider's reply and that proof to the `senior` agent. You never
+   decide it yourself, and you do not argue with its answer.
+3. **DECISION + DECIDED FOR YOU** → carry it out. Copy its "Decided for you" line,
+   unchanged, into the PR body under **Decided for you**, put the proof in the PR body
+   under Testing, and add the usual line under Escalations. With no PR (a one-off run, a
+   ticket that is only a question), post the line as a comment on the ticket headed
+   **Decided for you**. No @mention: he reads it on Monday.
+4. **ON CHANDLER'S LIST** → it was big after all. Post its reply on the Linear issue
+   under the heading it names, **To approve** or **To think about**, with an @mention, do
+   what doesn't depend on it, and stop.
+
+Every call to the senior agent or the decider goes in the PR body under **Escalations**,
+one line each: who asked, what, what was answered. "None" if there were none.
 
 ## When to break off and ask
 
-The stop list in AGENTS.md "Deciding alone vs. stopping", plus: the work has grown past
+The big side of Chandler's list in AGENTS.md "What Chandler is asked", plus: the work has grown past
 the issue (propose the split). An issue that contradicts a standing rule is **not** a
 reason to ask: the rule wins, note it under "Decisions taken". Asking
-is a Linear comment with an @mention, one sentence and the options; then do whatever
+is a Linear comment with an @mention, in the form for its kind (three lines to approve, or
+a full question to think about; the senior agent writes it); then do whatever
 doesn't depend on the answer, and stop.

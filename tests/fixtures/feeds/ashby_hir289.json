@@ -1,0 +1,193 @@
+{
+ "jobs": [
+  {
+   "id": "f4fc5ccd-7685-4e8c-90f7-7d8beeada301",
+   "title": "Senior Applied AI Engineer",
+   "location": "Cologne",
+   "secondaryLocations": [
+    {
+     "location": "Czech Republic",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "Czechia",
+       "addressCountry": "Czechia",
+       "addressLocality": "Prague"
+      }
+     }
+    },
+    {
+     "location": "United Kingdom",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "Greater Manchester",
+       "addressCountry": "United Kingdom",
+       "addressLocality": "Manchester"
+      }
+     }
+    },
+    {
+     "location": "Berlin",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "Berlin",
+       "addressCountry": "Germany",
+       "addressLocality": "Berlin"
+      }
+     }
+    },
+    {
+     "location": "Spain",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "Spain",
+       "addressCountry": "Spain",
+       "addressLocality": "Madrid"
+      }
+     }
+    },
+    {
+     "location": "Frankfurt",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "Hesse",
+       "addressCountry": "Germany",
+       "addressLocality": "Frankfurt"
+      }
+     }
+    },
+    {
+     "location": "Portugal",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "Portugal",
+       "addressCountry": "Portugal",
+       "addressLocality": "Lisbon"
+      }
+     }
+    },
+    {
+     "location": "Munich",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "Bavaria",
+       "addressCountry": "Germany",
+       "addressLocality": "Munich"
+      }
+     }
+    },
+    {
+     "location": "Hamburg",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "Hamburg",
+       "addressCountry": "Germany",
+       "addressLocality": "Hamburg"
+      }
+     }
+    },
+    {
+     "location": "Romania",
+     "address": {
+      "postalAddress": {
+       "addressCountry": "Romania",
+       "addressLocality": "Bucharest"
+      }
+     }
+    }
+   ],
+   "address": {
+    "postalAddress": {
+     "addressRegion": "North Rhine-Westphalia",
+     "addressCountry": "Germany",
+     "addressLocality": "Cologne"
+    }
+   },
+   "isRemote": true,
+   "workplaceType": "Remote",
+   "jobUrl": "https://jobs.ashbyhq.com/jupus/f4fc5ccd-7685-4e8c-90f7-7d8beeada301",
+   "publishedAt": "2026-11-09T15:44:24.843+00:00",
+   "descriptionPlain": "We’re seeking a driven Senior Applied AI Engineer to join one of the fastest-growing legal tech companies in Europe as we expand our core AI team.\n\nThis role focuses on applied generative AI in a production environment, building systems such as RAG pipelines, agentic workflows, and AI features used ",
+   "_board": "jupus"
+  },
+  {
+   "id": "ceca6916-b8d8-42cc-a32a-c27e06744b31",
+   "title": "Applied AI Engineering Manager, Startups | Core",
+   "location": "London, UK",
+   "secondaryLocations": [
+    {
+     "location": "Munich, Germany",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "Munich",
+       "addressCountry": "Germany",
+       "addressLocality": "Munich"
+      }
+     }
+    },
+    {
+     "location": "Paris, France",
+     "address": {
+      "postalAddress": {
+       "addressRegion": "Île-de-France",
+       "addressCountry": "France",
+       "addressLocality": "Paris"
+      }
+     }
+    }
+   ],
+   "address": {
+    "postalAddress": {
+     "addressRegion": "Greater London",
+     "addressCountry": "United Kingdom",
+     "addressLocality": "London"
+    }
+   },
+   "isRemote": true,
+   "workplaceType": "Hybrid",
+   "jobUrl": "https://jobs.ashbyhq.com/openai/ceca6916-b8d8-42cc-a32a-c27e06744b31",
+   "publishedAt": "2026-11-10T09:01:00.320+00:00",
+   "descriptionPlain": "ABOUT THE TEAM\n\nThe Applied AI Engineering team partners closely with customers to help them move from experimentation to production with OpenAI’s technologies. We act as trusted technical advisors, working across customer strategy, architecture, deployment, and adoption to help organizations realiz",
+   "_board": "openai"
+  },
+  {
+   "id": "05765640-394b-48b0-9dd0-cbcc201dffb1",
+   "title": "Ops Recruiter",
+   "location": "Mercor HQ, 181 Fremont Street",
+   "secondaryLocations": [],
+   "address": {
+    "postalAddress": {
+     "addressRegion": "California",
+     "addressCountry": "United States",
+     "addressLocality": "San Francisco"
+    }
+   },
+   "isRemote": false,
+   "workplaceType": "OnSite",
+   "jobUrl": "https://jobs.ashbyhq.com/mercor/05765640-394b-48b0-9dd0-cbcc201dffb1",
+   "publishedAt": "2026-11-02T18:54:49.873+00:00",
+   "descriptionPlain": "ABOUT MERCOR\n\n\n\nMercor’s mission is to organize human intelligence for the AI economy. We build the infrastructure that enables frontier AI labs and enterprises to train, evaluate, and improve AI on real-world professional work. More than five million experts have joined our network, and we pay out ",
+   "_board": "mercor"
+  },
+  {
+   "id": "ceaee97f-480e-439d-8a95-b4f13aacc31a",
+   "title": "Technical Support Engineer",
+   "location": "London Office",
+   "secondaryLocations": [],
+   "address": {
+    "postalAddress": {
+     "postalCode": "E1 6BX",
+     "addressRegion": "London",
+     "streetAddress": "UK",
+     "addressCountry": "United Kingdom",
+     "addressLocality": "Remote"
+    }
+   },
+   "isRemote": true,
+   "workplaceType": "Remote",
+   "jobUrl": "https://jobs.ashbyhq.com/plaid/ceaee97f-480e-439d-8a95-b4f13aacc31a",
+   "publishedAt": "2026-09-04T15:07:18.027+00:00",
+   "descriptionPlain": "We believe that the way people interact with their finances will drastically improve in the next few years. We’re dedicated to empowering this transformation by building the tools and experiences that thousands of developers use to create their own products. Plaid powers the tools millions of people",
+   "_board": "plaid"
+  }
+ ]
+}

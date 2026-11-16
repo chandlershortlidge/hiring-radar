@@ -13,6 +13,7 @@
   "degree_or_equivalent": false,
   "degree_signal": "BSc in Computer Science, Maths or Statistics or related discipline",
   "attrs_reviewed": false,
+  "groups_reviewed": true,
   "source_sha256": "dd1d1dd6458279b298f54f111e565165a6ccbfe39e681727512d1966e5d6658e",
   "labeled_by": [
     "claude-opus-5-5",

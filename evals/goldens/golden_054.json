@@ -1,0 +1,73 @@
+{
+  "id": "golden_054",
+  "split": "dev",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": false,
+  "degree_signal": "Bachelor's or Master's degree in Computer Science, Engineering, or a related technical field",
+  "attrs_reviewed": false,
+  "source_sha256": "accdbf6be331398c3dad6b79597b611aacff1af51152b7a80bc3f793beb8e27f",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:cpp",
+    "skill:python",
+    "skill:scikit-learn",
+    "skill:software-engineering"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Research Engineer\n\nHudson River Trading (HRT) is a quantitative trading firm at the forefront of technological innovation. We build and deploy cutting-edge systems within one of the world’s most advanced computing environments to power our global trading operations. Our non-siloed, collaborative coding environment empowers talented engineers to make significant contributions and see their impact daily. At HRT, you'll be challenged to solve the most complex problems in trading alongside many of the brightest minds in the field.\n\nWe are seeking highly motivated and skilled Research Engineers who will work very closely with our Algo Developer (Quant Research) trading teams. These roles require exceptional programming fundamentals, a strong user focus, and the ability to thrive in a fast-paced environment with constantly evolving requirements. Multitasking and context switching are inherent aspects of this role, through which you will gain insight into the ideation and execution of some of the world's most sophisticated trading strategies.  \n\nResearch Engineers at HRT work on a wide variety of projects. Examples include:\n\n- Designing highly customized quantitative systems that enable Algo Developers to easily express and backtest new predictive signals.\n\n- Building world-class research tooling to speed up Algo Developers’ research iteration.\n\n- Aiding the development and deployment of very large deep learning models for HRT’s live trading.\n\n- Improving HRT’s monetization systems which turn our predictions into profitable trades.\n\n- Evaluating sim vs. live differences to improve the fidelity of our simulations.\n\n- Building systems to monitor and manage live trading.\n\n- Specializing in specific time horizons, from high frequency trading to mid-to-low frequency hedge fund-style strategies.\n\n- Working across a very wide variety of asset classes (from equities to fixed income to options) and regions (from North America to Asia Pacific) – you’ll interact with markets across the world!\n\nResponsibilities\n\n- Design, develop, and maintain robust, performant, and scalable software systems.\n\n- Optimize existing codebases for performance, reliability, and efficiency.\n\n- Debug complex issues across distributed systems in a time-sensitive environment.\n\n- Optimize both the mechanics and ergonomics of Algo Developer research workflows; this requires developing a deep intuition for research methodologies.\n\n- Balance the short term goals of individual trading teams with the longer term goals of HRT’s generalized trading platforms across trading teams. Because we don’t work in a pod environment, REs on different trading teams are expected to share technology and ideas.\n\nQualifications\n\n- Completed a Bachelor's or Master's degree in Computer Science, Engineering, or a related technical field. If you are currently pursuing your Bachelor's degree, please apply to our Campus/New Grad opportunities.\n\n- Previous experience at a top-tier finance or technology company with an excellent track record of rapid advancement and superlative reviews.\n\n- Experience with supporting internal users is preferred; bonus if you have real hands-on experience with quant research and/or ML/Deep Learning platforms.\n\n- Experience with python numerical, ML and data-oriented libraries is a big plus (e.g. pandas, scikit, pytorch, etc.)\n\n- Candidates should be prepared for technical interviews in either Python or C++. While there is no hard language requirement for RE roles, proficiency in one of these languages will be assessed during the interview process.\n\n- Kindness and empathy is a real requirement. No “smart jerks” at HRT. \n\n- Strong understanding of data structures, algorithms, and design principles.\n\n- Excellent communication skills, both written and verbal.\n\n- HRT ships every day. The ability to thoughtfully, methodically, and reliably deploy new software and features is a critical skill. \n\n- If you have management experience, that’s always a bonus – but even so, expect to code!\n\nThe estimated base salary range for this position is 200,000 to 300,000 USD per year (or local equivalent). The base pay offered may vary depending on multiple individualized factors, including location, job-related knowledge, skills, and experience. This role will also be eligible for discretionary performance-based bonuses and a competitive benefits package.\n\nFor more info about interviewing at HRT, see this blog!\n\nCulture\n\nHudson River Trading (HRT) brings a scientific approach to trading financial products. We have built one of the world's most sophisticated computing environments for research and development. Our researchers are at the forefront of innovation in the world of algorithmic trading.\n\nAt HRT we welcome a variety of expertise: mathematics and computer science, physics and engineering, media and tech. We’re a community of self-starters who are motivated by the excitement of being at the cutting edge of automation in every part of our organization—from trading, to business operations, to recruiting and beyond. We value openness and transparency, and celebrate great ideas from HRT veterans and new hires alike. At HRT we’re friends and colleagues – whether we are sharing a meal, playing the latest board game, or writing elegant code. We embrace a culture of togetherness that extends far beyond the walls of our office.\n\nFeel like you belong at HRT? Our goal is to find the best people and bring them together to do great work in a place where everyone is valued. HRT is proud of our diverse staff; we have offices all over the globe and benefit from our varied and unique perspectives. HRT is an equal opportunity employer; so whoever you are we’d love to get to know you.\n\nPlease be advised: Use of AI tools by an applicant during interviews or assessments is strictly prohibited, unless otherwise instructed or agreed upon. We employ various methods to evaluate the authenticity of candidate responses. If we determine that AI assistance was used by an applicant during an interview or an assessment, we reserve the right to immediately end the interview or assessment, disqualify the applicant’s candidacy and/or rescind any job offers extended.\n\nYou can review our Global Applicant Privacy Notice, which explains how we process applicant information.",
+  "expected": [
+    {
+      "skill_id": "cpp",
+      "requirement": "required",
+      "raw_text": "interviews in either Python or C++"
+    },
+    {
+      "skill_id": "deep-learning",
+      "requirement": "nice_to_have",
+      "raw_text": "Deep Learning platforms"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "nice_to_have",
+      "raw_text": "ML/Deep Learning platforms"
+    },
+    {
+      "skill_id": "pandas",
+      "requirement": "nice_to_have",
+      "raw_text": "pandas"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "interviews in either Python or C++"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "nice_to_have",
+      "raw_text": "pytorch"
+    },
+    {
+      "skill_id": "scikit-learn",
+      "requirement": "nice_to_have",
+      "raw_text": "scikit"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "programming fundamentals"
+    }
+  ]
+}

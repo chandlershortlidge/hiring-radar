@@ -49,6 +49,66 @@ def test_ashby_parse_prefers_plain_description():
     assert p.description_text == "Requirements:\n- Python\n- RAG"
 
 
+def test_ashby_keeps_every_office_so_a_second_office_in_berlin_counts():
+    """HIR-268: Qonto's posting lists Paris first and Berlin second. Keeping only the first
+    office dropped it as Paris."""
+    from app.geo import active_place
+    [p] = ashby.parse(load("ashby_second_office.json"), company="Qonto")
+    assert p.title == "Senior Android Engineer - AI Agents"
+    assert p.location_raw == ("Paris, France; Berlin, Germany; Milan, Italy; Lisbon, Portugal; "
+                              "Barcelona, Spain; Belgrade, Serbia")
+    assert active_place(p.location_raw, p.title, p.description_text) == "Berlin"
+
+
+def test_ashby_office_list_skips_blanks_and_repeats():
+    job = {"id": "1", "title": "AI Engineer", "descriptionPlain": "text", "location": " Berlin ",
+           "secondaryLocations": [{"location": "Berlin"}, {"location": ""}, {"address": {}}, "Munich"]}
+    [p] = ashby.parse({"jobs": [job]})
+    assert p.location_raw == "Berlin"
+    [p] = ashby.parse({"jobs": [{**job, "location": None, "secondaryLocations": None}]})
+    assert p.location_raw is None
+
+
+def _hir289(title):
+    """One real posting from the boards as fetched on 2026-11-13 (HIR-289)."""
+    [job] = [j for j in load("ashby_hir289.json")["jobs"] if j["title"].strip() == title]
+    [p] = ashby.parse({"jobs": [job]})
+    return p
+
+
+def test_ashby_reads_the_city_from_the_address_when_the_office_name_lacks_it():
+    """Mercor names its office "Mercor HQ, 181 Fremont Street"; only the address says San
+    Francisco. Reading the name alone dropped the posting as no tracked city."""
+    from app.geo import place_of
+    p = _hir289("Ops Recruiter")
+    assert p.location_raw == "Mercor HQ, 181 Fremont Street; San Francisco"
+    assert place_of(p.location_raw) == "San Francisco"
+
+
+def test_ashby_address_city_remote_is_not_a_remote_signal():
+    """Plaid's "London Office" carries "Remote" as its address city; that is not a remote
+    posting a Berlin resident can take, so it is left out."""
+    from app.geo import place_of
+    p = _hir289("Technical Support Engineer")
+    assert p.location_raw == "London Office"
+    assert place_of(p.location_raw, p.title, p.description_text) is None
+
+
+def test_ashby_address_city_already_in_the_name_is_not_repeated():
+    # openai writes "Munich, Germany" with address city "Munich".
+    p = _hir289("Applied AI Engineering Manager, Startups | Core")
+    assert p.location_raw == "London, UK; Munich, Germany; Paris, France"
+
+
+def test_ashby_country_only_office_gets_its_city_from_the_address():
+    """jupus names some offices by country alone ("Czech Republic"); the address names the
+    city. The same shape is what /check-url met on 2026-10-17, when a jupus posting
+    listed only "Germany" and read as no tracked city."""
+    p = _hir289("Senior Applied AI Engineer")
+    assert p.location_raw.split("; ")[:6] == ["Cologne", "Czech Republic", "Prague", "United Kingdom",
+                                              "Manchester", "Berlin"]
+
+
 def test_arbeitnow_parse_and_pagination():
     payload = load("arbeitnow.json")
     ps = arbeitnow.parse(payload)
@@ -239,8 +299,8 @@ def test_poll_passes_the_title_filter_to_arbeitsagentur(monkeypatch):
     assert got["title_filter"] is in_scope_title
 
 
-# --- jsearch (jsearch_recorded.json is a real response; jsearch.json is hand-built
-#     for the degenerate records a real response does not contain) -----------------
+# --- jsearch (jsearch_recorded.json is a real response; the degenerate records a real
+#     response does not contain are made from it in the test, HIR-41) ---------------
 
 def test_jsearch_parse_reads_a_recorded_response():
     from app.sources import jsearch
@@ -315,17 +375,46 @@ def test_jsearch_parse_drops_learn4good_wedge_rows():
     assert "arbeitnow" in ps[0].title
 
 
+def _recorded_job(employer="VRG GmbH"):
+    """One real posting from the recorded response, as a dict a test may change."""
+    return next(dict(j) for j in load("jsearch_recorded.json")["data"]
+                if j["employer_name"] == employer)
+
+
 def test_jsearch_parse_maps_fields_and_skips_empty():
+    """HIR-41: the odd records a real response never contains (no apply link, no city, no
+    date, no description) are each a real recorded posting with that one field taken
+    away, so every other field keeps the live shape rather than the documented one."""
     from app.sources import jsearch
-    first, second = jsearch.parse(load("jsearch.json"))   # third has no description
-    assert first.source == "jsearch" and first.source_job_id == "abc123=="
-    assert first.title == "AI Engineer (m/w/d)" and first.company == "Beispiel GmbH"
-    assert first.url == "https://www.linkedin.com/jobs/view/123" and first.location_raw == "Berlin"
-    assert first.posted_at == "2026-10-16T09:00:00.000Z" and "- RAG" in first.description_text
-    # No apply link → Google link; no city → location string.
-    assert second.url.startswith("https://www.google.com/") and second.location_raw == "Germany"
+    real = _recorded_job()
+    (full,) = jsearch.parse({"data": [{**real, "job_title": real["job_title"] + " "}]})
+    assert full.source == "jsearch" and full.source_job_id == "sIN54BNcqB79FH2dAAAAAA=="
+    assert full.title == "Machine Learning-Engineer (m/w/d)" and full.company == "VRG GmbH"
+    assert full.url.startswith("https://www.simplyhired.de/job/") and full.location_raw == "Berlin"
+    assert full.posted_at == "2026-10-28T00:00:00.000Z"
+    assert "Machine-Learning-Funktionen" in full.description_text
+    # No apply link → Google link; no city → location string; no date → None.
+    bare = {**real, "job_city": None, "job_posted_at_datetime_utc": None}
+    del bare["job_apply_link"]
+    (second,) = jsearch.parse({"data": [bare]})
+    assert second.url == real["job_google_link"] and second.url.startswith("https://www.google.com/")
+    assert second.location_raw == real["job_location"] and second.location_raw.startswith("Berlin")
     assert second.posted_at is None
+    for gone in ("job_description", "job_title", "job_id"):
+        assert jsearch.parse({"data": [{**real, gone: ""}]}) == []
+        assert jsearch.parse({"data": [{k: v for k, v in real.items() if k != gone}]}) == []
     assert jsearch.parse({"status": "ERROR"}) == [] and jsearch.parse([]) == []
+
+
+def test_jsearch_stable_id_matches_the_recorded_job_uid():
+    """HIR-41: a real response carries `job_uid`, which the docs do not list. It is the
+    same stable part `stable_id` cuts out of `job_id`, on every recorded posting — so the
+    id we store is the provider's own, not a guess at their encoding."""
+    from app.sources import jsearch
+    data = load("jsearch_recorded.json")["data"]
+    assert len(data) == 10
+    for j in data:
+        assert jsearch.stable_id(j["job_id"]) == j["job_uid"]
 
 
 def test_jsearch_request_per_host():
@@ -353,9 +442,10 @@ def test_jsearch_fetch_needs_a_key_and_makes_one_call(monkeypatch):
     with pytest.raises(RuntimeError):
         jsearch.fetch("AI engineer in Berlin")
     calls = []
-    monkeypatch.setattr(jsearch, "fetch_json", lambda url, headers=None, timeout=30: calls.append(url) or load("jsearch.json"))
+    monkeypatch.setattr(jsearch, "fetch_json", lambda url, headers=None, timeout=30: calls.append(url) or load("jsearch_recorded.json"))
     monkeypatch.setenv("JSEARCH_API_KEY", "k")
-    assert len(jsearch.fetch("AI engineer in Berlin")) == 2 and len(calls) == 1
+    # 10 recorded postings, one of them an aggregator headline that parse drops.
+    assert len(jsearch.fetch("AI engineer in Berlin")) == 9 and len(calls) == 1
 
 
 # Two ids JSearch returned for the same StepStone posting on two calls (live, 2026-10-18).
@@ -463,6 +553,52 @@ def test_remote_flags_become_part_of_the_location():
     assert jsearch.parse({"data": [js]})[0].location_raw == "Remote (Germany)"
     assert jsearch.parse({"data": [{**js, "job_country": "US"}]})[0].location_raw == "Remote (US)"
     assert place_of("Remote (US)") is None
+
+
+# --- JSearch: a US search's remote jobs are not Remote (EU) (HIR-255) -------------
+
+def _js(**kw):
+    return {"job_id": "abc", "job_title": "AI Engineer", "job_description": "x",
+            "employer_name": "Acme", **kw}
+
+
+def test_jsearch_us_remote_anywhere_is_not_eu_remote():
+    """Seen live on the first New York search: remote, job_location "Anywhere", no
+    job_country. Before the fix this read as "Anywhere; Remote" → Remote (EU)."""
+    from app.geo import active_place
+    from app.sources import jsearch
+    item = _js(job_city=None, job_location="Anywhere", job_country=None, job_is_remote=True)
+    loc = jsearch.parse({"data": [item]}, country="us")[0].location_raw
+    assert loc == "Remote (US)"
+    assert active_place(loc) is None
+    # job_country on the posting wins over the search's country, with the same result
+    loc = jsearch.parse({"data": [{**item, "job_country": "US"}]}, country="de")[0].location_raw
+    assert active_place(loc) is None
+
+
+def test_jsearch_us_remote_keeps_a_real_city():
+    from app.geo import active_place
+    from app.sources import jsearch
+    item = _js(job_city="New York", job_location="New York, NY", job_country="US", job_is_remote=True)
+    loc = jsearch.parse({"data": [item]}, country="us")[0].location_raw
+    assert loc == "New York; Remote (US)"
+    assert active_place(loc) == "New York"
+
+
+def test_jsearch_german_search_remote_unchanged():
+    """The German searches keep reading a country-less remote posting as Remote (EU)."""
+    from app.geo import active_place
+    from app.sources import jsearch
+    item = _js(job_city=None, job_location="Anywhere", job_country=None, job_is_remote=True)
+    assert active_place(jsearch.parse({"data": [item]}, country="de")[0].location_raw) == "Remote (EU)"
+    assert active_place(jsearch.parse({"data": [item]})[0].location_raw) == "Remote (EU)"
+
+
+def test_jsearch_us_onsite_new_york():
+    from app.geo import active_place
+    from app.sources import jsearch
+    item = _js(job_city="New York", job_location="New York, NY", job_country="US", job_is_remote=False)
+    assert active_place(jsearch.parse({"data": [item]}, country="us")[0].location_raw) == "New York"
 
 
 # --- arbeitnow: remote never invents a country (HIR-98) --------------------------

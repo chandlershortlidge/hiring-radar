@@ -8,7 +8,7 @@
       },
       {
         "skill_id": "machine-learning",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "interest in machine learning"
       },
       {
@@ -34,7 +34,7 @@
         "german_signal": null
       },
       "degree": {
-        "degree": "phd",
+        "degree": "master",
         "degree_requirement": "required",
         "degree_or_equivalent": false,
         "degree_signal": "Masters/PhD in a quantitative discipline"
@@ -181,12 +181,12 @@
       },
       {
         "skill_id": "aws",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "AWS"
       },
       {
         "skill_id": "azure",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "Azure"
       },
       {
@@ -211,7 +211,7 @@
       },
       {
         "skill_id": "gcp",
-        "requirement": "required",
+        "requirement": "nice_to_have",
         "raw_text": "GCP"
       },
       {
@@ -594,7 +594,7 @@
         "german_signal": null
       },
       "degree": {
-        "degree": "master",
+        "degree": "bachelor",
         "degree_requirement": "required",
         "degree_or_equivalent": false,
         "degree_signal": "Bachelor's or Master's degree in Computer Science, Engineering, or a related technical field"
@@ -1330,7 +1330,7 @@
         "german_signal": null
       },
       "degree": {
-        "degree": "phd",
+        "degree": "bachelor",
         "degree_requirement": "required",
         "degree_or_equivalent": false,
         "degree_signal": "Bachelor, Master’s or PhD graduate or candidate in computer science or another quantitative discipline"

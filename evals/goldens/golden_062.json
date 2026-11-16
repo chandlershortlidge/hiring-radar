@@ -1,0 +1,101 @@
+{
+  "id": "golden_062",
+  "split": "dev",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": false,
+  "degree_signal": "Bachelor, Master’s or PhD graduate or candidate in computer science or another quantitative discipline",
+  "attrs_reviewed": false,
+  "source_sha256": "76f62559d135c4101876848dca69cc1963d7feda2d4756579ab76c69c772321b",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "third_labeler": "gemini-4-argon",
+  "adjudicated": [
+    "skill:agents",
+    "skill:ai-deployment",
+    "skill:fine-tuning",
+    "skill:open-source-llms",
+    "skill:rag"
+  ],
+  "adjudicated_by_model": [
+    "degree"
+  ],
+  "spot_checked_by": null,
+  "job_description": "ROLE/RESPONSIBILTIES:\n\nWe are seeking a NLP engineer for a NLP research team within Point72. The ideal candidate has a track record of developing modern NLP solutions, including the use of LLMs, agents, RAG, open-source models fine-tuning and deployment, etc.\n\nResponsibilities include:\n\n- Exploring and combining rich internal and external textual datasets\n\n- Building GenAI solutions, leveraging both internal models and external APIs\n\n- Formulating research hypothesis to derive alpha\n\n- Post-training models for specific tasks\n\n- Benchmarking LLM approaches internal tasks\n\nWe believe the investment world offers unique opportunities to use modern NLP methods. We are a team ideally situated for that, having access to both internal and commercial datasets, with an end-to-end research philosophy and direct portfolio impact.\n\nREQUIREMENTS:\n\n- Bachelor, Master’s or PhD graduate or candidate in computer science or another quantitative discipline\n\n- Experience in NLP, particularly LLMs.\n\n- Proficient in Python, SQL and general software engineering principles (github, testing, etc.)\n\n- Data science stack familiarity\n\n- Interest in financial markets\n\n- Collaborative mindset \n\nABOUT POINT72:\n\nPoint72 is a leading global alternative investment firm led by Steven A. Cohen. Building on more than 30 years of investing experience, Point72 seeks to deliver superior returns for its investors through fundamental and systematic investing strategies across asset classes and geographies. We aim to attract and retain the industry’s brightest talent by cultivating an investor-led culture and committing to our people’s long-term growth.",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "agents"
+    },
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "fine-tuning and deployment"
+    },
+    {
+      "skill_id": "data-science",
+      "requirement": "required",
+      "raw_text": "Data science stack"
+    },
+    {
+      "skill_id": "fine-tuning",
+      "requirement": "required",
+      "raw_text": "fine-tuning"
+    },
+    {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "github"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "particularly LLMs"
+    },
+    {
+      "skill_id": "nlp",
+      "requirement": "required",
+      "raw_text": "Experience in NLP"
+    },
+    {
+      "skill_id": "open-source-llms",
+      "requirement": "required",
+      "raw_text": "open-source models"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "general software engineering principles"
+    },
+    {
+      "skill_id": "sql",
+      "requirement": "required",
+      "raw_text": "SQL"
+    },
+    {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "testing"
+    }
+  ]
+}

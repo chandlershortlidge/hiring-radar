@@ -102,6 +102,24 @@ Once per clone, so `.githooks/pre-commit` actually runs:
 git config core.hooksPath .githooks
 ```
 
+Once per Mac, so the reviewer's merge is not refused by the session itself (HIR-262).
+Claude Code's auto-mode safety check refuses the reviewer's merge command as "Merge Without
+Review" before the command reaches GitHub, and it reads its exceptions only from the user's
+own settings (`~/.claude/settings.json`), never from this repo — so no PR can fix it.
+Chandler adds two entries through `/permissions`:
+
+- an allow rule for the merge command. Since HIR-151 the reviewer merges with
+  `gh api -X PUT repos/:owner/:repo/pulls/<n>/merge`, the one form that also works in a
+  cloud run, so the rule is `Bash(gh api -X PUT repos/:owner/:repo/pulls/*)`; the older
+  `Bash(gh pr merge *)` no longer matches anything the reviewer runs
+- an auto-mode allow rule, in prose: *merging a reviewed, green PR into main of this repo
+  is the project's documented process.*
+
+Until both are there the reviewer's merge is refused, and it says exactly "merge refused by
+the session's safety check; setup step missing" — a setup gap, not a review outcome. The
+PR still merges: the reviewer's `review-passed` label hands it to GitHub ("Who merges",
+below).
+
 Then, for the rest of the session:
 
 - **One ticket per branch, per folder, per commit.** `TICKET` holds one id; the branch
@@ -128,6 +146,15 @@ is measured against a labeled Golden set with a held-out split.
 
 Rebuild of `job-skills-dashboard` (the June 2026 hackathon version). Why the rebuild and
 what changed: DECISIONS.md, first entry.
+
+**The decisions log is `decisions/` plus `DECISIONS.md`** (HIR-305). A new decision is a
+new file in `decisions/`, named `YYYY-MM-DD-hir-N-short-title.md` and starting
+`## YYYY-MM-DD — what was decided (HIR-N)`; it is never added to `DECISIONS.md`, which
+keeps the entries up to 16 Nov 2026. One file each, so two pull requests that record a
+decision cannot collide. To read the log: the files in `decisions/` (names sort by date),
+then `DECISIONS.md`. Wherever these rules say "DECISIONS" with a date, they mean the
+entry of that date in either place; wherever they say to write a decision down, they mean
+a new file in the folder.
 
 Out of scope (deliberately): résumé matching or tailoring, email parsing, applicant
 counts, anything that requires LinkedIn. One narrow exception, since 2026-11-01 (HIR-14):
@@ -297,6 +324,24 @@ uv run python scripts/import_legacy.py --screenshots ~/Downloads/screenshots --c
   longer reproduces what a run recorded, the Goldens were relabelled since and it says so
   instead of reporting a count. `--version-check` answers whether the baseline already
   measured this extractor (the gate's one exemption). Calls no model and writes nothing.
+- `scripts/eval_gate.py` — the eval gate's CI check (HIR-134): given a PR's changed files,
+  passes unless the extractor or the skill list changed with no new dev result added and
+  no MATCH from `eval_table.py`'s version check. Pure `decide`; calls no model.
+- `scripts/lead_pick.py` — the lead agent's hard limits (HIR-266, HIR-280): given the
+  tickets, the lead agent's log, the count of decisions waiting for Chandler and which
+  checks are red, answers which tickets may start in this run and why the rest may not
+  (labels, a third try, the daily cap in `config/lead_agent.json`, one ticket per area at
+  a time, 10 decisions waiting, one re-read a day, a red check, a usage limit hit today).
+  No count of tickets per day. Also answers how many tickets to pull into Todo and, on
+  Mondays, the week's three numbers. Pure; talks to nothing and starts nothing.
+  Also says which pull requests that collide with main may be given a repair worker
+  (`repairs`, HIR-305): never after two failed repairs, never Chandler's own tickets.
+- `scripts/collision.py` — what a repair of a collided pull request may settle without
+  judgment (HIR-305): run mid-merge, it keeps both sides where both only added text at one
+  place in a prose file, and lists every other collided file for the senior agent,
+  untouched. Reads git's three versions, not the conflict markers. Commits nothing.
+- `decisions/` — the decisions log since 16 Nov 2026, one file per decision (HIR-305;
+  "What this project is", above). `tests/test_decisions.py` checks the names and headings.
 - `scripts/new_goldens.py` — draft unlabeled held-out Goldens from DB jobs
   (`--german N` or `--ids ...`); run_eval skips files with `"draft": true`.
 - `scripts/agent_label.py` — held-out Goldens via two blind labeler agents: pick → label A
@@ -383,7 +428,8 @@ so this is not a judgment call:
   hundreds of mentions a run, so they keep the **0.02** drop rule. A smaller move is noise;
   note it in the PR and carry on.
 
-Either kind of stop is on the stop list below: say so in the PR, don't merge, and ask.
+Either kind of stop is on the list of what Chandler is asked ("What Chandler is asked",
+below, item 2): say so in the PR, don't merge, and ask.
 
 Flips are counted by rescoring both runs' stored predictions, so if the table says they
 **could not be counted**, read it: either a run has no `predictions.jsonl`, or the Goldens
@@ -399,6 +445,14 @@ run cannot produce new information. Skip it, and paste those two version lines i
 body instead of the table. If it answers DIFFERENT, the gate applies, and that includes the
 case where the branch changed nothing but main itself was never measured: then the run also
 re-baselines main, which is the gap this rule exists to close.
+
+**CI checks the cheap half** (HIR-134). The reviewer reads the PR body, but a PR opened by
+hand never meets the reviewer. So the "Eval gate" job in `.github/workflows/ci.yml` runs
+`scripts/eval_gate.py` on every PR: when the diff touches either file, it fails unless the
+PR adds a new `evals/results/*_dev_*/summary.json` or `--version-check` answers MATCH. It
+needs no key and calls no model, and it does not read the scores — the stop lines stay with
+`eval_table.py` and the reviewer. As with the rules gate, a red check only blocks a merge
+once "Eval gate" is on the repository's required-checks list, which is Chandler's to change.
 
 The held-out split stays release-only (the rule just above). This gate is the dev split.
 
@@ -445,6 +499,13 @@ writes the bullets; the agent that made the change does not** — the point of t
 second reader saying what changed. Chandler does not read these files. He discusses what goes
 in them beforehand, so the only question is whether he authorized this one. He answers by
 merging, or by sending it back.
+
+**Above the block, at the very top of the description, sit the three lines of a
+recommendation to approve** (HIR-297; the form is in "What Chandler is asked", "Big calls
+come in two kinds"): Recommend, What it is, Why. A rule change is a call he approves, not
+one he is asked to think through. **The author writes those three lines**, because the
+recommendation is the author's; the reviewer checks they are there and in form, sends the
+PR back when they are not, and still writes the bullets itself.
 
 **Two enforcers, because one of them is itself a rule file.** The reviewer applies the rule
 (`.claude/agents/reviewer.md`). And `scripts/rules_gate.py` runs in CI on every PR
@@ -517,8 +578,8 @@ whether Chandler could judge it right or wrong from one plain sentence; if he co
 it is either mechanical (don't report it) or badly explained (rewrite it).
 
 **Decide, don't report** — mechanical, already settled by this file or DECISIONS.md:
-next free migration number; DECISIONS.md merge conflicts (keep both entries, newest
-first); a proposed skill needs 3 jobs before it becomes an entry; alias before new entry
+next free migration number; a collision where both sides only added text to a log or a
+list (keep both: `/work-issue` "Repairing a collided pull request"); a proposed skill needs 3 jobs before it becomes an entry; alias before new entry
 when a phrase is another spelling of an existing skill; test names, fixture choice,
 commit wording.
 
@@ -528,12 +589,15 @@ when the phrase is genuinely ambiguous; the shape of a taxonomy change (parent/c
 which entries); anything the issue left open that costs one commit to reverse. One
 sentence each: what, why, how to undo.
 
-Anything that bumps `extractor_version` (prompt, taxonomy, model) is decided here too.
-Say in the PR body that merging re-reads the open jobs, **and what that costs today**:
+A skill-list change that bumps `extractor_version` is decided here too; a change to the
+extractor's instructions or its model is not — that is on Chandler's list (item 2 below).
+Either way, say in the PR body that merging re-reads the open jobs, **and what that costs
+today**:
 run `uv run python -m app reread-cost` and paste its figure. Never quote a remembered
 number — the cost grows with every city, and a flat "about €3" understated a real re-read
 by more than three times by the time three German cities had launched (HIR-221). **The
-merge is the approval**; nothing waits before the PR.
+merge is the approval**; nothing waits before the PR — unless the figure is above €10,
+which is item 5 of Chandler's list.
 
 **An existing rule is never a question.** When an issue and DECISIONS.md (or this file)
 disagree, the rule wins: apply it, note the conflict in one line under "Decisions taken",
@@ -541,26 +605,207 @@ carry on. Before asking anything, check whether a standing rule already answers 
 only when no rule covers the case — then the answer becomes a rule, and the question
 is never asked again.
 
-**Stop and ask, even unattended** — irreversible, expensive, or policy:
-- any edit to `evals/LABELING.md` or to an attribute's definition (invalidates every eval)
-- `ACTIVE_CITIES`; what the public site stores, shows, or sends to a provider; spend
-- deleting or rewriting stored jobs, Goldens, or eval results
-- an eval score over either stop line against the last committed run: a per-Golden
-  attribute score that lost **more than 2 Goldens**, or a skill score **down more than
-  0.02** (the eval gate above; the run itself is not a question, only a result this size is)
-- the branch and `TICKET` disagree; a hot-spot file is already changed on another branch
-- a PR that changes the agents' own rules — `.claude/`, `AGENTS.md`, the PR template,
-  `.github/workflows/` (the rules gate above). The reviewer is what asks, by adding the
-  block to the PR; no run of any label merges such a PR.
+### What Chandler is asked
+
+**This is the one list** (Chandler, 2026-11-12, HIR-262; split into a small and a big side
+2026-11-13, HIR-278; the big side split into what he thinks through and what he only
+approves 2026-11-14, HIR-297). The decider, the senior agent, the reviewer, the work-issue,
+orchestrator and lead-agent skills and the PR template point here; none keeps its own copy.
+Everything not on it is decided by an agent, reviewed by another agent, and merged.
+
+Each item has a **big** side, which waits for him. Four of the six also have a **small**
+side: the senior agent decides those and he reads about them on Monday ("Small calls",
+below). **When in doubt about which side a call is on, it is big.** A big call then
+reaches him in one of two forms, a full question or three lines to approve ("Big calls
+come in two kinds", below).
+
+1. **Roadmap** — *big:* what gets built or dropped; launching a city he has not named
+   (`ACTIVE_CITIES`); opening the site to the public. *Small:* the order of bugs inside a
+   milestone.
+2. **Anything that changes the score or how it is measured** — *all big, nothing small:*
+   the labelling guide (`evals/LABELING.md`) or an attribute's definition; the extractor's
+   instructions (`PRINCIPLES`, the prompt, the tool schema) or its model; the eval's rules
+   and stop lines; his own hand labels (Goldens, unless the issue asks for them); and an
+   eval result over either stop line (the eval gate above: a per-Golden attribute score
+   that lost more than 2 Goldens, or a skill score down more than 0.02).
+3. **Product decisions about what visitors see** — *big:* adding or removing a feature, the
+   homepage and visual direction, the wording of public claims. *Small:* a wording or
+   layout fix, an error message, or which existing filter a bug fix restores, when there
+   is a real choice between two ways to do it. Bug fixes, polish and layout repairs with
+   nothing to choose are not decisions and merge.
+4. **Things that cannot be undone** — *big:* deleting stored jobs, at any count; repairing
+   or replacing more than 5 of them; any change to a Golden or an eval result; anything
+   done with no backup. *Small:* repairing or replacing up to 5 stored jobs, when the
+   change was tried on a copy of the database first and last night's backup exists.
+5. **Money** — *big:* a one-off spend above €10 (a re-read whose `reread-cost` figure is
+   above €10 counts); a recurring cost above €10 a week, or one he cannot switch off.
+   *Small:* a new recurring cost up to €10 a week that he can switch off, and a one-off
+   spend up to €10 that no ticket called for. (A re-read up to €10 that a ticket's own
+   change sets off is neither: the PR states the figure and the merge is the approval,
+   "Deciding alone vs. stopping" above.)
+6. **Agents changing their own rules** — *all big, nothing small:* the rules gate above:
+   one short "Did you authorize these?" list in the PR.
+
+**Small calls: the senior agent decides, Monday reports** (Chandler, 2026-11-12, HIR-278:
+a question whose answer is always "do what you recommend" is an interruption, not a
+decision).
+
+- **Who decides.** The decider says which side a question is on (its `SMALL CALL` reply).
+  The **senior agent** then decides it and takes its own recommendation. Never the worker
+  that asked, and never the decider.
+- **What the senior agent needs.** The proof the small side names, in the worker's notes:
+  for stored data, what was run on the copy of the database and what it changed, and the
+  listing that shows last night's backup; for money, the figure and the switch that turns
+  the cost off. Without it the senior agent answers `ON CHANDLER'S LIST`, which is the
+  big side.
+- **Where it is written.** In the PR body under **Decided for you**, one line: what was
+  decided, why, and how to undo it, in words he can read without the repo. With no PR, the
+  same line as a comment on the ticket, headed **Decided for you**. It also goes under
+  "Escalations", like any call to the senior agent.
+- **The reviewer checks it** like any other line of the PR: the call is on the small side,
+  the proof is in the PR body, the undo is real. Proof missing is a send-back; a call that
+  is not small is `needs-chandler`.
+- **Monday.** The summary's **Decided for you** part lists every such line from the week's
+  merged PRs (`app/merged_work.py` reads the PR bodies); the lead agent adds the ones
+  made in a ticket with no PR.
+- **If he reverses one on Monday**, that kind of call moves to the big side: the agent
+  applying his answer records it in the decisions log (a new file in `decisions/`) and
+  changes this list, in a PR that
+  passes the rules gate like any other.
+- **What stays in code whatever this list says.** A PR that touches the labelling guide or
+  the agents' own rule files is never merged by GitHub's merger
+  (`scripts/merge_reviewed.py`) and never passes the rules gate without his answer.
+  HIR-278 asked for one more small call, "a PR that only carries out a rule change he
+  already approved in a ticket merges after review". It was left out: agents act under
+  his own GitHub and Linear logins, so no label or comment can show that he, not an agent,
+  approved a ticket.
+
+**Big calls come in two kinds: to think about, and to approve** (Chandler, 2026-11-14,
+HIR-297: "shrink the scope of tickets that I make decisions about to stuff that will help
+me learn important career-related skills. Otherwise ... a recommendation of what to do
+with an *extremely short* brief on what it is and why"). This sorts the big side only. It
+puts nothing on the list and takes nothing off it: a call that was not big is still not
+asked, a small call is still decided for him, and no big call is decided without his yes.
+
+- **To think about: he works it out.** A big call is this kind only if working it out
+  teaches something an AI engineer or data scientist is hired for. On this project:
+  - how quality is measured: the labelling guide, answer keys, the eval's rules and stop
+    lines, reading eval results;
+  - the model and its instructions: what the extractor is told, which model reads
+    postings, and the trade-off against cost;
+  - cost engineering: batching, caching, when to re-read, cheaper models;
+  - how the system is designed: data model changes, how agents and their tools are built,
+    the Claude connection (MCP), observability;
+  - data-science work on the collected data.
+
+  It comes as a real question: the situation in two sentences; one line per option (three
+  at most) with what it changes and what it costs; a recommendation and why; and one line,
+  **What you would learn**, saying what digging in would teach him. He may ask for a
+  walkthrough or do it hands-on.
+- **To approve: he says yes or no.** Every other big call: roadmap order, launch chores
+  (domain, legal pages, analytics), visual and wording choices beyond the small side,
+  which jobs count as in scope, duplicate and location rules, deleting stored data, spend
+  above the small limit, and changes to the agents' own rules. He still has to say yes,
+  but he is not asked to think it through. The form is fixed, three lines at most:
+
+  > **Recommend:** <what to do, one sentence>.
+  > **What it is:** <one sentence, plain words>.
+  > **Why:** <one sentence>.
+
+  He answers yes or no; a no gets one follow-up line from him or nothing. No options list,
+  no background, no ticket ids in the sentences (a link at the end is fine). **If it
+  cannot be said in those three lines, it is not ready to ask.**
+- **Who says which kind.** The **senior agent**, by the two lists above. **When unsure
+  whether a call teaches a career skill, it is to approve**: his time for thinking is the
+  scarce thing. **Anything about how quality is measured is always to think about, never
+  downgraded.** A change to the agents' own rules is to approve; designing a new agent or
+  tool is to think about. The reviewer cannot call the senior agent: it keeps the kind a
+  PR already states, and for a big call it finds itself it uses those fixed cases, and
+  otherwise to approve.
+- **How a question says its kind.** The comment that puts it to him, and each line under
+  a PR's "Needs Chandler", starts with the heading **To approve** or **To think about**.
+  Monday's list and the lead agent's count read the kind from that heading.
+- **Where each kind shows.** Monday's "Decisions waiting for you" has the two headings:
+  **To think about**, at most 3 a week, and **To approve**, the rest of the weekly 10
+  ("The lead agent", below). Only the to-think-about pile slows the lead agent down.
+
+How the list is used:
+
+- **A question on the list** goes to the decider first, like any question. A written rule
+  answers it; with no rule, the decider says which side it is on. Small goes to the senior
+  agent (above). Only a big one reaches Chandler, as a Linear comment that @mentions him,
+  in the form for its kind ("Big calls come in two kinds", above).
+  **A question not on the list never reaches him**: the decider answers it from the rules,
+  or by the closest rule and precedent when none fits exactly, and the worker records the
+  answer under "Decisions taken".
+- **A PR whose change is on the big side** gets `needs-chandler` and an @mention, and waits
+  for him. It is the only kind of PR that pings him. A PR whose only items on the list are
+  small calls the senior agent decided merges after review.
+- **Which files trip it** is the reviewer's check (`.claude/agents/reviewer.md`, step 3).
+  The labelling guide is also refused by GitHub's own merger
+  (`scripts/merge_reviewed.py`), so it stops even if the reviewer slips.
+
+**Stops that are not questions for Chandler** — the run stops and says so in the session,
+but asks him nothing: the branch and `TICKET` disagree ("Starting a session"); a hot-spot
+file is already changed on another open PR (wait for that PR to merge).
+
+**Findings go back to the author, not to Chandler** (HIR-262). A reviewer finding that is
+not on the list — a missed test, an unmet "Done when" item, a scope slip, a red check, a
+conflict, a PR body missing its eval table or its cost figure — is sent back with the exact
+fix asked for. The reviewer labels the PR `sent-back` and writes the fixes in one comment
+headed **Review: sent back**. The author fixes it (the same session, or a fresh worker on
+the same branch — `/work-issue` "Fixing a sent-back PR"), and a **fresh** reviewer reviews
+again. The second fix round is not the same author's: a finding that survives one fix is
+handed to a **fresh worker on the strongest model** (the ladder below), on the same branch.
+At most two rounds: a third send-back becomes `needs-chandler` **with no @mention**, and
+reaches Chandler in the Monday summary, not as a ping.
+
+**Escalate to a stronger agent before a person** (Chandler, 2026-11-12, HIR-262). A worker
+runs on whatever model its session started with; when it is stuck, it climbs a ladder, and
+Chandler is the last rung only for an item on the big side of his list:
+
+- **A rules question** ("am I allowed to…", "which rule applies") → the `decider`
+  (`.claude/agents/decider.md`).
+- **A hard technical question** — a design choice inside the ticket's scope, a bug it
+  cannot find, a test it cannot make pass after two tries → the `senior` agent
+  (`.claude/agents/senior.md`): strongest model, the repo read-only, plus the worker's
+  notes. It answers with a decision and a reason; the worker carries it out and records it
+  under "Decisions taken".
+- **A reviewer finding that survives one fix round** → a fresh worker on the strongest
+  model (above).
+- **A small call on Chandler's list** ("What Chandler is asked", above) → the decider
+  names it, the `senior` agent decides it, and it is reported on Monday.
+- Only when the senior agent or the decider says the question is on the big side of
+  Chandler's list does it reach him — already written by the senior agent in the form for
+  its kind: three lines to approve, or a full question to think about.
+
+Every escalation is recorded in the PR body under **Escalations**: who asked, what, what
+was answered — so the Monday summary can say how often it happened.
+
+**The model ladder — the one place it is written.** The decider, the reviewer and the
+senior agent pin the strongest model; a fresh worker sent to fix a second round is started
+on it. If a spawn fails because that model is unavailable (credits, access, outage), spawn
+the same agent again on the next rung down, and say which one answered under "Decisions
+taken":
+
+1. Fable 5.1 (`claude-fable-5-1`; the Agent tool's `fable`)
+2. Opus 5.5 (`claude-opus-5-5`), effort `xhigh`
+3. Sonnet 5.5 (`claude-sonnet-5-5`), effort `xhigh`
+
+Retry on availability errors only. A wrong answer is not a reason to try a bigger model.
 
 **Questions go to the decider agent before they go to Chandler.** `.claude/agents/decider.md`
-(Fable) reads only AGENTS.md, DECISIONS.md, taxonomy/README.md and evals/LABELING.md, and
+(Fable) reads only AGENTS.md, the decisions log (`decisions/` and DECISIONS.md),
+taxonomy/README.md and evals/LABELING.md, and
 answers the question from them. It returns either an answer with the rule it rests on (the worker
-applies it and notes it under "Decisions taken"), or "no rule covers this" plus the
-question rewritten per "How to write anything Chandler reads". Only the second kind
-reaches Chandler: a comment on the Linear issue that @mentions him, two sentences of
-situation, one line per option with its consequence, a recommendation. His answer is
-written into DECISIONS.md so it is never asked again. Meanwhile the worker does any step
+applies it and notes it under "Decisions taken"), or "small call" (the senior agent decides
+it, above), or — only for a question on the big side of Chandler's list — "no rule covers
+this", with the situation and its recommendation. The worker takes that to the senior
+agent, which says which kind of big call it is and writes it in that kind's form ("Big
+calls come in two kinds", above). Only that reaches Chandler: a comment on the Linear
+issue that @mentions him, headed **To approve** (the three lines) or **To think about**
+(the full question). His answer is
+written into the decisions log (a new file in `decisions/`) so it is never asked again. Meanwhile the worker does any step
 that doesn't depend on the answer, and stops.
 
 **Autopilot is the default** (HIR-120). `/work-issue HIR-n` runs unattended: no "go" on
@@ -570,32 +815,64 @@ reads before merging, not a thing anyone applies by hand. A NO RULE from the dec
 still stops the run — guessing is not autopilot.
 
 An issue runs **attended** only when Chandler wants to be in it: `/work-issue HIR-n
-attended`, or the Linear label `attended` on the issue (he applies that one, or an agent
-filing an issue that plainly needs him — a direction call, a public-facing change, work
-he asked to be involved in). Attended means the brief waits for his "go" and the PR waits
-for his merge.
+attended`, or the Linear label `attended` on the issue. He applies that label, or an agent
+filing an issue whose work is on the big side of his list above. Attended means the brief waits for his
+"go" and the PR waits for his merge.
 
-What keeps the default safe is the stop list above and the reviewer's file stop-list,
-which apply to every run regardless of label.
+What keeps the default safe is his list above, the reviewer's file checks and the rules
+gate, which apply to every run regardless of label.
 
 **Who merges.** A worker never merges its own PR. For an `autopilot` issue the
 `reviewer` agent (`.claude/agents/reviewer.md`, fresh context, Fable) merges when CI is
-green, the diff stays in scope and off the stop-list files, "Needs Chandler" is empty,
-every decision has an undo and every follow-up a ticket; otherwise it labels the PR
-`needs-chandler` and @mentions Chandler on the issue. A PR that changes the agents' own
+green, the diff stays in scope and off the big side of Chandler's list, "Needs Chandler" is empty,
+every decision has an undo and every follow-up a ticket. A finding not on his list is sent
+back to the author (above); one on its big side gets `needs-chandler` and an @mention.
+
+**A reviewer that cannot open the ticket is handed it, by a session that did not write
+the code** (HIR-306, DECISIONS 2026-11-16). Some cloud sessions start a reviewer without
+the Linear tools; why is not known. That reviewer does not review and labels nothing: it
+comments `**Review: could not reach the ticket**` and replies `NO TICKET`. The
+orchestrator, or the lead agent, then opens the ticket itself and starts a fresh reviewer
+with the ticket word for word (status, labels, description, comments), and the review
+comment says the ticket came that way. The author of a PR never supplies the ticket, and
+the PR body is never the ticket. If that fails too, the lead agent's next run reviews the
+PR again, whatever its label; only a third "could not reach the ticket" on one PR is
+labelled `needs-chandler`.
+
+**The reviewer also labels a passed PR `review-passed`, and GitHub merges it from there**
+(HIR-262). `.github/workflows/merge-reviewed.yml` runs `scripts/merge_reviewed.py` when that
+label is added and whenever a required check finishes, and merges the PR when it is
+`clean`, carries no `needs-chandler`, and touches neither a rule file nor the labelling
+guide. It is the fallback for a session whose own safety check refuses the merge command (the
+Mac setup under "Starting a session"); no session setting can block it. Removing the label
+or adding `needs-chandler` stops it. **Only the reviewer adds `review-passed`** — a worker
+labelling its own PR is merging its own PR. The workflow cannot bring a branch up to date
+(a push made with a workflow's token starts no checks), so that stays the reviewer's job,
+below; and because a merge made with that token fires no `push`, the script starts the CI
+workflow on main itself, which is what deploys. A PR that changes the agents' own
 rules is never merged by any run — the rules gate above. At most one PR that re-reads every
 job (taxonomy, prompt, model) merges per day. PRs for `attended` issues always wait for
 a person.
 
-**No person presses anything: the reviewer merges, or arms auto-merge and GitHub does it**
-(HIR-136, HIR-157). The reviewer reads `mergeable_state` and that picks the command. A
+**No person presses anything: the reviewer merges, or labels the PR and GitHub does it**
+(HIR-136, HIR-157, HIR-151). The reviewer reads `mergeable_state` and that picks the path. A
 `clean` PR — required checks already green, branch up to date — is **merged directly**,
-`gh pr merge <n> --merge`, because GitHub refuses to arm auto-merge on a PR that can
-already merge, and the reviewer usually arrives after CI has finished. Any other state gets
-`gh pr merge <n> --merge --auto`, which tells GitHub to merge the PR the moment its
-required checks are green. Neither is a human merge, and neither can get round the checks:
-the ruleset requires all three, so a merge command on a PR whose checks are not green is
-refused by GitHub. Any other error from either command is `needs-chandler` with no retry.
+`gh api -X PUT repos/:owner/:repo/pulls/<n>/merge -f merge_method=merge`, and the reviewer
+usually arrives after CI has finished. Any other state gets no merge command: the
+`review-passed` label is already on, the reviewer brings the branch up to date, and
+GitHub's merger (above) merges the PR the moment its required checks are green. Neither is
+a human merge, and neither can get round the checks: the ruleset requires all three, so a
+merge command on a PR whose checks are not green is refused by GitHub. Any other error from
+the merge command is `needs-chandler` with no retry.
+
+**The agents talk to GitHub through `gh api` only** (HIR-151). In a scheduled cloud run
+`gh pr list`, `gh pr create`, `gh pr edit`, `gh pr checks` and `gh pr merge` all fail, and
+`gh auth status` wrongly reports a bad token, while `gh api` works there and on the Mac. So
+the reviewer, the skills and the lead agent use `gh api` for pull requests, labels and
+merges. That is also why the reviewer no longer arms GitHub's auto-merge, which has no
+`gh api` form: the `review-passed` label does that job in both places. The Linear
+connection likewise has two names — `mcp__claude_ai_Linear__…` on the Mac, `mcp__Linear__…`
+in a cloud run — and the reviewer is allowed both.
 There is **no merge queue** on this repository and there cannot be — GitHub offers queues
 only on organization-owned repositories, and this one belongs to a personal account.
 HIR-124 wrote a queue into these rules anyway, which is why every autopilot PR stalled
@@ -603,7 +880,7 @@ until HIR-136.
 
 Because nothing is testing each PR against the latest main for us, **being behind main is
 the reviewer's job**: `main` requires branches to be up to date before they merge
-(`strict_required_status_checks_policy`, still on as of 4 Nov), so after arming auto-merge
+(`strict_required_status_checks_policy`, still on as of 4 Nov), so after labelling the PR
 the reviewer brings the branch up to date and the checks re-run. That is also why the two
 merge paths above never overlap — with that policy on, a branch behind main reports
 `behind`, never `clean`. A
@@ -612,11 +889,36 @@ produced the duplicate edits of 3 Nov; the point is that it happens once, at the
 not by the author. A real conflict drops the PR back to its author, which is the one case
 that is still the worker's.
 
-**Every merge happens from the run that reviewed it.** There is no timer and no scheduled
-cloud reviewer: an autopilot `/work-issue` waits for CI at the end of its own run and
-starts the `reviewer` agent on the PR it just opened; inside an orchestrator the
-orchestrator does that instead. A run that stops before merging leaves its PR labelled
-`needs-chandler` and says so, rather than leaving it for something to pick up later.
+**A pull request that collides with main is repaired by the next lead agent run**
+(HIR-305, decisions/2026-11-16-hir-305). GitHub reports such a pull request as `dirty`,
+and nothing merges it until main is brought into its branch. The lead agent hands every
+one to `scripts/lead_pick.py`, which says which may be repaired (never a third try, never
+a `hands-on` or `parked` ticket, never an `attended` one he is working in, never one a run
+may still be on), and starts a worker with `/work-issue HIR-n repair`; a fresh reviewer
+follows, unless the pull request is waiting for Chandler or for a reviewer's fixes. The
+worker's rules are in `/work-issue` "Repairing a collided pull request", and the first of
+them is code: `scripts/collision.py` keeps both sides only where both merely added text
+at the same place in a prose file (a log, a list). Every other collision (the same lines
+changed on both sides, a deleted file, anything in code or data) is not guessed at: it
+goes to the senior agent, and if the senior agent cannot settle it without deciding
+something on Chandler's list, to him as three lines to approve. A pull request that is
+waiting for him is repaired too, with its labels untouched, because he cannot merge a
+conflicted one.
+
+**Every merge follows a review from the run that opened the PR.** There is no timer and no
+scheduled cloud reviewer (the lead agent, below, only picks up what a dead run left): an autopilot `/work-issue` waits for CI at the end of its own run
+and starts the `reviewer` agent on the PR it just opened; inside an orchestrator the
+orchestrator does that instead. GitHub's merger acts only on the reviewer's label. A run
+that stops before a review passes leaves its PR labelled `needs-chandler` **without an
+@mention** and says so in its reply, rather than leaving it for something to pick up later.
+
+**How Chandler hears about it: once a week, not per PR.** A Monday summary — what merged,
+in plain words, grouped by what a visitor would notice; what was sent back and fixed; the
+short "needs you" list; and "Decided for you", the small calls the senior agent made, each
+with how to undo it (HIR-278). No message for work that merged. Until that summary exists
+(HIR-264), the open PRs labelled `needs-chandler` are the "needs you" list. The summary's
+"needs you" part covers pull requests only; the decisions waiting in tickets reach him in
+the same Monday post, in a comment the lead agent adds ("The lead agent", below; HIR-277).
 
 **A Linear description is appended to, never replaced** (HIR-124). Two agents overwrote
 HIR-112's description on 3 Nov. Any agent — worker, decider, reviewer, orchestrator —
@@ -624,8 +926,87 @@ changing a description it did not write in this session uses `save_issue` with `
 (`append`, `insert_after`, or a single-match `replace`), or just adds a comment. A full
 `description` field replace is only for a description this session wrote.
 
+### The lead agent
+
+**Several times a day, every day, a scheduled cloud run decides what is worked on and
+starts it** (HIR-266, DECISIONS 2026-11-12; full speed since HIR-280, DECISIONS
+2026-11-14). `/lead-agent` (`.claude/skills/lead-agent/`) reads the checks and the open
+pull requests, labels tickets nobody labelled, unsticks pull requests whose run died,
+starts every ticket in Todo that can run without Chandler, in the approved launch order
+(the Linear document "Autopilot: launch order to 16 Dec"), hands them to
+`/work-issue-orchestrator`, keeps 5 such tickets waiting in Todo, and writes one comment
+per run on the Linear issue "Lead agent log". It writes no code and runs no merge command.
+
+**There is no number of tickets per day** (Chandler, 2026-11-12: "Run as many tickets as
+we can, as long as we're not creating conflicts or creating a pile-up of really big
+decisions that I need to make"). What slows it down, and nothing else:
+
+1. **Collisions.** One ticket per area of the code at a time; the second waits for the
+   first to merge. The orchestrator's check on files already changed by an open pull
+   request stays.
+2. **The decision pile.** While 10 or more decisions are waiting for Chandler to think
+   about (that kind of big call only; "Big calls come in two kinds", above, HIR-297), a
+   ticket likely to add another is held, and the log says so. Recommendations waiting for
+   his yes do not count, and tickets that cannot produce a decision for him to think
+   about keep running.
+3. **Money.** The day's model-call cap (`config/lead_agent.json`, €2 a day over all of
+   that day's runs; `0` stops every run). Raising it is Chandler's (his list, item 5).
+4. **One re-read a day** of the stored jobs.
+5. **A red main branch or robot visitor.** Only the repair is started until it is green.
+6. **Two failures.** A ticket that failed twice waits for Monday.
+
+**Its hard limits are code**, not instructions: `scripts/lead_pick.py` decides which
+tickets may start, and the lead agent starts nothing else. Besides the six above: never a
+ticket labelled `attended`, `hands-on` or `parked`; never a ticket whose model-call cost
+it cannot know; nothing more on a day when a run hit the Claude plan's usage limit (every
+run uses Chandler's plan; it reports the limit in the log and does not retry).
+
+**Monday.** The lead agent adds the week's pace to the Monday summary: how many tickets
+ran, how many are left that can run without him, how many decisions are waiting to think
+about and how many to approve. When
+fewer than 5 are left it says so plainly: the project is then waiting on his decisions,
+not on agents.
+
+**Monday also carries the decisions waiting in tickets** (HIR-277, DECISIONS 2026-11-14).
+The lead agent adds one comment to the Monday summary, headed **Decisions waiting for
+you**: at most 10 (`config/lead_agent.json`), under two headings (HIR-297). **To think
+about**, at most 3 a week, each a full question answerable without opening the ticket;
+**To approve**, the rest of the 10, each the three lines of a recommendation. Then how many
+more are waiting; then up to 3 lines of work he does with an agent, under **Yours this
+week**. Which tickets, in what order and how many is code (`monday_decisions` in
+`scripts/lead_pick.py`): what blocks the current launch milestone, then what blocks a
+ticket in Todo, then the oldest. The lead agent writes the sentences and answers nothing.
+
+**His answer is a comment on the ticket, and the next run applies it.** Agents write
+under his Linear login, so the author of a comment proves nothing. A comment counts as
+his answer only on a ticket where an agent asked him a question, only when it is newer
+than that question and is not an agent's own comment (`answer_candidates` in the same
+script rules those out by how they start), and only when it picks an option or leaves
+the agent nothing to choose. The lead agent then marks the ticket with a comment headed
+**Answered**, so it is never asked again, and removes `attended` when the work left can
+run alone; a worker writes the answer into the decisions log in a normal pull request. This
+moves a ticket into the ordinary path and nothing more: review, the big side of his
+list and the rules gate apply to what follows, and each applied answer is shown to him
+the next Monday under **Applied from your answers**. An `attended` ticket nobody asked
+him about keeps its label whatever is written on it.
+
+**The four ticket labels.** `autopilot` (or none): agents build, review and merge.
+`attended`: Chandler is in it; no agent picks it. `hands-on`: Chandler writes the code; no
+agent touches it. `parked`: not before launch; only Chandler removes the label.
+
+**The off switch.** Pausing the scheduled task on Chandler's Claude account stops
+everything the lead agent does. Adding the label `attended` to a ticket takes that one
+ticket away from agents.
+
+**It is the one exception to "every merge follows a review from the run that opened the
+PR"** (above): when that run died, the lead agent starts a fresh worker on a sent-back
+pull request or a fresh reviewer on an unreviewed or unmerged one, including one whose
+reviewers could not open the ticket (above, HIR-306). The reviewer still does the merging.
+It also starts the repair of a pull request that collides with main ("Who merges", above,
+HIR-305), whether or not the run that opened it is still alive.
+
 `/work-issue-orchestrator HIR-a HIR-b …` runs a batch: pick, one worker per issue in
-parallel worktrees, reviewer merges the autopilot PRs, `attended` ones pause for
+parallel worktrees, reviewer merges the autopilot PRs or sends them back to their worker, `attended` ones pause for
 Chandler's go and wait for his merge, one report. More than one orchestrator may be
 running, each blind to the other's workers: the shared state is the Linear issue status
 (the claim) and the open PRs (what files are taken), never a session's own table.
@@ -634,9 +1015,11 @@ running, each blind to the other's workers: the shared state is the Linear issue
 
 `.claude/skills/` holds the repeatable procedures. `/work-issue HIR-n` takes a Linear
 issue to a PR; `/work-issue-orchestrator` runs a batch of issues through work, review and
-merge; `/check-url` audits feed coverage for careers-page URLs; `/mutation-test` checks
+merge; `/lead-agent` is the scheduled run that picks the batch ("The lead agent", above); `/check-url` audits feed coverage for careers-page URLs; `/mutation-test` checks
 whether tests catch deliberate breaks (on demand, ~25 min, never per PR). `.claude/agents/` holds
-the `decider` (answers questions from the rules) and the `reviewer` (merges autopilot PRs). When a procedure
+the `decider` (answers questions from the rules), the `senior` agent (answers hard technical
+questions, strongest model) and the `reviewer` (merges autopilot PRs, or
+sends them back to their author). When a procedure
 has been typed into a session twice, it belongs here; when one fails, fix the skill, not
 the conversation.
 

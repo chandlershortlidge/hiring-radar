@@ -1,0 +1,50 @@
+# Run the robot visitor (web/e2e/site-watch.spec.js) against the live site once (HIR-258).
+# Never fails the job by itself: it reports `ok` and leaves web/watch-out/ (report.json,
+# screenshots of failures) uploaded as an artifact, so the caller decides what a failure
+# means — roll back after a deploy, or only file a ticket on the morning run.
+name: Robot visitor
+description: Walk the live site like a visitor and report whether anything broke.
+inputs:
+  site:
+    description: The site's origin.
+    required: true
+  login:
+    description: '"user:password" for the site''s login (the SITE_LOGIN secret).'
+    required: true
+  artifact:
+    description: Name for the uploaded web/watch-out folder.
+    required: true
+outputs:
+  ok:
+    description: '"true" every path passed; "false" something broke; "nologin" the login secret is missing, so nothing was checked.'
+    value: ${{ steps.run.outputs.ok }}
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 22
+        cache: npm
+        cache-dependency-path: web/package-lock.json
+    - shell: bash
+      working-directory: web
+      run: npm ci && npx playwright install --with-deps chromium
+    - id: run
+      shell: bash
+      working-directory: web
+      env:
+        WATCH_URL: ${{ inputs.site }}
+        WATCH_AUTH: ${{ inputs.login }}
+      run: |
+        if [ -z "$WATCH_AUTH" ]; then
+          echo "::error::SITE_LOGIN secret is not set; the robot visitor cannot get past the site's login."
+          echo "ok=nologin" >> "$GITHUB_OUTPUT"; exit 0
+        fi
+        if npm run watch; then echo "ok=true" >> "$GITHUB_OUTPUT"; else echo "ok=false" >> "$GITHUB_OUTPUT"; fi
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: ${{ inputs.artifact }}
+        path: web/watch-out/
+        if-no-files-found: ignore
+        retention-days: 30

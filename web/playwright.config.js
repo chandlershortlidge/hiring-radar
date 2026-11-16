@@ -11,6 +11,7 @@ import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
   testDir: "e2e",
+  testMatch: "before-after.spec.js",
   outputDir: `${process.env.SHOT_OUT || "shots-out"}/_playwright`,
   workers: 1,
   retries: 0,

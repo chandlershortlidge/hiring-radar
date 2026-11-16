@@ -263,7 +263,10 @@ def test_the_migration_backfills_read_version_from_the_existing_stamp(tmp_path):
             shutil.copy(f, before / f.name)
     c = db.connect(tmp_path / "old.db")
     db.migrate(c, before)
-    ingest_one(conn=c, p=Posting("arbeitnow", "a1", "", "Co1", "AI Engineer", "Berlin", TEXTS[1]))
+    # A plain insert: today's ingest writes tables (job_place, HIR-289) this old schema lacks.
+    c.execute("INSERT INTO job (company, title, city, description_text, first_seen, last_seen)"
+              " VALUES ('Co1', 'AI Engineer', 'Berlin', ?, '2026-11-01T00:00:00Z', '2026-11-01T00:00:00Z')",
+              (TEXTS[1],))
     c.execute("UPDATE job SET extracted_version='x2-old'")
     c.commit()
     db.migrate(c)

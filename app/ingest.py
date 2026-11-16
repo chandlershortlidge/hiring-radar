@@ -8,11 +8,17 @@ Does: for each posting decide, in order —
      board feeds (REPOST_SOURCES) can say that; a second id listed at the same time is a
      concurrent duplicate and just merges;
   3. otherwise insert a new job.
+Every place a sighting names is recorded against its job in `job_place`, on all three
+paths, so a posting for Berlin and Munich — or a Munich copy merged into a Berlin job —
+counts under both (HIR-289); `job.city` stays the first place.
 Also applies the title/city filters so feeds' unrelated postings never become rows:
 a title needs both an AI/ML domain term and a technical role term. A posting with no
 company is dropped here too (HIR-207): dedup matches on company first, so a blank-company
 row can never be recognised as a duplicate and every repost of it from another source
-becomes a second row. A posting whose company name reads as a recruitment agency or a job
+becomes a second row. A feed posting that was already dropped for reading blank twice is
+passed over as well (HIR-176): dropping deletes the job, so without the memory in
+`dropped_posting` the feed's next listing of it would be stored, read twice and dropped
+again every day. A posting whose company name reads as a recruitment agency or a job
 portal is dropped as well, but only when it came from a country-wide source (HIR-220):
 board sources are screened before the board is ever added, and a posting a person added by
 hand was chosen deliberately. A new job is labelled with its job family (family_of, from the title
@@ -40,7 +46,7 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 
 from app import dedup
-from app.geo import active_place, place_of
+from app.geo import active_place, place_of, places_of
 from app.sources import Posting, registry
 
 # A title is in scope only when it names an AI/ML domain AND a technical role. Either half
@@ -193,6 +199,7 @@ SKIPPED_TITLE = "skipped_title"
 SKIPPED_CITY = "skipped_city"
 SKIPPED_COMPANY = "skipped_company"
 SKIPPED_AGENCY = "skipped_agency"    # a country-wide source published an agency's posting
+SKIPPED_UNREADABLE = "skipped_unreadable"   # a feed re-listed a posting dropped for reading blank twice
 
 
 @dataclass(frozen=True)
@@ -208,8 +215,8 @@ class Screenshot:
 class Stored:
     """What storing one posting did, so no caller has to read it out of a string.
 
-    `kind` is one of the eight constants above. `job_id` is the job the posting ended up
-    on, and is None only for the four skipped kinds, where no job was touched.
+    `kind` is one of the nine constants above. `job_id` is the job the posting ended up
+    on, and is None only for the five skipped kinds, where no job was touched.
     """
 
     kind: str
@@ -235,12 +242,14 @@ class Report:
     skipped_city: int = 0
     skipped_company: int = 0
     skipped_agency: int = 0
+    skipped_unreadable: int = 0
     new_job_ids: list[int] = field(default_factory=list)
 
     def line(self) -> str:
         return (f"seen={self.seen} new={self.new} still_listed={self.still_listed} merged={self.merged} "
                 f"reposts={self.reposts} skipped_title={self.skipped_title} skipped_city={self.skipped_city} "
-                f"skipped_company={self.skipped_company} skipped_agency={self.skipped_agency}")
+                f"skipped_company={self.skipped_company} skipped_agency={self.skipped_agency} "
+                f"skipped_unreadable={self.skipped_unreadable}")
 
 
 def _candidates(conn: sqlite3.Connection, company: str | None) -> list[dedup.Candidate]:
@@ -255,7 +264,7 @@ def _candidates(conn: sqlite3.Connection, company: str | None) -> list[dedup.Can
 def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
                require_city: bool = True, found_via: str | None = None,
                trust_title: bool = False, fetched_ids: frozenset[str] | None = None,
-               screenshot: Screenshot | None = None) -> Stored:
+               screenshot: Screenshot | None = None, skip_dropped: bool = False) -> Stored:
     """Store one posting; see `Stored` for what comes back.
 
     trust_title skips the title filter — for postings a person chose by hand. It does not
@@ -265,6 +274,9 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
     screenshot is the image the posting was read off; it is written in the same
     transaction as the new job, and only when a new job is created (a posting that merges
     into a job already stored leaves that job's image alone, as it always has).
+    skip_dropped passes over a posting whose (source, source_job_id) was dropped for
+    reading blank twice (HIR-176). Only a feed's fetch sets it (`ingest`): a posting a
+    person adds by hand was chosen, and is stored and read whatever happened to it before.
 
     Raises ValueError if `when` is not of the form 2026-11-07T15:42:00Z — a caller's bug,
     not a posting this function can report on (check_timestamp).
@@ -295,7 +307,14 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
             if row:
                 conn.execute("UPDATE job_source SET last_seen=? WHERE id=?", (when, row["id"]))
                 conn.execute("UPDATE job SET last_seen=max(last_seen, ?) WHERE id=?", (when, row["job_id"]))
+                _add_places(conn, row["job_id"], p)
                 return Stored(STILL_LISTED, row["job_id"])
+            # After the still-listed check, so a posting a person stored again by hand is
+            # followed like any other; before dedup, so nothing about it is written.
+            if skip_dropped and conn.execute(
+                    "SELECT 1 FROM dropped_posting WHERE source=? AND source_job_id=?",
+                    (p.source, p.source_job_id)).fetchone():
+                return Stored(SKIPPED_UNREADABLE)
 
         match = dedup.find_match(p.company, p.title, p.description_text, _candidates(conn, p.company))
         if match:
@@ -311,6 +330,7 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
                 (job_id, p.source, p.source_job_id or None, p.url or None, found_via, when, when, p.posted_at))
             conn.execute("UPDATE job SET last_seen=max(last_seen, ?), first_seen=min(first_seen, ?) WHERE id=?",
                          (when, when, job_id))
+            _add_places(conn, job_id, p)
             if is_repost:
                 conn.execute("UPDATE job SET repost_count = repost_count + 1 WHERE id=?", (job_id,))
                 return Stored(REPOST, job_id)
@@ -326,9 +346,18 @@ def ingest_one(conn: sqlite3.Connection, p: Posting, when: str | None = None,
             "INSERT INTO job_source (job_id, source, source_job_id, url, found_via, first_seen, last_seen, posted_at)"
             " VALUES (?,?,?,?,?,?,?,?)",
             (job_id, p.source, p.source_job_id or None, p.url or None, found_via, when, when, p.posted_at))
+        _add_places(conn, job_id, p)
         if screenshot is not None:
             _insert_screenshot(conn, job_id, screenshot)
         return Stored(NEW, job_id)
+
+
+def _add_places(conn: sqlite3.Connection, job_id: int, p: Posting) -> None:
+    """Record every place this sighting names against the job (HIR-289). Only adds: a
+    place an earlier sighting named stays. `job.city` reaches the table by trigger
+    (migration 022), so a new job's first place is already there."""
+    conn.executemany("INSERT OR IGNORE INTO job_place (job_id, place) VALUES (?, ?)",
+                     [(job_id, place) for place in places_of(p.location_raw, p.title, p.description_text)])
 
 
 def ingest(conn: sqlite3.Connection, postings: list[Posting], when: str | None = None,
@@ -339,7 +368,7 @@ def ingest(conn: sqlite3.Connection, postings: list[Posting], when: str | None =
     fetched_ids = frozenset(p.source_job_id for p in postings if p.source_job_id)
     for p in postings:
         r.seen += 1
-        res = ingest_one(conn, p, when, require_city, fetched_ids=fetched_ids)
+        res = ingest_one(conn, p, when, require_city, fetched_ids=fetched_ids, skip_dropped=True)
         if res.is_new:
             r.new += 1
             r.new_job_ids.append(res.job_id)

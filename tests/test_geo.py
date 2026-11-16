@@ -195,3 +195,21 @@ def test_json_ld_telecommute_becomes_a_remote_location():
     p, _ = posting_from_html("u", _ld({**base, "jobLocationType": "TELECOMMUTE",
                                        "applicantLocationRequirements": {"@type": "Country", "name": "USA"}}))
     assert p.location_raw == "Remote (USA)" and place_of(p.location_raw) is None
+
+
+# --- every place a posting names (HIR-289) ------------------------------------------
+
+@pytest.mark.parametrize("loc, places", [
+    # jupus, 2026-11-13: one posting for four of our cities.
+    ("Cologne; Berlin; Frankfurt; Munich; Hamburg", ["Berlin", "Hamburg", "Frankfurt", "Munich"]),
+    # perplexity: San Francisco and New York in one posting.
+    ("San Francisco; New York City", ["San Francisco", "New York"]),
+    ("Belgrade; London; Berlin", ["Berlin"]),
+    ("Berlin or remote", ["Berlin"]),          # a city match still wins over remote
+    ("Remote (EMEA)", [REMOTE_EU]),
+    ("Paris, France", []),
+    (None, []),
+])
+def test_places_of_names_every_tracked_city(loc, places):
+    assert geo.places_of(loc) == places
+    assert place_of(loc) == (places[0] if places else None)

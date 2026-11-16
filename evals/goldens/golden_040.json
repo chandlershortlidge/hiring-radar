@@ -13,6 +13,7 @@
   "degree_or_equivalent": true,
   "degree_signal": "MS or PhD in Computer Science, Electrical Engineering, or a related field, or equivalent practical experience",
   "attrs_reviewed": false,
+  "groups_reviewed": true,
   "source_sha256": "76777d7b5d63061d1e19b704a3e004cbcef6ad4f56ecca3f8f08d38ac1fcd099",
   "labeled_by": [
     "claude-opus-5-5",
@@ -37,12 +38,14 @@
     {
       "skill_id": "ai-ml",
       "requirement": "required",
-      "raw_text": "applied AI systems"
+      "raw_text": "applied AI systems",
+      "alternative_group": 2
     },
     {
       "skill_id": "computer-vision",
       "requirement": "required",
-      "raw_text": "shipping computer vision"
+      "raw_text": "shipping computer vision",
+      "alternative_group": 2
     },
     {
       "skill_id": "cpp",
@@ -77,7 +80,8 @@
     {
       "skill_id": "mlflow",
       "requirement": "nice_to_have",
-      "raw_text": "MLflow"
+      "raw_text": "MLflow",
+      "alternative_group": 4
     },
     {
       "skill_id": "mlops",
@@ -92,7 +96,8 @@
     {
       "skill_id": "onnx",
       "requirement": "nice_to_have",
-      "raw_text": "ONNX"
+      "raw_text": "ONNX",
+      "alternative_group": 3
     },
     {
       "skill_id": "python",
@@ -102,7 +107,8 @@
     {
       "skill_id": "pytorch",
       "requirement": "required",
-      "raw_text": "PyTorch"
+      "raw_text": "PyTorch",
+      "alternative_group": 1
     },
     {
       "skill_id": "software-engineering",
@@ -112,17 +118,20 @@
     {
       "skill_id": "tensorflow",
       "requirement": "required",
-      "raw_text": "TensorFlow"
+      "raw_text": "TensorFlow",
+      "alternative_group": 1
     },
     {
       "skill_id": "tensorrt",
       "requirement": "nice_to_have",
-      "raw_text": "TensorRT"
+      "raw_text": "TensorRT",
+      "alternative_group": 3
     },
     {
       "skill_id": "weights-and-biases",
       "requirement": "nice_to_have",
-      "raw_text": "Weights & Biases"
+      "raw_text": "Weights & Biases",
+      "alternative_group": 4
     }
   ],
   "spot_checked_by_human": [

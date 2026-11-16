@@ -6,9 +6,13 @@
   add-text          add one job from pasted text (reads stdin): --company --title --location --found-via
   add-screenshot    add one job from an image file (stage 1 vision → stage 2): same flags + path
   check             is this careers-page URL already in the DB? If not, why no feed stored it. --add ingests it;
-                    every check is logged for the coverage line in `stats`. Takes many URLs, or --file urls.txt
+                    every check is logged for the coverage line in `stats`. Takes many URLs, or --file urls.txt.
+                    Ends by copying the check log to the server, where misses are counted (HIR-294)
+  receive-checks    the server's end of that copy: reads check records on stdin, stores the new ones
   stats             counts by city and source; share of jobs a feed has seen (legacy imports excluded);
                     checked URLs split by whether a feed can reach them now
+  miss-reasons      why checked jobs were missed: count per reason, per city, per careers system;
+                    --since/--until YYYY-MM-DD pick the range (HIR-290)
   discover-boards   web-search for Greenhouse/Lever/Ashby/JOIN boards we don't poll, check each live, report;
                     --add source:token appends to feeds.json, --reject source:token --reason R remembers a no;
                     --launch CITY applies the written board policy itself and adds what passes
@@ -16,7 +20,13 @@
                     that appear; a dry run by default, --apply writes (HIR-198)
   reread-cost       what a change to the extractor or the skill list would cost to merge:
                     the jobs it would re-read x what a reading has actually cost. Makes no
-                    model call. Put its figure in the PR body (HIR-221)
+                    model call. Put its figure in the PR body (HIR-221). Opens the database
+                    read-only and never applies migrations (HIR-265)
+  caretaker         the morning check of every job source after the poll: logs what is broken and
+                    what it would fix (report-only); Mondays, posts the Monday summary to Linear
+                    when LINEAR_API_KEY is set: what needs Chandler, what merged, what was
+                    sent back and fixed, what broke on the live site (read from the robot
+                    visitor's Linear tickets), then the job sources (HIR-257, HIR-264, HIR-260)
   migrate           apply pending migrations and exit
 
 Database path: $HIRING_RADAR_DB, default ./data/hiring-radar.db.
@@ -31,9 +41,27 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 ROOT = Path(__file__).resolve().parent.parent
-load_dotenv(ROOT / ".env")
 
-from app import add, db, langsmith_live  # noqa: E402
+
+def main_checkout_env(root: Path) -> Path | None:
+    """The main checkout's `.env` when `root` is a git worktree, else None. `.env` is
+    gitignored, so a worktree made for a ticket starts without one and the key was simply
+    missing there (HIR-127). In a worktree `.git` is a file naming its git directory, and
+    that directory's `commondir` points at the main checkout's `.git`."""
+    try:
+        gitdir = root / (root / ".git").read_text().split("gitdir:", 1)[1].strip()
+        common = (gitdir / (gitdir / "commondir").read_text().strip()).resolve()
+    except (OSError, IndexError):
+        return None                      # a normal checkout (`.git` is a directory), or no git at all
+    return common.parent / ".env"
+
+
+# Earlier wins: the real environment, then this checkout's .env, then the main checkout's.
+load_dotenv(ROOT / ".env")
+if (_shared_env := main_checkout_env(ROOT)):
+    load_dotenv(_shared_env)
+
+from app import add, db, langsmith_live, send_checks  # noqa: E402
 from app.check import check_url, checked_coverage, job_coverage, log_check, reach_breakdown  # noqa: E402
 from app.extract import make_client  # noqa: E402
 from app.ingest import Screenshot, job_id_for_screenshot, now_iso  # noqa: E402
@@ -56,6 +84,14 @@ def open_db():
     return conn
 
 
+def require_anthropic_key():
+    """Stop with one clear line when the key is missing. Without this the SDK looks for a
+    credentials file instead and every job fails on its own with an error that never
+    names the key: 510 identical lines on one poll (HIR-127)."""
+    if not os.environ.get("ANTHROPIC_API_KEY", "").strip():
+        sys.exit("ANTHROPIC_API_KEY is not set: add it to .env (see .env.example)")
+
+
 def run_extraction(conn, limit=None, job_ids=None, run_kind=langsmith_live.REREAD, batch=False):
     """Extract pending jobs; `job_ids` narrows to those jobs. The add commands pass the one job
     they added, so adding a posting never triggers a full re-extract after a version bump.
@@ -63,6 +99,7 @@ def run_extraction(conn, limit=None, job_ids=None, run_kind=langsmith_live.REREA
     `run_kind` only names the run in LangSmith (HIR-160). `batch=True` submits the queue
     as one Anthropic Message Batch instead of one call per job (HIR-222) — the poll and a
     full re-read pass it; the add commands never do, since a person is waiting for that job."""
+    require_anthropic_key()
     tax = Taxonomy.load()
     report = extract_pending(conn, tax, limit=limit, job_ids=job_ids, run_kind=run_kind, batch=batch)
     print(report.line())
@@ -86,6 +123,8 @@ def cmd_import_labels(args):
 
 
 def cmd_poll(args):
+    if not args.no_extract:
+        require_anthropic_key()  # before the fetch, so no job is stored that cannot then be read
     try:
         feeds = select_feeds(load_feeds(), args.only)
     except ValueError as e:
@@ -117,6 +156,7 @@ def cmd_add_text(args):
 
 def cmd_add_screenshot(args):
     data = Path(args.path).read_bytes()
+    require_anthropic_key()  # the transcription below is a model call too
     conn = open_db()
     import hashlib
     existing = job_id_for_screenshot(conn, hashlib.sha256(data).hexdigest())
@@ -158,6 +198,16 @@ def cmd_check(args):
             check_one(conn, url, feeds, args)
         except Exception as e:  # one dead page must not stop a batch
             print(f"error: {type(e).__name__}: {str(e)[:200]}")
+    send_checks.after_check(conn, DB_PATH)
+
+
+def cmd_receive_checks(args):
+    try:
+        records = json.loads(sys.stdin.read())["checks"]
+        added, held = send_checks.receive(open_db(), records)
+    except (ValueError, KeyError, TypeError) as e:
+        sys.exit(f"receive-checks: {type(e).__name__}: {str(e)[:200]}")
+    print(json.dumps({"added": added, "already_held": held}))
 
 
 def check_one(conn, url, feeds, args):
@@ -205,6 +255,12 @@ def cmd_stats(args):
             print(f"  {kind:<22}{n}")
     pending = conn.execute("SELECT count(*) FROM proposed_skill WHERE status='pending'").fetchone()[0]
     print(f"proposed skills pending review: {pending}")
+
+
+def cmd_miss_reasons(args):
+    from app import misses
+    for line in misses.report_lines(misses.records(open_db(), args.since, args.until), args.since, args.until):
+        print(line)
 
 
 def cmd_discover_boards(args):
@@ -280,13 +336,65 @@ def cmd_repair_companies(args):
 def cmd_reread_cost(args):
     """The figure that goes in a PR body when the diff touches the extractor or skill list.
 
-    Reads the database only; it never calls the model, so asking the question is free."""
+    Reads the database only; it never calls the model, so asking the question is free.
+
+    Opened read-only and never migrated (HIR-265). Every other command opens the database
+    with `open_db`, which applies this checkout's pending migrations; this one is run from
+    ticket branches against the live database, where that recorded a branch's unmerged
+    migration as applied."""
+    import sqlite3
+
     from app.reread_cost import report_lines, reread_cost
     from app.taxonomy import Taxonomy
-    # This checkout's own skill list: on a branch that only adds skills, the figure counts
-    # only the jobs that would really be re-read (HIR-224).
-    for line in report_lines(reread_cost(open_db(), tax=Taxonomy.load())):
+    if not DB_PATH.exists():
+        sys.exit(f"reread-cost: no database at {DB_PATH}. Nothing was created; point "
+                 "HIRING_RADAR_DB at the database to estimate for.")
+    conn = db.connect_readonly(DB_PATH)
+    try:
+        # This checkout's own skill list: on a branch that only adds skills, the figure
+        # counts only the jobs that would really be re-read (HIR-224).
+        cost = reread_cost(conn, tax=Taxonomy.load())
+    except sqlite3.OperationalError as e:
+        if "no such table" not in str(e) and "no such column" not in str(e):
+            raise
+        sys.exit(f"reread-cost: the database at {DB_PATH} is older than this code and lacks "
+                 f"something the estimate reads ({e}). Nothing was changed: reread-cost never "
+                 "updates a database. Bring it up to date with `python -m app migrate` from "
+                 "main, then ask again.")
+    finally:
+        conn.close()
+    for line in report_lines(cost):
         print(line)
+
+
+def cmd_caretaker(args):
+    """Report-only morning run (HIR-257). Reads feeds.json, never writes it."""
+    from datetime import datetime, timezone
+
+    from app import caretaker_run
+    from app.discover import REJECTED_PATH, rejected_boards
+    from app.sources import brave
+    conn = open_db()
+    day = args.day or datetime.now(timezone.utc).date().isoformat()
+    try:
+        key = brave.api_key()
+        search = lambda q: brave.fetch(q, key)  # noqa: E731
+    except brave.MissingKey:
+        search = None
+    rejected = rejected_boards(json.loads(REJECTED_PATH.read_text())) if REJECTED_PATH.exists() else set()
+    found = caretaker_run.morning(conn, day, json.loads(FEEDS_PATH.read_text()), rejected, search)
+    for f in found:
+        print(f"{f.action:>16}  {f.subject}: {f.detail}")
+    if not found:
+        print("every source worked")
+    linear_key = os.environ.get("LINEAR_API_KEY", "").strip()
+    post = None if (args.no_post or not linear_key) else caretaker_run.linear_poster(
+        linear_key, os.environ.get("LINEAR_TEAM_ID", caretaker_run.LINEAR_TEAM_ID))
+    from app import merged_work, site_watch_week
+    team = os.environ.get("LINEAR_TEAM_ID", caretaker_run.LINEAR_TEAM_ID)
+    caretaker_run.report(
+        conn, day, post, changes=merged_work.week_text,
+        site_watch=lambda start, end: site_watch_week.week_text(start, end, linear_key, team, caretaker_run.post_json))
 
 
 def cmd_migrate(args):
@@ -329,7 +437,13 @@ def main(argv=None):
     p.add_argument("--add", action="store_true", help="ingest the posting if not already stored (and extract)")
     p.add_argument("--found-via", default="company_site", choices=["linkedin", "indeed", "company_site", "referral", "other"])
     p.add_argument("--no-extract", action="store_true"); p.set_defaults(fn=cmd_check)
+    sub.add_parser("receive-checks", help="store check records sent from another machine (stdin, JSON)"
+                   ).set_defaults(fn=cmd_receive_checks)
     sub.add_parser("stats").set_defaults(fn=cmd_stats)
+    p = sub.add_parser("miss-reasons", help="why checked jobs were missed: count per reason, city, careers system")
+    p.add_argument("--since", default=None, metavar="YYYY-MM-DD", help="first day counted (default: the first check)")
+    p.add_argument("--until", default=None, metavar="YYYY-MM-DD", help="last day counted (default: today)")
+    p.set_defaults(fn=cmd_miss_reasons)
     p = sub.add_parser("discover-boards", help="find company job boards we don't poll yet (Brave search)")
     p.add_argument("--add", action="append", default=[], metavar="SOURCE:TOKEN")
     p.add_argument("--reject", action="append", default=[], metavar="SOURCE:TOKEN")
@@ -345,6 +459,10 @@ def main(argv=None):
     sub.add_parser("reread-cost",
                    help="what merging an extractor or skill-list change would spend on re-reading"
                    ).set_defaults(fn=cmd_reread_cost)
+    p = sub.add_parser("caretaker", help="morning check of every job source; report-only (HIR-257)")
+    p.add_argument("--day", default=None, help="judge this day's poll (YYYY-MM-DD, UTC); default today")
+    p.add_argument("--no-post", action="store_true", help="print the summaries, post nothing to Linear")
+    p.set_defaults(fn=cmd_caretaker)
     sub.add_parser("migrate").set_defaults(fn=cmd_migrate)
     sub.add_parser("import-labels",
                    help="load each labeller's own answer from evals/labeling/<run>/raw into the database"

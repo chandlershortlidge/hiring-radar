@@ -9,8 +9,8 @@ Keys and hosts:
 says where it is from.
 
 Budget: the free plan is 200 requests a month, hard limit. One request = one results page
-(~10 postings). Keep `num_pages` at 1 per feed and poll once a day: two feeds a day is
-~60 requests a month.
+(~10 postings). Keep `num_pages` at 1 per feed and poll once a day: each feed is ~30
+requests a month, so five feeds (three German, two New York since HIR-255) is ~150.
 
 Query: `query` is free text ("AI engineer in Berlin"); `country` (ISO code), `date_posted`
 (`all`, `today`, `3days`, `week`, `month`), `page`, `num_pages`.
@@ -20,11 +20,32 @@ carries `job_id`, `job_title`, `employer_name`, `job_description` (plain text),
 `job_apply_link`, `job_google_link`, `job_city`, `job_location`, `job_country`,
 `job_posted_at_datetime_utc`, `job_publisher`, plus salary/benefit fields we do not use.
 
+What a real response has that the docs' sample did not show (HIR-41, from the recorded
+response below):
+- `job_city` and `job_country` are null on most postings (8 of 10), so the location
+  usually comes from `job_location`.
+- `job_location` is not "Berlin, Germany" but the text Google shows, in the search's
+  language, with the publisher appended: "Berlin     •  über LinkedIn"; a region-less
+  remote posting is "Beliebiger Ort   •  über XING" ("Anywhere" only on English searches).
+  Geo still reads the city out of it; the suffix is stored as it comes.
+- `job_uid` is the stable part of `job_id` as a field of its own (see `stable_id` below;
+  equal on all 10 recorded postings). `stable_id` stays the source of the id, because the
+  field is undocumented and stored ids must not change if it disappears.
+- `job_posted_at_datetime_utc` is a date at midnight, never a time of day.
+- `parameters` echoes a `language: "de"` we did not send.
+- Also present, and unused by us: `apply_options`, `job_highlights`,
+  `job_employment_type(s)`, `job_posted_at`, `job_posted_at_timestamp`,
+  `job_latitude`/`job_longitude`, `employer_logo`, `employer_website`.
+Not checked: the docs name both `/jsearch/search` and `/jsearch/search-v2`. We call
+`/jsearch/search` and the daily polls return postings from it; whether v2 differs is
+unknown, and finding out costs a request nobody has asked to spend.
+
 Fixtures: tests/fixtures/feeds/jsearch_recorded.json is a real response (recorded
-2026-11-01, query "machine learning engineer in Berlin"). tests/fixtures/feeds/jsearch.json
-and tests/fixtures/feeds/jsearch_learn4good.json stay hand-built — the former for the
-degenerate records a real response does not contain (no apply link, no city, empty
-description), the latter because no recorded learn4good response exists yet (HIR-107) and
+2026-11-01, query "machine learning engineer in Berlin", `request_id` blanked). The
+hand-built jsearch.json is gone (HIR-41): the degenerate records a real response does not
+contain (no apply link, no city, empty description) are made in the test from a real
+recorded posting with that field removed. tests/fixtures/feeds/jsearch_learn4good.json
+stays hand-built because no recorded learn4good response exists yet (HIR-107) and
 fetching a live one would spend part of the 200-request/month budget.
 
 Aggregator headlines are dropped, in either of two shapes seen live. JobLeads hands Google
@@ -109,18 +130,26 @@ def is_headline(title: str, employer_name: str | None = None) -> bool:
         and _WEDGED_PUBLISHER.search(title))
 
 
-def _location(j: dict) -> str | None:
+def _location(j: dict, country: str | None = None) -> str | None:
     """`job_is_remote: true` becomes "Remote (<country>)" so geo can judge the region;
-    otherwise the city, then the location text."""
+    otherwise the city, then the location text.
+
+    The country is the posting's own `job_country`, else the country the search was run
+    in. For a US posting only a real `job_city` is kept beside it: JSearch fills
+    `job_location` with "Anywhere" for region-less remote postings, and geo reads a bare
+    "Anywhere" as remote-from-the-EU — so a US search's remote jobs landed in Remote (EU)
+    (seen live on the first New York search, HIR-255)."""
     loc = j.get("job_city") or j.get("job_location")
     if j.get("job_is_remote") is True:
-        where = j.get("job_country")
+        where = j.get("job_country") or (country.upper() if country else None)
+        if where == "US":
+            return "; ".join(x for x in (j.get("job_city"), f"Remote ({where})") if x)
         where = {"DE": "Germany"}.get(where, where)
         return "; ".join(x for x in (loc, f"Remote ({where})" if where else "Remote") if x)
     return loc
 
 
-def parse(payload) -> list[Posting]:
+def parse(payload, country: str | None = None) -> list[Posting]:
     items = payload.get("data") if isinstance(payload, dict) else None
     out = []
     for j in items or []:
@@ -136,7 +165,7 @@ def parse(payload) -> list[Posting]:
             url=j.get("job_apply_link") or j.get("job_google_link") or "",
             company=j.get("employer_name"),
             title=title,
-            location_raw=_location(j),
+            location_raw=_location(j, country),
             description_text=text,
             posted_at=j.get("job_posted_at_datetime_utc"),
         ))
@@ -164,4 +193,4 @@ def fetch(query: str, country: str | None = "de", date_posted: str | None = "wee
         raise RuntimeError("JSEARCH_API_KEY is not set")
     url, headers = request(query, country, date_posted, 1, num_pages,
                            host or os.environ.get("JSEARCH_HOST", "openwebninja"), key)
-    return parse(fetch_json(url, headers=headers, timeout=60))
+    return parse(fetch_json(url, headers=headers, timeout=60), country)

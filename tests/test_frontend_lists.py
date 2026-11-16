@@ -1,7 +1,7 @@
 """The dashboard's option lists and the server's validated lists have to match (HIR-203).
 
 The dashboard keeps its own copy of the five job families and of the German / degree /
-production / seniority / time-window filter choices, because each key needs the wording a
+production / seniority / time-window / required-or-nice-to-have filter choices, because each key needs the wording a
 person reads next to it. The server keeps the same keys to validate requests against. The
 two are not derivable from one another and nothing at runtime compares them: add a choice
 on the server and the dashboard silently never offers it; drop one and the dashboard's
@@ -10,7 +10,7 @@ button starts returning "bad value" (HTTP 422).
 This is the cheaper half of HIR-203, and the same answer HIR-200 gave the open-job rule
 and its SQL twin: no endpoint, one test that fails until both sides agree.
 
-Does NOT run the dashboard or parse JavaScript properly — it reads the four literal
+Does NOT run the dashboard or parse JavaScript properly — it reads the literal
 declarations out of the source with a regex, and fails loudly if a declaration it expects
 is missing or stops being a flat literal.
 """
@@ -66,6 +66,7 @@ CHOICE_LISTS = [
     ("PRODUCTION_FILTERS", "format.js", js_keys, tuple(queries.PRODUCTION_FILTERS)),
     ("DEGREE_FILTERS", "format.js", js_keys, tuple(queries.DEGREE_FILTERS)),
     ("WINDOWS", "App.jsx", js_keys, queries.WINDOWS),
+    ("REQUIREMENTS", "App.jsx", js_keys, queries.REQUIREMENTS),  # HIR-206
 ]
 
 

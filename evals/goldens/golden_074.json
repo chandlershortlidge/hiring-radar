@@ -13,6 +13,7 @@
   "degree_or_equivalent": false,
   "degree_signal": null,
   "attrs_reviewed": true,
+  "groups_reviewed": true,
   "source_sha256": "ac6cd00956ff044cc8192ed5f277e9603ac0c06dda7af4a52a81ce854456cf00",
   "labeled_by": [
     "claude-opus-5-5",
@@ -36,12 +37,14 @@
     {
       "skill_id": "aws",
       "requirement": "nice_to_have",
-      "raw_text": "AWS"
+      "raw_text": "AWS",
+      "alternative_group": 2
     },
     {
       "skill_id": "azure",
       "requirement": "nice_to_have",
-      "raw_text": "such as Azure"
+      "raw_text": "such as Azure",
+      "alternative_group": 2
     },
     {
       "skill_id": "ci-cd",
@@ -61,7 +64,8 @@
     {
       "skill_id": "deep-learning",
       "requirement": "required",
-      "raw_text": "deep learning"
+      "raw_text": "deep learning",
+      "alternative_group": 1
     },
     {
       "skill_id": "evaluation",
@@ -76,17 +80,20 @@
     {
       "skill_id": "gcp",
       "requirement": "nice_to_have",
-      "raw_text": "at least one major cloud platform, such as Azure, AWS or GCP"
+      "raw_text": "at least one major cloud platform, such as Azure, AWS or GCP",
+      "alternative_group": 2
     },
     {
       "skill_id": "langchain",
       "requirement": "nice_to_have",
-      "raw_text": "LangChain"
+      "raw_text": "LangChain",
+      "alternative_group": 3
     },
     {
       "skill_id": "langgraph",
       "requirement": "nice_to_have",
-      "raw_text": "LangChain, LangGraph"
+      "raw_text": "LangChain, LangGraph",
+      "alternative_group": 3
     },
     {
       "skill_id": "llm-orchestration",
@@ -101,7 +108,8 @@
     {
       "skill_id": "machine-learning",
       "requirement": "required",
-      "raw_text": "machine learning"
+      "raw_text": "machine learning",
+      "alternative_group": 1
     },
     {
       "skill_id": "n8n",
@@ -131,7 +139,8 @@
     {
       "skill_id": "software-engineering",
       "requirement": "required",
-      "raw_text": "software engineering"
+      "raw_text": "software engineering",
+      "alternative_group": 1
     },
     {
       "skill_id": "vector-databases",
