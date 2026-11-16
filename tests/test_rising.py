@@ -39,3 +39,27 @@ def test_too_few_open_jobs_in_the_previous_period_returns_none():
 
 def test_no_open_jobs_in_the_current_period_returns_none():
     assert skill_change_calculation(0, 0, 29, 100) is None
+
+
+def test_a_skill_under_the_minimum_in_only_one_period_still_gives_a_result():
+    assert skill_change_calculation(6, 100, 0, 100) == {
+        "total_change": 6.0,
+        "current_share": 6.0,
+        "previous_share": 0.0,
+    }
+
+
+def test_exactly_the_minimum_open_jobs_in_each_period_gives_a_result():
+    assert skill_change_calculation(10, 20, 5, 20) == {
+        "total_change": 25.0,
+        "current_share": 50.0,
+        "previous_share": 25.0,
+    }
+
+
+def test_exactly_the_minimum_skill_jobs_in_both_periods_gives_a_result():
+    assert skill_change_calculation(5, 100, 5, 100) == {
+        "total_change": 0.0,
+        "current_share": 5.0,
+        "previous_share": 5.0,
+    }
