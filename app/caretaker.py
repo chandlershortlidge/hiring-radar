@@ -31,7 +31,7 @@ from statistics import median
 from app import poll
 from app.check import default_fetch_board
 from app.discover import harvest, relevant_roles
-from app.sources import Posting
+from app.sources import Posting, registry
 
 ROOT = Path(__file__).resolve().parent.parent
 FEEDS_PATH = ROOT / "config" / "feeds.json"
@@ -46,13 +46,9 @@ CITY_MIN_JOBS = 20             # ...from at least this many; small cities wobble
 DAILY_CAP_EUR = 0.50           # model calls plus searches, per day (HIR-257)
 SEARCH_EUR = 0.005             # one Brave search: $5 per 1,000 (app/sources/brave.py), rounded up
 MAX_CANDIDATES = 5             # boards fetched per moved-board search
-# Where a moved board is looked for: one search per hosted board service.
-BOARD_DOMAINS = {
-    "greenhouse": "job-boards.greenhouse.io",
-    "lever": "jobs.lever.co",
-    "ashby": "jobs.ashbyhq.com",
-    "join": "join.com/companies",
-}
+# Where a moved board is looked for: one search per hosted board service, at the main
+# address the one list of sources gives it. Also the list of what `apply` may pause or move.
+BOARD_DOMAINS = registry.BOARD_MAIN_SITE
 # The only actions there are. Anything else is refused by `apply`, which is how "never
 # deletes, never adds a board, never turns on a city" stays true as code grows.
 ACTIONS = ("none", "report", "pause", "unpause", "switch", "rerun_collection")
