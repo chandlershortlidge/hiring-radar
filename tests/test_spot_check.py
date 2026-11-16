@@ -332,7 +332,7 @@ def test_the_committed_batch_renders_without_an_unlocated_quote():
     cannot find in its posting leaves a reviewer nothing to read."""
     tax = sc.Taxonomy.load()
     goldens = {g["id"]: g for g in sc.batch_goldens()}
-    assert len(goldens) == 22
+    assert len(goldens) == 27
     drawn = sc.draw(sc.pool(list(goldens.values())), 24, 2, 0)
     unlocated = []
     for gid, kind, key in drawn:
