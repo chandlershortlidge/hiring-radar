@@ -36,7 +36,9 @@ under "Needs you" in the log (step 7) as one plain question with a recommendatio
   a ticket out of Backlog unless the launch-order document lists it or a check filed it
   (the caretaker, the robot visitor, a mutation test, an audit).
 - Answer a question that is waiting for him, act on your own recommendation, or change a
-  pull request's `needs-chandler` label.
+  pull request's `needs-chandler` label. Handing a waiting ticket to the `senior` agent
+  when the script names it under `decide` (step 2a, HIR-315) is not answering it: the
+  senior agent decides, you post what it said.
 - Write, edit or commit code, in any ticket. Never start a worker on a `hands-on` ticket.
 - Start anything `scripts/lead_pick.py` did not pick (step 4), or a repair it did not
   list under `repairs`. Its answer is not advice.
@@ -101,7 +103,9 @@ under "Needs you" in the log (step 7) as one plain question with a recommendatio
   `needs-chandler` whose ticket you have not already counted. Each is one of two kinds
   (AGENTS.md "What Chandler is asked", "Big calls come in two kinds"): **to think about**
   or **to approve**. `decisions_waiting` is the to-think-about pile only, because only
-  that pile slows you down; `approvals_waiting` is the other. The kind is the heading of
+  that pile slows you down; `approvals_waiting` is the other, and since HIR-315 it holds
+  only the recommendations that still need his yes (a spend above his limit): every
+  other one is decided for him in step 2a, not counted. The kind is the heading of
   the comment that put the question to him, **To think about** or **To approve**. A pull
   request that waits only because it changes the agents' own rules is to approve; one
   that waits on an eval result over a stop line is to think about. A waiting question
@@ -191,6 +195,32 @@ the small side goes to the `decider`; if it says SMALL CALL, hand the ticket to 
 the ticket as answered (2 to 4 above). It is then reported, not asked. In doubt, it is
 big and it is his.
 
+**A recommendation he would only approve is not asked either, and a question to think
+about is his for one week** (AGENTS.md "What Chandler is asked", "A recommendation to
+approve is decided, not asked", HIR-315). Every run, hand the script `decisions` (step 4;
+it may be run here first, with the same file). Its `monday_decisions.decide` lists the
+waiting tickets that are no longer his: each recommendation to approve that does not
+need his yes, and each question to think about that a Monday list showed him seven or
+more days ago and he has not answered. For each, in that order:
+
+1. Hand the ticket to the `senior` agent: its id, the question as it was put to him, the
+   recommendation written on the ticket (say so if there is none), and for stored data
+   whatever proof the ticket holds. Nothing of your own view.
+2. **DECISION + DECIDED FOR YOU** → post one comment on the ticket headed **Decided for
+   you**, holding its line unchanged, with no @mention. Then treat the ticket as
+   answered (2 to 4 above): the comment is the mark, and the work that is left runs like
+   any other ticket. If the ticket has an open pull request labelled `needs-chandler`
+   for that question only, leave the label; start a worker on it with `/work-issue
+   HIR-n` (step 3's way), which moves the question to "Decided for you", and a fresh
+   reviewer decides.
+3. **ON CHANDLER'S LIST**, or a reply that proof is missing → it is still his, or still
+   a worker's to prove. Leave the ticket as it is; from now on hand it over with
+   `needs_him` true, so the script keeps it on his list.
+
+You never decide one yourself, never reword the senior agent's line, and never hand over
+a ticket the script did not list. List each under "Decided for you" in the log, marked
+"(no PR)". The first run after this rule merged does this for every ticket then waiting.
+
 ## 3. Unstick what is stuck
 
 For each open pull request, by its labels. "Stuck" means no commit, comment or label
@@ -249,15 +279,22 @@ in the shape `scripts/lead_pick.py` documents. At the top level:
   The ones under way are never picked; they are there because each holds its area. A
   Backlog ticket needs only `id`, `state`, `labels` and `blocked`: it is counted, never
   picked.
-- `decisions`: only in the Monday run that writes the decisions comment (step 7). Every
+- `decisions`: every run (HIR-315; before it, only on Mondays). Every
   open `attended` ticket except the log issue, each as `id`, `labels`, `kind`
   (`"think"` for a decision he thinks through, `"approve"` for a recommendation he says
   yes or no to, both as step 1 read them; `"yours"` for work he does with an agent: an
   eval session, a cost session), `answered` (true when step 2a has recorded his
   answer), `blocks_milestone` (it is in the launch order's current milestone, or blocks a
-  ticket that is), `blocks_todo` (it blocks a ticket in Todo) and `since` (the day it was
-  filed). Hand over all of them, answered ones too: the script leaves those out, you do
-  not. In any other run leave the field out; never pass an empty list you did not gather.
+  ticket that is), `blocks_todo` (it blocks a ticket in Todo), `since` (the day it was
+  filed), `asked` (the date of the first Monday **Decisions waiting for you** comment
+  that listed the ticket; leave it out when none has) and `needs_him` (true only for a
+  spend above his limit, or a ticket the senior agent has already said is his, step 2a).
+  `"yours"` also covers what only he can do: a merge the rules gate or the labelling
+  guide needs from him, an account or payment setting, work by hand on his Mac or the
+  server. Hand over all of them, answered ones too: the script leaves those out, you do
+  not. Never pass an empty list you did not gather. The script answers with
+  `monday_decisions`, whose `decide` step 2a acts on every run; the comment itself is
+  written on Mondays only (step 7).
 - `answers`: every run, the tickets step 2a reads, each with `question_at` and its
   comments. The script answers with `answer_candidates`.
 - `collided`: every run, the open pull requests whose `mergeable_state` is `dirty`
@@ -418,7 +455,7 @@ shape, because the next run and the Monday summary read it:
 
 Needs you: <one plain sentence per item, or "nothing">
 Held: <tickets held because 10 decisions are already waiting for Chandler to think about, or "nothing">
-Decided for you: <each small call the senior agent made in this run: what, why, how to undo, and "(PR #n)" or "(no PR)"; or "nothing">
+Decided for you: <each call the senior agent decided in this run, small calls and recommendations taken for him alike: what, why, how to undo, and "(PR #n)" or "(no PR)"; or "nothing">
 Sorted: <tickets labelled or moved in this run, with the label, or "nothing">
 Queue: <how many run-alone tickets are waiting in Todo after this run, and which were pulled in; or "nothing left to pull">
 Unstuck: <pull requests given a fresh worker or reviewer, or "nothing">
@@ -463,7 +500,7 @@ run today adds it; check the issue's comments first so it is added once.
 
 `Decided for you` is copied, not written: each line comes unchanged from a pull request's
 "Decided for you" section or from a ticket comment headed **Decided for you** (AGENTS.md
-"Small calls"). On Mondays, after the log, add one comment to that morning's "Monday
+"Small calls", and "A recommendation to approve is decided, not asked", HIR-315). On Mondays, after the log, add one comment to that morning's "Monday
 summary" issue headed **Decided for you, outside pull requests**, with last week's log
 lines marked "(no PR)" (once: a later run that day finds the comment and adds nothing). The summary lists the ones in merged pull requests by itself; a
 week with none gets no comment.
@@ -471,8 +508,8 @@ week with none gets no comment.
 **On Mondays, one run adds the decisions waiting in tickets to the summary** (HIR-277).
 The summary itself lists only pull requests; a question that lives in a ticket reaches him
 here or nowhere. Once that morning's "Monday summary" issue exists and carries no comment
-headed **Decisions waiting for you**, hand the script `decisions` (step 4) and add one
-comment in this shape:
+headed **Decisions waiting for you**, take the script's `monday_decisions` (step 4), after
+step 2a has dealt with its `decide`, and add one comment in this shape:
 
 ```
 **Decisions waiting for you**
@@ -490,7 +527,7 @@ comment in this shape:
 
 <the script's `text`, unchanged> Full list: https://linear.app/hiring-radar/team/HIR/label/attended
 
-Answer in a comment on the ticket; for "To approve", yes or no is enough. The next run applies it, and the question is not asked again.
+Talk a question through with Claude by voice, or answer in a comment on the ticket; for "To approve", yes or no is enough. The next run applies it, and the question is not asked again. A question to think about that is still unanswered next Monday is decided as recommended, and reported under "Decided for you".
 
 **Yours this week**
 
@@ -503,7 +540,7 @@ Answer in a comment on the ticket; for "To approve", yes or no is enough. The ne
 
 - The questions under **To think about** are exactly the tickets in `monday_decisions`'
   `think` (at most 3 a week), those under **To approve** exactly its `approve` (the rest
-  of the 10), each in that order and nothing else; `ask` is the two lists together. The
+  of the 10; since HIR-315 only what still needs his yes), each in that order and nothing else; `ask` is the two lists together. The
   lines under **Yours this week** are exactly its `yours`. `more` is how many did not
   fit; they wait for next Monday. A heading with nothing under it is left out. You do not add, drop or
   reorder: the script keeps the list to what he can answer in one sitting.
@@ -525,6 +562,11 @@ Answer in a comment on the ticket; for "To approve", yes or no is enough. The ne
   did not settle it (step 2a), say in the question what it left open.
 - **A recommendation is not an answer.** You never act on your own recommendation, and
   you answer none of these for him.
+- What step 2a had the senior agent decide is not in this comment: it reaches him in the
+  **Decided for you, outside pull requests** comment (above), from the log's "(no PR)"
+  lines, each with its ticket's link so he can reverse it by replying there.
+- **Yours this week** holds only what he alone can do, at most three; the rest wait for
+  next Monday and are not listed.
 - **Applied from your answers** lists every ticket that got an **Answered** comment (step
   2a) in the last seven days, each as the comment's own first sentence. It is how he sees
   a misreading within a week.

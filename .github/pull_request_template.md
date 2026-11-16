@@ -23,14 +23,16 @@ to say "fine" or "no". Mechanical choices don't belong here. "None" is a valid a
 ## Decided for you
 
 <!-- Small calls on Chandler's list that the senior agent decided so he was not asked
-(AGENTS.md "What Chandler is asked", "Small calls"). One line each, copied unchanged from
+(AGENTS.md "What Chandler is asked", "Small calls"), and recommendations he would only
+have approved, which it took for him (same section, "A recommendation to approve is
+decided, not asked"). One line each, copied unchanged from
 the senior agent's reply: what was decided, why, how to undo it. No file or function
 names: the Monday summary prints these lines as they are. "None" if there were none. -->
 
 ## Needs Chandler
 
 <!-- Only items on the big side of Chandler's list (AGENTS.md "What Chandler is asked")
-that block the merge, each as the senior agent wrote it under its heading: **To approve**
+that are still his and block the merge, each as the senior agent wrote it under its heading: **To approve**
 (three lines: Recommend / What it is / Why) or **To think about** (the full question, with
 options and what he would learn). Also posted on the
 Linear issue with an @mention. Anything else goes to the decider, not here. "None" if
