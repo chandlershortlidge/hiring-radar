@@ -27,7 +27,8 @@ it — but read `.claude/skills/work-issue/SKILL.md` and `AGENTS.md` from `origi
   status note at the top, continue from where the note says it stopped.
 - Read its comments too (`list_comments`). A comment headed **Answered** is Chandler's
   answer to the ticket's question, as the lead agent recorded it (HIR-277): follow it,
-  write it into DECISIONS.md in this PR where it is a rule, and if the ticket's open PR
+  write it into the decisions log in this PR (a new file in `decisions/`, step 3) where
+  it is a rule, and if the ticket's open PR
   holds that question under "Needs Chandler", move it to "Decisions taken" with his
   answer quoted.
 - Its "Build" / "Steps" section is the plan. Its "Tests" section is the test list. Its
@@ -144,8 +145,11 @@ Uncommitted changes on the tree: stop and ask whose they are. Never stash or dis
   then `gh api repos/:owner/:repo/pulls/<n>/files` for each.
 - A new migration takes the next free number — check `ls app/migrations/` first, don't
   trust the number in the issue.
-- If the issue asks for a **DECISIONS.md** entry, write it before the code it describes,
-  newest-first with the date. If a step changes `app/extract.py`, the prompt or the taxonomy,
+- If the issue asks for a **DECISIONS.md** entry (an entry in the decisions log), write it
+  before the code it describes, **as a new file in `decisions/`, never as a block added
+  to `DECISIONS.md`** (HIR-305): `decisions/YYYY-MM-DD-hir-n-short-title.md`, first line
+  `## YYYY-MM-DD — what was decided (HIR-n)`. One file per decision is what keeps two
+  pull requests from colliding on the log. If a step changes `app/extract.py`, the prompt or the taxonomy,
   run `uv run python -m app reread-cost` and say in the PR body that merging re-reads the
   open jobs, with that command's figure (HIR-221); the merge is the approval, so don't stop
   for it. Those same changes trigger the eval gate — step 3a.
@@ -358,7 +362,8 @@ the senior agent says which kind of big call it is (AGENTS.md "What Chandler is 
 decider's reply. It answers ON CHANDLER'S LIST with either **TO APPROVE** and three lines,
 or **TO THINK ABOUT** and a full question. Post that, unchanged, on the Linear issue under
 the heading **To approve** or **To think about**, with an @mention of Chandler; do what
-doesn't depend on it, stop. When his answer arrives, add it to DECISIONS.md in the same PR.
+doesn't depend on it, stop. When his answer arrives, add it to the decisions log (a new
+file in `decisions/`) in the same PR.
 
 ## A hard technical question: the senior agent
 

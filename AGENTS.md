@@ -147,6 +147,15 @@ is measured against a labeled Golden set with a held-out split.
 Rebuild of `job-skills-dashboard` (the June 2026 hackathon version). Why the rebuild and
 what changed: DECISIONS.md, first entry.
 
+**The decisions log is `decisions/` plus `DECISIONS.md`** (HIR-305). A new decision is a
+new file in `decisions/`, named `YYYY-MM-DD-hir-N-short-title.md` and starting
+`## YYYY-MM-DD — what was decided (HIR-N)`; it is never added to `DECISIONS.md`, which
+keeps the entries up to 16 Nov 2026. One file each, so two pull requests that record a
+decision cannot collide. To read the log: the files in `decisions/` (names sort by date),
+then `DECISIONS.md`. Wherever these rules say "DECISIONS" with a date, they mean the
+entry of that date in either place; wherever they say to write a decision down, they mean
+a new file in the folder.
+
 Out of scope (deliberately): résumé matching or tailoring, email parsing, applicant
 counts, anything that requires LinkedIn. One narrow exception, since 2026-11-01 (HIR-14):
 a CV may be read **in the browser** to pre-select the profile's skill chips, which the
@@ -561,8 +570,8 @@ whether Chandler could judge it right or wrong from one plain sentence; if he co
 it is either mechanical (don't report it) or badly explained (rewrite it).
 
 **Decide, don't report** — mechanical, already settled by this file or DECISIONS.md:
-next free migration number; DECISIONS.md merge conflicts (keep both entries, newest
-first); a proposed skill needs 3 jobs before it becomes an entry; alias before new entry
+next free migration number; a collision where both sides only added text to a log or a
+list (keep both: `/work-issue` "Repairing a collided pull request"); a proposed skill needs 3 jobs before it becomes an entry; alias before new entry
 when a phrase is another spelling of an existing skill; test names, fixture choice,
 commit wording.
 
@@ -652,7 +661,8 @@ decision).
   merged PRs (`app/merged_work.py` reads the PR bodies); the lead agent adds the ones
   made in a ticket with no PR.
 - **If he reverses one on Monday**, that kind of call moves to the big side: the agent
-  applying his answer records it in DECISIONS.md and changes this list, in a PR that
+  applying his answer records it in the decisions log (a new file in `decisions/`) and
+  changes this list, in a PR that
   passes the rules gate like any other.
 - **What stays in code whatever this list says.** A PR that touches the labelling guide or
   the agents' own rule files is never merged by GitHub's merger
@@ -777,7 +787,8 @@ taken":
 Retry on availability errors only. A wrong answer is not a reason to try a bigger model.
 
 **Questions go to the decider agent before they go to Chandler.** `.claude/agents/decider.md`
-(Fable) reads only AGENTS.md, DECISIONS.md, taxonomy/README.md and evals/LABELING.md, and
+(Fable) reads only AGENTS.md, the decisions log (`decisions/` and DECISIONS.md),
+taxonomy/README.md and evals/LABELING.md, and
 answers the question from them. It returns either an answer with the rule it rests on (the worker
 applies it and notes it under "Decisions taken"), or "small call" (the senior agent decides
 it, above), or — only for a question on the big side of Chandler's list — "no rule covers
@@ -786,7 +797,7 @@ agent, which says which kind of big call it is and writes it in that kind's form
 calls come in two kinds", above). Only that reaches Chandler: a comment on the Linear
 issue that @mentions him, headed **To approve** (the three lines) or **To think about**
 (the full question). His answer is
-written into DECISIONS.md so it is never asked again. Meanwhile the worker does any step
+written into the decisions log (a new file in `decisions/`) so it is never asked again. Meanwhile the worker does any step
 that doesn't depend on the answer, and stops.
 
 **Autopilot is the default** (HIR-120). `/work-issue HIR-n` runs unattended: no "go" on
@@ -949,7 +960,7 @@ than that question and is not an agent's own comment (`answer_candidates` in the
 script rules those out by how they start), and only when it picks an option or leaves
 the agent nothing to choose. The lead agent then marks the ticket with a comment headed
 **Answered**, so it is never asked again, and removes `attended` when the work left can
-run alone; a worker writes the answer into DECISIONS.md in a normal pull request. This
+run alone; a worker writes the answer into the decisions log in a normal pull request. This
 moves a ticket into the ordinary path and nothing more: review, the big side of his
 list and the rules gate apply to what follows, and each applied answer is shown to him
 the next Monday under **Applied from your answers**. An `attended` ticket nobody asked
