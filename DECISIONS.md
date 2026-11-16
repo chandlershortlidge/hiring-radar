@@ -66,7 +66,7 @@ paths passed at desktop width a minute earlier, and the same version passed at 1
 again on 16 Nov. Two things were happening on the server in those minutes: it had been
 restarted 90 seconds before, and the daily check of every job source starts at 10:00. So
 the robot is not flaky in itself; the server was slow to answer one request for about a
-minute. Filed as its own ticket, with a second finding from the screenshots: while the
+minute. Filed as its own ticket (HIR-318), with a second finding from the screenshots: while the
 chart waits for its numbers it shows "No jobs match these filters yet", which is false.
 
 ## 2026-11-15 — A break the robot visitor finds a third time is Chandler's, and the Monday summary reports the robot's week (HIR-260)
