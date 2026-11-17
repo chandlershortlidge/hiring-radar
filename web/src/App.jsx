@@ -11,6 +11,7 @@ import SkillChart from "./SkillChart.jsx";
 import CompareChart from "./CompareChart.jsx";
 import JobList from "./JobList.jsx";
 import RelatedSkills from "./RelatedSkills.jsx";
+import RisingSkills from "./RisingSkills.jsx";
 import AddJobDrawer from "./AddJobDrawer.jsx";
 import ReviewDrawer from "./ReviewDrawer.jsx";
 import ProfileDrawer from "./ProfileDrawer.jsx";
@@ -291,6 +292,12 @@ export default function App() {
             : <SkillChart data={skills} selected={filters.skillIds} onSelect={selectSkill} profile={profile}
                 cityLabel={`${winLabel || "tracked"} jobs`} aliases={taxAliases} />}
         </section></Panel>
+
+        {/* One place at a time: a comparison of cities has no single market to follow. */}
+        {market.view === "city" && (
+          <Panel label="What's rising"><RisingSkills cities={placeCities(market.place)} family={market.family}
+            place={placeName || "this market"} role={roleLabel} refreshKey={refresh} /></Panel>
+        )}
 
         <Panel label="Related skills"><RelatedSkills filters={listFilters} skillNames={skillNames} onAdd={addSkill} data={related} /></Panel>
 
