@@ -16,6 +16,8 @@ the setup in the 2026-11-01 entry.
 | `hiring-radar.service` | The API process (systemd unit, copied from the VM). |
 | `hiring-radar-poll.service` / `.timer` | The 07:00 Europe/Berlin poll. |
 | `hiring-radar-backup.service` / `.timer` | The 03:30 Europe/Berlin backup. |
+| `hiring-radar-caretaker.service` / `.timer` | The 10:00 Europe/Berlin caretaker. |
+| `install-units.sh` | Makes the unit files in `/etc/systemd/system` match the ones here. Run by every deploy and by `provision.sh`. |
 | `Caddyfile` | HTTPS + basic auth in front of the API. The bcrypt hash is a placeholder. |
 | `backup.sh` | What the backup unit runs: snapshot → integrity check → gzip → bucket. |
 | `remote-deploy.sh` | What the GitHub deploy job runs on the VM. |
@@ -23,8 +25,15 @@ the setup in the 2026-11-01 entry.
 
 The unit files and the Caddyfile are verbatim copies of what is in `/etc` on the VM (the
 one exception is the Caddyfile's password hash), so `diff` against `/etc` says whether the
-VM has drifted from the repo. They are *not* applied by a deploy — `provision.sh` installs
-them, and a change to one has to be provisioned or copied up by hand.
+VM has drifted from the repo.
+
+**Every deploy applies the unit files** (HIR-310): `remote-deploy.sh` runs
+`install-units.sh`, which compares each `hiring-radar*.service` and `hiring-radar*.timer`
+here with the one in `/etc/systemd/system`, installs those that differ or are missing, and
+prints one line per file in the deploy log (`same` or `installed`, with why). So a merged
+change to a schedule, or a new timer, is live after the deploy of that commit, with nothing
+to do by hand. The Caddyfile is the exception: no deploy touches it, because the VM's copy
+holds the real password hash; `provision.sh` writes it.
 
 ## SSH in
 
@@ -173,10 +182,24 @@ The deploy job (`.github/workflows/deploy.yml`):
    fetched (and the commit itself, when it is a rollback target or a drill commit not on
    `main`) and `git reset --hard` to it, then
    `sudo bash deploy/remote-deploy.sh /tmp/web-dist.tgz`. `remote-deploy.sh` takes a
-   backup first, then `uv sync --frozen --no-dev`, unpacks `web/dist`, restarts the API, and
+   backup first, then `uv sync --frozen --no-dev`, unpacks `web/dist`, installs any unit file
+   that differs from the VM's (`install-units.sh`, below), restarts the API, and
    polls `/api/stats` for up to 60 s. If the app does not answer it exits non-zero and
    prints the last 30 journal lines, so the workflow goes red. A tarball that arrives
    truncated fails `tar -xzf` in the same script, so that is loud too.
+
+   The connection is made by `deploy/vm-ssh.sh` (HIR-317), the one way a workflow logs in
+   to the VM. Each job registers a new throwaway key with OS Login and connects seconds
+   later, and now and then the VM refuses it ("Permission denied (publickey)"). The script
+   tries a refused login again, 3 tries 15 seconds apart, and the log shows
+   `server login: try N of 3`. It tries nothing else again: a deploy that started and
+   failed stays failed. Three refusals exit with code 75. The job fetches the script from
+   the workflow's own commit into `.deploy-tools/`, because a rollback deploys an older
+   commit that may not have it.
+
+When the robot fails after a deploy and the rollback job itself fails, the ticket is
+"Deploy failed the robot visitor and the rollback did not run": the site is still on the
+new version, and the ticket says whether the rollback could not log in or failed later.
 
 `github-deployer` holds exactly three roles: `roles/compute.viewer` and
 `roles/iap.tunnelResourceAccessor` on the project, and `roles/compute.osAdminLogin` on the
@@ -193,8 +216,26 @@ Migrations need no step here: the API opens the database per request and applies
 pending migration first (`app/api.py` → `db.migrate`), so step 3's smoke check against
 `/api/stats` is what migrates.
 
-**A deploy never touches the database or `/etc`.** Changing a unit file, the Caddyfile or
-`/etc/hiring-radar.env` means provisioning or copying it up by hand.
+**A deploy installs the unit files and touches nothing else in `/etc`, and never the
+database.** Just before the restart, `install-units.sh` makes the units in
+`/etc/systemd/system` match the commit being deployed and logs one line per file:
+
+```
+→ systemd units
+same       hiring-radar.service
+installed  hiring-radar-poll.timer (differed from the server's copy)
+installed  hiring-radar-caretaker.timer (was not on the server)
+units: 7 compared, 2 installed
+```
+
+When something was installed it reloads systemd, enables every timer (so a new one starts
+ticking) and restarts each changed timer so the new time applies at once; restarting a
+timer does not run its job. It never starts a job's service, and the API's restart is the
+deploy's own next step. If it fails, the deploy stops there, red, with the old API still
+running. Three limits: a unit deleted from the repo is not removed from the VM
+(`systemctl disable --now` it and delete the file by hand); a rollback to a commit from
+before HIR-310 leaves the units as the newer commit set them; and the Caddyfile and
+`/etc/hiring-radar.env` are still changed only by hand or by `provision.sh`.
 
 **The VM installs wheels only — it has no compiler.** `.python-version` pins the Python
 every environment uses (3.13, the same one CI runs), and `requires-python` in
@@ -388,10 +429,8 @@ before HIR-160 and nothing is sent anywhere.
 ### 6. systemd
 
 ```
-sudo install -m 644 /opt/hiring-radar/app/deploy/hiring-radar*.service \
-  /opt/hiring-radar/app/deploy/hiring-radar*.timer /etc/systemd/system/
-sudo systemctl daemon-reload
-sudo systemctl enable --now hiring-radar hiring-radar-poll.timer hiring-radar-backup.timer hiring-radar-caretaker.timer
+sudo bash /opt/hiring-radar/app/deploy/install-units.sh   # copies the units, enables every timer
+sudo systemctl enable --now hiring-radar
 curl -fsS localhost:8000/api/stats >/dev/null && echo "api up"
 ```
 

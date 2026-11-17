@@ -38,7 +38,10 @@ under "Needs you" in the log (step 7) as one plain question with a recommendatio
 - Answer a question that is waiting for him, act on your own recommendation, or change a
   pull request's `needs-chandler` label.
 - Write, edit or commit code, in any ticket. Never start a worker on a `hands-on` ticket.
-- Start anything `scripts/lead_pick.py` did not pick (step 4). Its answer is not advice.
+- Start anything `scripts/lead_pick.py` did not pick (step 4), or a repair it did not
+  list under `repairs`. Its answer is not advice.
+- Resolve a collision yourself, or tell a repair worker how to. Its rules are in
+  `/work-issue` "Repairing a collided pull request"; you only start it (step 5).
 - Run a merge command. A pull request merges through a reviewer (step 3).
 - Try a ticket a third time. The script counts; you do not overrule it.
 - Start a ticket by hand because the script's answer looks too cautious, or leave a field
@@ -78,6 +81,12 @@ under "Needs you" in the log (step 7) as one plain question with a recommendatio
   `head.ref`, `head.sha`, labels, `updated_at`); then per pull request
   `gh api repos/:owner/:repo/pulls/<n> --jq .mergeable_state` and
   `gh api repos/:owner/:repo/commits/<head sha>/check-runs` for its checks.
+  A `mergeable_state` of `dirty` means the pull request collides with main and cannot
+  merge until someone brings main into its branch (HIR-305). GitHub works that state out
+  a few seconds after it is first asked: on `unknown`, ask once more before believing it.
+  For each `dirty` one also note the time of its last push
+  (`gh api repos/:owner/:repo/commits/<head sha> --jq .commit.committer.date`) and its
+  ticket (the `hir-n` in `head.ref`).
 - **Merges since the last run:**
   `gh api "repos/:owner/:repo/pulls?state=closed&sort=updated&direction=desc&per_page=50"`,
   keeping those whose `merged_at` is after the last log comment.
@@ -196,9 +205,29 @@ change for 12 hours; anything younger belongs to a run that may still be alive.
   says why not.
 - **No review label at all, checks green, stuck, its ticket labelled `autopilot`** → its
   run died before review. Start a fresh `reviewer` the same way.
-- **`needs-chandler`** → leave it. List it under "Needs you".
+- **Every review comment on it starts `**Review: could not reach the ticket**`, or it was
+  labelled `needs-chandler` by a reviewer that said it could not open the ticket and has
+  no other review comment** → it has had no review (HIR-306). Whatever its labels, and
+  stuck or not, unless an earlier run that may still be alive lists its ticket as
+  `running`: open its ticket yourself and start a fresh `reviewer` with the pull request
+  number and the ticket word for word, exactly as the orchestrator's step 3 does for
+  `NO TICKET` (the block is written there and nowhere else). You wrote none of the code,
+  which is why you may. Post the reviewer's `Linear comment:` line on the ticket. This is
+  the one case where you start a reviewer on a pull request labelled `needs-chandler`:
+  you still never change that label yourself; the reviewer removes it if the work passes.
+  Does not apply to a pull request that changes the agents' own rules (below). List it
+  under "Unstuck".
+- **`needs-chandler`**, any other → leave it. List it under "Needs you".
 - **A pull request that changes the agents' own rules** (AGENTS.md "The rules gate") →
   leave it, whatever its labels. List it under "Needs you".
+- **`mergeable_state` is `dirty`: it collides with main** (HIR-305) → whatever its
+  labels, stuck or not, it goes into step 4's `collided` list, and the script says
+  whether it is repaired in this run (step 5 runs the repair). This comes on top of the
+  lines above, not instead of them: a `needs-chandler` or rules pull request that
+  collides is still listed under "Needs you" and its labels are still not yours to
+  change, but it is repaired, because Chandler cannot merge a conflicted pull request
+  and bringing main in decides nothing for him. A `sent-back` one that collides is
+  repaired first; step 5 then returns its ticket to Todo for the fixes still open.
 - **A ticket In Progress with no open pull request and no change for 24 hours** → its run
   died. Comment on the ticket "Lead agent: no run is live on this; returned to Todo",
   set it to Todo. It is then picked or not like any other.
@@ -231,6 +260,14 @@ in the shape `scripts/lead_pick.py` documents. At the top level:
   not. In any other run leave the field out; never pass an empty list you did not gather.
 - `answers`: every run, the tickets step 2a reads, each with `question_at` and its
   comments. The script answers with `answer_candidates`.
+- `collided`: every run, the open pull requests whose `mergeable_state` is `dirty`
+  (step 3), `[]` when there are none; never left out, because a run that did not look
+  must not be read as "nothing collides". Each as `pr` (its number), `ticket` (the
+  ticket of its branch, `null` when the branch names none), `labels` (the ticket's),
+  `pr_labels` (the pull request's), `rules` (true when it changes the agents' own rules,
+  AGENTS.md "The rules gate") and `live`: true when its last push is less than an hour
+  old, or an earlier run's log still lists its ticket or its repair as `running`. In
+  doubt, true: the next run looks again.
 
 Per ticket:
 
@@ -275,9 +312,14 @@ uv run python scripts/lead_pick.py <file>
 - `queue.pull` → step 6.
 - `monday` (Mondays only) → step 7.
 - `monday_decisions` (only when you handed over `decisions`) → step 7.
+- `repairs` → `start` is the pull requests a repair worker is started on in step 5, each
+  with `review` (whether a reviewer follows) and its reason; copy the reason into the
+  log. `skipped` with "failed twice" or "no ticket" → list each under "Needs you" in the
+  log. The other reasons need no mention.
 
 **Then write the log comment at once, before starting anything** (step 7's shape), with
-`result: running` on every picked line and the script's `est_eur` as its spend. Keep the
+`result: running` on every picked line and every repair line, and the script's `est_eur`
+as a picked ticket's spend. Keep the
 comment's id: step 7 edits this same comment. A run that dies after this point has still
 told the next run what it started and what it may have spent.
 
@@ -296,6 +338,39 @@ When a ticket ends on a question for Chandler (the orchestrator's "Needs you" or
 "Stopped"), add the label `attended` to the ticket. That is what keeps the next run
 from picking it again before he answers. It is one more on the pile of decisions only
 when it is to think about; a recommendation to approve adds nothing to that pile.
+
+### Repairing a pull request that collides with main (HIR-305)
+
+For each entry in the script's `repairs` `start`, before or alongside the batch above:
+
+1. Start one worker subagent with the prompt `/work-issue HIR-n repair` and nothing
+   else (HIR-n is the entry's `ticket`). It works on the pull request's own branch,
+   brings the latest main in, keeps both sides only where both merely added text to a
+   log or a list, and takes every other collision to the `senior` agent. You give it no
+   advice on how to resolve anything and you answer none of its questions.
+2. Its reply starts with one word:
+   - **`REPAIRED`**, `review` is true, and the pull request is not labelled `sent-back`
+     (or is, and also `review-passed`) → wait for the checks on the new commit, then
+     start a fresh `reviewer` subagent with the pull request number and nothing else,
+     exactly as in step 3. The repair's result is the reviewer's: `merged` or `merging`;
+     `failed` when it sends the pull request back.
+   - **`REPAIRED`** on a pull request labelled `sent-back` with no `review-passed` → a
+     reviewer's fixes are still open, and a repair does none of them. Start no reviewer.
+     Comment on its ticket "Lead agent: pull request #n was sent back; its collision
+     with main is repaired; returned to Todo for the fixes" and set the ticket to Todo,
+     as step 3 does for a stuck one. Result: `repaired`.
+   - **`REPAIRED`** and `review` is false → the pull request was waiting for Chandler
+     before and still is. Start no reviewer and touch no label. Result: `repaired`.
+   - **`WAITING`** → the senior agent could not settle a collision without deciding
+     something on Chandler's list; the worker has posted its three lines on the ticket
+     under **To approve** and undone the merge. Add the label `attended` to the ticket
+     (as for any ticket that ends on a question) and list it under "Needs you". Result:
+     `waiting`.
+   - **`FAILED`**, or the worker died → result `failed`. The next run tries once more;
+     after two the script lists it for Monday.
+
+A repair is its own line in the log (step 7) and is never counted as a try of the
+ticket.
 
 ### When the usage limit is hit
 
@@ -339,6 +414,7 @@ shape, because the next run and the Monday summary read it:
 
 - HIR-n | picked: <the script's reason> | result: <result> | spend: €<0.00>
 - HIR-m | picked: <…> | result: <result> | spend: €<0.00>
+- repair #<n> (HIR-n) | <the script's reason> | result: <result> | spend: €0.00
 
 Needs you: <one plain sentence per item, or "nothing">
 Held: <tickets held because 10 decisions are already waiting for Chandler to think about, or "nothing">
@@ -358,8 +434,20 @@ Design review: <Fridays only, the first run of the day>
   again; it is Monday's.
 - `waiting` — it stopped on a question for Chandler. Not a failure.
 - `not-started` — picked, but held back (a file an open pull request already changes, or
-  the usage limit).
+  the usage limit). Also a ticket whose pull request is built but got no review because
+  no reviewer could open the ticket (the orchestrator's "Not reviewed", HIR-306): that
+  is not `failed`, because no review took place to fail, and the next run's step 3
+  reviews it.
 - `running` — only while the run is alive (step 4). A finished run leaves none.
+
+A repair line (`- repair #<n> (HIR-n) | …`, one per pull request the script let you
+repair, HIR-305) takes the same words: `merged` or `merging` when the reviewer passed the
+repaired pull request, `failed` when the worker could not repair it or the reviewer sent
+it back, `waiting` when the repair itself ended on a question for Chandler, `not-started`
+when the usage limit cut it short. One more word is a repair's alone: `repaired`, when
+main was brought in and what comes next is not a review (it waits for Chandler as
+before, or its sent-back fixes are still to do). It must start with the word `repair`: that is how the script tells a failed repair from a
+failed ticket.
 
 `spend` is what the ticket's pull request says it cost in model calls (its eval), in
 euros; `€0.00` when it made none. A run with nothing picked still gets a comment, with

@@ -1,6 +1,7 @@
-"""Which tickets the lead agent may start in this run (HIR-266, HIR-280), and which of
+"""Which tickets the lead agent may start in this run (HIR-266, HIR-280), which of
 the decisions waiting for Chandler go into Monday's comment (HIR-277), under which of its
-two headings (HIR-297).
+two headings (HIR-297), and which pull requests that collide with main it may have
+repaired (HIR-305).
 
 The lead agent (.claude/skills/lead-agent) is a model following instructions. Its hard
 limits are here instead, as code with tests, so a "never" cannot be skipped
@@ -83,9 +84,32 @@ Linear gives them. The answer then has `answer_candidates`: per ticket, the comm
 that are newer than the question and are not an agent's own. None means he has not
 answered; one or more means the agent reads them and judges.
 
+`collided` is optional as well: the open pull requests GitHub reports as conflicted with
+main (HIR-305), each as `{"pr": 186, "ticket": "HIR-232", "labels": [the ticket's],
+"pr_labels": [the pull request's], "rules": false, "live": false}`. `rules` is whether
+the pull request changes the agents' own rules; `live` is whether a run may still be
+working on it (a push in the last hour, or a log line still `running`); left out, it
+counts as true. The answer then has `repairs`: `start`, the pull requests a repair worker
+may be started on, each with `review` (false when the pull request is waiting for
+Chandler, so no reviewer follows the repair), and `skipped`, each with why. It says no to:
+
+- a pull request whose repair has already failed twice (Monday's, never a third try);
+- a ticket labelled `hands-on` or `parked`, and one labelled `attended` unless its pull
+  request is waiting for Chandler (labelled `needs-chandler`, or a change to the agents'
+  own rules): he is working in the first kind, and cannot merge the second while it
+  collides;
+- a pull request with no ticket, or one a run may still be working on;
+- everything, when `stop` is set (the cap, the usage limit).
+
+A red check does not hold a repair back: it is not new work, and it spends nothing.
+
 The log lines it reads, one per ticket, written by the lead agent:
 
     - HIR-197 | picked: always on; a bug a visitor would notice | result: merged | spend: €0.00
+
+one per repair of a collided pull request, which is counted apart from its ticket:
+
+    - repair #186 (HIR-232) | collided with main | result: merging | spend: €0.00
 
 and, anywhere in a log comment, a line starting `Usage limit: reached`.
 
@@ -99,7 +123,8 @@ summary as plain sentences. When the state has `decisions`, also `monday_decisio
 (the ids for "To approve", in order: the rest of the 10), `ask` (the two together),
 `more` (how many did not fit, with `more_think` and `more_approve` saying which kind),
 `yours` (the ids for "Yours this week", at most 3) and `text` (the line that follows the
-questions: how many more are waiting, or "No decisions waiting").
+questions: how many more are waiting, or "No decisions waiting"). When the state has
+`collided`, also `repairs` (above).
 
 Does NOT: talk to Linear or GitHub, start anything, write anything, or call a model. It
 does not judge what a ticket's area, milestone or spend is, whether it may add a
@@ -139,6 +164,12 @@ LOG_LINE = re.compile(
     r"^\s*[-*]\s*(HIR-\d+)\s*\|(.*?)\|\s*result:\s*([a-z-]+)\s*\|\s*spend:\s*€\s*([0-9]+(?:\.[0-9]+)?)",
     re.MULTILINE,
 )
+# A repair of a pull request that collided with main (HIR-305). It starts with "repair",
+# not a ticket id, so LOG_LINE never reads it: a failed repair is not a failed ticket.
+REPAIR_LINE = re.compile(
+    r"^\s*[-*]\s*repair\s+#(\d+)\b[^|\n]*\|.*?\|\s*result:\s*([a-z-]+)", re.MULTILINE)
+# A pull request with one of these is waiting for Chandler, not for an agent.
+NEEDS_CHANDLER = "needs-chandler"
 # Written by the lead agent when the run, or one of its workers, was refused for usage.
 USAGE_LINE = re.compile(r"^\s*Usage limit:\s*reached", re.MULTILINE | re.IGNORECASE)
 PRIORITY_NAME = {1: "Urgent", 2: "High", 3: "Medium", 4: "Low"}
@@ -165,6 +196,48 @@ def failures(log):
         if result == FAILED:
             counts[ticket] = counts.get(ticket, 0) + 1
     return counts
+
+
+def repair_failures(log):
+    """How many repairs of each pull request (by number) ended `failed`, over the whole log."""
+    counts = {}
+    for entry in log:
+        for number, result in REPAIR_LINE.findall(entry.get("body") or ""):
+            if result == FAILED:
+                counts[int(number)] = counts.get(int(number), 0) + 1
+    return counts
+
+
+def repairs(collided, log, stop=None):
+    """Which pull requests that collide with main may be given a repair worker in this
+    run (HIR-305), and why the others may not. The worker only brings main into the
+    branch; what it may resolve alone is scripts/collision.py's to say, not this."""
+    failed = repair_failures(log)
+    start, skipped = [], []
+    for item in sorted(collided, key=lambda item: item["pr"]):
+        labels = {str(name).lower() for name in item.get("labels") or []}
+        pr_labels = {str(name).lower() for name in item.get("pr_labels") or []}
+        waiting = NEEDS_CHANDLER in pr_labels or bool(item.get("rules"))
+        his = [name for name in ("hands-on", "parked") if name in labels]
+        if stop:
+            why = stop
+        elif not item.get("ticket"):
+            why = "no ticket could be found for its branch"
+        elif his:
+            why = f"its ticket is labelled {his[0]}; that work is Chandler's"
+        elif "attended" in labels and not waiting:
+            why = "its ticket is labelled attended and it is not waiting for his answer; he is working in it"
+        elif failed.get(item["pr"], 0) >= MAX_FAILURES:
+            why = "its repair failed twice already; it goes to Monday's summary, not a third try"
+        elif item.get("live", True):
+            why = "a run may still be working on it; the next run looks again"
+        else:
+            start.append({"pr": item["pr"], "ticket": item["ticket"], "review": not waiting,
+                          "why": "collides with main" + (
+                              "; waiting for Chandler, so it is repaired and left for him" if waiting else "")})
+            continue
+        skipped.append({"pr": item["pr"], "ticket": item.get("ticket"), "why": why})
+    return {"start": start, "skipped": skipped}
 
 
 def spent_on(log, today):
@@ -337,7 +410,7 @@ def _why(ticket):
 
 def pick(tickets, log, today, cap_eur, decisions_waiting=0, red=(), max_decisions=10, queue_min=5,
          decisions=None, max_questions=10, max_yours=3, answers=None, max_think=3,
-         approvals_waiting=None):
+         approvals_waiting=None, collided=None):
     """The run's answer: what may start, what may not and why."""
     spent = spent_on(log, today)
     failed = failures(log)
@@ -358,16 +431,21 @@ def pick(tickets, log, today, cap_eur, decisions_waiting=0, red=(), max_decision
             {"id": item["id"],
              "candidates": answer_candidates(item.get("question_at"), item.get("comments"))}
             for item in answers]
+    def done():
+        if collided is not None:
+            result["repairs"] = repairs(collided, log, result["stop"])
+        return result
+
     if cap_eur <= 0:
         result["stop"] = "the daily spending cap is set to zero, so nothing is started"
-        return result
+        return done()
     if spent >= cap_eur:
         result["stop"] = f"today's spending cap of €{cap_eur:.2f} is reached (€{spent:.2f} spent)"
-        return result
+        return done()
     if usage_limit_hit_on(log, today):
         result["stop"] = ("a run earlier today hit the Claude plan's usage limit, so nothing more "
                           "is started today")
-        return result
+        return done()
 
     red = [str(name) for name in red or []]
     left = cap_eur - spent
@@ -421,7 +499,7 @@ def pick(tickets, log, today, cap_eur, decisions_waiting=0, red=(), max_decision
     still = sum(1 for t in alone if t["id"] not in picked)
     result["queue"]["left_after_pick"] = still
     result["queue"]["pull"] = max(0, queue_min - still)
-    return result
+    return done()
 
 
 def main(argv=None):
@@ -454,6 +532,7 @@ def main(argv=None):
         max_yours=config["monday_yours_max"],
         max_think=config["monday_think_max"],
         approvals_waiting=state.get("approvals_waiting"),
+        collided=state.get("collided"),
     )
     print(json.dumps(answer, indent=2, ensure_ascii=False))
     return 0

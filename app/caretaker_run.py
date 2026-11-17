@@ -14,7 +14,8 @@ Does:
   - count the job links checked by hand that we had missed, by reason (app/misses.py,
     HIR-290): the last 7 days go into the Monday summary, and a reason that reaches
     misses.WEEKLY_TICKET_THRESHOLD in 7 days gets a Linear ticket of its own, at most once
-    per misses.TICKET_QUIET_DAYS per reason.
+    per misses.TICKET_QUIET_DAYS per reason. Below it, the 8-week trend (HIR-321): whether
+    the share of checked links a feed already had is rising, overall and per city.
 
 Does NOT: change config/feeds.json, re-run the collection, or open a pull request. It runs
 report-only: every finding is logged with what it *would* do (`mode='report'`, `done=0`).
@@ -190,13 +191,16 @@ def post_json(url: str, payload: dict, headers: dict) -> dict:
         return json.loads(r.read())
 
 
-def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=None, site_watch=None) -> None:
+def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=None, site_watch=None,
+           feeds: list[dict] | None = None) -> None:
     """Send the urgent note and, on Mondays, the weekly summary. `post(title, body)` returns
     the Linear identifier; None when there is no Linear key, and then the text goes to the
     journal only. Each send is logged so a second run the same day does not repeat it.
     `changes(start, end)` returns the pull-request half of the Monday summary as Markdown
     (app/merged_work.week_text); it is injected so tests never reach GitHub, and None
-    leaves the post as the job-source report alone. `site_watch(start, end)` returns the
+    leaves the post as the job-source report alone. `feeds` is what the missed-jobs trend
+    judges "would a feed catch it today" against (HIR-321); None reads config/feeds.json.
+    `site_watch(start, end)` returns the
     robot visitor's two pieces (app/site_watch_week.week_text, HIR-260): what waits for
     Chandler, which goes above everything else, and the week's report, which goes after the
     pull requests; injected so tests never reach Linear, and None leaves both out."""
@@ -214,7 +218,9 @@ def report(conn: sqlite3.Connection, day: str, post=None, log=print, changes=Non
                 + (changes(start, end) + "\n" if changes else "")
                 + (robot_week + "\n" if robot_week else "")
                 + weekly_text(conn, start, end)
-                + "\n" + misses.week_section(misses.records(conn, start, end), start, end))
+                + "\n" + misses.week_section(misses.records(conn, start, end), start, end)
+                + "\n" + misses.trend_section(misses.records(conn), end,
+                                               poll.load_feeds() if feeds is None else feeds))
         posted = post(f"Monday summary: {start} to {end}", body) if post else None
         log(body + (f"\nposted as {posted}" if posted else "\n(not posted: no Linear key)"))
         write_log(conn, [Finding("caretaker", "weekly_summary", "none", "Weekly summary made.",

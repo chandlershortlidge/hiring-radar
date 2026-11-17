@@ -102,6 +102,44 @@ The reviewer's reply starts with the verdict:
   @mention.
 - **`NEEDS CHANDLER`** — an item on the big side of his list (AGENTS.md "What Chandler is
   asked"), or a third failed review. Report it; never relabel it.
+- **`NO TICKET`** — not a verdict; no review took place. Below.
+
+**`NO TICKET`: the reviewer could not open the ticket, so you hand it over** (HIR-306).
+Some cloud sessions start a reviewer without the Linear tools. That is a setup failure,
+not a review: the reviewer has added no label and posted a comment starting
+`**Review: could not reach the ticket**`. You have the tools and you wrote none of the
+code, so:
+
+1. Open the ticket yourself: `get_issue` on the id in the PR's branch name, with
+   `includeRelations`, and `list_comments`.
+2. Start a **fresh** reviewer whose prompt is the PR number, then this block and nothing
+   else:
+
+   ```
+   <PR number>
+
+   Ticket HIR-n, word for word, opened by the session that started this reviewer:
+
+   Status: <status>
+   Labels: <every label, comma-separated, or "none">
+   Blocked by: <ids and their status, or "nothing">
+
+   Description:
+   <the whole description, unchanged>
+
+   Comments, oldest first:
+   <each comment in full: its time, then its body, unchanged>
+   ```
+
+   Copy, never summarise, shorten or reorder, and add no word of your own about the work:
+   the "Done when" list reaches the reviewer inside the description, as Chandler wrote it.
+   This is the one exception to "the PR number and nothing else", and it is yours alone.
+   **A worker never hands over the ticket for its own PR.**
+3. Its reply may end with a line under `Linear comment:`; post that line on the ticket,
+   unchanged (`save_comment`). It has no tool to do so itself.
+4. If it says `NO TICKET` again, or you cannot read the ticket either, stop there: add no
+   label, and list the PR under "Not reviewed" in your report. The lead agent's next run
+   reviews it (its step 3).
 
 **Attended PR:** do not review, do not merge. List it under "Ready for you" with the PR
 link and the worker's one-line summary.
@@ -141,6 +179,9 @@ One message at the end, written for Chandler:
   them. Never reword one kind into the other.
 - **Decided for you:** the small calls the senior agent made in this batch, copied from
   each PR's "Decided for you" — what, why, how to undo. "None" if there were none.
+- **Not reviewed:** a PR no reviewer could open the ticket for, even with the ticket
+  handed over (step 3, `NO TICKET`). PR, issue, and that the next lead-agent run reviews
+  it. It is not a failed review and not Chandler's.
 - **Stopped:** issue, the question the decider couldn't answer (already on Linear with an
   @mention).
 - **Re-extract:** whether a merge today has the model re-read the open jobs, yes or no —

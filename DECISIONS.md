@@ -1,9 +1,150 @@
 # Decisions Log
 
+**New entries are not added to this file.** Since 16 Nov 2026 (HIR-305) each decision is
+its own file in [`decisions/`](decisions/), named `YYYY-MM-DD-hir-N-short-title.md`, so
+two pull requests that each record a decision never change the same lines. To read the
+log: the files in `decisions/` (the names sort by date, newest last), then the entries
+below, which stay here as they are.
+
 What we decided, why, and what we tried that didn't work — so nobody (person or agent)
 re-treads a dead end or undoes a decision without knowing the reason. Newest first.
 
 ---
+
+## 2026-11-16 — A reviewer that cannot open the ticket is handed its text by whoever started it, and that failure is no longer Chandler's (HIR-306)
+
+**What happened.** On 14 Nov the 22:30 lead-agent run started three reviewers from one
+cloud session. The first (pull request #184, 21:45 to 21:48 UTC) opened its ticket and
+passed the work. The next two (#185, 21:55 and 21:56 UTC) each reported that the Linear
+tools, and `ToolSearch`, the tool that loads them, were not in their session. Both
+refused to review, correctly, and the first labelled the pull request `needs-chandler`.
+It waited eleven hours for a reviewer from the Mac, which passed it unchanged.
+
+**The cause was not found, and cannot be from what is left.** A cloud session's
+transcripts are gone when it ends; what remains is the pull request comments, the Linear
+comments and the lead agent's log. They rule out three things and prove none:
+
+- *Not the reviewer's definition.* `.claude/agents/reviewer.md` did not change between
+  the reviewer that had the tools and the two that did not (last edit merged 14 Nov
+  18:44 Berlin, before the run), and all three ran in one session, which loads it once.
+- *Not Linear being down for the session.* The worker on that same ticket posted a
+  Linear comment from the same session at 21:53:56, two minutes before the first failed
+  reviewer, and the lead agent wrote its log afterwards.
+- *Not cloud runs as such.* The 18:30 and 02:30 runs that day, and the 14:30 run on
+  16 Nov (whose transcript was read for this ticket), started reviewers the same way,
+  as the `reviewer` agent with the pull request number and nothing else, and each was
+  handed the three Linear tools as deferred tools and loaded them with `ToolSearch`.
+
+What the two reports fit, without proving it: `ToolSearch` appears to be offered only to
+an agent that has deferred tools to load, and the Linear tools are the reviewer's only
+ones. "No Linear tools and no `ToolSearch`" would then be one fault, not two: the
+session did not hand the Linear connection to those two subagents when they were started. Why it did so twice in two
+minutes and not eight minutes earlier is in the harness, not in this repository, and it
+is not known whether it will recur. **Tried and not possible:** reading the 14 Nov
+session's own record of how each reviewer was started; it no longer exists.
+
+**So the fix does not depend on the cause.** Three changes, all in the agents' rules:
+
+1. **The session that started the reviewer hands over the ticket.** A reviewer with no
+   way to open the ticket adds no label, posts one comment starting
+   `**Review: could not reach the ticket**`, and replies `NO TICKET`. The orchestrator
+   (or the lead agent, when it starts a reviewer itself) then opens the ticket with its
+   own tools and starts a fresh reviewer with the pull request number and the ticket
+   word for word: status, labels, the whole description, every comment. It adds nothing
+   of its own. The reviewer uses that text only when it cannot open the ticket itself,
+   checks that it is for the ticket the branch names, and says in its review comment
+   that this is how it got the ticket. HIR-137's rule is narrowed, not dropped: the
+   reviewer still never takes the ticket from the **author** of the pull request or from
+   the pull request body, and a `/work-issue` worker reviewing at the end of its own run
+   never hands it over. The orchestrator wrote none of the code, which is why it may.
+2. **"Could not reach the ticket" is a setup failure, not a verdict.** It costs no
+   `needs-chandler`. The pull request is left as it is and the next lead-agent run
+   reviews it again, handing over the ticket from the start. Only when a pull request
+   already carries two such comments does a third failure label it `needs-chandler`
+   (no @mention), so a fault that never clears still reaches Chandler on Monday.
+3. **The next run picks it up whatever its label and however recently it was touched**:
+   an open pull request whose review comments are all "could not reach the ticket" has
+   had no review. This is the one case where the lead agent starts a reviewer on a pull
+   request labelled `needs-chandler`; the reviewer, not the lead agent, removes the label
+   if it passes.
+
+In the lead agent's log such a ticket is `not-started`, not `failed`: two `failed` lines
+stop a ticket for good, and no review took place to fail.
+
+**Not changed:** what the reviewer checks, and that nothing merges without a review. An
+issue that does not exist, or a pull request that names no issue, is still
+`needs-chandler`: that is a finding about the pull request, not a setup failure.
+
+To undo: revert the commit; the reviewer then labels `needs-chandler` on the first
+failure again.
+
+---
+
+---
+
+## 2026-11-16 — A refused server login is tried again, and a rollback that never ran says so (HIR-317)
+
+**What happened.** On Sunday 15 Nov a deploy went live at 10:02 Berlin, the robot visitor
+failed on it, and the automatic rollback started at 10:05. Its login to the server was
+refused ("Permission denied (publickey)") and the job stopped there. The site stayed on the
+new version, the main branch stayed red, and agents started no other work for a day. The
+ticket it filed said "the site is broken and the automatic rollback did not fix it", which
+was wrong twice: nothing had been rolled back, and the robot was never run a second time.
+
+**The cause, as far as the record shows.** Every deploy or rollback job makes a new login
+key on GitHub's machine, registers it with Google's login service (OS Login) and connects
+seconds later. In the failed job the key was made at 09:05:31 UTC and refused at 09:05:41;
+in the deploy four minutes earlier the same sequence was accepted after 4 seconds. Same
+account, same permissions, same server, a different throwaway key each time, and the
+12 Nov drill and every deploy before it worked: so this is not a missing permission.
+**Likely, not proven:** the new key had not yet reached the server when the login was
+tried. Google's documentation gives no time for this, but gcloud's own error text for the
+case says "It is possible that your SSH key has not propagated to the instance yet. Try
+running this command again." **A second candidate cannot be ruled out from a cloud run**,
+which has no access to the server: the server looks up the key at login time, and in the
+same two minutes it was slow enough that the chart's numbers did not arrive within 15
+seconds (see below), so the lookup itself may have failed. Both are passing conditions,
+and the same fix covers both.
+
+**The fix: try a refused login again, 3 tries, 15 seconds apart.** `deploy/vm-ssh.sh` is
+now the one way a workflow logs in to the server; `deploy.yml` calls it, and deploy,
+rollback and drill all go through `deploy.yml`. It tries again only when the login itself
+was refused (ssh's own exit code 255 together with "Permission denied (publickey"), which
+is the one failure where nothing has run on the server. A deploy that started and then
+failed, or a connection that dropped part-way, is not tried again: that would be
+"retrying a failure hoping it passes", which the site watch does not do. A real permission
+problem still fails, 30 seconds later, with exit code 75 and a line saying the login was
+refused three times. The key is registered once and reused by the later tries, so each try
+gives the same key more time. Rejected: **a fixed key stored as a GitHub secret**, which is
+the long-lived credential the 1 Nov entry (HIR-74) refused; **registering the key in a
+separate step and sleeping**, which needs a guessed wait on every deploy and still fails if
+the guess is short; **a no-op login first, then the deploy**, which makes two connections
+where HIR-106 deliberately made one.
+
+The script is fetched from the commit the workflow itself runs at, into `.deploy-tools/`,
+not from the commit being deployed: a rollback deploys an older commit, and one from before
+today has no such script.
+
+**A rollback that never ran files its own ticket.** New ticket kind `rollback-not-done`,
+titled "Deploy failed the robot visitor and the rollback did not run". It says the site is
+still on the new version, lists what the robot found on it, and gives the reason: "the
+rollback could not log in to the server" when the login was refused three times, otherwise
+"the rollback job failed before it finished; whether the old version is back is not
+known". Like "Site down and rollback failed" it is Urgent and assigned to Chandler, since
+a version that failed the robot is live and no agent can reach the server. "Site down and
+rollback failed" is kept for what it says: the old version was put back and the robot
+still fails. Undo: revert the PR; the old single-try login and the single ticket return.
+
+**Why the robot visitor failed on that deploy.** Not a phone-layout break. Both failures
+(the job-card path, then the filter path on the retry) are the same thing: the page loaded,
+the job list loaded, and the chart's numbers had not arrived after 15 seconds, between
+10:03:55 and 10:04:50 Berlin. The three phone-width paths before them passed, the same
+paths passed at desktop width a minute earlier, and the same version passed at 16:09 and
+again on 16 Nov. Two things were happening on the server in those minutes: it had been
+restarted 90 seconds before, and the daily check of every job source starts at 10:00. So
+the robot is not flaky in itself; the server was slow to answer one request for about a
+minute. Filed as its own ticket (HIR-318), with a second finding from the screenshots: while the
+chart waits for its numbers it shows "No jobs match these filters yet", which is false.
 
 ## 2026-11-15 — A break the robot visitor finds a third time is Chandler's, and the Monday summary reports the robot's week (HIR-260)
 

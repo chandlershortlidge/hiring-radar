@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Deploy the code already checked out in /opt/hiring-radar/app:
-# backup → Python deps → frontend → restart → smoke check.
+# backup → Python deps → frontend → systemd units → restart → smoke check.
 # Run as root on the VM by the GitHub deploy workflow, after it has reset
 # the checkout to the commit being deployed.
 # Usage: sudo bash deploy/remote-deploy.sh /tmp/web-dist.tgz
@@ -20,6 +20,12 @@ echo "→ frontend"
 as_app rm -rf "$APP/web/dist"
 as_app tar -xzf "$DIST_TARBALL" -C "$APP/web"
 rm -f "$DIST_TARBALL"
+
+# The units in /etc are made to match the commit being deployed, one line per file in
+# this log (HIR-310). Before the restart, so a changed hiring-radar.service is the one
+# that starts. A failure here stops the deploy with the old API still running.
+echo "→ systemd units"
+bash "$APP/deploy/install-units.sh"
 
 echo "→ restart"
 systemctl restart hiring-radar

@@ -643,3 +643,131 @@ def test_the_lead_agents_procedure_writes_the_decisions_comment_and_applies_answ
                   "**Recommend:**", "**What it is:**", "**Why:**", "What you would learn",
                   '`"think"`', '`"approve"`'):
         assert words in skill, words
+
+
+# --- pull requests that collide with main (HIR-305) ----------------------------------------
+
+def collided(pr=186, **over):
+    base = {"pr": pr, "ticket": f"HIR-{pr}", "labels": ["autopilot"], "pr_labels": [],
+            "rules": False, "live": False}
+    base.update(over)
+    return base
+
+
+def repair_line(pr, result):
+    return f"- repair #{pr} (HIR-{pr}) | collided with main | result: {result} | spend: €0.00"
+
+
+def repairs(items, log=(), **kw):
+    return run([], log, collided=items, **kw)["repairs"]
+
+
+def test_a_collided_pull_request_gets_a_repair_and_then_a_review():
+    out = repairs([collided()])
+    assert out["skipped"] == []
+    assert out["start"] == [{"pr": 186, "ticket": "HIR-186", "review": True, "why": "collides with main"}]
+
+
+def test_a_run_that_did_not_look_for_collisions_gets_no_answer_about_them():
+    assert "repairs" not in run([ticket(1)])
+    assert run([ticket(1)], collided=[])["repairs"] == {"start": [], "skipped": []}
+
+
+def test_one_failed_repair_is_tried_again_two_are_mondays():
+    once = [{"date": "2026-11-11", "body": repair_line(186, "failed")}]
+    twice = once + [{"date": "2026-11-12", "body": repair_line(186, "failed")}]
+    assert [r["pr"] for r in repairs([collided()], once)["start"]] == [186]
+    out = repairs([collided(), collided(190)], twice)
+    assert [r["pr"] for r in out["start"]] == [190]  # another pull request's failures are its own
+    assert "failed twice" in out["skipped"][0]["why"]
+
+
+@pytest.mark.parametrize("result", ["merged", "merging", "repaired", "waiting", "not-started", "running"])
+def test_only_failed_repairs_count(result):
+    log = [{"date": "2026-11-11", "body": repair_line(186, result) + "\n" + repair_line(186, result)}]
+    assert len(repairs([collided()], log)["start"]) == 1
+
+
+def test_a_failed_repair_is_not_a_failed_ticket_and_a_failed_ticket_is_not_a_failed_repair():
+    two_repairs = [{"date": "2026-11-11", "body": repair_line(7, "failed") + "\n" + repair_line(7, "failed")}]
+    assert ids(run([ticket(7)], two_repairs)["picked"]) == ["HIR-7"]
+    assert lp.ran_between(two_repairs, "2026-11-01", "2026-11-30") == 0
+    two_tries = [{"date": "2026-11-11", "body": line("HIR-7", "failed") + "\n" + line("HIR-7", "failed")}]
+    assert len(repairs([collided(7)], two_tries)["start"]) == 1
+
+
+@pytest.mark.parametrize("label", ["hands-on", "parked", "Hands-On"])
+def test_chandlers_own_tickets_are_never_repaired(label):
+    out = repairs([collided(labels=[label], pr_labels=["needs-chandler"])])
+    assert out["start"] == []
+    assert "Chandler's" in out["skipped"][0]["why"]
+
+
+def test_an_attended_ticket_he_is_working_in_is_left_alone():
+    out = repairs([collided(labels=["attended"])])
+    assert out["start"] == []
+    assert "he is working in it" in out["skipped"][0]["why"]
+
+
+@pytest.mark.parametrize("over", [{"pr_labels": ["needs-chandler"]}, {"rules": True},
+                                  {"pr_labels": ["Needs-Chandler"], "labels": ["attended"]},
+                                  {"rules": True, "labels": ["attended"]}])
+def test_a_pull_request_waiting_for_chandler_is_repaired_but_not_reviewed(over):
+    out = repairs([collided(**over)])
+    assert [(r["pr"], r["review"]) for r in out["start"]] == [(186, False)]
+    assert "left for him" in out["start"][0]["why"]
+
+
+def test_a_pull_request_a_run_may_be_working_on_waits_for_the_next_run():
+    live = collided()
+    live["live"] = True
+    unknown = collided(190)
+    del unknown["live"]  # nobody looked: in doubt, a run may be on it
+    out = repairs([live, unknown])
+    assert out["start"] == []
+    assert all("next run" in s["why"] for s in out["skipped"])
+
+
+def test_a_pull_request_with_no_ticket_is_not_repaired():
+    out = repairs([collided(ticket=None)])
+    assert out["start"] == [] and "no ticket" in out["skipped"][0]["why"]
+
+
+def test_nothing_is_repaired_when_the_run_is_stopped():
+    assert repairs([collided()], cap=0)["start"] == []
+    limit = [{"date": TODAY, "body": "Usage limit: reached"}]
+    out = repairs([collided()], limit)
+    assert out["start"] == [] and "usage limit" in out["skipped"][0]["why"]
+
+
+def test_a_red_check_does_not_hold_a_repair_back():
+    assert len(repairs([collided()], red=["the main branch's checks"])["start"]) == 1
+
+
+def test_cli_passes_the_collided_pull_requests_on(tmp_path, capsys):
+    state = tmp_path / "state.json"
+    state.write_text(json.dumps({"today": TODAY, "decisions_waiting": 0, "red": [], "log": [],
+                                 "tickets": [], "collided": [collided()]}))
+    assert lp.main([str(state)]) == 0
+    assert json.loads(capsys.readouterr().out)["repairs"]["start"][0]["pr"] == 186
+
+
+def test_the_rule_files_carry_the_repair_of_a_collided_pull_request():
+    """The script's answer is only a limit if the lead agent hands it the collided pull
+    requests and starts what it says; the repair is only safe if the worker's rules send
+    anything but add-only prose to the senior agent."""
+    def words(*parts):
+        return " ".join(ROOT.joinpath(*parts).read_text().split())
+
+    lead = words(".claude", "skills", "lead-agent", "SKILL.md")
+    for field in ("collided", "pr_labels", "rules", "live", "repairs", "start", "review"):
+        assert f"`{field}`" in lead, field
+    assert "/work-issue HIR-n repair" in lead
+    assert "- repair #<n> (HIR-n) |" in lead
+    work = words(".claude", "skills", "work-issue", "SKILL.md")
+    assert "## Repairing a collided pull request" in (ROOT / ".claude/skills/work-issue/SKILL.md").read_text()
+    for phrase in ("scripts/collision.py --apply", "`for_senior`", "`senior` agent",
+                   "**To approve**", "git merge --abort", "decisions/"):
+        assert phrase in work, phrase
+    assert "Repairing a collided pull request" in words(".claude", "agents", "reviewer.md")
+    assert "Repairing a collided pull request" in words("AGENTS.md")
