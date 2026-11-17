@@ -1,6 +1,14 @@
 34-159-223-190.sslip.io {
-	basicauth {
-		chandler REPLACE_WITH_BCRYPT_HASH
+	# The MCP server (HIR-338) is open: no password, rate limited inside the app.
+	@mcp path /mcp
+	handle @mcp {
+		reverse_proxy 127.0.0.1:8000
 	}
-	reverse_proxy 127.0.0.1:8000
+	# Everything else is the dashboard, behind the password.
+	handle {
+		basicauth {
+			chandler REPLACE_WITH_BCRYPT_HASH
+		}
+		reverse_proxy 127.0.0.1:8000
+	}
 }

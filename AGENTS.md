@@ -385,6 +385,23 @@ Three layout rules:
 - **Never tune on held-out Goldens.** Look at held-out results only at release points.
 - **Unknown skills never reach the chart.** They go to `proposed_skill` for review.
 
+### The MCP server
+
+Anyone's Claude can connect to the radar at `/mcp` on the live site (HIR-103, HIR-338).
+The code is `app/mcp_server.py`; `app/api.py::create_app` serves it. It is open, with no
+password and a per-visitor rate limit (decisions/2026-11-17-hir-338-mcp-open-read-only-rate-limit.md).
+
+- **Tools only read, and never call a model.** No tool writes to the database, adds a
+  job, flags one, or calls the extractor or any other model. Sign-in comes before any tool
+  that would (HIR-218).
+- **No new queries.** A tool is a thin wrapper over a function in `app/queries.py` that
+  the dashboard already uses, with filters built by `queries.make_filters`, the check the
+  API uses, so a tool and the dashboard cannot disagree.
+- **Adding a tool:** copy `search_jobs` inside `build_server` and its tests in
+  `tests/test_mcp_server.py` (direct call, parity with the dashboard's endpoint, accepted
+  values, and one line in the end-to-end test). The tool's description is written for a
+  model that has never seen the dashboard: what each argument means, one example call.
+
 ### The eval gate: extractor and skill-list changes are measured before they merge
 
 **Any change that touches the extractor or the skill list runs the dev eval before its PR
