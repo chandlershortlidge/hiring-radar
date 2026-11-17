@@ -142,7 +142,10 @@ For the PR you are given:
      whether this PR may merge at all. The trigger is the file list, not your judgment:
      the PR touches anything under `.claude/`, `AGENTS.md`,
      `.github/pull_request_template.md`, anything under `.github/workflows/`, or
-     `scripts/rules_gate.py` or `scripts/merge_reviewed.py`. **Then this PR never merges**
+     `scripts/rules_gate.py` or `scripts/merge_reviewed.py` — **or it deletes a test, removes
+     a test function, or adds a skip/xfail marker** (HIR-332; the "Rules gate" check's log
+     names each one). For a removed test, say in its bullet what the test checked and
+     whether the behaviour it guarded is gone too. **Then this PR never merges**
      — not by you, not by auto-merge, not through a `review-passed` label, whatever else
      passes. Do four things and stop:
 
@@ -178,7 +181,8 @@ For the PR you are given:
      the block is somehow already in the description, check it is one bullet per change
      and leave it, and still label and stop. To check your block is the shape the check
      wants before you wait on CI, run it the way CI does:
-     `python3 scripts/rules_gate.py --paths-file <changed files> --body-file <the body>`.
+     `gh api repos/:owner/:repo/pulls/<n>/files --paginate --jq '.[] | {filename, status, previous_filename, patch} | tojson' > files.jsonl`,
+     then `python3 scripts/rules_gate.py --files-jsonl files.jsonl --body-file <the body>`.
    - **Chandler's list** (AGENTS.md "What Chandler is asked"). Anything on its big side →
      CHANDLER. Read the diff against each item; the files that most often carry one are
      `evals/LABELING.md`, the extractor's instructions or model in `app/extract.py`
