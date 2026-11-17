@@ -63,6 +63,16 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
 .related-row .name { font-size: 13px; }
 .related-row .share { font: 12.5px var(--mono); color: var(--ink); white-space: nowrap; }
 
+/* what's rising: two short lists side by side, stacked on a phone */
+.rising-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 40px; }
+.rising-cols h3 { margin: 0 0 2px; font-size: 12.5px; font-weight: 600; color: var(--ink-2); }
+.rising-cols .none { margin: 6px 0 0; font-size: 12.5px; }
+.rising-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 7px 0; border-top: 1px solid var(--line-2); }
+.rising-row:first-child { border-top: 0; }
+.rising-row .name { font-size: 13px; }
+.rising-row .share { font: 12.5px var(--mono); color: var(--ink); text-align: right; }
+.rising-row .counts { display: block; font-size: 11.5px; }
+
 /* controls */
 .controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 20px; }
 .ctl { display: flex; flex-direction: column; gap: 6px; }
@@ -211,7 +221,7 @@ select.sel { padding-right: 28px; }
 .search input { width: 260px; padding-left: 30px; }
 .tbl { overflow-x: auto; }
 .tbl-in { min-width: 900px; }
-.row, .row-head { display: grid; grid-template-columns: 190px minmax(0, 1fr) 110px 110px 130px 110px 40px; gap: 12px; align-items: center; padding: 0 20px; border-bottom: 1px solid var(--line-2); }
+.row, .row-head { display: grid; grid-template-columns: 216px minmax(0, 1fr) 110px 110px 130px 110px 40px; gap: 12px; align-items: center; padding: 0 20px; border-bottom: 1px solid var(--line-2); }
 .row-head { padding: 8px 20px; font-size: 12px; color: var(--ink-2); }
 .row { min-height: 48px; font-size: 13.5px; cursor: pointer; }
 .row:hover { background: #fafafa; }
@@ -221,6 +231,17 @@ select.sel { padding-right: 28px; }
 .row .star:hover { color: var(--ink-2); }
 .row .star.on { color: #b8860b; }
 .row .star.on svg { fill: currentColor; }
+/* "Doesn't belong here" (HIR-226): quiet until used, like the star; solid ink once flagged. */
+.flag { height: 26px; padding: 0 5px; border: 0; border-radius: 6px; background: transparent; color: var(--line-3); display: inline-flex; align-items: center; justify-content: center; gap: 6px; vertical-align: middle; }
+.flag:hover { color: var(--ink-2); }
+.flag.on { color: var(--ink); }
+.flag.on svg { fill: currentColor; }
+.row .flag { margin-right: 4px; }
+.page-links .flag { padding: 0; font-size: 13px; font-weight: 500; color: var(--ink-2); }
+.page-links .flag.on { color: var(--ink); }
+.row .ti .fit.flagged { border-color: var(--ink); color: var(--ink); }
+.flag-note { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; padding: 8px 20px; border-bottom: 1px solid var(--line-2); background: #fafafa; font-size: 13px; }
+.flag-note .inp { flex: 1 1 220px; max-width: 420px; height: 30px; }
 .saved-toggle { gap: 6px; cursor: pointer; }
 .saved-toggle.on { border-color: var(--ink); color: var(--ink); background: var(--ground); }
 .saved-toggle.on svg { fill: #b8860b; color: #b8860b; }
@@ -418,6 +439,7 @@ a.card.market:hover { border-color: var(--ink); }
 /* phone */
 @media (max-width: 720px) {
   .hdr-in, .main { padding-left: 16px; padding-right: 16px; }
+  .rising-cols { grid-template-columns: 1fr; }
   .brand .sub, .btn .lbl, .pill .lbl { display: none; }
   .chart { padding: 16px; } .chart h1 { font-size: 17px; }
   .page-head { padding: 16px; } .page-head h1 { font-size: 17px; } .page-links { align-items: flex-start; } .posting-wrap { padding: 16px; }

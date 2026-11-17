@@ -1,7 +1,8 @@
 """HTTP API for the dashboard, plus static serving of the built frontend.
 
-Does: expose read endpoints over app/queries.py, the review-queue actions, and the three
-add-a-job paths (url / text / screenshot) which run intake + extraction synchronously.
+Does: expose read endpoints over app/queries.py, the review-queue actions, the three
+add-a-job paths (url / text / screenshot) which run intake + extraction synchronously, and
+the "doesn't belong here" flag on a job (app/flags.py: flag, note, un-flag).
 Serves web/dist/ at / when it exists.
 
 Does NOT: compute the profile match (the profile lives in the browser; the frontend
@@ -14,6 +15,7 @@ through app/add.py, so none of them can store a hand-added job under feed rules.
 """
 
 import hashlib
+import json
 import os
 from pathlib import Path
 from typing import Literal
@@ -23,7 +25,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from app import add, db, langsmith_live, queries as q
+from app import add, db, flags, langsmith_live, queries as q
 from app.check import check_url, log_check
 from app.extract import DEFAULT_MODEL as EXTRACT_MODEL, make_client
 from app.ingest import Screenshot, Stored, job_id_for_screenshot, now_iso
@@ -31,7 +33,7 @@ from app.pipeline import extract_pending
 from app.poll import load_feeds
 from app.skill_tree import skill_tree
 from app.sources import Posting
-from app.taxonomy import Taxonomy
+from app.taxonomy import Taxonomy, load_added
 from app.targeted_reread import record_snapshot
 from app.transcribe import DEFAULT_MODEL as VISION_MODEL, TranscriptionError, transcribe
 
@@ -59,9 +61,12 @@ def _record_snapshot(db_path: Path, tax: Taxonomy) -> None:
         print(f"warning: could not record the extractor snapshot: {type(e).__name__}: {e}")
 
 
-def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client_factory=make_client) -> FastAPI:
+def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client_factory=make_client,
+               skill_added: dict[str, str] | None = None) -> FastAPI:
     app = FastAPI(title="hiring-radar", version="0.1.0")
     tax = taxonomy or Taxonomy.load()
+    # The day each skill joined the list; only "what's rising" reads it.
+    added = load_added() if skill_added is None else skill_added
     state = {"client": None}
     _record_snapshot(db_path, tax)
 
@@ -140,6 +145,16 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
         r["skills"] = with_display(r["skills"])
         return r
 
+    @app.get("/api/skills/rising")
+    def get_rising_skills(f: q.Filters = Depends(filters), conn=Depends(conn_dep)):
+        """What's rising (HIR-232): skills whose share of open jobs moved between the last
+        4 weeks and the 4 before. Reads `city`, `family` and `requirement` only; the other
+        filters are ignored, so the two periods always have the most jobs behind them."""
+        r = q.rising_skills(conn, q.Filters(cities=f.cities, families=f.families, requirement=f.requirement),
+                            now_iso(), added)
+        r["risers"], r["fallers"] = with_display(r["risers"]), with_display(r["fallers"])
+        return r
+
     @app.get("/api/skills/tree")
     def get_skill_tree(f: q.Filters = Depends(filters), conn=Depends(conn_dep)):
         """The radial skill tree over the filtered job set. Same filters as /api/skills,
@@ -154,7 +169,11 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
                  limit: int = Query(20, ge=1, le=200), offset: int = Query(0, ge=0), conn=Depends(conn_dep)):
         if sort not in q.SORTS:
             raise HTTPException(422, f"bad sort {sort!r}")
-        return q.list_jobs(conn, f, now_iso(), sort, limit, offset)
+        r = q.list_jobs(conn, f, now_iso(), sort, limit, offset)
+        flagged = flags.flagged_job_ids(conn, [j["id"] for j in r["jobs"]])
+        for j in r["jobs"]:
+            j["flagged"] = j["id"] in flagged
+        return r
 
     @app.get("/api/jobs/{job_id}")
     def get_job(job_id: int, conn=Depends(conn_dep)):
@@ -162,7 +181,40 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
         if d is None:
             raise HTTPException(404, "no such job")
         d["skills"] = with_display(d["skills"])
+        d["flagged"] = bool(flags.flagged_job_ids(conn, [job_id]))
         return d
+
+    # --- "this job doesn't belong here" (HIR-226) --------------------------------------
+
+    class Flag(BaseModel):
+        # The dashboard's state when the button was clicked, stored as sent: no list of
+        # accepted keys here, so a filter the dashboard gains later is recorded untouched.
+        view: dict
+        note: str | None = None
+
+    @app.post("/api/jobs/{job_id}/flag")
+    def post_flag(job_id: int, body: Flag, conn=Depends(conn_dep)):
+        if len(json.dumps(body.view)) > flags.VIEW_MAX_BYTES:
+            raise HTTPException(422, "view is too large")
+        flag_id = flags.add_flag(conn, job_id, body.view, body.note, now_iso(),
+                                 skill_names={k: v.display for k, v in tax.skills.items()})
+        if flag_id is None:
+            raise HTTPException(404, "no such job")
+        return {"flag_id": flag_id, "flagged": True}
+
+    @app.delete("/api/jobs/{job_id}/flag")
+    def delete_flag(job_id: int, conn=Depends(conn_dep)):
+        """A second click on the button. The flag is closed, never deleted."""
+        return {"closed": flags.unflag(conn, job_id, now_iso()), "flagged": False}
+
+    class FlagNote(BaseModel):
+        note: str
+
+    @app.post("/api/flags/{flag_id}/note")
+    def post_flag_note(flag_id: int, body: FlagNote, conn=Depends(conn_dep)):
+        if not flags.set_note(conn, flag_id, body.note):
+            raise HTTPException(404, "no such open flag")
+        return {"flag_id": flag_id, "note": flags.clean_note(body.note)}
 
     @app.get("/api/taxonomy")
     def get_taxonomy():

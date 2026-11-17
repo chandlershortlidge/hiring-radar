@@ -51,6 +51,20 @@ REMOTE_EU = "Remote (EU)"
 ACTIVE_CITIES: tuple[str, ...] = ("Berlin", REMOTE_EU, "San Francisco", "New York", "Hamburg",
                                   "Frankfurt", "Munich")
 
+# The day each active place started being collected (HIR-232). A place's first weeks hold
+# every posting that was already open on that day, all "first seen" at once, so nothing
+# that compares two periods may use a period that starts before this date. A newly launched
+# city gets its launch day here; tests/test_geo.py fails while an active place has none.
+COLLECTING_SINCE: dict[str, str] = {
+    "Berlin": "2026-10-18",          # the first live polls
+    REMOTE_EU: "2026-10-26",         # DECISIONS 2026-10-26
+    "San Francisco": "2026-11-03",   # HIR-12
+    "New York": "2026-11-03",        # HIR-132
+    "Hamburg": "2026-11-08",         # HIR-165
+    "Frankfurt": "2026-11-08",
+    "Munich": "2026-11-08",
+}
+
 _PATTERNS = {city: re.compile(r"\b(" + "|".join(re.escape(a) for a in aliases) + r")\b", re.I)
              for city, aliases in CITIES.items()}
 
