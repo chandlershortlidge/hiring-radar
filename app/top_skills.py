@@ -1,24 +1,27 @@
 MIN_SKILLS_LOST = 2
 def find_skills_dropped_from_top_10_skills(expected:list[str], baseline: list[list[str]], new_run: list[list[str]]) -> list[str]: # result
-    """Find which of the top 10 skills were picked up in fewer postings after a change.
+    """Find which of the answer keys' top skills dropped out of the extractor model's top 10.
 
-    Counts, for each skill, how many postings list it in the baseline run and
-    in the new run. A skill is dropped from the top 10 list when its count fell by at least
-    MIN_SKILLS_LOST postings. Example: a skill in 9 baseline postings and 6
-    new-ru n postings fell by 3, so it is dropped. One that fell from 9 to 8
-    is not—this could be noise.
+    The eval runs the model over the answer keys several times (repeats), and
+    each repeat produces the model's top 10 skills. For each skill in the
+    answer keys' top 10, this counts how many repeats of the baseline run and
+    of the new run include it. The skill is lost when the new run's count is
+    at least MIN_SKILLS_LOST lower. Example: a skill in 3 of 3 baseline repeats
+    and 1 of 3 new repeats fell by 2, so it is lost. One that fell from 1 to 0
+    is not: a drop of one repeat is usually a tie for 10th place.
+
+    Only skills in the answer keys' top 10 are checked. If the model stops
+    ranking a skill the answer keys never had there, that is an improvement.
 
     Args:
-        expected: the answer keys' top 10 skills
-        baseline: the skills found in each posting by the earlier run, one
-            list per posting.
-        new_run: the skills found in each posting by the new run, one list
-            per posting, in the same postings.
+        expected: the answer keys' top 10 skills, one flat list.
+        baseline: the model's top 10 skills from each repeat of the earlier
+            run, one list per repeat.
+        new_run: the same for the new run.
 
     Returns:
-        The skills from expected that were dropped, in the order they appear
-        in expected. An empty list when none were dropped. A skill that
-        gained postings, or is in neither run, is never dropped.
+        The lost skills, in the order they appear in expected. An empty list
+        when none were lost.
     """
 
     baseline_dict = {}

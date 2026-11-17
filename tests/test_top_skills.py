@@ -1,14 +1,14 @@
 from app.top_skills import find_skills_dropped_from_top_10_skills
 
 
-def test_find_skills_dropped_from_top_10_skills_ignores_a_drop_of_one_posting():
+def test_find_skills_dropped_from_top_10_skills_ignores_a_drop_of_one_repeat():
     expected = ["apis"]
     baseline = [["apis"], [], []]
     new_run = [[], [], []]
     assert find_skills_dropped_from_top_10_skills(expected, baseline, new_run) == []
 
 
-def test_find_skills_dropped_from_top_10_skills_reports_a_skill_that_fell_by_two_postings():
+def test_find_skills_dropped_from_top_10_skills_reports_a_skill_that_fell_by_two_repeat():
     expected = ["agents"]
     baseline = [["agents"], ["agents"], ["agents"]]
     new_run = [["agents"], [], []]
