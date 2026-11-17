@@ -179,6 +179,8 @@ uv run python -m app extract                    # extract anything still pending
 uv run python -m app check <url>                # in the DB? if not, why no feed had it
 uv run python -m app discover-boards            # find boards we don't poll yet
 uv run python -m app stats
+uv run python -m app flags                      # why each job flagged "doesn't belong here" showed, by cause
+uv run python -m app flags --fixed 3 7          # close flags whose cause is fixed (removes the mark)
 
 pbpaste | uv run python -m app add-text --company "Acme" --title "AI Engineer" \
   --location Berlin --found-via linkedin

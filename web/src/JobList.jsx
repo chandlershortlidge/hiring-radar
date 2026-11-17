@@ -5,6 +5,8 @@ import { cap, dateShort, degreeLine, familyLabel, germanLine, productionLine, so
 import { fails, fit, gates, jobSeniority, metSkills, rankJobs, skillSides } from "./profile.js";
 import { copyLines, sortJobs, useSaved } from "./saved.js";
 import AddSkillChip from "./AddSkillChip.jsx";
+import { FlagNote, FlagToggle, useFlag } from "./FlagButton.jsx";
+import { flagView } from "./flagView.js";
 
 const SORTS = { newest: "Newest first", oldest: "Oldest first", reposts: "Most reposted", company: "Company A–Z" };
 const FIT = "fit";                   // best fit first; only offered once a profile exists
@@ -17,7 +19,7 @@ const PAGE = 20;
 const FIT_MAX = 200;
 
 export default function JobList({ filters, setFilters, profile, taxonomy, demand = null, refreshKey, openJobId, onOpened, onOpenPage,
-  taxonomyRows = [], aliases = {}, suggestions = [], onAddSkill }) {
+  taxonomyRows = [], aliases = {}, suggestions = [], onAddSkill, market = null }) {
   // Best fit is the default for someone who has a profile: it is why they made one. The
   // profile loads synchronously, so this is right on the first render, not after a flash.
   const [sort, setSort] = useState(() => (profile ? FIT : "newest"));
@@ -85,6 +87,9 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
   // The cities in the filter name the list's scope in every mode — compare mode passes the
   // compared cities in (HIR-196), so there is no compare special case here.
   const scope = filters.cities.length ? filters.cities.join(" + ") : "all cities";
+  // What a "doesn't belong here" flag records about this screen (HIR-226): read at the
+  // click, so it is the state the row was showing under, not the state at first render.
+  const getView = () => flagView({ filters, sort: byFit ? FIT : sort, saved: savedOn, market });
   return (
     <section className="card jobs" aria-labelledby="jobs-title">
       <div className="jobs-head">
@@ -131,7 +136,7 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
         {rows.map((j) => (
           <Row key={j.id} job={j} open={open === j.id} onToggle={() => setOpen(open === j.id ? null : j.id)}
             profile={profile} taxonomy={taxonomy} demand={demand} onOpenPage={onOpenPage}
-            saved={savedIds.includes(j.id)} onSave={() => toggleSaved(j.id)} />
+            saved={savedIds.includes(j.id)} onSave={() => toggleSaved(j.id)} getView={getView} />
         ))}
         {savedOn && !savedJobs && savedIds.length > 0 && <div className="empty">Loading your saved jobs…</div>}
         {savedOn && !rows.length && (savedJobs || !savedIds.length) && <div className="empty">Nothing saved yet. Star a job to keep it here.</div>}
@@ -148,8 +153,9 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
   );
 }
 
-function Row({ job: j, open, onToggle, profile, taxonomy, demand, onOpenPage, saved, onSave }) {
+function Row({ job: j, open, onToggle, profile, taxonomy, demand, onOpenPage, saved, onSave, getView }) {
   const [detail, setDetail] = useState(null);
+  const flag = useFlag(j.id, j.flagged, getView);
   useEffect(() => { if (open && !detail) api.job(j.id).then(setDetail); }, [open, detail, j.id]);
   const cov = profile ? fit(profile, j, demand) : null;
   const miss = gates(profile, j);
@@ -164,8 +170,10 @@ function Row({ job: j, open, onToggle, profile, taxonomy, demand, onOpenPage, sa
             onClick={(e) => { e.stopPropagation(); onSave(); }} onKeyDown={(e) => e.stopPropagation()}>
             <Star />
           </button>
+          <FlagToggle flag={flag} name={`${j.company} — ${j.title}`} />
           {j.company}{j.legacy && <span className="src" style={{ marginLeft: 6 }} title="Imported from the old project with its skills; not in the chart">legacy</span>}{j.too_short && <span className="src" style={{ marginLeft: 6 }} title="Only a fragment of the posting was stored; not in the chart">short</span>}</span>
         <span className="ti">
+          {flag.on && <span className="fit flagged" title="You flagged this job as not belonging here. It stays listed until the cause is fixed.">flagged</span>}
           {miss.length > 0 && <span className="fit miss" title={miss.map((w) => MISS_LABELS[w]).join(" · ")}>!</span>}
           {cov?.gated_by && <span className="fit gate" title={MISS_LABELS[cov.gated_by]}>{gateWord(cov.gated_by, j)}</span>}
           {cov && cov.score !== null && <span className={`fit${cov.score === 1 && !cov.thin ? " full" : ""}`} title={fitTitle(cov, taxonomy)}>{fitBadge(cov)}</span>}
@@ -181,6 +189,7 @@ function Row({ job: j, open, onToggle, profile, taxonomy, demand, onOpenPage, sa
         <span className="meta-m muted">{placeLabel(j).text} · {timeAgo(j.first_seen)} · {cap(j.status)}{j.repost_count > 0 ? ` · reposted ×${j.repost_count}` : ""} · {j.sources.map((s) => sourceCode(s.source)[0]).join(" ")}</span>
         <button type="button" className="exp" aria-label={`${open ? "Hide" : "Show"} skills for ${j.company}`} onClick={(e) => { e.stopPropagation(); onToggle(); }}>{open ? <Up /> : <Down />}</button>
       </div>
+      <FlagNote flag={flag} id={`flag-note-${j.id}`} />
       {open && <Detail job={j} d={detail} profile={profile} taxonomy={taxonomy} cov={cov} onOpenPage={onOpenPage} />}
     </>
   );
