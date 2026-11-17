@@ -60,6 +60,7 @@ sys.path.insert(0, str(ROOT))
 # DEFAULT_MODEL to enforce the refusal, extraction_input so the labeler sees exactly what
 # the extractor sees, _norm so "appears verbatim" means the same thing here as in
 # parse_skills. Deliberately nothing else from extract: no PRINCIPLES, no extract().
+from app.db import connect  # noqa: E402
 from app.extract import DEFAULT_MODEL as EXTRACTOR_MODEL  # noqa: E402
 from app.extract import _norm as norm_text  # noqa: E402
 from app.extract import extraction_input  # noqa: E402
@@ -1197,9 +1198,7 @@ def cmd_label(args):
                     f"Run `apply --run {args.run}` first, or pass --force to throw them away.")
         picks = json.loads((run_dir / "picks.json").read_text())
     else:
-        import sqlite3
-        conn = sqlite3.connect(ng.DB)
-        conn.row_factory = sqlite3.Row
+        conn = connect(ng.DB)
         used, top = ng.existing()
         rows = ng.candidates(conn, used)
         if not rows:

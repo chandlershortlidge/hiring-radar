@@ -25,13 +25,13 @@ import hashlib
 import json
 import os
 import re
-import sqlite3
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from app.db import connect  # noqa: E402
 from app.extract import extraction_input  # noqa: E402
 GOLDENS = ROOT / "evals" / "goldens"
 DB = Path(os.environ.get("HIRING_RADAR_DB", ROOT / "data" / "hiring-radar.db"))
@@ -123,8 +123,7 @@ def main(argv=None):
     if not args.german and not args.ids:
         ap.error("give --german N or --ids ...")
 
-    conn = sqlite3.connect(DB)
-    conn.row_factory = sqlite3.Row
+    conn = connect(DB)
     used, top = existing()
     rows = candidates(conn, used)
     picks = [r for r in rows if r["id"] in set(args.ids)]
