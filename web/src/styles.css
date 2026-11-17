@@ -63,6 +63,16 @@ button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-
 .related-row .name { font-size: 13px; }
 .related-row .share { font: 12.5px var(--mono); color: var(--ink); white-space: nowrap; }
 
+/* what's rising: two short lists side by side, stacked on a phone */
+.rising-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 40px; }
+.rising-cols h3 { margin: 0 0 2px; font-size: 12.5px; font-weight: 600; color: var(--ink-2); }
+.rising-cols .none { margin: 6px 0 0; font-size: 12.5px; }
+.rising-row { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 7px 0; border-top: 1px solid var(--line-2); }
+.rising-row:first-child { border-top: 0; }
+.rising-row .name { font-size: 13px; }
+.rising-row .share { font: 12.5px var(--mono); color: var(--ink); text-align: right; }
+.rising-row .counts { display: block; font-size: 11.5px; }
+
 /* controls */
 .controls { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 20px; }
 .ctl { display: flex; flex-direction: column; gap: 6px; }
@@ -418,6 +428,7 @@ a.card.market:hover { border-color: var(--ink); }
 /* phone */
 @media (max-width: 720px) {
   .hdr-in, .main { padding-left: 16px; padding-right: 16px; }
+  .rising-cols { grid-template-columns: 1fr; }
   .brand .sub, .btn .lbl, .pill .lbl { display: none; }
   .chart { padding: 16px; } .chart h1 { font-size: 17px; }
   .page-head { padding: 16px; } .page-head h1 { font-size: 17px; } .page-links { align-items: flex-start; } .posting-wrap { padding: 16px; }

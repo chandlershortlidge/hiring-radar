@@ -31,7 +31,7 @@ from app.pipeline import extract_pending
 from app.poll import load_feeds
 from app.skill_tree import skill_tree
 from app.sources import Posting
-from app.taxonomy import Taxonomy
+from app.taxonomy import Taxonomy, load_added
 from app.targeted_reread import record_snapshot
 from app.transcribe import DEFAULT_MODEL as VISION_MODEL, TranscriptionError, transcribe
 
@@ -59,9 +59,12 @@ def _record_snapshot(db_path: Path, tax: Taxonomy) -> None:
         print(f"warning: could not record the extractor snapshot: {type(e).__name__}: {e}")
 
 
-def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client_factory=make_client) -> FastAPI:
+def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client_factory=make_client,
+               skill_added: dict[str, str] | None = None) -> FastAPI:
     app = FastAPI(title="hiring-radar", version="0.1.0")
     tax = taxonomy or Taxonomy.load()
+    # The day each skill joined the list; only "what's rising" reads it.
+    added = load_added() if skill_added is None else skill_added
     state = {"client": None}
     _record_snapshot(db_path, tax)
 
@@ -138,6 +141,16 @@ def create_app(db_path: Path = DB_PATH, taxonomy: Taxonomy | None = None, client
             raise HTTPException(422, "skill is required")
         r = q.related_skills(conn, f, now_iso())
         r["skills"] = with_display(r["skills"])
+        return r
+
+    @app.get("/api/skills/rising")
+    def get_rising_skills(f: q.Filters = Depends(filters), conn=Depends(conn_dep)):
+        """What's rising (HIR-232): skills whose share of open jobs moved between the last
+        4 weeks and the 4 before. Reads `city`, `family` and `requirement` only; the other
+        filters are ignored, so the two periods always have the most jobs behind them."""
+        r = q.rising_skills(conn, q.Filters(cities=f.cities, families=f.families, requirement=f.requirement),
+                            now_iso(), added)
+        r["risers"], r["fallers"] = with_display(r["risers"]), with_display(r["fallers"])
         return r
 
     @app.get("/api/skills/tree")

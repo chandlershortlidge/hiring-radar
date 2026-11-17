@@ -242,3 +242,62 @@ def test_when_earlier_fixes_cannot_be_counted_the_ticket_is_still_filed_for_an_a
     assert run(["--kind", "deploy", "--report", rep], fake) == 0
     assert fake.created()[0]["labelIds"] == ["label-autopilot"]
     assert "could not count earlier fixes" in capsys.readouterr().err
+
+
+# --- a rollback that never ran is not "site down and rollback failed" (HIR-317) -----------
+
+def test_a_rollback_that_could_not_log_in_says_so_and_goes_to_chandler(tmp_path):
+    fake = FakeLinear()
+    rep = write_report(tmp_path, report(spec("a job card", ("phone", "unexpected"))))
+    run(["--kind", "rollback-not-done", "--rollback-problem", "login", "--report", rep,
+         "--change", "8a8bffe Merge #185", "--rolled-back-to", "733607b"], fake)
+    [issue] = fake.created()
+    assert issue["title"] == "Deploy failed the robot visitor and the rollback did not run"
+    body = issue["description"]
+    assert "The rollback could not log in to the server." in body
+    assert "The site is still on the new version:** 8a8bffe Merge #185" in body
+    assert "The rollback would have put back:** 733607b" in body
+    assert "a job card (phone)" in body and "not run a second time" in body
+    # Not the wording of the ticket for a rollback that ran and did not help.
+    assert "Site down" not in issue["title"] and "still fails" not in body
+    # A version the robot failed is live and no agent can reach the server: Chandler's.
+    assert issue["assigneeId"] == swt.CHANDLER_ID and issue["priority"] == 1
+    assert "labelIds" not in issue
+
+
+def test_a_rollback_that_failed_for_another_reason_does_not_claim_a_login_problem(tmp_path):
+    fake = FakeLinear()
+    run(["--kind", "rollback-not-done", "--report", str(tmp_path / "none.json")], fake)
+    [issue] = fake.created()
+    assert "The rollback job failed before it finished." in issue["description"]
+    assert "could not log in" not in issue["description"]
+
+
+def test_the_workflow_files_the_right_ticket_for_each_way_a_rollback_ends():
+    """The shell lines in site-watch.yml that pick the ticket, run as they are."""
+    import subprocess
+
+    import yaml
+    wf = yaml.safe_load((ROOT / ".github" / "workflows" / "site-watch.yml").read_text())
+    [step] = [s for s in wf["jobs"]["report"]["steps"] if s.get("name") == "File the ticket"]
+    assert step["env"]["ROLLBACK_LOGIN"] == "${{ needs.rollback.outputs.login }}"
+    script = step["run"]
+    picker = script[script.index('if [ "$MODE" = morning ]'):script.index('echo "Filing')]
+    assert '--rollback-problem "$problem"' in script
+
+    def pick(mode, rollback, recheck, login=""):
+        out = subprocess.run(["bash", "-ec", picker + '\necho "$kind $problem"'], capture_output=True, text=True,
+                             env={"PATH": "/usr/bin:/bin", "MODE": mode, "ROLLBACK": rollback,
+                                  "RECHECK": recheck, "ROLLBACK_LOGIN": login}, check=True)
+        return out.stdout.strip()
+
+    assert pick("morning", "skipped", "") == "morning other"
+    assert pick("deploy", "success", "true") == "deploy other"
+    assert pick("deploy", "success", "false") == "rollback-failed other"
+    assert pick("deploy", "failure", "", "refused") == "rollback-not-done login"
+    assert pick("deploy", "failure", "") == "rollback-not-done other"
+    # deploy.yml hands the reason up: the step, the job and the workflow each pass it on.
+    dep = yaml.safe_load((ROOT / ".github" / "workflows" / "deploy.yml").read_text())
+    assert dep[True]["workflow_call"]["outputs"]["login"]["value"] == "${{ jobs.deploy.outputs.login }}"
+    assert dep["jobs"]["deploy"]["outputs"]["login"] == "${{ steps.vm.outputs.login }}"
+    assert 'if [ "$rc" = 75 ]; then echo "login=refused" >> "$GITHUB_OUTPUT"; fi' in dep["jobs"]["deploy"]["steps"][-1]["run"]

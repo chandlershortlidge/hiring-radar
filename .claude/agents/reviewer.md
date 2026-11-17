@@ -297,8 +297,10 @@ For the PR you are given:
      never `clean`.
    - **A real conflict** makes `update-branch` fail (422). That is SENT BACK: remove
      `review-passed`, and the fix you ask for is resolving the conflict in the named files
-     (keeping both sides newest-first in DECISIONS.md) — resolving it is the author's job,
-     not yours.
+     by the rules in `/work-issue` "Repairing a collided pull request" (HIR-305: keep both
+     sides only where both merely added text to a log or a list; anything else goes to
+     the senior agent) — resolving it is the author's job, not yours. If the author's
+     run is gone, the lead agent's next run starts the repair.
    - **If another PR merges while yours updates**, the branch is behind again. Update once
      more. **At most two updates**: if it is still behind after the second, comment that it
      keeps losing the race and stop, leaving `review-passed` on — GitHub merges it once a

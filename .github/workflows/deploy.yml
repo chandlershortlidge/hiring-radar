@@ -18,6 +18,10 @@ on:
         description: The commit to deploy.
         required: true
         type: string
+    outputs:
+      login:
+        description: '"refused" when the server refused the login on every try, so nothing was deployed; empty otherwise.'
+        value: ${{ jobs.deploy.outputs.login }}
 
 jobs:
   deploy:
@@ -30,10 +34,20 @@ jobs:
     concurrency:
       group: deploy
       cancel-in-progress: false
+    outputs:
+      login: ${{ steps.vm.outputs.login }}
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ inputs.sha }}
+      # The login script comes from the commit this workflow runs at, not from the commit
+      # being deployed: a rollback deploys an older commit, which may not have it (HIR-317).
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          path: .deploy-tools
+          sparse-checkout: deploy/vm-ssh.sh
+          sparse-checkout-cone-mode: false
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -51,14 +65,18 @@ jobs:
       # One IAP/OS Login connection, not two: the tarball arrives on this ssh
       # invocation's stdin instead of a separate `gcloud compute scp` (HIR-106).
       # A truncated pipe fails `tar -xzf` in remote-deploy.sh, so the job goes red.
+      # deploy/vm-ssh.sh tries a refused login again (3 tries, 15 s apart) and nothing
+      # else; when all three are refused it exits 75 and this job reports `login=refused`,
+      # so a rollback that could not log in can say so in its ticket (HIR-317).
       - name: Deploy on VM
+        id: vm
         env:
           SHA: ${{ inputs.sha }}
         run: |
           # The sha goes into a command run as root on the VM: a full hex sha and nothing else.
           [[ "$SHA" =~ ^[0-9a-f]{40}$ ]] || { echo "::error::not a full commit sha: $SHA"; exit 1; }
-          gcloud compute ssh hiring-radar --zone=europe-west3-a --tunnel-through-iap --quiet \
-            --strict-host-key-checking=no --ssh-key-expire-after=30m --command "
+          rc=0
+          bash .deploy-tools/deploy/vm-ssh.sh "
             set -e
             cat > /tmp/web-dist.tgz
             sudo -u hiring-radar -H git -C /opt/hiring-radar/app fetch origin main
@@ -66,4 +84,6 @@ jobs:
               || sudo -u hiring-radar -H git -C /opt/hiring-radar/app fetch origin $SHA
             sudo -u hiring-radar -H git -C /opt/hiring-radar/app reset --hard $SHA
             sudo bash /opt/hiring-radar/app/deploy/remote-deploy.sh /tmp/web-dist.tgz
-          " < web-dist.tgz
+          " web-dist.tgz || rc=$?
+          if [ "$rc" = 75 ]; then echo "login=refused" >> "$GITHUB_OUTPUT"; fi
+          exit "$rc"

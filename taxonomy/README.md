@@ -29,6 +29,11 @@
   `tests/fixtures/skill_ids.json`; a new id is added to that list with
   `uv run python scripts/record_skill_ids.py`. Rename the display name instead, and keep
   the old spelling as an alias.
+- **Every id has the day it was added, in `added.json`.** The same script writes it for a
+  new id. "What's rising" compares two 4-week periods and leaves a skill out until it was
+  on the list for the whole of both: postings that closed before a skill existed were never
+  read with it, so the skill would look as if it rose from nothing.
+  `tests/test_taxonomy.py` fails while an id has no date.
 
 ## Skill boundaries
 

@@ -3,7 +3,11 @@ name: work-issue
 description: Take one Linear issue (HIR-n) from ticket to pull request — read the issue, get on its branch, follow its build steps, test, open the PR, update Linear. Runs unattended (autopilot) by default; add "attended" to be asked for a go. Use when the person says "work HIR-n", "do HIR-n", "pick up HIR-n", or invokes /work-issue.
 ---
 
-# /work-issue HIR-n [attended]
+# /work-issue HIR-n [attended | repair]
+
+`repair` is a different, much smaller job (HIR-305): the issue's open pull request
+collides with main, and you only bring main into its branch. Skip everything below and
+go to "Repairing a collided pull request".
 
 One procedure for every issue, so the person never has to spell it out. The issue is the
 plan; this skill only sequences the steps. AGENTS.md rules apply throughout (smallest
@@ -27,7 +31,8 @@ it — but read `.claude/skills/work-issue/SKILL.md` and `AGENTS.md` from `origi
   status note at the top, continue from where the note says it stopped.
 - Read its comments too (`list_comments`). A comment headed **Answered** is Chandler's
   answer to the ticket's question, as the lead agent recorded it (HIR-277): follow it,
-  write it into DECISIONS.md in this PR where it is a rule, and if the ticket's open PR
+  write it into the decisions log in this PR (a new file in `decisions/`, step 3) where
+  it is a rule, and if the ticket's open PR
   holds that question under "Needs Chandler", move it to "Decisions taken" with his
   answer quoted.
 - Its "Build" / "Steps" section is the plan. Its "Tests" section is the test list. Its
@@ -144,8 +149,11 @@ Uncommitted changes on the tree: stop and ask whose they are. Never stash or dis
   then `gh api repos/:owner/:repo/pulls/<n>/files` for each.
 - A new migration takes the next free number — check `ls app/migrations/` first, don't
   trust the number in the issue.
-- If the issue asks for a **DECISIONS.md** entry, write it before the code it describes,
-  newest-first with the date. If a step changes `app/extract.py`, the prompt or the taxonomy,
+- If the issue asks for a **DECISIONS.md** entry (an entry in the decisions log), write it
+  before the code it describes, **as a new file in `decisions/`, never as a block added
+  to `DECISIONS.md`** (HIR-305): `decisions/YYYY-MM-DD-hir-n-short-title.md`, first line
+  `## YYYY-MM-DD — what was decided (HIR-n)`. One file per decision is what keeps two
+  pull requests from colliding on the log. If a step changes `app/extract.py`, the prompt or the taxonomy,
   run `uv run python -m app reread-cost` and say in the PR body that merging re-reads the
   open jobs, with that command's figure (HIR-221); the merge is the approval, so don't stop
   for it. Those same changes trigger the eval gate — step 3a.
@@ -225,7 +233,8 @@ brings the branch up to date at the end, once, just before the merge — a branc
 behind main is not something to fix before review. Merging main in by hand while other
 sessions were merging is what produced the duplicate edits of 3 Nov. What *is* still yours
 is a real conflict: the reviewer cannot update a branch that conflicts, so it hands the PR
-back to you. Resolve it then, keeping both sides newest-first in DECISIONS.md.
+back to you. Resolve it then, by the rules in "Repairing a collided pull request" below
+(HIR-305): they hold for the author exactly as for a repair worker.
 
 **A PR that changes the agents' own rules** (AGENTS.md "The rules gate") opens with the
 three lines of a recommendation to approve, at the very top of its body: **Recommend:**,
@@ -334,6 +343,57 @@ and no `review-passed` (the orchestrator does that when the original worker is g
    the Monday summary. Then step 5c from 1, unless an orchestrator started you: then stop
    and report, and it starts the reviewer.
 
+## Repairing a collided pull request
+
+You are here because the lead agent started you with `/work-issue HIR-n repair`
+(HIR-305), or because your own pull request came back with a real conflict. GitHub
+reports the pull request as conflicted with main (`mergeable_state` `dirty`); nothing
+merges it until main is brought into its branch. That is the whole job. It is the one
+case where a worker merges main into a branch.
+
+As a repair worker you post no brief, change no label and do not touch the issue's
+status: it is In Progress or In Review because its work is done or waiting, and that is
+not a second session's claim. You fix nothing the reviewer asked for and add no work of
+your own. If the issue has no open pull request, or its pull request no longer collides,
+say so and stop.
+
+1. Work on the pull request's existing branch, in its own worktree (step 2, with the
+   branch that exists). Never open a second pull request.
+2. `git fetch origin main`, then `git merge origin/main`. If it finishes with no
+   conflict, go to 5.
+3. `uv run python scripts/collision.py --apply`. It reads git's three versions of every
+   collided file and does the one thing that needs no judgment: **where both sides only
+   added text at the same place in a prose file (a log, a list in a `.md` file), it
+   keeps both** and stages the file. Everything else it lists under `for_senior`, with
+   why, and leaves untouched: the same lines changed on both sides, a file one side
+   deleted, and any collision in a code or data file, even one where both sides only
+   added lines.
+4. **A file under `for_senior` you do not resolve by your own reading, however obvious
+   it looks.** Hand each to the `senior` agent with the ticket id, the file, what the
+   script said, and what each side was doing: the branch's version
+   (`git show :2:<path>`), main's (`git show :3:<path>`), their common ancestor
+   (`git show :1:<path>`), and which merged pull request changed it on main
+   (`git log -3 origin/main -- <path>`).
+   - **DECISION** → make exactly that edit, `git add` the file, and add a line to the
+     pull request body's "Decisions taken" and "Escalations".
+   - **ON CHANDLER'S LIST** → the senior agent cannot settle it without deciding
+     something that is his. `git merge --abort`, so the branch is as you found it. Post
+     its three lines, unchanged, on the Linear issue under the heading **To approve**,
+     with an @mention; label the pull request `needs-chandler`; reply `WAITING` and
+     stop.
+5. If the branch added an entry to `DECISIONS.md`, leave it where it is: moving it to
+   `decisions/` is not a repair.
+6. `uv run pytest -q`, and `cd web && npm run build` when `web/` is in the merge. Green →
+   commit the merge (`HIR-n: bring main in, repair the collision; <n> tests pass`) and
+   push. Red after two tries at the cause → the `senior` agent ("A hard technical
+   question", below); still red → `git merge --abort` if nothing is committed, reply
+   `FAILED` with the failing test, and stop. Never push a red merge.
+7. Comment on the pull request, headed `**Repair: main brought in**`: each file that
+   collided and how it was settled (kept both, or the senior agent's decision in one
+   sentence). Then reply with one word first, `REPAIRED`, `WAITING` or `FAILED`, and one
+   line of what happened. You start no reviewer: whoever started you does. If the pull
+   request is your own and you are here from step 5c, carry on there.
+
 ## 6. Finish
 
 - Linear: a comment with the PR link and the same "Needs Chandler" lines as the PR, with
@@ -358,7 +418,8 @@ the senior agent says which kind of big call it is (AGENTS.md "What Chandler is 
 decider's reply. It answers ON CHANDLER'S LIST with either **TO APPROVE** and three lines,
 or **TO THINK ABOUT** and a full question. Post that, unchanged, on the Linear issue under
 the heading **To approve** or **To think about**, with an @mention of Chandler; do what
-doesn't depend on it, stop. When his answer arrives, add it to DECISIONS.md in the same PR.
+doesn't depend on it, stop. When his answer arrives, add it to the decisions log (a new
+file in `decisions/`) in the same PR.
 
 ## A hard technical question: the senior agent
 
