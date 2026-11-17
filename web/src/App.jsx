@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { api } from "./api.js";
+import { api, fetchSkills } from "./api.js";
 import { COMPARE_DEFAULT, DEGREE_FILTERS, GERMAN_FILTERS, PLACE_NAMES, PRODUCTION_FILTERS, SENIORITIES, cap, compareAdd, compareRemove, familyLabel, listFilters as deriveListFilters, placeByName, placeBySlug, placeCities, pctInt, timeAgo } from "./format.js";
 import { HOME, parsePath, pathFor, withFamily } from "./routes.js";
 import { pushRecent, readLast, readRecent, writeLast } from "./lastPlace.js";
@@ -7,7 +7,7 @@ import { useProfile } from "./profile.js";
 import { Person, Plus, Radar } from "./icons.jsx";
 import QueryBar from "./QueryBar.jsx";
 import HomeGrid from "./HomeGrid.jsx";
-import SkillChart from "./SkillChart.jsx";
+import SkillChart, { ChartStatus } from "./SkillChart.jsx";
 import CompareChart from "./CompareChart.jsx";
 import JobList from "./JobList.jsx";
 import RelatedSkills from "./RelatedSkills.jsx";
@@ -41,6 +41,7 @@ export default function App() {
   const [filters, setFilters] = useState(DEFAULT);
   const [stats, setStats] = useState(null);
   const [skills, setSkills] = useState(null);
+  const [skillsFailed, setSkillsFailed] = useState(false);
   const [tax, setTax] = useState({ version: 0, skills: [] });
   const [related, setRelated] = useState(null);
   const [drawer, setDrawer] = useState(null); // 'add' | 'review' | 'profile'
@@ -105,7 +106,14 @@ export default function App() {
   useEffect(() => { api.taxonomy().then(setTax); reload(); }, [reload]);
   // The answer is tagged with the family it was asked for, so the market cards never show a
   // new family's order over the previous family's numbers while a request is in flight.
-  useEffect(() => { let live = true; api.skills(filters).then((r) => { if (live) setSkills({ ...r, family: filters.families[0] || null }); }); return () => { live = false; }; }, [filters, refresh]);
+  // A request that fails clears the old numbers and is remembered (HIR-318), so the chart
+  // says it could not load; before, a failure left "No jobs match" on screen for good.
+  useEffect(() => {
+    let live = true;
+    setSkillsFailed(false);
+    fetchSkills(filters).then((r) => { if (live) { setSkills(r.data); setSkillsFailed(r.failed); } });
+    return () => { live = false; };
+  }, [filters, refresh]);
   // The related-skills rows, fetched here and not in the panel: the panel draws them and the
   // chip row's add-skill popover suggests them, both from this one request and in its order.
   useEffect(() => {
@@ -288,7 +296,10 @@ export default function App() {
               </select>
             </div>
           </div>
-          {filters.compare
+          {/* No numbers yet is not "no jobs": both charts read missing numbers as zero jobs,
+              so neither is drawn until the answer is in (HIR-318). */}
+          {!skills ? <ChartStatus failed={skillsFailed} onRetry={reload} />
+            : filters.compare
             ? <CompareChart data={skills} selected={filters.skillIds} onSelect={selectSkill} cities={compareCities}
                 onSelectCity={(id, city) => { set({ skillIds: [id] }); goMarket({ ...HOME, view: "city", place: placeByName(city)?.slug || null, family: market.family }); }} />
             : <SkillChart data={skills} selected={filters.skillIds} onSelect={selectSkill} profile={profile}

@@ -65,3 +65,13 @@ export const api = {
     return call(`/api/add/screenshot${qs(fields)}`, { method: "POST", body: fd });
   },
 };
+
+// The chart's numbers for these filters, or the fact that they could not be fetched
+// (HIR-318). Never rejects: the page has to tell "still waiting" from "failed" from "zero
+// jobs", and an unhandled failure used to look like the first of those for good.
+// The answer is tagged with the family it was asked for, so the market cards never show a
+// new family's order over the previous family's numbers while a request is in flight.
+export const fetchSkills = (filters, get = api.skills) => get(filters).then(
+  (r) => ({ data: { ...r, family: filters.families[0] || null }, failed: false }),
+  () => ({ data: null, failed: true }),
+);

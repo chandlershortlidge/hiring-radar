@@ -5,6 +5,22 @@ import { filterSkills } from "./skillMatch.js";
 
 const PAGE = 15;
 
+// What the chart box says while it has no numbers (HIR-318): that they are on their way,
+// or that the request for them failed. "No jobs match these filters" is kept for an answer
+// that really is zero jobs; it used to be shown for a missing answer too, next to a job
+// list of hundreds. Both lines keep the `empty` class, so they look like the chart's other
+// one-line messages.
+export function ChartStatus({ failed, onRetry }) {
+  if (failed) {
+    return (
+      <div className="empty" role="alert">
+        The chart could not be loaded. <button type="button" className="btn" onClick={onRetry}>Try again</button>
+      </div>
+    );
+  }
+  return <div className="empty" role="status">Loading the chart…</div>;
+}
+
 // One bar per skill: share of the filtered job set listing it. With a profile, the bar
 // is drawn solid for skills the person has and hatched for the ones they don't.
 //
