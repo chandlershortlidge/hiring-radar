@@ -9,6 +9,7 @@ import QueryBar from "./QueryBar.jsx";
 import HomeGrid from "./HomeGrid.jsx";
 import SkillChart, { ChartStatus } from "./SkillChart.jsx";
 import CompareChart from "./CompareChart.jsx";
+import CityFit from "./CityFit.jsx";
 import JobList from "./JobList.jsx";
 import RelatedSkills from "./RelatedSkills.jsx";
 import RisingSkills from "./RisingSkills.jsx";
@@ -298,6 +299,9 @@ export default function App() {
           </div>
           {/* No numbers yet is not "no jobs": both charts read missing numbers as zero jobs,
               so neither is drawn until the answer is in (HIR-318). */}
+          {/* Where the visitor's skills are wanted, city by city (HIR-16). Draws nothing
+              without skills in the profile. */}
+          {filters.compare && <CityFit profile={profile} filters={filters} cities={compareCities} refreshKey={refresh} />}
           {!skills ? <ChartStatus failed={skillsFailed} onRetry={reload} />
             : filters.compare
             ? <CompareChart data={skills} selected={filters.skillIds} onSelect={selectSkill} cities={compareCities}

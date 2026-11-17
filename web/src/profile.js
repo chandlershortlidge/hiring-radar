@@ -254,3 +254,22 @@ export function rankJobs(profile, jobs, demand = null) {
   });
   return keyed.map((x) => x.job);
 }
+
+// --- matches per city (HIR-16) ----------------------------------------------------------
+
+// What "you match this job" means when jobs are *counted*: at least this share of the
+// required skills, as the badge counts them. The ticket's own number.
+export const MATCH_PCT = 70;
+
+// Does the profile cover enough of this job's required skills to count it? False without
+// a profile, for a job with no required skills (unknown, not a match) and for a thinly
+// listed one: the row refuses to show a percentage there, so a count must not read "2/2"
+// as 100% either. Skills only — a hard ask the profile fails does not change the answer,
+// exactly as it does not change `score` (decisions/2026-11-17-hir-16).
+// Whole numbers on both sides, so 7 of 10 is a match whatever floating point makes of 0.7.
+export function isMatch(profile, job) {
+  const f = fit(profile, job);
+  return Boolean(f && f.total && !f.thin && f.covered * 100 >= f.total * MATCH_PCT);
+}
+
+export const countMatches = (profile, jobs) => jobs.filter((j) => isMatch(profile, j)).length;

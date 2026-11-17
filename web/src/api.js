@@ -75,3 +75,22 @@ export const fetchSkills = (filters, get = api.skills) => get(filters).then(
   (r) => ({ data: { ...r, family: filters.families[0] || null }, failed: false }),
   () => ({ data: null, failed: true }),
 );
+
+// The largest page /api/jobs serves (tests/test_api.py pins it).
+export const JOBS_MAX = 200;
+
+// Every job these filters match, a page at a time, newest first (that order ends on the
+// job's id, so pages neither overlap nor skip). For the per-city match count (HIR-16),
+// which has to see the whole set and cannot ask the server to count: the server is never
+// told the profile. Stops on an empty page, so a total that shrinks mid-way cannot loop.
+export async function allJobs(filters, get = api.jobs) {
+  const jobs = [];
+  let total = 0;
+  do {
+    const r = await get(filters, { sort: "newest", limit: JOBS_MAX, offset: jobs.length });
+    total = r.total;
+    if (!r.jobs.length) break;
+    jobs.push(...r.jobs);
+  } while (jobs.length < total);
+  return { jobs, total };
+}

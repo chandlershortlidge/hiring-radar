@@ -408,6 +408,8 @@ a.card.market:hover { border-color: var(--ink); }
 
 /* compare: one column per place */
 .cmp-sort { margin-bottom: 6px; align-self: flex-start; }
+.cmp-fit { margin: 0; font-size: 13px; color: var(--ink-2); }
+.cmp-fit b { color: var(--ink); }
 .cmp-head .cty-h { border: 0; background: transparent; padding: 0; text-align: left; color: inherit; font-size: 12px; }
 .cmp-head .cty-h[aria-pressed="true"] b { text-decoration: underline; }
 .cmp-row .cb.col-0 .fill { background: var(--bar); }
