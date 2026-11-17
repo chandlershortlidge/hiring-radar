@@ -11,6 +11,7 @@ import SkillChart from "./SkillChart.jsx";
 import CompareChart from "./CompareChart.jsx";
 import JobList from "./JobList.jsx";
 import RelatedSkills from "./RelatedSkills.jsx";
+import RisingSkills from "./RisingSkills.jsx";
 import AddJobDrawer from "./AddJobDrawer.jsx";
 import ReviewDrawer from "./ReviewDrawer.jsx";
 import ProfileDrawer from "./ProfileDrawer.jsx";
@@ -21,7 +22,9 @@ import Panel from "./Panel.jsx";
 // the server have to match; tests/test_frontend_lists.py fails if they drift (HIR-203).
 const WINDOWS = { open: "Currently open", "30d": "Last 30 days", "90d": "Last 90 days", all: "All" };
 const REQUIREMENTS = { required: "Required only", all: "Required + nice-to-have" };
-const DEFAULT = { cities: [], compare: false, seniorities: [], families: [], requirement: "required", window: "open", german: "any", degree: "any", production: "any", skillIds: [], query: "", text: "" };
+// Every key here is recorded by a "doesn't belong here" flag and must be known to its
+// diagnosis (app/flags.py VIEW_FILTERS); tests/test_flags.py fails when one is not (HIR-226).
+export const DEFAULT = { cities: [], compare: false, seniorities: [], families: [], requirement: "required", window: "open", german: "any", degree: "any", production: "any", skillIds: [], query: "", text: "" };
 
 // Where a request to add a city goes. There is no form for it, so it opens the repo's
 // issue tracker, which is where every other request already lands.
@@ -292,11 +295,17 @@ export default function App() {
                 cityLabel={`${winLabel || "tracked"} jobs`} aliases={taxAliases} />}
         </section></Panel>
 
+        {/* One place at a time: a comparison of cities has no single market to follow. */}
+        {market.view === "city" && (
+          <Panel label="What's rising"><RisingSkills cities={placeCities(market.place)} family={market.family}
+            place={placeName || "this market"} role={roleLabel} refreshKey={refresh} /></Panel>
+        )}
+
         <Panel label="Related skills"><RelatedSkills filters={listFilters} skillNames={skillNames} onAdd={addSkill} data={related} /></Panel>
 
         <Panel label="The job list"><JobList filters={listFilters} setFilters={setFilters}
           profile={profile} taxonomy={taxName} demand={demand} refreshKey={refresh} openJobId={jumpTo} onOpened={() => setJumpTo(null)} onOpenPage={openPage}
-          taxonomyRows={taxRows} aliases={taxAliases} suggestions={skillSuggestions} onAddSkill={addSkill} /></Panel>
+          taxonomyRows={taxRows} aliases={taxAliases} suggestions={skillSuggestions} onAddSkill={addSkill} market={market} /></Panel>
 
         {/* The skill tree card stood here. Off the MVP page by HIR-187; SkillTree.jsx, api.skillTree
             and /api/skills/tree all still work, and HIR-81 / HIR-89 bring it back per career track. */}

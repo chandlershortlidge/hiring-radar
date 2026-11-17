@@ -27,6 +27,10 @@
                     when LINEAR_API_KEY is set: what needs Chandler, what merged, what was
                     sent back and fixed, what broke on the live site (read from the robot
                     visitor's Linear tickets), then the job sources (HIR-257, HIR-264, HIR-260)
+  flags             why each job flagged "doesn't belong here" showed: every filter that was on
+                    screen against what was stored and what the posting says, grouped by cause.
+                    Makes no model call. --fixed ID [ID ...] closes flags whose cause is fixed,
+                    which takes the "flagged" mark off their jobs (HIR-226)
   migrate           apply pending migrations and exit
 
 Database path: $HIRING_RADAR_DB, default ./data/hiring-radar.db.
@@ -397,6 +401,15 @@ def cmd_caretaker(args):
         site_watch=lambda start, end: site_watch_week.week_text(start, end, linear_key, team, caretaker_run.post_json))
 
 
+def cmd_flags(args):
+    from app import flags
+    conn = open_db()
+    if args.fixed:
+        print(f"closed {flags.mark_fixed(conn, args.fixed, now_iso())} of {len(args.fixed)} flags as fixed")
+        return
+    print("\n".join(flags.report_lines(flags.open_flags(conn))))
+
+
 def cmd_migrate(args):
     open_db()
     print("ok")
@@ -463,6 +476,10 @@ def main(argv=None):
     p.add_argument("--day", default=None, help="judge this day's poll (YYYY-MM-DD, UTC); default today")
     p.add_argument("--no-post", action="store_true", help="print the summaries, post nothing to Linear")
     p.set_defaults(fn=cmd_caretaker)
+    p = sub.add_parser("flags", help="why each job flagged \"doesn't belong here\" showed, grouped by cause")
+    p.add_argument("--fixed", nargs="+", type=int, metavar="ID", default=[],
+                   help="close these flags: their cause is fixed (removes the mark from the job)")
+    p.set_defaults(fn=cmd_flags)
     sub.add_parser("migrate").set_defaults(fn=cmd_migrate)
     sub.add_parser("import-labels",
                    help="load each labeller's own answer from evals/labeling/<run>/raw into the database"

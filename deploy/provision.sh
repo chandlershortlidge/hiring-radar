@@ -110,20 +110,13 @@ grep -q '^LANGSMITH_API_KEY=' "$ENV_FILE" || echo "LANGSMITH_API_KEY=" >> "$ENV_
 grep -q '^LINEAR_API_KEY=' "$ENV_FILE" || echo "LINEAR_API_KEY=" >> "$ENV_FILE"
 
 step "6. systemd units"
-# Copied from this repo, so /etc matches what is committed. `diff` the two to spot drift.
-changed=0
-for unit in "$HERE"/hiring-radar*.service "$HERE"/hiring-radar*.timer; do
-  dest=/etc/systemd/system/$(basename "$unit")
-  if cmp -s "$unit" "$dest"; then
-    skip "$(basename "$unit")"
-  else
-    install -m 644 "$unit" "$dest"
-    changed=1
-  fi
-done
-if [ "$changed" -eq 1 ]; then systemctl daemon-reload; fi
-systemctl enable --now hiring-radar hiring-radar-poll.timer hiring-radar-backup.timer hiring-radar-caretaker.timer
-if [ "$changed" -eq 1 ]; then systemctl restart hiring-radar; fi
+# Copied from this repo, so /etc matches what is committed. The same script runs on every
+# deploy (HIR-310), so this step only matters on a VM that has never been deployed to.
+api_unit_changed=0
+cmp -s "$HERE/hiring-radar.service" /etc/systemd/system/hiring-radar.service || api_unit_changed=1
+bash "$HERE/install-units.sh"
+systemctl enable --now hiring-radar
+if [ "$api_unit_changed" -eq 1 ]; then systemctl restart hiring-radar; fi
 # The first request creates the database and applies every migration, so this is setup,
 # not only a check.
 for i in $(seq 1 60); do
