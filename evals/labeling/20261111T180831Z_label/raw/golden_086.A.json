@@ -1,0 +1,55 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"javascript\", \"requirement\": \"required\", \"raw_text\": \"JavaScript\"},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"TypeScript\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"deployed or integrated LLM\", \"uncertain\": true},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"agent-based systems\", \"uncertain\": true}\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years as a software engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Degree in a STEM field or equivalent hands-on experience\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"The 'YOU MIGHT EXCEL IF YOU…' heading is not in the guide's list of optional headings. I read it literally as an optional section, so its items are nice_to_have. Flagged for review.\\nPython, JavaScript and TypeScript come from 'strong coding proficiency (Python, JavaScript/TypeScript, or similar)' under REQUIREMENTS, so they are required.\\nI mapped 'agent-based systems' to agents. It is a reasonable but not exact alias match.\\nI did not add ai-deployment for 'deployed or integrated LLM ... in production settings', because the text does not name model deployment as a skill.\\nMCP integrations, DeepWiki and Devin appear only in the responsibilities or company description, so they are not labeled.\\nI did not label software-engineering. '3+ years as a software engineer' describes a role and a years count, and 'strong coding proficiency' is generic.\\nSeniority is mid from '3+ years'. 'Lead interactive programs' is a responsibility to run workshops, not team lead or mentoring duty, so it is not a senior signal. Flagged for review.\\nDegree: 'or equivalent hands-on experience' accepts experience in place of the degree, so degree_or_equivalent is true. No level is named, so it is bachelor.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "deployed or integrated LLM",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agent-based systems",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years as a software engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Degree in a STEM field or equivalent hands-on experience",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The 'YOU MIGHT EXCEL IF YOU…' heading is not in the guide's list of optional headings. I read it literally as an optional section, so its items are nice_to_have. Flagged for review.\nPython, JavaScript and TypeScript come from 'strong coding proficiency (Python, JavaScript/TypeScript, or similar)' under REQUIREMENTS, so they are required.\nI mapped 'agent-based systems' to agents. It is a reasonable but not exact alias match.\nI did not add ai-deployment for 'deployed or integrated LLM ... in production settings', because the text does not name model deployment as a skill.\nMCP integrations, DeepWiki and Devin appear only in the responsibilities or company description, so they are not labeled.\nI did not label software-engineering. '3+ years as a software engineer' describes a role and a years count, and 'strong coding proficiency' is generic.\nSeniority is mid from '3+ years'. 'Lead interactive programs' is a responsibility to run workshops, not team lead or mentoring duty, so it is not a senior signal. Flagged for review.\nDegree: 'or equivalent hands-on experience' accepts experience in place of the degree, so degree_or_equivalent is true. No level is named, so it is bachelor."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "462546902de6d8b2479db6d4fb32df85d02f95155bf372717f6a3d308a3f8b49",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

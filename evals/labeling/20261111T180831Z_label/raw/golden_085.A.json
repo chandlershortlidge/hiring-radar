@@ -1,0 +1,83 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Very strong software engineering background\"},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"Experience in TypeScript\"},\n    {\"skill_id\": \"react\", \"requirement\": \"required\", \"raw_text\": \"TypeScript and React\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"Strong practical experience working with AI\", \"uncertain\": true},\n    {\"skill_id\": \"cursor\", \"requirement\": \"required\", \"raw_text\": \"We work 24/7 in Cursor\"},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"nice_to_have\", \"raw_text\": \"ideally you have experience coding with AI\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Typesense, LLM APIs\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Supabase\", \"raw_text\": \"Supabase\"},\n    {\"label\": \"Prisma\", \"raw_text\": \"Prisma\"},\n    {\"label\": \"Typesense\", \"raw_text\": \"Typesense\"},\n    {\"label\": \"Trigger.dev\", \"raw_text\": \"Trigger.dev\"}\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"Sections: 'Your Experience' is a requirements section (default required). 'Who You Are' names no skills. 'Tech stack' is a tech-stack list, so unmarked entries are required (rule 4).\\nThe posting has no optional section heading.\\nllms: 'Bonus if you have an experience working with LLM APIs' is nice_to_have, but the unmarked tech-stack entry 'LLM APIs' is required. Any required mention wins, so the label is required and raw_text quotes the tech-stack mention. 'LLM APIs' is a taxonomy alias of llms.\\nai-ml: 'working with AI' is mapped to the broad ai-ml entry (alias 'applied ai'). This is a judgment call; it could be read as too vague to be a skill.\\nai-developer-tooling: 'coding with AI' is mapped to AI Coding Tools (alias 'ai-assisted coding'). The inline marker 'ideally' makes it nice_to_have.\\ncursor: required. It appears in a requirements bullet and is also an unmarked tech-stack entry.\\nai-developer-tooling is not added as a parent of Cursor; it is labeled only because of the separate 'coding with AI' phrase.\\nSupabase, Prisma, Typesense and Trigger.dev have no taxonomy entry. Supabase is not mapped to postgresql because the posting never names Postgres.\\n'agentic system' appears only in the role description (responsibilities), so agents is not labeled.\\nSeniority: the only level-ish phrases are 'founding engineer' and ownership language. Neither is a stated level word or a years/lead signal, so seniority is none. Flagged for review.\\nGerman: the only Germany mention is the team's origin ('flew in from Germany'), which is not a language requirement, so German is none.\\nDegree: no degree is mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Very strong software engineering background"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "Experience in TypeScript"
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "TypeScript and React"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Strong practical experience working with AI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "We work 24/7 in Cursor"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "nice_to_have",
+        "raw_text": "ideally you have experience coding with AI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Typesense, LLM APIs",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Supabase",
+        "raw_text": "Supabase"
+      },
+      {
+        "label": "Prisma",
+        "raw_text": "Prisma"
+      },
+      {
+        "label": "Typesense",
+        "raw_text": "Typesense"
+      },
+      {
+        "label": "Trigger.dev",
+        "raw_text": "Trigger.dev"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Sections: 'Your Experience' is a requirements section (default required). 'Who You Are' names no skills. 'Tech stack' is a tech-stack list, so unmarked entries are required (rule 4).\nThe posting has no optional section heading.\nllms: 'Bonus if you have an experience working with LLM APIs' is nice_to_have, but the unmarked tech-stack entry 'LLM APIs' is required. Any required mention wins, so the label is required and raw_text quotes the tech-stack mention. 'LLM APIs' is a taxonomy alias of llms.\nai-ml: 'working with AI' is mapped to the broad ai-ml entry (alias 'applied ai'). This is a judgment call; it could be read as too vague to be a skill.\nai-developer-tooling: 'coding with AI' is mapped to AI Coding Tools (alias 'ai-assisted coding'). The inline marker 'ideally' makes it nice_to_have.\ncursor: required. It appears in a requirements bullet and is also an unmarked tech-stack entry.\nai-developer-tooling is not added as a parent of Cursor; it is labeled only because of the separate 'coding with AI' phrase.\nSupabase, Prisma, Typesense and Trigger.dev have no taxonomy entry. Supabase is not mapped to postgresql because the posting never names Postgres.\n'agentic system' appears only in the role description (responsibilities), so agents is not labeled.\nSeniority: the only level-ish phrases are 'founding engineer' and ownership language. Neither is a stated level word or a years/lead signal, so seniority is none. Flagged for review.\nGerman: the only Germany mention is the team's origin ('flew in from Germany'), which is not a language requirement, so German is none.\nDegree: no degree is mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "ddeb8706f6c6edfeeca1e007f80ac4bd399dfb89d64b661e0cf1eca3c933b47e",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

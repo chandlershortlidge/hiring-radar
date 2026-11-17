@@ -1,0 +1,71 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"coding fluency\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"enterprise architecture\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Agentic AI/ML systems\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"APIs\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud\"\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"security considerations\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Technical statement-of-work writing\",\n      \"raw_text\": \"write technical SOW content\"\n    },\n    {\n      \"label\": \"Data flows\",\n      \"raw_text\": \"data flows\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"senior Enterprise AI Architect\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The Required and Preferred subheadings set their respective defaults; the Preferred section adds no qualifying technical skills.\\nExcluded the explicitly requested enterprise domain expertise, including Cybersecurity and IAM, because the guide excludes domain knowledge.\\nMapped coding fluency to software-engineering and generic security considerations to data-privacy-and-security tentatively; both mappings warrant review.\\nTreated integrations as covered by the APIs criterion, rather than adding workflow automation, which is not requested.\\nKept data flows unmapped rather than inferring data pipelines or data modeling.\\nTechnologies and practices mentioned only in responsibilities, company background, or benefits were excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "coding fluency",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "enterprise architecture"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Agentic AI/ML systems"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "security considerations",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Technical statement-of-work writing",
+        "raw_text": "write technical SOW content"
+      },
+      {
+        "label": "Data flows",
+        "raw_text": "data flows"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "senior Enterprise AI Architect",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The Required and Preferred subheadings set their respective defaults; the Preferred section adds no qualifying technical skills.\nExcluded the explicitly requested enterprise domain expertise, including Cybersecurity and IAM, because the guide excludes domain knowledge.\nMapped coding fluency to software-engineering and generic security considerations to data-privacy-and-security tentatively; both mappings warrant review.\nTreated integrations as covered by the APIs criterion, rather than adding workflow automation, which is not requested.\nKept data flows unmapped rather than inferring data pipelines or data modeling.\nTechnologies and practices mentioned only in responsibilities, company background, or benefits were excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "69642451d53ddfeb83499b88c31481244020218d4bf25a5f8b4c04735560a96a",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

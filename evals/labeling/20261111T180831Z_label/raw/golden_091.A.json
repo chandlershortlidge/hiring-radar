@@ -1,0 +1,102 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Proficiency in Python\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"modern AI/ML frameworks\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"jax\", \"requirement\": \"required\", \"raw_text\": \"JAX\"},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\"},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"Familiarity with MLOps practices\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"deploying AI/ML models\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Time series data\", \"raw_text\": \"time series\"},\n    {\"label\": \"Mesh data\", \"raw_text\": \"mesh data\"},\n    {\"label\": \"Physics-informed ML\", \"raw_text\": \"physics-informed data\"},\n    {\"label\": \"CAE/CAD/PLM tools\", \"raw_text\": \"CAE, CAD, and/or PLM tools\"},\n    {\"label\": \"Ansys\", \"raw_text\": \"Ansys\"},\n    {\"label\": \"Abaqus\", \"raw_text\": \"Abaqus\"},\n    {\"label\": \"COMSOL\", \"raw_text\": \"COMSOL\"},\n    {\"label\": \"SolidWorks\", \"raw_text\": \"SolidWorks\"},\n    {\"label\": \"Siemens NX\", \"raw_text\": \"NX\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"2+ years of technical leadership guiding AI/ML projects from research to production\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Bachelor's or advanced degree in Computer Science, Mechanical Engineering, Electrical Engineering, or a related field\",\n  \"uncertain\": [\"seniority\", \"degree\"],\n  \"notes\": \"Sections: 'Required:' is required; 'Nice to Have:' is optional, so the CAE/CAD/PLM tools are nice_to_have. All unmapped items have no taxonomy entry.\\nai-ml is labeled once, quoting the frameworks mention. machine-learning is not added because the text says 'AI/ML', which matches the ai-ml id.\\nai-deployment is uncertain: 'deploying AI/ML models' is close to the 'model deployment' alias but is not an exact match.\\n'time series' is put in unmapped rather than forecasting, because the posting asks for time series data, not forecasting.\\nSeniority: '4+ years' alone would infer mid. A required 2+ years of technical leadership is a lead duty, which infers senior. Flagged for review.\\nDegree: 'advanced degree' names no specific level, so I took 'Bachelor's' as the highest explicitly named level. 'Advanced degree' could be read as master. Flagged for review.\\n'Experience in a fast-paced startup environment' is not a skill and is not labeled. Simulation/modeling/optimization engineering principles are treated as domain knowledge and not labeled.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Proficiency in Python"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "modern AI/ML frameworks"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "Familiarity with MLOps practices"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying AI/ML models",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Time series data",
+        "raw_text": "time series"
+      },
+      {
+        "label": "Mesh data",
+        "raw_text": "mesh data"
+      },
+      {
+        "label": "Physics-informed ML",
+        "raw_text": "physics-informed data"
+      },
+      {
+        "label": "CAE/CAD/PLM tools",
+        "raw_text": "CAE, CAD, and/or PLM tools"
+      },
+      {
+        "label": "Ansys",
+        "raw_text": "Ansys"
+      },
+      {
+        "label": "Abaqus",
+        "raw_text": "Abaqus"
+      },
+      {
+        "label": "COMSOL",
+        "raw_text": "COMSOL"
+      },
+      {
+        "label": "SolidWorks",
+        "raw_text": "SolidWorks"
+      },
+      {
+        "label": "Siemens NX",
+        "raw_text": "NX"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "2+ years of technical leadership guiding AI/ML projects from research to production",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor's or advanced degree in Computer Science, Mechanical Engineering, Electrical Engineering, or a related field",
+    "uncertain": [
+      "seniority",
+      "degree"
+    ],
+    "notes": "Sections: 'Required:' is required; 'Nice to Have:' is optional, so the CAE/CAD/PLM tools are nice_to_have. All unmapped items have no taxonomy entry.\nai-ml is labeled once, quoting the frameworks mention. machine-learning is not added because the text says 'AI/ML', which matches the ai-ml id.\nai-deployment is uncertain: 'deploying AI/ML models' is close to the 'model deployment' alias but is not an exact match.\n'time series' is put in unmapped rather than forecasting, because the posting asks for time series data, not forecasting.\nSeniority: '4+ years' alone would infer mid. A required 2+ years of technical leadership is a lead duty, which infers senior. Flagged for review.\nDegree: 'advanced degree' names no specific level, so I took 'Bachelor's' as the highest explicitly named level. 'Advanced degree' could be read as master. Flagged for review.\n'Experience in a fast-paced startup environment' is not a skill and is not labeled. Simulation/modeling/optimization engineering principles are treated as domain knowledge and not labeled."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "edf99168baf590a7101663cea31b34ce02b0dc3d5121186911c162c2b156e1e2",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

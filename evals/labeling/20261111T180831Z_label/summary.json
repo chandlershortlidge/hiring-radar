@@ -1,0 +1,611 @@
+{
+  "run_id": "20261111T180831Z_label",
+  "seed": 1,
+  "provider_a": "anthropic",
+  "model_a": "claude-opus-5-5",
+  "provider_b": "openai",
+  "model_b": "gpt-6.1-sol",
+  "extractor": "claude-sonnet-5-5",
+  "spot_n": 80,
+  "spot_pool": 159,
+  "taxonomy_version": 11,
+  "n_picked": 15,
+  "n_labeled": 15,
+  "failed": [],
+  "agreement": {
+    "n_postings": 15,
+    "skills": {
+      "tp": 153,
+      "fp": 16,
+      "fn": 5,
+      "precision": 0.9053254437869822,
+      "recall": 0.9683544303797469,
+      "f1": 0.9357798165137614
+    },
+    "requirement_agreement": 0.9934640522875817,
+    "attributes": {
+      "seniority": {
+        "agreed": 15,
+        "n": 15,
+        "rate": 1.0
+      },
+      "german": {
+        "agreed": 15,
+        "n": 15,
+        "rate": 1.0
+      },
+      "degree": {
+        "agreed": 14,
+        "n": 15,
+        "rate": 0.9333333333333333
+      }
+    }
+  },
+  "accepted_skills": 123,
+  "accepted_attributes": 36,
+  "review_items": {
+    "in-scope": 15,
+    "disagreement": 23,
+    "uncertain": 37,
+    "spot-check": 80
+  },
+  "spot_check": {
+    "n": 80,
+    "pool": 159,
+    "seed": 1,
+    "sample": [
+      [
+        "golden_079",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_079",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_079",
+        "skill",
+        "github-copilot"
+      ],
+      [
+        "golden_079",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_079",
+        "skill",
+        "nlp"
+      ],
+      [
+        "golden_079",
+        "skill",
+        "software-engineering"
+      ],
+      [
+        "golden_080",
+        "skill",
+        "ai-ml"
+      ],
+      [
+        "golden_080",
+        "skill",
+        "apis"
+      ],
+      [
+        "golden_081",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_081",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_081",
+        "skill",
+        "cursor"
+      ],
+      [
+        "golden_081",
+        "skill",
+        "deep-learning"
+      ],
+      [
+        "golden_081",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_081",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_081",
+        "skill",
+        "reinforcement-learning"
+      ],
+      [
+        "golden_081",
+        "skill",
+        "software-engineering"
+      ],
+      [
+        "golden_082",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_082",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_082",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_083",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_083",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_083",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_083",
+        "skill",
+        "distributed-systems"
+      ],
+      [
+        "golden_083",
+        "skill",
+        "kubernetes"
+      ],
+      [
+        "golden_083",
+        "skill",
+        "networking"
+      ],
+      [
+        "golden_083",
+        "skill",
+        "observability"
+      ],
+      [
+        "golden_083",
+        "skill",
+        "rust"
+      ],
+      [
+        "golden_083",
+        "skill",
+        "software-engineering"
+      ],
+      [
+        "golden_084",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_084",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_084",
+        "skill",
+        "agents"
+      ],
+      [
+        "golden_084",
+        "skill",
+        "aws"
+      ],
+      [
+        "golden_084",
+        "skill",
+        "ci-cd"
+      ],
+      [
+        "golden_084",
+        "skill",
+        "docker"
+      ],
+      [
+        "golden_084",
+        "skill",
+        "fine-tuning"
+      ],
+      [
+        "golden_084",
+        "skill",
+        "gcp"
+      ],
+      [
+        "golden_084",
+        "skill",
+        "knowledge-distillation"
+      ],
+      [
+        "golden_084",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_084",
+        "skill",
+        "mcp"
+      ],
+      [
+        "golden_084",
+        "skill",
+        "observability"
+      ],
+      [
+        "golden_084",
+        "skill",
+        "tool-calling"
+      ],
+      [
+        "golden_085",
+        "skill",
+        "react"
+      ],
+      [
+        "golden_085",
+        "skill",
+        "software-engineering"
+      ],
+      [
+        "golden_085",
+        "skill",
+        "typescript"
+      ],
+      [
+        "golden_086",
+        "skill",
+        "javascript"
+      ],
+      [
+        "golden_086",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_087",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_088",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_088",
+        "skill",
+        "machine-learning"
+      ],
+      [
+        "golden_089",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_089",
+        "skill",
+        "business-intelligence"
+      ],
+      [
+        "golden_089",
+        "skill",
+        "machine-learning"
+      ],
+      [
+        "golden_089",
+        "skill",
+        "sql"
+      ],
+      [
+        "golden_090",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_090",
+        "skill",
+        "airflow"
+      ],
+      [
+        "golden_090",
+        "skill",
+        "data-pipelines"
+      ],
+      [
+        "golden_090",
+        "skill",
+        "data-visualization"
+      ],
+      [
+        "golden_090",
+        "skill",
+        "dbt"
+      ],
+      [
+        "golden_090",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_091",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_091",
+        "skill",
+        "ai-ml"
+      ],
+      [
+        "golden_091",
+        "skill",
+        "jax"
+      ],
+      [
+        "golden_091",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_091",
+        "skill",
+        "tensorflow"
+      ],
+      [
+        "golden_092",
+        "skill",
+        "agents"
+      ],
+      [
+        "golden_092",
+        "skill",
+        "ai-developer-tooling"
+      ],
+      [
+        "golden_092",
+        "skill",
+        "aws"
+      ],
+      [
+        "golden_092",
+        "skill",
+        "azure"
+      ],
+      [
+        "golden_092",
+        "skill",
+        "ci-cd"
+      ],
+      [
+        "golden_092",
+        "skill",
+        "docker"
+      ],
+      [
+        "golden_092",
+        "skill",
+        "evaluation"
+      ],
+      [
+        "golden_092",
+        "skill",
+        "github-actions"
+      ],
+      [
+        "golden_092",
+        "skill",
+        "kubernetes"
+      ],
+      [
+        "golden_093",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_093",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_093",
+        "skill",
+        "apis"
+      ],
+      [
+        "golden_093",
+        "skill",
+        "containerization"
+      ],
+      [
+        "golden_093",
+        "skill",
+        "cpp"
+      ],
+      [
+        "golden_093",
+        "skill",
+        "java"
+      ],
+      [
+        "golden_093",
+        "skill",
+        "python"
+      ]
+    ],
+    "errors": 6,
+    "rate": 0.075,
+    "wilson_95": [
+      0.03482524929300514,
+      0.15412016081219287
+    ],
+    "wrong": [
+      "golden_079 attribute `degree` -> {\"degree\": \"master\", \"degree_requirement\": \"nice_to_have\", \"degree_or_equivalent\": false, \"degree_signal\": \"A relevant advanced degree (Masters or PhD)\"}",
+      "golden_079 skill `github-copilot` -> {\"requirement\": \"nice_to_have\", \"raw_text\": \"GitHub Copilot\"}",
+      "golden_081 skill `cursor` -> {\"requirement\": \"nice_to_have\", \"raw_text\": \"Cursor\"}",
+      "golden_084 skill `mcp` -> {\"requirement\": \"nice_to_have\", \"raw_text\": \"MCP\"}",
+      "golden_091 skill `jax` -> {\"requirement\": \"nice_to_have\", \"raw_text\": \"JAX\"}",
+      "golden_091 skill `tensorflow` -> {\"requirement\": \"nice_to_have\", \"raw_text\": \"TensorFlow\"}"
+    ],
+    "sample_items": null,
+    "answered_by": null
+  },
+  "signal_mismatches": [
+    "golden_079 degree: A 'A relevant advanced degree (Masters or PhD)' vs B 'A relevant advanced degree (Masters or PhD) in Machine Learning, Artificial Intelligence, Statistics, or a related field'",
+    "golden_081 seniority: A 'Senior Machine Learning Engineer' vs B 'Senior Machine Learning Engineer, Drive'",
+    "golden_084 seniority: A '4+ years of software engineering, machine learning, or applied AI experience' vs B '4+ years of software engineering, machine learning, or applied AI experience.'",
+    "golden_089 seniority: A 'Lead Data Scientist' vs B 'Lead Data Scientist, Credit Risk'",
+    "golden_090 seniority: A 'Senior Data Scientist' vs B 'Senior Data Scientist - Embedded Insights'",
+    "golden_090 degree: A 'Bachelor’s degree or equivalent work experience' vs B 'Bachelor’s degree or equivalent work experience in Computer Science, Statistics, Engineering, Economics, or a closely related field.'",
+    "golden_092 degree: A \"Expect to complete a bachelor's or master's degree in Computer Science, Engineering, or a related technical field in Spring 2027\" vs B \"Expect to complete a bachelor's or master's degree in Computer Science, Engineering, or a related technical field in Spring 2027.\"",
+    "golden_093 degree: A 'degree in Computer Science or a related field, or have equivalent practical experience' vs B 'a degree in Computer Science or a related field, or have equivalent practical experience'"
+  ],
+  "unmapped": [
+    "AI alignment",
+    "AI indexing",
+    "AI red-teaming",
+    "AI workflow development",
+    "Abaqus",
+    "Access control",
+    "Agent planning",
+    "Agent reasoning",
+    "Ansys",
+    "Automation",
+    "Autoscaling",
+    "Bug bounties",
+    "CAD tools",
+    "CAE tools",
+    "CAE/CAD/PLM tools",
+    "COMSOL",
+    "CPU/GPU performance profiling",
+    "CTFs",
+    "Capture-the-flag security exercises",
+    "ChatGPT",
+    "Classification",
+    "Claude",
+    "Clustering",
+    "Concurrency",
+    "Customer intelligence systems",
+    "Data flows",
+    "Debugging across distributed hosts",
+    "Debugging distributed production problems",
+    "Decision-making methods",
+    "Developer platform engineering",
+    "Developer tools",
+    "Distributed data processing",
+    "Document processing",
+    "Engagement modeling",
+    "Enterprise AI integration",
+    "Estimation",
+    "Experiment design",
+    "Experimental design",
+    "Exploratory data analysis",
+    "Failure handling",
+    "Feature stores",
+    "Feed ranking",
+    "Foundation models",
+    "Gradient-boosted models",
+    "IAM",
+    "Identity",
+    "Inference runtimes",
+    "Interpretability",
+    "Isolation",
+    "Kubernetes deployment",
+    "Large-scale ranking and training infrastructure",
+    "Lifecycle modeling",
+    "Looker",
+    "Mesh data",
+    "Microsoft Excel",
+    "Model calibration",
+    "Model optimization",
+    "Multi-stage retrieval and ranking",
+    "Multimodal AI",
+    "Multimodal AI (appetite only, nice_to_have)",
+    "NX",
+    "Offline and online metrics",
+    "Online experimentation",
+    "Online feature retrieval",
+    "Open-source integration",
+    "Operational analysis",
+    "Optimization",
+    "Optimization / Operations Research",
+    "PLM tools",
+    "Performance trade-offs",
+    "Personalization",
+    "Personalization systems",
+    "Physics-informed ML",
+    "Platform engineering",
+    "Prediction",
+    "Prisma",
+    "Production debugging",
+    "Production rollout",
+    "Programming language proficiency (no language specified)",
+    "Prototyping",
+    "Ranking",
+    "Ranking systems",
+    "Resource management",
+    "Retrieval",
+    "Retrieval systems",
+    "Sandboxed / virtualized code execution",
+    "Sandboxed or virtualized code execution",
+    "Scorecards",
+    "Semantic search",
+    "Siemens NX",
+    "Small language models",
+    "Software supply chain security",
+    "SolidWorks",
+    "Structured knowledge representations",
+    "Supabase",
+    "Swap-set analysis",
+    "Systems programming language",
+    "Technical design",
+    "Technical enablement",
+    "Technical statement-of-work writing",
+    "Time series data",
+    "Timeouts",
+    "Trigger.dev",
+    "Typesense",
+    "User understanding",
+    "Vintage analysis",
+    "Vision-Language Models",
+    "classification",
+    "clustering",
+    "data flows",
+    "data mining",
+    "debugging production systems",
+    "exploratory data analysis",
+    "inference runtimes",
+    "model optimization",
+    "multimodal AI",
+    "online feature retrieval",
+    "optimization",
+    "personalization",
+    "platform engineering",
+    "quantitative analysis",
+    "security considerations",
+    "small language models",
+    "software supply chain security"
+  ]
+}
