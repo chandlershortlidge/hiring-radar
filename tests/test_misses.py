@@ -233,3 +233,127 @@ def test_four_misses_file_nothing(conn):
 def test_misses_older_than_seven_days_do_not_count_toward_a_ticket(conn):
     five_unreadable(conn, day="2026-11-05")
     assert run.miss_tickets(conn, "2026-11-12", lambda t, b: pytest.fail("filed"), log=lambda *_: None) == []
+
+
+# --- the trend: weekly hit rate, per city, would-catch-today, kinds of fix (HIR-321) -----
+
+END = "2026-11-15"       # the Sunday a Monday summary ends on
+ADDED = [{"type": "ashby", "enabled": True, "token": "added", "company": "Added Co"}]
+
+
+def week_of(conn, start, n, had, city="Berlin"):
+    """n first checks on `start`, the first `had` of them already in a feed."""
+    for i in range(n):
+        logged(conn, f"https://jobs.ashbyhq.com/zz/{i}-{start}-{city}", f"{start}T08:00:00Z",
+               verdict="found" if i < had else "not_found", had=int(i < had),
+               reason=ALREADY_HAD if i < had else NOT_IN_SOURCES, careers_system="ashby", city=city)
+
+
+def week_rows(text):
+    return [line for line in text.splitlines() if line.startswith("| 2026-")]
+
+
+def test_the_table_shows_eight_weeks_with_the_share_and_too_few_checks(conn):
+    week_of(conn, "2026-09-21", 10, 4)                  # week 1 of 8: 40%
+    week_of(conn, "2026-11-09", 12, 9)                  # week 8 of 8: 75%
+    week_of(conn, "2026-11-02", 3, 3)                   # a quiet week
+    rows = week_rows(misses.trend_section(misses.records(conn), END, FEEDS))[:8]
+    assert rows[0] == "| 2026-09-21 | 10 | 4 | 40% | 6 | 0 |  |"
+    assert rows[1] == "| 2026-09-28 | 0 | 0 | - | 0 | 0 | too few checks |"
+    assert rows[6] == "| 2026-11-02 | 3 | 3 | 100% | 0 | 0 | too few checks |"
+    assert rows[7] == "| 2026-11-09 | 12 | 9 | 75% | 3 | 0 |  |"
+
+
+def test_checks_older_than_eight_weeks_and_re_checks_stay_out(conn):
+    week_of(conn, "2026-09-20", 5, 0)                   # the day before the first week
+    url = "https://jobs.ashbyhq.com/zz/r"
+    logged(conn, url, "2026-11-09T08:00:00Z", reason=NOT_IN_SOURCES, careers_system="ashby", city="Berlin")
+    logged(conn, url, "2026-11-10T08:00:00Z", verdict="found", had=1,      # the re-check after adding the board
+           reason=ALREADY_HAD, careers_system="ashby", city="Berlin")
+    rows = week_rows(misses.trend_section(misses.records(conn), END, FEEDS))
+    assert rows[0].startswith("| 2026-09-21 | 0 |")
+    assert rows[7].startswith("| 2026-11-09 | 1 | 0 | 0% | 1 |")
+
+
+def test_a_miss_on_a_board_added_since_is_one_a_feed_would_catch_today(conn):
+    logged(conn, "https://jobs.ashbyhq.com/added/0a1b2c3d-0000-0000-0000-000000000001", "2026-11-10T08:00:00Z", reason=NOT_IN_SOURCES, careers_system="ashby")
+    logged(conn, "https://jobs.ashbyhq.com/other/0a1b2c3d-0000-0000-0000-000000000002", "2026-11-10T08:00:00Z", reason=NOT_IN_SOURCES, careers_system="ashby")
+    logged(conn, "https://acme.jobs.personio.de/job/1", "2026-11-10T08:00:00Z", reason=UNREADABLE_SYSTEM,
+           careers_system="personio")
+    recs = misses.records(conn)
+    assert week_rows(misses.trend_section(recs, END, FEEDS))[7].startswith("| 2026-11-09 | 3 | 0 | 0% | 3 | 0 |")
+    assert week_rows(misses.trend_section(recs, END, ADDED))[7].startswith("| 2026-11-09 | 3 | 0 | 0% | 3 | 1 |")
+
+
+def test_each_city_gets_its_own_column_of_shares(conn):
+    week_of(conn, "2026-11-09", 10, 5, city="Berlin")
+    week_of(conn, "2026-11-09", 4, 1, city="Amsterdam")
+    text = misses.trend_section(misses.records(conn), END, FEEDS)
+    assert "| week from | Berlin | Amsterdam |" in text
+    assert "| 2026-11-09 | 50% (10) | 25% (4) |" in text
+    assert "| 2026-11-02 | - | - |" in text
+    assert "could not be read" not in text
+
+
+def test_links_with_no_city_go_last_with_a_warning_and_get_no_starting_point(conn):
+    for i in range(7):
+        logged(conn, f"u{i}", "2026-11-10T08:00:00Z", reason=NOT_IN_SOURCES, careers_system="ashby")
+    week_of(conn, "2026-11-09", 2, 2, city="Berlin")
+    text = misses.trend_section(misses.records(conn), END, FEEDS)
+    assert f"| week from | Berlin | {misses.UNKNOWN} |" in text
+    assert "each city's share is higher than its true share" in text
+    assert f"- {misses.UNKNOWN}," not in text and "- Berlin, from 2026-11-09" in text
+
+
+@pytest.mark.parametrize("reason,system,kind", [
+    (UNREADABLE_SYSTEM, "personio", misses.EVERY_CITY),
+    (TITLE_FILTER, "ashby", misses.EVERY_CITY),
+    (LOCATION_FILTER, "greenhouse", misses.EVERY_CITY),
+    (NOT_IN_SOURCES, "ashby", misses.CITY_BY_CITY),
+    (UNREADABLE_SYSTEM, "own site", misses.BY_HAND),
+    (LINKEDIN_ONLY, "linkedin", misses.BY_HAND),
+    (OTHER, "job board", misses.BY_HAND),
+    (OTHER, "greenhouse", misses.UNSORTED),
+])
+def test_each_miss_falls_in_one_kind_of_fix(reason, system, kind):
+    m = misses.Miss("u", "2026-11-10T08:00:00Z", None, None, system, reason, "", False)
+    assert misses.fix_kind(m) == kind
+
+
+def test_the_misses_are_counted_by_kind_of_fix_and_already_had_is_left_out(conn):
+    logged(conn, "u1", "2026-11-10T08:00:00Z", reason=UNREADABLE_SYSTEM, careers_system="personio")
+    logged(conn, "u2", "2026-11-10T08:00:00Z", reason=UNREADABLE_SYSTEM, careers_system="workable")
+    logged(conn, "u3", "2026-11-10T08:00:00Z", reason=NOT_IN_SOURCES, careers_system="ashby")
+    logged(conn, "u4", "2026-11-10T08:00:00Z", verdict="found", had=1, reason=ALREADY_HAD, careers_system="ashby")
+    text = misses.trend_section(misses.records(conn), END, FEEDS)
+    assert "The 3 misses of these 8 weeks" in text
+    assert f"- {misses.FIX_TEXT[misses.EVERY_CITY]}: 2" in text
+    assert f"- {misses.FIX_TEXT[misses.CITY_BY_CITY]}: 1" in text
+    assert f"- {misses.FIX_TEXT[misses.BY_HAND]}: 0" in text
+    assert misses.FIX_TEXT[misses.UNSORTED] not in text        # shown only when it has misses
+
+
+def test_a_city_s_starting_point_is_its_first_two_weeks_even_before_the_table(conn):
+    week_of(conn, "2026-08-03", 10, 3, city="Berlin")             # Berlin's first day
+    week_of(conn, "2026-08-16", 5, 5, city="Berlin")              # day 14: still the baseline
+    week_of(conn, "2026-08-17", 9, 9, city="Berlin")              # day 15: not
+    week_of(conn, "2026-11-10", 4, 3, city="Amsterdam")
+    text = misses.trend_section(misses.records(conn), END, FEEDS)
+    assert "- Berlin, from 2026-08-03: 53% (15)" in text
+    assert "- Amsterdam, from 2026-11-10: 75% (4), too few checks" in text
+    assert text.index("- Berlin,") < text.index("- Amsterdam,")
+
+
+def test_no_checks_in_eight_weeks_says_so():
+    assert "No job links were checked in the last 8 weeks." in misses.trend_section([], END, FEEDS)
+
+
+def test_the_monday_summary_carries_the_trend_and_the_check_log_is_untouched(conn):
+    week_of(conn, "2026-11-09", 10, 6)
+    before = [tuple(r) for r in conn.execute("SELECT * FROM url_check ORDER BY id")]
+    posted = []
+    run.report(conn, DAY, lambda t, b: posted.append((t, b)) or "HIR-900", log=lambda *_: None, feeds=FEEDS)
+    summary = dict(posted)["Monday summary: 2026-11-09 to 2026-11-15"]
+    assert "## Are we missing fewer jobs? The last 8 weeks" in summary
+    assert "| 2026-11-09 | 10 | 6 | 60% | 4 | 0 |  |" in summary
+    assert [tuple(r) for r in conn.execute("SELECT * FROM url_check ORDER BY id")] == before
