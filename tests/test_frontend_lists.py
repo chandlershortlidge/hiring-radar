@@ -10,17 +10,25 @@ button starts returning "bad value" (HTTP 422).
 This is the cheaper half of HIR-203, and the same answer HIR-200 gave the open-job rule
 and its SQL twin: no endpoint, one test that fails until both sides agree.
 
+The list of places is held to the same standard (HIR-312). A city launch edits three lists
+that do not know about each other: the collector's switched-on places (`geo.ACTIVE_CITIES`),
+the dashboard's `PLACES`, and the board-search phrases in config/discover.json. Miss the
+dashboard and the city's jobs are collected but nobody can pick it; miss the collector and
+the home grid shows a card that never fills; miss the phrases and the weekly search for
+new boards never looks there. The checks below fail on each, naming the city.
+
 Does NOT run the dashboard or parse JavaScript properly — it reads the literal
 declarations out of the source with a regex, and fails loudly if a declaration it expects
 is missing or stops being a flat literal.
 """
 
+import json
 import re
 from pathlib import Path
 
 import pytest
 
-from app import queries
+from app import discover, geo, queries
 
 WEB = Path(__file__).resolve().parent.parent / "web" / "src"
 
@@ -54,6 +62,17 @@ def js_keys(file: str, name: str) -> tuple[str, ...]:
                  re.findall(r"""(?:"([^"]+)"|'([^']+)'|([A-Za-z_$][\w$]*))\s*:""", body))
     assert keys, f"{name} in {file} parsed as no keys; it is no longer a flat object literal"
     return keys
+
+
+def js_names(file: str, name: str) -> tuple[str, ...]:
+    """The `name` of every entry in a JS array of object literals, in source order."""
+    body = _body(_source(file), name, "[", "]")
+    names = tuple(re.findall(r'\bname:\s*"([^"]*)"', body))
+    assert names, f"{name} in {file} parsed as no names; it is no longer an array of {{ name: \"...\" }}"
+    assert len(names) == body.count("{"), (
+        f"{name} in {file} has {body.count('{')} entries but {len(names)} literal names; "
+        f"every entry needs a `name: \"...\"` this reader can see")
+    return names
 
 
 # Each row: what the dashboard calls it, where, and the server's list it must match.
@@ -102,3 +121,72 @@ def test_the_readers_notice_a_declaration_that_is_gone():
         js_array("format.js", "NOT_A_LIST")
     with pytest.raises(AssertionError, match="no `const NOT_A_LIST"):
         js_keys("format.js", "NOT_A_LIST")
+
+
+# --- places: the collector, the dashboard and the board search (HIR-312) -----------------
+
+def check_places(dashboard, collected) -> None:
+    """The dashboard offers exactly the places the collector has switched on."""
+    missing = sorted(set(collected) - set(dashboard))
+    extra = sorted(set(dashboard) - set(collected))
+    assert not missing, (
+        f"the collector has {missing} switched on (app/geo.py ACTIVE_CITIES) but "
+        f"web/src/format.js's PLACES does not list them, so their jobs are collected and "
+        f"nobody can pick them — add each one to PLACES")
+    assert not extra, (
+        f"web/src/format.js's PLACES lists {extra} but the collector does not have them "
+        f"switched on (app/geo.py ACTIVE_CITIES), so the dashboard shows a place that never "
+        f"fills — remove them from PLACES, or switch them on")
+
+
+def check_search_phrases(collected, queries_) -> None:
+    """Every switched-on city is named by at least one board-search phrase. EU-remote is
+    exempt: it is not a city to search for."""
+    unsearched = sorted(
+        city for city in collected
+        if city != geo.REMOTE_EU
+        and not any(re.search(rf"\b{re.escape(city)}\b", q, re.I) for q in queries_))
+    assert not unsearched, (
+        f"{unsearched} are switched on (app/geo.py ACTIVE_CITIES) but no phrase in "
+        f"config/discover.json's queries names them, so the search for new job boards "
+        f"never looks there — add the phrases for each")
+
+
+def _search_phrases() -> list[str]:
+    return json.loads(discover.CONFIG_PATH.read_text())["queries"]
+
+
+def test_dashboard_lists_exactly_the_places_the_collector_has_switched_on():
+    check_places(js_names("format.js", "PLACES"), geo.ACTIVE_CITIES)
+
+
+def test_every_switched_on_city_has_a_board_search_phrase():
+    check_search_phrases(geo.ACTIVE_CITIES, _search_phrases())
+
+
+def test_a_city_switched_on_but_missing_from_the_dashboard_fails_by_name():
+    with pytest.raises(AssertionError, match=r"\['Atlantis'\] switched on .* does not list them"):
+        check_places(js_names("format.js", "PLACES"), geo.ACTIVE_CITIES + ("Atlantis",))
+
+
+def test_a_dashboard_place_the_collector_has_not_switched_on_fails_by_name():
+    with pytest.raises(AssertionError, match=r"PLACES lists \['Atlantis'\]"):
+        check_places(js_names("format.js", "PLACES") + ("Atlantis",), geo.ACTIVE_CITIES)
+
+
+def test_a_switched_on_city_with_no_search_phrase_fails_by_name():
+    with pytest.raises(AssertionError, match=r"^\['Atlantis'\] are switched on"):
+        check_search_phrases(geo.ACTIVE_CITIES + ("Atlantis",), _search_phrases())
+
+
+def test_eu_remote_needs_no_search_phrase_and_a_longer_name_does_not_count():
+    check_search_phrases((geo.REMOTE_EU,), [])
+    # "New York" is not named by a phrase about "New Yorkshire"; whole words only.
+    with pytest.raises(AssertionError, match="New York"):
+        check_search_phrases(("New York",), ['"AI engineer" "New Yorkshire"'])
+    check_search_phrases(("New York",), ['"machine learning" "new york"'])
+
+
+def test_the_place_reader_notices_a_declaration_that_is_gone():
+    with pytest.raises(AssertionError, match="no `const NOT_A_LIST"):
+        js_names("format.js", "NOT_A_LIST")
