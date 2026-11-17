@@ -7,10 +7,12 @@
 // desktop scale is what it was), and the rule that hides two of them exists only inside the
 // phone block and only for the skill chart's scale — the compare chart has its own
 // three-marker scale and must not lose its middle one.
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { readFileSync } from "node:fs";
 import { renderToStaticMarkup } from "react-dom/server";
-import SkillChart from "./SkillChart.jsx";
+import SkillChart, { ChartStatus } from "./SkillChart.jsx";
+import App from "./App.jsx";
+import { fetchSkills } from "./api.js";
 
 const css = readFileSync(new URL("./styles.css", import.meta.url), "utf8");
 
@@ -54,5 +56,58 @@ describe("the skill chart's scale", () => {
     const hiders = css.match(/[^{}]*\.axis span[^{]*\{[^}]*display:\s*none[^}]*\}/g) || [];
     expect(hiders).toHaveLength(1);
     expect(hiders[0]).toMatch(HIDE);
+  });
+});
+
+// HIR-318: on 15 Nov the chart's numbers took over 15 seconds, and for all that time the
+// chart box said "No jobs match these filters yet." beside a list of 274 open jobs. A
+// request that failed outright left the same line there for good.
+describe("the chart box before its numbers are in", () => {
+  const NO_JOBS = "No jobs match these filters";
+  const filters = { families: ["ml-engineer"] };
+
+  // The page as first painted at this address: nothing has been fetched yet (effects do
+  // not run here), which is exactly the state a slow answer leaves the page in.
+  const firstPaint = (pathname) => {
+    vi.stubGlobal("window", { location: { pathname, search: "", hash: "" } });
+    try { return renderToStaticMarkup(<App />); } finally { vi.unstubAllGlobals(); }
+  };
+
+  it("says it is loading, not that no jobs match, while the page waits", () => {
+    const html = firstPaint("/berlin");
+    expect(html).toContain('id="chart-title"'); // the chart's page, not the home grid
+    expect(html).toContain("Loading the chart");
+    expect(html).not.toContain(NO_JOBS);
+  });
+
+  it("says the same in compare mode, instead of counting every city as empty", () => {
+    const html = firstPaint("/compare/berlin+munich");
+    expect(html).toContain('id="chart-title"');
+    expect(html).toContain("Loading the chart");
+    expect(html).not.toContain("Compare needs jobs in every market");
+  });
+
+  it("shows an error with a way to try again when the request failed", () => {
+    const html = renderToStaticMarkup(<ChartStatus failed onRetry={() => {}} />);
+    expect(html).toContain('role="alert"');
+    expect(html).toContain("The chart could not be loaded");
+    expect(html).toMatch(/<button\b[^>]*>Try again<\/button>/);
+    expect(html).not.toContain(NO_JOBS);
+    expect(html).not.toContain("Loading");
+  });
+
+  it("reports a failed request as failed, with no numbers, instead of throwing", async () => {
+    const r = await fetchSkills(filters, () => Promise.reject(new Error("502 Bad Gateway")));
+    expect(r).toEqual({ data: null, failed: true });
+  });
+
+  it("passes a good answer through, tagged with the job type it was asked for", async () => {
+    const r = await fetchSkills(filters, () => Promise.resolve({ total: 0, skills: [] }));
+    expect(r).toEqual({ data: { total: 0, skills: [], family: "ml-engineer" }, failed: false });
+  });
+
+  it("still says no jobs match when the answer really is zero jobs", () => {
+    const html = renderToStaticMarkup(<SkillChart data={{ total: 0, skills: [] }} selected={[]} onSelect={() => {}} />);
+    expect(html).toContain(NO_JOBS);
   });
 });
