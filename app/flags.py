@@ -393,7 +393,7 @@ def report_lines(flags: list[dict]) -> list[str]:
             block.append("    the posting is no longer stored, so nothing was compared with its text")
         block += [f"    {c.line()}" for c in checks]
         if not checks:
-            block.append("    No filter was on and the job is in scope: nothing to compare.")
+            block.append("    No filter was on and neither general rule found a cause: nothing to compare.")
         for cause in causes_of(checks):
             groups[cause].append(block)
     used = [(c, blocks) for c, blocks in groups.items() if blocks]

@@ -46,6 +46,11 @@ export const api = {
   jobs: (f, { sort, limit, offset }) =>
     call(`/api/jobs${qs({ ...filterParams(f), skill: f.skillIds, q: f.query, text: f.text, sort, limit, offset })}`),
   job: (id) => call(`/api/jobs/${id}`),
+  // "Doesn't belong here" (HIR-226). `view` is the whole screen state (flagView.js), stored
+  // as sent; un-flagging closes the flag on the server, it does not delete it.
+  flag: (id, view) => call(`/api/jobs/${id}/flag`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ view }) }),
+  unflag: (id) => call(`/api/jobs/${id}/flag`, { method: "DELETE" }),
+  flagNote: (flagId, note) => call(`/api/flags/${flagId}/note`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ note }) }),
   proposed: () => call("/api/proposed"),
   resolve: (ids, status, resolved_skill_id) =>
     call("/api/proposed/resolve", {
