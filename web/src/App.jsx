@@ -1,12 +1,16 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { api, fetchSkills } from "./api.js";
-import { COMPARE_DEFAULT, DEGREE_FILTERS, GERMAN_FILTERS, PLACE_NAMES, PRODUCTION_FILTERS, SENIORITIES, cap, compareAdd, compareRemove, familyLabel, listFilters as deriveListFilters, placeByName, placeBySlug, placeCities, pctInt, timeAgo } from "./format.js";
+import { COMPARE_DEFAULT, DEGREE_FILTERS, GERMAN_FILTERS, PLACE_NAMES, PRODUCTION_FILTERS, cap, compareAdd, compareRemove, familyLabel, listFilters as deriveListFilters, placeByName, placeBySlug, placeCities, pctInt, timeAgo } from "./format.js";
 import { HOME, parsePath, pathFor, withFamily } from "./routes.js";
 import { pushRecent, readLast, readRecent, writeLast } from "./lastPlace.js";
 import { useProfile } from "./profile.js";
 import { Person, Plus, Radar } from "./icons.jsx";
 import QueryBar from "./QueryBar.jsx";
 import HomeGrid from "./HomeGrid.jsx";
+import { Eyebrow, Headline, HeroChart, heroFacts, heroPlace } from "./HomeHero.jsx";
+import { ConnectPill, ConnectStrip } from "./ConnectClaude.jsx";
+import FilterPills from "./FilterPills.jsx";
+import FitLine from "./FitLine.jsx";
 import SkillChart, { ChartStatus } from "./SkillChart.jsx";
 import CompareChart from "./CompareChart.jsx";
 import CityFit from "./CityFit.jsx";
@@ -102,6 +106,13 @@ export default function App() {
   // Open jobs per city, for the picker's counts and the market cards. From /api/stats, so
   // it stays the whole picture even while the page is filtered down to one city.
   const cityCounts = stats?.open_by_city || {};
+  // The home page leads with one market: its headline, its chart, and the city its
+  // pickers start on (HomeHero.jsx). Fixed while the page is open, so visiting a city and
+  // coming back does not change the headline under the reader.
+  const [lead] = useState(() => heroPlace(recent));
+  const hero = useMemo(() => heroFacts(skills, cityCounts, lead), [skills, cityCounts, lead]);
+  // The filters "More filters" holds, and how many of them are set to something.
+  const extraOn = [filters.production, filters.degree].filter((v) => v !== "any").length + (filters.window !== "open" ? 1 : 0);
 
   const reload = useCallback(() => { api.stats().then(setStats); setRefresh((n) => n + 1); }, []);
   useEffect(() => { api.taxonomy().then(setTax); reload(); }, [reload]);
@@ -157,7 +168,8 @@ export default function App() {
   // which today is the only one — so if the pick lands back on the city we are already
   // comparing, fall back to the busiest other market rather than comparing it with itself.
   const startCompare = (slug) => {
-    const here = placeCities(market.place)[0];
+    // On the home page no city is chosen yet; the one the page leads with stands in.
+    const here = placeCities(market.place || lead.slug)[0];
     const picked = placeCities(slug)[0];
     const other = picked && picked !== here
       ? picked
@@ -202,6 +214,25 @@ export default function App() {
     + (filters.production !== "any" ? ` · production experience: ${PRODUCTION_FILTERS[filters.production].toLowerCase()}` : "")
     + (filters.degree !== "any" ? ` · degree: ${DEGREE_FILTERS[filters.degree].toLowerCase()}` : "");
 
+  // The "[job family] in [city]" pickers. On the home page they sit under the headline and
+  // start on the market the page leads with; picking any city, that one included, opens it.
+  const queryBar = (
+    <QueryBar
+      place={market.view === "city" ? market.place : market.view === "home" ? lead.slug : null}
+      family={market.family}
+      counts={cityCounts}
+      recent={recent}
+      compare={market.view === "compare"}
+      compareCities={market.view === "compare" ? market.cities : []}
+      landing={market.view === "home"}
+      onPlace={goPlace} onFamily={goFamily}
+      onStartCompare={startCompare} onAddCity={addCompare} onRemoveCity={removeCompare} onExitCompare={exitCompare}
+      onRequestCity={requestCity}
+      right={stats && market.view !== "home"
+        ? <span className="mono dim">{stats.open} open jobs · updated {timeAgo(stats.last_updated)}</span>
+        : null} />
+  );
+
   return (
     <>
       <header className="hdr"><div className="hdr-in">
@@ -214,33 +245,35 @@ export default function App() {
           <button type="button" className="pill" onClick={() => setDrawer("review")} aria-label={`${stats?.proposed_pending ?? 0} proposed skills to review`}>
             <span className="count">{stats?.proposed_pending ?? 0}</span><span className="lbl">proposed skills</span>
           </button>
+          {/* Not a button: there is nothing to connect to yet (ConnectClaude.jsx). */}
+          <ConnectPill />
           <button type="button" className="btn outline" onClick={() => setDrawer("add")} aria-label="Add a job"><Plus /><span className="lbl">Add a job</span></button>
         </div>
-      </div></header>
+      </div><div className="brand-rule" aria-hidden="true" /></header>
 
       {pageJob ? <Panel label="This job's page"><JobPage id={pageJob} onBack={closePage} profile={profile} taxonomy={taxName} demand={demand} /></Panel> : <>
 
-      {market.view === "home" && (
-        <section className="hero landing"><div className="hero-in">
-          <h1>What are employers actually asking for?</h1>
-          <p className="lede">Live skill demand from every open AI &amp; data job we can find, per city.</p>
-        </div></section>
-      )}
+      {/* Home (HIR-285): the headline and the pickers on the left, the lead market's chart
+          on the right. On a city page the same pickers are a band of their own. */}
+      {market.view === "home" ? (
+        <>
+          <section className="hero"><div className="hero-in">
+            <div className="hero-l">
+              <Eyebrow place={lead.name} open={hero.open} roles={hero.roles} updated={stats?.last_updated} />
+              <Headline top={hero.top} place={lead.name} roles={hero.roles} />
+              <p className="lede">Live skill demand from every open AI &amp; data job we can find, per city.</p>
+              {queryBar}
+            </div>
+            <Panel label="The top-skills chart">
+              <HeroChart place={lead} family={market.family} top={hero.top} open={hero.open} loading={!skills && !skillsFailed} onOpen={goPlace} />
+            </Panel>
+          </div></section>
+          <div className="mcp-wrap"><ConnectStrip /></div>
+        </>
+      ) : queryBar}
 
-      <QueryBar
-        place={market.view === "city" ? market.place : null}
-        family={market.family}
-        counts={cityCounts}
-        recent={recent}
-        compare={market.view === "compare"}
-        compareCities={market.view === "compare" ? market.cities : []}
-        landing={market.view === "home"}
-        onPlace={goPlace} onFamily={goFamily}
-        onStartCompare={startCompare} onAddCity={addCompare} onRemoveCity={removeCompare} onExitCompare={exitCompare}
-        onRequestCity={requestCity}
-        right={stats && market.view !== "home"
-          ? <span className="mono dim">{stats.open} open jobs · updated {timeAgo(stats.last_updated)}</span>
-          : null} />
+      {/* Once there is a profile, a city page opens on how much of the market it covers. */}
+      {market.view === "city" && placeName && <Panel label="Your fit"><FitLine profile={profile} data={skills} place={placeName} /></Panel>}
 
       {market.view === "home" ? <main className="main landing">
         {recent.length > 0 && (
@@ -252,7 +285,12 @@ export default function App() {
           </p>
         )}
         <Panel label="The market grid"><HomeGrid data={skills} counts={cityCounts} family={market.family} onRequestCity={requestCity} /></Panel>
-      </main> : <main className="main">
+      </main> : <main className={`main${market.view === "city" ? " split" : ""}`}>
+        {/* A city page is two columns (HIR-285): the chart, and what hangs off it, on the
+            left; the jobs on the right, so a click on a bar filters a list already in
+            view. They stack below 1100px. A comparison keeps one column: its chart needs
+            the width for a column per city. */}
+        <div className="stack">
         <Panel label="The chart"><section className="card chart" aria-labelledby="chart-title">
           <div>
             <h1 id="chart-title">{filters.compare
@@ -261,26 +299,10 @@ export default function App() {
             <p className="lede">
               {filters.compare ? `Share of each city's ${winLabel || "tracked"} jobs listing the skill ${reqLabel}. Rows sorted by the column you pick`
                 : `Share of the ${skills?.total ?? "…"} ${winLabel} jobs that list each skill ${reqLabel} · ${cityLabel}`}{famLabel}{senLabel}.
-              {profile && " Solid bars are skills in your profile."}
+              {profile && " Dark bars are skills in your profile."}
             </p>
           </div>
-          <div className="controls">
-            <div className="ctl"><span>Requirement</span>
-              <div className="seg" role="group" aria-label="Requirement">
-                {Object.entries(REQUIREMENTS).map(([k, v]) => <button key={k} type="button" aria-pressed={filters.requirement === k} onClick={() => set({ requirement: k })}>{v}</button>)}
-              </div>
-            </div>
-            <div className="ctl"><span>Seniority</span>
-              <div className="seg" role="group" aria-label="Seniority">
-                <button type="button" aria-pressed={!filters.seniorities.length} onClick={() => set({ seniorities: [] })}>Any</button>
-                {SENIORITIES.map((s) => <button key={s} type="button" aria-pressed={filters.seniorities.includes(s)} onClick={() => toggleSen(s)}>{cap(s)}</button>)}
-              </div>
-            </div>
-            <div className="ctl"><label htmlFor="de">German</label>
-              <select id="de" className="sel" value={filters.german} onChange={(e) => set({ german: e.target.value })}>
-                {Object.entries(GERMAN_FILTERS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
-              </select>
-            </div>
+          <FilterPills filters={filters} set={set} toggleSeniority={toggleSen} requiredLabel={REQUIREMENTS.required} extraOn={extraOn}>
             <div className="ctl"><label htmlFor="prod">Production experience</label>
               <select id="prod" className="sel" value={filters.production} onChange={(e) => set({ production: e.target.value })}>
                 {Object.entries(PRODUCTION_FILTERS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
@@ -296,7 +318,7 @@ export default function App() {
                 {Object.entries(WINDOWS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
               </select>
             </div>
-          </div>
+          </FilterPills>
           {/* No numbers yet is not "no jobs": both charts read missing numbers as zero jobs,
               so neither is drawn until the answer is in (HIR-318). */}
           {/* Where the visitor's skills are wanted, city by city (HIR-16). Draws nothing
@@ -317,8 +339,9 @@ export default function App() {
         )}
 
         <Panel label="Related skills"><RelatedSkills filters={listFilters} skillNames={skillNames} onAdd={addSkill} data={related} /></Panel>
+        </div>
 
-        <Panel label="The job list"><JobList filters={listFilters} setFilters={setFilters}
+        <Panel label="The job list"><JobList filters={listFilters} setFilters={setFilters} connect={market.view === "city"}
           profile={profile} taxonomy={taxName} demand={demand} refreshKey={refresh} openJobId={jumpTo} onOpened={() => setJumpTo(null)} onOpenPage={openPage}
           taxonomyRows={taxRows} aliases={taxAliases} suggestions={skillSuggestions} onAddSkill={addSkill} market={market} /></Panel>
 

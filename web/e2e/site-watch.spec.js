@@ -60,10 +60,10 @@ const test = base.extend({
 test.skip(!URL_SET, "WATCH_URL not set");
 test.describe.configure({ mode: "serial" });
 
-// The busiest market, by clicking its card on the home page: that is the first one.
+// The busiest market, by clicking its row in the home page's table: that is the first one.
 async function openBusiestCity(page) {
   await page.goto("/");
-  const card = page.locator("a.card.market").first();
+  const card = page.locator("a.market-row").first();
   await expect(card).toBeVisible();
   await card.click();
   await expect(page).not.toHaveURL(/\/$/);
@@ -79,12 +79,16 @@ async function expectChartAndJobs(page) {
 
 test("home loads; pick a city and a job type; chart and job list have data", async ({ page, problems }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: "What are employers actually asking for?" })).toBeVisible();
-  const cards = page.locator("a.card.market");
+  // The headline is built from live numbers (HIR-285), so it is found by where it is, and
+  // the chart beside it has to have drawn its bars.
+  await expect(page.locator(".hero h1")).toBeVisible();
+  await expect(page.locator(".hero-chart .hero-row").first()).toBeVisible();
+  const cards = page.locator("a.market-row");
   await expect(cards.first()).toBeVisible();
-  await expect(cards.first().locator("li").first()).toBeVisible(); // its top skills drew
+  await expect(cards.first().locator(".mk-skill").first()).toBeVisible(); // its top skills drew
 
-  await page.getByRole("button", { name: /Pick a city/ }).click();
+  // The city picker under the headline: it starts on the market the page leads with.
+  await page.locator(".hero .picker").first().getByRole("button").first().click();
   await page.getByRole("listbox", { name: "Cities" }).getByRole("option").first().click();
   await expect(page).not.toHaveURL(/\/$/);
   await expectChartAndJobs(page);
@@ -101,10 +105,20 @@ test("home loads; pick a city and a job type; chart and job list have data", asy
 test("each filter reaches the server and the page redraws", async ({ page, problems }) => {
   await openBusiestCity(page);
   const filters = [
-    ["Requirement", () => page.getByRole("button", { name: "Required + nice-to-have" }).click(), "requirement=all"],
-    ["Seniority", () => page.getByRole("group", { name: "Seniority" }).getByRole("button").nth(1).click(), "seniority="],
+    // The filters are a row of pills (HIR-285). "Required only" is on by default, so a
+    // click turns it off; seniority is a small menu, closed again with Escape so it does
+    // not sit over the next pill; the last three are behind "More filters".
+    ["Requirement", () => page.getByRole("button", { name: "Required only" }).click(), "requirement=all"],
+    ["Seniority", async () => {
+      await page.getByRole("button", { name: "Any seniority" }).click();
+      await page.getByRole("group", { name: "Seniority" }).getByRole("button").nth(1).click();
+      await page.keyboard.press("Escape");
+    }, "seniority="],
     ["German", () => page.locator("#de").selectOption({ index: 1 }), "german="],
-    ["Production experience", () => page.locator("#prod").selectOption({ index: 1 }), "production="],
+    ["Production experience", async () => {
+      await page.getByRole("button", { name: /More filters/ }).click();
+      await page.locator("#prod").selectOption({ index: 1 });
+    }, "production="],
     ["Degree", () => page.locator("#deg").selectOption({ index: 1 }), "degree="],
     ["Time window", () => page.locator("#win").selectOption("all"), "window=all"],
   ];

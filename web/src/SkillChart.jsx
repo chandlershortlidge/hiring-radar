@@ -22,7 +22,7 @@ export function ChartStatus({ failed, onRetry }) {
 }
 
 // One bar per skill: share of the filtered job set listing it. With a profile, the bar
-// is drawn solid for skills the person has and hatched for the ones they don't.
+// is plum for skills the person has and plum tint for the ones they don't (docs/style.md).
 //
 // `selected` is the set of selected skill ids (AND, several at a time). A click reports
 // whether it was additive — shift or meta held — and App decides replace vs add; this
@@ -52,7 +52,7 @@ export default function SkillChart({ data, selected, onSelect, profile, cityLabe
     <div className="bars" style={{ "--tick": "25%" }}>
       <div className="chart-find">
         <label htmlFor="skill-find" className="sr">Find a skill in the chart</label>
-        <div className="search"><Search stroke="#6B6B6B" />
+        <div className="search"><Search />
           <input id="skill-find" type="search" className="inp" placeholder="Find a skill (name or alias)"
             value={find} onChange={(e) => setFind(e.target.value)} />
         </div>
@@ -101,13 +101,13 @@ export default function SkillChart({ data, selected, onSelect, profile, cityLabe
         <div>
           {profile && (
             <>
-              <span className="legend"><i style={{ background: "var(--ink)" }} /> in your profile</span>
-              <span className="legend"><i className="fill gap" style={{ height: 10 }} /> not yet</span>
+              <span className="legend"><i className="fill have" /> in your profile</span>
+              <span className="legend"><i className="fill gap" /> not yet</span>
             </>
           )}
           {/* How to select stays visible with a profile set too: the legend used to take the
               whole footer, which hid the one place that says a second skill can be added. */}
-          <span>Click a bar to filter the jobs below · ⇧- or ⌘-click to add a skill{profile ? "" : " · hover for % and cities"}</span>
+          <span>Click a bar to filter the jobs · ⇧- or ⌘-click to add a skill{profile ? "" : " · hover for % and cities"}</span>
         </div>
       </div>
     </div>

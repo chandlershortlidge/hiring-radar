@@ -93,7 +93,7 @@ Nothing smaller than 10.5px. No third font family.
   top-skills chart on the right; under it the Connect-Claude strip; under that every
   market as one ranked table. The band's two halves stack on a narrow screen.
 - **City page:** the fit line (only once a profile has skills) in a white band; then the
-  chart on the left and the jobs on the right, side by side from 1024px up, stacked below
+  chart on the left and the jobs on the right, side by side from 1100px up, stacked below
   that. Smaller panels (what's rising, related skills) go under the chart, in the left
   column.
 - **Compare** keeps one column: the chart needs the full width for its two or three

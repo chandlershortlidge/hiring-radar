@@ -17,8 +17,9 @@ export const Info =(p) => <I d={["M12 21a9 9 0 1 0 0-18a9 9 0 0 0 0 18M12 8v5M12
 export const Warn = (p) => <I d={["M12 3l10 18H2z", "M12 10v4M12 17v.5"]} size={16} {...p} />;
 export const Compare = (p) => <I d={["M3 5h7v14H3zM14 5h7v14h-7z"]} sw={1.8} {...p} />;
 export const Person = (p) => <I d={["M12 12a4 4 0 1 0 0-8a4 4 0 0 0 0 8M4 21a8 8 0 0 1 16 0"]} sw={1.8} {...p} />;
+// The logo: plum rings with a coral dot (docs/style.md).
 export const Radar = () => (
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#161616" strokeWidth="1.6" aria-hidden="true">
-    <circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><path d="M12 12 L19 6" /><circle cx="12" cy="12" r="1.2" fill="#161616" />
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" strokeWidth="1.8" aria-hidden="true" style={{ stroke: "var(--plum)" }}>
+    <circle cx="12" cy="12" r="9" /><circle cx="12" cy="12" r="5" /><circle cx="12" cy="12" r="1.3" style={{ fill: "var(--coral)", stroke: "var(--coral)" }} />
   </svg>
 );
