@@ -1,4 +1,6 @@
+import ast
 import sqlite3
+from pathlib import Path
 
 import pytest
 
@@ -212,3 +214,48 @@ def test_appending_to_the_two_tables_is_untouched(tmp_path):
     conn.execute("INSERT OR IGNORE INTO label_answer (run, golden_id, labeler) VALUES ('r1', 'g1', 'A')")
     assert conn.execute("SELECT COUNT(*) FROM extraction_log").fetchone()[0] == 2
     assert conn.execute("SELECT COUNT(*) FROM label_answer").fetchone()[0] == 1
+
+
+def _direct_opens(source: str) -> list[int]:
+    """Line numbers where a file opens a database with `sqlite3.connect` itself, under any
+    name it was imported as. Read from the syntax tree, so a mention in a comment or a
+    docstring is not a hit."""
+    tree = ast.parse(source)
+    modules, functions = set(), set()
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            modules |= {a.asname or a.name for a in node.names if a.name == "sqlite3"}
+        elif isinstance(node, ast.ImportFrom) and node.module == "sqlite3":
+            functions |= {a.asname or a.name for a in node.names if a.name == "connect"}
+    hits = []
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.Call):
+            continue
+        f = node.func
+        if (isinstance(f, ast.Attribute) and f.attr == "connect"
+                and isinstance(f.value, ast.Name) and f.value.id in modules):
+            hits.append(node.lineno)
+        elif isinstance(f, ast.Name) and f.id in functions:
+            hits.append(node.lineno)
+    return hits
+
+
+def test_the_check_for_direct_opens_sees_every_spelling():
+    assert _direct_opens("import sqlite3\nc = sqlite3.connect('x')\n") == [2]
+    assert _direct_opens("import sqlite3 as sq\n\nc = sq.connect('x')\n") == [3]
+    assert _direct_opens("from sqlite3 import connect\nc = connect('x')\n") == [2]
+    assert _direct_opens("from sqlite3 import connect as go\nc = go('x')\n") == [2]
+    assert _direct_opens("def f():\n    import sqlite3\n    return sqlite3.connect('x')\n") == [3]
+    # the shared way, and a mention that is not a call
+    assert _direct_opens("from app.db import connect\nc = connect('x')\n") == []
+    assert _direct_opens("import sqlite3\n# sqlite3.connect('x')\ndef f(c: sqlite3.Connection): ...\n") == []
+
+
+def test_no_script_opens_the_database_file_itself():
+    """HIR-212: `db.connect` switches on the database's checking of links between rows;
+    `sqlite3.connect` leaves it off, so a script that opens the file itself could delete a
+    posting and leave its readings pointing at nothing, with no error."""
+    scripts = sorted((Path(__file__).resolve().parent.parent / "scripts").rglob("*.py"))
+    assert scripts
+    found = {f"{p.name}:{line}" for p in scripts for line in _direct_opens(p.read_text())}
+    assert not found, f"open the database with app.db.connect, not sqlite3.connect: {sorted(found)}"

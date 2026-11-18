@@ -76,6 +76,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from app.db import connect  # noqa: E402
 from app.evaluation import score_golden, summarize  # noqa: E402
 
 # agent_label.py owns the review queue this reads: its decision vocabulary (`ok` / `A` / `B`
@@ -204,7 +205,7 @@ def score_run(run_id: str) -> tuple[dict, Run]:
     """(score, the run as loaded). A skill set aside is dropped from the extractor's side
     too, which is what "neither credited nor penalised" means arithmetically."""
     run = load_run(run_id)
-    conn = sqlite3.connect(DB)
+    conn = connect(DB)
     try:
         predicted = {gid: [p for p in stored_extraction(conn, run.job_of[gid])
                            if p["skill_id"] not in run.set_aside.get(gid, ())]
