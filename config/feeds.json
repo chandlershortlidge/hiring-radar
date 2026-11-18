@@ -80,6 +80,8 @@
     {"type": "greenhouse", "enabled": true, "token": "celonis", "company": "celonis"},
     {"type": "join", "enabled": true, "token": "alexanderthamm", "company": "alexanderthamm"},
     {"type": "ashby", "enabled": true, "token": "qonto", "company": "Qonto"},
-    {"type": "join", "enabled": true, "token": "get-incacom", "company": "inca"}
+    {"type": "join", "enabled": true, "token": "get-incacom", "company": "inca"},
+    {"type": "ashby", "enabled": true, "token": "cohere", "company": "Cohere"},
+    {"type": "greenhouse", "enabled": true, "token": "capco", "company": "Capco"}
   ]
 }
