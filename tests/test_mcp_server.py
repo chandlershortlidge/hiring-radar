@@ -113,6 +113,36 @@ def test_search_jobs_matches_the_dashboard_job_list(db_path, server, args, param
                (a["required_skills"], a["nice_skills"], a["status"])
 
 
+# --- get_job ------------------------------------------------------------------------
+
+def acme_id(server) -> int:
+    """The id of the first job in JOBS (Acme: python and rag required, mid, Berlin)."""
+    return search(server, company_or_title="Acme")["jobs"][0]["id"]
+
+
+def test_get_job_returns_the_job_and_its_skills(server):
+    job = call(server, "get_job", job_id=acme_id(server)).structured_content
+    assert (job["company"], job["title"], job["places"]) == ("Acme", "AI Engineer", ["Berlin"])
+    assert (job["status"], job["seniority"], job["first_seen"]) == ("open", "mid", ts(1)[:10])
+    assert job["required_skills"] == ["python", "rag"] and job["nice_to_have_skills"] == []
+    assert job["degree"] is None
+
+
+def test_get_job_matches_the_dashboard_job_page(db_path, server):
+    """Same job → the same details as GET /api/jobs/{id}."""
+    job_id = acme_id(server)
+    api = TestClient(create_app(db_path, TAX)).get(f"/api/jobs/{job_id}").json()
+    tool = call(server, "get_job", job_id=job_id).structured_content
+    assert (tool["company"], tool["title"], tool["status"]) == (api["company"], api["title"], api["status"])
+    assert tool["required_skills"] == [s["skill_id"] for s in api["skills"] if s["requirement"] == "required"]
+    assert tool["nice_to_have_skills"] == [s["skill_id"] for s in api["skills"] if s["requirement"] == "nice_to_have"]
+
+
+def test_get_job_rejects_an_id_that_does_not_exist(server):
+    with pytest.raises(ToolError, match="no job with id 99999"):
+        call(server, "get_job", job_id=99999)
+
+
 def _enum(arg) -> set:
     """The values a tool argument's type allows: Literal, list[Literal], or either | None."""
     out = set()
@@ -158,7 +188,7 @@ def test_an_mcp_client_calls_search_jobs_over_http(db_path):
                 return names, result
 
     names, result = asyncio.run(run())
-    assert names == ["search_jobs"]
+    assert names == ["search_jobs", "get_job"]
     assert not result.is_error
     assert [j["company"] for j in result.structured_content["jobs"]] == ["Acme"]
 

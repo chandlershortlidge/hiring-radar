@@ -157,6 +157,42 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str]) -> MCPSer
         return {"total": r["total"], "offset": offset, "jobs": [_job(j) for j in r["jobs"]]}
 
     # The next tool goes here (HIR-103's table): a function like search_jobs above.
+    @server.tool(annotations=READ_ONLY)
+    def get_job(job_id: int) -> dict[str, Any]:
+        """Get one job posting in full, with the same details as the hiring-radar
+        dashboard's job page. Use search_jobs first to find a job's id.
+
+        - job_id: the id of the job, as search_jobs returns it. An id that does not
+          exist is an error.
+
+        Returns company, title, places, family, seniority, first_seen / last_seen (dates
+        we saw it), status (open or closed), url (the posting), required_skills and
+        nice_to_have_skills (skill ids), german, degree and production requirements
+        (null = not mentioned), and description_text (the full posting text, which
+        search_jobs leaves out).
+
+        Example: the details of job 42:
+        get_job(job_id=42)
+        """
+        with connect() as conn:
+            detail = q.job_detail(conn, job_id, now())
+            if detail is None:
+                raise ToolError(f"no job with id {job_id}")
+        # The details hold one list of skill mentions; split it into the two lists the tool returns.
+        required_skills = [s["skill_id"] for s in detail["skills"] if s["requirement"] == "required"]
+        nice_to_have_skills = [s["skill_id"] for s in detail["skills"] if s["requirement"] == "nice_to_have"]
+        return {
+            "company": detail["company"], "title": detail["title"], "places": detail["places"],
+            "family": detail["family"], "seniority": detail["seniority"],
+            "first_seen": detail["first_seen"][:10], "last_seen": detail["last_seen"][:10], "status": detail["status"],
+            "url": next((s["url"] for s in detail["sources"] if s["url"]), None),
+            "required_skills": required_skills, "nice_to_have_skills": nice_to_have_skills,
+            "german": detail["german"], "production": detail["production"],
+            "degree": None if detail["degree"] is None else {
+                "level": detail["degree"], "requirement": detail["degree_requirement"],
+                "or_equivalent_experience": detail["degree_or_equivalent"]}, "description_text": detail["description_text"]
+        }
+
 
     return server
 
