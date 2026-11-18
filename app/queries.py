@@ -481,6 +481,35 @@ def _status(row, now: str, sources: list[dict]) -> str:
 
 def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newest",
               limit: int = 20, offset: int = 0) -> dict:
+    """Find the jobs that match a set of filters, one page at a time.
+
+    This is the dashboard's job list and the search_jobs tool's search: both call it,
+    so they always agree. Every filter must match (they combine with AND).
+
+    Example: open Berlin jobs that require RAG, newest first, the first 20:
+    list_jobs(conn, filters, now) with filters built from skill "rag" and city "Berlin".
+
+    Args:
+        conn: an open database connection.
+        f: the filters: which window of jobs, which skills, city, seniority and so
+            on, and any words to find in the company, title or posting text.
+        now: the current time, as an ISO string. A job is open or closed relative to it.
+        sort: "newest" (default), "oldest", "reposts" (most re-advertised first) or
+            "company". An unknown value falls back to "newest".
+        limit: how many jobs to return.
+        offset: how many matching jobs to skip, to reach the next page.
+
+    Returns:
+        A dict with:
+            total: how many jobs match in all, not just on this page.
+            jobs: this page's jobs, in the chosen order. Each has its id, company,
+                title, places, family, seniority, first_seen, last_seen, status
+                (open or closed), sources (where it was posted, with links),
+                required_skills and nice_skills (skill ids), skill_counts, and its
+                german, degree and production requirements.
+            limit, offset: as passed in.
+        When nothing matches, total is 0 and jobs is an empty list.
+    """
     jc, jp = job_set_clause(f, now, include_legacy=True)
     params = list(jp)
     where = [jc]
