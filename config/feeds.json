@@ -82,6 +82,9 @@
     {"type": "ashby", "enabled": true, "token": "qonto", "company": "Qonto"},
     {"type": "join", "enabled": true, "token": "get-incacom", "company": "inca"},
     {"type": "ashby", "enabled": true, "token": "cohere", "company": "Cohere"},
-    {"type": "greenhouse", "enabled": true, "token": "capco", "company": "Capco"}
+    {"type": "greenhouse", "enabled": true, "token": "capco", "company": "Capco"},
+    {"type": "ashby", "enabled": true, "token": "clar", "company": "CLAR AI"},
+    {"type": "join", "enabled": true, "token": "prodlane", "company": "MAIA"},
+    {"type": "join", "enabled": true, "token": "neurawork", "company": "Neurawork GmbH & Co. KG"}
   ]
 }
