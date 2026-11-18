@@ -113,7 +113,38 @@ class Filters:
 
 # --- the job set ----------------------------------------------------------------------
 
-_HAS_FEED = f"EXISTS (SELECT 1 FROM job_source s WHERE s.job_id = j.id AND s.source IN {FEED_SOURCES})"
+def make_filters(known_skills, *, cities=(), seniorities=(), families=(), requirement="required",
+                 window="open", german="any", degree="any", production="any", skill_ids=(), query="",
+                 text="") -> Filters:
+    """Filters from request values, or ValueError naming the first bad one. The one check
+    shared by the dashboard API and the MCP tools, so both accept exactly the same values.
+    Cities are not checked: a place we don't collect matches no jobs. Several skill ids
+    mean AND; deduplicated, order kept, so a skill sent twice adds no redundant clause."""
+    for s in seniorities:
+        if s not in SENIORITIES:
+            raise ValueError(f"bad seniority {s!r}")
+    for s in families:
+        if s not in FAMILIES:
+            raise ValueError(f"bad family {s!r}")
+    if requirement not in REQUIREMENTS:
+        raise ValueError(f"bad requirement {requirement!r}")
+    if window not in WINDOWS:
+        raise ValueError(f"bad window {window!r}")
+    if german not in GERMAN_FILTERS:
+        raise ValueError(f"bad german {german!r}")
+    if degree not in DEGREE_FILTERS:
+        raise ValueError(f"bad degree {degree!r}")
+    if production not in PRODUCTION_FILTERS:
+        raise ValueError(f"bad production {production!r}")
+    for s in skill_ids:
+        if s not in known_skills:
+            raise ValueError(f"unknown skill {s!r}")
+    return Filters(cities=tuple(cities), seniorities=tuple(seniorities), families=tuple(families),
+                   requirement=requirement, window=window, german=german, degree=degree,
+                   production=production, skill_ids=tuple(dict.fromkeys(skill_ids)), query=query, text=text)
+
+
+_HAS_FEED =f"EXISTS (SELECT 1 FROM job_source s WHERE s.job_id = j.id AND s.source IN {FEED_SOURCES})"
 
 
 _FEED_SEEN = (f"EXISTS (SELECT 1 FROM job_source s WHERE s.job_id = j.id AND s.source IN {FEED_SOURCES}"
