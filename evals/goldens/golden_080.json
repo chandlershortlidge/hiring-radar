@@ -1,0 +1,72 @@
+{
+  "id": "golden_080",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "senior Enterprise AI Architect",
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": false,
+  "source_sha256": "321a8531980677316f1b37ed1cada19816e5113ab52e7ef8a5376bad31b6f148",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:agents",
+    "skill:cybersecurity",
+    "skill:data-privacy-and-security",
+    "skill:software-engineering"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Enterprise AI Architect\n\nABOUT DISTYL AI \n\nDistyl is an applied AI technology company partnering with the world’s most ambitious institutions to rearchitect critical operations for the frontier of AI. Our customers include the largest companies in telecom, healthcare, insurance, manufacturing, consumer goods, and global social organizations.\n\nWe research and deploy technologies that power AI-native operations — both for our partners and for Distyl itself. Our work spans research into self-constructing systems, the development of the most reliable execution of AI systems, and products that transform mission-critical workflows. As a result, Distyl's technologies affect some of the world's largest operations — from hundreds of millions of consumer interactions to tens of millions of supply chain transactions and millions of patient journeys.\n\nDistyl is backed by leading investors including Lightspeed Venture Partners, Khosla Ventures, Coatue, DST Global, and the board-members of 20+ F500s. \n\n\n\n\nWHAT WE ARE LOOKING FOR\n\nWe are looking for a senior Enterprise AI Architect to serve as the long-term technical partner to some of Distyl’s most strategic Fortune 500 customers. You will operate more like a senior technical partner than a traditional pre-sales architect: build trust with C-suite and technical leaders, bring a strong point of view on where AI can create meaningful business value, shape the solution with the customer, and stay accountable for the technical relationship beyond signature.\n\nThis role sits in Engineering and works closely with Go-to-Market, Product, and Forward-Deployed Engineering. You will lead the technical arc of an account from early technology conversations and problem shaping through architecture, feasibility, and SOW; for qualified late-stage pursuits, you will partner with forward deployed engineers to drive implementation of solutions. After close, the Technical Delivery Lead owns day-to-day execution while you remain attached for architecture reviews, steering moments, difficult decisions, and expansion.\n\nThis is a senior individual-contributor role for someone who has built and delivered production systems, can hold a room with executives, and can translate between business ambition and engineering reality. Success means customers view you as a trusted technical advisor, GTM gets technically credible proposals, and delivery inherits scopes that survive contact with production.\n\n\n\n\nKEY RESPONSIBILITIES\n\n - Own the strategic technical relationship. Serve as the primary technical counterpart for strategic accounts, building trust with CIO/CTO-level leaders, enterprise architects, and business executives. Help customers identify where AI can materially change an operation, pattern-match from prior deployments, and shape an ambitious but deliverable technical vision.\n\n - Own architecture, feasibility, prototypes, and technical SOW quality. Lead joint solution architecture with customer teams, applying Distyl’s platform and technical primitives to real enterprise systems. Use prototypes and demos to validate key assumptions where needed, and own the technical content of the SOW, including integrations, data access, deployment model, dependencies, assumptions, and risks.\n\n - Qualify opportunities and shape technically credible solutions. Assess whether opportunities are well-suited for AI, evaluate data, systems, security, integration, and organizational constraints, and make the call on technical feasibility before Distyl commits to scope.\n\n - Turn customer patterns into reusable assets and product feedback. Translate recurring needs, architecture patterns, security constraints, and deployment learnings into reusable technical assets and concrete feedback that influences Distyl’s platform, product, and engineering roadmap.\n\n - Carry the technical thread from first conversation through successful delivery. Stay engaged through architecture reviews, executive steering, major tradeoffs, risk escalations, and expansion opportunities, while empowering the delivery lead to own execution.\n\n\n\n\nWHO YOU ARE\n\nRequired\n\n - 8+ years of relevant experience across engineering, enterprise architecture, forward-deployed engineering, solutions architecture, or similar roles, with substantial customer-facing responsibility.\n\n - Hands-on production delivery experience. You have designed, built, and shipped Enterprise-grade Agentic AI/ML systems and can reason credibly about implementation tradeoffs, reliability, integration, scale, security, and operating constraints.\n\n - Demonstrated ability to operate as a senior technical advisor to executives: you can build trust, develop a point of view, shape ambiguous problems, influence decisions, and handle high-stakes technical conversations without relying on a script.\n\n - Proven ownership of complex enterprise solution architecture and scope, including the ability to write technical SOW content and align customer teams, GTM, and delivery around what is actually buildable.\n\n - Ability to work effectively with FDE / Delivery / Product & Strategy teams — bringing them in at the right time, using their current implementation depth, and maintaining continuity.\n\n - Strong working knowledge of APIs, integrations, cloud and enterprise architecture, data flows, security considerations, and modern AI systems; coding fluency to prototype, inspect systems, and engage deeply with engineers.\n\n - Deep domain expertise in one or more enterprise areas such as customer support, voice, MarTech, Cybersecurity, IAM, or Document processing.\n\n - Able to travel 25% and meet onsite with customer teams; able to work from our New York or San Francisco office Tuesday–Thursday.\n\n\n\nPreferred\n\n - Background in an FDE, engineering, or technical consulting organization where you owned both customer outcomes and technical decisions.\n\n - Experience in a partner-like role at a consulting firm, high-growth technology company, or enterprise software company with long, C-suite-led sales cycles.\n\n - Experience at an early-stage startup and comfort operating in ambiguous environments where the playbook is still being built.\n\n\n\n\nWHAT WE OFFER\n\n - The base salary range for this role is $200,000 - $275,000 depending on experience, location, and level. In addition to base compensation, this role is eligible for meaningful equity, along with a comprehensive benefits package\n\n - 100% coverage of medical, dental, and vision insurance for employee and dependents\n\n - Flexible time off\n\n - Retirement and financial planning benefits, including access to pre-tax HSA, FSA, and commuter accounts, 401(k), and financial coaching resources\n\n - Comprehensive wellness benefits, including physical fitness, mental well-being, and fertility and family-building benefits through Carrot\n\n - Complimentary in-office lunches and snacks provided\n\n - Access to state-of-the-art AI models, generous usage of modern AI tools, and real-world business problems\n\n - Ownership of high-impact projects across top enterprises\n\n - A mission-driven, fast-moving culture that values curiosity, pragmatism, and excellence\n\n\n\nDistyl has offices in San Francisco and New York. This role follows a hybrid collaboration model with 3+ days per week (Tuesday–Thursday) in-office.\n\n\n\n#LI-Hybrid\n\n\n\nWe believe diverse perspectives make our work stronger and more impactful. We are an equal opportunity employer and evaluate all applicants without regard to race, color, religion, sex, sexual orientation, gender identity or expression, national origin, age, disability, veteran status, or any other legally protected characteristic. We encourage candidates from all backgrounds to apply.",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "Agentic AI/ML systems"
+    },
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "Agentic AI/ML systems"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "APIs"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "cloud"
+    },
+    {
+      "skill_id": "cybersecurity",
+      "requirement": "required",
+      "raw_text": "Cybersecurity"
+    },
+    {
+      "skill_id": "data-privacy-and-security",
+      "requirement": "required",
+      "raw_text": "security considerations"
+    },
+    {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "cloud and enterprise architecture"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "coding fluency"
+    }
+  ]
+}

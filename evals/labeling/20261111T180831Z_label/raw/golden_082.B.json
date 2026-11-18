@@ -1,0 +1,68 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluations\"\n    },\n    {\n      \"skill_id\": \"explainable-ai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"interpretability\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Agentic systems understanding\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"AI red-teaming\",\n      \"raw_text\": \"red-teaming\"\n    },\n    {\n      \"label\": \"AI alignment\",\n      \"raw_text\": \"alignment\"\n    },\n    {\n      \"label\": \"Experimental design\",\n      \"raw_text\": \"design clean experiments\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"PhD in Computer Science, Machine Learning, Physics, Mathematics, or a related discipline; or equivalent industry research experience.\",\n  \"notes\": \"The candidate-qualification section defaults to required: 'EXCEPTIONAL CANDIDATES HAVE DEMONSTRATED' is not an optional heading.\\nAlternatives joined by 'or', including PyTorch/JAX and the research techniques, are individually labeled required under the guide.\\nInterpretability maps to explainable-ai; red-teaming does not imply red-team tooling or adversary emulation.\\nResponsibilities-only techniques, company-description technologies, degree fields, industry background, and soft skills are excluded. General engineering fundamentals are not expanded into an unstated software-engineering skill.\\nNo usable seniority signal or German-language requirement is present.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluations"
+      },
+      {
+        "skill_id": "explainable-ai",
+        "requirement": "required",
+        "raw_text": "interpretability"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Agentic systems understanding"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "AI red-teaming",
+        "raw_text": "red-teaming"
+      },
+      {
+        "label": "AI alignment",
+        "raw_text": "alignment"
+      },
+      {
+        "label": "Experimental design",
+        "raw_text": "design clean experiments"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "PhD in Computer Science, Machine Learning, Physics, Mathematics, or a related discipline; or equivalent industry research experience.",
+    "notes": "The candidate-qualification section defaults to required: 'EXCEPTIONAL CANDIDATES HAVE DEMONSTRATED' is not an optional heading.\nAlternatives joined by 'or', including PyTorch/JAX and the research techniques, are individually labeled required under the guide.\nInterpretability maps to explainable-ai; red-teaming does not imply red-team tooling or adversary emulation.\nResponsibilities-only techniques, company-description technologies, degree fields, industry background, and soft skills are excluded. General engineering fundamentals are not expanded into an unstated software-engineering skill.\nNo usable seniority signal or German-language requirement is present."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "63d515af889a3974b76de4a7654518107966de90fd44e2d31c4040419165a6cd",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

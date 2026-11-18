@@ -3,6 +3,8 @@
 Does: turn a Filters object into SQL, compute document frequency over the filtered job
 set (count of jobs mentioning each skill ÷ jobs in the set), the skills that co-occur with
 the selected ones (share against the same set's baseline), and the open/closed status of a job.
+`rising_skills` counts the jobs open during each of two back-to-back periods and hands the
+counts to app.rising, which owns the comparison and its thresholds.
 The job list also searches two ways that do not blur: `query` over company and title,
 `text` over the posting text itself (the FTS5 index migration 014 keeps in step with it).
 
@@ -18,11 +20,12 @@ distinct jobs; percentages are over the filtered set, never the whole table.
 """
 
 import sqlite3
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from datetime import datetime, timedelta, timezone
 
-from app.geo import CITIES, REMOTE_EU
+from app.geo import ACTIVE_CITIES, CITIES, COLLECTING_SINCE, REMOTE_EU
 from app.ingest import FAMILIES as ingest_families
+from app.rising import skill_change_calculation
 from app.sources import registry
 
 # Complete feeds list every live posting on every poll, so not seeing a job for
@@ -77,6 +80,13 @@ _LONG_ENOUGH = f"length(j.description_text) >= {MIN_TEXT_CHARS}"
 # the ranked rows the panel gets. DECISIONS 2026-10-28.
 MIN_CO_JOBS = 5
 RELATED_LIMIT = 10
+# rising_skills (HIR-232): the length of each of the two periods compared, how many risers
+# and how many fallers the panel gets, and the smallest move, in percentage points, worth
+# calling a rise or a fall (below 1 point the two shares can print as the same whole
+# percent). Whether a move can be trusted at all is app.rising's call, not one of these.
+RISING_DAYS = 28
+RISING_LIMIT = 5
+RISING_MIN_CHANGE = 1.0
 
 
 def _days_ago(now: str, days: int) -> str:
@@ -103,7 +113,38 @@ class Filters:
 
 # --- the job set ----------------------------------------------------------------------
 
-_HAS_FEED = f"EXISTS (SELECT 1 FROM job_source s WHERE s.job_id = j.id AND s.source IN {FEED_SOURCES})"
+def make_filters(known_skills, *, cities=(), seniorities=(), families=(), requirement="required",
+                 window="open", german="any", degree="any", production="any", skill_ids=(), query="",
+                 text="") -> Filters:
+    """Filters from request values, or ValueError naming the first bad one. The one check
+    shared by the dashboard API and the MCP tools, so both accept exactly the same values.
+    Cities are not checked: a place we don't collect matches no jobs. Several skill ids
+    mean AND; deduplicated, order kept, so a skill sent twice adds no redundant clause."""
+    for s in seniorities:
+        if s not in SENIORITIES:
+            raise ValueError(f"bad seniority {s!r}")
+    for s in families:
+        if s not in FAMILIES:
+            raise ValueError(f"bad family {s!r}")
+    if requirement not in REQUIREMENTS:
+        raise ValueError(f"bad requirement {requirement!r}")
+    if window not in WINDOWS:
+        raise ValueError(f"bad window {window!r}")
+    if german not in GERMAN_FILTERS:
+        raise ValueError(f"bad german {german!r}")
+    if degree not in DEGREE_FILTERS:
+        raise ValueError(f"bad degree {degree!r}")
+    if production not in PRODUCTION_FILTERS:
+        raise ValueError(f"bad production {production!r}")
+    for s in skill_ids:
+        if s not in known_skills:
+            raise ValueError(f"unknown skill {s!r}")
+    return Filters(cities=tuple(cities), seniorities=tuple(seniorities), families=tuple(families),
+                   requirement=requirement, window=window, german=german, degree=degree,
+                   production=production, skill_ids=tuple(dict.fromkeys(skill_ids)), query=query, text=text)
+
+
+_HAS_FEED =f"EXISTS (SELECT 1 FROM job_source s WHERE s.job_id = j.id AND s.source IN {FEED_SOURCES})"
 
 
 _FEED_SEEN = (f"EXISTS (SELECT 1 FROM job_source s WHERE s.job_id = j.id AND s.source IN {FEED_SOURCES}"
@@ -325,6 +366,83 @@ def city_totals(conn: sqlite3.Connection, f: Filters, now: str) -> dict[str, int
     return {r["place"]: r["n"] for r in conn.execute(
         f"SELECT jpl.place, count(*) n FROM job j JOIN job_place jpl ON jpl.job_id = j.id WHERE {jc}"
         f" GROUP BY jpl.place", jp)}
+
+
+# --- what's rising ----------------------------------------------------------------------
+
+def _open_during(conn: sqlite3.Connection, f: Filters, start: str, end: str) -> tuple[int, dict[str, int]]:
+    """(jobs open at any moment between start and end, {skill_id: how many of them list it}).
+
+    Open during a period = first seen by its end, and still open at its start by the
+    dashboard's own open rule (`open_clause`, asked as of `start`): so a job counts in every
+    period it was open in, and a job that stays open counts in both periods compared."""
+    base, bp = job_set_clause(replace(f, window="all"), end)
+    oc, op = open_clause(start)
+    where, params = f"{base} AND j.first_seen <= ? AND {oc}", bp + [end] + op
+    mc, mp = _mention_clause(f)
+    total = conn.execute(f"SELECT count(*) FROM job j WHERE {where}", params).fetchone()[0]
+    rows = conn.execute(
+        f"SELECT m.skill_id, count(DISTINCT j.id) n FROM skill_mention m JOIN job j ON j.id = m.job_id"
+        f" WHERE {where} AND {mc} GROUP BY m.skill_id", params + mp)
+    return total, {r["skill_id"]: r["n"] for r in rows}
+
+
+def rising_skills(conn: sqlite3.Connection, f: Filters, now: str, skill_added: dict[str, str],
+                  collecting_since: dict[str, str] = COLLECTING_SINCE) -> dict:
+    """Skills asked for by a larger or smaller share of open jobs in the last RISING_DAYS
+    days than in the RISING_DAYS before (HIR-232), for f's cities and families.
+
+    Reads only `cities` (none = every active place), `families` and `requirement` from f.
+    The shares, the change and whether a change can be trusted are app.rising's
+    `skill_change_calculation`, with its own thresholds; nothing here repeats them.
+
+    Two things are held back, because their early numbers would be an artefact:
+    - a place whose collection began after the earlier period started (`collecting_since`,
+      or a place with no date there): everything open on its first day was "first seen"
+      that day, so every skill would look as if it rose. Then status is 'not_enough_data',
+      reason 'new_city', and `ready_from` is the first day both periods are covered.
+    - a skill added to the list after the earlier period started (`skill_added`, or a skill
+      with no date there): postings that closed before it existed were never read with it.
+
+    Otherwise status is 'ok' when at least one skill had enough jobs behind it to compare,
+    else 'not_enough_data' with reason 'few_jobs'. `risers` and `fallers` each hold at most
+    RISING_LIMIT rows, largest move first, and only moves of RISING_MIN_CHANGE points or
+    more; each row carries both counts and both shares.
+    """
+    cur_start, prev_start = _days_ago(now, RISING_DAYS), _days_ago(now, 2 * RISING_DAYS)
+    out = {"status": "not_enough_data", "reason": "new_city", "ready_from": None, "window_days": RISING_DAYS,
+           "current": {"start": cur_start, "end": now, "open_jobs": None},
+           "previous": {"start": prev_start, "end": cur_start, "open_jobs": None},
+           "risers": [], "fallers": []}
+    since = [collecting_since.get(c) for c in (f.cities or ACTIVE_CITIES)]
+    if None in since:
+        return out
+    if max(since) > prev_start[:10]:
+        newest = datetime.strptime(max(since), "%Y-%m-%d") + timedelta(days=2 * RISING_DAYS)
+        return {**out, "ready_from": newest.strftime("%Y-%m-%d")}
+
+    cur_total, cur = _open_during(conn, f, cur_start, now)
+    prev_total, prev = _open_during(conn, f, prev_start, cur_start)
+    out["current"]["open_jobs"], out["previous"]["open_jobs"] = cur_total, prev_total
+    rows, comparable = [], False
+    for sid in sorted(set(cur) | set(prev)):
+        if skill_added.get(sid, "9999-12-31") > prev_start[:10]:
+            continue
+        r = skill_change_calculation(cur.get(sid, 0), cur_total, prev.get(sid, 0), prev_total)
+        if r is None:
+            continue
+        comparable = True
+        if abs(r["total_change"]) >= RISING_MIN_CHANGE:
+            rows.append({"skill_id": sid, "current_count": cur.get(sid, 0), "previous_count": prev.get(sid, 0),
+                         "current_share": round(r["current_share"], 1),
+                         "previous_share": round(r["previous_share"], 1),
+                         "change": round(r["total_change"], 1)})
+    if not comparable:
+        return {**out, "reason": "few_jobs"}
+    rows.sort(key=lambda s: (-abs(s["change"]), s["skill_id"]))
+    return {**out, "status": "ok", "reason": None,
+            "risers": [s for s in rows if s["change"] > 0][:RISING_LIMIT],
+            "fallers": [s for s in rows if s["change"] < 0][:RISING_LIMIT]}
 
 
 # --- jobs -------------------------------------------------------------------------------

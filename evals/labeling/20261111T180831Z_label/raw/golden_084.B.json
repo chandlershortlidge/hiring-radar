@@ -1,0 +1,209 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning fundamentals\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"applied AI experience\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience building production AI systems using LLMs\"\n    },\n    {\n      \"skill_id\": \"openai-api\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"OpenAI\"\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MCP\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agent frameworks\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"vector databases\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluating AI systems using quantitative metrics\"\n    },\n    {\n      \"skill_id\": \"agent-state-management\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"memory\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"tool use\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"RAG\"\n    },\n    {\n      \"skill_id\": \"knowledge-graphs\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"knowledge graphs\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"fine-tuning\"\n    },\n    {\n      \"skill_id\": \"knowledge-distillation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distillation\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement learning\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distributed production systems\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cloud platforms\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Azure\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GCP\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"production observability\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"technical architectures\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Claude\",\n      \"raw_text\": \"Claude\"\n    },\n    {\n      \"label\": \"Retrieval systems\",\n      \"raw_text\": \"retrieval systems\"\n    },\n    {\n      \"label\": \"Agent reasoning\",\n      \"raw_text\": \"reasoning\"\n    },\n    {\n      \"label\": \"Agent planning\",\n      \"raw_text\": \"planning\"\n    },\n    {\n      \"label\": \"Semantic search\",\n      \"raw_text\": \"semantic search\"\n    },\n    {\n      \"label\": \"Customer intelligence systems\",\n      \"raw_text\": \"customer intelligence systems\"\n    },\n    {\n      \"label\": \"Structured knowledge representations\",\n      \"raw_text\": \"structured knowledge representations\"\n    },\n    {\n      \"label\": \"Small language models\",\n      \"raw_text\": \"small language models\"\n    },\n    {\n      \"label\": \"Model optimization\",\n      \"raw_text\": \"model optimization\"\n    },\n    {\n      \"label\": \"Multimodal AI\",\n      \"raw_text\": \"multimodal AI systems\"\n    },\n    {\n      \"label\": \"Foundation models\",\n      \"raw_text\": \"frontier foundation models\"\n    },\n    {\n      \"label\": \"Enterprise AI integration\",\n      \"raw_text\": \"integrating AI systems into enterprise software environments\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"4+ years of software engineering, machine learning, or applied AI experience.\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Applied AI, Software Engineering, and Customer Engineering are subsections of Preferred Qualifications; their items remain optional.\\nAlternatives in qualification lists are labeled individually, including the software engineering, machine learning, and applied AI experience alternatives.\\nLiteral reading: generic retrieval systems do not establish RAG, and semantic search does not necessarily establish vector search; both remain unmapped rather than adding those mappings.\\nClaude is not explicitly Claude Enterprise or the Anthropic API, so it remains unmapped.\\nGeneric reasoning, planning, model optimization, and foundation models are not narrowed to chain-of-thought, inference optimization, or LLMs.\\nMemory and tool use are interpreted in their explicitly agentic context.\\nTechnologies and practices named only in responsibilities or descriptions of future learning are excluded.\\nThe 4+ years requirement supports inferred mid seniority; leading customer workshops is not treated as a separate senior-level leadership duty.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning fundamentals"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "applied AI experience"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Experience building production AI systems using LLMs"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "required",
+        "raw_text": "OpenAI"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "MCP"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agent frameworks"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector databases"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluating AI systems using quantitative metrics"
+      },
+      {
+        "skill_id": "agent-state-management",
+        "requirement": "nice_to_have",
+        "raw_text": "memory"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "nice_to_have",
+        "raw_text": "tool use"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "knowledge-graphs",
+        "requirement": "nice_to_have",
+        "raw_text": "knowledge graphs"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "nice_to_have",
+        "raw_text": "distillation"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed production systems"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "production observability"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "nice_to_have",
+        "raw_text": "technical architectures"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Claude",
+        "raw_text": "Claude"
+      },
+      {
+        "label": "Retrieval systems",
+        "raw_text": "retrieval systems"
+      },
+      {
+        "label": "Agent reasoning",
+        "raw_text": "reasoning"
+      },
+      {
+        "label": "Agent planning",
+        "raw_text": "planning"
+      },
+      {
+        "label": "Semantic search",
+        "raw_text": "semantic search"
+      },
+      {
+        "label": "Customer intelligence systems",
+        "raw_text": "customer intelligence systems"
+      },
+      {
+        "label": "Structured knowledge representations",
+        "raw_text": "structured knowledge representations"
+      },
+      {
+        "label": "Small language models",
+        "raw_text": "small language models"
+      },
+      {
+        "label": "Model optimization",
+        "raw_text": "model optimization"
+      },
+      {
+        "label": "Multimodal AI",
+        "raw_text": "multimodal AI systems"
+      },
+      {
+        "label": "Foundation models",
+        "raw_text": "frontier foundation models"
+      },
+      {
+        "label": "Enterprise AI integration",
+        "raw_text": "integrating AI systems into enterprise software environments"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "4+ years of software engineering, machine learning, or applied AI experience.",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Applied AI, Software Engineering, and Customer Engineering are subsections of Preferred Qualifications; their items remain optional.\nAlternatives in qualification lists are labeled individually, including the software engineering, machine learning, and applied AI experience alternatives.\nLiteral reading: generic retrieval systems do not establish RAG, and semantic search does not necessarily establish vector search; both remain unmapped rather than adding those mappings.\nClaude is not explicitly Claude Enterprise or the Anthropic API, so it remains unmapped.\nGeneric reasoning, planning, model optimization, and foundation models are not narrowed to chain-of-thought, inference optimization, or LLMs.\nMemory and tool use are interpreted in their explicitly agentic context.\nTechnologies and practices named only in responsibilities or descriptions of future learning are excluded.\nThe 4+ years requirement supports inferred mid seniority; leading customer workshops is not treated as a separate senior-level leadership duty."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "b9ee06acc928d7b698d53af52687ccacb9eaab50e2f0f42b358c186d9e0695ea",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

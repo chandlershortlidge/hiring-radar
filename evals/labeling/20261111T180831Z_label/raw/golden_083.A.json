@@ -1,0 +1,130 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Strong software engineering skills\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"rust\", \"requirement\": \"required\", \"raw_text\": \"Rust\"},\n    {\"skill_id\": \"cpp\", \"requirement\": \"required\", \"raw_text\": \"C++\"},\n    {\"skill_id\": \"go\", \"requirement\": \"required\", \"raw_text\": \"Go\"},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"required\", \"raw_text\": \"large-scale distributed systems\"},\n    {\"skill_id\": \"cybersecurity\", \"requirement\": \"required\", \"raw_text\": \"security fundamentals\", \"uncertain\": true},\n    {\"skill_id\": \"linux\", \"requirement\": \"required\", \"raw_text\": \"Linux\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"containers\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud infrastructure\"},\n    {\"skill_id\": \"ai-infrastructure\", \"requirement\": \"nice_to_have\", \"raw_text\": \"ML training or inference infrastructure\", \"uncertain\": true},\n    {\"skill_id\": \"networking\", \"requirement\": \"nice_to_have\", \"raw_text\": \"networking\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Kubernetes\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience building observability for large fleets\"},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Familiarity with reinforcement learning\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"large language model training workloads\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Debugging across distributed hosts\", \"raw_text\": \"Experience debugging complex problems across many hosts and services\"},\n    {\"label\": \"Sandboxed / virtualized code execution\", \"raw_text\": \"sandboxed or virtualized code execution at scale\"},\n    {\"label\": \"Isolation\", \"raw_text\": \"isolation\"},\n    {\"label\": \"Access control\", \"raw_text\": \"access control\"},\n    {\"label\": \"Identity\", \"raw_text\": \"identity\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": null, \"german_basis\": null, \"german_signal\": null,\n  \"degree\": \"bachelor\", \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true, \"degree_signal\": \"Bachelor’s degree or an equivalent combination of education, training, and/or experience\",\n  \"uncertain\": [],\n  \"notes\": \"Minimum qualifications are required. Preferred qualifications are nice_to_have by their heading.\\ncontainerization: the required mention 'containers' wins over the preferred 'container orchestration'.\\ncybersecurity is mapped from 'security fundamentals', since the taxonomy has no generic security id; flagged uncertain.\\nObservability is in both the responsibilities and the preferred list; only the preferred mention is labeled.\\n'real interest in the other' refers to a field (security or ML), not a named skill, so no appetite rule applies.\\nNo seniority signal: years of experience are deferred to internal job level, and the title has no level word.\\n'Strong written communication' is a soft skill and is not labeled.\\n'debugging' is not mapped to testing, because the alias is only 'debugging & testing'; it is listed in unmapped.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software engineering skills"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "rust",
+        "requirement": "required",
+        "raw_text": "Rust"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "large-scale distributed systems"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "security fundamentals",
+        "uncertain": true
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containers"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud infrastructure"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "nice_to_have",
+        "raw_text": "ML training or inference infrastructure",
+        "uncertain": true
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "nice_to_have",
+        "raw_text": "networking"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience building observability for large fleets"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "Familiarity with reinforcement learning"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "large language model training workloads",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Debugging across distributed hosts",
+        "raw_text": "Experience debugging complex problems across many hosts and services"
+      },
+      {
+        "label": "Sandboxed / virtualized code execution",
+        "raw_text": "sandboxed or virtualized code execution at scale"
+      },
+      {
+        "label": "Isolation",
+        "raw_text": "isolation"
+      },
+      {
+        "label": "Access control",
+        "raw_text": "access control"
+      },
+      {
+        "label": "Identity",
+        "raw_text": "identity"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor’s degree or an equivalent combination of education, training, and/or experience",
+    "uncertain": [],
+    "notes": "Minimum qualifications are required. Preferred qualifications are nice_to_have by their heading.\ncontainerization: the required mention 'containers' wins over the preferred 'container orchestration'.\ncybersecurity is mapped from 'security fundamentals', since the taxonomy has no generic security id; flagged uncertain.\nObservability is in both the responsibilities and the preferred list; only the preferred mention is labeled.\n'real interest in the other' refers to a field (security or ML), not a named skill, so no appetite rule applies.\nNo seniority signal: years of experience are deferred to internal job level, and the title has no level word.\n'Strong written communication' is a soft skill and is not labeled.\n'debugging' is not mapped to testing, because the alias is only 'debugging & testing'; it is listed in unmapped."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "a9f7ffdbb372323729ef7b3067d21ff443c1be35931991ba97f16eb39c0cab87",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}
