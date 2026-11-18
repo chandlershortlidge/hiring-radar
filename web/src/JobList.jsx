@@ -6,6 +6,7 @@ import { fails, fit, gates, jobSeniority, metSkills, rankJobs, skillSides } from
 import { copyLines, sortJobs, useSaved } from "./saved.js";
 import AddSkillChip from "./AddSkillChip.jsx";
 import { FlagNote, FlagToggle, useFlag } from "./FlagButton.jsx";
+import { ConnectStrip } from "./ConnectClaude.jsx";
 import { flagView } from "./flagView.js";
 
 const SORTS = { newest: "Newest first", oldest: "Oldest first", reposts: "Most reposted", company: "Company A–Z" };
@@ -19,7 +20,7 @@ const PAGE = 20;
 const FIT_MAX = 200;
 
 export default function JobList({ filters, setFilters, profile, taxonomy, demand = null, refreshKey, openJobId, onOpened, onOpenPage,
-  taxonomyRows = [], aliases = {}, suggestions = [], onAddSkill, market = null }) {
+  taxonomyRows = [], aliases = {}, suggestions = [], onAddSkill, market = null, connect = false }) {
   // Best fit is the default for someone who has a profile: it is why they made one. The
   // profile loads synchronously, so this is right on the first render, not after a flash.
   const [sort, setSort] = useState(() => (profile ? FIT : "newest"));
@@ -92,9 +93,11 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
   const getView = () => flagView({ filters, sort: byFit ? FIT : sort, saved: savedOn, market });
   return (
     <section className="card jobs" aria-labelledby="jobs-title">
+      {/* On a city page the Connect-Claude strip sits on top of the list (HIR-285). */}
+      {connect && <ConnectStrip />}
       <div className="jobs-head">
         <div className="l">
-          <h2 id="jobs-title">Jobs</h2>
+          <h2 id="jobs-title">{savedOn ? "Saved jobs" : <>{page.total} {filters.window === "open" ? "open " : ""}jobs <span>· {scope}</span></>}</h2>
           <button type="button" className={`pill saved-toggle${savedOn ? " on" : ""}`} aria-pressed={savedOn}
             onClick={() => setSavedOn((v) => !v)} title="Only the jobs you starred. Saved jobs live in this browser; the server never sees them.">
             <Star />Saved · {savedIds.length}
@@ -110,7 +113,6 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
             ))}
             <AddSkillChip selected={filters.skillIds} suggestions={suggestions} taxonomy={taxonomyRows}
               aliases={aliases} onAdd={onAddSkill} />
-            <span className="muted jobs-count">{page.total} {filters.window === "open" ? "open" : ""} jobs · {scope}</span>
           </>}
         </div>
         <div className="r">
@@ -122,7 +124,7 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
             </button>
           ) : (<>
             <label htmlFor="q" className="sr">Search company or title</label>
-            <div className="search"><Search stroke="#6B6B6B" /><input id="q" type="search" className="inp" placeholder="Search company or title" value={q} onChange={(e) => setQ(e.target.value)} /></div>
+            <div className="search"><Search /><input id="q" type="search" className="inp" placeholder="Search company or title" value={q} onChange={(e) => setQ(e.target.value)} /></div>
           </>)}
           <label htmlFor="sort" className="muted" style={{ fontSize: 12.5 }}>Sort</label>
           <select id="sort" className="sel" value={sort} onChange={(e) => setSort(e.target.value)}>
@@ -131,8 +133,7 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
           </select>
         </div>
       </div>
-      <div className="tbl"><div className="tbl-in">
-        <div className="row-head"><span>Company</span><span>Title</span><span>City</span><span>First seen</span><span>Status</span><span>Sources</span><span /></div>
+      <div className="rows">
         {rows.map((j) => (
           <Row key={j.id} job={j} open={open === j.id} onToggle={() => setOpen(open === j.id ? null : j.id)}
             profile={profile} taxonomy={taxonomy} demand={demand} onOpenPage={onOpenPage}
@@ -143,7 +144,7 @@ export default function JobList({ filters, setFilters, profile, taxonomy, demand
         {/* The "no posting contains those words" variant of this message went with the
             posting-text box (HIR-187): nothing in the UI can set `filters.text` any more. */}
         {!savedOn && !loading && !page.jobs.length && <div className="empty">No jobs match. Widen the time window or clear the skill filter.</div>}
-      </div></div>
+      </div>
       <div className="jobs-foot">
         {!savedOn && left > 0 && <button type="button" className="btn" onClick={more}>Load {Math.min(PAGE, left)} more</button>}
         <span>{savedOn ? `Showing all ${rows.length} saved` : `Showing ${rows.length} of ${page.total}`}</span>
@@ -163,7 +164,25 @@ function Row({ job: j, open, onToggle, profile, taxonomy, demand, onOpenPage, sa
     <>
       <div className={`row${open ? " open-row" : ""}${j.legacy || j.too_short ? " legacy" : ""}${cov?.gated_by ? " gated" : ""}`} onClick={onToggle} role="button" tabIndex={0} aria-expanded={open}
         onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onToggle(); } }}>
-        <span className="co">
+        {/* Two lines, as in the chosen picture: the title, then company, place and when.
+            Whether it is open is said only when it is not, and where it was found is in
+            the opened row: both were columns of their own in the old wide table. */}
+        <span className="ti">
+          {j.title}{j.seniority && <span className="dim">{cap(j.seniority)}</span>}{j.family && <span className="dim" title="Job family, from the title">{familyLabel(j.family)}</span>}
+        </span>
+        <span className="by">
+          {j.company} · <span title={placeLabel(j).title}>{placeLabel(j).text}</span> · {timeAgo(j.first_seen)}{j.status !== "open" && ` · ${cap(j.status)}`}
+          {j.repost_count > 0 && <span className="repost" title={`Reposted ${j.repost_count}×`}><Repost />×{j.repost_count}</span>}
+          {j.legacy && <span className="src" title="Imported from the old project with its skills; not in the chart">legacy</span>}
+          {j.too_short && <span className="src" title="Only a fragment of the posting was stored; not in the chart">short</span>}
+        </span>
+        <span className="badges">
+          {flag.on && <span className="fit flagged" title="You flagged this job as not belonging here. It stays listed until the cause is fixed.">flagged</span>}
+          {miss.length > 0 && <span className="fit miss" title={miss.map((w) => MISS_LABELS[w]).join(" · ")}>!</span>}
+          {cov?.gated_by && <span className="fit gate" title={MISS_LABELS[cov.gated_by]}>{gateWord(cov.gated_by, j)}</span>}
+          {cov && cov.score !== null && <span className={`fit${isBestFit(cov) ? " best" : ""}`} title={fitTitle(cov, taxonomy)}>{fitBadge(cov)}</span>}
+        </span>
+        <span className="acts">
           <button type="button" className={`star${saved ? " on" : ""}`} aria-pressed={saved}
             aria-label={saved ? `Remove ${j.company} — ${j.title} from saved` : `Save ${j.company} — ${j.title}`}
             title={saved ? "Saved — click to remove" : "Save this job (stays in this browser)"}
@@ -171,23 +190,8 @@ function Row({ job: j, open, onToggle, profile, taxonomy, demand, onOpenPage, sa
             <Star />
           </button>
           <FlagToggle flag={flag} name={`${j.company} — ${j.title}`} />
-          {j.company}{j.legacy && <span className="src" style={{ marginLeft: 6 }} title="Imported from the old project with its skills; not in the chart">legacy</span>}{j.too_short && <span className="src" style={{ marginLeft: 6 }} title="Only a fragment of the posting was stored; not in the chart">short</span>}</span>
-        <span className="ti">
-          {flag.on && <span className="fit flagged" title="You flagged this job as not belonging here. It stays listed until the cause is fixed.">flagged</span>}
-          {miss.length > 0 && <span className="fit miss" title={miss.map((w) => MISS_LABELS[w]).join(" · ")}>!</span>}
-          {cov?.gated_by && <span className="fit gate" title={MISS_LABELS[cov.gated_by]}>{gateWord(cov.gated_by, j)}</span>}
-          {cov && cov.score !== null && <span className={`fit${cov.score === 1 && !cov.thin ? " full" : ""}`} title={fitTitle(cov, taxonomy)}>{fitBadge(cov)}</span>}
-          {j.title}{j.seniority && <span className="dim" style={{ marginLeft: 8, fontSize: 12 }}>{cap(j.seniority)}</span>}{j.family && <span className="dim" style={{ marginLeft: 8, fontSize: 12 }} title="Job family, from the title">{familyLabel(j.family)}</span>}
+          <button type="button" className="exp" aria-label={`${open ? "Hide" : "Show"} skills for ${j.company}`} onClick={(e) => { e.stopPropagation(); onToggle(); }}>{open ? <Up /> : <Down />}</button>
         </span>
-        <span className="ci muted" title={placeLabel(j).title}>{placeLabel(j).text}</span>
-        <span className="fs muted" style={{ fontSize: 13 }}>{timeAgo(j.first_seen)}</span>
-        <span className="st">
-          <span className={`status ${j.status}`}><i />{cap(j.status)}</span>
-          {j.repost_count > 0 && <span className="repost" title={`Reposted ${j.repost_count}×`}><Repost />×{j.repost_count}</span>}
-        </span>
-        <span className="srcs">{j.sources.map((s, i) => { const [code, full] = sourceCode(s.source); return <span key={i} className="src" title={full} aria-label={full}>{code}</span>; })}</span>
-        <span className="meta-m muted">{placeLabel(j).text} · {timeAgo(j.first_seen)} · {cap(j.status)}{j.repost_count > 0 ? ` · reposted ×${j.repost_count}` : ""} · {j.sources.map((s) => sourceCode(s.source)[0]).join(" ")}</span>
-        <button type="button" className="exp" aria-label={`${open ? "Hide" : "Show"} skills for ${j.company}`} onClick={(e) => { e.stopPropagation(); onToggle(); }}>{open ? <Up /> : <Down />}</button>
       </div>
       <FlagNote flag={flag} id={`flag-note-${j.id}`} />
       {open && <Detail job={j} d={detail} profile={profile} taxonomy={taxonomy} cov={cov} onOpenPage={onOpenPage} />}
@@ -231,6 +235,11 @@ export function placeLabel(j) {
   if (!places.length) return { text: "—", title: undefined };
   return { text: places.length > 1 ? `${places[0]} +${places.length - 1}` : places[0], title: places.join(", ") };
 }
+
+// The butter badge (docs/style.md): a fit of 90% and up, on a job that listed enough
+// skills for a percentage to mean something.
+export const BEST_FIT = 0.9;
+export const isBestFit = (cov) => cov.score !== null && cov.score >= BEST_FIT && !cov.thin;
 
 export function fitBadge(cov) {
   if (cov.thin) return `${cov.covered}/${cov.total} · ${FEW_SKILLS}`;

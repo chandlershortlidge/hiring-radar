@@ -2,6 +2,8 @@
 
 Drawn 5 Nov 2026. Grey wireframes, not visual design: spacing and hierarchy are the spec, colours are not.
 
+The look chosen since (colours 14 Nov, layout 17 Nov, HIR-285) is in [`../style.md`](../style.md). Where the two differ, `style.md` wins: the market grid in `01-home.png` is now a ranked table, and a city's chart and jobs sit side by side.
+
 | file | screen |
 |---|---|
 | 01-home.png | First visit, no city chosen: query bar + market grid |
