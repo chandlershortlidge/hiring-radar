@@ -185,6 +185,18 @@ describe("wilsonLower", () => {
     expect(wilsonLower(0, 14)).toBeCloseTo(0, 10);
   });
 
+  // HIR-333, found by the generated-input tests: the formula returned -3.1e-17 for 0 of 5
+  // and +2.1e-17 for 0 of 11 where the answer is 0, and the ranking compares these.
+  it("is exactly 0 when nothing is covered, whatever the count", () => {
+    for (let total = 1; total <= 40; total++) expect(wilsonLower(0, total)).toBe(0);
+  });
+
+  it("leaves jobs the profile covers none of in the order they came in", () => {
+    const asks = (id, n) => job({ id, required_skills: Array.from({ length: n }, (_, i) => `lack${i}`) });
+    const ranked = rankJobs(me(), [asks(1, 5), asks(2, 11), asks(3, 10)]);
+    expect(ranked.map((j) => j.id)).toEqual([1, 2, 3]);
+  });
+
   it("stays inside [0, 1], and rises with evidence at an unchanged ratio", () => {
     expect(wilsonLower(1, 1)).toBeGreaterThan(0);
     expect(wilsonLower(1, 1)).toBeLessThan(1);
