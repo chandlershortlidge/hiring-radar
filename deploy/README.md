@@ -160,8 +160,11 @@ frontend build on every push and PR; on a push to `main` that passes both, the `
 job runs `.github/workflows/site-watch.yml`: deploy the commit (`deploy.yml`), then the
 robot visitor clicks through the live site (HIR-258). If the robot fails, the site is
 rolled back to the last commit it passed (the `site-good` git tag) by deploying that
-commit the same way, and a Linear ticket is filed; if the rolled-back site fails too, the
-ticket is Urgent and assigned to Chandler. The whole release is serialized
+commit the same way, and a Linear ticket is filed. If the rolled-back site fails too, the
+robot's second report picks the ticket (HIR-359): when no path passed on it, the ticket is
+"Site down and rollback failed", Urgent and assigned to Chandler; when some path passed,
+the site is up and the deploy is probably not the cause, so each path that still fails
+gets an ordinary autopilot ticket that says so. The whole release is serialized
 (`concurrency: release`, no cancel-in-progress), so a second merge waits until the first
 is deployed and watched.
 
@@ -169,7 +172,8 @@ A rollback puts the old code back but not the old database: a migration the brok
 commit applied stays applied. Most migrations only add, and old code runs on the newer
 schema; a migration that rebuilds, drops or renames something (007, 008, 015 and 016 did)
 can leave the old code unable to read it. Then the robot fails on the rolled-back site
-too, and that is the "rollback failed" ticket that goes straight to Chandler.
+too; when it fails every path there, that is the "rollback failed" ticket that goes
+straight to Chandler.
 
 The deploy job (`.github/workflows/deploy.yml`):
 
