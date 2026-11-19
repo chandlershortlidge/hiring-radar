@@ -23,6 +23,7 @@ import sqlite3
 from dataclasses import dataclass, field, replace
 from datetime import datetime, timedelta, timezone
 
+from app.extract import SENIORITY_LEVELS
 from app.geo import ACTIVE_CITIES, CITIES, COLLECTING_SINCE, REMOTE_EU
 from app.ingest import FAMILIES as ingest_families, SALES_TITLE_PHRASES
 from app.rising import skill_change_calculation
@@ -41,7 +42,9 @@ FEED_OPEN_DAYS = 3
 MANUAL_OPEN_DAYS = 60
 WINDOWS = ("open", "30d", "90d", "all")
 REQUIREMENTS = ("required", "all")
-SENIORITIES = ("junior", "mid", "senior")
+# The seniority levels are the ones the model's form allows (HIR-311): one list, so a new
+# level cannot reach the model and be refused by the filter.
+SENIORITIES = SENIORITY_LEVELS
 # The five job families (HIR-186). Defined in ingest, which assigns one to every new job
 # from its title; re-exported here so the API validates against one list.
 FAMILIES = ingest_families
