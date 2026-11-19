@@ -75,6 +75,9 @@ def test_lookalike_paths_do_not_trip_the_gate(path):
         ("added", "evals/results/20261112T101500Z_dev_x2-abc123/summary.md"),
         ("added", "evals/results/20261112T101500Z_dev_x2-abc123/predictions.jsonl"),
         ("added", "docs/evals/results/x_dev_y/summary.json"),
+        # An experiment run (another model, a prompt trial) is not the gate's evidence:
+        # it measures something production does not run (HIR-223).
+        ("added", "evals/experiments/20261112T101500Z_dev_x2-abc123/summary.json"),
     ],
 )
 def test_only_a_newly_added_dev_summary_satisfies_the_gate(change):

@@ -9,6 +9,8 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 import run_eval  # noqa: E402
 
+from app import extract  # noqa: E402
+
 
 def test_heldout_requires_explicit_flag(monkeypatch):
     monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
@@ -68,6 +70,53 @@ def test_full_run_writes_results_with_mocked_model(monkeypatch, tmp_path):
     assert summary["aggregate"]["recall"]["n"] == 2
     assert len((out / "predictions.jsonl").read_text().splitlines()) == 2
     assert "Most-missed skills" in (out / "summary.md").read_text()
+
+
+def _capture_cap(monkeypatch, tmp_path, argv):
+    """Run the eval against a mocked model: (kwargs it was sent, summary.json, summary.md).
+
+    HIR-223: a reading cut off at the output cap returns nothing and scores as a total miss,
+    so measuring a model that writes more than our cap allows measures the cap. --max-tokens
+    lifts it for one run; these tests pin that it reaches the request and nothing else does.
+    """
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "x")
+    monkeypatch.setattr(run_eval, "ROOT", tmp_path)
+    _one_golden(tmp_path)
+
+    seen = []
+    tool = SimpleNamespace(type="tool_use", name="record_skills",
+                           input={"skills": [{"skill_id": "python", "requirement": "required",
+                                              "raw_text": "Python"}]})
+    resp = SimpleNamespace(stop_reason="tool_use", content=[tool], usage=None)
+    client = SimpleNamespace(messages=SimpleNamespace(create=lambda **kw: (seen.append(kw), resp)[1]))
+    monkeypatch.setattr(run_eval, "make_client", lambda: client)
+
+    run_eval.main(argv)
+    [out] = list((tmp_path / "evals/results").iterdir())
+    return seen, json.loads((out / "summary.json").read_text()), (out / "summary.md").read_text()
+
+
+def test_max_tokens_flag_raises_the_cap_for_this_run(monkeypatch, tmp_path):
+    seen, summary, _ = _capture_cap(monkeypatch, tmp_path,
+                                    ["--repeats", "1", "--model", "m", "--max-tokens", "8192"])
+    assert seen[0]["max_tokens"] == 8192
+    assert summary["meta"]["max_tokens"] == 8192
+
+
+def test_without_the_flag_the_cap_is_the_extractors_own(monkeypatch, tmp_path):
+    """The default has to stay the live cap, or a trial run would silently measure
+    something the poll does not do."""
+    seen, summary, _ = _capture_cap(monkeypatch, tmp_path, ["--repeats", "1", "--model", "m"])
+    assert seen[0]["max_tokens"] == extract.MAX_TOKENS
+    assert summary["meta"]["max_tokens"] == extract.MAX_TOKENS
+
+
+def test_the_run_records_which_cap_it_used(monkeypatch, tmp_path):
+    """The run id and extractor_version do not encode the cap, so two runs of one model
+    under different caps would otherwise be indistinguishable afterwards."""
+    _, _, md = _capture_cap(monkeypatch, tmp_path,
+                            ["--repeats", "1", "--model", "m", "--max-tokens", "8192"])
+    assert "output cap 8192" in md
 
 
 def _goldens_and_client(tmp_path):
