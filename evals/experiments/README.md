@@ -26,6 +26,11 @@ uv run python scripts/eval_table.py evals/experiments/<run_id>    # scores vs th
 uv run python scripts/eval_cost.py evals/experiments/<run_id>     # what it cost per reading
 ```
 
+A run also records the output cap it ran under (`meta.max_tokens`), because the run id and
+the extractor fingerprint do not encode it: two runs of one model under different caps
+would otherwise look identical afterwards.
+
 | run | what it measured | ticket |
 |---|---|---|
-| `20261119T150606Z_dev_x2-8425c19abb` | Claude Haiku 5.5 reading the dev postings, against the Claude Sonnet 5.5 baseline of the same day | HIR-223 |
+| `20261119T150606Z_dev_x2-8425c19abb` | Claude Haiku 5.5 at the live 4096-token output cap. 34 of 213 readings were cut off at the cap and returned nothing, so this measures the cap, not the model. Kept as the record of that failure rate. | HIR-223 |
+| `20261119T155329Z_dev_x2-8425c19abb` | Claude Haiku 5.5 at an 8192-token output cap, no failures. The comparison against the Claude Sonnet 5.5 baseline of the same day. | HIR-223 |
