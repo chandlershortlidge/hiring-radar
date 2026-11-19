@@ -237,3 +237,20 @@ def test_collection_down_two_days_is_sent_at_once_and_only_once(conn):
 def test_never_calls_a_model_in_the_morning_run():
     src = (run.ct.ROOT / "app" / "caretaker_run.py").read_text()
     assert "anthropic" not in src.lower() and "extract_pending" not in src and "make_client" not in src
+
+
+def test_monday_summary_reports_jsearch_use_against_the_cap(conn):
+    """HIR-352: the plan bills past its limit, so Chandler sees the month's use weekly."""
+    for d in ("2026-11-03", "2026-11-04"):
+        poll.record_run(conn, {"type": "jsearch", "search": "AI engineer in Boston"}, [], day=d)
+    posted = []
+    run.report(conn, DAY, lambda t, b: posted.append(b) or "HIR-900", log=lambda *_: None)
+    assert "Google for Jobs searches in 2026-11: 2 of our cap of 5,000." in posted[0]
+    assert "cap is reached" not in posted[0]
+
+
+def test_jsearch_usage_line_says_when_the_cap_is_reached(conn, monkeypatch):
+    from app.sources import jsearch
+    monkeypatch.setattr(jsearch, "MONTHLY_CAP", 1)
+    poll.record_run(conn, {"type": "jsearch", "search": "x"}, [], day="2026-11-03")
+    assert "stopped until the month turns" in run.jsearch_usage_text(conn, "2026-11-15")
