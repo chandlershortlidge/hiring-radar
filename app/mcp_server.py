@@ -156,7 +156,7 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str]) -> MCPSer
             r = q.list_jobs(conn, f, now(), sort, limit, offset)
         return {"total": r["total"], "offset": offset, "jobs": [_job(j) for j in r["jobs"]]}
 
-    # The next tool goes here (HIR-103's table): a function like search_jobs above.
+  
     @server.tool(annotations=READ_ONLY)
     def get_job(job_id: int) -> dict[str, Any]:
         """Get one job posting in full, with the same details as the hiring-radar
@@ -193,7 +193,57 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str]) -> MCPSer
                 "or_equivalent_experience": detail["degree_or_equivalent"]}, "description_text": detail["description_text"]
         }
 
+    @server.tool(annotations=READ_ONLY)
+    def skill_demand(
+        city: list[Place] | None = None,
+        seniority: list[Seniority] | None = None,
+        family: list[Family] | None = None,
+        requirement: Requirement = "required",
+        window: Window = "open",
+        german: German = "any",
+        degree: Degree = "any",
+        production: Production = "any"
+        
+    ) -> dict[str, Any]:
+        """Find which skills job postings ask for most, with the same filters and numbers
+        as the hiring-radar dashboard's skill list. Every filter is optional; filters
+        combine with AND. Use search_jobs to see the jobs behind a skill.
 
+        - city: any of these places; a job in several places matches each of them.
+        - seniority: junior, mid or senior. Leaving it out includes jobs whose seniority
+          is unknown; naming any level excludes them.
+        - family: ai-engineer, ml-engineer, data-scientist, ml-platform or research,
+          assigned from the job title.
+        - requirement: "required" (default) counts a skill only where the posting requires
+          it; "all" also counts it where it is only nice-to-have.
+        - window: "open" (default) = still being advertised; "30d" / "90d" = seen in the
+          last 30 / 90 days, open or closed; "all" = every job ever collected.
+        - german / production: "any" (default); "none" = the posting does not mention it;
+          "not_required" = not mentioned or only nice-to-have; "required" = required.
+          production means prior experience shipping to production.
+        - degree: "any" (default); "none" = no degree mentioned; "open" = someone without
+          a degree can apply (none named, optional, or equivalent experience accepted);
+          "required" = a degree is required with no alternative.
+
+        Returns total (all jobs matching the filters) and skills, most asked-for first.
+        Per skill: skill_id, count (jobs asking for it), pct (count as a percent of total)
+        and by_city (the count in each place).
+
+        Example: what open Berlin AI engineer jobs ask for most:
+        skill_demand(city=["Berlin"], family=["ai-engineer"])
+        """
+        try:
+            f = q.make_filters(tax.skills, cities=city or (), seniorities=seniority or (),
+                                        families=family or (), requirement=requirement, window=window,
+                                        german=german, degree=degree, production=production)
+        except ValueError as e:
+            raise ToolError(str(e)) from None
+        with connect() as conn:
+            demand = q.skill_frequency(conn, f, now())
+        return {"total": demand["total"], "skills": demand["skills"]}
+        
+
+            
     return server
 
 
