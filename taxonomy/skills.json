@@ -1,5 +1,5 @@
 {
-  "version": 11,
+  "version": 12,
   "skills": [
     {
       "id": "a-b-testing",
@@ -2070,11 +2070,76 @@
       "id": "azure-ai-foundry",
       "display": "Azure AI Foundry",
       "aliases": [
-        "azure ai studio"
+        "azure ai studio",
+        "microsoft foundry"
       ],
       "parents": [
         "azure"
       ],
+      "reviewed": true
+    },
+    {
+      "id": "azure-data-factory",
+      "display": "Azure Data Factory",
+      "aliases": [
+        "data factory",
+        "adf"
+      ],
+      "parents": [
+        "azure",
+        "data-pipelines"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "azure-functions",
+      "display": "Azure Functions",
+      "aliases": [
+        "azure function apps",
+        "function apps"
+      ],
+      "parents": [
+        "azure",
+        "serverless"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "azure-sql-database",
+      "display": "Azure SQL Database",
+      "aliases": [
+        "azure sql",
+        "azure sql db",
+        "sql db"
+      ],
+      "parents": [
+        "azure",
+        "sql"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "azure-data-lake-storage",
+      "display": "Azure Data Lake Storage",
+      "aliases": [
+        "azure data lake",
+        "azure data lake storage gen2",
+        "data lake storage",
+        "adls"
+      ],
+      "parents": [
+        "azure"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "data-engineering",
+      "display": "Data engineering",
+      "aliases": [
+        "datenengineering",
+        "data-engineering"
+      ],
+      "parents": [],
       "reviewed": true
     },
     {
