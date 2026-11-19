@@ -1,6 +1,6 @@
 # Review queue - 20261108T182552Z_label
 
-142 items from 14 postings. Labeler A: `claude-opus-5-5` (anthropic).
+159 items from 14 postings. Labeler A: `claude-opus-5-5` (anthropic).
 Labeler B: `gpt-6.1-sol` (openai). Extractor (not a labeler): `claude-sonnet-5-5`.
 
 Work through every item and replace the `?` on its `DECISION:` line. `scripts/agent_label.py
@@ -20,7 +20,7 @@ What the words mean:
 Items are grouped by what they ask of you, in the order to work them: the in-scope
 questions, then disagreements, then uncertain, then mapping, then the spot-check sample.
 
-Spot-check items are a seeded random sample (80 of 133 accepted labels,
+Spot-check items are a seeded random sample (80 of 142 accepted labels,
 seed 0) of labels A and B already agreed on. They measure the error rate that
 agreement alone cannot: two labelers can agree and both be wrong. They print the posting
 excerpt and the agreed label only - no `A:`/`B:` lines - so you check the label against the
@@ -34,40 +34,40 @@ for a posting that got past the title and city filters but is not the job market
 measure - a marketing role, a listing in the wrong field. The rest of that posting's items
 are then ignored, so you can answer `no` and skip them.
 
-## 1. golden_094 - scope `in_scope` (in-scope)
+## 1. golden_107 - scope `in_scope` (in-scope)
 
 > Generative AI Engineer (all gender)
 
 - ALTEN Consulting Services GmbH · Generative AI Engineer (all gender)
-- Hamburg · de · arbeitsagentur · 11 skills labeled
-
-Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Goldens
-
-DECISION: yes
-
-## 2. golden_095 - scope `in_scope` (in-scope)
-
-> System Platform Engineer KI (m/w/d)
-
-- R+V Allgemeine Versicherung AG · System Platform Engineer KI (m/w/d)
 - Hamburg · de · arbeitsagentur · 8 skills labeled
 
 Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Goldens
 
 DECISION: yes
 
-## 3. golden_096 - scope `in_scope` (in-scope)
+## 2. golden_108 - scope `in_scope` (in-scope)
 
-> (Senior) Fullstack Software Engineer - Fokus AI (m/w/d) - Hybrid,München,Stuttgart,Nür...
+> System Platform Engineer KI (m/w/d)
 
-- Randstad Digital · (Senior) Fullstack Software Engineer - Fokus AI (m/w/d) - Hybrid,München,Stuttgart,Nür...
-- Hamburg · de · arbeitsagentur · 14 skills labeled
+- R+V Allgemeine Versicherung AG · System Platform Engineer KI (m/w/d)
+- Hamburg · de · arbeitsagentur · 12 skills labeled
 
 Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Goldens
 
 DECISION: yes
 
-## 4. golden_097 - scope `in_scope` (in-scope)
+## 3. golden_109 - scope `in_scope` (in-scope)
+
+> (Senior) Fullstack Software Engineer - Fokus AI (m/w/d) - Hybrid,München,Stuttgart,Nür...
+
+- Randstad Digital · (Senior) Fullstack Software Engineer - Fokus AI (m/w/d) - Hybrid,München,Stuttgart,Nür...
+- Hamburg · de · arbeitsagentur · 15 skills labeled
+
+Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Goldens
+
+DECISION: yes
+
+## 4. golden_110 - scope `in_scope` (in-scope)
 
 > AI Engineer – KI-Enablement & Solutions (m/w/d)
 
@@ -78,7 +78,7 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 5. golden_098 - scope `in_scope` (in-scope)
+## 5. golden_111 - scope `in_scope` (in-scope)
 
 > Senior DevOps Engineer mit KI- und Security-Erfahrung (m/w/d) ARBEITNEHMERÜBERLASSUNG
 
@@ -89,18 +89,18 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 6. golden_099 - scope `in_scope` (in-scope)
+## 6. golden_112 - scope `in_scope` (in-scope)
 
 > AI Engineer / KI-Entwickler – LLM & RAG (m/w/d)
 
 - PTA · AI Engineer / KI-Entwickler – LLM & RAG (m/w/d)
-- Hamburg · de · arbeitsagentur · 15 skills labeled
+- Hamburg · de · arbeitsagentur · 13 skills labeled
 
 Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Goldens
 
 DECISION: yes
 
-## 7. golden_100 - scope `in_scope` (in-scope)
+## 7. golden_113 - scope `in_scope` (in-scope)
 
 > Public Cloud Engineer (m/w/d) Generative AI befristet bis 31.01.2028
 
@@ -111,18 +111,18 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 8. golden_101 - scope `in_scope` (in-scope)
+## 8. golden_114 - scope `in_scope` (in-scope)
 
 > Software Engineering /Data and AI Engineering/ IT-Management Consultant (2026/27 Graduate) (m/f/d)
 
 - Netlight · Software Engineering /Data and AI Engineering/ IT-Management Consultant (2026/27 Graduate) (m/f/d)
-- Hamburg · en · arbeitnow · 4 skills labeled
+- Hamburg · en · arbeitnow · 0 skills labeled
 
 Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Goldens
 
 DECISION: yes
 
-## 9. golden_102 - scope `in_scope` (in-scope)
+## 9. golden_115 - scope `in_scope` (in-scope)
 
 > Machine Learning Engineer (m/w/d) – Hamburg
 
@@ -133,7 +133,7 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 10. golden_103 - scope `in_scope` (in-scope)
+## 10. golden_116 - scope `in_scope` (in-scope)
 
 > Manufacturing Engineer Artificial Intelligence (all gender)
 
@@ -144,51 +144,51 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 11. golden_104 - scope `in_scope` (in-scope)
+## 11. golden_117 - scope `in_scope` (in-scope)
 
 > Allgemein:Daten sind das Gold von morgen! Und Du suchst, förderst und veredelst das Wertvollste, was unsere Kundenbesitzen: Ihre Daten. Dahe
 
 - DYMATRIX GmbH · Senior AI Data Engineer (all genders)
-- Hamburg · de · arbeitsagentur · 0 skills labeled
+- Hamburg · de · arbeitsagentur · 3 skills labeled
 
 Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Goldens
 
 DECISION: yes
 
-## 12. golden_105 - scope `in_scope` (in-scope)
+## 12. golden_118 - scope `in_scope` (in-scope)
 
 > Cloud Platform Engineer (m/w/d) Kubernetes / STACKIT / AI Platform Operations (Hamburg oder Mainz)
 
 - dtms GmbH · Cloud Platform Engineer (m/w/d) Kubernetes / STACKIT / AI Platform Operations (Hamburg oder Mainz)
+- Hamburg · de · arbeitsagentur · 13 skills labeled
+
+Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Goldens
+
+DECISION: yes
+
+## 13. golden_119 - scope `in_scope` (in-scope)
+
+> Public Cloud Engineer (m/w/d) Schwerpunkt Generative AI
+
+- SIGNAL IDUNA Krankenversicherung a. G. · Public Cloud Engineer (m/w/d) Schwerpunkt Generative AI
 - Hamburg · de · arbeitsagentur · 10 skills labeled
 
 Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Goldens
 
 DECISION: yes
 
-## 13. golden_106 - scope `in_scope` (in-scope)
-
-> Public Cloud Engineer (m/w/d) Schwerpunkt Generative AI
-
-- SIGNAL IDUNA Krankenversicherung a. G. · Public Cloud Engineer (m/w/d) Schwerpunkt Generative AI
-- Hamburg · de · arbeitsagentur · 9 skills labeled
-
-Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Goldens
-
-DECISION: yes
-
-## 14. golden_107 - scope `in_scope` (in-scope)
+## 14. golden_120 - scope `in_scope` (in-scope)
 
 > Azure DevOps Engineer mit Fokus Azure AI (a*)
 
 - Hamburger Energienetze GmbH · Azure DevOps Engineer mit Fokus Azure AI (a*)
-- Hamburg · de · arbeitsagentur · 8 skills labeled
+- Hamburg · de · arbeitsagentur · 12 skills labeled
 
 Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Goldens
 
 DECISION: yes
 
-## 15. golden_096 - skill `full-stack-development` (disagreement)
+## 15. golden_109 - skill `full-stack-development` (disagreement)
 
 > (Senior) Fullstack Software Engineer - Fokus AI (m/w/d) -...
 
@@ -197,9 +197,9 @@ DECISION: yes
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: drop
 
-## 16. golden_097 - attribute `degree` (disagreement)
+## 16. golden_110 - attribute `degree` (disagreement)
 
 > ...Nutzer bis Geschäftsführung) **Das bringen Sie mit** * Abgeschlossener technischer Bildungsweg in Bereichen wie Informatik, Data Science, Artificial...
 
@@ -208,42 +208,174 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
-## 17. golden_099 - skill `ai-ml` (disagreement)
+## 17. golden_110 - skill `ai-ml` (disagreement)
 
-> ...mit Python, davon mindestens ein Jahr in KI-Projekten, die produktiv gegangen sind. Dazu ein Studium der Data...
+> ...Deep Learning oder einer vergleichbaren Fachrichtung * Berufserfahrung in der Entwicklung, Umsetzung und im Betrieb von KI-Lösungen (Agenten, Workflows, API-Integrationen) *...
 
 - A: (did not label this)
-- B: `ai-ml` · required · raw_text: "KI-Projekten"
+- B: `ai-ml` · required · raw_text: "Berufserfahrung in der Entwicklung, Umsetzung und im Betrieb von KI-Lösungen"
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
-## 18. golden_100 - skill `cybersecurity` (disagreement)
+## 18. golden_110 - skill `workflow-automation` (disagreement)
 
-> ...mit agilen Methoden und agil geführten Projekten hast idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten, Richtlinien und regulatorischen Compliance-Anforderungen...
+> ...Optimierung von Schnittstellen * Generierung KI-gestützter Workflows, stetige Weiterentwicklung integrierter Agenten /...
 
 - A: (did not label this)
-- B: `cybersecurity` · nice_to_have · raw_text: "hast idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten"
+- B: `workflow-automation` · required · raw_text: "Workflows"
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: drop
 
-## 19. golden_102 - skill `rag` (disagreement)
+## 19. golden_111 - skill `apis` (disagreement)
 
-> ...or applied AI engineering • Hands-on experience with LLMs, retrieval and evaluation in production • Strong Python • Experience with document processing or...
+> ...Technische Anbindung von KI-Services über APIs - Weiterentwicklung von Datenbankarchitekturen,...
 
-- A: `rag` · required · raw_text: "LLMs, retrieval and evaluation in production"
+- A: (did not label this)
+- B: `apis` · required · raw_text: "APIs"
+
+Options: `A` / `B` / `both` / `drop`
+
+DECISION: B
+
+## 20. golden_111 - skill `ci-cd` (disagreement)
+
+> ...Plattformumgebungen - Konzeption und Automatisierung von CI/CD-Pipelines - Umsetzung von Infrastructure as Code und Cloud-native...
+
+- A: (did not label this)
+- B: `ci-cd` · required · raw_text: "CI/CD-Pipelines"
+
+Options: `A` / `B` / `both` / `drop`
+
+DECISION: B
+
+## 21. golden_111 - skill `containerization` (disagreement)
+
+> ...Cloud-native Architekturen - Betrieb und Weiterentwicklung containerisierter Umgebungen mit Docker, Kubernetes oder OpenShift - Umsetzung von...
+
+- A: (did not label this)
+- B: `containerization` · required · raw_text: "containerisierter Umgebungen"
+
+Options: `A` / `B` / `both` / `drop`
+
+DECISION: B
+
+## 22. golden_111 - skill `docker` (disagreement)
+
+> ...und Weiterentwicklung containerisierter Umgebungen mit Docker, Kubernetes oder OpenShift - Umsetzung von...
+
+- A: (did not label this)
+- B: `docker` · required · raw_text: "Docker"
+
+Options: `A` / `B` / `both` / `drop`
+
+DECISION: B
+
+## 23. golden_111 - skill `infrastructure-as-code` (disagreement)
+
+> ...und Automatisierung von CI/CD-Pipelines - Umsetzung von Infrastructure as Code und Cloud-native Architekturen - Betrieb und...
+
+- A: (did not label this)
+- B: `infrastructure-as-code` · required · raw_text: "Infrastructure as Code"
+
+Options: `A` / `B` / `both` / `drop`
+
+DECISION: B
+
+## 24. golden_111 - skill `kubernetes` (disagreement)
+
+> ...Weiterentwicklung containerisierter Umgebungen mit Docker, Kubernetes oder OpenShift - Umsetzung von...
+
+- A: (did not label this)
+- B: `kubernetes` · required · raw_text: "Kubernetes"
+
+Options: `A` / `B` / `both` / `drop`
+
+DECISION: B
+
+## 25. golden_111 - skill `llms` (disagreement)
+
+> ...Integration von KI-, Machine-Learning-, LLM- und Generative-AI-Lösungen - Technische Anbindung von KI-Services über APIs -...
+
+- A: (did not label this)
+- B: `llms` · required · raw_text: "LLM- und Generative-AI-Lösungen"
+
+Options: `A` / `B` / `both` / `drop`
+
+DECISION: B
+
+## 26. golden_111 - skill `machine-learning` (disagreement)
+
+> ...im gesamten Software-Lifecycle - Integration von KI-, Machine-Learning-, LLM- und Generative-AI-Lösungen - Technische Anbindung...
+
+- A: (did not label this)
+- B: `machine-learning` · required · raw_text: "Machine-Learning-"
+
+Options: `A` / `B` / `both` / `drop`
+
+DECISION: B
+
+## 27. golden_111 - skill `observability` (disagreement)
+
+> ...Aufbau und Optimierung von Monitoring-, Observability- und SRE-Strukturen - Zusammenarbeit mit Entwicklung,...
+
+- A: (did not label this)
+- B: `observability` · required · raw_text: "Observability-"
+
+Options: `A` / `B` / `both` / `drop`
+
+DECISION: B
+
+## 28. golden_111 - skill `openshift` (disagreement)
+
+> ...containerisierter Umgebungen mit Docker, Kubernetes oder OpenShift - Umsetzung von Security-by-Design-Prinzipien im gesamten...
+
+- A: (did not label this)
+- B: `openshift` · required · raw_text: "OpenShift"
+
+Options: `A` / `B` / `both` / `drop`
+
+DECISION: B
+
+## 29. golden_113 - skill `ai-deployment` (disagreement)
+
+> ...(IaC) verfügst über erste Erfahrungen in der Entwicklung, Bereitstellung und Integration von Generative AI-Anwendungen im Unternehmenskontext, durch den Aufbau geeigneter...
+
+- A: (did not label this)
+- B: `ai-deployment` · required · raw_text: "Bereitstellung und Integration von\nGenerative AI-Anwendungen"
+
+Options: `A` / `B` / `both` / `drop`
+
+DECISION: B
+
+## 30. golden_114 - attribute `degree` (disagreement)
+
+> ...you are - Soon-to-be/recent Graduate (2026/2027) with a relevant Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience) - Full business-level fluency in English - Some hands-on...
+
+- A: value="master" · requirement="required" · or_equivalent=false · signal="relevant Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)"
+- B: value="master" · requirement="required" · or_equivalent=true · signal="Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)"
+
+Options: `A` / `B` / `both` / `drop`
+
+DECISION: {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)"}
+
+## 31. golden_115 - skill `rag` (disagreement)
+
+> ...understanding, structuring and synthesis • Develop retrieval and citation logic so every claim links back to its...
+
+- A: `rag` · required · raw_text: "retrieval"
 - B: (did not label this)
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
-## 20. golden_104 - skill `ai-ml` (disagreement)
+## 32. golden_117 - skill `ai-ml` (disagreement)
 
 > ...Ihre Daten. Daher suchen wir Dich als Senior AI Data Engineer (all genders) für unsere Standorte in...
 
@@ -252,9 +384,20 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: {"requirement": "nice_to_have", "raw_text": "Leidenschaft für Daten, Azure und AI"}
 
-## 21. golden_106 - attribute `seniority` (disagreement)
+## 33. golden_117 - skill `software-architecture` (disagreement)
+
+> ...Functions sowie Interesse an Microsoft Foundry • Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture • Idealerweise hast Du schon erste Erfahrungen mit...
+
+- A: (did not label this)
+- B: `software-architecture` · nice_to_have · raw_text: "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture"
+
+Options: `A` / `B` / `both` / `drop`
+
+DECISION: drop
+
+## 34. golden_119 - attribute `seniority` (disagreement)
 
 > ...vorzugsweise GCP) und Terraform (IaC) - verfügst über erste Erfahrungen in der Entwicklung, Bereitstellung und Integration von...
 
@@ -263,20 +406,9 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
-## 22. golden_106 - skill `ai-deployment` (disagreement)
-
-> ...verfügst über erste Erfahrungen in der Entwicklung, Bereitstellung und Integration von Generative AI-Anwendungen im Unternehmenskontext, durch den Aufbau geeigneter...
-
-- A: (did not label this)
-- B: `ai-deployment` · required · raw_text: "Bereitstellung und Integration von Generative AI-Anwendungen"
-
-Options: `A` / `B` / `both` / `drop`
-
-DECISION: ?
-
-## 23. golden_107 - attribute `seniority` (disagreement)
+## 35. golden_120 - attribute `seniority` (disagreement)
 
 > ...mit Terraform und Azure DevOps. * Idealerweise bringst du nachweisbare Erfahrung im Umgang mit dem Microsoft Azure AI Stack, insbesondere...
 
@@ -285,42 +417,20 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
-## 24. golden_107 - skill `active-directory` (disagreement)
+## 36. golden_120 - skill `openai-api` (disagreement)
 
-> ...DevOps Spezialist gehören Azure DevOps, Git, Terraform, Entra ID, Key Vaults, Private Endpoints, Networking, Landing Zones...
+> ...im Umgang mit dem Microsoft Azure AI Stack, insbesondere Azure OpenAI, AI Foundry, Cognitive Services, AI Search und Azure...
 
-- A: `active-directory` · required · raw_text: "Entra ID"
+- A: `openai-api` · nice_to_have · raw_text: "Azure OpenAI"
 - B: (did not label this)
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
-## 25. golden_107 - skill `openai-api` (disagreement)
-
-> ...von Azure-Ressourcen mit Terraform und Azure DevOps. * Idealerweise bringst du nachweisbare Erfahrung im Umgang mit dem Microsoft Azure AI Stack, insbesondere Azure OpenAI, AI Foundry, Cognitive Services, AI Search und Azure...
-
-- A: `openai-api` · nice_to_have · raw_text: "Idealerweise bringst du nachweisbare Erfahrung im Umgang mit dem Microsoft Azure AI Stack, insbesondere Azure OpenAI"
-- B: (did not label this)
-
-Options: `A` / `B` / `both` / `drop`
-
-DECISION: ?
-
-## 26. golden_094 - attribute `seniority` (uncertain)
-
-> Generative AI Engineer (all gender)
-
-- A: value=null · basis=null · signal=null
-- B: value=null · basis=null · signal=null
-
-Options: `ok` (keep as agreed) / `A` / `B` / `drop`
-
-DECISION: ?
-
-## 27. golden_095 - attribute `seniority` (uncertain)
+## 37. golden_108 - attribute `seniority` (uncertain)
 
 > System Platform Engineer KI (m/w/d)
 
@@ -329,42 +439,20 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
-## 28. golden_095 - skill `cloud` (uncertain)
+## 38. golden_108 - skill `cloud` (uncertain)
 
-> ...sind von Vorteil. - Erfahrung in der netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke - Praxiserfahrung im Einsatz von Coding Agents (z.B....
+> ...sind von Vorteil. - Erfahrung in der netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke - Praxiserfahrung im Einsatz von...
 
-- A: `cloud` · required · raw_text: "Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke"
+- A: `cloud` · required · raw_text: "Anbindung von Cloud-Umgebungen"
 - B: `cloud` · required · raw_text: "Erfahrung in der netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke"
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
-## 29. golden_095 - skill `networking` (uncertain)
-
-> ...Lake Storage Gen2), sind von Vorteil. - Erfahrung in der netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke - Praxiserfahrung im Einsatz von Coding Agents (z.B....
-
-- A: `networking` · required · raw_text: "netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke"
-- B: `networking` · required · raw_text: "Erfahrung in der netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke"
-
-Options: `ok` (keep as agreed) / `A` / `B` / `drop`
-
-DECISION: ?
-
-## 30. golden_096 - attribute `degree` (uncertain)
-
-> ...auf mind. C1-Niveau und gute Englischkenntnisse. Optional: Ein abgeschlossenes Hochschulstudium in (Wirtschafts-) Informatik oder eine vergleichbare Ausbildung sind von Vorteil. Du erfüllst nicht alle Qualifikationen 100%? Kein Problem...
-
-- A: value="bachelor" · requirement="nice_to_have" · or_equivalent=true · signal="Optional: Ein abgeschlossenes Hochschulstudium in (Wirtschafts-) Informatik oder eine vergleichbare Ausbildung sind von Vorteil"
-- B: value="bachelor" · requirement="nice_to_have" · or_equivalent=true · signal="Optional: Ein abgeschlossenes Hochschulstudium in (Wirtschafts-) Informatik oder eine vergleichbare Ausbildung sind von Vorteil."
-
-Options: `ok` (keep as agreed) / `A` / `B` / `drop`
-
-DECISION: ?
-
-## 31. golden_096 - attribute `seniority` (uncertain)
+## 39. golden_109 - attribute `seniority` (uncertain)
 
 > (Senior) Fullstack Software Engineer - Fokus AI (m/w/d) -...
 
@@ -373,9 +461,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: B
 
-## 32. golden_096 - skill `cloud` (uncertain)
+## 40. golden_109 - skill `cloud` (uncertain)
 
 > ...mit Java (Spring Boot) sowie im Frontend mit Angular. Fundierte Kenntnisse in Cloud-nativen Architekturen, Kubernetes, Docker und idealerweise Cloud Foundry....
 
@@ -384,141 +472,42 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: B
 
-## 33. golden_097 - skill `ai-ml` (uncertain)
+## 41. golden_110 - skill `cybersecurity` (uncertain)
 
-> ...einer vergleichbaren Fachrichtung * Berufserfahrung in der Entwicklung, Umsetzung und im Betrieb von KI-Lösungen (Agenten, Workflows, API-Integrationen) *...
+> ...Praktische Berührungen mit Datenschutzkonzepten und Informationssicherheit, idealerweise in regulierten Umfeldern (z. B....
 
-- A: `ai-ml` · required · raw_text: "Entwicklung, Umsetzung und im Betrieb von KI-Lösungen"
-- B: `ai-ml` · required · raw_text: "KI-Lösungen"
-
-Options: `ok` (keep as agreed) / `A` / `B` / `drop`
-
-DECISION: ?
-
-## 34. golden_097 - skill `workflow-automation` (uncertain)
-
-> ...Umsetzung und im Betrieb von KI-Lösungen (Agenten, Workflows, API-Integrationen) * Anwenderkenntnisse in Low-Code/No-Code-Plattformen (z....
-
-- A: `workflow-automation` · required · raw_text: "Workflows, API-Integrationen"
-- B: `workflow-automation` · required · raw_text: "Workflows"
+- A: `cybersecurity` · required · raw_text: "Informationssicherheit"
+- B: `cybersecurity` · required · raw_text: "Informationssicherheit"
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
-## 35. golden_098 - skill `ai-ml` (uncertain)
+## 42. golden_110 - skill `data-privacy-and-security` (uncertain)
+
+> ...Agenten-Orchestrierung) * Praktische Berührungen mit Datenschutzkonzepten und Informationssicherheit, idealerweise in regulierten...
+
+- A: `data-privacy-and-security` · required · raw_text: "Datenschutzkonzepten"
+- B: `data-privacy-and-security` · required · raw_text: "Datenschutzkonzepten"
+
+Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+DECISION: ok
+
+## 43. golden_111 - skill `ai-ml` (uncertain)
 
 > ...Berufserfahrung in oben genannten Aufgaben** - **Mindestens ein selbst technisch umgesetztes KI-Projekt** - Fundierte DevOps- und Cloud-Erfahrung - Praktische...
 
 - A: `ai-ml` · required · raw_text: "Mindestens ein selbst technisch umgesetztes KI-Projekt"
-- B: `ai-ml` · required · raw_text: "KI-Projekt"
+- B: `ai-ml` · required · raw_text: "Mindestens ein selbst technisch umgesetztes KI-Projekt"
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
-## 36. golden_098 - skill `apis` (uncertain)
-
-> ...LLM- und Generative-AI-Lösungen - Technische Anbindung von KI-Services über APIs - Weiterentwicklung von Datenbankarchitekturen,...
-
-- A: `apis` · required · raw_text: "Anbindung von KI-Services über APIs"
-- B: `apis` · required · raw_text: "APIs"
-
-Options: `ok` (keep as agreed) / `A` / `B` / `drop`
-
-DECISION: ?
-
-## 37. golden_098 - skill `ci-cd` (uncertain)
-
-> ...Plattformumgebungen - Konzeption und Automatisierung von CI/CD-Pipelines - Umsetzung von Infrastructure as Code und Cloud-native...
-
-- A: `ci-cd` · required · raw_text: "CI/CD-Pipelines"
-- B: `ci-cd` · required · raw_text: "CI/CD-Pipelines"
-
-Options: `ok` (keep as agreed) / `A` / `B` / `drop`
-
-DECISION: ?
-
-## 38. golden_098 - skill `containerization` (uncertain)
-
-> ...Cloud-native Architekturen - Betrieb und Weiterentwicklung containerisierter Umgebungen mit Docker, Kubernetes oder OpenShift - Umsetzung von...
-
-- A: `containerization` · required · raw_text: "containerisierter Umgebungen"
-- B: `containerization` · required · raw_text: "containerisierter Umgebungen"
-
-Options: `ok` (keep as agreed) / `A` / `B` / `drop`
-
-DECISION: ?
-
-## 39. golden_098 - skill `docker` (uncertain)
-
-> ...und Weiterentwicklung containerisierter Umgebungen mit Docker, Kubernetes oder OpenShift - Umsetzung von...
-
-- A: `docker` · required · raw_text: "Docker"
-- B: `docker` · required · raw_text: "Docker"
-
-Options: `ok` (keep as agreed) / `A` / `B` / `drop`
-
-DECISION: ?
-
-## 40. golden_098 - skill `infrastructure-as-code` (uncertain)
-
-> ...und Automatisierung von CI/CD-Pipelines - Umsetzung von Infrastructure as Code und Cloud-native Architekturen - Betrieb und...
-
-- A: `infrastructure-as-code` · required · raw_text: "Infrastructure as Code"
-- B: `infrastructure-as-code` · required · raw_text: "Infrastructure as Code"
-
-Options: `ok` (keep as agreed) / `A` / `B` / `drop`
-
-DECISION: ?
-
-## 41. golden_098 - skill `kubernetes` (uncertain)
-
-> ...Weiterentwicklung containerisierter Umgebungen mit Docker, Kubernetes oder OpenShift - Umsetzung von...
-
-- A: `kubernetes` · required · raw_text: "Kubernetes"
-- B: `kubernetes` · required · raw_text: "Kubernetes"
-
-Options: `ok` (keep as agreed) / `A` / `B` / `drop`
-
-DECISION: ?
-
-## 42. golden_098 - skill `llms` (uncertain)
-
-> ...Integration von KI-, Machine-Learning-, LLM- und Generative-AI-Lösungen - Technische Anbindung von KI-Services über APIs -...
-
-- A: `llms` · required · raw_text: "LLM- und Generative-AI-Lösungen"
-- B: `llms` · required · raw_text: "Generative-AI-Lösungen"
-
-Options: `ok` (keep as agreed) / `A` / `B` / `drop`
-
-DECISION: ?
-
-## 43. golden_098 - skill `machine-learning` (uncertain)
-
-> ...im gesamten Software-Lifecycle - Integration von KI-, Machine-Learning-, LLM- und Generative-AI-Lösungen - Technische Anbindung...
-
-- A: `machine-learning` · required · raw_text: "Machine-Learning-"
-- B: `machine-learning` · required · raw_text: "Machine-Learning-"
-
-Options: `ok` (keep as agreed) / `A` / `B` / `drop`
-
-DECISION: ?
-
-## 44. golden_098 - skill `observability` (uncertain)
-
-> ...und Performance-Optimierungen - Aufbau und Optimierung von Monitoring-, Observability- und SRE-Strukturen - Zusammenarbeit mit Entwicklung,...
-
-- A: `observability` · required · raw_text: "Monitoring-, Observability-"
-- B: `observability` · required · raw_text: "Observability-"
-
-Options: `ok` (keep as agreed) / `A` / `B` / `drop`
-
-DECISION: ?
-
-## 45. golden_099 - skill `agents` (uncertain)
+## 44. golden_112 - skill `agents` (uncertain)
 
 > ...Dokumentenverarbeitung (etwa Azure Document Intelligence), Agentic AI oder DevSecOps mit Kubernetes und Terraform. ## Warum zur...
 
@@ -527,9 +516,20 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
-## 46. golden_099 - skill `apis` (uncertain)
+## 45. golden_112 - skill `ai-ml` (uncertain)
+
+> ...Softwareentwicklung mit Python, davon mindestens ein Jahr in KI-Projekten, die produktiv gegangen sind. Dazu ein Studium der Data...
+
+- A: `ai-ml` · required · raw_text: "in KI-Projekten"
+- B: `ai-ml` · required · raw_text: "KI-Projekten, die produktiv gegangen sind"
+
+Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+DECISION: A
+
+## 46. golden_112 - skill `apis` (uncertain)
 
 > ...Prompt Engineering, Retrieval-Augmented Generation und die Anbindung von Modellen über APIs, mit LangChain oder einer vergleichbaren Bibliothek. Sie...
 
@@ -538,42 +538,53 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
-## 47. golden_100 - attribute `seniority` (uncertain)
+## 47. golden_112 - skill `devsecops` (uncertain)
+
+> ...(etwa Azure Document Intelligence), Agentic AI oder DevSecOps mit Kubernetes und Terraform. ## Warum zur PTA? - KI als...
+
+- A: `devsecops` · nice_to_have · raw_text: "DevSecOps"
+- B: `devsecops` · nice_to_have · raw_text: "DevSecOps"
+
+Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+DECISION: ok
+
+## 48. golden_113 - attribute `seniority` (uncertain)
 
 > ...Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) verfügst über erste Erfahrungen in der Entwicklung, Bereitstellung und Integration...
 
 - A: value="junior" · basis="inferred" · signal="verfügst über erste Erfahrungen"
-- B: value="junior" · basis="inferred" · signal="erste Erfahrungen"
+- B: value="junior" · basis="inferred" · signal="erste\nErfahrungen"
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
-## 48. golden_100 - skill `ai-deployment` (uncertain)
+## 49. golden_113 - skill `cybersecurity` (uncertain)
 
-> ...(IaC) verfügst über erste Erfahrungen in der Entwicklung, Bereitstellung und Integration von Generative AI-Anwendungen im Unternehmenskontext, durch den Aufbau geeigneter...
+> ...mit agilen Methoden und agil geführten Projekten hast idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten, Richtlinien und regulatorischen Compliance-Anforderungen...
 
-- A: `ai-deployment` · required · raw_text: "Bereitstellung und Integration von Generative AI-Anwendungen"
-- B: `ai-deployment` · required · raw_text: "Bereitstellung und Integration von Generative AI-Anwendungen"
-
-Options: `ok` (keep as agreed) / `A` / `B` / `drop`
-
-DECISION: ?
-
-## 49. golden_101 - attribute `degree` (uncertain)
-
-> ...you are - Soon-to-be/recent Graduate (2026/2027) with a relevant Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience) - Full business-level fluency in English - Some hands-on...
-
-- A: value="master" · requirement="required" · or_equivalent=false · signal="relevant Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)"
-- B: value="master" · requirement="required" · or_equivalent=false · signal="Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)"
+- A: `cybersecurity` · nice_to_have · raw_text: "idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten"
+- B: `cybersecurity` · nice_to_have · raw_text: "hast idealerweise\nKenntnisse von Industriestandards, Sicherheitskonzepten"
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
-## 50. golden_101 - skill `cloud` (uncertain)
+## 50. golden_114 - skill `backend-development` (uncertain)
+
+> ...wide technical spectrum, including Fullstack Development, Backend, Data Engineering, Cloud Solutions, Architecture, Web...
+
+- A: `backend-development` · required · raw_text: "Backend"
+- B: `backend-development` · required · raw_text: "Backend"
+
+Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+DECISION: ok
+
+## 51. golden_114 - skill `cloud` (uncertain)
 
 > ...Fullstack Development, Backend, Data Engineering, Cloud Solutions, Architecture, Web Development, DevOps, and more. Instead...
 
@@ -582,9 +593,42 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
-## 51. golden_101 - skill `software-architecture` (uncertain)
+## 52. golden_114 - skill `data-engineering` (uncertain)
+
+> ...student roles or full-time in Software Engineering, Data Engineering or IT-Management with modern technologies, (e.g. Fullstack Development,...
+
+- A: `data-engineering` · required · raw_text: "Data Engineering or IT-Management"
+- B: `data-engineering` · required · raw_text: "Data Engineering"
+
+Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+DECISION: B
+
+## 53. golden_114 - skill `devops` (uncertain)
+
+> ...Cloud Solutions, Architecture, Web Development, DevOps, Product Ownership or similar) - Based in Hamburg or willing to relocate to...
+
+- A: `devops` · required · raw_text: "DevOps, Product Ownership"
+- B: `devops` · required · raw_text: "DevOps"
+
+Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+DECISION: B
+
+## 54. golden_114 - skill `full-stack-development` (uncertain)
+
+> ...Engineering or IT-Management with modern technologies, (e.g. Fullstack Development, Backend, Data Engineering, Cloud Solutions, Architecture,...
+
+- A: `full-stack-development` · required · raw_text: "e.g. Fullstack Development"
+- B: `full-stack-development` · required · raw_text: "Fullstack Development"
+
+Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+DECISION: B
+
+## 55. golden_114 - skill `software-architecture` (uncertain)
 
 > ...Development, Backend, Data Engineering, Cloud Solutions, Architecture, Web Development, DevOps, and more. Instead of predefined...
 
@@ -593,9 +637,20 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
-## 52. golden_102 - skill `ai-ml` (uncertain)
+## 56. golden_114 - skill `software-engineering` (uncertain)
+
+> ...through internships, working student roles or full-time in Software Engineering, Data Engineering or IT-Management with modern technologies, (e.g. Fullstack Development,...
+
+- A: `software-engineering` · required · raw_text: "in Software Engineering, Data Engineering or IT-Management"
+- B: `software-engineering` · required · raw_text: "Software Engineering"
+
+Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+DECISION: B
+
+## 57. golden_115 - skill `ai-ml` (uncertain)
 
 > ...team What you bring • 3+ years in machine learning or applied AI engineering • Hands-on experience with LLMs, retrieval and evaluation...
 
@@ -604,20 +659,20 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
-## 53. golden_103 - attribute `seniority` (uncertain)
+## 58. golden_116 - attribute `seniority` (uncertain)
 
-> ...Digitalisierung und technologische Innovationen - bringst erste praktische Berührungspunkte mit AI-Anwendungen oder datengetriebenen Ansätzen mit -...
+> ...Digitalisierung und technologische Innovationen - bringst erste praktische Berührungspunkte mit AI-Anwendungen oder datengetriebenen Ansätzen mit - arbeitest...
 
-- A: value="junior" · basis="inferred" · signal="erste praktische Berührungspunkte"
+- A: value="junior" · basis="inferred" · signal="erste praktische Berührungspunkte mit AI-Anwendungen"
 - B: value="junior" · basis="inferred" · signal="erste praktische Berührungspunkte mit AI-Anwendungen oder datengetriebenen Ansätzen"
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
-## 54. golden_103 - skill `ai-ml` (uncertain)
+## 59. golden_116 - skill `ai-ml` (uncertain)
 
 > ...oder einer vergleichbaren Fachrichtung - verfügst über fundierte Kenntnisse im Bereich Artificial Intelligence und möchtest diese zur Gestaltung moderner Arbeitsabläufe...
 
@@ -626,9 +681,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
-## 55. golden_104 - attribute `german` (uncertain)
+## 60. golden_117 - attribute `german` (uncertain)
 
 > ...gesammelt – kein Muss, aber ein starkes Plus • Sehr gutes Deutsch, gutes Englisch und ein ordentliches Maß an...
 
@@ -637,9 +692,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
-## 56. golden_104 - skill `azure` (uncertain)
+## 61. golden_117 - skill `azure` (uncertain)
 
 > ...vorzugsweise im Beratungsumfeld • Gute Kenntnisse rund um die Azure Data Dienste wie z. B. Data Factory, SQL DB, Data Lake Storage,...
 
@@ -648,42 +703,86 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: B
 
-## 57. golden_104 - skill `business-intelligence` (uncertain)
+## 62. golden_117 - skill `azure-data-factory` (uncertain)
 
-> ...Functions sowie Interesse an Microsoft Foundry • Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture • Idealerweise hast Du schon erste...
+> ...Gute Kenntnisse rund um die Azure Data Dienste wie z. B. Data Factory, SQL DB, Data Lake Storage, Databricks, Functions sowie...
 
-- A: `business-intelligence` · nice_to_have · raw_text: "Interesse an der Entwicklung von DWH / Data Lake und BI"
-- B: `business-intelligence` · nice_to_have · raw_text: "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture"
+- A: `azure-data-factory` · nice_to_have · raw_text: "Data Factory"
+- B: `azure-data-factory` · nice_to_have · raw_text: "Data Factory"
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
-## 58. golden_104 - skill `cloud` (uncertain)
+## 63. golden_117 - skill `azure-data-lake-storage` (uncertain)
+
+> ...um die Azure Data Dienste wie z. B. Data Factory, SQL DB, Data Lake Storage, Databricks, Functions sowie Interesse an Microsoft...
+
+- A: `azure-data-lake-storage` · nice_to_have · raw_text: "Data Lake Storage"
+- B: `azure-data-lake-storage` · nice_to_have · raw_text: "Data Lake Storage"
+
+Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+DECISION: ok
+
+## 64. golden_117 - skill `azure-functions` (uncertain)
+
+> ...z. B. Data Factory, SQL DB, Data Lake Storage, Databricks, Functions sowie Interesse an Microsoft Foundry • Starkes Interesse an der...
+
+- A: `azure-functions` · nice_to_have · raw_text: "Functions sowie"
+- B: `azure-functions` · nice_to_have · raw_text: "Functions"
+
+Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+DECISION: B
+
+## 65. golden_117 - skill `azure-sql-database` (uncertain)
+
+> ...rund um die Azure Data Dienste wie z. B. Data Factory, SQL DB, Data Lake Storage, Databricks, Functions sowie Interesse...
+
+- A: `azure-sql-database` · nice_to_have · raw_text: "SQL DB"
+- B: `azure-sql-database` · nice_to_have · raw_text: "SQL DB"
+
+Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+DECISION: ok
+
+## 66. golden_117 - skill `cloud` (uncertain)
 
 > ...Functions sowie Interesse an Microsoft Foundry • Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture • Idealerweise hast Du schon erste Erfahrungen mit...
 
-- A: `cloud` · nice_to_have · raw_text: "Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture"
+- A: `cloud` · nice_to_have · raw_text: "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture"
 - B: `cloud` · nice_to_have · raw_text: "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture"
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
-## 59. golden_104 - skill `databricks` (uncertain)
+## 67. golden_117 - skill `data-engineering` (uncertain)
 
-> ...Dienste wie z. B. Data Factory, SQL DB, Data Lake Storage, Databricks, Functions sowie Interesse an Microsoft Foundry • Starkes...
+> ...macht • Mehrjährige Berufserfahrung in der Konzeption und Umsetzung von innovativen Data-Engineering-Lösungen, vorzugsweise im Beratungsumfeld • Gute Kenntnisse rund um...
 
-- A: `databricks` · nice_to_have · raw_text: "Databricks"
+- A: `data-engineering` · nice_to_have · raw_text: "Umsetzung von innovativen Data-Engineering-Lösungen"
+- B: `data-engineering` · nice_to_have · raw_text: "Data-Engineering-Lösungen"
+
+Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+DECISION: B
+
+## 68. golden_117 - skill `databricks` (uncertain)
+
+> ...Dienste wie z. B. Data Factory, SQL DB, Data Lake Storage, Databricks, Functions sowie Interesse an Microsoft Foundry • Starkes Interesse...
+
+- A: `databricks` · nice_to_have · raw_text: "Databricks, Functions"
 - B: `databricks` · nice_to_have · raw_text: "Databricks"
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: B
 
-## 60. golden_105 - attribute `degree` (uncertain)
+## 69. golden_118 - attribute `degree` (uncertain)
 
 > ...und RBAC sowie DSGVO, ISO 27001 und C5 ### Dein Profil - Abgeschlossene IT-Ausbildung oder abgeschlossenes Studium der (Wirtschafts-)Informatik oder vergleichbar - Fundierte Erfahrung im Aufbau und Betrieb von...
 
@@ -692,31 +791,131 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
-## 61. golden_105 - skill `cybersecurity` (uncertain)
+## 70. golden_118 - skill `argocd` (uncertain)
 
-> ...wie PostgreSQL oder MongoDB - Gutes Verständnis für Kubernetes- und Cloud-Security, insbesondere IAM/RBAC, Network Policies, Secrets...
+> ...Deployments sowie Infrastructure as Code und GitOps, z. B. Terraform, Argo CD, Helm oder Kustomize - Erfahrung mit Monitoring, Logging und Alerting sowie...
 
-- A: `cybersecurity` · required · raw_text: "Kubernetes- und Cloud-Security"
+- A: `argocd` · required · raw_text: "z. B. Terraform, Argo CD, Helm oder Kustomize"
+- B: `argocd` · required · raw_text: "Argo CD"
+
+Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+DECISION: B
+
+## 71. golden_118 - skill `cybersecurity` (uncertain)
+
+> ...Plattform- und Datenservices wie PostgreSQL oder MongoDB - Gutes Verständnis für Kubernetes- und Cloud-Security, insbesondere IAM/RBAC, Network Policies, Secrets...
+
+- A: `cybersecurity` · required · raw_text: "Gutes Verständnis für Kubernetes- und Cloud-Security"
 - B: `cybersecurity` · required · raw_text: "Kubernetes- und Cloud-Security"
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: B
 
-## 62. golden_106 - skill `gcp` (uncertain)
+## 72. golden_118 - skill `helm` (uncertain)
 
-> ...Erfahrung im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) - verfügst über erste Erfahrungen in...
+> ...Deployments sowie Infrastructure as Code und GitOps, z. B. Terraform, Argo CD, Helm oder Kustomize - Erfahrung mit Monitoring, Logging und Alerting sowie...
 
-- A: `gcp` · nice_to_have · raw_text: "vorzugsweise GCP"
-- B: `gcp` · nice_to_have · raw_text: "vorzugsweise GCP"
+- A: `helm` · required · raw_text: "z. B. Terraform, Argo CD, Helm oder Kustomize"
+- B: `helm` · required · raw_text: "Helm"
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: B
 
-## 63. golden_094 - attribute `degree` (spot-check)
+## 73. golden_118 - skill `terraform` (uncertain)
+
+> ...Deployments sowie Infrastructure as Code und GitOps, z. B. Terraform, Argo CD, Helm oder Kustomize - Erfahrung mit Monitoring, Logging und Alerting sowie...
+
+- A: `terraform` · required · raw_text: "z. B. Terraform, Argo CD, Helm oder Kustomize"
+- B: `terraform` · required · raw_text: "Terraform"
+
+Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+DECISION: B
+
+## 74. golden_119 - skill `cybersecurity` (uncertain)
+
+> ...mit agilen Methoden und agil geführten Projekten - hast idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten, Richtlinien und regulatorischen Compliance-Anforderungen...
+
+- A: `cybersecurity` · nice_to_have · raw_text: "idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten"
+- B: `cybersecurity` · nice_to_have · raw_text: "hast idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten"
+
+Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+DECISION: A
+
+## 75. golden_120 - skill `azure` (uncertain)
+
+> ...und Pflege von Infrastructure-as-Code-Projekten zur Bereitstellung von Azure-Ressourcen mit Terraform und Azure DevOps. * Idealerweise bringst du...
+
+- A: `azure` · required · raw_text: "Bereitstellung von Azure-Ressourcen"
+- B: `azure` · required · raw_text: "Azure-Ressourcen"
+
+Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+DECISION: B
+
+## 76. golden_107 - skill `ci-cd` (check-failed)
+
+> (not found in the posting) CI/CD-Pipelines mit
+
+- A: `ci-cd` · required · raw_text: "CI/CD-Pipelines mit"
+- B: `ci-cd` · required · raw_text: "CI/CD-Pipelines"
+
+Auto-check:
+- A: raw_text does not appear in the posting: 'CI/CD-Pipelines mit'
+
+Options: `A` / `B` / `drop`
+
+DECISION: B
+
+## 77. golden_107 - skill `docker` (check-failed)
+
+> (not found in the posting) Docker, Kubernetes und CI/CD-Pipelines mit
+
+- A: `docker` · required · raw_text: "Docker, Kubernetes und CI/CD-Pipelines mit"
+- B: `docker` · required · raw_text: "Docker"
+
+Auto-check:
+- A: raw_text does not appear in the posting: 'Docker, Kubernetes und CI/CD-Pipelines mit'
+
+Options: `A` / `B` / `drop`
+
+DECISION: B
+
+## 78. golden_107 - skill `kubernetes` (check-failed)
+
+> (not found in the posting) Kubernetes und CI/CD-Pipelines mit
+
+- A: `kubernetes` · required · raw_text: "Kubernetes und CI/CD-Pipelines mit"
+- B: `kubernetes` · required · raw_text: "Kubernetes"
+
+Auto-check:
+- A: raw_text does not appear in the posting: 'Kubernetes und CI/CD-Pipelines mit'
+
+Options: `A` / `B` / `drop`
+
+DECISION: B
+
+## 79. golden_112 - skill `testing` (check-failed)
+
+> (not found in the posting) automatisierten Tests
+
+- A: `testing` · required · raw_text: "automatisierten Tests"
+- B: `testing` · required · raw_text: "automatisierte Tests"
+
+Auto-check:
+- A: raw_text does not appear in the posting: 'automatisierten Tests'
+
+Options: `A` / `B` / `drop`
+
+DECISION: B
+
+## 80. golden_107 - attribute `degree` (spot-check)
 
 > ...our forward thinker DU... - verfügst über ein abgeschlossenes Studium der Informatik, Ingenieurinformatik, Data Science oder einer vergleichbaren Fachrichtung - bringst fundierte Erfahrung in der Entwicklung von...
 
@@ -724,9 +923,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 64. golden_094 - attribute `german` (spot-check)
+## 81. golden_107 - attribute `german` (spot-check)
 
 > ...mit Docker, Kubernetes und CI/CD-Pipelines - verfügst über sehr gute Deutsch- und Englischkenntnisse A home where people learn and thrive -...
 
@@ -734,49 +933,19 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 65. golden_094 - skill `langchain` (spot-check)
+## 82. golden_107 - skill `python` (spot-check)
 
-> ...in Python sowie Erfahrung mit Frameworks wie LangChain, PyTorch und TensorFlow - besitzt Kenntnisse im Bereich...
+> ...Generative-AI-, LLM- und RAG-Lösungen mit - hast sehr gute Programmierkenntnisse in Python sowie Erfahrung mit Frameworks wie LangChain, PyTorch und...
 
-- agreed label: `langchain` · required · raw_text: "LangChain"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 66. golden_094 - skill `llms` (spot-check)
-
-> ...bringst fundierte Erfahrung in der Entwicklung von Generative-AI-, LLM- und RAG-Lösungen mit - hast sehr gute...
-
-- agreed label: `llms` · required · raw_text: "Generative-AI-, LLM-"
+- agreed label: `python` · required · raw_text: "Programmierkenntnisse in Python"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 67. golden_094 - skill `mlops` (spot-check)
-
-> ...Frameworks wie LangChain, PyTorch und TensorFlow - besitzt Kenntnisse im Bereich MLOps, Containerisierung und Orchestrierung mit Docker,...
-
-- agreed label: `mlops` · required · raw_text: "Kenntnisse im Bereich MLOps"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 68. golden_094 - skill `python` (spot-check)
-
-> ...RAG-Lösungen mit - hast sehr gute Programmierkenntnisse in Python sowie Erfahrung mit Frameworks wie LangChain, PyTorch und...
-
-- agreed label: `python` · required · raw_text: "Python"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 69. golden_094 - skill `pytorch` (spot-check)
+## 83. golden_107 - skill `pytorch` (spot-check)
 
 > ...in Python sowie Erfahrung mit Frameworks wie LangChain, PyTorch und TensorFlow - besitzt Kenntnisse im Bereich MLOps,...
 
@@ -784,9 +953,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 70. golden_094 - skill `rag` (spot-check)
+## 84. golden_107 - skill `rag` (spot-check)
 
 > ...Erfahrung in der Entwicklung von Generative-AI-, LLM- und RAG-Lösungen mit - hast sehr gute Programmierkenntnisse in Python sowie...
 
@@ -794,9 +963,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 71. golden_094 - skill `tensorflow` (spot-check)
+## 85. golden_107 - skill `tensorflow` (spot-check)
 
 > ...sowie Erfahrung mit Frameworks wie LangChain, PyTorch und TensorFlow - besitzt Kenntnisse im Bereich MLOps, Containerisierung...
 
@@ -804,99 +973,129 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 72. golden_095 - skill `claude-code` (spot-check)
+## 86. golden_108 - attribute `degree` (spot-check)
+
+> ...dabei persönlich weiterentwickeln. **Qualifikationen** - Erfolgreiches Studium in Naturwissenschaften, Informatik oder eine vergleichbare Qualifikation. - Interesse daran, Dichin moderne Data- und Cloud...
+
+- agreed label: value="bachelor" · requirement="required" · or_equivalent=true · signal="Erfolgreiches Studium in Naturwissenschaften, Informatik oder eine vergleichbare Qualifikation"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 87. golden_108 - attribute `german` (spot-check)
+
+> ...in der Zusammenarbeit interdisziplinären Teams mit. - Fließende Deutschkenntnisse (mind. Level B2-C1). **Zusätzliche Informationen** **Homeoffice:** Flexible...
+
+- agreed label: value="required" · basis="stated" · signal="Fließende Deutschkenntnisse (mind. Level B2-C1)"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 88. golden_108 - skill `access-control` (spot-check)
+
+> ...und - Services, z.B. VNets, Service und Private Endpoints, Identity Management, RBAC/ACL sowie Azure Storage (insbesondere Azure Data Lake Storage...
+
+- agreed label: `access-control` · nice_to_have · raw_text: "Identity Management, RBAC/ACL"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 89. golden_108 - skill `azure` (spot-check)
+
+> ...Docker-Images sowie im Umgang mit Terraform und Python. - Kenntnisse in Azure-Infrastrukturen und - Services, z.B. VNets, Service und Private Endpoints,...
+
+- agreed label: `azure` · nice_to_have · raw_text: "Kenntnisse in Azure-Infrastrukturen"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 90. golden_108 - skill `claude-code` (spot-check)
 
 > ...Praxiserfahrung im Einsatz von Coding Agents (z.B. Claude Code oder Codex) sowie ein gutes Verständnis für modernes...
 
-- agreed label: `claude-code` · required · raw_text: "z.B. Claude Code"
+- agreed label: `claude-code` · required · raw_text: "(z.B. Claude Code"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: {"raw_text": "Claude Code"}
 
-## 73. golden_095 - skill `codex` (spot-check)
+## 91. golden_108 - skill `terraform` (spot-check)
 
-> ...Praxiserfahrung im Einsatz von Coding Agents (z.B. Claude Code oder Codex) sowie ein gutes Verständnis für modernes AI-assisted...
+> ...und Debuggen von Docker-Images sowie im Umgang mit Terraform und Python. - Kenntnisse in Azure-Infrastrukturen und -...
 
-- agreed label: `codex` · required · raw_text: "z.B. Claude Code oder Codex"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 74. golden_095 - skill `data-pipelines` (spot-check)
-
-> ...Informatik oder eine vergleichbare Qualifikation. - Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory/ Synapse Pipeline sowie Data Ingestion (ETL/ELT). - Erfahrung im Erstellen und Debuggen von Docker-Images...
-
-- agreed label: `data-pipelines` · nice_to_have · raw_text: "Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory/ Synapse Pipeline sowie Data Ingestion (ETL/ELT)"
+- agreed label: `terraform` · required · raw_text: "Terraform"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 75. golden_095 - skill `python` (spot-check)
+## 92. golden_109 - attribute `german` (spot-check)
 
-> ...und Debuggen von Docker-Images sowie im Umgang mit Terraform und Python. - Kenntnisse in Azure-Infrastrukturen und - Services,...
+> ...auch vor Ort innerhalb Deutschlands zu unterstützen. Verhandlungssichere Deutschkenntnisse auf mind. C1-Niveau und gute Englischkenntnisse. Optional: Ein abgeschlossenes...
 
-- agreed label: `python` · required · raw_text: "Terraform und Python"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 76. golden_096 - skill `ai-developer-tooling` (spot-check)
-
-> ...von AI-gestützten Entwicklungsansätzen (z. B. Copilot, Agentic Coding). Know-how in DevOps-Prozessen, CI/CD und...
-
-- agreed label: `ai-developer-tooling` · required · raw_text: "Agentic Coding)"
+- agreed label: value="required" · basis="stated" · signal="Verhandlungssichere Deutschkenntnisse auf mind. C1-Niveau"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 77. golden_096 - skill `ci-cd` (spot-check)
+## 93. golden_109 - skill `angular` (spot-check)
 
-> ...B. Copilot, Agentic Coding). Know-how in DevOps-Prozessen, CI/CD und Observability-Standards. Ein agiles Mindset, hohes Qualitätsbewusstsein sowie...
+> ...in der Softwareentwicklung mit Java (Spring Boot) sowie im Frontend mit Angular. Fundierte Kenntnisse in Cloud-nativen Architekturen,...
 
-- agreed label: `ci-cd` · required · raw_text: "CI/CD und Observability-Standards"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 78. golden_096 - skill `devops` (spot-check)
-
-> ...(z. B. Copilot, Agentic Coding). Know-how in DevOps-Prozessen, CI/CD und Observability-Standards. Ein agiles Mindset,...
-
-- agreed label: `devops` · required · raw_text: "DevOps-Prozessen"
+- agreed label: `angular` · required · raw_text: "Frontend mit Angular"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 79. golden_096 - skill `docker` (spot-check)
+## 94. golden_109 - skill `ci-cd` (spot-check)
 
-> ...Fundierte Kenntnisse in Cloud-nativen Architekturen, Kubernetes, Docker und idealerweise Cloud Foundry. Erfahrung mit Microservices, RESTful APIs sowie...
+> ...B. Copilot, Agentic Coding). Know-how in DevOps-Prozessen, CI/CD und Observability-Standards. Ein agiles Mindset, hohes...
 
-- agreed label: `docker` · required · raw_text: "Kubernetes, Docker und idealerweise Cloud Foundry"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 80. golden_096 - skill `github-copilot` (spot-check)
-
-> ...im Einsatz von AI-gestützten Entwicklungsansätzen (z. B. Copilot, Agentic Coding). Know-how in DevOps-Prozessen, CI/CD und...
-
-- agreed label: `github-copilot` · required · raw_text: "(z. B. Copilot, Agentic Coding)"
+- agreed label: `ci-cd` · required · raw_text: "CI/CD"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 81. golden_096 - skill `java` (spot-check)
+## 95. golden_109 - skill `devops` (spot-check)
+
+> ...Entwicklungsansätzen (z. B. Copilot, Agentic Coding). Know-how in DevOps-Prozessen, CI/CD und Observability-Standards. Ein agiles Mindset,...
+
+- agreed label: `devops` · required · raw_text: "Know-how in DevOps-Prozessen"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 96. golden_109 - skill `docker` (spot-check)
+
+> ...Fundierte Kenntnisse in Cloud-nativen Architekturen, Kubernetes, Docker und idealerweise Cloud Foundry. Erfahrung mit Microservices, RESTful APIs...
+
+- agreed label: `docker` · required · raw_text: "Kubernetes, Docker und idealerweise"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: {"raw_text": "Docker"}
+
+## 97. golden_109 - skill `frontend-development` (spot-check)
+
+> ...in der Softwareentwicklung mit Java (Spring Boot) sowie im Frontend mit Angular. Fundierte Kenntnisse in Cloud-nativen Architekturen,...
+
+- agreed label: `frontend-development` · required · raw_text: "im Frontend mit Angular"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 98. golden_109 - skill `java` (spot-check)
 
 > ...Practices. Das bringst du mit Mehrjährige Erfahrung in der Softwareentwicklung mit Java (Spring Boot) sowie im Frontend mit Angular. Fundierte...
 
@@ -904,19 +1103,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 82. golden_096 - skill `kubernetes` (spot-check)
-
-> ...sowie im Frontend mit Angular. Fundierte Kenntnisse in Cloud-nativen Architekturen, Kubernetes, Docker und idealerweise Cloud Foundry. Erfahrung mit...
-
-- agreed label: `kubernetes` · required · raw_text: "Cloud-nativen Architekturen, Kubernetes"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 83. golden_096 - skill `microservices` (spot-check)
+## 99. golden_109 - skill `microservices` (spot-check)
 
 > ...Kubernetes, Docker und idealerweise Cloud Foundry. Erfahrung mit Microservices, RESTful APIs sowie Software-Architektur-Methoden (z. B....
 
@@ -924,9 +1113,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 84. golden_096 - skill `observability` (spot-check)
+## 100. golden_109 - skill `observability` (spot-check)
 
 > ...Agentic Coding). Know-how in DevOps-Prozessen, CI/CD und Observability-Standards. Ein agiles Mindset, hohes Qualitätsbewusstsein sowie...
 
@@ -934,9 +1123,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 85. golden_096 - skill `software-architecture` (spot-check)
+## 101. golden_109 - skill `software-architecture` (spot-check)
 
 > ...Foundry. Erfahrung mit Microservices, RESTful APIs sowie Software-Architektur-Methoden (z. B. DDD, BDD, Arc42). Praktische Erfahrung im Einsatz...
 
@@ -944,19 +1133,29 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 86. golden_096 - skill `software-engineering` (spot-check)
+## 102. golden_109 - skill `software-engineering` (spot-check)
 
-> ...von Best Practices. Das bringst du mit Mehrjährige Erfahrung in der Softwareentwicklung mit Java (Spring Boot) sowie im Frontend mit Angular....
+> ...Weiterentwicklung von Best Practices. Das bringst du mit Mehrjährige Erfahrung in der Softwareentwicklung mit Java (Spring Boot) sowie im Frontend mit Angular....
 
-- agreed label: `software-engineering` · required · raw_text: "Erfahrung in der Softwareentwicklung"
+- agreed label: `software-engineering` · required · raw_text: "Mehrjährige Erfahrung in der Softwareentwicklung"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 87. golden_097 - attribute `german` (spot-check)
+## 103. golden_109 - skill `spring-boot` (spot-check)
+
+> ...mit Mehrjährige Erfahrung in der Softwareentwicklung mit Java (Spring Boot) sowie im Frontend mit Angular. Fundierte Kenntnisse in Cloud-nativen...
+
+- agreed label: `spring-boot` · required · raw_text: "Java (Spring Boot) sowie im Frontend"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: {"raw_text": "Spring Boot"}
+
+## 104. golden_110 - attribute `german` (spot-check)
 
 > ...in MedTech oder weiteren regulierten Branchen * Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift **Das können Sie von uns erwarten** * Flexible...
 
@@ -964,29 +1163,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 88. golden_097 - attribute `seniority` (spot-check)
-
-> AI Engineer – KI-Enablement & Solutions (m/w/d)
-
-- agreed label: value=null · basis=null · signal=null
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 89. golden_097 - skill `agents` (spot-check)
-
-> ...in der Entwicklung, Umsetzung und im Betrieb von KI-Lösungen (Agenten, Workflows, API-Integrationen) * Anwenderkenntnisse in...
-
-- agreed label: `agents` · required · raw_text: "KI-Lösungen (Agenten"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 90. golden_097 - skill `apis` (spot-check)
+## 105. golden_110 - skill `apis` (spot-check)
 
 > ...und im Betrieb von KI-Lösungen (Agenten, Workflows, API-Integrationen) * Anwenderkenntnisse in Low-Code/No-Code-Plattformen (z....
 
@@ -994,29 +1173,29 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 91. golden_097 - skill `data-privacy-and-security` (spot-check)
+## 106. golden_111 - attribute `degree` (spot-check)
 
-> ...Agenten-Orchestrierung) * Praktische Berührungen mit Datenschutzkonzepten und Informationssicherheit, idealerweise in regulierten Umfeldern (z. B....
+> Senior DevOps Engineer mit KI- und Security-Erfahrung (m/w/d) ARBEITNEHMERÜBERLASSUNG
 
-- agreed label: `data-privacy-and-security` · required · raw_text: "Datenschutzkonzepten und Informationssicherheit"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 92. golden_097 - skill `prompt-engineering` (spot-check)
-
-> ...Studio, Power Automate, n8n) * Erweitertes Know-how im Prompt Engineering für den Enterprise-Einsatz (Systemprompts,...
-
-- agreed label: `prompt-engineering` · required · raw_text: "Prompt Engineering"
+- agreed label: value=null · requirement=null · or_equivalent=false · signal=null
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 93. golden_098 - skill `cybersecurity` (spot-check)
+## 107. golden_111 - attribute `german` (spot-check)
+
+> Senior DevOps Engineer mit KI- und Security-Erfahrung (m/w/d) ARBEITNEHMERÜBERLASSUNG
+
+- agreed label: value="required" · basis="inferred" · signal=null
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 108. golden_111 - skill `cybersecurity` (spot-check)
 
 > ...KI-Projekt** - Fundierte DevOps- und Cloud-Erfahrung - Praktische Erfahrung im Bereich IT-Security - Bereitschaft zu vier Office-Tagen pro Woche in Hamburg -...
 
@@ -1024,29 +1203,29 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 94. golden_098 - skill `devops` (spot-check)
+## 109. golden_111 - skill `devops` (spot-check)
 
-> ...ein selbst technisch umgesetztes KI-Projekt** - Fundierte DevOps- und Cloud-Erfahrung - Praktische Erfahrung im Bereich...
+> ...ein selbst technisch umgesetztes KI-Projekt** - Fundierte DevOps- und Cloud-Erfahrung - Praktische Erfahrung im Bereich IT-Security -...
 
-- agreed label: `devops` · required · raw_text: "Fundierte DevOps-"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 95. golden_099 - attribute `seniority` (spot-check)
-
-> ...oder halten einen Fachvortrag. ## Was Sie mitbringen - Mindestens drei Jahre Erfahrung in der Softwareentwicklung mit Python, davon mindestens ein Jahr in KI-Projekten, die produktiv...
-
-- agreed label: value="mid" · basis="inferred" · signal="Mindestens drei Jahre Erfahrung in der Softwareentwicklung mit Python"
+- agreed label: `devops` · required · raw_text: "Fundierte DevOps- und Cloud-Erfahrung"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 96. golden_099 - skill `aws` (spot-check)
+## 110. golden_112 - attribute `degree` (spot-check)
+
+> ...Jahr in KI-Projekten, die produktiv gegangen sind. Dazu ein Studium der Data Science, Informatik, Mathematik oder eine vergleichbare Qualifikation mit entsprechender Berufserfahrung. - Fundierte Python-Kenntnisse, von objektorientierter...
+
+- agreed label: value="bachelor" · requirement="required" · or_equivalent=true · signal="ein Studium der Data Science, Informatik, Mathematik oder eine vergleichbare Qualifikation mit entsprechender Berufserfahrung"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 111. golden_112 - skill `aws` (spot-check)
 
 > ...mit mindestens einer Cloud-Plattform wie Microsoft Azure, AWS oder Google Cloud. - Freude am direkten Austausch mit...
 
@@ -1054,9 +1233,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 97. golden_099 - skill `azure` (spot-check)
+## 112. golden_112 - skill `azure` (spot-check)
 
 > ...Dazu Erfahrung mit mindestens einer Cloud-Plattform wie Microsoft Azure, AWS oder Google Cloud. - Freude am direkten Austausch mit...
 
@@ -1064,9 +1243,19 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 98. golden_099 - skill `gcp` (spot-check)
+## 113. golden_112 - skill `cloud` (spot-check)
+
+> ...SQL und unterschiedlichen Datenbanken. Dazu Erfahrung mit mindestens einer Cloud-Plattform wie Microsoft Azure, AWS oder Google Cloud. - Freude am...
+
+- agreed label: `cloud` · required · raw_text: "mindestens einer Cloud-Plattform"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 114. golden_112 - skill `gcp` (spot-check)
 
 > ...einer Cloud-Plattform wie Microsoft Azure, AWS oder Google Cloud. - Freude am direkten Austausch mit Kunden, auch vor Ort,...
 
@@ -1074,19 +1263,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 99. golden_099 - skill `kubernetes` (spot-check)
-
-> ...Document Intelligence), Agentic AI oder DevSecOps mit Kubernetes und Terraform. ## Warum zur PTA? - KI als zentrale...
-
-- agreed label: `kubernetes` · nice_to_have · raw_text: "Kubernetes"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 100. golden_099 - skill `langchain` (spot-check)
+## 115. golden_112 - skill `langchain` (spot-check)
 
 > ...Generation und die Anbindung von Modellen über APIs, mit LangChain oder einer vergleichbaren Bibliothek. Sie wissen, wie Sprachmodelle funktionieren, und...
 
@@ -1094,9 +1273,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 101. golden_099 - skill `llms` (spot-check)
+## 116. golden_112 - skill `llms` (spot-check)
 
 > ...und Designentscheidungen die Performance beeinflussen. - Praxis mit großen Sprachmodellen: Prompt Engineering, Retrieval-Augmented Generation und...
 
@@ -1104,19 +1283,19 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 102. golden_099 - skill `prompt-engineering` (spot-check)
+## 117. golden_112 - skill `python` (spot-check)
 
-> ...beeinflussen. - Praxis mit großen Sprachmodellen: Prompt Engineering, Retrieval-Augmented Generation und die Anbindung von...
+> ...Qualifikation mit entsprechender Berufserfahrung. - Fundierte Python-Kenntnisse, von objektorientierter Programmierung über automatisierte...
 
-- agreed label: `prompt-engineering` · required · raw_text: "Prompt Engineering"
+- agreed label: `python` · required · raw_text: "Fundierte Python-Kenntnisse"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 103. golden_099 - skill `rag` (spot-check)
+## 118. golden_112 - skill `rag` (spot-check)
 
 > ...Praxis mit großen Sprachmodellen: Prompt Engineering, Retrieval-Augmented Generation und die Anbindung von Modellen über APIs, mit LangChain...
 
@@ -1124,9 +1303,19 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 104. golden_099 - skill `sql` (spot-check)
+## 119. golden_112 - skill `software-engineering` (spot-check)
+
+> ...Sie mitbringen - Mindestens drei Jahre Erfahrung in der Softwareentwicklung mit Python, davon mindestens ein Jahr in KI-Projekten, die...
+
+- agreed label: `software-engineering` · required · raw_text: "Softwareentwicklung"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 120. golden_112 - skill `sql` (spot-check)
 
 > ...und verstehen deshalb auch, wo sie an Grenzen stoßen. - Sicherer Umgang mit SQL und unterschiedlichen Datenbanken. Dazu Erfahrung mit...
 
@@ -1134,39 +1323,39 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 105. golden_099 - skill `testing` (spot-check)
+## 121. golden_112 - skill `terraform` (spot-check)
 
-> ...von objektorientierter Programmierung über automatisierte Tests bis zum Verständnis, wie Datenstrukturen, Algorithmen und...
+> ...Agentic AI oder DevSecOps mit Kubernetes und Terraform. ## Warum zur PTA? - KI als zentrale Strategie: KI ist...
 
-- agreed label: `testing` · required · raw_text: "automatisierte Tests"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 106. golden_100 - attribute `degree` (spot-check)
-
-> ...Gesundheitsmanagement deine Gesundheit Du hast ein abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz hast Erfahrung im Bereich Public Cloud (AWS,...
-
-- agreed label: value="bachelor" · requirement="required" · or_equivalent=true · signal="abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz"
+- agreed label: `terraform` · nice_to_have · raw_text: "Terraform"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 107. golden_100 - skill `azure` (spot-check)
+## 122. golden_113 - skill `ci-cd` (spot-check)
 
-> ...hast Erfahrung im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) verfügst über...
+> ...Aufbau geeigneter Infrastruktur-Komponenten auf Basis von Terraform (CI/CD-Pipeline) bist vertraut mit dem Einsatz von Python...
 
-- agreed label: `azure` · required · raw_text: "Azure"
+- agreed label: `ci-cd` · required · raw_text: "Terraform (CI/CD-Pipeline)"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: {"raw_text": "CI/CD-Pipeline"}
 
-## 108. golden_100 - skill `gcp` (spot-check)
+## 123. golden_113 - skill `cloud` (spot-check)
+
+> ...eine vergleichbare Qualifikation mit IT-Kompetenz hast Erfahrung im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC)...
+
+- agreed label: `cloud` · required · raw_text: "Erfahrung im Bereich Public Cloud"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 124. golden_113 - skill `gcp` (spot-check)
 
 > ...hast Erfahrung im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) verfügst über erste Erfahrungen in...
 
@@ -1174,29 +1363,29 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 109. golden_100 - skill `infrastructure-as-code` (spot-check)
+## 125. golden_113 - skill `infrastructure-as-code` (spot-check)
 
-> ...Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) verfügst über erste Erfahrungen in der Entwicklung,...
+> ...im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) verfügst über erste Erfahrungen in der Entwicklung,...
 
-- agreed label: `infrastructure-as-code` · required · raw_text: "IaC"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 110. golden_100 - skill `llms` (spot-check)
-
-> ...in der Entwicklung, Bereitstellung und Integration von Generative AI-Anwendungen im Unternehmenskontext, durch den Aufbau geeigneter...
-
-- agreed label: `llms` · required · raw_text: "Generative AI-Anwendungen"
+- agreed label: `infrastructure-as-code` · required · raw_text: "Terraform (IaC)"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 111. golden_100 - skill `terraform` (spot-check)
+## 126. golden_113 - skill `llms` (spot-check)
+
+> ...erste Erfahrungen in der Entwicklung, Bereitstellung und Integration von Generative AI-Anwendungen im Unternehmenskontext, durch den Aufbau geeigneter...
+
+- agreed label: `llms` · required · raw_text: "Integration von Generative AI-Anwendungen"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 127. golden_113 - skill `terraform` (spot-check)
 
 > ...im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) verfügst über erste Erfahrungen in der Entwicklung,...
 
@@ -1204,49 +1393,39 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 112. golden_101 - attribute `german` (spot-check)
+## 128. golden_114 - attribute `seniority` (spot-check)
 
-> Software Engineering /Data and AI Engineering/ IT-Management Consultant (2026/27 Graduate) (m/f/d)
+> .../Data and AI Engineering/ IT-Management Consultant (2026/27 Graduate) (m/f/d) About us Netlight is an international digital...
 
-- agreed label: value=null · basis=null · signal=null
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 113. golden_101 - skill `software-engineering` (spot-check)
-
-> ...experience through internships, working student roles or full-time in Software Engineering, Data Engineering or IT-Management with modern...
-
-- agreed label: `software-engineering` · required · raw_text: "full-time in Software Engineering"
+- agreed label: value="junior" · basis="stated" · signal="(2026/27 Graduate)"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 114. golden_102 - attribute `seniority` (spot-check)
+## 129. golden_115 - attribute `german` (spot-check)
 
-> ...together with the engineering team What you bring • 3+ years in machine learning or applied AI engineering • Hands-on experience with LLMs, retrieval and evaluation...
+> ...document processing or NLP is a plus • Fluent English; German is a plus What we offer • Hybrid setup: office in Hamburg plus...
 
-- agreed label: value="mid" · basis="inferred" · signal="3+ years in machine learning or applied AI engineering"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 115. golden_102 - skill `evaluation` (spot-check)
-
-> ...engineering • Hands-on experience with LLMs, retrieval and evaluation in production • Strong Python • Experience with document processing or...
-
-- agreed label: `evaluation` · required · raw_text: "evaluation in production"
+- agreed label: value="nice_to_have" · basis="stated" · signal="German is a plus"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 116. golden_102 - skill `machine-learning` (spot-check)
+## 130. golden_115 - skill `llms` (spot-check)
+
+> ...3+ years in machine learning or applied AI engineering • Hands-on experience with LLMs, retrieval and evaluation in production • Strong Python •...
+
+- agreed label: `llms` · required · raw_text: "Hands-on experience with LLMs"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 131. golden_115 - skill `machine-learning` (spot-check)
 
 > ...together with the engineering team What you bring • 3+ years in machine learning or applied AI engineering • Hands-on experience with LLMs,...
 
@@ -1254,29 +1433,19 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 117. golden_103 - attribute `degree` (spot-check)
+## 132. golden_115 - skill `python` (spot-check)
 
-> ...und AI ### Be our forward thinker **DU…** - hast ein abgeschlossenes Studium in Maschinenbau, Produktionstechnik, Luft- und Raumfahrttechnik oder einer vergleichbaren Fachrichtung - verfügst über fundierte Kenntnisse im Bereich Artificial...
+> ...with LLMs, retrieval and evaluation in production • Strong Python • Experience with document processing or NLP is a plus •...
 
-- agreed label: value="bachelor" · requirement="required" · or_equivalent=false · signal="abgeschlossenes Studium in Maschinenbau, Produktionstechnik, Luft- und Raumfahrttechnik oder einer vergleichbaren Fachrichtung"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 118. golden_103 - attribute `german` (spot-check)
-
-> ...und gerne in interdisziplinären Teams - verfügst über sehr gute Deutsch- und Englischkenntnisse Wir wertschätzen Vielfalt und begrüßen daher alle...
-
-- agreed label: value="required" · basis="stated" · signal="sehr gute Deutsch- und Englischkenntnisse"
+- agreed label: `python` · required · raw_text: "Strong Python"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 119. golden_104 - attribute `degree` (spot-check)
+## 133. golden_117 - attribute `degree` (spot-check)
 
 > Allgemein:Daten sind das Gold von morgen! Und Du suchst, förderst und veredelst das Wertvollste, was unsere Kundenbesitzen: Ihre Daten. Dahe
 
@@ -1284,9 +1453,19 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 120. golden_105 - attribute `german` (spot-check)
+## 134. golden_117 - skill `azure-ai-foundry` (spot-check)
+
+> ...SQL DB, Data Lake Storage, Databricks, Functions sowie Interesse an Microsoft Foundry • Starkes Interesse an der Entwicklung von DWH / Data Lake...
+
+- agreed label: `azure-ai-foundry` · nice_to_have · raw_text: "Interesse an Microsoft Foundry"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 135. golden_118 - attribute `german` (spot-check)
 
 > ...Betriebsstandards mitzugestalten und zu optimieren - Sehr gute Deutsch- und gute Englischkenntnisse in Wort und Schrift ### Deine Benefits - Attraktives Fixgehalt zzgl....
 
@@ -1294,9 +1473,9 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 121. golden_105 - attribute `seniority` (spot-check)
+## 136. golden_118 - attribute `seniority` (spot-check)
 
 > Cloud Platform Engineer (m/w/d) Kubernetes / STACKIT / AI Platform Operations (Hamburg oder Mainz)
 
@@ -1304,29 +1483,19 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 122. golden_105 - skill `ci-cd` (spot-check)
+## 137. golden_118 - skill `access-control` (spot-check)
 
-> ...Umfangreiche Kenntnisse in Cloud-Infrastrukturen, CI/CD, Container-Technologien, automatisierten Deployments sowie Infrastructure as Code...
+> ...für Kubernetes- und Cloud-Security, insbesondere IAM/RBAC, Network Policies, Secrets Management, TLS/Zertifikate,...
 
-- agreed label: `ci-cd` · required · raw_text: "CI/CD, Container-Technologien"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 123. golden_105 - skill `cloud` (spot-check)
-
-> ...STACKIT SKE, AKS, EKS, GKE oder OpenShift - Umfangreiche Kenntnisse in Cloud-Infrastrukturen, CI/CD, Container-Technologien, automatisierten...
-
-- agreed label: `cloud` · required · raw_text: "Kenntnisse in Cloud-Infrastrukturen"
+- agreed label: `access-control` · required · raw_text: "IAM/RBAC"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 124. golden_105 - skill `gitops` (spot-check)
+## 138. golden_118 - skill `gitops` (spot-check)
 
 > ...Container-Technologien, automatisierten Deployments sowie Infrastructure as Code und GitOps, z. B. Terraform, Argo CD, Helm oder Kustomize - Erfahrung mit...
 
@@ -1334,69 +1503,59 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: {"raw_text": "GitOps"}
 
-## 125. golden_105 - skill `helm` (spot-check)
+## 139. golden_118 - skill `infrastructure-as-code` (spot-check)
 
-> ...as Code und GitOps, z. B. Terraform, Argo CD, Helm oder Kustomize - Erfahrung mit Monitoring, Logging und...
+> ...Container-Technologien, automatisierten Deployments sowie Infrastructure as Code und GitOps, z. B. Terraform, Argo CD, Helm oder Kustomize - Erfahrung mit...
 
-- agreed label: `helm` · required · raw_text: "Helm"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 126. golden_105 - skill `infrastructure-as-code` (spot-check)
-
-> ...CI/CD, Container-Technologien, automatisierten Deployments sowie Infrastructure as Code und GitOps, z. B. Terraform, Argo CD, Helm oder...
-
-- agreed label: `infrastructure-as-code` · required · raw_text: "sowie Infrastructure as Code"
+- agreed label: `infrastructure-as-code` · required · raw_text: "Infrastructure as Code und GitOps, z. B."
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: {"raw_text": "Infrastructure as Code"}
 
-## 127. golden_105 - skill `postgresql` (spot-check)
+## 140. golden_118 - skill `mongodb` (spot-check)
 
-> ...Erfahrung mit Monitoring, Logging und Alerting sowie idealerweise mit dem Betrieb zentraler Plattform- und Datenservices wie PostgreSQL oder MongoDB - Gutes Verständnis für Kubernetes- und...
+> ...Erfahrung mit Monitoring, Logging und Alerting sowie idealerweise mit dem Betrieb zentraler Plattform- und Datenservices wie PostgreSQL oder MongoDB - Gutes Verständnis für Kubernetes- und Cloud-Security,...
 
-- agreed label: `postgresql` · nice_to_have · raw_text: "idealerweise mit dem Betrieb zentraler Plattform- und Datenservices wie PostgreSQL"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 128. golden_105 - skill `terraform` (spot-check)
-
-> ...Deployments sowie Infrastructure as Code und GitOps, z. B. Terraform, Argo CD, Helm oder Kustomize - Erfahrung mit Monitoring,...
-
-- agreed label: `terraform` · required · raw_text: "z. B. Terraform"
+- agreed label: `mongodb` · nice_to_have · raw_text: "idealerweise mit dem Betrieb zentraler Plattform- und Datenservices wie PostgreSQL oder MongoDB"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 129. golden_106 - attribute `degree` (spot-check)
+## 141. golden_118 - skill `openshift` (spot-check)
 
-> ...deine Gesundheit **Du** - hast ein abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz - hast einschlägige Erfahrung im Bereich...
+> ...im Aufbau und Betrieb von Kubernetes-Plattformen, idealerweise mit Managed Kubernetes wie STACKIT SKE, AKS, EKS, GKE oder OpenShift - Umfangreiche Kenntnisse in Cloud-Infrastrukturen, CI/CD,...
 
-- agreed label: value="bachelor" · requirement="required" · or_equivalent=true · signal="abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 130. golden_106 - skill `aws` (spot-check)
-
-> ...hast einschlägige Erfahrung im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) - verfügst...
-
-- agreed label: `aws` · required · raw_text: "AWS"
+- agreed label: `openshift` · nice_to_have · raw_text: "idealerweise mit Managed Kubernetes wie STACKIT SKE, AKS, EKS, GKE oder OpenShift"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 131. golden_106 - skill `azure` (spot-check)
+## 142. golden_118 - skill `secrets-management` (spot-check)
+
+> ...für Kubernetes- und Cloud-Security, insbesondere IAM/RBAC, Network Policies, Secrets Management, TLS/Zertifikate, Container-/Image-Security, Audit Logging...
+
+- agreed label: `secrets-management` · required · raw_text: "Network Policies, Secrets Management"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: {"raw_text": "Secrets Management"}
+
+## 143. golden_119 - attribute `degree` (spot-check)
+
+> ...deine Gesundheit **Du** - hast ein abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz - hast einschlägige Erfahrung im Bereich Public Cloud...
+
+- agreed label: value="bachelor" · requirement="required" · or_equivalent=true · signal="abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 144. golden_119 - skill `azure` (spot-check)
 
 > ...hast einschlägige Erfahrung im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) - verfügst über...
 
@@ -1404,49 +1563,69 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 132. golden_106 - skill `ci-cd` (spot-check)
+## 145. golden_119 - skill `cloud` (spot-check)
 
-> ...Infrastruktur-Komponenten auf Basis von Terraform (CI/CD-Pipeline) - bringst Erfahrungen im Umgang mit...
+> ...Qualifikation mit IT-Kompetenz - hast einschlägige Erfahrung im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) -...
 
-- agreed label: `ci-cd` · required · raw_text: "CI/CD-Pipeline"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 133. golden_106 - skill `cloud` (spot-check)
-
-> Public Cloud Engineer (m/w/d) Schwerpunkt Generative AI ### **Das sind...
-
-- agreed label: `cloud` · required · raw_text: "Public Cloud"
+- agreed label: `cloud` · required · raw_text: "Erfahrung im Bereich Public Cloud"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 134. golden_106 - skill `python` (spot-check)
+## 146. golden_119 - skill `gcp` (spot-check)
 
-> ...oder Bitbucket mit - bist vertraut mit dem Einsatz von Python als Programmiersprache - verfügst über praktische Erfahrungen mit agilen Methoden...
+> ...Erfahrung im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) - verfügst über erste Erfahrungen in...
 
-- agreed label: `python` · required · raw_text: "Python als Programmiersprache"
+- agreed label: `gcp` · nice_to_have · raw_text: "vorzugsweise GCP"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 135. golden_106 - skill `terraform` (spot-check)
+## 147. golden_119 - skill `git` (spot-check)
+
+> ...(CI/CD-Pipeline) - bringst Erfahrungen im Umgang mit Versionskontrollsystemen wie GitLab, GitHub oder Bitbucket mit - bist vertraut mit dem Einsatz von Python als...
+
+- agreed label: `git` · required · raw_text: "Versionskontrollsystemen wie GitLab, GitHub oder Bitbucket"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 148. golden_119 - skill `infrastructure-as-code` (spot-check)
 
 > ...im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) - verfügst über erste Erfahrungen in der Entwicklung,...
 
-- agreed label: `terraform` · required · raw_text: "Terraform (IaC)"
+- agreed label: `infrastructure-as-code` · required · raw_text: "Terraform (IaC)"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 136. golden_107 - attribute `german` (spot-check)
+## 149. golden_119 - skill `llms` (spot-check)
+
+> ...in der Entwicklung, Bereitstellung und Integration von Generative AI-Anwendungen im Unternehmenskontext, durch den Aufbau geeigneter...
+
+- agreed label: `llms` · required · raw_text: "Generative AI-Anwendungen"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 150. golden_120 - attribute `degree` (spot-check)
+
+> ...AI-Use-Cases. Was dich auszeichnet * Du verfügst über ein abgeschlossenes Studium der Informatik, Data Science, Mathematik oder eine vergleichbare Qualifikation. * Als Microsoft Azure DevOps Spezialist gehören Azure...
+
+- agreed label: value="bachelor" · requirement="required" · or_equivalent=true · signal="abgeschlossenes Studium der Informatik, Data Science, Mathematik oder eine vergleichbare Qualifikation"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 151. golden_120 - attribute `german` (spot-check)
 
 > Azure DevOps Engineer mit Fokus Azure AI (a*)
 
@@ -1454,19 +1633,39 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 137. golden_107 - skill `azure` (spot-check)
+## 152. golden_120 - skill `azure-ai-foundry` (spot-check)
 
-> ...und Pflege von Infrastructure-as-Code-Projekten zur Bereitstellung von Azure-Ressourcen mit Terraform und Azure DevOps. * Idealerweise bringst du...
+> ...dem Microsoft Azure AI Stack, insbesondere Azure OpenAI, AI Foundry, Cognitive Services, AI Search und Azure DevOps, mit. *...
 
-- agreed label: `azure` · required · raw_text: "Bereitstellung von Azure-Ressourcen"
+- agreed label: `azure-ai-foundry` · nice_to_have · raw_text: "AI Foundry"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 138. golden_107 - skill `infrastructure-as-code` (spot-check)
+## 153. golden_120 - skill `azure-ai-search` (spot-check)
+
+> ...insbesondere Azure OpenAI, AI Foundry, Cognitive Services, AI Search und Azure DevOps, mit. * Eine strukturierte,...
+
+- agreed label: `azure-ai-search` · nice_to_have · raw_text: "AI Search"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 154. golden_120 - skill `git` (spot-check)
+
+> ...sicher, wirtschaftlich und im Einklang mit der Digitalisierungs- und KI-Strategie erfolgen. * Darüber hinaus...
+
+- agreed label: `git` · required · raw_text: "Git"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 155. golden_120 - skill `infrastructure-as-code` (spot-check)
 
 > ...fundierte Kenntnisse in der Entwicklung und Pflege von Infrastructure-as-Code-Projekten zur Bereitstellung von Azure-Ressourcen mit Terraform und...
 
@@ -1474,44 +1673,44 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 139. golden_107 - skill `networking` (spot-check)
+## 156. golden_120 - skill `microsoft-entra-id` (spot-check)
 
-> ...Git, Terraform, Entra ID, Key Vaults, Private Endpoints, Networking, Landing Zones sowie Monitoring zu deinem täglichen...
+> ...DevOps Spezialist gehören Azure DevOps, Git, Terraform, Entra ID, Key Vaults, Private Endpoints, Networking, Landing Zones...
 
-- agreed label: `networking` · required · raw_text: "Networking"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 140. golden_107 - skill `observability` (spot-check)
-
-> ...Key Vaults, Private Endpoints, Networking, Landing Zones sowie Monitoring zu deinem täglichen Handwerkszeug. * Zudem verfügst du...
-
-- agreed label: `observability` · required · raw_text: "sowie Monitoring"
+- agreed label: `microsoft-entra-id` · required · raw_text: "Entra ID"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
-## 141. golden_107 - skill `rag` (spot-check)
+## 157. golden_120 - skill `networking` (spot-check)
 
-> ...im Einsatz von Large Language Models (LLMs) sowie RAG-Technologien und -Architekturen sind von Vorteil. Was uns...
+> ...Azure DevOps, Git, Terraform, Entra ID, Key Vaults, Private Endpoints, Networking, Landing Zones sowie Monitoring zu deinem täglichen...
 
-- agreed label: `rag` · nice_to_have · raw_text: "RAG-Technologien"
-
-Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
-
-DECISION: ?
-
-## 142. golden_107 - skill `terraform` (spot-check)
-
-> ...Infrastructure-as-Code-Projekten zur Bereitstellung von Azure-Ressourcen mit Terraform und Azure DevOps. * Idealerweise bringst du nachweisbare...
-
-- agreed label: `terraform` · required · raw_text: "Azure-Ressourcen mit Terraform"
+- agreed label: `networking` · required · raw_text: "Private Endpoints, Networking"
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: {"raw_text": "Networking"}
+
+## 158. golden_120 - skill `observability` (spot-check)
+
+> ...Vaults, Private Endpoints, Networking, Landing Zones sowie Monitoring zu deinem täglichen Handwerkszeug. * Zudem verfügst du...
+
+- agreed label: `observability` · required · raw_text: "Monitoring"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: ok
+
+## 159. golden_120 - skill `terraform` (spot-check)
+
+> ...Microsoft Azure DevOps Spezialist gehören Azure DevOps, Git, Terraform, Entra ID, Key Vaults, Private Endpoints, Networking,...
+
+- agreed label: `terraform` · required · raw_text: "Git, Terraform"
+
+Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
+
+DECISION: {"raw_text": "Terraform"}

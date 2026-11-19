@@ -1,0 +1,100 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung im Bereich Public Cloud\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\", \"alternative_group\": 1},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\", \"alternative_group\": 1},\n    {\"skill_id\": \"gcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"vorzugsweise GCP\", \"alternative_group\": 1},\n    {\"skill_id\": \"terraform\", \"requirement\": \"required\", \"raw_text\": \"und Terraform\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"Terraform (IaC)\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Generative AI-Anwendungen\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"(CI/CD-Pipeline)\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"Versionskontrollsystemen wie GitLab, GitHub oder Bitbucket\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python als Programmiersprache\"},\n    {\"skill_id\": \"cybersecurity\", \"requirement\": \"nice_to_have\", \"raw_text\": \"idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"GitLab\", \"raw_text\": \"GitLab\"},\n    {\"label\": \"Bitbucket\", \"raw_text\": \"Bitbucket\"},\n    {\"label\": \"Agile methods\", \"raw_text\": \"agilen Methoden und agil geführten Projekten\"}\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"verhandlungssicher in Deutsch\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"Requirements section is 'Du', which has no optional marker, so items default to required.\\nGCP carries the inline marker 'vorzugsweise' (preferably), so it is nice_to_have.\\nAWS, Azure and GCP are labeled as examples of one ask (Public Cloud) and form alternative_group 1.\\nThe cloud criterion stays out of the group.\\nGitHub maps to git through its alias, so the only grouped candidate is git; that leaves no group.\\nGitLab is not in the taxonomy (gitlab-ci is a CI product, not version control), so it goes to unmapped.\\nBitbucket goes to unmapped.\\nTerraform and IaC are both named in 'Terraform (IaC)', so each is labeled.\\nThe 'Generative AI-Anwendungen' bullet asks for 'erste Erfahrungen' (first experience), which is still experience. llms is required.\\nVertex AI, LangChain, Gemini, Cloud Run and Cloud Build appear only in the responsibilities, so they are not labeled.\\n'Sicherheitskonzepten' is under 'idealerweise' (ideally). It is mapped to cybersecurity via the alias 'sicherheitskonzepte' and marked uncertain: it may read as domain or compliance knowledge.\\nCloud certifications are not a skill.\\nSeniority: 'einschlägige Erfahrung' and 'erfahrene' are not level signals.\\nThe one junior-ish phrase is 'erste Erfahrungen', and it covers only the GenAI bullet. I left seniority null and flagged it.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Erfahrung im Bereich Public Cloud"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "vorzugsweise GCP",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "und Terraform"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Terraform (IaC)"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generative AI-Anwendungen"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "(CI/CD-Pipeline)"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Versionskontrollsystemen wie GitLab, GitHub oder Bitbucket"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python als Programmiersprache"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "GitLab",
+        "raw_text": "GitLab"
+      },
+      {
+        "label": "Bitbucket",
+        "raw_text": "Bitbucket"
+      },
+      {
+        "label": "Agile methods",
+        "raw_text": "agilen Methoden und agil geführten Projekten"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "verhandlungssicher in Deutsch",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Requirements section is 'Du', which has no optional marker, so items default to required.\nGCP carries the inline marker 'vorzugsweise' (preferably), so it is nice_to_have.\nAWS, Azure and GCP are labeled as examples of one ask (Public Cloud) and form alternative_group 1.\nThe cloud criterion stays out of the group.\nGitHub maps to git through its alias, so the only grouped candidate is git; that leaves no group.\nGitLab is not in the taxonomy (gitlab-ci is a CI product, not version control), so it goes to unmapped.\nBitbucket goes to unmapped.\nTerraform and IaC are both named in 'Terraform (IaC)', so each is labeled.\nThe 'Generative AI-Anwendungen' bullet asks for 'erste Erfahrungen' (first experience), which is still experience. llms is required.\nVertex AI, LangChain, Gemini, Cloud Run and Cloud Build appear only in the responsibilities, so they are not labeled.\n'Sicherheitskonzepten' is under 'idealerweise' (ideally). It is mapped to cybersecurity via the alias 'sicherheitskonzepte' and marked uncertain: it may read as domain or compliance knowledge.\nCloud certifications are not a skill.\nSeniority: 'einschlägige Erfahrung' and 'erfahrene' are not level signals.\nThe one junior-ish phrase is 'erste Erfahrungen', and it covers only the GenAI bullet. I left seniority null and flagged it."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "8a40ba3b7eb5a4e7816d296879815adc0e481dcc22fbee2f5424e8fe664709eb",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

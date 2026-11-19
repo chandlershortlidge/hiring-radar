@@ -1,0 +1,87 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"KI-Lösungen (Agenten\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"API-Integrationen\"},\n    {\"skill_id\": \"power-automate\", \"requirement\": \"required\", \"raw_text\": \"Power Automate\", \"alternative_group\": 1},\n    {\"skill_id\": \"n8n\", \"requirement\": \"required\", \"raw_text\": \"n8n\", \"alternative_group\": 1},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"Prompt Engineering\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG-Architekturen\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"Agenten-Orchestrierung\"},\n    {\"skill_id\": \"data-privacy-and-security\", \"requirement\": \"required\", \"raw_text\": \"Datenschutzkonzepten\", \"uncertain\": true},\n    {\"skill_id\": \"cybersecurity\", \"requirement\": \"required\", \"raw_text\": \"Informationssicherheit\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Low-Code/No-Code platforms\", \"raw_text\": \"Low-Code/No-Code-Plattformen\"},\n    {\"label\": \"Microsoft Copilot Studio\", \"raw_text\": \"Copilot Studio\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": \"required\", \"german_basis\": \"stated\", \"german_signal\": \"Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift\",\n  \"degree\": \"bachelor\", \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false, \"degree_signal\": \"Abgeschlossener technischer Bildungsweg\",\n  \"groups_reviewed\": true,\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"Data Science, Artificial Intelligence, Machine Learning and Deep Learning appear only as fields of the required education ('Bildungsweg in Bereichen wie …'). They are read as degree fields, not skill asks, so they are not labeled; a reviewer may disagree.\\nThe 'Workflows' in 'KI-Lösungen (Agenten, Workflows, API-Integrationen)' is not mapped to workflow-automation. The text never says automation, and the entry would be a synthesized parent.\\nCopilot Studio is Microsoft Copilot Studio, not GitHub Copilot, so it goes to unmapped. Copilot Studio, Power Automate and n8n are 'z. B.' examples for one ask, so they form group 1; only the two mapped members carry the group number.\\nThe Low-Code/No-Code broad skill has no taxonomy entry, so it goes to unmapped.\\n'Systemprompts' is read as part of prompt-engineering, not a separate skill. The items in that parenthesis are listed together, so they are not alternatives.\\nInformationssicherheit is mapped to cybersecurity, and that required mention wins over 'Security Reviews' under 'idealerweise' (nice_to_have).\\nDatenschutzkonzepte is mapped to data-privacy-and-security; both mappings are flagged uncertain.\\nMedTech, DSGVO, MDR and ISO are domain or regulatory knowledge, not skills. SharePoint and ERP appear only in responsibilities, so they are not labeled.\\nSeniority: 'Berufserfahrung' gives no years, and the title names no level, so it is null.\\nDegree: 'Abgeschlossener technischer Bildungsweg' may include non-university technical training. It is read as completed studies → bachelor, required, and flagged. 'oder einer vergleichbaren Fachrichtung' widens the field only, so degree_or_equivalent is false.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "KI-Lösungen (Agenten"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "API-Integrationen"
+      },
+      {
+        "skill_id": "power-automate",
+        "requirement": "required",
+        "raw_text": "Power Automate",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "n8n",
+        "requirement": "required",
+        "raw_text": "n8n",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG-Architekturen"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "Agenten-Orchestrierung"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "Datenschutzkonzepten",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "Informationssicherheit",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Low-Code/No-Code platforms",
+        "raw_text": "Low-Code/No-Code-Plattformen"
+      },
+      {
+        "label": "Microsoft Copilot Studio",
+        "raw_text": "Copilot Studio"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Abgeschlossener technischer Bildungsweg",
+    "groups_reviewed": true,
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Data Science, Artificial Intelligence, Machine Learning and Deep Learning appear only as fields of the required education ('Bildungsweg in Bereichen wie …'). They are read as degree fields, not skill asks, so they are not labeled; a reviewer may disagree.\nThe 'Workflows' in 'KI-Lösungen (Agenten, Workflows, API-Integrationen)' is not mapped to workflow-automation. The text never says automation, and the entry would be a synthesized parent.\nCopilot Studio is Microsoft Copilot Studio, not GitHub Copilot, so it goes to unmapped. Copilot Studio, Power Automate and n8n are 'z. B.' examples for one ask, so they form group 1; only the two mapped members carry the group number.\nThe Low-Code/No-Code broad skill has no taxonomy entry, so it goes to unmapped.\n'Systemprompts' is read as part of prompt-engineering, not a separate skill. The items in that parenthesis are listed together, so they are not alternatives.\nInformationssicherheit is mapped to cybersecurity, and that required mention wins over 'Security Reviews' under 'idealerweise' (nice_to_have).\nDatenschutzkonzepte is mapped to data-privacy-and-security; both mappings are flagged uncertain.\nMedTech, DSGVO, MDR and ISO are domain or regulatory knowledge, not skills. SharePoint and ERP appear only in responsibilities, so they are not labeled.\nSeniority: 'Berufserfahrung' gives no years, and the title names no level, so it is null.\nDegree: 'Abgeschlossener technischer Bildungsweg' may include non-university technical training. It is read as completed studies → bachelor, required, and flagged. 'oder einer vergleichbaren Fachrichtung' widens the field only, so degree_or_equivalent is false."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "00748233d245a4d3761e81e14223fc1a113ad6d45ab1632943a6c27fcdca414e",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

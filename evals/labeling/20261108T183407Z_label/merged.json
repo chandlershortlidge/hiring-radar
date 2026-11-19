@@ -1,16 +1,38 @@
 {
-  "golden_108": {
+  "golden_121": {
     "accepted_skills": [],
     "accepted_attrs": {
+      "seniority": {
+        "seniority": null,
+        "seniority_basis": null,
+        "seniority_signal": null
+      },
       "german": {
         "german": "required",
         "german_basis": "inferred",
         "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
       }
     },
-    "unmapped": []
+    "unmapped": [
+      {
+        "labeler": "B",
+        "label": "Data technologies",
+        "raw_text": "Cloud-, Data- und AI-Technologien"
+      },
+      {
+        "labeler": "B",
+        "label": "Engineering tools (unspecified)",
+        "raw_text": "modernen Engineering-Werkzeugen"
+      }
+    ]
   },
-  "golden_109": {
+  "golden_122": {
     "accepted_skills": [
       {
         "skill_id": "apis",
@@ -60,7 +82,7 @@
       {
         "skill_id": "typescript",
         "requirement": "required",
-        "raw_text": "TypeScript und REST APIs/JSON"
+        "raw_text": "TypeScript"
       },
       {
         "skill_id": "workflow-automation",
@@ -100,11 +122,11 @@
       {
         "labeler": "A",
         "label": "Text-to-Speech (TTS)",
-        "raw_text": "idealerweise Erfahrung mit TTS/STT"
+        "raw_text": "TTS/STT"
       },
       {
         "labeler": "A",
-        "label": "Voice AI platforms",
+        "label": "Voice-AI platforms",
         "raw_text": "Voice-AI-Plattformen"
       },
       {
@@ -124,13 +146,8 @@
       },
       {
         "labeler": "B",
-        "label": "Text-to-speech",
-        "raw_text": "TTS"
-      },
-      {
-        "labeler": "B",
-        "label": "Voice-AI platforms",
-        "raw_text": "Voice-AI-Plattformen"
+        "label": "Text-to-speech (TTS)",
+        "raw_text": "idealerweise Erfahrung mit TTS/STT"
       },
       {
         "labeler": "B",
@@ -144,7 +161,7 @@
       }
     ]
   },
-  "golden_110": {
+  "golden_123": {
     "accepted_skills": [
       {
         "skill_id": "apache-spark",
@@ -170,6 +187,11 @@
         "skill_id": "embeddings",
         "requirement": "required",
         "raw_text": "Embeddings"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google"
       },
       {
         "skill_id": "langchain",
@@ -199,7 +221,7 @@
       {
         "skill_id": "python",
         "requirement": "required",
-        "raw_text": "Programmierkenntnisse in Python"
+        "raw_text": "Python und/oder R"
       },
       {
         "skill_id": "pytorch",
@@ -288,17 +310,22 @@
       }
     ]
   },
-  "golden_111": {
+  "golden_124": {
     "accepted_skills": [
       {
         "skill_id": "chain-of-thought",
         "requirement": "required",
-        "raw_text": "(Chain-of-Thought, Context Window Management)"
+        "raw_text": "Chain-of-Thought"
       },
       {
         "skill_id": "ci-cd",
         "requirement": "required",
         "raw_text": "CI/CD (z.B. GitLab, Jenkins)"
+      },
+      {
+        "skill_id": "context-engineering",
+        "requirement": "required",
+        "raw_text": "Context Window Management"
       },
       {
         "skill_id": "devops",
@@ -308,7 +335,12 @@
       {
         "skill_id": "docker",
         "requirement": "required",
-        "raw_text": "sowie Docker"
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "gitlab-ci",
+        "requirement": "required",
+        "raw_text": "z.B. GitLab"
       },
       {
         "skill_id": "javascript",
@@ -316,24 +348,29 @@
         "raw_text": "Erfahrung mit JavaScript/TypeScript"
       },
       {
+        "skill_id": "jenkins",
+        "requirement": "required",
+        "raw_text": "Jenkins"
+      },
+      {
         "skill_id": "kubernetes",
         "requirement": "required",
-        "raw_text": "und Kubernetes"
+        "raw_text": "Kubernetes"
       },
       {
         "skill_id": "node-js",
         "requirement": "required",
-        "raw_text": "Tiefgreifende Node.js /TypeScript DNA"
+        "raw_text": "Erfahrung mit JavaScript/TypeScript (inkl. Node.js im Backend)"
       },
       {
         "skill_id": "prompt-engineering",
         "requirement": "required",
-        "raw_text": "verstehst Prompt Engineering"
+        "raw_text": "Du verstehst Prompt Engineering"
       },
       {
         "skill_id": "python",
         "requirement": "nice_to_have",
-        "raw_text": "Du hast Lust, deine Node.js/TypeScript -Komfortzone zu verlassen und dich von der KI in neue Tech-Stacks (Cloud Native, Python Data Services etc.)"
+        "raw_text": "Du hast Lust, deine Node.js/TypeScript -Komfortzone zu verlassen und dich von der KI in neue Tech-Stacks (Cloud Native, Python Data Services"
       },
       {
         "skill_id": "react",
@@ -366,48 +403,18 @@
     },
     "unmapped": [
       {
-        "labeler": "A",
-        "label": "Jenkins",
-        "raw_text": "CI/CD (z.B. GitLab, Jenkins)"
-      },
-      {
-        "labeler": "A",
-        "label": "Context Window Management",
-        "raw_text": "(Chain-of-Thought, Context Window Management)"
-      },
-      {
-        "labeler": "A",
-        "label": "Code Review",
-        "raw_text": "Dein Code-Review-Blick"
-      },
-      {
-        "labeler": "B",
-        "label": "Web development",
-        "raw_text": "Modernes Web Development"
-      },
-      {
-        "labeler": "B",
-        "label": "Jenkins",
-        "raw_text": "Jenkins"
-      },
-      {
-        "labeler": "B",
-        "label": "Context window management",
-        "raw_text": "Context Window Management"
-      },
-      {
-        "labeler": "B",
-        "label": "Code quality assessment",
-        "raw_text": "Du hast ein geschultes Auge für Codequalität und erkennst Schwachstellen sofort"
-      },
-      {
         "labeler": "B",
         "label": "Code review",
-        "raw_text": "Dein Code-Review-Blick ist geschärft für Halluzinationen, Sicherheitslücken und Logikfehler."
+        "raw_text": "Code-Review-Blick"
+      },
+      {
+        "labeler": "B",
+        "label": "Cloud Native",
+        "raw_text": "Du hast Lust, deine Node.js/TypeScript -Komfortzone zu verlassen und dich von der KI in neue Tech-Stacks (Cloud Native, Python Data Services etc.) begleiten zu lassen."
       }
     ]
   },
-  "golden_112": {
+  "golden_125": {
     "accepted_skills": [
       {
         "skill_id": "bash",
@@ -423,6 +430,11 @@
         "skill_id": "javascript",
         "requirement": "nice_to_have",
         "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "jenkins",
+        "requirement": "nice_to_have",
+        "raw_text": "Jenkins"
       },
       {
         "skill_id": "python",
@@ -446,7 +458,7 @@
       {
         "labeler": "A",
         "label": "System administration",
-        "raw_text": "Fundierte Kenntnisse in der Systemadministration"
+        "raw_text": "Systemadministration"
       },
       {
         "labeler": "A",
@@ -460,22 +472,12 @@
       },
       {
         "labeler": "A",
-        "label": "Jenkins",
-        "raw_text": "Jenkins"
-      },
-      {
-        "labeler": "A",
-        "label": "Agile methodologies",
+        "label": "Agile methods",
         "raw_text": "agilen Arbeitsmethoden"
       },
       {
-        "labeler": "A",
-        "label": "Security standards",
-        "raw_text": "Sicherheitsstandards"
-      },
-      {
         "labeler": "B",
-        "label": "Systemadministration",
+        "label": "System administration",
         "raw_text": "Systemadministration"
       },
       {
@@ -495,22 +497,17 @@
       },
       {
         "labeler": "B",
-        "label": "Jenkins",
-        "raw_text": "Jenkins"
+        "label": "T-SQL",
+        "raw_text": "T-SQL"
       },
       {
         "labeler": "B",
-        "label": "Agile working methods",
+        "label": "Agile methods",
         "raw_text": "agilen Arbeitsmethoden"
-      },
-      {
-        "labeler": "B",
-        "label": "Security standards",
-        "raw_text": "Sicherheitsstandards"
       }
     ]
   },
-  "golden_113": {
+  "golden_126": {
     "accepted_skills": [
       {
         "skill_id": "apis",
@@ -545,7 +542,7 @@
       {
         "skill_id": "llms",
         "requirement": "required",
-        "raw_text": "LLMs und Generative AI"
+        "raw_text": "Praxiserfahrung im Umgang mit LLMs und Generative AI"
       },
       {
         "skill_id": "prompt-engineering",
@@ -556,11 +553,6 @@
         "skill_id": "python",
         "requirement": "required",
         "raw_text": "Kenntnisse in Python"
-      },
-      {
-        "skill_id": "software-engineering",
-        "requirement": "required",
-        "raw_text": "Software-Engineering-Prinzipien"
       },
       {
         "skill_id": "testing",
@@ -589,7 +581,7 @@
     "unmapped": [
       {
         "labeler": "A",
-        "label": "modern AI frameworks",
+        "label": "AI frameworks (generic)",
         "raw_text": "modernen KI-Frameworks"
       },
       {
@@ -599,7 +591,7 @@
       }
     ]
   },
-  "golden_114": {
+  "golden_127": {
     "accepted_skills": [
       {
         "skill_id": "agents",
@@ -617,11 +609,6 @@
         "raw_text": "kennst dich aus mit Azure"
       },
       {
-        "skill_id": "cloud",
-        "requirement": "required",
-        "raw_text": "vergleichbaren Cloud-Technologien"
-      },
-      {
         "skill_id": "conversational-ai",
         "requirement": "nice_to_have",
         "raw_text": "Interesse an Conversational AI"
@@ -632,19 +619,19 @@
         "raw_text": "JavaScript"
       },
       {
-        "skill_id": "llms",
-        "requirement": "required",
-        "raw_text": "Erfahrung mit LLMs"
-      },
-      {
         "skill_id": "n8n",
         "requirement": "required",
         "raw_text": "n8n"
       },
       {
+        "skill_id": "power-automate",
+        "requirement": "required",
+        "raw_text": "Microsoft Power Automate"
+      },
+      {
         "skill_id": "prompt-engineering",
         "requirement": "required",
-        "raw_text": "LLMs, Prompt Engineering"
+        "raw_text": "Erfahrung mit LLMs, Prompt Engineering"
       },
       {
         "skill_id": "python",
@@ -702,21 +689,6 @@
         "raw_text": "Azure AI"
       },
       {
-        "labeler": "A",
-        "label": "Microsoft Power Automate",
-        "raw_text": "Microsoft Power Automate"
-      },
-      {
-        "labeler": "A",
-        "label": "Chatbots",
-        "raw_text": "Interesse an Conversational AI, Chatbots"
-      },
-      {
-        "labeler": "A",
-        "label": "Voicebots",
-        "raw_text": "Interesse an Conversational AI, Chatbots, Voicebots"
-      },
-      {
         "labeler": "B",
         "label": "JSON",
         "raw_text": "JSON"
@@ -730,15 +702,10 @@
         "labeler": "B",
         "label": "Azure AI",
         "raw_text": "Azure AI"
-      },
-      {
-        "labeler": "B",
-        "label": "Microsoft Power Automate",
-        "raw_text": "Microsoft Power Automate"
       }
     ]
   },
-  "golden_115": {
+  "golden_128": {
     "accepted_skills": [
       {
         "skill_id": "api-design",
@@ -773,7 +740,7 @@
       {
         "skill_id": "explainable-ai",
         "requirement": "nice_to_have",
-        "raw_text": "explainable AI"
+        "raw_text": "\"explainable AI\""
       },
       {
         "skill_id": "go",
@@ -831,11 +798,6 @@
         "raw_text": "reinforced learning"
       },
       {
-        "skill_id": "software-engineering",
-        "requirement": "required",
-        "raw_text": "software or data engineering"
-      },
-      {
         "skill_id": "testing",
         "requirement": "required",
         "raw_text": "testing frameworks"
@@ -867,23 +829,18 @@
     "unmapped": [
       {
         "labeler": "A",
-        "label": "data engineering",
-        "raw_text": "software or data engineering"
-      },
-      {
-        "labeler": "A",
-        "label": "design patterns",
+        "label": "Design patterns",
         "raw_text": "design patterns"
       },
       {
         "labeler": "A",
-        "label": "Star Schema",
-        "raw_text": "Star Schema"
+        "label": "Encryption / CMEK",
+        "raw_text": "encryption at rest/transit (CMEK)"
       },
       {
         "labeler": "A",
-        "label": "Data Vault",
-        "raw_text": "Data Vault"
+        "label": "Data residency",
+        "raw_text": "data residency"
       },
       {
         "labeler": "A",
@@ -897,22 +854,22 @@
       },
       {
         "labeler": "A",
-        "label": "trunk-based development",
+        "label": "Trunk-based development",
         "raw_text": "trunk-based development"
       },
       {
         "labeler": "A",
-        "label": "blue/green deployments",
+        "label": "Blue/green deployments",
         "raw_text": "blue/green deployments"
       },
       {
         "labeler": "B",
-        "label": "Data engineering",
-        "raw_text": "data engineering"
+        "label": "Programming languages",
+        "raw_text": "programming languages"
       },
       {
         "labeler": "B",
-        "label": "Design patterns",
+        "label": "Software design patterns",
         "raw_text": "design patterns"
       },
       {
@@ -942,16 +899,6 @@
       },
       {
         "labeler": "B",
-        "label": "Star Schema",
-        "raw_text": "Star Schema"
-      },
-      {
-        "labeler": "B",
-        "label": "Data Vault",
-        "raw_text": "Data Vault"
-      },
-      {
-        "labeler": "B",
         "label": "Google Cloud Dataflow",
         "raw_text": "Dataflow"
       },
@@ -972,7 +919,7 @@
       }
     ]
   },
-  "golden_116": {
+  "golden_129": {
     "accepted_skills": [],
     "accepted_attrs": {
       "seniority": {
@@ -994,13 +941,18 @@
     },
     "unmapped": []
   },
-  "golden_117": {
+  "golden_130": {
     "accepted_skills": [],
     "accepted_attrs": {
       "seniority": {
         "seniority": null,
         "seniority_basis": null,
         "seniority_signal": null
+      },
+      "german": {
+        "german": "required",
+        "german_basis": "inferred",
+        "german_signal": null
       },
       "degree": {
         "degree": null,
@@ -1011,7 +963,7 @@
     },
     "unmapped": []
   },
-  "golden_118": {
+  "golden_131": {
     "accepted_skills": [
       {
         "skill_id": "agents",
@@ -1049,19 +1001,24 @@
         "raw_text": "Cursor"
       },
       {
+        "skill_id": "data-engineering",
+        "requirement": "required",
+        "raw_text": "Data Engineering"
+      },
+      {
         "skill_id": "infrastructure-as-code",
         "requirement": "required",
-        "raw_text": "Kenntnisse in Infrastructure as Code"
+        "raw_text": "Infrastructure as Code"
       },
       {
         "skill_id": "java",
         "requirement": "required",
-        "raw_text": "Java"
+        "raw_text": "Python, TypeScript oder Java"
       },
       {
         "skill_id": "python",
         "requirement": "required",
-        "raw_text": "Python"
+        "raw_text": "Python, TypeScript oder Java"
       },
       {
         "skill_id": "software-architecture",
@@ -1071,19 +1028,24 @@
       {
         "skill_id": "software-engineering",
         "requirement": "required",
-        "raw_text": "Erfahrung im Software Engineering"
+        "raw_text": "Software Engineering"
       },
       {
         "skill_id": "typescript",
         "requirement": "required",
-        "raw_text": "TypeScript"
+        "raw_text": "Python, TypeScript oder Java"
       }
     ],
     "accepted_attrs": {
+      "seniority": {
+        "seniority": null,
+        "seniority_basis": null,
+        "seniority_signal": null
+      },
       "german": {
         "german": "required",
         "german_basis": "stated",
-        "german_signal": "Verhandlungssichere Deutsch- und gute Englischkenntnisse"
+        "german_signal": "Verhandlungssichere Deutsch-"
       },
       "degree": {
         "degree": "bachelor",
@@ -1095,37 +1057,27 @@
     "unmapped": [
       {
         "labeler": "A",
-        "label": "Data Engineering",
-        "raw_text": "Erfahrung im Data Engineering"
-      },
-      {
-        "labeler": "A",
-        "label": "AWS Glue (nice_to_have)",
+        "label": "AWS Glue (nice_to_have, alternative to Lake Formation)",
         "raw_text": "idealerweise mit AWS Glue"
       },
       {
         "labeler": "A",
-        "label": "AWS Lake Formation (nice_to_have)",
+        "label": "AWS Lake Formation (nice_to_have, alternative to AWS Glue)",
         "raw_text": "Lake Formation"
       },
       {
         "labeler": "B",
-        "label": "Data Engineering",
-        "raw_text": "Data Engineering"
-      },
-      {
-        "labeler": "B",
         "label": "AWS Glue",
-        "raw_text": "idealerweise mit AWS Glue"
+        "raw_text": "AWS Glue"
       },
       {
         "labeler": "B",
         "label": "Lake Formation",
-        "raw_text": "idealerweise mit AWS Glue oder Lake Formation"
+        "raw_text": "Lake Formation"
       }
     ]
   },
-  "golden_119": {
+  "golden_132": {
     "accepted_skills": [
       {
         "skill_id": "api-design",
@@ -1155,12 +1107,12 @@
       {
         "skill_id": "devops",
         "requirement": "nice_to_have",
-        "raw_text": "high-maturity DevOps culture"
+        "raw_text": "DevOps culture"
       },
       {
         "skill_id": "explainable-ai",
         "requirement": "nice_to_have",
-        "raw_text": "\"explainable AI\""
+        "raw_text": "explainable AI"
       },
       {
         "skill_id": "go",
@@ -1176,6 +1128,11 @@
         "skill_id": "langchain",
         "requirement": "required",
         "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "agentic orchestration"
       },
       {
         "skill_id": "llms",
@@ -1201,11 +1158,6 @@
         "skill_id": "python",
         "requirement": "required",
         "raw_text": "Python"
-      },
-      {
-        "skill_id": "reinforcement-learning",
-        "requirement": "required",
-        "raw_text": "reinforced learning"
       },
       {
         "skill_id": "testing",
@@ -1244,16 +1196,6 @@
       },
       {
         "labeler": "A",
-        "label": "Star Schema",
-        "raw_text": "Star Schema"
-      },
-      {
-        "labeler": "A",
-        "label": "Data Vault",
-        "raw_text": "Data Vault"
-      },
-      {
-        "labeler": "A",
         "label": "Trunk-based development",
         "raw_text": "trunk-based development"
       },
@@ -1273,9 +1215,9 @@
         "raw_text": "Pub/Sub"
       },
       {
-        "labeler": "B",
-        "label": "Data engineering",
-        "raw_text": "software or data engineering"
+        "labeler": "A",
+        "label": "Data residency",
+        "raw_text": "data residency"
       },
       {
         "labeler": "B",
@@ -1285,7 +1227,8 @@
       {
         "labeler": "B",
         "label": "Vertex AI Agent Builder",
-        "raw_text": "Vertex AI Agent Builder"
+        "raw_text": "Vertex AI Agent Builder",
+        "alternative_group": 2
       },
       {
         "labeler": "B",
@@ -1299,18 +1242,8 @@
       },
       {
         "labeler": "B",
-        "label": "Encryption at rest and in transit using CMEK",
+        "label": "Encryption at rest and in transit, including CMEK",
         "raw_text": "encryption at rest/transit (CMEK)"
-      },
-      {
-        "labeler": "B",
-        "label": "Star Schema",
-        "raw_text": "Star Schema"
-      },
-      {
-        "labeler": "B",
-        "label": "Data Vault",
-        "raw_text": "Data Vault"
       },
       {
         "labeler": "B",
@@ -1331,20 +1264,10 @@
         "labeler": "B",
         "label": "Google Cloud Pub/Sub",
         "raw_text": "Pub/Sub"
-      },
-      {
-        "labeler": "B",
-        "label": "Technical discovery and PRD development",
-        "raw_text": "drive the discovery phase, moving from a vague business problem to a structured PRD"
-      },
-      {
-        "labeler": "B",
-        "label": "Technical demo development",
-        "raw_text": "a working technical demo"
       }
     ]
   },
-  "golden_120": {
+  "golden_133": {
     "accepted_skills": [
       {
         "skill_id": "agents",
@@ -1365,6 +1288,11 @@
         "skill_id": "cloud",
         "requirement": "required",
         "raw_text": "Cloud-Umgebungen"
+      },
+      {
+        "skill_id": "context-engineering",
+        "requirement": "required",
+        "raw_text": "Context Window"
       },
       {
         "skill_id": "cursor",
@@ -1428,13 +1356,8 @@
     "unmapped": [
       {
         "labeler": "A",
-        "label": "Agile ways of working",
-        "raw_text": "agiler Arbeitsweisen"
-      },
-      {
-        "labeler": "A",
-        "label": "SDLC",
-        "raw_text": "end-to-end SDLC"
+        "label": "Agile / SDLC",
+        "raw_text": "agiler Arbeitsweisen und des end-to-end SDLC"
       },
       {
         "labeler": "A",
@@ -1445,11 +1368,6 @@
         "labeler": "A",
         "label": "Kiro CLI",
         "raw_text": "Kiro CLI"
-      },
-      {
-        "labeler": "A",
-        "label": "Context window",
-        "raw_text": "Context Window"
       },
       {
         "labeler": "A",
@@ -1473,32 +1391,27 @@
       },
       {
         "labeler": "A",
-        "label": "SAFe (nice_to_have)",
+        "label": "SAFe (nice to have)",
         "raw_text": "idealerweise im SAFe-Umfeld"
       },
       {
         "labeler": "A",
-        "label": "Microsoft Foundry Agents Service (nice_to_have)",
-        "raw_text": "Microsoft Foundry Agents Service"
-      },
-      {
-        "labeler": "A",
-        "label": "Microsoft Copilot Studio (nice_to_have)",
+        "label": "Microsoft Copilot Studio (nice to have)",
         "raw_text": "Microsoft Copilot Studio"
       },
       {
         "labeler": "B",
-        "label": "Agile working methods",
+        "label": "Agile Arbeitsweisen",
         "raw_text": "agiler Arbeitsweisen"
       },
       {
         "labeler": "B",
-        "label": "End-to-end software development lifecycle",
+        "label": "Software development lifecycle",
         "raw_text": "end-to-end SDLC"
       },
       {
         "labeler": "B",
-        "label": "Agent skills",
+        "label": "Agentic skills",
         "raw_text": "agentischen Skills"
       },
       {
@@ -1508,22 +1421,17 @@
       },
       {
         "labeler": "B",
-        "label": "Context window",
-        "raw_text": "Context Window"
-      },
-      {
-        "labeler": "B",
         "label": "Prompt injection",
         "raw_text": "Prompt Injection"
       },
       {
         "labeler": "B",
-        "label": "LLM hallucinations",
+        "label": "AI hallucinations",
         "raw_text": "Halluzinationen"
       },
       {
         "labeler": "B",
-        "label": "Token cost understanding",
+        "label": "Token costs",
         "raw_text": "Kosten je Token"
       },
       {
@@ -1533,7 +1441,7 @@
       },
       {
         "labeler": "B",
-        "label": "Backlog work",
+        "label": "Backlog management",
         "raw_text": "Backlog-Arbeit"
       },
       {
@@ -1558,13 +1466,18 @@
       },
       {
         "labeler": "B",
+        "label": "AWS Bedrock AgentCore",
+        "raw_text": "Kenntnisse in AWS Bedrock AgentCore, Microsoft Foundry Agents Service und Microsoft Copilot Studio von Vorteil."
+      },
+      {
+        "labeler": "B",
         "label": "Microsoft Foundry Agents Service",
-        "raw_text": "Microsoft Foundry Agents Service"
+        "raw_text": "Kenntnisse in AWS Bedrock AgentCore, Microsoft Foundry Agents Service und Microsoft Copilot Studio von Vorteil."
       },
       {
         "labeler": "B",
         "label": "Microsoft Copilot Studio",
-        "raw_text": "Microsoft Copilot Studio"
+        "raw_text": "Kenntnisse in AWS Bedrock AgentCore, Microsoft Foundry Agents Service und Microsoft Copilot Studio von Vorteil."
       }
     ]
   }

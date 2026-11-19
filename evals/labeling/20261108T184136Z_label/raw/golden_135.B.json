@@ -1,107 +1,181 @@
 {
   "provider": "openai",
   "model": "gpt-6.1-sol",
-  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Erfahrung in Data Science\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Machine Learning\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Umsetzung produktiver KI-Lösungen\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangChain\"\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangGraph\"\n    },\n    {\n      \"skill_id\": \"llamaindex\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LlamaIndex\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Generativer KI\"\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"NLP\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentenbasierten KI-Systemen\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"idealerweise Erfahrung mit Low-Code-/No-Code-Plattformen sowie Grundlagen in KI-Governance (EU AI Act, DSGVO) und MCP\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"AI Engineering\",\n      \"raw_text\": \"AI- Engineering\"\n    },\n    {\n      \"label\": \"Low-Code-/No-Code-Plattformen\",\n      \"raw_text\": \"idealerweise Erfahrung mit Low-Code-/No-Code-Plattformen\"\n    },\n    {\n      \"label\": \"KI-Governance\",\n      \"raw_text\": \"idealerweise Erfahrung mit Low-Code-/No-Code-Plattformen sowie Grundlagen in KI-Governance (EU AI Act, DSGVO)\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Mindestens zwei Jahre Erfahrung\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Deutschkenntnisse auf mindestens B12 Niveau\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Abgeschlossenes Studium der Informatik, Data Science, Wirtschaftsinformatik oder einer vergleichbaren Fachrichtung.\",\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"Only the qualifications section supplies candidate skill requirements; responsibilities and company descriptions are excluded.\\nRead literally, 'idealerweise' governs the coordinated remainder of its bullet, including KI-Governance and MCP; Python and SQL remain required.\\nAI Engineering is left unmapped rather than equated with ML Engineering or the broader AI/ML category.\\nMapping 'Umsetzung produktiver KI-Lösungen' to AI deployment is flagged because implementation does not explicitly name deployment.\\nEU AI Act and DSGVO are regulatory domain knowledge, not separately labeled technical skills; KI-Governance is retained as an unmapped technical practice.\\nThe two-year minimum is provisionally mapped to junior using the guide's 0–2-year range; the open-ended minimum makes this uncertain.\\n'B12' is preserved verbatim without correcting the apparent language-level typo.\\n'Vergleichbaren Fachrichtung' widens the degree field, not acceptance of experience instead of a degree.\"\n}",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Softwareentwicklung\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud-Architekturen\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"automatisierte Tests\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM-basierte\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Agenten-Frameworks\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Tool Calling\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Retrieval\",\n      \"alternative_group\": 1,\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"mehrstufigen Workflows\",\n      \"alternative_group\": 1,\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"data-modeling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Modellierung komplexer Geschäftsdaten\"\n    },\n    {\n      \"skill_id\": \"access-control\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Berechtigungen\"\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Datenschutz\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI-Coding-Tools\"\n    },\n    {\n      \"skill_id\": \"claude-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Claude Code\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"cursor\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cursor\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"codex\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Codex\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"überprüfst KI-generierte Ergebnisse systematisch\"\n    },\n    {\n      \"skill_id\": \"playwright\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Playwright\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD-Prozesse\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitHub\"\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MCP\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangGraph\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Monitoring\"\n    },\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"sichere KI-Anwendungen\"\n    },\n    {\n      \"skill_id\": \"forecasting\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Forecasting\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"SaaS applications\",\n      \"raw_text\": \"SaaS-Anwendungen\"\n    },\n    {\n      \"label\": \"Multi-tenancy\",\n      \"raw_text\": \"Mandantentrennung\"\n    },\n    {\n      \"label\": \"Specification-driven development\",\n      \"raw_text\": \"entwickelst spezifikationsbasiert\"\n    },\n    {\n      \"label\": \"A2A\",\n      \"raw_text\": \"A2A\"\n    },\n    {\n      \"label\": \"Accounting software\",\n      \"raw_text\": \"Accounting- oder ERP-Software\"\n    },\n    {\n      \"label\": \"ERP software\",\n      \"raw_text\": \"ERP-Software\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"mindestens 4 Jahre Erfahrung\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Deutschkenntnisse auf C2-Niveau\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Aufgaben contains responsibilities; Profil contains requirements; Zusätzlich hilfreich marks the optional list; Wir bieten and Kontakt contain no candidate skill requirements.\\nCloud is required through Cloud-Architekturen despite the earlier idealerweise clause.\\nRetrieval is provisionally mapped to RAG and mehrstufigen Workflows to LLM orchestration in the LLM context; both mappings are flagged because the literal wording is broader than those taxonomy entries.\\nAlternative groups use the example lists in Profil; group 3 also contains the unmapped A2A technology conceptually.\\nSystematic checking of AI-generated results is treated literally as AI output evaluation.\\nHOAI, Bürocontrolling, XRechnung and ZUGFeRD are excluded as domain or domain-standard knowledge; accounting and ERP software are retained as unmapped software categories.\\nNo separate AI deployment criterion is inferred from deploying agents or AI functions, because model deployment is not explicitly requested.\"\n}",
   "parsed": {
     "expected": [
       {
-        "skill_id": "data-science",
+        "skill_id": "software-engineering",
         "requirement": "required",
-        "raw_text": "Erfahrung in Data Science"
+        "raw_text": "Softwareentwicklung"
       },
       {
-        "skill_id": "machine-learning",
+        "skill_id": "cloud",
         "requirement": "required",
-        "raw_text": "Machine Learning"
+        "raw_text": "Cloud-Architekturen"
       },
       {
-        "skill_id": "ai-deployment",
+        "skill_id": "testing",
         "requirement": "required",
-        "raw_text": "Umsetzung produktiver KI-Lösungen",
-        "uncertain": true
-      },
-      {
-        "skill_id": "langchain",
-        "requirement": "required",
-        "raw_text": "LangChain"
-      },
-      {
-        "skill_id": "langgraph",
-        "requirement": "required",
-        "raw_text": "LangGraph"
-      },
-      {
-        "skill_id": "llamaindex",
-        "requirement": "required",
-        "raw_text": "LlamaIndex"
-      },
-      {
-        "skill_id": "pytorch",
-        "requirement": "required",
-        "raw_text": "PyTorch"
+        "raw_text": "automatisierte Tests"
       },
       {
         "skill_id": "llms",
         "requirement": "required",
-        "raw_text": "Generativer KI"
-      },
-      {
-        "skill_id": "nlp",
-        "requirement": "required",
-        "raw_text": "NLP"
+        "raw_text": "LLM-basierte"
       },
       {
         "skill_id": "agents",
         "requirement": "required",
-        "raw_text": "agentenbasierten KI-Systemen"
+        "raw_text": "Agenten-Frameworks"
       },
       {
-        "skill_id": "python",
+        "skill_id": "tool-calling",
         "requirement": "required",
-        "raw_text": "Python"
+        "raw_text": "Tool Calling",
+        "alternative_group": 1
       },
       {
-        "skill_id": "sql",
+        "skill_id": "rag",
         "requirement": "required",
-        "raw_text": "SQL"
+        "raw_text": "Retrieval",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "mehrstufigen Workflows",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "Modellierung komplexer Geschäftsdaten"
+      },
+      {
+        "skill_id": "access-control",
+        "requirement": "required",
+        "raw_text": "Berechtigungen"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "Datenschutz"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI-Coding-Tools"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "codex",
+        "requirement": "required",
+        "raw_text": "Codex",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "überprüfst KI-generierte Ergebnisse systematisch"
+      },
+      {
+        "skill_id": "playwright",
+        "requirement": "required",
+        "raw_text": "Playwright"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Prozesse"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "GitHub"
       },
       {
         "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "MCP",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "sichere KI-Anwendungen"
+      },
+      {
+        "skill_id": "forecasting",
         "requirement": "nice_to_have",
-        "raw_text": "idealerweise Erfahrung mit Low-Code-/No-Code-Plattformen sowie Grundlagen in KI-Governance (EU AI Act, DSGVO) und MCP"
+        "raw_text": "Forecasting"
       }
     ],
     "unmapped": [
       {
-        "label": "AI Engineering",
-        "raw_text": "AI- Engineering"
+        "label": "SaaS applications",
+        "raw_text": "SaaS-Anwendungen"
       },
       {
-        "label": "Low-Code-/No-Code-Plattformen",
-        "raw_text": "idealerweise Erfahrung mit Low-Code-/No-Code-Plattformen"
+        "label": "Multi-tenancy",
+        "raw_text": "Mandantentrennung"
       },
       {
-        "label": "KI-Governance",
-        "raw_text": "idealerweise Erfahrung mit Low-Code-/No-Code-Plattformen sowie Grundlagen in KI-Governance (EU AI Act, DSGVO)"
+        "label": "Specification-driven development",
+        "raw_text": "entwickelst spezifikationsbasiert"
+      },
+      {
+        "label": "A2A",
+        "raw_text": "A2A"
+      },
+      {
+        "label": "Accounting software",
+        "raw_text": "Accounting- oder ERP-Software"
+      },
+      {
+        "label": "ERP software",
+        "raw_text": "ERP-Software"
       }
     ],
-    "seniority": "junior",
+    "groups_reviewed": true,
+    "seniority": "mid",
     "seniority_basis": "inferred",
-    "seniority_signal": "Mindestens zwei Jahre Erfahrung",
+    "seniority_signal": "mindestens 4 Jahre Erfahrung",
     "german": "required",
     "german_basis": "stated",
-    "german_signal": "Deutschkenntnisse auf mindestens B12 Niveau",
-    "degree": "bachelor",
-    "degree_requirement": "required",
+    "german_signal": "Deutschkenntnisse auf C2-Niveau",
+    "degree": null,
+    "degree_requirement": null,
     "degree_or_equivalent": false,
-    "degree_signal": "Abgeschlossenes Studium der Informatik, Data Science, Wirtschaftsinformatik oder einer vergleichbaren Fachrichtung.",
-    "uncertain": [
-      "seniority"
-    ],
-    "notes": "Only the qualifications section supplies candidate skill requirements; responsibilities and company descriptions are excluded.\nRead literally, 'idealerweise' governs the coordinated remainder of its bullet, including KI-Governance and MCP; Python and SQL remain required.\nAI Engineering is left unmapped rather than equated with ML Engineering or the broader AI/ML category.\nMapping 'Umsetzung produktiver KI-Lösungen' to AI deployment is flagged because implementation does not explicitly name deployment.\nEU AI Act and DSGVO are regulatory domain knowledge, not separately labeled technical skills; KI-Governance is retained as an unmapped technical practice.\nThe two-year minimum is provisionally mapped to junior using the guide's 0–2-year range; the open-ended minimum makes this uncertain.\n'B12' is preserved verbatim without correcting the apparent language-level typo.\n'Vergleichbaren Fachrichtung' widens the degree field, not acceptance of experience instead of a degree."
+    "degree_signal": null,
+    "notes": "Aufgaben contains responsibilities; Profil contains requirements; Zusätzlich hilfreich marks the optional list; Wir bieten and Kontakt contain no candidate skill requirements.\nCloud is required through Cloud-Architekturen despite the earlier idealerweise clause.\nRetrieval is provisionally mapped to RAG and mehrstufigen Workflows to LLM orchestration in the LLM context; both mappings are flagged because the literal wording is broader than those taxonomy entries.\nAlternative groups use the example lists in Profil; group 3 also contains the unmapped A2A technology conceptually.\nSystematic checking of AI-generated results is treated literally as AI output evaluation.\nHOAI, Bürocontrolling, XRechnung and ZUGFeRD are excluded as domain or domain-standard knowledge; accounting and ERP software are retained as unmapped software categories.\nNo separate AI deployment criterion is inferred from deploying agents or AI functions, because model deployment is not explicitly requested."
   },
   "error": null,
   "labeler": "B",
-  "posting_sha256": "7a14ef4205926e8046c39fe485646abb1cc37f2bc2dd7d1cc2119868e57deef0",
-  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+  "posting_sha256": "3c77b64d8b822d4754ae134f5dc577149d1620445b643bb4c9e5bb1751e8228b",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
 }

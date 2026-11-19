@@ -1,0 +1,120 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevOps- und Cloud-Erfahrung\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud-Erfahrung\"\n    },\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"IT-Security\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Mindestens ein selbst technisch umgesetztes KI-Projekt\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD-Pipelines\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Infrastructure as Code\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"containerisierter Umgebungen\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"openshift\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"OpenShift\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Machine-Learning-\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM- und Generative-AI-Lösungen\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"APIs\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Observability-\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Cloud-native architectures\",\n      \"raw_text\": \"Cloud-native Architekturen\"\n    },\n    {\n      \"label\": \"Database architecture\",\n      \"raw_text\": \"Datenbankarchitekturen\"\n    },\n    {\n      \"label\": \"High-availability solutions\",\n      \"raw_text\": \"Hochverfügbarkeitslösungen\"\n    },\n    {\n      \"label\": \"Performance optimization\",\n      \"raw_text\": \"Performance-Optimierungen\"\n    },\n    {\n      \"label\": \"Site reliability engineering\",\n      \"raw_text\": \"SRE-Strukturen\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior DevOps Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Literal reading: “Einschlägige Berufserfahrung in oben genannten Aufgaben” explicitly requires experience in the preceding responsibilities, so their named technical skills are included; their raw_text quotes the referenced responsibilities.\\nDocker, Kubernetes and OpenShift form one alternative group through “Docker, Kubernetes oder OpenShift”.\\nCloud-native architecture and database architecture are left unmapped rather than broadened to software architecture.\\nGerman is inferred from the German-language posting; no explicit language requirement or degree is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps- und Cloud-Erfahrung"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Erfahrung"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "IT-Security"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Mindestens ein selbst technisch umgesetztes KI-Projekt"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Pipelines"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure as Code"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containerisierter Umgebungen"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "openshift",
+        "requirement": "required",
+        "raw_text": "OpenShift",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Machine-Learning-"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM- und Generative-AI-Lösungen"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Observability-"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Cloud-native architectures",
+        "raw_text": "Cloud-native Architekturen"
+      },
+      {
+        "label": "Database architecture",
+        "raw_text": "Datenbankarchitekturen"
+      },
+      {
+        "label": "High-availability solutions",
+        "raw_text": "Hochverfügbarkeitslösungen"
+      },
+      {
+        "label": "Performance optimization",
+        "raw_text": "Performance-Optimierungen"
+      },
+      {
+        "label": "Site reliability engineering",
+        "raw_text": "SRE-Strukturen"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior DevOps Engineer",
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Literal reading: “Einschlägige Berufserfahrung in oben genannten Aufgaben” explicitly requires experience in the preceding responsibilities, so their named technical skills are included; their raw_text quotes the referenced responsibilities.\nDocker, Kubernetes and OpenShift form one alternative group through “Docker, Kubernetes oder OpenShift”.\nCloud-native architecture and database architecture are left unmapped rather than broadened to software architecture.\nGerman is inferred from the German-language posting; no explicit language requirement or degree is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "b93a430e483554338fa2b3373923ea6eca03f58a4f940465585ccee3d10eed23",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

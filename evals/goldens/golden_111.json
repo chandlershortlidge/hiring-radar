@@ -1,0 +1,109 @@
+{
+  "id": "golden_111",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Senior DevOps Engineer",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "inferred",
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "5ebd97b27fc0529d32fd0e1e2628e3fc2726758a0a77a6f40bb269efb24740df",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:ai-ml",
+    "skill:apis",
+    "skill:ci-cd",
+    "skill:containerization",
+    "skill:docker",
+    "skill:infrastructure-as-code",
+    "skill:kubernetes",
+    "skill:llms",
+    "skill:machine-learning",
+    "skill:observability",
+    "skill:openshift"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Senior DevOps Engineer mit KI- und Security-Erfahrung (m/w/d) ARBEITNEHMERÜBERLASSUNG\n\nWenn Du moderne Cloud-Infrastrukturen gestalten, automatisieren und sicherer machen möchtest, Freude an DevOps-Themen hast und Deine Erfahrung in den Bereichen KI und IT-Security einbringen willst, dann erweitere unser Team mit Deinem Know-how. In dieser Position arbeitest Du an innovativen Lösungen rund um Cloud, Automatisierung, Security, KI und Datenbanken und kannst Deine Schwerpunkte entsprechend Deiner Interessen und Stärken weiter ausbauen.\n\nTätigkeitsfeld\n\nIT / Softwareentwicklung\n\nBereich\n\nDevOps & Cloud Engineering\n\nUnternehmen\n\nibc germany\n\nStandorte\n\nHamburg (mind. 4 Tage/Woche vor Ort)\n\nStartdatum\n\nZum nächstmöglichen Zeitpunkt\n\nAuslastung\n\nVollzeit oder Teilzeit\n\nVertragsart\n\nFestanstellung\n\nJob ID\n\n943\n\n## Deine Aufgaben &\n\nAnforderungen\n\n### Deine Aufgaben:\n\n- Aufbau, Betrieb und kontinuierliche Optimierung moderner Cloud- und Plattformumgebungen\n- Konzeption und Automatisierung von CI/CD-Pipelines\n- Umsetzung von Infrastructure as Code und Cloud-native Architekturen\n- Betrieb und Weiterentwicklung containerisierter Umgebungen mit Docker, Kubernetes oder OpenShift\n- Umsetzung von Security-by-Design-Prinzipien im gesamten Software-Lifecycle\n- Integration von KI-, Machine-Learning-, LLM- und Generative-AI-Lösungen\n- Technische Anbindung von KI-Services über APIs\n- Weiterentwicklung von Datenbankarchitekturen, Hochverfügbarkeitslösungen und Performance-Optimierungen\n- Aufbau und Optimierung von Monitoring-, Observability- und SRE-Strukturen\n- Zusammenarbeit mit Entwicklung, Betrieb, IT-Security und weiteren interdisziplinären Teams\n\n### Das bringt Du mit:\n\n- **Einschlägige Berufserfahrung in oben genannten Aufgaben**\n- **Mindestens ein selbst technisch umgesetztes KI-Projekt**\n- Fundierte DevOps- und Cloud-Erfahrung\n- Praktische Erfahrung im Bereich IT-Security\n- Bereitschaft zu vier Office-Tagen pro Woche in Hamburg\n- Nach der Einarbeitung sind perspektivisch drei Office-Tage möglich",
+  "expected": [
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "Mindestens ein selbst technisch umgesetztes KI-Projekt"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "APIs"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD-Pipelines"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "DevOps- und Cloud-Erfahrung"
+    },
+    {
+      "skill_id": "containerization",
+      "requirement": "required",
+      "raw_text": "containerisierter Umgebungen"
+    },
+    {
+      "skill_id": "cybersecurity",
+      "requirement": "required",
+      "raw_text": "Praktische Erfahrung im Bereich IT-Security"
+    },
+    {
+      "skill_id": "devops",
+      "requirement": "required",
+      "raw_text": "Fundierte DevOps- und Cloud-Erfahrung"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Docker"
+    },
+    {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "required",
+      "raw_text": "Infrastructure as Code"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "LLM- und Generative-AI-Lösungen"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "Machine-Learning-"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "Observability-"
+    },
+    {
+      "skill_id": "openshift",
+      "requirement": "required",
+      "raw_text": "OpenShift"
+    }
+  ]
+}

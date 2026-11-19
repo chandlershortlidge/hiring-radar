@@ -1,0 +1,122 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Software Engineering\"},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"Architekturdesign\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"Architekturdesign und CI/CD\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python, TypeScript oder Java\", \"alternative_group\": 1},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"Python, TypeScript oder Java\", \"alternative_group\": 1},\n    {\"skill_id\": \"java\", \"requirement\": \"required\", \"raw_text\": \"Python, TypeScript oder Java\", \"alternative_group\": 1},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit KI-Agenten\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"KI-Agenten und deren Orchestrierung\", \"uncertain\": true},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"agentischer Entwicklungstools\"},\n    {\"skill_id\": \"claude-code\", \"requirement\": \"required\", \"raw_text\": \"Claude Code\", \"alternative_group\": 2},\n    {\"skill_id\": \"cursor\", \"requirement\": \"required\", \"raw_text\": \"Cursor\", \"alternative_group\": 2},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud-Erfahrung\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"nice_to_have\", \"raw_text\": \"idealerweise AWS\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"Infrastructure as Code\"},\n    {\"skill_id\": \"data-engineering\", \"requirement\": \"required\", \"raw_text\": \"Data Engineering\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"Bewertung und Qualitätssicherung KI-generierter Ergebnisse\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"AWS Glue (nice_to_have, alternative to Lake Formation)\", \"raw_text\": \"idealerweise mit AWS Glue\"},\n    {\"label\": \"AWS Lake Formation (nice_to_have, alternative to AWS Glue)\", \"raw_text\": \"Lake Formation\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": \"required\", \"german_basis\": \"stated\", \"german_signal\": \"Verhandlungssichere Deutsch-\",\n  \"degree\": \"bachelor\", \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true, \"degree_signal\": \"Abgeschlossenes IT-Studium oder vergleichbare Qualifikation\",\n  \"uncertain\": [],\n  \"notes\": \"There is one requirements section ('Anforderungen'), which defaults to required; the Aufgaben bullets (CI/CD-Pipelines, agent orchestration) are responsibilities only.\\nThe CI/CD raw_text quotes the requirements mention, to tell it apart from 'CI/CD-Pipelines' in the Aufgaben.\\nI mapped 'deren Orchestrierung' (orchestration of AI agents) to llm-orchestration, via the 'agent orchestration' alias; flagged uncertain.\\nI mapped 'Bewertung und Qualitätssicherung KI-generierter Ergebnisse' to evaluation, via the 'ai output evaluation' alias; flagged uncertain.\\nI mapped 'agentischer Entwicklungstools' to ai-developer-tooling (aliases: agentic coding tools, ki-entwicklungstools).\\nClaude Code and Cursor are alternatives (group 2). 'oder vergleichbare Lösungen' adds nothing.\\nPython, TypeScript and Java are 'X, Y oder Z' alternatives (group 1).\\nAWS carries the inline marker 'idealerweise', so it is nice_to_have while Cloud stays required.\\nAWS Glue and Lake Formation are nice_to_have ('idealerweise') and are not in the taxonomy, so they go to unmapped. They are offered as alternatives to each other, but grouping is not recorded on unmapped items.\\nSeniority is none: 'Fundierte Erfahrung' is not a level signal, and the title has no level.\\nDegree: 'oder vergleichbare Qualifikation' accepts an equivalent in place of the degree, so degree_or_equivalent is true.\\nGerman: 'Verhandlungssichere Deutsch-' (business-fluent German) is an unmarked requirement, so required.\\n'Interesse an einem spannenden Projekt' is not a skill and changes no label.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Software Engineering"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Architekturdesign"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "Architekturdesign und CI/CD"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python, TypeScript oder Java",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "Python, TypeScript oder Java",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Python, TypeScript oder Java",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit KI-Agenten"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "KI-Agenten und deren Orchestrierung",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "agentischer Entwicklungstools"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Erfahrung"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise AWS"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure as Code"
+      },
+      {
+        "skill_id": "data-engineering",
+        "requirement": "required",
+        "raw_text": "Data Engineering"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Bewertung und Qualitätssicherung KI-generierter Ergebnisse",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "AWS Glue (nice_to_have, alternative to Lake Formation)",
+        "raw_text": "idealerweise mit AWS Glue"
+      },
+      {
+        "label": "AWS Lake Formation (nice_to_have, alternative to AWS Glue)",
+        "raw_text": "Lake Formation"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Verhandlungssichere Deutsch-",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossenes IT-Studium oder vergleichbare Qualifikation",
+    "uncertain": [],
+    "notes": "There is one requirements section ('Anforderungen'), which defaults to required; the Aufgaben bullets (CI/CD-Pipelines, agent orchestration) are responsibilities only.\nThe CI/CD raw_text quotes the requirements mention, to tell it apart from 'CI/CD-Pipelines' in the Aufgaben.\nI mapped 'deren Orchestrierung' (orchestration of AI agents) to llm-orchestration, via the 'agent orchestration' alias; flagged uncertain.\nI mapped 'Bewertung und Qualitätssicherung KI-generierter Ergebnisse' to evaluation, via the 'ai output evaluation' alias; flagged uncertain.\nI mapped 'agentischer Entwicklungstools' to ai-developer-tooling (aliases: agentic coding tools, ki-entwicklungstools).\nClaude Code and Cursor are alternatives (group 2). 'oder vergleichbare Lösungen' adds nothing.\nPython, TypeScript and Java are 'X, Y oder Z' alternatives (group 1).\nAWS carries the inline marker 'idealerweise', so it is nice_to_have while Cloud stays required.\nAWS Glue and Lake Formation are nice_to_have ('idealerweise') and are not in the taxonomy, so they go to unmapped. They are offered as alternatives to each other, but grouping is not recorded on unmapped items.\nSeniority is none: 'Fundierte Erfahrung' is not a level signal, and the title has no level.\nDegree: 'oder vergleichbare Qualifikation' accepts an equivalent in place of the degree, so degree_or_equivalent is true.\nGerman: 'Verhandlungssichere Deutsch-' (business-fluent German) is an unmarked requirement, so required.\n'Interesse an einem spannenden Projekt' is not a skill and changes no label."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "3e9d88a46658b7aefef5af21c67b4e9b42806cae137fdf14ce299f6a4aff377a",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

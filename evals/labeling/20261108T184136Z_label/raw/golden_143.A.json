@@ -1,0 +1,110 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"data-science\", \"requirement\": \"required\", \"raw_text\": \"experience in data science\", \"uncertain\": true},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"data science, machine learning, or applied AI\", \"uncertain\": true},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"applied AI\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"GenAI and LLMs\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"strong experience with AWS\"},\n    {\"skill_id\": \"sagemaker\", \"requirement\": \"required\", \"raw_text\": \"SageMaker\", \"uncertain\": true},\n    {\"skill_id\": \"aws-s3\", \"requirement\": \"required\", \"raw_text\": \"S3\", \"uncertain\": true},\n    {\"skill_id\": \"access-control\", \"requirement\": \"required\", \"raw_text\": \"IAM\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud platforms\"},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"MLOps\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"model deployment\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"ML frameworks (generic)\", \"raw_text\": \"common ML frameworks\"},\n    {\"label\": \"Amazon EKS\", \"raw_text\": \"EKS\"},\n    {\"label\": \"AWS Lambda\", \"raw_text\": \"Lambda\"}\n  ],\n  \"seniority\": \"senior\", \"seniority_basis\": \"stated\", \"seniority_signal\": \"Principal Data Scientist\",\n  \"german\": null, \"german_basis\": null, \"german_signal\": null,\n  \"degree\": null, \"degree_requirement\": null,\n  \"degree_or_equivalent\": false, \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Alternative groups were not included because the output schema has no alternative_group field. The intended groups are below.\\nGroup 1: data-science, machine-learning and ai-ml ('data science, machine learning, or applied AI').\\nGroup 2: sagemaker, aws-s3 and access-control, examples for the single AWS ecosystem ask ('e.g. SageMaker, S3, EKS, Lambda, IAM'). EKS and Lambda are unmapped and so cannot join the group.\\ndata-science, machine-learning and ai-ml come from a years-of-experience field phrase. They are labeled because the taxonomy lists them, but they could be read as domain/experience context; flagged.\\nEKS is not mapped to kubernetes, and Lambda is not mapped to serverless. Neither parent is named in the text, and the taxonomy aliases do not cover them.\\nIAM is mapped to access-control via the 'aws iam'/'iam' alias.\\nResponsibilities mention the AWS services (SageMaker, S3, Lambda, EMR). Only the requirements mentions are labeled, so EMR is not labeled.\\n'GenAI and LLMs' is collapsed to llms, since 'generative ai' is an alias of llms.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "experience in data science",
+        "uncertain": true
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "data science, machine learning, or applied AI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "applied AI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "GenAI and LLMs"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "strong experience with AWS"
+      },
+      {
+        "skill_id": "sagemaker",
+        "requirement": "required",
+        "raw_text": "SageMaker",
+        "uncertain": true
+      },
+      {
+        "skill_id": "aws-s3",
+        "requirement": "required",
+        "raw_text": "S3",
+        "uncertain": true
+      },
+      {
+        "skill_id": "access-control",
+        "requirement": "required",
+        "raw_text": "IAM",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "model deployment"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "ML frameworks (generic)",
+        "raw_text": "common ML frameworks"
+      },
+      {
+        "label": "Amazon EKS",
+        "raw_text": "EKS"
+      },
+      {
+        "label": "AWS Lambda",
+        "raw_text": "Lambda"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Data Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Alternative groups were not included because the output schema has no alternative_group field. The intended groups are below.\nGroup 1: data-science, machine-learning and ai-ml ('data science, machine learning, or applied AI').\nGroup 2: sagemaker, aws-s3 and access-control, examples for the single AWS ecosystem ask ('e.g. SageMaker, S3, EKS, Lambda, IAM'). EKS and Lambda are unmapped and so cannot join the group.\ndata-science, machine-learning and ai-ml come from a years-of-experience field phrase. They are labeled because the taxonomy lists them, but they could be read as domain/experience context; flagged.\nEKS is not mapped to kubernetes, and Lambda is not mapped to serverless. Neither parent is named in the text, and the taxonomy aliases do not cover them.\nIAM is mapped to access-control via the 'aws iam'/'iam' alias.\nResponsibilities mention the AWS services (SageMaker, S3, Lambda, EMR). Only the requirements mentions are labeled, so EMR is not labeled.\n'GenAI and LLMs' is collapsed to llms, since 'generative ai' is an alias of llms."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "e889330a9ba759d0463f84b3e68c0043466c746034019b410f06850245d5fadf",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

@@ -1,0 +1,110 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"devsecops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevSecOps\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Infrastructure as Code\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Container\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Softwareentwicklung\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Testautomatisierung\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"verteilte Softwarelösungen\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud\"\n    },\n    {\n      \"skill_id\": \"csharp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C#\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"dotnet\",\n      \"requirement\": \"required\",\n      \"raw_text\": \".NET\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Programmierung\",\n      \"raw_text\": \"Programmierung\"\n    },\n    {\n      \"label\": \"Scripting\",\n      \"raw_text\": \"Scripting\"\n    },\n    {\n      \"label\": \"PowerShell\",\n      \"raw_text\": \"PowerShell\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute Sprachkenntnisse in Deutsch und Englisch in Wort und Schrift\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Abgeschlossenes Studium der Informatik, Softwaretechnik oder eine vergleichbare Qualifikation mit einschlägiger Berufserfahrung\",\n  \"notes\": \"Only the candidate qualifications section supplies skills; there is no optional qualifications section.\\nAI assistants and agentic workflows remain required because practical experience with their use is explicitly requested alongside interest.\\nMapping agentic workflows to agents is flagged for review because the taxonomy does not explicitly list that phrase.\\nSoftwareentwicklung and Testautomatisierung are alternatives; the later Software Engineering phrase is treated as the context of AI-tool use, not a separate independent software-engineering requirement.\\nC#/.NET, PowerShell and TypeScript are examples for one programming/scripting ask; the mapped examples share alternative group 2. C#/.NET is a composite example that the flat grouping schema cannot represent separately.\\nFundierte Erfahrung and einschlägige Berufserfahrung provide no usable seniority signal under the guide; langjährige Erfahrung in der Jobsuche describes the recruiter's offering, not candidate seniority.\\nThe degree alternative explicitly accepts a comparable qualification with relevant professional experience.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "devsecops",
+        "requirement": "required",
+        "raw_text": "DevSecOps"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure as Code"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "Container"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Softwareentwicklung",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "Testautomatisierung",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "verteilte Softwarelösungen"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud"
+      },
+      {
+        "skill_id": "csharp",
+        "requirement": "required",
+        "raw_text": "C#",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "dotnet",
+        "requirement": "required",
+        "raw_text": ".NET",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Programmierung",
+        "raw_text": "Programmierung"
+      },
+      {
+        "label": "Scripting",
+        "raw_text": "Scripting"
+      },
+      {
+        "label": "PowerShell",
+        "raw_text": "PowerShell"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Sprachkenntnisse in Deutsch und Englisch in Wort und Schrift",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossenes Studium der Informatik, Softwaretechnik oder eine vergleichbare Qualifikation mit einschlägiger Berufserfahrung",
+    "notes": "Only the candidate qualifications section supplies skills; there is no optional qualifications section.\nAI assistants and agentic workflows remain required because practical experience with their use is explicitly requested alongside interest.\nMapping agentic workflows to agents is flagged for review because the taxonomy does not explicitly list that phrase.\nSoftwareentwicklung and Testautomatisierung are alternatives; the later Software Engineering phrase is treated as the context of AI-tool use, not a separate independent software-engineering requirement.\nC#/.NET, PowerShell and TypeScript are examples for one programming/scripting ask; the mapped examples share alternative group 2. C#/.NET is a composite example that the flat grouping schema cannot represent separately.\nFundierte Erfahrung and einschlägige Berufserfahrung provide no usable seniority signal under the guide; langjährige Erfahrung in der Jobsuche describes the recruiter's offering, not candidate seniority.\nThe degree alternative explicitly accepts a comparable qualification with relevant professional experience."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "ebe55f43cfd6a7b581b801de8e7cf927ebf34a595678b56e8e8ed3e3be62135a",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

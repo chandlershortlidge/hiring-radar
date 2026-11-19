@@ -1,6 +1,6 @@
 [
   {
-    "golden_id": "golden_121",
+    "golden_id": "golden_134",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -17,7 +17,7 @@
     "decision": "yes"
   },
   {
-    "golden_id": "golden_122",
+    "golden_id": "golden_135",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -34,7 +34,7 @@
     "decision": "yes"
   },
   {
-    "golden_id": "golden_123",
+    "golden_id": "golden_136",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -46,12 +46,12 @@
     "place": "Munich",
     "language": "de",
     "source": "arbeitsagentur",
-    "n_skills": 21,
+    "n_skills": 16,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_124",
+    "golden_id": "golden_137",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -63,12 +63,12 @@
     "place": "Munich",
     "language": "de",
     "source": "arbeitsagentur",
-    "n_skills": 25,
+    "n_skills": 26,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_125",
+    "golden_id": "golden_138",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -85,7 +85,7 @@
     "decision": "yes"
   },
   {
-    "golden_id": "golden_126",
+    "golden_id": "golden_139",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -97,12 +97,12 @@
     "place": "Munich",
     "language": "de",
     "source": "arbeitsagentur",
-    "n_skills": 12,
+    "n_skills": 9,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_127",
+    "golden_id": "golden_140",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -114,12 +114,12 @@
     "place": "Munich",
     "language": "en",
     "source": "arbeitsagentur",
-    "n_skills": 12,
+    "n_skills": 8,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_128",
+    "golden_id": "golden_141",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -131,12 +131,12 @@
     "place": "Munich",
     "language": "en",
     "source": "greenhouse",
-    "n_skills": 4,
+    "n_skills": 5,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_129",
+    "golden_id": "golden_142",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -153,7 +153,7 @@
     "decision": "yes"
   },
   {
-    "golden_id": "golden_130",
+    "golden_id": "golden_143",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -165,12 +165,12 @@
     "place": "Munich",
     "language": "en",
     "source": "greenhouse",
-    "n_skills": 12,
+    "n_skills": 7,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_131",
+    "golden_id": "golden_144",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -187,7 +187,7 @@
     "decision": "yes"
   },
   {
-    "golden_id": "golden_132",
+    "golden_id": "golden_145",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -199,12 +199,12 @@
     "place": "Munich",
     "language": "en",
     "source": "arbeitsagentur",
-    "n_skills": 2,
+    "n_skills": 1,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_133",
+    "golden_id": "golden_146",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -216,12 +216,12 @@
     "place": "Munich",
     "language": "en",
     "source": "greenhouse",
-    "n_skills": 15,
+    "n_skills": 16,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_134",
+    "golden_id": "golden_147",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -233,12 +233,12 @@
     "place": "Munich",
     "language": "de",
     "source": "arbeitsagentur",
-    "n_skills": 4,
+    "n_skills": 5,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_135",
+    "golden_id": "golden_148",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -250,12 +250,12 @@
     "place": "Munich",
     "language": "de",
     "source": "arbeitsagentur",
-    "n_skills": 11,
+    "n_skills": 10,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_121",
+    "golden_id": "golden_134",
     "kind": "skill",
     "key": "ai-deployment",
     "reason": "disagreement",
@@ -270,22 +270,22 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_122",
+    "golden_id": "golden_135",
     "kind": "skill",
-    "key": "ai-deployment",
+    "key": "cybersecurity",
     "reason": "disagreement",
     "a": null,
     "b": {
-      "skill_id": "ai-deployment",
+      "skill_id": "cybersecurity",
       "requirement": "required",
-      "raw_text": "Du hast bereits LLM-basierte Agenten oder KI-Funktionen entwickelt und produktiv eingesetzt"
+      "raw_text": "sichere KI-Anwendungen"
     },
-    "excerpt": "...und einem starken Fokus auf Testautomatisierung Du hast bereits LLM-basierte Agenten oder KI-Funktionen entwickelt und produktiv eingesetzt, beispielsweise mit Tool Calling, Retrieval oder...",
+    "excerpt": "...Verständnis für Cloud-Architekturen, Monitoring und sichere KI-Anwendungen mit Du arbeitest strukturiert, eigenverantwortlich und...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_122",
+    "golden_id": "golden_135",
     "kind": "skill",
     "key": "evaluation",
     "reason": "disagreement",
@@ -300,22 +300,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_122",
-    "kind": "skill",
-    "key": "rag",
-    "reason": "disagreement",
-    "a": {
-      "skill_id": "rag",
-      "requirement": "required",
-      "raw_text": "Retrieval"
-    },
-    "b": null,
-    "excerpt": "...und produktiv eingesetzt, beispielsweise mit Tool Calling, Retrieval oder mehrstufigen Workflows Du bringst Erfahrung in der...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_124",
+    "golden_id": "golden_137",
     "kind": "skill",
     "key": "inference-optimization",
     "reason": "disagreement",
@@ -330,62 +315,67 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_125",
+    "golden_id": "golden_138",
     "kind": "skill",
     "key": "ai-ml",
     "reason": "disagreement",
-    "a": {
-      "skill_id": "ai-ml",
-      "requirement": "nice_to_have",
-      "raw_text": "Ausgeprägtes Interesse an KI-Themen"
-    },
+    "a": null,
     "b": {
       "skill_id": "ai-ml",
       "requirement": "required",
       "raw_text": "Du verstehst sowohl die klassische Backend-Welt als auch KI-Konzepte"
     },
-    "excerpt": "...wie ArgoCD oder Flux ### Persönliche Eigenschaften - Ausgeprägtes Interesse an KI-Themen und die Motivation, in diesem dynamischen Feld am Ball zu...",
+    "excerpt": "...Softwareentwicklungsteams - Brückenbauer-Mentalität: Du verstehst sowohl die klassische Backend-Welt als auch KI-Konzepte - Problemlösungsorientierte Denkweise mit der Fähigkeit,...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_126",
-    "kind": "attribute",
-    "key": "degree",
-    "reason": "disagreement",
-    "a": {
-      "degree": "bachelor",
-      "degree_requirement": "nice_to_have",
-      "degree_or_equivalent": true,
-      "degree_signal": "Ein abgeschlossenes Studium in Informatik, Data Science oder einem verwandten Bereich ist willkommen – ebenso eine vergleichbare Qualifikation durch Praxiserfahrung"
-    },
-    "b": {
-      "degree": "bachelor",
-      "degree_requirement": "required",
-      "degree_or_equivalent": true,
-      "degree_signal": "Ein abgeschlossenes Studium in Informatik, Data Science oder einem verwandten Bereich ist willkommen – ebenso eine vergleichbare Qualifikation durch Praxiserfahrung."
-    },
-    "excerpt": "...im AI Engineering oder Machine Learning gearbeitet. Ein abgeschlossenes Studium in Informatik, Data Science oder einem verwandten Bereich ist willkommen – ebenso eine vergleichbare Qualifikation durch Praxiserfahrung.✓ Du übernimmst gerne Verantwortung: Du arbeitest...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_126",
+    "golden_id": "golden_138",
     "kind": "skill",
-    "key": "ai-deployment",
+    "key": "backend-development",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "backend-development",
+      "requirement": "required",
+      "raw_text": "solide Backend-Entwicklungsskills"
+    },
+    "excerpt": "...intensiv in dieses spannende Feld einzuarbeiten. Wenn du solide Backend-Entwicklungsskills hast und die Zukunft der KI-Integration mitgestalten...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_138",
+    "kind": "skill",
+    "key": "software-engineering",
     "reason": "disagreement",
     "a": {
-      "skill_id": "ai-deployment",
+      "skill_id": "software-engineering",
       "requirement": "required",
-      "raw_text": "Deployment"
+      "raw_text": "Erfahrung in agilen Softwareentwicklungsteams"
     },
     "b": null,
-    "excerpt": "...Du denkst über den Prototyp hinaus: Themen wie Testing, Deployment, Skalierbarkeit, Sicherheit und zuverlässiger...",
+    "excerpt": "...in diesem dynamischen Feld am Ball zu bleiben - Erfahrung in agilen Softwareentwicklungsteams - Brückenbauer-Mentalität: Du verstehst sowohl die...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_128",
+    "golden_id": "golden_139",
+    "kind": "skill",
+    "key": "cybersecurity",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "cybersecurity",
+      "requirement": "required",
+      "raw_text": "Sicherheit"
+    },
+    "excerpt": "...hinaus: Themen wie Testing, Deployment, Skalierbarkeit, Sicherheit und zuverlässiger Produktivbetrieb gehören für dich zu...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_141",
     "kind": "skill",
     "key": "ai-deployment",
     "reason": "disagreement",
@@ -400,37 +390,22 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_128",
+    "golden_id": "golden_141",
     "kind": "skill",
     "key": "model-development",
     "reason": "disagreement",
     "a": null,
     "b": {
       "skill_id": "model-development",
-      "requirement": "required",
-      "raw_text": "large-scale policy training"
+      "requirement": "nice_to_have",
+      "raw_text": "training locomotion and locomanipulation policies"
     },
-    "excerpt": "...simulators (IsaacSim, MuJoCo or equivalent) for large-scale policy training - Strong understanding of control theory, motion...",
+    "excerpt": "...uncertain scenarios Beneficial Skills - Experience in training locomotion and locomanipulation policies - Experience in training and deploying on humanoid...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_131",
-    "kind": "skill",
-    "key": "machine-learning",
-    "reason": "disagreement",
-    "a": {
-      "skill_id": "machine-learning",
-      "requirement": "required",
-      "raw_text": "common ML libraries"
-    },
-    "b": null,
-    "excerpt": "...automated text processors. - Good knowledge of Python and common ML libraries (such as LangChain, pandas, pydantic, sklearn, PyTorch) as...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_131",
+    "golden_id": "golden_144",
     "kind": "skill",
     "key": "multi-agent-systems",
     "reason": "disagreement",
@@ -445,22 +420,22 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_135",
+    "golden_id": "golden_147",
     "kind": "skill",
-    "key": "ai-deployment",
+    "key": "software-architecture",
     "reason": "disagreement",
     "a": null,
     "b": {
-      "skill_id": "ai-deployment",
+      "skill_id": "software-architecture",
       "requirement": "required",
-      "raw_text": "Umsetzung produktiver KI-Lösungen"
+      "raw_text": "modernen Integrationsarchitekturen"
     },
-    "excerpt": "...Machine Learning oder AI- Engineering sowie in der Umsetzung produktiver KI-Lösungen. • Erfahrung mit Frameworks wie LangChain, LangGraph,...",
+    "excerpt": "...Fundierte Kenntnisse in REST APIs, OpenAPI, JSON und modernen Integrationsarchitekturen - Praxiserfahrung mit MS Azure, Microsoft 365, Entra ID...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_121",
+    "golden_id": "golden_134",
     "kind": "skill",
     "key": "conversational-ai",
     "reason": "uncertain",
@@ -472,21 +447,21 @@
     "b": {
       "skill_id": "conversational-ai",
       "requirement": "required",
-      "raw_text": "automatisierten\nGesprächssystemen (Chatbots/KI-Bots)"
+      "raw_text": "automatisierten Gesprächssystemen (Chatbots/KI-Bots)"
     },
     "excerpt": "...in der Entwicklung und Bereitstellung von KI-Agenten und automatisierten Gesprächssystemen (Chatbots/KI-Bots) Grundkenntnisse in DevOps-Methoden, insbesondere...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_121",
+    "golden_id": "golden_134",
     "kind": "skill",
     "key": "llms",
     "reason": "uncertain",
     "a": {
       "skill_id": "llms",
       "requirement": "required",
-      "raw_text": "Large Language Model (LLM)-Frameworks"
+      "raw_text": "Erfahrung mit Large Language Model (LLM)-Frameworks"
     },
     "b": {
       "skill_id": "llms",
@@ -498,7 +473,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_122",
+    "golden_id": "golden_135",
+    "kind": "skill",
+    "key": "access-control",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "access-control",
+      "requirement": "required",
+      "raw_text": "Berechtigungen"
+    },
+    "b": {
+      "skill_id": "access-control",
+      "requirement": "required",
+      "raw_text": "Berechtigungen"
+    },
+    "excerpt": "...Geschäftsdaten mit und verstehst Anforderungen an Berechtigungen, Datenschutz und Mandantentrennung Du arbeitest regelmäßig...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_135",
     "kind": "skill",
     "key": "data-privacy-and-security",
     "reason": "uncertain",
@@ -510,14 +504,33 @@
     "b": {
       "skill_id": "data-privacy-and-security",
       "requirement": "required",
-      "raw_text": "Berechtigungen, Datenschutz und Mandantentrennung"
+      "raw_text": "Datenschutz"
     },
     "excerpt": "...mit und verstehst Anforderungen an Berechtigungen, Datenschutz und Mandantentrennung Du arbeitest regelmäßig mit...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_122",
+    "golden_id": "golden_135",
+    "kind": "skill",
+    "key": "git",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "auf GitHub"
+    },
+    "b": {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "GitHub"
+    },
+    "excerpt": "...beispielsweise mit Playwright, sowie CI/CD-Prozesse auf GitHub und legst großen Wert auf die Korrektheit...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_135",
     "kind": "skill",
     "key": "llm-orchestration",
     "reason": "uncertain",
@@ -536,26 +549,140 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_123",
+    "golden_id": "golden_135",
     "kind": "skill",
-    "key": "agents",
+    "key": "rag",
     "reason": "uncertain",
     "a": {
-      "skill_id": "agents",
+      "skill_id": "rag",
       "requirement": "required",
-      "raw_text": "Agentic AI"
+      "raw_text": "Retrieval"
     },
     "b": {
-      "skill_id": "agents",
+      "skill_id": "rag",
       "requirement": "required",
-      "raw_text": "Agentic AI"
+      "raw_text": "Retrieval"
     },
-    "excerpt": "...(Azure, AWS, GCP) - Praktische Erfahrung mit LLMs, RAG, Agentic AI, Vektordatenbanken und Orchestrierungsframeworks...",
+    "excerpt": "...und produktiv eingesetzt, beispielsweise mit Tool Calling, Retrieval oder mehrstufigen Workflows Du bringst Erfahrung in der...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_124",
+    "golden_id": "golden_136",
+    "kind": "skill",
+    "key": "aws",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "AWS"
+    },
+    "b": {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "AWS"
+    },
+    "excerpt": "...in Python, Software-Architektur, Cloud-Plattformen (Azure, AWS, GCP) - Praktische Erfahrung mit LLMs, RAG, Agentic AI,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_136",
+    "kind": "skill",
+    "key": "azure",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Azure"
+    },
+    "b": {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Azure"
+    },
+    "excerpt": "...in Python, Software-Architektur, Cloud-Plattformen (Azure, AWS, GCP) - Praktische Erfahrung mit LLMs, RAG, Agentic...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_136",
+    "kind": "skill",
+    "key": "crewai",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "crewai",
+      "requirement": "required",
+      "raw_text": "CrewAI"
+    },
+    "b": {
+      "skill_id": "crewai",
+      "requirement": "required",
+      "raw_text": "CrewAI"
+    },
+    "excerpt": "...und Orchestrierungsframeworks (LangGraph, CrewAI, LlamaIndex) - MLOps/LLMOps, CI/CD, Kubernetes, Git und...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_136",
+    "kind": "skill",
+    "key": "gcp",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "gcp",
+      "requirement": "required",
+      "raw_text": "GCP"
+    },
+    "b": {
+      "skill_id": "gcp",
+      "requirement": "required",
+      "raw_text": "GCP"
+    },
+    "excerpt": "...Software-Architektur, Cloud-Plattformen (Azure, AWS, GCP) - Praktische Erfahrung mit LLMs, RAG, Agentic AI,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_136",
+    "kind": "skill",
+    "key": "langgraph",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "langgraph",
+      "requirement": "required",
+      "raw_text": "LangGraph"
+    },
+    "b": {
+      "skill_id": "langgraph",
+      "requirement": "required",
+      "raw_text": "LangGraph"
+    },
+    "excerpt": "...AI, Vektordatenbanken und Orchestrierungsframeworks (LangGraph, CrewAI, LlamaIndex) - MLOps/LLMOps, CI/CD, Kubernetes,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_136",
+    "kind": "skill",
+    "key": "llamaindex",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "llamaindex",
+      "requirement": "required",
+      "raw_text": "LlamaIndex"
+    },
+    "b": {
+      "skill_id": "llamaindex",
+      "requirement": "required",
+      "raw_text": "LlamaIndex"
+    },
+    "excerpt": "...und Orchestrierungsframeworks (LangGraph, CrewAI, LlamaIndex) - MLOps/LLMOps, CI/CD, Kubernetes, Git und...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_137",
     "kind": "attribute",
     "key": "degree",
     "reason": "uncertain",
@@ -563,20 +690,20 @@
       "degree": "phd",
       "degree_requirement": "nice_to_have",
       "degree_or_equivalent": false,
-      "degree_signal": "Erfolgreich abgeschlossenes Studium der Informatik, Künstlichen Intelligenz, Data Science, Robotik, Mathematik, Physik oder einer vergleichbaren Fachrichtung, Promotion erwünscht"
+      "degree_signal": "Promotion erwünscht"
     },
     "b": {
       "degree": "phd",
       "degree_requirement": "nice_to_have",
       "degree_or_equivalent": false,
-      "degree_signal": "Erfolgreich abgeschlossenes Studium der Informatik, Künstlichen Intelligenz, Data Science, Robotik, Mathematik, Physik oder einer vergleichbaren Fachrichtung, Promotion erwünscht"
+      "degree_signal": "Promotion erwünscht"
     },
-    "excerpt": "...am Standort Unterschleißheim möglich • IHR PROFIL • Erfolgreich abgeschlossenes Studium der Informatik, Künstlichen Intelligenz, Data Science, Robotik, Mathematik, Physik oder einer vergleichbaren Fachrichtung, Promotion erwünscht • Mehrjährige Erfahrung in Machine Learning und Deep...",
+    "excerpt": "...Mathematik, Physik oder einer vergleichbaren Fachrichtung, Promotion erwünscht • Mehrjährige Erfahrung in Machine Learning und Deep...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_124",
+    "golden_id": "golden_137",
     "kind": "attribute",
     "key": "seniority",
     "reason": "uncertain",
@@ -595,7 +722,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_124",
+    "golden_id": "golden_137",
     "kind": "skill",
     "key": "ai-deployment",
     "reason": "uncertain",
@@ -607,33 +734,33 @@
     "b": {
       "skill_id": "ai-deployment",
       "requirement": "required",
-      "raw_text": "Deployment"
+      "raw_text": "Kenntnisse der MLOps und Deployment"
     },
     "excerpt": "...oder vergleichbaren Technologien • Kenntnisse der MLOps und Deployment, z. B. Docker, Kubernetes, MLflow und CI/CD • Azure oder...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_124",
+    "golden_id": "golden_137",
     "kind": "skill",
-    "key": "deep-learning",
+    "key": "transformers",
     "reason": "uncertain",
     "a": {
-      "skill_id": "deep-learning",
+      "skill_id": "transformers",
       "requirement": "required",
-      "raw_text": "Deep Learning, idealerweise in produktiven Projekten"
+      "raw_text": "Vision Transformer"
     },
     "b": {
-      "skill_id": "deep-learning",
+      "skill_id": "transformers",
       "requirement": "required",
-      "raw_text": "Deep Learning"
+      "raw_text": "Vision Transformer"
     },
-    "excerpt": "...erwünscht • Mehrjährige Erfahrung in Machine Learning und Deep Learning, idealerweise in produktiven Projekten • Fundierte Kenntnisse in Computer Vision, z. B. Object...",
+    "excerpt": "...Vision, z. B. Object Detection, Segmentation, Tracking, Vision Transformer und multimodale Modelle • Know how der Generative AI, z....",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_125",
+    "golden_id": "golden_138",
     "kind": "skill",
     "key": "apis",
     "reason": "uncertain",
@@ -652,64 +779,102 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_125",
-    "kind": "skill",
-    "key": "backend-development",
-    "reason": "uncertain",
-    "a": {
-      "skill_id": "backend-development",
-      "requirement": "required",
-      "raw_text": "solide Backend-Entwicklungsskills"
-    },
-    "b": {
-      "skill_id": "backend-development",
-      "requirement": "required",
-      "raw_text": "solide Backend-Entwicklungsskills"
-    },
-    "excerpt": "...intensiv in dieses spannende Feld einzuarbeiten. Wenn du solide Backend-Entwicklungsskills hast und die Zukunft der KI-Integration mitgestalten...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_125",
+    "golden_id": "golden_138",
     "kind": "skill",
     "key": "git",
     "reason": "uncertain",
     "a": {
       "skill_id": "git",
       "requirement": "required",
-      "raw_text": "GitLab, GitHub"
+      "raw_text": "GitHub"
     },
     "b": {
       "skill_id": "git",
       "requirement": "required",
       "raw_text": "GitHub"
     },
-    "excerpt": "...(AWS, Azure, GCP) - Praxiserfahrung mit CI/CD-Tools (GitLab, GitHub, Jenkins, AWS CodeBuild/CodePipeline, Azure DevOps) **KI...",
+    "excerpt": "...Azure, GCP) - Praxiserfahrung mit CI/CD-Tools (GitLab, GitHub, Jenkins, AWS CodeBuild/CodePipeline, Azure DevOps) **KI...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_125",
+    "golden_id": "golden_138",
     "kind": "skill",
     "key": "gitlab-ci",
     "reason": "uncertain",
     "a": {
       "skill_id": "gitlab-ci",
       "requirement": "required",
-      "raw_text": "CI/CD-Tools (GitLab"
+      "raw_text": "GitLab"
     },
     "b": {
       "skill_id": "gitlab-ci",
       "requirement": "required",
-      "raw_text": "CI/CD-Tools (GitLab"
+      "raw_text": "GitLab"
     },
-    "excerpt": "...Cloud-Plattformen (AWS, Azure, GCP) - Praxiserfahrung mit CI/CD-Tools (GitLab, GitHub, Jenkins, AWS CodeBuild/CodePipeline, Azure...",
+    "excerpt": "...(AWS, Azure, GCP) - Praxiserfahrung mit CI/CD-Tools (GitLab, GitHub, Jenkins, AWS CodeBuild/CodePipeline, Azure...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_125",
+    "golden_id": "golden_138",
+    "kind": "skill",
+    "key": "java",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "java",
+      "requirement": "required",
+      "raw_text": "Fundierte Erfahrung in Java/Kotlin"
+    },
+    "b": {
+      "skill_id": "java",
+      "requirement": "required",
+      "raw_text": "Java"
+    },
+    "excerpt": "...Technisches Know-how **Backend-Entwicklung:** - Fundierte Erfahrung in Java/Kotlin und Python - Umfassende Erfahrung mit Spring (Boot) oder...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_138",
+    "kind": "skill",
+    "key": "kotlin",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "kotlin",
+      "requirement": "required",
+      "raw_text": "Fundierte Erfahrung in Java/Kotlin"
+    },
+    "b": {
+      "skill_id": "kotlin",
+      "requirement": "required",
+      "raw_text": "Kotlin"
+    },
+    "excerpt": "...Technisches Know-how **Backend-Entwicklung:** - Fundierte Erfahrung in Java/Kotlin und Python - Umfassende Erfahrung mit Spring (Boot) oder...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_138",
+    "kind": "skill",
+    "key": "kubernetes",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes/OpenShift"
+    },
+    "b": {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes"
+    },
+    "excerpt": "...(Docker, Podman) - Kenntnisse in Kubernetes/OpenShift und Cloud-Plattformen (AWS, Azure, GCP) - Praxiserfahrung...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_138",
     "kind": "skill",
     "key": "llm-orchestration",
     "reason": "uncertain",
@@ -721,33 +886,73 @@
     "b": {
       "skill_id": "llm-orchestration",
       "requirement": "nice_to_have",
-      "raw_text": "Idealerweise erste Erfahrungen mit Agent-Frameworks oder Orchestrierung"
+      "raw_text": "Orchestrierung"
     },
     "excerpt": "...einzuarbeiten - Idealerweise erste Erfahrungen mit Agent-Frameworks oder Orchestrierung - Optional: Kenntnisse in Model Fine-tuning, Prompt...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_126",
-    "kind": "attribute",
-    "key": "seniority",
+    "golden_id": "golden_138",
+    "kind": "skill",
+    "key": "openshift",
     "reason": "uncertain",
     "a": {
-      "seniority": "mid",
-      "seniority_basis": "inferred",
-      "seniority_signal": "Idealerweise hast du bereits 3–5 Jahre in der Softwareentwicklung, im AI Engineering oder Machine Learning gearbeitet"
+      "skill_id": "openshift",
+      "requirement": "required",
+      "raw_text": "Kubernetes/OpenShift"
     },
     "b": {
-      "seniority": "mid",
-      "seniority_basis": "inferred",
-      "seniority_signal": "Idealerweise hast du bereits 3–5 Jahre in der Softwareentwicklung, im AI Engineering oder Machine Learning gearbeitet."
+      "skill_id": "openshift",
+      "requirement": "required",
+      "raw_text": "OpenShift"
     },
-    "excerpt": "...Softwareentwicklung.✓ Du bringst praktische Erfahrung mit: Idealerweise hast du bereits 3–5 Jahre in der Softwareentwicklung, im AI Engineering oder Machine Learning gearbeitet. Ein abgeschlossenes Studium in Informatik, Data Science...",
+    "excerpt": "...(Docker, Podman) - Kenntnisse in Kubernetes/OpenShift und Cloud-Plattformen (AWS, Azure, GCP) - Praxiserfahrung...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_126",
+    "golden_id": "golden_139",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "uncertain",
+    "a": {
+      "degree": "bachelor",
+      "degree_requirement": "nice_to_have",
+      "degree_or_equivalent": true,
+      "degree_signal": "Ein abgeschlossenes Studium in Informatik, Data Science oder einem verwandten Bereich ist willkommen – ebenso eine vergleichbare Qualifikation durch Praxiserfahrung"
+    },
+    "b": {
+      "degree": "bachelor",
+      "degree_requirement": "nice_to_have",
+      "degree_or_equivalent": true,
+      "degree_signal": "Ein abgeschlossenes Studium in Informatik, Data Science oder einem verwandten Bereich ist willkommen – ebenso eine vergleichbare Qualifikation durch Praxiserfahrung."
+    },
+    "excerpt": "...im AI Engineering oder Machine Learning gearbeitet. Ein abgeschlossenes Studium in Informatik, Data Science oder einem verwandten Bereich ist willkommen – ebenso eine vergleichbare Qualifikation durch Praxiserfahrung.✓ Du übernimmst gerne Verantwortung: Du arbeitest...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_139",
+    "kind": "skill",
+    "key": "agents",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "AI Agents sind dir vertraut"
+    },
+    "b": {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "AI Agents"
+    },
+    "excerpt": "...von AI-Modellen. Konzepte wie Prompt Engineering, RAG oder AI Agents sind dir vertraut.✓ Du verstehst Machine Learning: Du kennst grundlegende...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_139",
     "kind": "skill",
     "key": "model-development",
     "reason": "uncertain",
@@ -766,26 +971,64 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_126",
+    "golden_id": "golden_139",
+    "kind": "skill",
+    "key": "prompt-engineering",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "Prompt Engineering"
+    },
+    "b": {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "Prompt Engineering"
+    },
+    "excerpt": "...AI und der Integration von AI-Modellen. Konzepte wie Prompt Engineering, RAG oder AI Agents sind dir vertraut.✓ Du verstehst...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_139",
+    "kind": "skill",
+    "key": "rag",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG oder AI Agents"
+    },
+    "b": {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG"
+    },
+    "excerpt": "...von AI-Modellen. Konzepte wie Prompt Engineering, RAG oder AI Agents sind dir vertraut.✓ Du verstehst Machine Learning: Du...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_139",
     "kind": "skill",
     "key": "software-engineering",
     "reason": "uncertain",
     "a": {
       "skill_id": "software-engineering",
       "requirement": "required",
-      "raw_text": "der Entwicklung professioneller Softwarelösungen"
+      "raw_text": "Entwicklung professioneller Softwarelösungen"
     },
     "b": {
       "skill_id": "software-engineering",
       "requirement": "required",
       "raw_text": "Entwicklung professioneller Softwarelösungen"
     },
-    "excerpt": "...Erfahrung mit APIs, Datenbanken, Softwarearchitektur und der Entwicklung professioneller Softwarelösungen.✓ Du kennst dich mit moderner AI aus: Du hast praktische...",
+    "excerpt": "...mit APIs, Datenbanken, Softwarearchitektur und der Entwicklung professioneller Softwarelösungen.✓ Du kennst dich mit moderner AI aus: Du hast praktische...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_127",
+    "golden_id": "golden_140",
     "kind": "attribute",
     "key": "seniority",
     "reason": "uncertain",
@@ -797,14 +1040,14 @@
     "b": {
       "seniority": "mid",
       "seniority_basis": "inferred",
-      "seniority_signal": "Several years of professional experience"
+      "seniority_signal": "Several years of professional experience in Automotive Cybersecurity."
     },
     "excerpt": "...in Computer Science or a comparable IT-related field. - Several years of professional experience in Automotive Cybersecurity. - Strong expertise in...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_127",
+    "golden_id": "golden_140",
     "kind": "skill",
     "key": "agents",
     "reason": "uncertain",
@@ -823,83 +1066,140 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_127",
+    "golden_id": "golden_140",
+    "kind": "skill",
+    "key": "ansible",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "ansible",
+      "requirement": "required",
+      "raw_text": "Terraform, Ansible, GitHub Actions"
+    },
+    "b": {
+      "skill_id": "ansible",
+      "requirement": "required",
+      "raw_text": "Ansible, GitHub Actions/GitLab CI"
+    },
+    "excerpt": "...as well as CI/CD and Infrastructure-as-Code tools (e.g., Terraform, Ansible, GitHub Actions/GitLab CI). - Business-fluent German and English language...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_140",
     "kind": "skill",
     "key": "cybersecurity",
     "reason": "uncertain",
     "a": {
       "skill_id": "cybersecurity",
       "requirement": "required",
-      "raw_text": "experience in Automotive Cybersecurity"
+      "raw_text": "professional experience in Automotive Cybersecurity"
     },
     "b": {
       "skill_id": "cybersecurity",
       "requirement": "required",
       "raw_text": "Automotive Cybersecurity"
     },
-    "excerpt": "...IT-related field. - Several years of professional experience in Automotive Cybersecurity. - Strong expertise in building, operating, and...",
+    "excerpt": "...or a comparable IT-related field. - Several years of professional experience in Automotive Cybersecurity. - Strong expertise in building, operating, and...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_128",
+    "golden_id": "golden_140",
     "kind": "skill",
-    "key": "cpp",
+    "key": "docker",
     "reason": "uncertain",
     "a": {
-      "skill_id": "cpp",
+      "skill_id": "docker",
       "requirement": "required",
-      "raw_text": "Python and/or C++"
+      "raw_text": "Docker/Kubernetes"
     },
     "b": {
-      "skill_id": "cpp",
+      "skill_id": "docker",
       "requirement": "required",
-      "raw_text": "C++"
+      "raw_text": "Docker"
     },
-    "excerpt": "...common RL algorithms (PPO, SAC, ...) - Proficiency in Python and/or C++, PyTorch, ONNX, and common RL frameworks (e.g, Stable...",
+    "excerpt": "...containerization and orchestration technologies (Docker/Kubernetes), as well as CI/CD and Infrastructure-as-Code tools (e.g.,...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_129",
+    "golden_id": "golden_140",
+    "kind": "skill",
+    "key": "kubernetes",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Docker/Kubernetes"
+    },
+    "b": {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes"
+    },
+    "excerpt": "...containerization and orchestration technologies (Docker/Kubernetes), as well as CI/CD and Infrastructure-as-Code tools (e.g.,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_140",
+    "kind": "skill",
+    "key": "terraform",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "terraform",
+      "requirement": "required",
+      "raw_text": "Terraform, Ansible, GitHub Actions"
+    },
+    "b": {
+      "skill_id": "terraform",
+      "requirement": "required",
+      "raw_text": "Terraform, Ansible, GitHub Actions/GitLab CI"
+    },
+    "excerpt": "...as well as CI/CD and Infrastructure-as-Code tools (e.g., Terraform, Ansible, GitHub Actions/GitLab CI). - Business-fluent German and English language...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_142",
     "kind": "skill",
     "key": "agents",
     "reason": "uncertain",
     "a": {
       "skill_id": "agents",
       "requirement": "required",
-      "raw_text": "Interesse an AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz"
+      "raw_text": "agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz"
     },
     "b": {
       "skill_id": "agents",
       "requirement": "required",
-      "raw_text": "Ausgeprägtes Interesse an AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering"
+      "raw_text": "agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering"
     },
-    "excerpt": "...mit C#/.NET, PowerShell oder TypeScript - Ausgeprägtes Interesse an AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering - Ganzheitliches Denkvermögen,...",
+    "excerpt": "...TypeScript - Ausgeprägtes Interesse an AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering - Ganzheitliches Denkvermögen,...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_129",
+    "golden_id": "golden_142",
     "kind": "skill",
     "key": "ai-developer-tooling",
     "reason": "uncertain",
     "a": {
       "skill_id": "ai-developer-tooling",
       "requirement": "required",
-      "raw_text": "Ausgeprägtes Interesse an AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering"
+      "raw_text": "Interesse an AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering"
     },
     "b": {
       "skill_id": "ai-developer-tooling",
       "requirement": "required",
-      "raw_text": "Ausgeprägtes Interesse an AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering"
+      "raw_text": "AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering"
     },
-    "excerpt": "...beispielsweise mit C#/.NET, PowerShell oder TypeScript - Ausgeprägtes Interesse an AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering - Ganzheitliches Denkvermögen, hohe Eigenverantwortung und...",
+    "excerpt": "...mit C#/.NET, PowerShell oder TypeScript - Ausgeprägtes Interesse an AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering - Ganzheitliches Denkvermögen, hohe Eigenverantwortung und...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_129",
+    "golden_id": "golden_142",
     "kind": "skill",
     "key": "distributed-systems",
     "reason": "uncertain",
@@ -918,7 +1218,140 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_131",
+    "golden_id": "golden_142",
+    "kind": "skill",
+    "key": "software-engineering",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "in Softwareentwicklung"
+    },
+    "b": {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Softwareentwicklung"
+    },
+    "excerpt": "...in DevSecOps, CI/CD, Infrastructure as Code und Container, in Softwareentwicklung oder Testautomatisierung für verteilte Softwarelösungen...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_143",
+    "kind": "skill",
+    "key": "access-control",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "access-control",
+      "requirement": "required",
+      "raw_text": "IAM"
+    },
+    "b": {
+      "skill_id": "access-control",
+      "requirement": "required",
+      "raw_text": "IAM"
+    },
+    "excerpt": "...its ML/data ecosystem (e.g. SageMaker, S3, EKS, Lambda, IAM) - solid background in cloud platforms, MLOps, and model...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_143",
+    "kind": "skill",
+    "key": "ai-ml",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "applied AI"
+    },
+    "b": {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "applied AI"
+    },
+    "excerpt": "...years of experience in data science, machine learning, or applied AI - strong hands-on skills in Python, SQL, and common ML...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_143",
+    "kind": "skill",
+    "key": "aws-s3",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "aws-s3",
+      "requirement": "required",
+      "raw_text": "S3"
+    },
+    "b": {
+      "skill_id": "aws-s3",
+      "requirement": "required",
+      "raw_text": "S3"
+    },
+    "excerpt": "...ML solutions using AWS services (e.g. SageMaker, S3, Lambda, EMR, etc.) - ensure model quality, monitoring,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_143",
+    "kind": "skill",
+    "key": "data-science",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "data-science",
+      "requirement": "required",
+      "raw_text": "experience in data science"
+    },
+    "b": {
+      "skill_id": "data-science",
+      "requirement": "required",
+      "raw_text": "data science"
+    },
+    "excerpt": "...senior technical advisor YOU COME WITH - 10+ years of experience in data science, machine learning, or applied AI - strong hands-on skills...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_143",
+    "kind": "skill",
+    "key": "machine-learning",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "data science, machine learning, or applied AI"
+    },
+    "b": {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "machine learning"
+    },
+    "excerpt": "...advisor YOU COME WITH - 10+ years of experience in data science, machine learning, or applied AI - strong hands-on skills in Python, SQL, and common ML...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_143",
+    "kind": "skill",
+    "key": "sagemaker",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "sagemaker",
+      "requirement": "required",
+      "raw_text": "SageMaker"
+    },
+    "b": {
+      "skill_id": "sagemaker",
+      "requirement": "required",
+      "raw_text": "SageMaker"
+    },
+    "excerpt": "...production-ready ML solutions using AWS services (e.g. SageMaker, S3, Lambda, EMR, etc.) - ensure model quality,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_144",
     "kind": "skill",
     "key": "agents",
     "reason": "uncertain",
@@ -930,14 +1363,14 @@
     "b": {
       "skill_id": "agents",
       "requirement": "nice_to_have",
-      "raw_text": "building agentic systems"
+      "raw_text": "agentic systems"
     },
     "excerpt": "...technical Proof of Concept projects - Hands-on experience building agentic systems using LLM orchestration, RAG, function calling, and prompt...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_131",
+    "golden_id": "golden_144",
     "kind": "skill",
     "key": "llm-orchestration",
     "reason": "uncertain",
@@ -956,7 +1389,45 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_132",
+    "golden_id": "golden_144",
+    "kind": "skill",
+    "key": "prompt-engineering",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "prompt/context engineering"
+    },
+    "b": {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "prompt/context engineering"
+    },
+    "excerpt": "...of generative AI techniques like RAG, few shot learning, prompt/context engineering, multi-agent orchestration, multimodal understanding, or...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_144",
+    "kind": "skill",
+    "key": "rag",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "generative AI techniques like RAG"
+    },
+    "b": {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG"
+    },
+    "excerpt": "...of business and technology. - Understanding of generative AI techniques like RAG, few shot learning, prompt/context engineering,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_145",
     "kind": "attribute",
     "key": "degree",
     "reason": "uncertain",
@@ -977,26 +1448,45 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_132",
+    "golden_id": "golden_145",
     "kind": "attribute",
     "key": "seniority",
     "reason": "uncertain",
     "a": {
       "seniority": "mid",
       "seniority_basis": "inferred",
-      "seniority_signal": "Several years of professional experience"
+      "seniority_signal": "Several years of professional experience in Automotive Cybersecurity"
     },
     "b": {
       "seniority": "mid",
       "seniority_basis": "inferred",
       "seniority_signal": "Several years of professional experience"
     },
-    "excerpt": "...Electrical Engineering, or a comparable qualification. - Several years of professional experience in Automotive Cybersecurity. - Strong expertise in...",
+    "excerpt": "...Electrical Engineering, or a comparable qualification. - Several years of professional experience in Automotive Cybersecurity. - Strong expertise in building, operating, and...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_133",
+    "golden_id": "golden_145",
+    "kind": "skill",
+    "key": "cybersecurity",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "cybersecurity",
+      "requirement": "required",
+      "raw_text": "professional experience in Automotive Cybersecurity"
+    },
+    "b": {
+      "skill_id": "cybersecurity",
+      "requirement": "required",
+      "raw_text": "Automotive Cybersecurity"
+    },
+    "excerpt": "...or a comparable qualification. - Several years of professional experience in Automotive Cybersecurity. - Strong expertise in building, operating, and...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_146",
     "kind": "attribute",
     "key": "degree",
     "reason": "uncertain",
@@ -1017,7 +1507,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_133",
+    "golden_id": "golden_146",
     "kind": "skill",
     "key": "ai-deployment",
     "reason": "uncertain",
@@ -1036,45 +1526,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_133",
+    "golden_id": "golden_146",
     "kind": "skill",
     "key": "llms",
     "reason": "uncertain",
     "a": {
       "skill_id": "llms",
       "requirement": "required",
-      "raw_text": "GenAI applications"
+      "raw_text": "Experience building GenAI applications"
     },
     "b": {
       "skill_id": "llms",
       "requirement": "required",
-      "raw_text": "Experience building GenAI applications"
+      "raw_text": "GenAI applications"
     },
-    "excerpt": "...Own production rollouts of consumer and internally facing GenAI applications - Serve as a trusted technical advisor to customers...",
+    "excerpt": "...roadmap What we look for: - Min 4 years' experience - Experience building GenAI applications, including RAG, multi-agent systems, Text2SQL,...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_133",
-    "kind": "skill",
-    "key": "machine-learning",
-    "reason": "uncertain",
-    "a": {
-      "skill_id": "machine-learning",
-      "requirement": "required",
-      "raw_text": "machine learning and data science tools"
-    },
-    "b": {
-      "skill_id": "machine-learning",
-      "requirement": "required",
-      "raw_text": "common machine learning and data science tools"
-    },
-    "excerpt": "...industry data science experience, leveraging common machine learning and data science tools, i.e. pandas, scikit-learn, PyTorch, etc. - Experience...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_134",
+    "golden_id": "golden_147",
     "kind": "attribute",
     "key": "degree",
     "reason": "uncertain",
@@ -1095,7 +1566,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_134",
+    "golden_id": "golden_147",
     "kind": "skill",
     "key": "ai-ml",
     "reason": "uncertain",
@@ -1114,7 +1585,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_134",
+    "golden_id": "golden_147",
     "kind": "skill",
     "key": "backend-development",
     "reason": "uncertain",
@@ -1133,7 +1604,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_134",
+    "golden_id": "golden_147",
     "kind": "skill",
     "key": "cloud",
     "reason": "uncertain",
@@ -1152,7 +1623,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_134",
+    "golden_id": "golden_147",
     "kind": "skill",
     "key": "workflow-automation",
     "reason": "uncertain",
@@ -1171,7 +1642,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_135",
+    "golden_id": "golden_148",
     "kind": "attribute",
     "key": "seniority",
     "reason": "uncertain",
@@ -1190,7 +1661,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_135",
+    "golden_id": "golden_148",
     "kind": "skill",
     "key": "agents",
     "reason": "uncertain",
@@ -1209,7 +1680,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_121",
+    "golden_id": "golden_148",
+    "kind": "skill",
+    "key": "mcp",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "mcp",
+      "requirement": "nice_to_have",
+      "raw_text": "MCP"
+    },
+    "b": {
+      "skill_id": "mcp",
+      "requirement": "nice_to_have",
+      "raw_text": "idealerweise Erfahrung mit Low-Code-/No-Code-Plattformen sowie Grundlagen in KI-Governance (EU AI Act, DSGVO) und MCP"
+    },
+    "excerpt": "...sowie Grundlagen in KI-Governance (EU AI Act, DSGVO) und MCP. • Analytische Denkweise, hohe Eigenverantwortung und...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_134",
     "kind": "attribute",
     "key": "degree",
     "reason": "spot-check",
@@ -1230,7 +1720,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_121",
+    "golden_id": "golden_134",
     "kind": "skill",
     "key": "agents",
     "reason": "spot-check",
@@ -1249,7 +1739,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_121",
+    "golden_id": "golden_134",
     "kind": "skill",
     "key": "langchain",
     "reason": "spot-check",
@@ -1268,7 +1758,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_122",
+    "golden_id": "golden_135",
     "kind": "attribute",
     "key": "german",
     "reason": "spot-check",
@@ -1287,26 +1777,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_122",
+    "golden_id": "golden_135",
     "kind": "attribute",
     "key": "seniority",
     "reason": "spot-check",
     "a": {
       "seniority": "mid",
       "seniority_basis": "inferred",
-      "seniority_signal": "mindestens 4 Jahre Erfahrung"
+      "seniority_signal": "mindestens 4\nJahre Erfahrung"
     },
     "b": {
       "seniority": "mid",
       "seniority_basis": "inferred",
-      "seniority_signal": "mindestens 4 Jahre Erfahrung"
+      "seniority_signal": "mindestens 4\nJahre Erfahrung"
     },
     "excerpt": "...aktiv ins Team ein Profil Du hast mindestens 4 Jahre Erfahrung in der professionellen Softwareentwicklung, idealerweise...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_122",
+    "golden_id": "golden_135",
     "kind": "skill",
     "key": "ai-developer-tooling",
     "reason": "spot-check",
@@ -1325,7 +1815,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_122",
+    "golden_id": "golden_135",
     "kind": "skill",
     "key": "claude-code",
     "reason": "spot-check",
@@ -1344,7 +1834,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_122",
+    "golden_id": "golden_135",
     "kind": "skill",
     "key": "cursor",
     "reason": "spot-check",
@@ -1363,7 +1853,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_122",
+    "golden_id": "golden_135",
     "kind": "skill",
     "key": "data-modeling",
     "reason": "spot-check",
@@ -1382,7 +1872,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_122",
+    "golden_id": "golden_135",
     "kind": "skill",
     "key": "forecasting",
     "reason": "spot-check",
@@ -1401,26 +1891,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_122",
+    "golden_id": "golden_135",
     "kind": "skill",
-    "key": "langgraph",
+    "key": "llms",
     "reason": "spot-check",
     "a": {
-      "skill_id": "langgraph",
+      "skill_id": "llms",
       "requirement": "required",
-      "raw_text": "LangGraph"
+      "raw_text": "LLM-basierte Agenten"
     },
     "b": {
-      "skill_id": "langgraph",
+      "skill_id": "llms",
       "requirement": "required",
-      "raw_text": "LangGraph"
+      "raw_text": "LLM-basierte Agenten"
     },
-    "excerpt": "...Agenten-Frameworks und Schnittstellen wie MCP, A2A oder LangGraph aus und bringst Verständnis für...",
+    "excerpt": "...Fokus auf Testautomatisierung Du hast bereits LLM-basierte Agenten oder KI-Funktionen entwickelt und produktiv...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_122",
+    "golden_id": "golden_135",
     "kind": "skill",
     "key": "software-engineering",
     "reason": "spot-check",
@@ -1439,7 +1929,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_123",
+    "golden_id": "golden_136",
     "kind": "attribute",
     "key": "german",
     "reason": "spot-check",
@@ -1458,121 +1948,102 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_123",
+    "golden_id": "golden_136",
     "kind": "attribute",
     "key": "seniority",
     "reason": "spot-check",
     "a": {
       "seniority": "senior",
       "seniority_basis": "stated",
-      "seniority_signal": "Senior AI Engineer"
+      "seniority_signal": "Senior AI Engineer / AI Architect"
     },
     "b": {
       "seniority": "senior",
       "seniority_basis": "stated",
-      "seniority_signal": "Senior AI Engineer"
+      "seniority_signal": "Senior AI Engineer / AI Architect"
     },
-    "excerpt": "Senior AI Engineer / AI Architect (all gender) **Wir sind die Gestalter von...",
+    "excerpt": "Senior AI Engineer / AI Architect (all gender) **Wir sind die Gestalter von heute für die...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_123",
+    "golden_id": "golden_136",
     "kind": "skill",
-    "key": "ai-ml",
+    "key": "agents",
     "reason": "spot-check",
     "a": {
-      "skill_id": "ai-ml",
+      "skill_id": "agents",
       "requirement": "required",
-      "raw_text": "AI/ML"
+      "raw_text": "Agentic AI"
     },
     "b": {
-      "skill_id": "ai-ml",
+      "skill_id": "agents",
       "requirement": "required",
-      "raw_text": "AI/ML"
+      "raw_text": "Agentic AI"
     },
-    "excerpt": "...**Erfahrung**: - Relevante Praxis in Softwareentwicklung, AI/ML oder Generative AI - Fundierte Kenntnisse in Python,...",
+    "excerpt": "...(Azure, AWS, GCP) - Praktische Erfahrung mit LLMs, RAG, Agentic AI, Vektordatenbanken und Orchestrierungsframeworks...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_123",
+    "golden_id": "golden_136",
     "kind": "skill",
-    "key": "llm-orchestration",
+    "key": "rag",
     "reason": "spot-check",
     "a": {
-      "skill_id": "llm-orchestration",
+      "skill_id": "rag",
       "requirement": "required",
-      "raw_text": "Orchestrierungsframeworks"
+      "raw_text": "RAG, Agentic AI"
     },
     "b": {
-      "skill_id": "llm-orchestration",
+      "skill_id": "rag",
       "requirement": "required",
-      "raw_text": "Orchestrierungsframeworks"
+      "raw_text": "RAG, Agentic AI"
     },
-    "excerpt": "...Erfahrung mit LLMs, RAG, Agentic AI, Vektordatenbanken und Orchestrierungsframeworks (LangGraph, CrewAI, LlamaIndex) - MLOps/LLMOps, CI/CD,...",
+    "excerpt": "...(Azure, AWS, GCP) - Praktische Erfahrung mit LLMs, RAG, Agentic AI, Vektordatenbanken und Orchestrierungsframeworks...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_123",
+    "golden_id": "golden_136",
     "kind": "skill",
-    "key": "python",
+    "key": "vector-databases",
     "reason": "spot-check",
     "a": {
-      "skill_id": "python",
+      "skill_id": "vector-databases",
       "requirement": "required",
-      "raw_text": "Python"
+      "raw_text": "Vektordatenbanken"
     },
     "b": {
-      "skill_id": "python",
+      "skill_id": "vector-databases",
       "requirement": "required",
-      "raw_text": "Python"
+      "raw_text": "Vektordatenbanken"
     },
-    "excerpt": "...AI/ML oder Generative AI - Fundierte Kenntnisse in Python, Software-Architektur, Cloud-Plattformen (Azure, AWS,...",
+    "excerpt": "...GCP) - Praktische Erfahrung mit LLMs, RAG, Agentic AI, Vektordatenbanken und Orchestrierungsframeworks (LangGraph, CrewAI,...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_123",
+    "golden_id": "golden_137",
     "kind": "skill",
-    "key": "software-engineering",
+    "key": "azure",
     "reason": "spot-check",
     "a": {
-      "skill_id": "software-engineering",
+      "skill_id": "azure",
       "requirement": "required",
-      "raw_text": "Praxis in Softwareentwicklung"
+      "raw_text": "Azure oder AWS"
     },
     "b": {
-      "skill_id": "software-engineering",
+      "skill_id": "azure",
       "requirement": "required",
-      "raw_text": "Praxis in Softwareentwicklung"
+      "raw_text": "Azure oder AWS"
     },
-    "excerpt": "...oder vergleichbar - **Erfahrung**: - Relevante Praxis in Softwareentwicklung, AI/ML oder Generative AI - Fundierte Kenntnisse in...",
+    "excerpt": "...Deployment, z. B. Docker, Kubernetes, MLflow und CI/CD • Azure oder AWS sowie On-Premise- und hybrides Infrastrukturen Wissen •...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_123",
-    "kind": "skill",
-    "key": "testing",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "testing",
-      "requirement": "required",
-      "raw_text": "automatisiertes Testing"
-    },
-    "b": {
-      "skill_id": "testing",
-      "requirement": "required",
-      "raw_text": "automatisiertes Testing"
-    },
-    "excerpt": "...LlamaIndex) - MLOps/LLMOps, CI/CD, Kubernetes, Git und automatisiertes Testing. - **Soft Skills**: - Ausgeprägte Beratungskompetenz,...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_124",
+    "golden_id": "golden_137",
     "kind": "skill",
     "key": "ci-cd",
     "reason": "spot-check",
@@ -1591,45 +2062,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_124",
+    "golden_id": "golden_137",
     "kind": "skill",
-    "key": "computer-vision",
+    "key": "docker",
     "reason": "spot-check",
     "a": {
-      "skill_id": "computer-vision",
+      "skill_id": "docker",
       "requirement": "required",
-      "raw_text": "Fundierte Kenntnisse in Computer Vision"
+      "raw_text": "Docker"
     },
     "b": {
-      "skill_id": "computer-vision",
+      "skill_id": "docker",
       "requirement": "required",
-      "raw_text": "Fundierte Kenntnisse in Computer Vision"
+      "raw_text": "Docker"
     },
-    "excerpt": "...Deep Learning, idealerweise in produktiven Projekten • Fundierte Kenntnisse in Computer Vision, z. B. Object Detection, Segmentation, Tracking, Vision...",
+    "excerpt": "...Kenntnisse der MLOps und Deployment, z. B. Docker, Kubernetes, MLflow und CI/CD • Azure oder AWS sowie...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_124",
-    "kind": "skill",
-    "key": "cuda",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "cuda",
-      "requirement": "required",
-      "raw_text": "CUDA"
-    },
-    "b": {
-      "skill_id": "cuda",
-      "requirement": "required",
-      "raw_text": "CUDA"
-    },
-    "excerpt": "...und Model Optimization, z. B. Quantization, Pruning, ONNX, CUDA/TensorRT oder vergleichbaren Technologien • Kenntnisse...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_124",
+    "golden_id": "golden_137",
     "kind": "skill",
     "key": "embeddings",
     "reason": "spot-check",
@@ -1648,121 +2100,121 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_124",
+    "golden_id": "golden_137",
     "kind": "skill",
-    "key": "machine-learning",
+    "key": "git",
     "reason": "spot-check",
     "a": {
-      "skill_id": "machine-learning",
+      "skill_id": "git",
       "requirement": "required",
-      "raw_text": "Erfahrung in Machine Learning"
+      "raw_text": "Git"
     },
     "b": {
-      "skill_id": "machine-learning",
+      "skill_id": "git",
       "requirement": "required",
-      "raw_text": "Erfahrung in Machine Learning"
+      "raw_text": "Git"
     },
-    "excerpt": "...Fachrichtung, Promotion erwünscht • Mehrjährige Erfahrung in Machine Learning und Deep Learning, idealerweise in produktiven...",
+    "excerpt": "...Kenntnisse • Sehr gutes Software-Engineering Know how mit Git, Linux und Testing; C++ • Idealerweise Erfahrung im...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_124",
+    "golden_id": "golden_137",
     "kind": "skill",
-    "key": "mlops",
+    "key": "linux",
     "reason": "spot-check",
     "a": {
-      "skill_id": "mlops",
+      "skill_id": "linux",
       "requirement": "required",
-      "raw_text": "Kenntnisse der MLOps"
+      "raw_text": "Linux"
     },
     "b": {
-      "skill_id": "mlops",
+      "skill_id": "linux",
       "requirement": "required",
-      "raw_text": "Kenntnisse der MLOps"
+      "raw_text": "Linux"
     },
-    "excerpt": "...ONNX, CUDA/TensorRT oder vergleichbaren Technologien • Kenntnisse der MLOps und Deployment, z. B. Docker, Kubernetes, MLflow und...",
+    "excerpt": "...Sehr gutes Software-Engineering Know how mit Git, Linux und Testing; C++ • Idealerweise Erfahrung im...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_124",
+    "golden_id": "golden_137",
     "kind": "skill",
-    "key": "pytorch",
+    "key": "python",
     "reason": "spot-check",
     "a": {
-      "skill_id": "pytorch",
+      "skill_id": "python",
       "requirement": "required",
-      "raw_text": "PyTorch"
+      "raw_text": "Python"
     },
     "b": {
-      "skill_id": "pytorch",
+      "skill_id": "python",
       "requirement": "required",
-      "raw_text": "PyTorch"
+      "raw_text": "Python"
     },
     "excerpt": "...und hybrides Infrastrukturen Wissen • Sehr gute Python, PyTorch/TensorFlow und OpenCV Kenntnisse • Sehr gutes...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_124",
+    "golden_id": "golden_137",
     "kind": "skill",
-    "key": "rag",
+    "key": "pytorch",
     "reason": "spot-check",
     "a": {
-      "skill_id": "rag",
+      "skill_id": "pytorch",
       "requirement": "required",
-      "raw_text": "RAG"
+      "raw_text": "PyTorch/TensorFlow"
     },
     "b": {
-      "skill_id": "rag",
+      "skill_id": "pytorch",
       "requirement": "required",
-      "raw_text": "RAG"
+      "raw_text": "PyTorch/TensorFlow"
     },
-    "excerpt": "...und Generative AI ein, bewerten neue Technologien und übertragen diese in robuste, skalierbare Lösungen. Durch Ihre...",
+    "excerpt": "...und hybrides Infrastrukturen Wissen • Sehr gute Python, PyTorch/TensorFlow und OpenCV Kenntnisse • Sehr gutes Software-Engineering...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_124",
+    "golden_id": "golden_137",
     "kind": "skill",
-    "key": "software-engineering",
+    "key": "quantization",
     "reason": "spot-check",
     "a": {
-      "skill_id": "software-engineering",
+      "skill_id": "quantization",
       "requirement": "required",
-      "raw_text": "Software-Engineering Know how"
+      "raw_text": "Quantization"
     },
     "b": {
-      "skill_id": "software-engineering",
+      "skill_id": "quantization",
       "requirement": "required",
-      "raw_text": "Software-Engineering Know how"
+      "raw_text": "Quantization"
     },
-    "excerpt": "...PyTorch/TensorFlow und OpenCV Kenntnisse • Sehr gutes Software-Engineering Know how mit Git, Linux und Testing; C++ • Idealerweise Erfahrung...",
+    "excerpt": "...Erfahrung mit Edge AI und Model Optimization, z. B. Quantization, Pruning, ONNX, CUDA/TensorRT oder vergleichbaren...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_124",
+    "golden_id": "golden_137",
     "kind": "skill",
     "key": "tensorflow",
     "reason": "spot-check",
     "a": {
       "skill_id": "tensorflow",
       "requirement": "required",
-      "raw_text": "TensorFlow"
+      "raw_text": "PyTorch/TensorFlow"
     },
     "b": {
       "skill_id": "tensorflow",
       "requirement": "required",
-      "raw_text": "TensorFlow"
+      "raw_text": "PyTorch/TensorFlow"
     },
-    "excerpt": "...Infrastrukturen Wissen • Sehr gute Python, PyTorch/TensorFlow und OpenCV Kenntnisse • Sehr gutes Software-Engineering...",
+    "excerpt": "...und hybrides Infrastrukturen Wissen • Sehr gute Python, PyTorch/TensorFlow und OpenCV Kenntnisse • Sehr gutes Software-Engineering...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_124",
+    "golden_id": "golden_137",
     "kind": "skill",
     "key": "testing",
     "reason": "spot-check",
@@ -1781,7 +2233,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_125",
+    "golden_id": "golden_138",
     "kind": "attribute",
     "key": "degree",
     "reason": "spot-check",
@@ -1802,7 +2254,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_125",
+    "golden_id": "golden_138",
     "kind": "attribute",
     "key": "german",
     "reason": "spot-check",
@@ -1821,64 +2273,102 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_125",
+    "golden_id": "golden_138",
     "kind": "skill",
-    "key": "azure",
+    "key": "agents",
     "reason": "spot-check",
     "a": {
-      "skill_id": "azure",
-      "requirement": "required",
-      "raw_text": "AWS, Azure, GCP"
-    },
-    "b": {
-      "skill_id": "azure",
-      "requirement": "required",
-      "raw_text": "AWS, Azure, GCP"
-    },
-    "excerpt": "...Kenntnisse in Kubernetes/OpenShift und Cloud-Plattformen (AWS, Azure, GCP) - Praxiserfahrung mit CI/CD-Tools (GitLab, GitHub,...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_125",
-    "kind": "skill",
-    "key": "ci-cd",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "ci-cd",
-      "requirement": "required",
-      "raw_text": "CI/CD-Tools"
-    },
-    "b": {
-      "skill_id": "ci-cd",
-      "requirement": "required",
-      "raw_text": "CI/CD-Tools"
-    },
-    "excerpt": "...Cloud-Plattformen (AWS, Azure, GCP) - Praxiserfahrung mit CI/CD-Tools (GitLab, GitHub, Jenkins, AWS CodeBuild/CodePipeline,...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_125",
-    "kind": "skill",
-    "key": "gitops",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "gitops",
+      "skill_id": "agents",
       "requirement": "nice_to_have",
-      "raw_text": "GitOps-Prinzipien"
+      "raw_text": "Idealerweise erste Erfahrungen mit Agent-Frameworks"
     },
     "b": {
-      "skill_id": "gitops",
+      "skill_id": "agents",
       "requirement": "nice_to_have",
-      "raw_text": "GitOps-Prinzipien"
+      "raw_text": "Idealerweise erste Erfahrungen mit Agent-Frameworks"
     },
-    "excerpt": "...(Pinecone, Weaviate, Qdrant, ChromaDB) - Verständnis von GitOps-Prinzipien und Tools wie ArgoCD oder Flux ### Persönliche...",
+    "excerpt": "...(MCP) oder Bereitschaft, sich intensiv einzuarbeiten - Idealerweise erste Erfahrungen mit Agent-Frameworks oder Orchestrierung - Optional: Kenntnisse in Model...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_125",
+    "golden_id": "golden_138",
+    "kind": "skill",
+    "key": "api-design",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "api-design",
+      "requirement": "required",
+      "raw_text": "REST API-Design"
+    },
+    "b": {
+      "skill_id": "api-design",
+      "requirement": "required",
+      "raw_text": "REST API-Design"
+    },
+    "excerpt": "...Enterprise Edition (oder vergleichbares) - Verständnis von REST API-Design und -Implementierung - Hands-on Erfahrung mit...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_138",
+    "kind": "skill",
+    "key": "argocd",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "argocd",
+      "requirement": "nice_to_have",
+      "raw_text": "ArgoCD"
+    },
+    "b": {
+      "skill_id": "argocd",
+      "requirement": "nice_to_have",
+      "raw_text": "ArgoCD"
+    },
+    "excerpt": "...Verständnis von GitOps-Prinzipien und Tools wie ArgoCD oder Flux ### Persönliche Eigenschaften - Ausgeprägtes...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_138",
+    "kind": "skill",
+    "key": "cloud",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Cloud-Plattformen (AWS, Azure, GCP)"
+    },
+    "b": {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Cloud-Plattformen (AWS, Azure, GCP)"
+    },
+    "excerpt": "...(Docker, Podman) - Kenntnisse in Kubernetes/OpenShift und Cloud-Plattformen (AWS, Azure, GCP) - Praxiserfahrung mit CI/CD-Tools (GitLab, GitHub,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_138",
+    "kind": "skill",
+    "key": "containerization",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "containerization",
+      "requirement": "required",
+      "raw_text": "Containerisierungstechnologien"
+    },
+    "b": {
+      "skill_id": "containerization",
+      "requirement": "required",
+      "raw_text": "Containerisierungstechnologien"
+    },
+    "excerpt": "...API-Design und -Implementierung - Hands-on Erfahrung mit Containerisierungstechnologien (Docker, Podman) - Kenntnisse in Kubernetes/OpenShift und...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_138",
     "kind": "skill",
     "key": "langchain",
     "reason": "spot-check",
@@ -1897,26 +2387,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_125",
+    "golden_id": "golden_138",
     "kind": "skill",
-    "key": "llamaindex",
+    "key": "mlops",
     "reason": "spot-check",
     "a": {
-      "skill_id": "llamaindex",
+      "skill_id": "mlops",
       "requirement": "nice_to_have",
-      "raw_text": "LlamaIndex"
+      "raw_text": "Prompt Engineering oder MLOps"
     },
     "b": {
-      "skill_id": "llamaindex",
+      "skill_id": "mlops",
       "requirement": "nice_to_have",
-      "raw_text": "LlamaIndex"
+      "raw_text": "Prompt Engineering oder MLOps"
     },
-    "excerpt": "...einzuarbeiten **Bonus:** - Erfahrung mit LangChain, LlamaIndex, LangChain4J oder vergleichbaren Frameworks - Kenntnisse...",
+    "excerpt": "...Optional: Kenntnisse in Model Fine-tuning, Prompt Engineering oder MLOps - Bereitschaft, sich kontinuierlich in schnell...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_125",
+    "golden_id": "golden_138",
     "kind": "skill",
     "key": "prompt-engineering",
     "reason": "spot-check",
@@ -1935,7 +2425,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_125",
+    "golden_id": "golden_138",
     "kind": "skill",
     "key": "vector-databases",
     "reason": "spot-check",
@@ -1954,121 +2444,64 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_126",
-    "kind": "attribute",
-    "key": "german",
-    "reason": "spot-check",
-    "a": {
-      "german": "required",
-      "german_basis": "stated",
-      "german_signal": "verfügst über gute Deutsch- und Englischkenntnisse"
-    },
-    "b": {
-      "german": "required",
-      "german_basis": "stated",
-      "german_signal": "verfügst über gute Deutsch- und Englischkenntnisse"
-    },
-    "excerpt": "...technische Zusammenhänge verständlich vermitteln und verfügst über gute Deutsch- und Englischkenntnisse. Attraktive Vorteile:✓ Gestalten statt nur umsetzen:...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_126",
+    "golden_id": "golden_139",
     "kind": "skill",
-    "key": "agents",
+    "key": "apis",
     "reason": "spot-check",
     "a": {
-      "skill_id": "agents",
+      "skill_id": "apis",
       "requirement": "required",
-      "raw_text": "RAG oder AI Agents sind dir vertraut"
+      "raw_text": "Erfahrung mit APIs"
     },
     "b": {
-      "skill_id": "agents",
+      "skill_id": "apis",
       "requirement": "required",
-      "raw_text": "RAG oder AI Agents sind dir vertraut"
+      "raw_text": "Erfahrung mit APIs"
     },
-    "excerpt": "...von AI-Modellen. Konzepte wie Prompt Engineering, RAG oder AI Agents sind dir vertraut.✓ Du verstehst Machine Learning: Du kennst grundlegende...",
+    "excerpt": "...stark: Python gehört zu deinem Werkzeugkasten. Du hast Erfahrung mit APIs, Datenbanken, Softwarearchitektur und der Entwicklung...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_126",
+    "golden_id": "golden_139",
     "kind": "skill",
-    "key": "python",
+    "key": "llms",
     "reason": "spot-check",
     "a": {
-      "skill_id": "python",
+      "skill_id": "llms",
       "requirement": "required",
-      "raw_text": "Python gehört zu deinem Werkzeugkasten"
+      "raw_text": "praktische Erfahrung mit Large Language Models"
     },
     "b": {
-      "skill_id": "python",
+      "skill_id": "llms",
       "requirement": "required",
-      "raw_text": "Python gehört zu deinem Werkzeugkasten"
+      "raw_text": "praktische Erfahrung mit Large Language Models"
     },
-    "excerpt": "...Voraussetzungen:✓ Du bist technisch stark: Python gehört zu deinem Werkzeugkasten. Du hast Erfahrung mit APIs, Datenbanken,...",
+    "excerpt": "...Du kennst dich mit moderner AI aus: Du hast praktische Erfahrung mit Large Language Models, Generative AI und der Integration von AI-Modellen....",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_126",
+    "golden_id": "golden_139",
     "kind": "skill",
-    "key": "rag",
+    "key": "machine-learning",
     "reason": "spot-check",
     "a": {
-      "skill_id": "rag",
+      "skill_id": "machine-learning",
       "requirement": "required",
-      "raw_text": "Prompt Engineering, RAG"
+      "raw_text": "Du verstehst Machine Learning"
     },
     "b": {
-      "skill_id": "rag",
+      "skill_id": "machine-learning",
       "requirement": "required",
-      "raw_text": "Prompt Engineering, RAG"
+      "raw_text": "Du verstehst Machine Learning"
     },
-    "excerpt": "...AI und der Integration von AI-Modellen. Konzepte wie Prompt Engineering, RAG oder AI Agents sind dir vertraut.✓ Du verstehst Machine...",
+    "excerpt": "...Prompt Engineering, RAG oder AI Agents sind dir vertraut.✓ Du verstehst Machine Learning: Du kennst grundlegende ML-Verfahren, Modelltraining und...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_126",
-    "kind": "skill",
-    "key": "software-architecture",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "software-architecture",
-      "requirement": "required",
-      "raw_text": "Softwarearchitektur"
-    },
-    "b": {
-      "skill_id": "software-architecture",
-      "requirement": "required",
-      "raw_text": "Softwarearchitektur"
-    },
-    "excerpt": "...Werkzeugkasten. Du hast Erfahrung mit APIs, Datenbanken, Softwarearchitektur und der Entwicklung professioneller Softwarelösungen.✓ Du...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_126",
-    "kind": "skill",
-    "key": "testing",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "testing",
-      "requirement": "required",
-      "raw_text": "Testing"
-    },
-    "b": {
-      "skill_id": "testing",
-      "requirement": "required",
-      "raw_text": "Testing"
-    },
-    "excerpt": "...Du denkst über den Prototyp hinaus: Themen wie Testing, Deployment, Skalierbarkeit, Sicherheit und zuverlässiger...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_127",
+    "golden_id": "golden_140",
     "kind": "attribute",
     "key": "degree",
     "reason": "spot-check",
@@ -2089,7 +2522,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_127",
+    "golden_id": "golden_140",
     "kind": "skill",
     "key": "aws",
     "reason": "spot-check",
@@ -2108,26 +2541,45 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_127",
+    "golden_id": "golden_140",
     "kind": "skill",
-    "key": "azure",
+    "key": "ci-cd",
     "reason": "spot-check",
     "a": {
-      "skill_id": "azure",
+      "skill_id": "ci-cd",
       "requirement": "required",
-      "raw_text": "Azure"
+      "raw_text": "as well as CI/CD"
     },
     "b": {
-      "skill_id": "azure",
+      "skill_id": "ci-cd",
       "requirement": "required",
-      "raw_text": "Azure"
+      "raw_text": "as well as CI/CD"
     },
-    "excerpt": "...tools). - Hands-on experience with cloud platforms (AWS/Azure), containerization and orchestration technologies...",
+    "excerpt": "...and orchestration technologies (Docker/Kubernetes), as well as CI/CD and Infrastructure-as-Code tools (e.g., Terraform,...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_127",
+    "golden_id": "golden_140",
+    "kind": "skill",
+    "key": "cloud",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "cloud platforms"
+    },
+    "b": {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "cloud platforms"
+    },
+    "excerpt": "...and penetration testing tools). - Hands-on experience with cloud platforms (AWS/Azure), containerization and orchestration...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_140",
     "kind": "skill",
     "key": "containerization",
     "reason": "spot-check",
@@ -2146,45 +2598,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_127",
+    "golden_id": "golden_140",
     "kind": "skill",
-    "key": "gitlab-ci",
+    "key": "infrastructure-as-code",
     "reason": "spot-check",
     "a": {
-      "skill_id": "gitlab-ci",
+      "skill_id": "infrastructure-as-code",
       "requirement": "required",
-      "raw_text": "GitHub Actions/GitLab CI"
+      "raw_text": "Infrastructure-as-Code tools"
     },
     "b": {
-      "skill_id": "gitlab-ci",
+      "skill_id": "infrastructure-as-code",
       "requirement": "required",
-      "raw_text": "GitHub Actions/GitLab CI"
+      "raw_text": "Infrastructure-as-Code tools"
     },
-    "excerpt": "...Infrastructure-as-Code tools (e.g., Terraform, Ansible, GitHub Actions/GitLab CI). - Business-fluent German and English language...",
+    "excerpt": "...technologies (Docker/Kubernetes), as well as CI/CD and Infrastructure-as-Code tools (e.g., Terraform, Ansible, GitHub Actions/GitLab CI). -...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_127",
-    "kind": "skill",
-    "key": "terraform",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "terraform",
-      "requirement": "required",
-      "raw_text": "Infrastructure-as-Code tools (e.g., Terraform"
-    },
-    "b": {
-      "skill_id": "terraform",
-      "requirement": "required",
-      "raw_text": "Infrastructure-as-Code tools (e.g., Terraform"
-    },
-    "excerpt": "...technologies (Docker/Kubernetes), as well as CI/CD and Infrastructure-as-Code tools (e.g., Terraform, Ansible, GitHub Actions/GitLab CI). - Business-fluent...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_128",
+    "golden_id": "golden_141",
     "kind": "attribute",
     "key": "degree",
     "reason": "spot-check",
@@ -2205,45 +2638,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_128",
-    "kind": "attribute",
-    "key": "german",
-    "reason": "spot-check",
-    "a": {
-      "german": null,
-      "german_basis": null,
-      "german_signal": null
-    },
-    "b": {
-      "german": null,
-      "german_basis": null,
-      "german_signal": null
-    },
-    "excerpt": "Senior AI / Reinforcement Learning Engineer (m/f/d)",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_128",
+    "golden_id": "golden_141",
     "kind": "skill",
-    "key": "onnx",
+    "key": "cpp",
     "reason": "spot-check",
     "a": {
-      "skill_id": "onnx",
+      "skill_id": "cpp",
       "requirement": "required",
-      "raw_text": "ONNX"
+      "raw_text": "C++"
     },
     "b": {
-      "skill_id": "onnx",
+      "skill_id": "cpp",
       "requirement": "required",
-      "raw_text": "ONNX"
+      "raw_text": "C++"
     },
-    "excerpt": "...SAC, ...) - Proficiency in Python and/or C++, PyTorch, ONNX, and common RL frameworks (e.g, Stable Baselines 3,...",
+    "excerpt": "...algorithms (PPO, SAC, ...) - Proficiency in Python and/or C++, PyTorch, ONNX, and common RL frameworks (e.g, Stable...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_128",
+    "golden_id": "golden_141",
     "kind": "skill",
     "key": "pytorch",
     "reason": "spot-check",
@@ -2262,7 +2676,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_129",
+    "golden_id": "golden_142",
+    "kind": "attribute",
+    "key": "german",
+    "reason": "spot-check",
+    "a": {
+      "german": "required",
+      "german_basis": "stated",
+      "german_signal": "Sehr gute Sprachkenntnisse in Deutsch und Englisch in Wort und Schrift"
+    },
+    "b": {
+      "german": "required",
+      "german_basis": "stated",
+      "german_signal": "Sehr gute Sprachkenntnisse in Deutsch und Englisch in Wort und Schrift"
+    },
+    "excerpt": "...der strukturierten Analyse komplexer Fehlersituationen - Sehr gute Sprachkenntnisse in Deutsch und Englisch in Wort und Schrift Interesse? Dann freuen wir uns auf Deine Bewerbung!Gerne...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_142",
     "kind": "attribute",
     "key": "seniority",
     "reason": "spot-check",
@@ -2281,7 +2714,45 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_129",
+    "golden_id": "golden_142",
+    "kind": "skill",
+    "key": "ci-cd",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "DevSecOps, CI/CD"
+    },
+    "b": {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "DevSecOps, CI/CD"
+    },
+    "excerpt": "...mit einschlägiger Berufserfahrung - Fundierte Erfahrung in DevSecOps, CI/CD, Infrastructure as Code und Container, in...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_142",
+    "kind": "skill",
+    "key": "containerization",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "containerization",
+      "requirement": "required",
+      "raw_text": "Infrastructure as Code und Container"
+    },
+    "b": {
+      "skill_id": "containerization",
+      "requirement": "required",
+      "raw_text": "Infrastructure as Code und Container"
+    },
+    "excerpt": "...Berufserfahrung - Fundierte Erfahrung in DevSecOps, CI/CD, Infrastructure as Code und Container, in Softwareentwicklung oder Testautomatisierung für...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_142",
     "kind": "skill",
     "key": "devsecops",
     "reason": "spot-check",
@@ -2300,159 +2771,161 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_129",
+    "golden_id": "golden_142",
     "kind": "skill",
-    "key": "software-engineering",
+    "key": "infrastructure-as-code",
     "reason": "spot-check",
     "a": {
-      "skill_id": "software-engineering",
+      "skill_id": "infrastructure-as-code",
       "requirement": "required",
-      "raw_text": "in Softwareentwicklung"
+      "raw_text": "CI/CD, Infrastructure as Code"
     },
     "b": {
-      "skill_id": "software-engineering",
+      "skill_id": "infrastructure-as-code",
       "requirement": "required",
-      "raw_text": "in Softwareentwicklung"
+      "raw_text": "CI/CD, Infrastructure as Code"
     },
-    "excerpt": "...in DevSecOps, CI/CD, Infrastructure as Code und Container, in Softwareentwicklung oder Testautomatisierung für verteilte Softwarelösungen...",
+    "excerpt": "...Berufserfahrung - Fundierte Erfahrung in DevSecOps, CI/CD, Infrastructure as Code und Container, in Softwareentwicklung oder...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_129",
+    "golden_id": "golden_142",
     "kind": "skill",
     "key": "typescript",
     "reason": "spot-check",
     "a": {
       "skill_id": "typescript",
       "requirement": "required",
-      "raw_text": "PowerShell oder TypeScript"
+      "raw_text": "oder TypeScript"
     },
     "b": {
       "skill_id": "typescript",
       "requirement": "required",
-      "raw_text": "PowerShell oder TypeScript"
+      "raw_text": "oder TypeScript"
     },
-    "excerpt": "...Programmierung und Scripting, beispielsweise mit C#/.NET, PowerShell oder TypeScript - Ausgeprägtes Interesse an AI-Assistenten und agentischen...",
+    "excerpt": "...und Scripting, beispielsweise mit C#/.NET, PowerShell oder TypeScript - Ausgeprägtes Interesse an AI-Assistenten und agentischen...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_130",
-    "kind": "attribute",
-    "key": "german",
-    "reason": "spot-check",
-    "a": {
-      "german": null,
-      "german_basis": null,
-      "german_signal": null
-    },
-    "b": {
-      "german": null,
-      "german_basis": null,
-      "german_signal": null
-    },
-    "excerpt": "Principal Data Scientist (m/f/d)",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_130",
+    "golden_id": "golden_143",
     "kind": "skill",
-    "key": "ai-ml",
+    "key": "aws",
     "reason": "spot-check",
     "a": {
-      "skill_id": "ai-ml",
+      "skill_id": "aws",
       "requirement": "required",
-      "raw_text": "applied AI"
+      "raw_text": "strong experience with AWS"
     },
     "b": {
-      "skill_id": "ai-ml",
+      "skill_id": "aws",
       "requirement": "required",
-      "raw_text": "applied AI"
+      "raw_text": "strong experience with AWS"
     },
-    "excerpt": "...years of experience in data science, machine learning, or applied AI - strong hands-on skills in Python, SQL, and common ML...",
+    "excerpt": "...proven experience with GenAI and LLMs in real products - strong experience with AWS and its ML/data ecosystem (e.g. SageMaker, S3, EKS,...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_130",
-    "kind": "skill",
-    "key": "python",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "python",
-      "requirement": "required",
-      "raw_text": "hands-on skills in Python"
-    },
-    "b": {
-      "skill_id": "python",
-      "requirement": "required",
-      "raw_text": "hands-on skills in Python"
-    },
-    "excerpt": "...in data science, machine learning, or applied AI - strong hands-on skills in Python, SQL, and common ML frameworks - proven experience with...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_131",
-    "kind": "attribute",
-    "key": "german",
-    "reason": "spot-check",
-    "a": {
-      "german": "required",
-      "german_basis": "stated",
-      "german_signal": "fluency in German and English (must)"
-    },
-    "b": {
-      "german": "required",
-      "german_basis": "stated",
-      "german_signal": "fluency in German and English (must)"
-    },
-    "excerpt": "...on deadlines. - Excellent communication skills and fluency in German and English (must). - Foundational business acumen and domain...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_131",
-    "kind": "skill",
-    "key": "fine-tuning",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "fine-tuning",
-      "requirement": "required",
-      "raw_text": "fine-tuning"
-    },
-    "b": {
-      "skill_id": "fine-tuning",
-      "requirement": "required",
-      "raw_text": "fine-tuning"
-    },
-    "excerpt": "...multi-agent orchestration, multimodal understanding, or fine-tuning that are used to build high-impact use cases like...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_131",
+    "golden_id": "golden_143",
     "kind": "skill",
     "key": "llms",
     "reason": "spot-check",
     "a": {
       "skill_id": "llms",
       "requirement": "required",
-      "raw_text": "generative AI techniques"
+      "raw_text": "GenAI and LLMs"
     },
     "b": {
       "skill_id": "llms",
       "requirement": "required",
-      "raw_text": "generative AI techniques"
+      "raw_text": "GenAI and LLMs"
     },
-    "excerpt": "...of business and technology. - Understanding of generative AI techniques like RAG, few shot learning, prompt/context engineering,...",
+    "excerpt": "...SQL, and common ML frameworks - proven experience with GenAI and LLMs in real products - strong experience with AWS and its...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_131",
+    "golden_id": "golden_143",
+    "kind": "skill",
+    "key": "python",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    "b": {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    "excerpt": "...learning, or applied AI - strong hands-on skills in Python, SQL, and common ML frameworks - proven experience with...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_144",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "spot-check",
+    "a": {
+      "degree": "bachelor",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "Degree in Engineering, Data Analytics/Science, Computer Science, Mathematics, or a related STEM field"
+    },
+    "b": {
+      "degree": "bachelor",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "Degree in Engineering, Data Analytics/Science, Computer Science, Mathematics, or a related STEM field"
+    },
+    "excerpt": "...collateral, best practices, and tools. What You Need: - Degree in Engineering, Data Analytics/Science, Computer Science, Mathematics, or a related STEM field. - Excellent academic performance - Extensive internship...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_144",
+    "kind": "skill",
+    "key": "context-engineering",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "context-engineering",
+      "requirement": "required",
+      "raw_text": "prompt/context engineering"
+    },
+    "b": {
+      "skill_id": "context-engineering",
+      "requirement": "required",
+      "raw_text": "prompt/context engineering"
+    },
+    "excerpt": "...of generative AI techniques like RAG, few shot learning, prompt/context engineering, multi-agent orchestration, multimodal understanding, or...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_144",
+    "kind": "skill",
+    "key": "data-engineering",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "data-engineering",
+      "requirement": "required",
+      "raw_text": "data engineering tools and technologies"
+    },
+    "b": {
+      "skill_id": "data-engineering",
+      "requirement": "required",
+      "raw_text": "data engineering tools and technologies"
+    },
+    "excerpt": "...LangChain, pandas, pydantic, sklearn, PyTorch) as well as data engineering tools and technologies. - Excellent analytical and creative problem-solving...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_144",
     "kind": "skill",
     "key": "python",
     "reason": "spot-check",
@@ -2471,102 +2944,83 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_131",
+    "golden_id": "golden_144",
     "kind": "skill",
-    "key": "scikit-learn",
+    "key": "tool-calling",
     "reason": "spot-check",
     "a": {
-      "skill_id": "scikit-learn",
-      "requirement": "required",
-      "raw_text": "sklearn"
-    },
-    "b": {
-      "skill_id": "scikit-learn",
-      "requirement": "required",
-      "raw_text": "sklearn"
-    },
-    "excerpt": "...common ML libraries (such as LangChain, pandas, pydantic, sklearn, PyTorch) as well as data engineering tools and...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_133",
-    "kind": "skill",
-    "key": "apache-spark",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "apache-spark",
+      "skill_id": "tool-calling",
       "requirement": "nice_to_have",
-      "raw_text": "Apache Spark™"
+      "raw_text": "function calling"
     },
     "b": {
-      "skill_id": "apache-spark",
+      "skill_id": "tool-calling",
       "requirement": "nice_to_have",
-      "raw_text": "Apache Spark™"
+      "raw_text": "function calling"
     },
-    "excerpt": "...Experience using the Databricks Intelligence Platform and Apache Spark™ to process large-scale distributed datasets - Willing to...",
+    "excerpt": "...building agentic systems using LLM orchestration, RAG, function calling, and prompt engineering - Working knowledge of tools in...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_133",
+    "golden_id": "golden_145",
     "kind": "skill",
-    "key": "aws",
+    "key": "agents",
     "reason": "spot-check",
     "a": {
-      "skill_id": "aws",
+      "skill_id": "agents",
       "requirement": "required",
-      "raw_text": "AWS"
+      "raw_text": "building, operating, and maintaining agentic AI toolchains"
     },
     "b": {
-      "skill_id": "aws",
+      "skill_id": "agents",
       "requirement": "required",
-      "raw_text": "AWS"
+      "raw_text": "building, operating, and maintaining agentic AI toolchains"
     },
-    "excerpt": "...building production-grade machine learning deployments on AWS, Azure, or GCP - Graduate degree in a quantitative...",
+    "excerpt": "...in Automotive Cybersecurity. - Strong expertise in building, operating, and maintaining agentic AI toolchains using both commercial and open-source technologies. -...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_133",
+    "golden_id": "golden_146",
     "kind": "skill",
-    "key": "data-science",
+    "key": "azure",
     "reason": "spot-check",
     "a": {
-      "skill_id": "data-science",
+      "skill_id": "azure",
       "requirement": "required",
-      "raw_text": "data science experience"
+      "raw_text": "Azure"
     },
     "b": {
-      "skill_id": "data-science",
+      "skill_id": "azure",
       "requirement": "required",
-      "raw_text": "data science experience"
+      "raw_text": "Azure"
     },
-    "excerpt": "...and optimisations - Extensive years of hands-on industry data science experience, leveraging common machine learning and data science...",
+    "excerpt": "...production-grade machine learning deployments on AWS, Azure, or GCP - Graduate degree in a quantitative discipline...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_133",
+    "golden_id": "golden_146",
     "kind": "skill",
-    "key": "databricks",
+    "key": "evaluation",
     "reason": "spot-check",
     "a": {
-      "skill_id": "databricks",
-      "requirement": "nice_to_have",
-      "raw_text": "[Preferred] Experience using the Databricks Intelligence Platform"
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "evaluation"
     },
     "b": {
-      "skill_id": "databricks",
-      "requirement": "nice_to_have",
-      "raw_text": "[Preferred] Experience using the Databricks Intelligence Platform"
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "evaluation"
     },
-    "excerpt": "...learning, and driving business value through AI - [Preferred] Experience using the Databricks Intelligence Platform and Apache Spark™ to process large-scale distributed...",
+    "excerpt": "...deploying production-grade GenAI applications, including evaluation and optimisations - Extensive years of hands-on industry...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_133",
+    "golden_id": "golden_146",
     "kind": "skill",
     "key": "gcp",
     "reason": "spot-check",
@@ -2585,66 +3039,102 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_134",
-    "kind": "attribute",
-    "key": "seniority",
-    "reason": "spot-check",
-    "a": {
-      "seniority": "senior",
-      "seniority_basis": "stated",
-      "seniority_signal": "Senior IT Engineer"
-    },
-    "b": {
-      "seniority": "senior",
-      "seniority_basis": "stated",
-      "seniority_signal": "Senior IT Engineer"
-    },
-    "excerpt": "Senior IT Engineer (w/m/d) API, AI, Infrastruktur Robert Half gehört zu den...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_134",
+    "golden_id": "golden_146",
     "kind": "skill",
-    "key": "docker",
+    "key": "rag",
     "reason": "spot-check",
     "a": {
-      "skill_id": "docker",
+      "skill_id": "rag",
       "requirement": "required",
-      "raw_text": "Umgang mit Docker"
+      "raw_text": "RAG"
     },
     "b": {
-      "skill_id": "docker",
+      "skill_id": "rag",
       "requirement": "required",
-      "raw_text": "Umgang mit Docker"
+      "raw_text": "RAG"
     },
-    "excerpt": "...Microsoft 365, Entra ID und Cloud-Services - Know-how im Umgang mit Docker, Power Platform, Backend-Systemen und API-gesteuerten...",
+    "excerpt": "...Experience building GenAI applications, including RAG, multi-agent systems, Text2SQL, fine-tuning, etc., with...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_135",
+    "golden_id": "golden_146",
+    "kind": "skill",
+    "key": "scikit-learn",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "scikit-learn",
+      "requirement": "required",
+      "raw_text": "scikit-learn"
+    },
+    "b": {
+      "skill_id": "scikit-learn",
+      "requirement": "required",
+      "raw_text": "scikit-learn"
+    },
+    "excerpt": "...machine learning and data science tools, i.e. pandas, scikit-learn, PyTorch, etc. - Experience building production-grade...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_147",
     "kind": "attribute",
-    "key": "degree",
+    "key": "german",
     "reason": "spot-check",
     "a": {
-      "degree": "bachelor",
-      "degree_requirement": "required",
-      "degree_or_equivalent": false,
-      "degree_signal": "Abgeschlossenes Studium der Informatik, Data Science, Wirtschaftsinformatik oder einer vergleichbaren Fachrichtung"
+      "german": "required",
+      "german_basis": "stated",
+      "german_signal": "Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift"
     },
     "b": {
-      "degree": "bachelor",
-      "degree_requirement": "required",
-      "degree_or_equivalent": false,
-      "degree_signal": "Abgeschlossenes Studium der Informatik, Data Science, Wirtschaftsinformatik oder einer vergleichbaren Fachrichtung"
+      "german": "required",
+      "german_basis": "stated",
+      "german_signal": "Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift"
     },
-    "excerpt": "...Inhalte. Diese Qualifikationen solltest Du mitbringen • Abgeschlossenes Studium der Informatik, Data Science, Wirtschaftsinformatik oder einer vergleichbaren Fachrichtung. • Mindestens zwei Jahre Erfahrung in Data Science,...",
+    "excerpt": "...Arbeitsweise sowie hohe Kunden- und Serviceorientierung - Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift ## Ihre Vorteile mit Robert Half - Kostenlose, schnelle...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_135",
+    "golden_id": "golden_147",
+    "kind": "skill",
+    "key": "azure",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "MS Azure"
+    },
+    "b": {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "MS Azure"
+    },
+    "excerpt": "...modernen Integrationsarchitekturen - Praxiserfahrung mit MS Azure, Microsoft 365, Entra ID und Cloud-Services - Know-how im...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_147",
+    "kind": "skill",
+    "key": "microsoft-entra-id",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "microsoft-entra-id",
+      "requirement": "required",
+      "raw_text": "Microsoft 365, Entra ID"
+    },
+    "b": {
+      "skill_id": "microsoft-entra-id",
+      "requirement": "required",
+      "raw_text": "Microsoft 365, Entra ID"
+    },
+    "excerpt": "...Integrationsarchitekturen - Praxiserfahrung mit MS Azure, Microsoft 365, Entra ID und Cloud-Services - Know-how im Umgang mit Docker, Power...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_148",
     "kind": "attribute",
     "key": "german",
     "reason": "spot-check",
@@ -2663,7 +3153,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_135",
+    "golden_id": "golden_148",
     "kind": "skill",
     "key": "data-science",
     "reason": "spot-check",
@@ -2682,7 +3172,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_135",
+    "golden_id": "golden_148",
     "kind": "skill",
     "key": "llms",
     "reason": "spot-check",
@@ -2701,7 +3191,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_135",
+    "golden_id": "golden_148",
     "kind": "skill",
     "key": "machine-learning",
     "reason": "spot-check",
@@ -2720,21 +3210,21 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_135",
+    "golden_id": "golden_148",
     "kind": "skill",
-    "key": "python",
+    "key": "sql",
     "reason": "spot-check",
     "a": {
-      "skill_id": "python",
+      "skill_id": "sql",
       "requirement": "required",
-      "raw_text": "Python"
+      "raw_text": "SQL"
     },
     "b": {
-      "skill_id": "python",
+      "skill_id": "sql",
       "requirement": "required",
-      "raw_text": "Python"
+      "raw_text": "SQL"
     },
-    "excerpt": "...oder agentenbasierten KI-Systemen. • Gute Kenntnisse in Python und SQL; idealerweise Erfahrung mit...",
+    "excerpt": "...KI-Systemen. • Gute Kenntnisse in Python und SQL; idealerweise Erfahrung mit Low-Code-/No-Code-Plattformen...",
     "problems": [],
     "decision": "?"
   }

@@ -1,23 +1,67 @@
 {
   "provider": "openai",
   "model": "gpt-6.1-sol",
-  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"REST APIs\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MS Azure\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud-Services\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Backend-Systemen\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GenAI\"\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Automatisierung\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"OpenAPI\",\n      \"raw_text\": \"OpenAPI\"\n    },\n    {\n      \"label\": \"JSON\",\n      \"raw_text\": \"JSON\"\n    },\n    {\n      \"label\": \"Integration architectures\",\n      \"raw_text\": \"modernen Integrationsarchitekturen\"\n    },\n    {\n      \"label\": \"Microsoft 365\",\n      \"raw_text\": \"Microsoft 365\"\n    },\n    {\n      \"label\": \"Microsoft Entra ID\",\n      \"raw_text\": \"Entra ID\"\n    },\n    {\n      \"label\": \"Microsoft Power Platform\",\n      \"raw_text\": \"Power Platform\"\n    },\n    {\n      \"label\": \"Enterprise application and system integration\",\n      \"raw_text\": \"Integration von Enterprise-Applikationen sowie komplexen Systemlandschaften\"\n    },\n    {\n      \"label\": \"Data-driven applications\",\n      \"raw_text\": \"datengetriebenen Anwendungen\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior IT Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Studium oder abgeschlossene Berufsausbildung IT (z.B. Systemintegration, Anwendungsentwicklung, Computer Science)\",\n  \"notes\": \"Anforderungen is a required section; no optional heading or inline optional marker appears.\\nThe unmarked alternatives joined by oder remain required under the labeling rules.\\nBackend-Systemen is provisionally mapped to backend-development, although familiarity with systems does not explicitly require development.\\nAutomatisierung is provisionally mapped to workflow-automation; the posting does not specify workflow automation.\\nIntegration architectures and enterprise application integration are retained as unmapped rather than inferred to mean API design or general software architecture.\\nStudium has no stated level, so it maps to bachelor; the explicitly accepted vocational qualification is treated as an alternative qualification.\\nEducational fields in the degree bullet are not independently labeled as candidate skills; technologies mentioned only under Aufgaben are excluded.\"\n}",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Large Language Model (LLM)-Frameworks\"\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangChain\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"llamaindex\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LlamaIndex\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"hugging-face\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Hugging Face\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Retrieval-Augmented-Generation-Systemen (RAG)\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Vektordatenbanken\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"KI-Agenten\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Bereitstellung von KI-Agenten\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"conversational-ai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"automatisierten Gesprächssystemen (Chatbots/KI-Bots)\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevOps-Methoden\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Containerisierung\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD-Pipelines\"\n    }\n  ],\n  \"unmapped\": [],\n  \"groups_reviewed\": true,\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Fließend Deutsch und Englisch in Wort und Schrift\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Abgeschlossenes wissenschaftliches Hochschulstudium (min. Bachelor) in einem MINT-Fach, oder vergleichbare Qualifikation als Quereinsteiger, Tech Enthusiast oder Vibe Coder mit Proof Record\",\n  \"notes\": \"WAS SIE MITBRINGEN is the requirements section; no optional qualifications section appears.\\nThe three LLM-framework examples form one alternative group; Docker and Kubernetes are listed together, not as alternatives.\\nMapped deployment of AI agents to ai-deployment; flagged because the taxonomy's explicit deployment aliases focus on models.\\nPrompt optimization and model selection appear only in responsibilities and are excluded.\\nVibe Coder describes an accepted alternative qualification, not an explicit requirement for AI coding tools.\\nNo stated seniority, qualifying experience duration, or leadership duty is present.\"\n}",
   "parsed": {
     "expected": [
       {
-        "skill_id": "apis",
+        "skill_id": "llms",
         "requirement": "required",
-        "raw_text": "REST APIs"
+        "raw_text": "Large Language Model (LLM)-Frameworks"
       },
       {
-        "skill_id": "azure",
+        "skill_id": "langchain",
         "requirement": "required",
-        "raw_text": "MS Azure"
+        "raw_text": "LangChain",
+        "alternative_group": 1
       },
       {
-        "skill_id": "cloud",
+        "skill_id": "llamaindex",
         "requirement": "required",
-        "raw_text": "Cloud-Services"
+        "raw_text": "LlamaIndex",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "required",
+        "raw_text": "Hugging Face",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "Retrieval-Augmented-Generation-Systemen (RAG)"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "Vektordatenbanken"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "KI-Agenten"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "Bereitstellung von KI-Agenten",
+        "uncertain": true
+      },
+      {
+        "skill_id": "conversational-ai",
+        "requirement": "required",
+        "raw_text": "automatisierten Gesprächssystemen (Chatbots/KI-Bots)"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps-Methoden"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "Containerisierung"
       },
       {
         "skill_id": "docker",
@@ -25,76 +69,32 @@
         "raw_text": "Docker"
       },
       {
-        "skill_id": "backend-development",
+        "skill_id": "kubernetes",
         "requirement": "required",
-        "raw_text": "Backend-Systemen",
-        "uncertain": true
+        "raw_text": "Kubernetes"
       },
       {
-        "skill_id": "ai-ml",
+        "skill_id": "ci-cd",
         "requirement": "required",
-        "raw_text": "AI"
-      },
-      {
-        "skill_id": "llms",
-        "requirement": "required",
-        "raw_text": "GenAI"
-      },
-      {
-        "skill_id": "workflow-automation",
-        "requirement": "required",
-        "raw_text": "Automatisierung",
-        "uncertain": true
+        "raw_text": "CI/CD-Pipelines"
       }
     ],
-    "unmapped": [
-      {
-        "label": "OpenAPI",
-        "raw_text": "OpenAPI"
-      },
-      {
-        "label": "JSON",
-        "raw_text": "JSON"
-      },
-      {
-        "label": "Integration architectures",
-        "raw_text": "modernen Integrationsarchitekturen"
-      },
-      {
-        "label": "Microsoft 365",
-        "raw_text": "Microsoft 365"
-      },
-      {
-        "label": "Microsoft Entra ID",
-        "raw_text": "Entra ID"
-      },
-      {
-        "label": "Microsoft Power Platform",
-        "raw_text": "Power Platform"
-      },
-      {
-        "label": "Enterprise application and system integration",
-        "raw_text": "Integration von Enterprise-Applikationen sowie komplexen Systemlandschaften"
-      },
-      {
-        "label": "Data-driven applications",
-        "raw_text": "datengetriebenen Anwendungen"
-      }
-    ],
-    "seniority": "senior",
-    "seniority_basis": "stated",
-    "seniority_signal": "Senior IT Engineer",
+    "unmapped": [],
+    "groups_reviewed": true,
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
     "german": "required",
     "german_basis": "stated",
-    "german_signal": "Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift",
+    "german_signal": "Fließend Deutsch und Englisch in Wort und Schrift",
     "degree": "bachelor",
     "degree_requirement": "required",
     "degree_or_equivalent": true,
-    "degree_signal": "Studium oder abgeschlossene Berufsausbildung IT (z.B. Systemintegration, Anwendungsentwicklung, Computer Science)",
-    "notes": "Anforderungen is a required section; no optional heading or inline optional marker appears.\nThe unmarked alternatives joined by oder remain required under the labeling rules.\nBackend-Systemen is provisionally mapped to backend-development, although familiarity with systems does not explicitly require development.\nAutomatisierung is provisionally mapped to workflow-automation; the posting does not specify workflow automation.\nIntegration architectures and enterprise application integration are retained as unmapped rather than inferred to mean API design or general software architecture.\nStudium has no stated level, so it maps to bachelor; the explicitly accepted vocational qualification is treated as an alternative qualification.\nEducational fields in the degree bullet are not independently labeled as candidate skills; technologies mentioned only under Aufgaben are excluded."
+    "degree_signal": "Abgeschlossenes wissenschaftliches Hochschulstudium (min. Bachelor) in einem MINT-Fach, oder vergleichbare Qualifikation als Quereinsteiger, Tech Enthusiast oder Vibe Coder mit Proof Record",
+    "notes": "WAS SIE MITBRINGEN is the requirements section; no optional qualifications section appears.\nThe three LLM-framework examples form one alternative group; Docker and Kubernetes are listed together, not as alternatives.\nMapped deployment of AI agents to ai-deployment; flagged because the taxonomy's explicit deployment aliases focus on models.\nPrompt optimization and model selection appear only in responsibilities and are excluded.\nVibe Coder describes an accepted alternative qualification, not an explicit requirement for AI coding tools.\nNo stated seniority, qualifying experience duration, or leadership duty is present."
   },
   "error": null,
   "labeler": "B",
-  "posting_sha256": "33093755682123d0ed49a4ffc2183de6911b6f7103173de37c58571d90a92684",
-  "prompt_sha256": "562d7e65eab040f52c77a37b0ff99b4fd74dd847b58d36220df0dcc119589d6a"
+  "posting_sha256": "6dd06f7c47c50792b3d000e7cc6dd6fda8fa39c8dae86800035635185f076a3f",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
 }
