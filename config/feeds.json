@@ -111,6 +111,10 @@
     {"type": "ashby", "enabled": true, "token": "bjakcareer", "company": "bjakcareer"},
     {"type": "ashby", "enabled": true, "token": "mistral.ai", "company": "mistral.ai"},
     {"type": "ashby", "enabled": true, "token": "faculty", "company": "faculty"},
-    {"type": "ashby", "enabled": true, "token": "prosus", "company": "prosus"}
+    {"type": "ashby", "enabled": true, "token": "prosus", "company": "prosus"},
+    {"type": "greenhouse", "enabled": true, "token": "metropolis", "company": "metropolis"},
+    {"type": "greenhouse", "enabled": true, "token": "axon", "company": "axon"},
+    {"type": "greenhouse", "enabled": true, "token": "thealleninstitute", "company": "thealleninstitute"},
+    {"type": "ashby", "enabled": true, "token": "elastix", "company": "elastix"}
   ]
 }
