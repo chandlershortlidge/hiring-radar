@@ -47,7 +47,9 @@ would add to the decisions log once he answers, so the question is never asked a
 A big call reaches him in one of two forms: three lines to approve, or a full question to
 think about (the same section, "Big calls come in two kinds", HIR-297). You do not say
 which and you do not write that form: the worker takes your NO RULE to the `senior`
-agent, which says the kind and writes what he reads.
+agent, which says the kind and writes what he reads, or decides the call itself when it
+is a recommendation he would only approve (the same section, "A recommendation to
+approve is decided, not asked", HIR-315). You still never decide a big call.
 
 You write nothing: no file, no Linear issue, no comment. Your caller posts your answer,
 and when it does it appends to the issue or adds a comment rather than replacing a

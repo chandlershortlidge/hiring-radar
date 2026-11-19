@@ -415,7 +415,14 @@ question the decider can't settle is a NO RULE, not a model problem.
 ANSWER → apply it, one line under "Decisions taken" naming the rule (or the closest rule,
 for a judgment the decider made where none fit exactly). NO RULE → the call is big, and
 the senior agent says which kind of big call it is (AGENTS.md "What Chandler is asked", "Big calls come in two kinds"): hand it the question and the
-decider's reply. It answers ON CHANDLER'S LIST with either **TO APPROVE** and three lines,
+decider's reply, with any proof the call needs (a trial on a copy of the database and
+last night's backup, for stored data). **A recommendation he would only approve is
+decided, not asked** (the same section, "A recommendation to approve is decided, not
+asked", HIR-315): the senior agent then answers DECISION + DECIDED FOR YOU, and you carry
+it out exactly as a small call (below, step 3): its line, unchanged, under **Decided for
+you** in the PR body, no @mention, no stop. When the decision is about how quality is
+measured, write its reason into the decisions log in the same PR. Otherwise it answers
+ON CHANDLER'S LIST with either **TO APPROVE** and three lines (a spend above his limit),
 or **TO THINK ABOUT** and a full question. Post that, unchanged, on the Linear issue under
 the heading **To approve** or **To think about**, with an @mention of Chandler; do what
 doesn't depend on it, stop. When his answer arrives, add it to the decisions log (a new
@@ -430,7 +437,8 @@ your notes: what you tried, what happened, the files involved. It answers DECISI
 REASON — carry it out and add a line under "Decisions taken" — or ON CHANDLER'S LIST with
 the call already written for him as TO APPROVE (three lines) or TO THINK ABOUT (a full
 question): post that on the Linear issue under the heading **To approve** or **To think
-about**, with an @mention, do what doesn't depend on it, and stop.
+about**, with an @mention, do what doesn't depend on it, and stop. A call he would only
+approve comes back as DECISION + DECIDED FOR YOU instead (HIR-315, above): carry it out.
 
 ## A small call on Chandler's list: the senior agent decides (HIR-278)
 
