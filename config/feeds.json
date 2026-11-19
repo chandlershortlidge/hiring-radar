@@ -87,6 +87,13 @@
     {"type": "greenhouse", "enabled": true, "token": "avride", "company": "avride"},
     {"type": "greenhouse", "enabled": true, "token": "striveworks", "company": "striveworks"},
     {"type": "ashby", "enabled": true, "token": "webai", "company": "webai"},
-    {"type": "greenhouse", "enabled": true, "token": "flagshippioneeringinc", "company": "flagshippioneeringinc"}
+    {"type": "greenhouse", "enabled": true, "token": "flagshippioneeringinc", "company": "flagshippioneeringinc"},
+    {"type": "greenhouse", "enabled": true, "token": "indiciumai", "company": "indiciumai"},
+    {"type": "greenhouse", "enabled": true, "token": "monzo", "company": "monzo"},
+    {"type": "greenhouse", "enabled": true, "token": "graphcore", "company": "graphcore"},
+    {"type": "greenhouse", "enabled": true, "token": "deliveroo", "company": "deliveroo"},
+    {"type": "ashby", "enabled": true, "token": "bjakcareer", "company": "bjakcareer"},
+    {"type": "ashby", "enabled": true, "token": "mistral.ai", "company": "mistral.ai"},
+    {"type": "ashby", "enabled": true, "token": "faculty", "company": "faculty"}
   ]
 }

@@ -87,11 +87,12 @@ def test_ashby_reads_the_city_from_the_address_when_the_office_name_lacks_it():
 
 def test_ashby_address_city_remote_is_not_a_remote_signal():
     """Plaid's "London Office" carries "Remote" as its address city; that is not a remote
-    posting a Berlin resident can take, so it is left out."""
+    posting a Berlin resident can take. It was left out until London launched (HIR-252), and
+    now files under London, never under Remote (EU)."""
     from app.geo import place_of
     p = _hir289("Technical Support Engineer")
     assert p.location_raw == "London Office"
-    assert place_of(p.location_raw, p.title, p.description_text) is None
+    assert place_of(p.location_raw, p.title, p.description_text) == "London"
 
 
 def test_ashby_address_city_already_in_the_name_is_not_repeated():
@@ -695,7 +696,8 @@ def test_arbeitnow_placeholder_unknown_host_names_no_country():
 def test_arbeitnow_placeholder_only_applies_to_the_placeholder():
     """Employer text keeps passing through untouched: "Remote" and "Homeoffice" are what the
     posting wrote, so the host's country never overrides them."""
-    item = {"slug": "remote-ai-engineer-london-9", "company_name": "Acme", "title": "AI Engineer",
+    # Leeds, a UK city we do not track (London was the stand-in until it launched, HIR-252).
+    item = {"slug": "remote-ai-engineer-leeds-9", "company_name": "Acme", "title": "AI Engineer",
             "description": "<p>x</p>", "url": "https://www.arbeitnow.co.uk/jobs/x",
             "remote": True, "created_at": 1760000000}
     for loc in ("Remote", "Homeoffice", "Bromley"):

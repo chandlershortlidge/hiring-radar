@@ -47,12 +47,13 @@ CITIES: dict[str, tuple[str, ...]] = {
     "Munich": ("munich", "münchen", "muenchen"),
     "Austin": ("austin",),
     "Boston": ("boston", "cambridge, ma", "cambridge, massachusetts"),
+    "London": ("london",),
 }
 
 REMOTE_EU = "Remote (EU)"
 
 ACTIVE_CITIES: tuple[str, ...] = ("Berlin", REMOTE_EU, "San Francisco", "New York", "Hamburg",
-                                  "Frankfurt", "Munich", "Austin", "Boston")
+                                  "Frankfurt", "Munich", "Austin", "Boston", "London")
 
 # The day each active place started being collected (HIR-232). A place's first weeks hold
 # every posting that was already open on that day, all "first seen" at once, so nothing
@@ -68,9 +69,21 @@ COLLECTING_SINCE: dict[str, str] = {
     "Munich": "2026-11-08",
     "Austin": "2026-11-19",          # HIR-252
     "Boston": "2026-11-19",
+    "London": "2026-11-19",
 }
 
-_PATTERNS = {city: re.compile(r"\b(" + "|".join(re.escape(a) for a in aliases) + r")\b", re.I)
+# Places that share a tracked city's name (HIR-252). Each is a lookbehind and lookahead
+# wrapped around the city's match: "London, Ontario", "London, ON" and "New London, CT" are
+# not London. The province code is matched in capitals only, so "London, on-site" stays
+# London. A bare "London, Canada" is excluded too; listing offices as "London, Canada, US"
+# would lose London, which is rarer than the Ontario city.
+_NOT_THIS_CITY: dict[str, tuple[str, str]] = {
+    "London": (r"(?<!new )", r"(?!,?\s*(?:(?-i:ON)\b|ontario\b|canada\b))"),
+}
+
+_PATTERNS = {city: re.compile(_NOT_THIS_CITY.get(city, ("", ""))[0]
+                              + r"\b(" + "|".join(re.escape(a) for a in aliases) + r")\b"
+                              + _NOT_THIS_CITY.get(city, ("", ""))[1], re.I)
              for city, aliases in CITIES.items()}
 
 _REMOTE = re.compile(r"\b(remote|remotely|home ?office|work from home|wfh|telecommute|anywhere|worldwide)\b", re.I)
