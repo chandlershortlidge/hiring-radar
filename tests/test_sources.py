@@ -618,6 +618,21 @@ def test_jsearch_parse_reads_the_search_v2_wrapper():
     assert jsearch.parse({"data": {}}) == [] and jsearch.parse({"data": {"jobs": None}}) == []
 
 
+def test_jsearch_parse_reads_a_recorded_search_v2_response():
+    """A real RapidAPI /search-v2 reply with the server's key ("AI engineer in Boston", US,
+    recorded 2026-11-19, request_id blanked): same job fields as /search, one level deeper."""
+    from app.geo import active_place
+    from app.sources import jsearch
+    payload = load("jsearch_v2_recorded.json")
+    assert isinstance(payload["data"], dict) and len(payload["data"]["jobs"]) == 10
+    ps = jsearch.parse(payload, country="us")
+    assert len(ps) == 10 and all(p.url and p.company and p.description_text for p in ps)
+    places = [active_place(p.location_raw) for p in ps]
+    assert places.count("Boston") == 8
+    remote = next(p for p in ps if p.location_raw == "Remote (US)")   # job_location "Anywhere"
+    assert active_place(remote.location_raw) is None
+
+
 def test_jsearch_pace_keeps_calls_apart():
     from app.sources import jsearch
     now, slept = [100.0], []
