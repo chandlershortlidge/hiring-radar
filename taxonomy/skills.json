@@ -461,7 +461,11 @@
       "id": "cybersecurity",
       "display": "Cybersecurity",
       "aliases": [
-        "cybersecurity / mitre att&ck"
+        "cybersecurity / mitre att&ck",
+        "security by design",
+        "security reviews",
+        "security standards",
+        "sicherheitskonzepte"
       ],
       "parents": [],
       "reviewed": true
@@ -479,7 +483,9 @@
       "id": "data-modeling",
       "display": "Data modeling",
       "aliases": [
-        "datenmodelle"
+        "datenmodelle",
+        "star schema",
+        "data vault"
       ],
       "parents": [],
       "reviewed": true
@@ -1329,7 +1335,13 @@
       "id": "networking",
       "display": "Networking",
       "aliases": [
-        "netzwerke"
+        "netzwerke",
+        "vnets",
+        "azure vnets",
+        "private endpoints",
+        "azure private endpoints",
+        "service endpoints",
+        "network policies"
       ],
       "parents": [],
       "reviewed": true
@@ -1954,7 +1966,9 @@
         "chroma",
         "chromadb",
         "vektordatenbanken",
-        "vector db"
+        "vector db",
+        "pinecone",
+        "qdrant"
       ],
       "parents": [],
       "reviewed": true
@@ -2130,6 +2144,55 @@
       "parents": [
         "azure"
       ],
+      "reviewed": true
+    },
+    {
+      "id": "access-control",
+      "display": "Access control",
+      "aliases": [
+        "iam",
+        "aws iam",
+        "rbac",
+        "iam/rbac",
+        "rbac/acl",
+        "acl",
+        "identity management",
+        "least privilege"
+      ],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "power-automate",
+      "display": "Power Automate",
+      "aliases": [
+        "microsoft power automate"
+      ],
+      "parents": [
+        "workflow-automation"
+      ],
+      "reviewed": true
+    },
+    {
+      "id": "data-warehousing",
+      "display": "Data warehousing",
+      "aliases": [
+        "dwh",
+        "data warehouse",
+        "datawarehouse",
+        "data warehouse / data lake"
+      ],
+      "parents": [],
+      "reviewed": true
+    },
+    {
+      "id": "context-engineering",
+      "display": "Context engineering",
+      "aliases": [
+        "context window management",
+        "context window"
+      ],
+      "parents": [],
       "reviewed": true
     },
     {
