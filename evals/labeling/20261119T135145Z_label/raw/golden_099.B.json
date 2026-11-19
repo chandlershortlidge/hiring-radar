@@ -1,0 +1,161 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Deep expertise on ML frameworks\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM architectures\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"transformer internals\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"quantization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Quantization\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML model deployment challenges\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering best practices\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"testing\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Compiler development\",\n      \"raw_text\": \"building compilers\"\n    },\n    {\n      \"label\": \"Kernel optimization\",\n      \"raw_text\": \"optimizing kernels\"\n    },\n    {\n      \"label\": \"MLIR\",\n      \"raw_text\": \"MLIR\"\n    },\n    {\n      \"label\": \"LLVM\",\n      \"raw_text\": \"LLVM\"\n    },\n    {\n      \"label\": \"XLA\",\n      \"raw_text\": \"XLA\"\n    },\n    {\n      \"label\": \"TVM\",\n      \"raw_text\": \"TVM\"\n    },\n    {\n      \"label\": \"Triton compiler infrastructure\",\n      \"raw_text\": \"Triton\"\n    },\n    {\n      \"label\": \"Hardware compute models\",\n      \"raw_text\": \"GPU/TPU/FPGA/ASIC compute models\"\n    },\n    {\n      \"label\": \"Parallel execution\",\n      \"raw_text\": \"parallel execution\"\n    },\n    {\n      \"label\": \"Sparsity\",\n      \"raw_text\": \"sparsity\"\n    },\n    {\n      \"label\": \"Algorithmic optimization\",\n      \"raw_text\": \"algorithmic optimization\"\n    },\n    {\n      \"label\": \"Data structures\",\n      \"raw_text\": \"data structures\"\n    },\n    {\n      \"label\": \"Algorithms\",\n      \"raw_text\": \"algorithms\"\n    },\n    {\n      \"label\": \"Custom hardware accelerators\",\n      \"raw_text\": \"Experience with custom hardware accelerators for ML inference\"\n    },\n    {\n      \"label\": \"Open-source contributions\",\n      \"raw_text\": \"Contributions to open-source compiler or ML systems projects\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"BS/MS/PhD in Computer Science, Software Engineering, or a related field.\",\n  \"notes\": \"REQUIRED QUALIFICATIONS sets required labels; PREFERRED / BONUS sets optional labels. Responsibilities and company-description technologies were excluded.\\nThe outer 'one or more of the following' offers alternative bundles, including conjunctions and nested alternatives. The flat alternative_group field cannot faithfully encode these bundles; their mapped skills are flagged for review and outer grouping is left unresolved. Group numbers cover only the two unambiguous mapped sets, not a completed grouping review.\\nML frameworks is provisionally mapped to machine-learning; the taxonomy has no separate generic ML-frameworks entry.\\nTriton names a compiler infrastructure here, not Triton Inference Server, so it is unmapped.\\nMemory hierarchies, latency, cycles, memory bandwidth, and arithmetic intensity are treated literally as domain knowledge rather than standalone technical practices.\\nThe two preferred-section unmapped items are nice-to-have; the other unmapped items occur in required qualifications, some within alternatives.\\nThe required degree list explicitly includes PhD, so the highest named degree is required despite the separate preferred PhD mention.\\nDeep experience and deep expertise are not seniority signals under the guide.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Deep expertise on ML frameworks",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM architectures",
+        "uncertain": true
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "transformer internals",
+        "uncertain": true
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "required",
+        "raw_text": "Quantization",
+        "uncertain": true
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning",
+        "uncertain": true
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "ML model deployment challenges"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering best practices"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Compiler development",
+        "raw_text": "building compilers"
+      },
+      {
+        "label": "Kernel optimization",
+        "raw_text": "optimizing kernels"
+      },
+      {
+        "label": "MLIR",
+        "raw_text": "MLIR"
+      },
+      {
+        "label": "LLVM",
+        "raw_text": "LLVM"
+      },
+      {
+        "label": "XLA",
+        "raw_text": "XLA"
+      },
+      {
+        "label": "TVM",
+        "raw_text": "TVM"
+      },
+      {
+        "label": "Triton compiler infrastructure",
+        "raw_text": "Triton"
+      },
+      {
+        "label": "Hardware compute models",
+        "raw_text": "GPU/TPU/FPGA/ASIC compute models"
+      },
+      {
+        "label": "Parallel execution",
+        "raw_text": "parallel execution"
+      },
+      {
+        "label": "Sparsity",
+        "raw_text": "sparsity"
+      },
+      {
+        "label": "Algorithmic optimization",
+        "raw_text": "algorithmic optimization"
+      },
+      {
+        "label": "Data structures",
+        "raw_text": "data structures"
+      },
+      {
+        "label": "Algorithms",
+        "raw_text": "algorithms"
+      },
+      {
+        "label": "Custom hardware accelerators",
+        "raw_text": "Experience with custom hardware accelerators for ML inference"
+      },
+      {
+        "label": "Open-source contributions",
+        "raw_text": "Contributions to open-source compiler or ML systems projects"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "BS/MS/PhD in Computer Science, Software Engineering, or a related field.",
+    "notes": "REQUIRED QUALIFICATIONS sets required labels; PREFERRED / BONUS sets optional labels. Responsibilities and company-description technologies were excluded.\nThe outer 'one or more of the following' offers alternative bundles, including conjunctions and nested alternatives. The flat alternative_group field cannot faithfully encode these bundles; their mapped skills are flagged for review and outer grouping is left unresolved. Group numbers cover only the two unambiguous mapped sets, not a completed grouping review.\nML frameworks is provisionally mapped to machine-learning; the taxonomy has no separate generic ML-frameworks entry.\nTriton names a compiler infrastructure here, not Triton Inference Server, so it is unmapped.\nMemory hierarchies, latency, cycles, memory bandwidth, and arithmetic intensity are treated literally as domain knowledge rather than standalone technical practices.\nThe two preferred-section unmapped items are nice-to-have; the other unmapped items occur in required qualifications, some within alternatives.\nThe required degree list explicitly includes PhD, so the highest named degree is required despite the separate preferred PhD mention.\nDeep experience and deep expertise are not seniority signals under the guide."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "b91c19981444eed15842533d1b99ce61c64aff0a7b1dc600d460ee521ed29248",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

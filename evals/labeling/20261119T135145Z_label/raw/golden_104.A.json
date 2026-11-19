@@ -1,0 +1,126 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"software engineering experience\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"deploying AI/ML models to production\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud architecture\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"infrastructure as code\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"cpp\", \"requirement\": \"required\", \"raw_text\": \"C++\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\", \"alternative_group\": 1},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\", \"alternative_group\": 1},\n    {\"skill_id\": \"linux\", \"requirement\": \"required\", \"raw_text\": \"Linux environments and systems\"},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"software architecture and design skills\"},\n    {\"skill_id\": \"llmops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience with LLMOps\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"model evaluation\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"nice_to_have\", \"raw_text\": \"monitoring\"},\n    {\"skill_id\": \"quantization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"quantization\"},\n    {\"skill_id\": \"knowledge-distillation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"distillation/teacher-student approaches\"},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"fine-tuning and optimizing large-scale models\"},\n    {\"skill_id\": \"data-privacy-and-security\", \"requirement\": \"nice_to_have\", \"raw_text\": \"privacy-preserving machine learning\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"model encryption\", \"raw_text\": \"model encryption\"},\n    {\"label\": \"secure AI techniques\", \"raw_text\": \"secure AI techniques\"}\n  ],\n  \"seniority\": \"senior\", \"seniority_basis\": \"stated\", \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null, \"german_basis\": null, \"german_signal\": null,\n  \"degree\": \"phd\", \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false, \"degree_signal\": \"Master’s degree or PhD in Computer Science, Engineering, Electronics, Mathematics, or another highly technical field.\",\n  \"uncertain\": [\"degree\"],\n  \"groups_reviewed\": true,\n  \"notes\": \"Sections: 'What You Bring' is required. 'Preferred' is nice_to_have. 'What You’ll Do' and 'Grow Your Career' are responsibilities, so they are not labeled.\\nai-deployment: required via the 'What You Bring' mention, which outranks the Preferred 'production deployment' mention.\\ncloud: the required mention is 'cloud architecture'. 'in the cloud' also appears in the same requirements section.\\nI did not label ai-ml from 'AI/ML models'. 'AI/ML' is used as a modifier of the deployment ask, not as a skill asked for on its own.\\nI did not map 'ML frameworks' to machine-learning or deep-learning. No taxonomy alias matches 'ML frameworks'.\\nPyTorch and TensorFlow form group 1 ('such as PyTorch or TensorFlow'). Neither is asked for elsewhere.\\nprivacy-preserving machine learning was mapped to data-privacy-and-security. This is a loose fit, so it is flagged.\\nDegree: the guide says take the highest level named. That is PhD, which appears only under Preferred, so the label is nice_to_have. However, a Bachelor's is required under 'What You Bring'. The guide does not cover a required lower degree plus an optional higher one. I took the literal 'highest level named' reading and flagged it. The alternative label is bachelor/required.\\nStrong problem-solving and communication are soft skills and are not labeled.\\nThe '6+ years' wording supports senior, consistent with the stated title.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering experience"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying AI/ML models to production"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud architecture"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "infrastructure as code"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux environments and systems"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "software architecture and design skills"
+      },
+      {
+        "skill_id": "llmops",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with LLMOps"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "model evaluation"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "nice_to_have",
+        "raw_text": "quantization"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "nice_to_have",
+        "raw_text": "distillation/teacher-student approaches"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "fine-tuning and optimizing large-scale models"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "nice_to_have",
+        "raw_text": "privacy-preserving machine learning",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "model encryption",
+        "raw_text": "model encryption"
+      },
+      {
+        "label": "secure AI techniques",
+        "raw_text": "secure AI techniques"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s degree or PhD in Computer Science, Engineering, Electronics, Mathematics, or another highly technical field.",
+    "uncertain": [
+      "degree"
+    ],
+    "groups_reviewed": true,
+    "notes": "Sections: 'What You Bring' is required. 'Preferred' is nice_to_have. 'What You’ll Do' and 'Grow Your Career' are responsibilities, so they are not labeled.\nai-deployment: required via the 'What You Bring' mention, which outranks the Preferred 'production deployment' mention.\ncloud: the required mention is 'cloud architecture'. 'in the cloud' also appears in the same requirements section.\nI did not label ai-ml from 'AI/ML models'. 'AI/ML' is used as a modifier of the deployment ask, not as a skill asked for on its own.\nI did not map 'ML frameworks' to machine-learning or deep-learning. No taxonomy alias matches 'ML frameworks'.\nPyTorch and TensorFlow form group 1 ('such as PyTorch or TensorFlow'). Neither is asked for elsewhere.\nprivacy-preserving machine learning was mapped to data-privacy-and-security. This is a loose fit, so it is flagged.\nDegree: the guide says take the highest level named. That is PhD, which appears only under Preferred, so the label is nice_to_have. However, a Bachelor's is required under 'What You Bring'. The guide does not cover a required lower degree plus an optional higher one. I took the literal 'highest level named' reading and flagged it. The alternative label is bachelor/required.\nStrong problem-solving and communication are soft skills and are not labeled.\nThe '6+ years' wording supports senior, consistent with the stated title."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "5c8fe999b8f9fb6a564c807e31e12df3deacb93ec8842a8462589b291f23ac30",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}
