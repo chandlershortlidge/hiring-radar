@@ -488,6 +488,7 @@ select.qb-sel { padding-right: 34px; background-color: var(--paper); appearance:
 .mk-skill .pc { font: 11.5px var(--mono); text-align: right; }
 .market-row .none { grid-column: 3 / 6; font-size: 12.5px; }
 .mk-go { grid-column: 6; color: var(--plum); font-size: 16px; }
+.market-loading { margin: 0; padding: 18px 16px; font-size: 13px; }
 .market-ask { margin: 6px 0 0; text-align: center; font-size: 13px; }
 .market-ask .btn { padding: 0; text-decoration: underline; }
 

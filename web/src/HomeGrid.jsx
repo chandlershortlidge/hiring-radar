@@ -32,7 +32,12 @@ export const topSkills = (skills, city, total, n = TOP) => (skills || [])
 // family the numbers were fetched for, so count, bars and order always describe the same jobs.
 export const cardCounts = (counts, data) => (data?.family ? data.city_totals || {} : counts);
 
-export default function HomeGrid({ data, counts, family, onRequestCity }) {
+// `loading` is true until the job counts and the skills answer have both arrived. Until
+// then every city would count as zero, so the rows would sit in name order saying "0 open"
+// under a heading that says "sorted by open jobs" (HIR-356: the robot visitor clicked the
+// first row, a city with no jobs yet, and found no chart). No rows are drawn before the
+// order they are drawn in is true.
+export default function HomeGrid({ data, counts, family, onRequestCity, loading = false }) {
   const charted = data?.city_totals || {};
   const shown = cardCounts(counts, data);
   const places = gridPlaces(shown);
@@ -45,7 +50,7 @@ export default function HomeGrid({ data, counts, family, onRequestCity }) {
         <span className="dim">sorted by open jobs · top three skills each</span>
       </div>
       <div className="card market-table">
-        {places.map((p) => {
+        {loading ? <p className="dim market-loading" role="status">Loading markets…</p> : places.map((p) => {
           const total = shown[p.name] || 0;
           const top = topSkills(data?.skills, p.name, charted[p.name] || 0);
           return (
