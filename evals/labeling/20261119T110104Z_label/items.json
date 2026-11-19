@@ -1,0 +1,2375 @@
+[
+  {
+    "golden_id": "golden_094",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Senior ML Engineer",
+    "company": "flagshippioneeringinc",
+    "title": "Senior ML Engineer",
+    "place": "Boston",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 11,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_095",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Scientist, Machine Learning (Human Physiology)",
+    "company": "flagshippioneeringinc",
+    "title": "Scientist, Machine Learning (Human Physiology)",
+    "place": "Boston",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 3,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Principal Software Engineer - Agentic Platform",
+    "company": "flagshippioneeringinc",
+    "title": "Principal Software Engineer - Agentic Platform",
+    "place": "Boston",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 19,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Principal AI Scientist, Autonomous Discovery",
+    "company": "flagshippioneeringinc",
+    "title": "Principal AI Scientist, Autonomous Discovery",
+    "place": "Boston",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 1,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Principal Scientist, Machine Learning",
+    "company": "flagshippioneeringinc",
+    "title": "Principal Scientist, Machine Learning",
+    "place": "Boston",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 20,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "(Senior) Scientist, Machine Learning",
+    "company": "flagshippioneeringinc",
+    "title": "(Senior) Scientist, Machine Learning",
+    "place": "Boston",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 2,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Principal Scientist, Machine Learning - Multimodal Biological Reasoning",
+    "company": "flagshippioneeringinc",
+    "title": "Principal Scientist, Machine Learning - Multimodal Biological Reasoning",
+    "place": "Boston",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 2,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Principal Scientist, Machine Learning - Biomolecules",
+    "company": "flagshippioneeringinc",
+    "title": "Principal Scientist, Machine Learning - Biomolecules",
+    "place": "Boston",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 27,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_102",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Senior Machine Learning Scientist, Climate & Hydrology",
+    "company": "flagshippioneeringinc",
+    "title": "Senior Machine Learning Scientist, Climate & Hydrology",
+    "place": "Boston",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 3,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "skill",
+    "key": "ai-deployment",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "deploying LLM-powered applications in production environments"
+    },
+    "excerpt": "...and natural language processing (NLP) - Proven experience deploying LLM-powered applications in production environments, including experience with frameworks such as PyTorch,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_095",
+    "kind": "skill",
+    "key": "agents",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "agents",
+      "requirement": "nice_to_have",
+      "raw_text": "Team members direct AI agents in their daily work for literature synthesis, study design, data analysis, and code. We are looking for someone who wants to work this way."
+    },
+    "excerpt": "...and interpretation. FL127 is an AI-native company. Team members direct AI agents in their daily work for literature synthesis, study design, data analysis, and code. We are looking for someone who wants to work this way. KEY RESPONSIBILITIES - Ground each measured signal in...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "software-architecture",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "architecting and maintaining large-scale distributed systems"
+    },
+    "excerpt": "...development experience. - Demonstrated track record architecting and maintaining large-scale distributed systems in production at technology companies. -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "software-engineering",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "professional software development experience"
+    },
+    "excerpt": "...Engineering, or a related field, with 10+ years of professional software development experience. - Demonstrated track record architecting...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "machine-learning",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "modern ML frameworks"
+    },
+    "excerpt": "...across multiple core tools and concepts, including Python; modern ML frameworks (PyTorch or JAX/TensorFlow); version control; databases;...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "skill",
+    "key": "data-science",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "data-science",
+      "requirement": "required",
+      "raw_text": "translational data science"
+    },
+    "excerpt": "...biology, AI-for-biology, AI-enabled drug discovery, translational data science, biological foundation models, or scientific discovery...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "skill",
+    "key": "hallucination-detection",
+    "reason": "disagreement",
+    "a": {
+      "skill_id": "hallucination-detection",
+      "requirement": "required",
+      "raw_text": "hallucination risk"
+    },
+    "b": null,
+    "excerpt": "...biology, scientific credibility, model limitations, hallucination risk, interpretability, and validation. - Experience leading...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "skill",
+    "key": "machine-learning",
+    "reason": "disagreement",
+    "a": {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "ML systems"
+    },
+    "b": null,
+    "excerpt": "...learning, fine-tuning, post-training, benchmarking, and ML systems. - Deep experience in computational biology,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "agents",
+    "reason": "disagreement",
+    "a": {
+      "skill_id": "agents",
+      "requirement": "nice_to_have",
+      "raw_text": "LLM/agentic automation"
+    },
+    "b": {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "spin up LLM based agents"
+    },
+    "excerpt": "...spec, cheminformatics/docking/ADMET, biophysics/MD, and LLM/agentic automation. - MLOps expertise: data contracts and lineage (e.g.,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "llms",
+    "reason": "disagreement",
+    "a": {
+      "skill_id": "llms",
+      "requirement": "nice_to_have",
+      "raw_text": "LLM/agentic automation"
+    },
+    "b": {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "spin up LLM based agents"
+    },
+    "excerpt": "...spec, cheminformatics/docking/ADMET, biophysics/MD, and LLM/agentic automation. - MLOps expertise: data contracts and lineage (e.g.,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "workflow-automation",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "workflow-automation",
+      "requirement": "required",
+      "raw_text": "agents that automate scientific workflows"
+    },
+    "excerpt": "...or docking pipelines the next and then spin up LLM based agents that automate scientific workflows. KEY RESPONSIBILITIES - Program Leadership: Lead...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "skill",
+    "key": "evaluation",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "standard evaluation protocols"
+    },
+    "b": {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "standard evaluation protocols"
+    },
+    "excerpt": "...tools for ML development, large-scale data pipelines, and standard evaluation protocols - Experience owning systems end-to-end in a production...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "skill",
+    "key": "llm-orchestration",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "llm-orchestration",
+      "requirement": "nice_to_have",
+      "raw_text": "RAG, agentic orchestration"
+    },
+    "b": {
+      "skill_id": "llm-orchestration",
+      "requirement": "nice_to_have",
+      "raw_text": "agentic orchestration, or multi-agent systems is strongly preferred"
+    },
+    "excerpt": "...as PyTorch, vLLM, or LangGraph - Hands-on experience with RAG, agentic orchestration, or multi-agent systems is strongly preferred -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "skill",
+    "key": "observability",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "including monitoring"
+    },
+    "b": {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "monitoring"
+    },
+    "excerpt": "...owning systems end-to-end in a production environment, including monitoring and iterating post-deployment - Self-motivated and...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "ai-infrastructure",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "ai-infrastructure",
+      "requirement": "nice_to_have",
+      "raw_text": "FinOps for AI infrastructure"
+    },
+    "b": {
+      "skill_id": "ai-infrastructure",
+      "requirement": "nice_to_have",
+      "raw_text": "AI infrastructure"
+    },
+    "excerpt": "...and monitoring tooling and cost-governance / FinOps for AI infrastructure. - Background in scientific domains such as biology,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "api-design",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "api-design",
+      "requirement": "required",
+      "raw_text": "designing SDKs, APIs"
+    },
+    "b": {
+      "skill_id": "api-design",
+      "requirement": "required",
+      "raw_text": "designing SDKs, APIs, and data contracts"
+    },
+    "excerpt": "...operationally excellent production. - Experience designing SDKs, APIs, and data contracts that serve multiple downstream...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "cloud",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Strong cloud-native engineering"
+    },
+    "b": {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "cloud-native engineering"
+    },
+    "excerpt": "...execution, idempotency, durable retries, and replay. - Strong cloud-native engineering on AWS with infrastructure-as-code, containerization, and...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "observability",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "hardened, observable, operationally excellent production"
+    },
+    "b": {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "observable"
+    },
+    "excerpt": "...Proven ability to take systems from prototype to hardened, observable, operationally excellent production. - Experience designing SDKs, APIs, and data contracts...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "skill",
+    "key": "causal-inference",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "causal-inference",
+      "requirement": "required",
+      "raw_text": "advanced Bayesian causal modeling"
+    },
+    "b": {
+      "skill_id": "causal-inference",
+      "requirement": "required",
+      "raw_text": "Bayesian causal modeling"
+    },
+    "excerpt": "...with 5+ years of experience post PhD. - Deep expertise in advanced Bayesian causal modeling and/or evolutionary programming — e.g., probabilistic...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "ai-infrastructure",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "ai-infrastructure",
+      "requirement": "nice_to_have",
+      "raw_text": "FinOps for AI infrastructure"
+    },
+    "b": {
+      "skill_id": "ai-infrastructure",
+      "requirement": "nice_to_have",
+      "raw_text": "AI infrastructure"
+    },
+    "excerpt": "...observability and monitoring tooling and cost-governance / FinOps for AI infrastructure. WHY PIONEERING INTELLIGENCE - Operate at the...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "ai-ml",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "high impact, cross disciplinary AI/ML projects"
+    },
+    "b": {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "cross disciplinary AI/ML projects"
+    },
+    "excerpt": "...of sustained independent thought and creativity driving high impact, cross disciplinary AI/ML projects. - Successful track record of leadership and...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "cheminformatics",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "cheminformatics",
+      "requirement": "nice_to_have",
+      "raw_text": "cheminformatics/docking/ADMET"
+    },
+    "b": {
+      "skill_id": "cheminformatics",
+      "requirement": "nice_to_have",
+      "raw_text": "cheminformatics"
+    },
+    "excerpt": "...modeling/design, proteomics/mass spec, multi-omics, cheminformatics/docking/ADMET, biophysics/MD, and scientific literature mining, with the...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "attribute",
+    "key": "seniority",
+    "reason": "uncertain",
+    "a": {
+      "seniority": "senior",
+      "seniority_basis": "stated",
+      "seniority_signal": "(Senior) Scientist, Machine Learning"
+    },
+    "b": {
+      "seniority": "senior",
+      "seniority_basis": "stated",
+      "seniority_signal": "(Senior) Scientist, Machine Learning"
+    },
+    "excerpt": "(Senior) Scientist, Machine Learning What if… you could join an organization that creates,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "skill",
+    "key": "chemical-descriptors",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "chemical-descriptors",
+      "requirement": "required",
+      "raw_text": "post-DFT descriptors"
+    },
+    "b": {
+      "skill_id": "chemical-descriptors",
+      "requirement": "required",
+      "raw_text": "post-DFT descriptors"
+    },
+    "excerpt": "...quantum chemistry, DFT, electronic structure methods, or post-DFT descriptors. - Experience building molecular ML models including...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "skill",
+    "key": "cheminformatics",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "cheminformatics",
+      "requirement": "nice_to_have",
+      "raw_text": "cheminformatics and molecular modeling toolkits"
+    },
+    "b": {
+      "skill_id": "cheminformatics",
+      "requirement": "nice_to_have",
+      "raw_text": "cheminformatics"
+    },
+    "excerpt": "...as PyTorch, PyTorch Geometric, DGL, or related tools and cheminformatics and molecular modeling toolkits such as RDKit, ORCA, Gaussian, Q-Chem, or related software...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "skill",
+    "key": "deep-learning",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "deep-learning",
+      "requirement": "required",
+      "raw_text": "geometric deep learning"
+    },
+    "b": {
+      "skill_id": "deep-learning",
+      "requirement": "required",
+      "raw_text": "geometric deep learning"
+    },
+    "excerpt": "...molecular ML models including graph neural networks, geometric deep learning, equivariant architectures, diffusion models, or related...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "skill",
+    "key": "model-development",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "model-development",
+      "requirement": "required",
+      "raw_text": "model training"
+    },
+    "b": {
+      "skill_id": "model-development",
+      "requirement": "required",
+      "raw_text": "model training"
+    },
+    "excerpt": "...is preferred - Experience with scalable data processing, model training, and analysis workflows for large scientific datasets -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "skill",
+    "key": "python",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "python",
+      "requirement": "nice_to_have",
+      "raw_text": "Proficiency with Python"
+    },
+    "b": {
+      "skill_id": "python",
+      "requirement": "nice_to_have",
+      "raw_text": "Proficiency with Python and modern ML frameworks such as PyTorch, PyTorch Geometric, DGL, or related tools and cheminformatics and molecular modeling toolkits such as RDKit, ORCA, Gaussian, Q-Chem, or related software is preferred"
+    },
+    "excerpt": "...large-scale scientific datasets from multiple sources - Proficiency with Python and modern ML frameworks such as PyTorch, PyTorch...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "skill",
+    "key": "pytorch",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "pytorch",
+      "requirement": "nice_to_have",
+      "raw_text": "PyTorch"
+    },
+    "b": {
+      "skill_id": "pytorch",
+      "requirement": "nice_to_have",
+      "raw_text": "PyTorch"
+    },
+    "excerpt": "...Proficiency with Python and modern ML frameworks such as PyTorch, PyTorch Geometric, DGL, or related tools and...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "skill",
+    "key": "rdkit",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "rdkit",
+      "requirement": "nice_to_have",
+      "raw_text": "RDKit"
+    },
+    "b": {
+      "skill_id": "rdkit",
+      "requirement": "nice_to_have",
+      "raw_text": "RDKit"
+    },
+    "excerpt": "...cheminformatics and molecular modeling toolkits such as RDKit, ORCA, Gaussian, Q-Chem, or related software is...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "skill",
+    "key": "agents",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "scientific agents"
+    },
+    "b": {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "scientific agents"
+    },
+    "excerpt": "...protein language models, genomic foundation models, scientific agents, or AI discovery platforms. - Experience working across...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "skill",
+    "key": "ai-deployment",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "deploying AI/ML"
+    },
+    "b": {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "deploying AI/ML for biology systems into scientific workflows at enterprise scale"
+    },
+    "excerpt": "...serving multiple scientific programs. - Experience deploying AI/ML for biology systems into scientific workflows at...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "skill",
+    "key": "ai-ml",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "AI/ML for biology systems"
+    },
+    "b": {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "AI/ML"
+    },
+    "excerpt": "...multiple scientific programs. - Experience deploying AI/ML for biology systems into scientific workflows at enterprise scale. -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "skill",
+    "key": "evaluation",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "post-training, benchmarking"
+    },
+    "b": {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "benchmarking"
+    },
+    "excerpt": "...multimodal modeling, representation learning, fine-tuning, post-training, benchmarking, and ML systems. - Deep experience in computational...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "skill",
+    "key": "explainable-ai",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "explainable-ai",
+      "requirement": "required",
+      "raw_text": "interpretability"
+    },
+    "b": {
+      "skill_id": "explainable-ai",
+      "requirement": "required",
+      "raw_text": "interpretability"
+    },
+    "excerpt": "...credibility, model limitations, hallucination risk, interpretability, and validation. - Experience leading small, high-caliber...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "ai-ml",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "cross disciplinary AI/ML projects"
+    },
+    "b": {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "AI/ML projects"
+    },
+    "excerpt": "...independent thought and creativity driving high impact, cross disciplinary AI/ML projects. - Successful track record of leadership and...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_102",
+    "kind": "skill",
+    "key": "evaluation",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "design rigorous evaluation frameworks"
+    },
+    "b": {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "evaluation frameworks"
+    },
+    "excerpt": "...or related approaches is strongly preferred. - Ability to design rigorous evaluation frameworks, performance metrics, and benchmarking approaches for...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_102",
+    "kind": "skill",
+    "key": "machine-learning",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "experience with modern ML frameworks"
+    },
+    "b": {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "Demonstrated experience with ML-accelerated weather, climate, or hydrology models"
+    },
+    "excerpt": "...AWS ecosystem. - Strong programming skills in Python and experience with modern ML frameworks such as PyTorch - Background in scientific ML,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "spot-check",
+    "a": {
+      "degree": "master",
+      "degree_requirement": "required",
+      "degree_or_equivalent": true,
+      "degree_signal": "Master's degree (or above) in Computer Science, Machine Learning, AI, or a related field; equivalent practical experience considered"
+    },
+    "b": {
+      "degree": "master",
+      "degree_requirement": "required",
+      "degree_or_equivalent": true,
+      "degree_signal": "Master's degree (or above) in Computer Science, Machine Learning, AI, or a related field; equivalent practical experience considered"
+    },
+    "excerpt": "...stakeholders Professional Experience & Qualifications - Master's degree (or above) in Computer Science, Machine Learning, AI, or a related field; equivalent practical experience considered - 5+ years of professional experience in applied machine...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "attribute",
+    "key": "german",
+    "reason": "spot-check",
+    "a": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "b": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "excerpt": "Senior ML Engineer",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "skill",
+    "key": "deep-learning",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "deep-learning",
+      "requirement": "required",
+      "raw_text": "deep learning"
+    },
+    "b": {
+      "skill_id": "deep-learning",
+      "requirement": "required",
+      "raw_text": "deep learning"
+    },
+    "excerpt": "...machine learning - Strong foundation in machine learning, deep learning, and natural language processing (NLP) - Proven...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "skill",
+    "key": "langgraph",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "langgraph",
+      "requirement": "required",
+      "raw_text": "LangGraph"
+    },
+    "b": {
+      "skill_id": "langgraph",
+      "requirement": "required",
+      "raw_text": "LangGraph"
+    },
+    "excerpt": "...experience with frameworks such as PyTorch, vLLM, or LangGraph - Hands-on experience with RAG, agentic orchestration, or...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "skill",
+    "key": "llms",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "deploying LLM-powered applications"
+    },
+    "b": {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "deploying LLM-powered applications"
+    },
+    "excerpt": "...and natural language processing (NLP) - Proven experience deploying LLM-powered applications in production environments, including experience with...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "skill",
+    "key": "machine-learning",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "Strong foundation in machine learning"
+    },
+    "b": {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "Strong foundation in machine learning"
+    },
+    "excerpt": "...of professional experience in applied machine learning - Strong foundation in machine learning, deep learning, and natural language processing (NLP) -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "skill",
+    "key": "nlp",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "nlp",
+      "requirement": "required",
+      "raw_text": "natural language processing (NLP)"
+    },
+    "b": {
+      "skill_id": "nlp",
+      "requirement": "required",
+      "raw_text": "natural language processing (NLP)"
+    },
+    "excerpt": "...Strong foundation in machine learning, deep learning, and natural language processing (NLP) - Proven experience deploying LLM-powered applications in...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "skill",
+    "key": "pytorch",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    "b": {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    "excerpt": "...environments, including experience with frameworks such as PyTorch, vLLM, or LangGraph - Hands-on experience with RAG,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "skill",
+    "key": "rag",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "rag",
+      "requirement": "nice_to_have",
+      "raw_text": "Hands-on experience with RAG"
+    },
+    "b": {
+      "skill_id": "rag",
+      "requirement": "nice_to_have",
+      "raw_text": "Hands-on experience with RAG"
+    },
+    "excerpt": "...with frameworks such as PyTorch, vLLM, or LangGraph - Hands-on experience with RAG, agentic orchestration, or multi-agent systems is strongly...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "skill",
+    "key": "vllm",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "vllm",
+      "requirement": "required",
+      "raw_text": "vLLM"
+    },
+    "b": {
+      "skill_id": "vllm",
+      "requirement": "required",
+      "raw_text": "vLLM"
+    },
+    "excerpt": "...including experience with frameworks such as PyTorch, vLLM, or LangGraph - Hands-on experience with RAG, agentic...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_095",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "spot-check",
+    "a": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "PhD in biomedical engineering, physiology, bioengineering, biophotonics, or a related field, or an MD/PhD"
+    },
+    "b": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "PhD in biomedical engineering, physiology, bioengineering, biophotonics, or a related field, or an MD/PhD"
+    },
+    "excerpt": "...to the measurement pipeline REQUIRED QUALIFICATIONS - PhD in biomedical engineering, physiology, bioengineering, biophotonics, or a related field, or an MD/PhD, with substantial applied machine learning experience -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_095",
+    "kind": "attribute",
+    "key": "german",
+    "reason": "spot-check",
+    "a": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "b": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "excerpt": "Scientist, Machine Learning (Human Physiology)",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_095",
+    "kind": "skill",
+    "key": "machine-learning",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "substantial applied machine learning experience"
+    },
+    "b": {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "substantial applied machine learning experience"
+    },
+    "excerpt": "...biophotonics, or a related field, or an MD/PhD, with substantial applied machine learning experience - Deep knowledge of human physiology in an area such as...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_095",
+    "kind": "skill",
+    "key": "python",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Proficiency in Python"
+    },
+    "b": {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Proficiency in Python"
+    },
+    "excerpt": "...including within-subject and longitudinal designs - Proficiency in Python and the modern ML stack, and comfort working inside an...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_095",
+    "kind": "skill",
+    "key": "statistics",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "statistics",
+      "requirement": "required",
+      "raw_text": "Statistical modeling"
+    },
+    "b": {
+      "skill_id": "statistics",
+      "requirement": "required",
+      "raw_text": "Statistical modeling"
+    },
+    "excerpt": "...IRB-governed protocols, and agreement analysis - Statistical modeling on small human datasets, including within-subject and...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "spot-check",
+    "a": {
+      "degree": "master",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "B.S. or M.S. in Computer Science, Engineering, or a related field"
+    },
+    "b": {
+      "degree": "master",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "B.S. or M.S. in Computer Science, Engineering, or a related field"
+    },
+    "excerpt": "...scientists. Professional Experience & Qualifications - B.S. or M.S. in Computer Science, Engineering, or a related field, with 10+ years of professional software development...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "attribute",
+    "key": "german",
+    "reason": "spot-check",
+    "a": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "b": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "excerpt": "Principal Software Engineer - Agentic Platform",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "autogen",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "autogen",
+      "requirement": "nice_to_have",
+      "raw_text": "AutoGen"
+    },
+    "b": {
+      "skill_id": "autogen",
+      "requirement": "nice_to_have",
+      "raw_text": "AutoGen"
+    },
+    "excerpt": "...(e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen). - Experience integrating LLMs and model platforms,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "aws",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "cloud-native engineering on AWS"
+    },
+    "b": {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "cloud-native engineering on AWS"
+    },
+    "excerpt": "...idempotency, durable retries, and replay. - Strong cloud-native engineering on AWS with infrastructure-as-code, containerization, and...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "aws-bedrock",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "aws-bedrock",
+      "requirement": "nice_to_have",
+      "raw_text": "Amazon Bedrock"
+    },
+    "b": {
+      "skill_id": "aws-bedrock",
+      "requirement": "nice_to_have",
+      "raw_text": "Amazon Bedrock"
+    },
+    "excerpt": "...platforms, including Anthropic, OpenAI, Vertex AI, and Amazon Bedrock, and building evaluation and feedback-loop frameworks for...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "distributed-systems",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "distributed-systems",
+      "requirement": "required",
+      "raw_text": "large-scale distributed systems"
+    },
+    "b": {
+      "skill_id": "distributed-systems",
+      "requirement": "required",
+      "raw_text": "large-scale distributed systems"
+    },
+    "excerpt": "...Demonstrated track record architecting and maintaining large-scale distributed systems in production at technology companies. -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "evaluation",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "evaluation",
+      "requirement": "nice_to_have",
+      "raw_text": "building evaluation and feedback-loop frameworks"
+    },
+    "b": {
+      "skill_id": "evaluation",
+      "requirement": "nice_to_have",
+      "raw_text": "building evaluation and feedback-loop frameworks"
+    },
+    "excerpt": "...Anthropic, OpenAI, Vertex AI, and Amazon Bedrock, and building evaluation and feedback-loop frameworks for agentic systems. - Familiarity with sandboxed code...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "event-driven-systems",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "event-driven-systems",
+      "requirement": "required",
+      "raw_text": "event-driven architecture"
+    },
+    "b": {
+      "skill_id": "event-driven-systems",
+      "requirement": "required",
+      "raw_text": "event-driven architecture"
+    },
+    "excerpt": "...Deep expertise in workflow orchestration and event-driven architecture, including stateful execution, idempotency, durable...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "infrastructure-as-code",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "required",
+      "raw_text": "with infrastructure-as-code, containerization"
+    },
+    "b": {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "required",
+      "raw_text": "with infrastructure-as-code, containerization"
+    },
+    "excerpt": "...and replay. - Strong cloud-native engineering on AWS with infrastructure-as-code, containerization, and autoscaling. - Proven ability to take systems from...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "langchain",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "langchain",
+      "requirement": "nice_to_have",
+      "raw_text": "LangChain"
+    },
+    "b": {
+      "skill_id": "langchain",
+      "requirement": "nice_to_have",
+      "raw_text": "LangChain"
+    },
+    "excerpt": "...orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen). - Experience integrating LLMs and...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "langgraph",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "langgraph",
+      "requirement": "nice_to_have",
+      "raw_text": "LangGraph"
+    },
+    "b": {
+      "skill_id": "langgraph",
+      "requirement": "nice_to_have",
+      "raw_text": "LangGraph"
+    },
+    "excerpt": "...AI and orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen). - Experience integrating...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "llms",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "llms",
+      "requirement": "nice_to_have",
+      "raw_text": "integrating LLMs"
+    },
+    "b": {
+      "skill_id": "llms",
+      "requirement": "nice_to_have",
+      "raw_text": "integrating LLMs"
+    },
+    "excerpt": "...Experience integrating LLMs and model platforms, including Anthropic, OpenAI, Vertex...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "openai-api",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "openai-api",
+      "requirement": "nice_to_have",
+      "raw_text": "OpenAI"
+    },
+    "b": {
+      "skill_id": "openai-api",
+      "requirement": "nice_to_have",
+      "raw_text": "OpenAI"
+    },
+    "excerpt": "...integrating LLMs and model platforms, including Anthropic, OpenAI, Vertex AI, and Amazon Bedrock, and building evaluation...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "pydanticai",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "pydanticai",
+      "requirement": "nice_to_have",
+      "raw_text": "Pydantic AI"
+    },
+    "b": {
+      "skill_id": "pydanticai",
+      "requirement": "nice_to_have",
+      "raw_text": "Pydantic AI"
+    },
+    "excerpt": "...with agentic AI and orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen). - Experience...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "vertex-ai",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "vertex-ai",
+      "requirement": "nice_to_have",
+      "raw_text": "Vertex AI"
+    },
+    "b": {
+      "skill_id": "vertex-ai",
+      "requirement": "nice_to_have",
+      "raw_text": "Vertex AI"
+    },
+    "excerpt": "...LLMs and model platforms, including Anthropic, OpenAI, Vertex AI, and Amazon Bedrock, and building evaluation and...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "spot-check",
+    "a": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": true,
+      "degree_signal": "PhD in a quantitative field (statistics, computer science, applied mathematics, computational biology, physics, or related) with a strong research track record, or equivalent demonstrated expertise"
+    },
+    "b": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": true,
+      "degree_signal": "PhD in a quantitative field (statistics, computer science, applied mathematics, computational biology, physics, or related) with a strong research track record, or equivalent demonstrated expertise"
+    },
+    "excerpt": "...prototypes, and external publications. Qualifications - PhD in a quantitative field (statistics, computer science, applied mathematics, computational biology, physics, or related) with a strong research track record, or equivalent demonstrated expertise with 5+ years of experience post PhD. - Deep expertise in...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "skill",
+    "key": "software-engineering",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Strong software engineering skills"
+    },
+    "b": {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Strong software engineering skills"
+    },
+    "excerpt": "...and bring them to working, validated implementations. - Strong software engineering skills and comfort running computational experiments at scale...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "spot-check",
+    "a": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "Master’s, or PhD in a relevant field"
+    },
+    "b": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "Master’s, or PhD in a relevant field"
+    },
+    "excerpt": "...action. PROFESSIONAL EXPERIENCE & QUALIFICATIONS - Master’s, or PhD in a relevant field (e.g., machine learning, mathematics, statistics,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "attribute",
+    "key": "seniority",
+    "reason": "spot-check",
+    "a": {
+      "seniority": "senior",
+      "seniority_basis": "stated",
+      "seniority_signal": "Principal Scientist"
+    },
+    "b": {
+      "seniority": "senior",
+      "seniority_basis": "stated",
+      "seniority_signal": "Principal Scientist"
+    },
+    "excerpt": "Principal Scientist, Machine Learning ABOUT PIONEERING...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "agents",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "agents",
+      "requirement": "nice_to_have",
+      "raw_text": "agentic AI"
+    },
+    "b": {
+      "skill_id": "agents",
+      "requirement": "nice_to_have",
+      "raw_text": "agentic AI"
+    },
+    "excerpt": "...and agentic workflows. - Hands-on experience with agentic AI and orchestration frameworks (e.g., Pydantic AI,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "anthropic-api",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "anthropic-api",
+      "requirement": "nice_to_have",
+      "raw_text": "Anthropic"
+    },
+    "b": {
+      "skill_id": "anthropic-api",
+      "requirement": "nice_to_have",
+      "raw_text": "Anthropic"
+    },
+    "excerpt": "...Experience integrating LLMs and model platforms, including Anthropic, OpenAI, Vertex AI, and Amazon Bedrock, and building...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "autogen",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "autogen",
+      "requirement": "nice_to_have",
+      "raw_text": "AutoGen"
+    },
+    "b": {
+      "skill_id": "autogen",
+      "requirement": "nice_to_have",
+      "raw_text": "AutoGen"
+    },
+    "excerpt": "...(e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen). - Experience integrating LLMs and model platforms,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "crewai",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "crewai",
+      "requirement": "nice_to_have",
+      "raw_text": "CrewAI"
+    },
+    "b": {
+      "skill_id": "crewai",
+      "requirement": "nice_to_have",
+      "raw_text": "CrewAI"
+    },
+    "excerpt": "...frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen). - Experience integrating LLMs and model...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "evaluation",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "evaluation",
+      "requirement": "nice_to_have",
+      "raw_text": "evaluation and feedback-loop frameworks for agentic systems"
+    },
+    "b": {
+      "skill_id": "evaluation",
+      "requirement": "nice_to_have",
+      "raw_text": "evaluation and feedback-loop frameworks for agentic systems"
+    },
+    "excerpt": "...OpenAI, Vertex AI, and Amazon Bedrock, and building evaluation and feedback-loop frameworks for agentic systems. - Familiarity with sandboxed code execution and agent...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "git",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "version control"
+    },
+    "b": {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "version control"
+    },
+    "excerpt": "...Python; modern ML frameworks (PyTorch or JAX/TensorFlow); version control; databases; deep learning architectures; and relevant...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "llm-orchestration",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "llm-orchestration",
+      "requirement": "nice_to_have",
+      "raw_text": "orchestration frameworks"
+    },
+    "b": {
+      "skill_id": "llm-orchestration",
+      "requirement": "nice_to_have",
+      "raw_text": "orchestration frameworks"
+    },
+    "excerpt": "...workflows. - Hands-on experience with agentic AI and orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "llms",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "llms",
+      "requirement": "nice_to_have",
+      "raw_text": "integrating LLMs"
+    },
+    "b": {
+      "skill_id": "llms",
+      "requirement": "nice_to_have",
+      "raw_text": "integrating LLMs"
+    },
+    "excerpt": "...LangGraph, LangChain, CrewAI, AutoGen). - Experience integrating LLMs and model platforms, including Anthropic, OpenAI, Vertex...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "observability",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "observability",
+      "requirement": "nice_to_have",
+      "raw_text": "LLM observability and monitoring tooling"
+    },
+    "b": {
+      "skill_id": "observability",
+      "requirement": "nice_to_have",
+      "raw_text": "LLM observability and monitoring tooling"
+    },
+    "excerpt": "...and agent harness development. - Experience with LLM observability and monitoring tooling and cost-governance / FinOps for AI infrastructure....",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "openai-api",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "openai-api",
+      "requirement": "nice_to_have",
+      "raw_text": "OpenAI"
+    },
+    "b": {
+      "skill_id": "openai-api",
+      "requirement": "nice_to_have",
+      "raw_text": "OpenAI"
+    },
+    "excerpt": "...integrating LLMs and model platforms, including Anthropic, OpenAI, Vertex AI, and Amazon Bedrock, and building evaluation...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "pydanticai",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "pydanticai",
+      "requirement": "nice_to_have",
+      "raw_text": "Pydantic AI"
+    },
+    "b": {
+      "skill_id": "pydanticai",
+      "requirement": "nice_to_have",
+      "raw_text": "Pydantic AI"
+    },
+    "excerpt": "...with agentic AI and orchestration frameworks (e.g., Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen). - Experience...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "python",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    "b": {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    "excerpt": "...Depth across multiple core tools and concepts, including Python; modern ML frameworks (PyTorch or JAX/TensorFlow); version...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "pytorch",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    "b": {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    "excerpt": "...and concepts, including Python; modern ML frameworks (PyTorch or JAX/TensorFlow); version control; databases; deep...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "tensorflow",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "tensorflow",
+      "requirement": "required",
+      "raw_text": "TensorFlow"
+    },
+    "b": {
+      "skill_id": "tensorflow",
+      "requirement": "required",
+      "raw_text": "TensorFlow"
+    },
+    "excerpt": "...including Python; modern ML frameworks (PyTorch or JAX/TensorFlow); version control; databases; deep learning architectures;...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "vertex-ai",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "vertex-ai",
+      "requirement": "nice_to_have",
+      "raw_text": "Vertex AI"
+    },
+    "b": {
+      "skill_id": "vertex-ai",
+      "requirement": "nice_to_have",
+      "raw_text": "Vertex AI"
+    },
+    "excerpt": "...LLMs and model platforms, including Anthropic, OpenAI, Vertex AI, and Amazon Bedrock, and building evaluation and...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "attribute",
+    "key": "german",
+    "reason": "spot-check",
+    "a": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "b": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "excerpt": "(Senior) Scientist, Machine Learning",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "skill",
+    "key": "evaluation",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "model evaluation frameworks"
+    },
+    "b": {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "model evaluation frameworks"
+    },
+    "excerpt": "...into model development - Experience developing rigorous model evaluation frameworks, benchmarks, and validation strategies for molecular ML or...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "attribute",
+    "key": "german",
+    "reason": "spot-check",
+    "a": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "b": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "excerpt": "Principal Scientist, Machine Learning - Multimodal Biological Reasoning",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "attribute",
+    "key": "seniority",
+    "reason": "spot-check",
+    "a": {
+      "seniority": "senior",
+      "seniority_basis": "stated",
+      "seniority_signal": "Principal Scientist"
+    },
+    "b": {
+      "seniority": "senior",
+      "seniority_basis": "stated",
+      "seniority_signal": "Principal Scientist"
+    },
+    "excerpt": "Principal Scientist, Machine Learning - Multimodal Biological Reasoning About...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "skill",
+    "key": "fine-tuning",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "fine-tuning",
+      "requirement": "required",
+      "raw_text": "fine-tuning"
+    },
+    "b": {
+      "skill_id": "fine-tuning",
+      "requirement": "required",
+      "raw_text": "fine-tuning"
+    },
+    "excerpt": "...modern LLMs, multimodal modeling, representation learning, fine-tuning, post-training, benchmarking, and ML systems. - Deep...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "skill",
+    "key": "llms",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "modern LLMs"
+    },
+    "b": {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "modern LLMs"
+    },
+    "excerpt": "...forums. Qualifications - Industry-leading expertise in modern LLMs, multimodal modeling, representation learning,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "spot-check",
+    "a": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "Master’s, or PhD in a relevant field"
+    },
+    "b": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "Master’s, or PhD in a relevant field"
+    },
+    "excerpt": "...and action. PROFESSIONAL EXPERIENCE & QUALIFICATIONS - Master’s, or PhD in a relevant field (e.g., machine learning, mathematics, statistics,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "attribute",
+    "key": "german",
+    "reason": "spot-check",
+    "a": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "b": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "excerpt": "Principal Scientist, Machine Learning - Biomolecules",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "attribute",
+    "key": "seniority",
+    "reason": "spot-check",
+    "a": {
+      "seniority": "senior",
+      "seniority_basis": "stated",
+      "seniority_signal": "Principal Scientist"
+    },
+    "b": {
+      "seniority": "senior",
+      "seniority_basis": "stated",
+      "seniority_signal": "Principal Scientist"
+    },
+    "excerpt": "Principal Scientist, Machine Learning - Biomolecules ABOUT PIONEERING...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "airflow",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "airflow",
+      "requirement": "nice_to_have",
+      "raw_text": "Airflow"
+    },
+    "b": {
+      "skill_id": "airflow",
+      "requirement": "nice_to_have",
+      "raw_text": "Airflow"
+    },
+    "excerpt": "...and pose quality metrics. - Workflow orchestration (Airflow/Prefect/Argo), data warehouses (Redshift/Snowflake),...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "aws",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "aws",
+      "requirement": "nice_to_have",
+      "raw_text": "secure AWS infrastructure"
+    },
+    "b": {
+      "skill_id": "aws",
+      "requirement": "nice_to_have",
+      "raw_text": "secure AWS infrastructure"
+    },
+    "excerpt": "...(e.g., DVC/LakeFS), experiment tracking (MLflow/W&B), secure AWS infrastructure (S3, Batch/ECS/EKS, SageMaker), Docker, IaC...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "cheminformatics",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "cheminformatics",
+      "requirement": "nice_to_have",
+      "raw_text": "cheminformatics/docking/ADMET"
+    },
+    "b": {
+      "skill_id": "cheminformatics",
+      "requirement": "nice_to_have",
+      "raw_text": "cheminformatics/docking/ADMET"
+    },
+    "excerpt": "...such as protein modeling/design, proteomics/mass spec, cheminformatics/docking/ADMET, biophysics/MD, and LLM/agentic automation. - MLOps...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "ci-cd",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "ci-cd",
+      "requirement": "nice_to_have",
+      "raw_text": "CI/CD"
+    },
+    "b": {
+      "skill_id": "ci-cd",
+      "requirement": "nice_to_have",
+      "raw_text": "CI/CD"
+    },
+    "excerpt": "...SageMaker), Docker, IaC (Terraform/CDK), and CI/CD (GitHub Actions). - Generative modeling...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "deep-learning",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "deep-learning",
+      "requirement": "required",
+      "raw_text": "deep learning architectures"
+    },
+    "b": {
+      "skill_id": "deep-learning",
+      "requirement": "required",
+      "raw_text": "deep learning architectures"
+    },
+    "excerpt": "...(PyTorch or JAX/TensorFlow); version control; databases; deep learning architectures; and relevant informatics software. - Consistent record...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "experiment-tracking",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "experiment-tracking",
+      "requirement": "nice_to_have",
+      "raw_text": "experiment tracking"
+    },
+    "b": {
+      "skill_id": "experiment-tracking",
+      "requirement": "nice_to_have",
+      "raw_text": "experiment tracking"
+    },
+    "excerpt": "...expertise: data contracts and lineage (e.g., DVC/LakeFS), experiment tracking (MLflow/W&B), secure AWS infrastructure (S3,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "fastapi",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "fastapi",
+      "requirement": "nice_to_have",
+      "raw_text": "FastAPI"
+    },
+    "b": {
+      "skill_id": "fastapi",
+      "requirement": "nice_to_have",
+      "raw_text": "FastAPI"
+    },
+    "excerpt": "...search (FAISS/pgvector), and lightweight internal tools (FastAPI, Streamlit/Gradio). - Experience mentoring early hires,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "github-actions",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "github-actions",
+      "requirement": "nice_to_have",
+      "raw_text": "GitHub Actions"
+    },
+    "b": {
+      "skill_id": "github-actions",
+      "requirement": "nice_to_have",
+      "raw_text": "GitHub Actions"
+    },
+    "excerpt": "...SageMaker), Docker, IaC (Terraform/CDK), and CI/CD (GitHub Actions). - Generative modeling (diffusion/flow/VAEs) for...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "infrastructure-as-code",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "nice_to_have",
+      "raw_text": "IaC"
+    },
+    "b": {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "nice_to_have",
+      "raw_text": "IaC"
+    },
+    "excerpt": "...AWS infrastructure (S3, Batch/ECS/EKS, SageMaker), Docker, IaC (Terraform/CDK), and CI/CD (GitHub Actions). -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "jax",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "jax",
+      "requirement": "required",
+      "raw_text": "JAX/TensorFlow"
+    },
+    "b": {
+      "skill_id": "jax",
+      "requirement": "required",
+      "raw_text": "JAX/TensorFlow"
+    },
+    "excerpt": "...including Python; modern ML frameworks (PyTorch or JAX/TensorFlow); version control; databases; deep learning architectures;...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "mlops",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "mlops",
+      "requirement": "nice_to_have",
+      "raw_text": "MLOps expertise"
+    },
+    "b": {
+      "skill_id": "mlops",
+      "requirement": "nice_to_have",
+      "raw_text": "MLOps expertise"
+    },
+    "excerpt": "...biophysics/MD, and LLM/agentic automation. - MLOps expertise: data contracts and lineage (e.g., DVC/LakeFS), experiment...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "pgvector",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "pgvector",
+      "requirement": "nice_to_have",
+      "raw_text": "pgvector"
+    },
+    "b": {
+      "skill_id": "pgvector",
+      "requirement": "nice_to_have",
+      "raw_text": "pgvector"
+    },
+    "excerpt": "...data warehouses (Redshift/Snowflake), vector search (FAISS/pgvector), and lightweight internal tools (FastAPI,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "pytorch",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    "b": {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    "excerpt": "...and concepts, including Python; modern ML frameworks (PyTorch or JAX/TensorFlow); version control; databases; deep...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "sagemaker",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "sagemaker",
+      "requirement": "nice_to_have",
+      "raw_text": "SageMaker"
+    },
+    "b": {
+      "skill_id": "sagemaker",
+      "requirement": "nice_to_have",
+      "raw_text": "SageMaker"
+    },
+    "excerpt": "...secure AWS infrastructure (S3, Batch/ECS/EKS, SageMaker), Docker, IaC (Terraform/CDK), and CI/CD (GitHub...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "snowflake",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "snowflake",
+      "requirement": "nice_to_have",
+      "raw_text": "Snowflake"
+    },
+    "b": {
+      "skill_id": "snowflake",
+      "requirement": "nice_to_have",
+      "raw_text": "Snowflake"
+    },
+    "excerpt": "...(Airflow/Prefect/Argo), data warehouses (Redshift/Snowflake), vector search (FAISS/pgvector), and lightweight internal...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "terraform",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "terraform",
+      "requirement": "nice_to_have",
+      "raw_text": "Terraform"
+    },
+    "b": {
+      "skill_id": "terraform",
+      "requirement": "nice_to_have",
+      "raw_text": "Terraform"
+    },
+    "excerpt": "...(S3, Batch/ECS/EKS, SageMaker), Docker, IaC (Terraform/CDK), and CI/CD (GitHub Actions). - Generative modeling...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "weights-and-biases",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "weights-and-biases",
+      "requirement": "nice_to_have",
+      "raw_text": "W&B"
+    },
+    "b": {
+      "skill_id": "weights-and-biases",
+      "requirement": "nice_to_have",
+      "raw_text": "W&B"
+    },
+    "excerpt": "...lineage (e.g., DVC/LakeFS), experiment tracking (MLflow/W&B), secure AWS infrastructure (S3, Batch/ECS/EKS,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_102",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "spot-check",
+    "a": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "PhD in machine learning, computational science, Earth science, atmospheric science, hydrology, AI, computer science, or a related quantitative discipline"
+    },
+    "b": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "PhD in machine learning, computational science, Earth science, atmospheric science, hydrology, AI, computer science, or a related quantitative discipline"
+    },
+    "excerpt": "...leadership. PROFESSIONAL EXPERIENCE & QUALIFICATIONS - PhD in machine learning, computational science, Earth science, atmospheric science, hydrology, AI, computer science, or a related quantitative discipline. - 5+ years of postdoctoral, industry, or applied...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_102",
+    "kind": "attribute",
+    "key": "german",
+    "reason": "spot-check",
+    "a": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "b": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "excerpt": "Senior Machine Learning Scientist, Climate & Hydrology",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_102",
+    "kind": "attribute",
+    "key": "seniority",
+    "reason": "spot-check",
+    "a": {
+      "seniority": "senior",
+      "seniority_basis": "stated",
+      "seniority_signal": "Senior Machine Learning Scientist"
+    },
+    "b": {
+      "seniority": "senior",
+      "seniority_basis": "stated",
+      "seniority_signal": "Senior Machine Learning Scientist"
+    },
+    "excerpt": "Senior Machine Learning Scientist, Climate & Hydrology COMPANY DESCRIPTION Flagship...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_102",
+    "kind": "skill",
+    "key": "aws",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "aws",
+      "requirement": "nice_to_have",
+      "raw_text": "preferably in the AWS ecosystem"
+    },
+    "b": {
+      "skill_id": "aws",
+      "requirement": "nice_to_have",
+      "raw_text": "preferably in the AWS ecosystem"
+    },
+    "excerpt": "...preprocess, and train on large-scale climate datasets, preferably in the AWS ecosystem. - Strong programming skills in Python and experience...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_102",
+    "kind": "skill",
+    "key": "pytorch",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "modern ML frameworks such as PyTorch"
+    },
+    "b": {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "modern ML frameworks such as PyTorch"
+    },
+    "excerpt": "...Strong programming skills in Python and experience with modern ML frameworks such as PyTorch - Background in scientific ML, spatiotemporal modeling,...",
+    "problems": [],
+    "decision": "?"
+  }
+]

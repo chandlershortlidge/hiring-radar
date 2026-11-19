@@ -1,0 +1,1588 @@
+{
+  "golden_094": {
+    "accepted_skills": [
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "large-scale data pipelines"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "deploying LLM-powered applications"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Strong foundation in machine learning"
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "multi-agent systems is strongly preferred"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "natural language processing (NLP)"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Proficiency in Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "Hands-on experience with RAG"
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "required",
+        "raw_text": "vLLM"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Senior ML Engineer"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "master",
+        "degree_requirement": "required",
+        "degree_or_equivalent": true,
+        "degree_signal": "Master's degree (or above) in Computer Science, Machine Learning, AI, or a related field; equivalent practical experience considered"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "FlowNet-9 architecture",
+        "raw_text": "Strong experience in FlowNet-9 architecture"
+      },
+      {
+        "labeler": "B",
+        "label": "FlowNet-9 architecture",
+        "raw_text": "Strong experience in FlowNet-9 architecture"
+      }
+    ]
+  },
+  "golden_095": {
+    "accepted_skills": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "substantial applied machine learning experience"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Proficiency in Python"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "Statistical modeling"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": null,
+        "seniority_basis": null,
+        "seniority_signal": null
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "phd",
+        "degree_requirement": "required",
+        "degree_or_equivalent": false,
+        "degree_signal": "PhD in biomedical engineering, physiology, bioengineering, biophotonics, or a related field, or an MD/PhD"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Signal processing",
+        "raw_text": "signal-processing background"
+      },
+      {
+        "labeler": "A",
+        "label": "Imaging",
+        "raw_text": "Enough imaging"
+      },
+      {
+        "labeler": "A",
+        "label": "Agreement analysis",
+        "raw_text": "agreement analysis"
+      },
+      {
+        "labeler": "A",
+        "label": "Monte Carlo simulation",
+        "raw_text": "Monte Carlo simulation"
+      },
+      {
+        "labeler": "A",
+        "label": "Diffusion theory",
+        "raw_text": "diffusion theory"
+      },
+      {
+        "labeler": "A",
+        "label": "Chromophore decomposition",
+        "raw_text": "chromophore decomposition"
+      },
+      {
+        "labeler": "B",
+        "label": "Human study methodology",
+        "raw_text": "Experience taking a measurement or digital biomarker through human studies"
+      },
+      {
+        "labeler": "B",
+        "label": "Endpoint selection",
+        "raw_text": "endpoint selection"
+      },
+      {
+        "labeler": "B",
+        "label": "Reference measurements",
+        "raw_text": "reference measurements"
+      },
+      {
+        "labeler": "B",
+        "label": "IRB-governed protocols",
+        "raw_text": "IRB-governed protocols"
+      },
+      {
+        "labeler": "B",
+        "label": "Agreement analysis",
+        "raw_text": "agreement analysis"
+      },
+      {
+        "labeler": "B",
+        "label": "Within-subject study designs",
+        "raw_text": "within-subject"
+      },
+      {
+        "labeler": "B",
+        "label": "Longitudinal study designs",
+        "raw_text": "longitudinal designs"
+      },
+      {
+        "labeler": "B",
+        "label": "Imaging",
+        "raw_text": "imaging"
+      },
+      {
+        "labeler": "B",
+        "label": "Signal processing",
+        "raw_text": "signal-processing"
+      },
+      {
+        "labeler": "B",
+        "label": "Measurement calibration",
+        "raw_text": "calibration"
+      },
+      {
+        "labeler": "B",
+        "label": "Image registration",
+        "raw_text": "registration"
+      },
+      {
+        "labeler": "B",
+        "label": "Measurement sampling",
+        "raw_text": "sampling"
+      },
+      {
+        "labeler": "B",
+        "label": "Monte Carlo simulation",
+        "raw_text": "Monte Carlo simulation"
+      },
+      {
+        "labeler": "B",
+        "label": "Diffusion theory",
+        "raw_text": "diffusion theory"
+      },
+      {
+        "labeler": "B",
+        "label": "Chromophore decomposition",
+        "raw_text": "chromophore decomposition"
+      },
+      {
+        "labeler": "B",
+        "label": "Individual baseline and temporal change modeling",
+        "raw_text": "modeling individual baselines and change over time"
+      }
+    ]
+  },
+  "golden_096": {
+    "accepted_skills": [
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic AI and orchestration frameworks"
+      },
+      {
+        "skill_id": "anthropic-api",
+        "requirement": "nice_to_have",
+        "raw_text": "Anthropic"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "designing SDKs, APIs, and data contracts"
+      },
+      {
+        "skill_id": "autogen",
+        "requirement": "nice_to_have",
+        "raw_text": "AutoGen"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "cloud-native engineering on AWS"
+      },
+      {
+        "skill_id": "aws-bedrock",
+        "requirement": "nice_to_have",
+        "raw_text": "Amazon Bedrock"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containerization, and autoscaling"
+      },
+      {
+        "skill_id": "crewai",
+        "requirement": "nice_to_have",
+        "raw_text": "CrewAI"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "large-scale distributed systems"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "building evaluation and feedback-loop frameworks"
+      },
+      {
+        "skill_id": "event-driven-systems",
+        "requirement": "required",
+        "raw_text": "event-driven architecture"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "with infrastructure-as-code, containerization"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "nice_to_have",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "nice_to_have",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "nice_to_have",
+        "raw_text": "orchestration frameworks"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "integrating LLMs"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "nice_to_have",
+        "raw_text": "OpenAI"
+      },
+      {
+        "skill_id": "pydanticai",
+        "requirement": "nice_to_have",
+        "raw_text": "Pydantic AI"
+      },
+      {
+        "skill_id": "vertex-ai",
+        "requirement": "nice_to_have",
+        "raw_text": "Vertex AI"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Principal Software Engineer"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "master",
+        "degree_requirement": "required",
+        "degree_or_equivalent": false,
+        "degree_signal": "B.S. or M.S. in Computer Science, Engineering, or a related field"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Workflow orchestration (durable execution)",
+        "raw_text": "workflow orchestration"
+      },
+      {
+        "labeler": "A",
+        "label": "Autoscaling",
+        "raw_text": "autoscaling"
+      },
+      {
+        "labeler": "A",
+        "label": "SDK design",
+        "raw_text": "designing SDKs"
+      },
+      {
+        "labeler": "A",
+        "label": "Data contracts",
+        "raw_text": "data contracts"
+      },
+      {
+        "labeler": "A",
+        "label": "Sandboxed code execution",
+        "raw_text": "sandboxed code execution"
+      },
+      {
+        "labeler": "A",
+        "label": "Agent harness development",
+        "raw_text": "agent harness development"
+      },
+      {
+        "labeler": "A",
+        "label": "FinOps / cost governance",
+        "raw_text": "cost-governance / FinOps"
+      },
+      {
+        "labeler": "B",
+        "label": "Workflow orchestration",
+        "raw_text": "workflow orchestration"
+      },
+      {
+        "labeler": "B",
+        "label": "Stateful execution",
+        "raw_text": "stateful execution"
+      },
+      {
+        "labeler": "B",
+        "label": "Idempotency",
+        "raw_text": "idempotency"
+      },
+      {
+        "labeler": "B",
+        "label": "Durable retries",
+        "raw_text": "durable retries"
+      },
+      {
+        "labeler": "B",
+        "label": "Replay",
+        "raw_text": "replay"
+      },
+      {
+        "labeler": "B",
+        "label": "Autoscaling",
+        "raw_text": "autoscaling"
+      },
+      {
+        "labeler": "B",
+        "label": "SDK design",
+        "raw_text": "designing SDKs"
+      },
+      {
+        "labeler": "B",
+        "label": "Data contract design",
+        "raw_text": "designing SDKs, APIs, and data contracts"
+      },
+      {
+        "labeler": "B",
+        "label": "Feedback-loop frameworks",
+        "raw_text": "feedback-loop frameworks for agentic systems"
+      },
+      {
+        "labeler": "B",
+        "label": "Sandboxed code execution",
+        "raw_text": "sandboxed code execution"
+      },
+      {
+        "labeler": "B",
+        "label": "Agent harness development",
+        "raw_text": "agent harness development"
+      },
+      {
+        "labeler": "B",
+        "label": "Cost governance / FinOps",
+        "raw_text": "cost-governance / FinOps for AI infrastructure"
+      }
+    ]
+  },
+  "golden_097": {
+    "accepted_skills": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software engineering skills"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Principal AI Scientist"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "phd",
+        "degree_requirement": "required",
+        "degree_or_equivalent": true,
+        "degree_signal": "PhD in a quantitative field (statistics, computer science, applied mathematics, computational biology, physics, or related) with a strong research track record, or equivalent demonstrated expertise"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Bayesian modeling / Bayesian model comparison",
+        "raw_text": "Bayesian model comparison and weighting"
+      },
+      {
+        "labeler": "A",
+        "label": "Evolutionary programming",
+        "raw_text": "evolutionary programming"
+      },
+      {
+        "labeler": "A",
+        "label": "Probabilistic programming",
+        "raw_text": "probabilistic programming"
+      },
+      {
+        "labeler": "A",
+        "label": "Genetic/evolutionary algorithms",
+        "raw_text": "genetic/evolutionary algorithms"
+      },
+      {
+        "labeler": "A",
+        "label": "Quality-diversity methods",
+        "raw_text": "quality-diversity methods"
+      },
+      {
+        "labeler": "A",
+        "label": "Population-based search",
+        "raw_text": "population-based search"
+      },
+      {
+        "labeler": "A",
+        "label": "Parallel/distributed computation",
+        "raw_text": "parallel/distributed execution of many model evaluations"
+      },
+      {
+        "labeler": "B",
+        "label": "Evolutionary programming",
+        "raw_text": "evolutionary programming"
+      },
+      {
+        "labeler": "B",
+        "label": "Probabilistic programming",
+        "raw_text": "probabilistic programming"
+      },
+      {
+        "labeler": "B",
+        "label": "Bayesian model comparison and weighting",
+        "raw_text": "Bayesian model comparison and weighting"
+      },
+      {
+        "labeler": "B",
+        "label": "Genetic/evolutionary algorithms",
+        "raw_text": "genetic/evolutionary algorithms"
+      },
+      {
+        "labeler": "B",
+        "label": "Quality-diversity methods",
+        "raw_text": "quality-diversity methods"
+      },
+      {
+        "labeler": "B",
+        "label": "Population-based search",
+        "raw_text": "population-based search"
+      },
+      {
+        "labeler": "B",
+        "label": "Algorithm design and implementation",
+        "raw_text": "design novel algorithms from first principles and bring them to working, validated implementations"
+      },
+      {
+        "labeler": "B",
+        "label": "Large-scale computational experimentation",
+        "raw_text": "running computational experiments at scale"
+      },
+      {
+        "labeler": "B",
+        "label": "Parallel/distributed execution",
+        "raw_text": "parallel/distributed execution of many model evaluations"
+      }
+    ]
+  },
+  "golden_098": {
+    "accepted_skills": [
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic AI"
+      },
+      {
+        "skill_id": "anthropic-api",
+        "requirement": "nice_to_have",
+        "raw_text": "Anthropic"
+      },
+      {
+        "skill_id": "autogen",
+        "requirement": "nice_to_have",
+        "raw_text": "AutoGen"
+      },
+      {
+        "skill_id": "aws-bedrock",
+        "requirement": "nice_to_have",
+        "raw_text": "Amazon Bedrock"
+      },
+      {
+        "skill_id": "crewai",
+        "requirement": "nice_to_have",
+        "raw_text": "CrewAI"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning architectures"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "evaluation and feedback-loop frameworks for agentic systems"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "version control"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "nice_to_have",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "nice_to_have",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "nice_to_have",
+        "raw_text": "orchestration frameworks"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "integrating LLMs"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM observability and monitoring tooling"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "nice_to_have",
+        "raw_text": "OpenAI"
+      },
+      {
+        "skill_id": "pydanticai",
+        "requirement": "nice_to_have",
+        "raw_text": "Pydantic AI"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "vertex-ai",
+        "requirement": "nice_to_have",
+        "raw_text": "Vertex AI"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Principal Scientist"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "phd",
+        "degree_requirement": "required",
+        "degree_or_equivalent": false,
+        "degree_signal": "Master’s, or PhD in a relevant field"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Databases",
+        "raw_text": "databases"
+      },
+      {
+        "labeler": "A",
+        "label": "Informatics software",
+        "raw_text": "relevant informatics software"
+      },
+      {
+        "labeler": "A",
+        "label": "Molecular docking / ADMET",
+        "raw_text": "cheminformatics/docking/ADMET"
+      },
+      {
+        "labeler": "A",
+        "label": "Molecular dynamics",
+        "raw_text": "biophysics/MD"
+      },
+      {
+        "labeler": "A",
+        "label": "Sandboxed code execution",
+        "raw_text": "sandboxed code execution"
+      },
+      {
+        "labeler": "A",
+        "label": "Agent harness development",
+        "raw_text": "agent harness development"
+      },
+      {
+        "labeler": "A",
+        "label": "FinOps / cost governance",
+        "raw_text": "cost-governance / FinOps"
+      },
+      {
+        "labeler": "B",
+        "label": "Databases",
+        "raw_text": "databases"
+      },
+      {
+        "labeler": "B",
+        "label": "Informatics software",
+        "raw_text": "relevant informatics software"
+      },
+      {
+        "labeler": "B",
+        "label": "Sandboxed code execution",
+        "raw_text": "sandboxed code execution"
+      },
+      {
+        "labeler": "B",
+        "label": "Agent harness development",
+        "raw_text": "agent harness development"
+      },
+      {
+        "labeler": "B",
+        "label": "Feedback-loop frameworks",
+        "raw_text": "feedback-loop frameworks"
+      },
+      {
+        "labeler": "B",
+        "label": "AI cost governance / FinOps",
+        "raw_text": "cost-governance / FinOps for AI infrastructure"
+      }
+    ]
+  },
+  "golden_099": {
+    "accepted_skills": [
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "model evaluation frameworks"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "molecular ML models"
+      }
+    ],
+    "accepted_attrs": {
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "phd",
+        "degree_requirement": "required",
+        "degree_or_equivalent": false,
+        "degree_signal": "Ph.D. in machine learning, computational chemistry, chemical physics, computer science, applied mathematics, or a related discipline"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Quantum chemistry",
+        "raw_text": "Experience with quantum chemistry"
+      },
+      {
+        "labeler": "A",
+        "label": "DFT",
+        "raw_text": "DFT"
+      },
+      {
+        "labeler": "A",
+        "label": "Electronic structure methods",
+        "raw_text": "electronic structure methods"
+      },
+      {
+        "labeler": "A",
+        "label": "Graph neural networks",
+        "raw_text": "graph neural networks"
+      },
+      {
+        "labeler": "A",
+        "label": "Equivariant architectures",
+        "raw_text": "equivariant architectures"
+      },
+      {
+        "labeler": "A",
+        "label": "Diffusion models",
+        "raw_text": "diffusion models"
+      },
+      {
+        "labeler": "A",
+        "label": "Generative models (molecular)",
+        "raw_text": "applying generative models"
+      },
+      {
+        "labeler": "A",
+        "label": "Molecular design models",
+        "raw_text": "molecular design models"
+      },
+      {
+        "labeler": "A",
+        "label": "Active learning",
+        "raw_text": "active learning workflows"
+      },
+      {
+        "labeler": "A",
+        "label": "PyTorch Geometric",
+        "raw_text": "PyTorch Geometric"
+      },
+      {
+        "labeler": "A",
+        "label": "DGL",
+        "raw_text": "DGL"
+      },
+      {
+        "labeler": "A",
+        "label": "ORCA",
+        "raw_text": "ORCA"
+      },
+      {
+        "labeler": "A",
+        "label": "Gaussian",
+        "raw_text": "Gaussian"
+      },
+      {
+        "labeler": "A",
+        "label": "Q-Chem",
+        "raw_text": "Q-Chem"
+      },
+      {
+        "labeler": "A",
+        "label": "Molecular modeling",
+        "raw_text": "molecular modeling toolkits"
+      },
+      {
+        "labeler": "A",
+        "label": "Scalable data processing",
+        "raw_text": "scalable data processing"
+      },
+      {
+        "labeler": "A",
+        "label": "Data curation",
+        "raw_text": "curate, clean, integrate, and analyze complex, large-scale scientific datasets"
+      },
+      {
+        "labeler": "A",
+        "label": "Reaction modeling",
+        "raw_text": "reaction modeling"
+      },
+      {
+        "labeler": "A",
+        "label": "Structure-based design",
+        "raw_text": "structure-based design"
+      },
+      {
+        "labeler": "B",
+        "label": "Molecular representation",
+        "raw_text": "molecular representation"
+      },
+      {
+        "labeler": "B",
+        "label": "Density functional theory",
+        "raw_text": "DFT"
+      },
+      {
+        "labeler": "B",
+        "label": "Electronic structure methods",
+        "raw_text": "electronic structure methods"
+      },
+      {
+        "labeler": "B",
+        "label": "Graph neural networks",
+        "raw_text": "graph neural networks"
+      },
+      {
+        "labeler": "B",
+        "label": "Equivariant architectures",
+        "raw_text": "equivariant architectures"
+      },
+      {
+        "labeler": "B",
+        "label": "Diffusion models",
+        "raw_text": "diffusion models"
+      },
+      {
+        "labeler": "B",
+        "label": "Generative modeling",
+        "raw_text": "generative models"
+      },
+      {
+        "labeler": "B",
+        "label": "Molecular design modeling",
+        "raw_text": "molecular design models"
+      },
+      {
+        "labeler": "B",
+        "label": "Active learning",
+        "raw_text": "active learning workflows"
+      },
+      {
+        "labeler": "B",
+        "label": "Data curation",
+        "raw_text": "hands-on data curation"
+      },
+      {
+        "labeler": "B",
+        "label": "Data cleaning",
+        "raw_text": "clean"
+      },
+      {
+        "labeler": "B",
+        "label": "Data integration",
+        "raw_text": "integrate"
+      },
+      {
+        "labeler": "B",
+        "label": "Scientific data analysis",
+        "raw_text": "analyze complex, large-scale scientific datasets from multiple sources"
+      },
+      {
+        "labeler": "B",
+        "label": "PyTorch Geometric",
+        "raw_text": "PyTorch Geometric"
+      },
+      {
+        "labeler": "B",
+        "label": "DGL",
+        "raw_text": "DGL"
+      },
+      {
+        "labeler": "B",
+        "label": "Molecular modeling",
+        "raw_text": "molecular modeling"
+      },
+      {
+        "labeler": "B",
+        "label": "ORCA",
+        "raw_text": "ORCA"
+      },
+      {
+        "labeler": "B",
+        "label": "Gaussian",
+        "raw_text": "Gaussian"
+      },
+      {
+        "labeler": "B",
+        "label": "Q-Chem",
+        "raw_text": "Q-Chem"
+      },
+      {
+        "labeler": "B",
+        "label": "Scalable data processing",
+        "raw_text": "scalable data processing"
+      },
+      {
+        "labeler": "B",
+        "label": "Reaction modeling",
+        "raw_text": "reaction modeling"
+      },
+      {
+        "labeler": "B",
+        "label": "Structure-based design",
+        "raw_text": "structure-based design"
+      }
+    ]
+  },
+  "golden_100": {
+    "accepted_skills": [
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "modern LLMs"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Principal Scientist"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "phd",
+        "degree_requirement": "required",
+        "degree_or_equivalent": true,
+        "degree_signal": "PhD, MS, or equivalent experience"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Multimodal modeling",
+        "raw_text": "multimodal modeling"
+      },
+      {
+        "labeler": "A",
+        "label": "Representation learning",
+        "raw_text": "representation learning"
+      },
+      {
+        "labeler": "A",
+        "label": "Post-training",
+        "raw_text": "post-training"
+      },
+      {
+        "labeler": "A",
+        "label": "Biological foundation models",
+        "raw_text": "biological foundation models"
+      },
+      {
+        "labeler": "A",
+        "label": "Protein language models",
+        "raw_text": "protein language models"
+      },
+      {
+        "labeler": "A",
+        "label": "Genomic foundation models",
+        "raw_text": "genomic foundation models"
+      },
+      {
+        "labeler": "B",
+        "label": "Multimodal modeling",
+        "raw_text": "multimodal modeling"
+      },
+      {
+        "labeler": "B",
+        "label": "Representation learning",
+        "raw_text": "representation learning"
+      },
+      {
+        "labeler": "B",
+        "label": "Post-training",
+        "raw_text": "post-training"
+      },
+      {
+        "labeler": "B",
+        "label": "ML systems",
+        "raw_text": "ML systems"
+      },
+      {
+        "labeler": "B",
+        "label": "Biological foundation models",
+        "raw_text": "biological foundation models"
+      },
+      {
+        "labeler": "B",
+        "label": "Scientific discovery platforms",
+        "raw_text": "scientific discovery platforms"
+      },
+      {
+        "labeler": "B",
+        "label": "Protein language models",
+        "raw_text": "protein language models"
+      },
+      {
+        "labeler": "B",
+        "label": "Genomic foundation models",
+        "raw_text": "genomic foundation models"
+      }
+    ]
+  },
+  "golden_101": {
+    "accepted_skills": [
+      {
+        "skill_id": "airflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Airflow"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "secure AWS infrastructure"
+      },
+      {
+        "skill_id": "aws-s3",
+        "requirement": "nice_to_have",
+        "raw_text": "S3"
+      },
+      {
+        "skill_id": "cheminformatics",
+        "requirement": "nice_to_have",
+        "raw_text": "cheminformatics/docking/ADMET"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning architectures"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "experiment-tracking",
+        "requirement": "nice_to_have",
+        "raw_text": "experiment tracking"
+      },
+      {
+        "skill_id": "faiss",
+        "requirement": "nice_to_have",
+        "raw_text": "FAISS"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "nice_to_have",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "version control"
+      },
+      {
+        "skill_id": "github-actions",
+        "requirement": "nice_to_have",
+        "raw_text": "GitHub Actions"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "nice_to_have",
+        "raw_text": "IaC"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX/TensorFlow"
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "nice_to_have",
+        "raw_text": "MLflow"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "nice_to_have",
+        "raw_text": "MLOps expertise"
+      },
+      {
+        "skill_id": "pgvector",
+        "requirement": "nice_to_have",
+        "raw_text": "pgvector"
+      },
+      {
+        "skill_id": "prefect",
+        "requirement": "nice_to_have",
+        "raw_text": "Prefect"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "including Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "sagemaker",
+        "requirement": "nice_to_have",
+        "raw_text": "SageMaker"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "nice_to_have",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "streamlit",
+        "requirement": "nice_to_have",
+        "raw_text": "Streamlit"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "JAX/TensorFlow"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "nice_to_have",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "vector-search",
+        "requirement": "nice_to_have",
+        "raw_text": "vector search"
+      },
+      {
+        "skill_id": "weights-and-biases",
+        "requirement": "nice_to_have",
+        "raw_text": "W&B"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Principal Scientist"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "phd",
+        "degree_requirement": "required",
+        "degree_or_equivalent": false,
+        "degree_signal": "Master’s, or PhD in a relevant field"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Databases",
+        "raw_text": "databases"
+      },
+      {
+        "labeler": "A",
+        "label": "Informatics software",
+        "raw_text": "relevant informatics software"
+      },
+      {
+        "labeler": "A",
+        "label": "Protein modeling/design",
+        "raw_text": "protein modeling/design"
+      },
+      {
+        "labeler": "A",
+        "label": "Proteomics/mass spec",
+        "raw_text": "proteomics/mass spec"
+      },
+      {
+        "labeler": "A",
+        "label": "Docking",
+        "raw_text": "docking"
+      },
+      {
+        "labeler": "A",
+        "label": "ADMET",
+        "raw_text": "ADMET"
+      },
+      {
+        "labeler": "A",
+        "label": "Biophysics/molecular dynamics",
+        "raw_text": "biophysics/MD"
+      },
+      {
+        "labeler": "A",
+        "label": "Data contracts and lineage",
+        "raw_text": "data contracts and lineage"
+      },
+      {
+        "labeler": "A",
+        "label": "DVC",
+        "raw_text": "DVC"
+      },
+      {
+        "labeler": "A",
+        "label": "LakeFS",
+        "raw_text": "LakeFS"
+      },
+      {
+        "labeler": "A",
+        "label": "AWS Batch",
+        "raw_text": "Batch"
+      },
+      {
+        "labeler": "A",
+        "label": "AWS ECS",
+        "raw_text": "ECS"
+      },
+      {
+        "labeler": "A",
+        "label": "AWS EKS",
+        "raw_text": "EKS"
+      },
+      {
+        "labeler": "A",
+        "label": "AWS CDK",
+        "raw_text": "CDK"
+      },
+      {
+        "labeler": "A",
+        "label": "Generative modeling (diffusion/flow/VAEs)",
+        "raw_text": "Generative modeling (diffusion/flow/VAEs)"
+      },
+      {
+        "labeler": "A",
+        "label": "gnina",
+        "raw_text": "gnina"
+      },
+      {
+        "labeler": "A",
+        "label": "DiffDock",
+        "raw_text": "DiffDock"
+      },
+      {
+        "labeler": "A",
+        "label": "Workflow orchestration",
+        "raw_text": "Workflow orchestration"
+      },
+      {
+        "labeler": "A",
+        "label": "Argo Workflows",
+        "raw_text": "Argo"
+      },
+      {
+        "labeler": "A",
+        "label": "Data warehouses",
+        "raw_text": "data warehouses"
+      },
+      {
+        "labeler": "A",
+        "label": "Redshift",
+        "raw_text": "Redshift"
+      },
+      {
+        "labeler": "A",
+        "label": "Gradio",
+        "raw_text": "Gradio"
+      },
+      {
+        "labeler": "B",
+        "label": "Protein design",
+        "raw_text": "protein design"
+      },
+      {
+        "labeler": "B",
+        "label": "Mass spectrometry",
+        "raw_text": "mass spec"
+      },
+      {
+        "labeler": "B",
+        "label": "Docking pipelines",
+        "raw_text": "docking pipelines"
+      },
+      {
+        "labeler": "B",
+        "label": "Modern ML frameworks",
+        "raw_text": "modern ML frameworks"
+      },
+      {
+        "labeler": "B",
+        "label": "Databases",
+        "raw_text": "databases"
+      },
+      {
+        "labeler": "B",
+        "label": "Informatics software",
+        "raw_text": "relevant informatics software"
+      },
+      {
+        "labeler": "B",
+        "label": "Protein modeling",
+        "raw_text": "protein modeling/design"
+      },
+      {
+        "labeler": "B",
+        "label": "Molecular dynamics",
+        "raw_text": "biophysics/MD"
+      },
+      {
+        "labeler": "B",
+        "label": "Data contracts",
+        "raw_text": "data contracts"
+      },
+      {
+        "labeler": "B",
+        "label": "Data lineage",
+        "raw_text": "lineage"
+      },
+      {
+        "labeler": "B",
+        "label": "DVC",
+        "raw_text": "DVC"
+      },
+      {
+        "labeler": "B",
+        "label": "LakeFS",
+        "raw_text": "LakeFS"
+      },
+      {
+        "labeler": "B",
+        "label": "AWS Batch",
+        "raw_text": "Batch"
+      },
+      {
+        "labeler": "B",
+        "label": "AWS ECS",
+        "raw_text": "ECS"
+      },
+      {
+        "labeler": "B",
+        "label": "AWS EKS",
+        "raw_text": "EKS"
+      },
+      {
+        "labeler": "B",
+        "label": "AWS CDK",
+        "raw_text": "CDK"
+      },
+      {
+        "labeler": "B",
+        "label": "Generative modeling",
+        "raw_text": "Generative modeling"
+      },
+      {
+        "labeler": "B",
+        "label": "Diffusion models",
+        "raw_text": "diffusion"
+      },
+      {
+        "labeler": "B",
+        "label": "Flow models",
+        "raw_text": "flow"
+      },
+      {
+        "labeler": "B",
+        "label": "Variational autoencoders",
+        "raw_text": "VAEs"
+      },
+      {
+        "labeler": "B",
+        "label": "Docking rescoring",
+        "raw_text": "docking rescoring"
+      },
+      {
+        "labeler": "B",
+        "label": "gnina",
+        "raw_text": "gnina"
+      },
+      {
+        "labeler": "B",
+        "label": "DiffDock",
+        "raw_text": "DiffDock"
+      },
+      {
+        "labeler": "B",
+        "label": "Pose quality metrics",
+        "raw_text": "pose quality metrics"
+      },
+      {
+        "labeler": "B",
+        "label": "Workflow orchestration",
+        "raw_text": "Workflow orchestration"
+      },
+      {
+        "labeler": "B",
+        "label": "Argo",
+        "raw_text": "Argo"
+      },
+      {
+        "labeler": "B",
+        "label": "Data warehouses",
+        "raw_text": "data warehouses"
+      },
+      {
+        "labeler": "B",
+        "label": "Amazon Redshift",
+        "raw_text": "Redshift"
+      },
+      {
+        "labeler": "B",
+        "label": "Gradio",
+        "raw_text": "Gradio"
+      }
+    ]
+  },
+  "golden_102": {
+    "accepted_skills": [
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "preferably in the AWS ecosystem"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong programming skills in Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "modern ML frameworks such as PyTorch"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Senior Machine Learning Scientist"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "phd",
+        "degree_requirement": "required",
+        "degree_or_equivalent": false,
+        "degree_signal": "PhD in machine learning, computational science, Earth science, atmospheric science, hydrology, AI, computer science, or a related quantitative discipline"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Scientific ML",
+        "raw_text": "Background in scientific ML"
+      },
+      {
+        "labeler": "A",
+        "label": "Spatiotemporal modeling",
+        "raw_text": "spatiotemporal modeling"
+      },
+      {
+        "labeler": "A",
+        "label": "Data assimilation",
+        "raw_text": "data assimilation"
+      },
+      {
+        "labeler": "A",
+        "label": "Hybrid physics-ML methods",
+        "raw_text": "hybrid physics-ML methods"
+      },
+      {
+        "labeler": "A",
+        "label": "Remote sensing data",
+        "raw_text": "remote sensing datasets"
+      },
+      {
+        "labeler": "B",
+        "label": "Large-scale computational infrastructure for ML training",
+        "raw_text": "computational infrastructure required to manage, preprocess, and train on large-scale climate datasets"
+      },
+      {
+        "labeler": "B",
+        "label": "Spatiotemporal modeling",
+        "raw_text": "spatiotemporal modeling"
+      },
+      {
+        "labeler": "B",
+        "label": "Data assimilation",
+        "raw_text": "data assimilation"
+      },
+      {
+        "labeler": "B",
+        "label": "Hybrid physics-ML methods",
+        "raw_text": "hybrid physics-ML methods"
+      }
+    ]
+  }
+}

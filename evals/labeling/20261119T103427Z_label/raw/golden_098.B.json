@@ -1,0 +1,155 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Proficiency in machine learning\"\n    },\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data science, with demonstrated application\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic systems\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"scikit-learn\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"deploying machine learning and data science solutions to production environments\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"DevOps\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cloud infrastructure\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"ETL pipelines, data pipelines\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"workflow automation\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Experience developing software\"\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Go\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"rust\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Rust\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"C++\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Java\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"scala\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Scala\",\n      \"alternative_group\": 3\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Application of machine learning and data science to image data\",\n      \"raw_text\": \"image data\"\n    },\n    {\n      \"label\": \"Application of machine learning and data science to video data\",\n      \"raw_text\": \"video data\"\n    },\n    {\n      \"label\": \"Implementing and analyzing data structures\",\n      \"raw_text\": \"implementing and analyzing data structures\"\n    },\n    {\n      \"label\": \"Implementing and analyzing algorithms\",\n      \"raw_text\": \"implementing and analyzing data structures and algorithms\"\n    },\n    {\n      \"label\": \"Software development life cycle and tools\",\n      \"raw_text\": \"software development life cycle and tools\"\n    },\n    {\n      \"label\": \"Processing unstructured data\",\n      \"raw_text\": \"processing a variety of unstructured data types (e.g., image/video, text, telemetry, graphs, or other)\"\n    },\n    {\n      \"label\": \"Systems programming\",\n      \"raw_text\": \"developing software in a systems programming language\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"2+ years of relevant experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"A BS degree in computer science, machine learning, mathematics, or a related discipline\",\n  \"notes\": \"The optional section begins at “The following isn’t required, but we’d love to see it:”.\\nImage/video data applications and unstructured data processing are read literally, without inferring computer vision, NLP, or knowledge graphs. The agentic-systems ask is an alternative to image/video applications, but those alternatives have no exact taxonomy entries, leaving no group with two mapped members.\\nSoftware development life cycle and tools is retained as an unmapped specific practice rather than silently broadened to software engineering; the explicit optional software-development ask supplies the software-engineering criterion.\\nETL pipelines and data pipelines collapse into one skill, grouped with workflow automation. The systems-language examples form a separate alternative group.\\nThe optional “advanced degree” names no specific higher degree level; bachelor is the highest explicitly named level and is required.\\nThe 2+ years minimum is interpreted as the guide’s approximately two-year junior signal; no stated seniority is present.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Proficiency in machine learning"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "data science, with demonstrated application"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic systems"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "nice_to_have",
+        "raw_text": "deploying machine learning and data science solutions to production environments"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "nice_to_have",
+        "raw_text": "DevOps"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud infrastructure"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "ETL pipelines, data pipelines",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "nice_to_have",
+        "raw_text": "workflow automation",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience developing software"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "nice_to_have",
+        "raw_text": "Go",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "rust",
+        "requirement": "nice_to_have",
+        "raw_text": "Rust",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "nice_to_have",
+        "raw_text": "C++",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "java",
+        "requirement": "nice_to_have",
+        "raw_text": "Java",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "nice_to_have",
+        "raw_text": "Scala",
+        "alternative_group": 3
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Application of machine learning and data science to image data",
+        "raw_text": "image data"
+      },
+      {
+        "label": "Application of machine learning and data science to video data",
+        "raw_text": "video data"
+      },
+      {
+        "label": "Implementing and analyzing data structures",
+        "raw_text": "implementing and analyzing data structures"
+      },
+      {
+        "label": "Implementing and analyzing algorithms",
+        "raw_text": "implementing and analyzing data structures and algorithms"
+      },
+      {
+        "label": "Software development life cycle and tools",
+        "raw_text": "software development life cycle and tools"
+      },
+      {
+        "label": "Processing unstructured data",
+        "raw_text": "processing a variety of unstructured data types (e.g., image/video, text, telemetry, graphs, or other)"
+      },
+      {
+        "label": "Systems programming",
+        "raw_text": "developing software in a systems programming language"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "2+ years of relevant experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "A BS degree in computer science, machine learning, mathematics, or a related discipline",
+    "notes": "The optional section begins at “The following isn’t required, but we’d love to see it:”.\nImage/video data applications and unstructured data processing are read literally, without inferring computer vision, NLP, or knowledge graphs. The agentic-systems ask is an alternative to image/video applications, but those alternatives have no exact taxonomy entries, leaving no group with two mapped members.\nSoftware development life cycle and tools is retained as an unmapped specific practice rather than silently broadened to software engineering; the explicit optional software-development ask supplies the software-engineering criterion.\nETL pipelines and data pipelines collapse into one skill, grouped with workflow automation. The systems-language examples form a separate alternative group.\nThe optional “advanced degree” names no specific higher degree level; bachelor is the highest explicitly named level and is required.\nThe 2+ years minimum is interpreted as the guide’s approximately two-year junior signal; no stated seniority is present."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "09f468168dca7c7aaeae5c11ce780d8fa9f64b60d7f994048275f232934d5565",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

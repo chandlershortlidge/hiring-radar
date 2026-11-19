@@ -1,0 +1,86 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"opinionated about where LLMs and ML-driven optimization genuinely help\", \"uncertain\": true},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"ML-driven optimization genuinely help\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Tcl\", \"raw_text\": \"Tcl\"},\n    {\"label\": \"Perl\", \"raw_text\": \"Perl\"},\n    {\"label\": \"Synopsys Fusion Compiler / ICC2\", \"raw_text\": \"FusionCompiler/ICC2\"},\n    {\"label\": \"Cadence Innovus / Genus\", \"raw_text\": \"Innovus/Genus\"},\n    {\"label\": \"PrimeTime\", \"raw_text\": \"PrimeTime\"},\n    {\"label\": \"RedHawk\", \"raw_text\": \"RedHawk\"},\n    {\"label\": \"Low-power intent (UPF/CPF)\", \"raw_text\": \"low-power intent (UPF/CPF)\"},\n    {\"label\": \"Clock tree synthesis\", \"raw_text\": \"clock tree synthesis\"},\n    {\"label\": \"Signoff (EM/IR, DRC/LVS)\", \"raw_text\": \"signoff (EM/IR, DRC/LVS)\"},\n    {\"label\": \"Physical design / CAD methodology flows (RTL-to-GDSII)\", \"raw_text\": \"developing and supporting physical design methodology or CAD flows\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"5+ years developing and supporting physical design methodology or CAD flows\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"'Who You Are' and 'What We Need' have no optional marker, so both default to required.\\n'What You Will Learn' describes what the role will teach, not what the candidate is asked to have, so it is not labeled. Its ML-driven flow optimization, EDA automation and FinFET/GAA items are excluded.\\nLLMs and machine learning come from the 'Who You Are' line 'opinionated about where LLMs and ML-driven optimization genuinely help'. Read literally, this asks for working familiarity, so I labeled them required. Both are flagged uncertain because this is a persona bullet, not an explicit requirement.\\n'Building with AI as part of how you develop flows' is too vague to map to ai-developer-tooling, so it is not labeled.\\nTcl, Perl, the EDA tools (Fusion Compiler/ICC2, Innovus/Genus, PrimeTime, RedHawk), UPF/CPF, CTS and signoff checks have no taxonomy entry, so they go in unmapped.\\nNo alternative_group: '(Tcl, Python, Perl)' is a comma list with no 'or', and only Python maps, so it could not form a group of two anyway.\\nSeniority is inferred from '5+ years'. It is flagged because the posting also says it welcomes candidates at various experience levels and that the offer level may differ.\\nNo German mention and no degree mention.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "opinionated about where LLMs and ML-driven optimization genuinely help",
+        "uncertain": true
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ML-driven optimization genuinely help",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Tcl",
+        "raw_text": "Tcl"
+      },
+      {
+        "label": "Perl",
+        "raw_text": "Perl"
+      },
+      {
+        "label": "Synopsys Fusion Compiler / ICC2",
+        "raw_text": "FusionCompiler/ICC2"
+      },
+      {
+        "label": "Cadence Innovus / Genus",
+        "raw_text": "Innovus/Genus"
+      },
+      {
+        "label": "PrimeTime",
+        "raw_text": "PrimeTime"
+      },
+      {
+        "label": "RedHawk",
+        "raw_text": "RedHawk"
+      },
+      {
+        "label": "Low-power intent (UPF/CPF)",
+        "raw_text": "low-power intent (UPF/CPF)"
+      },
+      {
+        "label": "Clock tree synthesis",
+        "raw_text": "clock tree synthesis"
+      },
+      {
+        "label": "Signoff (EM/IR, DRC/LVS)",
+        "raw_text": "signoff (EM/IR, DRC/LVS)"
+      },
+      {
+        "label": "Physical design / CAD methodology flows (RTL-to-GDSII)",
+        "raw_text": "developing and supporting physical design methodology or CAD flows"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "5+ years developing and supporting physical design methodology or CAD flows",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "'Who You Are' and 'What We Need' have no optional marker, so both default to required.\n'What You Will Learn' describes what the role will teach, not what the candidate is asked to have, so it is not labeled. Its ML-driven flow optimization, EDA automation and FinFET/GAA items are excluded.\nLLMs and machine learning come from the 'Who You Are' line 'opinionated about where LLMs and ML-driven optimization genuinely help'. Read literally, this asks for working familiarity, so I labeled them required. Both are flagged uncertain because this is a persona bullet, not an explicit requirement.\n'Building with AI as part of how you develop flows' is too vague to map to ai-developer-tooling, so it is not labeled.\nTcl, Perl, the EDA tools (Fusion Compiler/ICC2, Innovus/Genus, PrimeTime, RedHawk), UPF/CPF, CTS and signoff checks have no taxonomy entry, so they go in unmapped.\nNo alternative_group: '(Tcl, Python, Perl)' is a comma list with no 'or', and only Python maps, so it could not form a group of two anyway.\nSeniority is inferred from '5+ years'. It is flagged because the posting also says it welcomes candidates at various experience levels and that the offer level may differ.\nNo German mention and no degree mention."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "0face347ae77901b24d74c669f94f1553b153d614cdfe9db7188362b7d12e260",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

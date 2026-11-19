@@ -1,0 +1,160 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"strong expertise in modern machine learning\"\n    },\n    {\n      \"skill_id\": \"chemical-descriptors\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"post-DFT descriptors\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"geometric deep learning\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model training\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model evaluation frameworks\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Proficiency with Python and modern ML frameworks such as PyTorch, PyTorch Geometric, DGL, or related tools and cheminformatics and molecular modeling toolkits such as RDKit, ORCA, Gaussian, Q-Chem, or related software is preferred\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"cheminformatics\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cheminformatics\"\n    },\n    {\n      \"skill_id\": \"rdkit\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"RDKit\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Molecular representation\",\n      \"raw_text\": \"molecular representation\"\n    },\n    {\n      \"label\": \"Density functional theory\",\n      \"raw_text\": \"DFT\"\n    },\n    {\n      \"label\": \"Electronic structure methods\",\n      \"raw_text\": \"electronic structure methods\"\n    },\n    {\n      \"label\": \"Graph neural networks\",\n      \"raw_text\": \"graph neural networks\"\n    },\n    {\n      \"label\": \"Equivariant architectures\",\n      \"raw_text\": \"equivariant architectures\"\n    },\n    {\n      \"label\": \"Diffusion models\",\n      \"raw_text\": \"diffusion models\"\n    },\n    {\n      \"label\": \"Generative modeling\",\n      \"raw_text\": \"generative models\"\n    },\n    {\n      \"label\": \"Molecular design modeling\",\n      \"raw_text\": \"molecular design models\"\n    },\n    {\n      \"label\": \"Active learning\",\n      \"raw_text\": \"active learning workflows\"\n    },\n    {\n      \"label\": \"Data curation\",\n      \"raw_text\": \"hands-on data curation\"\n    },\n    {\n      \"label\": \"Data cleaning\",\n      \"raw_text\": \"clean\"\n    },\n    {\n      \"label\": \"Data integration\",\n      \"raw_text\": \"integrate\"\n    },\n    {\n      \"label\": \"Scientific data analysis\",\n      \"raw_text\": \"analyze complex, large-scale scientific datasets from multiple sources\"\n    },\n    {\n      \"label\": \"PyTorch Geometric\",\n      \"raw_text\": \"PyTorch Geometric\"\n    },\n    {\n      \"label\": \"DGL\",\n      \"raw_text\": \"DGL\"\n    },\n    {\n      \"label\": \"Molecular modeling\",\n      \"raw_text\": \"molecular modeling\"\n    },\n    {\n      \"label\": \"ORCA\",\n      \"raw_text\": \"ORCA\"\n    },\n    {\n      \"label\": \"Gaussian\",\n      \"raw_text\": \"Gaussian\"\n    },\n    {\n      \"label\": \"Q-Chem\",\n      \"raw_text\": \"Q-Chem\"\n    },\n    {\n      \"label\": \"Scalable data processing\",\n      \"raw_text\": \"scalable data processing\"\n    },\n    {\n      \"label\": \"Reaction modeling\",\n      \"raw_text\": \"reaction modeling\"\n    },\n    {\n      \"label\": \"Structure-based design\",\n      \"raw_text\": \"structure-based design\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"(Senior) Scientist, Machine Learning\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Ph.D. in machine learning, computational chemistry, chemical physics, computer science, applied mathematics, or a related discipline with 2+ years of industry experience, or M.S. degree with 6+ years of industry experience\",\n  \"notes\": \"The qualifications section defaults to required. The final 'is preferred' applies to the entire Python/frameworks/cheminformatics/toolkits bullet; the final 'is a plus' makes reaction modeling and structure-based design optional.\\nCandidate qualifications explicitly stated in THE ROLE are included; technologies and practices appearing only in KEY RESPONSIBILITIES are excluded.\\nGeometric deep learning is mapped to deep-learning, and post-DFT descriptors to chemical-descriptors, using their literal named techniques. Generative molecular models are not treated as LLMs.\\nQuantum chemistry, computational drug discovery, covalent chemistry, and chemoproteomics are excluded as domain knowledge; explicitly named computational methods and modeling techniques are retained.\\nAlternative lists were checked. No alternative set contains two mapped taxonomy skills; the other members are recorded in unmapped rather than assigned invented IDs.\\nThe master's option is another degree route, not experience in place of a degree; the highest degree named is Ph.D.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "strong expertise in modern machine learning"
+      },
+      {
+        "skill_id": "chemical-descriptors",
+        "requirement": "required",
+        "raw_text": "post-DFT descriptors"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "geometric deep learning"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "model training"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "model evaluation frameworks"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Proficiency with Python and modern ML frameworks such as PyTorch, PyTorch Geometric, DGL, or related tools and cheminformatics and molecular modeling toolkits such as RDKit, ORCA, Gaussian, Q-Chem, or related software is preferred"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "cheminformatics",
+        "requirement": "nice_to_have",
+        "raw_text": "cheminformatics"
+      },
+      {
+        "skill_id": "rdkit",
+        "requirement": "nice_to_have",
+        "raw_text": "RDKit"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Molecular representation",
+        "raw_text": "molecular representation"
+      },
+      {
+        "label": "Density functional theory",
+        "raw_text": "DFT"
+      },
+      {
+        "label": "Electronic structure methods",
+        "raw_text": "electronic structure methods"
+      },
+      {
+        "label": "Graph neural networks",
+        "raw_text": "graph neural networks"
+      },
+      {
+        "label": "Equivariant architectures",
+        "raw_text": "equivariant architectures"
+      },
+      {
+        "label": "Diffusion models",
+        "raw_text": "diffusion models"
+      },
+      {
+        "label": "Generative modeling",
+        "raw_text": "generative models"
+      },
+      {
+        "label": "Molecular design modeling",
+        "raw_text": "molecular design models"
+      },
+      {
+        "label": "Active learning",
+        "raw_text": "active learning workflows"
+      },
+      {
+        "label": "Data curation",
+        "raw_text": "hands-on data curation"
+      },
+      {
+        "label": "Data cleaning",
+        "raw_text": "clean"
+      },
+      {
+        "label": "Data integration",
+        "raw_text": "integrate"
+      },
+      {
+        "label": "Scientific data analysis",
+        "raw_text": "analyze complex, large-scale scientific datasets from multiple sources"
+      },
+      {
+        "label": "PyTorch Geometric",
+        "raw_text": "PyTorch Geometric"
+      },
+      {
+        "label": "DGL",
+        "raw_text": "DGL"
+      },
+      {
+        "label": "Molecular modeling",
+        "raw_text": "molecular modeling"
+      },
+      {
+        "label": "ORCA",
+        "raw_text": "ORCA"
+      },
+      {
+        "label": "Gaussian",
+        "raw_text": "Gaussian"
+      },
+      {
+        "label": "Q-Chem",
+        "raw_text": "Q-Chem"
+      },
+      {
+        "label": "Scalable data processing",
+        "raw_text": "scalable data processing"
+      },
+      {
+        "label": "Reaction modeling",
+        "raw_text": "reaction modeling"
+      },
+      {
+        "label": "Structure-based design",
+        "raw_text": "structure-based design"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "(Senior) Scientist, Machine Learning",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Ph.D. in machine learning, computational chemistry, chemical physics, computer science, applied mathematics, or a related discipline with 2+ years of industry experience, or M.S. degree with 6+ years of industry experience",
+    "notes": "The qualifications section defaults to required. The final 'is preferred' applies to the entire Python/frameworks/cheminformatics/toolkits bullet; the final 'is a plus' makes reaction modeling and structure-based design optional.\nCandidate qualifications explicitly stated in THE ROLE are included; technologies and practices appearing only in KEY RESPONSIBILITIES are excluded.\nGeometric deep learning is mapped to deep-learning, and post-DFT descriptors to chemical-descriptors, using their literal named techniques. Generative molecular models are not treated as LLMs.\nQuantum chemistry, computational drug discovery, covalent chemistry, and chemoproteomics are excluded as domain knowledge; explicitly named computational methods and modeling techniques are retained.\nAlternative lists were checked. No alternative set contains two mapped taxonomy skills; the other members are recorded in unmapped rather than assigned invented IDs.\nThe master's option is another degree route, not experience in place of a degree; the highest degree named is Ph.D."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "0908d24f3115afb287b4dd430de216b89512734badcfb33a092c7ac72cff7901",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

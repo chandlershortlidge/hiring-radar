@@ -1,0 +1,148 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building and operating production backend services\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"owning architectural decisions\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"the AI and LLM space — not as a trend to track, but as a domain where you've already done hands-on integration work\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"the AI and LLM space — not as a trend to track, but as a domain where you've already done hands-on integration work\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Regular, thoughtful use of AI coding tools\"\n    },\n    {\n      \"skill_id\": \"claude-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Claude Code\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"cursor\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cursor\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"github-copilot\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitHub Copilot\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"codex\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"OpenAI Codex\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Go\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud-native services\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tool-calling systems\"\n    },\n    {\n      \"skill_id\": \"agent-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic architectures\"\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MCP\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"automated testing\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"production observability\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agentic AI systems\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"ai-infrastructure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI or ML infrastructure\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"A2A\",\n      \"raw_text\": \"A2A\"\n    },\n    {\n      \"label\": \"Event sourcing\",\n      \"raw_text\": \"building or maintaining event-sourced systems\"\n    },\n    {\n      \"label\": \"Developer productivity tooling\",\n      \"raw_text\": \"developer productivity tooling\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Backend Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Who You Are and What You Bring contain required qualifications; Nice to haves marks its items optional. Technologies appearing only in company descriptions, The Opportunity or Your Typical Day are excluded.\\nThe AI/LLM curiosity wording does not soften the explicit statement that the candidate has already done hands-on integration work.\\nLLMs and AI/ML are independently requested in Who You Are, so they leave the later LLMs/AI models/tool-calling alternative set; its remaining mapped member has no alternative_group.\\nMCP and A2A are examples for one protocol ask, but A2A is unmapped; no singleton alternative_group is emitted for MCP.\\nCloud-native services is read literally as naming cloud experience. Event sourcing is not silently mapped to event-driven systems.\\nReliability, scalability, performance and security are stated as qualities receiving attention, not as separately named technical techniques or tools.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "building and operating production backend services"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "owning architectural decisions"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "the AI and LLM space — not as a trend to track, but as a domain where you've already done hands-on integration work"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "the AI and LLM space — not as a trend to track, but as a domain where you've already done hands-on integration work"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Regular, thoughtful use of AI coding tools"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "GitHub Copilot",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "codex",
+        "requirement": "required",
+        "raw_text": "OpenAI Codex",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud-native services"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool-calling systems"
+      },
+      {
+        "skill_id": "agent-architecture",
+        "requirement": "required",
+        "raw_text": "agentic architectures"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "MCP"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automated testing"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "production observability"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic AI systems"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "nice_to_have",
+        "raw_text": "AI or ML infrastructure"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "A2A",
+        "raw_text": "A2A"
+      },
+      {
+        "label": "Event sourcing",
+        "raw_text": "building or maintaining event-sourced systems"
+      },
+      {
+        "label": "Developer productivity tooling",
+        "raw_text": "developer productivity tooling"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Backend Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Who You Are and What You Bring contain required qualifications; Nice to haves marks its items optional. Technologies appearing only in company descriptions, The Opportunity or Your Typical Day are excluded.\nThe AI/LLM curiosity wording does not soften the explicit statement that the candidate has already done hands-on integration work.\nLLMs and AI/ML are independently requested in Who You Are, so they leave the later LLMs/AI models/tool-calling alternative set; its remaining mapped member has no alternative_group.\nMCP and A2A are examples for one protocol ask, but A2A is unmapped; no singleton alternative_group is emitted for MCP.\nCloud-native services is read literally as naming cloud experience. Event sourcing is not silently mapped to event-driven systems.\nReliability, scalability, performance and security are stated as qualities receiving attention, not as separately named technical techniques or tools."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "5cd0d4000bfde8de0ced6d925429283de97f4188b0411df3a93d5868af0faf49",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

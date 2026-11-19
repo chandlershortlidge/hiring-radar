@@ -1,0 +1,212 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"ml-engineering\", \"requirement\": \"required\", \"raw_text\": \"3+ years of ML engineering experience\", \"uncertain\": true},\n    {\"skill_id\": \"model-development\", \"requirement\": \"required\", \"raw_text\": \"training and deploying language models\", \"uncertain\": true},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"deploying language models to production\", \"uncertain\": true},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"required\", \"raw_text\": \"(embedding models\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"or large language models\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"or fine-tuning\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"rigorous evaluation\"},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"required\", \"raw_text\": \"deep understanding of distributed systems\"},\n    {\"skill_id\": \"distributed-training\", \"requirement\": \"required\", \"raw_text\": \"distributed training frameworks\"},\n    {\"skill_id\": \"deepspeed\", \"requirement\": \"required\", \"raw_text\": \"Transformers, DeepSpeed, Accelerate\"},\n    {\"skill_id\": \"fsdp\", \"requirement\": \"required\", \"raw_text\": \"FSDP\", \"alternative_group\": 2},\n    {\"skill_id\": \"megatron-lm\", \"requirement\": \"required\", \"raw_text\": \"Megatron-LM, or Axolotl\", \"alternative_group\": 2},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Expert Python\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"transformers\", \"requirement\": \"required\", \"raw_text\": \"Transformers, DeepSpeed\", \"uncertain\": true},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Strong software engineering practices\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"version control\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"testing\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD\"},\n    {\"skill_id\": \"hugging-face\", \"requirement\": \"nice_to_have\", \"raw_text\": \"released models on Hugging Face\"},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"other reinforcement learning approaches\"},\n    {\"skill_id\": \"inference-optimization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"optimizing models for production inference\", \"uncertain\": true},\n    {\"skill_id\": \"quantization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"quantization\"},\n    {\"skill_id\": \"knowledge-distillation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"distillation\"},\n    {\"skill_id\": \"model-serving\", \"requirement\": \"nice_to_have\", \"raw_text\": \"serving frameworks\"},\n    {\"skill_id\": \"vllm\", \"requirement\": \"nice_to_have\", \"raw_text\": \"vLLM\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Axolotl\", \"raw_text\": \"Axolotl\"},\n    {\"label\": \"Accelerate\", \"raw_text\": \"Accelerate\"},\n    {\"label\": \"pre-training / continued pre-training\", \"raw_text\": \"pre-training, continued pre-training\"},\n    {\"label\": \"training data preparation (filtering, deduplication, data mixture)\", \"raw_text\": \"Experience preparing large-scale training datasets\"},\n    {\"label\": \"code review\", \"raw_text\": \"code review\"},\n    {\"label\": \"RLHF\", \"raw_text\": \"RLHF\"},\n    {\"label\": \"DPO\", \"raw_text\": \"DPO\"},\n    {\"label\": \"GRPO\", \"raw_text\": \"GRPO\"},\n    {\"label\": \"model compression\", \"raw_text\": \"model compression\"},\n    {\"label\": \"memory optimization (gradient checkpointing, mixed precision, ZeRO)\", \"raw_text\": \"Understanding of memory optimization\"},\n    {\"label\": \"synthetic data generation\", \"raw_text\": \"synthetic data generation pipelines\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years of ML engineering experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The 'WHO WE'RE LOOKING FOR' section describes the candidate ('You have hands-on experience...'), so it has no optional heading and its items are treated as required. That is why distributed-systems is required.\\nI put embeddings and llms in alternative group 1 from '(embedding models, encoder models, or large language models)'. Encoder models has no taxonomy id. LLMs also appear in the title and in 'from embedding models to specialized LLMs', so the group is flagged uncertain.\\nDeepSpeed leaves the distributed-training-frameworks group because it is also asked for on its own in 'Transformers, DeepSpeed, Accelerate', a list of items asked for together. FSDP and Megatron-LM stay as group 2; Axolotl is unmapped.\\nI mapped the 'transformers' library mention to the transformers id. That id describes the architecture, so this is flagged uncertain.\\nmodel-development and ai-deployment are read from 'training and deploying language models to production'. The wording does not match the taxonomy aliases exactly, so both are flagged uncertain.\\nml-engineering is taken from '3+ years of ML engineering experience'. The years themselves are not a skill; ML engineering is treated as a practice. Flagged uncertain.\\ninference-optimization is taken from 'optimizing models for production inference'. Flagged uncertain.\\nSeniority is inferred as mid from '3+ years' (also 'Proven experience'). 'experienced' is not a level signal on its own.\\nRL techniques, evaluation frameworks and synthetic data also appear in the responsibilities. Only the qualification mentions are labeled.\\nThe frontier model providers (OpenAI, Anthropic, Google) appear only in 'What we offer', so they are not labeled.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "3+ years of ML engineering experience",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "training and deploying language models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying language models to production",
+        "uncertain": true
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "(embedding models",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "or large language models",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "or fine-tuning"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "rigorous evaluation"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "deep understanding of distributed systems"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "distributed training frameworks"
+      },
+      {
+        "skill_id": "deepspeed",
+        "requirement": "required",
+        "raw_text": "Transformers, DeepSpeed, Accelerate"
+      },
+      {
+        "skill_id": "fsdp",
+        "requirement": "required",
+        "raw_text": "FSDP",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "megatron-lm",
+        "requirement": "required",
+        "raw_text": "Megatron-LM, or Axolotl",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Expert Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "Transformers, DeepSpeed",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software engineering practices"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "version control"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "nice_to_have",
+        "raw_text": "released models on Hugging Face"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "other reinforcement learning approaches"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "nice_to_have",
+        "raw_text": "optimizing models for production inference",
+        "uncertain": true
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "nice_to_have",
+        "raw_text": "quantization"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "nice_to_have",
+        "raw_text": "distillation"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "serving frameworks"
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "nice_to_have",
+        "raw_text": "vLLM"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Axolotl",
+        "raw_text": "Axolotl"
+      },
+      {
+        "label": "Accelerate",
+        "raw_text": "Accelerate"
+      },
+      {
+        "label": "pre-training / continued pre-training",
+        "raw_text": "pre-training, continued pre-training"
+      },
+      {
+        "label": "training data preparation (filtering, deduplication, data mixture)",
+        "raw_text": "Experience preparing large-scale training datasets"
+      },
+      {
+        "label": "code review",
+        "raw_text": "code review"
+      },
+      {
+        "label": "RLHF",
+        "raw_text": "RLHF"
+      },
+      {
+        "label": "DPO",
+        "raw_text": "DPO"
+      },
+      {
+        "label": "GRPO",
+        "raw_text": "GRPO"
+      },
+      {
+        "label": "model compression",
+        "raw_text": "model compression"
+      },
+      {
+        "label": "memory optimization (gradient checkpointing, mixed precision, ZeRO)",
+        "raw_text": "Understanding of memory optimization"
+      },
+      {
+        "label": "synthetic data generation",
+        "raw_text": "synthetic data generation pipelines"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years of ML engineering experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The 'WHO WE'RE LOOKING FOR' section describes the candidate ('You have hands-on experience...'), so it has no optional heading and its items are treated as required. That is why distributed-systems is required.\nI put embeddings and llms in alternative group 1 from '(embedding models, encoder models, or large language models)'. Encoder models has no taxonomy id. LLMs also appear in the title and in 'from embedding models to specialized LLMs', so the group is flagged uncertain.\nDeepSpeed leaves the distributed-training-frameworks group because it is also asked for on its own in 'Transformers, DeepSpeed, Accelerate', a list of items asked for together. FSDP and Megatron-LM stay as group 2; Axolotl is unmapped.\nI mapped the 'transformers' library mention to the transformers id. That id describes the architecture, so this is flagged uncertain.\nmodel-development and ai-deployment are read from 'training and deploying language models to production'. The wording does not match the taxonomy aliases exactly, so both are flagged uncertain.\nml-engineering is taken from '3+ years of ML engineering experience'. The years themselves are not a skill; ML engineering is treated as a practice. Flagged uncertain.\ninference-optimization is taken from 'optimizing models for production inference'. Flagged uncertain.\nSeniority is inferred as mid from '3+ years' (also 'Proven experience'). 'experienced' is not a level signal on its own.\nRL techniques, evaluation frameworks and synthetic data also appear in the responsibilities. Only the qualification mentions are labeled.\nThe frontier model providers (OpenAI, Anthropic, Google) appear only in 'What we offer', so they are not labeled."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "591beea78f5bf5acff6dbb51443dd8a15ae812c874e33a6d244a661f171247fe",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}
