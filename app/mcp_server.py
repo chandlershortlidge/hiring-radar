@@ -156,7 +156,7 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str]) -> MCPSer
             r = q.list_jobs(conn, f, now(), sort, limit, offset)
         return {"total": r["total"], "offset": offset, "jobs": [_job(j) for j in r["jobs"]]}
 
-    # The next tool goes here (HIR-103's table): a function like search_jobs above.
+  
     @server.tool(annotations=READ_ONLY)
     def get_job(job_id: int) -> dict[str, Any]:
         """Get one job posting in full, with the same details as the hiring-radar
@@ -193,7 +193,30 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str]) -> MCPSer
                 "or_equivalent_experience": detail["degree_or_equivalent"]}, "description_text": detail["description_text"]
         }
 
+    @server.tool(annotations=READ_ONLY)
+    def skill_demand(
+        city: list[Place] | None = None,
+        seniority: list[Seniority] | None = None,
+        family: list[Family] | None = None,
+        requirement: Requirement = "required",
+        window: Window = "open",
+        german: German = "any",
+        degree: Degree = "any",
+        production: Production = "any"
+        
+    ) -> dict[str, Any]:
+        try:
+            f = q.make_filters(tax.skills, cities=city or (), seniorities=seniority or (),
+                                        families=family or (), requirement=requirement, window=window,
+                                        german=german, degree=degree, production=production)
+        except ValueError as e:
+            raise ToolError(str(e)) from None
+        with connect() as conn:
+            demand = q.skill_frequency(conn, f, now())
+        return {"total": demand["total"], "skills": demand["skills"]}
+        
 
+            
     return server
 
 
