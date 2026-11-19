@@ -59,9 +59,12 @@ sys.path.insert(0, str(ROOT))
 
 # DEFAULT_MODEL to enforce the refusal, extraction_input so the labeler sees exactly what
 # the extractor sees, _norm so "appears verbatim" means the same thing here as in
-# parse_skills. Deliberately nothing else from extract: no PRINCIPLES, no extract().
+# parse_skills, and the three lists of allowed answers so a label is checked against the
+# same values the extractor may return and the database will store (HIR-311).
+# Deliberately nothing else from extract: no PRINCIPLES, no extract().
 from app.db import connect  # noqa: E402
 from app.extract import DEFAULT_MODEL as EXTRACTOR_MODEL  # noqa: E402
+from app.extract import DEGREE_LEVELS, REQUIREMENT_LEVELS, SENIORITY_LEVELS  # noqa: E402
 from app.extract import _norm as norm_text  # noqa: E402
 from app.extract import extraction_input  # noqa: E402
 from app.taxonomy import Taxonomy  # noqa: E402
@@ -91,9 +94,9 @@ SEED = 0
 # deliberate opposite, for growing the set the gate tunes against (HIR-164).
 SPLITS = ("heldout", "dev")
 
-REQUIREMENTS = ("required", "nice_to_have")
-SENIORITIES = ("junior", "mid", "senior")
-DEGREES = ("bachelor", "master", "phd")
+REQUIREMENTS = REQUIREMENT_LEVELS
+SENIORITIES = SENIORITY_LEVELS
+DEGREES = DEGREE_LEVELS
 BASES = ("stated", "inferred")
 ATTRS = ("seniority", "german", "degree")
 # The fields that travel together when a person decides one attribute.
