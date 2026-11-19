@@ -1,0 +1,50 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG-based workflows\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Snowflake Cortex\",\n      \"raw_text\": \"Cortex components\"\n    },\n    {\n      \"label\": \"Snowflake Semantic Views\",\n      \"raw_text\": \"Semantic Views\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"There are no optional headings; the explicit skills and experience requirements are required.\\nCortex components and Semantic Views have no matching taxonomy entries; Snowflake is not added as their broader parent.\\nAI agents, semantic models, and text-to-SQL tooling appear only as responsibilities and are excluded. The description of the role as blending data engineering with AI is not treated as a separate candidate qualification.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG-based workflows"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Snowflake Cortex",
+        "raw_text": "Cortex components"
+      },
+      {
+        "label": "Snowflake Semantic Views",
+        "raw_text": "Semantic Views"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "There are no optional headings; the explicit skills and experience requirements are required.\nCortex components and Semantic Views have no matching taxonomy entries; Snowflake is not added as their broader parent.\nAI agents, semantic models, and text-to-SQL tooling appear only as responsibilities and are excluded. The description of the role as blending data engineering with AI is not treated as a separate candidate qualification."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "2b09f6e0de73e1b62350ccfc535efbf6d75cd82f69a846ed74920dc670738ab0",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

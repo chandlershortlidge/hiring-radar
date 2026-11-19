@@ -1,0 +1,59 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"building and deploying a relevant ML application\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"fluent in Python\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"ML training code for use in a cloud computing environment\", \"uncertain\": true},\n    {\"skill_id\": \"jax\", \"requirement\": \"nice_to_have\", \"raw_text\": \"experience writing machine learning code in JAX\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"collaborative coding practices\", \"raw_text\": \"collaborative coding practices\"},\n    {\"label\": \"physically-based atmospheric/oceanic model development\", \"raw_text\": \"physically-based atmospheric, oceanic, or related model development\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"2-4 years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Have a Ph. D. in computer or computational science\",\n  \"uncertain\": [\"seniority\", \"degree\"],\n  \"notes\": \"Sections: 'What You'll Need' sets required. 'It's A Bonus If You' sets nice_to_have.\\nGoogle Cloud, NVIDIA GPUs, TPUs, GitHub and JAX appear in 'You'll get to work on'. Those are responsibilities, so they are not labeled from there. JAX is labeled only from the bonus section, as nice_to_have.\\n'cloud computing environment' is mapped to cloud. It is not an exact alias, so it is flagged uncertain.\\n'deploying a relevant ML application' is not labeled ai-deployment. The text deploys an application, not a model, so this is a literal reading.\\nmachine-learning is required via 'ML application'. The bonus mention ('machine learning code in JAX') collapses into it, and the required mention wins.\\n'collaborative coding practices' names no concrete tool, so git is not inferred.\\nSeniority: '2-4 years' straddles the junior (0-2) and mid (3-5) bands. The midpoint gives mid, but it is flagged.\\nDegree: the B.Sc. is required, and the Ph.D. appears only under the bonus heading. The guide says take the highest level named, so the label is phd/nice_to_have. This hides the required B.Sc. (signal 'A B.Sc. in computer or computational science'), so it is flagged for review.\\n'applied mathematics/statistics' is a degree field, not a skill ask, so statistics is not labeled.\\nNo German is mentioned. Excellent communication skills are a soft skill and are not labeled.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "building and deploying a relevant ML application"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "fluent in Python"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "ML training code for use in a cloud computing environment",
+        "uncertain": true
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "nice_to_have",
+        "raw_text": "experience writing machine learning code in JAX"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "collaborative coding practices",
+        "raw_text": "collaborative coding practices"
+      },
+      {
+        "label": "physically-based atmospheric/oceanic model development",
+        "raw_text": "physically-based atmospheric, oceanic, or related model development"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "2-4 years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Have a Ph. D. in computer or computational science",
+    "uncertain": [
+      "seniority",
+      "degree"
+    ],
+    "notes": "Sections: 'What You'll Need' sets required. 'It's A Bonus If You' sets nice_to_have.\nGoogle Cloud, NVIDIA GPUs, TPUs, GitHub and JAX appear in 'You'll get to work on'. Those are responsibilities, so they are not labeled from there. JAX is labeled only from the bonus section, as nice_to_have.\n'cloud computing environment' is mapped to cloud. It is not an exact alias, so it is flagged uncertain.\n'deploying a relevant ML application' is not labeled ai-deployment. The text deploys an application, not a model, so this is a literal reading.\nmachine-learning is required via 'ML application'. The bonus mention ('machine learning code in JAX') collapses into it, and the required mention wins.\n'collaborative coding practices' names no concrete tool, so git is not inferred.\nSeniority: '2-4 years' straddles the junior (0-2) and mid (3-5) bands. The midpoint gives mid, but it is flagged.\nDegree: the B.Sc. is required, and the Ph.D. appears only under the bonus heading. The guide says take the highest level named, so the label is phd/nice_to_have. This hides the required B.Sc. (signal 'A B.Sc. in computer or computational science'), so it is flagged for review.\n'applied mathematics/statistics' is a degree field, not a skill ask, so statistics is not labeled.\nNo German is mentioned. Excellent communication skills are a soft skill and are not labeled."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "4536e5bb6f7ac9731a3675b482951b0bc97bb2ba22d8384080c597ce085cb778",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

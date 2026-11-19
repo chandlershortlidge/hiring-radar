@@ -13,7 +13,8 @@ San Francisco became active on 2026-11-03 once the held-out eval passed (DECISIO
 without a human step (DECISIONS 2026-11-03, HIR-132). Hamburg, Frankfurt and Munich became
 active on 2026-11-08, the three cities Chandler named in HIR-165, each launched by that same
 automated path. Austin, Boston, London and Amsterdam became active on 2026-11-19, the four
-Chandler named in HIR-252. Turning on a city Chandler has not named is still on the AGENTS.md stop list.
+Chandler named in HIR-252; Seattle, Los Angeles, Chicago and San Jose on 2026-11-19 too,
+the four named in HIR-302. Turning on a city Chandler has not named is still on the AGENTS.md stop list.
 
 EU-remote (DECISIONS 2026-10-26): a remote posting counts when its location names an
 EU-wide region or Germany ("Remote (EMEA)", "Leipzig, Germany (remote)"), or names no
@@ -49,12 +50,20 @@ CITIES: dict[str, tuple[str, ...]] = {
     "Boston": ("boston", "cambridge, ma", "cambridge, massachusetts"),
     "London": ("london",),
     "Amsterdam": ("amsterdam",),
+    # HIR-302. Bellevue and Redmond only with their state: both names exist elsewhere in
+    # the US. Never a bare "LA": "LA" alone is also Louisiana's code and a word in Spanish
+    # and French. San Jose holds the South Bay towns; "Bay Area" alone stays San Francisco.
+    "Seattle": ("seattle", "bellevue, wa", "bellevue, washington", "redmond, wa", "redmond, washington"),
+    "Los Angeles": ("los angeles", "la, ca", "santa monica"),
+    "Chicago": ("chicago",),
+    "San Jose": ("san jose", "santa clara", "sunnyvale", "mountain view", "palo alto", "cupertino"),
 }
 
 REMOTE_EU = "Remote (EU)"
 
 ACTIVE_CITIES: tuple[str, ...] = ("Berlin", REMOTE_EU, "San Francisco", "New York", "Hamburg",
-                                  "Frankfurt", "Munich", "Austin", "Boston", "London", "Amsterdam")
+                                  "Frankfurt", "Munich", "Austin", "Boston", "London", "Amsterdam",
+                                  "Seattle", "Los Angeles", "Chicago", "San Jose")
 
 # The day each active place started being collected (HIR-232). A place's first weeks hold
 # every posting that was already open on that day, all "first seen" at once, so nothing
@@ -72,6 +81,10 @@ COLLECTING_SINCE: dict[str, str] = {
     "Boston": "2026-11-19",
     "London": "2026-11-19",
     "Amsterdam": "2026-11-19",
+    "Seattle": "2026-11-19",         # HIR-302
+    "Los Angeles": "2026-11-19",
+    "Chicago": "2026-11-19",
+    "San Jose": "2026-11-19",
 }
 
 # Places that share a tracked city's name (HIR-252). Each is a lookbehind and lookahead
@@ -81,7 +94,17 @@ COLLECTING_SINCE: dict[str, str] = {
 # would lose London, which is rarer than the Ontario city.
 _NOT_THIS_CITY: dict[str, tuple[str, str]] = {
     "London": (r"(?<!new )", r"(?!,?\s*(?:(?-i:ON)\b|ontario\b|canada\b))"),
+    # HIR-302: San José in Costa Rica (a tech hub of its own) and in the Philippines, the
+    # towns called "San Jose del ...", and Santa Clara in Cuba are not San Jose; Costa
+    # Rica's code is matched in capitals only. Los Ángeles in Chile is not Los Angeles.
+    "San Jose": ("", r"(?!\s+del\b)(?!,?\s*(?:(?-i:CR)\b|costa rica\b|philippines\b|cuba\b))"),
+    "Los Angeles": ("", r"(?!,?\s*chile\b)"),
 }
+
+# "San Jose, CA (Bay Area)" is San Jose, not San Francisco too (HIR-302): when a posting
+# names San Jose, San Francisco counts only if the posting still names it once its Bay
+# Area wording ("Bay Area", "SF Bay Area", "San Francisco Bay Area") is set aside.
+_BAY_AREA = re.compile(r"\b(?:san francisco |sf )?bay area\b", re.I)
 
 _PATTERNS = {city: re.compile(_NOT_THIS_CITY.get(city, ("", ""))[0]
                               + r"\b(" + "|".join(re.escape(a) for a in aliases) + r")\b"
@@ -141,13 +164,19 @@ def names_eu_region(location_raw: str | None) -> bool:
     return bool(location_raw and _EU_WIDE.search(location_raw))
 
 
-def city_of(location_raw: str | None) -> str | None:
+def _cities_in(location_raw: str | None) -> list[str]:
+    """Every tracked city the location names, in CITIES order (the San Jose rule applied)."""
     if not location_raw:
-        return None
-    for city, pat in _PATTERNS.items():
-        if pat.search(location_raw):
-            return city
-    return None
+        return []
+    cities = [c for c, pat in _PATTERNS.items() if pat.search(location_raw)]
+    if "San Jose" in cities and "San Francisco" in cities \
+            and not _PATTERNS["San Francisco"].search(_BAY_AREA.sub(" ", location_raw)):
+        cities.remove("San Francisco")
+    return cities
+
+
+def city_of(location_raw: str | None) -> str | None:
+    return (_cities_in(location_raw) or [None])[0]
 
 
 def _segment_remote(segment: str) -> str | None:
@@ -195,7 +224,7 @@ def places_of(location_raw: str | None, title: str | None = None, text: str | No
     mentions, or [REMOTE_EU] when it names none and is EU-remote, or []. The first is
     `place_of`; a city match still wins over remote, so "Berlin or remote" is ["Berlin"]
     (HIR-289: a Berlin + Munich posting counts under both)."""
-    cities = [c for c, pat in _PATTERNS.items() if location_raw and pat.search(location_raw)]
+    cities = _cities_in(location_raw)
     if cities:
         return cities
     return [REMOTE_EU] if is_remote_eu(location_raw, title, text) else []

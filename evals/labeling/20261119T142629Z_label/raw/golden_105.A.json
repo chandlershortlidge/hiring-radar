@@ -1,0 +1,25 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The posting has no requirements, qualifications, nice-to-have or tech-stack section. It has only a company/role description and responsibilities.\\nPer the guide, technologies that appear only in responsibilities or the company description are not labeled. So 'production-grade data pipelines and APIs', 'software engineering' and 'AI and edge technology' are left out. This is the most literal reading. If the answer key treats responsibilities as asks when there is no qualifications section, the skills would be data-pipelines, apis, software-engineering and possibly software-architecture.\\n'own the architecture' is ownership language, not a stated 'architect' title, so it is not a seniority signal. The title 'Field AI Engineer — Edge' / 'Forward Deployed Engineer' names no level, so seniority is none.\\nNo mention of German, other languages, or a degree.\"\n}\n```",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The posting has no requirements, qualifications, nice-to-have or tech-stack section. It has only a company/role description and responsibilities.\nPer the guide, technologies that appear only in responsibilities or the company description are not labeled. So 'production-grade data pipelines and APIs', 'software engineering' and 'AI and edge technology' are left out. This is the most literal reading. If the answer key treats responsibilities as asks when there is no qualifications section, the skills would be data-pipelines, apis, software-engineering and possibly software-architecture.\n'own the architecture' is ownership language, not a stated 'architect' title, so it is not a seniority signal. The title 'Field AI Engineer — Edge' / 'Forward Deployed Engineer' names no level, so seniority is none.\nNo mention of German, other languages, or a degree."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "f20e4f0d910d06e6801c26b7333ba25b29dbb0985ed9079db7b9f2fe6b0181cb",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

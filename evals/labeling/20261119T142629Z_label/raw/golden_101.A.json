@@ -1,0 +1,40 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"seeking a PhD-level candidate to advance machine learning\", \"uncertain\": true},\n    {\"skill_id\": \"recommender-systems\", \"requirement\": \"required\", \"raw_text\": \"advance machine learning across recommendation\", \"uncertain\": true}\n  ],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD-level candidate\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"The posting has no requirements, qualifications or tech-stack section; it is a short role and company blurb.\\nmachine-learning and recommender-systems come from the sentence describing the candidate sought ('seeking a PhD-level candidate to advance machine learning across recommendation...'). It could be read as a responsibility rather than a qualification, so both are flagged uncertain.\\nI did not label search or e-commerce: they are domains, not skills.\\nI did not label data-privacy-and-security: 'You will design scalable ML solutions with strong data governance, privacy, and security' is a responsibility, not something asked of the candidate.\\nDegree: 'PhD-level candidate' is read as a PhD, required because it is not marked optional. It is flagged because 'PhD-level' could mean a level of ability rather than a literal degree. degree_or_equivalent is false because no equivalent-experience wording appears.\\nSeniority: there are no years, no lead/mentoring duty and no level word in the title. A PhD is not a seniority signal, so seniority is null.\\nGerman: there is no mention of language, so German is null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "seeking a PhD-level candidate to advance machine learning",
+        "uncertain": true
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "required",
+        "raw_text": "advance machine learning across recommendation",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD-level candidate",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "The posting has no requirements, qualifications or tech-stack section; it is a short role and company blurb.\nmachine-learning and recommender-systems come from the sentence describing the candidate sought ('seeking a PhD-level candidate to advance machine learning across recommendation...'). It could be read as a responsibility rather than a qualification, so both are flagged uncertain.\nI did not label search or e-commerce: they are domains, not skills.\nI did not label data-privacy-and-security: 'You will design scalable ML solutions with strong data governance, privacy, and security' is a responsibility, not something asked of the candidate.\nDegree: 'PhD-level candidate' is read as a PhD, required because it is not marked optional. It is flagged because 'PhD-level' could mean a level of ability rather than a literal degree. degree_or_equivalent is false because no equivalent-experience wording appears.\nSeniority: there are no years, no lead/mentoring duty and no level word in the title. A PhD is not a seniority signal, so seniority is null.\nGerman: there is no mention of language, so German is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "f728a9abf690e9367358e7b15515917561a82c00af44858d59b7842f358bebf3",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

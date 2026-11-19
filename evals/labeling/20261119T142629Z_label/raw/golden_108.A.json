@@ -1,0 +1,161 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"programming with Python\", \"alternative_group\": 1},\n    {\"skill_id\": \"go\", \"requirement\": \"required\", \"raw_text\": \"Go\", \"alternative_group\": 1},\n    {\"skill_id\": \"scala\", \"requirement\": \"required\", \"raw_text\": \"Scala\", \"alternative_group\": 1},\n    {\"skill_id\": \"cuda\", \"requirement\": \"required\", \"raw_text\": \"Python, Go, Scala, CUDA, or Java\", \"alternative_group\": 1},\n    {\"skill_id\": \"java\", \"requirement\": \"required\", \"raw_text\": \"Python, Go, Scala, CUDA, or Java\", \"alternative_group\": 1},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"developing AI and ML algorithms or technologies\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"cloud platforms\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AWS, Google Cloud, Azure\", \"alternative_group\": 3},\n    {\"skill_id\": \"gcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Google Cloud\", \"alternative_group\": 3},\n    {\"skill_id\": \"azure\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AWS, Google Cloud, Azure\", \"alternative_group\": 3},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"nice_to_have\", \"raw_text\": \"deploying scalable and responsible AI solutions\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LLM Inference\"},\n    {\"skill_id\": \"vector-search\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Similarity Search and VectorDBs\", \"uncertain\": true},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Similarity Search and VectorDBs\"},\n    {\"skill_id\": \"llm-guardrails\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Guardrails, Memory\"},\n    {\"skill_id\": \"agent-state-management\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Guardrails, Memory\", \"uncertain\": true},\n    {\"skill_id\": \"cpp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"C++\", \"alternative_group\": 2},\n    {\"skill_id\": \"csharp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"C#\", \"alternative_group\": 2},\n    {\"skill_id\": \"inference-optimization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"optimizing training and inference software\", \"uncertain\": true},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"building agentic AI systems and agentic workflows\"},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"nice_to_have\", \"raw_text\": \"designing distributed systems\"},\n    {\"skill_id\": \"distributed-training\", \"requirement\": \"nice_to_have\", \"raw_text\": \"distributed systems for model training\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"AI model governance / lineage tracking\", \"raw_text\": \"AI model governance processes, including producibility, lineage tracking, and automated retaining schedules\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Mentor Principal and Senior Associates on scalable design\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"a Master's degree in Computer Science, AI, Electrical Engineering, Computer Engineering, or related fields\",\n  \"uncertain\": [\"seniority\", \"degree\"],\n  \"groups_reviewed\": true,\n  \"notes\": \"Skills named only in 'What You'll Do' are not labeled, because that section is responsibilities: Huggingface, PyTorch, AWS Ultraclusters, VectorDBs, observability, model evaluation, multi-agent workflows.\\nThe 'Ideal Candidate' section names no concrete skills.\\nPython, Java, CUDA and Go appear again in the Preferred bullet ('using Python, C++, C#, Java, CUDA, or Golang'). The Basic Qualifications mention is required, so it wins.\\nPython, Go, Scala, CUDA and Java stay in group 1, the Basic Qualifications alternatives.\\nC++ and C# are alternatives in the Preferred language list. They cannot share group 1 because each skill appears once, so they form group 2. This is a judgment call.\\nCloud: 'cloud' is the broad skill named alongside its examples, so it stays out of the group. AWS, Google Cloud and Azure form group 3. 'or equivalent private cloud' adds nothing.\\n'Google Cloud' is mapped to gcp.\\n'Similarity Search' is mapped to vector-search because the context is AI and VectorDBs, not molecular similarity. Flagged as uncertain.\\n'Memory' in an agentic/LLM context is mapped to agent-state-management (alias 'memory systems'). Flagged as uncertain.\\nai-ml is labeled from the Basic Qualifications phrase 'developing AI and ML algorithms or technologies'. It is a generic phrase tied to years of experience. Flagged as uncertain.\\nSeniority: the title 'AI Engineer 4' names no level word. The label is inferred from the mentoring duty, consistent with 4+/6+ years. Flagged.\\nDegree: the posting accepts 'Bachelor's ... or a Master's'. Per the guide's highest-level-named rule this is labeled master. Flagged because the bachelor path also qualifies.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "programming with Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "required",
+        "raw_text": "Scala",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cuda",
+        "requirement": "required",
+        "raw_text": "Python, Go, Scala, CUDA, or Java",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Python, Go, Scala, CUDA, or Java",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "developing AI and ML algorithms or technologies",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS, Google Cloud, Azure",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "Google Cloud",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS, Google Cloud, Azure",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "nice_to_have",
+        "raw_text": "deploying scalable and responsible AI solutions",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM Inference"
+      },
+      {
+        "skill_id": "vector-search",
+        "requirement": "nice_to_have",
+        "raw_text": "Similarity Search and VectorDBs",
+        "uncertain": true
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "nice_to_have",
+        "raw_text": "Similarity Search and VectorDBs"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "nice_to_have",
+        "raw_text": "Guardrails, Memory"
+      },
+      {
+        "skill_id": "agent-state-management",
+        "requirement": "nice_to_have",
+        "raw_text": "Guardrails, Memory",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "nice_to_have",
+        "raw_text": "C++",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "csharp",
+        "requirement": "nice_to_have",
+        "raw_text": "C#",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "nice_to_have",
+        "raw_text": "optimizing training and inference software",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "building agentic AI systems and agentic workflows"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "designing distributed systems"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed systems for model training",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "AI model governance / lineage tracking",
+        "raw_text": "AI model governance processes, including producibility, lineage tracking, and automated retaining schedules"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Mentor Principal and Senior Associates on scalable design",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "a Master's degree in Computer Science, AI, Electrical Engineering, Computer Engineering, or related fields",
+    "uncertain": [
+      "seniority",
+      "degree"
+    ],
+    "groups_reviewed": true,
+    "notes": "Skills named only in 'What You'll Do' are not labeled, because that section is responsibilities: Huggingface, PyTorch, AWS Ultraclusters, VectorDBs, observability, model evaluation, multi-agent workflows.\nThe 'Ideal Candidate' section names no concrete skills.\nPython, Java, CUDA and Go appear again in the Preferred bullet ('using Python, C++, C#, Java, CUDA, or Golang'). The Basic Qualifications mention is required, so it wins.\nPython, Go, Scala, CUDA and Java stay in group 1, the Basic Qualifications alternatives.\nC++ and C# are alternatives in the Preferred language list. They cannot share group 1 because each skill appears once, so they form group 2. This is a judgment call.\nCloud: 'cloud' is the broad skill named alongside its examples, so it stays out of the group. AWS, Google Cloud and Azure form group 3. 'or equivalent private cloud' adds nothing.\n'Google Cloud' is mapped to gcp.\n'Similarity Search' is mapped to vector-search because the context is AI and VectorDBs, not molecular similarity. Flagged as uncertain.\n'Memory' in an agentic/LLM context is mapped to agent-state-management (alias 'memory systems'). Flagged as uncertain.\nai-ml is labeled from the Basic Qualifications phrase 'developing AI and ML algorithms or technologies'. It is a generic phrase tied to years of experience. Flagged as uncertain.\nSeniority: the title 'AI Engineer 4' names no level word. The label is inferred from the mentoring duty, consistent with 4+/6+ years. Flagged.\nDegree: the posting accepts 'Bachelor's ... or a Master's'. Per the guide's highest-level-named rule this is labeled master. Flagged because the bachelor path also qualifies."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "839007b4489234b15d4e0c4592569a19e7565b956e7d80114e00f5795228125c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

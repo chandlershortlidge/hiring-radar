@@ -1,0 +1,194 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"causal-inference\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"causal inference\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"statistical modeling\"\n    },\n    {\n      \"skill_id\": \"a-b-testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"A/B testing\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cloud platforms\"\n    },\n    {\n      \"skill_id\": \"aws-s3\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AWS S3\"\n    },\n    {\n      \"skill_id\": \"sagemaker\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"SageMaker\"\n    },\n    {\n      \"skill_id\": \"airflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Airflow\"\n    },\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Snowflake\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"dbt\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"dbt\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"tableau\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Tableau\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"machine learning frameworks\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"scikit-learn\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"TensorFlow\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"data science procedures\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Marketing measurement\",\n      \"raw_text\": \"marketing measurement\"\n    },\n    {\n      \"label\": \"Multi-touch attribution\",\n      \"raw_text\": \"multi-touch attribution\"\n    },\n    {\n      \"label\": \"Customer lifetime value modeling\",\n      \"raw_text\": \"modeling customer lifetime value (LTV)\"\n    },\n    {\n      \"label\": \"Marketing experiment design\",\n      \"raw_text\": \"designing rigorous marketing experiments\"\n    },\n    {\n      \"label\": \"Predictive modeling\",\n      \"raw_text\": \"building complex predictive models\"\n    },\n    {\n      \"label\": \"Data manipulation\",\n      \"raw_text\": \"complex data manipulation\"\n    },\n    {\n      \"label\": \"Growth measurement frameworks\",\n      \"raw_text\": \"growth measurement frameworks\"\n    },\n    {\n      \"label\": \"Cohort retention modeling\",\n      \"raw_text\": \"cohort retention modeling\"\n    },\n    {\n      \"label\": \"Geo-testing\",\n      \"raw_text\": \"geo-testing\"\n    },\n    {\n      \"label\": \"Synthetic controls\",\n      \"raw_text\": \"synthetic controls\"\n    },\n    {\n      \"label\": \"Media mix modeling\",\n      \"raw_text\": \"media mix modeling\"\n    },\n    {\n      \"label\": \"AI tools for workflow transformation\",\n      \"raw_text\": \"leveraging AI tools to transform static workflows\"\n    },\n    {\n      \"label\": \"Cloud data warehouses\",\n      \"raw_text\": \"cloud data warehouses\"\n    },\n    {\n      \"label\": \"Looker\",\n      \"raw_text\": \"Looker\"\n    },\n    {\n      \"label\": \"Robyn\",\n      \"raw_text\": \"Robyn\"\n    },\n    {\n      \"label\": \"LightweightMMM\",\n      \"raw_text\": \"LightweightMMM\"\n    },\n    {\n      \"label\": \"User segmentation\",\n      \"raw_text\": \"user segmentation\"\n    },\n    {\n      \"label\": \"Churn prediction\",\n      \"raw_text\": \"churn prediction\"\n    },\n    {\n      \"label\": \"Code quality and documentation\",\n      \"raw_text\": \"write clean, efficient, robust, and well-commented code\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Data Scientist, Growth Marketing\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Bachelor’s or Master’s degree in Computer Science, Mathematics, Statistics, Economics, or a related quantitative field\",\n  \"notes\": \"“Who you are” and “What we're looking for” supply required qualifications; “While not required, these are a plus:” supplies optional qualifications. Responsibilities-only skills are excluded.\\nThe Snowflake/dbt/Looker/Tableau examples are read as alternatives for the modern-data-tool ask; Looker is unmapped and therefore has no expected criterion. The machine-learning framework examples form the second group. Conjunctive “including ... and ...” lists are left ungrouped.\\nGeneric AI tools are not assumed to be AI coding tools or workflow-automation platforms. Predictive modeling is not assumed to mean AI model training.\\nMarketing techniques are retained as unmapped technical practices; industry background, LTV/CAC domain knowledge, business acumen, and communication are excluded.\\nData science is explicitly requested in the optional code-quality bullet; the role title alone is not used to make that skill required.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "causal-inference",
+        "requirement": "required",
+        "raw_text": "causal inference"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistical modeling"
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "required",
+        "raw_text": "A/B testing"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws-s3",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS S3"
+      },
+      {
+        "skill_id": "sagemaker",
+        "requirement": "nice_to_have",
+        "raw_text": "SageMaker"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Airflow"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "nice_to_have",
+        "raw_text": "Snowflake",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "dbt",
+        "requirement": "nice_to_have",
+        "raw_text": "dbt",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tableau",
+        "requirement": "nice_to_have",
+        "raw_text": "Tableau",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "machine learning frameworks"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "nice_to_have",
+        "raw_text": "scikit-learn",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorFlow",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "PyTorch",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "nice_to_have",
+        "raw_text": "data science procedures"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Marketing measurement",
+        "raw_text": "marketing measurement"
+      },
+      {
+        "label": "Multi-touch attribution",
+        "raw_text": "multi-touch attribution"
+      },
+      {
+        "label": "Customer lifetime value modeling",
+        "raw_text": "modeling customer lifetime value (LTV)"
+      },
+      {
+        "label": "Marketing experiment design",
+        "raw_text": "designing rigorous marketing experiments"
+      },
+      {
+        "label": "Predictive modeling",
+        "raw_text": "building complex predictive models"
+      },
+      {
+        "label": "Data manipulation",
+        "raw_text": "complex data manipulation"
+      },
+      {
+        "label": "Growth measurement frameworks",
+        "raw_text": "growth measurement frameworks"
+      },
+      {
+        "label": "Cohort retention modeling",
+        "raw_text": "cohort retention modeling"
+      },
+      {
+        "label": "Geo-testing",
+        "raw_text": "geo-testing"
+      },
+      {
+        "label": "Synthetic controls",
+        "raw_text": "synthetic controls"
+      },
+      {
+        "label": "Media mix modeling",
+        "raw_text": "media mix modeling"
+      },
+      {
+        "label": "AI tools for workflow transformation",
+        "raw_text": "leveraging AI tools to transform static workflows"
+      },
+      {
+        "label": "Cloud data warehouses",
+        "raw_text": "cloud data warehouses"
+      },
+      {
+        "label": "Looker",
+        "raw_text": "Looker"
+      },
+      {
+        "label": "Robyn",
+        "raw_text": "Robyn"
+      },
+      {
+        "label": "LightweightMMM",
+        "raw_text": "LightweightMMM"
+      },
+      {
+        "label": "User segmentation",
+        "raw_text": "user segmentation"
+      },
+      {
+        "label": "Churn prediction",
+        "raw_text": "churn prediction"
+      },
+      {
+        "label": "Code quality and documentation",
+        "raw_text": "write clean, efficient, robust, and well-commented code"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Data Scientist, Growth Marketing",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor’s or Master’s degree in Computer Science, Mathematics, Statistics, Economics, or a related quantitative field",
+    "notes": "“Who you are” and “What we're looking for” supply required qualifications; “While not required, these are a plus:” supplies optional qualifications. Responsibilities-only skills are excluded.\nThe Snowflake/dbt/Looker/Tableau examples are read as alternatives for the modern-data-tool ask; Looker is unmapped and therefore has no expected criterion. The machine-learning framework examples form the second group. Conjunctive “including ... and ...” lists are left ungrouped.\nGeneric AI tools are not assumed to be AI coding tools or workflow-automation platforms. Predictive modeling is not assumed to mean AI model training.\nMarketing techniques are retained as unmapped technical practices; industry background, LTV/CAC domain knowledge, business acumen, and communication are excluded.\nData science is explicitly requested in the optional code-quality bullet; the role title alone is not used to make that skill required."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "e739dbe2575df68227b4437a42061edd56d57f08137e1f28aa4f0c87ddb6a59c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

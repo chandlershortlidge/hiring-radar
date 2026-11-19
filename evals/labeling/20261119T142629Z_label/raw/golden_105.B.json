@@ -1,0 +1,25 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"groups_reviewed\": true,\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The posting contains a role overview and responsibilities, with no qualifications or dedicated tech-stack section. Software engineering, AI, edge technology, data pipelines, APIs, and architecture appear only in that context and are not labeled.\\nOwnership and production-grade work are not seniority signals under the guide. No German-language or degree requirement is mentioned.\"\n}",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "groups_reviewed": true,
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The posting contains a role overview and responsibilities, with no qualifications or dedicated tech-stack section. Software engineering, AI, edge technology, data pipelines, APIs, and architecture appear only in that context and are not labeled.\nOwnership and production-grade work are not seniority signals under the guide. No German-language or degree requirement is mentioned."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "f20e4f0d910d06e6801c26b7333ba25b29dbb0985ed9079db7b9f2fe6b0181cb",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

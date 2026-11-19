@@ -1,0 +1,125 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Machine Learning\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Natural Language Processing (NLP)\"\n    },\n    {\n      \"skill_id\": \"computer-vision\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Computer Vision\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software development\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Go\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"fine-tuning\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"knowledge-distillation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distillation\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement learning\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"large language models\"\n    },\n    {\n      \"skill_id\": \"conversational-ai\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"conversational AI\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Machine translation\",\n      \"raw_text\": \"machine translation\"\n    },\n    {\n      \"label\": \"Cross-lingual dialogue modeling\",\n      \"raw_text\": \"cross-lingual dialogue modeling\"\n    },\n    {\n      \"label\": \"Multimodal model development and optimization\",\n      \"raw_text\": \"developing and optimizing e-commerce video and product multimodal large models\"\n    },\n    {\n      \"label\": \"Multimodal classification\",\n      \"raw_text\": \"multimodal classification\"\n    },\n    {\n      \"label\": \"Video question answering\",\n      \"raw_text\": \"video QA\"\n    },\n    {\n      \"label\": \"Cross-modal retrieval\",\n      \"raw_text\": \"cross-modal retrieval\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"MS or PhD in Computer Science, AI, Mathematics, or a related field.\",\n  \"notes\": \"Minimum Qualifications defaults to required; Preferred Qualifications makes its items nice_to_have. Technologies named only in Responsibilities or company information are excluded.\\nNLP leaves alternative group 1 because multilingual NLP is independently requested in Preferred Qualifications; its required minimum-qualification mention determines the collapsed label.\\nMultilingual NLP maps to nlp. The multimodal tasks are read literally as techniques within the requested experience and are unmapped where no taxonomy entry fits.\\nE-commerce policies, dispute resolution workflows, and merchant-buyer interactions are excluded as domain knowledge. Degree fields are not skill requirements.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Machine Learning",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "Natural Language Processing (NLP)"
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "Computer Vision",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software development"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "fine-tuning",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "nice_to_have",
+        "raw_text": "distillation",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "large language models"
+      },
+      {
+        "skill_id": "conversational-ai",
+        "requirement": "nice_to_have",
+        "raw_text": "conversational AI"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Machine translation",
+        "raw_text": "machine translation"
+      },
+      {
+        "label": "Cross-lingual dialogue modeling",
+        "raw_text": "cross-lingual dialogue modeling"
+      },
+      {
+        "label": "Multimodal model development and optimization",
+        "raw_text": "developing and optimizing e-commerce video and product multimodal large models"
+      },
+      {
+        "label": "Multimodal classification",
+        "raw_text": "multimodal classification"
+      },
+      {
+        "label": "Video question answering",
+        "raw_text": "video QA"
+      },
+      {
+        "label": "Cross-modal retrieval",
+        "raw_text": "cross-modal retrieval"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "MS or PhD in Computer Science, AI, Mathematics, or a related field.",
+    "notes": "Minimum Qualifications defaults to required; Preferred Qualifications makes its items nice_to_have. Technologies named only in Responsibilities or company information are excluded.\nNLP leaves alternative group 1 because multilingual NLP is independently requested in Preferred Qualifications; its required minimum-qualification mention determines the collapsed label.\nMultilingual NLP maps to nlp. The multimodal tasks are read literally as techniques within the requested experience and are unmapped where no taxonomy entry fits.\nE-commerce policies, dispute resolution workflows, and merchant-buyer interactions are excluded as domain knowledge. Degree fields are not skill requirements."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "485411792f13cc19bedaa70e4158423c2d7d2e95a32a3a86932d0ed4aff35960",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,58 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"sagemaker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SageMaker\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"databricks\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Databricks\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"mlflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLflow\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"AI platforms\",\n      \"raw_text\": \"AI platforms\"\n    },\n    {\n      \"label\": \"Model management\",\n      \"raw_text\": \"model management\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI Platform & MLOps Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"There are no optional headings; the explicit experience requirement is required.\\nTreated the platforms introduced by 'like' as examples for a single ask and grouped them; MLflow is separately requested by 'along with'.\\nAI platforms and model management have no exact taxonomy entries; model management is not assumed to mean model versioning alone.\\nExcluded technologies and practices appearing only in the title, introductory description, or responsibilities. The posting ends mid-sentence.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "sagemaker",
+        "requirement": "required",
+        "raw_text": "SageMaker",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "required",
+        "raw_text": "Databricks",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "required",
+        "raw_text": "MLflow"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "AI platforms",
+        "raw_text": "AI platforms"
+      },
+      {
+        "label": "Model management",
+        "raw_text": "model management"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI Platform & MLOps Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "There are no optional headings; the explicit experience requirement is required.\nTreated the platforms introduced by 'like' as examples for a single ask and grouped them; MLflow is separately requested by 'along with'.\nAI platforms and model management have no exact taxonomy entries; model management is not assumed to mean model versioning alone.\nExcluded technologies and practices appearing only in the title, introductory description, or responsibilities. The posting ends mid-sentence."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "019466e57a03c289752da5e002f9f38f13ce6c53b44bcb72646ec78722394621",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

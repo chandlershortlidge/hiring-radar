@@ -1,0 +1,99 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Microsoft Azure\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"modern cloud data platforms\"\n    },\n    {\n      \"skill_id\": \"microsoft-fabric\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Microsoft Fabric\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Snowflake\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"databricks\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Databricks\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"supporting the data backend\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI coding tools\"\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"MCP servers/connectors\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"streamlit\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Streamlit\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"react\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"React\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"financial/tax automation\",\n      \"alternative_group\": 2,\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Unstructured document parsing\",\n      \"raw_text\": \"unstructured document parsing\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Guide offshore mid-level engineers through code reviews and architectural alignment\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"What You Bring supplies required qualifications; the inline Bonus marker makes its entire bullet optional.\\nThe final 'or' in the Bonus list is read literally as offering alternatives, including the named technologies; Streamlit/React remains within that same alternative group.\\nFinancial/tax automation is provisionally mapped to workflow automation; financial and tax domain knowledge are not separately labeled.\\nUnstructured document parsing is left unmapped: parsing alone does not explicitly ask for structured data extraction.\\nProduction AI applications describe the context of the backend experience, not a separate AI/ML or deployment skill requirement.\\nClaude, ChatGPT, Codex, data pipelines, and other technologies or practices mentioned only in responsibilities are excluded.\\nThe required guiding duty supports seniority above the mid-level signal from 3+ years and proven experience.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "modern cloud data platforms"
+      },
+      {
+        "skill_id": "microsoft-fabric",
+        "requirement": "required",
+        "raw_text": "Microsoft Fabric",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "required",
+        "raw_text": "Databricks",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "supporting the data backend"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI coding tools"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "nice_to_have",
+        "raw_text": "MCP servers/connectors",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "streamlit",
+        "requirement": "nice_to_have",
+        "raw_text": "Streamlit",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "react",
+        "requirement": "nice_to_have",
+        "raw_text": "React",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "nice_to_have",
+        "raw_text": "financial/tax automation",
+        "alternative_group": 2,
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Unstructured document parsing",
+        "raw_text": "unstructured document parsing"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Guide offshore mid-level engineers through code reviews and architectural alignment",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "What You Bring supplies required qualifications; the inline Bonus marker makes its entire bullet optional.\nThe final 'or' in the Bonus list is read literally as offering alternatives, including the named technologies; Streamlit/React remains within that same alternative group.\nFinancial/tax automation is provisionally mapped to workflow automation; financial and tax domain knowledge are not separately labeled.\nUnstructured document parsing is left unmapped: parsing alone does not explicitly ask for structured data extraction.\nProduction AI applications describe the context of the backend experience, not a separate AI/ML or deployment skill requirement.\nClaude, ChatGPT, Codex, data pipelines, and other technologies or practices mentioned only in responsibilities are excluded.\nThe required guiding duty supports seniority above the mid-level signal from 3+ years and proven experience."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "63069d848cab8c6028e4941070646a8155d28582cb3e1affda187909ee7aa01a",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,100 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building and operating machine learning solutions\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud environments\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps foundations\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model development\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML systems, spanning model development, deployment\"\n    },\n    {\n      \"skill_id\": \"ai-infrastructure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML systems, spanning model development, deployment, and production infrastructure\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"ml-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML engineering tooling\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data pipelines\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD workflows\"\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"designing and scaling real-time and batch inference systems in production\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"deep learning frameworks\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"ML observability solutions\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Model optimization\",\n      \"raw_text\": \"model optimization for performance and cost\"\n    },\n    {\n      \"label\": \"Feature stores\",\n      \"raw_text\": \"feature stores\"\n    },\n    {\n      \"label\": \"Cloud security, governance, and compliance standards\",\n      \"raw_text\": \"cloud security, governance, and compliance standards\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master's degree in Computer Science, Software Engineering, Machine Learning, or a related field\",\n  \"notes\": \"Experience Required sets required labels; Experience Preferred sets nice_to_have labels.\\nTechnologies and practices named only in Responsibilities are excluded, including EC2, EKS, SageMaker, and infrastructure-as-code.\\nProduction infrastructure is interpreted as AI infrastructure in the explicit ML-systems context; this mapping is flagged for review.\\nInference systems map to model-serving. General model optimization is left unmapped rather than narrowed to inference optimization.\\nThe preferred MLOps platforms, feature stores, or ML observability solutions are alternatives, but MLOps is independently required and feature stores has no taxonomy ID, leaving no two mapped skills eligible for an alternative_group.\\nDegree subject names are not independently treated as requested technical skills.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "building and operating machine learning solutions"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud environments"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps foundations"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "model development"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "ML systems, spanning model development, deployment"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "required",
+        "raw_text": "ML systems, spanning model development, deployment, and production infrastructure",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "ML engineering tooling"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "data pipelines"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD workflows"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "designing and scaling real-time and batch inference systems in production"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "deep learning frameworks"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "ML observability solutions"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Model optimization",
+        "raw_text": "model optimization for performance and cost"
+      },
+      {
+        "label": "Feature stores",
+        "raw_text": "feature stores"
+      },
+      {
+        "label": "Cloud security, governance, and compliance standards",
+        "raw_text": "cloud security, governance, and compliance standards"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master's degree in Computer Science, Software Engineering, Machine Learning, or a related field",
+    "notes": "Experience Required sets required labels; Experience Preferred sets nice_to_have labels.\nTechnologies and practices named only in Responsibilities are excluded, including EC2, EKS, SageMaker, and infrastructure-as-code.\nProduction infrastructure is interpreted as AI infrastructure in the explicit ML-systems context; this mapping is flagged for review.\nInference systems map to model-serving. General model optimization is left unmapped rather than narrowed to inference optimization.\nThe preferred MLOps platforms, feature stores, or ML observability solutions are alternatives, but MLOps is independently required and feature stores has no taxonomy ID, leaving no two mapped skills eligible for an alternative_group.\nDegree subject names are not independently treated as requested technical skills."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "c24eb1b0c72f2ba311305fe83e390dfce81065cebb457485483f6b3fcee6f32d",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

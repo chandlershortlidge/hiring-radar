@@ -1,0 +1,139 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"3+ years of machine learning R&D\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"machine learning R&D and deployment experience\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\", \"alternative_group\": 1},\n    {\"skill_id\": \"cpp\", \"requirement\": \"required\", \"raw_text\": \"C++\", \"alternative_group\": 1},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\", \"alternative_group\": 2},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\", \"alternative_group\": 2},\n    {\"skill_id\": \"jax\", \"requirement\": \"required\", \"raw_text\": \"JAX\", \"alternative_group\": 2},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"software engineering best practices\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"testing\"},\n    {\"skill_id\": \"model-development\", \"requirement\": \"nice_to_have\", \"raw_text\": \"training generative machine learning models\", \"uncertain\": true},\n    {\"skill_id\": \"nlp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Natural Language Processing\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"cloud platforms\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AWS\", \"alternative_group\": 3},\n    {\"skill_id\": \"gcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"GCP\", \"alternative_group\": 3},\n    {\"skill_id\": \"azure\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Azure\", \"alternative_group\": 3},\n    {\"skill_id\": \"containerization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"containerization\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Docker\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Kubernetes\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"ML model performance optimization\", \"raw_text\": \"optimizing the performance of machine learning models\"},\n    {\"label\": \"performance analysis / profiling\", \"raw_text\": \"performance analysis, profiling, and optimization techniques\"},\n    {\"label\": \"data structures and algorithms\", \"raw_text\": \"data structures, algorithms\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years of machine learning R&D and deployment experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD/MS in Computer Science, Computer Engineering, or a related field\",\n  \"uncertain\": [],\n  \"notes\": \"'Preferred/Bonus Qualifications' heading makes every item under it nice_to_have; the Required Qualifications items are required.\\nai-deployment comes from 'machine learning R&D and deployment experience'. It is the ML deployment ask, but the posting never says 'model deployment' verbatim; the explicit 'ML model deployment' appears only in the role summary. Flagged uncertain.\\nmodel-development maps 'training generative machine learning models' via the 'ai model training' alias. llms is not added because 'generative machine learning models' does not name LLMs or generative AI as such. Flagged uncertain.\\n'one or more programming languages such as Python, or C++' is group 1; 'at least one ML framework (e.g., PyTorch, TensorFlow, JAX)' is group 2.\\nThe generic 'ML framework' is not labeled; no taxonomy entry fits it ('deep learning frameworks' is not named).\\n'cloud platforms (AWS, GCP, Azure)' is labeled cloud plus three providers. The providers are group 3 as examples offered for a single ask; cloud stays out of the group.\\nDocker and Kubernetes are examples for 'containerization and orchestration technologies', which are two asks joined by 'and'. They are not alternatives, so they are not grouped.\\nmachine-learning is required from the 3+ years line. Its later mention in the bonus 'leading research initiatives' bullet collapses into it.\\nAPIs appear only in responsibilities and are not labeled.\\nSeniority is mid, inferred from '3+ years'. 'Leading research initiatives' sits in the bonus section and is not a lead duty of the role.\\nDegree: 'PhD/MS' takes the highest level named (phd). It is a bare mention in the requirements list, so it is required, with no equivalent-experience clause.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "3+ years of machine learning R&D"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "machine learning R&D and deployment experience",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering best practices"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "nice_to_have",
+        "raw_text": "training generative machine learning models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "nice_to_have",
+        "raw_text": "Natural Language Processing"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "GCP",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerization"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "ML model performance optimization",
+        "raw_text": "optimizing the performance of machine learning models"
+      },
+      {
+        "label": "performance analysis / profiling",
+        "raw_text": "performance analysis, profiling, and optimization techniques"
+      },
+      {
+        "label": "data structures and algorithms",
+        "raw_text": "data structures, algorithms"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years of machine learning R&D and deployment experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD/MS in Computer Science, Computer Engineering, or a related field",
+    "uncertain": [],
+    "notes": "'Preferred/Bonus Qualifications' heading makes every item under it nice_to_have; the Required Qualifications items are required.\nai-deployment comes from 'machine learning R&D and deployment experience'. It is the ML deployment ask, but the posting never says 'model deployment' verbatim; the explicit 'ML model deployment' appears only in the role summary. Flagged uncertain.\nmodel-development maps 'training generative machine learning models' via the 'ai model training' alias. llms is not added because 'generative machine learning models' does not name LLMs or generative AI as such. Flagged uncertain.\n'one or more programming languages such as Python, or C++' is group 1; 'at least one ML framework (e.g., PyTorch, TensorFlow, JAX)' is group 2.\nThe generic 'ML framework' is not labeled; no taxonomy entry fits it ('deep learning frameworks' is not named).\n'cloud platforms (AWS, GCP, Azure)' is labeled cloud plus three providers. The providers are group 3 as examples offered for a single ask; cloud stays out of the group.\nDocker and Kubernetes are examples for 'containerization and orchestration technologies', which are two asks joined by 'and'. They are not alternatives, so they are not grouped.\nmachine-learning is required from the 3+ years line. Its later mention in the bonus 'leading research initiatives' bullet collapses into it.\nAPIs appear only in responsibilities and are not labeled.\nSeniority is mid, inferred from '3+ years'. 'Leading research initiatives' sits in the bonus section and is not a lead duty of the role.\nDegree: 'PhD/MS' takes the highest level named (phd). It is a bare mention in the requirements list, so it is required, with no equivalent-experience clause."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "c9fabc82deed00cdb913c9d2a4d2007cd9ebbd61403988cd300183759e103874",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,24 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"leading architecture, testing, and governance efforts\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The introduction and responsibilities describe duties only; no candidate qualifications or dedicated tech-stack section asks for skills.\\nSeniority is inferred from the explicit duty to lead architecture, testing, and governance efforts, not from end-to-end ownership.\"\n}",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "leading architecture, testing, and governance efforts",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The introduction and responsibilities describe duties only; no candidate qualifications or dedicated tech-stack section asks for skills.\nSeniority is inferred from the explicit duty to lead architecture, testing, and governance efforts, not from end-to-end ownership."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "bcf44ed36d28927339101d379934665d01a69c7d42fa1fbc9f506ebf3b8f5c53",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

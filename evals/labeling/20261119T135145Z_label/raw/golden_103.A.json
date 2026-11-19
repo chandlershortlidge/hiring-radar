@@ -1,0 +1,175 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"required\", \"raw_text\": \"extensive experience with deep learning\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Proficiency in Python\"},\n    {\"skill_id\": \"ai-infrastructure\", \"requirement\": \"required\", \"raw_text\": \"4+ years of ML infrastructure experience\", \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"model training, evaluation\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"inference, and deployment\", \"uncertain\": true},\n    {\"skill_id\": \"model-development\", \"requirement\": \"required\", \"raw_text\": \"end-to-end model development\"},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"fine-tuning\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"profiling, and monitoring\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLMs (MoEs, long-context models)\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"Agentic systems knowledge\"},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"Agentic systems knowledge — tools\", \"uncertain\": true},\n    {\"skill_id\": \"agent-state-management\", \"requirement\": \"required\", \"raw_text\": \"memory, and long-running workflows\", \"uncertain\": true},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Strong software engineering fundamentals\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\", \"alternative_group\": 1},\n    {\"skill_id\": \"jax\", \"requirement\": \"required\", \"raw_text\": \"JAX\", \"alternative_group\": 1},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"or TensorFlow\", \"alternative_group\": 1},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Familiarity with cloud\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"containerization\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"GCP\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Docker\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"foundation models\", \"raw_text\": \"deep learning and/or foundation models\"},\n    {\"label\": \"mixture of experts\", \"raw_text\": \"MoEs\"},\n    {\"label\": \"long-context models\", \"raw_text\": \"long-context models\"},\n    {\"label\": \"vision-language models\", \"raw_text\": \"vision-language models (e.g., Molmo, LLaVA)\"},\n    {\"label\": \"data preprocessing\", \"raw_text\": \"data preprocessing\"},\n    {\"label\": \"dataset construction\", \"raw_text\": \"dataset construction\"},\n    {\"label\": \"profiling\", \"raw_text\": \"profiling\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Research Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"PhD in ML or equivalent hands-on industry work\",\n  \"uncertain\": [\"degree\"],\n  \"groups_reviewed\": true,\n  \"notes\": \"The 'Who You Are' section describes the candidate and has no optional heading, so it is treated as required. deep-learning and python come from it, and python also appears in What You'll Need.\\nThe responsibilities section (LLM, multimodal, tool use, APIs, open-source) is not labeled from on its own.\\nDegree: the guide says to take the highest level named. The PhD is offered in 'Who You Are' as one route to experience ('or equivalent'), while the Education section asks for 'BS or MSc (or equivalent experience)'. Literal reading gives phd; master is the alternative reading.\\n'ML infrastructure' is mapped to ai-infrastructure and 'deployment' to ai-deployment; both are approximate matches.\\n'monitoring' is mapped to observability via its alias.\\n'tools' and 'memory' in the agentic bullet are mapped to tool-calling and agent-state-management; both are uncertain.\\n'a major ML framework (PyTorch, JAX, or TensorFlow)' forms alternative group 1. 'ML framework' itself has no taxonomy entry and is not mapped to deep-learning.\\n'cloud and containerization (e.g., GCP, AWS, Docker)': GCP and AWS are read as alternative examples of cloud (group 2). Docker is the only example for containerization, so it has no group. cloud and containerization are named, so both are labeled.\\n'deep learning and/or foundation models': foundation models is unmapped, so there is no group.\\n'debugging' is not mapped to testing.\\nThe minimum '8 years' supports senior, but the label rests on the stated title.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "extensive experience with deep learning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Proficiency in Python"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "required",
+        "raw_text": "4+ years of ML infrastructure experience",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "model training, evaluation"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "inference, and deployment",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "end-to-end model development"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "profiling, and monitoring",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs (MoEs, long-context models)"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Agentic systems knowledge"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "Agentic systems knowledge — tools",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agent-state-management",
+        "requirement": "required",
+        "raw_text": "memory, and long-running workflows",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software engineering fundamentals"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "or TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Familiarity with cloud"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containerization"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "foundation models",
+        "raw_text": "deep learning and/or foundation models"
+      },
+      {
+        "label": "mixture of experts",
+        "raw_text": "MoEs"
+      },
+      {
+        "label": "long-context models",
+        "raw_text": "long-context models"
+      },
+      {
+        "label": "vision-language models",
+        "raw_text": "vision-language models (e.g., Molmo, LLaVA)"
+      },
+      {
+        "label": "data preprocessing",
+        "raw_text": "data preprocessing"
+      },
+      {
+        "label": "dataset construction",
+        "raw_text": "dataset construction"
+      },
+      {
+        "label": "profiling",
+        "raw_text": "profiling"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Research Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "PhD in ML or equivalent hands-on industry work",
+    "uncertain": [
+      "degree"
+    ],
+    "groups_reviewed": true,
+    "notes": "The 'Who You Are' section describes the candidate and has no optional heading, so it is treated as required. deep-learning and python come from it, and python also appears in What You'll Need.\nThe responsibilities section (LLM, multimodal, tool use, APIs, open-source) is not labeled from on its own.\nDegree: the guide says to take the highest level named. The PhD is offered in 'Who You Are' as one route to experience ('or equivalent'), while the Education section asks for 'BS or MSc (or equivalent experience)'. Literal reading gives phd; master is the alternative reading.\n'ML infrastructure' is mapped to ai-infrastructure and 'deployment' to ai-deployment; both are approximate matches.\n'monitoring' is mapped to observability via its alias.\n'tools' and 'memory' in the agentic bullet are mapped to tool-calling and agent-state-management; both are uncertain.\n'a major ML framework (PyTorch, JAX, or TensorFlow)' forms alternative group 1. 'ML framework' itself has no taxonomy entry and is not mapped to deep-learning.\n'cloud and containerization (e.g., GCP, AWS, Docker)': GCP and AWS are read as alternative examples of cloud (group 2). Docker is the only example for containerization, so it has no group. cloud and containerization are named, so both are labeled.\n'deep learning and/or foundation models': foundation models is unmapped, so there is no group.\n'debugging' is not mapped to testing.\nThe minimum '8 years' supports senior, but the label rests on the stated title."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "a3b7f57755152d100aefa7827118362febbb50a8486197cf31ea7dd80ad49e96",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

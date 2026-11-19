@@ -1,0 +1,189 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"building and shipping ML systems\", \"uncertain\": true},\n    {\"skill_id\": \"computer-vision\", \"requirement\": \"required\", \"raw_text\": \"with focus on computer vision\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"production deployment\", \"uncertain\": true},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"fine-tuning\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"prompting\", \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"grounding, and evaluation\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"Strong PyTorch skills\"},\n    {\"skill_id\": \"distributed-training\", \"requirement\": \"required\", \"raw_text\": \"distributed training\"},\n    {\"skill_id\": \"inference-optimization\", \"requirement\": \"required\", \"raw_text\": \"model optimization\", \"uncertain\": true},\n    {\"skill_id\": \"model-serving\", \"requirement\": \"required\", \"raw_text\": \"inference serving\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"monitoring\"},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"reinforcement and imitation learning\"},\n    {\"skill_id\": \"tensorrt\", \"requirement\": \"nice_to_have\", \"raw_text\": \"TensorRT, CUDA, quantization-aware training\"},\n    {\"skill_id\": \"cuda\", \"requirement\": \"nice_to_have\", \"raw_text\": \"CUDA\"},\n    {\"skill_id\": \"quantization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"quantization-aware training\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LLM tooling\", \"uncertain\": true},\n    {\"skill_id\": \"vllm\", \"requirement\": \"nice_to_have\", \"raw_text\": \"vLLM\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Object detection and segmentation\", \"raw_text\": \"object detection and segmentation\"},\n    {\"label\": \"YOLO\", \"raw_text\": \"YOLO family\"},\n    {\"label\": \"DETR\", \"raw_text\": \"DETR-style models\"},\n    {\"label\": \"Vision-language models (VLMs)\", \"raw_text\": \"Hands-on experience with VLMs\"},\n    {\"label\": \"LLaVA / Qwen-VL / PaliGemma\", \"raw_text\": \"LLaVA-, Qwen-VL-, or PaliGemma-style models\"},\n    {\"label\": \"Grounding\", \"raw_text\": \"grounding\"},\n    {\"label\": \"Vision-language-action models / robot learning\", \"raw_text\": \"Experience with VLAs or embodied and robot-learning models\"},\n    {\"label\": \"OpenVLA / RT-2 / pi0\", \"raw_text\": \"OpenVLA-, RT-2-, or pi0-style policies\"},\n    {\"label\": \"Multimodal learning\", \"raw_text\": \"adjacent multimodal work\"},\n    {\"label\": \"Mixed precision training\", \"raw_text\": \"mixed precision\"},\n    {\"label\": \"GPU profiling\", \"raw_text\": \"GPU profiling\"},\n    {\"label\": \"Video understanding\", \"raw_text\": \"video understanding\"},\n    {\"label\": \"3D perception\", \"raw_text\": \"3D perception\"},\n    {\"label\": \"Multi-sensor fusion\", \"raw_text\": \"multi-sensor fusion\"},\n    {\"label\": \"Simulation / sim-to-real transfer\", \"raw_text\": \"simulation, sim-to-real transfer\"},\n    {\"label\": \"Imitation learning\", \"raw_text\": \"imitation learning\"},\n    {\"label\": \"Edge / embedded deployment\", \"raw_text\": \"Edge and embedded deployment experience\"},\n    {\"label\": \"RLHF post-training\", \"raw_text\": \"RLHF-style post-training\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Evidence of staff-level impact\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"BS/MS/PhD in CS, EE, or a related field, or equivalent experience\",\n  \"uncertain\": [],\n  \"notes\": \"The headings 'Requirements / What we're looking for' (required) and 'Nice to have' (nice_to_have) set the defaults, and no inline markers override them.\\nResponsibilities-only technologies are not labeled because the candidate is not asked for them: ONNX, Jetson, distillation, LoRA, active learning, design docs, code review.\\nThe trailing 'Skills:' list is treated as auto-generated scraper tags, not a tech-stack section. It contains noise such as Juniper Networks M-Series and RIP, so nothing is labeled from it. Its CUDA and Computer Vision entries are covered elsewhere anyway.\\nmachine-learning is mapped from 'ML systems'; ml-engineering is an alternative reading.\\n'production deployment' is mapped to ai-deployment.\\n'model optimization' is mapped to inference-optimization because it sits in a list with inference serving.\\n'prompting' is mapped to prompt-engineering.\\nllms is labeled from 'LLM tooling such as vLLM' as the broad skill the text names, alongside its example vLLM.\\nTensorRT, CUDA and quantization-aware training are examples of edge deployment listed together without 'or', so they are not an alternative group.\\nThe vLLM-or-RLHF and VLM/VLA example sets have only one mapped member or none, so no alternative_group applies.\\nSeniority is labeled senior on 'staff-level impact' as a stated level. It is also supported by '5+ years' and the mentoring duty.\\nThe degree line names BS/MS/PhD, so the highest level is phd. 'or equivalent experience' makes degree_or_equivalent true.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "building and shipping ML systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "with focus on computer vision"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "production deployment",
+        "uncertain": true
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompting",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "grounding, and evaluation"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "Strong PyTorch skills"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "distributed training"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "required",
+        "raw_text": "model optimization",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "required",
+        "raw_text": "inference serving"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement and imitation learning"
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorRT, CUDA, quantization-aware training"
+      },
+      {
+        "skill_id": "cuda",
+        "requirement": "nice_to_have",
+        "raw_text": "CUDA"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "nice_to_have",
+        "raw_text": "quantization-aware training"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM tooling",
+        "uncertain": true
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "nice_to_have",
+        "raw_text": "vLLM"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Object detection and segmentation",
+        "raw_text": "object detection and segmentation"
+      },
+      {
+        "label": "YOLO",
+        "raw_text": "YOLO family"
+      },
+      {
+        "label": "DETR",
+        "raw_text": "DETR-style models"
+      },
+      {
+        "label": "Vision-language models (VLMs)",
+        "raw_text": "Hands-on experience with VLMs"
+      },
+      {
+        "label": "LLaVA / Qwen-VL / PaliGemma",
+        "raw_text": "LLaVA-, Qwen-VL-, or PaliGemma-style models"
+      },
+      {
+        "label": "Grounding",
+        "raw_text": "grounding"
+      },
+      {
+        "label": "Vision-language-action models / robot learning",
+        "raw_text": "Experience with VLAs or embodied and robot-learning models"
+      },
+      {
+        "label": "OpenVLA / RT-2 / pi0",
+        "raw_text": "OpenVLA-, RT-2-, or pi0-style policies"
+      },
+      {
+        "label": "Multimodal learning",
+        "raw_text": "adjacent multimodal work"
+      },
+      {
+        "label": "Mixed precision training",
+        "raw_text": "mixed precision"
+      },
+      {
+        "label": "GPU profiling",
+        "raw_text": "GPU profiling"
+      },
+      {
+        "label": "Video understanding",
+        "raw_text": "video understanding"
+      },
+      {
+        "label": "3D perception",
+        "raw_text": "3D perception"
+      },
+      {
+        "label": "Multi-sensor fusion",
+        "raw_text": "multi-sensor fusion"
+      },
+      {
+        "label": "Simulation / sim-to-real transfer",
+        "raw_text": "simulation, sim-to-real transfer"
+      },
+      {
+        "label": "Imitation learning",
+        "raw_text": "imitation learning"
+      },
+      {
+        "label": "Edge / embedded deployment",
+        "raw_text": "Edge and embedded deployment experience"
+      },
+      {
+        "label": "RLHF post-training",
+        "raw_text": "RLHF-style post-training"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Evidence of staff-level impact",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "BS/MS/PhD in CS, EE, or a related field, or equivalent experience",
+    "uncertain": [],
+    "notes": "The headings 'Requirements / What we're looking for' (required) and 'Nice to have' (nice_to_have) set the defaults, and no inline markers override them.\nResponsibilities-only technologies are not labeled because the candidate is not asked for them: ONNX, Jetson, distillation, LoRA, active learning, design docs, code review.\nThe trailing 'Skills:' list is treated as auto-generated scraper tags, not a tech-stack section. It contains noise such as Juniper Networks M-Series and RIP, so nothing is labeled from it. Its CUDA and Computer Vision entries are covered elsewhere anyway.\nmachine-learning is mapped from 'ML systems'; ml-engineering is an alternative reading.\n'production deployment' is mapped to ai-deployment.\n'model optimization' is mapped to inference-optimization because it sits in a list with inference serving.\n'prompting' is mapped to prompt-engineering.\nllms is labeled from 'LLM tooling such as vLLM' as the broad skill the text names, alongside its example vLLM.\nTensorRT, CUDA and quantization-aware training are examples of edge deployment listed together without 'or', so they are not an alternative group.\nThe vLLM-or-RLHF and VLM/VLA example sets have only one mapped member or none, so no alternative_group applies.\nSeniority is labeled senior on 'staff-level impact' as a stated level. It is also supported by '5+ years' and the mentoring duty.\nThe degree line names BS/MS/PhD, so the highest level is phd. 'or equivalent experience' makes degree_or_equivalent true."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "34b268556fd1dace6f25d22fce17a4fbb9325b568c3a46a02b66e405a6f79e81",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

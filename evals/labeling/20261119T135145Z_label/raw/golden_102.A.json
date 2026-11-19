@@ -1,0 +1,155 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Advanced proficiency in Python\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL for complex data manipulation\"},\n    {\"skill_id\": \"statistics\", \"requirement\": \"required\", \"raw_text\": \"statistical modeling\"},\n    {\"skill_id\": \"causal-inference\", \"requirement\": \"required\", \"raw_text\": \"causal inference techniques\"},\n    {\"skill_id\": \"a-b-testing\", \"requirement\": \"required\", \"raw_text\": \"A/B testing\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience with cloud platforms\"},\n    {\"skill_id\": \"aws-s3\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AWS S3\"},\n    {\"skill_id\": \"sagemaker\", \"requirement\": \"nice_to_have\", \"raw_text\": \"SageMaker\"},\n    {\"skill_id\": \"airflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Airflow\"},\n    {\"skill_id\": \"snowflake\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Snowflake\"},\n    {\"skill_id\": \"dbt\", \"requirement\": \"nice_to_have\", \"raw_text\": \"dbt\"},\n    {\"skill_id\": \"tableau\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Tableau\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"machine learning frameworks\", \"uncertain\": true},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"nice_to_have\", \"raw_text\": \"scikit-learn\", \"alternative_group\": 1},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"TensorFlow\", \"alternative_group\": 1},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"nice_to_have\", \"raw_text\": \"PyTorch\", \"alternative_group\": 1}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Predictive analytics\", \"raw_text\": \"predictive analytics\"},\n    {\"label\": \"Multi-touch attribution\", \"raw_text\": \"multi-touch attribution\"},\n    {\"label\": \"Cohort retention modeling\", \"raw_text\": \"cohort retention modeling\"},\n    {\"label\": \"LTV/CAC modeling\", \"raw_text\": \"LTV/CAC dynamics\"},\n    {\"label\": \"Geo-testing\", \"raw_text\": \"geo-testing\"},\n    {\"label\": \"Synthetic controls\", \"raw_text\": \"synthetic controls\"},\n    {\"label\": \"Media mix modeling\", \"raw_text\": \"media mix modeling\"},\n    {\"label\": \"AI tools (general)\", \"raw_text\": \"Experience leveraging AI tools\"},\n    {\"label\": \"Looker\", \"raw_text\": \"Looker\"},\n    {\"label\": \"Robyn\", \"raw_text\": \"Robyn\"},\n    {\"label\": \"LightweightMMM\", \"raw_text\": \"LightweightMMM\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Data Scientist, Growth Marketing\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Bachelor’s or Master’s degree in Computer Science, Mathematics, Statistics, Economics, or a related quantitative field\",\n  \"uncertain\": [],\n  \"notes\": \"The 'While not required, these are a plus:' heading makes every item under it nice_to_have.\\nThe 'What you'll do' items (data pipelines, dashboards, AI tools) are responsibilities only and are not labeled from there.\\n'statistical experimentation' and 'statistical modeling' both map to statistics; collapsed to one required criterion.\\nA/B testing, geo-testing, synthetic controls and media mix modeling are joined by 'and', so they are asked together and form no alternative group.\\nscikit-learn, TensorFlow and PyTorch are joined by 'or' as examples for one ask, so they form alternative_group 1.\\n'machine learning frameworks' names the broad machine-learning skill, so it is labeled; flagged uncertain.\\n'AI tools' is generic, not coding assistants, so it is not mapped to ai-developer-tooling; put in unmapped.\\nAWS is not labeled separately: only 'AWS S3' is named, and a specific skill does not imply its parent.\\n'cloud data warehouses' collapses into the single cloud criterion.\\n'clean, efficient, robust, and well-commented code' is not mapped to software-engineering because no skill is named.\\n'Who you are' paragraph mentions causal inference; it is already labeled required from the qualifications list.\\nSeniority is stated by the 'Senior' title; '6+ years' agrees with it.\\nNo German mention, and the posting is in English, so german is null.\\nDegree takes the highest level named ('Bachelor’s or Master’s'), so it is master; 'or a related quantitative field' widens the field only, so degree_or_equivalent is false.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Advanced proficiency in Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL for complex data manipulation"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistical modeling"
+      },
+      {
+        "skill_id": "causal-inference",
+        "requirement": "required",
+        "raw_text": "causal inference techniques"
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "required",
+        "raw_text": "A/B testing"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with cloud platforms"
+      },
+      {
+        "skill_id": "aws-s3",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS S3"
+      },
+      {
+        "skill_id": "sagemaker",
+        "requirement": "nice_to_have",
+        "raw_text": "SageMaker"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Airflow"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "nice_to_have",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "dbt",
+        "requirement": "nice_to_have",
+        "raw_text": "dbt"
+      },
+      {
+        "skill_id": "tableau",
+        "requirement": "nice_to_have",
+        "raw_text": "Tableau"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "machine learning frameworks",
+        "uncertain": true
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "nice_to_have",
+        "raw_text": "scikit-learn",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Predictive analytics",
+        "raw_text": "predictive analytics"
+      },
+      {
+        "label": "Multi-touch attribution",
+        "raw_text": "multi-touch attribution"
+      },
+      {
+        "label": "Cohort retention modeling",
+        "raw_text": "cohort retention modeling"
+      },
+      {
+        "label": "LTV/CAC modeling",
+        "raw_text": "LTV/CAC dynamics"
+      },
+      {
+        "label": "Geo-testing",
+        "raw_text": "geo-testing"
+      },
+      {
+        "label": "Synthetic controls",
+        "raw_text": "synthetic controls"
+      },
+      {
+        "label": "Media mix modeling",
+        "raw_text": "media mix modeling"
+      },
+      {
+        "label": "AI tools (general)",
+        "raw_text": "Experience leveraging AI tools"
+      },
+      {
+        "label": "Looker",
+        "raw_text": "Looker"
+      },
+      {
+        "label": "Robyn",
+        "raw_text": "Robyn"
+      },
+      {
+        "label": "LightweightMMM",
+        "raw_text": "LightweightMMM"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Data Scientist, Growth Marketing",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor’s or Master’s degree in Computer Science, Mathematics, Statistics, Economics, or a related quantitative field",
+    "uncertain": [],
+    "notes": "The 'While not required, these are a plus:' heading makes every item under it nice_to_have.\nThe 'What you'll do' items (data pipelines, dashboards, AI tools) are responsibilities only and are not labeled from there.\n'statistical experimentation' and 'statistical modeling' both map to statistics; collapsed to one required criterion.\nA/B testing, geo-testing, synthetic controls and media mix modeling are joined by 'and', so they are asked together and form no alternative group.\nscikit-learn, TensorFlow and PyTorch are joined by 'or' as examples for one ask, so they form alternative_group 1.\n'machine learning frameworks' names the broad machine-learning skill, so it is labeled; flagged uncertain.\n'AI tools' is generic, not coding assistants, so it is not mapped to ai-developer-tooling; put in unmapped.\nAWS is not labeled separately: only 'AWS S3' is named, and a specific skill does not imply its parent.\n'cloud data warehouses' collapses into the single cloud criterion.\n'clean, efficient, robust, and well-commented code' is not mapped to software-engineering because no skill is named.\n'Who you are' paragraph mentions causal inference; it is already labeled required from the qualifications list.\nSeniority is stated by the 'Senior' title; '6+ years' agrees with it.\nNo German mention, and the posting is in English, so german is null.\nDegree takes the highest level named ('Bachelor’s or Master’s'), so it is master; 'or a related quantitative field' widens the field only, so degree_or_equivalent is false."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "e739dbe2575df68227b4437a42061edd56d57f08137e1f28aa4f0c87ddb6a59c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

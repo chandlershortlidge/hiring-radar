@@ -1,0 +1,41 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed systems\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering fundamentals\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Large-scale infrastructure\",\n      \"raw_text\": \"large-scale infrastructure\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The candidate qualifications section is not marked optional; its skills are required.\\nLarge-scale infrastructure is explicitly requested but has no matching taxonomy entry; it does not explicitly name cloud or AI infrastructure.\\nTechnologies and practices mentioned only in responsibilities or company descriptions are excluded.\\nInterest in data is not a concrete technical skill; organizational skills and personal qualities are excluded as soft skills.\\nStrong experience alone is not a seniority signal under the guide.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering fundamentals"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Large-scale infrastructure",
+        "raw_text": "large-scale infrastructure"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The candidate qualifications section is not marked optional; its skills are required.\nLarge-scale infrastructure is explicitly requested but has no matching taxonomy entry; it does not explicitly name cloud or AI infrastructure.\nTechnologies and practices mentioned only in responsibilities or company descriptions are excluded.\nInterest in data is not a concrete technical skill; organizational skills and personal qualities are excluded as soft skills.\nStrong experience alone is not a seniority signal under the guide."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "14e300b0ddece0682062915f828ce3e49bd1d2b31d78304255227e6efe0bea56",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

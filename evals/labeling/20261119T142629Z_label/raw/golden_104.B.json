@@ -1,0 +1,175 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Built and shipped agent systems in production\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"orchestration\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tool use\"\n    },\n    {\n      \"skill_id\": \"agent-state-management\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"state management\"\n    },\n    {\n      \"skill_id\": \"computer-vision\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"OpenCV\"\n    },\n    {\n      \"skill_id\": \"knowledge-graphs\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"knowledge graph\"\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model serving\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"backend services\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\"\n    },\n    {\n      \"skill_id\": \"frontend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"frontend interfaces\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data ingestion\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"fastapi\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"FastAPI\"\n    },\n    {\n      \"skill_id\": \"postgresql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PostgreSQL\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Human-in-the-loop workflows\",\n      \"raw_text\": \"human-in-the-loop workflows\"\n    },\n    {\n      \"label\": \"RTSP\",\n      \"raw_text\": \"RTSP\"\n    },\n    {\n      \"label\": \"PLC integration\",\n      \"raw_text\": \"PLC layers\"\n    },\n    {\n      \"label\": \"OPC-UA\",\n      \"raw_text\": \"OPC-UA\"\n    },\n    {\n      \"label\": \"Multimodal AI pipelines\",\n      \"raw_text\": \"multimodal AI pipelines\"\n    },\n    {\n      \"label\": \"Object detection\",\n      \"raw_text\": \"detection\"\n    },\n    {\n      \"label\": \"Image segmentation\",\n      \"raw_text\": \"segmentation\"\n    },\n    {\n      \"label\": \"Action recognition\",\n      \"raw_text\": \"action recognition\"\n    },\n    {\n      \"label\": \"Ontology\",\n      \"raw_text\": \"ontology\"\n    },\n    {\n      \"label\": \"Structured context systems\",\n      \"raw_text\": \"structured context systems\"\n    },\n    {\n      \"label\": \"ERP integration\",\n      \"raw_text\": \"ERP\"\n    },\n    {\n      \"label\": \"CMMS integration\",\n      \"raw_text\": \"CMMS\"\n    },\n    {\n      \"label\": \"WMS integration\",\n      \"raw_text\": \"WMS\"\n    },\n    {\n      \"label\": \"Historian integration\",\n      \"raw_text\": \"historians\"\n    },\n    {\n      \"label\": \"Data normalization\",\n      \"raw_text\": \"normalization\"\n    },\n    {\n      \"label\": \"Schema mapping\",\n      \"raw_text\": \"schema mapping\"\n    },\n    {\n      \"label\": \"Temporal alignment\",\n      \"raw_text\": \"temporal alignment\"\n    },\n    {\n      \"label\": \"React Native\",\n      \"raw_text\": \"React Native\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years experience (5+ preferred)\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"groups_reviewed\": true,\n  \"notes\": \"The qualification sections and unmarked tech-stack section supply required skills; technologies appearing only under 'What you will build' or the company description are excluded.\\nAgentic products are initially marked 'ideally', but production agent experience and the unmarked Agentic AI stack entry independently make agents required.\\nReact Native is not mapped to React because the taxonomy does not contain React Native.\\nData ingestion is provisionally mapped to data-pipelines; the posting names ingestion rather than pipelines explicitly in that qualification.\\nOntology, knowledge graph and structured context systems are alternatives, but only knowledge graph has a taxonomy entry, so no multi-skill alternative group is emitted. ERP, CMMS, WMS, historians and PLC integration are also offered as alternatives but are unmapped.\\nPhysical-world data modalities, industrial subject matter and general production-system considerations are read literally as domain knowledge or context, not additional named technical skills.\\nSeniority follows the required 3+ years; 5+ years is preferred rather than required. No German-language or degree requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Built and shipped agent systems in production"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "orchestration"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use"
+      },
+      {
+        "skill_id": "agent-state-management",
+        "requirement": "required",
+        "raw_text": "state management"
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "OpenCV"
+      },
+      {
+        "skill_id": "knowledge-graphs",
+        "requirement": "required",
+        "raw_text": "knowledge graph"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "required",
+        "raw_text": "model serving"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend services"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "required",
+        "raw_text": "frontend interfaces"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "data ingestion",
+        "uncertain": true
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "PostgreSQL"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Human-in-the-loop workflows",
+        "raw_text": "human-in-the-loop workflows"
+      },
+      {
+        "label": "RTSP",
+        "raw_text": "RTSP"
+      },
+      {
+        "label": "PLC integration",
+        "raw_text": "PLC layers"
+      },
+      {
+        "label": "OPC-UA",
+        "raw_text": "OPC-UA"
+      },
+      {
+        "label": "Multimodal AI pipelines",
+        "raw_text": "multimodal AI pipelines"
+      },
+      {
+        "label": "Object detection",
+        "raw_text": "detection"
+      },
+      {
+        "label": "Image segmentation",
+        "raw_text": "segmentation"
+      },
+      {
+        "label": "Action recognition",
+        "raw_text": "action recognition"
+      },
+      {
+        "label": "Ontology",
+        "raw_text": "ontology"
+      },
+      {
+        "label": "Structured context systems",
+        "raw_text": "structured context systems"
+      },
+      {
+        "label": "ERP integration",
+        "raw_text": "ERP"
+      },
+      {
+        "label": "CMMS integration",
+        "raw_text": "CMMS"
+      },
+      {
+        "label": "WMS integration",
+        "raw_text": "WMS"
+      },
+      {
+        "label": "Historian integration",
+        "raw_text": "historians"
+      },
+      {
+        "label": "Data normalization",
+        "raw_text": "normalization"
+      },
+      {
+        "label": "Schema mapping",
+        "raw_text": "schema mapping"
+      },
+      {
+        "label": "Temporal alignment",
+        "raw_text": "temporal alignment"
+      },
+      {
+        "label": "React Native",
+        "raw_text": "React Native"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years experience (5+ preferred)",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "groups_reviewed": true,
+    "notes": "The qualification sections and unmarked tech-stack section supply required skills; technologies appearing only under 'What you will build' or the company description are excluded.\nAgentic products are initially marked 'ideally', but production agent experience and the unmarked Agentic AI stack entry independently make agents required.\nReact Native is not mapped to React because the taxonomy does not contain React Native.\nData ingestion is provisionally mapped to data-pipelines; the posting names ingestion rather than pipelines explicitly in that qualification.\nOntology, knowledge graph and structured context systems are alternatives, but only knowledge graph has a taxonomy entry, so no multi-skill alternative group is emitted. ERP, CMMS, WMS, historians and PLC integration are also offered as alternatives but are unmapped.\nPhysical-world data modalities, industrial subject matter and general production-system considerations are read literally as domain knowledge or context, not additional named technical skills.\nSeniority follows the required 3+ years; 5+ years is preferred rather than required. No German-language or degree requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "6c6a55674dcec9ad502860160b8686fdc84e4ea99587457a54f373312361c0d3",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

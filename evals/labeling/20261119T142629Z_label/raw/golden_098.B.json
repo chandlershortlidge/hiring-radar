@@ -1,0 +1,24 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Lead hardware engineering use case projects\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor’s degree or equivalent combination of education and experience\",\n  \"notes\": \"Requirements lists only experience and a degree; technical skills appear only in the title, description, or responsibilities and are not labeled.\\nSeniority follows the explicit project-leading duty despite the lower experience range of \\\"1 to 3 years of related experience\\\".\\nThe equivalent combination of education and experience is treated as an accepted alternative to the degree.\"\n}",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Lead hardware engineering use case projects",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor’s degree or equivalent combination of education and experience",
+    "notes": "Requirements lists only experience and a degree; technical skills appear only in the title, description, or responsibilities and are not labeled.\nSeniority follows the explicit project-leading duty despite the lower experience range of \"1 to 3 years of related experience\".\nThe equivalent combination of education and experience is treated as an accepted alternative to the degree."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "5a4feb26160896c3ca70a4e8f18e3db06e8b7148afb4b1bdf624182f3299b842",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,188 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"5+ years of experience in MLOps\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Software engineering\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"java\", \"requirement\": \"required\", \"raw_text\": \"Java\", \"alternative_group\": 2},\n    {\"skill_id\": \"scala\", \"requirement\": \"required\", \"raw_text\": \"Scala\", \"alternative_group\": 2},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\", \"alternative_group\": 2},\n    {\"skill_id\": \"kotlin\", \"requirement\": \"required\", \"raw_text\": \"Kotlin\", \"alternative_group\": 2},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Hands-on experience with Kubernetes\"},\n    {\"skill_id\": \"kubeflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Kubeflow or MLFlow\", \"alternative_group\": 3},\n    {\"skill_id\": \"mlflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"MLFlow\", \"alternative_group\": 3},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience with ML frameworks\", \"uncertain\": true},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"nice_to_have\", \"raw_text\": \"scikit-learn\", \"alternative_group\": 4},\n    {\"skill_id\": \"lightgbm\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LGBM\", \"alternative_group\": 4},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Tensorflow\", \"alternative_group\": 4},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"nice_to_have\", \"raw_text\": \"PyTorch\", \"alternative_group\": 4},\n    {\"skill_id\": \"apache-spark\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Spark\", \"alternative_group\": 5, \"uncertain\": true},\n    {\"skill_id\": \"aws-s3\", \"requirement\": \"nice_to_have\", \"raw_text\": \"S3\", \"alternative_group\": 5, \"uncertain\": true},\n    {\"skill_id\": \"hadoop\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Hadoop\", \"alternative_group\": 5, \"uncertain\": true},\n    {\"skill_id\": \"containerization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Strong knowledge of containerization and container orchestration technologies\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Docker\"},\n    {\"skill_id\": \"devops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience with DevOps\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"nice_to_have\", \"raw_text\": \"CI/CD practices\"},\n    {\"skill_id\": \"model-serving\", \"requirement\": \"nice_to_have\", \"raw_text\": \"building and scaling model serving tools\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"nice_to_have\", \"raw_text\": \"building APIs with tight SLAs\"},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"nice_to_have\", \"raw_text\": \"including data pipelines\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"nice_to_have\", \"raw_text\": \"model training and deployment systems\", \"uncertain\": true},\n    {\"skill_id\": \"observability\", \"requirement\": \"nice_to_have\", \"raw_text\": \"monitoring and management tools\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Data engineering\", \"raw_text\": \"Data engineering\"},\n    {\"label\": \"ML project lifecycle\", \"raw_text\": \"Understanding of ML Projects lifecycle\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior / Staff MLOps Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"'It's Great if you have:' is read as an optional heading, so items under it are nice_to_have; 'What You'll Need to Succeed' is the required section.\\nGroup 1: the required years-of-experience bullet offers alternatives 'MLOps, Software engineering, Data engineering, or a related field'. Data engineering is unmapped, so it leaves the group.\\nmlops is also asked for alone, but only in nice-to-have bullets ('MLOps platforms', 'MLOps infrastructure'), so it is kept in group 1. Flagged uncertain.\\nkubernetes is required in its own bullet. Its nice-to-have mention ('Docker and Kubernetes') collapses into that one, and it stays out of any group.\\nGroup 5 (Spark, S3, Hadoop) treats the dash-introduced comma list as examples for one ask, 'Big Data tools'. There is no and/or wording, so this is uncertain.\\nmachine-learning is added as the broad skill named by 'ML frameworks', by analogy with 'cloud platforms'. Uncertain.\\n'ConfigMaps/Secrets' are Kubernetes concepts, not labeled as secrets-management.\\n'Passion for the engineering behind machine learning' adds nothing beyond the machine-learning label.\\nResponsibilities-only technologies are not labeled.\\nThe hashtag city list is ignored for the German label.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "5+ years of experience in MLOps",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Software engineering",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "required",
+        "raw_text": "Scala",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "kotlin",
+        "requirement": "required",
+        "raw_text": "Kotlin",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Hands-on experience with Kubernetes"
+      },
+      {
+        "skill_id": "kubeflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubeflow or MLFlow",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "nice_to_have",
+        "raw_text": "MLFlow",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with ML frameworks",
+        "uncertain": true
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "nice_to_have",
+        "raw_text": "scikit-learn",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "lightgbm",
+        "requirement": "nice_to_have",
+        "raw_text": "LGBM",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Tensorflow",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "PyTorch",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "nice_to_have",
+        "raw_text": "Spark",
+        "alternative_group": 5,
+        "uncertain": true
+      },
+      {
+        "skill_id": "aws-s3",
+        "requirement": "nice_to_have",
+        "raw_text": "S3",
+        "alternative_group": 5,
+        "uncertain": true
+      },
+      {
+        "skill_id": "hadoop",
+        "requirement": "nice_to_have",
+        "raw_text": "Hadoop",
+        "alternative_group": 5,
+        "uncertain": true
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "Strong knowledge of containerization and container orchestration technologies"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with DevOps"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD practices"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "building and scaling model serving tools"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "nice_to_have",
+        "raw_text": "building APIs with tight SLAs"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "including data pipelines"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "nice_to_have",
+        "raw_text": "model training and deployment systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "monitoring and management tools",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data engineering",
+        "raw_text": "Data engineering"
+      },
+      {
+        "label": "ML project lifecycle",
+        "raw_text": "Understanding of ML Projects lifecycle"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior / Staff MLOps Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "'It's Great if you have:' is read as an optional heading, so items under it are nice_to_have; 'What You'll Need to Succeed' is the required section.\nGroup 1: the required years-of-experience bullet offers alternatives 'MLOps, Software engineering, Data engineering, or a related field'. Data engineering is unmapped, so it leaves the group.\nmlops is also asked for alone, but only in nice-to-have bullets ('MLOps platforms', 'MLOps infrastructure'), so it is kept in group 1. Flagged uncertain.\nkubernetes is required in its own bullet. Its nice-to-have mention ('Docker and Kubernetes') collapses into that one, and it stays out of any group.\nGroup 5 (Spark, S3, Hadoop) treats the dash-introduced comma list as examples for one ask, 'Big Data tools'. There is no and/or wording, so this is uncertain.\nmachine-learning is added as the broad skill named by 'ML frameworks', by analogy with 'cloud platforms'. Uncertain.\n'ConfigMaps/Secrets' are Kubernetes concepts, not labeled as secrets-management.\n'Passion for the engineering behind machine learning' adds nothing beyond the machine-learning label.\nResponsibilities-only technologies are not labeled.\nThe hashtag city list is ignored for the German label."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "d7f25608c91476941a2afebe28fe25231d93f5fff7cc8fa4082ee4c727ffbec4",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

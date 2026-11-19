@@ -1,0 +1,122 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"data-modeling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data modeling\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ETL/ELT pipelines\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"natural language processing (NLP)\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning data pipelines\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLM\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vector embeddings\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"evaluation golden sets\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI coding tools\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"building APIs\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data engineering\",\n      \"raw_text\": \"data engineering\"\n    },\n    {\n      \"label\": \"Distributed data warehouses\",\n      \"raw_text\": \"building and operating production ETL/ELT pipelines and distributed data warehouses\"\n    },\n    {\n      \"label\": \"General-purpose programming\",\n      \"raw_text\": \"a general-purpose programming language\"\n    },\n    {\n      \"label\": \"Text classification\",\n      \"raw_text\": \"text classification\"\n    },\n    {\n      \"label\": \"Ontology design\",\n      \"raw_text\": \"designing ontologies\"\n    },\n    {\n      \"label\": \"Versioned taxonomies\",\n      \"raw_text\": \"versioned taxonomies\"\n    },\n    {\n      \"label\": \"Semantic layers\",\n      \"raw_text\": \"semantic layers\"\n    },\n    {\n      \"label\": \"Metadata management platforms\",\n      \"raw_text\": \"metadata management platforms\"\n    },\n    {\n      \"label\": \"ML and LLM compute-cost optimization\",\n      \"raw_text\": \"optimizing ML vs. LLM compute unit economics\"\n    },\n    {\n      \"label\": \"Lightweight classifiers\",\n      \"raw_text\": \"lightweight classifiers\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Data Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Master's degree in Computer Science, Engineering, Statistics, Mathematics, or a related quantitative discipline or equivalent professional experience.\",\n  \"notes\": \"Minimum qualifications are required; Preferred qualifications are nice_to_have. Technologies appearing only in the title, About The Job, or Responsibilities are excluded.\\nData engineering, distributed warehouses, text classification, ontology/taxonomy design, semantic layers, metadata management, and classifier/cost-optimization techniques have no exact taxonomy entries; no broader substitutes were inferred.\\nThe alternative asks cross mapped and unmapped skills and overlap repeated mentions: data engineering/data modeling/pipeline-and-warehouse work; Python/general-purpose programming; text classification/NLP/ML pipelines; ontology/taxonomy/semantic-layer/metadata-platform design; APIs/data models. The provided single-number grouping format cannot faithfully capture all overlapping alternatives; grouping requires review.\",\n  \"groups_reviewed\": false\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "data modeling"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "ETL/ELT pipelines"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "natural language processing (NLP)"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning data pipelines"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "nice_to_have",
+        "raw_text": "vector embeddings"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "evaluation golden sets"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "nice_to_have",
+        "raw_text": "AI coding tools"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "nice_to_have",
+        "raw_text": "building APIs"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data engineering",
+        "raw_text": "data engineering"
+      },
+      {
+        "label": "Distributed data warehouses",
+        "raw_text": "building and operating production ETL/ELT pipelines and distributed data warehouses"
+      },
+      {
+        "label": "General-purpose programming",
+        "raw_text": "a general-purpose programming language"
+      },
+      {
+        "label": "Text classification",
+        "raw_text": "text classification"
+      },
+      {
+        "label": "Ontology design",
+        "raw_text": "designing ontologies"
+      },
+      {
+        "label": "Versioned taxonomies",
+        "raw_text": "versioned taxonomies"
+      },
+      {
+        "label": "Semantic layers",
+        "raw_text": "semantic layers"
+      },
+      {
+        "label": "Metadata management platforms",
+        "raw_text": "metadata management platforms"
+      },
+      {
+        "label": "ML and LLM compute-cost optimization",
+        "raw_text": "optimizing ML vs. LLM compute unit economics"
+      },
+      {
+        "label": "Lightweight classifiers",
+        "raw_text": "lightweight classifiers"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Data Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": true,
+    "degree_signal": "Master's degree in Computer Science, Engineering, Statistics, Mathematics, or a related quantitative discipline or equivalent professional experience.",
+    "notes": "Minimum qualifications are required; Preferred qualifications are nice_to_have. Technologies appearing only in the title, About The Job, or Responsibilities are excluded.\nData engineering, distributed warehouses, text classification, ontology/taxonomy design, semantic layers, metadata management, and classifier/cost-optimization techniques have no exact taxonomy entries; no broader substitutes were inferred.\nThe alternative asks cross mapped and unmapped skills and overlap repeated mentions: data engineering/data modeling/pipeline-and-warehouse work; Python/general-purpose programming; text classification/NLP/ML pipelines; ontology/taxonomy/semantic-layer/metadata-platform design; APIs/data models. The provided single-number grouping format cannot faithfully capture all overlapping alternatives; grouping requires review.",
+    "groups_reviewed": false
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "79cd208cee1f46ad51855604be4ac16440478451098e7f87b88a80799afb142c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

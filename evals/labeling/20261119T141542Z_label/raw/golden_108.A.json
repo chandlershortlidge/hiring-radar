@@ -1,0 +1,147 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"Senior/architect-level AWS expertise\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong Python skills\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"experience building agents\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM solutions\"},\n    {\"skill_id\": \"aws-bedrock\", \"requirement\": \"required\", \"raw_text\": \"Bedrock agents, tool use\"},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"tool use, text-to-SQL\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"evaluation and guardrails\"},\n    {\"skill_id\": \"llm-guardrails\", \"requirement\": \"required\", \"raw_text\": \"evaluation and guardrails\", \"uncertain\": true},\n    {\"skill_id\": \"snowflake\", \"requirement\": \"required\", \"raw_text\": \"Snowflake, Iceberg\"},\n    {\"skill_id\": \"aws-s3\", \"requirement\": \"required\", \"raw_text\": \"S3, Glue\"},\n    {\"skill_id\": \"power-bi\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Power BI/DAX\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Terraform/CloudFormation\"},\n    {\"skill_id\": \"git\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Git, CI/CD\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Git, CI/CD\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"nice_to_have\", \"raw_text\": \"testing and Jira\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Amazon Quick Suite\", \"raw_text\": \"hands-on Amazon Quick Suite experience\"},\n    {\"label\": \"Text-to-SQL\", \"raw_text\": \"text-to-SQL, evaluation\"},\n    {\"label\": \"Apache Iceberg\", \"raw_text\": \"Iceberg, S3\"},\n    {\"label\": \"AWS Glue\", \"raw_text\": \"Glue, Athena\"},\n    {\"label\": \"Amazon Athena\", \"raw_text\": \"Athena and IAM\"},\n    {\"label\": \"AWS IAM\", \"raw_text\": \"Athena and IAM\"},\n    {\"label\": \"DAX\", \"raw_text\": \"Power BI/DAX\"},\n    {\"label\": \"AWS CloudFormation\", \"raw_text\": \"Terraform/CloudFormation\"},\n    {\"label\": \"Jira\", \"raw_text\": \"testing and Jira\"},\n    {\"label\": \"Atlan data catalog\", \"raw_text\": \"Experience with the Atlan data catalog\"},\n    {\"label\": \"SAP/JDE/M3 data concepts (domain knowledge)\", \"raw_text\": \"SAP, JDE and M3 data concepts\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"senior-to-architect-level engineers\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The Required and Preferred headings set the defaults. No inline marker overrides them.\\nThe responsibilities mention ECS, Lambda, Step Functions, medallion layering, explainability and Atlan integration. Only Atlan is also asked of the candidate, under Preferred. The rest are not labeled.\\nThe bare 'guardrails' in the Bedrock bullet is read as LLM guardrails. It is flagged uncertain.\\nevaluation and llm-guardrails share one raw_text because the bullet names both in one span.\\n'tool use, text-to-SQL' also appears in the responsibilities. Both mentions lead to the same label, so the quote is still adequate.\\nThe AWS certifications are credentials, not taxonomy skills, so they are not labeled.\\nSAP/JDE/M3 data concepts are domain knowledge, not skills. They are listed in unmapped for visibility only.\\n'Terraform/CloudFormation' is likely an alternative pair. CloudFormation is unmapped, so no group is formed.\\nNo German, degree or language mention appears anywhere in the posting.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "Senior/architect-level AWS expertise"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python skills"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "experience building agents"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM solutions"
+      },
+      {
+        "skill_id": "aws-bedrock",
+        "requirement": "required",
+        "raw_text": "Bedrock agents, tool use"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use, text-to-SQL"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation and guardrails"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "evaluation and guardrails",
+        "uncertain": true
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake, Iceberg"
+      },
+      {
+        "skill_id": "aws-s3",
+        "requirement": "required",
+        "raw_text": "S3, Glue"
+      },
+      {
+        "skill_id": "power-bi",
+        "requirement": "nice_to_have",
+        "raw_text": "Power BI/DAX"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "nice_to_have",
+        "raw_text": "Terraform/CloudFormation"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "nice_to_have",
+        "raw_text": "Git, CI/CD"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "Git, CI/CD"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "testing and Jira"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Amazon Quick Suite",
+        "raw_text": "hands-on Amazon Quick Suite experience"
+      },
+      {
+        "label": "Text-to-SQL",
+        "raw_text": "text-to-SQL, evaluation"
+      },
+      {
+        "label": "Apache Iceberg",
+        "raw_text": "Iceberg, S3"
+      },
+      {
+        "label": "AWS Glue",
+        "raw_text": "Glue, Athena"
+      },
+      {
+        "label": "Amazon Athena",
+        "raw_text": "Athena and IAM"
+      },
+      {
+        "label": "AWS IAM",
+        "raw_text": "Athena and IAM"
+      },
+      {
+        "label": "DAX",
+        "raw_text": "Power BI/DAX"
+      },
+      {
+        "label": "AWS CloudFormation",
+        "raw_text": "Terraform/CloudFormation"
+      },
+      {
+        "label": "Jira",
+        "raw_text": "testing and Jira"
+      },
+      {
+        "label": "Atlan data catalog",
+        "raw_text": "Experience with the Atlan data catalog"
+      },
+      {
+        "label": "SAP/JDE/M3 data concepts (domain knowledge)",
+        "raw_text": "SAP, JDE and M3 data concepts"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "senior-to-architect-level engineers",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The Required and Preferred headings set the defaults. No inline marker overrides them.\nThe responsibilities mention ECS, Lambda, Step Functions, medallion layering, explainability and Atlan integration. Only Atlan is also asked of the candidate, under Preferred. The rest are not labeled.\nThe bare 'guardrails' in the Bedrock bullet is read as LLM guardrails. It is flagged uncertain.\nevaluation and llm-guardrails share one raw_text because the bullet names both in one span.\n'tool use, text-to-SQL' also appears in the responsibilities. Both mentions lead to the same label, so the quote is still adequate.\nThe AWS certifications are credentials, not taxonomy skills, so they are not labeled.\nSAP/JDE/M3 data concepts are domain knowledge, not skills. They are listed in unmapped for visibility only.\n'Terraform/CloudFormation' is likely an alternative pair. CloudFormation is unmapped, so no group is formed.\nNo German, degree or language mention appears anywhere in the posting."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "d363f3f89be5e8ac8a4dd1caae594308bb428cf30b670d41bf234bbdb9bd6ca1",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

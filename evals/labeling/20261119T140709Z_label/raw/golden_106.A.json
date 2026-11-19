@@ -1,0 +1,83 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"applying machine learning to address real-world problems\"},\n    {\"skill_id\": \"cpp\", \"requirement\": \"required\", \"raw_text\": \"Strong C++\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python programming\"},\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"required\", \"raw_text\": \"deep learning frameworks\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\", \"alternative_group\": 1},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"Tensor Flow\", \"alternative_group\": 1},\n    {\"skill_id\": \"transformers\", \"requirement\": \"nice_to_have\", \"raw_text\": \"modern network architectures like Transformers\"},\n    {\"skill_id\": \"inference-optimization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"model optimization for real-time inference\", \"uncertain\": true},\n    {\"skill_id\": \"tensorrt\", \"requirement\": \"nice_to_have\", \"raw_text\": \"using TensorRT\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"LiDAR/camera perception\", \"raw_text\": \"lidar/camera perception\"},\n    {\"label\": \"multi-sensor fusion\", \"raw_text\": \"multi-sensor fusion\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"MS or PhD in Computer Science, Engineering, or a related field, or equivalent experience\",\n  \"uncertain\": [],\n  \"notes\": \"'What We Need To See' is a requirements section, so items under it default to required. 'Ways To Stand Out From The Crowd' is an optional heading (like Bonus), so items under it are nice_to_have.\\n'deep learning frameworks' is a taxonomy alias of deep-learning. It is the broad skill named alongside its examples, so it stays out of the group.\\nPyTorch and Tensor Flow are offered as e.g. examples for one ask, so they form alternative_group 1.\\n'Tensor Flow' is quoted verbatim as written in the posting (spaced spelling).\\nThe deep learning mention under the stand-out section collapses into the required deep-learning criterion.\\nLiDAR/camera perception and multi-sensor fusion have no taxonomy entry. I did not map them to computer-vision, because the posting never names computer vision; they are listed as unmapped.\\n'debugging skills' is not mapped to testing, because the testing alias is 'debugging & testing' and debugging alone is not that.\\n'Building and sustaining training and essential metric workflows for large-scale datasets' is not mapped to model-development or data-pipelines. Neither is clearly named, which is the literal reading.\\n'mathematical foundations of ML' is covered by machine-learning.\\nThe 'data pipelines' mention is left unlabeled because it appears only in responsibilities.\\nTensorRT is a single e.g. example, so it gets no group.\\nI included inference-optimization from 'model optimization for real-time inference' but flagged it uncertain.\\nDegree takes the highest level named: 'MS or PhD' gives phd. 'or equivalent experience' sets degree_or_equivalent to true.\\nSeniority is stated from the 'Senior' title. The '8+ years' phrase agrees with it.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "applying machine learning to address real-world problems"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "Strong C++"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python programming"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning frameworks"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "Tensor Flow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "nice_to_have",
+        "raw_text": "modern network architectures like Transformers"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "nice_to_have",
+        "raw_text": "model optimization for real-time inference",
+        "uncertain": true
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "nice_to_have",
+        "raw_text": "using TensorRT"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "LiDAR/camera perception",
+        "raw_text": "lidar/camera perception"
+      },
+      {
+        "label": "multi-sensor fusion",
+        "raw_text": "multi-sensor fusion"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "MS or PhD in Computer Science, Engineering, or a related field, or equivalent experience",
+    "uncertain": [],
+    "notes": "'What We Need To See' is a requirements section, so items under it default to required. 'Ways To Stand Out From The Crowd' is an optional heading (like Bonus), so items under it are nice_to_have.\n'deep learning frameworks' is a taxonomy alias of deep-learning. It is the broad skill named alongside its examples, so it stays out of the group.\nPyTorch and Tensor Flow are offered as e.g. examples for one ask, so they form alternative_group 1.\n'Tensor Flow' is quoted verbatim as written in the posting (spaced spelling).\nThe deep learning mention under the stand-out section collapses into the required deep-learning criterion.\nLiDAR/camera perception and multi-sensor fusion have no taxonomy entry. I did not map them to computer-vision, because the posting never names computer vision; they are listed as unmapped.\n'debugging skills' is not mapped to testing, because the testing alias is 'debugging & testing' and debugging alone is not that.\n'Building and sustaining training and essential metric workflows for large-scale datasets' is not mapped to model-development or data-pipelines. Neither is clearly named, which is the literal reading.\n'mathematical foundations of ML' is covered by machine-learning.\nThe 'data pipelines' mention is left unlabeled because it appears only in responsibilities.\nTensorRT is a single e.g. example, so it gets no group.\nI included inference-optimization from 'model optimization for real-time inference' but flagged it uncertain.\nDegree takes the highest level named: 'MS or PhD' gives phd. 'or equivalent experience' sets degree_or_equivalent to true.\nSeniority is stated from the 'Senior' title. The '8+ years' phrase agrees with it."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "0ab255e17b05ba4160b650a70f43a10da79957155f261d595148041cde4161c8",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

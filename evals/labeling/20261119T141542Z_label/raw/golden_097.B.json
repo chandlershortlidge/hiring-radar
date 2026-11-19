@@ -1,0 +1,24 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Read literally: technologies appear only in the title and role description, not as candidate requirements or in a dedicated tech-stack section, so none are labeled.\\nThe only explicit candidate requirements are communication and collaboration, which are excluded soft skills.\\nNo seniority, German-language requirement, or degree is stated.\"\n}",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Read literally: technologies appear only in the title and role description, not as candidate requirements or in a dedicated tech-stack section, so none are labeled.\nThe only explicit candidate requirements are communication and collaboration, which are excluded soft skills.\nNo seniority, German-language requirement, or degree is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "6849a8949d7dd0774b91e9555d566f694b0c703fecf5ddb59a18e0afe255ba9a",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

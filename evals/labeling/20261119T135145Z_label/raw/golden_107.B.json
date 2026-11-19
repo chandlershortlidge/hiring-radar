@@ -1,0 +1,135 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Machine Learning research\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cloud platforms\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AWS\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GCP\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Azure\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"containerization and orchestration technologies\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Docker\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Kubernetes\",\n      \"alternative_group\": 4\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Generative models\",\n      \"raw_text\": \"generative models\"\n    },\n    {\n      \"label\": \"Vision-language models\",\n      \"raw_text\": \"VLMs\"\n    },\n    {\n      \"label\": \"ML frameworks\",\n      \"raw_text\": \"ML framework\"\n    },\n    {\n      \"label\": \"ML model efficiency and optimization\",\n      \"raw_text\": \"ML model efficiency and optimization\"\n    },\n    {\n      \"label\": \"Performance analysis\",\n      \"raw_text\": \"performance analysis\"\n    },\n    {\n      \"label\": \"Profiling\",\n      \"raw_text\": \"profiling\"\n    },\n    {\n      \"label\": \"Optimization techniques\",\n      \"raw_text\": \"optimization techniques\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years of experience leading Machine Learning research initiatives.\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD in Computer Science, Computer Engineering, or a related field.\",\n  \"notes\": \"Required Qualifications sets required labels; Preferred/Bonus Qualifications sets nice_to_have labels.\\nSeniority follows the explicit research-leadership experience, rather than the years alone.\\nCloud providers and container/orchestration tools are grouped as examples offered for their respective asks; LLMs and VLMs are joined by 'and' and are not grouped.\\nTaking the qualifications literally, generic model optimization is not necessarily inference optimization, and generic ML frameworks are not necessarily deep-learning frameworks; these remain unmapped.\\nGenerative models is broader than LLMs and has no exact taxonomy entry.\\nTechnologies and practices appearing only in responsibilities or company descriptions are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Machine Learning research"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "GCP",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerization and orchestration technologies"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes",
+        "alternative_group": 4
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Generative models",
+        "raw_text": "generative models"
+      },
+      {
+        "label": "Vision-language models",
+        "raw_text": "VLMs"
+      },
+      {
+        "label": "ML frameworks",
+        "raw_text": "ML framework"
+      },
+      {
+        "label": "ML model efficiency and optimization",
+        "raw_text": "ML model efficiency and optimization"
+      },
+      {
+        "label": "Performance analysis",
+        "raw_text": "performance analysis"
+      },
+      {
+        "label": "Profiling",
+        "raw_text": "profiling"
+      },
+      {
+        "label": "Optimization techniques",
+        "raw_text": "optimization techniques"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years of experience leading Machine Learning research initiatives.",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD in Computer Science, Computer Engineering, or a related field.",
+    "notes": "Required Qualifications sets required labels; Preferred/Bonus Qualifications sets nice_to_have labels.\nSeniority follows the explicit research-leadership experience, rather than the years alone.\nCloud providers and container/orchestration tools are grouped as examples offered for their respective asks; LLMs and VLMs are joined by 'and' and are not grouped.\nTaking the qualifications literally, generic model optimization is not necessarily inference optimization, and generic ML frameworks are not necessarily deep-learning frameworks; these remain unmapped.\nGenerative models is broader than LLMs and has no exact taxonomy entry.\nTechnologies and practices appearing only in responsibilities or company descriptions are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "ab48e61d3cd5ac626101c27cb5d145a956d735f0cf43c2d844beed670073c4b8",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,133 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering experience\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying AI/ML models to production\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying AI/ML models to production in the cloud\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud architecture\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"infrastructure as code\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"experience using ML frameworks\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Linux environments and systems\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software architecture and design skills\"\n    },\n    {\n      \"skill_id\": \"llmops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLMOps\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"model evaluation\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"monitoring\"\n    },\n    {\n      \"skill_id\": \"quantization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"quantization\"\n    },\n    {\n      \"skill_id\": \"knowledge-distillation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distillation/teacher-student approaches\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"fine-tuning\"\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"privacy-preserving machine learning, and secure AI techniques\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Large-scale model optimization\",\n      \"raw_text\": \"optimizing large-scale models\"\n    },\n    {\n      \"label\": \"Model encryption\",\n      \"raw_text\": \"model encryption\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s degree or PhD in Computer Science, Engineering, Electronics, Mathematics, or another highly technical field.\",\n  \"groups_reviewed\": true,\n  \"notes\": \"What You Bring sets required qualifications; Preferred sets optional qualifications. Responsibilities and career-growth sections do not establish additional candidate skills.\\nThe broad machine-learning mapping for experience using ML frameworks is flagged for review; PyTorch and TensorFlow are explicit alternatives.\\nProduction deployment in Preferred collapses into the required AI/ML deployment criterion.\\nPrivacy-preserving machine learning and secure AI techniques map to Data Privacy & Security; model encryption is retained separately as unmapped.\\nOptimizing large-scale models does not explicitly specify inference optimization, and large-scale models does not necessarily mean LLMs; neither narrower skill is inferred.\\nThe highest degree named is PhD and is preferred, although a bachelor’s degree is separately required. The related-field wording does not permit experience in place of a degree.\\nThe general encouragement to apply without meeting every qualification does not change individual requirement labels.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering experience"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "deploying AI/ML models to production"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying AI/ML models to production in the cloud"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud architecture"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "infrastructure as code"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "experience using ML frameworks",
+        "uncertain": true
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux environments and systems"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "software architecture and design skills"
+      },
+      {
+        "skill_id": "llmops",
+        "requirement": "nice_to_have",
+        "raw_text": "LLMOps"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "model evaluation"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "nice_to_have",
+        "raw_text": "quantization"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "nice_to_have",
+        "raw_text": "distillation/teacher-student approaches"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "nice_to_have",
+        "raw_text": "privacy-preserving machine learning, and secure AI techniques"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Large-scale model optimization",
+        "raw_text": "optimizing large-scale models"
+      },
+      {
+        "label": "Model encryption",
+        "raw_text": "model encryption"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s degree or PhD in Computer Science, Engineering, Electronics, Mathematics, or another highly technical field.",
+    "groups_reviewed": true,
+    "notes": "What You Bring sets required qualifications; Preferred sets optional qualifications. Responsibilities and career-growth sections do not establish additional candidate skills.\nThe broad machine-learning mapping for experience using ML frameworks is flagged for review; PyTorch and TensorFlow are explicit alternatives.\nProduction deployment in Preferred collapses into the required AI/ML deployment criterion.\nPrivacy-preserving machine learning and secure AI techniques map to Data Privacy & Security; model encryption is retained separately as unmapped.\nOptimizing large-scale models does not explicitly specify inference optimization, and large-scale models does not necessarily mean LLMs; neither narrower skill is inferred.\nThe highest degree named is PhD and is preferred, although a bachelor’s degree is separately required. The related-field wording does not permit experience in place of a degree.\nThe general encouragement to apply without meeting every qualification does not change individual requirement labels."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "5c8fe999b8f9fb6a564c807e31e12df3deacb93ec8842a8462589b291f23ac30",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

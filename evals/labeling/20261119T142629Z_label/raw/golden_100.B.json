@@ -1,0 +1,65 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"experience in software engineering\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Golang\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed computing\"\n    },\n    {\n      \"skill_id\": \"hadoop\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Hadoop\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"apache-spark\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Spark\",\n      \"alternative_group\": 2\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Large-scale data processing\",\n      \"raw_text\": \"principles and technologies of large-scale data processing\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"At least 3 years of experience in software engineering\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"A bachelor's or above degree in computer science, software engineering, or a related field.\",\n  \"notes\": \"Minimum Qualifications sets a required default; there is no optional qualifications section.\\nProgramming languages and open-source tools are examples for single asks, so their named examples are grouped as alternatives.\\nDistributed computing maps to distributed-systems; large-scale data processing has no exact taxonomy entry and is not assumed to mean data pipelines.\\nTechnologies and practices mentioned only in Responsibilities are excluded.\\nBachelor is the only degree level explicitly named; 'above' does not name a higher level.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "experience in software engineering"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Golang",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed computing"
+      },
+      {
+        "skill_id": "hadoop",
+        "requirement": "required",
+        "raw_text": "Hadoop",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "required",
+        "raw_text": "Spark",
+        "alternative_group": 2
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Large-scale data processing",
+        "raw_text": "principles and technologies of large-scale data processing"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "At least 3 years of experience in software engineering",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "A bachelor's or above degree in computer science, software engineering, or a related field.",
+    "notes": "Minimum Qualifications sets a required default; there is no optional qualifications section.\nProgramming languages and open-source tools are examples for single asks, so their named examples are grouped as alternatives.\nDistributed computing maps to distributed-systems; large-scale data processing has no exact taxonomy entry and is not assumed to mean data pipelines.\nTechnologies and practices mentioned only in Responsibilities are excluded.\nBachelor is the only degree level explicitly named; 'above' does not name a higher level."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "166f67f86fd6515ebd91de813cad84e1521bb8d9f8e83ca4f98bcacda19a01b0",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

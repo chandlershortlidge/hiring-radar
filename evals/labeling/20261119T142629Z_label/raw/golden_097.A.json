@@ -1,0 +1,120 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Machine Learning\", \"alternative_group\": 1},\n    {\"skill_id\": \"nlp\", \"requirement\": \"required\", \"raw_text\": \"Natural Language Processing (NLP)\", \"uncertain\": true},\n    {\"skill_id\": \"computer-vision\", \"requirement\": \"required\", \"raw_text\": \"Computer Vision\", \"alternative_group\": 1},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Proficiency in software development\", \"uncertain\": true},\n    {\"skill_id\": \"cpp\", \"requirement\": \"required\", \"raw_text\": \"C++\", \"alternative_group\": 2},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\", \"alternative_group\": 2},\n    {\"skill_id\": \"go\", \"requirement\": \"required\", \"raw_text\": \"Go\", \"alternative_group\": 2},\n    {\"skill_id\": \"java\", \"requirement\": \"required\", \"raw_text\": \"Java\", \"alternative_group\": 2},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience in fine-tuning\", \"alternative_group\": 3},\n    {\"skill_id\": \"knowledge-distillation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"distillation, or reinforcement learning\", \"alternative_group\": 3},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"reinforcement learning for large language models\", \"alternative_group\": 3},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"large language models\"},\n    {\"skill_id\": \"conversational-ai\", \"requirement\": \"nice_to_have\", \"raw_text\": \"conversational AI applications\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Machine translation\", \"raw_text\": \"machine translation\"},\n    {\"label\": \"Cross-lingual dialogue modeling\", \"raw_text\": \"cross-lingual dialogue modeling\"},\n    {\"label\": \"Multimodal large models\", \"raw_text\": \"product multimodal large models\"},\n    {\"label\": \"Cross-modal retrieval\", \"raw_text\": \"cross-modal retrieval\"}\n  ],\n  \"seniority\": \"senior\", \"seniority_basis\": \"stated\", \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null, \"german_basis\": null, \"german_signal\": null,\n  \"degree\": \"phd\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false,\n  \"degree_signal\": \"MS or PhD in Computer Science, AI, Mathematics, or a related field\",\n  \"uncertain\": [],\n  \"groups_reviewed\": true,\n  \"notes\": \"Responsibilities-only technologies are not labeled because the candidate is not asked for them there: LLM systems, prompt engineering, quantization, distillation, vLLM, FlashAttention, RLHF/DPO and instruction tuning.\\nGroup 1 is the 'one or more of' set ML/NLP/CV. NLP leaves the group because 'multilingual NLP' asks for it on its own in Preferred Qualifications. NLP stays required: the required mention wins, so raw_text quotes that mention.\\nGroup 2 is the 'at least one of' set C++/Python/Go/Java.\\nGroup 3 is 'fine-tuning, distillation, or reinforcement learning' in Preferred Qualifications, so all three are nice_to_have.\\n'Proficiency in software development' is mapped to software-engineering as the closest entry. 'software development' is not an alias, so this item is flagged uncertain.\\nE-commerce policy and dispute-resolution knowledge is domain knowledge, so it is not a skill.\\nDegree is labeled phd because 'MS or PhD' takes the highest level named (golden_040 rule). 'Related field' widens the field only, so degree_or_equivalent is false.\\n'5+ years' also supports senior, but the label rests on the stated title.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Machine Learning",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "Natural Language Processing (NLP)",
+        "uncertain": true
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "Computer Vision",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Proficiency in software development",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience in fine-tuning",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "nice_to_have",
+        "raw_text": "distillation, or reinforcement learning",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning for large language models",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "large language models"
+      },
+      {
+        "skill_id": "conversational-ai",
+        "requirement": "nice_to_have",
+        "raw_text": "conversational AI applications"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Machine translation",
+        "raw_text": "machine translation"
+      },
+      {
+        "label": "Cross-lingual dialogue modeling",
+        "raw_text": "cross-lingual dialogue modeling"
+      },
+      {
+        "label": "Multimodal large models",
+        "raw_text": "product multimodal large models"
+      },
+      {
+        "label": "Cross-modal retrieval",
+        "raw_text": "cross-modal retrieval"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "MS or PhD in Computer Science, AI, Mathematics, or a related field",
+    "uncertain": [],
+    "groups_reviewed": true,
+    "notes": "Responsibilities-only technologies are not labeled because the candidate is not asked for them there: LLM systems, prompt engineering, quantization, distillation, vLLM, FlashAttention, RLHF/DPO and instruction tuning.\nGroup 1 is the 'one or more of' set ML/NLP/CV. NLP leaves the group because 'multilingual NLP' asks for it on its own in Preferred Qualifications. NLP stays required: the required mention wins, so raw_text quotes that mention.\nGroup 2 is the 'at least one of' set C++/Python/Go/Java.\nGroup 3 is 'fine-tuning, distillation, or reinforcement learning' in Preferred Qualifications, so all three are nice_to_have.\n'Proficiency in software development' is mapped to software-engineering as the closest entry. 'software development' is not an alias, so this item is flagged uncertain.\nE-commerce policy and dispute-resolution knowledge is domain knowledge, so it is not a skill.\nDegree is labeled phd because 'MS or PhD' takes the highest level named (golden_040 rule). 'Related field' widens the field only, so degree_or_equivalent is false.\n'5+ years' also supports senior, but the label rests on the stated title."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "485411792f13cc19bedaa70e4158423c2d7d2e95a32a3a86932d0ed4aff35960",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

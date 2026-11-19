@@ -1,0 +1,97 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"building and operating machine learning solutions\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud platforms\"},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"AI services and MLOps foundations\"},\n    {\"skill_id\": \"model-development\", \"requirement\": \"required\", \"raw_text\": \"model development\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"end-to-end ML systems, spanning model development, deployment\", \"uncertain\": true},\n    {\"skill_id\": \"ml-engineering\", \"requirement\": \"required\", \"raw_text\": \"modern ML engineering tooling\"},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"required\", \"raw_text\": \"data pipelines\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD workflows\"},\n    {\"skill_id\": \"model-serving\", \"requirement\": \"nice_to_have\", \"raw_text\": \"real-time and batch inference systems in production\", \"uncertain\": true},\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"deep learning frameworks\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"nice_to_have\", \"raw_text\": \"ML observability solutions\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"feature stores\", \"raw_text\": \"feature stores\"},\n    {\"label\": \"model optimization\", \"raw_text\": \"model optimization for performance and cost\"},\n    {\"label\": \"cloud security / governance / compliance\", \"raw_text\": \"cloud security, governance, and compliance standards\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master's degree in Computer Science, Software Engineering, Machine Learning, or a related field\",\n  \"uncertain\": [],\n  \"notes\": \"Responsibilities list (EC2, EKS, SageMaker, infrastructure-as-code, CI/CD) is not labeled unless the qualifications also ask for it; CI/CD is labeled from 'CI/CD workflows' under Experience Required.\\n'Experience Preferred' heading makes its items nice_to_have; 'shared MLOps platforms' there collapses into the required mlops criterion.\\n'cloud environments' and 'cloud platforms' both map to cloud; quoted 'cloud platforms', the exact alias.\\n'deployment' in the ML-systems bullet is mapped to ai-deployment (model deployment); flagged uncertain.\\nmachine-learning is labeled from 'machine learning solutions'; whether this is a skill ask or domain framing is flagged uncertain.\\n'real-time and batch inference systems' is mapped to model-serving as the closest entry; flagged uncertain.\\n'model optimization for performance and cost' is not specifically inference optimization, so it is left unmapped.\\nThere is no explicit 'cloud security' entry; cybersecurity was judged too broad a fit, so it is left unmapped.\\nNo alternative groups: the skills in these lists are asked for together, not offered in place of each other.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "building and operating machine learning solutions",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "AI services and MLOps foundations"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "model development"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "end-to-end ML systems, spanning model development, deployment",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "modern ML engineering tooling"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "data pipelines"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD workflows"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "real-time and batch inference systems in production",
+        "uncertain": true
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "deep learning frameworks"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "ML observability solutions"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "feature stores",
+        "raw_text": "feature stores"
+      },
+      {
+        "label": "model optimization",
+        "raw_text": "model optimization for performance and cost"
+      },
+      {
+        "label": "cloud security / governance / compliance",
+        "raw_text": "cloud security, governance, and compliance standards"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master's degree in Computer Science, Software Engineering, Machine Learning, or a related field",
+    "uncertain": [],
+    "notes": "Responsibilities list (EC2, EKS, SageMaker, infrastructure-as-code, CI/CD) is not labeled unless the qualifications also ask for it; CI/CD is labeled from 'CI/CD workflows' under Experience Required.\n'Experience Preferred' heading makes its items nice_to_have; 'shared MLOps platforms' there collapses into the required mlops criterion.\n'cloud environments' and 'cloud platforms' both map to cloud; quoted 'cloud platforms', the exact alias.\n'deployment' in the ML-systems bullet is mapped to ai-deployment (model deployment); flagged uncertain.\nmachine-learning is labeled from 'machine learning solutions'; whether this is a skill ask or domain framing is flagged uncertain.\n'real-time and batch inference systems' is mapped to model-serving as the closest entry; flagged uncertain.\n'model optimization for performance and cost' is not specifically inference optimization, so it is left unmapped.\nThere is no explicit 'cloud security' entry; cybersecurity was judged too broad a fit, so it is left unmapped.\nNo alternative groups: the skills in these lists are asked for together, not offered in place of each other."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "c24eb1b0c72f2ba311305fe83e390dfce81065cebb457485483f6b3fcee6f32d",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

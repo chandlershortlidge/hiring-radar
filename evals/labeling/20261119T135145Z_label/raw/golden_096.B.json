@@ -1,0 +1,231 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"3–5 years of hands-on Kubernetes experience\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GCP\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"networking\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"bash\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Bash\"\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Go\"\n    },\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Linux OS\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"infrastructure-as-code\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"ansible\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Ansible\"\n    },\n    {\n      \"skill_id\": \"gitops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitOps workflows\"\n    },\n    {\n      \"skill_id\": \"argocd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Argo CD\"\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"running ML or inference services at scale on Kubernetes in production\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI inference and/or training workflows\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"triton-inference-server\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Triton\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"vllm\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vLLM\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"observability\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"API platforms\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Amazon EKS\",\n      \"raw_text\": \"EKS\"\n    },\n    {\n      \"label\": \"Google Kubernetes Engine\",\n      \"raw_text\": \"GKE\"\n    },\n    {\n      \"label\": \"Self-hosted Kubernetes clusters\",\n      \"raw_text\": \"self-hosted clusters\"\n    },\n    {\n      \"label\": \"Accelerated workload operation\",\n      \"raw_text\": \"running accelerated workloads in Kubernetes\"\n    },\n    {\n      \"label\": \"Kubernetes scheduling\",\n      \"raw_text\": \"scheduling\"\n    },\n    {\n      \"label\": \"Accelerator drivers\",\n      \"raw_text\": \"drivers\"\n    },\n    {\n      \"label\": \"Kubernetes device plugins\",\n      \"raw_text\": \"device plugins\"\n    },\n    {\n      \"label\": \"Multi-Instance GPU\",\n      \"raw_text\": \"MIG\"\n    },\n    {\n      \"label\": \"Storage\",\n      \"raw_text\": \"storage considerations\"\n    },\n    {\n      \"label\": \"Pulumi\",\n      \"raw_text\": \"Pulumi\"\n    },\n    {\n      \"label\": \"OS configuration management\",\n      \"raw_text\": \"OS configuration tooling\"\n    },\n    {\n      \"label\": \"Puppet\",\n      \"raw_text\": \"Puppet\"\n    },\n    {\n      \"label\": \"Salt\",\n      \"raw_text\": \"Salt\"\n    },\n    {\n      \"label\": \"Flux\",\n      \"raw_text\": \"Flux\"\n    },\n    {\n      \"label\": \"Text Generation Inference\",\n      \"raw_text\": \"TGI\"\n    },\n    {\n      \"label\": \"Inference batching\",\n      \"raw_text\": \"batching\"\n    },\n    {\n      \"label\": \"Inference streaming\",\n      \"raw_text\": \"streaming\"\n    },\n    {\n      \"label\": \"KV-cache-aware routing\",\n      \"raw_text\": \"KV-cache aware routing\"\n    },\n    {\n      \"label\": \"Heterogeneous accelerators\",\n      \"raw_text\": \"heterogeneous accelerators beyond GPUs\"\n    },\n    {\n      \"label\": \"FPGAs\",\n      \"raw_text\": \"FPGAs\"\n    },\n    {\n      \"label\": \"Custom ASICs\",\n      \"raw_text\": \"custom ASICs\"\n    },\n    {\n      \"label\": \"Site reliability engineering\",\n      \"raw_text\": \"SRE\"\n    },\n    {\n      \"label\": \"Performance engineering\",\n      \"raw_text\": \"performance engineering\"\n    },\n    {\n      \"label\": \"API customer onboarding\",\n      \"raw_text\": \"onboarding\"\n    },\n    {\n      \"label\": \"API key and authentication management\",\n      \"raw_text\": \"API keys/auth management\"\n    },\n    {\n      \"label\": \"API usage metering\",\n      \"raw_text\": \"usage metering\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3–5 years of hands-on Kubernetes experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"MS/PhD in Computer Science, Software Engineering, or a related field.\",\n  \"notes\": \"Required Qualifications sets required defaults; Preferred/Bonus Qualifications sets optional defaults.\\nResponsibilities and company-description technologies are excluded unless also requested in qualifications.\\nModel serving is interpreted to include operating production inference services; this mapping is flagged for review.\\nTraining workflows is tentatively mapped to model-development, but the wording may mean operational familiarity rather than model training itself; flagged for review.\\nML services is not separately treated as a request for general machine-learning knowledge.\\nAlternative groups number the mapped sets: AWS/GCP and inference-server examples. EKS/GKE/self-hosted clusters are additional alternatives without exact taxonomy entries. Observability/SRE/performance engineering is another alternative ask with only one mapped member.\\nTerraform/Pulumi, Ansible/Puppet/Salt, and Argo CD/Flux are unmarked parenthetical lists, not explicitly disjunctive examples; they are not grouped.\\nThe highest degree named is PhD, in the optional section, although a BS is required.\\nNo general Cloud skill is added from the title or role summary.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "3–5 years of hands-on Kubernetes experience"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "networking"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "bash",
+        "requirement": "required",
+        "raw_text": "Bash"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux OS"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "infrastructure-as-code"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "ansible",
+        "requirement": "required",
+        "raw_text": "Ansible"
+      },
+      {
+        "skill_id": "gitops",
+        "requirement": "required",
+        "raw_text": "GitOps workflows"
+      },
+      {
+        "skill_id": "argocd",
+        "requirement": "required",
+        "raw_text": "Argo CD"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "required",
+        "raw_text": "running ML or inference services at scale on Kubernetes in production",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "AI inference and/or training workflows",
+        "uncertain": true
+      },
+      {
+        "skill_id": "triton-inference-server",
+        "requirement": "nice_to_have",
+        "raw_text": "Triton",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "nice_to_have",
+        "raw_text": "vLLM",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "observability"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "nice_to_have",
+        "raw_text": "API platforms"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Amazon EKS",
+        "raw_text": "EKS"
+      },
+      {
+        "label": "Google Kubernetes Engine",
+        "raw_text": "GKE"
+      },
+      {
+        "label": "Self-hosted Kubernetes clusters",
+        "raw_text": "self-hosted clusters"
+      },
+      {
+        "label": "Accelerated workload operation",
+        "raw_text": "running accelerated workloads in Kubernetes"
+      },
+      {
+        "label": "Kubernetes scheduling",
+        "raw_text": "scheduling"
+      },
+      {
+        "label": "Accelerator drivers",
+        "raw_text": "drivers"
+      },
+      {
+        "label": "Kubernetes device plugins",
+        "raw_text": "device plugins"
+      },
+      {
+        "label": "Multi-Instance GPU",
+        "raw_text": "MIG"
+      },
+      {
+        "label": "Storage",
+        "raw_text": "storage considerations"
+      },
+      {
+        "label": "Pulumi",
+        "raw_text": "Pulumi"
+      },
+      {
+        "label": "OS configuration management",
+        "raw_text": "OS configuration tooling"
+      },
+      {
+        "label": "Puppet",
+        "raw_text": "Puppet"
+      },
+      {
+        "label": "Salt",
+        "raw_text": "Salt"
+      },
+      {
+        "label": "Flux",
+        "raw_text": "Flux"
+      },
+      {
+        "label": "Text Generation Inference",
+        "raw_text": "TGI"
+      },
+      {
+        "label": "Inference batching",
+        "raw_text": "batching"
+      },
+      {
+        "label": "Inference streaming",
+        "raw_text": "streaming"
+      },
+      {
+        "label": "KV-cache-aware routing",
+        "raw_text": "KV-cache aware routing"
+      },
+      {
+        "label": "Heterogeneous accelerators",
+        "raw_text": "heterogeneous accelerators beyond GPUs"
+      },
+      {
+        "label": "FPGAs",
+        "raw_text": "FPGAs"
+      },
+      {
+        "label": "Custom ASICs",
+        "raw_text": "custom ASICs"
+      },
+      {
+        "label": "Site reliability engineering",
+        "raw_text": "SRE"
+      },
+      {
+        "label": "Performance engineering",
+        "raw_text": "performance engineering"
+      },
+      {
+        "label": "API customer onboarding",
+        "raw_text": "onboarding"
+      },
+      {
+        "label": "API key and authentication management",
+        "raw_text": "API keys/auth management"
+      },
+      {
+        "label": "API usage metering",
+        "raw_text": "usage metering"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3–5 years of hands-on Kubernetes experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "MS/PhD in Computer Science, Software Engineering, or a related field.",
+    "notes": "Required Qualifications sets required defaults; Preferred/Bonus Qualifications sets optional defaults.\nResponsibilities and company-description technologies are excluded unless also requested in qualifications.\nModel serving is interpreted to include operating production inference services; this mapping is flagged for review.\nTraining workflows is tentatively mapped to model-development, but the wording may mean operational familiarity rather than model training itself; flagged for review.\nML services is not separately treated as a request for general machine-learning knowledge.\nAlternative groups number the mapped sets: AWS/GCP and inference-server examples. EKS/GKE/self-hosted clusters are additional alternatives without exact taxonomy entries. Observability/SRE/performance engineering is another alternative ask with only one mapped member.\nTerraform/Pulumi, Ansible/Puppet/Salt, and Argo CD/Flux are unmarked parenthetical lists, not explicitly disjunctive examples; they are not grouped.\nThe highest degree named is PhD, in the optional section, although a BS is required.\nNo general Cloud skill is added from the title or role summary."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "2f2a20c92da923134674de77032f32a5b8af67058d59e061e53e35ccfbd1cf8b",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

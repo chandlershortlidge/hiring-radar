@@ -1,0 +1,791 @@
+{
+  "run_id": "20261119T135145Z_label",
+  "seed": 0,
+  "provider_a": "anthropic",
+  "model_a": "claude-opus-5-5",
+  "provider_b": "openai",
+  "model_b": "gpt-6.1-sol",
+  "extractor": "claude-sonnet-5-5",
+  "spot_n": 80,
+  "spot_pool": 201,
+  "taxonomy_version": 11,
+  "n_picked": 15,
+  "n_labeled": 15,
+  "failed": [],
+  "agreement": {
+    "n_postings": 15,
+    "skills": {
+      "tp": 208,
+      "fp": 20,
+      "fn": 0,
+      "precision": 0.9122807017543859,
+      "recall": 1.0,
+      "f1": 0.9541284403669724
+    },
+    "requirement_agreement": 0.9951923076923077,
+    "attributes": {
+      "seniority": {
+        "agreed": 14,
+        "n": 15,
+        "rate": 0.9333333333333333
+      },
+      "german": {
+        "agreed": 15,
+        "n": 15,
+        "rate": 1.0
+      },
+      "degree": {
+        "agreed": 14,
+        "n": 15,
+        "rate": 0.9333333333333333
+      }
+    }
+  },
+  "accepted_skills": 169,
+  "accepted_attributes": 32,
+  "review_items": {
+    "in-scope": 15,
+    "disagreement": 22,
+    "uncertain": 49,
+    "spot-check": 80
+  },
+  "spot_check": {
+    "n": 80,
+    "pool": 201,
+    "seed": 0,
+    "sample": [
+      [
+        "golden_094",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_094",
+        "skill",
+        "ai-developer-tooling"
+      ],
+      [
+        "golden_094",
+        "skill",
+        "forecasting"
+      ],
+      [
+        "golden_095",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_095",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_095",
+        "skill",
+        "ai-developer-tooling"
+      ],
+      [
+        "golden_095",
+        "skill",
+        "autogen"
+      ],
+      [
+        "golden_095",
+        "skill",
+        "claude-code"
+      ],
+      [
+        "golden_095",
+        "skill",
+        "cloud"
+      ],
+      [
+        "golden_095",
+        "skill",
+        "containerization"
+      ],
+      [
+        "golden_095",
+        "skill",
+        "fine-tuning"
+      ],
+      [
+        "golden_095",
+        "skill",
+        "google-adk"
+      ],
+      [
+        "golden_095",
+        "skill",
+        "java"
+      ],
+      [
+        "golden_095",
+        "skill",
+        "llamaindex"
+      ],
+      [
+        "golden_095",
+        "skill",
+        "llm-orchestration"
+      ],
+      [
+        "golden_095",
+        "skill",
+        "llmops"
+      ],
+      [
+        "golden_095",
+        "skill",
+        "observability"
+      ],
+      [
+        "golden_095",
+        "skill",
+        "vector-databases"
+      ],
+      [
+        "golden_096",
+        "skill",
+        "argocd"
+      ],
+      [
+        "golden_096",
+        "skill",
+        "gcp"
+      ],
+      [
+        "golden_096",
+        "skill",
+        "gitops"
+      ],
+      [
+        "golden_096",
+        "skill",
+        "observability"
+      ],
+      [
+        "golden_096",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_096",
+        "skill",
+        "triton-inference-server"
+      ],
+      [
+        "golden_097",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "containerization"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "cpp"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "docker"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "kubernetes"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "nlp"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "pytorch"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "tensorflow"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "testing"
+      ],
+      [
+        "golden_098",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_098",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_098",
+        "skill",
+        "pytorch"
+      ],
+      [
+        "golden_099",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_099",
+        "skill",
+        "testing"
+      ],
+      [
+        "golden_100",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_100",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_101",
+        "skill",
+        "cloud"
+      ],
+      [
+        "golden_101",
+        "skill",
+        "quantization"
+      ],
+      [
+        "golden_102",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_102",
+        "skill",
+        "causal-inference"
+      ],
+      [
+        "golden_102",
+        "skill",
+        "dbt"
+      ],
+      [
+        "golden_102",
+        "skill",
+        "pytorch"
+      ],
+      [
+        "golden_102",
+        "skill",
+        "sagemaker"
+      ],
+      [
+        "golden_102",
+        "skill",
+        "scikit-learn"
+      ],
+      [
+        "golden_102",
+        "skill",
+        "sql"
+      ],
+      [
+        "golden_102",
+        "skill",
+        "statistics"
+      ],
+      [
+        "golden_102",
+        "skill",
+        "tableau"
+      ],
+      [
+        "golden_103",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "containerization"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "docker"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "evaluation"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "fine-tuning"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "jax"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "model-development"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "pytorch"
+      ],
+      [
+        "golden_104",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "cpp"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "fine-tuning"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "knowledge-distillation"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "llmops"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "quantization"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "software-architecture"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "software-engineering"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "tensorflow"
+      ],
+      [
+        "golden_105",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_106",
+        "skill",
+        "cpp"
+      ],
+      [
+        "golden_106",
+        "skill",
+        "deepspeed"
+      ],
+      [
+        "golden_106",
+        "skill",
+        "vllm"
+      ],
+      [
+        "golden_107",
+        "skill",
+        "aws"
+      ],
+      [
+        "golden_107",
+        "skill",
+        "gcp"
+      ],
+      [
+        "golden_107",
+        "skill",
+        "jax"
+      ],
+      [
+        "golden_107",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_107",
+        "skill",
+        "pytorch"
+      ],
+      [
+        "golden_107",
+        "skill",
+        "tensorflow"
+      ],
+      [
+        "golden_108",
+        "skill",
+        "python"
+      ]
+    ]
+  },
+  "signal_mismatches": [
+    "golden_097 seniority: A '3+ years of machine learning R&D and deployment experience' vs B '3+ years of machine learning R&D and deployment experience.'",
+    "golden_097 degree: A 'PhD/MS in Computer Science, Computer Engineering, or a related field' vs B 'PhD/MS in Computer Science, Computer Engineering, or a related field.'",
+    "golden_105 seniority: A 'Senior Software Engineer' vs B 'Senior Software Engineer, Axon AI'",
+    "golden_105 degree: A 'Bachelor’s degree or equivalent experience' vs B 'Bachelor’s degree or equivalent experience.'",
+    "golden_106 degree: A 'BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field' vs B 'BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field.'"
+  ],
+  "unmapped": [
+    "3D perception / depth sensing",
+    "3D printing",
+    "A2A",
+    "A2A protocol",
+    "AI compiler technologies",
+    "AI platform tooling",
+    "AI tools (general)",
+    "AI tools for workflow transformation",
+    "AI/ML hardware acceleration",
+    "API customer onboarding",
+    "API key and authentication management",
+    "API usage metering",
+    "AWS SQS",
+    "Accelerated workload operation",
+    "Accelerator SDKs",
+    "Accelerator drivers",
+    "Access controls",
+    "Actuator modeling",
+    "Agent harness development",
+    "Algorithmic optimization",
+    "Algorithms",
+    "Amazon EKS",
+    "Amazon SQS",
+    "Articulated multibody simulation",
+    "Bandit methods",
+    "Batching",
+    "Bayesian or gradient-based parameter estimation",
+    "Bayesian parameter estimation",
+    "Bimanual robotic systems",
+    "Body tracking",
+    "Bullet",
+    "CAD",
+    "Cable simulation",
+    "Caching patterns",
+    "Camera calibration",
+    "Centroidal dynamics",
+    "Churn prediction",
+    "Cloud data warehouses",
+    "Cloud deployment of hardware accelerators",
+    "Code quality and documentation",
+    "Cohort retention modeling",
+    "Collaborative coding practices",
+    "Compiler development",
+    "Compiler technologies for AI models",
+    "Compiler/runtime integration",
+    "Compilers",
+    "Compliant control",
+    "Constraint solver implementation",
+    "Contact and friction modelling",
+    "Contact constraints",
+    "Contact estimation",
+    "Contact modelling",
+    "Contact solver implementation",
+    "Contact-rich robotic manipulation",
+    "Contact-rich robotic tasks",
+    "Contact-stable control",
+    "Context engineering",
+    "Control theory",
+    "Controller instability diagnosis and correction",
+    "Corotational FEM",
+    "Cosserat rods",
+    "Coupling deformable and rigid-body simulations",
+    "Custom ASICs",
+    "Custom hardware accelerators",
+    "Custom hardware accelerators for ML inference",
+    "Customer lifetime value modeling",
+    "DDS",
+    "Data manipulation",
+    "Data preprocessing",
+    "Data structures",
+    "Data structures and algorithms",
+    "Data transformation",
+    "Datadog",
+    "Dataset construction",
+    "Debugging",
+    "Debugging agent execution",
+    "Decision-making algorithms",
+    "Deformable / FEM simulation",
+    "Deformable simulation",
+    "Deploying hardware accelerators in the cloud",
+    "Depth sensing",
+    "Design for manufacturing",
+    "Design for manufacturing (3D printing, machining)",
+    "Difference-in-differences",
+    "Differentiable simulation",
+    "Distributed inference",
+    "Distributed processing",
+    "Domain randomization",
+    "Drake",
+    "Dynamical-systems motion generation",
+    "EKS",
+    "Event streaming",
+    "Experimental design",
+    "Experimentation",
+    "FPGAs",
+    "Finite element simulation",
+    "Floating-base control",
+    "Floating-base dynamics",
+    "Floating-base dynamics / inverse dynamics",
+    "Flux",
+    "Force/torque sensing",
+    "Foundation models",
+    "Friction modelling",
+    "Full-stack robotics debugging",
+    "Fusion 360",
+    "GKE",
+    "GPU programming for physics",
+    "GPU workload profiling",
+    "GPU-accelerated robotics simulation",
+    "GPU/TPU/FPGA/ASIC compute models",
+    "GPU/accelerator workload profiling",
+    "Generative models",
+    "Genesis",
+    "Geo-testing",
+    "Google Kubernetes Engine",
+    "Gradient-based parameter estimation",
+    "Growth measurement frameworks",
+    "Hand tracking",
+    "Hand-eye calibration",
+    "Hardware abstraction layer",
+    "Hardware compute models",
+    "Hardware design",
+    "Hardware design and implementation for AI/ML acceleration",
+    "Hardware implementation of ML optimizations",
+    "Hardware-aware ML optimization",
+    "Heterogeneous accelerators",
+    "Humanoid balance control",
+    "Humanoid locomotion",
+    "Humanoid whole-body control",
+    "Hyperelastic FEM",
+    "IMU-based state estimation",
+    "Imitation learning",
+    "Impedance control",
+    "Inference batching",
+    "Inference streaming",
+    "Inverse dynamics",
+    "Isaac Lab",
+    "Joint control",
+    "Joint-encoder-based state estimation",
+    "KV caching",
+    "KV caching / token scheduling / batching",
+    "KV-cache-aware routing",
+    "Kalman filtering",
+    "Kernel optimization",
+    "Kubernetes device plugins",
+    "Kubernetes scheduling",
+    "LLVM",
+    "LLaVA",
+    "LTV/CAC modeling",
+    "Large-scale data collection",
+    "Large-scale inference clusters",
+    "Large-scale model optimization",
+    "Leader-follower robot arms",
+    "Learned residual dynamics",
+    "LightweightMMM",
+    "Linear inverted pendulum modeling",
+    "Loco-manipulation",
+    "Long-context models",
+    "Long-running agent workflows",
+    "Looker",
+    "Lyapunov / passivity-based control",
+    "Lyapunov methods",
+    "MIG (Multi-Instance GPU)",
+    "MJCF",
+    "ML frameworks",
+    "ML frameworks (systems level)",
+    "ML model efficiency and optimization",
+    "ML model performance optimization",
+    "MLIR",
+    "Machining",
+    "Marketing experiment design",
+    "Marketing measurement",
+    "Mathematical notation",
+    "Mathematical optimization / decision-making algorithms",
+    "Mechanical design",
+    "Media mix modeling",
+    "Memory management",
+    "Memory system architecture",
+    "Mixture-of-experts architectures",
+    "Model encryption",
+    "Model inference",
+    "Model predictive control",
+    "Molmo",
+    "MuJoCo",
+    "MuJoCo Warp",
+    "Multi-Instance GPU",
+    "Multi-armed bandits",
+    "Multi-camera calibration",
+    "Multi-fingered robotic hands",
+    "Multi-touch attribution",
+    "NVIDIA Warp",
+    "Newton/Warp",
+    "Numerical integration of stiff systems",
+    "OS configuration management",
+    "OS configuration tooling",
+    "On-chip interconnects",
+    "Onshape",
+    "Open-source ML or serving-framework contributions",
+    "Open-source compiler / ML systems contributions",
+    "Open-source contribution",
+    "Open-source contributions",
+    "OpenUSD",
+    "Operational-space control",
+    "Optimization",
+    "Optimization techniques",
+    "PCIe",
+    "PCIe / hardware abstraction layer",
+    "Parallel execution",
+    "Parallel processing",
+    "Passivity-based control",
+    "Performance analysis",
+    "Performance engineering",
+    "Performance modeling and analysis tools",
+    "PhysX",
+    "Physics simulation instability diagnosis and remediation",
+    "Physics-engine implementation",
+    "Pipelined inference",
+    "Platform infrastructure",
+    "Predictive analytics",
+    "Predictive modeling",
+    "Probabilistic modeling",
+    "Probabilistic models",
+    "Profiling",
+    "Prompt injection defenses",
+    "Pruning",
+    "Pulumi",
+    "Puppet",
+    "QP-based whole-body control",
+    "RLHF/RLAIF",
+    "RLHF/RLAIF optimization",
+    "RTL design",
+    "RTL design and simulation",
+    "RTL simulation",
+    "Real-robot manipulation",
+    "Real-time control (joint, impedance, operational-space, torque control)",
+    "Real-time robot control",
+    "Reduced-order modeling",
+    "Reduced-order models",
+    "Relational databases",
+    "Reliability best practices",
+    "Rigid-body dynamics",
+    "Rigid-body dynamics / constrained multibody systems",
+    "Robot bring-up",
+    "Robot calibration",
+    "Robot description formats",
+    "Robot hardware design and construction",
+    "Robot learning",
+    "Robot manipulation",
+    "Robotic grasping",
+    "Robotic policy safety wrappers",
+    "Robotics middleware and infrastructure",
+    "Robotics simulation ecosystems",
+    "Robyn",
+    "Runtime scheduling",
+    "SRE",
+    "Salt",
+    "Scaling simulation for policy learning",
+    "Security compliance",
+    "Self-hosted Kubernetes clusters",
+    "Sensor fusion",
+    "Sim-to-real transfer",
+    "Simulation parameter fitting",
+    "Simulation parameter fitting / system identification",
+    "Simulation validation against real robot recordings",
+    "Single rigid-body dynamics",
+    "Site reliability engineering",
+    "SolidWorks",
+    "Source-level simulation stack knowledge",
+    "Sparsity",
+    "Stability analysis",
+    "State estimation",
+    "Storage",
+    "Structured logging",
+    "Synthetic controls",
+    "System identification",
+    "System performance tuning",
+    "System-level integration",
+    "System-level integration and debugging",
+    "SystemVerilog",
+    "Systems programming",
+    "TGI (Text Generation Inference)",
+    "TVM",
+    "Tactile sensing",
+    "Teleoperation systems",
+    "Text Generation Inference",
+    "Token scheduling",
+    "Torque control",
+    "Triton (compiler language, not Triton Inference Server)",
+    "Triton compiler infrastructure",
+    "URDF",
+    "Unitree G1",
+    "Unitree H1",
+    "Unitree platforms",
+    "Uplift modeling",
+    "User segmentation",
+    "VBD",
+    "VLMs",
+    "VR teleoperation",
+    "Verilog",
+    "Vision-language models",
+    "Vision-language-action models",
+    "Vision-language-action policies",
+    "Whole-body control",
+    "Whole-body retargeting",
+    "Workflow orchestration",
+    "XLA",
+    "XPBD",
+    "Zenoh",
+    "collaborative coding practices",
+    "data preprocessing",
+    "data structures and algorithms",
+    "dataset construction",
+    "foundation models",
+    "heterogeneous accelerators (FPGAs, custom ASICs)",
+    "long-context models",
+    "mixture of experts",
+    "model encryption",
+    "performance analysis / profiling",
+    "performance engineering",
+    "physically-based atmospheric/oceanic model development",
+    "profiling",
+    "secure AI techniques",
+    "vision-language models"
+  ]
+}

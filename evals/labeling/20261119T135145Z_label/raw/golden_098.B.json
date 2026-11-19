@@ -1,0 +1,417 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"designed robot software systems end to end\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong Python\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"solid real-time C++\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"trained or deployed learned policies\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"trained or deployed learned policies\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RL\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"ros\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"ROS 2\"\n    },\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"real-time Linux\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"containerization\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"computer-vision\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"3D perception on hardware\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Real-time robot control\",\n      \"raw_text\": \"implemented and tuned real-time controllers\"\n    },\n    {\n      \"label\": \"Joint control\",\n      \"raw_text\": \"joint, impedance, operational-space or torque control\"\n    },\n    {\n      \"label\": \"Impedance control\",\n      \"raw_text\": \"impedance\"\n    },\n    {\n      \"label\": \"Operational-space control\",\n      \"raw_text\": \"operational-space control\"\n    },\n    {\n      \"label\": \"Torque control\",\n      \"raw_text\": \"torque control\"\n    },\n    {\n      \"label\": \"Rigid-body dynamics\",\n      \"raw_text\": \"rigid-body dynamics\"\n    },\n    {\n      \"label\": \"Control theory\",\n      \"raw_text\": \"control theory\"\n    },\n    {\n      \"label\": \"Stability analysis\",\n      \"raw_text\": \"stability analysis\"\n    },\n    {\n      \"label\": \"System identification\",\n      \"raw_text\": \"system identification\"\n    },\n    {\n      \"label\": \"Controller instability diagnosis and correction\",\n      \"raw_text\": \"explain why a controller went unstable and fix it\"\n    },\n    {\n      \"label\": \"Whole-body control\",\n      \"raw_text\": \"Whole-body and floating-base control\"\n    },\n    {\n      \"label\": \"Floating-base control\",\n      \"raw_text\": \"Whole-body and floating-base control\"\n    },\n    {\n      \"label\": \"Floating-base dynamics\",\n      \"raw_text\": \"floating-base dynamics\"\n    },\n    {\n      \"label\": \"Contact constraints\",\n      \"raw_text\": \"contact constraints\"\n    },\n    {\n      \"label\": \"Inverse dynamics\",\n      \"raw_text\": \"inverse dynamics\"\n    },\n    {\n      \"label\": \"QP-based whole-body control\",\n      \"raw_text\": \"QP-based whole-body control\"\n    },\n    {\n      \"label\": \"Model predictive control\",\n      \"raw_text\": \"MPC\"\n    },\n    {\n      \"label\": \"Real-robot manipulation\",\n      \"raw_text\": \"real-robot manipulation\"\n    },\n    {\n      \"label\": \"Robot bring-up\",\n      \"raw_text\": \"bring-up, calibration and control of arms with grippers or hands\"\n    },\n    {\n      \"label\": \"Robot calibration\",\n      \"raw_text\": \"calibration and control of arms with grippers or hands\"\n    },\n    {\n      \"label\": \"State estimation\",\n      \"raw_text\": \"state estimation\"\n    },\n    {\n      \"label\": \"Mechanical design\",\n      \"raw_text\": \"Mechanical design\"\n    },\n    {\n      \"label\": \"Robot hardware design and construction\",\n      \"raw_text\": \"designed and built hardware that was used on a real robot\"\n    },\n    {\n      \"label\": \"CAD\",\n      \"raw_text\": \"CAD required\"\n    },\n    {\n      \"label\": \"SolidWorks\",\n      \"raw_text\": \"SolidWorks\"\n    },\n    {\n      \"label\": \"Fusion 360\",\n      \"raw_text\": \"Fusion 360\"\n    },\n    {\n      \"label\": \"Onshape\",\n      \"raw_text\": \"Onshape\"\n    },\n    {\n      \"label\": \"Design for manufacturing\",\n      \"raw_text\": \"design-for-manufacturing experience\"\n    },\n    {\n      \"label\": \"3D printing\",\n      \"raw_text\": \"3D printing\"\n    },\n    {\n      \"label\": \"Machining\",\n      \"raw_text\": \"machining\"\n    },\n    {\n      \"label\": \"Robot learning\",\n      \"raw_text\": \"Robot learning\"\n    },\n    {\n      \"label\": \"Imitation learning\",\n      \"raw_text\": \"imitation learning\"\n    },\n    {\n      \"label\": \"Vision-language-action policies\",\n      \"raw_text\": \"VLA\"\n    },\n    {\n      \"label\": \"Robotics simulation ecosystems\",\n      \"raw_text\": \"at least one simulation ecosystem\"\n    },\n    {\n      \"label\": \"Isaac Lab\",\n      \"raw_text\": \"Isaac Lab\"\n    },\n    {\n      \"label\": \"MuJoCo\",\n      \"raw_text\": \"MuJoCo\"\n    },\n    {\n      \"label\": \"Full-stack robotics debugging\",\n      \"raw_text\": \"Debugging across the full stack, from perception through control to hardware\"\n    },\n    {\n      \"label\": \"Humanoid locomotion\",\n      \"raw_text\": \"locomotion\"\n    },\n    {\n      \"label\": \"Loco-manipulation\",\n      \"raw_text\": \"loco-manipulation\"\n    },\n    {\n      \"label\": \"Humanoid balance control\",\n      \"raw_text\": \"balance\"\n    },\n    {\n      \"label\": \"Contact-rich robotic manipulation\",\n      \"raw_text\": \"contact-rich tasks\"\n    },\n    {\n      \"label\": \"Unitree platforms\",\n      \"raw_text\": \"Unitree platforms (G1, H1 or similar)\"\n    },\n    {\n      \"label\": \"Unitree G1\",\n      \"raw_text\": \"G1\"\n    },\n    {\n      \"label\": \"Unitree H1\",\n      \"raw_text\": \"H1\"\n    },\n    {\n      \"label\": \"Lyapunov methods\",\n      \"raw_text\": \"Lyapunov and passivity-based methods\"\n    },\n    {\n      \"label\": \"Passivity-based control\",\n      \"raw_text\": \"passivity-based methods\"\n    },\n    {\n      \"label\": \"Contact-stable control\",\n      \"raw_text\": \"contact-stable and compliant control\"\n    },\n    {\n      \"label\": \"Compliant control\",\n      \"raw_text\": \"compliant control\"\n    },\n    {\n      \"label\": \"Dynamical-systems motion generation\",\n      \"raw_text\": \"dynamical-systems approaches to motion generation\"\n    },\n    {\n      \"label\": \"Reduced-order modeling\",\n      \"raw_text\": \"reduced-order models\"\n    },\n    {\n      \"label\": \"Centroidal dynamics\",\n      \"raw_text\": \"centroidal dynamics\"\n    },\n    {\n      \"label\": \"Single rigid-body dynamics\",\n      \"raw_text\": \"SRBD\"\n    },\n    {\n      \"label\": \"Linear inverted pendulum modeling\",\n      \"raw_text\": \"LIPM\"\n    },\n    {\n      \"label\": \"Sim-to-real transfer\",\n      \"raw_text\": \"Sim-to-real for whole-body policies\"\n    },\n    {\n      \"label\": \"GPU-accelerated robotics simulation\",\n      \"raw_text\": \"GPU-accelerated simulators\"\n    },\n    {\n      \"label\": \"MuJoCo Warp\",\n      \"raw_text\": \"MuJoCo Warp\"\n    },\n    {\n      \"label\": \"Domain randomization\",\n      \"raw_text\": \"domain randomization\"\n    },\n    {\n      \"label\": \"Actuator modeling\",\n      \"raw_text\": \"actuator modelling\"\n    },\n    {\n      \"label\": \"Robotic policy safety wrappers\",\n      \"raw_text\": \"safety wrappers\"\n    },\n    {\n      \"label\": \"Sensor fusion\",\n      \"raw_text\": \"sensor fusion\"\n    },\n    {\n      \"label\": \"IMU-based state estimation\",\n      \"raw_text\": \"IMU\"\n    },\n    {\n      \"label\": \"Joint-encoder-based state estimation\",\n      \"raw_text\": \"joint encoders\"\n    },\n    {\n      \"label\": \"Force/torque sensing\",\n      \"raw_text\": \"force/torque\"\n    },\n    {\n      \"label\": \"Contact estimation\",\n      \"raw_text\": \"contact estimation\"\n    },\n    {\n      \"label\": \"Kalman filtering\",\n      \"raw_text\": \"Kalman filtering\"\n    },\n    {\n      \"label\": \"Bimanual robotic systems\",\n      \"raw_text\": \"bimanual systems\"\n    },\n    {\n      \"label\": \"Multi-fingered robotic hands\",\n      \"raw_text\": \"multi-fingered hands\"\n    },\n    {\n      \"label\": \"Tactile sensing\",\n      \"raw_text\": \"tactile sensing\"\n    },\n    {\n      \"label\": \"Teleoperation systems\",\n      \"raw_text\": \"Teleoperation systems\"\n    },\n    {\n      \"label\": \"VR teleoperation\",\n      \"raw_text\": \"VR\"\n    },\n    {\n      \"label\": \"Leader-follower robot arms\",\n      \"raw_text\": \"leader-follower arms\"\n    },\n    {\n      \"label\": \"Hand tracking\",\n      \"raw_text\": \"hand and body tracking\"\n    },\n    {\n      \"label\": \"Body tracking\",\n      \"raw_text\": \"body tracking\"\n    },\n    {\n      \"label\": \"Whole-body retargeting\",\n      \"raw_text\": \"whole-body retargeting\"\n    },\n    {\n      \"label\": \"Large-scale data collection\",\n      \"raw_text\": \"large-scale data collection\"\n    },\n    {\n      \"label\": \"Robotics middleware and infrastructure\",\n      \"raw_text\": \"Robotics middleware and infrastructure\"\n    },\n    {\n      \"label\": \"DDS\",\n      \"raw_text\": \"DDS\"\n    },\n    {\n      \"label\": \"Zenoh\",\n      \"raw_text\": \"Zenoh\"\n    },\n    {\n      \"label\": \"Hand-eye calibration\",\n      \"raw_text\": \"Hand-eye and multi-camera calibration\"\n    },\n    {\n      \"label\": \"Multi-camera calibration\",\n      \"raw_text\": \"multi-camera calibration\"\n    },\n    {\n      \"label\": \"Depth sensing\",\n      \"raw_text\": \"depth sensing\"\n    },\n    {\n      \"label\": \"Open-source contribution\",\n      \"raw_text\": \"Open-source contributions\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Lead the setup, calibration, maintenance and tuning of our robots\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s with 3+ years of experience, or PhD, in robotics, control or a related field. Strong candidates with a bachelor’s and 3+ years of industry experience are also considered.\",\n  \"notes\": \"Minimum Qualifications is required; Preferred Qualifications is optional. The Unitree and humanoid experience in Who You Are is explicitly a strong plus.\\nResponsibilities and company-description technologies were excluded unless independently requested in qualifications. Responsibilities were used for seniority, as the guide permits lead-duty inference.\\nThe explicit lead duty determines seniority rather than the lower 3+ years experience signal.\\nThe highest degree named is PhD. The bachelor's route still requires a degree, so it does not establish experience in place of a degree.\\nTraining or deploying learned policies was provisionally mapped to model-development and ai-deployment; these are alternative ways to meet the same ask, and both mappings are flagged for review.\\nMost robotics methods and platforms have no taxonomy entry and are listed in unmapped rather than mapped to unrelated AI skills. Technical dynamics and control methods were treated as technical skills, not industry-domain knowledge.\\n3D perception was provisionally mapped to computer-vision and flagged because the posting does not use that exact term.\\nAlternative sets involving unmapped skills include controller types; QP-based whole-body control, operational-space control or MPC; CAD tools; 3D printing or machining; imitation learning, RL or VLA; simulation ecosystems; and robotics middleware. No alternative_group numbers are emitted because these sets cannot be represented completely as taxonomy-backed criteria in the supplied output schema.\\nOpen-source contributions were treated as a technical collaboration practice; publication venues were not treated as tools or skills. No German-language requirement appears.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "designed robot software systems end to end"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "solid real-time C++"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "trained or deployed learned policies",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "trained or deployed learned policies",
+        "uncertain": true
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "RL"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "ros",
+        "requirement": "nice_to_have",
+        "raw_text": "ROS 2"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "nice_to_have",
+        "raw_text": "real-time Linux"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerization"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "nice_to_have",
+        "raw_text": "3D perception on hardware",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Real-time robot control",
+        "raw_text": "implemented and tuned real-time controllers"
+      },
+      {
+        "label": "Joint control",
+        "raw_text": "joint, impedance, operational-space or torque control"
+      },
+      {
+        "label": "Impedance control",
+        "raw_text": "impedance"
+      },
+      {
+        "label": "Operational-space control",
+        "raw_text": "operational-space control"
+      },
+      {
+        "label": "Torque control",
+        "raw_text": "torque control"
+      },
+      {
+        "label": "Rigid-body dynamics",
+        "raw_text": "rigid-body dynamics"
+      },
+      {
+        "label": "Control theory",
+        "raw_text": "control theory"
+      },
+      {
+        "label": "Stability analysis",
+        "raw_text": "stability analysis"
+      },
+      {
+        "label": "System identification",
+        "raw_text": "system identification"
+      },
+      {
+        "label": "Controller instability diagnosis and correction",
+        "raw_text": "explain why a controller went unstable and fix it"
+      },
+      {
+        "label": "Whole-body control",
+        "raw_text": "Whole-body and floating-base control"
+      },
+      {
+        "label": "Floating-base control",
+        "raw_text": "Whole-body and floating-base control"
+      },
+      {
+        "label": "Floating-base dynamics",
+        "raw_text": "floating-base dynamics"
+      },
+      {
+        "label": "Contact constraints",
+        "raw_text": "contact constraints"
+      },
+      {
+        "label": "Inverse dynamics",
+        "raw_text": "inverse dynamics"
+      },
+      {
+        "label": "QP-based whole-body control",
+        "raw_text": "QP-based whole-body control"
+      },
+      {
+        "label": "Model predictive control",
+        "raw_text": "MPC"
+      },
+      {
+        "label": "Real-robot manipulation",
+        "raw_text": "real-robot manipulation"
+      },
+      {
+        "label": "Robot bring-up",
+        "raw_text": "bring-up, calibration and control of arms with grippers or hands"
+      },
+      {
+        "label": "Robot calibration",
+        "raw_text": "calibration and control of arms with grippers or hands"
+      },
+      {
+        "label": "State estimation",
+        "raw_text": "state estimation"
+      },
+      {
+        "label": "Mechanical design",
+        "raw_text": "Mechanical design"
+      },
+      {
+        "label": "Robot hardware design and construction",
+        "raw_text": "designed and built hardware that was used on a real robot"
+      },
+      {
+        "label": "CAD",
+        "raw_text": "CAD required"
+      },
+      {
+        "label": "SolidWorks",
+        "raw_text": "SolidWorks"
+      },
+      {
+        "label": "Fusion 360",
+        "raw_text": "Fusion 360"
+      },
+      {
+        "label": "Onshape",
+        "raw_text": "Onshape"
+      },
+      {
+        "label": "Design for manufacturing",
+        "raw_text": "design-for-manufacturing experience"
+      },
+      {
+        "label": "3D printing",
+        "raw_text": "3D printing"
+      },
+      {
+        "label": "Machining",
+        "raw_text": "machining"
+      },
+      {
+        "label": "Robot learning",
+        "raw_text": "Robot learning"
+      },
+      {
+        "label": "Imitation learning",
+        "raw_text": "imitation learning"
+      },
+      {
+        "label": "Vision-language-action policies",
+        "raw_text": "VLA"
+      },
+      {
+        "label": "Robotics simulation ecosystems",
+        "raw_text": "at least one simulation ecosystem"
+      },
+      {
+        "label": "Isaac Lab",
+        "raw_text": "Isaac Lab"
+      },
+      {
+        "label": "MuJoCo",
+        "raw_text": "MuJoCo"
+      },
+      {
+        "label": "Full-stack robotics debugging",
+        "raw_text": "Debugging across the full stack, from perception through control to hardware"
+      },
+      {
+        "label": "Humanoid locomotion",
+        "raw_text": "locomotion"
+      },
+      {
+        "label": "Loco-manipulation",
+        "raw_text": "loco-manipulation"
+      },
+      {
+        "label": "Humanoid balance control",
+        "raw_text": "balance"
+      },
+      {
+        "label": "Contact-rich robotic manipulation",
+        "raw_text": "contact-rich tasks"
+      },
+      {
+        "label": "Unitree platforms",
+        "raw_text": "Unitree platforms (G1, H1 or similar)"
+      },
+      {
+        "label": "Unitree G1",
+        "raw_text": "G1"
+      },
+      {
+        "label": "Unitree H1",
+        "raw_text": "H1"
+      },
+      {
+        "label": "Lyapunov methods",
+        "raw_text": "Lyapunov and passivity-based methods"
+      },
+      {
+        "label": "Passivity-based control",
+        "raw_text": "passivity-based methods"
+      },
+      {
+        "label": "Contact-stable control",
+        "raw_text": "contact-stable and compliant control"
+      },
+      {
+        "label": "Compliant control",
+        "raw_text": "compliant control"
+      },
+      {
+        "label": "Dynamical-systems motion generation",
+        "raw_text": "dynamical-systems approaches to motion generation"
+      },
+      {
+        "label": "Reduced-order modeling",
+        "raw_text": "reduced-order models"
+      },
+      {
+        "label": "Centroidal dynamics",
+        "raw_text": "centroidal dynamics"
+      },
+      {
+        "label": "Single rigid-body dynamics",
+        "raw_text": "SRBD"
+      },
+      {
+        "label": "Linear inverted pendulum modeling",
+        "raw_text": "LIPM"
+      },
+      {
+        "label": "Sim-to-real transfer",
+        "raw_text": "Sim-to-real for whole-body policies"
+      },
+      {
+        "label": "GPU-accelerated robotics simulation",
+        "raw_text": "GPU-accelerated simulators"
+      },
+      {
+        "label": "MuJoCo Warp",
+        "raw_text": "MuJoCo Warp"
+      },
+      {
+        "label": "Domain randomization",
+        "raw_text": "domain randomization"
+      },
+      {
+        "label": "Actuator modeling",
+        "raw_text": "actuator modelling"
+      },
+      {
+        "label": "Robotic policy safety wrappers",
+        "raw_text": "safety wrappers"
+      },
+      {
+        "label": "Sensor fusion",
+        "raw_text": "sensor fusion"
+      },
+      {
+        "label": "IMU-based state estimation",
+        "raw_text": "IMU"
+      },
+      {
+        "label": "Joint-encoder-based state estimation",
+        "raw_text": "joint encoders"
+      },
+      {
+        "label": "Force/torque sensing",
+        "raw_text": "force/torque"
+      },
+      {
+        "label": "Contact estimation",
+        "raw_text": "contact estimation"
+      },
+      {
+        "label": "Kalman filtering",
+        "raw_text": "Kalman filtering"
+      },
+      {
+        "label": "Bimanual robotic systems",
+        "raw_text": "bimanual systems"
+      },
+      {
+        "label": "Multi-fingered robotic hands",
+        "raw_text": "multi-fingered hands"
+      },
+      {
+        "label": "Tactile sensing",
+        "raw_text": "tactile sensing"
+      },
+      {
+        "label": "Teleoperation systems",
+        "raw_text": "Teleoperation systems"
+      },
+      {
+        "label": "VR teleoperation",
+        "raw_text": "VR"
+      },
+      {
+        "label": "Leader-follower robot arms",
+        "raw_text": "leader-follower arms"
+      },
+      {
+        "label": "Hand tracking",
+        "raw_text": "hand and body tracking"
+      },
+      {
+        "label": "Body tracking",
+        "raw_text": "body tracking"
+      },
+      {
+        "label": "Whole-body retargeting",
+        "raw_text": "whole-body retargeting"
+      },
+      {
+        "label": "Large-scale data collection",
+        "raw_text": "large-scale data collection"
+      },
+      {
+        "label": "Robotics middleware and infrastructure",
+        "raw_text": "Robotics middleware and infrastructure"
+      },
+      {
+        "label": "DDS",
+        "raw_text": "DDS"
+      },
+      {
+        "label": "Zenoh",
+        "raw_text": "Zenoh"
+      },
+      {
+        "label": "Hand-eye calibration",
+        "raw_text": "Hand-eye and multi-camera calibration"
+      },
+      {
+        "label": "Multi-camera calibration",
+        "raw_text": "multi-camera calibration"
+      },
+      {
+        "label": "Depth sensing",
+        "raw_text": "depth sensing"
+      },
+      {
+        "label": "Open-source contribution",
+        "raw_text": "Open-source contributions"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Lead the setup, calibration, maintenance and tuning of our robots",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s with 3+ years of experience, or PhD, in robotics, control or a related field. Strong candidates with a bachelor’s and 3+ years of industry experience are also considered.",
+    "notes": "Minimum Qualifications is required; Preferred Qualifications is optional. The Unitree and humanoid experience in Who You Are is explicitly a strong plus.\nResponsibilities and company-description technologies were excluded unless independently requested in qualifications. Responsibilities were used for seniority, as the guide permits lead-duty inference.\nThe explicit lead duty determines seniority rather than the lower 3+ years experience signal.\nThe highest degree named is PhD. The bachelor's route still requires a degree, so it does not establish experience in place of a degree.\nTraining or deploying learned policies was provisionally mapped to model-development and ai-deployment; these are alternative ways to meet the same ask, and both mappings are flagged for review.\nMost robotics methods and platforms have no taxonomy entry and are listed in unmapped rather than mapped to unrelated AI skills. Technical dynamics and control methods were treated as technical skills, not industry-domain knowledge.\n3D perception was provisionally mapped to computer-vision and flagged because the posting does not use that exact term.\nAlternative sets involving unmapped skills include controller types; QP-based whole-body control, operational-space control or MPC; CAD tools; 3D printing or machining; imitation learning, RL or VLA; simulation ecosystems; and robotics middleware. No alternative_group numbers are emitted because these sets cannot be represented completely as taxonomy-backed criteria in the supplied output schema.\nOpen-source contributions were treated as a technical collaboration practice; publication venues were not treated as tools or skills. No German-language requirement appears."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "399c6a6eb32e09ff58f787318c561b5dcfe625381d97bab49f3c6702d2dcfc5d",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

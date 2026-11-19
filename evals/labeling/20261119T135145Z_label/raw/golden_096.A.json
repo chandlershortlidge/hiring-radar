@@ -1,0 +1,173 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"hands-on Kubernetes experience\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"operating workloads on AWS or GCP\", \"alternative_group\": 1},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"operating workloads on AWS or GCP\", \"alternative_group\": 1},\n    {\"skill_id\": \"networking\", \"requirement\": \"required\", \"raw_text\": \"networking, and storage considerations\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Solid coding skills in Python\"},\n    {\"skill_id\": \"bash\", \"requirement\": \"required\", \"raw_text\": \"Bash\"},\n    {\"skill_id\": \"go\", \"requirement\": \"required\", \"raw_text\": \"proficiency in Go\"},\n    {\"skill_id\": \"linux\", \"requirement\": \"required\", \"raw_text\": \"Proficient in configuring and leveraging Linux OS in production\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"infrastructure-as-code\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"required\", \"raw_text\": \"Terraform\"},\n    {\"skill_id\": \"ansible\", \"requirement\": \"required\", \"raw_text\": \"Ansible\"},\n    {\"skill_id\": \"gitops\", \"requirement\": \"required\", \"raw_text\": \"GitOps workflows\"},\n    {\"skill_id\": \"argocd\", \"requirement\": \"required\", \"raw_text\": \"Argo CD\"},\n    {\"skill_id\": \"triton-inference-server\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Triton\", \"alternative_group\": 2},\n    {\"skill_id\": \"vllm\", \"requirement\": \"nice_to_have\", \"raw_text\": \"vLLM\", \"alternative_group\": 2},\n    {\"skill_id\": \"model-serving\", \"requirement\": \"nice_to_have\", \"raw_text\": \"model-serving patterns\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Background in observability\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"nice_to_have\", \"raw_text\": \"customer facing API platforms\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"EKS\", \"raw_text\": \"EKS\"},\n    {\"label\": \"GKE\", \"raw_text\": \"GKE\"},\n    {\"label\": \"MIG (Multi-Instance GPU)\", \"raw_text\": \"MIG\"},\n    {\"label\": \"Pulumi\", \"raw_text\": \"Pulumi\"},\n    {\"label\": \"Puppet\", \"raw_text\": \"Puppet\"},\n    {\"label\": \"Salt\", \"raw_text\": \"Salt\"},\n    {\"label\": \"Flux\", \"raw_text\": \"Flux\"},\n    {\"label\": \"OS configuration tooling\", \"raw_text\": \"Experience in OS configuration tooling\"},\n    {\"label\": \"TGI (Text Generation Inference)\", \"raw_text\": \"TGI\"},\n    {\"label\": \"SRE\", \"raw_text\": \"SRE\"},\n    {\"label\": \"performance engineering\", \"raw_text\": \"performance engineering for latency-sensitive services\"},\n    {\"label\": \"heterogeneous accelerators (FPGAs, custom ASICs)\", \"raw_text\": \"heterogeneous accelerators beyond GPUs (FPGAs, custom ASICs)\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3–5 years of hands-on Kubernetes experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"MS/PhD in Computer Science, Software Engineering, or a related field\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"Rust appears only in Responsibilities (tooling in Python, Bash, Rust, and Go) and is not asked of the candidate in the qualifications, so it is not labeled.\\nAWS and GCP form group 1 ('on AWS or GCP'). They appear on their own only in Responsibilities, so they stay in the group.\\nThe IaC (Terraform, Pulumi), config (Ansible, Puppet, Salt) and GitOps (Argo CD, Flux) example lists would be groups, but each has only one taxonomy skill. A group needs two or more, so none of them is grouped.\\nTriton and vLLM form group 2: they are examples for the single ask 'inference servers and runtimes'. TGI is unmapped.\\nDegree: the literal guide rule takes the highest level named, which is PhD, from the 'Preferred/Bonus' heading, so nice_to_have. The required 'Minimum BS' is lost by this. Flagged for review; the alternative label is bachelor/required.\\n'Proven track record running ML or inference services at scale on Kubernetes' could also map to model-serving or ai-deployment as required. I kept model-serving only for the explicit preferred phrase. Flagged in spirit; a reviewer may upgrade it to required.\\nNetworking is listed among accelerated-workload Kubernetes considerations. It is mapped to networking but marked uncertain.\\n'customer facing API platforms' is mapped to apis, marked uncertain.\\n'Familiarity with AI inference and/or training workflows' has no fitting taxonomy id and is left unlabeled.\\nSeniority is inferred from 3–5 years, which is consistent with 'Proven track record'. No level is stated in the title.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "hands-on Kubernetes experience"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "operating workloads on AWS or GCP",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "operating workloads on AWS or GCP",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "networking, and storage considerations",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Solid coding skills in Python"
+      },
+      {
+        "skill_id": "bash",
+        "requirement": "required",
+        "raw_text": "Bash"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "proficiency in Go"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Proficient in configuring and leveraging Linux OS in production"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "infrastructure-as-code"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "ansible",
+        "requirement": "required",
+        "raw_text": "Ansible"
+      },
+      {
+        "skill_id": "gitops",
+        "requirement": "required",
+        "raw_text": "GitOps workflows"
+      },
+      {
+        "skill_id": "argocd",
+        "requirement": "required",
+        "raw_text": "Argo CD"
+      },
+      {
+        "skill_id": "triton-inference-server",
+        "requirement": "nice_to_have",
+        "raw_text": "Triton",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "nice_to_have",
+        "raw_text": "vLLM",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "model-serving patterns"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "Background in observability"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "nice_to_have",
+        "raw_text": "customer facing API platforms",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "EKS",
+        "raw_text": "EKS"
+      },
+      {
+        "label": "GKE",
+        "raw_text": "GKE"
+      },
+      {
+        "label": "MIG (Multi-Instance GPU)",
+        "raw_text": "MIG"
+      },
+      {
+        "label": "Pulumi",
+        "raw_text": "Pulumi"
+      },
+      {
+        "label": "Puppet",
+        "raw_text": "Puppet"
+      },
+      {
+        "label": "Salt",
+        "raw_text": "Salt"
+      },
+      {
+        "label": "Flux",
+        "raw_text": "Flux"
+      },
+      {
+        "label": "OS configuration tooling",
+        "raw_text": "Experience in OS configuration tooling"
+      },
+      {
+        "label": "TGI (Text Generation Inference)",
+        "raw_text": "TGI"
+      },
+      {
+        "label": "SRE",
+        "raw_text": "SRE"
+      },
+      {
+        "label": "performance engineering",
+        "raw_text": "performance engineering for latency-sensitive services"
+      },
+      {
+        "label": "heterogeneous accelerators (FPGAs, custom ASICs)",
+        "raw_text": "heterogeneous accelerators beyond GPUs (FPGAs, custom ASICs)"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3–5 years of hands-on Kubernetes experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "MS/PhD in Computer Science, Software Engineering, or a related field",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Rust appears only in Responsibilities (tooling in Python, Bash, Rust, and Go) and is not asked of the candidate in the qualifications, so it is not labeled.\nAWS and GCP form group 1 ('on AWS or GCP'). They appear on their own only in Responsibilities, so they stay in the group.\nThe IaC (Terraform, Pulumi), config (Ansible, Puppet, Salt) and GitOps (Argo CD, Flux) example lists would be groups, but each has only one taxonomy skill. A group needs two or more, so none of them is grouped.\nTriton and vLLM form group 2: they are examples for the single ask 'inference servers and runtimes'. TGI is unmapped.\nDegree: the literal guide rule takes the highest level named, which is PhD, from the 'Preferred/Bonus' heading, so nice_to_have. The required 'Minimum BS' is lost by this. Flagged for review; the alternative label is bachelor/required.\n'Proven track record running ML or inference services at scale on Kubernetes' could also map to model-serving or ai-deployment as required. I kept model-serving only for the explicit preferred phrase. Flagged in spirit; a reviewer may upgrade it to required.\nNetworking is listed among accelerated-workload Kubernetes considerations. It is mapped to networking but marked uncertain.\n'customer facing API platforms' is mapped to apis, marked uncertain.\n'Familiarity with AI inference and/or training workflows' has no fitting taxonomy id and is left unlabeled.\nSeniority is inferred from 3–5 years, which is consistent with 'Proven track record'. No level is stated in the title."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "2f2a20c92da923134674de77032f32a5b8af67058d59e061e53e35ccfbd1cf8b",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

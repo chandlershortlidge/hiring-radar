@@ -1,0 +1,105 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"required\", \"raw_text\": \"Experience deploying deep learning models in production\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"Experience deploying deep learning models in production\", \"uncertain\": true},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Solid ML fundamentals\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"evaluation design\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong Python\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"SQL, PyTorch\"},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"required\", \"raw_text\": \"distributed compute\", \"uncertain\": true},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"Knowledge of AWS\", \"alternative_group\": 1},\n    {\"skill_id\": \"sagemaker\", \"requirement\": \"required\", \"raw_text\": \"SageMaker\", \"alternative_group\": 1},\n    {\"skill_id\": \"airflow\", \"requirement\": \"required\", \"raw_text\": \"Airflow\", \"alternative_group\": 1},\n    {\"skill_id\": \"kafka\", \"requirement\": \"required\", \"raw_text\": \"Kafka\", \"alternative_group\": 1},\n    {\"skill_id\": \"redis\", \"requirement\": \"required\", \"raw_text\": \"Redis\", \"alternative_group\": 1},\n    {\"skill_id\": \"snowflake\", \"requirement\": \"required\", \"raw_text\": \"Redis or Snowflake\", \"alternative_group\": 1}\n  ],\n  \"unmapped\": [],\n  \"groups_reviewed\": true,\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": null, \"german_basis\": null, \"german_signal\": null,\n  \"degree\": null, \"degree_requirement\": null,\n  \"degree_or_equivalent\": false, \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Everything comes from the 'Requirements' section, which is unmarked, so every skill is required. Items under Key responsibilities are not labeled: feature pipelines, inference, experiments, monitoring and the ML platform appear only there.\\n'Experience deploying deep learning models in production' is labeled as both deep-learning and ai-deployment. ai-deployment is flagged uncertain because the text says 'deploying ... models', not 'model deployment' verbatim.\\n'distributed compute' has no exact taxonomy entry. It is mapped to distributed-systems as the closest fit and flagged uncertain; the alternative was to leave it unmapped.\\n'Knowledge of AWS, SageMaker, Airflow, Kafka, Redis or Snowflake' uses the 'X, Y or Z' marker. Read literally, any one of the six meets the ask, so all six go in alternative_group 1. This is debatable, since the list mixes unrelated tools.\\nPyTorch also appears in the title, but raw_text quotes the requirements mention.\\nNo level wording, years of experience, lead duty or mentoring duty appears, so seniority is null.\\nNo German or other language requirement appears, so german is null.\\nNo degree is mentioned, so degree is null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "Experience deploying deep learning models in production"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "Experience deploying deep learning models in production",
+        "uncertain": true
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Solid ML fundamentals"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation design"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "SQL, PyTorch"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed compute",
+        "uncertain": true
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "Knowledge of AWS",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "sagemaker",
+        "requirement": "required",
+        "raw_text": "SageMaker",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "required",
+        "raw_text": "Airflow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "kafka",
+        "requirement": "required",
+        "raw_text": "Kafka",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "redis",
+        "requirement": "required",
+        "raw_text": "Redis",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Redis or Snowflake",
+        "alternative_group": 1
+      }
+    ],
+    "unmapped": [],
+    "groups_reviewed": true,
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Everything comes from the 'Requirements' section, which is unmarked, so every skill is required. Items under Key responsibilities are not labeled: feature pipelines, inference, experiments, monitoring and the ML platform appear only there.\n'Experience deploying deep learning models in production' is labeled as both deep-learning and ai-deployment. ai-deployment is flagged uncertain because the text says 'deploying ... models', not 'model deployment' verbatim.\n'distributed compute' has no exact taxonomy entry. It is mapped to distributed-systems as the closest fit and flagged uncertain; the alternative was to leave it unmapped.\n'Knowledge of AWS, SageMaker, Airflow, Kafka, Redis or Snowflake' uses the 'X, Y or Z' marker. Read literally, any one of the six meets the ask, so all six go in alternative_group 1. This is debatable, since the list mixes unrelated tools.\nPyTorch also appears in the title, but raw_text quotes the requirements mention.\nNo level wording, years of experience, lead duty or mentoring duty appears, so seniority is null.\nNo German or other language requirement appears, so german is null.\nNo degree is mentioned, so degree is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "9ee2a4d8c7b89c55795ab4545e5607920ae1e1c35e4c4f04563d81ed7a315fbc",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,25 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"ML Engineer Intern\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"There is no requirements, qualifications, nice-to-have or tech-stack section, so nothing is asked of the candidate.\\nThe skill-like terms (ML cycle, data prep, prototype evaluation, testing, reproducibility) all appear only as responsibilities or things the intern will learn, so none are labeled.\\n'learning best practices in code, testing' describes what the intern will learn, not a skill they must have, so testing is not labeled.\\nSeniority is stated by 'Intern' in the title, which maps to junior.\\nNo German, Deutsch or language mention appears; the posting is in English, so german is null.\\nNo degree, studies or years-of-experience mention appears, so degree is null.\"\n}\n```",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "ML Engineer Intern",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "There is no requirements, qualifications, nice-to-have or tech-stack section, so nothing is asked of the candidate.\nThe skill-like terms (ML cycle, data prep, prototype evaluation, testing, reproducibility) all appear only as responsibilities or things the intern will learn, so none are labeled.\n'learning best practices in code, testing' describes what the intern will learn, not a skill they must have, so testing is not labeled.\nSeniority is stated by 'Intern' in the title, which maps to junior.\nNo German, Deutsch or language mention appears; the posting is in English, so german is null.\nNo degree, studies or years-of-experience mention appears, so degree is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "99c159e6043500a5959c3488860f92b8166fa5a4850010b63ba1b31dcceb860b",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,192 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Proficiency in Python\"\n    },\n    {\n      \"skill_id\": \"ai-infrastructure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML infrastructure experience\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"end-to-end model development\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model training, evaluation, inference, and deployment\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"fine-tuning\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"monitoring\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Agentic systems knowledge\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Agentic systems knowledge — tools\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"agent-state-management\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Agentic systems knowledge — tools, memory\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong software engineering fundamentals\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"confident debugging\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"containerization\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GCP\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Foundation models\",\n      \"raw_text\": \"foundation models\"\n    },\n    {\n      \"label\": \"Experimental design\",\n      \"raw_text\": \"design experiments\"\n    },\n    {\n      \"label\": \"Data preprocessing\",\n      \"raw_text\": \"data preprocessing\"\n    },\n    {\n      \"label\": \"Model inference\",\n      \"raw_text\": \"inference\"\n    },\n    {\n      \"label\": \"Dataset construction\",\n      \"raw_text\": \"dataset construction\"\n    },\n    {\n      \"label\": \"Profiling\",\n      \"raw_text\": \"profiling\"\n    },\n    {\n      \"label\": \"Mixture-of-experts architectures\",\n      \"raw_text\": \"MoEs\"\n    },\n    {\n      \"label\": \"Long-context models\",\n      \"raw_text\": \"long-context models\"\n    },\n    {\n      \"label\": \"Vision-language models\",\n      \"raw_text\": \"vision-language models\"\n    },\n    {\n      \"label\": \"Molmo\",\n      \"raw_text\": \"Molmo\"\n    },\n    {\n      \"label\": \"LLaVA\",\n      \"raw_text\": \"LLaVA\"\n    },\n    {\n      \"label\": \"Long-running agent workflows\",\n      \"raw_text\": \"long-running workflows\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Research Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"a PhD in ML or equivalent hands-on industry work\",\n  \"notes\": \"Who You Are, What You’ll Need, and Education/Experience supply candidate qualifications; none has an optional heading. Technologies appearing only in responsibilities or company descriptions are excluded.\\nThe highest degree named is the PhD in Who You Are, despite the later BS/MSc qualification; industry work is explicitly accepted instead.\\nFoundation models are kept unmapped rather than equated with LLMs. Deep learning is an alternative to foundation models, but there is no second mapped member for that group.\\nThe ML framework examples form alternative group 1. GCP and AWS form alternative group 2 for cloud familiarity; Docker exemplifies the separately requested containerization skill.\\nAgentic tools are interpreted as tool calling, and debugging is provisionally mapped to Software Testing; both mappings are flagged for review.\\nVision-language models are kept unmapped rather than adding the broader Computer Vision skill. No Machine Learning skill is inferred solely from infrastructure, framework, or degree terminology.\\nGeneric design, performance, and scalability wording is not expanded into unmentioned architecture or distributed-systems requirements.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Proficiency in Python"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "required",
+        "raw_text": "ML infrastructure experience"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "end-to-end model development"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "model training, evaluation, inference, and deployment"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Agentic systems knowledge"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "Agentic systems knowledge — tools",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agent-state-management",
+        "requirement": "required",
+        "raw_text": "Agentic systems knowledge — tools, memory"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software engineering fundamentals"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "confident debugging",
+        "uncertain": true
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containerization"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Foundation models",
+        "raw_text": "foundation models"
+      },
+      {
+        "label": "Experimental design",
+        "raw_text": "design experiments"
+      },
+      {
+        "label": "Data preprocessing",
+        "raw_text": "data preprocessing"
+      },
+      {
+        "label": "Model inference",
+        "raw_text": "inference"
+      },
+      {
+        "label": "Dataset construction",
+        "raw_text": "dataset construction"
+      },
+      {
+        "label": "Profiling",
+        "raw_text": "profiling"
+      },
+      {
+        "label": "Mixture-of-experts architectures",
+        "raw_text": "MoEs"
+      },
+      {
+        "label": "Long-context models",
+        "raw_text": "long-context models"
+      },
+      {
+        "label": "Vision-language models",
+        "raw_text": "vision-language models"
+      },
+      {
+        "label": "Molmo",
+        "raw_text": "Molmo"
+      },
+      {
+        "label": "LLaVA",
+        "raw_text": "LLaVA"
+      },
+      {
+        "label": "Long-running agent workflows",
+        "raw_text": "long-running workflows"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Research Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "a PhD in ML or equivalent hands-on industry work",
+    "notes": "Who You Are, What You’ll Need, and Education/Experience supply candidate qualifications; none has an optional heading. Technologies appearing only in responsibilities or company descriptions are excluded.\nThe highest degree named is the PhD in Who You Are, despite the later BS/MSc qualification; industry work is explicitly accepted instead.\nFoundation models are kept unmapped rather than equated with LLMs. Deep learning is an alternative to foundation models, but there is no second mapped member for that group.\nThe ML framework examples form alternative group 1. GCP and AWS form alternative group 2 for cloud familiarity; Docker exemplifies the separately requested containerization skill.\nAgentic tools are interpreted as tool calling, and debugging is provisionally mapped to Software Testing; both mappings are flagged for review.\nVision-language models are kept unmapped rather than adding the broader Computer Vision skill. No Machine Learning skill is inferred solely from infrastructure, framework, or degree terminology.\nGeneric design, performance, and scalability wording is not expanded into unmentioned architecture or distributed-systems requirements."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "a3b7f57755152d100aefa7827118362febbb50a8486197cf31ea7dd80ad49e96",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

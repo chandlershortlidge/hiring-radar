@@ -1,0 +1,175 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-infrastructure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML infrastructure\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM serving frameworks\"\n    },\n    {\n      \"skill_id\": \"vllm\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"vLLM\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"sglang\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SGLang\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"tensorrt\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorRT-LLM\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"deepspeed\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DeepSpeed-Inference\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model deployment internals\"\n    },\n    {\n      \"skill_id\": \"cuda\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CUDA\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"containerized deployments\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Docker\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Kubernetes\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distributed systems\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Systems programming\",\n      \"raw_text\": \"systems programming\"\n    },\n    {\n      \"label\": \"Distributed inference\",\n      \"raw_text\": \"distributed inference\"\n    },\n    {\n      \"label\": \"Debugging\",\n      \"raw_text\": \"debugging\"\n    },\n    {\n      \"label\": \"Performance analysis\",\n      \"raw_text\": \"performance analysis\"\n    },\n    {\n      \"label\": \"Token scheduling\",\n      \"raw_text\": \"token scheduling\"\n    },\n    {\n      \"label\": \"KV caching\",\n      \"raw_text\": \"KV caching\"\n    },\n    {\n      \"label\": \"Batching\",\n      \"raw_text\": \"batching\"\n    },\n    {\n      \"label\": \"Pipelined inference\",\n      \"raw_text\": \"pipelined inference\"\n    },\n    {\n      \"label\": \"Hardware abstraction layer\",\n      \"raw_text\": \"hardware abstraction layer\"\n    },\n    {\n      \"label\": \"PCIe\",\n      \"raw_text\": \"PCIe\"\n    },\n    {\n      \"label\": \"Memory management\",\n      \"raw_text\": \"memory management\"\n    },\n    {\n      \"label\": \"Runtime scheduling\",\n      \"raw_text\": \"runtime scheduling\"\n    },\n    {\n      \"label\": \"Hardware-aware ML optimization\",\n      \"raw_text\": \"hardware-aware ML optimization\"\n    },\n    {\n      \"label\": \"Compiler/runtime integration\",\n      \"raw_text\": \"compiler/runtime integration\"\n    },\n    {\n      \"label\": \"Accelerator SDKs\",\n      \"raw_text\": \"accelerator SDKs\"\n    },\n    {\n      \"label\": \"GPU/accelerator workload profiling\",\n      \"raw_text\": \"profiling GPU/accelerator workloads\"\n    },\n    {\n      \"label\": \"Large-scale inference clusters\",\n      \"raw_text\": \"large-scale inference clusters\"\n    },\n    {\n      \"label\": \"Open-source ML or serving-framework contributions\",\n      \"raw_text\": \"Contributions to open-source ML or serving frameworks\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years of professional experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field.\",\n  \"notes\": \"REQUIRED QUALIFICATIONS sets required labels; PREFERRED / BONUS sets nice-to-have labels. Technologies appearing only in the role summary or responsibilities are excluded.\\nML infrastructure maps to AI Infrastructure; LLM serving frameworks maps to Model serving without adding a separate LLMs parent criterion. DeepSpeed-Inference maps to DeepSpeed.\\nDocker/Kubernetes is read as alternative examples of containerized deployments.\\nOther alternative asks contain fewer than two mapped skills, so no singleton alternative groups are emitted.\\nDebugging is kept unmapped rather than equated with software testing. Hardware-specific techniques and open-source contribution practice without fitting taxonomy entries are retained in unmapped.\\nThe 3+ years threshold supports mid seniority; the title itself states no seniority. The highest degree explicitly named is PhD, and a related field is not an experience-based degree substitute.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "required",
+        "raw_text": "ML infrastructure"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "required",
+        "raw_text": "LLM serving frameworks"
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "required",
+        "raw_text": "vLLM",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "sglang",
+        "requirement": "required",
+        "raw_text": "SGLang",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "required",
+        "raw_text": "TensorRT-LLM",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "deepspeed",
+        "requirement": "required",
+        "raw_text": "DeepSpeed-Inference",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "model deployment internals"
+      },
+      {
+        "skill_id": "cuda",
+        "requirement": "required",
+        "raw_text": "CUDA"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerized deployments"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed systems"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Systems programming",
+        "raw_text": "systems programming"
+      },
+      {
+        "label": "Distributed inference",
+        "raw_text": "distributed inference"
+      },
+      {
+        "label": "Debugging",
+        "raw_text": "debugging"
+      },
+      {
+        "label": "Performance analysis",
+        "raw_text": "performance analysis"
+      },
+      {
+        "label": "Token scheduling",
+        "raw_text": "token scheduling"
+      },
+      {
+        "label": "KV caching",
+        "raw_text": "KV caching"
+      },
+      {
+        "label": "Batching",
+        "raw_text": "batching"
+      },
+      {
+        "label": "Pipelined inference",
+        "raw_text": "pipelined inference"
+      },
+      {
+        "label": "Hardware abstraction layer",
+        "raw_text": "hardware abstraction layer"
+      },
+      {
+        "label": "PCIe",
+        "raw_text": "PCIe"
+      },
+      {
+        "label": "Memory management",
+        "raw_text": "memory management"
+      },
+      {
+        "label": "Runtime scheduling",
+        "raw_text": "runtime scheduling"
+      },
+      {
+        "label": "Hardware-aware ML optimization",
+        "raw_text": "hardware-aware ML optimization"
+      },
+      {
+        "label": "Compiler/runtime integration",
+        "raw_text": "compiler/runtime integration"
+      },
+      {
+        "label": "Accelerator SDKs",
+        "raw_text": "accelerator SDKs"
+      },
+      {
+        "label": "GPU/accelerator workload profiling",
+        "raw_text": "profiling GPU/accelerator workloads"
+      },
+      {
+        "label": "Large-scale inference clusters",
+        "raw_text": "large-scale inference clusters"
+      },
+      {
+        "label": "Open-source ML or serving-framework contributions",
+        "raw_text": "Contributions to open-source ML or serving frameworks"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years of professional experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "BS/MS/PhD in Computer Science, Electrical/Computer Engineering, or related field.",
+    "notes": "REQUIRED QUALIFICATIONS sets required labels; PREFERRED / BONUS sets nice-to-have labels. Technologies appearing only in the role summary or responsibilities are excluded.\nML infrastructure maps to AI Infrastructure; LLM serving frameworks maps to Model serving without adding a separate LLMs parent criterion. DeepSpeed-Inference maps to DeepSpeed.\nDocker/Kubernetes is read as alternative examples of containerized deployments.\nOther alternative asks contain fewer than two mapped skills, so no singleton alternative groups are emitted.\nDebugging is kept unmapped rather than equated with software testing. Hardware-specific techniques and open-source contribution practice without fitting taxonomy entries are retained in unmapped.\nThe 3+ years threshold supports mid seniority; the title itself states no seniority. The highest degree explicitly named is PhD, and a related field is not an experience-based degree substitute."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "5f7af556156445fa1eda9bade660f60123caa255a3eaa24a5f04d6449ee24812",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

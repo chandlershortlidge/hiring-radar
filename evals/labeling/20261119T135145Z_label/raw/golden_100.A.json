@@ -1,0 +1,142 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Proficiency in Python\"},\n    {\"skill_id\": \"cpp\", \"requirement\": \"required\", \"raw_text\": \"C++\"},\n    {\"skill_id\": \"cuda\", \"requirement\": \"nice_to_have\", \"raw_text\": \"CUDA\", \"alternative_group\": 1},\n    {\"skill_id\": \"jax\", \"requirement\": \"nice_to_have\", \"raw_text\": \"JAX\", \"alternative_group\": 1},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"scaling simulation for reinforcement or imitation learning\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"MuJoCo\", \"raw_text\": \"MuJoCo\"},\n    {\"label\": \"Newton/Warp\", \"raw_text\": \"Newton/Warp\"},\n    {\"label\": \"PhysX\", \"raw_text\": \"PhysX\"},\n    {\"label\": \"Drake\", \"raw_text\": \"Drake\"},\n    {\"label\": \"Bullet\", \"raw_text\": \"Bullet\"},\n    {\"label\": \"Genesis\", \"raw_text\": \"Genesis\"},\n    {\"label\": \"URDF\", \"raw_text\": \"URDF\"},\n    {\"label\": \"MJCF\", \"raw_text\": \"MJCF\"},\n    {\"label\": \"OpenUSD\", \"raw_text\": \"OpenUSD\"},\n    {\"label\": \"Rigid-body dynamics / constrained multibody systems\", \"raw_text\": \"rigid-body dynamics and constrained multibody systems\"},\n    {\"label\": \"Contact and friction modelling\", \"raw_text\": \"contact and friction modelling\"},\n    {\"label\": \"Numerical integration of stiff systems\", \"raw_text\": \"numerical integration of stiff systems\"},\n    {\"label\": \"Simulation parameter fitting / system identification\", \"raw_text\": \"fitting simulation parameters to measured data\"},\n    {\"label\": \"GPU programming for physics\", \"raw_text\": \"GPU programming for physics\"},\n    {\"label\": \"NVIDIA Warp\", \"raw_text\": \"NVIDIA Warp\"},\n    {\"label\": \"Imitation learning\", \"raw_text\": \"imitation learning\"},\n    {\"label\": \"Deformable / FEM simulation\", \"raw_text\": \"deformable, cable or FEM simulation\"},\n    {\"label\": \"Differentiable simulation\", \"raw_text\": \"differentiable simulation\"},\n    {\"label\": \"Bayesian or gradient-based parameter estimation\", \"raw_text\": \"Bayesian or gradient-based parameter estimation\"},\n    {\"label\": \"Learned residual dynamics\", \"raw_text\": \"learned residual dynamics\"},\n    {\"label\": \"Robot manipulation\", \"raw_text\": \"robot manipulation, grasping or contact-rich tasks\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"a Masters + 3 years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD in robotics, mechanical engineering, applied mathematics, physics, computer graphics or a related field, or a Masters + 3 years of experience\",\n  \"uncertain\": [\"seniority\", \"degree\"],\n  \"notes\": \"Python and C++ are asked for together ('Python and C++'), so they are not an alternative group.\\nCUDA and JAX are grouped as alternatives from 'CUDA, NVIDIA Warp or JAX'. Warp is unmapped, so the group has two mapped members.\\nreinforcement-learning is nice_to_have under the Preferred heading. It gets no group because its alternative, imitation learning, has no taxonomy id. Flagged uncertain because the ask is scaling simulation for RL rather than RL skill itself.\\nThe simulators (MuJoCo, Newton/Warp, PhysX, Drake, Bullet, Genesis) and robot description formats (URDF, MJCF, OpenUSD) have no taxonomy ids and go to unmapped.\\nSeniority is inferred mid from the 3 years in the Masters and bachelor's paths. The PhD path names no years, and the title names no level. Flagged uncertain.\\nDegree is phd, the highest level named. degree_or_equivalent is false on a literal reading: the substitutes are a lower degree plus experience, not experience alone and not 'or equivalent'. Flagged uncertain.\\nIn the PhD bullet, 'Exceptional candidates with a bachelor's degree and 3+ years ... are also welcome to apply' widens the path but does not mark the degree optional.\\n'competencies, not a checklist' sits above the responsibilities section, not the qualifications. Per golden_038, an indicative-not-hard-requirements note does not flip a section to nice_to_have anyway.\\nSkills named only in responsibilities are not labeled: testing, and domain randomisation.\\nGerman is not mentioned anywhere.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Proficiency in Python"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "cuda",
+        "requirement": "nice_to_have",
+        "raw_text": "CUDA",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "nice_to_have",
+        "raw_text": "JAX",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "scaling simulation for reinforcement or imitation learning",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "MuJoCo",
+        "raw_text": "MuJoCo"
+      },
+      {
+        "label": "Newton/Warp",
+        "raw_text": "Newton/Warp"
+      },
+      {
+        "label": "PhysX",
+        "raw_text": "PhysX"
+      },
+      {
+        "label": "Drake",
+        "raw_text": "Drake"
+      },
+      {
+        "label": "Bullet",
+        "raw_text": "Bullet"
+      },
+      {
+        "label": "Genesis",
+        "raw_text": "Genesis"
+      },
+      {
+        "label": "URDF",
+        "raw_text": "URDF"
+      },
+      {
+        "label": "MJCF",
+        "raw_text": "MJCF"
+      },
+      {
+        "label": "OpenUSD",
+        "raw_text": "OpenUSD"
+      },
+      {
+        "label": "Rigid-body dynamics / constrained multibody systems",
+        "raw_text": "rigid-body dynamics and constrained multibody systems"
+      },
+      {
+        "label": "Contact and friction modelling",
+        "raw_text": "contact and friction modelling"
+      },
+      {
+        "label": "Numerical integration of stiff systems",
+        "raw_text": "numerical integration of stiff systems"
+      },
+      {
+        "label": "Simulation parameter fitting / system identification",
+        "raw_text": "fitting simulation parameters to measured data"
+      },
+      {
+        "label": "GPU programming for physics",
+        "raw_text": "GPU programming for physics"
+      },
+      {
+        "label": "NVIDIA Warp",
+        "raw_text": "NVIDIA Warp"
+      },
+      {
+        "label": "Imitation learning",
+        "raw_text": "imitation learning"
+      },
+      {
+        "label": "Deformable / FEM simulation",
+        "raw_text": "deformable, cable or FEM simulation"
+      },
+      {
+        "label": "Differentiable simulation",
+        "raw_text": "differentiable simulation"
+      },
+      {
+        "label": "Bayesian or gradient-based parameter estimation",
+        "raw_text": "Bayesian or gradient-based parameter estimation"
+      },
+      {
+        "label": "Learned residual dynamics",
+        "raw_text": "learned residual dynamics"
+      },
+      {
+        "label": "Robot manipulation",
+        "raw_text": "robot manipulation, grasping or contact-rich tasks"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "a Masters + 3 years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD in robotics, mechanical engineering, applied mathematics, physics, computer graphics or a related field, or a Masters + 3 years of experience",
+    "uncertain": [
+      "seniority",
+      "degree"
+    ],
+    "notes": "Python and C++ are asked for together ('Python and C++'), so they are not an alternative group.\nCUDA and JAX are grouped as alternatives from 'CUDA, NVIDIA Warp or JAX'. Warp is unmapped, so the group has two mapped members.\nreinforcement-learning is nice_to_have under the Preferred heading. It gets no group because its alternative, imitation learning, has no taxonomy id. Flagged uncertain because the ask is scaling simulation for RL rather than RL skill itself.\nThe simulators (MuJoCo, Newton/Warp, PhysX, Drake, Bullet, Genesis) and robot description formats (URDF, MJCF, OpenUSD) have no taxonomy ids and go to unmapped.\nSeniority is inferred mid from the 3 years in the Masters and bachelor's paths. The PhD path names no years, and the title names no level. Flagged uncertain.\nDegree is phd, the highest level named. degree_or_equivalent is false on a literal reading: the substitutes are a lower degree plus experience, not experience alone and not 'or equivalent'. Flagged uncertain.\nIn the PhD bullet, 'Exceptional candidates with a bachelor's degree and 3+ years ... are also welcome to apply' widens the path but does not mark the degree optional.\n'competencies, not a checklist' sits above the responsibilities section, not the qualifications. Per golden_038, an indicative-not-hard-requirements note does not flip a section to nice_to_have anyway.\nSkills named only in responsibilities are not labeled: testing, and domain randomisation.\nGerman is not mentioned anywhere."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "95822a15115bc5dca14b0f797804072d475b9f74c1b7d76ed6d472c27f8e8fef",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

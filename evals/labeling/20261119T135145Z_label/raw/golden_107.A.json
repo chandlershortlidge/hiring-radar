@@ -1,0 +1,122 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Machine Learning research initiatives\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"generative models such as LLMs\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\", \"alternative_group\": 1},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\", \"alternative_group\": 1},\n    {\"skill_id\": \"jax\", \"requirement\": \"required\", \"raw_text\": \"JAX\", \"alternative_group\": 1},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\", \"alternative_group\": 2},\n    {\"skill_id\": \"cpp\", \"requirement\": \"required\", \"raw_text\": \"C++\", \"alternative_group\": 2},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"cloud platforms\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AWS\", \"alternative_group\": 3},\n    {\"skill_id\": \"gcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"GCP\", \"alternative_group\": 3},\n    {\"skill_id\": \"azure\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Azure\", \"alternative_group\": 3},\n    {\"skill_id\": \"containerization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"containerization and orchestration technologies\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Docker\", \"uncertain\": true},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Kubernetes\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"VLMs\", \"raw_text\": \"VLMs\"},\n    {\"label\": \"ML model efficiency and optimization\", \"raw_text\": \"ML model efficiency and optimization\"},\n    {\"label\": \"performance analysis / profiling\", \"raw_text\": \"performance analysis, profiling, and optimization techniques\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Define and lead high impact applied research initiatives.\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD in Computer Science, Computer Engineering, or a related field.\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"Preferred/Bonus Qualifications heading makes cloud and container items nice_to_have.\\nRequired Qualifications items are required.\\nmachine-learning is labeled from the years-of-experience bullet 'leading Machine Learning research initiatives'. It is flagged uncertain because it reads more as a research domain than as a skill ask.\\n'at least one ML framework (e.g., PyTorch, TensorFlow, JAX)' forms group 1.\\n'one or more programming languages such as Python, or C++' forms group 2.\\nThe cloud examples AWS, GCP and Azure form group 3; cloud is the broad skill and stays out of the group.\\nDocker and Kubernetes are not grouped. They read as examples of two distinct asks: containerization and orchestration. This is flagged uncertain.\\n'generative models' does not map to an existing alias. LLMs is labeled. VLMs is unmapped, so no group is formed with llms.\\nModel efficiency/optimization is left unmapped rather than forced onto inference-optimization, which the text does not literally name. The same applies to profiling.\\nSeniority: '3+ years' alone would infer mid. The lead duty ('Define and lead ... initiatives', and 'leading' in the experience bullet) infers senior. Flagged uncertain.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Machine Learning research initiatives",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "generative models such as LLMs"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "GCP",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerization and orchestration technologies"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker",
+        "uncertain": true
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "VLMs",
+        "raw_text": "VLMs"
+      },
+      {
+        "label": "ML model efficiency and optimization",
+        "raw_text": "ML model efficiency and optimization"
+      },
+      {
+        "label": "performance analysis / profiling",
+        "raw_text": "performance analysis, profiling, and optimization techniques"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Define and lead high impact applied research initiatives.",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD in Computer Science, Computer Engineering, or a related field.",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Preferred/Bonus Qualifications heading makes cloud and container items nice_to_have.\nRequired Qualifications items are required.\nmachine-learning is labeled from the years-of-experience bullet 'leading Machine Learning research initiatives'. It is flagged uncertain because it reads more as a research domain than as a skill ask.\n'at least one ML framework (e.g., PyTorch, TensorFlow, JAX)' forms group 1.\n'one or more programming languages such as Python, or C++' forms group 2.\nThe cloud examples AWS, GCP and Azure form group 3; cloud is the broad skill and stays out of the group.\nDocker and Kubernetes are not grouped. They read as examples of two distinct asks: containerization and orchestration. This is flagged uncertain.\n'generative models' does not map to an existing alias. LLMs is labeled. VLMs is unmapped, so no group is formed with llms.\nModel efficiency/optimization is left unmapped rather than forced onto inference-optimization, which the text does not literally name. The same applies to profiling.\nSeniority: '3+ years' alone would infer mid. The lead duty ('Define and lead ... initiatives', and 'leading' in the experience bullet) infers senior. Flagged uncertain."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "ab48e61d3cd5ac626101c27cb5d145a956d735f0cf43c2d844beed670073c4b8",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

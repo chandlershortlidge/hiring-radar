@@ -31,6 +31,10 @@ export const PLACES = [
   { name: "New York", slug: "new-york", group: "United States", aliases: ["nyc", "usa", "us", "manhattan", "brooklyn"] },
   { name: "Austin", slug: "austin", group: "United States", aliases: ["atx", "usa", "us", "texas"] },
   { name: "Boston", slug: "boston", group: "United States", aliases: ["usa", "us", "massachusetts", "cambridge"] },
+  { name: "Seattle", slug: "seattle", group: "United States", aliases: ["usa", "us", "washington", "bellevue", "redmond"] },
+  { name: "Los Angeles", slug: "los-angeles", group: "United States", aliases: ["la", "usa", "us", "california", "santa monica"] },
+  { name: "Chicago", slug: "chicago", group: "United States", aliases: ["usa", "us", "illinois", "chi"] },
+  { name: "San Jose", slug: "san-jose", group: "United States", aliases: ["usa", "us", "california", "silicon valley", "south bay", "santa clara", "sunnyvale", "mountain view", "palo alto", "cupertino"] },
   { name: "London", slug: "london", group: "United Kingdom", aliases: ["uk", "england", "great britain", "gb"] },
   { name: "Amsterdam", slug: "amsterdam", group: "Netherlands", aliases: ["nl", "nederland", "holland", "noord-holland"] },
 ];
