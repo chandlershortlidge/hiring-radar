@@ -1,0 +1,83 @@
+{
+  "id": "golden_110",
+  "split": "heldout",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift",
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "ba0dc1efedd8b7191a1da5a001d528d56f73d53a1b67aabee55cd66ec8450016",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "degree",
+    "skill:ai-ml",
+    "skill:cybersecurity",
+    "skill:data-privacy-and-security",
+    "skill:workflow-automation"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "AI Engineer – KI-Enablement & Solutions (m/w/d)\n\n**Ihr Beitrag**\n\n* Konzeption und eigenständige Umsetzung von KI-Lösungen im Arbeitsalltag in Zusammenarbeit mit Key Usern und nahen IT-Bereichen (Digital Workplace, Compliance und Security)\n* Aufbau interner KI-Services, Realisierung und Optimierung von Schnittstellen\n* Generierung KI-gestützter Workflows, stetige Weiterentwicklung integrierter Agenten / Copiloten\n* Definition von Use Cases, Pflege und Katalogisierung von Anwendungsfällen in der Praxis\n* Identifikation und Bewertung externer KI‑Tools und Plattformen, Prüfung von Integrationsmöglichkeiten in bestehende Systeme (z. B. ERP, Prozessplattformen, SharePoint, Automatisierungslösungen)\n* Durchführung von Workshops und Hands‑on Sessions zu relevanten KI-Tools und KI-gestützten Arbeitsweisen\n* Bewertung und Aufklärung zu bekannten Risikofaktoren der KI wie Halluzinationen, Datenzugang, Prompt‑Qualität, Transparenz und Bias\n* Gewährleistung der datenschutzkonformen Nutzung gemäß DSGVO unter Berücksichtigung regulatorischer Vorgaben der Medizintechnik (Medical Device, MDR, ISO)\n* Regelmäßige Abstimmung mit Führungskräften auf C‑Level zur Sicherstellung des Business Values, Darstellung des KI-Mehrwerts auf allen Ebenen (operative Nutzer bis Geschäftsführung)\n\n**Das bringen Sie mit**\n\n* Abgeschlossener technischer Bildungsweg in Bereichen wie Informatik, Data Science, Artificial Intelligence, Machine Learning, Deep Learning oder einer vergleichbaren Fachrichtung\n* Berufserfahrung in der Entwicklung, Umsetzung und im Betrieb von KI-Lösungen (Agenten, Workflows, API-Integrationen)\n* Anwenderkenntnisse in Low-Code/No-Code-Plattformen (z. B. Copilot Studio, Power Automate, n8n)\n* Erweitertes Know-how im Prompt Engineering für den Enterprise-Einsatz (Systemprompts, RAG-Architekturen, Agenten-Orchestrierung)\n* Praktische Berührungen mit Datenschutzkonzepten und Informationssicherheit, idealerweise in regulierten Umfeldern (z. B. DSGVO-konforme Systemgestaltung, Security Reviews)\n* Methodenverständnis für den sukzessiven Aufbau von KI-Kompetenz, Spaß am kontinuierlichen Wissenstransfer\n* Fähigkeit zur adressatengerechten Vermittlung technischer Konzepte – von den operativen Nutzern bis hin zur Geschäftsführungsebene\n* Strukturierte Arbeitsweise, ausgeprägte Problemlösungskompetenz\n* Idealerweise erste Kontaktpunkte in MedTech oder weiteren regulierten Branchen\n* Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift\n\n**Das können Sie von uns erwarten**\n\n* Flexible Arbeitszeiten (Gleitzeit), unbefristete Anstellung\n* Homeoffice gemäß aktueller Betriebsvereinbarung möglich\n* 30 Tage Urlaub pro Jahr\n* Bezahlung nach Tarifvertrag, ggf. Prämien- und Bonuszahlungen\n* Attraktive Zuschüsse:\n* Mittagessen\n* Deutschlandticket\n* betriebliche Altersvorsorge (bAV)\n* JobRad\n* Corporate Benefits, Preisnachlässe auf ausgewählte Produkte bekannter Marken\n* Freizeitangebote wie Spieleabende und After-Work-Fußballrunden\n* Individuelle Teamevents, z. B. Firmenläufe, Frisbee-Turniere u.v.m.\n* Führendes und kontinuierlich wachsendes Unternehmen der Medizintechnik\n* Viele Möglichkeiten zur Mitgestaltung sowie zur persönlichen und fachlichen Weiterentwicklung\n* Anspruchsvolle und abwechslungsreiche Projekte\n\n**Warum Löwenstein Medical Technology?**\n\n**Neue Wege gehen. **Aber nie vergessen, wo man herkommt. Löwenstein Medical Technology ist ein mittelständisches Unternehmen unter dem Dach der international aufgestellten Löwenstein Gruppe. Als Kompetenzträger für respiratorische Diagnostik und Therapie entwickeln und produzieren wir in Deutschland hochwertige Medizinprodukte „Made in Germany“ für den weltweiten Einsatz in der Schlaf- und Beatmungsmedizin. Wir investieren in Mitarbeiter, die unsere zentralen Werte Eigenverantwortung, Begeisterung, Kreativität und Leistung in den Fokus ihres Schaffens stellen.",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "KI-Lösungen (Agenten"
+    },
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "Berufserfahrung in der Entwicklung, Umsetzung und im Betrieb von KI-Lösungen"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "API-Integrationen"
+    },
+    {
+      "skill_id": "cybersecurity",
+      "requirement": "required",
+      "raw_text": "Informationssicherheit"
+    },
+    {
+      "skill_id": "data-privacy-and-security",
+      "requirement": "required",
+      "raw_text": "Datenschutzkonzepten"
+    },
+    {
+      "skill_id": "llm-orchestration",
+      "requirement": "required",
+      "raw_text": "Agenten-Orchestrierung"
+    },
+    {
+      "skill_id": "n8n",
+      "requirement": "required",
+      "raw_text": "n8n"
+    },
+    {
+      "skill_id": "power-automate",
+      "requirement": "required",
+      "raw_text": "Power Automate"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "Prompt Engineering"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG-Architekturen"
+    }
+  ]
+}

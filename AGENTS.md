@@ -501,6 +501,13 @@ The trigger is a file list, not a judgment. The diff touches any of:
 - `scripts/rules_gate.py` — the gate's own code, so a PR cannot rewrite the check into
   one that always passes
 
+**Or it removes a test** (HIR-332): a test file deleted, a test function or `it(...)` /
+`test(...)` removed and not re-added elsewhere in the PR (a move is fine), or a skip / xfail
+marker added. Making a failing test pass by deleting or skipping it is the cheapest way to a
+green suite, and it hides exactly the bugs the test was there for. In a back-test of 100
+merged PRs, 8 removed or skipped tests with no one asked. Most were legitimate (the feature
+went too), and that is the bullet's job to say.
+
 Then the PR gets `needs-chandler`, does not merge, and its description carries this block,
 with nothing more in it:
 
@@ -527,7 +534,10 @@ PR back when they are not, and still writes the bullets itself.
 **Two enforcers, because one of them is itself a rule file.** The reviewer applies the rule
 (`.claude/agents/reviewer.md`). And `scripts/rules_gate.py` runs in CI on every PR
 (`.github/workflows/rules-gate.yml`, check name "Rules gate"): it reads the PR's own changed
-files and fails when one of them is a rule file and the block is absent. That half is the
+files and fails when one of them is a rule file, or a test was removed, and the block is
+absent. It runs on `pull_request_target`, from the **base branch's** copy of the workflow and
+the script (HIR-332), so a PR that rewrites the gate is judged by the version it is trying to
+change, never by its own rewrite. That half is the
 backstop — it still fires on a PR that edits the reviewer's instructions out of existence. It
 re-runs when the PR description is edited, which is how it goes green once the reviewer has
 added the block.
@@ -626,15 +636,17 @@ is never asked again.
 
 **This is the one list** (Chandler, 2026-11-12, HIR-262; split into a small and a big side
 2026-11-13, HIR-278; the big side split into what he thinks through and what he only
-approves 2026-11-14, HIR-297). The decider, the senior agent, the reviewer, the work-issue,
+approves 2026-11-14, HIR-297; what he would only approve decided for him 2026-11-16,
+HIR-315). The decider, the senior agent, the reviewer, the work-issue,
 orchestrator and lead-agent skills and the PR template point here; none keeps its own copy.
 Everything not on it is decided by an agent, reviewed by another agent, and merged.
 
-Each item has a **big** side, which waits for him. Four of the six also have a **small**
+Each item has a **big** side, which was his alone until HIR-315 ("A recommendation to
+approve is decided, not asked", below). Four of the six also have a **small**
 side: the senior agent decides those and he reads about them on Monday ("Small calls",
 below). **When in doubt about which side a call is on, it is big.** A big call then
-reaches him in one of two forms, a full question or three lines to approve ("Big calls
-come in two kinds", below).
+is one of two kinds, a full question to think about or three lines to approve ("Big calls
+come in two kinds", below). The first kind reaches him; the second is decided for him.
 
 1. **Roadmap** — *big:* what gets built or dropped; launching a city he has not named
    (`ACTIVE_CITIES`); opening the site to the public. *Small:* the order of bugs inside a
@@ -702,7 +714,8 @@ HIR-297: "shrink the scope of tickets that I make decisions about to stuff that 
 me learn important career-related skills. Otherwise ... a recommendation of what to do
 with an *extremely short* brief on what it is and why"). This sorts the big side only. It
 puts nothing on the list and takes nothing off it: a call that was not big is still not
-asked, a small call is still decided for him, and no big call is decided without his yes.
+asked, and a small call is still decided for him. Which big calls then wait for him is
+the next paragraph's ("A recommendation to approve is decided, not asked", HIR-315).
 
 - **To think about: he works it out.** A big call is this kind only if working it out
   teaches something an AI engineer or data scientist is hired for. On this project:
@@ -722,8 +735,9 @@ asked, a small call is still decided for him, and no big call is decided without
 - **To approve: he says yes or no.** Every other big call: roadmap order, launch chores
   (domain, legal pages, analytics), visual and wording choices beyond the small side,
   which jobs count as in scope, duplicate and location rules, deleting stored data, spend
-  above the small limit, and changes to the agents' own rules. He still has to say yes,
-  but he is not asked to think it through. The form is fixed, three lines at most:
+  above the small limit, and changes to the agents' own rules. He is not asked to think
+  it through, and since HIR-315 most of them are not put to him at all (the paragraph
+  after this one). The form is fixed, three lines at most:
 
   > **Recommend:** <what to do, one sentence>.
   > **What it is:** <one sentence, plain words>.
@@ -743,21 +757,67 @@ asked, a small call is still decided for him, and no big call is decided without
   a PR's "Needs Chandler", starts with the heading **To approve** or **To think about**.
   Monday's list and the lead agent's count read the kind from that heading.
 - **Where each kind shows.** Monday's "Decisions waiting for you" has the two headings:
-  **To think about**, at most 3 a week, and **To approve**, the rest of the weekly 10
-  ("The lead agent", below). Only the to-think-about pile slows the lead agent down.
+  **To think about**, at most 3 a week, and **To approve**, the rest of the weekly 10,
+  which holds only the recommendations that still need his yes (next paragraph; "The
+  lead agent", below). Only the to-think-about pile slows the lead agent down.
+
+**A recommendation to approve is decided, not asked; a question to think about is his
+for one week** (Chandler, 2026-11-16, HIR-315, decisions/2026-11-16-hir-315: "The rest
+just go with whatever you think best or we'll never get this done"; and the same day, no
+limit of one question a week: he talks the questions through with Claude by voice, and
+"recommendations stay the default when he hasn't talked a decision through").
+
+- **To approve → decided.** The senior agent takes its own written recommendation the
+  moment the call comes up. It is written down exactly as a small call is (above): one
+  line under **Decided for you** in the PR body, or in a ticket comment with that
+  heading; "Escalations" shows who decided. No @mention, no `needs-chandler`, no
+  `attended` label. He reverses it by replying on the ticket.
+- **To think about → his for a week.** It reaches him as before and Monday lists it. He
+  talks it through with Claude by voice, or answers on the ticket. Once a Monday list
+  has shown it and seven days have passed with no answer, the senior agent takes the
+  written recommendation and it is reported under **Decided for you**. One that no
+  Monday list has shown him is never decided this way; one with no written
+  recommendation gets it from the senior agent first.
+- **Never decided this way, whatever the kind:**
+  - *money:* a spend on the big side of item 5 waits for his yes under **To approve**,
+    however long that takes;
+  - *stored data:* deleting stored jobs, or repairing more than the small side allows,
+    is decided only with the proof the small side of item 4 names in hand (the trial on
+    a copy of the database, last night's backup). Without it the worker gets it; nobody
+    is asked and nothing is deleted;
+  - *how quality is measured:* always to think about, so it always gets its week; when
+    the recommendation is then taken, the reason goes into the decisions log in the
+    same pull request.
+- **An action only he can take is not a decision.** A merge that the rules gate or the
+  labelling guide requires from him (both are refused in code, below); a credential,
+  account, payment or setting only he can change; work that has to run by hand on his
+  Mac or the server. These go under **Yours this week** on Monday, one line each, at
+  most three; the rest wait. A pull request that changes the agents' own rules still
+  opens with its three lines and still waits for his merge.
+- **Who decides.** The senior agent, and nobody else: never the worker that asked, the
+  decider, the reviewer or the lead agent. The reviewer checks the line like a small
+  call's: the call is one this paragraph lets the senior agent decide, the undo is real,
+  the proof or the recorded reason is there.
+- **Which waiting tickets** is code: `to_decide` in `scripts/lead_pick.py` names them on
+  every lead agent run, and the lead agent hands each to the senior agent ("The lead
+  agent", below).
 
 How the list is used:
 
 - **A question on the list** goes to the decider first, like any question. A written rule
   answers it; with no rule, the decider says which side it is on. Small goes to the senior
-  agent (above). Only a big one reaches Chandler, as a Linear comment that @mentions him,
-  in the form for its kind ("Big calls come in two kinds", above).
+  agent (above). A big one goes to the senior agent as well, which decides it or says it
+  is still his ("A recommendation to approve is decided, not asked", above). Only what is
+  still his reaches Chandler, as a Linear comment that @mentions him, in the form for its
+  kind ("Big calls come in two kinds", above).
   **A question not on the list never reaches him**: the decider answers it from the rules,
   or by the closest rule and precedent when none fits exactly, and the worker records the
   answer under "Decisions taken".
-- **A PR whose change is on the big side** gets `needs-chandler` and an @mention, and waits
-  for him. It is the only kind of PR that pings him. A PR whose only items on the list are
-  small calls the senior agent decided merges after review.
+- **A PR whose change is on the big side and still his** (a question to think about
+  inside its week, a spend above the limit) gets `needs-chandler` and an @mention, and
+  waits for him. It is the only kind of PR that pings him. A PR whose only items on the
+  list are calls the senior agent decided, small ones or recommendations to approve,
+  merges after review.
 - **Which files trip it** is the reviewer's check (`.claude/agents/reviewer.md`, step 3).
   The labelling guide is also refused by GitHub's own merger
   (`scripts/merge_reviewed.py`), so it stops even if the reviewer slips.
@@ -792,9 +852,10 @@ Chandler is the last rung only for an item on the big side of his list:
   model (above).
 - **A small call on Chandler's list** ("What Chandler is asked", above) → the decider
   names it, the `senior` agent decides it, and it is reported on Monday.
-- Only when the senior agent or the decider says the question is on the big side of
-  Chandler's list does it reach him — already written by the senior agent in the form for
-  its kind: three lines to approve, or a full question to think about.
+- Only when the senior agent says a big call is still his does it reach him ("A
+  recommendation to approve is decided, not asked", above) — already written by the
+  senior agent in the form for its kind: three lines to approve, or a full question to
+  think about.
 
 Every escalation is recorded in the PR body under **Escalations**: who asked, what, what
 was answered — so the Monday summary can say how often it happened.
@@ -818,8 +879,9 @@ answers the question from them. It returns either an answer with the rule it res
 applies it and notes it under "Decisions taken"), or "small call" (the senior agent decides
 it, above), or — only for a question on the big side of Chandler's list — "no rule covers
 this", with the situation and its recommendation. The worker takes that to the senior
-agent, which says which kind of big call it is and writes it in that kind's form ("Big
-calls come in two kinds", above). Only that reaches Chandler: a comment on the Linear
+agent, which says which kind of big call it is, decides it when it is a recommendation
+to approve that does not need his yes (HIR-315), and otherwise writes it in that kind's
+form ("Big calls come in two kinds", above). Only that reaches Chandler: a comment on the Linear
 issue that @mentions him, headed **To approve** (the three lines) or **To think about**
 (the full question). His answer is
 written into the decisions log (a new file in `decisions/`) so it is never asked again. Meanwhile the worker does any step
@@ -841,7 +903,7 @@ gate, which apply to every run regardless of label.
 
 **Who merges.** A worker never merges its own PR. For an `autopilot` issue the
 `reviewer` agent (`.claude/agents/reviewer.md`, fresh context, Fable) merges when CI is
-green, the diff stays in scope and off the big side of Chandler's list, "Needs Chandler" is empty,
+green, the diff stays in scope and holds nothing on Chandler's list that is still his, "Needs Chandler" is empty,
 every decision has an undo and every follow-up a ticket. A finding not on his list is sent
 back to the author (above); one on its big side gets `needs-chandler` and an @mention.
 
@@ -932,7 +994,7 @@ that stops before a review passes leaves its PR labelled `needs-chandler` **with
 **How Chandler hears about it: once a week, not per PR.** A Monday summary — what merged,
 in plain words, grouped by what a visitor would notice; what was sent back and fixed; the
 short "needs you" list; and "Decided for you", the small calls the senior agent made, each
-with how to undo it (HIR-278). No message for work that merged. Until that summary exists
+with how to undo it (HIR-278), and the recommendations it took for him (HIR-315). No message for work that merged. Until that summary exists
 (HIR-264), the open PRs labelled `needs-chandler` are the "needs you" list. The summary's
 "needs you" part covers pull requests only; the decisions waiting in tickets reach him in
 the same Monday post, in a comment the lead agent adds ("The lead agent", below; HIR-277).
@@ -988,11 +1050,21 @@ not on agents.
 The lead agent adds one comment to the Monday summary, headed **Decisions waiting for
 you**: at most 10 (`config/lead_agent.json`), under two headings (HIR-297). **To think
 about**, at most 3 a week, each a full question answerable without opening the ticket;
-**To approve**, the rest of the 10, each the three lines of a recommendation. Then how many
-more are waiting; then up to 3 lines of work he does with an agent, under **Yours this
-week**. Which tickets, in what order and how many is code (`monday_decisions` in
+**To approve**, the rest of the 10, each the three lines of a recommendation, and only
+the ones that still need his yes (HIR-315). Then how many
+more are waiting; then up to 3 lines of what only he can do, under **Yours this
+week**; then **Decided for you**, one line for each call the senior agent took its own
+recommendation on that week. Which tickets, in what order and how many is code (`monday_decisions` in
 `scripts/lead_pick.py`): what blocks the current launch milestone, then what blocks a
 ticket in Todo, then the oldest. The lead agent writes the sentences and answers nothing.
+
+**Every run, the waiting decisions that are no longer his go to the senior agent**
+(HIR-315). `to_decide` in the same script names them: each waiting recommendation to
+approve that does not need his yes, and each question to think about that a Monday list
+showed him seven or more days ago. The lead agent hands each to the senior agent, posts
+its reply on the ticket headed **Decided for you**, and treats the ticket as answered.
+It never decides one itself. The first run after this rule merged did that for every
+ticket then waiting.
 
 **His answer is a comment on the ticket, and the next run applies it.** Agents write
 under his Linear login, so the author of a comment proves nothing. A comment counts as

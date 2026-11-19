@@ -1,0 +1,97 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Public Cloud\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vorzugsweise GCP\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"IaC\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Generative AI-Anwendungen\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD-Pipeline\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Versionskontrollsystemen\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"hast idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"GitLab\",\n      \"raw_text\": \"GitLab\"\n    },\n    {\n      \"label\": \"Bitbucket\",\n      \"raw_text\": \"Bitbucket\"\n    },\n    {\n      \"label\": \"Agile methods\",\n      \"raw_text\": \"agilen Methoden\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"erste Erfahrungen\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"verhandlungssicher in Deutsch\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz\",\n  \"notes\": \"The candidate requirements are under “Du”; “idealerweise” makes the affected bullets optional. “vorzugsweise” makes GCP optional specifically, not AWS or Azure.\\nAWS, Azure and GCP are interpreted as alternative examples for the Public Cloud experience ask; the broad cloud criterion is outside that group.\\nVersion-control experience and GitHub collapse into the taxonomy's git criterion. GitLab and Bitbucket have no fitting entries; GitLab alone does not establish GitLab CI experience.\\nTechnologies named only in responsibilities are excluded; the responsibilities' technology list is not treated as a dedicated tech-stack section.\\nAgile methods are an unmapped technical practice. Industry regulations and insurance/finance compliance knowledge are excluded as domain knowledge; cloud certifications are credentials rather than additional skills.\\nSeniority follows the explicit first-experience wording; “erfahrene” and “einschlägige Erfahrung” do not independently establish a higher level.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Public Cloud"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "vorzugsweise GCP",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "IaC"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generative AI-Anwendungen"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Pipeline"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Versionskontrollsystemen"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "nice_to_have",
+        "raw_text": "hast idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "GitLab",
+        "raw_text": "GitLab"
+      },
+      {
+        "label": "Bitbucket",
+        "raw_text": "Bitbucket"
+      },
+      {
+        "label": "Agile methods",
+        "raw_text": "agilen Methoden"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "erste Erfahrungen",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "verhandlungssicher in Deutsch",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz",
+    "notes": "The candidate requirements are under “Du”; “idealerweise” makes the affected bullets optional. “vorzugsweise” makes GCP optional specifically, not AWS or Azure.\nAWS, Azure and GCP are interpreted as alternative examples for the Public Cloud experience ask; the broad cloud criterion is outside that group.\nVersion-control experience and GitHub collapse into the taxonomy's git criterion. GitLab and Bitbucket have no fitting entries; GitLab alone does not establish GitLab CI experience.\nTechnologies named only in responsibilities are excluded; the responsibilities' technology list is not treated as a dedicated tech-stack section.\nAgile methods are an unmapped technical practice. Industry regulations and insurance/finance compliance knowledge are excluded as domain knowledge; cloud certifications are credentials rather than additional skills.\nSeniority follows the explicit first-experience wording; “erfahrene” and “einschlägige Erfahrung” do not independently establish a higher level."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "8a40ba3b7eb5a4e7816d296879815adc0e481dcc22fbee2f5424e8fe664709eb",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

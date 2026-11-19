@@ -1,0 +1,47 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"devops\", \"requirement\": \"required\", \"raw_text\": \"Fundierte DevOps- und Cloud-Erfahrung\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"DevOps- und Cloud-Erfahrung\"},\n    {\"skill_id\": \"cybersecurity\", \"requirement\": \"required\", \"raw_text\": \"Praktische Erfahrung im Bereich IT-Security\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"Mindestens ein selbst technisch umgesetztes KI-Projekt\", \"uncertain\": true}\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior DevOps Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The first requirements bullet is 'Einschlägige Berufserfahrung in oben genannten Aufgaben'. It refers back to the responsibilities list in general and names no technology. So I did not label the skills named only in the responsibilities: ci-cd, infrastructure-as-code, docker, kubernetes, openshift, containerization, machine-learning, llms, apis, observability. Their only quotable raw_text is in the responsibilities. A reviewer may decide this cross-reference makes them requirements.\\n'KI-Projekt' (AI project) is mapped to ai-ml as the closest broad AI entry. I flagged it uncertain.\\n'IT-Security' is mapped to cybersecurity.\\nSeniority is stated in the title as 'Senior'.\\nGerman is inferred as required: the posting is written in German and says nothing about language.\\nNo degree is mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "Fundierte DevOps- und Cloud-Erfahrung"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "DevOps- und Cloud-Erfahrung"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "Praktische Erfahrung im Bereich IT-Security"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Mindestens ein selbst technisch umgesetztes KI-Projekt",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior DevOps Engineer",
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The first requirements bullet is 'Einschlägige Berufserfahrung in oben genannten Aufgaben'. It refers back to the responsibilities list in general and names no technology. So I did not label the skills named only in the responsibilities: ci-cd, infrastructure-as-code, docker, kubernetes, openshift, containerization, machine-learning, llms, apis, observability. Their only quotable raw_text is in the responsibilities. A reviewer may decide this cross-reference makes them requirements.\n'KI-Projekt' (AI project) is mapped to ai-ml as the closest broad AI entry. I flagged it uncertain.\n'IT-Security' is mapped to cybersecurity.\nSeniority is stated in the title as 'Senior'.\nGerman is inferred as required: the posting is written in German and says nothing about language.\nNo degree is mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "b93a430e483554338fa2b3373923ea6eca03f58a4f940465585ccee3d10eed23",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

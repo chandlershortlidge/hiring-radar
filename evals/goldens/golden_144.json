@@ -1,0 +1,113 @@
+{
+  "id": "golden_144",
+  "split": "heldout",
+  "seniority": "junior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Orbit Graduate program",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "fluency in German and English (must)",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": false,
+  "degree_signal": "Degree in Engineering, Data Analytics/Science, Computer Science, Mathematics, or a related STEM field",
+  "attrs_reviewed": true,
+  "source_sha256": "7edc110c0c8ec2b173d6b4367ad04b938fe103a86a80ecd47b11aaee9167c493",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:agents",
+    "skill:llm-orchestration",
+    "skill:multi-agent-systems",
+    "skill:prompt-engineering",
+    "skill:rag"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Associate Applied (AI) Value Engineer (DACH) - Orbit Program\n\nCelonis is the trusted platform to industrialize Enterprise AI. At our core is the Celonis Context Model — which combines process data, business knowledge, and intelligence into a living digital twin of the enterprise that AI can actually understand, turning AI's operational blind spots into operational clarity. World's leading companies trust Celonis and its global ecosystem of partners to make their AI agents, people, systems, and processes work together, achieving transformational outcomes. We believe there's a massive opportunity to unlock global productivity and sustainability by giving AI the context to understand how every business process really works. Join our mission to make processes work for people, companies, and the planet.\n\nLocation: Madrid for an onboarding period of 2 years and a possible relocation to Munich after. Customer base will be in Germany/DACH area, involving travel to meet clients in person.\n\nRole Description\n\nAs an Applied (AI) Value Engineer you are pushing the envelope in solving business-critical problems for our customers. You are part of our Value Engineering team and are the trusted advisor for customers working on the intersection of technology and business. You will be working with our most strategic customers, understanding their objectives and key challenges, and building Celonis solutions using the world’s leading Process Intelligence (PI) platform in combination with the largest AI and ML technology partners, such as Microsoft, OpenAI and Databricks. With Celonis’ Process Intelligence (PI) platform we feed operational context to AI so it understands our customers’ business and enables them to industrialize AI unlocking real ROI on AI deployments and at scale. There is no AI without PI. You will prototype these solutions, demonstrate their value to Executives and ensure successful implementation, adoption and value realization in order to increase the footprint of Celonis at those customers.\n\nLaunch Your Enterprise Software Career - Orbit Graduate program\n\nKickstart your career in enterprise software through our immersive 12-month Orbit Program. \n\nDuring the Orbit Graduate program, you will be joining the Global VE Center of Excellence which is an international, diverse, and dynamic organization at the core of the Celonis Value Engineering team supporting our local field teams. As a team, we enjoy working in a fast-paced environment and share a sense of belonging to an international community that wants to learn and grow together. The team culture is one based on building trust, continuous development, and improvement through coaching & mentoring.\n\nThis program offers a unique blend of client engagements, dedicated mentorship, and a strong team culture where collaboration and shared success are paramount. You'll leverage your technical background to develop essential skills, build lasting client relationships, and establish yourself as a trusted advisor, paving the way for significant career growth within Celonis.\n\nYour journey begins with comprehensive onboarding and enablement, followed by hands-on experience in customer engagements and targeted training. You will gain expertise in:\n\n- Discovery & AI Solutioning \n\n- Building and coding within the Celonis platform (SQL, PQL and Python)\n\n- Scoping business and technical requirements\n\n- Effectively handling objections\n\n- Developing industry domain knowledge\n\n- Delivering impactful presentations and demos\n\n- Understanding value selling and realization\n\n- Managing customer accounts\n\nWhat You'll Do:\n\n- AI Discovery & Solutioning: Understand customers AI strategy and business critical challenges. As Celonis product & domain expert, find the best problem-solution fit and translate customer requirements into innovative solutions that move the needle\n\n- Hackathons & Prototyping: Think out of the box, have a “can-do“ attitude and don’t shy away from complex problems. Leverage cutting edge AI technologies to rapidly build creative prototypes in customer hackathons solving business critical problems\n\n- Agentic Process Transformation: Support our customers in achieving real ROI out of AI deployments at scale enabling a fundamental shift in business operations from traditional, rule-based automation to the use of autonomous AI agents empowered by our Celonis Process Intelligence Platform\n\n- Proof Projects: End-to-end execution of business-critical Proof-of-Value projects showcasing the value of Celonis Process Intelligence tailored to customers and align our solutions with their AI strategy.\n\n- Specialize in Domains or Industries: To scale knowledge across the organization specialize in domains (e.g. supply chain) and industries \n\n- Business Impact Presentations: Articulate and quantify strategic business value for customers, delivering impactful presentations to senior executives to ensure successful value realization for customers.\n\n- Ensure Successful Project Outcome: AI Solution Consultants stay involved with projects until agreed value & adoption thresholds are reached\n\n- Best Practice Modeling: Contribute to the Global Value Engineering Center of Excellence by creating reusable collateral, best practices, and tools.\n\nWhat You Need:\n\n- Degree in Engineering, Data Analytics/Science, Computer Science, Mathematics, or a related STEM field.\n\n- Excellent academic performance\n\n- Extensive internship experience or 1-2 years of full-time work experience. Ideally at the intersection of business and technology.\n\n- Understanding of generative AI techniques like RAG, few shot learning, prompt/context engineering, multi-agent orchestration, multimodal understanding, or fine-tuning that are used to build high-impact use cases like intelligent chatbots and automated text processors.\n\n- Good knowledge of Python and common ML libraries (such as LangChain, pandas, pydantic, sklearn, PyTorch) as well as data engineering tools and technologies.\n\n- Excellent analytical and creative problem-solving skills, with the ability to apply technology to business challenges.\n\n- A customer-centric mindset with a focus on delivering value.\n\n- Confidence in presenting to diverse audiences.\n\n- A proactive approach to problem-solving, with a willingness to learn from mistakes.\n\n- Curiosity, self-motivation, a commitment to continuous learning, and the desire to thrive in a fast-paced, high-growth environment.\n\n- Strong organizational skills with the ability to prioritize and execute on deadlines.\n\n- Excellent communication skills and fluency in German and English (must). \n\n- Foundational business acumen and domain understanding, e.g. in areas such as Supply Chain.\n\nBonus Points:\n\n- Degrees combining technical (e.g., Computer Science, Data Science) and business (e.g., Economics, Marketing) skills.\n\n- Customer-facing, customer success/service, or sales experience.\n\n- Hands-on experience with technical Proof of Concept projects\n\n- Hands-on experience building agentic systems using LLM orchestration, RAG, function calling, and prompt engineering\n\n- Working knowledge of tools in the LLM ecosystem such as LangChain, LlamaIndex, or other OSS packages.\n\n- Supply Chain process experience (Procurement, Order Management, Inventory Management, Production).\n\n- Experience modeling ROI and TCO for business case justification.\n\n- Experience with ERPs such as SAP and/or Oracle\n\nWhat Celonis can offer you:\n\n- Pioneer Innovation: Work with the global leader in Process Mining and the Process Intelligence Graph to shape the future of AI-driven business operations.\n\n- Ownership from Day 1: Every full-time \"Celonaut\" is an owner, receiving Restricted Stock Units (RSUs) and merit-based refresh grants.\n\n- Unrivaled Family Support: Benefit from our inclusive parental leave policy—24 weeks of fully paid leave for primary carers and 12 weeks for supporting carers, available from your first day of employment.\n\n- Work-Life Integration: Enjoy Unlimited PTO (in applicable regions) and generous PTO globally, as well as a flexible hybrid work model that balances remote focus with vibrant office collaboration.\n\n- Continuous Growth: Elevate your skills through our 70-20-10 learning framework, mentorship programs, and access to a dedicated learning platform.\n\n- Holistic Well-being: Prioritize your health with subsidized Wellhub memberships, mental health counseling, and dedicated \"Wellness Weeks\" that prioritize work/life balance.\n\n- Drive Sustainability: Participate in annual Impact Days, where you receive paid time off to volunteer for community and environmental causes with your local office, or virtually.\n\n- Global Inclusion & Belonging: Find community through our Inclusion Think Tank and participate in our annual Inclusion Days, ensuring every voice is heard and valued.\n\n- Value-Driven Impact: Join a mission-led organization where our core values—Live for Customer Value, The Best Team Wins, We Own It, and Earth Is Our Future—drive every decision.\n\nAbout Us:\n\nCelonis is the trusted platform to industrialize Enterprise AI, empowering organizations to analyze, design, and operate AI-driven processes. The Celonis Platform is powered by the Celonis Context Model, which combines process data, business knowledge, and intelligence to create a living digital twin of the enterprise that AI can understand — turning AI’s operational blind spots into operational clarity. Industry-leading companies around the world trust Celonis and its global ecosystem of partners to make their AI agents, people, systems, and processes work together, achieving transformational outcomes. Celonis is headquartered in Munich, Germany, and New York City, USA, with more than 20 offices worldwide.\n\nGet familiar with the Celonis Process Intelligence Platform by watching this video.\n\nCelonis Inclusion Statement:\n\nAt Celonis, we believe our people make us who we are and that “The Best Team Wins”. We know that the best teams are made up of people who bring different perspectives to the table. And when everyone feels included, able to speak up and knows their voice is heard - that's when creativity and innovation happen.\n\nYour Privacy:\n\nAny information you submit to Celonis as part of your application will be processed in accordance with Celonis’ Accessibility and Candidate Notices\n\nBy submitting this application, you confirm that you agree to the storing and processing of your personal data by Celonis as described in our Privacy Notice for the Application and Hiring Process.\n\nUse of Artificial Intelligence Tools\n\nWe rely on an artificial intelligence tool to match the information from your resume to the relevant Celonis job descriptions. This processing is limited to the information provided in your resume or in your candidate profile. The tool produces a match score per candidate for a role, suggests preliminary ranking, and provides recommendations.\n\nThe tool is only used for support in parts of the job application process, including to facilitate the identification of the relevant Celonis Jobs for candidates and recruiters. All final decisions are made by hiring managers and the Celonis talent acquisition team. Hiring managers and HR specialists use this tool responsibly, are aware of the risk of potential bias, and are equipped to mitigate it.\n\nPlease be aware of common job offer scams, impersonators and frauds. Learn more here.",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "nice_to_have",
+      "raw_text": "agentic systems"
+    },
+    {
+      "skill_id": "context-engineering",
+      "requirement": "required",
+      "raw_text": "prompt/context engineering"
+    },
+    {
+      "skill_id": "data-engineering",
+      "requirement": "required",
+      "raw_text": "data engineering tools and technologies"
+    },
+    {
+      "skill_id": "fine-tuning",
+      "requirement": "required",
+      "raw_text": "or fine-tuning"
+    },
+    {
+      "skill_id": "langchain",
+      "requirement": "required",
+      "raw_text": "common ML libraries (such as LangChain"
+    },
+    {
+      "skill_id": "llamaindex",
+      "requirement": "nice_to_have",
+      "raw_text": "LlamaIndex"
+    },
+    {
+      "skill_id": "llm-orchestration",
+      "requirement": "required",
+      "raw_text": "multi-agent orchestration"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Understanding of generative AI techniques"
+    },
+    {
+      "skill_id": "multi-agent-systems",
+      "requirement": "required",
+      "raw_text": "multi-agent orchestration"
+    },
+    {
+      "skill_id": "pandas",
+      "requirement": "required",
+      "raw_text": "LangChain, pandas"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "prompt/context engineering"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Good knowledge of Python"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG"
+    },
+    {
+      "skill_id": "scikit-learn",
+      "requirement": "required",
+      "raw_text": "sklearn"
+    },
+    {
+      "skill_id": "tool-calling",
+      "requirement": "nice_to_have",
+      "raw_text": "function calling"
+    }
+  ]
+}

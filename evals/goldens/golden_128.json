@@ -1,0 +1,148 @@
+{
+  "id": "golden_128",
+  "split": "dev",
+  "seniority": "senior",
+  "seniority_basis": "inferred",
+  "seniority_signal": "7 years of experience in software or data engineering",
+  "seniority_reviewed": true,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Bachelor's degree in Computer Science, a related field, or equivalent practical experience",
+  "attrs_reviewed": true,
+  "source_sha256": "b37eb8408c55477f7db918c1b83162d2c403b9240f1c5b3e9125068712410ce3",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:data-engineering",
+    "skill:mlops|aiops",
+    "skill:observability",
+    "skill:software-engineering",
+    "skill:vertex-ai"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "AI Innovation Engineer, Deutsche Borse Group, Google Cloud\n\nNote: By applying to this position you will have an opportunity to share your preferred working location from the following: Frankfurt am Main, Germany; Munich, Germany; London, UK.\nMinimum qualifications:\nBachelor's degree in Computer Science, a related field, or equivalent practical experience.\n7 years of experience in software or data engineering, including one or more programming languages (e.g., Python, Go, Java), and with design patterns, testing frameworks, and API contract design.\nExperience using machine learning methodologies (deep learning, reinforced learning), model identification, selection and AI operations (e.g., model monitoring).\nExperience using Generative AI and agentic orchestration utilizing frameworks (e.g., LangChain, CrewAI, or Vertex AI Agent Builder) and vector databases.\nPreferred qualifications:\nExperience in financial services, and with the regulatory and operational clearing, settlement, or custody.\nExperience with FSI regulatory practices and data residency, encryption at rest/transit (CMEK), and \"explainable AI\" requirements in banking.\nExperience with data modeling of relational, NoSQL, and analytical data modeling (Star Schema, Data Vault, etc.).\nExperience in BigQuery, Vertex AI, Dataflow, and Pub/Sub with an ability to drive the discovery phase, moving from a vague business problem to a structured product requirement document (PRD) and a working technical demo.\nExperience working in a high-maturity DevOps culture (e.g., trunk-based development, automated testing, blue/green deployments).\nAbout the Job\nIn this role, you will accelerate customer value and increase adoption by delivering innovative, repeatable, and enterprise-ready solutions focused on business value. Make Google Cloud the preferred choice for customers by delivering the highest-value, industry relevant solutions.Google Cloud accelerates every organization’s ability to digitally transform its business and industry. We deliver enterprise-grade solutions that leverage Google’s cutting-edge technology, and tools that help developers build more sustainably. Customers in more than 200 countries and territories turn to Google Cloud as their trusted partner to enable growth and solve their most critical business problems.Individual pay is determined by factors including job-related skills, experience, and relevant education or training.\nGermany: €150000 - €154000 (EUR) + 20% bonus target + equity + benefits\nLearn more about benefits at Google.* Design and build autonomous agentic workflows utilizing machine learning and generative AI technologies as part of a fully autonomous or human-in-the-loop agentic workflow.\nPartner with client leads(business user) to identify high-impact AI use cases. Translate these into product requirement documents (PRDs), clearly defining critical user journeys (CUJs) and success metrics.\nEvaluate and integrate AI solutions with modern data foundations, including relational databases, data lake houses, and real-time streaming architectures.\nEnsure all prototypes are built with a \"production-first\" mindset. Implement basic CI/CD pipelines and utilize infrastructure-as-code (IaC) (e.g., Terraform) to ensure environments are reproducible and secure.\nCreate clear technical guides to ensure a seamless hand-off from POC to engineering teams.",
+  "expected": [
+    {
+      "skill_id": "api-design",
+      "requirement": "required",
+      "raw_text": "API contract design"
+    },
+    {
+      "skill_id": "bigquery",
+      "requirement": "nice_to_have",
+      "raw_text": "BigQuery"
+    },
+    {
+      "skill_id": "crewai",
+      "requirement": "required",
+      "raw_text": "CrewAI"
+    },
+    {
+      "skill_id": "data-engineering",
+      "requirement": "required",
+      "raw_text": "data engineering"
+    },
+    {
+      "skill_id": "data-modeling",
+      "requirement": "nice_to_have",
+      "raw_text": "data modeling"
+    },
+    {
+      "skill_id": "deep-learning",
+      "requirement": "required",
+      "raw_text": "deep learning"
+    },
+    {
+      "skill_id": "devops",
+      "requirement": "nice_to_have",
+      "raw_text": "high-maturity DevOps culture"
+    },
+    {
+      "skill_id": "explainable-ai",
+      "requirement": "nice_to_have",
+      "raw_text": "\"explainable AI\""
+    },
+    {
+      "skill_id": "go",
+      "requirement": "required",
+      "raw_text": "Go"
+    },
+    {
+      "skill_id": "java",
+      "requirement": "required",
+      "raw_text": "Java"
+    },
+    {
+      "skill_id": "langchain",
+      "requirement": "required",
+      "raw_text": "LangChain"
+    },
+    {
+      "skill_id": "llm-orchestration",
+      "requirement": "required",
+      "raw_text": "agentic orchestration"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Generative AI"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "machine learning methodologies"
+    },
+    {
+      "skill_id": "mlops",
+      "requirement": "required",
+      "raw_text": "AI operations"
+    },
+    {
+      "skill_id": "model-selection",
+      "requirement": "required",
+      "raw_text": "model identification, selection"
+    },
+    {
+      "skill_id": "nosql",
+      "requirement": "nice_to_have",
+      "raw_text": "NoSQL"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "reinforcement-learning",
+      "requirement": "required",
+      "raw_text": "reinforced learning"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "software or data engineering"
+    },
+    {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "testing frameworks"
+    },
+    {
+      "skill_id": "vector-databases",
+      "requirement": "required",
+      "raw_text": "vector databases"
+    },
+    {
+      "skill_id": "vertex-ai",
+      "requirement": "required",
+      "raw_text": "Vertex AI Agent Builder"
+    }
+  ]
+}

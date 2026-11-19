@@ -1,0 +1,26 @@
+{
+  "id": "golden_129",
+  "split": "dev",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "inferred",
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "62be1202a1d28ef902b9d7a79f4c7884a63a78ecaa3c37dd6cc2d840f08dd1c7",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "AI Inference Engineer (all genders)\n\nAls **AI Inference Engineer** konzipierst und betreibst du produktive **LLM-Inferenzplattformen** on-premises und in privaten Clouds. Du optimierst **GPU-Ressourcen**, Quantisierung und Latenz und integrierst **Kubernetes**, Docker sowie Observability in sichere, skalierbare AI-Systeme für regulierte Produktivumgebungen.",
+  "expected": []
+}

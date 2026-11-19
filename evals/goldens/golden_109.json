@@ -1,0 +1,113 @@
+{
+  "id": "golden_109",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "(Senior)",
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Verhandlungssichere Deutschkenntnisse auf mind. C1-Niveau",
+  "degree": "bachelor",
+  "degree_requirement": "nice_to_have",
+  "degree_or_equivalent": true,
+  "degree_signal": "Optional: Ein abgeschlossenes Hochschulstudium in (Wirtschafts-) Informatik oder eine vergleichbare Ausbildung sind von Vorteil",
+  "attrs_reviewed": true,
+  "source_sha256": "1a331f2d68b1c14271ea128cb22e473c02cf4523759405a9547497020a4d3206",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "seniority",
+    "skill:cloud",
+    "skill:docker",
+    "skill:full-stack-development",
+    "skill:spring-boot"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "(Senior) Fullstack Software Engineer - Fokus AI (m/w/d) - Hybrid,München,Stuttgart,Nür...\n\nStandorte:  Düsseldorf, Eschborn, Hamburg, München, Nürnberg, Stuttgart Randstad Digital Germany AG: Seit 1995 sind wir Experten für digitale Innovationen. Als globales Technologieunternehmen der Randstad Gruppe bieten wir maßgeschneiderte Softwareentwicklung und IT-Consulting in den Bereichen Advisory, Customer Experience, Cloud, Digital & Product Engineering sowie Data & Analytics auf höchstem Niveau.      Randstad Digital setzt sich für Diversität & Inklusion am Arbeitsplatz ein: Vielfalt unterschiedlicher Ideen, Erfahrungen und Perspektiven unserer Digital Engineers sind maßgeblich für unseren Erfolg. Randstad Digital: dedicated to enabling your vision - bist du der nächste #DigitalEnabler? Deine zukünftigen Aufgaben End-to-End Entwicklung: Du konzipierst und entwickelst moderne Fullstack-Lösungen mit Java (Spring Boot) und Angular und bringst dich aktiv in alle Phasen des Software-Lifecycles ein. Cloud & Plattformen: Du arbeitest an Cloud-nativen Architekturen, begleitest Migrationen und stellst den stabilen Betrieb durch den Einsatz von Container-Technologien wie Kubernetes und Docker sicher. AI-gestützte Entwicklung: Du integrierst moderne AI-Tools wie Copilot, Agentic Coding Ansätze und Model Context Protocol (MCP) in den Entwicklungsprozess, um Effizienz und Codequalität nachhaltig zu steigern. Architektur & Cloud: Du arbeitest an Cloud-nativen Architekturen, begleitest Migrationen und stellst den stabilen Betrieb durch den Einsatz von Container-Technologien wie Kubernetes und Docker sicher . Observability & Data: Du implementierst Monitoring- und Observability-Lösungen (z. B. OpenTelemetry, Grafana) und arbeitest mit modernen Datenbanken wie MongoDB oder PostgreSQL. Technische Beratung & Enablement: Du unterstützt Kunden bei technischen Entscheidungen, teilst dein Wissen im Team und förderst aktiv den Austausch sowie die Weiterentwicklung von Best Practices. Das bringst du mit Mehrjährige Erfahrung in der Softwareentwicklung mit Java (Spring Boot) sowie im Frontend mit Angular. Fundierte Kenntnisse in Cloud-nativen Architekturen, Kubernetes, Docker und idealerweise Cloud Foundry. Erfahrung mit Microservices, RESTful APIs sowie Software-Architektur-Methoden (z. B. DDD, BDD, Arc42). Praktische Erfahrung im Einsatz von AI-gestützten Entwicklungsansätzen (z. B. Copilot, Agentic Coding). Know-how in DevOps-Prozessen, CI/CD und Observability-Standards. Ein agiles Mindset, hohes Qualitätsbewusstsein sowie Teamplayerqualitäten. Du schätzt den direkten Austausch mit Kunden und bringst die Bereitschaft mit, diese bei Bedarf auch vor Ort innerhalb Deutschlands zu unterstützen. Verhandlungssichere Deutschkenntnisse auf mind. C1-Niveau und gute Englischkenntnisse. Optional: Ein abgeschlossenes Hochschulstudium in (Wirtschafts-) Informatik oder eine vergleichbare Ausbildung sind von Vorteil. Du erfüllst nicht alle Qualifikationen 100%? Kein Problem - bewirb dich trotzdem!  Durch unsere vielfältigen Weiterbildungsmöglichkeiten können wir dir helfen, dich fachlich und persönlich schnell weiterzuentwickeln.    Das bieten wir dir Spannende Projekteinsätze  Wir bieten dir branchenübergreifend vielfältige Projekteinsätze in den Bereichen Advisory, Customer Experience, Cloud, Digital & Product Engineering sowie Data & Analytics bei namhaften Kunden.    Attraktive Zusatzleistungen  Durch flexible Bausteine kannst du bei uns einen individuellen Werkzeugkasten an Zusatzleistungen in Anspruch zu nehmen (z.B. Umwandlung von Gehalt und Urlaubstagen). Zudem bekommst du eine extra Vergütung für deinen Einsatz im Kundenprojekt und kannst unsere betriebliche Altersvorsorgeangebote (inkl. VWL) in Anspruch nehmen.    Umfangreiches Weiterbildungsangebot  Um deine persönliche Weiterentwicklung individuell zu fördern, bieten wir eine Vielzahl an Inhouse Schulungen, Udemy als E-Learning Plattform sowie externe Weiterbildungsangebote.    Work-Life-Balance  Wir arbeiten gerne gemeinsam in unseren schönen Büros, bieten aber auch ein hybrides Arbeitsmodell an. Mit 30 Urlaubstagen, einem zusätzlichen Kulturtag, flexiblen Arbeitszeiten, Möglichkeiten zur Arbeitszeitreduzierung sowie Sabbatical Optionen achten wir zudem auf ausreichend Erholung im Team.    Workation  Um dir die Flexibilität im Arbeitsalltag zu geben, die du benötigst, ermöglichen wir dir bis zu vier Wochen pro Jahr aus dem EU-Ausland zu arbeiten.    Wellpass oder Randstad Digital Budget  Nutze unser Randstad Digital Budget in Höhe von 25EUR mtl., ganz flexibel für Tanken, Einkäufe, Restaurantbesuche oder deine Fahrtkosten - oder halte dich mit einer vom Arbeitgeber bezuschussten Wellpass-Mitgliedschaft in Höhe von 25EUR mtl. fit. Du wählst, was am besten zu dir passt!   IT-Community  Durch unsere internen Practice Groups, Coding Dojos und CoPs hast du die Möglichkeit dich von Beginn an zu vernetzen, dein Wissen aufzubauen und zu teilen.    Gesundheit  Von unserer betrieblichen Krankenversicherung (bKV) mit starken Zusatzleistungen über das Dienstrad-Leasing bis hin zu gemeinsamen Firmenläufen und Sportangeboten: Wir investieren in dein Wohlbefinden und halten dich fit.   Firmenfeiern & Freizeitgruppen  Unseren Teamspirit erlebst du nicht nur in der täglichen Arbeit, sondern auch durch unser Angebot an Freizeitaktivitäten und bei zahlreichen Firmen- und Teamevents in coolen Locations.      Unabhängig von deiner Herkunft, Ethnie, Geschlechtsidentität, Religion oder deinen individuellen Voraussetzungen: Bei uns zählt, wer du als Person bist. Wir fördern Vielfalt in all ihren Formen und diskriminieren niemanden aufgrund persönlicher Merkmale. Mit über 34 Nationalitäten in unserem Team und dem Fokus auf Gender Parity schaffen wir ein offenes und inklusives Arbeitsumfeld, in dem jeder respektvoll behandelt wird und sein volles Potenzial entfalten kann.  Zeige uns, wer du bist und welche Skills du mitbringst - Wir freuen uns auf dich! Kontakt Bei Fragen erreichst du unser Recruiting Team per E-Mail: career.de@randstaddigital.com",
+  "expected": [
+    {
+      "skill_id": "ai-developer-tooling",
+      "requirement": "required",
+      "raw_text": "Praktische Erfahrung im Einsatz von AI-gestützten Entwicklungsansätzen"
+    },
+    {
+      "skill_id": "angular",
+      "requirement": "required",
+      "raw_text": "Frontend mit Angular"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "RESTful APIs"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Cloud-nativen Architekturen"
+    },
+    {
+      "skill_id": "devops",
+      "requirement": "required",
+      "raw_text": "Know-how in DevOps-Prozessen"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Docker"
+    },
+    {
+      "skill_id": "frontend-development",
+      "requirement": "required",
+      "raw_text": "im Frontend mit Angular"
+    },
+    {
+      "skill_id": "github-copilot",
+      "requirement": "required",
+      "raw_text": "z. B. Copilot"
+    },
+    {
+      "skill_id": "java",
+      "requirement": "required",
+      "raw_text": "Softwareentwicklung mit Java"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Cloud-nativen Architekturen, Kubernetes"
+    },
+    {
+      "skill_id": "microservices",
+      "requirement": "required",
+      "raw_text": "Erfahrung mit Microservices"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "Observability-Standards"
+    },
+    {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "Software-Architektur-Methoden"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Mehrjährige Erfahrung in der Softwareentwicklung"
+    },
+    {
+      "skill_id": "spring-boot",
+      "requirement": "required",
+      "raw_text": "Spring Boot"
+    }
+  ]
+}

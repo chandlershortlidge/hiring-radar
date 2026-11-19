@@ -1,0 +1,110 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"Fundierte Kenntnisse in REST APIs\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"MS Azure\"},\n    {\"skill_id\": \"microsoft-entra-id\", \"requirement\": \"required\", \"raw_text\": \"Microsoft 365, Entra ID\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud-Services\", \"uncertain\": true},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Umgang mit Docker\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"Backend-Systemen\", \"uncertain\": true},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"Gute Kenntnisse AI\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"GenAI\", \"alternative_group\": 1},\n    {\"skill_id\": \"workflow-automation\", \"requirement\": \"required\", \"raw_text\": \"Automatisierung\", \"alternative_group\": 1, \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"OpenAPI\", \"raw_text\": \"OpenAPI\"},\n    {\"label\": \"JSON\", \"raw_text\": \"OpenAPI, JSON\"},\n    {\"label\": \"Integration architectures\", \"raw_text\": \"modernen Integrationsarchitekturen\"},\n    {\"label\": \"Microsoft 365\", \"raw_text\": \"Praxiserfahrung mit MS Azure, Microsoft 365\"},\n    {\"label\": \"Power Platform\", \"raw_text\": \"Docker, Power Platform\"},\n    {\"label\": \"Data-driven applications\", \"raw_text\": \"datengetriebenen Anwendungen\"},\n    {\"label\": \"Enterprise application integration\", \"raw_text\": \"Integration von Enterprise-Applikationen\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior IT Engineer\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Studium oder abgeschlossene Berufsausbildung IT\",\n  \"uncertain\": [\"degree\"],\n  \"groups_reviewed\": true,\n  \"notes\": \"All skills are under the 'Anforderungen' heading. It is a requirements heading with no inline markers, so every skill is required.\\nREST APIs and API-gesteuerte Anwendungen collapse into apis. The quote is taken from the requirements bullet because REST APIs also appears in the Aufgaben (duties) section.\\n'Cloud-Services' is mapped to the broad cloud skill. It is flagged uncertain because the alias match is not exact.\\n'Backend-Systemen' is mapped to backend-development. It is flagged uncertain.\\n'AI, GenAI, Automatisierung oder datengetriebenen Anwendungen' is an 'or' list, so it is treated as alternatives in group 1: ai-ml, llms and workflow-automation. The data-driven applications item is unmapped.\\nMapping 'Automatisierung' to workflow-automation is a loose fit, so it is flagged uncertain.\\nOpenAPI, JSON, Microsoft 365 and Power Platform have no taxonomy entry, so they are unmapped.\\nPower Platform is not mapped to power-automate because the posting does not name Power Automate.\\nSeniority is stated as 'Senior' in the job title.\\nDegree: 'Studium' with no level given is read as bachelor. The posting also accepts a completed IT vocational training (Berufsausbildung) instead of the degree. That is read as an equivalent qualification, so degree_or_equivalent is true. This is flagged uncertain.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Fundierte Kenntnisse in REST APIs"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "MS Azure"
+      },
+      {
+        "skill_id": "microsoft-entra-id",
+        "requirement": "required",
+        "raw_text": "Microsoft 365, Entra ID"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Services",
+        "uncertain": true
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Umgang mit Docker"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend-Systemen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Gute Kenntnisse AI",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "GenAI",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "Automatisierung",
+        "alternative_group": 1,
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "OpenAPI",
+        "raw_text": "OpenAPI"
+      },
+      {
+        "label": "JSON",
+        "raw_text": "OpenAPI, JSON"
+      },
+      {
+        "label": "Integration architectures",
+        "raw_text": "modernen Integrationsarchitekturen"
+      },
+      {
+        "label": "Microsoft 365",
+        "raw_text": "Praxiserfahrung mit MS Azure, Microsoft 365"
+      },
+      {
+        "label": "Power Platform",
+        "raw_text": "Docker, Power Platform"
+      },
+      {
+        "label": "Data-driven applications",
+        "raw_text": "datengetriebenen Anwendungen"
+      },
+      {
+        "label": "Enterprise application integration",
+        "raw_text": "Integration von Enterprise-Applikationen"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior IT Engineer",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Studium oder abgeschlossene Berufsausbildung IT",
+    "uncertain": [
+      "degree"
+    ],
+    "groups_reviewed": true,
+    "notes": "All skills are under the 'Anforderungen' heading. It is a requirements heading with no inline markers, so every skill is required.\nREST APIs and API-gesteuerte Anwendungen collapse into apis. The quote is taken from the requirements bullet because REST APIs also appears in the Aufgaben (duties) section.\n'Cloud-Services' is mapped to the broad cloud skill. It is flagged uncertain because the alias match is not exact.\n'Backend-Systemen' is mapped to backend-development. It is flagged uncertain.\n'AI, GenAI, Automatisierung oder datengetriebenen Anwendungen' is an 'or' list, so it is treated as alternatives in group 1: ai-ml, llms and workflow-automation. The data-driven applications item is unmapped.\nMapping 'Automatisierung' to workflow-automation is a loose fit, so it is flagged uncertain.\nOpenAPI, JSON, Microsoft 365 and Power Platform have no taxonomy entry, so they are unmapped.\nPower Platform is not mapped to power-automate because the posting does not name Power Automate.\nSeniority is stated as 'Senior' in the job title.\nDegree: 'Studium' with no level given is read as bachelor. The posting also accepts a completed IT vocational training (Berufsausbildung) instead of the degree. That is read as an equivalent qualification, so degree_or_equivalent is true. This is flagged uncertain."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "33093755682123d0ed49a4ffc2183de6911b6f7103173de37c58571d90a92684",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

@@ -1,0 +1,89 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Software-Engineering-Prinzipien\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Kenntnisse in Python\"},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"LangChain\", \"alternative_group\": 1},\n    {\"skill_id\": \"llamaindex\", \"requirement\": \"required\", \"raw_text\": \"LlamaIndex\", \"alternative_group\": 1},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Praxiserfahrung im Umgang mit LLMs und Generative AI\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"Prompting\"},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"Fine-Tuning\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"API-Entwicklung (REST)\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"Git-basierter Softwareentwicklung\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"Testing, CI/CD\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"AI frameworks (generic)\", \"raw_text\": \"modernen KI-Frameworks\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Mindestens drei Jahre Berufserfahrung\",\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Abgeschlossenes Studium der Informatik, Wirtschaftsinformatik oder vergleichbare Qualifikation\",\n  \"uncertain\": [],\n  \"notes\": \"Requirements section: 'Ihr Profil'. It has no optional heading and no inline optional or appetite markers, so every skill in it is required.\\nMCP, RAG, AI agents, monitoring and SharePoint appear only under 'Ihre Aufgaben' or in the company description, so they are not labeled.\\nLangChain and LlamaIndex are examples (z. B.) offered for the single ask 'modernen KI-Frameworks', so they form alternative_group 1.\\n'KI-Frameworks' has no fitting broad taxonomy id: 'agents' (agent frameworks) is narrower than generic AI frameworks. It is left unmapped.\\nsoftware-engineering is named twice, as 'Softwareentwicklung' (in the years-of-experience line) and as 'Software-Engineering-Prinzipien'. Both mentions are required, so they collapse to one criterion quoting the principles bullet. It is flagged uncertain because one mention sits inside a years-of-experience phrase.\\nLLMs and Generative AI both map to llms, so they collapse to one criterion.\\n'Testing' is quoted together with 'CI/CD' because bare 'Testing' also appears in the responsibilities; the requirements fragment is quoted instead.\\nGerman: the posting is written in German and says nothing about language, so the label is required with basis inferred.\\nDegree: 'vergleichbare Qualifikation' accepts a comparable qualification in place of the degree, so degree_or_equivalent is true.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Software-Engineering-Prinzipien",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Kenntnisse in Python"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "required",
+        "raw_text": "LlamaIndex",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Praxiserfahrung im Umgang mit LLMs und Generative AI"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompting"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "Fine-Tuning"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "API-Entwicklung (REST)"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git-basierter Softwareentwicklung"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "Testing, CI/CD"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "AI frameworks (generic)",
+        "raw_text": "modernen KI-Frameworks"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Mindestens drei Jahre Berufserfahrung",
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossenes Studium der Informatik, Wirtschaftsinformatik oder vergleichbare Qualifikation",
+    "uncertain": [],
+    "notes": "Requirements section: 'Ihr Profil'. It has no optional heading and no inline optional or appetite markers, so every skill in it is required.\nMCP, RAG, AI agents, monitoring and SharePoint appear only under 'Ihre Aufgaben' or in the company description, so they are not labeled.\nLangChain and LlamaIndex are examples (z. B.) offered for the single ask 'modernen KI-Frameworks', so they form alternative_group 1.\n'KI-Frameworks' has no fitting broad taxonomy id: 'agents' (agent frameworks) is narrower than generic AI frameworks. It is left unmapped.\nsoftware-engineering is named twice, as 'Softwareentwicklung' (in the years-of-experience line) and as 'Software-Engineering-Prinzipien'. Both mentions are required, so they collapse to one criterion quoting the principles bullet. It is flagged uncertain because one mention sits inside a years-of-experience phrase.\nLLMs and Generative AI both map to llms, so they collapse to one criterion.\n'Testing' is quoted together with 'CI/CD' because bare 'Testing' also appears in the responsibilities; the requirements fragment is quoted instead.\nGerman: the posting is written in German and says nothing about language, so the label is required with basis inferred.\nDegree: 'vergleichbare Qualifikation' accepts a comparable qualification in place of the degree, so degree_or_equivalent is true."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "58f1967ad146366a9bfe8c7427951a3965bd3497434b0d7300e81af9e5e5e7cf",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

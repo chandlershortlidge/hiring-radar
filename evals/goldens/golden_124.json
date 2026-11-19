@@ -1,0 +1,142 @@
+{
+  "id": "golden_124",
+  "split": "dev",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "(Senior) AI-Native Software Engineer / Architect",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "inferred",
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "dc7144dea09e6213010041fa6715688fbfe137fae39744a9e4aaa9d7b720725c",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:backend-development",
+    "skill:cloud",
+    "skill:containerization",
+    "skill:cybersecurity",
+    "skill:distributed-systems",
+    "skill:full-stack-development",
+    "skill:hallucination-detection",
+    "skill:node-js",
+    "skill:software-architecture"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "(Senior) AI-Native Software Engineer / Architect Node.js/TypeScript (m/w/d), Frankfurt am Main\n\nDas Unternehmen und deine Rolle Die Institutional Investment Group (2IG) ist eine der führenden unabhängigen Investmentplattformen für Immobilien und Real Assets in Deutschland und Europa. Mit ca. 350 Mitarbeitern verwaltet die 2IG ein Vermögen von mehr als 50 Milliarden Euro in ca. 25 Ländern und nimmt damit eine marktführende Position insbesondere als Investmentplattform von Immobilienvermögen ein.    Vom Coder zum Creator: Gestalte die Zukunft der Softwareentwicklung mit KI  Wir glauben, dass sich die Rolle des Softwareentwicklers fundamental wandelt. Du bist für uns nicht mehr derjenige, der Syntax tippt, sondern der Architekt, der die ,,Story\" der Software schreibt und die KI als mächtiges Werkzeug dirigiert. Wir suchen einen Experten, der im Node.js/TypeScript -Ökosystem zu Hause ist, aber bereit ist, Grenzen einzureißen und mittels KI jede technologische Herausforderung zu meistern.  Deine Mission: AI Orchestration & Architecture Du programmierst nicht mehr nur - du lässt programmieren und veredelst das Ergebnis. Deine Rolle ist die Schnittstelle zwischen menschlicher Intention und maschineller Ausführung.     Storytelling & Specification-Driven Development: Du übersetzt komplexe fachliche Anforderungen in präzise technische Kontexte, Stories & Prompts, die unsere KI-Modelle in hochwertigen Code verwandeln.  AI-Assisted Node.js/TypeScript  Engineering: Du nutzt dein tiefes Verständnis moderner JavaScript/TypeScript-Architekturen (inkl. Node.js im Backend), um KI-generierten Code zu validieren, zu optimieren und nahtlos in unsere Systemlandschaft zu integrieren.  Polyglot Exploration: Während deine Basis Node.js mit TypeScript ist, nutzt du die KI, um technologische Barrieren zu überwinden. Du implementierst bei Bedarf Lösungen in anderen Sprachen (z.B. Python, Go, Rust), indem du deine Architektur-Skills mit der Syntax-Kompetenz der KI kombinierst. Tooling & Enablement: Du baust die ,,Werkbank der Zukunft\". Du entwickelst interne Tools und Services, die das gesamte Entwicklerteam befähigen, KI effizienter in ihrem Alltag zu nutzen. Automatisierung & DevOps: Du erstellst CI/CD-Pipelines (GitLab) und Container-Lösungen, damit der von Mensch und KI geschaffene Code sicher und schnell in Produktion geht.  Dein Profil: Tiefes Fundament, neues Mindset Wir suchen jemanden, der die Regeln so gut kennt, dass er weiß, wie man sie bricht und neu zusammensetzt.  Das Fundament (Hard Skills):  Tiefgreifende Node.js /TypeScript DNA: Du hast mehrjährige Erfahrung mit JavaScript/TypeScript (inkl. Node.js im Backend) und verstehst, was unter der Haube passiert. Du hast ein geschultes Auge für Codequalität und erkennst Schwachstellen sofort - egal ob von einem Menschen oder einer KI.  Modernes Web Development & Container: Erfahrung mit React sowie Docker und Kubernetes. Du weißt, wie moderne verteilte Anwendungen laufen.  DevOps Praktiker: CI/CD (z.B. GitLab, Jenkins) ist für dich kein Fremdwort, sondern Teil deiner täglichen Routine.    Die Evolution (AI & Mindset):  Der ,,AI Story Bauer\": Du verstehst Prompt Engineering nicht als Spielerei, sondern als Engineering-Disziplin (Chain-of-Thought, Context Window Management). Du kannst Anforderungen so strukturieren, dass eine KI sie fehlerfrei umsetzt.  Architektur vor Syntax: Du denkst in Systemen, Schnittstellen und Datenflüssen. Die Programmiersprache ist für dich nur ein Werkzeug, das dank KI austauschbar wird.  Kritischer Kurator: Du vertraust der KI nicht blind. Dein Code-Review-Blick ist geschärft für Halluzinationen, Sicherheitslücken und Logikfehler.  Lernbereitschaft: Du hast Lust, deine Node.js/TypeScript -Komfortzone zu verlassen und dich von der KI in neue Tech-Stacks (Cloud Native, Python Data Services etc.) begleiten zu lassen.  Warum wir?     VERGÜTUNGSPAKET            Wir bieten ein ansprechendes Vergütungspaket, das Engagement auch monetär            wertschätzt.       FEEDBACK & ENTWICKLUNGSMÖGLICHKEIT           Wir geben strukturiertes regelmäßiges Feedback, das es unseren KollegInnen           erlaubt, sich auf der Stelle, aber auch im Unternehmen weiterzuentwickeln.        GESTALTUNGSFREIRÄUME & OFFENHEIT          Wir geben Dir die Möglichkeit, Dich in Veränderungsprozesse einzubringen und diese aktiv          mitzugestalten. Unsere Kultur lebt ,,AI First\" nicht nur als Buzzword, sondern im täglichen          Arbeiten. Der Zugang zu Premium-AI-Tools (GitHub Copilot, ChatGPT Enterprise, Claude          etc.) versteht sich dabei von selbst.        FLEXIBLE ARBEITSZEITEN           Ob Früh- oder Spätaufsteher oder Kita-Öffnungszeiten, wir sind grundsätzlich flexibel.           Im Vordergrund steht für uns, dass die Arbeit erledigt wird und dass es im Team           passt.        DRESSCODE           Bei uns gibt es keinen Dresscode, den es zu berücksichtigen gilt. Unser gemeinsamer Weg zur Zusammenarbeit Wenn es dich reizt, unsere Unternehmensgruppe und unseren Erfolg aktiv mitzugestalten, freuen wir uns auf Deine Bewerbung, gerne mit Angabe deines frühestmöglichen Eintrittstermins und deiner Gehaltsvorstellung. Wir melden uns umgehend bei dir. Bei Fragen kannst du dich jederzeit an join@2ig.de wenden.   Weitere Informationen zur Institutional Investment Group findest du unter www.2ig.de.",
+  "expected": [
+    {
+      "skill_id": "backend-development",
+      "requirement": "required",
+      "raw_text": "Node.js im Backend"
+    },
+    {
+      "skill_id": "chain-of-thought",
+      "requirement": "required",
+      "raw_text": "Chain-of-Thought"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD (z.B. GitLab, Jenkins)"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "nice_to_have",
+      "raw_text": "Du hast Lust, deine Node.js/TypeScript -Komfortzone zu verlassen und dich von der KI in neue Tech-Stacks (Cloud Native"
+    },
+    {
+      "skill_id": "containerization",
+      "requirement": "required",
+      "raw_text": "Container"
+    },
+    {
+      "skill_id": "context-engineering",
+      "requirement": "required",
+      "raw_text": "Context Window Management"
+    },
+    {
+      "skill_id": "cybersecurity",
+      "requirement": "required",
+      "raw_text": "Dein Code-Review-Blick ist geschärft für Halluzinationen, Sicherheitslücken und Logikfehler."
+    },
+    {
+      "skill_id": "devops",
+      "requirement": "required",
+      "raw_text": "DevOps Praktiker"
+    },
+    {
+      "skill_id": "distributed-systems",
+      "requirement": "required",
+      "raw_text": "moderne verteilte Anwendungen"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Docker"
+    },
+    {
+      "skill_id": "gitlab-ci",
+      "requirement": "required",
+      "raw_text": "z.B. GitLab"
+    },
+    {
+      "skill_id": "hallucination-detection",
+      "requirement": "required",
+      "raw_text": "geschärft für Halluzinationen"
+    },
+    {
+      "skill_id": "javascript",
+      "requirement": "required",
+      "raw_text": "Erfahrung mit JavaScript/TypeScript"
+    },
+    {
+      "skill_id": "jenkins",
+      "requirement": "required",
+      "raw_text": "Jenkins"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes"
+    },
+    {
+      "skill_id": "node-js",
+      "requirement": "required",
+      "raw_text": "Node.js im Backend"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "Du verstehst Prompt Engineering"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "nice_to_have",
+      "raw_text": "Du hast Lust, deine Node.js/TypeScript -Komfortzone zu verlassen und dich von der KI in neue Tech-Stacks (Cloud Native, Python Data Services"
+    },
+    {
+      "skill_id": "react",
+      "requirement": "required",
+      "raw_text": "Erfahrung mit React"
+    },
+    {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "Architektur vor Syntax: Du denkst in Systemen, Schnittstellen und Datenflüssen."
+    },
+    {
+      "skill_id": "typescript",
+      "requirement": "required",
+      "raw_text": "Erfahrung mit JavaScript/TypeScript"
+    }
+  ]
+}

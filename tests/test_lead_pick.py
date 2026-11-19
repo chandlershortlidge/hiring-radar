@@ -532,7 +532,7 @@ def test_cli_reads_the_decisions_and_their_limits_from_the_config(tmp_path, caps
     state = tmp_path / "state.json"
     state.write_text(json.dumps({
         "today": "2026-11-16", "decisions_waiting": 12, "red": [], "log": [], "tickets": [],
-        "decisions": [waiting(n) for n in range(1, 13)]
+        "decisions": [waiting(n, needs_him=True) for n in range(1, 13)]
                      + [waiting(20 + n, kind="yours") for n in range(4)]}))
     assert lp.main([str(state)]) == 0
     out = json.loads(capsys.readouterr().out)["monday_decisions"]
@@ -545,11 +545,91 @@ def test_cli_reads_the_think_limit_and_the_approvals_count(tmp_path, capsys):
         "today": "2026-11-16", "decisions_waiting": 5, "approvals_waiting": 4, "red": [],
         "log": [], "tickets": [],
         "decisions": [waiting(n, kind="think") for n in range(1, 6)]
-                     + [waiting(10 + n, kind="approve") for n in range(4)]}))
+                     + [waiting(10 + n, kind="approve", needs_him=True) for n in range(4)]}))
     assert lp.main([str(state)]) == 0
     out = json.loads(capsys.readouterr().out)
     assert len(out["monday_decisions"]["think"]) == 3 and len(out["monday_decisions"]["approve"]) == 4
+    assert out["monday_decisions"]["decide"] == []
     assert "5 decisions to think about are waiting for you, and 4 to approve." in out["monday"]
+
+
+# --- decided for him, not asked (HIR-315) ---------------------------------------------------
+
+MONDAY = "2026-11-23"
+
+
+def monday(decisions):
+    return lp.pick([], [], MONDAY, 2.0, decisions=decisions)["monday_decisions"]
+
+
+def test_a_planted_recommendation_to_approve_is_decided_and_not_asked():
+    # HIR-315 "Done when": a planted approve-style question is decided and reported.
+    out = monday([waiting(301, kind="approve")])
+    assert out["decide"] == ["HIR-301"]
+    assert out["ask"] == [] and out["approve"] == [] and out["text"] == "No decisions waiting"
+
+
+@pytest.mark.parametrize("kind", [None, "question", "something else"])
+def test_a_waiting_ticket_whose_kind_is_not_known_is_decided_like_a_recommendation(kind):
+    item = waiting(1)
+    if kind is None:
+        del item["kind"]
+    else:
+        item["kind"] = kind
+    assert monday([item])["decide"] == ["HIR-1"]
+
+
+def test_a_spend_above_his_limit_is_still_asked_and_never_decided():
+    out = monday([waiting(1, kind="approve", needs_him=True), waiting(2, kind="approve")])
+    assert out["approve"] == ["HIR-1"] and out["decide"] == ["HIR-2"]
+    # Not even a decision to think about that has waited its week.
+    late = monday([waiting(3, kind="think", asked="2026-11-02", needs_him=True)])
+    assert late["think"] == ["HIR-3"] and late["decide"] == []
+
+
+def test_a_decision_to_think_about_is_his_for_a_week_after_monday_listed_it():
+    out = monday([waiting(1, kind="think", asked="2026-11-16"),    # listed a week ago
+                  waiting(2, kind="think", asked="2026-11-17"),    # six days ago
+                  waiting(3, kind="think", asked=MONDAY)])         # listed today
+    assert out["decide"] == ["HIR-1"] and out["think"] == ["HIR-2", "HIR-3"]
+
+
+@pytest.mark.parametrize("asked", [None, "", "last Monday"])
+def test_a_decision_to_think_about_he_was_never_shown_is_never_decided(asked):
+    """In doubt it is still his: no date, or one that cannot be read, is not a week."""
+    item = waiting(1, kind="think", since="2026-09-01")
+    if asked is not None:
+        item["asked"] = asked
+    out = monday([item])
+    assert out["think"] == ["HIR-1"] and out["decide"] == []
+
+
+def test_no_week_with_one_question_only_every_one_to_think_about_is_listed():
+    # His 16 Nov comment on the ticket: no one-decision-a-week limit.
+    out = monday([waiting(n, kind="think") for n in range(1, 4)])
+    assert out["think"] == ["HIR-1", "HIR-2", "HIR-3"] and out["decide"] == []
+
+
+def test_his_own_work_answered_and_parked_tickets_are_never_handed_to_be_decided():
+    out = monday([waiting(1, kind="yours"), waiting(2, answered=True),
+                  waiting(3, labels=["attended", "parked"]),
+                  waiting(4, kind="think", asked="2026-11-01", labels=["hands-on"]),
+                  waiting(5, kind="think", asked="2026-11-01", answered=True)])
+    assert out["decide"] == [] and out["yours"] == ["HIR-1"] and out["ask"] == []
+
+
+def test_what_is_decided_keeps_mondays_order_and_takes_no_place_in_the_list():
+    out = monday([waiting(1, since="2026-10-01"),
+                  waiting(2, since="2026-11-10", blocks_milestone=True),
+                  waiting(3, kind="think", asked="2026-11-09", since="2026-11-05", blocks_todo=True)]
+                 + [waiting(10 + n, needs_him=True) for n in range(10)])
+    assert out["decide"] == ["HIR-2", "HIR-3", "HIR-1"]
+    assert len(out["ask"]) == 10 and out["more"] == 0
+
+
+def test_the_script_names_what_is_decided_on_any_day_not_only_monday():
+    out = lp.pick([], [], "2026-11-18", 2.0, decisions=[waiting(1)])
+    assert out["monday_decisions"]["decide"] == ["HIR-1"] and "monday" not in out
 
 
 # --- telling Chandler's answer from an agent's comment (HIR-277) ---------------------------
@@ -633,7 +713,7 @@ def test_the_lead_agents_procedure_writes_the_decisions_comment_and_applies_answ
     skill = " ".join((ROOT / ".claude" / "skills" / "lead-agent" / "SKILL.md").read_text().split())
     for field in ("decisions", "kind", "answered", "blocks_milestone", "blocks_todo", "since",
                   "monday_decisions", "ask", "more", "yours", "text",
-                  "think", "approve", "approvals_waiting",
+                  "think", "approve", "approvals_waiting", "decide", "asked", "needs_him",
                   "answers", "question_at", "answer_candidates"):
         assert f"`{field}`" in skill, field
     # The one exception to "never remove `attended`" is written where the never is.
@@ -641,7 +721,7 @@ def test_the_lead_agents_procedure_writes_the_decisions_comment_and_applies_answ
     for words in ("**Decisions waiting for you**", "**Yours this week**", "**Answered**",
                   "No decisions waiting", "**To think about**", "**To approve**",
                   "**Recommend:**", "**What it is:**", "**Why:**", "What you would learn",
-                  '`"think"`', '`"approve"`'):
+                  '`"think"`', '`"approve"`', "**Decided for you**"):
         assert words in skill, words
 
 

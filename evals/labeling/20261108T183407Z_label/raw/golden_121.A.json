@@ -1,0 +1,44 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"snowflake\", \"requirement\": \"required\", \"raw_text\": \"unter anderem mit Snowflake\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"aktuellen Cloud-, Data- und AI-Technologien\", \"uncertain\": true}\n  ],\n  \"unmapped\": [],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": \"required\", \"german_basis\": \"inferred\", \"german_signal\": null,\n  \"degree\": null, \"degree_requirement\": null,\n  \"degree_or_equivalent\": false, \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The posting is truncated at the start of 'Deine Aufgaben'. No requirements or qualifications section is visible.\\nThe only skill-bearing text the candidate could be asked for is the 'Moderner Technologie-Stack' bullet inside the benefits section 'Das bieten wir dir'. I treated it as a tech-stack statement under rule 4, so its unmarked items are required. This is uncertain: the bullet is not a dedicated tech-stack section, and the most literal reading would label nothing.\\nI did not label the generic 'Data-' and 'AI-Technologien' or 'modernen Engineering-Werkzeugen', because none of them is a concrete taxonomy skill.\\nThe skills in 'Deine Aufgaben' appear only in responsibilities, so none are labeled: data pipelines, ETL/ELT, data modeling, APIs, Snowflake platform build, cloud architecture.\\nThe company-description mentions are also not labeled: Data Engineering, Cloud Data Platform, Analytics, Artificial Intelligence.\\n'Snowflake' appears several times. The raw_text quotes the tech-stack mention because that is the one that determines the label.\\nSeniority is none: there is no level, no years of experience, and no lead duty. 'Je nach Erfahrung' is not a level signal.\\nGerman is inferred as required, because the posting is written in German and says nothing about language.\\nDegree is none: no degree is mentioned in the visible text.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "unter anderem mit Snowflake",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "aktuellen Cloud-, Data- und AI-Technologien",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The posting is truncated at the start of 'Deine Aufgaben'. No requirements or qualifications section is visible.\nThe only skill-bearing text the candidate could be asked for is the 'Moderner Technologie-Stack' bullet inside the benefits section 'Das bieten wir dir'. I treated it as a tech-stack statement under rule 4, so its unmarked items are required. This is uncertain: the bullet is not a dedicated tech-stack section, and the most literal reading would label nothing.\nI did not label the generic 'Data-' and 'AI-Technologien' or 'modernen Engineering-Werkzeugen', because none of them is a concrete taxonomy skill.\nThe skills in 'Deine Aufgaben' appear only in responsibilities, so none are labeled: data pipelines, ETL/ELT, data modeling, APIs, Snowflake platform build, cloud architecture.\nThe company-description mentions are also not labeled: Data Engineering, Cloud Data Platform, Analytics, Artificial Intelligence.\n'Snowflake' appears several times. The raw_text quotes the tech-stack mention because that is the one that determines the label.\nSeniority is none: there is no level, no years of experience, and no lead duty. 'Je nach Erfahrung' is not a level signal.\nGerman is inferred as required, because the posting is written in German and says nothing about language.\nDegree is none: no degree is mentioned in the visible text."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "c1ba12b549f9781c6aefcd52651f0a7299d7e09c83dacdebbe739a2c179fe95d",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

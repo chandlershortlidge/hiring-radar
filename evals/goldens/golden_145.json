@@ -1,0 +1,41 @@
+{
+  "id": "golden_145",
+  "split": "heldout",
+  "seniority": "mid",
+  "seniority_basis": "inferred",
+  "seniority_signal": "Several years of professional experience",
+  "seniority_reviewed": true,
+  "german": "nice_to_have",
+  "german_basis": "stated",
+  "german_signal": "German language skills are desirable",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "University degree in Computer Science, Electrical Engineering, or a comparable qualification",
+  "attrs_reviewed": true,
+  "source_sha256": "7d334fcd66e8039b9f7361a76c69a4b060ead70be2c8578a4e51ed6437c8ca87",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "degree",
+    "seniority",
+    "skill:cybersecurity"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Automotive AI Security Engineer (f/m/x)\n\nStellenreferenz: 194942\n\nMit unseren Marken BMW, MINI, Rolls-Royce und BMW Motorrad sind wir einer der weltweit führenden Premium-Hersteller von Automobilen sowie Motorrädern und darüber hinaus Anbieter von Premium-Finanz- und Mobilitätsdienstleistungen.\n\nOur team is shaping the future of agentic AI systems for cybersecurity solutions in the automotive industry. By combining deep expertise in embedded systems and vehicle E/E architectures with state-of-the-art AI technologies, we develop automated approaches for identifying vulnerabilities in software and vehicle systems while continuously advancing security analysis capabilities.\n\nWhat awaits you?\n\n- You develop and maintain an agentic AI toolchain for the automated identification and assessment of vulnerabilities in software and vehicle systems.\n- You design automated methods for detecting vulnerabilities in source code, binary code, and vehicle functionalities using both commercial and open-source AI models.\n- By expanding AI-powered analysis, fuzzing, and penetration testing workflows, you continuously enhance the effectiveness of security assessment capabilities.\n- You integrate new analysis methods, models, and AI agents into the existing toolchain in a targeted and scalable manner.\n- Through the design of intuitive user interfaces, you enable both security experts and software engineers to easily leverage the capabilities of the toolchain.\n- In addition, you implement closed-loop feedback and learning mechanisms to continuously improve future analysis cycles and overall toolchain performance.\n\nWhat should you bring along?\n\n- University degree in Computer Science, Electrical Engineering, or a comparable qualification.\n- Several years of professional experience in Automotive Cybersecurity.\n- Strong expertise in building, operating, and maintaining agentic AI toolchains using both commercial and open-source technologies.\n- Experience in developing or operating complex security toolchains.\n- Business-fluent English language skills; German language skills are desirable.\n\nAre you passionate about advancing agentic AI systems for automated vulnerability assessments and actively shaping the cybersecurity of future vehicle generations? Apply now!\n\nNote: Please apply exclusively online via our career portal. Applications via other channels (esp. e-mail) cannot be considered.\n\nWhat we offer?\n\n- Challenging projects with which we are shaping the mobility of tomorrow together.\n- Wide range of personal and professional development opportunities.\n- Attractive, fair and performance-related remuneration.\n- High level of job security.\n- Annual special payments such as vacation pay, Christmas bonus, and profit sharing.\n- Flexible working hours including 6 weeks annual leave and overtime compensation.\n- Discounted BMW & MINI conditions.\n- Many other benefits at bmw.jobs/benefits\n\nStart date: from now on\nWorking hours:  fulltime\n\nIf you apply, the next stages of the recruiting process include online testing and an interview with the hiring manager (either virtual or in person).\n\nFind out more about Artificial Intelligence at the BMW Group here .\n\nYou can find helpful tips on your application and the application processhere .\n\nAt the BMW Group, we place great importance on equal treatment and equal opportunities. Our recruiting decisions are based on the personality, experience, and skills of the applicants. Learn morehere .",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "building, operating, and maintaining agentic AI toolchains"
+    },
+    {
+      "skill_id": "cybersecurity",
+      "requirement": "required",
+      "raw_text": "Automotive Cybersecurity"
+    }
+  ]
+}

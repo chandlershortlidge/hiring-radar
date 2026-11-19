@@ -1,0 +1,96 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit Large Language Model (LLM)-Frameworks\", \"uncertain\": true},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"LangChain\", \"alternative_group\": 1},\n    {\"skill_id\": \"llamaindex\", \"requirement\": \"required\", \"raw_text\": \"LlamaIndex\", \"alternative_group\": 1},\n    {\"skill_id\": \"hugging-face\", \"requirement\": \"required\", \"raw_text\": \"Hugging Face\", \"alternative_group\": 1},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"Retrieval-Augmented-Generation-Systemen (RAG)\"},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"required\", \"raw_text\": \"Vektordatenbanken\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"KI-Agenten\"},\n    {\"skill_id\": \"conversational-ai\", \"requirement\": \"required\", \"raw_text\": \"automatisierten Gesprächssystemen (Chatbots/KI-Bots)\", \"uncertain\": true},\n    {\"skill_id\": \"devops\", \"requirement\": \"required\", \"raw_text\": \"DevOps-Methoden\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"Containerisierung\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Docker\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Kubernetes\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD-Pipelines\"}\n  ],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Fließend Deutsch und Englisch in Wort und Schrift\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Abgeschlossenes wissenschaftliches Hochschulstudium (min. Bachelor) in einem MINT-Fach, oder vergleichbare Qualifikation als Quereinsteiger\",\n  \"uncertain\": [],\n  \"notes\": \"The posting is in German. 'WAS SIE MITBRINGEN' (what you bring) is a requirements heading with no optional markers, so every skill is required.\\nThe LLM framework examples are offered for a single ask ('z. B. LangChain, LlamaIndex, Hugging Face'), so LangChain, LlamaIndex and Hugging Face form alternative_group 1. The broad llms criterion stays out of the group.\\nllms is labeled from 'Large Language Model (LLM)-Frameworks'. The text names LLMs as the framework category, so it is flagged uncertain.\\nDocker and Kubernetes are asked for together under 'Containerisierung (Docker, Kubernetes)', so they are not alternatives. Containerisierung is named explicitly, so containerization gets its own criterion.\\nChatbots/KI-Bots ('automatisierten Gesprächssystemen') is mapped to conversational-ai. This mapping is flagged uncertain.\\n'Bereitstellung von KI-Agenten' (deploying AI agents) is not labeled as ai-deployment. Deployment is attached to agents and not named as a skill in its own right.\\nPrompt optimization, LLM selection and RAG appear in the tasks section ('IHRE AUFGABEN'). Only skills that also appear in the requirements are labeled, so prompt engineering is not labeled.\\n'Vibe Coder mit Proof Record' is part of the degree-alternative clause and is not labeled as ai-developer-tooling.\\nThe degree is bachelor ('min. Bachelor'). 'oder vergleichbare Qualifikation als Quereinsteiger' (or a comparable qualification as a career changer) accepts experience in place of the degree, so degree_or_equivalent is true.\\nSeniority is null: there is no level in the title and no years of experience. 'Grundkenntnisse' (basic knowledge) and 'je nach Qualifikation und Berufserfahrung' (depending on qualification and professional experience) are not level signals.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit Large Language Model (LLM)-Frameworks",
+        "uncertain": true
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "required",
+        "raw_text": "LlamaIndex",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "required",
+        "raw_text": "Hugging Face",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "Retrieval-Augmented-Generation-Systemen (RAG)"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "Vektordatenbanken"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "KI-Agenten"
+      },
+      {
+        "skill_id": "conversational-ai",
+        "requirement": "required",
+        "raw_text": "automatisierten Gesprächssystemen (Chatbots/KI-Bots)",
+        "uncertain": true
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps-Methoden"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "Containerisierung"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Pipelines"
+      }
+    ],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Fließend Deutsch und Englisch in Wort und Schrift",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossenes wissenschaftliches Hochschulstudium (min. Bachelor) in einem MINT-Fach, oder vergleichbare Qualifikation als Quereinsteiger",
+    "uncertain": [],
+    "notes": "The posting is in German. 'WAS SIE MITBRINGEN' (what you bring) is a requirements heading with no optional markers, so every skill is required.\nThe LLM framework examples are offered for a single ask ('z. B. LangChain, LlamaIndex, Hugging Face'), so LangChain, LlamaIndex and Hugging Face form alternative_group 1. The broad llms criterion stays out of the group.\nllms is labeled from 'Large Language Model (LLM)-Frameworks'. The text names LLMs as the framework category, so it is flagged uncertain.\nDocker and Kubernetes are asked for together under 'Containerisierung (Docker, Kubernetes)', so they are not alternatives. Containerisierung is named explicitly, so containerization gets its own criterion.\nChatbots/KI-Bots ('automatisierten Gesprächssystemen') is mapped to conversational-ai. This mapping is flagged uncertain.\n'Bereitstellung von KI-Agenten' (deploying AI agents) is not labeled as ai-deployment. Deployment is attached to agents and not named as a skill in its own right.\nPrompt optimization, LLM selection and RAG appear in the tasks section ('IHRE AUFGABEN'). Only skills that also appear in the requirements are labeled, so prompt engineering is not labeled.\n'Vibe Coder mit Proof Record' is part of the degree-alternative clause and is not labeled as ai-developer-tooling.\nThe degree is bachelor ('min. Bachelor'). 'oder vergleichbare Qualifikation als Quereinsteiger' (or a comparable qualification as a career changer) accepts experience in place of the degree, so degree_or_equivalent is true.\nSeniority is null: there is no level in the title and no years of experience. 'Grundkenntnisse' (basic knowledge) and 'je nach Qualifikation und Berufserfahrung' (depending on qualification and professional experience) are not level signals."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "6dd06f7c47c50792b3d000e7cc6dd6fda8fa39c8dae86800035635185f076a3f",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

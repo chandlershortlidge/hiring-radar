@@ -118,6 +118,16 @@ describe("the market cards follow the job family picked on the home view (HIR-19
     expect(html).toContain('href="/new-york/ai-engineer"');
   });
 
+  // HIR-356: before the counts arrive every city counts as zero, so the rows sat in name
+  // order ("Amsterdam" first, "0 open") and the robot visitor opened an empty city.
+  it("draws no city rows until the counts have arrived, so the first row is never a guess", () => {
+    const html = renderToStaticMarkup(createElement(HomeGrid, { data: null, counts: {}, family: null, onRequestCity: () => {}, loading: true }));
+    expect(html).not.toContain("market-row");
+    expect(html).not.toContain("0 open");
+    expect(html).toContain("Loading markets");
+    expect(render(ALL, null)).not.toContain("Loading markets");
+  });
+
   it("shows zero, not the all-roles count, for a city with none of that family", () => {
     const html = render({ ...AI, city_totals: { Berlin: 40 } }, "ai-engineer");
     expect(html).toContain(">0 open<");

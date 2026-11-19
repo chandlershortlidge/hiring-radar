@@ -1,0 +1,34 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"fundierte Kenntnisse im Bereich Artificial Intelligence\", \"uncertain\": true}\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"erste praktische Berührungspunkte mit AI-Anwendungen\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"sehr gute Deutsch- und Englischkenntnisse\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"abgeschlossenes Studium in Maschinenbau, Produktionstechnik, Luft- und Raumfahrttechnik oder einer vergleichbaren Fachrichtung\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"Artificial Intelligence is mapped to ai-ml, the closest taxonomy entry. There is no standalone AI id, so the item is flagged uncertain.\\nAI is mentioned three times in the requirements: 'fundierte Kenntnisse' (required), 'interessierst dich für' (appetite, so nice_to_have), and 'erste praktische Berührungspunkte mit AI-Anwendungen' (required). Any required mention wins, so the criteria collapse to a single required one, quoting the 'fundierte Kenntnisse' mention.\\n'datengetriebene Ansätze', Digitalisierung, Smart Factory and Manufacturing are domain knowledge or too vague for a taxonomy entry, so they are not labeled.\\nThe Smart Factory/Digitalisierung/AI mentions in the responsibilities are not labeled, since they are responsibilities only.\\nSeniority is inferred from 'erste praktische Berührungspunkte' (first experience) and labeled junior. That phrase conflicts with 'fundierte Kenntnisse' and unquantified 'Erfahrung im Manufacturing Umfeld', so seniority is flagged uncertain; none would also be defensible.\\nDegree: 'oder einer vergleichbaren Fachrichtung' widens the field, not the requirement, so degree_or_equivalent is false.\\nGerman is stated and is an unmarked entry in the requirements list, so it is labeled required.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "fundierte Kenntnisse im Bereich Artificial Intelligence",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "erste praktische Berührungspunkte mit AI-Anwendungen",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "sehr gute Deutsch- und Englischkenntnisse",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "abgeschlossenes Studium in Maschinenbau, Produktionstechnik, Luft- und Raumfahrttechnik oder einer vergleichbaren Fachrichtung",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Artificial Intelligence is mapped to ai-ml, the closest taxonomy entry. There is no standalone AI id, so the item is flagged uncertain.\nAI is mentioned three times in the requirements: 'fundierte Kenntnisse' (required), 'interessierst dich für' (appetite, so nice_to_have), and 'erste praktische Berührungspunkte mit AI-Anwendungen' (required). Any required mention wins, so the criteria collapse to a single required one, quoting the 'fundierte Kenntnisse' mention.\n'datengetriebene Ansätze', Digitalisierung, Smart Factory and Manufacturing are domain knowledge or too vague for a taxonomy entry, so they are not labeled.\nThe Smart Factory/Digitalisierung/AI mentions in the responsibilities are not labeled, since they are responsibilities only.\nSeniority is inferred from 'erste praktische Berührungspunkte' (first experience) and labeled junior. That phrase conflicts with 'fundierte Kenntnisse' and unquantified 'Erfahrung im Manufacturing Umfeld', so seniority is flagged uncertain; none would also be defensible.\nDegree: 'oder einer vergleichbaren Fachrichtung' widens the field, not the requirement, so degree_or_equivalent is false.\nGerman is stated and is an unmarked entry in the requirements list, so it is labeled required."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "f3712052c60fccd18ce9ef5719364e05cc8c6aa686bbe1aee0e410e763920bec",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

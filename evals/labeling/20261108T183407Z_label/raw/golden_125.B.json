@@ -1,0 +1,88 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"bash\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Bash\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Python\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"javascript\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"JavaScript\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Java\"\n    },\n    {\n      \"skill_id\": \"jenkins\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Jenkins\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Netzwerkprotokollen\"\n    },\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Sicherheitsstandards\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"System administration\",\n      \"raw_text\": \"Systemadministration\"\n    },\n    {\n      \"label\": \"Microsoft SQL Server\",\n      \"raw_text\": \"Microsoft SQL Server\"\n    },\n    {\n      \"label\": \"VPN technologies\",\n      \"raw_text\": \"VPN-Technologien\"\n    },\n    {\n      \"label\": \"Shell scripting\",\n      \"raw_text\": \"Shell Scripting\"\n    },\n    {\n      \"label\": \"T-SQL\",\n      \"raw_text\": \"T-SQL\"\n    },\n    {\n      \"label\": \"Agile methods\",\n      \"raw_text\": \"agilen Arbeitsmethoden\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Abgeschlossene Ausbildung oder Studium im Bereich Informatik oder eine vergleichbare Qualifikation\",\n  \"notes\": \"The qualifications section defaults to required; “ist wünschenswert” and “sind von Vorteil” make their respective bullets optional.\\nRead “Shell Scripting (Bash), T-SQL oder Python” as alternatives; Bash and Python share group 1, while T-SQL remains unmapped.\\nMicrosoft SQL Server and T-SQL are kept unmapped because the taxonomy has no matching specific entries; generic SQL is not separately requested.\\nThe occupational titles under “Wen wir suchen” describe vacancies, not candidate skill requirements; no skills are inferred from those titles.\\nAI infrastructure appears only in the role description and is excluded.\\nThe unspecified Studium maps to bachelor; vocational training and a comparable qualification are explicitly accepted alternatives.\\nNo stated level, qualifying experience duration, proven-experience wording, or leadership duty establishes seniority.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "bash",
+        "requirement": "nice_to_have",
+        "raw_text": "Bash",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "nice_to_have",
+        "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "nice_to_have",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "jenkins",
+        "requirement": "nice_to_have",
+        "raw_text": "Jenkins"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "Netzwerkprotokollen"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "Sicherheitsstandards"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "System administration",
+        "raw_text": "Systemadministration"
+      },
+      {
+        "label": "Microsoft SQL Server",
+        "raw_text": "Microsoft SQL Server"
+      },
+      {
+        "label": "VPN technologies",
+        "raw_text": "VPN-Technologien"
+      },
+      {
+        "label": "Shell scripting",
+        "raw_text": "Shell Scripting"
+      },
+      {
+        "label": "T-SQL",
+        "raw_text": "T-SQL"
+      },
+      {
+        "label": "Agile methods",
+        "raw_text": "agilen Arbeitsmethoden"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossene Ausbildung oder Studium im Bereich Informatik oder eine vergleichbare Qualifikation",
+    "notes": "The qualifications section defaults to required; “ist wünschenswert” and “sind von Vorteil” make their respective bullets optional.\nRead “Shell Scripting (Bash), T-SQL oder Python” as alternatives; Bash and Python share group 1, while T-SQL remains unmapped.\nMicrosoft SQL Server and T-SQL are kept unmapped because the taxonomy has no matching specific entries; generic SQL is not separately requested.\nThe occupational titles under “Wen wir suchen” describe vacancies, not candidate skill requirements; no skills are inferred from those titles.\nAI infrastructure appears only in the role description and is excluded.\nThe unspecified Studium maps to bachelor; vocational training and a comparable qualification are explicitly accepted alternatives.\nNo stated level, qualifying experience duration, proven-experience wording, or leadership duty establishes seniority."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "58c2e9228e5ed3358d90f46a093c42892bc2bde210f66297856a743335802cb0",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

@@ -156,3 +156,106 @@ def test_cli_exits_one_on_a_rules_pr_with_no_block(tmp_path, capsys):
 def test_cli_exits_zero_once_the_block_is_there(tmp_path, capsys):
     assert _run(tmp_path, ["AGENTS.md", ".claude/skills/work-issue/SKILL.md"], BLOCK) == 0
     assert "asks whether that was authorized" in capsys.readouterr().out
+
+
+# --- tests removed or switched off (HIR-332) -------------------------------------------
+# Skip markers are built by concatenation so that editing this file never trips the
+# gate's own skip detector.
+
+SKIP_PY = "@pytest.mark." + "skip"
+XFAIL_PY = "@pytest.mark." + "xfail"
+SKIP_JS = "it." + "skip"
+
+
+def f(filename, patch=None, status="modified", previous=None):
+    d = {"filename": filename, "status": status}
+    if patch is not None:
+        d["patch"] = patch
+    if previous:
+        d["previous_filename"] = previous
+    return d
+
+
+@pytest.mark.parametrize("path", ["tests/test_dedup.py", "tests/sub/helpers.py", "web/src/profile.test.js",
+                                  "web/e2e/before-after.spec.js", "app/x_test.py"])
+def test_test_paths_are_recognized(path):
+    assert rg.is_test_path(path)
+
+
+@pytest.mark.parametrize("path", ["app/dedup.py", "web/src/profile.js", "scripts/rules_gate.py", "README.md"])
+def test_non_test_paths_are_not(path):
+    assert not rg.is_test_path(path)
+
+
+def test_a_deleted_python_test_is_found():
+    patch = "@@ -1,4 +1,1 @@\n-def test_blank_is_not_a_duplicate():\n-    assert x\n context"
+    assert rg.removed_tests([f("tests/test_dedup.py", patch)]) == [
+        "test removed: test_blank_is_not_a_duplicate (tests/test_dedup.py)"]
+
+
+def test_a_deleted_js_test_is_found():
+    patch = "-  it(\"keeps original order on a tie\", () => {\n-  });"
+    out = rg.removed_tests([f("web/src/profile.test.js", patch)])
+    assert out == ["test removed: keeps original order on a tie (web/src/profile.test.js)"]
+
+
+def test_a_moved_test_is_not_a_removal():
+    files = [f("tests/test_a.py", "-def test_moves():\n-    pass"),
+             f("tests/test_b.py", "+def test_moves():\n+    pass")]
+    assert rg.removed_tests(files) == []
+
+
+def test_an_edited_test_body_is_not_a_removal():
+    patch = " def test_kept():\n-    assert a == 1\n+    assert a == 2"
+    assert rg.removed_tests([f("tests/test_x.py", patch)]) == []
+
+
+def test_a_deleted_test_file_is_found():
+    assert rg.removed_tests([f("tests/test_old.py", status="removed")]) == ["test file deleted: tests/test_old.py"]
+
+
+def test_a_renamed_test_file_with_no_patch_is_fine():
+    assert rg.removed_tests([f("tests/test_new.py", status="renamed", previous="tests/test_old.py")]) == []
+
+
+@pytest.mark.parametrize("line", [SKIP_PY, XFAIL_PY + "(reason='flaky')", f"    {SKIP_JS}(\"x\", () => {{"])
+def test_an_added_skip_is_found(line):
+    out = rg.removed_tests([f("tests/test_x.py" if "pytest" in line else "web/src/a.test.js", "+" + line)])
+    assert len(out) == 1 and "switched off" in out[0]
+
+
+def test_a_removed_skip_is_fine():
+    assert rg.removed_tests([f("tests/test_x.py", "-" + SKIP_PY)]) == []
+
+
+def test_a_test_file_too_large_to_read_is_flagged():
+    out = rg.removed_tests([f("tests/test_big.py", patch=None)])
+    assert out and "too large" in out[0]
+
+
+def test_non_test_files_are_ignored():
+    assert rg.removed_tests([f("app/dedup.py", "-def test_like_name():")]) == []
+
+
+def test_a_pr_that_removes_a_test_needs_the_block():
+    files = [f("tests/test_dedup.py", "-def test_gone():\n-    pass")]
+    ok, msg = rg.report(["tests/test_dedup.py"], "Just a fix.", files)
+    assert not ok and "test removed: test_gone" in msg
+    ok, _ = rg.report(["tests/test_dedup.py"], BLOCK, files)
+    assert ok
+
+
+def test_an_ordinary_pr_with_patches_still_passes():
+    files = [f("app/dedup.py", "-x = 1\n+x = 2"), f("tests/test_dedup.py", "+def test_new():\n+    pass")]
+    assert rg.report(["app/dedup.py", "tests/test_dedup.py"], "Fix.", files)[0]
+
+
+def test_cli_reads_the_jsonl_file_list(tmp_path):
+    import json
+    jl = tmp_path / "files.jsonl"
+    jl.write_text(json.dumps(f("tests/test_dedup.py", "-def test_gone():")) + "\n")
+    body = tmp_path / "body.md"
+    body.write_text("Fix.")
+    assert rg.main(["--files-jsonl", str(jl), "--body-file", str(body)]) == 1
+    body.write_text(BLOCK)
+    assert rg.main(["--files-jsonl", str(jl), "--body-file", str(body)]) == 0

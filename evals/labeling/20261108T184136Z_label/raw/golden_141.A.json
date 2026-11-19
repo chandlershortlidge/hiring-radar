@@ -1,0 +1,110 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"required\", \"raw_text\": \"applying RL or IL in physical systems\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\", \"alternative_group\": 1},\n    {\"skill_id\": \"cpp\", \"requirement\": \"required\", \"raw_text\": \"C++\", \"alternative_group\": 1},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"onnx\", \"requirement\": \"required\", \"raw_text\": \"ONNX\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Imitation Learning\", \"raw_text\": \"applying RL or IL in physical systems\"},\n    {\"label\": \"PPO\", \"raw_text\": \"PPO\"},\n    {\"label\": \"SAC\", \"raw_text\": \"SAC\"},\n    {\"label\": \"RL frameworks\", \"raw_text\": \"common RL frameworks\"},\n    {\"label\": \"Stable Baselines 3\", \"raw_text\": \"Stable Baselines 3\"},\n    {\"label\": \"RSL-RL\", \"raw_text\": \"RSL-RL\"},\n    {\"label\": \"Physics-based simulators\", \"raw_text\": \"physics-based simulators\"},\n    {\"label\": \"Isaac Sim\", \"raw_text\": \"IsaacSim\"},\n    {\"label\": \"MuJoCo\", \"raw_text\": \"MuJoCo\"},\n    {\"label\": \"Control theory\", \"raw_text\": \"control theory\"},\n    {\"label\": \"Motion planning\", \"raw_text\": \"motion planning\"},\n    {\"label\": \"Robot kinematics/dynamics\", \"raw_text\": \"robot kinematics/dynamics\"},\n    {\"label\": \"Sim-to-real transfer\", \"raw_text\": \"sim-to-real transfer\"},\n    {\"label\": \"Locomotion/locomanipulation policy training\", \"raw_text\": \"training locomotion and locomanipulation policies\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI / Reinforcement Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s or PhD in robotics, computer science, engineering, or a related field\",\n  \"uncertain\": [],\n  \"notes\": \"'Essential Skills' is a requirements section, so its items default to required.\\n'Beneficial Skills' is read as an optional heading, but it contains no taxonomy skills.\\nRL and IL are offered as alternatives. IL is unmapped, so only one taxonomy skill remains and no alternative group is formed. RL is also asked for on its own in 'common RL algorithms'.\\nPython and C++ form alternative group 1 because of 'and/or'. PyTorch and ONNX are asked for together with them, so they stay ungrouped and required.\\n'preferably on high DOF robots' is an inline preference on a domain item, not on a skill.\\n'or equivalent' after the simulators adds nothing.\\nHyperparameter optimization and benchmarking appear only in the responsibilities, so they are not labeled.\\n'Master’s or PhD' takes the highest level named: phd.\\nNo German mention; the Munich location is not a basis for a German label.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "applying RL or IL in physical systems"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "onnx",
+        "requirement": "required",
+        "raw_text": "ONNX"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Imitation Learning",
+        "raw_text": "applying RL or IL in physical systems"
+      },
+      {
+        "label": "PPO",
+        "raw_text": "PPO"
+      },
+      {
+        "label": "SAC",
+        "raw_text": "SAC"
+      },
+      {
+        "label": "RL frameworks",
+        "raw_text": "common RL frameworks"
+      },
+      {
+        "label": "Stable Baselines 3",
+        "raw_text": "Stable Baselines 3"
+      },
+      {
+        "label": "RSL-RL",
+        "raw_text": "RSL-RL"
+      },
+      {
+        "label": "Physics-based simulators",
+        "raw_text": "physics-based simulators"
+      },
+      {
+        "label": "Isaac Sim",
+        "raw_text": "IsaacSim"
+      },
+      {
+        "label": "MuJoCo",
+        "raw_text": "MuJoCo"
+      },
+      {
+        "label": "Control theory",
+        "raw_text": "control theory"
+      },
+      {
+        "label": "Motion planning",
+        "raw_text": "motion planning"
+      },
+      {
+        "label": "Robot kinematics/dynamics",
+        "raw_text": "robot kinematics/dynamics"
+      },
+      {
+        "label": "Sim-to-real transfer",
+        "raw_text": "sim-to-real transfer"
+      },
+      {
+        "label": "Locomotion/locomanipulation policy training",
+        "raw_text": "training locomotion and locomanipulation policies"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI / Reinforcement Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s or PhD in robotics, computer science, engineering, or a related field",
+    "uncertain": [],
+    "notes": "'Essential Skills' is a requirements section, so its items default to required.\n'Beneficial Skills' is read as an optional heading, but it contains no taxonomy skills.\nRL and IL are offered as alternatives. IL is unmapped, so only one taxonomy skill remains and no alternative group is formed. RL is also asked for on its own in 'common RL algorithms'.\nPython and C++ form alternative group 1 because of 'and/or'. PyTorch and ONNX are asked for together with them, so they stay ungrouped and required.\n'preferably on high DOF robots' is an inline preference on a domain item, not on a skill.\n'or equivalent' after the simulators adds nothing.\nHyperparameter optimization and benchmarking appear only in the responsibilities, so they are not labeled.\n'Master’s or PhD' takes the highest level named: phd.\nNo German mention; the Munich location is not a basis for a German label."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "7b8ef5f58550e145d86a3c326b85e61e75e9fec87ed631e51e1824ab88eab04f",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

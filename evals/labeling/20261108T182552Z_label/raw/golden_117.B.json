@@ -1,0 +1,106 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Azure\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI\"\n    },\n    {\n      \"skill_id\": \"data-engineering\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Data-Engineering-Lösungen\"\n    },\n    {\n      \"skill_id\": \"azure-data-factory\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Data Factory\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"azure-sql-database\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"SQL DB\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"azure-data-lake-storage\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Data Lake Storage\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"databricks\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Databricks\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"azure-functions\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Functions\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"azure-ai-foundry\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Interesse an Microsoft Foundry\"\n    },\n    {\n      \"skill_id\": \"data-warehousing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Starkes Interesse an der Entwicklung von DWH / Data Lake\"\n    },\n    {\n      \"skill_id\": \"business-intelligence\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"AI-gestützte Personalisierung\",\n      \"raw_text\": \"AI-gestützter Personalisierung\"\n    },\n    {\n      \"label\": \"Predictive Marketing\",\n      \"raw_text\": \"Predictive Marketing\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI Data Engineer\",\n  \"german\": \"nice_to_have\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gutes Deutsch\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The heading “Das bringst du idealerweise mit:” makes the entire qualifications section optional, including German.\\nThe five Azure-service examples form one alternative group for the single Azure Data services ask; Microsoft Foundry is a separate interest clause.\\nBI Cloud Architecture is read literally as naming business intelligence, cloud and architecture; the software-architecture mapping is flagged for review because the taxonomy has no dedicated cloud-architecture entry.\\nAI-supported personalization and Predictive Marketing are technical techniques without matching taxonomy entries; Customer Intelligence is treated as excluded domain knowledge.\\nTechnologies appearing only in responsibilities or benefits are not labeled.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "nice_to_have",
+        "raw_text": "AI"
+      },
+      {
+        "skill_id": "data-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "Data-Engineering-Lösungen"
+      },
+      {
+        "skill_id": "azure-data-factory",
+        "requirement": "nice_to_have",
+        "raw_text": "Data Factory",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "azure-sql-database",
+        "requirement": "nice_to_have",
+        "raw_text": "SQL DB",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "azure-data-lake-storage",
+        "requirement": "nice_to_have",
+        "raw_text": "Data Lake Storage",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "nice_to_have",
+        "raw_text": "Databricks",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "azure-functions",
+        "requirement": "nice_to_have",
+        "raw_text": "Functions",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "azure-ai-foundry",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse an Microsoft Foundry"
+      },
+      {
+        "skill_id": "data-warehousing",
+        "requirement": "nice_to_have",
+        "raw_text": "Starkes Interesse an der Entwicklung von DWH / Data Lake"
+      },
+      {
+        "skill_id": "business-intelligence",
+        "requirement": "nice_to_have",
+        "raw_text": "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "nice_to_have",
+        "raw_text": "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "AI-gestützte Personalisierung",
+        "raw_text": "AI-gestützter Personalisierung"
+      },
+      {
+        "label": "Predictive Marketing",
+        "raw_text": "Predictive Marketing"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI Data Engineer",
+    "german": "nice_to_have",
+    "german_basis": "stated",
+    "german_signal": "Sehr gutes Deutsch",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The heading “Das bringst du idealerweise mit:” makes the entire qualifications section optional, including German.\nThe five Azure-service examples form one alternative group for the single Azure Data services ask; Microsoft Foundry is a separate interest clause.\nBI Cloud Architecture is read literally as naming business intelligence, cloud and architecture; the software-architecture mapping is flagged for review because the taxonomy has no dedicated cloud-architecture entry.\nAI-supported personalization and Predictive Marketing are technical techniques without matching taxonomy entries; Customer Intelligence is treated as excluded domain knowledge.\nTechnologies appearing only in responsibilities or benefits are not labeled."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "3230750ded75da38d79155ed47a055da5e8b70f105609bbdca1fc190889f82de",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

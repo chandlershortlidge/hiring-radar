@@ -1,0 +1,85 @@
+{
+  "id": "golden_147",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Senior IT Engineer",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Studium oder abgeschlossene Berufsausbildung IT",
+  "attrs_reviewed": true,
+  "source_sha256": "3afef9a1d4332c828e7ad155d762bb9aca92d1911b5ba978b58bd0bbfffa829b",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "degree",
+    "skill:ai-ml",
+    "skill:backend-development",
+    "skill:cloud",
+    "skill:microsoft-entra-id",
+    "skill:software-architecture",
+    "skill:workflow-automation"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Senior IT Engineer (w/m/d) API, AI, Infrastruktur\n\nRobert Half gehört zu den weltweit führenden Personaldienstleistern für Fach- und Führungskräfte im IT-Bereich. Wir unterstützen IT-Spezialisten bei ihrer Suche nach neuen beruflichen Aufgaben und vermitteln IT-Positionen in Festanstellung, auf Zeit (Zeitarbeit) oder auf Projektbasis (Interim Management).\n\n**Wir suchen für unseren Kunden, ein zukunftsträchtiges Unternehmen ein Technologie-Unternehmen im Rechtswesen in München, zum nächstmöglichen Zeitpunkt einen Senior IT Engineer (w/m/d) API, AI, Infrastruktur - Legal.** Der Einstieg erfolgt im Rahmen der Arbeitnehmerüberlassung mit dem Ziel der Übernahme.\n\n## Aufgaben\n\n- Integration von AI-Plattformen in bestehende IT-Landschaften und Enterprise-Umgebungen\n- Konzeption, Implementierung und Optimierung von REST APIs, JSON-Schnittstellen und Backend-Anbindungen\n- Analyse technischer Anforderungen, Datenflüsse und Integrationsszenarien\n- Technische Umsetzung von Cloud- und Hybrid-Architekturen auf Basis von Microsoft Azure, Microsoft 365 und Entra ID\n- Entwicklung und Konfiguration von Integrationen mit Docker, Power Platform und modernen SaaS-Lösungen\n- Durchführung technischer Workshops, Architektur-Abstimmungen und Proof of Concepts\n- Troubleshooting komplexer Integrations- und Schnittstellen-Themen\n- Mitgestaltung von Architekturstandards, Best Practices und technischen Rollout-Konzepten\n\n## Anforderungen:\n\n- Studium oder abgeschlossene Berufsausbildung IT (z.B. Systemintegration, Anwendungsentwicklung, Computer Science)\n- Einschlägige Berufserferfahrung als Solution Engineer, Integration Engineer o.ä.\n- Fundierte Kenntnisse in REST APIs, OpenAPI, JSON und modernen Integrationsarchitekturen\n- Praxiserfahrung mit MS Azure, Microsoft 365, Entra ID und Cloud-Services\n- Know-how im Umgang mit Docker, Power Platform, Backend-Systemen und API-gesteuerten Anwendungen\n- Erfahrung in der Integration von Enterprise-Applikationen sowie komplexen Systemlandschaften\n- Gute Kenntnisse AI, GenAI, Automatisierung oder datengetriebenen Anwendungen\n- Strukturierte, lösungsorientierte Arbeitsweise sowie hohe Kunden- und Serviceorientierung\n- Sehr gute Deutsch- und Englischkenntnisse in Wort und Schrift\n\n## Ihre Vorteile mit Robert Half\n\n- Kostenlose, schnelle und bedarfsgerechte Vermittlung (zu Ihrem Traumjob)\n- Betreuung durch spezialisierte Personalberater\n- Gleiche Rechte und Pflichten wie die Kollegen der Kundenunternehmen\n- Attraktive Sozialleistungen\n- Einarbeitung und Weiterbildungen durch Kundenunternehmen\n- Kontakt und Vernetzung mit den interessanten Unternehmen\n\nDann bewerben Sie sich online als **Senior IT Engineer (w/m/d) API, AI, Infrastruktur** unter Angabe der Referenznummer 06604-0013525084 – Ihr Lebenslauf genügt. Bei Fragen steht Ihnen Frau Dr. Adrieanna Obermeier von Robert Half jederzeit sehr gerne zur Verfügung (Tel. +49 89 286 74 – 127, E-Mail: Adrieanna.Obermeier@roberthalf.de).",
+  "expected": [
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "Gute Kenntnisse AI"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "Fundierte Kenntnisse in REST APIs"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "MS Azure"
+    },
+    {
+      "skill_id": "backend-development",
+      "requirement": "required",
+      "raw_text": "Backend-Systemen"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Cloud-Services"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Umgang mit Docker"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "GenAI"
+    },
+    {
+      "skill_id": "microsoft-entra-id",
+      "requirement": "required",
+      "raw_text": "Entra ID"
+    },
+    {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "modernen Integrationsarchitekturen"
+    },
+    {
+      "skill_id": "workflow-automation",
+      "requirement": "required",
+      "raw_text": "Automatisierung"
+    }
+  ]
+}

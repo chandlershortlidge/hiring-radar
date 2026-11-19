@@ -35,9 +35,11 @@ HIR-262):
   `needs-chandler` with **no @mention**, and say in the comment that it failed review three
   times and what is still wrong. It reaches Chandler in the Monday summary.
 - **CHANDLER** — the change is on the **big** side of the list in AGENTS.md "What Chandler
-  is asked". Only then: label `needs-chandler` and @mention him on the issue, in plain
-  words. A change on the list's small side is not his: the senior agent decided it, and
-  you check that it did (step 3, "Small calls"). A big call reaches him in one of two
+  is asked" and is still his (the same section, "A recommendation to approve is decided,
+  not asked", HIR-315). Only then: label `needs-chandler` and @mention him on the issue,
+  in plain words. A change on the list's small side is not his, and neither is a
+  recommendation he would only approve: the senior agent decided it, and
+  you check that it did (step 3, "Small calls" and "Recommendations decided for him"). A big call reaches him in one of two
   forms (the same section, "Big calls come in two kinds", HIR-297; read them there): head
   what you write him **To approve**, with the three lines, or **To think about**, with
   the full question. Keep the kind the PR already states. For a big call you find
@@ -142,7 +144,10 @@ For the PR you are given:
      whether this PR may merge at all. The trigger is the file list, not your judgment:
      the PR touches anything under `.claude/`, `AGENTS.md`,
      `.github/pull_request_template.md`, anything under `.github/workflows/`, or
-     `scripts/rules_gate.py` or `scripts/merge_reviewed.py`. **Then this PR never merges**
+     `scripts/rules_gate.py` or `scripts/merge_reviewed.py` — **or it deletes a test, removes
+     a test function, or adds a skip/xfail marker** (HIR-332; the "Rules gate" check's log
+     names each one). For a removed test, say in its bullet what the test checked and
+     whether the behaviour it guarded is gone too. **Then this PR never merges**
      — not by you, not by auto-merge, not through a `review-passed` label, whatever else
      passes. Do four things and stop:
 
@@ -178,9 +183,11 @@ For the PR you are given:
      the block is somehow already in the description, check it is one bullet per change
      and leave it, and still label and stop. To check your block is the shape the check
      wants before you wait on CI, run it the way CI does:
-     `python3 scripts/rules_gate.py --paths-file <changed files> --body-file <the body>`.
+     `gh api repos/:owner/:repo/pulls/<n>/files --paginate --jq '.[] | {filename, status, previous_filename, patch} | tojson' > files.jsonl`,
+     then `python3 scripts/rules_gate.py --files-jsonl files.jsonl --body-file <the body>`.
    - **Chandler's list** (AGENTS.md "What Chandler is asked"). Anything on its big side →
-     CHANDLER. Read the diff against each item; the files that most often carry one are
+     CHANDLER, unless the senior agent decided it for him ("Recommendations decided for
+     him", below). Read the diff against each item; the files that most often carry one are
      `evals/LABELING.md`, the extractor's instructions or model in `app/extract.py`
      (`PRINCIPLES`, the prompt, the tool schema, the default model), `ACTIVE_CITIES` in
      `app/geo.py` for a city he has not named, Goldens unless the issue asks for them,
@@ -197,6 +204,19 @@ For the PR you are given:
      the switch that turns the cost off). A missing line or missing proof is SENT BACK,
      naming what to add. A call that is not small, or that you cannot place, is big:
      CHANDLER. A "Decided for you" line on its own never stops a merge.
+   - **Recommendations decided for him** (the same section, "A recommendation to approve
+     is decided, not asked", HIR-315; read it there). A big call in the diff or the PR
+     body is not CHANDLER when all four hold: that paragraph lets the senior agent decide
+     it (it is to approve and not one of the cases it says are never decided, or it is to
+     think about and the ticket shows a Monday list put it to him seven or more days ago
+     with no answer since); "Decided for you" has its line with a real undo; "Escalations"
+     shows the senior agent decided it, not the author; and what that paragraph asks for
+     is in the PR (for stored data the proof, for how quality is measured the reason in
+     the decisions log). A missing line, proof or reason is SENT BACK, naming what to
+     add. A call that paragraph does not let the senior agent decide, or that you cannot
+     place, is CHANDLER. A rule file in the diff still stops at the rules gate, and a
+     change to the labelling guide is still CHANDLER, for his merge: no decision made for
+     him merges either.
    - CI is green on the head commit (`gh api .../commits/<sha>/check-runs`: every required
      check `success`).
    - Every changed file is inside the issue's scope.
@@ -204,8 +224,9 @@ For the PR you are given:
      Each item is either met or named as not met. An unmet item is SENT BACK —
      unless the PR body itself says that item is still to come and the issue is not
      marked Done, which is how a deliberately part-done issue opens its PR.
-   - "Needs Chandler" is `None`, or holds only items on the big side of his list (then
-     CHANDLER). A small call parked there is SENT BACK: the senior agent decides it. Anything
+   - "Needs Chandler" is `None`, or holds only items on the big side of his list that
+     are still his (then CHANDLER). A recommendation to approve parked there that the
+     senior agent may decide is SENT BACK, like a small call. A small call parked there is SENT BACK: the senior agent decides it. Anything
      else in it is SENT BACK: the author asks the decider instead. "Decisions taken" holds
      judgment calls only, each with what / why / how to undo. One that is an item on his
      list in disguise is CHANDLER.
