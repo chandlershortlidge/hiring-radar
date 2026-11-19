@@ -1,0 +1,95 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineer that applies sound engineering principles\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"networking\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"with varied interests in algorithms and distributed systems\"\n    },\n    {\n      \"skill_id\": \"ansible\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Expert knowledge of Ansible (roles, playbooks)\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"monitoring and observability practices\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud services\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Site reliability engineering\",\n      \"raw_text\": \"7+ years of professional SRE or related experience\"\n    },\n    {\n      \"label\": \"Operating systems\",\n      \"raw_text\": \"operating systems\"\n    },\n    {\n      \"label\": \"Storage subsystems\",\n      \"raw_text\": \"storage subsystems\"\n    },\n    {\n      \"label\": \"Algorithms\",\n      \"raw_text\": \"with varied interests in algorithms and distributed systems\"\n    },\n    {\n      \"label\": \"Programming and scripting languages\",\n      \"raw_text\": \"Proficiency in programming/scripting languages\"\n    },\n    {\n      \"label\": \"Operational automation\",\n      \"raw_text\": \"mature automation\"\n    },\n    {\n      \"label\": \"Availability, reliability and scalability practices\",\n      \"raw_text\": \"best practices for availability, reliability and scalability\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Lead/Manager AI Infra Systems Engineering Team\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor's degree in Computer Science or a related field or equivalent work experience\",\n  \"notes\": \"No optional section is present; Requirements defaults to required.\\nThe About the Role statements describing the candidate's engineering practice and systems specialization are treated literally as candidate qualifications, rather than responsibilities-only technology mentions.\\n“Varied interests in” expresses appetite rather than required experience, so distributed systems is nice_to_have; the same applies to unmapped algorithms.\\nMonitoring and observability collapse to one taxonomy skill. No specific programming language is named.\\nPagerDuty appears only in responsibilities and is excluded; technologies appearing only in the company description are also excluded.\\nNo alternative group contains two named taxonomy skills.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineer that applies sound engineering principles"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "networking"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "with varied interests in algorithms and distributed systems"
+      },
+      {
+        "skill_id": "ansible",
+        "requirement": "required",
+        "raw_text": "Expert knowledge of Ansible (roles, playbooks)"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring and observability practices"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud services"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Site reliability engineering",
+        "raw_text": "7+ years of professional SRE or related experience"
+      },
+      {
+        "label": "Operating systems",
+        "raw_text": "operating systems"
+      },
+      {
+        "label": "Storage subsystems",
+        "raw_text": "storage subsystems"
+      },
+      {
+        "label": "Algorithms",
+        "raw_text": "with varied interests in algorithms and distributed systems"
+      },
+      {
+        "label": "Programming and scripting languages",
+        "raw_text": "Proficiency in programming/scripting languages"
+      },
+      {
+        "label": "Operational automation",
+        "raw_text": "mature automation"
+      },
+      {
+        "label": "Availability, reliability and scalability practices",
+        "raw_text": "best practices for availability, reliability and scalability"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead/Manager AI Infra Systems Engineering Team",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor's degree in Computer Science or a related field or equivalent work experience",
+    "notes": "No optional section is present; Requirements defaults to required.\nThe About the Role statements describing the candidate's engineering practice and systems specialization are treated literally as candidate qualifications, rather than responsibilities-only technology mentions.\n“Varied interests in” expresses appetite rather than required experience, so distributed systems is nice_to_have; the same applies to unmapped algorithms.\nMonitoring and observability collapse to one taxonomy skill. No specific programming language is named.\nPagerDuty appears only in responsibilities and is excluded; technologies appearing only in the company description are also excluded.\nNo alternative group contains two named taxonomy skills."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "a837b9b7eea46ff8dbfb979b7d3257d059abdc88c20e2fe382f7b2822c9ec8e5",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

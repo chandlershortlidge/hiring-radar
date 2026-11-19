@@ -204,7 +204,7 @@ def test_json_ld_telecommute_becomes_a_remote_location():
     ("Cologne; Berlin; Frankfurt; Munich; Hamburg", ["Berlin", "Hamburg", "Frankfurt", "Munich"]),
     # perplexity: San Francisco and New York in one posting.
     ("San Francisco; New York City", ["San Francisco", "New York"]),
-    ("Belgrade; London; Berlin", ["Berlin"]),
+    ("Belgrade; London; Berlin", ["Berlin", "London"]),
     ("Berlin or remote", ["Berlin"]),          # a city match still wins over remote
     ("Remote (EMEA)", [REMOTE_EU]),
     ("Paris, France", []),
@@ -213,3 +213,45 @@ def test_json_ld_telecommute_becomes_a_remote_location():
 def test_places_of_names_every_tracked_city(loc, places):
     assert geo.places_of(loc) == places
     assert place_of(loc) == (places[0] if places else None)
+
+
+@pytest.mark.parametrize("location", ["Austin, TX", "Austin, Texas, United States", "Hybrid - Austin"])
+def test_austin_is_collected_hir_252(location):
+    """Austin launched on 2026-11-19 (HIR-252): its postings are kept."""
+    assert active_place(location) == "Austin"
+
+
+def test_every_hir_252_city_has_a_start_date():
+    for city in ("Austin", "Boston", "London", "Amsterdam"):
+        assert city in geo.ACTIVE_CITIES and city in geo.COLLECTING_SINCE
+
+
+@pytest.mark.parametrize("location", ["Boston, MA", "Cambridge, MA", "Cambridge, Massachusetts, United States"])
+def test_boston_is_collected_hir_252(location):
+    """Boston launched on 2026-11-19 (HIR-252); Cambridge, MA is part of its job market."""
+    assert active_place(location) == "Boston"
+
+
+def test_cambridge_in_england_is_not_boston():
+    assert place_of("Cambridge, UK") is None
+    assert place_of("Cambridge, England") is None
+
+
+@pytest.mark.parametrize("location", ["London, UK", "London, England, United Kingdom", "London Office",
+                                      "London, on-site", "Hybrid (London)"])
+def test_london_is_collected_hir_252(location):
+    """London launched on 2026-11-19 (HIR-252)."""
+    assert active_place(location) == "London"
+
+
+@pytest.mark.parametrize("location", ["London, Ontario", "London, ON", "London, ON, Canada", "London, Canada",
+                                      "New London, CT"])
+def test_places_named_london_that_are_not_london(location):
+    assert place_of(location) is None
+
+
+@pytest.mark.parametrize("location", ["Amsterdam, Netherlands", "Amsterdam, Noord-Holland", "Amsterdam-Zuidoost",
+                                      "Amsterdam, Noord-Holland, Nederland"])
+def test_amsterdam_is_collected_hir_252(location):
+    """Amsterdam launched on 2026-11-19 (HIR-252), Dutch spellings of its address included."""
+    assert active_place(location) == "Amsterdam"

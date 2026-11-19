@@ -1,0 +1,76 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Real depth in one modern ML area\", \"uncertain\": true},\n    {\"skill_id\": \"computer-vision\", \"requirement\": \"required\", \"raw_text\": \"computer vision\", \"alternative_group\": 1},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"large language models\", \"alternative_group\": 1},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"required\", \"raw_text\": \"a modern deep learning framework\"},\n    {\"skill_id\": \"cpp\", \"requirement\": \"required\", \"raw_text\": \"Enough C++ to be useful\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL\"},\n    {\"skill_id\": \"inference-optimization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"You've made a model meaningfully faster on target hardware\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"large-scale data tooling\", \"raw_text\": \"large-scale data tooling\"}\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"At least three years\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"'The problems you'd be working on' is a responsibilities section, so Transformers, multimodal models and evaluation mentioned only there are not labeled.\\n'generative modelling' and 'large language models' both map to llms (alias 'generative ai'), so they collapse into one criterion quoting 'large language models'.\\nGroup 1 is computer-vision and llms, offered as 'one modern ML area' (X, Y, or Z). machine-learning is the broad skill named alongside its examples, so it stays out of the group; it is flagged because 'ML area' is a loose naming of the broad skill.\\nI did not label 'taking models from data collection through training to something that ran in production'. Mapping it to ai-deployment or model-development would be interpretation; a reviewer may decide otherwise.\\n'shipped a neural network' is not labeled separately. deep-learning rests on 'a modern deep learning framework' (alias 'deep learning frameworks'), and no specific framework is named.\\nI mapped 'made a model meaningfully faster on target hardware' to inference-optimization under 'Things that would stand out', an optional heading, so nice_to_have. It is flagged because the mapping is interpretive.\\nAutonomous vehicles/robotics experience is domain knowledge and is not labeled. 'read papers', 'open-source contributions' and 'explain a technical trade-off' are not skills.\\nSeniority is inferred from 'At least three years' (3–5 years → mid). 'experienced ML engineer' is not a level signal on its own.\\nNo German and no degree are mentioned. Trigger-word evidence: the only years mention is 'At least three years'; there is no Senior, Lead or Junior wording.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Real depth in one modern ML area",
+        "uncertain": true
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "computer vision",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "large language models",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "a modern deep learning framework"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "Enough C++ to be useful"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "nice_to_have",
+        "raw_text": "You've made a model meaningfully faster on target hardware",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "large-scale data tooling",
+        "raw_text": "large-scale data tooling"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "At least three years",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "'The problems you'd be working on' is a responsibilities section, so Transformers, multimodal models and evaluation mentioned only there are not labeled.\n'generative modelling' and 'large language models' both map to llms (alias 'generative ai'), so they collapse into one criterion quoting 'large language models'.\nGroup 1 is computer-vision and llms, offered as 'one modern ML area' (X, Y, or Z). machine-learning is the broad skill named alongside its examples, so it stays out of the group; it is flagged because 'ML area' is a loose naming of the broad skill.\nI did not label 'taking models from data collection through training to something that ran in production'. Mapping it to ai-deployment or model-development would be interpretation; a reviewer may decide otherwise.\n'shipped a neural network' is not labeled separately. deep-learning rests on 'a modern deep learning framework' (alias 'deep learning frameworks'), and no specific framework is named.\nI mapped 'made a model meaningfully faster on target hardware' to inference-optimization under 'Things that would stand out', an optional heading, so nice_to_have. It is flagged because the mapping is interpretive.\nAutonomous vehicles/robotics experience is domain knowledge and is not labeled. 'read papers', 'open-source contributions' and 'explain a technical trade-off' are not skills.\nSeniority is inferred from 'At least three years' (3–5 years → mid). 'experienced ML engineer' is not a level signal on its own.\nNo German and no degree are mentioned. Trigger-word evidence: the only years mention is 'At least three years'; there is no Senior, Lead or Junior wording."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "ca3a56f74f515b477a49b8fffb50b9d138b324af1b125dbba0c511020af0c70d",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

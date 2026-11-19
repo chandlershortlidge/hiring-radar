@@ -1,0 +1,2861 @@
+[
+  {
+    "golden_id": "golden_094",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Sr. Staff Engineer, AI Datacenter Thermal Management & Control Plane",
+    "company": "tenstorrent",
+    "title": "Sr. Staff Engineer, AI Datacenter Thermal Management & Control Plane",
+    "place": "Austin",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 0,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_095",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "AI/ML Physical Design Flow Engineer",
+    "company": "tenstorrent",
+    "title": "AI/ML Physical Design Flow Engineer",
+    "place": "Austin",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 3,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Staff R&D AI Engineer",
+    "company": "webai",
+    "title": "Staff R&D AI Engineer",
+    "place": "Austin",
+    "language": "en",
+    "source": "ashby",
+    "n_skills": 21,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Senior Machine Learning Engineer, Agentic Systems (Active Secret Clearance)",
+    "company": "striveworks",
+    "title": "Senior Machine Learning Engineer, Agentic Systems (Active Secret Clearance)",
+    "place": "Austin",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 31,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Data Scientist (Active Secret Clearance)",
+    "company": "striveworks",
+    "title": "Data Scientist (Active Secret Clearance)",
+    "place": "Austin",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 16,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Machine Learning Engineer",
+    "company": "avride",
+    "title": "Machine Learning Engineer",
+    "place": "Austin",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 6,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "AI Accelerator Architect",
+    "company": "tenstorrent",
+    "title": "AI Accelerator Architect",
+    "place": "Austin",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 1,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Staff Machine Learning Engineer",
+    "company": "webai",
+    "title": "Staff Machine Learning Engineer",
+    "place": "Austin",
+    "language": "en",
+    "source": "ashby",
+    "n_skills": 9,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_102",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Lead Data Scientist – Autonomous Driving",
+    "company": "avride",
+    "title": "Lead Data Scientist – Autonomous Driving",
+    "place": "Austin",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 3,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Junior Machine Learning Engineer",
+    "company": "striveworks",
+    "title": "Junior Machine Learning Engineer",
+    "place": "Austin",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 16,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_104",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "AI Research Scientist",
+    "company": "webai",
+    "title": "AI Research Scientist",
+    "place": "Austin",
+    "language": "en",
+    "source": "ashby",
+    "n_skills": 12,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_105",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Physical Design Methodology Engineer, AI HW IP",
+    "company": "tenstorrent",
+    "title": "Physical Design Methodology Engineer, AI HW IP",
+    "place": "Austin",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 1,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_106",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Staff Design Verification Engineer, AI HW",
+    "company": "tenstorrent",
+    "title": "Staff Design Verification Engineer, AI HW",
+    "place": "Austin",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 3,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_107",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Software Engineer – ML Platform",
+    "company": "avride",
+    "title": "Software Engineer – ML Platform",
+    "place": "Austin",
+    "language": "en",
+    "source": "greenhouse",
+    "n_skills": 11,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_108",
+    "kind": "scope",
+    "key": "in_scope",
+    "reason": "in-scope",
+    "a": null,
+    "b": null,
+    "excerpt": "Special Notice:",
+    "company": "webai",
+    "title": "Senior Forward Deployed AI Engineer",
+    "place": "Austin",
+    "language": "en",
+    "source": "ashby",
+    "n_skills": 10,
+    "problems": [],
+    "decision": "yes"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "skill",
+    "key": "distributed-systems",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "distributed-systems",
+      "requirement": "required",
+      "raw_text": "distributed control systems"
+    },
+    "excerpt": "...experience. - You have architected and delivered complex distributed control systems, industrial automation, datacenter infrastructure, or...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "skill",
+    "key": "networking",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "networking",
+      "requirement": "required",
+      "raw_text": "Ethernet-based control networks"
+    },
+    "excerpt": "...protocols such as Modbus, BACnet, OPC UA, MQTT, and Ethernet-based control networks, along with telemetry, real-time monitoring, and fault...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "skill",
+    "key": "software-architecture",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "make architecture decisions"
+    },
+    "excerpt": "...and fault detection. - You can set technical direction, make architecture decisions, and lead complex cross-functional engineering programs...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_095",
+    "kind": "attribute",
+    "key": "seniority",
+    "reason": "disagreement",
+    "a": {
+      "seniority": "senior",
+      "seniority_basis": "inferred",
+      "seniority_signal": "5+ years in Physical Design CAD methodology at advanced nodes"
+    },
+    "b": {
+      "seniority": null,
+      "seniority_basis": null,
+      "seniority_signal": null
+    },
+    "excerpt": "...or Computer Engineering (or equivalent experience) with 5+ years in Physical Design CAD methodology at advanced nodes. - Proven track record improving PPA and/or runtime on...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_095",
+    "kind": "skill",
+    "key": "machine-learning",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "machine-learning",
+      "requirement": "nice_to_have",
+      "raw_text": "interest or experience in ML frameworks"
+    },
+    "excerpt": "...flows. - Strong Python/Tcl and data skills, with interest or experience in ML frameworks (PyTorch, TensorFlow), and the ability to drive complex...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "ml-engineering",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "ml-engineering",
+      "requirement": "required",
+      "raw_text": "AI/ML engineering"
+    },
+    "excerpt": "...& Skills: - 7+ years of experience in AI/ML engineering with 4+ years focusing on deep learning and neural network...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "skill",
+    "key": "ai-ml",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "Experience integrating AI systems"
+    },
+    "excerpt": "...and optimizing LLM-powered agents and agentic workflows - Experience integrating AI systems with external tools, APIs, MCP servers, and enterprise...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "skill",
+    "key": "software-architecture",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "software-architecture",
+      "requirement": "nice_to_have",
+      "raw_text": "architectures and design patterns for client-server systems"
+    },
+    "excerpt": "...science, or a related discipline - Knowledge of relevant architectures and design patterns for client-server systems (e.g., asynchronous programming, REST, GraphQL, React,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "software-engineering",
+    "reason": "disagreement",
+    "a": {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Exposure to software development life cycle and tools"
+    },
+    "b": {
+      "skill_id": "software-engineering",
+      "requirement": "nice_to_have",
+      "raw_text": "Experience developing software"
+    },
+    "excerpt": "...knowledge of TensorFlow, PyTorch, and/or scikit-learn - Exposure to software development life cycle and tools - Active Secret (or above) US security clearance and US...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "skill",
+    "key": "ai-deployment",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "You've shipped a neural network, not just trained one."
+    },
+    "excerpt": "...of the real difficulty lives. What we're looking for - You've shipped a neural network, not just trained one. At least three years taking models from data collection...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "skill",
+    "key": "model-development",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "model-development",
+      "requirement": "required",
+      "raw_text": "taking models from data collection through training"
+    },
+    "excerpt": "...neural network, not just trained one. At least three years taking models from data collection through training to something that ran in production or on real hardware,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "disagreement",
+    "a": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "A Bachelor’s degree in EE/ECE/CE/CS or a related field (MS or PhD preferred)"
+    },
+    "b": {
+      "degree": "phd",
+      "degree_requirement": "nice_to_have",
+      "degree_or_equivalent": false,
+      "degree_signal": "A Bachelor’s degree in EE/ECE/CE/CS or a related field (MS or PhD preferred)."
+    },
+    "excerpt": "...models for architecture exploration. What You Bring - A Bachelor’s degree in EE/ECE/CE/CS or a related field (MS or PhD preferred). - Strong foundational experience in RTL design with a...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "attribute",
+    "key": "seniority",
+    "reason": "disagreement",
+    "a": {
+      "seniority": "senior",
+      "seniority_basis": "stated",
+      "seniority_signal": "AI Accelerator Architect"
+    },
+    "b": {
+      "seniority": null,
+      "seniority_basis": null,
+      "seniority_signal": null
+    },
+    "excerpt": "AI Accelerator Architect Tenstorrent is leading the industry on cutting-edge AI...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "disagreement",
+    "a": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "Advanced degree (Ph.D. preferred) in Computer Science, or a related field"
+    },
+    "b": {
+      "degree": "phd",
+      "degree_requirement": "nice_to_have",
+      "degree_or_equivalent": false,
+      "degree_signal": "Advanced degree (Ph.D. preferred) in Computer Science, or a related field."
+    },
+    "excerpt": "...and best practices. Qualifications: - Advanced degree (Ph.D. preferred) in Computer Science, or a related field. - Proven track record of building and innovations...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "ai-deployment",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "deploying advanced AI models"
+    },
+    "excerpt": "...will have a proven track record of developing and deploying advanced AI models. You will lead core product initiatives across on-device...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "model-development",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "model-development",
+      "requirement": "required",
+      "raw_text": "developing and deploying advanced AI models"
+    },
+    "excerpt": "...The ideal candidate will have a proven track record of developing and deploying advanced AI models. You will lead core product initiatives across on-device...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "skill",
+    "key": "model-development",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "model-development",
+      "requirement": "required",
+      "raw_text": "development and use of machine learning models"
+    },
+    "excerpt": "...least one systems programming language - Exposure to the development and use of machine learning models, through either coursework or practical experience -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_104",
+    "kind": "skill",
+    "key": "data-privacy-and-security",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "data-privacy-and-security",
+      "requirement": "nice_to_have",
+      "raw_text": "privacy-preserving ML techniques"
+    },
+    "excerpt": "...learning, or multimodal learning - Familiarity with privacy-preserving ML techniques such as federated learning - Experience contributing to...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_105",
+    "kind": "attribute",
+    "key": "seniority",
+    "reason": "disagreement",
+    "a": {
+      "seniority": "senior",
+      "seniority_basis": "inferred",
+      "seniority_signal": "5+ years developing and supporting physical design methodology or CAD flows"
+    },
+    "b": {
+      "seniority": null,
+      "seniority_basis": null,
+      "seniority_signal": null
+    },
+    "excerpt": "...run them without you. What We Need - An Engineer with 5+ years developing and supporting physical design methodology or CAD flows in production use. - Expertise with industry-standard...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_105",
+    "kind": "skill",
+    "key": "ai-ml",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "Building with AI as part of how you develop flows"
+    },
+    "excerpt": "...manual steps and making PPA exploration repeatable. - Building with AI as part of how you develop flows, and opinionated about where LLMs and ML-driven...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_105",
+    "kind": "skill",
+    "key": "workflow-automation",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "workflow-automation",
+      "requirement": "required",
+      "raw_text": "removing manual steps and making PPA exploration repeatable"
+    },
+    "excerpt": "...on daily. - Automation-minded, happiest when you are removing manual steps and making PPA exploration repeatable. - Building with AI as part of how you develop flows, and...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_107",
+    "kind": "skill",
+    "key": "distributed-systems",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "distributed-systems",
+      "requirement": "nice_to_have",
+      "raw_text": "optimizing resource usage and performance in distributed environments"
+    },
+    "excerpt": "...training, training data pipelines - Track record of optimizing resource usage and performance in distributed environments #LI-MS1 Candidates are required to be authorized to...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_107",
+    "kind": "skill",
+    "key": "software-architecture",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "designing and building scalable, maintainable systems and services"
+    },
+    "excerpt": "...in Python or Go; C++ is a plus - Track record of designing and building scalable, maintainable systems and services - Experience operating production services end-to-end:...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_108",
+    "kind": "skill",
+    "key": "ai-ml",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "machine learning/AI systems"
+    },
+    "excerpt": "...- Proven track record of deploying and maintaining machine learning/AI systems in production. - Strong expertise in ML frameworks such...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_108",
+    "kind": "skill",
+    "key": "mlops",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "mlops",
+      "requirement": "required",
+      "raw_text": "maintaining machine learning/AI systems in production"
+    },
+    "excerpt": "...clearance - Proven track record of deploying and maintaining machine learning/AI systems in production. - Strong expertise in ML frameworks such as PyTorch,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "skill",
+    "key": "observability",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "real-time monitoring"
+    },
+    "b": {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "real-time monitoring"
+    },
+    "excerpt": "...and Ethernet-based control networks, along with telemetry, real-time monitoring, and fault detection. - You can set technical direction,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "ai-deployment",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "deploying large-scale models"
+    },
+    "b": {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "deploying large-scale models"
+    },
+    "excerpt": "...in PyTorch and/or TensorFlow with experience training and deploying large-scale models - Experience with transformer architectures, attention...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "ai-ml",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "AI/ML engineering"
+    },
+    "b": {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "AI/ML engineering"
+    },
+    "excerpt": "...& Skills: - 7+ years of experience in AI/ML engineering with 4+ years focusing on deep learning and neural network...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "knowledge-distillation",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "knowledge-distillation",
+      "requirement": "nice_to_have",
+      "raw_text": "distillation"
+    },
+    "b": {
+      "skill_id": "knowledge-distillation",
+      "requirement": "nice_to_have",
+      "raw_text": "distillation"
+    },
+    "excerpt": "...and model optimization techniques (quantization, pruning, distillation) - Experience with embodied AI research or projects...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "quantization",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "quantization",
+      "requirement": "nice_to_have",
+      "raw_text": "quantization"
+    },
+    "b": {
+      "skill_id": "quantization",
+      "requirement": "nice_to_have",
+      "raw_text": "quantization"
+    },
+    "excerpt": "...with edge AI deployment and model optimization techniques (quantization, pruning, distillation) - Experience with embodied AI...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "uncertain",
+    "a": {
+      "degree": "bachelor",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "A BS degree in computer science, machine learning, or a related discipline"
+    },
+    "b": {
+      "degree": "bachelor",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "A BS degree in computer science, machine learning, or a related discipline"
+    },
+    "excerpt": "...to put them into practice. What we’re looking for - A BS degree in computer science, machine learning, or a related discipline and 6+ years relevant experience - Demonstrated...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "skill",
+    "key": "async-processing",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "async-processing",
+      "requirement": "nice_to_have",
+      "raw_text": "asynchronous programming"
+    },
+    "b": {
+      "skill_id": "async-processing",
+      "requirement": "nice_to_have",
+      "raw_text": "asynchronous programming"
+    },
+    "excerpt": "...and design patterns for client-server systems (e.g., asynchronous programming, REST, GraphQL, React, Vue, Angular) - Experience...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "uncertain",
+    "a": {
+      "degree": "bachelor",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "A BS degree in computer science, machine learning, mathematics, or a related discipline"
+    },
+    "b": {
+      "degree": "bachelor",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "A BS degree in computer science, machine learning, mathematics, or a related discipline"
+    },
+    "excerpt": "...to put them into practice. What we’re looking for - A BS degree in computer science, machine learning, mathematics, or a related discipline and 2+ years of relevant experience - Proficiency in...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "attribute",
+    "key": "seniority",
+    "reason": "uncertain",
+    "a": {
+      "seniority": "junior",
+      "seniority_basis": "inferred",
+      "seniority_signal": "2+ years of relevant experience"
+    },
+    "b": {
+      "seniority": "junior",
+      "seniority_basis": "inferred",
+      "seniority_signal": "2+ years of relevant experience"
+    },
+    "excerpt": "...machine learning, mathematics, or a related discipline and 2+ years of relevant experience - Proficiency in machine learning and data science, with...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "agents",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "agentic systems"
+    },
+    "b": {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "agentic systems"
+    },
+    "excerpt": "...demonstrated application to image data, video data, or agentic systems - Proficiency in implementing and analyzing data...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "skill",
+    "key": "inference-optimization",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "inference-optimization",
+      "requirement": "nice_to_have",
+      "raw_text": "You've made a model meaningfully faster on target hardware"
+    },
+    "b": {
+      "skill_id": "inference-optimization",
+      "requirement": "nice_to_have",
+      "raw_text": "You've made a model meaningfully faster on target hardware"
+    },
+    "excerpt": "...when it's the right call. Things that would stand out - You've made a model meaningfully faster on target hardware and can explain what you gave up to get there. - You've...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "skill",
+    "key": "machine-learning",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "Real depth in one modern ML area"
+    },
+    "b": {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "Real depth in one modern ML area"
+    },
+    "excerpt": "...in production or on real hardware, and stayed working. - Real depth in one modern ML area — computer vision, large language models, or generative...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "apache-spark",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "apache-spark",
+      "requirement": "nice_to_have",
+      "raw_text": "Spark"
+    },
+    "b": {
+      "skill_id": "apache-spark",
+      "requirement": "nice_to_have",
+      "raw_text": "Spark"
+    },
+    "excerpt": "...GCP). - Knowledge of Big Data technologies (Hadoop, Spark). - Familiarity with containerization and orchestration...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "aws",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "aws",
+      "requirement": "nice_to_have",
+      "raw_text": "AWS"
+    },
+    "b": {
+      "skill_id": "aws",
+      "requirement": "nice_to_have",
+      "raw_text": "AWS"
+    },
+    "excerpt": "...Skills: - Experience with cloud computing services (AWS, Azure, GCP). - Knowledge of Big Data technologies...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "azure",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "azure",
+      "requirement": "nice_to_have",
+      "raw_text": "Azure"
+    },
+    "b": {
+      "skill_id": "azure",
+      "requirement": "nice_to_have",
+      "raw_text": "Azure"
+    },
+    "excerpt": "...- Experience with cloud computing services (AWS, Azure, GCP). - Knowledge of Big Data technologies (Hadoop,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "gcp",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "gcp",
+      "requirement": "nice_to_have",
+      "raw_text": "GCP"
+    },
+    "b": {
+      "skill_id": "gcp",
+      "requirement": "nice_to_have",
+      "raw_text": "GCP"
+    },
+    "excerpt": "...- Experience with cloud computing services (AWS, Azure, GCP). - Knowledge of Big Data technologies (Hadoop,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "hadoop",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "hadoop",
+      "requirement": "nice_to_have",
+      "raw_text": "Hadoop"
+    },
+    "b": {
+      "skill_id": "hadoop",
+      "requirement": "nice_to_have",
+      "raw_text": "Hadoop"
+    },
+    "excerpt": "...Azure, GCP). - Knowledge of Big Data technologies (Hadoop, Spark). - Familiarity with containerization and...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_102",
+    "kind": "skill",
+    "key": "data-pipelines",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "data-pipelines",
+      "requirement": "required",
+      "raw_text": "ship analyses and pipelines end to end"
+    },
+    "b": {
+      "skill_id": "data-pipelines",
+      "requirement": "required",
+      "raw_text": "ship analyses and pipelines end to end"
+    },
+    "excerpt": "...Python and SQL; you can independently run experiments and ship analyses and pipelines end to end. - Leadership: proven technical leadership, mentoring,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "uncertain",
+    "a": {
+      "degree": "bachelor",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "A BS degree in computer science, machine learning, or a related discipline"
+    },
+    "b": {
+      "degree": "bachelor",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "A BS degree in computer science, machine learning, or a related discipline"
+    },
+    "excerpt": "...to put them into practice. What we’re looking for - A BS degree in computer science, machine learning, or a related discipline and 0–2 years of relevant experience - Strong proficiency...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "skill",
+    "key": "agents",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "agents",
+      "requirement": "nice_to_have",
+      "raw_text": "agentic workflows"
+    },
+    "b": {
+      "skill_id": "agents",
+      "requirement": "nice_to_have",
+      "raw_text": "agentic workflows"
+    },
+    "excerpt": "...on structured and unstructured data - Experience with agentic workflows, LLM evaluation, testing, observability, or guardrails -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "skill",
+    "key": "async-processing",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "async-processing",
+      "requirement": "nice_to_have",
+      "raw_text": "asynchronous programming"
+    },
+    "b": {
+      "skill_id": "async-processing",
+      "requirement": "nice_to_have",
+      "raw_text": "asynchronous programming"
+    },
+    "excerpt": "...Podman, or Kubernetes (K8s) - Experience working with asynchronous programming, concurrency, or event-driven architectures - Active...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "skill",
+    "key": "cloud",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "cloud",
+      "requirement": "nice_to_have",
+      "raw_text": "cloud environments"
+    },
+    "b": {
+      "skill_id": "cloud",
+      "requirement": "nice_to_have",
+      "raw_text": "cloud environments"
+    },
+    "excerpt": "...implementing and deploying software in containerized or cloud environments, using tools such as Docker, Podman, or Kubernetes...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "skill",
+    "key": "containerization",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "containerization",
+      "requirement": "nice_to_have",
+      "raw_text": "containerized"
+    },
+    "b": {
+      "skill_id": "containerization",
+      "requirement": "nice_to_have",
+      "raw_text": "containerized"
+    },
+    "excerpt": "...Experience implementing and deploying software in containerized or cloud environments, using tools such as Docker, Podman,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "skill",
+    "key": "software-architecture",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "software-architecture",
+      "requirement": "nice_to_have",
+      "raw_text": "architectures and design patterns for client-server systems"
+    },
+    "b": {
+      "skill_id": "software-architecture",
+      "requirement": "nice_to_have",
+      "raw_text": "architectures and design patterns for client-server systems"
+    },
+    "excerpt": "...modern AI application patterns - Knowledge of relevant architectures and design patterns for client-server systems - Experience implementing and deploying software in...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_104",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "uncertain",
+    "a": {
+      "degree": "phd",
+      "degree_requirement": "nice_to_have",
+      "degree_or_equivalent": false,
+      "degree_signal": "Master’s or PhD in Machine Learning"
+    },
+    "b": {
+      "degree": "phd",
+      "degree_requirement": "nice_to_have",
+      "degree_or_equivalent": false,
+      "degree_signal": "Master’s or PhD in Machine Learning, Computer Science, AI, or a related field"
+    },
+    "excerpt": "...Mathematics, or a related field Preferred Skills - Master’s or PhD in Machine Learning, Computer Science, AI, or a related field - Experience...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_104",
+    "kind": "skill",
+    "key": "evaluation",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "validating ML model performance"
+    },
+    "b": {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "validating ML model performance"
+    },
+    "excerpt": "...- Experience building datasets, designing experiments, and validating ML model performance - Deep understanding of optimization techniques...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_104",
+    "kind": "skill",
+    "key": "machine-learning",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "machine learning research"
+    },
+    "b": {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "machine learning research"
+    },
+    "excerpt": "...- 4+ years of experience (can be graduate research) in machine learning research, AI model development, or related fields - Strong...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_104",
+    "kind": "skill",
+    "key": "model-development",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "model-development",
+      "requirement": "required",
+      "raw_text": "AI model development"
+    },
+    "b": {
+      "skill_id": "model-development",
+      "requirement": "required",
+      "raw_text": "training and fine-tuning large-scale models"
+    },
+    "excerpt": "...(can be graduate research) in machine learning research, AI model development, or related fields - Strong expertise in deep learning...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_105",
+    "kind": "skill",
+    "key": "llms",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "opinionated about where LLMs and ML-driven optimization genuinely help"
+    },
+    "b": {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "LLMs"
+    },
+    "excerpt": "...Building with AI as part of how you develop flows, and opinionated about where LLMs and ML-driven optimization genuinely help versus where they do not. - An effective partner to...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_105",
+    "kind": "skill",
+    "key": "machine-learning",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "ML-driven optimization genuinely help"
+    },
+    "b": {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "ML-driven optimization"
+    },
+    "excerpt": "...you develop flows, and opinionated about where LLMs and ML-driven optimization genuinely help versus where they do not. - An effective partner to...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_106",
+    "kind": "attribute",
+    "key": "seniority",
+    "reason": "uncertain",
+    "a": {
+      "seniority": "senior",
+      "seniority_basis": "stated",
+      "seniority_signal": "Staff Design Verification Engineer, AI HW"
+    },
+    "b": {
+      "seniority": "senior",
+      "seniority_basis": "stated",
+      "seniority_signal": "Staff Design Verification Engineer, AI HW"
+    },
+    "excerpt": "Staff Design Verification Engineer, AI HW Tenstorrent is leading the industry on cutting-edge AI...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_106",
+    "kind": "skill",
+    "key": "ci-cd",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "manage CI pipelines"
+    },
+    "b": {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "manage CI pipelines"
+    },
+    "excerpt": "...Python, or Bash scripting for automate builds, parse logs, manage CI pipelines. - Skilled in coverage-driven verification and confident...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_107",
+    "kind": "skill",
+    "key": "networking",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "networking",
+      "requirement": "required",
+      "raw_text": "performance investigation, networking"
+    },
+    "b": {
+      "skill_id": "networking",
+      "requirement": "required",
+      "raw_text": "networking"
+    },
+    "excerpt": "...pressure - Solid Linux and systems debugging skills: performance investigation, networking, storage/IO - Ability to troubleshoot complex production...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_108",
+    "kind": "skill",
+    "key": "ai-deployment",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "deploying and maintaining machine learning/AI systems in production"
+    },
+    "b": {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "deploying and maintaining machine learning/AI systems in production"
+    },
+    "excerpt": "...- Active US Security clearance - Proven track record of deploying and maintaining machine learning/AI systems in production. - Strong expertise in ML frameworks such as PyTorch,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_108",
+    "kind": "skill",
+    "key": "data-privacy-and-security",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "data-privacy-and-security",
+      "requirement": "nice_to_have",
+      "raw_text": "privacy-preserving AI and secure compute environments"
+    },
+    "b": {
+      "skill_id": "data-privacy-and-security",
+      "requirement": "nice_to_have",
+      "raw_text": "privacy-preserving AI and secure compute environments"
+    },
+    "excerpt": "...in developing full stack applications - Knowledge of privacy-preserving AI and secure compute environments. - Master’s degree in a relevant technical...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_094",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "spot-check",
+    "a": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "You have a BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline"
+    },
+    "b": {
+      "degree": "phd",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "You have a BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline"
+    },
+    "excerpt": "...differ from the one in this posting. Who You Are - You have a BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline, and 12+ years of relevant engineering experience. - You...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_095",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "spot-check",
+    "a": {
+      "degree": "bachelor",
+      "degree_requirement": "required",
+      "degree_or_equivalent": true,
+      "degree_signal": "BS in Electrical or Computer Engineering (or equivalent experience)"
+    },
+    "b": {
+      "degree": "bachelor",
+      "degree_requirement": "required",
+      "degree_or_equivalent": true,
+      "degree_signal": "BS in Electrical or Computer Engineering (or equivalent experience)"
+    },
+    "excerpt": "...differ from the one in this posting. Who you are - BS in Electrical or Computer Engineering (or equivalent experience) with 5+ years in Physical Design CAD methodology at...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "attribute",
+    "key": "seniority",
+    "reason": "spot-check",
+    "a": {
+      "seniority": "senior",
+      "seniority_basis": "stated",
+      "seniority_signal": "Staff R&D AI Engineer"
+    },
+    "b": {
+      "seniority": "senior",
+      "seniority_basis": "stated",
+      "seniority_signal": "Staff R&D AI Engineer"
+    },
+    "excerpt": "Staff R&D AI Engineer About Us: We are establishing the first distributed Al...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "aws",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "aws",
+      "requirement": "nice_to_have",
+      "raw_text": "AWS"
+    },
+    "b": {
+      "skill_id": "aws",
+      "requirement": "nice_to_have",
+      "raw_text": "AWS"
+    },
+    "excerpt": "...on AI solutions - Experience with cloud platforms (AWS, GCP, Azure) and containerization technologies -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "cloud",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "cloud",
+      "requirement": "nice_to_have",
+      "raw_text": "cloud platforms"
+    },
+    "b": {
+      "skill_id": "cloud",
+      "requirement": "nice_to_have",
+      "raw_text": "cloud platforms"
+    },
+    "excerpt": "...prototype and iterate on AI solutions - Experience with cloud platforms (AWS, GCP, Azure) and containerization technologies -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "containerization",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "containerization",
+      "requirement": "nice_to_have",
+      "raw_text": "containerization technologies"
+    },
+    "b": {
+      "skill_id": "containerization",
+      "requirement": "nice_to_have",
+      "raw_text": "containerization technologies"
+    },
+    "excerpt": "...- Experience with cloud platforms (AWS, GCP, Azure) and containerization technologies - Background in safety-critical AI systems or AI...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "deep-learning",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "deep-learning",
+      "requirement": "required",
+      "raw_text": "deep learning"
+    },
+    "b": {
+      "skill_id": "deep-learning",
+      "requirement": "required",
+      "raw_text": "deep learning"
+    },
+    "excerpt": "...experience in AI/ML engineering with 4+ years focusing on deep learning and neural network development - Strong understanding of...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "distributed-training",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "distributed-training",
+      "requirement": "required",
+      "raw_text": "experience in distributed training"
+    },
+    "b": {
+      "skill_id": "distributed-training",
+      "requirement": "required",
+      "raw_text": "experience in distributed training"
+    },
+    "excerpt": "...tracking - Strong programming skills in Python with experience in distributed training and model optimization - Understanding of sequential...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "model-development",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "model-development",
+      "requirement": "required",
+      "raw_text": "hands-on model development experience"
+    },
+    "b": {
+      "skill_id": "model-development",
+      "requirement": "required",
+      "raw_text": "hands-on model development experience"
+    },
+    "excerpt": "...both computer vision and natural language processing with hands-on model development experience - Proficiency in PyTorch and/or TensorFlow with...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "model-versioning",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "model-versioning",
+      "requirement": "required",
+      "raw_text": "model versioning"
+    },
+    "b": {
+      "skill_id": "model-versioning",
+      "requirement": "required",
+      "raw_text": "model versioning"
+    },
+    "excerpt": "...fundamentals - Experience with MLOps practices including model versioning, monitoring, and deployment pipelines - Proven ability...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "nlp",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "nlp",
+      "requirement": "required",
+      "raw_text": "natural language processing"
+    },
+    "b": {
+      "skill_id": "nlp",
+      "requirement": "required",
+      "raw_text": "natural language processing"
+    },
+    "excerpt": "...etc.) - Strong expertise in both computer vision and natural language processing with hands-on model development experience - Proficiency...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "observability",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "monitoring"
+    },
+    "b": {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "monitoring"
+    },
+    "excerpt": "...with MLOps practices including model versioning, monitoring, and deployment pipelines - Proven ability to work...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_096",
+    "kind": "skill",
+    "key": "tensorflow",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "tensorflow",
+      "requirement": "required",
+      "raw_text": "TensorFlow"
+    },
+    "b": {
+      "skill_id": "tensorflow",
+      "requirement": "required",
+      "raw_text": "TensorFlow"
+    },
+    "excerpt": "...development experience - Proficiency in PyTorch and/or TensorFlow with experience training and deploying large-scale...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "skill",
+    "key": "angular",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "angular",
+      "requirement": "nice_to_have",
+      "raw_text": "Angular"
+    },
+    "b": {
+      "skill_id": "angular",
+      "requirement": "nice_to_have",
+      "raw_text": "Angular"
+    },
+    "excerpt": "...asynchronous programming, REST, GraphQL, React, Vue, Angular) - Experience implementing and deploying software into...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "skill",
+    "key": "apis",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "APIs"
+    },
+    "b": {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "APIs"
+    },
+    "excerpt": "...Experience integrating AI systems with external tools, APIs, MCP servers, and enterprise data sources - Experience...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "skill",
+    "key": "ci-cd",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD"
+    },
+    "b": {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD"
+    },
+    "excerpt": "...and processes (Agile, version control, issue tracking, CI/CD, debugging, etc.) - Active Secret (or above) US security...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "skill",
+    "key": "cloud",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "cloud",
+      "requirement": "nice_to_have",
+      "raw_text": "cloud environments"
+    },
+    "b": {
+      "skill_id": "cloud",
+      "requirement": "nice_to_have",
+      "raw_text": "cloud environments"
+    },
+    "excerpt": "...implementing and deploying software into containerized or cloud environments (e.g., Docker, Kubernetes [K8s], infrastructure as code,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "skill",
+    "key": "cpp",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "cpp",
+      "requirement": "required",
+      "raw_text": "C++"
+    },
+    "b": {
+      "skill_id": "cpp",
+      "requirement": "required",
+      "raw_text": "C++"
+    },
+    "excerpt": "...at least one systems programming language (e.g., Go, Rust, C++, Java, Scala) - Proficiency with modern software...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "skill",
+    "key": "docker",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "docker",
+      "requirement": "nice_to_have",
+      "raw_text": "Docker"
+    },
+    "b": {
+      "skill_id": "docker",
+      "requirement": "nice_to_have",
+      "raw_text": "Docker"
+    },
+    "excerpt": "...software into containerized or cloud environments (e.g., Docker, Kubernetes [K8s], infrastructure as code, major cloud...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "skill",
+    "key": "java",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "java",
+      "requirement": "required",
+      "raw_text": "Java"
+    },
+    "b": {
+      "skill_id": "java",
+      "requirement": "required",
+      "raw_text": "Java"
+    },
+    "excerpt": "...one systems programming language (e.g., Go, Rust, C++, Java, Scala) - Proficiency with modern software engineering...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "skill",
+    "key": "mcp",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "mcp",
+      "requirement": "required",
+      "raw_text": "MCP servers"
+    },
+    "b": {
+      "skill_id": "mcp",
+      "requirement": "required",
+      "raw_text": "MCP servers"
+    },
+    "excerpt": "...integrating AI systems with external tools, APIs, MCP servers, and enterprise data sources - Experience developing...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "skill",
+    "key": "pytorch",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    "b": {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    "excerpt": "...essential, as is knowledge of libraries like TensorFlow, PyTorch, and/or scikit-learn - Strong software engineering...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "skill",
+    "key": "rag",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "retrieval-augmented generation (RAG)"
+    },
+    "b": {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "retrieval-augmented generation (RAG)"
+    },
+    "excerpt": "...performance, reliability, and safety - Familiarity with retrieval-augmented generation (RAG), tool use, planning, and multi-agent architectures -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "skill",
+    "key": "react",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "react",
+      "requirement": "nice_to_have",
+      "raw_text": "React"
+    },
+    "b": {
+      "skill_id": "react",
+      "requirement": "nice_to_have",
+      "raw_text": "React"
+    },
+    "excerpt": "...systems (e.g., asynchronous programming, REST, GraphQL, React, Vue, Angular) - Experience implementing and deploying...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "skill",
+    "key": "tensorflow",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "tensorflow",
+      "requirement": "required",
+      "raw_text": "TensorFlow"
+    },
+    "b": {
+      "skill_id": "tensorflow",
+      "requirement": "required",
+      "raw_text": "TensorFlow"
+    },
+    "excerpt": "...in Python is essential, as is knowledge of libraries like TensorFlow, PyTorch, and/or scikit-learn - Strong software...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_097",
+    "kind": "skill",
+    "key": "vue",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "vue",
+      "requirement": "nice_to_have",
+      "raw_text": "Vue"
+    },
+    "b": {
+      "skill_id": "vue",
+      "requirement": "nice_to_have",
+      "raw_text": "Vue"
+    },
+    "excerpt": "...(e.g., asynchronous programming, REST, GraphQL, React, Vue, Angular) - Experience implementing and deploying...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "attribute",
+    "key": "german",
+    "reason": "spot-check",
+    "a": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "b": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "excerpt": "Data Scientist (Active Secret Clearance)",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "ai-deployment",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "ai-deployment",
+      "requirement": "nice_to_have",
+      "raw_text": "Experience deploying machine learning and data science solutions to production environments"
+    },
+    "b": {
+      "skill_id": "ai-deployment",
+      "requirement": "nice_to_have",
+      "raw_text": "Experience deploying machine learning and data science solutions to production environments"
+    },
+    "excerpt": "...machine learning, mathematics, or a related discipline - Experience deploying machine learning and data science solutions to production environments - Exposure to DevOps and to cloud infrastructure -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "data-pipelines",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "data-pipelines",
+      "requirement": "nice_to_have",
+      "raw_text": "ETL pipelines, data pipelines"
+    },
+    "b": {
+      "skill_id": "data-pipelines",
+      "requirement": "nice_to_have",
+      "raw_text": "ETL pipelines, data pipelines"
+    },
+    "excerpt": "...telemetry, graphs, or other) - Experience implementing ETL pipelines, data pipelines, and/or workflow automation - Experience developing...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "data-science",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "data-science",
+      "requirement": "required",
+      "raw_text": "Proficiency in machine learning and data science"
+    },
+    "b": {
+      "skill_id": "data-science",
+      "requirement": "required",
+      "raw_text": "Proficiency in machine learning and data science"
+    },
+    "excerpt": "...related discipline and 2+ years of relevant experience - Proficiency in machine learning and data science, with demonstrated application to image data, video data,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "go",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "go",
+      "requirement": "nice_to_have",
+      "raw_text": "Go"
+    },
+    "b": {
+      "skill_id": "go",
+      "requirement": "nice_to_have",
+      "raw_text": "Go"
+    },
+    "excerpt": "...— Dr. Jim Rebesco, Cofounder and CEO, Striveworks The government’s demand for AI is growing far faster than the...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "python",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Excellence in Python"
+    },
+    "b": {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Excellence in Python"
+    },
+    "excerpt": "...and analyzing data structures and algorithms - Excellence in Python and knowledge of TensorFlow, PyTorch, and/or...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "rust",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "rust",
+      "requirement": "nice_to_have",
+      "raw_text": "Rust"
+    },
+    "b": {
+      "skill_id": "rust",
+      "requirement": "nice_to_have",
+      "raw_text": "Rust"
+    },
+    "excerpt": "...degrade in the real world. And when performance drops, trust goes with it. Striveworks was built to solve that...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "scikit-learn",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "scikit-learn",
+      "requirement": "required",
+      "raw_text": "and/or scikit-learn"
+    },
+    "b": {
+      "skill_id": "scikit-learn",
+      "requirement": "required",
+      "raw_text": "and/or scikit-learn"
+    },
+    "excerpt": "...Excellence in Python and knowledge of TensorFlow, PyTorch, and/or scikit-learn - Exposure to software development life cycle and...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_098",
+    "kind": "skill",
+    "key": "tensorflow",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "tensorflow",
+      "requirement": "required",
+      "raw_text": "TensorFlow"
+    },
+    "b": {
+      "skill_id": "tensorflow",
+      "requirement": "required",
+      "raw_text": "TensorFlow"
+    },
+    "excerpt": "...and algorithms - Excellence in Python and knowledge of TensorFlow, PyTorch, and/or scikit-learn - Exposure to software...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "attribute",
+    "key": "german",
+    "reason": "spot-check",
+    "a": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "b": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "excerpt": "Machine Learning Engineer",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "attribute",
+    "key": "seniority",
+    "reason": "spot-check",
+    "a": {
+      "seniority": "mid",
+      "seniority_basis": "inferred",
+      "seniority_signal": "At least three years"
+    },
+    "b": {
+      "seniority": "mid",
+      "seniority_basis": "inferred",
+      "seniority_signal": "At least three years"
+    },
+    "excerpt": "...You've shipped a neural network, not just trained one. At least three years taking models from data collection through training to...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "skill",
+    "key": "computer-vision",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "computer-vision",
+      "requirement": "required",
+      "raw_text": "computer vision"
+    },
+    "b": {
+      "skill_id": "computer-vision",
+      "requirement": "required",
+      "raw_text": "computer vision"
+    },
+    "excerpt": "...and stayed working. - Real depth in one modern ML area — computer vision, large language models, or generative modelling. We'd...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_099",
+    "kind": "skill",
+    "key": "sql",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "sql",
+      "requirement": "required",
+      "raw_text": "SQL"
+    },
+    "b": {
+      "skill_id": "sql",
+      "requirement": "required",
+      "raw_text": "SQL"
+    },
+    "excerpt": "...who own it. - Comfort with large-scale data tooling and SQL — you can get your own data without waiting on someone...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_100",
+    "kind": "attribute",
+    "key": "german",
+    "reason": "spot-check",
+    "a": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "b": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "excerpt": "AI Accelerator Architect",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "kubernetes",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "kubernetes",
+      "requirement": "nice_to_have",
+      "raw_text": "Kubernetes"
+    },
+    "b": {
+      "skill_id": "kubernetes",
+      "requirement": "nice_to_have",
+      "raw_text": "Kubernetes"
+    },
+    "excerpt": "...containerization and orchestration technologies (Docker, Kubernetes). - Publications or presentations in recognized Machine...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "pytorch",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    "b": {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    "excerpt": "...and machine learning frameworks like TensorFlow and/or PyTorch. - Demonstrated ability to lead complex projects and...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_101",
+    "kind": "skill",
+    "key": "tensorflow",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "tensorflow",
+      "requirement": "required",
+      "raw_text": "TensorFlow"
+    },
+    "b": {
+      "skill_id": "tensorflow",
+      "requirement": "required",
+      "raw_text": "TensorFlow"
+    },
+    "excerpt": "...skills in Python and machine learning frameworks like TensorFlow and/or PyTorch. - Demonstrated ability to lead complex...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_102",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "spot-check",
+    "a": {
+      "degree": "phd",
+      "degree_requirement": "nice_to_have",
+      "degree_or_equivalent": false,
+      "degree_signal": "MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field"
+    },
+    "b": {
+      "degree": "phd",
+      "degree_requirement": "nice_to_have",
+      "degree_or_equivalent": false,
+      "degree_signal": "MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field"
+    },
+    "excerpt": "...to have - Formal training in statistics (for example, MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field with rigorous statistical coursework). - Familiarity with...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_102",
+    "kind": "skill",
+    "key": "python",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "strong Python"
+    },
+    "b": {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "strong Python"
+    },
+    "excerpt": "...methods for evaluating change and uncertainty. - Coding: strong Python and SQL; you can independently run experiments and ship...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "attribute",
+    "key": "seniority",
+    "reason": "spot-check",
+    "a": {
+      "seniority": "junior",
+      "seniority_basis": "stated",
+      "seniority_signal": "Junior Machine Learning Engineer"
+    },
+    "b": {
+      "seniority": "junior",
+      "seniority_basis": "stated",
+      "seniority_signal": "Junior Machine Learning Engineer"
+    },
+    "excerpt": "Junior Machine Learning Engineer “In 36 months, agentic AI systems will be an operating...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "skill",
+    "key": "docker",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "docker",
+      "requirement": "nice_to_have",
+      "raw_text": "Docker"
+    },
+    "b": {
+      "skill_id": "docker",
+      "requirement": "nice_to_have",
+      "raw_text": "Docker"
+    },
+    "excerpt": "...containerized or cloud environments, using tools such as Docker, Podman, or Kubernetes (K8s) - Experience working with...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "skill",
+    "key": "embeddings",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "embeddings",
+      "requirement": "nice_to_have",
+      "raw_text": "embeddings"
+    },
+    "b": {
+      "skill_id": "embeddings",
+      "requirement": "nice_to_have",
+      "raw_text": "embeddings"
+    },
+    "excerpt": "...or guardrails - Familiarity with vector databases, embeddings, retrieval-augmented generation (RAG), or other modern AI...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "skill",
+    "key": "python",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Strong proficiency in Python"
+    },
+    "b": {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Strong proficiency in Python"
+    },
+    "excerpt": "...related discipline and 0–2 years of relevant experience - Strong proficiency in Python including experience with libraries and frameworks like...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "skill",
+    "key": "pytorch",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    "b": {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    "excerpt": "...including experience with libraries and frameworks like PyTorch, TensorFlow, and/or scikit-learn - Strong software...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "skill",
+    "key": "rag",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "rag",
+      "requirement": "nice_to_have",
+      "raw_text": "retrieval-augmented generation (RAG)"
+    },
+    "b": {
+      "skill_id": "rag",
+      "requirement": "nice_to_have",
+      "raw_text": "retrieval-augmented generation (RAG)"
+    },
+    "excerpt": "...Familiarity with vector databases, embeddings, retrieval-augmented generation (RAG), or other modern AI application patterns - Knowledge of...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "skill",
+    "key": "scikit-learn",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "scikit-learn",
+      "requirement": "required",
+      "raw_text": "scikit-learn"
+    },
+    "b": {
+      "skill_id": "scikit-learn",
+      "requirement": "required",
+      "raw_text": "scikit-learn"
+    },
+    "excerpt": "...libraries and frameworks like PyTorch, TensorFlow, and/or scikit-learn - Strong software engineering fundamentals and experience...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "skill",
+    "key": "software-engineering",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Strong software engineering fundamentals"
+    },
+    "b": {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Strong software engineering fundamentals"
+    },
+    "excerpt": "...like PyTorch, TensorFlow, and/or scikit-learn - Strong software engineering fundamentals and experience with at least one systems programming...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "skill",
+    "key": "tensorflow",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "tensorflow",
+      "requirement": "required",
+      "raw_text": "TensorFlow"
+    },
+    "b": {
+      "skill_id": "tensorflow",
+      "requirement": "required",
+      "raw_text": "TensorFlow"
+    },
+    "excerpt": "...experience with libraries and frameworks like PyTorch, TensorFlow, and/or scikit-learn - Strong software engineering...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "skill",
+    "key": "testing",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "testing",
+      "requirement": "nice_to_have",
+      "raw_text": "testing"
+    },
+    "b": {
+      "skill_id": "testing",
+      "requirement": "nice_to_have",
+      "raw_text": "testing"
+    },
+    "excerpt": "...billions of dollars invested. The models perform in testing, but they degrade in the real world. And when performance...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_103",
+    "kind": "skill",
+    "key": "vector-databases",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "vector-databases",
+      "requirement": "nice_to_have",
+      "raw_text": "vector databases"
+    },
+    "b": {
+      "skill_id": "vector-databases",
+      "requirement": "nice_to_have",
+      "raw_text": "vector databases"
+    },
+    "excerpt": "...testing, observability, or guardrails - Familiarity with vector databases, embeddings, retrieval-augmented generation (RAG), or...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_104",
+    "kind": "attribute",
+    "key": "seniority",
+    "reason": "spot-check",
+    "a": {
+      "seniority": "mid",
+      "seniority_basis": "inferred",
+      "seniority_signal": "4+ years of experience"
+    },
+    "b": {
+      "seniority": "mid",
+      "seniority_basis": "inferred",
+      "seniority_signal": "4+ years of experience"
+    },
+    "excerpt": "...with webAI’s strategic priorities Qualifications: - 4+ years of experience (can be graduate research) in machine learning research,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_104",
+    "kind": "skill",
+    "key": "deep-learning",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "deep-learning",
+      "requirement": "required",
+      "raw_text": "deep learning architectures"
+    },
+    "b": {
+      "skill_id": "deep-learning",
+      "requirement": "required",
+      "raw_text": "deep learning architectures"
+    },
+    "excerpt": "...development, or related fields - Strong expertise in deep learning architectures including transformers, CNNs, RNNs, and diffusion models...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_104",
+    "kind": "skill",
+    "key": "distributed-training",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "distributed-training",
+      "requirement": "nice_to_have",
+      "raw_text": "Experience with distributed training"
+    },
+    "b": {
+      "skill_id": "distributed-training",
+      "requirement": "nice_to_have",
+      "raw_text": "Experience with distributed training"
+    },
+    "excerpt": "...Learning, Computer Science, AI, or a related field - Experience with distributed training, edge inference, or on-device ML - Research experience...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_104",
+    "kind": "skill",
+    "key": "jax",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "jax",
+      "requirement": "required",
+      "raw_text": "JAX"
+    },
+    "b": {
+      "skill_id": "jax",
+      "requirement": "required",
+      "raw_text": "JAX"
+    },
+    "excerpt": "...Python and ML frameworks such as PyTorch, TensorFlow, or JAX - Experience building datasets, designing experiments,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_104",
+    "kind": "skill",
+    "key": "llms",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "llms",
+      "requirement": "nice_to_have",
+      "raw_text": "Research experience in generative AI"
+    },
+    "b": {
+      "skill_id": "llms",
+      "requirement": "nice_to_have",
+      "raw_text": "Research experience in generative AI"
+    },
+    "excerpt": "...distributed training, edge inference, or on-device ML - Research experience in generative AI, reinforcement learning, or multimodal learning -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_104",
+    "kind": "skill",
+    "key": "python",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Proficiency in Python"
+    },
+    "b": {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Proficiency in Python"
+    },
+    "excerpt": "...experience training and fine-tuning large-scale models - Proficiency in Python and ML frameworks such as PyTorch, TensorFlow, or JAX -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_104",
+    "kind": "skill",
+    "key": "quantization",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "quantization",
+      "requirement": "required",
+      "raw_text": "quantization, distillation, pruning"
+    },
+    "b": {
+      "skill_id": "quantization",
+      "requirement": "required",
+      "raw_text": "quantization, distillation, pruning"
+    },
+    "excerpt": "...- Deep understanding of optimization techniques including quantization, distillation, pruning, and hardware-aware training - Strong problem-solving...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_104",
+    "kind": "skill",
+    "key": "transformers",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "transformers",
+      "requirement": "required",
+      "raw_text": "transformers, CNNs, RNNs"
+    },
+    "b": {
+      "skill_id": "transformers",
+      "requirement": "required",
+      "raw_text": "transformers, CNNs, RNNs"
+    },
+    "excerpt": "...Strong expertise in deep learning architectures including transformers, CNNs, RNNs, and diffusion models - Hands-on experience training and...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_105",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "spot-check",
+    "a": {
+      "degree": null,
+      "degree_requirement": null,
+      "degree_or_equivalent": false,
+      "degree_signal": null
+    },
+    "b": {
+      "degree": null,
+      "degree_requirement": null,
+      "degree_or_equivalent": false,
+      "degree_signal": null
+    },
+    "excerpt": "Physical Design Methodology Engineer, AI HW IP",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_105",
+    "kind": "attribute",
+    "key": "german",
+    "reason": "spot-check",
+    "a": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "b": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "excerpt": "Physical Design Methodology Engineer, AI HW IP",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_106",
+    "kind": "attribute",
+    "key": "german",
+    "reason": "spot-check",
+    "a": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "b": {
+      "german": null,
+      "german_basis": null,
+      "german_signal": null
+    },
+    "excerpt": "Staff Design Verification Engineer, AI HW",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_106",
+    "kind": "skill",
+    "key": "bash",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "bash",
+      "requirement": "required",
+      "raw_text": "Bash scripting"
+    },
+    "b": {
+      "skill_id": "bash",
+      "requirement": "required",
+      "raw_text": "Bash scripting"
+    },
+    "excerpt": "...Proficient in Linux environments with Python, or Bash scripting for automate builds, parse logs, manage CI pipelines. -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_106",
+    "kind": "skill",
+    "key": "python",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "with Python, or Bash scripting"
+    },
+    "b": {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "with Python, or Bash scripting"
+    },
+    "excerpt": "...specs and waveforms. - Proficient in Linux environments with Python, or Bash scripting for automate builds, parse logs, manage CI pipelines. -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_107",
+    "kind": "attribute",
+    "key": "seniority",
+    "reason": "spot-check",
+    "a": {
+      "seniority": null,
+      "seniority_basis": null,
+      "seniority_signal": null
+    },
+    "b": {
+      "seniority": null,
+      "seniority_basis": null,
+      "seniority_signal": null
+    },
+    "excerpt": "Software Engineer – ML Platform",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_107",
+    "kind": "skill",
+    "key": "apis",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "APIs"
+    },
+    "b": {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "APIs"
+    },
+    "excerpt": "...Experience operating production services end-to-end: APIs, reliability practices, observability - Deep knowledge of...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_107",
+    "kind": "skill",
+    "key": "cpp",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "cpp",
+      "requirement": "nice_to_have",
+      "raw_text": "C++ is a plus"
+    },
+    "b": {
+      "skill_id": "cpp",
+      "requirement": "nice_to_have",
+      "raw_text": "C++ is a plus"
+    },
+    "excerpt": "...you will need - Strong proficiency in Python or Go; C++ is a plus - Track record of designing and building scalable,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_107",
+    "kind": "skill",
+    "key": "data-pipelines",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "data-pipelines",
+      "requirement": "nice_to_have",
+      "raw_text": "training data pipelines"
+    },
+    "b": {
+      "skill_id": "data-pipelines",
+      "requirement": "nice_to_have",
+      "raw_text": "training data pipelines"
+    },
+    "excerpt": "...ML training systems: GPU scheduling, distributed training, training data pipelines - Track record of optimizing resource usage and...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_107",
+    "kind": "skill",
+    "key": "kubernetes",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Deep knowledge of Kubernetes"
+    },
+    "b": {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Deep knowledge of Kubernetes"
+    },
+    "excerpt": "...end-to-end: APIs, reliability practices, observability - Deep knowledge of Kubernetes: how scheduling, resource management, controllers, and pod...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_107",
+    "kind": "skill",
+    "key": "ray",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "ray",
+      "requirement": "nice_to_have",
+      "raw_text": "Experience with Argo Workflows, Ray"
+    },
+    "b": {
+      "skill_id": "ray",
+      "requirement": "nice_to_have",
+      "raw_text": "Experience with Argo Workflows, Ray"
+    },
+    "excerpt": "...and traces and drive them to resolution Nice to have - Experience with Argo Workflows, Ray, MLflow, or comparable distributed ML tooling - Hands-on...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_108",
+    "kind": "skill",
+    "key": "devops",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "devops",
+      "requirement": "nice_to_have",
+      "raw_text": "DevOps tooling"
+    },
+    "b": {
+      "skill_id": "devops",
+      "requirement": "nice_to_have",
+      "raw_text": "DevOps tooling"
+    },
+    "excerpt": "...hardware. - Familiarity with distributed systems, DevOps tooling, and performance tuning. - Prior experience in a...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_108",
+    "kind": "skill",
+    "key": "distributed-systems",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "distributed-systems",
+      "requirement": "nice_to_have",
+      "raw_text": "distributed systems"
+    },
+    "b": {
+      "skill_id": "distributed-systems",
+      "requirement": "nice_to_have",
+      "raw_text": "distributed systems"
+    },
+    "excerpt": "...on edge devices or consumer hardware. - Familiarity with distributed systems, DevOps tooling, and performance tuning. - Prior...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_108",
+    "kind": "skill",
+    "key": "onnx",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "onnx",
+      "requirement": "required",
+      "raw_text": "ONNX"
+    },
+    "b": {
+      "skill_id": "onnx",
+      "requirement": "required",
+      "raw_text": "ONNX"
+    },
+    "excerpt": "...expertise in ML frameworks such as PyTorch, TensorFlow, ONNX, JAX, etc. - Experience debugging complex systems...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_108",
+    "kind": "skill",
+    "key": "pytorch",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    "b": {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    "excerpt": "...production. - Strong expertise in ML frameworks such as PyTorch, TensorFlow, ONNX, JAX, etc. - Experience debugging...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_108",
+    "kind": "skill",
+    "key": "software-engineering",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "experience in software engineering"
+    },
+    "b": {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "experience in software engineering"
+    },
+    "excerpt": "...Skills & Qualifications: - 5+ years of combined experience in software engineering and machine learning. - Active US Security clearance -...",
+    "problems": [],
+    "decision": "?"
+  }
+]

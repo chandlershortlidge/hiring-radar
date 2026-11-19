@@ -1,0 +1,130 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"leading the development and deployment of advanced Machine Learning models\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"shipping state-of-the-art ML models to production\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"You speak Python fluently\"},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"required\", \"raw_text\": \"extensive, hands-on experience with scikit-learn\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"You are comfortable using SQL\"},\n    {\"skill_id\": \"go\", \"requirement\": \"nice_to_have\", \"raw_text\": \"keen to learn Go\"},\n    {\"skill_id\": \"recommender-systems\", \"requirement\": \"nice_to_have\", \"raw_text\": \"recommendation\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"forecasting\", \"requirement\": \"nice_to_have\", \"raw_text\": \"forecasting\", \"alternative_group\": 1},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience with GenAI, LLMs\", \"alternative_group\": 2},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"agentic workflows\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"rag\", \"requirement\": \"nice_to_have\", \"raw_text\": \"retrieval\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"evaluation frameworks\", \"alternative_group\": 2},\n    {\"skill_id\": \"microservices\", \"requirement\": \"nice_to_have\", \"raw_text\": \"working with microservices\"},\n    {\"skill_id\": \"a-b-testing\", \"requirement\": \"nice_to_have\", \"raw_text\": \"A/B tests\"},\n    {\"skill_id\": \"explainable-ai\", \"requirement\": \"nice_to_have\", \"raw_text\": \"explainability\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Personalisation\", \"raw_text\": \"personalisation\"},\n    {\"label\": \"Ranking\", \"raw_text\": \"ranking\"},\n    {\"label\": \"Classification\", \"raw_text\": \"classification\"},\n    {\"label\": \"Human-in-the-loop\", \"raw_text\": \"human-in-the-loop product experiences\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Lead Machine Learning Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"groups_reviewed\": true,\n  \"notes\": \"The 'You should apply if' items have no optional heading, so they default to required.\\nThe 'Nice to haves' heading makes every item under it nice_to_have.\\nGo is nice_to_have under rule 3, because the posting asks only for appetite ('keen to learn Go'). raw_text includes that appetite phrase.\\nThe backend microservices in the Go sentence describe the company. Microservices is labeled only from the nice-to-have bullet 'working with microservices'.\\nai-deployment comes from 'shipping ... ML models to production' / 'deployment of ... models'. The text never uses the alias wording literally, so it is flagged uncertain.\\nGenAI and LLMs both map to llms and are collapsed into one criterion.\\n'agentic workflows' is mapped to agents and 'retrieval' to rag. Both are loose fits, so both are flagged uncertain.\\nexplainability is phrased as a property of the products the candidate worked on, not as a technique. It is flagged uncertain.\\nForecasting and LLM-powered models also appear in the responsibilities, but they are labeled only from the nice-to-have mentions.\\nThe 'X, Y or Z' lists set alternative groups. Group 1 is recommender-systems and forecasting. Group 2 is llms, agents, rag and evaluation.\\n'experiments, A/B tests or other approaches' maps to only one skill, so it forms no group.\\nDomain experience (fintech, banking, etc.), 'responsible ML/AI' and 'critical production code' are not labeled as skills.\\nSeniority is 'Lead' in the title, so it is stated as senior.\\nThe posting mentions no German and no degree.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "leading the development and deployment of advanced Machine Learning models"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "shipping state-of-the-art ML models to production",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "You speak Python fluently"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "extensive, hands-on experience with scikit-learn"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "You are comfortable using SQL"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "nice_to_have",
+        "raw_text": "keen to learn Go"
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "recommendation",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "forecasting",
+        "requirement": "nice_to_have",
+        "raw_text": "forecasting",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with GenAI, LLMs",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic workflows",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "retrieval",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "evaluation frameworks",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "nice_to_have",
+        "raw_text": "working with microservices"
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "nice_to_have",
+        "raw_text": "A/B tests"
+      },
+      {
+        "skill_id": "explainable-ai",
+        "requirement": "nice_to_have",
+        "raw_text": "explainability",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Personalisation",
+        "raw_text": "personalisation"
+      },
+      {
+        "label": "Ranking",
+        "raw_text": "ranking"
+      },
+      {
+        "label": "Classification",
+        "raw_text": "classification"
+      },
+      {
+        "label": "Human-in-the-loop",
+        "raw_text": "human-in-the-loop product experiences"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead Machine Learning Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "groups_reviewed": true,
+    "notes": "The 'You should apply if' items have no optional heading, so they default to required.\nThe 'Nice to haves' heading makes every item under it nice_to_have.\nGo is nice_to_have under rule 3, because the posting asks only for appetite ('keen to learn Go'). raw_text includes that appetite phrase.\nThe backend microservices in the Go sentence describe the company. Microservices is labeled only from the nice-to-have bullet 'working with microservices'.\nai-deployment comes from 'shipping ... ML models to production' / 'deployment of ... models'. The text never uses the alias wording literally, so it is flagged uncertain.\nGenAI and LLMs both map to llms and are collapsed into one criterion.\n'agentic workflows' is mapped to agents and 'retrieval' to rag. Both are loose fits, so both are flagged uncertain.\nexplainability is phrased as a property of the products the candidate worked on, not as a technique. It is flagged uncertain.\nForecasting and LLM-powered models also appear in the responsibilities, but they are labeled only from the nice-to-have mentions.\nThe 'X, Y or Z' lists set alternative groups. Group 1 is recommender-systems and forecasting. Group 2 is llms, agents, rag and evaluation.\n'experiments, A/B tests or other approaches' maps to only one skill, so it forms no group.\nDomain experience (fintech, banking, etc.), 'responsible ML/AI' and 'critical production code' are not labeled as skills.\nSeniority is 'Lead' in the title, so it is stated as senior.\nThe posting mentions no German and no degree."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "c2b359b65273bf4a5c62cc9d9b5c58dcb16e154c499bff85f87de5497c171530",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,128 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"specific expertise in Large Language Models and Mixture of Experts\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"developing and deploying advanced AI models\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying advanced AI models\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Minimum of 6 years of experience in machine learning\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cloud computing services\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AWS\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Azure\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GCP\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"hadoop\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Hadoop\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"apache-spark\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Spark\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"containerization and orchestration technologies\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Docker\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Kubernetes\",\n      \"alternative_group\": 4\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Mixture of Experts\",\n      \"raw_text\": \"Mixture of Experts\"\n    },\n    {\n      \"label\": \"Machine learning frameworks\",\n      \"raw_text\": \"machine learning frameworks\"\n    },\n    {\n      \"label\": \"Big Data technologies\",\n      \"raw_text\": \"Big Data technologies\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Advanced degree (Ph.D. preferred) in Computer Science, or a related field.\",\n  \"notes\": \"The About the Role section explicitly asks for a track record of developing and deploying AI models; these count as candidate qualifications. Its initiative-delivery duties do not independently establish requirements for inference optimization, quantization, RAG, agent frameworks, or tool calling.\\nLarge Language Models and Mixture of Experts are both explicitly required in Qualifications, overriding the earlier and/or formulation.\\nParenthetical technology lists are treated as examples for a single ask and grouped accordingly; named broad skills remain outside the groups.\\nMachine learning frameworks is not mapped to deep-learning because the posting does not name deep learning; no exact broad taxonomy entry fits.\\nThe highest degree named is Ph.D., explicitly preferred; the general advanced-degree requirement is not represented as a separate degree label.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "specific expertise in Large Language Models and Mixture of Experts"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "developing and deploying advanced AI models"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying advanced AI models"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Minimum of 6 years of experience in machine learning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud computing services"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "GCP",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "hadoop",
+        "requirement": "nice_to_have",
+        "raw_text": "Hadoop",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "nice_to_have",
+        "raw_text": "Spark",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerization and orchestration technologies"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes",
+        "alternative_group": 4
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Mixture of Experts",
+        "raw_text": "Mixture of Experts"
+      },
+      {
+        "label": "Machine learning frameworks",
+        "raw_text": "machine learning frameworks"
+      },
+      {
+        "label": "Big Data technologies",
+        "raw_text": "Big Data technologies"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Advanced degree (Ph.D. preferred) in Computer Science, or a related field.",
+    "notes": "The About the Role section explicitly asks for a track record of developing and deploying AI models; these count as candidate qualifications. Its initiative-delivery duties do not independently establish requirements for inference optimization, quantization, RAG, agent frameworks, or tool calling.\nLarge Language Models and Mixture of Experts are both explicitly required in Qualifications, overriding the earlier and/or formulation.\nParenthetical technology lists are treated as examples for a single ask and grouped accordingly; named broad skills remain outside the groups.\nMachine learning frameworks is not mapped to deep-learning because the posting does not name deep learning; no exact broad taxonomy entry fits.\nThe highest degree named is Ph.D., explicitly preferred; the general advanced-degree requirement is not represented as a separate degree label."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "dd7f5f337708bd1c71c9747b16ba935dbcc65e8da6365e73ce312c27da8b6c04",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

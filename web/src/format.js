@@ -29,9 +29,13 @@ export const PLACES = [
   { name: "Remote (EU)", slug: "remote-eu", group: "Remote", aliases: ["remote", "eu", "europe", "anywhere"] },
   { name: "San Francisco", slug: "san-francisco", group: "United States", aliases: ["sf", "bay area", "usa", "us", "california"] },
   { name: "New York", slug: "new-york", group: "United States", aliases: ["nyc", "usa", "us", "manhattan", "brooklyn"] },
+  { name: "Austin", slug: "austin", group: "United States", aliases: ["atx", "usa", "us", "texas"] },
+  { name: "Boston", slug: "boston", group: "United States", aliases: ["usa", "us", "massachusetts", "cambridge"] },
+  { name: "London", slug: "london", group: "United Kingdom", aliases: ["uk", "england", "great britain", "gb"] },
+  { name: "Amsterdam", slug: "amsterdam", group: "Netherlands", aliases: ["nl", "nederland", "holland", "noord-holland"] },
 ];
 // The group headings, in the order the picker and the grid show them.
-export const PLACE_GROUPS = ["Germany", "Remote", "United States"];
+export const PLACE_GROUPS = ["Germany", "Remote", "United States", "United Kingdom", "Netherlands"];
 // Names only, for the callers that just need the list of places.
 export const PLACE_NAMES = PLACES.map((p) => p.name);
 // "All of Germany" is not a place the server stores: it is every German place at once,

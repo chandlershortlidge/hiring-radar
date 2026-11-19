@@ -1,0 +1,99 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"modern LLMs\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"fine-tuning\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"benchmarking\"\n    },\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"translational data science\"\n    },\n    {\n      \"skill_id\": \"explainable-ai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"interpretability\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying AI/ML for biology systems into scientific workflows at enterprise scale\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"scientific agents\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Multimodal modeling\",\n      \"raw_text\": \"multimodal modeling\"\n    },\n    {\n      \"label\": \"Representation learning\",\n      \"raw_text\": \"representation learning\"\n    },\n    {\n      \"label\": \"Post-training\",\n      \"raw_text\": \"post-training\"\n    },\n    {\n      \"label\": \"ML systems\",\n      \"raw_text\": \"ML systems\"\n    },\n    {\n      \"label\": \"Biological foundation models\",\n      \"raw_text\": \"biological foundation models\"\n    },\n    {\n      \"label\": \"Scientific discovery platforms\",\n      \"raw_text\": \"scientific discovery platforms\"\n    },\n    {\n      \"label\": \"Protein language models\",\n      \"raw_text\": \"protein language models\"\n    },\n    {\n      \"label\": \"Genomic foundation models\",\n      \"raw_text\": \"genomic foundation models\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"PhD, MS, or equivalent experience in computational biology, machine learning, bioengineering, computer science, systems biology, quantitative biology, translational science, or a related field.\",\n  \"notes\": \"Qualifications and Requirements both default to required; no optional qualification section appears. The general encouragement to apply without every qualification does not change individual labels.\\nBiological disciplines, biological data modalities, and discovery subject matter are excluded as domain knowledge. Degree fields do not independently establish skill requirements.\\nMultimodal modeling, representation learning, post-training, ML systems, and specialized biological model/platform types have no exact taxonomy entries; no broader skills were inferred from them.\\nInterpretability maps to Explainable AI. Hallucination risk does not explicitly ask for hallucination detection and is not labeled as that technique.\\nScientific discovery platforms and AI discovery platforms are treated as the same unmapped platform skill.\\nLLMs are independently required in Qualifications, so they leave the alternatives in the final model/platform list. No alternative group retains two mapped skills.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "modern LLMs"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "benchmarking"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "translational data science"
+      },
+      {
+        "skill_id": "explainable-ai",
+        "requirement": "required",
+        "raw_text": "interpretability"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying AI/ML for biology systems into scientific workflows at enterprise scale"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "scientific agents"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Multimodal modeling",
+        "raw_text": "multimodal modeling"
+      },
+      {
+        "label": "Representation learning",
+        "raw_text": "representation learning"
+      },
+      {
+        "label": "Post-training",
+        "raw_text": "post-training"
+      },
+      {
+        "label": "ML systems",
+        "raw_text": "ML systems"
+      },
+      {
+        "label": "Biological foundation models",
+        "raw_text": "biological foundation models"
+      },
+      {
+        "label": "Scientific discovery platforms",
+        "raw_text": "scientific discovery platforms"
+      },
+      {
+        "label": "Protein language models",
+        "raw_text": "protein language models"
+      },
+      {
+        "label": "Genomic foundation models",
+        "raw_text": "genomic foundation models"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "PhD, MS, or equivalent experience in computational biology, machine learning, bioengineering, computer science, systems biology, quantitative biology, translational science, or a related field.",
+    "notes": "Qualifications and Requirements both default to required; no optional qualification section appears. The general encouragement to apply without every qualification does not change individual labels.\nBiological disciplines, biological data modalities, and discovery subject matter are excluded as domain knowledge. Degree fields do not independently establish skill requirements.\nMultimodal modeling, representation learning, post-training, ML systems, and specialized biological model/platform types have no exact taxonomy entries; no broader skills were inferred from them.\nInterpretability maps to Explainable AI. Hallucination risk does not explicitly ask for hallucination detection and is not labeled as that technique.\nScientific discovery platforms and AI discovery platforms are treated as the same unmapped platform skill.\nLLMs are independently required in Qualifications, so they leave the alternatives in the final model/platform list. No alternative group retains two mapped skills."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "8fa968fa2f6aa87806095e6a48f15ed23d37f694f04c2cad9a440044616ac26b",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

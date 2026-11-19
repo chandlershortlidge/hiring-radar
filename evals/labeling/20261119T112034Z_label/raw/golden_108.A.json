@@ -1,0 +1,194 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python proficiency\"},\n    {\"skill_id\": \"api-design\", \"requirement\": \"required\", \"raw_text\": \"API design\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"required\", \"raw_text\": \"scikit-learn\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"xgboost\", \"requirement\": \"required\", \"raw_text\": \"XGBoost\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"hugging-face\", \"requirement\": \"required\", \"raw_text\": \"Hugging Face Transformers\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"LLM orchestration\", \"alternative_group\": 2},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"tool use/function calling\", \"alternative_group\": 2},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"function calling, RAG\", \"alternative_group\": 2},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"RAG, agents\", \"alternative_group\": 2},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"prompt engineering\", \"alternative_group\": 2},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"model deployment\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"monitoring\"},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"MLOps/LLMOps\"},\n    {\"skill_id\": \"llmops\", \"requirement\": \"required\", \"raw_text\": \"MLOps/LLMOps\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud services\"},\n    {\"skill_id\": \"aws-bedrock\", \"requirement\": \"required\", \"raw_text\": \"AWS Bedrock\", \"alternative_group\": 3},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure AI\", \"alternative_group\": 3, \"uncertain\": true},\n    {\"skill_id\": \"vertex-ai\", \"requirement\": \"required\", \"raw_text\": \"GCP Vertex AI\", \"alternative_group\": 3},\n    {\"skill_id\": \"data-privacy-and-security\", \"requirement\": \"required\", \"raw_text\": \"data governance, privacy, and compliance\", \"uncertain\": true},\n    {\"skill_id\": \"statistics\", \"requirement\": \"nice_to_have\", \"raw_text\": \"statistical analysis\"},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"reinforcement learning\"},\n    {\"skill_id\": \"forecasting\", \"requirement\": \"nice_to_have\", \"raw_text\": \"forecasting is a plus\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"data integration\", \"raw_text\": \"data integration\"},\n    {\"label\": \"ML/AI libraries\", \"raw_text\": \"ML/AI libraries\"},\n    {\"label\": \"linear/nonlinear optimization\", \"raw_text\": \"linear/nonlinear optimization\"},\n    {\"label\": \"identity and access management\", \"raw_text\": \"identity and access\"},\n    {\"label\": \"cloud reference architectures\", \"raw_text\": \"cloud reference architectures\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Executive-Facing Presales & Value Engineering (2+ years)\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Masters Degree in computer science, engineering, mathematics, business engineering, business information or related fields , or equivalent work experience preferred\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"Group 1 (PyTorch, TensorFlow, scikit-learn, XGBoost, Hugging Face Transformers) treated as examples offered for a single ask ('ML/AI libraries (...)'). The list has no 'or', so this grouping is uncertain.\\n'Hugging Face Transformers' is mapped to hugging-face only. The taxonomy entry 'transformers' is the architecture, not the library, so it is not added.\\nThe agentic list ends in '... prompt engineering, or agentic patterns', so it is treated as alternatives and forms group 2.\\n'GCP Vertex AI' and 'AWS Bedrock' are labeled as their specific products only. No separate gcp or aws criterion is added, since the platform names appear only as part of the product names.\\n'Azure AI' has no exact taxonomy entry. It is mapped to azure, not azure-ai-foundry, as the most literal fit; flagged uncertain.\\nCloud services (AWS Bedrock, Azure AI, GCP Vertex AI) are grouped like the guide's cloud example, with cloud kept outside group 3.\\nThe Math & Operations Research bullet carries the inline marker 'is a plus', so its items are nice_to_have.\\nRAG, tools, guardrails and LLM/agent systems also appear in responsibilities. Only the qualification mentions are labeled, and llm-guardrails is not asked of the candidate.\\nSeniority: '2+ years' sits on the junior/mid boundary and 'proven background' reads as proven experience, so it is labeled mid; flagged uncertain.\\nGerman: only 'Flawless English' is asked for. The Munich HQ is not used to infer German.\\nDegree: the master's is marked 'preferred' and accepts 'equivalent work experience', so it is nice_to_have with degree_or_equivalent true.\\nalternative_group is included per the guide even though the output schema does not list it.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python proficiency"
+      },
+      {
+        "skill_id": "api-design",
+        "requirement": "required",
+        "raw_text": "API design"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "xgboost",
+        "requirement": "required",
+        "raw_text": "XGBoost",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "required",
+        "raw_text": "Hugging Face Transformers",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "LLM orchestration",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use/function calling",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "function calling, RAG",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "RAG, agents",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompt engineering",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "model deployment"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps/LLMOps"
+      },
+      {
+        "skill_id": "llmops",
+        "requirement": "required",
+        "raw_text": "MLOps/LLMOps"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud services"
+      },
+      {
+        "skill_id": "aws-bedrock",
+        "requirement": "required",
+        "raw_text": "AWS Bedrock",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure AI",
+        "alternative_group": 3,
+        "uncertain": true
+      },
+      {
+        "skill_id": "vertex-ai",
+        "requirement": "required",
+        "raw_text": "GCP Vertex AI",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "data governance, privacy, and compliance",
+        "uncertain": true
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "nice_to_have",
+        "raw_text": "statistical analysis"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "forecasting",
+        "requirement": "nice_to_have",
+        "raw_text": "forecasting is a plus"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "data integration",
+        "raw_text": "data integration"
+      },
+      {
+        "label": "ML/AI libraries",
+        "raw_text": "ML/AI libraries"
+      },
+      {
+        "label": "linear/nonlinear optimization",
+        "raw_text": "linear/nonlinear optimization"
+      },
+      {
+        "label": "identity and access management",
+        "raw_text": "identity and access"
+      },
+      {
+        "label": "cloud reference architectures",
+        "raw_text": "cloud reference architectures"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Executive-Facing Presales & Value Engineering (2+ years)",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": true,
+    "degree_signal": "Masters Degree in computer science, engineering, mathematics, business engineering, business information or related fields , or equivalent work experience preferred",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Group 1 (PyTorch, TensorFlow, scikit-learn, XGBoost, Hugging Face Transformers) treated as examples offered for a single ask ('ML/AI libraries (...)'). The list has no 'or', so this grouping is uncertain.\n'Hugging Face Transformers' is mapped to hugging-face only. The taxonomy entry 'transformers' is the architecture, not the library, so it is not added.\nThe agentic list ends in '... prompt engineering, or agentic patterns', so it is treated as alternatives and forms group 2.\n'GCP Vertex AI' and 'AWS Bedrock' are labeled as their specific products only. No separate gcp or aws criterion is added, since the platform names appear only as part of the product names.\n'Azure AI' has no exact taxonomy entry. It is mapped to azure, not azure-ai-foundry, as the most literal fit; flagged uncertain.\nCloud services (AWS Bedrock, Azure AI, GCP Vertex AI) are grouped like the guide's cloud example, with cloud kept outside group 3.\nThe Math & Operations Research bullet carries the inline marker 'is a plus', so its items are nice_to_have.\nRAG, tools, guardrails and LLM/agent systems also appear in responsibilities. Only the qualification mentions are labeled, and llm-guardrails is not asked of the candidate.\nSeniority: '2+ years' sits on the junior/mid boundary and 'proven background' reads as proven experience, so it is labeled mid; flagged uncertain.\nGerman: only 'Flawless English' is asked for. The Munich HQ is not used to infer German.\nDegree: the master's is marked 'preferred' and accepts 'equivalent work experience', so it is nice_to_have with degree_or_equivalent true.\nalternative_group is included per the guide even though the output schema does not list it."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "b75c104acdfc5f12964c92d5006ba70313fde2355c2863a0752aa43cf3e1acb8",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}
