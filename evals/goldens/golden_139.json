@@ -1,0 +1,110 @@
+{
+  "id": "golden_139",
+  "split": "heldout",
+  "seniority": "mid",
+  "seniority_basis": "inferred",
+  "seniority_signal": "Idealerweise hast du bereits 3–5 Jahre in der Softwareentwicklung",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "gute Deutsch- und Englischkenntnisse",
+  "degree": "bachelor",
+  "degree_requirement": "nice_to_have",
+  "degree_or_equivalent": true,
+  "degree_signal": "Ein abgeschlossenes Studium in Informatik, Data Science oder einem verwandten Bereich ist willkommen – ebenso eine vergleichbare Qualifikation durch Praxiserfahrung",
+  "attrs_reviewed": true,
+  "source_sha256": "ebe914ad4626f4e1f7e55baae65bda688314ae54d7dec217bdc9628be5191fe7",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "degree",
+    "skill:agents",
+    "skill:cybersecurity",
+    "skill:model-development",
+    "skill:prompt-engineering",
+    "skill:rag",
+    "skill:software-engineering"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "AI & Machine Learning Engineer (m/w/d)\n\nSpannender Aufgabenbereich:✓ AI-Lösungen von der Idee bis zum Produkt entwickeln: Du konzipierst und realisierst innovative AI-Anwendungen – von ersten Prototypen und Proof-of-Concepts bis zu skalierbaren Lösungen im produktiven Betrieb.✓ Generative AI und AI Agents gestalten: Du entwickelst intelligente Assistenten, agentenbasierte Workflows und RAG-Anwendungen, die Unternehmenswissen zugänglich machen, Informationen verarbeiten und Prozesse unterstützen.✓ Machine Learning praktisch einsetzen: Du entwickelst und optimierst Modelle für Prognosen, Klassifikationen und datenbasierte Entscheidungen – beispielsweise rund um Energieverbrauch, Kundenverhalten oder Pricing.✓ Moderne AI-Architekturen aufbauen: Du gestaltest technische Lösungen, entwickelst wiederverwendbare Komponenten und integrierst AI-Modelle über APIs in bestehende Systeme, Datenplattformen und Geschäftsprozesse.✓ AI zuverlässig in Produktion bringen: Du sorgst mit Evaluation, automatisierten Tests, Monitoring und kontinuierlicher Optimierung dafür, dass unsere Anwendungen sicher, performant und wirtschaftlich funktionieren.✓ Technologische Innovation vorantreiben: Du evaluierst neue Modelle, Frameworks und Tools, bringst eigene Ideen ein und entscheidest gemeinsam mit dem Team, welche Technologien echten Mehrwert schaffen.✓ Gemeinsam mit den Fachbereichen Lösungen schaffen: Du arbeitest eng mit IT, Data und unseren Business-Teams zusammen, identifizierst neue Einsatzmöglichkeiten und machst aus technologischen Potenzialen konkrete Anwendungen.\nÜberzeugende Voraussetzungen:✓ Du bist technisch stark: Python gehört zu deinem Werkzeugkasten. Du hast Erfahrung mit APIs, Datenbanken, Softwarearchitektur und der Entwicklung professioneller Softwarelösungen.✓ Du kennst dich mit moderner AI aus: Du hast praktische Erfahrung mit Large Language Models, Generative AI und der Integration von AI-Modellen. Konzepte wie Prompt Engineering, RAG oder AI Agents sind dir vertraut.✓ Du verstehst Machine Learning: Du kennst grundlegende ML-Verfahren, Modelltraining und Evaluation und hast idealerweise bereits mit scikit-learn, PyTorch oder vergleichbaren Technologien gearbeitet.✓ Du denkst über den Prototyp hinaus: Themen wie Testing, Deployment, Skalierbarkeit, Sicherheit und zuverlässiger Produktivbetrieb gehören für dich zu guter Softwareentwicklung.✓ Du bringst praktische Erfahrung mit: Idealerweise hast du bereits 3–5 Jahre in der Softwareentwicklung, im AI Engineering oder Machine Learning gearbeitet. Ein abgeschlossenes Studium in Informatik, Data Science oder einem verwandten Bereich ist willkommen – ebenso eine vergleichbare Qualifikation durch Praxiserfahrung.✓ Du übernimmst gerne Verantwortung: Du arbeitest eigenständig, denkst analytisch und hast Freude daran, gemeinsam mit unterschiedlichen Teams Lösungen zu entwickeln.✓ Du kommunizierst sicher: Du kannst technische Zusammenhänge verständlich vermitteln und verfügst über gute Deutsch- und Englischkenntnisse.\nAttraktive Vorteile:✓ Gestalten statt nur umsetzen: Bringe eigene Ideen ein, übernimm Verantwortung und gestalte moderne AI-Lösungen mit sichtbarem Mehrwert für unser Unternehmen.✓ Technologie mit Perspektive: Arbeite an vielseitigen AI- und Machine-Learning-Anwendungsfällen und entwickle dich fachlich kontinuierlich weiter.✓ Stabilität trifft Innovation: Dich erwartet ein sicherer, unbefristeter Arbeitsplatz in einem erfolgreichen, inhabergeführten Familienunternehmen mit über 65 Jahren Erfahrung.✓ Attraktive Vergütung: Profitiere von einer leistungsgerechten Vergütung mit Bonus sowie zusätzlichen Leistungen wie Urlaubsgeld, vermögenswirksamen Leistungen und betrieblicher Altersvorsorge.✓ Flexibilität und Work-Life-Balance: Gleitzeit, mobiles Arbeiten und bis zu 31,5 Urlaubstage geben dir Freiraum für Beruf und Privatleben.✓ Weiterentwicklung, di...(Lesen Sie die vollständige Jobbeschreibung auf der Seite des Partners)",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "AI Agents"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "Erfahrung mit APIs"
+    },
+    {
+      "skill_id": "cybersecurity",
+      "requirement": "required",
+      "raw_text": "Sicherheit"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "Modelltraining und Evaluation"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "praktische Erfahrung mit Large Language Models"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "Du verstehst Machine Learning"
+    },
+    {
+      "skill_id": "model-development",
+      "requirement": "required",
+      "raw_text": "Modelltraining"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "Prompt Engineering"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python gehört zu deinem Werkzeugkasten"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "nice_to_have",
+      "raw_text": "PyTorch oder vergleichbaren Technologien"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG"
+    },
+    {
+      "skill_id": "scikit-learn",
+      "requirement": "nice_to_have",
+      "raw_text": "idealerweise bereits mit scikit-learn"
+    },
+    {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "Softwarearchitektur"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Entwicklung professioneller Softwarelösungen"
+    },
+    {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "Themen wie Testing"
+    }
+  ]
+}

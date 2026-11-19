@@ -1,0 +1,25 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The posting is one paragraph describing what the role does ('konzipierst und betreibst du…', 'Du optimierst…', 'integrierst…'). It has no requirements, qualifications, nice-to-have or tech-stack section, and never asks the candidate to have anything.\\nTaking the guide literally ('a technology that appears only in the responsibilities … is not labeled unless the candidate is also asked for it'), LLM-Inferenzplattformen/llms, quantization, Kubernetes, Docker and Observability are all left unlabeled. Expected is therefore empty.\\nIf a reviewer reads this whole-posting duty description as the de facto tech stack, the candidates would be: llms ('LLM-Inferenzplattformen'), quantization ('Quantisierung'), kubernetes ('Kubernetes'), docker ('Docker'), observability ('Observability'), inference-optimization ('Latenz'?), cloud ('privaten Clouds'). These are not labeled here.\\nGerman: the posting is written in German and says nothing about language, so German is required with basis inferred and a null signal.\\nSeniority: no level in the title and no years or lead signal, so null. Words like 'produktive' and 'regulierte Produktivumgebungen' are not level signals.\\nDegree: no degree is mentioned, so null.\"\n}\n```",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The posting is one paragraph describing what the role does ('konzipierst und betreibst du…', 'Du optimierst…', 'integrierst…'). It has no requirements, qualifications, nice-to-have or tech-stack section, and never asks the candidate to have anything.\nTaking the guide literally ('a technology that appears only in the responsibilities … is not labeled unless the candidate is also asked for it'), LLM-Inferenzplattformen/llms, quantization, Kubernetes, Docker and Observability are all left unlabeled. Expected is therefore empty.\nIf a reviewer reads this whole-posting duty description as the de facto tech stack, the candidates would be: llms ('LLM-Inferenzplattformen'), quantization ('Quantisierung'), kubernetes ('Kubernetes'), docker ('Docker'), observability ('Observability'), inference-optimization ('Latenz'?), cloud ('privaten Clouds'). These are not labeled here.\nGerman: the posting is written in German and says nothing about language, so German is required with basis inferred and a null signal.\nSeniority: no level in the title and no years or lead signal, so null. Words like 'produktive' and 'regulierte Produktivumgebungen' are not level signals.\nDegree: no degree is mentioned, so null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "589819dc2f813a788258ca48055b2f4acec5839b64dd1f554e3ce41aa3a9261c",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

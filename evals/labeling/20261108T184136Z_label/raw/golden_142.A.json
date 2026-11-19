@@ -1,0 +1,105 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"devsecops\", \"requirement\": \"required\", \"raw_text\": \"Fundierte Erfahrung in DevSecOps\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"DevSecOps, CI/CD\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"CI/CD, Infrastructure as Code\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"Infrastructure as Code und Container\"},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"in Softwareentwicklung\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"oder Testautomatisierung\", \"alternative_group\": 1},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"required\", \"raw_text\": \"verteilte Softwarelösungen\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"in der Cloud\"},\n    {\"skill_id\": \"csharp\", \"requirement\": \"required\", \"raw_text\": \"C#/.NET\", \"alternative_group\": 2},\n    {\"skill_id\": \"dotnet\", \"requirement\": \"required\", \"raw_text\": \"C#/.NET\", \"alternative_group\": 2},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"oder TypeScript\", \"alternative_group\": 2},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"Interesse an AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering\", \"uncertain\": true},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"PowerShell\", \"raw_text\": \"PowerShell\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": \"required\", \"german_basis\": \"stated\", \"german_signal\": \"Sehr gute Sprachkenntnisse in Deutsch und Englisch in Wort und Schrift\",\n  \"degree\": \"bachelor\", \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true, \"degree_signal\": \"Abgeschlossenes Studium der Informatik, Softwaretechnik oder eine vergleichbare Qualifikation mit einschlägiger Berufserfahrung\",\n  \"uncertain\": [],\n  \"notes\": \"All skills come from 'Das bringst Du mit', a requirements heading, so the default is required.\\nObservability, Quality Gates and test frameworks appear only under Aufgaben (responsibilities), so they are not labeled.\\nAI-Assistenten and agentische Workflows: the bullet pairs 'Interesse an' with 'sowie Erfahrung mit deren ... Einsatz'. Experience is actually asked for, so appetite is not the only ask and I labeled them required. raw_text keeps both the appetite phrase and the experience phrase. Flagged.\\nAI-Assistenten 'im Software Engineering' is mapped to ai-developer-tooling (AI coding assistants). This is an interpretation, so it is flagged.\\nagentischen Workflows is mapped to agents. Flagged.\\n'Softwareentwicklung oder Testautomatisierung' is read as alternatives, giving group 1.\\nsoftware-engineering is flagged because 'Einsatz im Software Engineering' could be read as a separate standalone ask, which would pull it out of the group.\\n'verteilte Softwarelösungen' is mapped to distributed-systems, whose alias is 'verteilte systeme'. Flagged.\\n'beispielsweise mit C#/.NET, PowerShell oder TypeScript' gives examples for a single ask, so group 2. PowerShell has no taxonomy id.\\n'Container' maps to containerization via its alias. No docker or kubernetes is named.\\n'langjährige Erfahrung in der Jobsuche' describes the agency, not the candidate. 'Fundierte Erfahrung' is not a level signal, so seniority is none.\\n'vergleichbare Qualifikation mit einschlägiger Berufserfahrung' accepts experience in place of the degree, so degree_or_equivalent is true.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "devsecops",
+        "requirement": "required",
+        "raw_text": "Fundierte Erfahrung in DevSecOps"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "DevSecOps, CI/CD"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "CI/CD, Infrastructure as Code"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "Infrastructure as Code und Container"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "in Softwareentwicklung",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "oder Testautomatisierung",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "verteilte Softwarelösungen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "in der Cloud"
+      },
+      {
+        "skill_id": "csharp",
+        "requirement": "required",
+        "raw_text": "C#/.NET",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "dotnet",
+        "requirement": "required",
+        "raw_text": "C#/.NET",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "oder TypeScript",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Interesse an AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "PowerShell",
+        "raw_text": "PowerShell"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Sprachkenntnisse in Deutsch und Englisch in Wort und Schrift",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossenes Studium der Informatik, Softwaretechnik oder eine vergleichbare Qualifikation mit einschlägiger Berufserfahrung",
+    "uncertain": [],
+    "notes": "All skills come from 'Das bringst Du mit', a requirements heading, so the default is required.\nObservability, Quality Gates and test frameworks appear only under Aufgaben (responsibilities), so they are not labeled.\nAI-Assistenten and agentische Workflows: the bullet pairs 'Interesse an' with 'sowie Erfahrung mit deren ... Einsatz'. Experience is actually asked for, so appetite is not the only ask and I labeled them required. raw_text keeps both the appetite phrase and the experience phrase. Flagged.\nAI-Assistenten 'im Software Engineering' is mapped to ai-developer-tooling (AI coding assistants). This is an interpretation, so it is flagged.\nagentischen Workflows is mapped to agents. Flagged.\n'Softwareentwicklung oder Testautomatisierung' is read as alternatives, giving group 1.\nsoftware-engineering is flagged because 'Einsatz im Software Engineering' could be read as a separate standalone ask, which would pull it out of the group.\n'verteilte Softwarelösungen' is mapped to distributed-systems, whose alias is 'verteilte systeme'. Flagged.\n'beispielsweise mit C#/.NET, PowerShell oder TypeScript' gives examples for a single ask, so group 2. PowerShell has no taxonomy id.\n'Container' maps to containerization via its alias. No docker or kubernetes is named.\n'langjährige Erfahrung in der Jobsuche' describes the agency, not the candidate. 'Fundierte Erfahrung' is not a level signal, so seniority is none.\n'vergleichbare Qualifikation mit einschlägiger Berufserfahrung' accepts experience in place of the degree, so degree_or_equivalent is true."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "ebe55f43cfd6a7b581b801de8e7cf927ebf34a595678b56e8e8ed3e3be62135a",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

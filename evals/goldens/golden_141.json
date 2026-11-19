@@ -1,0 +1,66 @@
+{
+  "id": "golden_141",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Senior AI / Reinforcement Learning Engineer",
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": "master",
+  "degree_requirement": "required",
+  "degree_or_equivalent": false,
+  "degree_signal": "Master’s or PhD in robotics, computer science, engineering, or a related field",
+  "attrs_reviewed": true,
+  "source_sha256": "4feaa60353f9c1ece2ff1a1c4176c695c665794de38d5b4de00a9eef5a57b21f",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "degree",
+    "skill:ai-deployment",
+    "skill:model-development"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Senior AI / Reinforcement Learning Engineer (m/f/d)\n\nAbout the role\n\nAgile Robots SE is a high-tech startup based in Munich. Our mission is to bridge the gap between AI and robotics by developing robotic systems that offer state-of-the-art full-body force sensitivity and world-leading vision intelligence. This unique combination of technologies enables us to provide intelligent, easy-to-use and affordable robotic solutions with safe human-robot interaction.\n\nWe are a dynamic and innovative software development company dedicated to pushing the boundaries of technology. We specialize in creating cutting-edge solutions that transform industries and redefine user experiences.\n\nWe are building humanoid robots that work reliably, autonomously, in the real world. As a Snr. AI/Reinforcement Learning Engineer, you will own the development of end-to-end control policies for Agile One: from training in simulation to deployment on hardware, across locomotion, manipulation, and whole-body coordination in unstructured environments.\n\nThis is a high-ownership role. You will work at the frontier of what's possible with humanoid robots, make decisions with incomplete information, and iterate directly on physical systems. Success in this role requires both technical excellence and the ability to adapt and make decisions under uncertainty.\n\n \n\nYour Responsibilities\n\n- Design, maintain and deploy scalable, end-to-end training pipelines, including hyperparameter optimization\n\n- Transfer control policies from simulation to real robotic hardware\n\n- Integrate learned policies into a full-stack robotic system, including perception, planning, and actuation\n\n- Analyze robot behavior and learning performance and iterate quickly based on real-world results\n\n- Evaluate and benchmark state-of-the-art algorithms\n\n- Stay updated with the latest research in RL and IL\n\n- Work autonomously on open-ended, evolving tasks\n\n \n\nEssential Skills\n\n- Master’s or PhD in robotics, computer science, engineering, or a related field\n\n- Proven experience (5+ years) applying RL or IL in physical systems, preferably on high DOF robots\n\n- Familiarity with common RL algorithms (PPO, SAC, ...)\n\n- Proficiency in Python and/or C++, PyTorch, ONNX, and common RL frameworks (e.g, Stable Baselines 3, RSL-RL)\n\n- Experience with physics-based simulators (IsaacSim, MuJoCo or equivalent) for large-scale policy training\n\n- Strong understanding of control theory, motion planning, and robot kinematics/dynamics\n\n- Demonstrated success in sim-to-real transfer and deploying learning-based policies on physical robots\n\n- Strong problem-solving skills and the ability to work independently in uncertain scenarios\n\n \n\nBeneficial Skills\n\n- Experience in training locomotion and locomanipulation policies\n\n- Experience in training and deploying on humanoid robots\n\n- Track record of publishing at CoRL, ICRA, RSS, NeurIPS, or ICLR\n\n \n\nWhat we offer\n\n-\n\nA dynamic high-tech company, combined with financial soundness and world-class investors.\n\n-\n\nJoin an interdisciplinary, international team with 60+ different nationalities in a collaborative work environment.\n\n-\n\nLots of development opportunities as we continue to grow.\n\n-\n\nChallenging tasks and impactful projects alongside experts that enable professional and personal growth.\n\n-\n\nCorporate Benefits Program covering health, mobility, and learning for 100€ net per month.\n\n-\n\nModern office facilities with a rooftop terrace overlooking Munich, free drinks & fruits, and regular company events contribute to a good working environment\n\nAbout us\n\nAgile Robots is a leading provider of AI-powered robotics solutions. By combining artificial intelligence and robotics, the company makes industries smarter, more flexible, and more efficient. \n\nFounded in Munich in 2018 by renowned robotics researchers from the German Aerospace Center (DLR), Agile Robots has experienced rapid global growth. Today, more than 3,500 highly skilled robotics and AI enthusiasts are employed worldwide. The company has one of the largest research and development teams in the AI and robotics industry. \n\nAgile Robots has built a unique portfolio; together with the subsidiaries BÄR Automation, Franka Robotics, idealworks, and Krause Automation, the company covers all areas of AI-driven robotics.\n\nFind out more at: https://www.agile-robots.com/en/",
+  "expected": [
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "deploying learning-based policies on physical robots"
+    },
+    {
+      "skill_id": "cpp",
+      "requirement": "required",
+      "raw_text": "C++"
+    },
+    {
+      "skill_id": "model-development",
+      "requirement": "nice_to_have",
+      "raw_text": "training locomotion and locomanipulation policies"
+    },
+    {
+      "skill_id": "onnx",
+      "requirement": "required",
+      "raw_text": "ONNX"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    {
+      "skill_id": "reinforcement-learning",
+      "requirement": "required",
+      "raw_text": "applying RL or IL in physical systems"
+    }
+  ]
+}

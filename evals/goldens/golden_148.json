@@ -1,0 +1,91 @@
+{
+  "id": "golden_148",
+  "split": "heldout",
+  "seniority": "junior",
+  "seniority_basis": "inferred",
+  "seniority_signal": "Mindestens zwei Jahre Erfahrung",
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Deutschkenntnisse auf mindestens B12 Niveau",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": false,
+  "degree_signal": "Abgeschlossenes Studium der Informatik, Data Science, Wirtschaftsinformatik oder einer vergleichbaren Fachrichtung",
+  "attrs_reviewed": true,
+  "source_sha256": "22138626333460ba8400fe9c05d12780f49ea2d92264c8911e05a0c88828c3f7",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "seniority",
+    "skill:agents",
+    "skill:mcp"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "AI Process & Agent Solutions Engineer (m/w/d)\n\nDein Aufgabengebiet Gestalten Sie die Zukunft intelligenter Prozesse\n\nIm Personalbereich entwickeln wir für unseren Automotive Kunden agentenbasierte Lösungen, die den Weg vom Prototyp bis zum produktiven Einsatz in wenigen Wochen statt in Quartalen schaffen. Als Teil unseres agilen Agentic AI Teams entwickeln Sie KI-gestützte Prozesse und bringen innovative Anwendungsfälle gemeinsam mit Fachbereichen, IT und unserem KI-Produktteam in die Praxis.\n\nIhre Aufgaben\n• Analyse von HR- und Geschäftsprozessen hinsichtlich Daten, Entscheidungslogiken und KI-Potenzialen.\n• Konzeption und Umsetzung von KI- und agentenbasierten Lösungen sowie Entwicklung intelligenter Prozessarchitekturen.\n• Übersetzung fachlicher Anforderungen in technische Lösungen und Begleitung der Umsetzung bis zum produktiven Einsatz.\n• Bewertung von Effizienzpotenzialen sowie Sicherstellung von Governance-, Compliance- und KI-Richtlinien.\n• Zusammenarbeit mit interdisziplinären Teams sowie Moderation von Workshops und Kommunikation komplexer Inhalte.\n\nDiese Qualifikationen solltest Du mitbringen\n• Abgeschlossenes Studium der Informatik, Data Science, Wirtschaftsinformatik oder einer vergleichbaren Fachrichtung.\n• Mindestens zwei Jahre Erfahrung in Data Science, Machine Learning oder AI- Engineering sowie in der Umsetzung produktiver KI-Lösungen.\n• Erfahrung mit Frameworks wie LangChain, LangGraph, LlamaIndex oder PyTorch sowie Kenntnisse in Generativer KI, NLP oder agentenbasierten KI-Systemen.\n• Gute Kenntnisse in Python und SQL; idealerweise Erfahrung mit Low-Code-/No-Code-Plattformen sowie Grundlagen in KI-Governance (EU AI Act, DSGVO) und MCP.\n• Analytische Denkweise, hohe Eigenverantwortung und Teamfähigkeit sowie Englischkenntnisse auf Niveau C1 oder C2, (Projektsprache ist Englisch); Deutschkenntnisse auf mindestens B12 Niveau.\n\nGestalten Sie mit uns die nächste Generation intelligenter, daten- und KI-gestützter Prozesse.\n\nDarauf kannst du dich freuenEntdecke die Vorteile einer Zusammenarbeit mit uns! Wir bieten dir eine Vielzahl von Benefits, die deine berufliche und persönliche Entwicklung unterstützen:\n• Flexible Arbeitszeitgestaltung : Gestalte deine Arbeitszeit nach deinen Bedürfnissen mit unserem Gleitzeitkonto und der Option für Home Office.\n• Attraktive Mitarbeiterrabatte : Profitiere von exklusiven Vergünstigungen bei verschiedenen Anbietern durch Corporate Benefits.\n• Individuelle Weiterbildungsmöglichkeiten: Investiere in deine berufliche Entwicklung mit maßgeschneiderten Weiterbildungsangeboten und Online-Trainings.\n• Vorsorge für die Zukunft : Wir kümmern uns um dich – von einer Berufsunfähigkeitsversicherung über betriebliche Altersvorsorge bis hin zu individuellen Lebensarbeitszeitkonten.\n\nBei uns steht deine Zufriedenheit im Mittelpunkt. Wir schaffen eine Umgebung, in der du dich entfalten kannst und deine Karriereziele erreichen wirst. Werde Teil unseres Teams und erlebe diese Benefits aus erster Hand!\n\nÜber unsDie C-P-S Gruppe ist ein unabhängiges, inhabergeführtes mittelständisches Unternehmen mit Schwerpunkt Automobilindustrie und Anlagenbauunternehmen. Wir führen seit über 40 Jahren erfolgreich internationale Projekte im Bereich der Fabrik-, Produktions- und Logistikplanung durch. Durch eine klare Konzentration auf diese technischen Beratungs- und Dienstleistungen haben wir Kompetenzen und Methoden-Know-how aufgebaut, die unsere Kunden, auch vor dem Hintergrund des vermehrten Outsourcings von Projekten, sehr zu schätzen wissen.",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "agentenbasierten KI-Systemen"
+    },
+    {
+      "skill_id": "data-science",
+      "requirement": "required",
+      "raw_text": "Erfahrung in Data Science"
+    },
+    {
+      "skill_id": "langchain",
+      "requirement": "required",
+      "raw_text": "LangChain"
+    },
+    {
+      "skill_id": "langgraph",
+      "requirement": "required",
+      "raw_text": "LangGraph"
+    },
+    {
+      "skill_id": "llamaindex",
+      "requirement": "required",
+      "raw_text": "LlamaIndex"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Generativer KI"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "Machine Learning"
+    },
+    {
+      "skill_id": "mcp",
+      "requirement": "nice_to_have",
+      "raw_text": "MCP"
+    },
+    {
+      "skill_id": "nlp",
+      "requirement": "required",
+      "raw_text": "NLP"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    {
+      "skill_id": "sql",
+      "requirement": "required",
+      "raw_text": "SQL"
+    }
+  ]
+}

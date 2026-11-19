@@ -1,0 +1,121 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"cybersecurity\", \"requirement\": \"required\", \"raw_text\": \"professional experience in Automotive Cybersecurity\", \"uncertain\": true},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"building, operating, and maintaining agentic AI toolchains\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud platforms\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\", \"alternative_group\": 1},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\", \"alternative_group\": 1},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"containerization and orchestration technologies\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Docker/Kubernetes\", \"uncertain\": true},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Docker/Kubernetes\", \"uncertain\": true},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"as well as CI/CD\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"Infrastructure-as-Code tools\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"required\", \"raw_text\": \"Terraform, Ansible, GitHub Actions\", \"uncertain\": true},\n    {\"skill_id\": \"ansible\", \"requirement\": \"required\", \"raw_text\": \"Terraform, Ansible, GitHub Actions\", \"uncertain\": true},\n    {\"skill_id\": \"github-actions\", \"requirement\": \"required\", \"raw_text\": \"GitHub Actions/GitLab CI\", \"alternative_group\": 2},\n    {\"skill_id\": \"gitlab-ci\", \"requirement\": \"required\", \"raw_text\": \"GitHub Actions/GitLab CI\", \"alternative_group\": 2}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Static and dynamic code analysis\", \"raw_text\": \"static and dynamic code analysis\"},\n    {\"label\": \"Fuzzing\", \"raw_text\": \"fuzzing\"},\n    {\"label\": \"Penetration testing tools\", \"raw_text\": \"penetration testing tools\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Several years of professional experience\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Business-fluent German\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"University degree in Computer Science or a comparable IT-related field\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"All skills come from 'What should you bring along?'. That heading marks requirements, and no item carries an optional marker, so every skill is required. Skills named only in the responsibilities, such as frontends, are not labeled.\\nAutomotive Cybersecurity is mapped to cybersecurity. It could instead be read as domain knowledge, so it is flagged.\\n'agentic AI toolchains' is mapped to agents and flagged.\\nAWS/Azure form group 1: the slash offers alternatives for the cloud ask, and cloud stays outside the group.\\nGitHub Actions/GitLab CI form group 2 because the slash offers alternatives.\\nDocker/Kubernetes are not grouped. Docker answers the containerization ask and Kubernetes the orchestration ask, so the most literal reading is two separate asks. Flagged.\\nTerraform and Ansible are not grouped. They are listed with commas and no 'or', which I read as asked together. Flagged.\\nThe raw_text for Terraform and Ansible quotes the requirements-list span 'Terraform, Ansible, GitHub Actions'. This keeps it distinct from the responsibilities mention 'Terraform, Ansible)'. The same reasoning applies to 'as well as CI/CD'.\\n'commercial and open-source technologies' is not mapped to open-source-llms because it does not name LLMs.\\nThe static/dynamic code analysis, fuzzing and penetration testing examples have no taxonomy entry, so they are in unmapped.\\nSeniority 'Several years' does not give a number. It is read as roughly 3+ years and inferred as mid. Flagged.\\n'or a comparable IT-related field' widens the field, not the requirement, so degree_or_equivalent is false.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "professional experience in Automotive Cybersecurity",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "building, operating, and maintaining agentic AI toolchains",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containerization and orchestration technologies"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker/Kubernetes",
+        "uncertain": true
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Docker/Kubernetes",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "as well as CI/CD"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure-as-Code tools"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform, Ansible, GitHub Actions",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ansible",
+        "requirement": "required",
+        "raw_text": "Terraform, Ansible, GitHub Actions",
+        "uncertain": true
+      },
+      {
+        "skill_id": "github-actions",
+        "requirement": "required",
+        "raw_text": "GitHub Actions/GitLab CI",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "gitlab-ci",
+        "requirement": "required",
+        "raw_text": "GitHub Actions/GitLab CI",
+        "alternative_group": 2
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Static and dynamic code analysis",
+        "raw_text": "static and dynamic code analysis"
+      },
+      {
+        "label": "Fuzzing",
+        "raw_text": "fuzzing"
+      },
+      {
+        "label": "Penetration testing tools",
+        "raw_text": "penetration testing tools"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Several years of professional experience",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Business-fluent German",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "University degree in Computer Science or a comparable IT-related field",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "All skills come from 'What should you bring along?'. That heading marks requirements, and no item carries an optional marker, so every skill is required. Skills named only in the responsibilities, such as frontends, are not labeled.\nAutomotive Cybersecurity is mapped to cybersecurity. It could instead be read as domain knowledge, so it is flagged.\n'agentic AI toolchains' is mapped to agents and flagged.\nAWS/Azure form group 1: the slash offers alternatives for the cloud ask, and cloud stays outside the group.\nGitHub Actions/GitLab CI form group 2 because the slash offers alternatives.\nDocker/Kubernetes are not grouped. Docker answers the containerization ask and Kubernetes the orchestration ask, so the most literal reading is two separate asks. Flagged.\nTerraform and Ansible are not grouped. They are listed with commas and no 'or', which I read as asked together. Flagged.\nThe raw_text for Terraform and Ansible quotes the requirements-list span 'Terraform, Ansible, GitHub Actions'. This keeps it distinct from the responsibilities mention 'Terraform, Ansible)'. The same reasoning applies to 'as well as CI/CD'.\n'commercial and open-source technologies' is not mapped to open-source-llms because it does not name LLMs.\nThe static/dynamic code analysis, fuzzing and penetration testing examples have no taxonomy entry, so they are in unmapped.\nSeniority 'Several years' does not give a number. It is read as roughly 3+ years and inferred as mid. Flagged.\n'or a comparable IT-related field' widens the field, not the requirement, so degree_or_equivalent is false."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "cb7a81c798305bf8aa5d44a28e1dbb66efd12521229a4a2f7675d28ef4de16c4",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

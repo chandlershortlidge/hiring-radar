@@ -1922,6 +1922,90 @@ def item_range(text: str) -> set[int]:
     return out
 
 
+def renumber_plan(run_dir: Path, start: int | None) -> dict[str, str]:
+    """Which Golden id each posting in a run moves to, in the run's own pick order.
+
+    `start` defaults to the first id no Golden and no excluded entry holds, which is what
+    the apply refusal tells you to renumber from. An id already on disk for a different
+    posting is the very thing this fixes, so the plan refuses to aim at one.
+    """
+    picks = json.loads((run_dir / "picks.json").read_text())
+    old = [p["golden_id"] for p in picks]
+    if len(set(old)) != len(old):
+        raise SystemExit(f"{run_dir.name} uses the same Golden id for two postings: "
+                         f"{sorted(i for i in set(old) if old.count(i) > 1)}")
+    top = ng.existing()[1]
+    first = top + 1 if start is None else start
+    plan = {gid: f"golden_{first + i:03d}" for i, gid in enumerate(old)}
+    by_sha = {p["golden_id"]: p["source_sha256"] for p in picks}
+    clash = []
+    for gid, new in plan.items():
+        path = GOLDENS / f"{new}.json"
+        if not path.exists():
+            continue
+        held = json.loads(path.read_text())
+        if (held.get("source_sha256") or "") != by_sha[gid]:
+            clash.append(f"  {new} is already {held.get('company')!r}")
+    if clash:
+        raise SystemExit(f"renumbering {run_dir.name} from golden_{first:03d} would land on "
+                         f"ids that hold other postings:\n" + "\n".join(clash) +
+                         f"\n\nThe highest id in use is golden_{top:03d}; renumber from "
+                         f"golden_{top + 1:03d} instead.")
+    return plan
+
+
+def cmd_renumber(args):
+    """Move a run's postings onto free Golden ids, so applying it overwrites nothing.
+
+    Every labeling run numbers its picks from the highest Golden that existed when it
+    started, so two runs begun before either applied claim the same ids and the second to
+    apply would overwrite the first (HIR-167). `apply` refuses and sends you here. The ids
+    appear in every file of the run directory and in the names of the cached labeler
+    replies, so the run is rewritten whole. The decisions in review_queue.md are keyed by
+    item number, not by id, so renumbering leaves them exactly where they were.
+    """
+    run_dir = RUNS / args.run
+    if not run_dir.is_dir():
+        raise SystemExit(f"no such run: {run_dir}")
+    plan = renumber_plan(run_dir, args.start)
+    moves = {old: new for old, new in plan.items() if old != new}
+    if not moves:
+        print(f"{args.run}: already numbered from {min(plan.values())}; nothing to do")
+        return
+    print(f"{args.run}: {len(moves)} postings move")
+    for old, new in sorted(moves.items()):
+        print(f"  {old} -> {new}")
+    if args.dry_run:
+        print("\n(dry run) nothing written")
+        return
+
+    # One pass per file with a callback, so a plan that moves an id onto another id of the
+    # same run can never rewrite the same text twice.
+    pattern = re.compile(r"golden_\d{3}")
+    for path in sorted(run_dir.rglob("*")):
+        if not path.is_file() or path.suffix not in (".json", ".md"):
+            continue
+        text = path.read_text()
+        fixed = pattern.sub(lambda m: plan.get(m.group(0), m.group(0)), text)
+        if fixed != text:
+            path.write_text(fixed)
+    # Renamed in two steps: a plan is free to move golden_050 onto golden_049's name, and a
+    # direct rename would then clobber a file this run still needs.
+    raw = run_dir / "raw"
+    staged = []
+    for path in sorted(raw.glob("golden_*")) if raw.is_dir() else []:
+        gid, rest = path.name.split(".", 1)
+        new = plan.get(gid)
+        if not new or new == gid:
+            continue
+        tmp = path.with_name(f"{new}.{rest}.renumbering")
+        path.rename(tmp)
+        staged.append(tmp)
+    for tmp in staged:
+        tmp.rename(tmp.with_name(tmp.name.removesuffix(".renumbering")))
+    print(f"\nwritten. `apply --run {args.run}` can now be run.")
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -1956,6 +2040,14 @@ def main(argv=None):
                      help="which eval split these Goldens join (default heldout; `dev` grows the set the gate tunes against, HIR-164)")
     app.add_argument("--dry-run", action="store_true")
     app.set_defaults(fn=cmd_apply)
+
+    ren = sub.add_parser("renumber", help="move a run's postings onto free Golden ids before apply")
+    ren.add_argument("--run", required=True)
+    ren.add_argument("--start", type=int, default=None, metavar="N",
+                     help="number from golden_N (default: the first id no Golden and no "
+                          "excluded entry holds)")
+    ren.add_argument("--dry-run", action="store_true", help="print the moves and stop")
+    ren.set_defaults(fn=cmd_renumber)
 
     jud = sub.add_parser("judge", help="a third model rules on the undecided items that carry a proposal")
     jud.add_argument("--run", required=True)

@@ -1,0 +1,130 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"APIs\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Softwarearchitektur\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Entwicklung professioneller Softwarelösungen\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Large Language Models\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Prompt Engineering\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI Agents\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"grundlegende ML-Verfahren\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Modelltraining\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Du kennst grundlegende ML-Verfahren, Modelltraining und Evaluation\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"idealerweise bereits mit scikit-learn\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"idealerweise bereits mit scikit-learn, PyTorch\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Testing\"\n    },\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Sicherheit\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Databases\",\n      \"raw_text\": \"Datenbanken\"\n    },\n    {\n      \"label\": \"AI model integration\",\n      \"raw_text\": \"Integration von AI-Modellen\"\n    },\n    {\n      \"label\": \"Software deployment\",\n      \"raw_text\": \"Deployment\"\n    },\n    {\n      \"label\": \"Scalability\",\n      \"raw_text\": \"Skalierbarkeit\"\n    },\n    {\n      \"label\": \"Reliable production operation\",\n      \"raw_text\": \"zuverlässiger Produktivbetrieb\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Idealerweise hast du bereits 3–5 Jahre in der Softwareentwicklung, im AI Engineering oder Machine Learning gearbeitet.\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"gute Deutsch- und Englischkenntnisse\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Ein abgeschlossenes Studium in Informatik, Data Science oder einem verwandten Bereich ist willkommen – ebenso eine vergleichbare Qualifikation durch Praxiserfahrung.\",\n  \"uncertain\": [\n    \"degree\"\n  ],\n  \"notes\": \"Only Überzeugende Voraussetzungen supplies candidate qualifications; responsibilities and benefits do not independently supply skills.\\nThe two explicit oder lists are treated as alternatives; comparable technologies add no further skill.\\nGenerative AI and Large Language Models collapse to llms.\\nDeployment and reliable production operation explicitly concern good software development; on a literal reading they are not specifically model deployment or MLOps and remain unmapped.\\nThe degree wording ist willkommen is interpreted as optional, but this marker is not explicitly covered by the guide and is flagged for review.\\nThe preferred 3–5 years supplies the inferred mid-level signal; AI Engineering in that experience clause is treated as a work area rather than a separate technical skill.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Softwarearchitektur"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Entwicklung professioneller Softwarelösungen"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Large Language Models"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "AI Agents",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "grundlegende ML-Verfahren"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "Modelltraining"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Du kennst grundlegende ML-Verfahren, Modelltraining und Evaluation"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise bereits mit scikit-learn",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise bereits mit scikit-learn, PyTorch",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "Testing"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "Sicherheit"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Databases",
+        "raw_text": "Datenbanken"
+      },
+      {
+        "label": "AI model integration",
+        "raw_text": "Integration von AI-Modellen"
+      },
+      {
+        "label": "Software deployment",
+        "raw_text": "Deployment"
+      },
+      {
+        "label": "Scalability",
+        "raw_text": "Skalierbarkeit"
+      },
+      {
+        "label": "Reliable production operation",
+        "raw_text": "zuverlässiger Produktivbetrieb"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Idealerweise hast du bereits 3–5 Jahre in der Softwareentwicklung, im AI Engineering oder Machine Learning gearbeitet.",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "gute Deutsch- und Englischkenntnisse",
+    "degree": "bachelor",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": true,
+    "degree_signal": "Ein abgeschlossenes Studium in Informatik, Data Science oder einem verwandten Bereich ist willkommen – ebenso eine vergleichbare Qualifikation durch Praxiserfahrung.",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Only Überzeugende Voraussetzungen supplies candidate qualifications; responsibilities and benefits do not independently supply skills.\nThe two explicit oder lists are treated as alternatives; comparable technologies add no further skill.\nGenerative AI and Large Language Models collapse to llms.\nDeployment and reliable production operation explicitly concern good software development; on a literal reading they are not specifically model deployment or MLOps and remain unmapped.\nThe degree wording ist willkommen is interpreted as optional, but this marker is not explicitly covered by the guide and is flagged for review.\nThe preferred 3–5 years supplies the inferred mid-level signal; AI Engineering in that experience clause is treated as a work area rather than a separate technical skill."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "378e2b9587bff9ec1b6332f7cb0b23ba8edb4f2806227085a74d9b2a4b40fec9",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}
