@@ -11,9 +11,23 @@ then uploads its fixture Goldens and opens an experiment in the real account. Th
 happened once while HIR-78 was being built. Unsetting the key for every test makes the
 issue's "no test sends anything to LangSmith" an environment guarantee rather than
 something each new test has to remember.
+
+Property tests (HIR-333) get their inputs from Hypothesis, and the profile chosen here says
+how. The default, "ci", is derandomized: a fixed seed, so every run and every pull request
+tries the same 200 inputs per property and no PR goes red on a bug it did not cause. The
+"sweep" profile is the by-hand search for new failures: 2000 random inputs per property,
+different every run. Pick it with HYPOTHESIS_PROFILE=sweep (AGENTS.md "Running and
+testing"). Neither sets a per-input deadline: a slow CI machine is not a failed property.
 """
 
+import os
+
 import pytest
+from hypothesis import settings
+
+settings.register_profile("ci", derandomize=True, max_examples=200, deadline=None)
+settings.register_profile("sweep", derandomize=False, max_examples=2000, deadline=None)
+settings.load_profile(os.environ.get("HYPOTHESIS_PROFILE", "ci"))
 
 LANGSMITH_VARS = ("LANGSMITH_API_KEY", "LANGSMITH_TRACING", "LANGCHAIN_API_KEY",
                   "LANGCHAIN_TRACING_V2", "LANGSMITH_PROJECT", "LANGCHAIN_PROJECT")

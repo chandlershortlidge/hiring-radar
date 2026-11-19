@@ -27,3 +27,6 @@ skills-lock.json
 .claude/skills/security-audit/
 web/shots-out/
 web/watch-out/
+
+# Hypothesis's local store of failing inputs (HYPOTHESIS_PROFILE=sweep writes it)
+.hypothesis/
