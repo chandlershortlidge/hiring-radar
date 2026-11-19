@@ -1,0 +1,266 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ml-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML engineering experience\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"language models\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"training and deploying language models to production\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying language models to production\"\n    },\n    {\n      \"skill_id\": \"distributed-training\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed training frameworks\"\n    },\n    {\n      \"skill_id\": \"megatron-lm\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Megatron-LM\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"deepspeed\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"training libraries (Transformers, DeepSpeed, Accelerate)\"\n    },\n    {\n      \"skill_id\": \"fsdp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"FSDP\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Transformers\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement learning approaches\"\n    },\n    {\n      \"skill_id\": \"inference-optimization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"optimising models for production inference\"\n    },\n    {\n      \"skill_id\": \"knowledge-distillation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distillation\"\n    },\n    {\n      \"skill_id\": \"quantization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"quantisation\"\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"serving frameworks\"\n    },\n    {\n      \"skill_id\": \"vllm\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vLLM\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"tensorrt\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"TensorRT-LLM\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"evaluating models\"\n    },\n    {\n      \"skill_id\": \"a-b-testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"A/B tests\"\n    },\n    {\n      \"skill_id\": \"hugging-face\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"released models on Hugging Face\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"instruction tuning\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Large-scale training-data preparation\",\n      \"raw_text\": \"preparing large-scale training datasets\"\n    },\n    {\n      \"label\": \"Training-data filtering\",\n      \"raw_text\": \"filtering\"\n    },\n    {\n      \"label\": \"Training-data quality assessment\",\n      \"raw_text\": \"quality assessment\"\n    },\n    {\n      \"label\": \"Training-data deduplication\",\n      \"raw_text\": \"deduplication\"\n    },\n    {\n      \"label\": \"Data mixture design\",\n      \"raw_text\": \"data mixture design\"\n    },\n    {\n      \"label\": \"Axolotl\",\n      \"raw_text\": \"Axolotl\"\n    },\n    {\n      \"label\": \"Multi-node job orchestration\",\n      \"raw_text\": \"orchestrating multi-node jobs\"\n    },\n    {\n      \"label\": \"Distributed-training debugging\",\n      \"raw_text\": \"debugging failures and loss instabilities\"\n    },\n    {\n      \"label\": \"Training throughput optimisation\",\n      \"raw_text\": \"optimising throughput\"\n    },\n    {\n      \"label\": \"Accelerate\",\n      \"raw_text\": \"Accelerate\"\n    },\n    {\n      \"label\": \"Language-model post-training\",\n      \"raw_text\": \"post-training methods\"\n    },\n    {\n      \"label\": \"RLHF\",\n      \"raw_text\": \"RLHF\"\n    },\n    {\n      \"label\": \"DPO\",\n      \"raw_text\": \"DPO\"\n    },\n    {\n      \"label\": \"GRPO\",\n      \"raw_text\": \"GRPO\"\n    },\n    {\n      \"label\": \"Model pruning\",\n      \"raw_text\": \"pruning\"\n    },\n    {\n      \"label\": \"Model compression\",\n      \"raw_text\": \"compression\"\n    },\n    {\n      \"label\": \"Online experimentation\",\n      \"raw_text\": \"online experiments\"\n    },\n    {\n      \"label\": \"Open-source contribution\",\n      \"raw_text\": \"open-source contributions\"\n    },\n    {\n      \"label\": \"Synthetic-data generation pipelines\",\n      \"raw_text\": \"synthetic data generation pipelines\"\n    },\n    {\n      \"label\": \"Domain adaptation\",\n      \"raw_text\": \"domain adaptation\"\n    },\n    {\n      \"label\": \"Memory and GPU optimisation\",\n      \"raw_text\": \"memory and GPU optimisation\"\n    },\n    {\n      \"label\": \"Gradient checkpointing\",\n      \"raw_text\": \"gradient checkpointing\"\n    },\n    {\n      \"label\": \"Mixed precision training\",\n      \"raw_text\": \"mixed precision training\"\n    },\n    {\n      \"label\": \"FP16\",\n      \"raw_text\": \"FP16\"\n    },\n    {\n      \"label\": \"BF16\",\n      \"raw_text\": \"BF16\"\n    },\n    {\n      \"label\": \"FP8\",\n      \"raw_text\": \"FP8\"\n    },\n    {\n      \"label\": \"ZeRO\",\n      \"raw_text\": \"ZeRO\"\n    },\n    {\n      \"label\": \"GPU architectures\",\n      \"raw_text\": \"GPU architectures\"\n    },\n    {\n      \"label\": \"H100\",\n      \"raw_text\": \"H100\"\n    },\n    {\n      \"label\": \"H200\",\n      \"raw_text\": \"GPU architectures such as H100, H200 and B300\"\n    },\n    {\n      \"label\": \"B300\",\n      \"raw_text\": \"GPU architectures such as H100, H200 and B300\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Minimum qualifications are required; preferred qualifications are nice_to_have. Technologies appearing only in responsibilities, company descriptions or benefits are excluded.\\nDeepSpeed is independently requested in the conjunctive training-libraries list, so it leaves alternative group 1. Axolotl is another member of that alternatives ask but has no taxonomy entry.\\nServing frameworks supplies a broad model-serving ask; vLLM and TensorRT-LLM are its alternative examples.\\nInstruction tuning is interpreted as fine-tuning, but flagged because the qualification directly asks for synthetic-data pipeline experience for that purpose.\\nTraining-data preparation, optimisation techniques and explicitly requested GPU architectures are retained literally in unmapped where the taxonomy lacks matching entries. Numeric precision formats are retained as named examples of mixed precision training.\\nPublication and released-model accomplishments are not separately labeled as skills. No German-language or degree requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "ML engineering experience"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "language models"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "training and deploying language models to production"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying language models to production"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "distributed training frameworks"
+      },
+      {
+        "skill_id": "megatron-lm",
+        "requirement": "required",
+        "raw_text": "Megatron-LM",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "deepspeed",
+        "requirement": "required",
+        "raw_text": "training libraries (Transformers, DeepSpeed, Accelerate)"
+      },
+      {
+        "skill_id": "fsdp",
+        "requirement": "required",
+        "raw_text": "FSDP",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "Transformers"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning approaches"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "nice_to_have",
+        "raw_text": "optimising models for production inference"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "nice_to_have",
+        "raw_text": "distillation"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "nice_to_have",
+        "raw_text": "quantisation"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "serving frameworks"
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "nice_to_have",
+        "raw_text": "vLLM",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorRT-LLM",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "evaluating models"
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "nice_to_have",
+        "raw_text": "A/B tests"
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "nice_to_have",
+        "raw_text": "released models on Hugging Face"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "instruction tuning",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Large-scale training-data preparation",
+        "raw_text": "preparing large-scale training datasets"
+      },
+      {
+        "label": "Training-data filtering",
+        "raw_text": "filtering"
+      },
+      {
+        "label": "Training-data quality assessment",
+        "raw_text": "quality assessment"
+      },
+      {
+        "label": "Training-data deduplication",
+        "raw_text": "deduplication"
+      },
+      {
+        "label": "Data mixture design",
+        "raw_text": "data mixture design"
+      },
+      {
+        "label": "Axolotl",
+        "raw_text": "Axolotl"
+      },
+      {
+        "label": "Multi-node job orchestration",
+        "raw_text": "orchestrating multi-node jobs"
+      },
+      {
+        "label": "Distributed-training debugging",
+        "raw_text": "debugging failures and loss instabilities"
+      },
+      {
+        "label": "Training throughput optimisation",
+        "raw_text": "optimising throughput"
+      },
+      {
+        "label": "Accelerate",
+        "raw_text": "Accelerate"
+      },
+      {
+        "label": "Language-model post-training",
+        "raw_text": "post-training methods"
+      },
+      {
+        "label": "RLHF",
+        "raw_text": "RLHF"
+      },
+      {
+        "label": "DPO",
+        "raw_text": "DPO"
+      },
+      {
+        "label": "GRPO",
+        "raw_text": "GRPO"
+      },
+      {
+        "label": "Model pruning",
+        "raw_text": "pruning"
+      },
+      {
+        "label": "Model compression",
+        "raw_text": "compression"
+      },
+      {
+        "label": "Online experimentation",
+        "raw_text": "online experiments"
+      },
+      {
+        "label": "Open-source contribution",
+        "raw_text": "open-source contributions"
+      },
+      {
+        "label": "Synthetic-data generation pipelines",
+        "raw_text": "synthetic data generation pipelines"
+      },
+      {
+        "label": "Domain adaptation",
+        "raw_text": "domain adaptation"
+      },
+      {
+        "label": "Memory and GPU optimisation",
+        "raw_text": "memory and GPU optimisation"
+      },
+      {
+        "label": "Gradient checkpointing",
+        "raw_text": "gradient checkpointing"
+      },
+      {
+        "label": "Mixed precision training",
+        "raw_text": "mixed precision training"
+      },
+      {
+        "label": "FP16",
+        "raw_text": "FP16"
+      },
+      {
+        "label": "BF16",
+        "raw_text": "BF16"
+      },
+      {
+        "label": "FP8",
+        "raw_text": "FP8"
+      },
+      {
+        "label": "ZeRO",
+        "raw_text": "ZeRO"
+      },
+      {
+        "label": "GPU architectures",
+        "raw_text": "GPU architectures"
+      },
+      {
+        "label": "H100",
+        "raw_text": "H100"
+      },
+      {
+        "label": "H200",
+        "raw_text": "GPU architectures such as H100, H200 and B300"
+      },
+      {
+        "label": "B300",
+        "raw_text": "GPU architectures such as H100, H200 and B300"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Minimum qualifications are required; preferred qualifications are nice_to_have. Technologies appearing only in responsibilities, company descriptions or benefits are excluded.\nDeepSpeed is independently requested in the conjunctive training-libraries list, so it leaves alternative group 1. Axolotl is another member of that alternatives ask but has no taxonomy entry.\nServing frameworks supplies a broad model-serving ask; vLLM and TensorRT-LLM are its alternative examples.\nInstruction tuning is interpreted as fine-tuning, but flagged because the qualification directly asks for synthetic-data pipeline experience for that purpose.\nTraining-data preparation, optimisation techniques and explicitly requested GPU architectures are retained literally in unmapped where the taxonomy lacks matching entries. Numeric precision formats are retained as named examples of mixed precision training.\nPublication and released-model accomplishments are not separately labeled as skills. No German-language or degree requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "966c0fc11eeea9679407221057773f225cf942d669f380b1320bd2bb101c3a62",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,157 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"chemical-descriptors\", \"requirement\": \"required\", \"raw_text\": \"post-DFT descriptors\", \"uncertain\": true},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"molecular ML models\"},\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"required\", \"raw_text\": \"geometric deep learning\", \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"model evaluation frameworks\"},\n    {\"skill_id\": \"python\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Proficiency with Python\", \"uncertain\": true},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"nice_to_have\", \"raw_text\": \"PyTorch\", \"uncertain\": true},\n    {\"skill_id\": \"cheminformatics\", \"requirement\": \"nice_to_have\", \"raw_text\": \"cheminformatics and molecular modeling toolkits\", \"uncertain\": true},\n    {\"skill_id\": \"rdkit\", \"requirement\": \"nice_to_have\", \"raw_text\": \"RDKit\", \"uncertain\": true},\n    {\"skill_id\": \"model-development\", \"requirement\": \"required\", \"raw_text\": \"model training\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Quantum chemistry\", \"raw_text\": \"Experience with quantum chemistry\"},\n    {\"label\": \"DFT\", \"raw_text\": \"DFT\"},\n    {\"label\": \"Electronic structure methods\", \"raw_text\": \"electronic structure methods\"},\n    {\"label\": \"Graph neural networks\", \"raw_text\": \"graph neural networks\"},\n    {\"label\": \"Equivariant architectures\", \"raw_text\": \"equivariant architectures\"},\n    {\"label\": \"Diffusion models\", \"raw_text\": \"diffusion models\"},\n    {\"label\": \"Generative models (molecular)\", \"raw_text\": \"applying generative models\"},\n    {\"label\": \"Molecular design models\", \"raw_text\": \"molecular design models\"},\n    {\"label\": \"Active learning\", \"raw_text\": \"active learning workflows\"},\n    {\"label\": \"PyTorch Geometric\", \"raw_text\": \"PyTorch Geometric\"},\n    {\"label\": \"DGL\", \"raw_text\": \"DGL\"},\n    {\"label\": \"ORCA\", \"raw_text\": \"ORCA\"},\n    {\"label\": \"Gaussian\", \"raw_text\": \"Gaussian\"},\n    {\"label\": \"Q-Chem\", \"raw_text\": \"Q-Chem\"},\n    {\"label\": \"Molecular modeling\", \"raw_text\": \"molecular modeling toolkits\"},\n    {\"label\": \"Scalable data processing\", \"raw_text\": \"scalable data processing\"},\n    {\"label\": \"Data curation\", \"raw_text\": \"curate, clean, integrate, and analyze complex, large-scale scientific datasets\"},\n    {\"label\": \"Reaction modeling\", \"raw_text\": \"reaction modeling\"},\n    {\"label\": \"Structure-based design\", \"raw_text\": \"structure-based design\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"(Senior) Scientist, Machine Learning\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Ph.D. in machine learning, computational chemistry, chemical physics, computer science, applied mathematics, or a related discipline\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"Python/PyTorch/cheminformatics/RDKit: the bullet's predicate 'is preferred' governs the whole sentence ('Proficiency with Python and ... toolkits ... is preferred'), so all four are nice_to_have. A narrower reading would apply 'preferred' only to the toolkits clause, which would make Python and PyTorch required.\\nNo alternative groups: PyTorch and RDKit are each the only mapped member of their 'such as ... or' example lists, and a group needs two skills. The quantum chemistry/DFT/electronic structure/post-DFT list likewise has only one mapped member.\\n'post-DFT descriptors' is mapped to chemical-descriptors. This is a judgment call: they are quantum-chemical descriptors.\\n'geometric deep learning' is mapped to deep-learning because the phrase names deep learning. It could also be read as an unmapped subfield.\\n'model training' is mapped to model-development via its alias 'ai model training'. This is uncertain.\\n'generative models' here means molecular generative models, not LLMs, so llms is not labeled.\\n'fine-tune' appears only in responsibilities and is not labeled.\\nPublications in NeurIPS/ICML/ICLR are 'a strong plus' but are not skills.\\nThe covalent chemistry and chemoproteomics plus bullet is domain knowledge, except 'reaction modeling' and 'structure-based design', which are listed as unmapped.\\nSeniority: '(Senior)' in the title is treated as a stated level, by analogy with '(Junior)' → junior. Years would also support it: PhD + 2 yrs or MS + 6 yrs.\\nDegree: 'Ph.D. ... or M.S. degree with 6+ years' takes the highest level named (phd). The M.S. alternative is another degree, not experience in place of a degree, so degree_or_equivalent is false.\\nGerman: no mention of German or any language requirement.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "chemical-descriptors",
+        "requirement": "required",
+        "raw_text": "post-DFT descriptors",
+        "uncertain": true
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "molecular ML models"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "geometric deep learning",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "model evaluation frameworks"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Proficiency with Python",
+        "uncertain": true
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "PyTorch",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cheminformatics",
+        "requirement": "nice_to_have",
+        "raw_text": "cheminformatics and molecular modeling toolkits",
+        "uncertain": true
+      },
+      {
+        "skill_id": "rdkit",
+        "requirement": "nice_to_have",
+        "raw_text": "RDKit",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "model training",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Quantum chemistry",
+        "raw_text": "Experience with quantum chemistry"
+      },
+      {
+        "label": "DFT",
+        "raw_text": "DFT"
+      },
+      {
+        "label": "Electronic structure methods",
+        "raw_text": "electronic structure methods"
+      },
+      {
+        "label": "Graph neural networks",
+        "raw_text": "graph neural networks"
+      },
+      {
+        "label": "Equivariant architectures",
+        "raw_text": "equivariant architectures"
+      },
+      {
+        "label": "Diffusion models",
+        "raw_text": "diffusion models"
+      },
+      {
+        "label": "Generative models (molecular)",
+        "raw_text": "applying generative models"
+      },
+      {
+        "label": "Molecular design models",
+        "raw_text": "molecular design models"
+      },
+      {
+        "label": "Active learning",
+        "raw_text": "active learning workflows"
+      },
+      {
+        "label": "PyTorch Geometric",
+        "raw_text": "PyTorch Geometric"
+      },
+      {
+        "label": "DGL",
+        "raw_text": "DGL"
+      },
+      {
+        "label": "ORCA",
+        "raw_text": "ORCA"
+      },
+      {
+        "label": "Gaussian",
+        "raw_text": "Gaussian"
+      },
+      {
+        "label": "Q-Chem",
+        "raw_text": "Q-Chem"
+      },
+      {
+        "label": "Molecular modeling",
+        "raw_text": "molecular modeling toolkits"
+      },
+      {
+        "label": "Scalable data processing",
+        "raw_text": "scalable data processing"
+      },
+      {
+        "label": "Data curation",
+        "raw_text": "curate, clean, integrate, and analyze complex, large-scale scientific datasets"
+      },
+      {
+        "label": "Reaction modeling",
+        "raw_text": "reaction modeling"
+      },
+      {
+        "label": "Structure-based design",
+        "raw_text": "structure-based design"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "(Senior) Scientist, Machine Learning",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Ph.D. in machine learning, computational chemistry, chemical physics, computer science, applied mathematics, or a related discipline",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Python/PyTorch/cheminformatics/RDKit: the bullet's predicate 'is preferred' governs the whole sentence ('Proficiency with Python and ... toolkits ... is preferred'), so all four are nice_to_have. A narrower reading would apply 'preferred' only to the toolkits clause, which would make Python and PyTorch required.\nNo alternative groups: PyTorch and RDKit are each the only mapped member of their 'such as ... or' example lists, and a group needs two skills. The quantum chemistry/DFT/electronic structure/post-DFT list likewise has only one mapped member.\n'post-DFT descriptors' is mapped to chemical-descriptors. This is a judgment call: they are quantum-chemical descriptors.\n'geometric deep learning' is mapped to deep-learning because the phrase names deep learning. It could also be read as an unmapped subfield.\n'model training' is mapped to model-development via its alias 'ai model training'. This is uncertain.\n'generative models' here means molecular generative models, not LLMs, so llms is not labeled.\n'fine-tune' appears only in responsibilities and is not labeled.\nPublications in NeurIPS/ICML/ICLR are 'a strong plus' but are not skills.\nThe covalent chemistry and chemoproteomics plus bullet is domain knowledge, except 'reaction modeling' and 'structure-based design', which are listed as unmapped.\nSeniority: '(Senior)' in the title is treated as a stated level, by analogy with '(Junior)' → junior. Years would also support it: PhD + 2 yrs or MS + 6 yrs.\nDegree: 'Ph.D. ... or M.S. degree with 6+ years' takes the highest level named (phd). The M.S. alternative is another degree, not experience in place of a degree, so degree_or_equivalent is false.\nGerman: no mention of German or any language requirement."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "0908d24f3115afb287b4dd430de216b89512734badcfb33a092c7ac72cff7901",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

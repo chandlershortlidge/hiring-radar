@@ -1,0 +1,108 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"understand the full ML lifecycle\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"significant experience operationalising models\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud platforms\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GCP\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"security\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"container and orchestration tools\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Cloud architecture\",\n      \"raw_text\": \"cloud platforms (e.g., AWS, Azure, GCP), including architecture\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"WHO WE'RE LOOKING FOR is the requirements section; no optional skills section appears. The general encouragement to apply without meeting every requirement does not change the labels.\\nOperationalising models is provisionally mapped to MLOps; the wording does not distinguish deployment from ongoing production operation.\\nCloud security is provisionally mapped to cybersecurity. Cloud architecture is left unmapped rather than equated with software architecture; cloud infrastructure is covered by cloud.\\nTensorFlow and PyTorch are alternatives, as are the cloud-provider examples. Docker and Kubernetes are joined by '&' and are not alternatives.\\nTechnologies and practices appearing only in responsibilities, company descriptions, or interview stages are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "understand the full ML lifecycle"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "significant experience operationalising models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "security",
+        "uncertain": true
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "container and orchestration tools"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Cloud architecture",
+        "raw_text": "cloud platforms (e.g., AWS, Azure, GCP), including architecture"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "WHO WE'RE LOOKING FOR is the requirements section; no optional skills section appears. The general encouragement to apply without meeting every requirement does not change the labels.\nOperationalising models is provisionally mapped to MLOps; the wording does not distinguish deployment from ongoing production operation.\nCloud security is provisionally mapped to cybersecurity. Cloud architecture is left unmapped rather than equated with software architecture; cloud infrastructure is covered by cloud.\nTensorFlow and PyTorch are alternatives, as are the cloud-provider examples. Docker and Kubernetes are joined by '&' and are not alternatives.\nTechnologies and practices appearing only in responsibilities, company descriptions, or interview stages are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "b0b32b841753b13d02dcb3fc8b2f9af0ebbd3036702d5b06ebed4599c65ef7a4",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

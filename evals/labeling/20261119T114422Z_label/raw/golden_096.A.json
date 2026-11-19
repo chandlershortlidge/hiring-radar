@@ -1,0 +1,59 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"nice_to_have\", \"raw_text\": \"write good Python code\"},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Bonus points if you've worked with distributed systems\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"nice_to_have\", \"raw_text\": \"used PyTorch\"},\n    {\"skill_id\": \"hugging-face\", \"requirement\": \"nice_to_have\", \"raw_text\": \"HuggingFace\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"ML fundamentals\"},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"nice_to_have\", \"raw_text\": \"You're friends with AI assistants and use them regularly for coding\", \"uncertain\": true}\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"ML Engineering Intern\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"currently enrolled at a university\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"The 'Preferred qualifications & traits' heading makes every item under it nice_to_have. This includes Python, PyTorch, Hugging Face, ML fundamentals and AI assistants.\\nOpen-source LLMs, fine-tuning, model serving, A/B testing and evaluation appear only under 'What you'll do', so they are not labeled.\\nLLM APIs (OpenAI, Anthropic, Google) and coding assistants appear only under 'What we offer', so they are not labeled.\\n'AI assistants … for coding' is mapped to ai-developer-tooling. 'AI assistants' is not an exact alias, so this item is flagged uncertain.\\n'You've trained models yourself' is read as supporting ML fundamentals. I did not add model-development as a separate skill.\\nThe 'with the help of your AI assistant' aside in the research bullet is not treated as a separate ask; it is covered by the coding-assistant bullet.\\nNo alternative groups: no skills are offered in place of each other.\\nDegree comes from the eligibility line 'currently enrolled at a university'. The guide treats 'currently studying' with no level as bachelor. It is an eligibility condition with no optional marker, so it is required. It is flagged uncertain because it is an enrollment status rather than a degree ask.\\n'Junior Engineer compensation' also signals junior, but the title 'Intern' is the stated basis.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "write good Python code"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "Bonus points if you've worked with distributed systems"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "used PyTorch"
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "nice_to_have",
+        "raw_text": "HuggingFace"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "ML fundamentals"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "nice_to_have",
+        "raw_text": "You're friends with AI assistants and use them regularly for coding",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "ML Engineering Intern",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "currently enrolled at a university",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "The 'Preferred qualifications & traits' heading makes every item under it nice_to_have. This includes Python, PyTorch, Hugging Face, ML fundamentals and AI assistants.\nOpen-source LLMs, fine-tuning, model serving, A/B testing and evaluation appear only under 'What you'll do', so they are not labeled.\nLLM APIs (OpenAI, Anthropic, Google) and coding assistants appear only under 'What we offer', so they are not labeled.\n'AI assistants … for coding' is mapped to ai-developer-tooling. 'AI assistants' is not an exact alias, so this item is flagged uncertain.\n'You've trained models yourself' is read as supporting ML fundamentals. I did not add model-development as a separate skill.\nThe 'with the help of your AI assistant' aside in the research bullet is not treated as a separate ask; it is covered by the coding-assistant bullet.\nNo alternative groups: no skills are offered in place of each other.\nDegree comes from the eligibility line 'currently enrolled at a university'. The guide treats 'currently studying' with no level as bachelor. It is an eligibility condition with no optional marker, so it is required. It is flagged uncertain because it is an enrollment status rather than a degree ask.\n'Junior Engineer compensation' also signals junior, but the title 'Intern' is the stated basis."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "8bea1431d03cb7078fb58de82649c5b962022b3c96535be6e8075b59ada0a702",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

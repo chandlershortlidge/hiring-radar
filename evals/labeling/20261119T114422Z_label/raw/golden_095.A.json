@@ -1,0 +1,58 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLMs\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agents, and harnesses\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"designing evaluation and feedback loops\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience using AI for quantitative research\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Agent harnesses\", \"raw_text\": \"harnesses\"}\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Internship\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"(MSc or PhD)\",\n  \"uncertain\": [],\n  \"notes\": \"The 'You'll need' section is read as required. The 'Nice to have' heading makes Python and the AI-for-quant-research item nice_to_have.\\nNo alternative groups: 'LLMs, agents, and harnesses' are asked for together.\\nThe evaluation skill comes from 'designing evaluation and feedback loops that tell you whether an agent is actually improving'. That is agent evaluation, so it maps to evaluation; flagged because 'evaluation and feedback loops' is generic wording.\\nThe ai-ml skill comes from 'using AI for quantitative research'. Mapping it as applied AI is a judgment call, so it is flagged.\\n'Harnesses' (agent harnesses) has no taxonomy entry, so it is listed as unmapped.\\nNot labeled: 'exposure to trading' and 'math problems' are domain knowledge, not skills. 'High ownership and clear communication' are soft skills.\\nThe responsibilities mention research pipelines and experimentation loops. These are not labeled because the candidate is not asked for them as skills.\\nDegree: 'MSc or PhD' takes the highest level named, so phd. It is a bare mention in the requirements list, so required.\\nGerman: the posting does not mention German. 'English Speaking Jobs' appears only in the aggregator footer, so German is null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agents, and harnesses"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "designing evaluation and feedback loops",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience using AI for quantitative research",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Agent harnesses",
+        "raw_text": "harnesses"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Internship",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "(MSc or PhD)",
+    "uncertain": [],
+    "notes": "The 'You'll need' section is read as required. The 'Nice to have' heading makes Python and the AI-for-quant-research item nice_to_have.\nNo alternative groups: 'LLMs, agents, and harnesses' are asked for together.\nThe evaluation skill comes from 'designing evaluation and feedback loops that tell you whether an agent is actually improving'. That is agent evaluation, so it maps to evaluation; flagged because 'evaluation and feedback loops' is generic wording.\nThe ai-ml skill comes from 'using AI for quantitative research'. Mapping it as applied AI is a judgment call, so it is flagged.\n'Harnesses' (agent harnesses) has no taxonomy entry, so it is listed as unmapped.\nNot labeled: 'exposure to trading' and 'math problems' are domain knowledge, not skills. 'High ownership and clear communication' are soft skills.\nThe responsibilities mention research pipelines and experimentation loops. These are not labeled because the candidate is not asked for them as skills.\nDegree: 'MSc or PhD' takes the highest level named, so phd. It is a bare mention in the requirements list, so required.\nGerman: the posting does not mention German. 'English Speaking Jobs' appears only in the aggregator footer, so German is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "8ac9bc2be8ebd070488004b41d38cd8a5ae2da7ca85f50ba3ef249f72f4c0822",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,68 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Demonstrated experience with ML-accelerated weather, climate, or hydrology models\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"preferably in the AWS ecosystem\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation frameworks\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Large-scale computational infrastructure for ML training\",\n      \"raw_text\": \"computational infrastructure required to manage, preprocess, and train on large-scale climate datasets\"\n    },\n    {\n      \"label\": \"Spatiotemporal modeling\",\n      \"raw_text\": \"spatiotemporal modeling\"\n    },\n    {\n      \"label\": \"Data assimilation\",\n      \"raw_text\": \"data assimilation\"\n    },\n    {\n      \"label\": \"Hybrid physics-ML methods\",\n      \"raw_text\": \"hybrid physics-ML methods\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD in machine learning, computational science, Earth science, atmospheric science, hydrology, AI, computer science, or a related quantitative discipline.\",\n  \"notes\": \"The qualifications section defaults to required; inline preference makes AWS and the scientific-ML approaches optional. The general invitation to apply without every qualification does not change those labels.\\nScientific ML collapses into machine-learning, whose required mention wins. No alternative group remains with at least two mapped skills.\\nClimate, weather, hydrology, Earth science, and their dataset specialties are treated literally as domain knowledge rather than additional taxonomy skills.\\nComputational infrastructure is not automatically expanded to cloud or AI Infrastructure. Training and preprocessing occur within the infrastructure qualification rather than as independent candidate-skill asks.\\nThe unmapped spatiotemporal modeling, data assimilation, and hybrid physics-ML methods are strongly preferred technical approaches; the requested unmapped schema has no requirement field.\\nTechnologies and technical practices mentioned only in responsibilities are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Demonstrated experience with ML-accelerated weather, climate, or hydrology models"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "preferably in the AWS ecosystem"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation frameworks"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Large-scale computational infrastructure for ML training",
+        "raw_text": "computational infrastructure required to manage, preprocess, and train on large-scale climate datasets"
+      },
+      {
+        "label": "Spatiotemporal modeling",
+        "raw_text": "spatiotemporal modeling"
+      },
+      {
+        "label": "Data assimilation",
+        "raw_text": "data assimilation"
+      },
+      {
+        "label": "Hybrid physics-ML methods",
+        "raw_text": "hybrid physics-ML methods"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD in machine learning, computational science, Earth science, atmospheric science, hydrology, AI, computer science, or a related quantitative discipline.",
+    "notes": "The qualifications section defaults to required; inline preference makes AWS and the scientific-ML approaches optional. The general invitation to apply without every qualification does not change those labels.\nScientific ML collapses into machine-learning, whose required mention wins. No alternative group remains with at least two mapped skills.\nClimate, weather, hydrology, Earth science, and their dataset specialties are treated literally as domain knowledge rather than additional taxonomy skills.\nComputational infrastructure is not automatically expanded to cloud or AI Infrastructure. Training and preprocessing occur within the infrastructure qualification rather than as independent candidate-skill asks.\nThe unmapped spatiotemporal modeling, data assimilation, and hybrid physics-ML methods are strongly preferred technical approaches; the requested unmapped schema has no requirement field.\nTechnologies and technical practices mentioned only in responsibilities are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "63a9375938b7b3e2a3959f67ae64f7ccb034fcf0ff803c4645fb8619a9b8478c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

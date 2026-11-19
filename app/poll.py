@@ -18,7 +18,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 from app.ingest import Report, ingest
-from app.sources import registry
+from app.sources import jsearch, registry
 
 ROOT = Path(__file__).resolve().parent.parent
 FEEDS_PATH = ROOT / "config" / "feeds.json"
@@ -92,10 +92,27 @@ def _known_postings(conn: sqlite3.Connection, feed: dict) -> int:
     return board_history(conn, feed)[0]
 
 
-def poll_feeds(conn: sqlite3.Connection, feeds: list[dict], fetch=fetch_feed, log=print) -> Report:
+def jsearch_requests(conn: sqlite3.Connection, month: str) -> int:
+    """JSearch requests spent in `month` (YYYY-MM, UTC): one per recorded JSearch feed run,
+    failed runs included since a failed call may still have been billed. Every JSearch feed
+    asks for one page; a feed with `num_pages` above 1 would be undercounted (HIR-352)."""
+    row = conn.execute("SELECT count(*) FROM feed_run WHERE label LIKE 'jsearch:%' AND day LIKE ?",
+                       (f"{month}-%",)).fetchone()
+    return int(row[0])
+
+
+def poll_feeds(conn: sqlite3.Connection, feeds: list[dict], fetch=fetch_feed, log=print,
+               jsearch_cap: int = jsearch.MONTHLY_CAP) -> Report:
+    """Fetch and ingest each feed. JSearch feeds are skipped, not fetched, once this month's
+    JSearch requests reach `jsearch_cap`: past the plan's limit every request is billed, so
+    the searches stop until the month turns while every other feed carries on (HIR-352)."""
     total = Report()
+    month = datetime.now(timezone.utc).strftime("%Y-%m")
     for feed in feeds:
         label = feed_label(feed)
+        if feed["type"] == jsearch.SOURCE and jsearch_requests(conn, month) >= jsearch_cap:
+            log(f"{label}: SKIPPED, this month's JSearch requests reached the cap of {jsearch_cap}")
+            continue
         try:
             postings = fetch(feed)
         except Exception as e:

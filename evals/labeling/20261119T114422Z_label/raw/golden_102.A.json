@@ -1,0 +1,106 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"building and evaluating ML systems\"},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"software engineering experience\", \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"owning evaluation frameworks\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong Python\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\", \"alternative_group\": 1},\n    {\"skill_id\": \"transformers\", \"requirement\": \"required\", \"raw_text\": \"Transformers\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"statistics\", \"requirement\": \"required\", \"raw_text\": \"experimental design and statistics\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"language-model training\", \"uncertain\": true},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"post-training\", \"uncertain\": true},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"agent or gaming environments\", \"uncertain\": true},\n    {\"skill_id\": \"recommender-systems\", \"requirement\": \"nice_to_have\", \"raw_text\": \"recommendation metrics\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"a-b-testing\", \"requirement\": \"nice_to_have\", \"raw_text\": \"online experimentation\", \"alternative_group\": 2, \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Experimental design\", \"raw_text\": \"experimental design\"},\n    {\"label\": \"Running inference/evaluation workloads at scale\", \"raw_text\": \"running inference or evaluation workloads at scale\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The 'Minimum qualifications' items are required. Everything under the 'Preferred qualifications' heading is nice_to_have.\\n'ML or software engineering experience' could be read as an alternatives pair. Each skill is also asked for on its own ('building and evaluating ML systems'; 'reliable production software development'), so both leave any group.\\n'Transformers' is most likely the Hugging Face library. The taxonomy only has the architecture entry `transformers`, which matches the name literally, so I used it and flagged it.\\nPyTorch and Transformers are grouped because the bullet offers them as alternatives ('or comparable ML libraries'). 'or comparable' adds no skill.\\nIn 'human evaluation, LLM-as-judge calibration, recommendation metrics or online experimentation', the evaluation items collapse into the required `evaluation` criterion, so evaluation leaves the group.\\nWithin that same list, recommendation metrics maps to `recommender-systems` and online experimentation maps to `a-b-testing`. Both mappings are loose and flagged; I grouped the two because of the 'X, Y or Z' wording.\\n'language-model training or post-training' maps to `llms` plus `fine-tuning`, with post-training treated as fine-tuning; both are flagged. They are not grouped because the two are not clean alternatives of the same skill.\\nThe tech in the responsibilities section (LLM-based graders, tool calls, dashboards, agents) and in the company description is not labeled.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "building and evaluating ML systems"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering experience",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "owning evaluation frameworks"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "Transformers",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "experimental design and statistics"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "language-model training",
+        "uncertain": true
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "post-training",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agent or gaming environments",
+        "uncertain": true
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "recommendation metrics",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "nice_to_have",
+        "raw_text": "online experimentation",
+        "alternative_group": 2,
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Experimental design",
+        "raw_text": "experimental design"
+      },
+      {
+        "label": "Running inference/evaluation workloads at scale",
+        "raw_text": "running inference or evaluation workloads at scale"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The 'Minimum qualifications' items are required. Everything under the 'Preferred qualifications' heading is nice_to_have.\n'ML or software engineering experience' could be read as an alternatives pair. Each skill is also asked for on its own ('building and evaluating ML systems'; 'reliable production software development'), so both leave any group.\n'Transformers' is most likely the Hugging Face library. The taxonomy only has the architecture entry `transformers`, which matches the name literally, so I used it and flagged it.\nPyTorch and Transformers are grouped because the bullet offers them as alternatives ('or comparable ML libraries'). 'or comparable' adds no skill.\nIn 'human evaluation, LLM-as-judge calibration, recommendation metrics or online experimentation', the evaluation items collapse into the required `evaluation` criterion, so evaluation leaves the group.\nWithin that same list, recommendation metrics maps to `recommender-systems` and online experimentation maps to `a-b-testing`. Both mappings are loose and flagged; I grouped the two because of the 'X, Y or Z' wording.\n'language-model training or post-training' maps to `llms` plus `fine-tuning`, with post-training treated as fine-tuning; both are flagged. They are not grouped because the two are not clean alternatives of the same skill.\nThe tech in the responsibilities section (LLM-based graders, tool calls, dashboards, agents) and in the company description is not labeled."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "e7cb63a403b4941ecc704626c04ebab6a30d68ec72df76591d83946e1ce6c2f1",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

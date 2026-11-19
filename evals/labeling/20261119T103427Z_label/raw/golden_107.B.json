@@ -1,0 +1,143 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Go\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"C++ is a plus\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"designing and building scalable, maintainable systems and services\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"APIs\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"observability\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Deep knowledge of Kubernetes\"\n    },\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Linux\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"networking\"\n    },\n    {\n      \"skill_id\": \"ray\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Ray\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"mlflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"MLflow\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"distributed-training\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distributed training\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"training data pipelines\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"optimizing resource usage and performance in distributed environments\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Production service operation\",\n      \"raw_text\": \"operating production services end-to-end\"\n    },\n    {\n      \"label\": \"Reliability practices\",\n      \"raw_text\": \"reliability practices\"\n    },\n    {\n      \"label\": \"Systems debugging\",\n      \"raw_text\": \"systems debugging\"\n    },\n    {\n      \"label\": \"Performance investigation\",\n      \"raw_text\": \"performance investigation\"\n    },\n    {\n      \"label\": \"Storage and I/O\",\n      \"raw_text\": \"storage/IO\"\n    },\n    {\n      \"label\": \"Production troubleshooting\",\n      \"raw_text\": \"troubleshoot complex production issues across logs, metrics, and traces\"\n    },\n    {\n      \"label\": \"Argo Workflows\",\n      \"raw_text\": \"Argo Workflows\"\n    },\n    {\n      \"label\": \"Building or operating ML training systems\",\n      \"raw_text\": \"building or operating large-scale ML training systems\"\n    },\n    {\n      \"label\": \"GPU scheduling\",\n      \"raw_text\": \"GPU scheduling\"\n    },\n    {\n      \"label\": \"Resource and performance optimization\",\n      \"raw_text\": \"optimizing resource usage and performance in distributed environments\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The requirements section defaults to required; the Nice to have section is optional. The inline plus makes C++ optional.\\nAlternative group 2 also includes unmapped Argo Workflows; comparable distributed ML tooling adds no additional taxonomy skill.\\nArgo Workflows is not Argo CD. Its qualifying mention is in Nice to have, regardless of its appearances in responsibilities.\\nSystem design is provisionally mapped to software-architecture; optimization in distributed environments is provisionally mapped to distributed-systems. Both mappings are flagged for review.\\nKubernetes scheduling, resource management, controllers, and pod lifecycle are treated literally as details of the Kubernetes requirement, not separate taxonomy skills.\\nSystems debugging is not mapped to Software Testing; building training infrastructure is not treated as model training experience.\\nNo years, explicit seniority, or lead/mentoring duty are stated. Track record alone is not treated as the guide's specific proven experience signal.\\nNo German-language or degree requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "nice_to_have",
+        "raw_text": "C++ is a plus"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "designing and building scalable, maintainable systems and services",
+        "uncertain": true
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "observability"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Deep knowledge of Kubernetes"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "networking"
+      },
+      {
+        "skill_id": "ray",
+        "requirement": "nice_to_have",
+        "raw_text": "Ray",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "nice_to_have",
+        "raw_text": "MLflow",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed training"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "training data pipelines"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "optimizing resource usage and performance in distributed environments",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Production service operation",
+        "raw_text": "operating production services end-to-end"
+      },
+      {
+        "label": "Reliability practices",
+        "raw_text": "reliability practices"
+      },
+      {
+        "label": "Systems debugging",
+        "raw_text": "systems debugging"
+      },
+      {
+        "label": "Performance investigation",
+        "raw_text": "performance investigation"
+      },
+      {
+        "label": "Storage and I/O",
+        "raw_text": "storage/IO"
+      },
+      {
+        "label": "Production troubleshooting",
+        "raw_text": "troubleshoot complex production issues across logs, metrics, and traces"
+      },
+      {
+        "label": "Argo Workflows",
+        "raw_text": "Argo Workflows"
+      },
+      {
+        "label": "Building or operating ML training systems",
+        "raw_text": "building or operating large-scale ML training systems"
+      },
+      {
+        "label": "GPU scheduling",
+        "raw_text": "GPU scheduling"
+      },
+      {
+        "label": "Resource and performance optimization",
+        "raw_text": "optimizing resource usage and performance in distributed environments"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The requirements section defaults to required; the Nice to have section is optional. The inline plus makes C++ optional.\nAlternative group 2 also includes unmapped Argo Workflows; comparable distributed ML tooling adds no additional taxonomy skill.\nArgo Workflows is not Argo CD. Its qualifying mention is in Nice to have, regardless of its appearances in responsibilities.\nSystem design is provisionally mapped to software-architecture; optimization in distributed environments is provisionally mapped to distributed-systems. Both mappings are flagged for review.\nKubernetes scheduling, resource management, controllers, and pod lifecycle are treated literally as details of the Kubernetes requirement, not separate taxonomy skills.\nSystems debugging is not mapped to Software Testing; building training infrastructure is not treated as model training experience.\nNo years, explicit seniority, or lead/mentoring duty are stated. Track record alone is not treated as the guide's specific proven experience signal.\nNo German-language or degree requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "6813063fd3aad3e375ae40e91f306813aab85ddcce6736c5f993dfafa15750c1",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

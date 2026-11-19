@@ -1,0 +1,110 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"applied science experience in machine learning\"},\n    {\"skill_id\": \"model-development\", \"requirement\": \"required\", \"raw_text\": \"experience developing and training models\", \"uncertain\": true},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"required\", \"raw_text\": \"deep expertise in pre-training, post-training or reinforcement learning\"},\n    {\"skill_id\": \"statistics\", \"requirement\": \"required\", \"raw_text\": \"statistical judgment\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong Python\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch skills\"},\n    {\"skill_id\": \"distributed-training\", \"requirement\": \"required\", \"raw_text\": \"hands-on experience with distributed training\"},\n    {\"skill_id\": \"recommender-systems\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience with recommender systems\", \"alternative_group\": 1},\n    {\"skill_id\": \"knowledge-distillation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"distillation\", \"alternative_group\": 1},\n    {\"skill_id\": \"a-b-testing\", \"requirement\": \"nice_to_have\", \"raw_text\": \"online experimentation\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Pre-training\", \"raw_text\": \"pre-training\"},\n    {\"label\": \"Post-training\", \"raw_text\": \"post-training\"},\n    {\"label\": \"Generative retrieval\", \"raw_text\": \"generative retrieval\"},\n    {\"label\": \"Semantic IDs\", \"raw_text\": \"semantic IDs\"},\n    {\"label\": \"Continual learning\", \"raw_text\": \"continual learning\"},\n    {\"label\": \"Synthetic data\", \"raw_text\": \"synthetic data\"},\n    {\"label\": \"Tabular foundation models\", \"raw_text\": \"tabular foundation models\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Applied AI Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"A PhD or equivalent industry research experience\",\n  \"uncertain\": [],\n  \"notes\": \"Skills in the research areas and responsibilities sections were not labeled. Those sections describe the job, and the candidate is not asked for those skills. This covers RL environments, tool use, LLM-based graders, fine-tuning, evaluation and Hugging Face.\\nThe phrase 'pre-training, post-training or reinforcement learning' is an alternative ask, but only reinforcement-learning maps to the taxonomy. A group needs two skills, so no alternative_group was set.\\n'Research on large language models requires hands-on experience with distributed training': the ask is distributed training. llms is mentioned only as context, so it was not labeled.\\n'Developing and training models' was mapped to model-development; flagged uncertain.\\n'Sound experimental and statistical judgment' was mapped to statistics; flagged uncertain.\\n'Online experimentation' was mapped to a-b-testing; flagged uncertain.\\nThe Preferred qualifications list is introduced by 'Experience with ... or ...', which makes it an alternative group. recommender-systems and knowledge-distillation form group 1, and both are nice_to_have under the heading.\\nThe degree fields (machine learning, computer science, statistics) are degree context. Machine learning is labeled from the experience bullet instead.\\n'Commerce data' is domain knowledge, so it was not labeled.\\nThe 'equivalent industry research experience' wording sets degree_or_equivalent to true.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "applied science experience in machine learning"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "experience developing and training models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "deep expertise in pre-training, post-training or reinforcement learning"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistical judgment",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch skills"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "hands-on experience with distributed training"
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with recommender systems",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "nice_to_have",
+        "raw_text": "distillation",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "nice_to_have",
+        "raw_text": "online experimentation",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Pre-training",
+        "raw_text": "pre-training"
+      },
+      {
+        "label": "Post-training",
+        "raw_text": "post-training"
+      },
+      {
+        "label": "Generative retrieval",
+        "raw_text": "generative retrieval"
+      },
+      {
+        "label": "Semantic IDs",
+        "raw_text": "semantic IDs"
+      },
+      {
+        "label": "Continual learning",
+        "raw_text": "continual learning"
+      },
+      {
+        "label": "Synthetic data",
+        "raw_text": "synthetic data"
+      },
+      {
+        "label": "Tabular foundation models",
+        "raw_text": "tabular foundation models"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Applied AI Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "A PhD or equivalent industry research experience",
+    "uncertain": [],
+    "notes": "Skills in the research areas and responsibilities sections were not labeled. Those sections describe the job, and the candidate is not asked for those skills. This covers RL environments, tool use, LLM-based graders, fine-tuning, evaluation and Hugging Face.\nThe phrase 'pre-training, post-training or reinforcement learning' is an alternative ask, but only reinforcement-learning maps to the taxonomy. A group needs two skills, so no alternative_group was set.\n'Research on large language models requires hands-on experience with distributed training': the ask is distributed training. llms is mentioned only as context, so it was not labeled.\n'Developing and training models' was mapped to model-development; flagged uncertain.\n'Sound experimental and statistical judgment' was mapped to statistics; flagged uncertain.\n'Online experimentation' was mapped to a-b-testing; flagged uncertain.\nThe Preferred qualifications list is introduced by 'Experience with ... or ...', which makes it an alternative group. recommender-systems and knowledge-distillation form group 1, and both are nice_to_have under the heading.\nThe degree fields (machine learning, computer science, statistics) are degree context. Machine learning is labeled from the experience bullet instead.\n'Commerce data' is domain knowledge, so it was not labeled.\nThe 'equivalent industry research experience' wording sets degree_or_equivalent to true."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "3fdec858f76c3f8eba22ccfb7f31f7791ee3ae9dc3a7925c53d8ed45d6b3f365",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

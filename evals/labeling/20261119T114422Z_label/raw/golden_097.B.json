@@ -1,0 +1,191 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"professional software engineering experience\"\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Ideally experienced in Go, Python or TypeScript\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Ideally experienced in Go, Python or TypeScript\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Ideally experienced in Go, Python or TypeScript\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Backend\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"full-stack-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"full-stack background\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Real hands-on experience with agents or LLM-based systems\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Real hands-on experience with agents or LLM-based systems\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tool call\"\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MCP server infrastructure\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Some cloud experience\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GCP\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Git and GitHub workflows\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI coding tools\"\n    },\n    {\n      \"skill_id\": \"cursor\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cursor\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"claude-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Claude Code\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"github-copilot\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Copilot\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"codex\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Codex\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"open-source-llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"open-weight models\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"containers\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Debugging\",\n      \"raw_text\": \"debugging production-quality code\"\n    },\n    {\n      \"label\": \"Agent loops\",\n      \"raw_text\": \"agent loop\"\n    },\n    {\n      \"label\": \"Model routing\",\n      \"raw_text\": \"model router\"\n    },\n    {\n      \"label\": \"Terminal usage\",\n      \"raw_text\": \"Comfortable with the terminal\"\n    },\n    {\n      \"label\": \"Setup troubleshooting\",\n      \"raw_text\": \"diagnosing common setup problems\"\n    },\n    {\n      \"label\": \"SDK development\",\n      \"raw_text\": \"Experience building example apps, SDKs, or integration templates\"\n    },\n    {\n      \"label\": \"Integration template development\",\n      \"raw_text\": \"Experience building example apps, SDKs, or integration templates\"\n    },\n    {\n      \"label\": \"Sandboxing and isolation\",\n      \"raw_text\": \"sandboxing or isolation concepts\"\n    },\n    {\n      \"label\": \"Firecracker\",\n      \"raw_text\": \"Firecracker\"\n    },\n    {\n      \"label\": \"gVisor\",\n      \"raw_text\": \"gVisor\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years of professional software engineering experience.\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"WHAT YOU’LL NEED defaults to required; NICE TO HAVE is optional. Ideally makes the three programming languages optional.\\nOnly candidate qualifications are labeled; company descriptions and responsibilities are excluded. Teaching, communication, community reputation, and event facilitation are treated as soft skills rather than taxonomy skills.\\nThe coding-tool examples are treated as alternatives for the single AI-coding-tools ask, not as four independently mandatory tools.\\nAgent loops, tool calls, and model routers are explicitly alternatives, but only tool calling has a clear taxonomy match, so no singleton alternative group is emitted. Model routing is also requested optionally as multi-model routing.\\nOpen-weight models are provisionally mapped to open-source-llms and flagged because open weights do not necessarily imply open-source licensing.\\nDebugging and terminal usage are read literally: neither implies Software Testing, Bash, or Linux. Sandboxing examples do not imply cybersecurity.\\nSDK and integration-template development are optional unmapped practices. Building example apps is not interpreted as a specific application-development stack.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "professional software engineering experience"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "nice_to_have",
+        "raw_text": "Ideally experienced in Go, Python or TypeScript",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Ideally experienced in Go, Python or TypeScript",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "nice_to_have",
+        "raw_text": "Ideally experienced in Go, Python or TypeScript",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "full-stack background",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Real hands-on experience with agents or LLM-based systems",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Real hands-on experience with agents or LLM-based systems",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool call"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "MCP server infrastructure"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Some cloud experience"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git and GitHub workflows"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI coding tools"
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "Copilot",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "codex",
+        "requirement": "required",
+        "raw_text": "Codex",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "open-source-llms",
+        "requirement": "nice_to_have",
+        "raw_text": "open-weight models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containers"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Debugging",
+        "raw_text": "debugging production-quality code"
+      },
+      {
+        "label": "Agent loops",
+        "raw_text": "agent loop"
+      },
+      {
+        "label": "Model routing",
+        "raw_text": "model router"
+      },
+      {
+        "label": "Terminal usage",
+        "raw_text": "Comfortable with the terminal"
+      },
+      {
+        "label": "Setup troubleshooting",
+        "raw_text": "diagnosing common setup problems"
+      },
+      {
+        "label": "SDK development",
+        "raw_text": "Experience building example apps, SDKs, or integration templates"
+      },
+      {
+        "label": "Integration template development",
+        "raw_text": "Experience building example apps, SDKs, or integration templates"
+      },
+      {
+        "label": "Sandboxing and isolation",
+        "raw_text": "sandboxing or isolation concepts"
+      },
+      {
+        "label": "Firecracker",
+        "raw_text": "Firecracker"
+      },
+      {
+        "label": "gVisor",
+        "raw_text": "gVisor"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years of professional software engineering experience.",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "WHAT YOU’LL NEED defaults to required; NICE TO HAVE is optional. Ideally makes the three programming languages optional.\nOnly candidate qualifications are labeled; company descriptions and responsibilities are excluded. Teaching, communication, community reputation, and event facilitation are treated as soft skills rather than taxonomy skills.\nThe coding-tool examples are treated as alternatives for the single AI-coding-tools ask, not as four independently mandatory tools.\nAgent loops, tool calls, and model routers are explicitly alternatives, but only tool calling has a clear taxonomy match, so no singleton alternative group is emitted. Model routing is also requested optionally as multi-model routing.\nOpen-weight models are provisionally mapped to open-source-llms and flagged because open weights do not necessarily imply open-source licensing.\nDebugging and terminal usage are read literally: neither implies Software Testing, Bash, or Linux. Sandboxing examples do not imply cybersecurity.\nSDK and integration-template development are optional unmapped practices. Building example apps is not interpreted as a specific application-development stack."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "b2d387af473a5300446756490c210507623f4d890c014e841455416e8d06f4e5",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

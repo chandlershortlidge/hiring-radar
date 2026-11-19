@@ -1,0 +1,2375 @@
+{
+  "golden_094": {
+    "accepted_skills": [],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Sr. Staff Engineer"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "phd",
+        "degree_requirement": "required",
+        "degree_or_equivalent": false,
+        "degree_signal": "You have a BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Distributed control systems",
+        "raw_text": "complex distributed control systems"
+      },
+      {
+        "labeler": "A",
+        "label": "Industrial automation",
+        "raw_text": "industrial automation"
+      },
+      {
+        "labeler": "A",
+        "label": "Thermal management systems",
+        "raw_text": "thermal management systems"
+      },
+      {
+        "labeler": "A",
+        "label": "Liquid-cooling systems",
+        "raw_text": "liquid-cooling systems"
+      },
+      {
+        "labeler": "A",
+        "label": "Control theory",
+        "raw_text": "control theory"
+      },
+      {
+        "labeler": "A",
+        "label": "Feedback systems",
+        "raw_text": "feedback systems"
+      },
+      {
+        "labeler": "A",
+        "label": "PID control",
+        "raw_text": "PID control"
+      },
+      {
+        "labeler": "A",
+        "label": "System modeling",
+        "raw_text": "system modeling"
+      },
+      {
+        "labeler": "A",
+        "label": "Dynamic thermal management",
+        "raw_text": "dynamic thermal management"
+      },
+      {
+        "labeler": "A",
+        "label": "Industrial communication protocols",
+        "raw_text": "industrial communication and management protocols"
+      },
+      {
+        "labeler": "A",
+        "label": "Modbus",
+        "raw_text": "Modbus"
+      },
+      {
+        "labeler": "A",
+        "label": "BACnet",
+        "raw_text": "BACnet"
+      },
+      {
+        "labeler": "A",
+        "label": "OPC UA",
+        "raw_text": "OPC UA"
+      },
+      {
+        "labeler": "A",
+        "label": "MQTT",
+        "raw_text": "MQTT"
+      },
+      {
+        "labeler": "A",
+        "label": "Ethernet-based control networks",
+        "raw_text": "Ethernet-based control networks"
+      },
+      {
+        "labeler": "A",
+        "label": "Telemetry",
+        "raw_text": "telemetry"
+      },
+      {
+        "labeler": "A",
+        "label": "Fault detection",
+        "raw_text": "fault detection"
+      },
+      {
+        "labeler": "B",
+        "label": "Industrial automation",
+        "raw_text": "industrial automation"
+      },
+      {
+        "labeler": "B",
+        "label": "Thermal management systems",
+        "raw_text": "thermal management systems"
+      },
+      {
+        "labeler": "B",
+        "label": "Hardware, firmware, and software subsystem integration",
+        "raw_text": "integrating multiple hardware, firmware, and software subsystems"
+      },
+      {
+        "labeler": "B",
+        "label": "Control theory",
+        "raw_text": "control theory"
+      },
+      {
+        "labeler": "B",
+        "label": "Feedback systems",
+        "raw_text": "feedback systems"
+      },
+      {
+        "labeler": "B",
+        "label": "PID control",
+        "raw_text": "PID control"
+      },
+      {
+        "labeler": "B",
+        "label": "System modeling",
+        "raw_text": "system modeling"
+      },
+      {
+        "labeler": "B",
+        "label": "Dynamic thermal management",
+        "raw_text": "dynamic thermal management"
+      },
+      {
+        "labeler": "B",
+        "label": "Industrial communication and management protocols",
+        "raw_text": "industrial communication and management protocols"
+      },
+      {
+        "labeler": "B",
+        "label": "Modbus",
+        "raw_text": "Modbus"
+      },
+      {
+        "labeler": "B",
+        "label": "BACnet",
+        "raw_text": "BACnet"
+      },
+      {
+        "labeler": "B",
+        "label": "OPC UA",
+        "raw_text": "OPC UA"
+      },
+      {
+        "labeler": "B",
+        "label": "MQTT",
+        "raw_text": "MQTT"
+      },
+      {
+        "labeler": "B",
+        "label": "Fault detection",
+        "raw_text": "fault detection"
+      }
+    ]
+  },
+  "golden_095": {
+    "accepted_skills": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python/Tcl"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "interest or experience in ML frameworks (PyTorch, TensorFlow)"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "nice_to_have",
+        "raw_text": "interest or experience in ML frameworks (PyTorch, TensorFlow)"
+      }
+    ],
+    "accepted_attrs": {
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "bachelor",
+        "degree_requirement": "required",
+        "degree_or_equivalent": true,
+        "degree_signal": "BS in Electrical or Computer Engineering (or equivalent experience)"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Tcl",
+        "raw_text": "Python/Tcl"
+      },
+      {
+        "labeler": "A",
+        "label": "ML frameworks",
+        "raw_text": "interest or experience in ML frameworks"
+      },
+      {
+        "labeler": "A",
+        "label": "EDA tools",
+        "raw_text": "industry-standard EDA tools"
+      },
+      {
+        "labeler": "A",
+        "label": "Fusion Compiler",
+        "raw_text": "Fusion Compiler"
+      },
+      {
+        "labeler": "A",
+        "label": "Synthesis / P&R / STA / signoff / hierarchical flows",
+        "raw_text": "synthesis, P&R, STA, signoff, and hierarchical flows"
+      },
+      {
+        "labeler": "A",
+        "label": "Physical Design CAD methodology",
+        "raw_text": "Physical Design CAD methodology at advanced nodes"
+      },
+      {
+        "labeler": "A",
+        "label": "PPA/runtime optimization",
+        "raw_text": "improving PPA and/or runtime"
+      },
+      {
+        "labeler": "A",
+        "label": "data skills",
+        "raw_text": "data skills"
+      },
+      {
+        "labeler": "B",
+        "label": "Physical Design CAD methodology",
+        "raw_text": "Physical Design CAD methodology"
+      },
+      {
+        "labeler": "B",
+        "label": "PPA optimization",
+        "raw_text": "improving PPA"
+      },
+      {
+        "labeler": "B",
+        "label": "Runtime optimization",
+        "raw_text": "improving PPA and/or runtime"
+      },
+      {
+        "labeler": "B",
+        "label": "EDA tools",
+        "raw_text": "industry-standard EDA tools"
+      },
+      {
+        "labeler": "B",
+        "label": "Fusion Compiler",
+        "raw_text": "Fusion Compiler"
+      },
+      {
+        "labeler": "B",
+        "label": "Logic synthesis",
+        "raw_text": "synthesis"
+      },
+      {
+        "labeler": "B",
+        "label": "Place and route",
+        "raw_text": "P&R"
+      },
+      {
+        "labeler": "B",
+        "label": "Static timing analysis",
+        "raw_text": "STA"
+      },
+      {
+        "labeler": "B",
+        "label": "Physical design signoff",
+        "raw_text": "signoff"
+      },
+      {
+        "labeler": "B",
+        "label": "Hierarchical design flows",
+        "raw_text": "hierarchical flows"
+      },
+      {
+        "labeler": "B",
+        "label": "Tcl",
+        "raw_text": "Tcl"
+      },
+      {
+        "labeler": "B",
+        "label": "Data skills",
+        "raw_text": "data skills"
+      }
+    ]
+  },
+  "golden_096": {
+    "accepted_skills": [
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "Strong expertise in both computer vision"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerization technologies"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "deepspeed",
+        "requirement": "nice_to_have",
+        "raw_text": "DeepSpeed"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "experience in distributed training"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "large language model fine-tuning"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "large language model fine-tuning"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps practices"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "hands-on model development experience"
+      },
+      {
+        "skill_id": "model-versioning",
+        "requirement": "required",
+        "raw_text": "model versioning"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "natural language processing"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "reinforcement learning algorithms"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "transformer architectures"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Staff R&D AI Engineer"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "phd",
+        "degree_requirement": "nice_to_have",
+        "degree_or_equivalent": false,
+        "degree_signal": "PhD in Computer Science, Robotics, AI/ML, or related field"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "PPO / SAC / TD3",
+        "raw_text": "PPO, SAC, TD3"
+      },
+      {
+        "labeler": "A",
+        "label": "Attention mechanisms",
+        "raw_text": "attention mechanisms"
+      },
+      {
+        "labeler": "A",
+        "label": "Object detection",
+        "raw_text": "object detection"
+      },
+      {
+        "labeler": "A",
+        "label": "Semantic segmentation",
+        "raw_text": "semantic segmentation"
+      },
+      {
+        "labeler": "A",
+        "label": "Visual tracking",
+        "raw_text": "visual tracking"
+      },
+      {
+        "labeler": "A",
+        "label": "Model optimization",
+        "raw_text": "model optimization"
+      },
+      {
+        "labeler": "A",
+        "label": "Sequential decision-making / control systems",
+        "raw_text": "sequential decision-making and control systems fundamentals"
+      },
+      {
+        "labeler": "A",
+        "label": "Vision-Language-Action models",
+        "raw_text": "Vision-Language-Action (VLA) models"
+      },
+      {
+        "labeler": "A",
+        "label": "Multimodal architectures",
+        "raw_text": "similar multimodal architectures"
+      },
+      {
+        "labeler": "A",
+        "label": "RLHF",
+        "raw_text": "RLHF implementation"
+      },
+      {
+        "labeler": "A",
+        "label": "Imitation learning",
+        "raw_text": "imitation learning"
+      },
+      {
+        "labeler": "A",
+        "label": "Inverse reinforcement learning",
+        "raw_text": "inverse reinforcement learning"
+      },
+      {
+        "labeler": "A",
+        "label": "Sim-to-real transfer",
+        "raw_text": "sim-to-real transfer techniques"
+      },
+      {
+        "labeler": "A",
+        "label": "3D computer vision",
+        "raw_text": "3D computer vision"
+      },
+      {
+        "labeler": "A",
+        "label": "FairScale",
+        "raw_text": "FairScale"
+      },
+      {
+        "labeler": "A",
+        "label": "Horovod",
+        "raw_text": "Horovod"
+      },
+      {
+        "labeler": "A",
+        "label": "Edge AI deployment",
+        "raw_text": "edge AI deployment"
+      },
+      {
+        "labeler": "A",
+        "label": "Pruning",
+        "raw_text": "pruning"
+      },
+      {
+        "labeler": "A",
+        "label": "Embodied AI",
+        "raw_text": "embodied AI research"
+      },
+      {
+        "labeler": "A",
+        "label": "AI alignment",
+        "raw_text": "AI alignment research"
+      },
+      {
+        "labeler": "B",
+        "label": "Neural network development",
+        "raw_text": "neural network development"
+      },
+      {
+        "labeler": "B",
+        "label": "Proximal Policy Optimization (PPO)",
+        "raw_text": "PPO"
+      },
+      {
+        "labeler": "B",
+        "label": "Soft Actor-Critic (SAC)",
+        "raw_text": "SAC"
+      },
+      {
+        "labeler": "B",
+        "label": "Twin Delayed DDPG (TD3)",
+        "raw_text": "TD3"
+      },
+      {
+        "labeler": "B",
+        "label": "Attention mechanisms",
+        "raw_text": "attention mechanisms"
+      },
+      {
+        "labeler": "B",
+        "label": "Object detection",
+        "raw_text": "object detection"
+      },
+      {
+        "labeler": "B",
+        "label": "Semantic segmentation",
+        "raw_text": "semantic segmentation"
+      },
+      {
+        "labeler": "B",
+        "label": "Visual tracking",
+        "raw_text": "visual tracking"
+      },
+      {
+        "labeler": "B",
+        "label": "Model optimization",
+        "raw_text": "model optimization"
+      },
+      {
+        "labeler": "B",
+        "label": "Sequential decision-making",
+        "raw_text": "sequential decision-making"
+      },
+      {
+        "labeler": "B",
+        "label": "Control systems",
+        "raw_text": "control systems fundamentals"
+      },
+      {
+        "labeler": "B",
+        "label": "Vision-Language-Action models",
+        "raw_text": "Vision-Language-Action (VLA) models"
+      },
+      {
+        "labeler": "B",
+        "label": "Multimodal architectures",
+        "raw_text": "multimodal architectures"
+      },
+      {
+        "labeler": "B",
+        "label": "Reinforcement Learning from Human Feedback",
+        "raw_text": "RLHF implementation"
+      },
+      {
+        "labeler": "B",
+        "label": "Human feedback integration for model alignment",
+        "raw_text": "human feedback integration for model alignment"
+      },
+      {
+        "labeler": "B",
+        "label": "Imitation learning",
+        "raw_text": "imitation learning"
+      },
+      {
+        "labeler": "B",
+        "label": "Inverse reinforcement learning",
+        "raw_text": "inverse reinforcement learning"
+      },
+      {
+        "labeler": "B",
+        "label": "Learning from demonstrations",
+        "raw_text": "learning from demonstrations"
+      },
+      {
+        "labeler": "B",
+        "label": "Sim-to-real transfer",
+        "raw_text": "sim-to-real transfer techniques"
+      },
+      {
+        "labeler": "B",
+        "label": "3D computer vision",
+        "raw_text": "3D computer vision"
+      },
+      {
+        "labeler": "B",
+        "label": "Spatial reasoning",
+        "raw_text": "spatial reasoning"
+      },
+      {
+        "labeler": "B",
+        "label": "Multimodal perception",
+        "raw_text": "multi-modal perception systems"
+      },
+      {
+        "labeler": "B",
+        "label": "FairScale",
+        "raw_text": "FairScale"
+      },
+      {
+        "labeler": "B",
+        "label": "Horovod",
+        "raw_text": "Horovod"
+      },
+      {
+        "labeler": "B",
+        "label": "Model pruning",
+        "raw_text": "pruning"
+      },
+      {
+        "labeler": "B",
+        "label": "Embodied AI",
+        "raw_text": "embodied AI"
+      },
+      {
+        "labeler": "B",
+        "label": "Agent-environment interaction",
+        "raw_text": "agent-environment interaction"
+      },
+      {
+        "labeler": "B",
+        "label": "AI alignment",
+        "raw_text": "AI alignment research"
+      }
+    ]
+  },
+  "golden_097": {
+    "accepted_skills": [
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "LLM-powered agents and agentic workflows"
+      },
+      {
+        "skill_id": "angular",
+        "requirement": "nice_to_have",
+        "raw_text": "Angular"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud environments"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerized"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "ETL pipelines"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation approaches and frameworks"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "version control"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go"
+      },
+      {
+        "skill_id": "graphql",
+        "requirement": "nice_to_have",
+        "raw_text": "GraphQL"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "nice_to_have",
+        "raw_text": "infrastructure as code"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes [K8s]"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-powered"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning, and other production analytics"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "MCP servers"
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "required",
+        "raw_text": "multi-agent architectures"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "excellence in Python is essential"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "retrieval-augmented generation (RAG)"
+      },
+      {
+        "skill_id": "react",
+        "requirement": "nice_to_have",
+        "raw_text": "React"
+      },
+      {
+        "skill_id": "rust",
+        "requirement": "required",
+        "raw_text": "Rust"
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "required",
+        "raw_text": "Scala"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "and/or scikit-learn"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software engineering fundamentals"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use"
+      },
+      {
+        "skill_id": "vue",
+        "requirement": "nice_to_have",
+        "raw_text": "Vue"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Senior Machine Learning Engineer"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Data engineering",
+        "raw_text": "data engineering"
+      },
+      {
+        "labeler": "A",
+        "label": "Data cleaning",
+        "raw_text": "data cleaning"
+      },
+      {
+        "labeler": "A",
+        "label": "Agent planning",
+        "raw_text": "planning"
+      },
+      {
+        "labeler": "A",
+        "label": "Agile",
+        "raw_text": "Agile"
+      },
+      {
+        "labeler": "A",
+        "label": "Issue tracking",
+        "raw_text": "issue tracking"
+      },
+      {
+        "labeler": "A",
+        "label": "Design patterns",
+        "raw_text": "design patterns"
+      },
+      {
+        "labeler": "A",
+        "label": "Algorithms and data structures",
+        "raw_text": "algorithms, data structures"
+      },
+      {
+        "labeler": "A",
+        "label": "Client-server architecture",
+        "raw_text": "design patterns for client-server systems"
+      },
+      {
+        "labeler": "A",
+        "label": "Unstructured data types",
+        "raw_text": "a variety of unstructured data types"
+      },
+      {
+        "labeler": "B",
+        "label": "Data engineering",
+        "raw_text": "data engineering"
+      },
+      {
+        "labeler": "B",
+        "label": "Data cleaning",
+        "raw_text": "data cleaning"
+      },
+      {
+        "labeler": "B",
+        "label": "Production analytics",
+        "raw_text": "production analytics"
+      },
+      {
+        "labeler": "B",
+        "label": "Agent planning",
+        "raw_text": "planning"
+      },
+      {
+        "labeler": "B",
+        "label": "Algorithms",
+        "raw_text": "algorithms"
+      },
+      {
+        "labeler": "B",
+        "label": "Data structures",
+        "raw_text": "data structures"
+      },
+      {
+        "labeler": "B",
+        "label": "Design patterns",
+        "raw_text": "design patterns"
+      },
+      {
+        "labeler": "B",
+        "label": "Systems programming",
+        "raw_text": "systems programming language"
+      },
+      {
+        "labeler": "B",
+        "label": "Agile",
+        "raw_text": "Agile"
+      },
+      {
+        "labeler": "B",
+        "label": "Issue tracking",
+        "raw_text": "issue tracking"
+      },
+      {
+        "labeler": "B",
+        "label": "Debugging",
+        "raw_text": "debugging"
+      },
+      {
+        "labeler": "B",
+        "label": "Client-server systems",
+        "raw_text": "client-server systems"
+      },
+      {
+        "labeler": "B",
+        "label": "Experience with unstructured data",
+        "raw_text": "Experience with a variety of unstructured data types"
+      }
+    ]
+  },
+  "golden_098": {
+    "accepted_skills": [
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience deploying machine learning and data science solutions to production environments"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud infrastructure"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "nice_to_have",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "ETL pipelines, data pipelines"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "Proficiency in machine learning and data science"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "nice_to_have",
+        "raw_text": "Exposure to DevOps"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "nice_to_have",
+        "raw_text": "Go"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "nice_to_have",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Proficiency in machine learning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Excellence in Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "rust",
+        "requirement": "nice_to_have",
+        "raw_text": "Rust"
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "nice_to_have",
+        "raw_text": "Scala"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "and/or scikit-learn"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "nice_to_have",
+        "raw_text": "and/or workflow automation"
+      }
+    ],
+    "accepted_attrs": {
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Data structures and algorithms",
+        "raw_text": "Proficiency in implementing and analyzing data structures and algorithms"
+      },
+      {
+        "labeler": "A",
+        "label": "Systems programming",
+        "raw_text": "developing software in a systems programming language"
+      },
+      {
+        "labeler": "A",
+        "label": "Unstructured data processing",
+        "raw_text": "Experience processing a variety of unstructured data types"
+      },
+      {
+        "labeler": "B",
+        "label": "Application of machine learning and data science to image data",
+        "raw_text": "image data"
+      },
+      {
+        "labeler": "B",
+        "label": "Application of machine learning and data science to video data",
+        "raw_text": "video data"
+      },
+      {
+        "labeler": "B",
+        "label": "Implementing and analyzing data structures",
+        "raw_text": "implementing and analyzing data structures"
+      },
+      {
+        "labeler": "B",
+        "label": "Implementing and analyzing algorithms",
+        "raw_text": "implementing and analyzing data structures and algorithms"
+      },
+      {
+        "labeler": "B",
+        "label": "Software development life cycle and tools",
+        "raw_text": "software development life cycle and tools"
+      },
+      {
+        "labeler": "B",
+        "label": "Processing unstructured data",
+        "raw_text": "processing a variety of unstructured data types (e.g., image/video, text, telemetry, graphs, or other)"
+      },
+      {
+        "labeler": "B",
+        "label": "Systems programming",
+        "raw_text": "developing software in a systems programming language"
+      }
+    ]
+  },
+  "golden_099": {
+    "accepted_skills": [
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "computer vision"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "Enough C++ to be useful"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "a modern deep learning framework"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "large language models"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "mid",
+        "seniority_basis": "inferred",
+        "seniority_signal": "At least three years"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "large-scale data tooling",
+        "raw_text": "large-scale data tooling"
+      },
+      {
+        "labeler": "B",
+        "label": "Data collection",
+        "raw_text": "data collection"
+      },
+      {
+        "labeler": "B",
+        "label": "Generative modelling",
+        "raw_text": "generative modelling"
+      },
+      {
+        "labeler": "B",
+        "label": "Large-scale data tooling",
+        "raw_text": "large-scale data tooling"
+      }
+    ]
+  },
+  "golden_100": {
+    "accepted_skills": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "in particular LLMs"
+      }
+    ],
+    "accepted_attrs": {
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "RTL design",
+        "raw_text": "Extensive experience in RTL design"
+      },
+      {
+        "labeler": "A",
+        "label": "Micro-architecture of caches / scratch-pad memories",
+        "raw_text": "micro-architecture of caches and/or scratch-pad memories"
+      },
+      {
+        "labeler": "A",
+        "label": "Performance modeling for architecture exploration",
+        "raw_text": "performance models for architecture exploration"
+      },
+      {
+        "labeler": "A",
+        "label": "Power- and area-efficient architectures",
+        "raw_text": "power- and area-efficient architectures"
+      },
+      {
+        "labeler": "A",
+        "label": "Microprocessor architecture",
+        "raw_text": "microprocessor architecture"
+      },
+      {
+        "labeler": "A",
+        "label": "Logic design principles",
+        "raw_text": "logic design principles"
+      },
+      {
+        "labeler": "A",
+        "label": "Evaluating large-scale AI systems (appetite only)",
+        "raw_text": "Deep interest in evaluating large-scale AI systems"
+      },
+      {
+        "labeler": "B",
+        "label": "RTL design",
+        "raw_text": "RTL design"
+      },
+      {
+        "labeler": "B",
+        "label": "Cache micro-architecture",
+        "raw_text": "micro-architecture of caches"
+      },
+      {
+        "labeler": "B",
+        "label": "Scratch-pad memory micro-architecture",
+        "raw_text": "micro-architecture of caches and/or scratch-pad memories"
+      },
+      {
+        "labeler": "B",
+        "label": "Performance modeling for architecture exploration",
+        "raw_text": "developing and/or working with performance models for architecture exploration"
+      },
+      {
+        "labeler": "B",
+        "label": "Power- and area-efficient hardware architecture",
+        "raw_text": "power- and area-efficient architectures"
+      },
+      {
+        "labeler": "B",
+        "label": "Microprocessor architecture",
+        "raw_text": "microprocessor architecture"
+      },
+      {
+        "labeler": "B",
+        "label": "Logic design and timing/power tradeoffs",
+        "raw_text": "logic design principles, and their timing/power tradeoffs"
+      },
+      {
+        "labeler": "B",
+        "label": "Large-scale AI system evaluation",
+        "raw_text": "Deep interest in evaluating large-scale AI systems from software to physical design."
+      }
+    ]
+  },
+  "golden_101": {
+    "accepted_skills": [
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with cloud computing services"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "Familiarity with containerization"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "specific expertise in Large Language Models"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "6 years of experience in machine learning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong programming skills in Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Staff Machine Learning Engineer"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Mixture of Experts",
+        "raw_text": "specific expertise in Large Language Models and Mixture of Experts"
+      },
+      {
+        "labeler": "A",
+        "label": "Big Data technologies",
+        "raw_text": "Knowledge of Big Data technologies"
+      },
+      {
+        "labeler": "B",
+        "label": "Mixture of Experts",
+        "raw_text": "Mixture of Experts"
+      },
+      {
+        "labeler": "B",
+        "label": "Machine learning frameworks",
+        "raw_text": "machine learning frameworks"
+      },
+      {
+        "labeler": "B",
+        "label": "Big Data technologies",
+        "raw_text": "Big Data technologies"
+      }
+    ]
+  },
+  "golden_102": {
+    "accepted_skills": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "strong Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "strong background in statistical reasoning and methods"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Lead Data Scientist"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "phd",
+        "degree_requirement": "nice_to_have",
+        "degree_or_equivalent": false,
+        "degree_signal": "MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Data engineering",
+        "raw_text": "experience in data engineering"
+      },
+      {
+        "labeler": "A",
+        "label": "Modern data stack",
+        "raw_text": "Familiarity with the modern data stack"
+      },
+      {
+        "labeler": "B",
+        "label": "Experimentation",
+        "raw_text": "independently run experiments"
+      },
+      {
+        "labeler": "B",
+        "label": "Modern data stack",
+        "raw_text": "Familiarity with the modern data stack"
+      },
+      {
+        "labeler": "B",
+        "label": "Data engineering",
+        "raw_text": "experience in data engineering"
+      }
+    ]
+  },
+  "golden_103": {
+    "accepted_skills": [
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "nice_to_have",
+        "raw_text": "embeddings"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM evaluation"
+      },
+      {
+        "skill_id": "event-driven-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "event-driven architectures"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes (K8s)"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "nice_to_have",
+        "raw_text": "guardrails"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "development and use of machine learning models"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "observability"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong proficiency in Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "retrieval-augmented generation (RAG)"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software engineering fundamentals"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "testing"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "nice_to_have",
+        "raw_text": "vector databases"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "junior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Junior Machine Learning Engineer"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "systems programming language",
+        "raw_text": "at least one systems programming language"
+      },
+      {
+        "labeler": "A",
+        "label": "exploratory data analysis",
+        "raw_text": "exploratory data analysis on structured and unstructured data"
+      },
+      {
+        "labeler": "A",
+        "label": "Podman",
+        "raw_text": "Podman"
+      },
+      {
+        "labeler": "A",
+        "label": "concurrency",
+        "raw_text": "concurrency"
+      },
+      {
+        "labeler": "B",
+        "label": "Systems programming language",
+        "raw_text": "experience with at least one systems programming language"
+      },
+      {
+        "labeler": "B",
+        "label": "Exploratory data analysis",
+        "raw_text": "exploratory data analysis on structured and unstructured data"
+      },
+      {
+        "labeler": "B",
+        "label": "Podman",
+        "raw_text": "Podman"
+      },
+      {
+        "labeler": "B",
+        "label": "Concurrency",
+        "raw_text": "concurrency"
+      }
+    ]
+  },
+  "golden_104": {
+    "accepted_skills": [
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning architectures"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with distributed training"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning large-scale models"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "required",
+        "raw_text": "distillation"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "Research experience in generative AI"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Proficiency in Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "required",
+        "raw_text": "quantization, distillation, pruning"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "transformers, CNNs, RNNs"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "mid",
+        "seniority_basis": "inferred",
+        "seniority_signal": "4+ years of experience"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "CNNs",
+        "raw_text": "CNNs"
+      },
+      {
+        "labeler": "A",
+        "label": "RNNs",
+        "raw_text": "RNNs"
+      },
+      {
+        "labeler": "A",
+        "label": "Diffusion models",
+        "raw_text": "diffusion models"
+      },
+      {
+        "labeler": "A",
+        "label": "Pruning",
+        "raw_text": "pruning"
+      },
+      {
+        "labeler": "A",
+        "label": "Hardware-aware training",
+        "raw_text": "hardware-aware training"
+      },
+      {
+        "labeler": "A",
+        "label": "Edge inference",
+        "raw_text": "edge inference"
+      },
+      {
+        "labeler": "A",
+        "label": "On-device ML",
+        "raw_text": "on-device ML"
+      },
+      {
+        "labeler": "A",
+        "label": "Multimodal learning",
+        "raw_text": "multimodal learning"
+      },
+      {
+        "labeler": "A",
+        "label": "Federated learning",
+        "raw_text": "federated learning"
+      },
+      {
+        "labeler": "A",
+        "label": "Privacy-preserving ML",
+        "raw_text": "privacy-preserving ML techniques"
+      },
+      {
+        "labeler": "B",
+        "label": "Convolutional neural networks",
+        "raw_text": "CNNs"
+      },
+      {
+        "labeler": "B",
+        "label": "Recurrent neural networks",
+        "raw_text": "RNNs"
+      },
+      {
+        "labeler": "B",
+        "label": "Diffusion models",
+        "raw_text": "diffusion models"
+      },
+      {
+        "labeler": "B",
+        "label": "Dataset construction",
+        "raw_text": "building datasets"
+      },
+      {
+        "labeler": "B",
+        "label": "Experimental design",
+        "raw_text": "designing experiments"
+      },
+      {
+        "labeler": "B",
+        "label": "Model optimization techniques",
+        "raw_text": "optimization techniques"
+      },
+      {
+        "labeler": "B",
+        "label": "Model pruning",
+        "raw_text": "pruning"
+      },
+      {
+        "labeler": "B",
+        "label": "Hardware-aware training",
+        "raw_text": "hardware-aware training"
+      },
+      {
+        "labeler": "B",
+        "label": "Edge inference",
+        "raw_text": "edge inference"
+      },
+      {
+        "labeler": "B",
+        "label": "On-device machine learning",
+        "raw_text": "on-device ML"
+      },
+      {
+        "labeler": "B",
+        "label": "Multimodal learning",
+        "raw_text": "multimodal learning"
+      },
+      {
+        "labeler": "B",
+        "label": "Federated learning",
+        "raw_text": "federated learning"
+      },
+      {
+        "labeler": "B",
+        "label": "Academic publication contributions",
+        "raw_text": "contributing to academic publications"
+      },
+      {
+        "labeler": "B",
+        "label": "Patent contributions",
+        "raw_text": "patents"
+      },
+      {
+        "labeler": "B",
+        "label": "Open-source ML project contributions",
+        "raw_text": "open-source ML projects"
+      }
+    ]
+  },
+  "golden_105": {
+    "accepted_skills": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      }
+    ],
+    "accepted_attrs": {
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Tcl",
+        "raw_text": "Tcl"
+      },
+      {
+        "labeler": "A",
+        "label": "Perl",
+        "raw_text": "Perl"
+      },
+      {
+        "labeler": "A",
+        "label": "Synopsys Fusion Compiler / ICC2",
+        "raw_text": "FusionCompiler/ICC2"
+      },
+      {
+        "labeler": "A",
+        "label": "Cadence Innovus / Genus",
+        "raw_text": "Innovus/Genus"
+      },
+      {
+        "labeler": "A",
+        "label": "PrimeTime",
+        "raw_text": "PrimeTime"
+      },
+      {
+        "labeler": "A",
+        "label": "RedHawk",
+        "raw_text": "RedHawk"
+      },
+      {
+        "labeler": "A",
+        "label": "Low-power intent (UPF/CPF)",
+        "raw_text": "low-power intent (UPF/CPF)"
+      },
+      {
+        "labeler": "A",
+        "label": "Clock tree synthesis",
+        "raw_text": "clock tree synthesis"
+      },
+      {
+        "labeler": "A",
+        "label": "Signoff (EM/IR, DRC/LVS)",
+        "raw_text": "signoff (EM/IR, DRC/LVS)"
+      },
+      {
+        "labeler": "A",
+        "label": "Physical design / CAD methodology flows (RTL-to-GDSII)",
+        "raw_text": "developing and supporting physical design methodology or CAD flows"
+      },
+      {
+        "labeler": "B",
+        "label": "Physical design methodology",
+        "raw_text": "physical design methodology"
+      },
+      {
+        "labeler": "B",
+        "label": "CAD flow development and support",
+        "raw_text": "developing and supporting physical design methodology or CAD flows in production use"
+      },
+      {
+        "labeler": "B",
+        "label": "PPA exploration",
+        "raw_text": "making PPA exploration repeatable"
+      },
+      {
+        "labeler": "B",
+        "label": "Technical documentation",
+        "raw_text": "documents flows well enough that others can run them without you"
+      },
+      {
+        "labeler": "B",
+        "label": "FusionCompiler",
+        "raw_text": "FusionCompiler"
+      },
+      {
+        "labeler": "B",
+        "label": "ICC2",
+        "raw_text": "ICC2"
+      },
+      {
+        "labeler": "B",
+        "label": "Innovus",
+        "raw_text": "Innovus"
+      },
+      {
+        "labeler": "B",
+        "label": "Genus",
+        "raw_text": "Genus"
+      },
+      {
+        "labeler": "B",
+        "label": "PrimeTime",
+        "raw_text": "PrimeTime"
+      },
+      {
+        "labeler": "B",
+        "label": "RedHawk",
+        "raw_text": "RedHawk"
+      },
+      {
+        "labeler": "B",
+        "label": "Tcl",
+        "raw_text": "Tcl"
+      },
+      {
+        "labeler": "B",
+        "label": "Perl",
+        "raw_text": "Perl"
+      },
+      {
+        "labeler": "B",
+        "label": "Advanced node methodology",
+        "raw_text": "advanced node methodology"
+      },
+      {
+        "labeler": "B",
+        "label": "Low-power intent",
+        "raw_text": "low-power intent"
+      },
+      {
+        "labeler": "B",
+        "label": "UPF",
+        "raw_text": "UPF"
+      },
+      {
+        "labeler": "B",
+        "label": "CPF",
+        "raw_text": "CPF"
+      },
+      {
+        "labeler": "B",
+        "label": "Clock tree synthesis",
+        "raw_text": "clock tree synthesis"
+      },
+      {
+        "labeler": "B",
+        "label": "Physical design signoff",
+        "raw_text": "signoff"
+      },
+      {
+        "labeler": "B",
+        "label": "Electromigration analysis",
+        "raw_text": "EM"
+      },
+      {
+        "labeler": "B",
+        "label": "IR-drop analysis",
+        "raw_text": "IR"
+      },
+      {
+        "labeler": "B",
+        "label": "Design rule checking",
+        "raw_text": "DRC"
+      },
+      {
+        "labeler": "B",
+        "label": "Layout versus schematic verification",
+        "raw_text": "LVS"
+      },
+      {
+        "labeler": "B",
+        "label": "Technology-node, PDK, and foundry flow bring-up",
+        "raw_text": "standing up flows for new technology nodes, PDKs, or foundry targets"
+      },
+      {
+        "labeler": "B",
+        "label": "EDA release qualification",
+        "raw_text": "qualifying new EDA releases"
+      }
+    ]
+  },
+  "golden_106": {
+    "accepted_skills": [
+      {
+        "skill_id": "bash",
+        "requirement": "required",
+        "raw_text": "Bash scripting"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Proficient in Linux environments"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "with Python, or Bash scripting"
+      }
+    ],
+    "accepted_attrs": {
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "SystemVerilog",
+        "raw_text": "strong SystemVerilog skills"
+      },
+      {
+        "labeler": "A",
+        "label": "Verification methodologies",
+        "raw_text": "Experienced in modern verification methodologies"
+      },
+      {
+        "labeler": "A",
+        "label": "Testbench development",
+        "raw_text": "exposure to structured testbench development"
+      },
+      {
+        "labeler": "A",
+        "label": "Block-level to system-level verification",
+        "raw_text": "Comfortable working from block-level to system-level verification"
+      },
+      {
+        "labeler": "A",
+        "label": "Coverage-driven verification",
+        "raw_text": "Skilled in coverage-driven verification"
+      },
+      {
+        "labeler": "A",
+        "label": "RTL debugging",
+        "raw_text": "confident debugging across RTL, testbench, and workload scenarios"
+      },
+      {
+        "labeler": "A",
+        "label": "Functional safety (FuSa) verification",
+        "raw_text": "Nice to have: Exposure to functional safety (FuSa) verification concepts"
+      },
+      {
+        "labeler": "A",
+        "label": "Formal verification",
+        "raw_text": "Nice to have: Familiarity with formal verification methodologies"
+      },
+      {
+        "labeler": "A",
+        "label": "SVA (SystemVerilog Assertions)",
+        "raw_text": "SVA (SystemVerilog Assertions)"
+      },
+      {
+        "labeler": "A",
+        "label": "Formal property verification",
+        "raw_text": "formal property verification"
+      },
+      {
+        "labeler": "B",
+        "label": "Hardware verification methodologies",
+        "raw_text": "modern verification methodologies"
+      },
+      {
+        "labeler": "B",
+        "label": "SystemVerilog",
+        "raw_text": "SystemVerilog skills"
+      },
+      {
+        "labeler": "B",
+        "label": "Structured testbench development",
+        "raw_text": "structured testbench development"
+      },
+      {
+        "labeler": "B",
+        "label": "Block-level and system-level verification",
+        "raw_text": "block-level to system-level verification"
+      },
+      {
+        "labeler": "B",
+        "label": "Microarchitecture analysis from specifications and waveforms",
+        "raw_text": "reasoning about microarchitecture behavior from specs and waveforms"
+      },
+      {
+        "labeler": "B",
+        "label": "Build automation",
+        "raw_text": "automate builds"
+      },
+      {
+        "labeler": "B",
+        "label": "Log parsing",
+        "raw_text": "parse logs"
+      },
+      {
+        "labeler": "B",
+        "label": "Coverage-driven verification",
+        "raw_text": "coverage-driven verification"
+      },
+      {
+        "labeler": "B",
+        "label": "RTL, testbench, and workload debugging",
+        "raw_text": "debugging across RTL, testbench, and workload scenarios"
+      },
+      {
+        "labeler": "B",
+        "label": "Learning verification strategies for new architectures and domains",
+        "raw_text": "eager to learn verification strategies for new architectures and domains"
+      },
+      {
+        "labeler": "B",
+        "label": "Functional safety verification",
+        "raw_text": "Nice to have: Exposure to functional safety (FuSa) verification concepts"
+      },
+      {
+        "labeler": "B",
+        "label": "Formal verification methodologies",
+        "raw_text": "formal verification methodologies"
+      },
+      {
+        "labeler": "B",
+        "label": "SystemVerilog Assertions",
+        "raw_text": "SVA (SystemVerilog Assertions)"
+      },
+      {
+        "labeler": "B",
+        "label": "Formal property verification",
+        "raw_text": "formal property verification"
+      }
+    ]
+  },
+  "golden_107": {
+    "accepted_skills": [
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "nice_to_have",
+        "raw_text": "C++ is a plus"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "training data pipelines"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed training"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Python or Go"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Deep knowledge of Kubernetes"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Solid Linux"
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "nice_to_have",
+        "raw_text": "MLflow"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "reliability practices, observability"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong proficiency in Python or Go"
+      },
+      {
+        "skill_id": "ray",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with Argo Workflows, Ray"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": null,
+        "seniority_basis": null,
+        "seniority_signal": null
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Argo Workflows",
+        "raw_text": "Experience with Argo Workflows"
+      },
+      {
+        "labeler": "A",
+        "label": "GPU scheduling",
+        "raw_text": "GPU scheduling"
+      },
+      {
+        "labeler": "B",
+        "label": "Production service operation",
+        "raw_text": "operating production services end-to-end"
+      },
+      {
+        "labeler": "B",
+        "label": "Reliability practices",
+        "raw_text": "reliability practices"
+      },
+      {
+        "labeler": "B",
+        "label": "Systems debugging",
+        "raw_text": "systems debugging"
+      },
+      {
+        "labeler": "B",
+        "label": "Performance investigation",
+        "raw_text": "performance investigation"
+      },
+      {
+        "labeler": "B",
+        "label": "Storage and I/O",
+        "raw_text": "storage/IO"
+      },
+      {
+        "labeler": "B",
+        "label": "Production troubleshooting",
+        "raw_text": "troubleshoot complex production issues across logs, metrics, and traces"
+      },
+      {
+        "labeler": "B",
+        "label": "Argo Workflows",
+        "raw_text": "Argo Workflows"
+      },
+      {
+        "labeler": "B",
+        "label": "Building or operating ML training systems",
+        "raw_text": "building or operating large-scale ML training systems"
+      },
+      {
+        "labeler": "B",
+        "label": "GPU scheduling",
+        "raw_text": "GPU scheduling"
+      },
+      {
+        "labeler": "B",
+        "label": "Resource and performance optimization",
+        "raw_text": "optimizing resource usage and performance in distributed environments"
+      }
+    ]
+  },
+  "golden_108": {
+    "accepted_skills": [
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "systems involving data pipelines"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "nice_to_have",
+        "raw_text": "DevOps tooling"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "nice_to_have",
+        "raw_text": "developing full stack applications"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "software engineering and machine learning"
+      },
+      {
+        "skill_id": "onnx",
+        "requirement": "required",
+        "raw_text": "ONNX"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "experience in software engineering"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Senior Forward Deployed AI Engineer"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "master",
+        "degree_requirement": "nice_to_have",
+        "degree_or_equivalent": false,
+        "degree_signal": "Master’s degree in a relevant technical discipline."
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "ML frameworks",
+        "raw_text": "ML frameworks"
+      },
+      {
+        "labeler": "A",
+        "label": "model inference debugging",
+        "raw_text": "model inference"
+      },
+      {
+        "labeler": "A",
+        "label": "hardware interaction",
+        "raw_text": "hardware interaction"
+      },
+      {
+        "labeler": "A",
+        "label": "edge deployment",
+        "raw_text": "deploying models on edge devices or consumer hardware"
+      },
+      {
+        "labeler": "A",
+        "label": "performance tuning",
+        "raw_text": "performance tuning"
+      },
+      {
+        "labeler": "B",
+        "label": "Complex-system debugging",
+        "raw_text": "debugging complex systems"
+      },
+      {
+        "labeler": "B",
+        "label": "Model inference",
+        "raw_text": "model inference"
+      },
+      {
+        "labeler": "B",
+        "label": "Hardware interaction",
+        "raw_text": "hardware interaction"
+      },
+      {
+        "labeler": "B",
+        "label": "Performance tuning",
+        "raw_text": "performance tuning"
+      }
+    ]
+  }
+}
