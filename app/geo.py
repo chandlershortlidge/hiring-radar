@@ -87,6 +87,23 @@ COLLECTING_SINCE: dict[str, str] = {
     "San Jose": "2026-11-19",
 }
 
+# The region whose daily collection covers each active place (HIR-369): Europe's runs at
+# 07:00 Berlin, the US's at 07:00 New York. A newly launched city gets its region here;
+# tests/test_geo.py fails while an active place has none.
+EUROPE, US = "europe", "us"
+REGIONS: tuple[str, ...] = (EUROPE, US)
+REGION_OF: dict[str, str] = {
+    "Berlin": EUROPE, REMOTE_EU: EUROPE, "Hamburg": EUROPE, "Frankfurt": EUROPE,
+    "Munich": EUROPE, "London": EUROPE, "Amsterdam": EUROPE,
+    "San Francisco": US, "New York": US, "Austin": US, "Boston": US,
+    "Seattle": US, "Los Angeles": US, "Chicago": US, "San Jose": US,
+}
+
+
+def region_places(region: str) -> list[str]:
+    """The active places a region's collection covers, in ACTIVE_CITIES order."""
+    return [p for p in ACTIVE_CITIES if REGION_OF.get(p) == region]
+
 # Places that share a tracked city's name (HIR-252). Each is a lookbehind and lookahead
 # wrapped around the city's match: "London, Ontario", "London, ON" and "New London, CT" are
 # not London. The province code is matched in capitals only, so "London, on-site" stays

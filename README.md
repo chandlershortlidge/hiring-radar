@@ -93,7 +93,7 @@ and EU-remote, plus two cities turned on by name: San Francisco and New York, bo
 to non-German cities. Comparison holds up to three cities at once. Adding a city to the
 dashboard is one entry in `PLACES` (`web/src/format.js`) with its name, URL slug and
 country group — the picker, the market grid, compare and the URLs all read that one list
-(DECISIONS 2026-11-06). Runs 24/7 on a GCP VM with a daily 07:00 poll; ops runbook in
+(DECISIONS 2026-11-06). Runs 24/7 on a GCP VM with two daily polls (Europe at 07:00 Berlin, the US at 07:00 New York); ops runbook in
 [deploy/README.md](deploy/README.md).
 
 This is a rebuild of
