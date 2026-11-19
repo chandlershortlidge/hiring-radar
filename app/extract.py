@@ -120,8 +120,12 @@ Also report whether the posting asks for German:
 - german_signal is the verbatim phrase, or null when inferred or not mentioned.
 
 Also report the degree the posting asks for:
-- degree is the highest level named: "bachelor", "master", or "phd" (an unspecified
-  "degree in computer science" is "bachelor"). null when no degree is mentioned.
+- degree is the lowest level named: "bachelor", "master", or "phd" — the least a
+  candidate must hold to get in. "Bachelor's or Master's" is "bachelor"; "MS or PhD" is
+  "master"; "Master's degree (or above)" is "master". An unspecified "degree in computer
+  science" is "bachelor". When the whole mention is optional ("a Master's or PhD is an
+  advantage"), the level is still the lowest named, with "nice_to_have". A higher level
+  the posting also welcomes is not recorded. null when no degree is mentioned.
 - degree_requirement is "nice_to_have" only when the degree is marked optional; otherwise
   "required", including a bare mention in a requirements list. null when degree is null.
 - degree_or_equivalent is true when the posting accepts equivalent or comparable
