@@ -205,6 +205,33 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str]) -> MCPSer
         production: Production = "any"
         
     ) -> dict[str, Any]:
+        """Find which skills job postings ask for most, with the same filters and numbers
+        as the hiring-radar dashboard's skill list. Every filter is optional; filters
+        combine with AND. Use search_jobs to see the jobs behind a skill.
+
+        - city: any of these places; a job in several places matches each of them.
+        - seniority: junior, mid or senior. Leaving it out includes jobs whose seniority
+          is unknown; naming any level excludes them.
+        - family: ai-engineer, ml-engineer, data-scientist, ml-platform or research,
+          assigned from the job title.
+        - requirement: "required" (default) counts a skill only where the posting requires
+          it; "all" also counts it where it is only nice-to-have.
+        - window: "open" (default) = still being advertised; "30d" / "90d" = seen in the
+          last 30 / 90 days, open or closed; "all" = every job ever collected.
+        - german / production: "any" (default); "none" = the posting does not mention it;
+          "not_required" = not mentioned or only nice-to-have; "required" = required.
+          production means prior experience shipping to production.
+        - degree: "any" (default); "none" = no degree mentioned; "open" = someone without
+          a degree can apply (none named, optional, or equivalent experience accepted);
+          "required" = a degree is required with no alternative.
+
+        Returns total (all jobs matching the filters) and skills, most asked-for first.
+        Per skill: skill_id, count (jobs asking for it), pct (count as a percent of total)
+        and by_city (the count in each place).
+
+        Example: what open Berlin AI engineer jobs ask for most:
+        skill_demand(city=["Berlin"], family=["ai-engineer"])
+        """
         try:
             f = q.make_filters(tax.skills, cities=city or (), seniorities=seniority or (),
                                         families=family or (), requirement=requirement, window=window,
