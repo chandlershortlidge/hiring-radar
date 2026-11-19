@@ -1,0 +1,101 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong proficiency in Python or Go\", \"alternative_group\": 1},\n    {\"skill_id\": \"go\", \"requirement\": \"required\", \"raw_text\": \"Python or Go\", \"alternative_group\": 1},\n    {\"skill_id\": \"cpp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"C++ is a plus\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"APIs\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"reliability practices, observability\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Deep knowledge of Kubernetes\"},\n    {\"skill_id\": \"linux\", \"requirement\": \"required\", \"raw_text\": \"Solid Linux\"},\n    {\"skill_id\": \"networking\", \"requirement\": \"required\", \"raw_text\": \"performance investigation, networking\", \"uncertain\": true},\n    {\"skill_id\": \"ray\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience with Argo Workflows, Ray\", \"alternative_group\": 2},\n    {\"skill_id\": \"mlflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"MLflow\", \"alternative_group\": 2},\n    {\"skill_id\": \"distributed-training\", \"requirement\": \"nice_to_have\", \"raw_text\": \"distributed training\"},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"nice_to_have\", \"raw_text\": \"training data pipelines\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Argo Workflows\", \"raw_text\": \"Experience with Argo Workflows\"},\n    {\"label\": \"GPU scheduling\", \"raw_text\": \"GPU scheduling\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": null, \"german_basis\": null, \"german_signal\": null,\n  \"degree\": null, \"degree_requirement\": null,\n  \"degree_or_equivalent\": false, \"degree_signal\": null,\n  \"uncertain\": [],\n  \"groups_reviewed\": true,\n  \"notes\": \"'What you will need' is a requirements section, so its items are required. 'Nice to have' is an optional heading, so its items are nice_to_have.\\nPython and Go are offered as alternatives ('Python or Go'), so they form group 1.\\nC++ carries the inline marker 'is a plus', so it is nice_to_have.\\nArgo Workflows, Ray and MLflow are offered as alternatives, so they form group 2. Argo Workflows has no taxonomy id (argocd is a different tool), so it is unmapped and only ray and mlflow are grouped.\\n'or comparable distributed ML tooling' adds no skill, per the guide.\\nNetworking is listed as a systems-debugging area under requirements and is labeled required. It is flagged uncertain because it is debugging scope rather than a named technology.\\n'logs, metrics, and traces' is covered by the existing observability criterion, so it adds nothing.\\n'distributed environments' does not name distributed systems as a skill, so it is not labeled.\\n'scalable, maintainable systems' is not labeled as software-architecture because it does not name that skill.\\nTechnologies that appear only in the responsibilities section (Argo, Ray, Kubernetes) are labeled only where the qualifications also ask for them.\\nSeniority is null: the title is plain 'Software Engineer' with no years or lead duty.\\nGerman and degree are null because neither is mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong proficiency in Python or Go",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Python or Go",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "nice_to_have",
+        "raw_text": "C++ is a plus"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "reliability practices, observability"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Deep knowledge of Kubernetes"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Solid Linux"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "performance investigation, networking",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ray",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with Argo Workflows, Ray",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "nice_to_have",
+        "raw_text": "MLflow",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed training"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "training data pipelines"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Argo Workflows",
+        "raw_text": "Experience with Argo Workflows"
+      },
+      {
+        "label": "GPU scheduling",
+        "raw_text": "GPU scheduling"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "groups_reviewed": true,
+    "notes": "'What you will need' is a requirements section, so its items are required. 'Nice to have' is an optional heading, so its items are nice_to_have.\nPython and Go are offered as alternatives ('Python or Go'), so they form group 1.\nC++ carries the inline marker 'is a plus', so it is nice_to_have.\nArgo Workflows, Ray and MLflow are offered as alternatives, so they form group 2. Argo Workflows has no taxonomy id (argocd is a different tool), so it is unmapped and only ray and mlflow are grouped.\n'or comparable distributed ML tooling' adds no skill, per the guide.\nNetworking is listed as a systems-debugging area under requirements and is labeled required. It is flagged uncertain because it is debugging scope rather than a named technology.\n'logs, metrics, and traces' is covered by the existing observability criterion, so it adds nothing.\n'distributed environments' does not name distributed systems as a skill, so it is not labeled.\n'scalable, maintainable systems' is not labeled as software-architecture because it does not name that skill.\nTechnologies that appear only in the responsibilities section (Argo, Ray, Kubernetes) are labeled only where the qualifications also ask for them.\nSeniority is null: the title is plain 'Software Engineer' with no years or lead duty.\nGerman and degree are null because neither is mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "6813063fd3aad3e375ae40e91f306813aab85ddcce6736c5f993dfafa15750c1",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

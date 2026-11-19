@@ -1,0 +1,101 @@
+{
+  "id": "golden_134",
+  "split": "heldout",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Fließend Deutsch und Englisch in Wort und Schrift",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Abgeschlossenes wissenschaftliches Hochschulstudium (min. Bachelor) in einem MINT-Fach, oder vergleichbare Qualifikation als Quereinsteiger",
+  "attrs_reviewed": true,
+  "source_sha256": "6dd06f7c47c50792b3d000e7cc6dd6fda8fa39c8dae86800035635185f076a3f",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:ai-deployment",
+    "skill:conversational-ai",
+    "skill:llms"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "MaxIT | Applied AI Competence Center AI-DevOps Engineer (m/w/d) Die\nMax-Planck-Gesellschaft zur Förderung der Wissenschaften e. V. (MPG)\nist eine von Bund und Ländern finanzierte\nSelbstverwaltungsorganisation der Wissenschaft. Sie betreibt in\ngegenwärtig 85 Instituten und Forschungsstellen im In- und Ausland\nGrundlagenforschung auf natur- und geisteswissenschaftlichen Gebieten\nund ist damit eine der international führenden\nForschungseinrichtungen mit zahlreichen Nobelpreisträger*innen in\nihren Reihen. Applied AI Competence Center – Max Planck Information\n& Technology ENABLING | INFORMING | NETWORKING Das in Gründung\nbefindliche Applied AI Competence Center wird als Stabsgruppe bei der\nMax Planck Information & Technology zur zentralen Anlaufstelle der\nMax-Planck-Gesellschaft für KI-Nutzung aufgebaut. Als Impulsgeber,\nWegbereiter und Vernetzungsknoten holt es relevante KI-Themen früh\nauf die Agenda, senkt Hürden für die KI-Nutzung, bündelt Wissen und\nKompetenzen – und formt aus bislang verstreuten Aktivitäten eine\nklar definierte MPG KI-Landschaft. IHRE MISSION Sie begleiten die\nMax-Planck-Institute dabei, KI-Anwendungen in kleinen Pilotprojekten\npraktisch zu erproben und nutzbar zu machen und packen als\nHands-on-Berater bei der Umsetzung direkt mit an. Sie wählen\ngemeinsam mit den Bedarfsträgern und der lokalen IT geeignete Tools\nund Sprachmodelle aus, implementieren erste Lösungen und helfen,\ntechnische Stolpersteine zu überwinden. Dabei beraten Sie zu\nEinsatzmöglichkeiten und Grenzen ebenso wie zu Tokenverbrauch, Kosten\nund Ressourcenbedarf. Ihr Fokus liegt auf überschaubaren,\nanwendungsnahen Lösungen, die sich im Forschungsalltag bewähren.\nFür den Bereich Applied AI Competence Center (AAICC) suchen wir ab\nsofort einen AI-DevOps Engineer (m/w/d) . IHRE AUFGABEN Sie beraten\nInstitute hands-on und setzen kleine KI-Piloten gemeinsam mit den\nBedarfstragenden um Sie wählen passende LLMs und Tools aus und testen\nsie für konkrete Anwendungsfälle Sie entwickeln RAG-Systeme, KI-Bots\nund Agenten Sie optimieren Prompts und beraten zu Tokenverbrauch,\nKosten und Ressourcenbedarf Sie unterstützen die\nCommunity-Entwicklung durch technische Workshops, Dokumentation und\ndie Bereitstellung von Best Practices WAS SIE MITBRINGEN\nAbgeschlossenes wissenschaftliches Hochschulstudium (min. Bachelor) in\neinem MINT-Fach, oder vergleichbare Qualifikation als Quereinsteiger,\nTech Enthusiast oder Vibe Coder mit Proof Record Erfahrung mit Large\nLanguage Model (LLM)-Frameworks (z. B. LangChain, LlamaIndex, Hugging\nFace) Kenntnisse im Aufbau von Retrieval-Augmented-Generation-Systemen\n(RAG), einschließlich Vektordatenbanken Erfahrung in der Entwicklung\nund Bereitstellung von KI-Agenten und automatisierten\nGesprächssystemen (Chatbots/KI-Bots) Grundkenntnisse in\nDevOps-Methoden, insbesondere Containerisierung (Docker, Kubernetes)\nund CI/CD-Pipelines Offenheit für neue Ideen, unterschiedliche\nArbeitsumgebungen und die Zusammenarbeit mit Menschen aus\nverschiedenen Themen- und Fachbereichen Fließend Deutsch und Englisch\nin Wort und Schrift WAS SIE ERWARTET Hohe Gestaltungsfreiheit bei\nArchitektur, Tools und Prozessen Immer wieder neue Fragestellungen,\ndie Sie gemeinsam mit Forschenden und IT-Teams angehen Ein Umfeld, in\ndem technische Exzellenz und wissenschaftliche Relevanz Hand in Hand\ngehen Ein Team, das in erster Linie Chancen sieht (ohne Risiken zu\nignorieren) sowie gemeinsam Verantwortung dafür übernimmt, dass die\nMitarbeitenden der MPG KI-Technologien sinnvoll und effizient\neinsetzen können Eine ausgewogene Work-Life-Balance durch Anpassung\nIhrer Arbeitszeiten an private/familiäre Bedürfnisse Bis zu 60% der\nArbeitszeit mobiles Arbeiten Betriebliche Altersvorsorge, einen\nArbeitgeberzuschuss zum vergünstigten Deutschlandticket und weitere\nSozialleistungen Eine unbefristete Anstellung mit Vergütung nach\nTVöD Bund. Die Eingruppierung erfolgt je nach Qualifikation und\nBerufserfahrung Die Stelle ist ab sofort zu besetzen und kann auch in\nTeilzeit (min. 80%) besetzt werden. Die Max-Planck-Gesellschaft hat\nsich zum Ziel gesetzt, mehr schwerbehinderte Menschen zu\nbeschäftigen. Bewerbungen Schwerbehinderter sind ausdrücklich\nerwünscht. Die Max-Planck Gesellschaft strebt nach\nGeschlechtergerechtigkeit und Vielfalt. Wir freuen uns über\nBewerber*innen jeglichen Hintergrunds. Ferner will die\nMax-Planck-Gesellschaft den Anteil an Frauen in den Bereichen\nerhöhen, in denen sie unterrepräsentiert sind. Frauen werden deshalb\nausdrücklich aufgefordert, sich zu bewerben. Haben wir Ihr Interesse\ngeweckt? Dann freuen wir uns auf Ihre Bewerbung mit Lebenslauf,\nAnschreiben und Zeugnissen bis spätestens 28.11.2026 (Ende der\nBewerbungsfrist). Jetzt bewerben Max Planck Information and Technology\n(MaxIT) Landsberger Straße 346 80687 München\nhttps://www.maxit.mpg.de/﻿﻿",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "KI-Agenten"
+    },
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "Bereitstellung von KI-Agenten"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD-Pipelines"
+    },
+    {
+      "skill_id": "containerization",
+      "requirement": "required",
+      "raw_text": "Containerisierung"
+    },
+    {
+      "skill_id": "conversational-ai",
+      "requirement": "required",
+      "raw_text": "automatisierten Gesprächssystemen (Chatbots/KI-Bots)"
+    },
+    {
+      "skill_id": "devops",
+      "requirement": "required",
+      "raw_text": "DevOps-Methoden"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Docker"
+    },
+    {
+      "skill_id": "hugging-face",
+      "requirement": "required",
+      "raw_text": "Hugging Face"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes"
+    },
+    {
+      "skill_id": "langchain",
+      "requirement": "required",
+      "raw_text": "LangChain"
+    },
+    {
+      "skill_id": "llamaindex",
+      "requirement": "required",
+      "raw_text": "LlamaIndex"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Large Language Model (LLM)-Frameworks"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "Retrieval-Augmented-Generation-Systemen (RAG)"
+    },
+    {
+      "skill_id": "vector-databases",
+      "requirement": "required",
+      "raw_text": "Vektordatenbanken"
+    }
+  ]
+}

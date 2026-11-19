@@ -1,0 +1,82 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"5+ years of experience of Software Engineering\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"developing generative AI products\"},\n    {\"skill_id\": \"model-selection\", \"requirement\": \"required\", \"raw_text\": \"ideating on which models to use\", \"uncertain\": true},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"productionizing and maintaining them\", \"uncertain\": true},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"AI-assisted development tools\"},\n    {\"skill_id\": \"github-copilot\", \"requirement\": \"required\", \"raw_text\": \"GitHub Copilot\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AI indexing, retrieval systems\", \"uncertain\": true},\n    {\"skill_id\": \"nlp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"natural language processing\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"ChatGPT\", \"raw_text\": \"ChatGPT\"},\n    {\"label\": \"Claude\", \"raw_text\": \"Claude\"},\n    {\"label\": \"personalization\", \"raw_text\": \"personalization\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"5+ years of experience of Software Engineering\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"A relevant advanced degree (Masters or PhD)\",\n  \"uncertain\": [],\n  \"notes\": \"The heading \\\"We'd love to hear from you if you have\\\" is the company's enthusiasm, not the candidate's appetite (golden_038), so items under it are required.\\nThe heading \\\"While it's not required, it's an added plus\\\" marks that section optional, so its items are nice_to_have.\\nModel-selection and ai-deployment are read from the full-lifecycle bullet: \\\"which models to use\\\" and \\\"productionizing\\\". Both are mapped literally and flagged uncertain.\\n\\\"retrieval systems\\\" is mapped to rag through its retrieval-pipelines alias and flagged uncertain.\\n\\\"AI indexing\\\" is not mapped separately.\\n\\\"personalization\\\" is left unmapped; recommender-systems is not named.\\nMachine learning, data analysis and experimental design appear only in responsibilities, so they are not labeled.\\nMachine Learning and Statistics as degree fields are not labeled as skills.\\nChatGPT and Claude have no taxonomy id. claude-code and anthropic-api are more specific than the text, so they are not used.\\nSeniority is inferred from 5+ years. The title gives no level, and \\\"accomplished and experienced\\\" is not a level signal.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "5+ years of experience of Software Engineering"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "developing generative AI products"
+      },
+      {
+        "skill_id": "model-selection",
+        "requirement": "required",
+        "raw_text": "ideating on which models to use",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "productionizing and maintaining them",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI-assisted development tools"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "GitHub Copilot"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "AI indexing, retrieval systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "nice_to_have",
+        "raw_text": "natural language processing"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "ChatGPT",
+        "raw_text": "ChatGPT"
+      },
+      {
+        "label": "Claude",
+        "raw_text": "Claude"
+      },
+      {
+        "label": "personalization",
+        "raw_text": "personalization"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "5+ years of experience of Software Engineering",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "A relevant advanced degree (Masters or PhD)",
+    "uncertain": [],
+    "notes": "The heading \"We'd love to hear from you if you have\" is the company's enthusiasm, not the candidate's appetite (golden_038), so items under it are required.\nThe heading \"While it's not required, it's an added plus\" marks that section optional, so its items are nice_to_have.\nModel-selection and ai-deployment are read from the full-lifecycle bullet: \"which models to use\" and \"productionizing\". Both are mapped literally and flagged uncertain.\n\"retrieval systems\" is mapped to rag through its retrieval-pipelines alias and flagged uncertain.\n\"AI indexing\" is not mapped separately.\n\"personalization\" is left unmapped; recommender-systems is not named.\nMachine learning, data analysis and experimental design appear only in responsibilities, so they are not labeled.\nMachine Learning and Statistics as degree fields are not labeled as skills.\nChatGPT and Claude have no taxonomy id. claude-code and anthropic-api are more specific than the text, so they are not used.\nSeniority is inferred from 5+ years. The title gives no level, and \"accomplished and experienced\" is not a level signal."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "ea5c6ec3cb81e4f868cb521afffa4185619475f9bfca1a53f68d072ca4e9d960",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

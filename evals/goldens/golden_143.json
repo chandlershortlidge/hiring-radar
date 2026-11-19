@@ -1,0 +1,99 @@
+{
+  "id": "golden_143",
+  "split": "heldout",
+  "seniority": "senior",
+  "seniority_basis": "stated",
+  "seniority_signal": "Principal Data Scientist",
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": false,
+  "source_sha256": "7746fb1249c933ce4f889f38daed805712147fabfd160273c6bc82106e6827c3",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:access-control",
+    "skill:ai-ml",
+    "skill:aws-s3",
+    "skill:data-science",
+    "skill:machine-learning",
+    "skill:sagemaker"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Principal Data Scientist (m/f/d)\n\nA career driven by you. Join AutoScout24 Group and experience life in the fast lane. We’re not just leading the market; we’re creating it. We’re constantly innovating, evolving and transforming things for our customers. We’re driven, ambitious and determined to do our best work, together. For a career that doesn’t stand still, where you can put your ideas in the driving seat and change the way the world moves, join our international community. \n\nAs Principal Data Scientist, you will define and drive the data science strategy across AutoScout24, with a strong focus on AI, machine learning, and Generative AI. You will work closely with product, engineering, and business leaders to turn data into scalable products that create clear business impact. You will lead senior data scientists and act as a technical role model across the company.\n\nWHAT YOU’LL DO \n\n- define and own the data science and AI strategy across the organization\n\n- lead development and scaling of predictive and generative AI models for marketplace and fintech use cases\n\n- partner with product and business leaders to align ML initiatives with company goals\n\n- design scalable ML systems and cloud-based workflows for training and deployment, with a strong focus on AWS\n\n- build and operate production-ready ML solutions using AWS services (e.g. SageMaker, S3, Lambda, EMR, etc.)\n\n- ensure model quality, monitoring, governance, and compliance in production\n\n- mentor and develop data scientists and act as senior technical advisor \n\nYOU COME WITH \n\n- 10+ years of experience in data science, machine learning, or applied AI\n\n- strong hands-on skills in Python, SQL, and common ML frameworks\n\n- proven experience with GenAI and LLMs in real products\n\n- strong experience with AWS and its ML/data ecosystem (e.g. SageMaker, S3, EKS, Lambda, IAM)\n\n- solid background in cloud platforms, MLOps, and model deployment\n\n- ability to translate complex topics into clear business decisions\n\n- experience leading senior teams and shaping technical strategy \n\nA culture of growth. With over 50 nationalities represented, we’re proud to welcome people of all backgrounds to our growing community, and we’re always finding new ways to help people feel welcomed and included. Here, you’ll have the tools, training and support you need to work in a way that suits you, learn new skills and reach your potential. \n\nFor a career where you can drive our business and shape your future, apply now.",
+  "expected": [
+    {
+      "skill_id": "access-control",
+      "requirement": "required",
+      "raw_text": "IAM"
+    },
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "model deployment"
+    },
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "applied AI"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "strong experience with AWS"
+    },
+    {
+      "skill_id": "aws-s3",
+      "requirement": "required",
+      "raw_text": "S3"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "cloud platforms"
+    },
+    {
+      "skill_id": "data-science",
+      "requirement": "required",
+      "raw_text": "data science"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "GenAI and LLMs"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "machine learning"
+    },
+    {
+      "skill_id": "mlops",
+      "requirement": "required",
+      "raw_text": "MLOps"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "sagemaker",
+      "requirement": "required",
+      "raw_text": "SageMaker"
+    },
+    {
+      "skill_id": "sql",
+      "requirement": "required",
+      "raw_text": "SQL"
+    }
+  ]
+}

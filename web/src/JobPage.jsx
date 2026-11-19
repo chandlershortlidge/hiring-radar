@@ -10,10 +10,15 @@ import { Ext } from "./icons.jsx";
 import { cap, dateShort, sourceCode } from "./format.js";
 import { fit } from "./profile.js";
 import { Detail } from "./JobList.jsx";
+import { FlagNote, FlagToggle, useFlag } from "./FlagButton.jsx";
+import { jobPageView } from "./flagView.js";
 
 export default function JobPage({ id, onBack, profile, taxonomy, demand = null }) {
   const [d, setD] = useState(null);
   const [error, setError] = useState(null);
+  // "Doesn't belong here" (HIR-226). From this page the flag records the page itself: no
+  // filter decided that the job is shown here.
+  const flag = useFlag(id, d?.flagged, jobPageView);
 
   useEffect(() => {
     let live = true;
@@ -56,8 +61,10 @@ export default function JobPage({ id, onBack, profile, taxonomy, demand = null }
           <div className="page-links">
             <span className="dim">Stored copy from {dateShort(d.first_seen)} · {captured}</span>
             {url && <a href={url} target="_blank" rel="noopener">Open original posting<Ext /></a>}
+            <FlagToggle flag={flag} name={`${d.company} — ${d.title}`} withText />
           </div>
         </div>
+        <FlagNote flag={flag} id="flag-note-page" />
         <Detail job={d} d={d} profile={profile} taxonomy={taxonomy} cov={cov} />
         <div className="posting-wrap">
           <h4>Posting as captured</h4>

@@ -13,13 +13,13 @@ import argparse
 import hashlib
 import json
 import os
-import sqlite3
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from app.db import connect  # noqa: E402
 from app.extract import extraction_input  # noqa: E402
 
 GOLDENS = ROOT / "evals" / "goldens"
@@ -30,7 +30,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--write", action="store_true")
     args = ap.parse_args(argv)
-    conn = sqlite3.connect(DB)
+    conn = connect(DB)
     by_sha = {hashlib.sha256(d.encode()).hexdigest(): (jid, t, d)
               for jid, t, d in conn.execute("SELECT id, title, description_text FROM job")}
     for f in sorted(GOLDENS.glob("golden_*.json")):

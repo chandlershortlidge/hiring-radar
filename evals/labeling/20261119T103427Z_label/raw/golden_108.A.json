@@ -1,0 +1,113 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"experience in software engineering\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"software engineering and machine learning\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"deploying and maintaining machine learning/AI systems in production\", \"uncertain\": true},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\", \"alternative_group\": 1},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\", \"alternative_group\": 1},\n    {\"skill_id\": \"onnx\", \"requirement\": \"required\", \"raw_text\": \"ONNX\", \"alternative_group\": 1},\n    {\"skill_id\": \"jax\", \"requirement\": \"required\", \"raw_text\": \"JAX\", \"alternative_group\": 1},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"required\", \"raw_text\": \"systems involving data pipelines\"},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"nice_to_have\", \"raw_text\": \"distributed systems\"},\n    {\"skill_id\": \"devops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"DevOps tooling\"},\n    {\"skill_id\": \"full-stack-development\", \"requirement\": \"nice_to_have\", \"raw_text\": \"developing full stack applications\"},\n    {\"skill_id\": \"data-privacy-and-security\", \"requirement\": \"nice_to_have\", \"raw_text\": \"privacy-preserving AI and secure compute environments\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"ML frameworks\", \"raw_text\": \"ML frameworks\"},\n    {\"label\": \"model inference debugging\", \"raw_text\": \"model inference\"},\n    {\"label\": \"hardware interaction\", \"raw_text\": \"hardware interaction\"},\n    {\"label\": \"edge deployment\", \"raw_text\": \"deploying models on edge devices or consumer hardware\"},\n    {\"label\": \"performance tuning\", \"raw_text\": \"performance tuning\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Forward Deployed AI Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s degree in a relevant technical discipline.\",\n  \"uncertain\": [],\n  \"notes\": \"There are two sections: 'Required Skills & Qualifications', which defaults to required, and 'Preferred Qualifications', which makes every item under it nice_to_have.\\nThe skills named only in Key Responsibilities (agentic workflows, multi-step reasoning, tool use) are not labeled, because the candidate is not asked to have them.\\nPyTorch, TensorFlow, ONNX and JAX are examples offered for one ask ('ML frameworks such as …, etc.'), so they form alternative_group 1. The 'etc.' adds no skill.\\n'ML frameworks' has no matching taxonomy entry and is unmapped; I added no broad parent.\\nI mapped 'deploying and maintaining machine learning/AI systems in production' to ai-deployment as required. I am unsure because it is phrased as a track record rather than a named skill. The preferred mention of edge deployment collapses into this required criterion.\\nI mapped 'privacy-preserving AI and secure compute environments' to data-privacy-and-security. This is uncertain and the label is nice_to_have.\\n'Active US Security clearance' and the communication skills are not skills under the guide.\\nThe '5+ years' would also infer senior, but the stated title takes precedence.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "experience in software engineering"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "software engineering and machine learning"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying and maintaining machine learning/AI systems in production",
+        "uncertain": true
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "onnx",
+        "requirement": "required",
+        "raw_text": "ONNX",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "systems involving data pipelines"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "nice_to_have",
+        "raw_text": "DevOps tooling"
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "nice_to_have",
+        "raw_text": "developing full stack applications"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "nice_to_have",
+        "raw_text": "privacy-preserving AI and secure compute environments",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "ML frameworks",
+        "raw_text": "ML frameworks"
+      },
+      {
+        "label": "model inference debugging",
+        "raw_text": "model inference"
+      },
+      {
+        "label": "hardware interaction",
+        "raw_text": "hardware interaction"
+      },
+      {
+        "label": "edge deployment",
+        "raw_text": "deploying models on edge devices or consumer hardware"
+      },
+      {
+        "label": "performance tuning",
+        "raw_text": "performance tuning"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Forward Deployed AI Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s degree in a relevant technical discipline.",
+    "uncertain": [],
+    "notes": "There are two sections: 'Required Skills & Qualifications', which defaults to required, and 'Preferred Qualifications', which makes every item under it nice_to_have.\nThe skills named only in Key Responsibilities (agentic workflows, multi-step reasoning, tool use) are not labeled, because the candidate is not asked to have them.\nPyTorch, TensorFlow, ONNX and JAX are examples offered for one ask ('ML frameworks such as …, etc.'), so they form alternative_group 1. The 'etc.' adds no skill.\n'ML frameworks' has no matching taxonomy entry and is unmapped; I added no broad parent.\nI mapped 'deploying and maintaining machine learning/AI systems in production' to ai-deployment as required. I am unsure because it is phrased as a track record rather than a named skill. The preferred mention of edge deployment collapses into this required criterion.\nI mapped 'privacy-preserving AI and secure compute environments' to data-privacy-and-security. This is uncertain and the label is nice_to_have.\n'Active US Security clearance' and the communication skills are not skills under the guide.\nThe '5+ years' would also infer senior, but the stated title takes precedence."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "66d4de774a0ba9753a1b197213da0cda912c2b60850f55a5c74d457a766ee89d",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

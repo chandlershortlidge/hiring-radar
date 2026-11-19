@@ -1,0 +1,162 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"mcp\", \"requirement\": \"required\", \"raw_text\": \"MCP-Servern\"},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"KI-Werkzeugen in der Softwareentwicklung\"},\n    {\"skill_id\": \"github-copilot\", \"requirement\": \"required\", \"raw_text\": \"GitHub Copilot\", \"alternative_group\": 1},\n    {\"skill_id\": \"claude-code\", \"requirement\": \"required\", \"raw_text\": \"Claude Code\", \"alternative_group\": 1},\n    {\"skill_id\": \"cursor\", \"requirement\": \"required\", \"raw_text\": \"Cursor\", \"alternative_group\": 1},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM\"},\n    {\"skill_id\": \"context-engineering\", \"requirement\": \"required\", \"raw_text\": \"Context Window\"},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"required\", \"raw_text\": \"Embeddings\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG\"},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"Tool Calling\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"Agenten\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"Orchestrierung\", \"uncertain\": true},\n    {\"skill_id\": \"llm-guardrails\", \"requirement\": \"required\", \"raw_text\": \"Guardrails\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"Evaluation\"},\n    {\"skill_id\": \"hallucination-detection\", \"requirement\": \"required\", \"raw_text\": \"Halluzinationen\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud-Umgebungen\"},\n    {\"skill_id\": \"aws-bedrock\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AWS Bedrock AgentCore\", \"uncertain\": true},\n    {\"skill_id\": \"azure-ai-foundry\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Microsoft Foundry Agents Service\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Agile / SDLC\", \"raw_text\": \"agiler Arbeitsweisen und des end-to-end SDLC\"},\n    {\"label\": \"Agentic skills\", \"raw_text\": \"agentischen Skills\"},\n    {\"label\": \"Kiro CLI\", \"raw_text\": \"Kiro CLI\"},\n    {\"label\": \"Prompt injection\", \"raw_text\": \"Prompt Injection\"},\n    {\"label\": \"Token cost\", \"raw_text\": \"Kosten je Token\"},\n    {\"label\": \"Scrum\", \"raw_text\": \"Scrum\"},\n    {\"label\": \"Jira\", \"raw_text\": \"Jira\"},\n    {\"label\": \"SAFe (nice to have)\", \"raw_text\": \"idealerweise im SAFe-Umfeld\"},\n    {\"label\": \"Microsoft Copilot Studio (nice to have)\", \"raw_text\": \"Microsoft Copilot Studio\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Mehrjährige Erfahrung in Wissensvermittlung und Beratung im IT-Umfeld\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute Deutschkenntnisse (C1 oder höher)\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"The 'Ihre Qualifikationen' heading is not marked optional, so items default to required. 'von Vorteil' (is an advantage) makes the AWS Bedrock AgentCore / Microsoft Foundry / Copilot Studio bullet nice_to_have.\\nGitHub Copilot, Claude Code and Cursor are offered as examples for one ask ('z. B. … oder …'), so they form alternative_group 1. Kiro CLI is unmapped and so cannot be a group member.\\n'Evals' in a later bullet collapses into the single evaluation criterion.\\nGitLab CI/CD, Linux, macOS and Windows appear only in the responsibilities, so they are not labeled.\\n'Orchestrierung' in an LLM context is mapped to llm-orchestration; this is flagged uncertain.\\n'Halluzinationen' (understanding of hallucinations) is mapped to hallucination-detection; this is flagged uncertain.\\n'AWS Bedrock AgentCore' is mapped to aws-bedrock and 'Microsoft Foundry Agents Service' to azure-ai-foundry (alias 'microsoft foundry'); parent skills aws and azure are not added.\\nSeniority: the only years signals are '12 Monate' with AI tools and 'Mehrjährige' experience in knowledge transfer, not engineering. I inferred mid from 'Mehrjährige', which is uncertain; null is also defensible.\\nNo degree is mentioned anywhere in the posting.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "MCP-Servern"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "KI-Werkzeugen in der Softwareentwicklung"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "GitHub Copilot",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM"
+      },
+      {
+        "skill_id": "context-engineering",
+        "requirement": "required",
+        "raw_text": "Context Window"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "Embeddings"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "Tool Calling"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Agenten"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "Orchestrierung",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "Guardrails"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Evaluation"
+      },
+      {
+        "skill_id": "hallucination-detection",
+        "requirement": "required",
+        "raw_text": "Halluzinationen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Umgebungen"
+      },
+      {
+        "skill_id": "aws-bedrock",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS Bedrock AgentCore",
+        "uncertain": true
+      },
+      {
+        "skill_id": "azure-ai-foundry",
+        "requirement": "nice_to_have",
+        "raw_text": "Microsoft Foundry Agents Service",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Agile / SDLC",
+        "raw_text": "agiler Arbeitsweisen und des end-to-end SDLC"
+      },
+      {
+        "label": "Agentic skills",
+        "raw_text": "agentischen Skills"
+      },
+      {
+        "label": "Kiro CLI",
+        "raw_text": "Kiro CLI"
+      },
+      {
+        "label": "Prompt injection",
+        "raw_text": "Prompt Injection"
+      },
+      {
+        "label": "Token cost",
+        "raw_text": "Kosten je Token"
+      },
+      {
+        "label": "Scrum",
+        "raw_text": "Scrum"
+      },
+      {
+        "label": "Jira",
+        "raw_text": "Jira"
+      },
+      {
+        "label": "SAFe (nice to have)",
+        "raw_text": "idealerweise im SAFe-Umfeld"
+      },
+      {
+        "label": "Microsoft Copilot Studio (nice to have)",
+        "raw_text": "Microsoft Copilot Studio"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Mehrjährige Erfahrung in Wissensvermittlung und Beratung im IT-Umfeld",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Deutschkenntnisse (C1 oder höher)",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The 'Ihre Qualifikationen' heading is not marked optional, so items default to required. 'von Vorteil' (is an advantage) makes the AWS Bedrock AgentCore / Microsoft Foundry / Copilot Studio bullet nice_to_have.\nGitHub Copilot, Claude Code and Cursor are offered as examples for one ask ('z. B. … oder …'), so they form alternative_group 1. Kiro CLI is unmapped and so cannot be a group member.\n'Evals' in a later bullet collapses into the single evaluation criterion.\nGitLab CI/CD, Linux, macOS and Windows appear only in the responsibilities, so they are not labeled.\n'Orchestrierung' in an LLM context is mapped to llm-orchestration; this is flagged uncertain.\n'Halluzinationen' (understanding of hallucinations) is mapped to hallucination-detection; this is flagged uncertain.\n'AWS Bedrock AgentCore' is mapped to aws-bedrock and 'Microsoft Foundry Agents Service' to azure-ai-foundry (alias 'microsoft foundry'); parent skills aws and azure are not added.\nSeniority: the only years signals are '12 Monate' with AI tools and 'Mehrjährige' experience in knowledge transfer, not engineering. I inferred mid from 'Mehrjährige', which is uncertain; null is also defensible.\nNo degree is mentioned anywhere in the posting."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "c603d01a03723a3b30a02c1a66fe533a7f418d0e404cacf5720ce246eecda83f",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

@@ -1,0 +1,45 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"cybersecurity\", \"requirement\": \"required\", \"raw_text\": \"professional experience in Automotive Cybersecurity\", \"uncertain\": true},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"building, operating, and maintaining agentic AI toolchains\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"security toolchains\", \"raw_text\": \"developing or operating complex security toolchains\"}\n  ],\n  \"seniority\": \"mid\", \"seniority_basis\": \"inferred\", \"seniority_signal\": \"Several years of professional experience in Automotive Cybersecurity\",\n  \"german\": \"nice_to_have\", \"german_basis\": \"stated\", \"german_signal\": \"German language skills are desirable\",\n  \"degree\": \"bachelor\", \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true, \"degree_signal\": \"University degree in Computer Science, Electrical Engineering, or a comparable qualification\",\n  \"uncertain\": [\"seniority\", \"degree\"],\n  \"notes\": \"Requirements section is 'What should you bring along?'. It has no optional heading, so unmarked items are required.\\nFuzzing, penetration testing, vulnerability detection, open-source AI models and user interfaces appear only in the responsibilities, so they are not labeled.\\n'Automotive Cybersecurity' could be read as domain knowledge. It is mapped to the cybersecurity taxonomy entry and flagged uncertain.\\n'agentic AI toolchains' is mapped to agents. Its alias list includes agentic AI frameworks.\\n'commercial and open-source technologies' does not name LLMs explicitly, so open-source-llms is not labeled.\\n'complex security toolchains' has no specific taxonomy entry. It is listed as unmapped and is arguably already covered by cybersecurity.\\nSeniority: 'Several years' is read as roughly 3–5 years, giving mid (inferred). This is uncertain because 'several' could also mean 5+.\\nGerman: 'desirable' is treated as an optional marker, so German is nice_to_have.\\nDegree: 'or a comparable qualification' matches the guide's 'or comparable qualification' wording, so degree_or_equivalent is true. It could instead be read as widening the field, so it is flagged.\\nThere are no alternative groups.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "professional experience in Automotive Cybersecurity",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "building, operating, and maintaining agentic AI toolchains"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "security toolchains",
+        "raw_text": "developing or operating complex security toolchains"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Several years of professional experience in Automotive Cybersecurity",
+    "german": "nice_to_have",
+    "german_basis": "stated",
+    "german_signal": "German language skills are desirable",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "University degree in Computer Science, Electrical Engineering, or a comparable qualification",
+    "uncertain": [
+      "seniority",
+      "degree"
+    ],
+    "notes": "Requirements section is 'What should you bring along?'. It has no optional heading, so unmarked items are required.\nFuzzing, penetration testing, vulnerability detection, open-source AI models and user interfaces appear only in the responsibilities, so they are not labeled.\n'Automotive Cybersecurity' could be read as domain knowledge. It is mapped to the cybersecurity taxonomy entry and flagged uncertain.\n'agentic AI toolchains' is mapped to agents. Its alias list includes agentic AI frameworks.\n'commercial and open-source technologies' does not name LLMs explicitly, so open-source-llms is not labeled.\n'complex security toolchains' has no specific taxonomy entry. It is listed as unmapped and is arguably already covered by cybersecurity.\nSeniority: 'Several years' is read as roughly 3–5 years, giving mid (inferred). This is uncertain because 'several' could also mean 5+.\nGerman: 'desirable' is treated as an optional marker, so German is nice_to_have.\nDegree: 'or a comparable qualification' matches the guide's 'or comparable qualification' wording, so degree_or_equivalent is true. It could instead be read as widening the field, so it is flagged.\nThere are no alternative groups."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "45d0c752b3f4d798c5bda0201f303f192eae219e7c06c9eab1bb15be684495b6",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

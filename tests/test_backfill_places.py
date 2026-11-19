@@ -1,39 +1,136 @@
-import importlib.util
-from pathlib import Path
+"""Stored jobs gain the tracked cities their location names (HIR-331)."""
 
-from app import db
+import re
 
-_spec = importlib.util.spec_from_file_location(
-    "backfill_places", Path(__file__).parent.parent / "scripts" / "backfill_places.py")
-backfill_places = importlib.util.module_from_spec(_spec)
-_spec.loader.exec_module(backfill_places)
+import pytest
+
+from app import __main__ as cli
+from app import backfill_places as bp
+from app import db, discover, geo, queries
+from app.sources import brave
+
+NOW = "2026-11-19T00:00:00Z"
+SQL = ("INSERT INTO job (company, title, city, location_raw, description_text, first_seen, last_seen)"
+       " VALUES (?, 'AI Engineer', ?, ?, ?, ?, ?)")
 
 
-def _setup(tmp_path):
-    conn = db.connect(tmp_path / "t.db")
-    db.migrate(conn)
-    sql = ("INSERT INTO job (company, title, city, location_raw, description_text, first_seen, last_seen)"
-           " VALUES (?, 'AI Engineer', ?, ?, 'jd', '2026-11-01T00:00:00Z', '2026-11-01T00:00:00Z')")
-    # Stored before migration 022 with its first city only (a perplexity posting, HIR-289).
-    two = conn.execute(sql, ("Perplexity", "San Francisco", "San Francisco; New York City")).lastrowid
-    one = conn.execute(sql, ("Acme", "Berlin", "Berlin")).lastrowid
+@pytest.fixture
+def conn(tmp_path):
+    c = db.connect(tmp_path / "t.db")
+    db.migrate(c)
+    return c
+
+
+def add(conn, company, city, location, first="2026-11-10T00:00:00Z", last=NOW, text="jd"):
+    job_id = conn.execute(SQL, (company, city, location, text, first, last)).lastrowid
     conn.commit()
-    return conn, two, one
+    return job_id
 
 
 def places(conn, job_id):
     return {r[0] for r in conn.execute("SELECT place FROM job_place WHERE job_id=?", (job_id,))}
 
 
-def test_backfill_adds_the_other_cities_and_nothing_else(tmp_path):
-    conn, two, one = _setup(tmp_path)
-    assert backfill_places.backfill(conn) == {"New York": 1}
-    assert places(conn, two) == {"San Francisco", "New York"} and places(conn, one) == {"Berlin"}
-    assert conn.execute("SELECT city FROM job WHERE id=?", (two,)).fetchone()[0] == "San Francisco"
-    assert backfill_places.backfill(conn) == {}          # a second run adds nothing
+def track(monkeypatch, city, *aliases):
+    """`city` becomes a tracked city, as a launch PR makes it."""
+    cities = {**geo.CITIES, city: aliases or (city.lower(),)}
+    monkeypatch.setattr(geo, "CITIES", cities)
+    monkeypatch.setattr(bp, "CITIES", cities)
+    monkeypatch.setattr(geo, "_PATTERNS", {c: re.compile(r"\b(" + "|".join(map(re.escape, a)) + r")\b", re.I)
+                                           for c, a in cities.items()})
 
 
-def test_dry_run_writes_nothing(tmp_path):
-    conn, two, _ = _setup(tmp_path)
-    assert backfill_places.backfill(conn, commit=False) == {"New York": 1}
-    assert places(conn, two) == {"San Francisco"}
+def test_a_berlin_job_naming_paris_gains_paris_once_paris_is_tracked(conn, monkeypatch):
+    job = add(conn, "Acme", "Berlin", "Berlin, Paris")
+    assert bp.backfill(conn).gains == []                 # Paris not a city yet
+    track(monkeypatch, "Paris")
+    assert bp.backfill(conn).counts() == {"Paris": 1}
+    assert places(conn, job) == {"Berlin", "Paris"}
+    assert conn.execute("SELECT city FROM job WHERE id=?", (job,)).fetchone()[0] == "Berlin"
+
+
+def test_a_second_run_adds_nothing(conn, monkeypatch):
+    add(conn, "Acme", "Berlin", "Berlin, Paris")
+    track(monkeypatch, "Paris")
+    assert bp.backfill(conn).counts() == {"Paris": 1}
+    assert bp.backfill(conn).gains == []
+
+
+def test_dry_run_writes_nothing(conn, monkeypatch):
+    job = add(conn, "Acme", "Berlin", "Berlin, Paris")
+    track(monkeypatch, "Paris")
+    b = bp.backfill(conn, apply=False)
+    assert b.counts() == {"Paris": 1} and not b.applied
+    assert places(conn, job) == {"Berlin"}
+    assert "dry run, nothing written" in "\n".join(bp.report_lines(b))
+
+
+def test_a_closed_job_is_backfilled_and_counts_only_when_it_was_open(conn, monkeypatch):
+    closed = add(conn, "OldCo", "Berlin", "Berlin; Paris",
+                 first="2026-06-01T00:00:00Z", last="2026-07-01T00:00:00Z",
+                 text="a full posting " * queries.MIN_TEXT_CHARS)   # the chart skips fragments
+    track(monkeypatch, "Paris")
+    assert bp.backfill(conn).counts() == {"Paris": 1}
+    assert places(conn, closed) == {"Berlin", "Paris"}
+    paris = lambda window: queries.city_totals(       # noqa: E731
+        conn, queries.make_filters(set(), cities=["Paris"], window=window), NOW).get("Paris", 0)
+    # Closed in July: not open now, not in the last 90 days, but in all-time.
+    assert (paris("open"), paris("90d"), paris("all")) == (0, 0, 1)
+    total, _ = queries._open_during(conn, queries.make_filters(set(), cities=["Paris"], window="all"),
+                                    "2026-06-10T00:00:00Z", "2026-06-20T00:00:00Z")
+    assert total == 1                                    # counted in the weeks it was open
+
+
+def test_city_limits_the_run_to_that_city(conn, monkeypatch):
+    job = add(conn, "Acme", "Berlin", "Berlin, Paris, Munich")
+    track(monkeypatch, "Paris")
+    assert bp.backfill(conn, city="Paris").counts() == {"Paris": 1}
+    assert places(conn, job) == {"Berlin", "Paris"}
+    with pytest.raises(ValueError):
+        bp.backfill(conn, city="Atlantis")
+
+
+def test_remote_eu_is_never_added(conn):
+    job = add(conn, "Acme", None, "Remote", text="We are a fully remote team across Europe.")
+    assert geo.places_of("Remote", "AI Engineer", "We are a fully remote team across Europe.") == [geo.REMOTE_EU]
+    assert bp.backfill(conn).gains == [] and places(conn, job) == set()
+
+
+def test_posting_text_alone_never_adds_a_city(conn, monkeypatch):
+    job = add(conn, "Acme", "Berlin", "Berlin", text="Work with our Paris office and clients in Paris.")
+    track(monkeypatch, "Paris")
+    assert bp.backfill(conn).gains == [] and places(conn, job) == {"Berlin"}
+
+
+def test_a_job_gaining_more_than_three_cities_is_listed_for_a_look(conn):
+    job = add(conn, "Everywhere", "Berlin", "Berlin, Munich, Hamburg, Frankfurt, New York")
+    conn.execute("DELETE FROM job_place WHERE job_id=? AND place != 'Berlin'", (job,))
+    conn.commit()
+    b = bp.backfill(conn, apply=False)
+    assert [g.job_id for g in b.many()] == [job]
+    assert "for a look" in "\n".join(bp.report_lines(b))
+
+
+def test_the_launch_runs_the_backfill_for_the_launched_city(conn, monkeypatch, capsys):
+    job = add(conn, "Acme", "Berlin", "Berlin, Paris")
+    track(monkeypatch, "Paris")
+    monkeypatch.setattr(geo, "ACTIVE_CITIES", (*geo.ACTIVE_CITIES, "Paris"))
+    monkeypatch.setattr(cli, "open_db", lambda: conn)
+    monkeypatch.setattr(brave, "api_key", lambda: "k")
+    monkeypatch.setattr(discover, "run", lambda *a, **k: discover.Report())
+    cli.main(["discover-boards", "--launch", "Paris"])
+    assert places(conn, job) == {"Berlin", "Paris"}
+    out = capsys.readouterr().out
+    assert "Paris: 1" in out and "job " in out
+
+
+def test_a_dry_run_launch_reports_the_gain_and_writes_nothing(conn, monkeypatch, capsys):
+    job = add(conn, "Acme", "Berlin", "Berlin, Paris")
+    track(monkeypatch, "Paris")
+    monkeypatch.setattr(geo, "ACTIVE_CITIES", (*geo.ACTIVE_CITIES, "Paris"))
+    monkeypatch.setattr(cli, "open_db", lambda: conn)
+    monkeypatch.setattr(brave, "api_key", lambda: "k")
+    monkeypatch.setattr(discover, "run", lambda *a, **k: discover.Report())
+    cli.main(["discover-boards", "--launch", "Paris", "--dry-run"])
+    assert places(conn, job) == {"Berlin"}
+    assert "would gain" in capsys.readouterr().out

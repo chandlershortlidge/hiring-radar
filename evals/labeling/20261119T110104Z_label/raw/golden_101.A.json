@@ -1,0 +1,276 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"cross disciplinary AI/ML projects\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"including Python\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\", \"alternative_group\": 1},\n    {\"skill_id\": \"jax\", \"requirement\": \"required\", \"raw_text\": \"JAX/TensorFlow\", \"alternative_group\": 1},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"JAX/TensorFlow\", \"alternative_group\": 1},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"version control\"},\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"required\", \"raw_text\": \"deep learning architectures\"},\n    {\"skill_id\": \"cheminformatics\", \"requirement\": \"nice_to_have\", \"raw_text\": \"cheminformatics/docking/ADMET\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LLM/agentic automation\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LLM/agentic automation\", \"uncertain\": true},\n    {\"skill_id\": \"mlops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"MLOps expertise\"},\n    {\"skill_id\": \"experiment-tracking\", \"requirement\": \"nice_to_have\", \"raw_text\": \"experiment tracking\"},\n    {\"skill_id\": \"mlflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"MLflow\", \"alternative_group\": 2},\n    {\"skill_id\": \"weights-and-biases\", \"requirement\": \"nice_to_have\", \"raw_text\": \"W&B\", \"alternative_group\": 2},\n    {\"skill_id\": \"aws\", \"requirement\": \"nice_to_have\", \"raw_text\": \"secure AWS infrastructure\"},\n    {\"skill_id\": \"aws-s3\", \"requirement\": \"nice_to_have\", \"raw_text\": \"S3\"},\n    {\"skill_id\": \"sagemaker\", \"requirement\": \"nice_to_have\", \"raw_text\": \"SageMaker\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Docker\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"nice_to_have\", \"raw_text\": \"IaC\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Terraform\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"nice_to_have\", \"raw_text\": \"CI/CD\"},\n    {\"skill_id\": \"github-actions\", \"requirement\": \"nice_to_have\", \"raw_text\": \"GitHub Actions\"},\n    {\"skill_id\": \"airflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Airflow\", \"alternative_group\": 3},\n    {\"skill_id\": \"prefect\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Prefect\", \"alternative_group\": 3},\n    {\"skill_id\": \"snowflake\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Snowflake\"},\n    {\"skill_id\": \"vector-search\", \"requirement\": \"nice_to_have\", \"raw_text\": \"vector search\"},\n    {\"skill_id\": \"faiss\", \"requirement\": \"nice_to_have\", \"raw_text\": \"FAISS\", \"alternative_group\": 4},\n    {\"skill_id\": \"pgvector\", \"requirement\": \"nice_to_have\", \"raw_text\": \"pgvector\", \"alternative_group\": 4},\n    {\"skill_id\": \"fastapi\", \"requirement\": \"nice_to_have\", \"raw_text\": \"FastAPI\"},\n    {\"skill_id\": \"streamlit\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Streamlit\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Databases\", \"raw_text\": \"databases\"},\n    {\"label\": \"Informatics software\", \"raw_text\": \"relevant informatics software\"},\n    {\"label\": \"Protein modeling/design\", \"raw_text\": \"protein modeling/design\"},\n    {\"label\": \"Proteomics/mass spec\", \"raw_text\": \"proteomics/mass spec\"},\n    {\"label\": \"Docking\", \"raw_text\": \"docking\"},\n    {\"label\": \"ADMET\", \"raw_text\": \"ADMET\"},\n    {\"label\": \"Biophysics/molecular dynamics\", \"raw_text\": \"biophysics/MD\"},\n    {\"label\": \"Data contracts and lineage\", \"raw_text\": \"data contracts and lineage\"},\n    {\"label\": \"DVC\", \"raw_text\": \"DVC\"},\n    {\"label\": \"LakeFS\", \"raw_text\": \"LakeFS\"},\n    {\"label\": \"AWS Batch\", \"raw_text\": \"Batch\"},\n    {\"label\": \"AWS ECS\", \"raw_text\": \"ECS\"},\n    {\"label\": \"AWS EKS\", \"raw_text\": \"EKS\"},\n    {\"label\": \"AWS CDK\", \"raw_text\": \"CDK\"},\n    {\"label\": \"Generative modeling (diffusion/flow/VAEs)\", \"raw_text\": \"Generative modeling (diffusion/flow/VAEs)\"},\n    {\"label\": \"gnina\", \"raw_text\": \"gnina\"},\n    {\"label\": \"DiffDock\", \"raw_text\": \"DiffDock\"},\n    {\"label\": \"Workflow orchestration\", \"raw_text\": \"Workflow orchestration\"},\n    {\"label\": \"Argo Workflows\", \"raw_text\": \"Argo\"},\n    {\"label\": \"Data warehouses\", \"raw_text\": \"data warehouses\"},\n    {\"label\": \"Redshift\", \"raw_text\": \"Redshift\"},\n    {\"label\": \"Gradio\", \"raw_text\": \"Gradio\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s, or PhD in a relevant field\",\n  \"uncertain\": [],\n  \"notes\": \"Sections: 'PROFESSIONAL EXPERIENCE & QUALIFICATIONS' sets required; 'Preferred Qualifications' sets nice_to_have.\\nDegree fields (machine learning, mathematics, statistics) describe the degree, not separate skills, so machine-learning and statistics are not labeled.\\nai-ml is labeled required because the qualifications ask for AI/ML projects and models. It is flagged because it could be read as domain experience. 'industry AI/ML experience preferred' is an industry-setting marker and does not change it.\\n'modern ML frameworks' is not mapped to machine-learning; only the named frameworks are labeled. PyTorch, JAX and TensorFlow form group 1 ('PyTorch or JAX/TensorFlow').\\nagents is taken from 'agentic automation' and flagged, because the alias match is loose.\\nTerraform/CDK and Streamlit/Gradio are not grouped: CDK and Gradio have no taxonomy id, and a group needs two mapped skills.\\nArgo in a workflow-orchestration list is read as Argo Workflows, not Argo CD, so it is unmapped.\\nThe preferred 'Breadth across domains such as …' list is not treated as alternatives: it asks for breadth across several domains.\\nDegree: 'Master’s, or PhD' takes the highest level named, phd.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "cross disciplinary AI/ML projects",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "including Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX/TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "JAX/TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "version control"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning architectures"
+      },
+      {
+        "skill_id": "cheminformatics",
+        "requirement": "nice_to_have",
+        "raw_text": "cheminformatics/docking/ADMET"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM/agentic automation"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM/agentic automation",
+        "uncertain": true
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "nice_to_have",
+        "raw_text": "MLOps expertise"
+      },
+      {
+        "skill_id": "experiment-tracking",
+        "requirement": "nice_to_have",
+        "raw_text": "experiment tracking"
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "nice_to_have",
+        "raw_text": "MLflow",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "weights-and-biases",
+        "requirement": "nice_to_have",
+        "raw_text": "W&B",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "secure AWS infrastructure"
+      },
+      {
+        "skill_id": "aws-s3",
+        "requirement": "nice_to_have",
+        "raw_text": "S3"
+      },
+      {
+        "skill_id": "sagemaker",
+        "requirement": "nice_to_have",
+        "raw_text": "SageMaker"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "nice_to_have",
+        "raw_text": "IaC"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "nice_to_have",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "github-actions",
+        "requirement": "nice_to_have",
+        "raw_text": "GitHub Actions"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Airflow",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "prefect",
+        "requirement": "nice_to_have",
+        "raw_text": "Prefect",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "nice_to_have",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "vector-search",
+        "requirement": "nice_to_have",
+        "raw_text": "vector search"
+      },
+      {
+        "skill_id": "faiss",
+        "requirement": "nice_to_have",
+        "raw_text": "FAISS",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "pgvector",
+        "requirement": "nice_to_have",
+        "raw_text": "pgvector",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "nice_to_have",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "streamlit",
+        "requirement": "nice_to_have",
+        "raw_text": "Streamlit"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Databases",
+        "raw_text": "databases"
+      },
+      {
+        "label": "Informatics software",
+        "raw_text": "relevant informatics software"
+      },
+      {
+        "label": "Protein modeling/design",
+        "raw_text": "protein modeling/design"
+      },
+      {
+        "label": "Proteomics/mass spec",
+        "raw_text": "proteomics/mass spec"
+      },
+      {
+        "label": "Docking",
+        "raw_text": "docking"
+      },
+      {
+        "label": "ADMET",
+        "raw_text": "ADMET"
+      },
+      {
+        "label": "Biophysics/molecular dynamics",
+        "raw_text": "biophysics/MD"
+      },
+      {
+        "label": "Data contracts and lineage",
+        "raw_text": "data contracts and lineage"
+      },
+      {
+        "label": "DVC",
+        "raw_text": "DVC"
+      },
+      {
+        "label": "LakeFS",
+        "raw_text": "LakeFS"
+      },
+      {
+        "label": "AWS Batch",
+        "raw_text": "Batch"
+      },
+      {
+        "label": "AWS ECS",
+        "raw_text": "ECS"
+      },
+      {
+        "label": "AWS EKS",
+        "raw_text": "EKS"
+      },
+      {
+        "label": "AWS CDK",
+        "raw_text": "CDK"
+      },
+      {
+        "label": "Generative modeling (diffusion/flow/VAEs)",
+        "raw_text": "Generative modeling (diffusion/flow/VAEs)"
+      },
+      {
+        "label": "gnina",
+        "raw_text": "gnina"
+      },
+      {
+        "label": "DiffDock",
+        "raw_text": "DiffDock"
+      },
+      {
+        "label": "Workflow orchestration",
+        "raw_text": "Workflow orchestration"
+      },
+      {
+        "label": "Argo Workflows",
+        "raw_text": "Argo"
+      },
+      {
+        "label": "Data warehouses",
+        "raw_text": "data warehouses"
+      },
+      {
+        "label": "Redshift",
+        "raw_text": "Redshift"
+      },
+      {
+        "label": "Gradio",
+        "raw_text": "Gradio"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s, or PhD in a relevant field",
+    "uncertain": [],
+    "notes": "Sections: 'PROFESSIONAL EXPERIENCE & QUALIFICATIONS' sets required; 'Preferred Qualifications' sets nice_to_have.\nDegree fields (machine learning, mathematics, statistics) describe the degree, not separate skills, so machine-learning and statistics are not labeled.\nai-ml is labeled required because the qualifications ask for AI/ML projects and models. It is flagged because it could be read as domain experience. 'industry AI/ML experience preferred' is an industry-setting marker and does not change it.\n'modern ML frameworks' is not mapped to machine-learning; only the named frameworks are labeled. PyTorch, JAX and TensorFlow form group 1 ('PyTorch or JAX/TensorFlow').\nagents is taken from 'agentic automation' and flagged, because the alias match is loose.\nTerraform/CDK and Streamlit/Gradio are not grouped: CDK and Gradio have no taxonomy id, and a group needs two mapped skills.\nArgo in a workflow-orchestration list is read as Argo Workflows, not Argo CD, so it is unmapped.\nThe preferred 'Breadth across domains such as …' list is not treated as alternatives: it asks for breadth across several domains.\nDegree: 'Master’s, or PhD' takes the highest level named, phd."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "7ebff664e45916dc525daca7e6dc49726fedf637ea40025ec0ab80af89e88fb8",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

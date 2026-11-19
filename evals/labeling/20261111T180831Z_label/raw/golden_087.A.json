@@ -1,0 +1,43 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"experience building with large language models\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"developing agents\", \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"Experience designing evals\", \"uncertain\": true}\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"6+ years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor’s degree or an equivalent combination of education, training, and/or experience\",\n  \"uncertain\": [],\n  \"notes\": \"The heading 'You may be a good fit if you have:' does not mark the section optional, so items under it default to required.\\nThe closing line 'encourage you to apply even if you do not believe you meet every single qualification' changes no label, by analogy with golden_038.\\n'Curiosity about what AI models can actually do' governs no named skill, so it adds no criterion.\\nAgents appears as one of three alternatives ('whether shipping LLM-powered products, developing agents or workflows, or integrating models'). I labeled it required as a named example and flagged it uncertain.\\n'workflows' in the same list is too vague for workflow-automation, so it is not labeled.\\n'integrating models into production systems' is too vague for ai-deployment, so it is not labeled.\\nEvaluation is one of three alternatives ('designing evals, building prototypes, or developing technical enablement'). I labeled it required and flagged it uncertain.\\n'Software Engineer' appears only as a past role title inside a years-of-experience requirement. It is not labeled as software-engineering.\\n'at least one programming language' names no specific language, so it adds no criterion.\\nDemos, evals and prototypes in Responsibilities are not labeled unless also asked of the candidate. Evals is labeled only from the qualifications line.\\nGPT-3 and the other research directions appear only in the company description.\\nSeniority: the title names no level, so seniority is inferred from '6+ years of experience'.\\nDegree: 'Minimum education' in Logistics is an unmarked requirement. 'or an equivalent combination of education, training, and/or experience' makes degree_or_equivalent true.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "experience building with large language models"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "developing agents",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Experience designing evals",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "6+ years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor’s degree or an equivalent combination of education, training, and/or experience",
+    "uncertain": [],
+    "notes": "The heading 'You may be a good fit if you have:' does not mark the section optional, so items under it default to required.\nThe closing line 'encourage you to apply even if you do not believe you meet every single qualification' changes no label, by analogy with golden_038.\n'Curiosity about what AI models can actually do' governs no named skill, so it adds no criterion.\nAgents appears as one of three alternatives ('whether shipping LLM-powered products, developing agents or workflows, or integrating models'). I labeled it required as a named example and flagged it uncertain.\n'workflows' in the same list is too vague for workflow-automation, so it is not labeled.\n'integrating models into production systems' is too vague for ai-deployment, so it is not labeled.\nEvaluation is one of three alternatives ('designing evals, building prototypes, or developing technical enablement'). I labeled it required and flagged it uncertain.\n'Software Engineer' appears only as a past role title inside a years-of-experience requirement. It is not labeled as software-engineering.\n'at least one programming language' names no specific language, so it adds no criterion.\nDemos, evals and prototypes in Responsibilities are not labeled unless also asked of the candidate. Evals is labeled only from the qualifications line.\nGPT-3 and the other research directions appear only in the company description.\nSeniority: the title names no level, so seniority is inferred from '6+ years of experience'.\nDegree: 'Minimum education' in Logistics is an unmarked requirement. 'or an equivalent combination of education, training, and/or experience' makes degree_or_equivalent true."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "8605e57f4999c9ac85d3588a6f2e43e70bd7a1ee8d1717c46e4a30b5729064b2",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

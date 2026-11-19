@@ -1,0 +1,142 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"solid foundation in machine learning\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"statistics\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"scikit-learn\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"feature-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"engineering features\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"training models\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluating them against baselines and metrics\"\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"natural language processing\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"computer-vision\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"computer vision\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"production ML lifecycle\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deployment\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"monitoring\"\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"care for data privacy\"\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"transformers\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLM-based workflows\",\n      \"alternative_group\": 3\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Probability theory\",\n      \"raw_text\": \"probability theory\"\n    },\n    {\n      \"label\": \"Training dataset preparation\",\n      \"raw_text\": \"preparing training datasets\"\n    },\n    {\n      \"label\": \"Machine learning on tabular or behavioural data\",\n      \"raw_text\": \"tabular or behavioural data\"\n    },\n    {\n      \"label\": \"Fraud detection\",\n      \"raw_text\": \"fraud detection\"\n    },\n    {\n      \"label\": \"Content classification\",\n      \"raw_text\": \"content classification\"\n    },\n    {\n      \"label\": \"Multimodal models\",\n      \"raw_text\": \"multimodal models\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"About you defaults to required; Nice to have makes its two bullets optional. The general invitation to apply without meeting every point does not change those labels.\\nOnly candidate qualifications were labeled; responsibility-only techniques were excluded.\\nGroup 2 also accepts machine learning on tabular or behavioural data, which has no matching taxonomy entry. Group 3 also accepts unmapped multimodal models.\\nFraud detection and content classification are treated literally as technical applications; general Trust & Safety knowledge is excluded as domain knowledge.\\nCare for data privacy is treated literally as a required privacy practice, not as a request for broader cybersecurity expertise.\\nPractical experience and project ownership do not establish seniority under the guide. No German or degree requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "solid foundation in machine learning"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistics"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "feature-engineering",
+        "requirement": "required",
+        "raw_text": "engineering features"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "training models"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluating them against baselines and metrics"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "natural language processing",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "computer vision",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "production ML lifecycle"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deployment"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "care for data privacy"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "nice_to_have",
+        "raw_text": "transformers",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM-based workflows",
+        "alternative_group": 3
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Probability theory",
+        "raw_text": "probability theory"
+      },
+      {
+        "label": "Training dataset preparation",
+        "raw_text": "preparing training datasets"
+      },
+      {
+        "label": "Machine learning on tabular or behavioural data",
+        "raw_text": "tabular or behavioural data"
+      },
+      {
+        "label": "Fraud detection",
+        "raw_text": "fraud detection"
+      },
+      {
+        "label": "Content classification",
+        "raw_text": "content classification"
+      },
+      {
+        "label": "Multimodal models",
+        "raw_text": "multimodal models"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "About you defaults to required; Nice to have makes its two bullets optional. The general invitation to apply without meeting every point does not change those labels.\nOnly candidate qualifications were labeled; responsibility-only techniques were excluded.\nGroup 2 also accepts machine learning on tabular or behavioural data, which has no matching taxonomy entry. Group 3 also accepts unmapped multimodal models.\nFraud detection and content classification are treated literally as technical applications; general Trust & Safety knowledge is excluded as domain knowledge.\nCare for data privacy is treated literally as a required privacy practice, not as a request for broader cybersecurity expertise.\nPractical experience and project ownership do not establish seniority under the guide. No German or degree requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "3d3057094590199e3b1a71ec06f32d741502907fb017d91d329dc49fe7f1eba6",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

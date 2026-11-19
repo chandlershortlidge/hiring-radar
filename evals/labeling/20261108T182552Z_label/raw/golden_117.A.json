@@ -1,0 +1,96 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"data-engineering\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Umsetzung von innovativen Data-Engineering-Lösungen\", \"uncertain\": true},\n    {\"skill_id\": \"azure\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Gute Kenntnisse rund um die Azure Data Dienste\", \"uncertain\": true},\n    {\"skill_id\": \"azure-data-factory\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Data Factory\", \"uncertain\": true},\n    {\"skill_id\": \"azure-sql-database\", \"requirement\": \"nice_to_have\", \"raw_text\": \"SQL DB\", \"uncertain\": true},\n    {\"skill_id\": \"azure-data-lake-storage\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Data Lake Storage\", \"uncertain\": true},\n    {\"skill_id\": \"databricks\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Databricks, Functions\", \"uncertain\": true},\n    {\"skill_id\": \"azure-functions\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Functions sowie\", \"uncertain\": true},\n    {\"skill_id\": \"azure-ai-foundry\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Interesse an Microsoft Foundry\"},\n    {\"skill_id\": \"data-warehousing\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Starkes Interesse an der Entwicklung von DWH\"},\n    {\"skill_id\": \"business-intelligence\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Starkes Interesse an der Entwicklung von DWH / Data Lake und BI\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Predictive Marketing / Customer Intelligence / AI-gestützte Personalisierung (domain)\", \"raw_text\": \"AI-gestützter Personalisierung, Predictive Marketing oder Customer Intelligence\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI Data Engineer\",\n  \"german\": \"nice_to_have\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gutes Deutsch\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"german\"],\n  \"notes\": \"The heading 'Das bringst du idealerweise mit' contains 'idealerweise' (= ideally, a listed optional marker). On the literal reading the whole section is nice_to_have, and that includes German. This is a conventional German requirements heading, so a person should confirm.\\nIf the heading is read as a requirements heading, these become required: data-engineering, azure, data-factory, sql-db, data-lake-storage, databricks, functions, and German.\\nThese stay nice_to_have either way under the appetite rule ('Interesse an'): azure-ai-foundry, data-warehousing, business-intelligence and cloud.\\nThe Azure examples are given as 'wie z. B. Data Factory, SQL DB, ...' with no 'oder', so I did not treat them as an alternative_group. Groups were not reviewed.\\nThe 'Databricks' and 'Functions' quotes are lengthened to stay unique, because 'Databricks' also appears in the benefits section and 'Functions' would be ambiguous on its own.\\nI read 'Functions' as azure-functions because it sits in the Azure Data Dienste list.\\nI did not map 'Leidenschaft für Daten, Azure und AI' or 'AI' as a skill: it is too vague, and passion is not an asked skill.\\n'Data Lake' as part of 'DWH / Data Lake' is folded into data-warehousing via its alias.\\nTechnologies that appear only in the tasks or benefits sections (LLM integration, agent-based pipelines, Azure Cloud in tasks) are not labeled.\\nNo degree is mentioned.\\nSeniority is stated in the title.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-engineering",
+        "requirement": "nice_to_have",
+        "raw_text": "Umsetzung von innovativen Data-Engineering-Lösungen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Gute Kenntnisse rund um die Azure Data Dienste",
+        "uncertain": true
+      },
+      {
+        "skill_id": "azure-data-factory",
+        "requirement": "nice_to_have",
+        "raw_text": "Data Factory",
+        "uncertain": true
+      },
+      {
+        "skill_id": "azure-sql-database",
+        "requirement": "nice_to_have",
+        "raw_text": "SQL DB",
+        "uncertain": true
+      },
+      {
+        "skill_id": "azure-data-lake-storage",
+        "requirement": "nice_to_have",
+        "raw_text": "Data Lake Storage",
+        "uncertain": true
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "nice_to_have",
+        "raw_text": "Databricks, Functions",
+        "uncertain": true
+      },
+      {
+        "skill_id": "azure-functions",
+        "requirement": "nice_to_have",
+        "raw_text": "Functions sowie",
+        "uncertain": true
+      },
+      {
+        "skill_id": "azure-ai-foundry",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse an Microsoft Foundry"
+      },
+      {
+        "skill_id": "data-warehousing",
+        "requirement": "nice_to_have",
+        "raw_text": "Starkes Interesse an der Entwicklung von DWH"
+      },
+      {
+        "skill_id": "business-intelligence",
+        "requirement": "nice_to_have",
+        "raw_text": "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Predictive Marketing / Customer Intelligence / AI-gestützte Personalisierung (domain)",
+        "raw_text": "AI-gestützter Personalisierung, Predictive Marketing oder Customer Intelligence"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI Data Engineer",
+    "german": "nice_to_have",
+    "german_basis": "stated",
+    "german_signal": "Sehr gutes Deutsch",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "german"
+    ],
+    "notes": "The heading 'Das bringst du idealerweise mit' contains 'idealerweise' (= ideally, a listed optional marker). On the literal reading the whole section is nice_to_have, and that includes German. This is a conventional German requirements heading, so a person should confirm.\nIf the heading is read as a requirements heading, these become required: data-engineering, azure, data-factory, sql-db, data-lake-storage, databricks, functions, and German.\nThese stay nice_to_have either way under the appetite rule ('Interesse an'): azure-ai-foundry, data-warehousing, business-intelligence and cloud.\nThe Azure examples are given as 'wie z. B. Data Factory, SQL DB, ...' with no 'oder', so I did not treat them as an alternative_group. Groups were not reviewed.\nThe 'Databricks' and 'Functions' quotes are lengthened to stay unique, because 'Databricks' also appears in the benefits section and 'Functions' would be ambiguous on its own.\nI read 'Functions' as azure-functions because it sits in the Azure Data Dienste list.\nI did not map 'Leidenschaft für Daten, Azure und AI' or 'AI' as a skill: it is too vague, and passion is not an asked skill.\n'Data Lake' as part of 'DWH / Data Lake' is folded into data-warehousing via its alias.\nTechnologies that appear only in the tasks or benefits sections (LLM integration, agent-based pipelines, Azure Cloud in tasks) are not labeled.\nNo degree is mentioned.\nSeniority is stated in the title."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "3230750ded75da38d79155ed47a055da5e8b70f105609bbdca1fc190889f82de",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

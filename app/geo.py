@@ -12,7 +12,8 @@ San Francisco became active on 2026-11-03 once the held-out eval passed (DECISIO
 2026-11-03, HIR-12), and New York on 2026-11-03 as the first city launched end to end
 without a human step (DECISIONS 2026-11-03, HIR-132). Hamburg, Frankfurt and Munich became
 active on 2026-11-08, the three cities Chandler named in HIR-165, each launched by that same
-automated path. Turning on a city Chandler has not named is still on the AGENTS.md stop list.
+automated path. Austin, Boston, London and Amsterdam became active on 2026-11-19, the four
+Chandler named in HIR-252. Turning on a city Chandler has not named is still on the AGENTS.md stop list.
 
 EU-remote (DECISIONS 2026-10-26): a remote posting counts when its location names an
 EU-wide region or Germany ("Remote (EMEA)", "Leipzig, Germany (remote)"), or names no
@@ -44,14 +45,47 @@ CITIES: dict[str, tuple[str, ...]] = {
     "Hamburg": ("hamburg",),
     "Frankfurt": ("frankfurt",),
     "Munich": ("munich", "münchen", "muenchen"),
+    "Austin": ("austin",),
+    "Boston": ("boston", "cambridge, ma", "cambridge, massachusetts"),
+    "London": ("london",),
+    "Amsterdam": ("amsterdam",),
 }
 
 REMOTE_EU = "Remote (EU)"
 
 ACTIVE_CITIES: tuple[str, ...] = ("Berlin", REMOTE_EU, "San Francisco", "New York", "Hamburg",
-                                  "Frankfurt", "Munich")
+                                  "Frankfurt", "Munich", "Austin", "Boston", "London", "Amsterdam")
 
-_PATTERNS = {city: re.compile(r"\b(" + "|".join(re.escape(a) for a in aliases) + r")\b", re.I)
+# The day each active place started being collected (HIR-232). A place's first weeks hold
+# every posting that was already open on that day, all "first seen" at once, so nothing
+# that compares two periods may use a period that starts before this date. A newly launched
+# city gets its launch day here; tests/test_geo.py fails while an active place has none.
+COLLECTING_SINCE: dict[str, str] = {
+    "Berlin": "2026-10-18",          # the first live polls
+    REMOTE_EU: "2026-10-26",         # DECISIONS 2026-10-26
+    "San Francisco": "2026-11-03",   # HIR-12
+    "New York": "2026-11-03",        # HIR-132
+    "Hamburg": "2026-11-08",         # HIR-165
+    "Frankfurt": "2026-11-08",
+    "Munich": "2026-11-08",
+    "Austin": "2026-11-19",          # HIR-252
+    "Boston": "2026-11-19",
+    "London": "2026-11-19",
+    "Amsterdam": "2026-11-19",
+}
+
+# Places that share a tracked city's name (HIR-252). Each is a lookbehind and lookahead
+# wrapped around the city's match: "London, Ontario", "London, ON" and "New London, CT" are
+# not London. The province code is matched in capitals only, so "London, on-site" stays
+# London. A bare "London, Canada" is excluded too; listing offices as "London, Canada, US"
+# would lose London, which is rarer than the Ontario city.
+_NOT_THIS_CITY: dict[str, tuple[str, str]] = {
+    "London": (r"(?<!new )", r"(?!,?\s*(?:(?-i:ON)\b|ontario\b|canada\b))"),
+}
+
+_PATTERNS = {city: re.compile(_NOT_THIS_CITY.get(city, ("", ""))[0]
+                              + r"\b(" + "|".join(re.escape(a) for a in aliases) + r")\b"
+                              + _NOT_THIS_CITY.get(city, ("", ""))[1], re.I)
              for city, aliases in CITIES.items()}
 
 _REMOTE = re.compile(r"\b(remote|remotely|home ?office|work from home|wfh|telecommute|anywhere|worldwide)\b", re.I)

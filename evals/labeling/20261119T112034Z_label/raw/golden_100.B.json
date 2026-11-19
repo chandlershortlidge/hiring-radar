@@ -1,0 +1,168 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"professional software engineering experience\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying LLM-powered applications or AI agents in production\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM-powered applications\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI agents\",\n      \"alternative_group\": 2,\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangChain\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"llamaindex\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LlamaIndex\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"llm-guardrails\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Guardrails\",\n      \"alternative_group\": 3,\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MCP\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG pipelines\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tool use\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"multi-step AI workflows\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI system evaluation\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"observability\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevOps practices\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cloud platforms\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AWS\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GCP\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Azure\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"agent-architecture\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agent architectures\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Debugging\",\n      \"raw_text\": \"debugging\"\n    },\n    {\n      \"label\": \"Long-horizon task execution\",\n      \"raw_text\": \"long-horizon task execution\"\n    },\n    {\n      \"label\": \"Responsible AI practices\",\n      \"raw_text\": \"responsible AI practices\"\n    },\n    {\n      \"label\": \"AI auditability\",\n      \"raw_text\": \"auditability\"\n    },\n    {\n      \"label\": \"AI governance\",\n      \"raw_text\": \"governance\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"8+ years of professional software engineering experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"WHO YOU ARE supplies the qualifications; its inline 'plus' markers make the affected items optional. Technologies appearing only in responsibilities or company descriptions are excluded.\\nAI deployment is required by the production-deployment qualification; the optional enterprise-deployment mention does not soften it.\\nThe agents criterion also covers 'agent frameworks', which occurs in the tooling alternatives. The guide does not specify how to encode overlapping alternative groups with one criterion per skill; agents is retained in group 2 and flagged for review, while group 3 records the other tooling alternatives.\\nGuardrails is provisionally mapped to llm-guardrails; capitalization may instead identify a particular library, so this mapping is flagged.\\nMulti-step AI workflows is read literally as LLM orchestration in the surrounding LLM context.\\nDebugging alone is left unmapped rather than treated as an explicit request for software testing.\\nResponsible AI, auditability, governance, and long-horizon task execution have no exact taxonomy entries; no broader security or agent-state skill is inferred.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "professional software engineering experience"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying LLM-powered applications or AI agents in production"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-powered applications",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "AI agents",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "required",
+        "raw_text": "LlamaIndex",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "Guardrails",
+        "alternative_group": 3,
+        "uncertain": true
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "MCP",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG pipelines",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "multi-step AI workflows",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "AI system evaluation"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "observability"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps practices"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "GCP",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "agent-architecture",
+        "requirement": "nice_to_have",
+        "raw_text": "agent architectures"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Debugging",
+        "raw_text": "debugging"
+      },
+      {
+        "label": "Long-horizon task execution",
+        "raw_text": "long-horizon task execution"
+      },
+      {
+        "label": "Responsible AI practices",
+        "raw_text": "responsible AI practices"
+      },
+      {
+        "label": "AI auditability",
+        "raw_text": "auditability"
+      },
+      {
+        "label": "AI governance",
+        "raw_text": "governance"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "8+ years of professional software engineering experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "WHO YOU ARE supplies the qualifications; its inline 'plus' markers make the affected items optional. Technologies appearing only in responsibilities or company descriptions are excluded.\nAI deployment is required by the production-deployment qualification; the optional enterprise-deployment mention does not soften it.\nThe agents criterion also covers 'agent frameworks', which occurs in the tooling alternatives. The guide does not specify how to encode overlapping alternative groups with one criterion per skill; agents is retained in group 2 and flagged for review, while group 3 records the other tooling alternatives.\nGuardrails is provisionally mapped to llm-guardrails; capitalization may instead identify a particular library, so this mapping is flagged.\nMulti-step AI workflows is read literally as LLM orchestration in the surrounding LLM context.\nDebugging alone is left unmapped rather than treated as an explicit request for software testing.\nResponsible AI, auditability, governance, and long-horizon task execution have no exact taxonomy entries; no broader security or agent-state skill is inferred."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "8a69d4b0da2183a908150e1398a974d68390c39e33f6d31f3a3a36f2a6c82d27",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,96 @@
+{
+  "id": "golden_108",
+  "split": "heldout",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Fließende Deutschkenntnisse (mind. Level B2-C1)",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Erfolgreiches Studium in Naturwissenschaften, Informatik oder eine vergleichbare Qualifikation",
+  "attrs_reviewed": true,
+  "source_sha256": "c593c2fe104aa9ee8247d59b0c4c197025a83282d1232465b294be988fd81fd9",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "seniority",
+    "skill:claude-code",
+    "skill:cloud"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "System Platform Engineer KI (m/w/d)\n\n**Unternehmensbeschreibung**\n\nLass uns gemeinsam neue Wege gehen! Denn genau das tun wir bei der R+V, einem der größten Versicherer Deutschlands.\n\nWillkommen im Ressort Operations und IT, in dem die R+V alle kundennahen Operations-Einheiten und die IT bündelt. Ziel ist es, Prozesse und technische Voraussetzungen so zu verbessern, dass die R+V Kundenanliegen schneller, effizienter und digitaler bearbeiten kann. Innovative Techno­logien und unsere vielfältige Systemlandschaft bieten Möglichkeiten für fachliche und persönliche Ent­wicklung.\n\nFür unsere KI-Plattform suchen wir KollegInnen in unterschiedlichen Erfahrungsstufen: Professional, Senior Professional und Principal System Platform Engineer\n\n**Stellenbeschreibung**\n\n- Als Platform Engineer arbeitest Du in Kombination aus Engineering-Methoden und Cloud-Architekturen mit den aktuellen Data- und Analytics-Technologien an der KI-Plattform der R+V.\n- Du hast Erfahrung im Einsatz von Coding Agents wie Claude Code oder Codex gesammelt, weißt worauf es hier ankommt. VibeEngineering ist für Dich kein Fremdwort und wird von Dir aktiv praktiziert.\n- In einem Scrum-Team entwickelst Du von der Spezifikation über Design bis Implementierung unter Betrachtung von Skalierbarkeit und Stabilität unsere KI-Lösung im ganzheitlichen Sinne von DevOps weiter und betreibst diese.\n- Du definierst und setzt Proof of Concepts und Prototypen um.\n- Auch Konzeption und Implementierung individueller Lösungen sind Teil Deiner Aufgabe.\n- Kontinuierliche Weiterentwicklung bzw. Scouting von Technologien, Methoden und Tools sowie aktive Wissensvermittlung sind für Dich selbstverständlich.\n- Du möchtest Dich diesen Herausforderungen stellen, zusammen mit dem Team neue Wege beschreiten, Themen für die R+V vorantreiben und Dich dabei persönlich weiterentwickeln.\n\n**Qualifikationen**\n\n- Erfolgreiches Studium in Naturwissenschaften, Informatik oder eine vergleichbare Qualifikation.\n- Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory/ Synapse Pipeline sowie Data Ingestion (ETL/ELT).\n- Erfahrung im Erstellen und Debuggen von Docker-Images sowie im Umgang mit Terraform und Python.\n- Kenntnisse in Azure-Infrastrukturen und - Services, z.B. VNets, Service und Private Endpoints, Identity Management, RBAC/ACL sowie Azure Storage (insbesondere Azure Data Lake Storage Gen2), sind von Vorteil.\n- Erfahrung in der netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke\n- Praxiserfahrung im Einsatz von Coding Agents (z.B. Claude Code oder Codex) sowie ein gutes Verständnis für modernes AI-assisted Coding und Vibe Engineering.\n- Du bringst eine Kommunikationsstärke, Teamfähigkeit und Freude in der Zusammenarbeit interdisziplinären Teams mit.\n- Fließende Deutschkenntnisse (mind. Level B2-C1).\n\n**Zusätzliche Informationen**\n\n**Homeoffice:** Flexible Arbeitszeiten im Homeoffice und Büro. Mehr Infos zu unserem hybriden Arbeiten findest Du [hier](https://www.ruv.de/karriere/blog/HomeOffice-bei-ruv).\n\n**Arbeitszeiten:** Standardmäßig 38h-Woche, Zeiterfassungssystem, Gleitzeit & Lebensarbeitszeitkonto.\n\n**Urlaub:** 30 Tage Urlaub & zusätzliche arbeitsfreie Tage (24.12. und 31.12.).\n\n**Vergütung:** 14 Monatsgehälter (inkl. Weihnachts- & Urlaubsgeld) oder Teilnahme am variablen Vergütungssystem, Sonderzahlungen, Mitarbeitertarife & Rabattaktionen.\n\n**Weiterentwicklung:** Förderung & Weiterentwicklung durch die R+V Akademie. Die Übernahme externer Qualifizierungsmaßnahmen komplettiert Deine persönliche sowie fachliche Entwicklung.\n\n**Gesundheit:** Betriebliche Altersvorsorge & Gesundheitsmanagement mit vielfältigen Angeboten. Unser hauseigenes Fitnessstudio und ein breites Netzwerk von Sportangeboten (Wellpass) stehen Dir zudem online und bundesweit zur Verfügung. Zudem bieten wir für unsere Mitarbeitenden Betriebssportgruppen mit diversen Sparten an.\n\n**Mobilität:** Jobticket, Jobrad/Fahrradleasing, verkehrsgünstige Lage mit überdachten Fahrradparkplätzen sowie eine E-Ladestation für PKW und Fahrräder.\n\n**Familie & Beruf:** Eltern-Kind-Büro, Kindernotfallbetreuung, sowie Pflegenetzwerk & Unterstützung durch die R+V-Sozialberatung.\n\n**Kulinarik:** Gesunde & ausgewogene Speisen in unserem Betriebsrestaurant, dazu bieten wir täglich frisches Obst zur Selbstbedienung.\n\n**Kultur:** Wir leben Gemeinschaft. Unser Motto „Was einer nicht schafft, schaffen viele“ spiegelt sich auch in unseren Teams und dem täglichen Miteinander wider.",
+  "expected": [
+    {
+      "skill_id": "access-control",
+      "requirement": "nice_to_have",
+      "raw_text": "Identity Management, RBAC/ACL"
+    },
+    {
+      "skill_id": "ai-developer-tooling",
+      "requirement": "required",
+      "raw_text": "Praxiserfahrung im Einsatz von Coding Agents"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "nice_to_have",
+      "raw_text": "Kenntnisse in Azure-Infrastrukturen"
+    },
+    {
+      "skill_id": "azure-data-factory",
+      "requirement": "nice_to_have",
+      "raw_text": "Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory"
+    },
+    {
+      "skill_id": "azure-data-lake-storage",
+      "requirement": "nice_to_have",
+      "raw_text": "Azure Data Lake Storage Gen2"
+    },
+    {
+      "skill_id": "claude-code",
+      "requirement": "required",
+      "raw_text": "Claude Code"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Anbindung von Cloud-Umgebungen"
+    },
+    {
+      "skill_id": "codex",
+      "requirement": "required",
+      "raw_text": "Claude Code oder Codex)"
+    },
+    {
+      "skill_id": "data-pipelines",
+      "requirement": "nice_to_have",
+      "raw_text": "Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory/ Synapse Pipeline sowie Data Ingestion (ETL/ELT)"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Erstellen und Debuggen von Docker-Images"
+    },
+    {
+      "skill_id": "networking",
+      "requirement": "required",
+      "raw_text": "Erfahrung in der netzwerkseitigen Anbindung"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "terraform",
+      "requirement": "required",
+      "raw_text": "Terraform"
+    }
+  ]
+}

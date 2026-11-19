@@ -1,0 +1,181 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cross disciplinary AI/ML projects\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"modern ML frameworks\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"version control\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning architectures\"\n    },\n    {\n      \"skill_id\": \"cheminformatics\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cheminformatics\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Experience integrating LLMs\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Hands-on experience with agentic AI\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"orchestration frameworks\"\n    },\n    {\n      \"skill_id\": \"pydanticai\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Pydantic AI\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LangGraph\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LangChain\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"crewai\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CrewAI\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"autogen\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AutoGen\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"anthropic-api\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Anthropic\"\n    },\n    {\n      \"skill_id\": \"openai-api\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"OpenAI\"\n    },\n    {\n      \"skill_id\": \"vertex-ai\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Vertex AI\"\n    },\n    {\n      \"skill_id\": \"aws-bedrock\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Amazon Bedrock\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"evaluation and feedback-loop frameworks\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLM observability and monitoring tooling\"\n    },\n    {\n      \"skill_id\": \"ai-infrastructure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI infrastructure\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Databases\",\n      \"raw_text\": \"databases\"\n    },\n    {\n      \"label\": \"Informatics software\",\n      \"raw_text\": \"relevant informatics software\"\n    },\n    {\n      \"label\": \"Sandboxed code execution\",\n      \"raw_text\": \"sandboxed code execution\"\n    },\n    {\n      \"label\": \"Agent harness development\",\n      \"raw_text\": \"agent harness development\"\n    },\n    {\n      \"label\": \"Feedback-loop frameworks\",\n      \"raw_text\": \"feedback-loop frameworks\"\n    },\n    {\n      \"label\": \"AI cost governance / FinOps\",\n      \"raw_text\": \"cost-governance / FinOps for AI infrastructure\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Scientist, Machine Learning\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s, or PhD in a relevant field (e.g., machine learning, mathematics, statistics, computational sciences)\",\n  \"notes\": \"PROFESSIONAL EXPERIENCE & QUALIFICATIONS defaults to required; PREFERRED QUALIFICATIONS makes its items nice_to_have. The general invitation to apply without every qualification does not change these labels.\\nDegree fields are not independently treated as skill requirements. Other scientific domains are excluded as domain knowledge; cheminformatics is flagged because it is both explicitly named in the taxonomy and presented here as a domain.\\nAI infrastructure is flagged because it is named as the context for FinOps rather than as a standalone proficiency.\\nPyTorch or JAX/TensorFlow is read literally as alternative framework choices. The orchestration-framework examples form a second alternative group; the platform list joined by 'and' does not.\\nTechnologies appearing only in the role description, responsibilities, or employer-benefits narrative, including MLOps, are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "cross disciplinary AI/ML projects"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "modern ML frameworks"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "version control"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning architectures"
+      },
+      {
+        "skill_id": "cheminformatics",
+        "requirement": "nice_to_have",
+        "raw_text": "cheminformatics",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience integrating LLMs"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "Hands-on experience with agentic AI"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "nice_to_have",
+        "raw_text": "orchestration frameworks"
+      },
+      {
+        "skill_id": "pydanticai",
+        "requirement": "nice_to_have",
+        "raw_text": "Pydantic AI",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "nice_to_have",
+        "raw_text": "LangGraph",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "nice_to_have",
+        "raw_text": "LangChain",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "crewai",
+        "requirement": "nice_to_have",
+        "raw_text": "CrewAI",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "autogen",
+        "requirement": "nice_to_have",
+        "raw_text": "AutoGen",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "anthropic-api",
+        "requirement": "nice_to_have",
+        "raw_text": "Anthropic"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "nice_to_have",
+        "raw_text": "OpenAI"
+      },
+      {
+        "skill_id": "vertex-ai",
+        "requirement": "nice_to_have",
+        "raw_text": "Vertex AI"
+      },
+      {
+        "skill_id": "aws-bedrock",
+        "requirement": "nice_to_have",
+        "raw_text": "Amazon Bedrock"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "evaluation and feedback-loop frameworks"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM observability and monitoring tooling"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "nice_to_have",
+        "raw_text": "AI infrastructure",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Databases",
+        "raw_text": "databases"
+      },
+      {
+        "label": "Informatics software",
+        "raw_text": "relevant informatics software"
+      },
+      {
+        "label": "Sandboxed code execution",
+        "raw_text": "sandboxed code execution"
+      },
+      {
+        "label": "Agent harness development",
+        "raw_text": "agent harness development"
+      },
+      {
+        "label": "Feedback-loop frameworks",
+        "raw_text": "feedback-loop frameworks"
+      },
+      {
+        "label": "AI cost governance / FinOps",
+        "raw_text": "cost-governance / FinOps for AI infrastructure"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Scientist, Machine Learning",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s, or PhD in a relevant field (e.g., machine learning, mathematics, statistics, computational sciences)",
+    "notes": "PROFESSIONAL EXPERIENCE & QUALIFICATIONS defaults to required; PREFERRED QUALIFICATIONS makes its items nice_to_have. The general invitation to apply without every qualification does not change these labels.\nDegree fields are not independently treated as skill requirements. Other scientific domains are excluded as domain knowledge; cheminformatics is flagged because it is both explicitly named in the taxonomy and presented here as a domain.\nAI infrastructure is flagged because it is named as the context for FinOps rather than as a standalone proficiency.\nPyTorch or JAX/TensorFlow is read literally as alternative framework choices. The orchestration-framework examples form a second alternative group; the platform list joined by 'and' does not.\nTechnologies appearing only in the role description, responsibilities, or employer-benefits narrative, including MLOps, are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "d3753dbf4c1c50d85b0d62cc75396bc7b394a6a937d73128fbb65f13f2cda895",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

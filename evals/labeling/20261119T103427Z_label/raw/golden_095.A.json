@@ -1,0 +1,78 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong Python/Tcl\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"nice_to_have\", \"raw_text\": \"interest or experience in ML frameworks (PyTorch, TensorFlow)\", \"alternative_group\": 1},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"interest or experience in ML frameworks (PyTorch, TensorFlow)\", \"alternative_group\": 1}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Tcl\", \"raw_text\": \"Python/Tcl\"},\n    {\"label\": \"ML frameworks\", \"raw_text\": \"interest or experience in ML frameworks\"},\n    {\"label\": \"EDA tools\", \"raw_text\": \"industry-standard EDA tools\"},\n    {\"label\": \"Fusion Compiler\", \"raw_text\": \"Fusion Compiler\"},\n    {\"label\": \"Synthesis / P&R / STA / signoff / hierarchical flows\", \"raw_text\": \"synthesis, P&R, STA, signoff, and hierarchical flows\"},\n    {\"label\": \"Physical Design CAD methodology\", \"raw_text\": \"Physical Design CAD methodology at advanced nodes\"},\n    {\"label\": \"PPA/runtime optimization\", \"raw_text\": \"improving PPA and/or runtime\"},\n    {\"label\": \"data skills\", \"raw_text\": \"data skills\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"5+ years in Physical Design CAD methodology at advanced nodes\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"BS in Electrical or Computer Engineering (or equivalent experience)\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"Only 'Who you are' is a requirements section. 'What we need' lists responsibilities, so AI/ML, floorplanning and similar items there are not labeled. 'What you will learn' is not an ask.\\nPyTorch and TensorFlow are nice_to_have under rule 3. The posting reads 'interest or experience in ML frameworks', so interest can stand in for experience. raw_text includes the appetite phrase.\\nPyTorch and TensorFlow are examples in parentheses for one ask (ML frameworks), so they form alternative group 1.\\n'ML frameworks' has no taxonomy entry. It is left unmapped rather than mapped to machine-learning, which the text does not name.\\nTcl and the physical-design and EDA skills have no taxonomy ids, so they are unmapped.\\nSeniority is inferred from '5+ years' plus the lead duty. It is flagged because the posting also says 'We welcome candidates at various experience levels' and 'contributors of all seniorities', which could be read as none.\\nThe degree is a BS with an explicit 'or equivalent experience', so degree_or_equivalent is true.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python/Tcl"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "interest or experience in ML frameworks (PyTorch, TensorFlow)",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "nice_to_have",
+        "raw_text": "interest or experience in ML frameworks (PyTorch, TensorFlow)",
+        "alternative_group": 1
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Tcl",
+        "raw_text": "Python/Tcl"
+      },
+      {
+        "label": "ML frameworks",
+        "raw_text": "interest or experience in ML frameworks"
+      },
+      {
+        "label": "EDA tools",
+        "raw_text": "industry-standard EDA tools"
+      },
+      {
+        "label": "Fusion Compiler",
+        "raw_text": "Fusion Compiler"
+      },
+      {
+        "label": "Synthesis / P&R / STA / signoff / hierarchical flows",
+        "raw_text": "synthesis, P&R, STA, signoff, and hierarchical flows"
+      },
+      {
+        "label": "Physical Design CAD methodology",
+        "raw_text": "Physical Design CAD methodology at advanced nodes"
+      },
+      {
+        "label": "PPA/runtime optimization",
+        "raw_text": "improving PPA and/or runtime"
+      },
+      {
+        "label": "data skills",
+        "raw_text": "data skills"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "5+ years in Physical Design CAD methodology at advanced nodes",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "BS in Electrical or Computer Engineering (or equivalent experience)",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Only 'Who you are' is a requirements section. 'What we need' lists responsibilities, so AI/ML, floorplanning and similar items there are not labeled. 'What you will learn' is not an ask.\nPyTorch and TensorFlow are nice_to_have under rule 3. The posting reads 'interest or experience in ML frameworks', so interest can stand in for experience. raw_text includes the appetite phrase.\nPyTorch and TensorFlow are examples in parentheses for one ask (ML frameworks), so they form alternative group 1.\n'ML frameworks' has no taxonomy entry. It is left unmapped rather than mapped to machine-learning, which the text does not name.\nTcl and the physical-design and EDA skills have no taxonomy ids, so they are unmapped.\nSeniority is inferred from '5+ years' plus the lead duty. It is flagged because the posting also says 'We welcome candidates at various experience levels' and 'contributors of all seniorities', which could be read as none.\nThe degree is a BS with an explicit 'or equivalent experience', so degree_or_equivalent is true."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "bde9a3c4788b11cfe5b2aa4d84f9bf2ffb14c750ce0389c287ad0a4f8750a262",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

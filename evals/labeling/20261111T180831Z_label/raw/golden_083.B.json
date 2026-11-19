@@ -1,0 +1,130 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"rust\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Rust\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\"\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Go\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"large-scale distributed systems\"\n    },\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"security fundamentals\"\n    },\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Linux\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"containers\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud infrastructure\"\n    },\n    {\n      \"skill_id\": \"ai-infrastructure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"ML training or inference infrastructure\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"networking\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"observability\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement learning\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"large language model training workloads\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Systems programming language\",\n      \"raw_text\": \"at least one systems language\"\n    },\n    {\n      \"label\": \"Debugging distributed production problems\",\n      \"raw_text\": \"debugging complex problems across many hosts and services\"\n    },\n    {\n      \"label\": \"Isolation\",\n      \"raw_text\": \"isolation\"\n    },\n    {\n      \"label\": \"Access control\",\n      \"raw_text\": \"access control\"\n    },\n    {\n      \"label\": \"Identity\",\n      \"raw_text\": \"identity\"\n    },\n    {\n      \"label\": \"Sandboxed or virtualized code execution\",\n      \"raw_text\": \"sandboxed or virtualized code execution at scale\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor’s degree or an equivalent combination of education, training, and/or experience\",\n  \"notes\": \"Minimum qualifications are required; Preferred qualifications are optional. The general encouragement to apply does not change these labels.\\nRust, C++, and Go are each labeled as explicitly named examples, despite the alternative-language requirement.\\nContainer orchestration is an optional second mention of containerization; the required containers mention determines the collapsed label.\\nSecurity fundamentals and infrastructure security map to cybersecurity; the required fundamentals mention wins.\\nRunning ML training or inference infrastructure is read literally as AI infrastructure, not model development or model serving.\\nDebugging alone is not treated as software testing and is left unmapped.\\nNo explicit seniority or usable experience-duration signal is present; the reference to unspecified internal job-level requirements does not establish a level.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "rust",
+        "requirement": "required",
+        "raw_text": "Rust"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "large-scale distributed systems"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "security fundamentals"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containers"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud infrastructure"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "nice_to_have",
+        "raw_text": "ML training or inference infrastructure"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "nice_to_have",
+        "raw_text": "networking"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "observability"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "large language model training workloads"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Systems programming language",
+        "raw_text": "at least one systems language"
+      },
+      {
+        "label": "Debugging distributed production problems",
+        "raw_text": "debugging complex problems across many hosts and services"
+      },
+      {
+        "label": "Isolation",
+        "raw_text": "isolation"
+      },
+      {
+        "label": "Access control",
+        "raw_text": "access control"
+      },
+      {
+        "label": "Identity",
+        "raw_text": "identity"
+      },
+      {
+        "label": "Sandboxed or virtualized code execution",
+        "raw_text": "sandboxed or virtualized code execution at scale"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor’s degree or an equivalent combination of education, training, and/or experience",
+    "notes": "Minimum qualifications are required; Preferred qualifications are optional. The general encouragement to apply does not change these labels.\nRust, C++, and Go are each labeled as explicitly named examples, despite the alternative-language requirement.\nContainer orchestration is an optional second mention of containerization; the required containers mention determines the collapsed label.\nSecurity fundamentals and infrastructure security map to cybersecurity; the required fundamentals mention wins.\nRunning ML training or inference infrastructure is read literally as AI infrastructure, not model development or model serving.\nDebugging alone is not treated as software testing and is left unmapped.\nNo explicit seniority or usable experience-duration signal is present; the reference to unspecified internal job-level requirements does not establish a level."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "a9f7ffdbb372323729ef7b3067d21ff443c1be35931991ba97f16eb39c0cab87",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

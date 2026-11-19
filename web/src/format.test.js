@@ -6,7 +6,7 @@ import {
 
 describe("every place carries a slug and a group (HIR-188)", () => {
   it("still lists every collected place, EU-remote and New York included", () => {
-    expect(PLACE_NAMES).toEqual(["Berlin", "Hamburg", "Frankfurt", "Munich", "Remote (EU)", "San Francisco", "New York"]);
+    expect(PLACE_NAMES).toEqual(["Berlin", "Hamburg", "Frankfurt", "Munich", "Remote (EU)", "San Francisco", "New York", "Austin", "Boston", "London", "Amsterdam"]);
   });
 
   it("gives each place a unique slug and a group the picker knows", () => {

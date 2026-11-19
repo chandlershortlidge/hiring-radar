@@ -1,0 +1,87 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung im Bereich Public Cloud\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"Public Cloud (AWS\", \"alternative_group\": 1},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"AWS, Azure\", \"alternative_group\": 1},\n    {\"skill_id\": \"gcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"vorzugsweise GCP\", \"alternative_group\": 1},\n    {\"skill_id\": \"terraform\", \"requirement\": \"required\", \"raw_text\": \"Terraform (IaC)\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"Terraform (IaC)\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Integration von Generative AI-Anwendungen\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"Terraform (CI/CD-Pipeline)\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"vertraut mit dem Einsatz von Python\"},\n    {\"skill_id\": \"cybersecurity\", \"requirement\": \"nice_to_have\", \"raw_text\": \"idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Agile methods\", \"raw_text\": \"erste praktische Erfahrungen mit agilen Methoden\"}\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"verfügst über erste Erfahrungen\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"verhandlungssicher in Deutsch\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"The requirements block ('Du hast ...') has no heading, so its items default to required.\\nThe parenthetical in 'Public Cloud (AWS, Azure, vorzugsweise GCP)' gives examples for one ask. AWS, Azure and GCP form alternative group 1; cloud stays out of the group as the broad skill.\\nGCP is nice_to_have because of the inline marker 'vorzugsweise' (preferably).\\nThe raw_text quotes for aws ('Public Cloud (AWS') and azure ('AWS, Azure') include neighbouring words. This places each quote in the requirements bullet and not elsewhere in the posting.\\nIaC is named explicitly in 'Terraform (IaC)', so infrastructure-as-code is labeled. ci-cd is labeled from '(CI/CD-Pipeline)' in the requirements section.\\nGoogle Cloud, Vertex AI, Gemini, Microservices, Cloud Run and Cloud Build appear only in the responsibilities. They are not labeled.\\n'Sicherheitskonzepten' maps to cybersecurity via the alias 'sicherheitskonzepte'. It is nice_to_have via 'idealerweise' (ideally). It may be read as domain/compliance knowledge instead, so it is flagged uncertain.\\nAgile methods have no taxonomy entry and are put in unmapped.\\nSeniority is inferred as junior from 'erste Erfahrungen' (first experience). The intro's 'erfahrene' (experienced) is not a level signal, and the cloud experience has no stated level. Flagged uncertain.\\n'vergleichbare Qualifikation' (comparable qualification) accepts something in place of the degree, so degree_or_equivalent is true.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Erfahrung im Bereich Public Cloud"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "Public Cloud (AWS",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "AWS, Azure",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "vorzugsweise GCP",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform (IaC)"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Terraform (IaC)"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Integration von Generative AI-Anwendungen"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "Terraform (CI/CD-Pipeline)"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "vertraut mit dem Einsatz von Python"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Agile methods",
+        "raw_text": "erste praktische Erfahrungen mit agilen Methoden"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "verfügst über erste Erfahrungen",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "verhandlungssicher in Deutsch",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The requirements block ('Du hast ...') has no heading, so its items default to required.\nThe parenthetical in 'Public Cloud (AWS, Azure, vorzugsweise GCP)' gives examples for one ask. AWS, Azure and GCP form alternative group 1; cloud stays out of the group as the broad skill.\nGCP is nice_to_have because of the inline marker 'vorzugsweise' (preferably).\nThe raw_text quotes for aws ('Public Cloud (AWS') and azure ('AWS, Azure') include neighbouring words. This places each quote in the requirements bullet and not elsewhere in the posting.\nIaC is named explicitly in 'Terraform (IaC)', so infrastructure-as-code is labeled. ci-cd is labeled from '(CI/CD-Pipeline)' in the requirements section.\nGoogle Cloud, Vertex AI, Gemini, Microservices, Cloud Run and Cloud Build appear only in the responsibilities. They are not labeled.\n'Sicherheitskonzepten' maps to cybersecurity via the alias 'sicherheitskonzepte'. It is nice_to_have via 'idealerweise' (ideally). It may be read as domain/compliance knowledge instead, so it is flagged uncertain.\nAgile methods have no taxonomy entry and are put in unmapped.\nSeniority is inferred as junior from 'erste Erfahrungen' (first experience). The intro's 'erfahrene' (experienced) is not a level signal, and the cloud experience has no stated level. Flagged uncertain.\n'vergleichbare Qualifikation' (comparable qualification) accepts something in place of the degree, so degree_or_equivalent is true."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "285e53e4d29eac8eaff9ae15f71c35616ac47bbb906ba9bf7dd9ddbb84201537",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

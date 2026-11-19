@@ -1,0 +1,75 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"in Software Engineering, Data Engineering or IT-Management\", \"uncertain\": true},\n    {\"skill_id\": \"data-engineering\", \"requirement\": \"required\", \"raw_text\": \"Data Engineering or IT-Management\", \"uncertain\": true},\n    {\"skill_id\": \"full-stack-development\", \"requirement\": \"required\", \"raw_text\": \"e.g. Fullstack Development\", \"uncertain\": true},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"Backend\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud Solutions\", \"uncertain\": true},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"Architecture\", \"uncertain\": true},\n    {\"skill_id\": \"devops\", \"requirement\": \"required\", \"raw_text\": \"DevOps, Product Ownership\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Web Development\", \"raw_text\": \"Web Development\"}\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"(2026/27 Graduate)\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"relevant Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"All skills come from one requirements bullet under 'Who you are'. The same tech list also appears in the company description, which alone would not count; the requirement mention is what is labeled.\\nThe bullet asks for experience in 'Software Engineering, Data Engineering or IT-Management' and then gives e.g. examples ending 'or similar'. Every skill named there reads as an alternative, so they would share one alternative_group (group 1). That group is not encoded here because the output schema has no alternative_group field; flagged for review.\\nData Engineering appears twice in the bullet (domain list and e.g. list) and is collapsed into one criterion.\\nThe quotes for 'Backend', 'Cloud Solutions' and 'Architecture' also occur in the company description, but no longer phrase exists only in the requirement bullet.\\nI read 'Some hands-on industry experience' as a required ask, not an appetite marker.\\n'Cloud Solutions' is mapped to cloud, 'Architecture' to software-architecture, and 'Fullstack Development' to full-stack-development.\\n'Web Development' has no exact taxonomy entry, so it is unmapped.\\nIT-Management and Product Ownership are not treated as skills (roles or domains).\\nDegree: Master's is the highest level named. 'Bachelor's + ≥2yrs experience' is an alternative path, not 'or equivalent experience' replacing a degree, so degree_or_equivalent is false; flagged as uncertain.\\nGerman: the posting asks only for English, so the label is none. 'Deutschlandticket' is a benefit, not a language signal.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "in Software Engineering, Data Engineering or IT-Management",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-engineering",
+        "requirement": "required",
+        "raw_text": "Data Engineering or IT-Management",
+        "uncertain": true
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "e.g. Fullstack Development",
+        "uncertain": true
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud Solutions",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Architecture",
+        "uncertain": true
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps, Product Ownership",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Web Development",
+        "raw_text": "Web Development"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "(2026/27 Graduate)",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "relevant Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "All skills come from one requirements bullet under 'Who you are'. The same tech list also appears in the company description, which alone would not count; the requirement mention is what is labeled.\nThe bullet asks for experience in 'Software Engineering, Data Engineering or IT-Management' and then gives e.g. examples ending 'or similar'. Every skill named there reads as an alternative, so they would share one alternative_group (group 1). That group is not encoded here because the output schema has no alternative_group field; flagged for review.\nData Engineering appears twice in the bullet (domain list and e.g. list) and is collapsed into one criterion.\nThe quotes for 'Backend', 'Cloud Solutions' and 'Architecture' also occur in the company description, but no longer phrase exists only in the requirement bullet.\nI read 'Some hands-on industry experience' as a required ask, not an appetite marker.\n'Cloud Solutions' is mapped to cloud, 'Architecture' to software-architecture, and 'Fullstack Development' to full-stack-development.\n'Web Development' has no exact taxonomy entry, so it is unmapped.\nIT-Management and Product Ownership are not treated as skills (roles or domains).\nDegree: Master's is the highest level named. 'Bachelor's + ≥2yrs experience' is an alternative path, not 'or equivalent experience' replacing a degree, so degree_or_equivalent is false; flagged as uncertain.\nGerman: the posting asks only for English, so the label is none. 'Deutschlandticket' is a benefit, not a language signal."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "d2df138e06782697c16d2fee36b396284bf4fa7d2307fc3d53d8669f29f7c18f",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

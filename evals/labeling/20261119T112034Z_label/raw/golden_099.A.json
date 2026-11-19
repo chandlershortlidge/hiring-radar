@@ -1,0 +1,114 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\", \"alternative_group\": 1},\n    {\"skill_id\": \"jax\", \"requirement\": \"required\", \"raw_text\": \"JAX\", \"alternative_group\": 1},\n    {\"skill_id\": \"model-development\", \"requirement\": \"required\", \"raw_text\": \"training or fine-tuning large language models\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"fine-tuning large language models\", \"alternative_group\": 2},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"large language models\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"machine learning on tabular data\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"comfortable with SQL\"},\n    {\"skill_id\": \"pandas\", \"requirement\": \"required\", \"raw_text\": \"pandas\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python code\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"spreadsheet agents\", \"uncertain\": true},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"reinforcement learning using verifiable rewards\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"nice_to_have\", \"raw_text\": \"tests\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"nice_to_have\", \"raw_text\": \"CI pipelines\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"TabPFN / tabular foundation models\", \"raw_text\": \"tabular foundation models (e.g. TabPFN)\"},\n    {\"label\": \"gradient boosting\", \"raw_text\": \"gradient boosting\"},\n    {\"label\": \"text-to-SQL\", \"raw_text\": \"Experience with text-to-SQL\"},\n    {\"label\": \"table question answering\", \"raw_text\": \"table question answering\"}\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD / Master in a relevant field (Computer Science, Statistics, Machine Learning)\",\n  \"uncertain\": [],\n  \"notes\": \"Sections: ABOUT YOU is a requirements section, so its items default to required. NICE TO HAVE is an optional heading, so its items are nice_to_have.\\nThe alternative_group key was added per the guide's grouping rule even though it is not in the output schema. Group 1 is PyTorch or JAX. Group 2 is training or fine-tuning.\\nmodel-development is mapped from 'training ... large language models' (taxonomy alias 'ai model training'). This is a literal reading, so it is flagged uncertain.\\nllms and the tabular foundation models are offered as alternatives. TabPFN is unmapped, so there is only one taxonomy skill and no group is formed.\\n'gradient boosting' is unmapped. Neither xgboost nor lightgbm is named, so no specific skill is inferred.\\nagents is mapped from 'spreadsheet agents' and flagged uncertain.\\n'machine learning models at scale' in the nice-to-have list collapses into the required machine-learning criterion.\\nGPUs/clusters, evaluators and benchmarks appear only in responsibilities and are not labeled.\\n'eager to learn' is a general soft-skill phrase, not appetite toward any specific skill.\\n'Expert' is not a seniority signal, so seniority is none.\\nNo German is mentioned; English only.\\nDegree: 'PhD / Master' takes the highest level named, phd, and is nice_to_have under the NICE TO HAVE heading. 'Exceptional candidates from other backgrounds welcome' is not an or-equivalent-experience clause, so degree_or_equivalent is false.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "training or fine-tuning large language models",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning large language models",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "large language models"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning on tabular data"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "comfortable with SQL"
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "required",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python code"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "spreadsheet agents",
+        "uncertain": true
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning using verifiable rewards"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "tests"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI pipelines"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "TabPFN / tabular foundation models",
+        "raw_text": "tabular foundation models (e.g. TabPFN)"
+      },
+      {
+        "label": "gradient boosting",
+        "raw_text": "gradient boosting"
+      },
+      {
+        "label": "text-to-SQL",
+        "raw_text": "Experience with text-to-SQL"
+      },
+      {
+        "label": "table question answering",
+        "raw_text": "table question answering"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD / Master in a relevant field (Computer Science, Statistics, Machine Learning)",
+    "uncertain": [],
+    "notes": "Sections: ABOUT YOU is a requirements section, so its items default to required. NICE TO HAVE is an optional heading, so its items are nice_to_have.\nThe alternative_group key was added per the guide's grouping rule even though it is not in the output schema. Group 1 is PyTorch or JAX. Group 2 is training or fine-tuning.\nmodel-development is mapped from 'training ... large language models' (taxonomy alias 'ai model training'). This is a literal reading, so it is flagged uncertain.\nllms and the tabular foundation models are offered as alternatives. TabPFN is unmapped, so there is only one taxonomy skill and no group is formed.\n'gradient boosting' is unmapped. Neither xgboost nor lightgbm is named, so no specific skill is inferred.\nagents is mapped from 'spreadsheet agents' and flagged uncertain.\n'machine learning models at scale' in the nice-to-have list collapses into the required machine-learning criterion.\nGPUs/clusters, evaluators and benchmarks appear only in responsibilities and are not labeled.\n'eager to learn' is a general soft-skill phrase, not appetite toward any specific skill.\n'Expert' is not a seniority signal, so seniority is none.\nNo German is mentioned; English only.\nDegree: 'PhD / Master' takes the highest level named, phd, and is nice_to_have under the NICE TO HAVE heading. 'Exceptional candidates from other backgrounds welcome' is not an or-equivalent-experience clause, so degree_or_equivalent is false."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "ea562468ce765926983813cf63e8660108ec1c7aaf8d1c0ddb628ff61fb2ca83",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

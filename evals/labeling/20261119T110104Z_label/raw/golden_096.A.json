@@ -1,0 +1,179 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"required\", \"raw_text\": \"large-scale distributed systems\"},\n    {\"skill_id\": \"event-driven-systems\", \"requirement\": \"required\", \"raw_text\": \"event-driven architecture\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"cloud-native engineering on AWS\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Strong cloud-native engineering\", \"uncertain\": true},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"with infrastructure-as-code, containerization\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"containerization, and autoscaling\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"hardened, observable, operationally excellent production\", \"uncertain\": true},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"designing SDKs, APIs, and data contracts\"},\n    {\"skill_id\": \"api-design\", \"requirement\": \"required\", \"raw_text\": \"designing SDKs, APIs\", \"uncertain\": true},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"agentic AI and orchestration frameworks\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"nice_to_have\", \"raw_text\": \"orchestration frameworks\"},\n    {\"skill_id\": \"pydanticai\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Pydantic AI\", \"alternative_group\": 1},\n    {\"skill_id\": \"langgraph\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LangGraph\", \"alternative_group\": 1},\n    {\"skill_id\": \"langchain\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LangChain\", \"alternative_group\": 1},\n    {\"skill_id\": \"crewai\", \"requirement\": \"nice_to_have\", \"raw_text\": \"CrewAI\", \"alternative_group\": 1},\n    {\"skill_id\": \"autogen\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AutoGen\", \"alternative_group\": 1},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"integrating LLMs\"},\n    {\"skill_id\": \"anthropic-api\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Anthropic\"},\n    {\"skill_id\": \"openai-api\", \"requirement\": \"nice_to_have\", \"raw_text\": \"OpenAI\"},\n    {\"skill_id\": \"vertex-ai\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Vertex AI\"},\n    {\"skill_id\": \"aws-bedrock\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Amazon Bedrock\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"building evaluation and feedback-loop frameworks\"},\n    {\"skill_id\": \"ai-infrastructure\", \"requirement\": \"nice_to_have\", \"raw_text\": \"FinOps for AI infrastructure\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Workflow orchestration (durable execution)\", \"raw_text\": \"workflow orchestration\"},\n    {\"label\": \"Autoscaling\", \"raw_text\": \"autoscaling\"},\n    {\"label\": \"SDK design\", \"raw_text\": \"designing SDKs\"},\n    {\"label\": \"Data contracts\", \"raw_text\": \"data contracts\"},\n    {\"label\": \"Sandboxed code execution\", \"raw_text\": \"sandboxed code execution\"},\n    {\"label\": \"Agent harness development\", \"raw_text\": \"agent harness development\"},\n    {\"label\": \"FinOps / cost governance\", \"raw_text\": \"cost-governance / FinOps\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Software Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"B.S. or M.S. in Computer Science, Engineering, or a related field\",\n  \"uncertain\": [],\n  \"notes\": \"Terraform, AWS CDK and agent deployment patterns appear only in responsibilities, so they are not labeled; AWS CDK has no taxonomy id in any case.\\n'Workflow orchestration' here means durable, general workflow orchestration and not LLM orchestration, so it is left unmapped.\\nObservability is labeled required from the qualification 'hardened, observable ... production'. This is uncertain: the clearest mention is the Preferred bullet 'LLM observability and monitoring tooling' (nice_to_have), and any required mention wins.\\n'cloud-native engineering' is read as naming the broad cloud skill alongside AWS; flagged uncertain.\\nThe framework examples after 'e.g.' (Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen) form alternative_group 1.\\n'Anthropic, OpenAI, Vertex AI, and Amazon Bedrock' is joined by 'and' and introduced by 'including', so those skills are asked together and are not grouped.\\napi-design is added for 'designing ... APIs' alongside apis; flagged uncertain as a possible double label.\\nThe scientific domain background is domain knowledge and is not labeled.\\nThe closing 'please apply anyway' is company wording and changes no label.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "large-scale distributed systems"
+      },
+      {
+        "skill_id": "event-driven-systems",
+        "requirement": "required",
+        "raw_text": "event-driven architecture"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "cloud-native engineering on AWS"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Strong cloud-native engineering",
+        "uncertain": true
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "with infrastructure-as-code, containerization"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containerization, and autoscaling"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "hardened, observable, operationally excellent production",
+        "uncertain": true
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "designing SDKs, APIs, and data contracts"
+      },
+      {
+        "skill_id": "api-design",
+        "requirement": "required",
+        "raw_text": "designing SDKs, APIs",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic AI and orchestration frameworks"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "nice_to_have",
+        "raw_text": "orchestration frameworks"
+      },
+      {
+        "skill_id": "pydanticai",
+        "requirement": "nice_to_have",
+        "raw_text": "Pydantic AI",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "nice_to_have",
+        "raw_text": "LangGraph",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "nice_to_have",
+        "raw_text": "LangChain",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "crewai",
+        "requirement": "nice_to_have",
+        "raw_text": "CrewAI",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "autogen",
+        "requirement": "nice_to_have",
+        "raw_text": "AutoGen",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "integrating LLMs"
+      },
+      {
+        "skill_id": "anthropic-api",
+        "requirement": "nice_to_have",
+        "raw_text": "Anthropic"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "nice_to_have",
+        "raw_text": "OpenAI"
+      },
+      {
+        "skill_id": "vertex-ai",
+        "requirement": "nice_to_have",
+        "raw_text": "Vertex AI"
+      },
+      {
+        "skill_id": "aws-bedrock",
+        "requirement": "nice_to_have",
+        "raw_text": "Amazon Bedrock"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "building evaluation and feedback-loop frameworks"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "nice_to_have",
+        "raw_text": "FinOps for AI infrastructure",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Workflow orchestration (durable execution)",
+        "raw_text": "workflow orchestration"
+      },
+      {
+        "label": "Autoscaling",
+        "raw_text": "autoscaling"
+      },
+      {
+        "label": "SDK design",
+        "raw_text": "designing SDKs"
+      },
+      {
+        "label": "Data contracts",
+        "raw_text": "data contracts"
+      },
+      {
+        "label": "Sandboxed code execution",
+        "raw_text": "sandboxed code execution"
+      },
+      {
+        "label": "Agent harness development",
+        "raw_text": "agent harness development"
+      },
+      {
+        "label": "FinOps / cost governance",
+        "raw_text": "cost-governance / FinOps"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Software Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "B.S. or M.S. in Computer Science, Engineering, or a related field",
+    "uncertain": [],
+    "notes": "Terraform, AWS CDK and agent deployment patterns appear only in responsibilities, so they are not labeled; AWS CDK has no taxonomy id in any case.\n'Workflow orchestration' here means durable, general workflow orchestration and not LLM orchestration, so it is left unmapped.\nObservability is labeled required from the qualification 'hardened, observable ... production'. This is uncertain: the clearest mention is the Preferred bullet 'LLM observability and monitoring tooling' (nice_to_have), and any required mention wins.\n'cloud-native engineering' is read as naming the broad cloud skill alongside AWS; flagged uncertain.\nThe framework examples after 'e.g.' (Pydantic AI, LangGraph, LangChain, CrewAI, AutoGen) form alternative_group 1.\n'Anthropic, OpenAI, Vertex AI, and Amazon Bedrock' is joined by 'and' and introduced by 'including', so those skills are asked together and are not grouped.\napi-design is added for 'designing ... APIs' alongside apis; flagged uncertain as a possible double label.\nThe scientific domain background is domain knowledge and is not labeled.\nThe closing 'please apply anyway' is company wording and changes no label."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "0e668578325a1c2e2c4665a34686f84f2b4d27758e21b7c35a303336483776a6",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

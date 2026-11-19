@@ -1,0 +1,74 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong programming skills in Python\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"modern ML frameworks such as PyTorch\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"experience with modern ML frameworks\", \"uncertain\": true},\n    {\"skill_id\": \"aws\", \"requirement\": \"nice_to_have\", \"raw_text\": \"preferably in the AWS ecosystem\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"design rigorous evaluation frameworks\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Scientific ML\", \"raw_text\": \"Background in scientific ML\"},\n    {\"label\": \"Spatiotemporal modeling\", \"raw_text\": \"spatiotemporal modeling\"},\n    {\"label\": \"Data assimilation\", \"raw_text\": \"data assimilation\"},\n    {\"label\": \"Hybrid physics-ML methods\", \"raw_text\": \"hybrid physics-ML methods\"},\n    {\"label\": \"Remote sensing data\", \"raw_text\": \"remote sensing datasets\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD in machine learning, computational science, Earth science, atmospheric science, hydrology, AI, computer science, or a related quantitative discipline\",\n  \"uncertain\": [],\n  \"notes\": \"AWS is nice_to_have because of the inline marker 'preferably'.\\nPyTorch is the only example given for 'ML frameworks', so there is no alternative group.\\nmachine-learning is labeled from 'modern ML frameworks'. The other ML mentions, such as 'climate ML' or 'ML-accelerated ... models', read as domain framing. Flagged for review.\\nevaluation is mapped from 'evaluation frameworks' (a taxonomy alias), which here means designing benchmarks for environmental prediction systems. Flagged for review.\\nThe scientific ML, spatiotemporal modeling, data assimilation and hybrid physics-ML bullet is 'strongly preferred', so it is nice_to_have. None of these are in the taxonomy, so they go in unmapped.\\nThe ask for 'computational infrastructure' for large datasets names no specific taxonomy skill, so it is not labeled.\\nClimate, hydrology and remote sensing are largely domain knowledge. Remote sensing is listed in unmapped for visibility only.\\n'Mentoring researchers' is preferred, but seniority is already stated in the title.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong programming skills in Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "modern ML frameworks such as PyTorch"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "experience with modern ML frameworks",
+        "uncertain": true
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "preferably in the AWS ecosystem"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "design rigorous evaluation frameworks",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Scientific ML",
+        "raw_text": "Background in scientific ML"
+      },
+      {
+        "label": "Spatiotemporal modeling",
+        "raw_text": "spatiotemporal modeling"
+      },
+      {
+        "label": "Data assimilation",
+        "raw_text": "data assimilation"
+      },
+      {
+        "label": "Hybrid physics-ML methods",
+        "raw_text": "hybrid physics-ML methods"
+      },
+      {
+        "label": "Remote sensing data",
+        "raw_text": "remote sensing datasets"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD in machine learning, computational science, Earth science, atmospheric science, hydrology, AI, computer science, or a related quantitative discipline",
+    "uncertain": [],
+    "notes": "AWS is nice_to_have because of the inline marker 'preferably'.\nPyTorch is the only example given for 'ML frameworks', so there is no alternative group.\nmachine-learning is labeled from 'modern ML frameworks'. The other ML mentions, such as 'climate ML' or 'ML-accelerated ... models', read as domain framing. Flagged for review.\nevaluation is mapped from 'evaluation frameworks' (a taxonomy alias), which here means designing benchmarks for environmental prediction systems. Flagged for review.\nThe scientific ML, spatiotemporal modeling, data assimilation and hybrid physics-ML bullet is 'strongly preferred', so it is nice_to_have. None of these are in the taxonomy, so they go in unmapped.\nThe ask for 'computational infrastructure' for large datasets names no specific taxonomy skill, so it is not labeled.\nClimate, hydrology and remote sensing are largely domain knowledge. Remote sensing is listed in unmapped for visibility only.\n'Mentoring researchers' is preferred, but seniority is already stated in the title."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "63a9375938b7b3e2a3959f67ae64f7ccb034fcf0ff803c4645fb8619a9b8478c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

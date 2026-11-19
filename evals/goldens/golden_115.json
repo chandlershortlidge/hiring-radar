@@ -1,0 +1,65 @@
+{
+  "id": "golden_115",
+  "split": "heldout",
+  "seniority": "mid",
+  "seniority_basis": "inferred",
+  "seniority_signal": "3+ years",
+  "seniority_reviewed": false,
+  "german": "nice_to_have",
+  "german_basis": "stated",
+  "german_signal": "German is a plus",
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "bd0b3b38d3b1ec10c0dc9252a2ed48a897d39bcfe8466e172fcc5c3bf7eedd38",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:ai-ml",
+    "skill:rag"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Machine Learning Engineer (m/w/d) – Hamburg\n\nDecisity is an AI-native strategy consulting platform from Hamburg that turns briefs and documents into board-ready strategy decks. Every number and recommendation in a Decisity deck links to its source. You build the AI pipelines that read client documents, structure the problem and keep that traceability intact.\n\nWhat you'll do\n• Build and improve LLM pipelines for document understanding, structuring and synthesis\n• Develop retrieval and citation logic so every claim links back to its source\n• Set up evaluations for output quality and source accuracy\n• Work on OCR and multi-language document processing\n• Ship models and prompts to production together with the engineering team\n\nWhat you bring\n• 3+ years in machine learning or applied AI engineering\n• Hands-on experience with LLMs, retrieval and evaluation in production\n• Strong Python\n• Experience with document processing or NLP is a plus\n• Fluent English; German is a plus\n\nWhat we offer\n• Hybrid setup: office in Hamburg plus remote days\n• Work directly with the founder\n• Real ownership in a small, early-stage team\n• An AI-native product and tool stack from day one\n\nAbout Decisity: https://decisity.com/enNews: https://decisity.com/en/newsCareers at Decisity: https://decisity.com/en/careers\n\nApply: https://decisity.com/en/careersContact: contact@decisity.com",
+  "expected": [
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "applied AI engineering"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "evaluation in production"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Hands-on experience with LLMs"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "3+ years in machine learning"
+    },
+    {
+      "skill_id": "nlp",
+      "requirement": "nice_to_have",
+      "raw_text": "NLP is a plus"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Strong Python"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "retrieval"
+    }
+  ]
+}

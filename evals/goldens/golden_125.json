@@ -1,0 +1,73 @@
+{
+  "id": "golden_125",
+  "split": "dev",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "inferred",
+  "german_signal": null,
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Abgeschlossene Ausbildung oder Studium im Bereich Informatik oder eine vergleichbare Qualifikation",
+  "attrs_reviewed": true,
+  "source_sha256": "58c2e9228e5ed3358d90f46a093c42892bc2bde210f66297856a743335802cb0",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "degree",
+    "skill:cybersecurity",
+    "skill:java",
+    "skill:networking",
+    "skill:sql"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Wir suchen eine/n engagierte/n KI / AI-Engineer (m/w/d) zur Verstärkung unseres IT-Teams. In dieser Position sind Sie verantwortlich für die Betreuung und Weiterentwicklung unserer KI-Infrastruktur, die Unterstützung unserer Mitarbeitenden bei technischen Fragen sowie die Sicherstellung eines reibungslosen Betriebs aller Systeme. Sie arbeiten in einem dynamischen Umfeld und tragen maßgeblich dazu bei, unsere KI-Prozesse effizient und zuverlässig zu gestalten.\n\n**Über NEXALL**\n\nKurz zu uns: NEXALL ist ein spezialisiertes Recruiting-Netzwerk für IT-Fachkräfte im DACH-Raum. Wir sprechen jeden Kandidaten persönlich an und stellen nur vor, wen wir selbst einstellen würden. Kein Massenversand. Keine ungeprüften Profile.\n\n**Wen wir suchen:**\n\n- Wir suchen aktuell qualifizierte Fachkräfte in folgenden Bereichen:\n- KI-Engineer\n- KI-Manager\n- KI-Prompter\n- IT-Support Mitarbeiter\n- Office 365 Administrator\n- IT-Systemintegrator\n\n**Qualifikationen:**\n\n- Abgeschlossene Ausbildung oder Studium im Bereich Informatik oder eine vergleichbare Qualifikation\n- Fundierte Kenntnisse in der Systemadministration, insbesondere mit Microsoft SQL Server\n- Erfahrung im Umgang mit VPN-Technologien sowie Shell Scripting (Bash), T-SQL oder Python ist wünschenswert\n- Kenntnisse in JavaScript, Java, Jenkins sowie in agilen Arbeitsmethoden sind von Vorteil\n- Sicherer Umgang mit Netzwerkprotokollen und Sicherheitsstandards\n- Teamfähigkeit, Kommunikationsstärke und Serviceorientierung sowie Flexibilität\n\n**Was wir bieten:**\n\n- Persönliche Betreuung durch NEXALL — kein anonymes Bewerbungsverfahren\n- Rückmeldung innerhalb von 24 Stunden — keine wochenlange Wartezeit\n- Ehrliche Einschätzung der Stelle und des Unternehmens vorab\n- Diskrete Jobsuche — Ihr aktueller Arbeitgeber erfährt nichts\n- Kostenlose Vermittlung — für Sie als Kandidat entstehen keine Kosten\n- Einstieg in ein unbefristetes Arbeitsverhältnis\n- Eigenständige Entscheidungen → wir erfüllen, was sie möchten\n\n**Haben wir Ihr Interesse geweckt?**\n\nDann freuen wir uns auf Ihre Nachricht — gerne per Mail oder direkt über die Plattform.\n\n**nexall.de**\n\nLeistungen:\n\n- Betriebliche Altersvorsorge\n- Betriebliche Weiterbildung\n- Firmenevents\n- Flexible Arbeitszeiten\n- Homeoffice-Möglichkeit\n- Kostenlose Getränke\n- Kostenloser Parkplatz\n\nArbeitsort: Vor Ort",
+  "expected": [
+    {
+      "skill_id": "bash",
+      "requirement": "nice_to_have",
+      "raw_text": "Shell Scripting (Bash)"
+    },
+    {
+      "skill_id": "cybersecurity",
+      "requirement": "required",
+      "raw_text": "Sicherheitsstandards"
+    },
+    {
+      "skill_id": "java",
+      "requirement": "nice_to_have",
+      "raw_text": "Java"
+    },
+    {
+      "skill_id": "javascript",
+      "requirement": "nice_to_have",
+      "raw_text": "JavaScript"
+    },
+    {
+      "skill_id": "jenkins",
+      "requirement": "nice_to_have",
+      "raw_text": "Jenkins"
+    },
+    {
+      "skill_id": "networking",
+      "requirement": "required",
+      "raw_text": "Netzwerkprotokollen"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "nice_to_have",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "sql",
+      "requirement": "nice_to_have",
+      "raw_text": "T-SQL"
+    }
+  ]
+}

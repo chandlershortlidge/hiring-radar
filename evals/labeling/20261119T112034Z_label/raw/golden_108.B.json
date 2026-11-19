@@ -1,0 +1,218 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Software/Data Engineering\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python proficiency\"\n    },\n    {\n      \"skill_id\": \"api-design\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"API design\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML/AI libraries\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"scikit-learn\"\n    },\n    {\n      \"skill_id\": \"xgboost\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"XGBoost\"\n    },\n    {\n      \"skill_id\": \"hugging-face\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Hugging Face Transformers\"\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Hugging Face Transformers\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Hands-on experience with agentic AI setups\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM orchestration\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tool use/function calling\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"prompt engineering\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model deployment\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"monitoring\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps/LLMOps\"\n    },\n    {\n      \"skill_id\": \"llmops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps/LLMOps\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud services\"\n    },\n    {\n      \"skill_id\": \"aws-bedrock\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS Bedrock\"\n    },\n    {\n      \"skill_id\": \"vertex-ai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GCP Vertex AI\"\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"privacy\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"statistical analysis\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement learning\"\n    },\n    {\n      \"skill_id\": \"forecasting\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"forecasting\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Proof-of-Value execution\",\n      \"raw_text\": \"PoV execution\"\n    },\n    {\n      \"label\": \"ROI/TCO modeling\",\n      \"raw_text\": \"ROI/TCO modeling\"\n    },\n    {\n      \"label\": \"Data engineering\",\n      \"raw_text\": \"Software/Data Engineering\"\n    },\n    {\n      \"label\": \"Data integration\",\n      \"raw_text\": \"data integration\"\n    },\n    {\n      \"label\": \"Agentic patterns\",\n      \"raw_text\": \"agentic patterns for enterprise workflows\"\n    },\n    {\n      \"label\": \"Model lifecycle management\",\n      \"raw_text\": \"lifecycle management\"\n    },\n    {\n      \"label\": \"Azure AI\",\n      \"raw_text\": \"Azure AI\"\n    },\n    {\n      \"label\": \"Cloud reference architectures\",\n      \"raw_text\": \"cloud reference architectures\"\n    },\n    {\n      \"label\": \"Identity and access management\",\n      \"raw_text\": \"identity and access\"\n    },\n    {\n      \"label\": \"Data governance\",\n      \"raw_text\": \"data governance\"\n    },\n    {\n      \"label\": \"Compliance\",\n      \"raw_text\": \"compliance\"\n    },\n    {\n      \"label\": \"Linear/nonlinear optimization\",\n      \"raw_text\": \"linear/nonlinear optimization\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Executive-Facing Presales & Value Engineering (2+ years)\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Masters Degree in computer science, engineering, mathematics, business engineering, business information or related fields , or equivalent work experience preferred.\",\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"The qualifications section defaults to required; “is a plus” makes the entire Math & Operations Research item optional, and “preferred” makes the degree optional. Responsibilities, company descriptions, and benefits supply no additional criteria.\\nThe 2+ years signal is treated literally as the guide's approximately 0–2-year junior boundary; the open-ended minimum and “proven background” make this worth review.\\nThe agentic-skills list uses “or” and is treated as alternatives. Agents remains outside the group because hands-on experience with agentic AI setups is independently required. The unmapped agentic-patterns alternative cannot receive a taxonomy criterion.\\nThe parenthetical ML/AI library list is conjunctive, not an alternatives group. The cloud-service examples are likewise comma-separated without an alternative marker.\\nHugging Face Transformers explicitly names Hugging Face; whether its library name also supports the taxonomy's architecture-level transformers entry is flagged for review.\\nAWS Bedrock and GCP Vertex AI are treated as named products, without adding their parent cloud providers. Azure AI is not assumed to mean Azure AI Foundry.\\nData engineering, data integration, cloud reference architectures, and model lifecycle management are retained as unmapped rather than equated to related but differently named taxonomy skills. Business-domain knowledge, spoken English, and presentation skills are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Software/Data Engineering"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python proficiency"
+      },
+      {
+        "skill_id": "api-design",
+        "requirement": "required",
+        "raw_text": "API design"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "ML/AI libraries"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "xgboost",
+        "requirement": "required",
+        "raw_text": "XGBoost"
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "required",
+        "raw_text": "Hugging Face Transformers"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "Hugging Face Transformers",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Hands-on experience with agentic AI setups"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "LLM orchestration",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use/function calling",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompt engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "model deployment"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps/LLMOps"
+      },
+      {
+        "skill_id": "llmops",
+        "requirement": "required",
+        "raw_text": "MLOps/LLMOps"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud services"
+      },
+      {
+        "skill_id": "aws-bedrock",
+        "requirement": "required",
+        "raw_text": "AWS Bedrock"
+      },
+      {
+        "skill_id": "vertex-ai",
+        "requirement": "required",
+        "raw_text": "GCP Vertex AI"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "privacy"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "nice_to_have",
+        "raw_text": "statistical analysis"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "forecasting",
+        "requirement": "nice_to_have",
+        "raw_text": "forecasting"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Proof-of-Value execution",
+        "raw_text": "PoV execution"
+      },
+      {
+        "label": "ROI/TCO modeling",
+        "raw_text": "ROI/TCO modeling"
+      },
+      {
+        "label": "Data engineering",
+        "raw_text": "Software/Data Engineering"
+      },
+      {
+        "label": "Data integration",
+        "raw_text": "data integration"
+      },
+      {
+        "label": "Agentic patterns",
+        "raw_text": "agentic patterns for enterprise workflows"
+      },
+      {
+        "label": "Model lifecycle management",
+        "raw_text": "lifecycle management"
+      },
+      {
+        "label": "Azure AI",
+        "raw_text": "Azure AI"
+      },
+      {
+        "label": "Cloud reference architectures",
+        "raw_text": "cloud reference architectures"
+      },
+      {
+        "label": "Identity and access management",
+        "raw_text": "identity and access"
+      },
+      {
+        "label": "Data governance",
+        "raw_text": "data governance"
+      },
+      {
+        "label": "Compliance",
+        "raw_text": "compliance"
+      },
+      {
+        "label": "Linear/nonlinear optimization",
+        "raw_text": "linear/nonlinear optimization"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Executive-Facing Presales & Value Engineering (2+ years)",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": true,
+    "degree_signal": "Masters Degree in computer science, engineering, mathematics, business engineering, business information or related fields , or equivalent work experience preferred.",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The qualifications section defaults to required; “is a plus” makes the entire Math & Operations Research item optional, and “preferred” makes the degree optional. Responsibilities, company descriptions, and benefits supply no additional criteria.\nThe 2+ years signal is treated literally as the guide's approximately 0–2-year junior boundary; the open-ended minimum and “proven background” make this worth review.\nThe agentic-skills list uses “or” and is treated as alternatives. Agents remains outside the group because hands-on experience with agentic AI setups is independently required. The unmapped agentic-patterns alternative cannot receive a taxonomy criterion.\nThe parenthetical ML/AI library list is conjunctive, not an alternatives group. The cloud-service examples are likewise comma-separated without an alternative marker.\nHugging Face Transformers explicitly names Hugging Face; whether its library name also supports the taxonomy's architecture-level transformers entry is flagged for review.\nAWS Bedrock and GCP Vertex AI are treated as named products, without adding their parent cloud providers. Azure AI is not assumed to mean Azure AI Foundry.\nData engineering, data integration, cloud reference architectures, and model lifecycle management are retained as unmapped rather than equated to related but differently named taxonomy skills. Business-domain knowledge, spoken English, and presentation skills are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "b75c104acdfc5f12964c92d5006ba70313fde2355c2863a0752aa43cf3e1acb8",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

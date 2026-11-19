@@ -1,0 +1,122 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"praktische Erfahrung mit AI\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"GenAI\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"workflow-automation\", \"requirement\": \"required\", \"raw_text\": \"Kenntnisse in Workflow Automation\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\", \"alternative_group\": 2},\n    {\"skill_id\": \"javascript\", \"requirement\": \"required\", \"raw_text\": \"JavaScript\", \"alternative_group\": 2},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"TypeScript\", \"alternative_group\": 2},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"REST APIs\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"kennst dich aus mit Azure\"},\n    {\"skill_id\": \"n8n\", \"requirement\": \"required\", \"raw_text\": \"n8n\", \"alternative_group\": 3},\n    {\"skill_id\": \"power-automate\", \"requirement\": \"required\", \"raw_text\": \"Microsoft Power Automate\", \"alternative_group\": 3},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit LLMs, Prompt Engineering\", \"alternative_group\": 4},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG-Ansätzen\", \"alternative_group\": 4},\n    {\"skill_id\": \"conversational-ai\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Interesse an Conversational AI\", \"alternative_group\": 5},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Interesse an Conversational AI, Chatbots, Voicebots oder AI Agents\", \"alternative_group\": 5}\n  ],\n  \"unmapped\": [\n    {\"label\": \"JSON\", \"raw_text\": \"JSON\"},\n    {\"label\": \"Webhooks\", \"raw_text\": \"Webhooks\"},\n    {\"label\": \"Azure AI\", \"raw_text\": \"Azure AI\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": \"required\", \"german_basis\": \"inferred\", \"german_signal\": null,\n  \"degree\": \"bachelor\", \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"abgeschlossenes Studium der Informatik, Wirtschaftsinformatik, Data Science, AI, Engineering oder vergleichbarer Fachrichtung\",\n  \"uncertain\": [],\n  \"notes\": \"Only the 'Be our forward thinker' section is used as the requirements section. The 'Make it happen' section lists responsibilities only, so its mentions (Prompt Engineering, LLMs, APIs, AI-Agenten) are not labeled from there.\\nBare 'AI' is mapped to ai-ml; this mapping is uncertain.\\n'GenAI' is mapped to llms through the alias 'generative ai'.\\n'Prozessautomatisierung' is mapped to workflow-automation. That skill is also asked for on its own in the Workflow Automation bullet, so it leaves group 1 and quotes the standalone mention.\\nllms is offered as an alternative in two bullets ('AI, GenAI oder Prozessautomatisierung' and 'LLMs, Prompt Engineering oder RAG-Ansätzen'). One criterion per skill, so it is placed in group 1 with ai-ml. Group 4 is prompt-engineering and rag. This is a judgment call.\\n'Erfahrung mit REST APIs, JSON oder Webhooks' groups apis with two unmapped items. With only one mapped skill there is no group.\\n'Azure, Azure AI oder vergleichbaren Cloud-Technologien': azure is labeled. 'Azure AI' fits no taxonomy entry, so it is unmapped. 'or comparable cloud technologies' adds nothing, so cloud is not labeled.\\n'Workflow Automation, beispielsweise n8n, Microsoft Power Automate': the broad skill is labeled, and the examples form group 3. The broad skill stays out of the group.\\nThe 'Interesse an' bullet triggers the appetite rule, so conversational-ai and agents are nice_to_have. Chatbots and Voicebots are folded into conversational-ai.\\nGerman is inferred as required because the posting is written in German and makes no language statement.\\nThe degree label stays bachelor/required with or_equivalent false: 'vergleichbarer Fachrichtung' widens the field, not the requirement.\\nThere is no seniority signal.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "praktische Erfahrung mit AI",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "GenAI",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "Kenntnisse in Workflow Automation"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST APIs"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "kennst dich aus mit Azure"
+      },
+      {
+        "skill_id": "n8n",
+        "requirement": "required",
+        "raw_text": "n8n",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "power-automate",
+        "requirement": "required",
+        "raw_text": "Microsoft Power Automate",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit LLMs, Prompt Engineering",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG-Ansätzen",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "conversational-ai",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse an Conversational AI",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse an Conversational AI, Chatbots, Voicebots oder AI Agents",
+        "alternative_group": 5
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "JSON",
+        "raw_text": "JSON"
+      },
+      {
+        "label": "Webhooks",
+        "raw_text": "Webhooks"
+      },
+      {
+        "label": "Azure AI",
+        "raw_text": "Azure AI"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "abgeschlossenes Studium der Informatik, Wirtschaftsinformatik, Data Science, AI, Engineering oder vergleichbarer Fachrichtung",
+    "uncertain": [],
+    "notes": "Only the 'Be our forward thinker' section is used as the requirements section. The 'Make it happen' section lists responsibilities only, so its mentions (Prompt Engineering, LLMs, APIs, AI-Agenten) are not labeled from there.\nBare 'AI' is mapped to ai-ml; this mapping is uncertain.\n'GenAI' is mapped to llms through the alias 'generative ai'.\n'Prozessautomatisierung' is mapped to workflow-automation. That skill is also asked for on its own in the Workflow Automation bullet, so it leaves group 1 and quotes the standalone mention.\nllms is offered as an alternative in two bullets ('AI, GenAI oder Prozessautomatisierung' and 'LLMs, Prompt Engineering oder RAG-Ansätzen'). One criterion per skill, so it is placed in group 1 with ai-ml. Group 4 is prompt-engineering and rag. This is a judgment call.\n'Erfahrung mit REST APIs, JSON oder Webhooks' groups apis with two unmapped items. With only one mapped skill there is no group.\n'Azure, Azure AI oder vergleichbaren Cloud-Technologien': azure is labeled. 'Azure AI' fits no taxonomy entry, so it is unmapped. 'or comparable cloud technologies' adds nothing, so cloud is not labeled.\n'Workflow Automation, beispielsweise n8n, Microsoft Power Automate': the broad skill is labeled, and the examples form group 3. The broad skill stays out of the group.\nThe 'Interesse an' bullet triggers the appetite rule, so conversational-ai and agents are nice_to_have. Chatbots and Voicebots are folded into conversational-ai.\nGerman is inferred as required because the posting is written in German and makes no language statement.\nThe degree label stays bachelor/required with or_equivalent false: 'vergleichbarer Fachrichtung' widens the field, not the requirement.\nThere is no seniority signal."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "1d3b1920ae3cbcb603561fed5afcf4d294638653c0c457d7b63f6bd93ab951e7",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

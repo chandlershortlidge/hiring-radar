@@ -7,20 +7,20 @@
   "model_b": "gpt-6.1-sol",
   "extractor": "claude-sonnet-5-5",
   "spot_n": 80,
-  "spot_pool": 133,
-  "taxonomy_version": 10,
+  "spot_pool": 142,
+  "taxonomy_version": 12,
   "n_picked": 14,
   "n_labeled": 14,
   "failed": [],
   "agreement": {
     "n_postings": 14,
     "skills": {
-      "tp": 131,
-      "fp": 5,
-      "fn": 3,
-      "precision": 0.9632352941176471,
-      "recall": 0.9776119402985075,
-      "f1": 0.9703703703703703
+      "tp": 147,
+      "fp": 16,
+      "fn": 2,
+      "precision": 0.901840490797546,
+      "recall": 0.9865771812080537,
+      "f1": 0.9423076923076924
     },
     "requirement_agreement": 1.0,
     "attributes": {
@@ -35,543 +35,519 @@
         "rate": 1.0
       },
       "degree": {
-        "agreed": 13,
+        "agreed": 12,
         "n": 14,
-        "rate": 0.9285714285714286
+        "rate": 0.8571428571428571
       }
     }
   },
-  "accepted_skills": 103,
-  "accepted_attributes": 30,
+  "accepted_skills": 110,
+  "accepted_attributes": 32,
   "review_items": {
     "in-scope": 14,
-    "disagreement": 11,
-    "uncertain": 37,
+    "disagreement": 22,
+    "uncertain": 39,
+    "check-failed": 4,
     "spot-check": 80
   },
   "spot_check": {
     "n": 80,
-    "pool": 133,
+    "pool": 142,
     "seed": 0,
     "sample": [
       [
-        "golden_049",
+        "golden_107",
         "attribute",
         "degree"
       ],
       [
-        "golden_049",
+        "golden_107",
         "attribute",
         "german"
       ],
       [
-        "golden_049",
-        "skill",
-        "langchain"
-      ],
-      [
-        "golden_049",
-        "skill",
-        "llms"
-      ],
-      [
-        "golden_049",
-        "skill",
-        "mlops"
-      ],
-      [
-        "golden_049",
+        "golden_107",
         "skill",
         "python"
       ],
       [
-        "golden_049",
+        "golden_107",
         "skill",
         "pytorch"
       ],
       [
-        "golden_049",
+        "golden_107",
         "skill",
         "rag"
       ],
       [
-        "golden_049",
+        "golden_107",
         "skill",
         "tensorflow"
       ],
       [
-        "golden_050",
+        "golden_108",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_108",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_108",
+        "skill",
+        "access-control"
+      ],
+      [
+        "golden_108",
+        "skill",
+        "azure"
+      ],
+      [
+        "golden_108",
         "skill",
         "claude-code"
       ],
       [
-        "golden_050",
+        "golden_108",
         "skill",
-        "codex"
+        "terraform"
       ],
       [
-        "golden_050",
-        "skill",
-        "data-pipelines"
+        "golden_109",
+        "attribute",
+        "german"
       ],
       [
-        "golden_050",
+        "golden_109",
         "skill",
-        "python"
+        "angular"
       ],
       [
-        "golden_051",
-        "skill",
-        "ai-developer-tooling"
-      ],
-      [
-        "golden_051",
+        "golden_109",
         "skill",
         "ci-cd"
       ],
       [
-        "golden_051",
+        "golden_109",
         "skill",
         "devops"
       ],
       [
-        "golden_051",
+        "golden_109",
         "skill",
         "docker"
       ],
       [
-        "golden_051",
+        "golden_109",
         "skill",
-        "github-copilot"
+        "frontend-development"
       ],
       [
-        "golden_051",
+        "golden_109",
         "skill",
         "java"
       ],
       [
-        "golden_051",
-        "skill",
-        "kubernetes"
-      ],
-      [
-        "golden_051",
+        "golden_109",
         "skill",
         "microservices"
       ],
       [
-        "golden_051",
+        "golden_109",
         "skill",
         "observability"
       ],
       [
-        "golden_051",
+        "golden_109",
         "skill",
         "software-architecture"
       ],
       [
-        "golden_051",
+        "golden_109",
         "skill",
         "software-engineering"
       ],
       [
-        "golden_052",
+        "golden_109",
+        "skill",
+        "spring-boot"
+      ],
+      [
+        "golden_110",
         "attribute",
         "german"
       ],
       [
-        "golden_052",
-        "attribute",
-        "seniority"
-      ],
-      [
-        "golden_052",
-        "skill",
-        "agents"
-      ],
-      [
-        "golden_052",
+        "golden_110",
         "skill",
         "apis"
       ],
       [
-        "golden_052",
-        "skill",
-        "data-privacy-and-security"
+        "golden_111",
+        "attribute",
+        "degree"
       ],
       [
-        "golden_052",
-        "skill",
-        "prompt-engineering"
+        "golden_111",
+        "attribute",
+        "german"
       ],
       [
-        "golden_053",
+        "golden_111",
         "skill",
         "cybersecurity"
       ],
       [
-        "golden_053",
+        "golden_111",
         "skill",
         "devops"
       ],
       [
-        "golden_054",
+        "golden_112",
         "attribute",
-        "seniority"
+        "degree"
       ],
       [
-        "golden_054",
+        "golden_112",
         "skill",
         "aws"
       ],
       [
-        "golden_054",
+        "golden_112",
         "skill",
         "azure"
       ],
       [
-        "golden_054",
+        "golden_112",
+        "skill",
+        "cloud"
+      ],
+      [
+        "golden_112",
         "skill",
         "gcp"
       ],
       [
-        "golden_054",
-        "skill",
-        "kubernetes"
-      ],
-      [
-        "golden_054",
+        "golden_112",
         "skill",
         "langchain"
       ],
       [
-        "golden_054",
+        "golden_112",
         "skill",
         "llms"
       ],
       [
-        "golden_054",
-        "skill",
-        "prompt-engineering"
-      ],
-      [
-        "golden_054",
-        "skill",
-        "rag"
-      ],
-      [
-        "golden_054",
-        "skill",
-        "sql"
-      ],
-      [
-        "golden_054",
-        "skill",
-        "testing"
-      ],
-      [
-        "golden_055",
-        "attribute",
-        "degree"
-      ],
-      [
-        "golden_055",
-        "skill",
-        "azure"
-      ],
-      [
-        "golden_055",
-        "skill",
-        "gcp"
-      ],
-      [
-        "golden_055",
-        "skill",
-        "infrastructure-as-code"
-      ],
-      [
-        "golden_055",
-        "skill",
-        "llms"
-      ],
-      [
-        "golden_055",
-        "skill",
-        "terraform"
-      ],
-      [
-        "golden_056",
-        "attribute",
-        "german"
-      ],
-      [
-        "golden_056",
-        "skill",
-        "software-engineering"
-      ],
-      [
-        "golden_057",
-        "attribute",
-        "seniority"
-      ],
-      [
-        "golden_057",
-        "skill",
-        "evaluation"
-      ],
-      [
-        "golden_057",
-        "skill",
-        "machine-learning"
-      ],
-      [
-        "golden_058",
-        "attribute",
-        "degree"
-      ],
-      [
-        "golden_058",
-        "attribute",
-        "german"
-      ],
-      [
-        "golden_059",
-        "attribute",
-        "degree"
-      ],
-      [
-        "golden_060",
-        "attribute",
-        "german"
-      ],
-      [
-        "golden_060",
-        "attribute",
-        "seniority"
-      ],
-      [
-        "golden_060",
-        "skill",
-        "ci-cd"
-      ],
-      [
-        "golden_060",
-        "skill",
-        "cloud"
-      ],
-      [
-        "golden_060",
-        "skill",
-        "gitops"
-      ],
-      [
-        "golden_060",
-        "skill",
-        "helm"
-      ],
-      [
-        "golden_060",
-        "skill",
-        "infrastructure-as-code"
-      ],
-      [
-        "golden_060",
-        "skill",
-        "postgresql"
-      ],
-      [
-        "golden_060",
-        "skill",
-        "terraform"
-      ],
-      [
-        "golden_061",
-        "attribute",
-        "degree"
-      ],
-      [
-        "golden_061",
-        "skill",
-        "aws"
-      ],
-      [
-        "golden_061",
-        "skill",
-        "azure"
-      ],
-      [
-        "golden_061",
-        "skill",
-        "ci-cd"
-      ],
-      [
-        "golden_061",
-        "skill",
-        "cloud"
-      ],
-      [
-        "golden_061",
+        "golden_112",
         "skill",
         "python"
       ],
       [
-        "golden_061",
-        "skill",
-        "terraform"
-      ],
-      [
-        "golden_062",
-        "attribute",
-        "german"
-      ],
-      [
-        "golden_062",
-        "skill",
-        "azure"
-      ],
-      [
-        "golden_062",
-        "skill",
-        "infrastructure-as-code"
-      ],
-      [
-        "golden_062",
-        "skill",
-        "networking"
-      ],
-      [
-        "golden_062",
-        "skill",
-        "observability"
-      ],
-      [
-        "golden_062",
+        "golden_112",
         "skill",
         "rag"
       ],
       [
-        "golden_062",
+        "golden_112",
+        "skill",
+        "software-engineering"
+      ],
+      [
+        "golden_112",
+        "skill",
+        "sql"
+      ],
+      [
+        "golden_112",
+        "skill",
+        "terraform"
+      ],
+      [
+        "golden_113",
+        "skill",
+        "ci-cd"
+      ],
+      [
+        "golden_113",
+        "skill",
+        "cloud"
+      ],
+      [
+        "golden_113",
+        "skill",
+        "gcp"
+      ],
+      [
+        "golden_113",
+        "skill",
+        "infrastructure-as-code"
+      ],
+      [
+        "golden_113",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_113",
+        "skill",
+        "terraform"
+      ],
+      [
+        "golden_114",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_115",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_115",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_115",
+        "skill",
+        "machine-learning"
+      ],
+      [
+        "golden_115",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_117",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_117",
+        "skill",
+        "azure-ai-foundry"
+      ],
+      [
+        "golden_118",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_118",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_118",
+        "skill",
+        "access-control"
+      ],
+      [
+        "golden_118",
+        "skill",
+        "gitops"
+      ],
+      [
+        "golden_118",
+        "skill",
+        "infrastructure-as-code"
+      ],
+      [
+        "golden_118",
+        "skill",
+        "mongodb"
+      ],
+      [
+        "golden_118",
+        "skill",
+        "openshift"
+      ],
+      [
+        "golden_118",
+        "skill",
+        "secrets-management"
+      ],
+      [
+        "golden_119",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_119",
+        "skill",
+        "azure"
+      ],
+      [
+        "golden_119",
+        "skill",
+        "cloud"
+      ],
+      [
+        "golden_119",
+        "skill",
+        "gcp"
+      ],
+      [
+        "golden_119",
+        "skill",
+        "git"
+      ],
+      [
+        "golden_119",
+        "skill",
+        "infrastructure-as-code"
+      ],
+      [
+        "golden_119",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_120",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_120",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_120",
+        "skill",
+        "azure-ai-foundry"
+      ],
+      [
+        "golden_120",
+        "skill",
+        "azure-ai-search"
+      ],
+      [
+        "golden_120",
+        "skill",
+        "git"
+      ],
+      [
+        "golden_120",
+        "skill",
+        "infrastructure-as-code"
+      ],
+      [
+        "golden_120",
+        "skill",
+        "microsoft-entra-id"
+      ],
+      [
+        "golden_120",
+        "skill",
+        "networking"
+      ],
+      [
+        "golden_120",
+        "skill",
+        "observability"
+      ],
+      [
+        "golden_120",
         "skill",
         "terraform"
       ]
-    ]
+    ],
+    "errors": 9,
+    "rate": 0.1125,
+    "wilson_95": [
+      0.060326869466304764,
+      0.20018218092372875
+    ],
+    "wrong": [
+      "golden_108 skill `claude-code` -> {\"raw_text\": \"Claude Code\"}",
+      "golden_109 skill `docker` -> {\"raw_text\": \"Docker\"}",
+      "golden_109 skill `spring-boot` -> {\"raw_text\": \"Spring Boot\"}",
+      "golden_113 skill `ci-cd` -> {\"raw_text\": \"CI/CD-Pipeline\"}",
+      "golden_118 skill `gitops` -> {\"raw_text\": \"GitOps\"}",
+      "golden_118 skill `infrastructure-as-code` -> {\"raw_text\": \"Infrastructure as Code\"}",
+      "golden_118 skill `secrets-management` -> {\"raw_text\": \"Secrets Management\"}",
+      "golden_120 skill `networking` -> {\"raw_text\": \"Networking\"}",
+      "golden_120 skill `terraform` -> {\"raw_text\": \"Terraform\"}"
+    ],
+    "sample_items": null,
+    "answered_by": null
   },
   "signal_mismatches": [
-    "golden_050 german: A 'Fließende Deutschkenntnisse (mind. Level B2-C1)' vs B 'Fließende Deutschkenntnisse (mind. Level B2-C1).'",
-    "golden_050 degree: A 'Erfolgreiches Studium in Naturwissenschaften, Informatik oder eine vergleichbare Qualifikation' vs B 'Erfolgreiches Studium in Naturwissenschaften, Informatik oder eine vergleichbare Qualifikation.'",
-    "golden_054 seniority: A 'Mindestens drei Jahre Erfahrung in der Softwareentwicklung mit Python' vs B 'Mindestens drei Jahre Erfahrung'",
-    "golden_055 degree: A 'abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz' vs B 'ein abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz'",
-    "golden_061 degree: A 'abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation' vs B 'abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz'"
+    "golden_107 german: A 'sehr gute Deutsch- und Englischkenntnisse' vs B 'verfügst über sehr gute Deutsch- und Englischkenntnisse'",
+    "golden_107 degree: A 'abgeschlossenes Studium der Informatik, Ingenieurinformatik, Data Science oder einer vergleichbaren Fachrichtung' vs B 'verfügst über ein abgeschlossenes Studium der Informatik, Ingenieurinformatik, Data Science oder einer vergleichbaren Fachrichtung'",
+    "golden_108 german: A 'Fließende Deutschkenntnisse (mind. Level B2-C1)' vs B 'Fließende Deutschkenntnisse (mind. Level B2-C1).'",
+    "golden_108 degree: A 'Erfolgreiches Studium in Naturwissenschaften, Informatik oder eine vergleichbare Qualifikation' vs B 'Erfolgreiches Studium in Naturwissenschaften, Informatik oder eine vergleichbare Qualifikation.'",
+    "golden_109 degree: A 'Optional: Ein abgeschlossenes Hochschulstudium in (Wirtschafts-) Informatik oder eine vergleichbare Ausbildung sind von Vorteil' vs B 'Optional: Ein abgeschlossenes Hochschulstudium in (Wirtschafts-) Informatik oder eine vergleichbare Ausbildung sind von Vorteil.'",
+    "golden_112 seniority: A 'Mindestens drei Jahre Erfahrung in der Softwareentwicklung' vs B 'Mindestens drei Jahre Erfahrung in der Softwareentwicklung mit Python'",
+    "golden_113 degree: A 'abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz' vs B 'abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit\\nIT-Kompetenz'",
+    "golden_114 seniority: A '(2026/27 Graduate)' vs B '2026/27 Graduate'",
+    "golden_115 seniority: A '3+ years' vs B '3+ years in machine learning or applied AI engineering'"
   ],
   "unmapped": [
-    "ACL",
-    "AI-assisted personalization",
-    "AI-driven personalization / predictive marketing",
+    "AI-gestützte Personalisierung",
     "AKS",
-    "AKS (nice_to_have)",
     "Agile Methoden",
     "Agile methods",
     "Alerting",
     "Algorithms",
-    "Angular",
     "Arc42",
-    "Argo CD",
-    "Audit Logging",
     "Audit logging",
     "Automated deployments",
-    "Azure AI Foundry",
-    "Azure AI Search",
     "Azure Cognitive Services",
-    "Azure Data Factory",
-    "Azure Data Lake Storage",
-    "Azure Data Lake Storage Gen2",
-    "Azure DevOps",
     "Azure Document Intelligence",
-    "Azure Functions",
-    "Azure Key Vault",
     "Azure Landing Zones",
     "Azure Machine Learning",
     "Azure OpenAI",
-    "Azure Private Endpoints",
-    "Azure SQL Database",
     "Azure Storage",
-    "Azure Synapse Pipeline",
-    "Azure VNets",
-    "Azure VNets / Private Endpoints",
+    "Azure Synapse Pipelines",
     "BDD",
+    "BDD (Behavior-Driven Development)",
     "Bitbucket",
     "Cloud Foundry",
     "Cloud Foundry (nice_to_have, 'idealerweise')",
     "Cloud and Kubernetes troubleshooting",
-    "Cloud-native architecture",
-    "Container and image security",
-    "Container/Image security",
+    "Cloud-native architectures",
+    "Container/image security",
     "Copilot Studio",
     "DDD",
-    "Data Engineering",
-    "Data engineering",
-    "Data lake development",
+    "DDD (Domain-Driven Design)",
     "Data structures",
     "Data structures and algorithms",
-    "Data warehouse / data lake",
-    "Data warehousing",
     "Database architecture",
     "Databases",
-    "Databases (general)",
+    "Databases (generic)",
     "Datengetriebene Ansätze",
     "Document processing",
-    "Domain-driven design (DDD)",
     "EKS",
-    "EKS (nice_to_have)",
     "GKE",
-    "GKE (nice_to_have)",
     "GitLab",
-    "High availability",
-    "IAM",
-    "IAM/RBAC",
-    "IT Management",
-    "IT-Management",
-    "Identity Management",
+    "High-availability solutions",
+    "IT management",
     "Kustomize",
-    "Least privilege",
     "Logging",
     "Low-Code/No-Code platforms",
     "Low-Code/No-Code-Plattformen",
     "Microsoft Azure AI Stack",
     "Microsoft Copilot Studio",
-    "Microsoft Entra ID",
-    "Microsoft Foundry",
-    "Microsoft Power Automate",
-    "MongoDB",
-    "MongoDB (nice_to_have)",
-    "Network Policies",
     "Object-oriented programming",
-    "OpenShift",
-    "OpenShift (nice_to_have)",
     "Performance optimization",
-    "Power Automate",
-    "Private Endpoints",
-    "Product Ownership",
-    "RBAC",
-    "RBAC/ACL",
+    "Predictive Marketing",
+    "Predictive Marketing / Customer Intelligence / AI-gestützte Personalisierung (domain)",
+    "Product ownership",
     "Retrieval",
-    "SRE",
     "STACKIT SKE",
-    "STACKIT SKE (nice_to_have)",
-    "Secrets Management",
-    "Security Reviews",
-    "Security by Design",
-    "Service Endpoints",
-    "Sicherheitskonzepte",
     "Site reliability engineering",
     "Synapse Pipeline",
-    "TLS and certificates",
+    "TLS and certificate management",
     "TLS/certificates",
-    "Understanding software performance implications",
     "Vibe Engineering",
     "Web Development",
-    "automated deployments",
-    "data-driven approaches",
-    "logging / alerting"
+    "Web development",
+    "arc42",
+    "document processing"
   ]
 }

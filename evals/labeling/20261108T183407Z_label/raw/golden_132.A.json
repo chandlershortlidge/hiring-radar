@@ -1,0 +1,190 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"software or data engineering\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"data-engineering\", \"requirement\": \"required\", \"raw_text\": \"data engineering\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"machine learning methodologies\"},\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"required\", \"raw_text\": \"deep learning\"},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"required\", \"raw_text\": \"reinforced learning\", \"uncertain\": true},\n    {\"skill_id\": \"model-selection\", \"requirement\": \"required\", \"raw_text\": \"model identification, selection\", \"uncertain\": true},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"AI operations\", \"uncertain\": true},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"model monitoring\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Generative AI\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"agentic orchestration\"},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"LangChain\", \"alternative_group\": 2},\n    {\"skill_id\": \"crewai\", \"requirement\": \"required\", \"raw_text\": \"CrewAI\", \"alternative_group\": 2},\n    {\"skill_id\": \"vertex-ai\", \"requirement\": \"required\", \"raw_text\": \"Vertex AI Agent Builder\", \"uncertain\": true},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"required\", \"raw_text\": \"vector databases\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\", \"alternative_group\": 3},\n    {\"skill_id\": \"go\", \"requirement\": \"required\", \"raw_text\": \"Go\", \"alternative_group\": 3},\n    {\"skill_id\": \"java\", \"requirement\": \"required\", \"raw_text\": \"Java\", \"alternative_group\": 3},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"testing frameworks\"},\n    {\"skill_id\": \"api-design\", \"requirement\": \"required\", \"raw_text\": \"API contract design\"},\n    {\"skill_id\": \"data-privacy-and-security\", \"requirement\": \"nice_to_have\", \"raw_text\": \"encryption at rest/transit (CMEK)\", \"uncertain\": true},\n    {\"skill_id\": \"explainable-ai\", \"requirement\": \"nice_to_have\", \"raw_text\": \"explainable AI\"},\n    {\"skill_id\": \"data-modeling\", \"requirement\": \"nice_to_have\", \"raw_text\": \"data modeling\"},\n    {\"skill_id\": \"nosql\", \"requirement\": \"nice_to_have\", \"raw_text\": \"NoSQL\"},\n    {\"skill_id\": \"devops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"DevOps culture\"},\n    {\"skill_id\": \"bigquery\", \"requirement\": \"nice_to_have\", \"raw_text\": \"BigQuery\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Design patterns\", \"raw_text\": \"design patterns\"},\n    {\"label\": \"Trunk-based development\", \"raw_text\": \"trunk-based development\"},\n    {\"label\": \"Blue/green deployments\", \"raw_text\": \"blue/green deployments\"},\n    {\"label\": \"Dataflow\", \"raw_text\": \"Dataflow\"},\n    {\"label\": \"Pub/Sub\", \"raw_text\": \"Pub/Sub\"},\n    {\"label\": \"Data residency\", \"raw_text\": \"data residency\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"6 years of experience in software or data engineering.\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor's degree in Computer Science, a related field, or equivalent practical experience.\",\n  \"uncertain\": [],\n  \"notes\": \"Sections: 'Minimum qualifications' sets required; 'Preferred qualifications' sets nice_to_have. Responsibilities follow the benefits text and are not labeled.\\nNot labeled because they appear only in responsibilities: CI/CD, Infrastructure-as-Code and Terraform. GCP appears only in the job description.\\nsoftware-engineering and data-engineering come from the years-of-experience line '6 years of experience in software or data engineering'. They are read as alternatives (group 1). Uncertain because they are part of a years statement.\\n'reinforced learning' is mapped to reinforcement-learning. The posting's wording is nonstandard.\\n'AI operations (e.g., model monitoring)' is mapped to mlops (operating AI models), not aiops (AI for IT operations). This is a judgment call. 'model monitoring' maps to observability through its alias.\\n'agentic orchestration utilizing frameworks' is mapped to llm-orchestration through the alias 'agent orchestration'. agents is not added: the text never says 'agentic frameworks'.\\nvertex-ai is required via 'Vertex AI Agent Builder', mapped to the Vertex AI platform. Vertex AI is also asked for on its own in the preferred list, so per the group rule it leaves the LangChain/CrewAI group; group 2 keeps langchain and crewai.\\nEncryption at rest/transit (CMEK) is mapped to data-privacy-and-security, which is uncertain. Data residency is unmapped. FSI regulatory practice and financial services are domain knowledge and are not labeled.\\nThe taxonomy has no separate id for 'automated testing'; it maps to testing, which is already required via 'testing frameworks'. 'Star Schema, Data Vault' are aliases of data-modeling, so they fold into that one criterion.\\nThe office locations in Germany do not imply German; no language requirement is stated.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software or data engineering",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-engineering",
+        "requirement": "required",
+        "raw_text": "data engineering",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning methodologies"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "reinforced learning",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-selection",
+        "requirement": "required",
+        "raw_text": "model identification, selection",
+        "uncertain": true
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "AI operations",
+        "uncertain": true
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "model monitoring"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generative AI"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "agentic orchestration"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "crewai",
+        "requirement": "required",
+        "raw_text": "CrewAI",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "vertex-ai",
+        "requirement": "required",
+        "raw_text": "Vertex AI Agent Builder",
+        "uncertain": true
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector databases"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing frameworks"
+      },
+      {
+        "skill_id": "api-design",
+        "requirement": "required",
+        "raw_text": "API contract design"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "nice_to_have",
+        "raw_text": "encryption at rest/transit (CMEK)",
+        "uncertain": true
+      },
+      {
+        "skill_id": "explainable-ai",
+        "requirement": "nice_to_have",
+        "raw_text": "explainable AI"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "nice_to_have",
+        "raw_text": "data modeling"
+      },
+      {
+        "skill_id": "nosql",
+        "requirement": "nice_to_have",
+        "raw_text": "NoSQL"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "nice_to_have",
+        "raw_text": "DevOps culture"
+      },
+      {
+        "skill_id": "bigquery",
+        "requirement": "nice_to_have",
+        "raw_text": "BigQuery"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Design patterns",
+        "raw_text": "design patterns"
+      },
+      {
+        "label": "Trunk-based development",
+        "raw_text": "trunk-based development"
+      },
+      {
+        "label": "Blue/green deployments",
+        "raw_text": "blue/green deployments"
+      },
+      {
+        "label": "Dataflow",
+        "raw_text": "Dataflow"
+      },
+      {
+        "label": "Pub/Sub",
+        "raw_text": "Pub/Sub"
+      },
+      {
+        "label": "Data residency",
+        "raw_text": "data residency"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "6 years of experience in software or data engineering.",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor's degree in Computer Science, a related field, or equivalent practical experience.",
+    "uncertain": [],
+    "notes": "Sections: 'Minimum qualifications' sets required; 'Preferred qualifications' sets nice_to_have. Responsibilities follow the benefits text and are not labeled.\nNot labeled because they appear only in responsibilities: CI/CD, Infrastructure-as-Code and Terraform. GCP appears only in the job description.\nsoftware-engineering and data-engineering come from the years-of-experience line '6 years of experience in software or data engineering'. They are read as alternatives (group 1). Uncertain because they are part of a years statement.\n'reinforced learning' is mapped to reinforcement-learning. The posting's wording is nonstandard.\n'AI operations (e.g., model monitoring)' is mapped to mlops (operating AI models), not aiops (AI for IT operations). This is a judgment call. 'model monitoring' maps to observability through its alias.\n'agentic orchestration utilizing frameworks' is mapped to llm-orchestration through the alias 'agent orchestration'. agents is not added: the text never says 'agentic frameworks'.\nvertex-ai is required via 'Vertex AI Agent Builder', mapped to the Vertex AI platform. Vertex AI is also asked for on its own in the preferred list, so per the group rule it leaves the LangChain/CrewAI group; group 2 keeps langchain and crewai.\nEncryption at rest/transit (CMEK) is mapped to data-privacy-and-security, which is uncertain. Data residency is unmapped. FSI regulatory practice and financial services are domain knowledge and are not labeled.\nThe taxonomy has no separate id for 'automated testing'; it maps to testing, which is already required via 'testing frameworks'. 'Star Schema, Data Vault' are aliases of data-modeling, so they fold into that one criterion.\nThe office locations in Germany do not imply German; no language requirement is stated."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "12578154f7c30c3fab0e1105b1e3297c09a743b1ccd45ac94dc039442f7bd80e",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

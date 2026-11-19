@@ -7,22 +7,22 @@
   "model_b": "gpt-6.1-sol",
   "extractor": "claude-sonnet-5-5",
   "spot_n": 80,
-  "spot_pool": 227,
-  "taxonomy_version": 10,
+  "spot_pool": 213,
+  "taxonomy_version": 12,
   "n_picked": 15,
   "n_labeled": 15,
   "failed": [],
   "agreement": {
     "n_postings": 15,
     "skills": {
-      "tp": 223,
-      "fp": 7,
-      "fn": 4,
-      "precision": 0.9695652173913043,
-      "recall": 0.9823788546255506,
-      "f1": 0.975929978118162
+      "tp": 234,
+      "fp": 10,
+      "fn": 2,
+      "precision": 0.9590163934426229,
+      "recall": 0.9915254237288136,
+      "f1": 0.9749999999999999
     },
-    "requirement_agreement": 0.9955156950672646,
+    "requirement_agreement": 1.0,
     "attributes": {
       "seniority": {
         "agreed": 15,
@@ -35,441 +35,460 @@
         "rate": 1.0
       },
       "degree": {
-        "agreed": 14,
+        "agreed": 15,
         "n": 15,
-        "rate": 0.9333333333333333
+        "rate": 1.0
       }
     }
   },
-  "accepted_skills": 192,
-  "accepted_attributes": 35,
+  "accepted_skills": 177,
+  "accepted_attributes": 36,
   "review_items": {
     "in-scope": 15,
-    "disagreement": 13,
-    "uncertain": 39,
+    "disagreement": 12,
+    "uncertain": 66,
     "spot-check": 80
   },
   "spot_check": {
     "n": 80,
-    "pool": 227,
+    "pool": 213,
     "seed": 0,
     "sample": [
       [
-        "golden_049",
+        "golden_134",
         "attribute",
         "degree"
       ],
       [
-        "golden_049",
+        "golden_134",
         "skill",
         "agents"
       ],
       [
-        "golden_049",
+        "golden_134",
         "skill",
         "langchain"
       ],
       [
-        "golden_050",
+        "golden_135",
         "attribute",
         "german"
       ],
       [
-        "golden_050",
+        "golden_135",
         "attribute",
         "seniority"
       ],
       [
-        "golden_050",
+        "golden_135",
         "skill",
         "ai-developer-tooling"
       ],
       [
-        "golden_050",
+        "golden_135",
         "skill",
         "claude-code"
       ],
       [
-        "golden_050",
+        "golden_135",
         "skill",
         "cursor"
       ],
       [
-        "golden_050",
+        "golden_135",
         "skill",
         "data-modeling"
       ],
       [
-        "golden_050",
+        "golden_135",
         "skill",
         "forecasting"
       ],
       [
-        "golden_050",
+        "golden_135",
         "skill",
-        "langgraph"
+        "llms"
       ],
       [
-        "golden_050",
+        "golden_135",
         "skill",
         "software-engineering"
       ],
       [
-        "golden_051",
+        "golden_136",
         "attribute",
         "german"
       ],
       [
-        "golden_051",
+        "golden_136",
         "attribute",
         "seniority"
       ],
       [
-        "golden_051",
-        "skill",
-        "ai-ml"
-      ],
-      [
-        "golden_051",
-        "skill",
-        "llm-orchestration"
-      ],
-      [
-        "golden_051",
-        "skill",
-        "python"
-      ],
-      [
-        "golden_051",
-        "skill",
-        "software-engineering"
-      ],
-      [
-        "golden_051",
-        "skill",
-        "testing"
-      ],
-      [
-        "golden_052",
-        "skill",
-        "ci-cd"
-      ],
-      [
-        "golden_052",
-        "skill",
-        "computer-vision"
-      ],
-      [
-        "golden_052",
-        "skill",
-        "cuda"
-      ],
-      [
-        "golden_052",
-        "skill",
-        "embeddings"
-      ],
-      [
-        "golden_052",
-        "skill",
-        "machine-learning"
-      ],
-      [
-        "golden_052",
-        "skill",
-        "mlops"
-      ],
-      [
-        "golden_052",
-        "skill",
-        "pytorch"
-      ],
-      [
-        "golden_052",
-        "skill",
-        "rag"
-      ],
-      [
-        "golden_052",
-        "skill",
-        "software-engineering"
-      ],
-      [
-        "golden_052",
-        "skill",
-        "tensorflow"
-      ],
-      [
-        "golden_052",
-        "skill",
-        "testing"
-      ],
-      [
-        "golden_053",
-        "attribute",
-        "degree"
-      ],
-      [
-        "golden_053",
-        "attribute",
-        "german"
-      ],
-      [
-        "golden_053",
-        "skill",
-        "azure"
-      ],
-      [
-        "golden_053",
-        "skill",
-        "ci-cd"
-      ],
-      [
-        "golden_053",
-        "skill",
-        "gitops"
-      ],
-      [
-        "golden_053",
-        "skill",
-        "langchain"
-      ],
-      [
-        "golden_053",
-        "skill",
-        "llamaindex"
-      ],
-      [
-        "golden_053",
-        "skill",
-        "prompt-engineering"
-      ],
-      [
-        "golden_053",
-        "skill",
-        "vector-databases"
-      ],
-      [
-        "golden_054",
-        "attribute",
-        "german"
-      ],
-      [
-        "golden_054",
+        "golden_136",
         "skill",
         "agents"
       ],
       [
-        "golden_054",
-        "skill",
-        "python"
-      ],
-      [
-        "golden_054",
+        "golden_136",
         "skill",
         "rag"
       ],
       [
-        "golden_054",
+        "golden_136",
         "skill",
-        "software-architecture"
+        "vector-databases"
       ],
       [
-        "golden_054",
-        "skill",
-        "testing"
-      ],
-      [
-        "golden_055",
-        "attribute",
-        "degree"
-      ],
-      [
-        "golden_055",
-        "skill",
-        "aws"
-      ],
-      [
-        "golden_055",
+        "golden_137",
         "skill",
         "azure"
       ],
       [
-        "golden_055",
+        "golden_137",
         "skill",
-        "containerization"
+        "ci-cd"
       ],
       [
-        "golden_055",
-        "skill",
-        "gitlab-ci"
-      ],
-      [
-        "golden_055",
-        "skill",
-        "terraform"
-      ],
-      [
-        "golden_056",
-        "attribute",
-        "degree"
-      ],
-      [
-        "golden_056",
-        "attribute",
-        "german"
-      ],
-      [
-        "golden_056",
-        "skill",
-        "onnx"
-      ],
-      [
-        "golden_056",
-        "skill",
-        "pytorch"
-      ],
-      [
-        "golden_057",
-        "attribute",
-        "seniority"
-      ],
-      [
-        "golden_057",
-        "skill",
-        "devsecops"
-      ],
-      [
-        "golden_057",
-        "skill",
-        "software-engineering"
-      ],
-      [
-        "golden_057",
-        "skill",
-        "typescript"
-      ],
-      [
-        "golden_058",
-        "attribute",
-        "german"
-      ],
-      [
-        "golden_058",
-        "skill",
-        "ai-ml"
-      ],
-      [
-        "golden_058",
-        "skill",
-        "python"
-      ],
-      [
-        "golden_059",
-        "attribute",
-        "german"
-      ],
-      [
-        "golden_059",
-        "skill",
-        "fine-tuning"
-      ],
-      [
-        "golden_059",
-        "skill",
-        "llms"
-      ],
-      [
-        "golden_059",
-        "skill",
-        "python"
-      ],
-      [
-        "golden_059",
-        "skill",
-        "scikit-learn"
-      ],
-      [
-        "golden_061",
-        "skill",
-        "apache-spark"
-      ],
-      [
-        "golden_061",
-        "skill",
-        "aws"
-      ],
-      [
-        "golden_061",
-        "skill",
-        "data-science"
-      ],
-      [
-        "golden_061",
-        "skill",
-        "databricks"
-      ],
-      [
-        "golden_061",
-        "skill",
-        "gcp"
-      ],
-      [
-        "golden_062",
-        "attribute",
-        "seniority"
-      ],
-      [
-        "golden_062",
+        "golden_137",
         "skill",
         "docker"
       ],
       [
-        "golden_063",
+        "golden_137",
+        "skill",
+        "embeddings"
+      ],
+      [
+        "golden_137",
+        "skill",
+        "git"
+      ],
+      [
+        "golden_137",
+        "skill",
+        "linux"
+      ],
+      [
+        "golden_137",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_137",
+        "skill",
+        "pytorch"
+      ],
+      [
+        "golden_137",
+        "skill",
+        "quantization"
+      ],
+      [
+        "golden_137",
+        "skill",
+        "tensorflow"
+      ],
+      [
+        "golden_137",
+        "skill",
+        "testing"
+      ],
+      [
+        "golden_138",
         "attribute",
         "degree"
       ],
       [
-        "golden_063",
+        "golden_138",
         "attribute",
         "german"
       ],
       [
-        "golden_063",
+        "golden_138",
         "skill",
-        "data-science"
+        "agents"
       ],
       [
-        "golden_063",
+        "golden_138",
+        "skill",
+        "api-design"
+      ],
+      [
+        "golden_138",
+        "skill",
+        "argocd"
+      ],
+      [
+        "golden_138",
+        "skill",
+        "cloud"
+      ],
+      [
+        "golden_138",
+        "skill",
+        "containerization"
+      ],
+      [
+        "golden_138",
+        "skill",
+        "langchain"
+      ],
+      [
+        "golden_138",
+        "skill",
+        "mlops"
+      ],
+      [
+        "golden_138",
+        "skill",
+        "prompt-engineering"
+      ],
+      [
+        "golden_138",
+        "skill",
+        "vector-databases"
+      ],
+      [
+        "golden_139",
+        "skill",
+        "apis"
+      ],
+      [
+        "golden_139",
         "skill",
         "llms"
       ],
       [
-        "golden_063",
+        "golden_139",
         "skill",
         "machine-learning"
       ],
       [
-        "golden_063",
+        "golden_140",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_140",
+        "skill",
+        "aws"
+      ],
+      [
+        "golden_140",
+        "skill",
+        "ci-cd"
+      ],
+      [
+        "golden_140",
+        "skill",
+        "cloud"
+      ],
+      [
+        "golden_140",
+        "skill",
+        "containerization"
+      ],
+      [
+        "golden_140",
+        "skill",
+        "infrastructure-as-code"
+      ],
+      [
+        "golden_141",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_141",
+        "skill",
+        "cpp"
+      ],
+      [
+        "golden_141",
+        "skill",
+        "pytorch"
+      ],
+      [
+        "golden_142",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_142",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_142",
+        "skill",
+        "ci-cd"
+      ],
+      [
+        "golden_142",
+        "skill",
+        "containerization"
+      ],
+      [
+        "golden_142",
+        "skill",
+        "devsecops"
+      ],
+      [
+        "golden_142",
+        "skill",
+        "infrastructure-as-code"
+      ],
+      [
+        "golden_142",
+        "skill",
+        "typescript"
+      ],
+      [
+        "golden_143",
+        "skill",
+        "aws"
+      ],
+      [
+        "golden_143",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_143",
         "skill",
         "python"
+      ],
+      [
+        "golden_144",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_144",
+        "skill",
+        "context-engineering"
+      ],
+      [
+        "golden_144",
+        "skill",
+        "data-engineering"
+      ],
+      [
+        "golden_144",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_144",
+        "skill",
+        "tool-calling"
+      ],
+      [
+        "golden_145",
+        "skill",
+        "agents"
+      ],
+      [
+        "golden_146",
+        "skill",
+        "azure"
+      ],
+      [
+        "golden_146",
+        "skill",
+        "evaluation"
+      ],
+      [
+        "golden_146",
+        "skill",
+        "gcp"
+      ],
+      [
+        "golden_146",
+        "skill",
+        "rag"
+      ],
+      [
+        "golden_146",
+        "skill",
+        "scikit-learn"
+      ],
+      [
+        "golden_147",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_147",
+        "skill",
+        "azure"
+      ],
+      [
+        "golden_147",
+        "skill",
+        "microsoft-entra-id"
+      ],
+      [
+        "golden_148",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_148",
+        "skill",
+        "data-science"
+      ],
+      [
+        "golden_148",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_148",
+        "skill",
+        "machine-learning"
+      ],
+      [
+        "golden_148",
+        "skill",
+        "sql"
       ]
-    ]
+    ],
+    "errors": 11,
+    "rate": 0.1375,
+    "wilson_95": [
+      0.07854714324339108,
+      0.22967100066986607
+    ],
+    "wrong": [
+      "golden_136 skill `rag` -> {\"raw_text\": \"RAG\"}",
+      "golden_137 skill `azure` -> {\"raw_text\": \"Azure\"}",
+      "golden_137 skill `pytorch` -> {\"raw_text\": \"PyTorch\"}",
+      "golden_137 skill `tensorflow` -> {\"raw_text\": \"TensorFlow\"}",
+      "golden_138 skill `cloud` -> {\"raw_text\": \"Cloud-Plattformen\"}",
+      "golden_138 skill `mlops` -> {\"raw_text\": \"MLOps\"}",
+      "golden_141 attribute `degree` -> {\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Master’s or PhD in robotics, computer science, engineering, or a related field\"}",
+      "golden_142 skill `ci-cd` -> {\"raw_text\": \"CI/CD\"}",
+      "golden_142 skill `containerization` -> {\"raw_text\": \"Container\"}",
+      "golden_142 skill `infrastructure-as-code` -> {\"raw_text\": \"Infrastructure as Code\"}",
+      "golden_147 skill `microsoft-entra-id` -> {\"raw_text\": \"Entra ID\"}"
+    ],
+    "sample_items": null,
+    "answered_by": null
   },
   "signal_mismatches": [
-    "golden_049 german: A 'Fließend Deutsch und Englisch in Wort und Schrift' vs B 'Fließend Deutsch und Englisch\\nin Wort und Schrift'",
-    "golden_049 degree: A 'Abgeschlossenes wissenschaftliches Hochschulstudium (min. Bachelor) in einem MINT-Fach, oder vergleichbare Qualifikation als Quereinsteiger' vs B 'Abgeschlossenes wissenschaftliches Hochschulstudium (min. Bachelor) in\\neinem MINT-Fach, oder vergleichbare Qualifikation als Quereinsteiger,\\nTech Enthusiast oder Vibe Coder mit Proof Record'",
-    "golden_051 seniority: A 'Senior AI Engineer' vs B 'Senior AI Engineer / AI Architect'",
-    "golden_054 german: A 'verfügst über gute Deutsch- und Englischkenntnisse' vs B 'gute Deutsch- und Englischkenntnisse'",
-    "golden_055 german: A 'Business-fluent German' vs B 'Business-fluent German and English language skills.'",
-    "golden_055 degree: A 'University degree in Computer Science or a comparable IT-related field' vs B 'University degree in Computer Science or a comparable IT-related field.'",
-    "golden_056 seniority: A 'Senior AI / Reinforcement Learning Engineer' vs B 'Senior AI / Reinforcement Learning Engineer (m/f/d)'",
-    "golden_059 degree: A 'Degree in Engineering, Data Analytics/Science, Computer Science, Mathematics, or a related STEM field' vs B 'Degree in Engineering, Data Analytics/Science, Computer Science, Mathematics, or a related STEM field.'",
-    "golden_060 german: A 'German language skills are desirable' vs B 'German language skills are desirable.'",
-    "golden_063 degree: A 'Abgeschlossenes Studium der Informatik, Data Science, Wirtschaftsinformatik oder einer vergleichbaren Fachrichtung' vs B 'Abgeschlossenes Studium der Informatik, Data Science, Wirtschaftsinformatik oder einer vergleichbaren Fachrichtung.'"
+    "golden_134 degree: A 'Abgeschlossenes wissenschaftliches Hochschulstudium (min. Bachelor) in einem MINT-Fach, oder vergleichbare Qualifikation als Quereinsteiger' vs B 'Abgeschlossenes wissenschaftliches Hochschulstudium (min. Bachelor) in einem MINT-Fach, oder vergleichbare Qualifikation als Quereinsteiger, Tech Enthusiast oder Vibe Coder mit Proof Record'",
+    "golden_135 seniority: A 'mindestens 4\\nJahre Erfahrung' vs B 'mindestens 4 Jahre Erfahrung'",
+    "golden_139 seniority: A 'Idealerweise hast du bereits 3–5 Jahre in der Softwareentwicklung' vs B 'Idealerweise hast du bereits 3–5 Jahre in der Softwareentwicklung, im AI Engineering oder Machine Learning gearbeitet.'",
+    "golden_140 german: A 'Business-fluent German' vs B 'Business-fluent German and English language skills.'",
+    "golden_140 degree: A 'University degree in Computer Science or a comparable IT-related field' vs B 'University degree in Computer Science or a comparable IT-related field.'",
+    "golden_141 seniority: A 'Senior AI / Reinforcement Learning Engineer' vs B 'Senior AI / Reinforcement Learning Engineer (m/f/d)'",
+    "golden_144 degree: A 'Degree in Engineering, Data Analytics/Science, Computer Science, Mathematics, or a related STEM field' vs B 'Degree in Engineering, Data Analytics/Science, Computer Science, Mathematics, or a related STEM field.'",
+    "golden_145 german: A 'German language skills are desirable' vs B 'German language skills are desirable.'",
+    "golden_148 degree: A 'Abgeschlossenes Studium der Informatik, Data Science, Wirtschaftsinformatik oder einer vergleichbaren Fachrichtung' vs B 'Abgeschlossenes Studium der Informatik, Data Science, Wirtschaftsinformatik oder einer vergleichbaren Fachrichtung.'"
   ],
   "unmapped": [
-    ".NET",
     "A2A",
     "A2A (Agent2Agent protocol)",
     "AI Engineering",
@@ -478,28 +497,22 @@
     "AWS CodeBuild",
     "AWS CodeBuild/CodePipeline",
     "AWS CodePipeline",
-    "AWS EKS",
-    "AWS IAM",
     "AWS Lambda",
-    "Accounting and ERP software",
-    "Accounting/ERP software",
+    "Accounting software",
     "Agile software development",
     "Amazon EKS",
-    "ArgoCD",
-    "Azure DevOps",
-    "Context engineering",
     "Control theory",
     "DSPy",
-    "Data engineering",
-    "Data engineering tools",
     "Data-driven applications",
     "Databases",
-    "Developing or operating security toolchains",
+    "Deployment",
     "Dynamic code analysis",
+    "ERP / accounting software",
+    "ERP software",
     "ERP systems",
     "Edge AI",
-    "Enterprise application and system integration",
-    "Entra ID",
+    "Enterprise application and systems integration",
+    "Enterprise application integration",
     "Few-shot learning",
     "Flux",
     "Fuzzing",
@@ -508,85 +521,75 @@
     "Imitation learning (IL)",
     "Integration architectures",
     "Integration of AI models",
+    "Isaac Sim",
     "IsaacSim",
     "JSON",
+    "Jakarta EE",
     "Jakarta Enterprise Edition",
-    "Jenkins",
     "KI-Governance",
     "LangChain4J",
-    "Locomanipulation policy training",
-    "Locomotion policy training",
+    "Locomotion and locomanipulation policy training",
+    "Locomotion/locomanipulation policy training",
     "Low-Code-/No-Code-Plattformen",
     "Low-code/no-code platforms",
     "ML frameworks",
+    "ML frameworks (generic)",
     "Microsoft 365",
-    "Microsoft Entra ID",
-    "Microsoft Power Platform",
     "Model optimization",
     "Model pruning",
     "Motion planning",
     "MuJoCo",
+    "Multi-tenancy",
     "Multimodal models",
     "Multimodal understanding",
     "Object Detection",
     "Object detection",
+    "Object tracking",
     "On-premise / hybrid infrastructure",
     "On-premise and hybrid infrastructure",
     "OpenAPI",
-    "OpenShift",
     "Oracle",
-    "Oracle ERP",
     "PPO",
+    "Penetration testing",
     "Penetration testing tools",
     "Physics-based simulation",
     "Physics-based simulators",
-    "Pinecone",
-    "Playwright",
     "Podman",
     "Power Platform",
     "PowerShell",
-    "Production operations",
     "Programmierung",
+    "Proximal Policy Optimization (PPO)",
     "Pruning",
     "Pydantic",
-    "Qdrant",
     "RL frameworks",
-    "ROI modeling",
     "RSL-RL",
-    "Retrieval",
-    "Robot dynamics",
-    "Robot kinematics",
+    "Reinforcement learning frameworks",
+    "Reliable production operation",
+    "Robot kinematics and dynamics",
     "Robot kinematics/dynamics",
     "SAC",
     "SAP",
-    "SAP ERP",
     "SaaS applications",
     "Scalability",
-    "Scientific research practice",
+    "Scientific research",
     "Scripting",
-    "Secure AI applications",
-    "Security toolchain development and operation",
+    "Security toolchain development or operation",
     "Segmentation",
     "Sim-to-real transfer",
+    "Soft Actor-Critic (SAC)",
     "Software deployment",
-    "Software security",
     "Specification-driven development",
     "Stable Baselines 3",
+    "Static and dynamic code analysis",
     "Static code analysis",
-    "TCO modeling",
-    "Technical proof-of-concept projects",
+    "Technical proof-of-concept development",
+    "Text-to-SQL",
     "Text2SQL",
     "Tracking",
-    "Training and deployment on humanoid robots",
-    "Vision Transformer",
-    "Vision transformers",
     "Vision-Language Models",
     "Vision-language models",
-    "XRechnung",
-    "ZUGFeRD",
-    "fuzzing",
-    "penetration testing tools",
-    "security toolchains",
-    "static and dynamic code analysis"
+    "XRechnung / ZUGFeRD e-invoicing standards",
+    "secure AI applications",
+    "security toolchains"
   ]
 }
