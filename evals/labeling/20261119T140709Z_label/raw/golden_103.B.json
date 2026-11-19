@@ -1,0 +1,56 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI and data strategy\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI evaluation standards\"\n    },\n    {\n      \"skill_id\": \"hallucination-detection\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI evaluation standards covering failure modes, bias, drift, hallucinations\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"explainable-ai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"explainability\"\n    },\n    {\n      \"skill_id\": \"llm-guardrails\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"guardrails\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"enterprise architecture\"\n    }\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"AI Director\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"At least a Bachelor's degree\",\n  \"notes\": \"Read 'What Sets You Apart' literally as a qualifications heading without an explicit optional marker; its items default to required. 'Preference' applies only to the fields-of-study bullet.\\nFields of study are not treated as candidate technical skills.\\nTechnologies and practices appearing only in The Opportunity or Responsibilities are excluded.\\nFailure modes, bias, and drift are dimensions of the explicitly requested AI evaluation practice, not separately named technical techniques.\\nHallucination evaluation is mapped to hallucination-detection, flagged because detection is not explicitly named.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI and data strategy"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "AI evaluation standards"
+      },
+      {
+        "skill_id": "hallucination-detection",
+        "requirement": "required",
+        "raw_text": "AI evaluation standards covering failure modes, bias, drift, hallucinations",
+        "uncertain": true
+      },
+      {
+        "skill_id": "explainable-ai",
+        "requirement": "required",
+        "raw_text": "explainability"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "guardrails"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "enterprise architecture"
+      }
+    ],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "AI Director",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "At least a Bachelor's degree",
+    "notes": "Read 'What Sets You Apart' literally as a qualifications heading without an explicit optional marker; its items default to required. 'Preference' applies only to the fields-of-study bullet.\nFields of study are not treated as candidate technical skills.\nTechnologies and practices appearing only in The Opportunity or Responsibilities are excluded.\nFailure modes, bias, and drift are dimensions of the explicitly requested AI evaluation practice, not separately named technical techniques.\nHallucination evaluation is mapped to hallucination-detection, flagged because detection is not explicitly named."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "24ca77587fe185aa4babc1257e21a86e0749ac76f745833f181558ac1d3af6e0",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,346 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Hands-on experience with graph machine learning is required.\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"knowledge-graphs\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building knowledge graphs\"\n    },\n    {\n      \"skill_id\": \"data-modeling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"semantic data models\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"scikit-learn\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM-based information extraction from documents\"\n    },\n    {\n      \"skill_id\": \"structured-data-extraction\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"information extraction from documents\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"graph embeddings\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"offline and online evaluation\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying ML\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"major cloud\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Google Cloud preferred\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps practices\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD pipelines\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"monitoring\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GraphRAG\"\n    },\n    {\n      \"skill_id\": \"vector-search\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vector search\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agent frameworks\"\n    },\n    {\n      \"skill_id\": \"google-adk\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Google ADK\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LangGraph\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"MCP\"\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"NLP\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"ML frameworks\",\n      \"raw_text\": \"ML frameworks\"\n    },\n    {\n      \"label\": \"Entity resolution\",\n      \"raw_text\": \"entity resolution at scale\"\n    },\n    {\n      \"label\": \"Graph databases\",\n      \"raw_text\": \"graph database\"\n    },\n    {\n      \"label\": \"Neo4j\",\n      \"raw_text\": \"Neo4j\"\n    },\n    {\n      \"label\": \"Amazon Neptune\",\n      \"raw_text\": \"Amazon Neptune\"\n    },\n    {\n      \"label\": \"TigerGraph\",\n      \"raw_text\": \"TigerGraph\"\n    },\n    {\n      \"label\": \"Graph query languages\",\n      \"raw_text\": \"graph query language\"\n    },\n    {\n      \"label\": \"Cypher\",\n      \"raw_text\": \"Cypher\"\n    },\n    {\n      \"label\": \"GQL\",\n      \"raw_text\": \"GQL\"\n    },\n    {\n      \"label\": \"SPARQL\",\n      \"raw_text\": \"SPARQL\"\n    },\n    {\n      \"label\": \"Gremlin\",\n      \"raw_text\": \"Gremlin\"\n    },\n    {\n      \"label\": \"Ontology modeling\",\n      \"raw_text\": \"ontology\"\n    },\n    {\n      \"label\": \"Semantic-web standards\",\n      \"raw_text\": \"semantic-web standards\"\n    },\n    {\n      \"label\": \"RDF\",\n      \"raw_text\": \"RDF\"\n    },\n    {\n      \"label\": \"OWL\",\n      \"raw_text\": \"OWL\"\n    },\n    {\n      \"label\": \"SHACL\",\n      \"raw_text\": \"SHACL\"\n    },\n    {\n      \"label\": \"SKOS\",\n      \"raw_text\": \"SKOS\"\n    },\n    {\n      \"label\": \"Property-graph modeling\",\n      \"raw_text\": \"property-graph modeling\"\n    },\n    {\n      \"label\": \"Semantic model governance and versioning\",\n      \"raw_text\": \"turning business concepts into governed, versioned models\"\n    },\n    {\n      \"label\": \"Probabilistic matching\",\n      \"raw_text\": \"probabilistic or embedding-based matching\"\n    },\n    {\n      \"label\": \"Embedding-based matching\",\n      \"raw_text\": \"embedding-based matching\"\n    },\n    {\n      \"label\": \"Splink\",\n      \"raw_text\": \"Splink\"\n    },\n    {\n      \"label\": \"Zingg\",\n      \"raw_text\": \"Zingg\"\n    },\n    {\n      \"label\": \"Senzing\",\n      \"raw_text\": \"Senzing\"\n    },\n    {\n      \"label\": \"Graph machine learning\",\n      \"raw_text\": \"graph machine learning\"\n    },\n    {\n      \"label\": \"Link prediction\",\n      \"raw_text\": \"link prediction\"\n    },\n    {\n      \"label\": \"PyTorch Geometric\",\n      \"raw_text\": \"PyTorch Geometric\"\n    },\n    {\n      \"label\": \"DGL\",\n      \"raw_text\": \"DGL\"\n    },\n    {\n      \"label\": \"Classical predictive modeling\",\n      \"raw_text\": \"classical predictive modeling\"\n    },\n    {\n      \"label\": \"Model registry\",\n      \"raw_text\": \"model registry\"\n    },\n    {\n      \"label\": \"Rights-management platforms\",\n      \"raw_text\": \"rights-management platforms\"\n    },\n    {\n      \"label\": \"Hybrid retrieval\",\n      \"raw_text\": \"hybrid retrieval\"\n    },\n    {\n      \"label\": \"Graph traversal\",\n      \"raw_text\": \"graph traversal\"\n    },\n    {\n      \"label\": \"Master data management\",\n      \"raw_text\": \"master data management\"\n    },\n    {\n      \"label\": \"Data governance tools\",\n      \"raw_text\": \"data governance tools\"\n    },\n    {\n      \"label\": \"Collibra\",\n      \"raw_text\": \"Collibra\"\n    },\n    {\n      \"label\": \"Informatica\",\n      \"raw_text\": \"Informatica\"\n    },\n    {\n      \"label\": \"Google Dataplex\",\n      \"raw_text\": \"Google Dataplex\"\n    },\n    {\n      \"label\": \"Data-product delivery\",\n      \"raw_text\": \"data-product or data-mesh delivery\"\n    },\n    {\n      \"label\": \"Data-mesh delivery\",\n      \"raw_text\": \"data-mesh delivery\"\n    },\n    {\n      \"label\": \"Wikidata\",\n      \"raw_text\": \"Wikidata\"\n    },\n    {\n      \"label\": \"Wikibase\",\n      \"raw_text\": \"Wikibase\"\n    },\n    {\n      \"label\": \"Palantir Foundry Ontology\",\n      \"raw_text\": \"Palantir Foundry Ontology\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Lead ML Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Master’s or PhD in Computer Science, Machine Learning or Information Science\",\n  \"notes\": \"Required Qualifications defaults to required; Preferred Qualifications makes its items optional. Google Cloud is individually preferred despite appearing in the required section.\\nThe highest degree named is the optional PhD. The separate required bachelor's qualification accepts equivalent applicable experience, so degree_or_equivalent is true.\\nAlternative groups encode mapped alternatives; additional alternatives among unmapped graph databases, query languages, matching tools, graph ML libraries, and governance tools remain documented in unmapped.\\nMachine learning and knowledge graphs are independently required elsewhere, so they do not remain grouped with alternatives in the initial experience qualification.\\nThe isolated word 'data' in the experience qualification is not expanded into an unstated data-engineering skill. Domain knowledge, communication, and offshore-team experience are excluded.\\nGraphRAG maps to RAG, graph embeddings to Embeddings, and semantic data models to Data modeling. Graph-specific techniques without taxonomy entries are retained in unmapped.\\nSemantic-model versioning is not treated as ML model versioning. Model registry is likewise left unmapped rather than inferred to mean model versioning.\\nTechnologies appearing only in responsibilities, including Vertex AI Pipelines, MLflow, Spanner Graph, APIs, and feature stores, are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Hands-on experience with graph machine learning is required."
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "knowledge-graphs",
+        "requirement": "required",
+        "raw_text": "building knowledge graphs"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "semantic data models"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-based information extraction from documents"
+      },
+      {
+        "skill_id": "structured-data-extraction",
+        "requirement": "required",
+        "raw_text": "information extraction from documents"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "graph embeddings"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "offline and online evaluation"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying ML"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "major cloud"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "Google Cloud preferred",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps practices"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD pipelines"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "GraphRAG"
+      },
+      {
+        "skill_id": "vector-search",
+        "requirement": "nice_to_have",
+        "raw_text": "vector search"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agent frameworks"
+      },
+      {
+        "skill_id": "google-adk",
+        "requirement": "nice_to_have",
+        "raw_text": "Google ADK",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "nice_to_have",
+        "raw_text": "LangGraph",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "nice_to_have",
+        "raw_text": "MCP"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "nice_to_have",
+        "raw_text": "NLP"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "ML frameworks",
+        "raw_text": "ML frameworks"
+      },
+      {
+        "label": "Entity resolution",
+        "raw_text": "entity resolution at scale"
+      },
+      {
+        "label": "Graph databases",
+        "raw_text": "graph database"
+      },
+      {
+        "label": "Neo4j",
+        "raw_text": "Neo4j"
+      },
+      {
+        "label": "Amazon Neptune",
+        "raw_text": "Amazon Neptune"
+      },
+      {
+        "label": "TigerGraph",
+        "raw_text": "TigerGraph"
+      },
+      {
+        "label": "Graph query languages",
+        "raw_text": "graph query language"
+      },
+      {
+        "label": "Cypher",
+        "raw_text": "Cypher"
+      },
+      {
+        "label": "GQL",
+        "raw_text": "GQL"
+      },
+      {
+        "label": "SPARQL",
+        "raw_text": "SPARQL"
+      },
+      {
+        "label": "Gremlin",
+        "raw_text": "Gremlin"
+      },
+      {
+        "label": "Ontology modeling",
+        "raw_text": "ontology"
+      },
+      {
+        "label": "Semantic-web standards",
+        "raw_text": "semantic-web standards"
+      },
+      {
+        "label": "RDF",
+        "raw_text": "RDF"
+      },
+      {
+        "label": "OWL",
+        "raw_text": "OWL"
+      },
+      {
+        "label": "SHACL",
+        "raw_text": "SHACL"
+      },
+      {
+        "label": "SKOS",
+        "raw_text": "SKOS"
+      },
+      {
+        "label": "Property-graph modeling",
+        "raw_text": "property-graph modeling"
+      },
+      {
+        "label": "Semantic model governance and versioning",
+        "raw_text": "turning business concepts into governed, versioned models"
+      },
+      {
+        "label": "Probabilistic matching",
+        "raw_text": "probabilistic or embedding-based matching"
+      },
+      {
+        "label": "Embedding-based matching",
+        "raw_text": "embedding-based matching"
+      },
+      {
+        "label": "Splink",
+        "raw_text": "Splink"
+      },
+      {
+        "label": "Zingg",
+        "raw_text": "Zingg"
+      },
+      {
+        "label": "Senzing",
+        "raw_text": "Senzing"
+      },
+      {
+        "label": "Graph machine learning",
+        "raw_text": "graph machine learning"
+      },
+      {
+        "label": "Link prediction",
+        "raw_text": "link prediction"
+      },
+      {
+        "label": "PyTorch Geometric",
+        "raw_text": "PyTorch Geometric"
+      },
+      {
+        "label": "DGL",
+        "raw_text": "DGL"
+      },
+      {
+        "label": "Classical predictive modeling",
+        "raw_text": "classical predictive modeling"
+      },
+      {
+        "label": "Model registry",
+        "raw_text": "model registry"
+      },
+      {
+        "label": "Rights-management platforms",
+        "raw_text": "rights-management platforms"
+      },
+      {
+        "label": "Hybrid retrieval",
+        "raw_text": "hybrid retrieval"
+      },
+      {
+        "label": "Graph traversal",
+        "raw_text": "graph traversal"
+      },
+      {
+        "label": "Master data management",
+        "raw_text": "master data management"
+      },
+      {
+        "label": "Data governance tools",
+        "raw_text": "data governance tools"
+      },
+      {
+        "label": "Collibra",
+        "raw_text": "Collibra"
+      },
+      {
+        "label": "Informatica",
+        "raw_text": "Informatica"
+      },
+      {
+        "label": "Google Dataplex",
+        "raw_text": "Google Dataplex"
+      },
+      {
+        "label": "Data-product delivery",
+        "raw_text": "data-product or data-mesh delivery"
+      },
+      {
+        "label": "Data-mesh delivery",
+        "raw_text": "data-mesh delivery"
+      },
+      {
+        "label": "Wikidata",
+        "raw_text": "Wikidata"
+      },
+      {
+        "label": "Wikibase",
+        "raw_text": "Wikibase"
+      },
+      {
+        "label": "Palantir Foundry Ontology",
+        "raw_text": "Palantir Foundry Ontology"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead ML Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": true,
+    "degree_signal": "Master’s or PhD in Computer Science, Machine Learning or Information Science",
+    "notes": "Required Qualifications defaults to required; Preferred Qualifications makes its items optional. Google Cloud is individually preferred despite appearing in the required section.\nThe highest degree named is the optional PhD. The separate required bachelor's qualification accepts equivalent applicable experience, so degree_or_equivalent is true.\nAlternative groups encode mapped alternatives; additional alternatives among unmapped graph databases, query languages, matching tools, graph ML libraries, and governance tools remain documented in unmapped.\nMachine learning and knowledge graphs are independently required elsewhere, so they do not remain grouped with alternatives in the initial experience qualification.\nThe isolated word 'data' in the experience qualification is not expanded into an unstated data-engineering skill. Domain knowledge, communication, and offshore-team experience are excluded.\nGraphRAG maps to RAG, graph embeddings to Embeddings, and semantic data models to Data modeling. Graph-specific techniques without taxonomy entries are retained in unmapped.\nSemantic-model versioning is not treated as ML model versioning. Model registry is likewise left unmapped rather than inferred to mean model versioning.\nTechnologies appearing only in responsibilities, including Vertex AI Pipelines, MLflow, Spanner Graph, APIs, and feature stores, are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "56544dea3900f97fdddda02e10eb9d768e2d49af8192c5c7932e82b350f44090",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

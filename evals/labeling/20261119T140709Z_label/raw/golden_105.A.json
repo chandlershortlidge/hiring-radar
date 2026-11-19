@@ -1,0 +1,254 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLMs\"},\n    {\"skill_id\": \"agent-architecture\", \"requirement\": \"required\", \"raw_text\": \"agentic architectures\", \"uncertain\": true},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"retrieval-augmented generation\"},\n    {\"skill_id\": \"cybersecurity\", \"requirement\": \"required\", \"raw_text\": \"cybersecurity knowledge\", \"uncertain\": true},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Strong software engineering skills\"},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"tool-calling agents\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"tool-calling agents\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"evaluation harnesses\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"AI/ML solutions\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"APIs\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"Git\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"automated testing\"},\n    {\"skill_id\": \"devsecops\", \"requirement\": \"required\", \"raw_text\": \"DevSecOps\", \"alternative_group\": 1},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"DevSecOps, CI/CD\", \"uncertain\": true},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"containers\", \"alternative_group\": 1},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"infrastructure-as-code\", \"alternative_group\": 1},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud engineering\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"secure AI deployment\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"GCP\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"llm-guardrails\", \"requirement\": \"required\", \"raw_text\": \"safeguards informed by OWASP Top 10 for LLMs\", \"uncertain\": true},\n    {\"skill_id\": \"data-privacy-and-security\", \"requirement\": \"required\", \"raw_text\": \"data protection\", \"uncertain\": true},\n    {\"skill_id\": \"model-selection\", \"requirement\": \"nice_to_have\", \"raw_text\": \"model selection\"},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"nice_to_have\", \"raw_text\": \"agent orchestration\"},\n    {\"skill_id\": \"model-serving\", \"requirement\": \"nice_to_have\", \"raw_text\": \"model serving\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LLM observability\"},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"fine-tuning models\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Prompt injection\", \"raw_text\": \"prompt injection\"},\n    {\"label\": \"OWASP Top 10 for LLMs\", \"raw_text\": \"OWASP Top 10 for LLMs\"},\n    {\"label\": \"MITRE ATLAS\", \"raw_text\": \"MITRE ATLAS\"},\n    {\"label\": \"Security architecture\", \"raw_text\": \"security architecture\"},\n    {\"label\": \"Identity and access management\", \"raw_text\": \"identity and access management\"},\n    {\"label\": \"Detection engineering\", \"raw_text\": \"detection engineering\"},\n    {\"label\": \"Incident response automation\", \"raw_text\": \"incident response automation\"},\n    {\"label\": \"SIEM\", \"raw_text\": \"SIEM\"},\n    {\"label\": \"SOAR\", \"raw_text\": \"SOAR\"},\n    {\"label\": \"EDR\", \"raw_text\": \"EDR\"},\n    {\"label\": \"Application security\", \"raw_text\": \"Application security\"},\n    {\"label\": \"Secure code review\", \"raw_text\": \"secure code review\"},\n    {\"label\": \"AI red teaming\", \"raw_text\": \"AI red teaming\"},\n    {\"label\": \"Adversarial testing\", \"raw_text\": \"adversarial testing\"},\n    {\"label\": \"Sandboxing\", \"raw_text\": \"sandboxing\"},\n    {\"label\": \"CISSP / CCSP certifications\", \"raw_text\": \"CISSP, CCSP\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Consultant level\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"A bachelor's degree in Cybersecurity, Computer Science, Information Systems, Engineering, or a related field\",\n  \"uncertain\": [],\n  \"notes\": \"Sections: 'Skills And Attributes For Success' has no optional marker, so it defaults to required. 'To Qualify for the Role, You Must Have' is required. 'Ideally, You'll Also Have' is optional, so every item under it is nice_to_have.\\nResponsibilities mention retrieval, tool calling and structured outputs. These were not labeled from that section; rag and tool-calling are labeled from the qualification sections instead.\\nThe 'experience in one or more of these areas' list makes the areas alternatives to each other. Skills inside those areas that are not asked for on their own elsewhere are put in alternative_group 1, and all stay required.\\nThe nested set 'AWS, Azure, or GCP' is a separate X/Y/Z alternative inside one area. Only one group field is available, so I kept the three in group 1 with the rest of the areas.\\nCloud is kept in group 1 because 'Cloud engineering' is itself one of the alternative areas. This departs from the usual rule that keeps a broad skill out of its examples' group, so it is flagged uncertain.\\nllms, agents, rag, evaluation and apis also appear inside the one-or-more areas, but each is asked for on its own elsewhere. They therefore leave the group and are standalone requirements.\\nci-cd is also named on its own in the Ideally section ('CI/CD evaluation gates'). Under the 'asked on its own elsewhere' rule I removed it from the group. It stays required because a required mention wins.\\nraw_text for ci-cd is 'DevSecOps, CI/CD' because the bare 'CI/CD' string occurs in both the required and the nice_to_have mention.\\ncybersecurity is quoted from 'What We Look For' ('cybersecurity knowledge'), which has no optional marker. It is flagged uncertain because it is close to domain knowledge.\\n'agentic architectures' is mapped to agent-architecture; flagged uncertain.\\n'safeguards informed by OWASP Top 10 for LLMs' is mapped to llm-guardrails; flagged uncertain.\\n'data protection' is mapped to data-privacy-and-security; flagged uncertain.\\nai-deployment is taken from 'secure AI deployment' in the alternative area list; flagged uncertain.\\n'contributing to open-source AI or security projects' is not labeled open-source-llms: it is a contribution activity, not a skill with open-source models.\\n'model integrations' and 'model tool integrations' were not mapped to a separate skill; tool-calling covers 'tool-calling agents'.\\nSecurity domain areas such as security operations, threat investigation, vulnerability management and incident response are domain knowledge and are left unlabeled or put in unmapped.\\nSeniority is stated as Senior in the title and in 'Senior Consultant level'. This is consistent with the 3–5 years of experience asked for.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "agent-architecture",
+        "requirement": "required",
+        "raw_text": "agentic architectures",
+        "uncertain": true
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "retrieval-augmented generation"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "cybersecurity knowledge",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software engineering skills"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool-calling agents"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "tool-calling agents"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation harnesses"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML solutions"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automated testing"
+      },
+      {
+        "skill_id": "devsecops",
+        "requirement": "required",
+        "raw_text": "DevSecOps",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "DevSecOps, CI/CD",
+        "uncertain": true
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containers",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "infrastructure-as-code",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud engineering",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "secure AI deployment",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "safeguards informed by OWASP Top 10 for LLMs",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "data protection",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-selection",
+        "requirement": "nice_to_have",
+        "raw_text": "model selection"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "nice_to_have",
+        "raw_text": "agent orchestration"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "model serving"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM observability"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "fine-tuning models"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Prompt injection",
+        "raw_text": "prompt injection"
+      },
+      {
+        "label": "OWASP Top 10 for LLMs",
+        "raw_text": "OWASP Top 10 for LLMs"
+      },
+      {
+        "label": "MITRE ATLAS",
+        "raw_text": "MITRE ATLAS"
+      },
+      {
+        "label": "Security architecture",
+        "raw_text": "security architecture"
+      },
+      {
+        "label": "Identity and access management",
+        "raw_text": "identity and access management"
+      },
+      {
+        "label": "Detection engineering",
+        "raw_text": "detection engineering"
+      },
+      {
+        "label": "Incident response automation",
+        "raw_text": "incident response automation"
+      },
+      {
+        "label": "SIEM",
+        "raw_text": "SIEM"
+      },
+      {
+        "label": "SOAR",
+        "raw_text": "SOAR"
+      },
+      {
+        "label": "EDR",
+        "raw_text": "EDR"
+      },
+      {
+        "label": "Application security",
+        "raw_text": "Application security"
+      },
+      {
+        "label": "Secure code review",
+        "raw_text": "secure code review"
+      },
+      {
+        "label": "AI red teaming",
+        "raw_text": "AI red teaming"
+      },
+      {
+        "label": "Adversarial testing",
+        "raw_text": "adversarial testing"
+      },
+      {
+        "label": "Sandboxing",
+        "raw_text": "sandboxing"
+      },
+      {
+        "label": "CISSP / CCSP certifications",
+        "raw_text": "CISSP, CCSP"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Consultant level",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "A bachelor's degree in Cybersecurity, Computer Science, Information Systems, Engineering, or a related field",
+    "uncertain": [],
+    "notes": "Sections: 'Skills And Attributes For Success' has no optional marker, so it defaults to required. 'To Qualify for the Role, You Must Have' is required. 'Ideally, You'll Also Have' is optional, so every item under it is nice_to_have.\nResponsibilities mention retrieval, tool calling and structured outputs. These were not labeled from that section; rag and tool-calling are labeled from the qualification sections instead.\nThe 'experience in one or more of these areas' list makes the areas alternatives to each other. Skills inside those areas that are not asked for on their own elsewhere are put in alternative_group 1, and all stay required.\nThe nested set 'AWS, Azure, or GCP' is a separate X/Y/Z alternative inside one area. Only one group field is available, so I kept the three in group 1 with the rest of the areas.\nCloud is kept in group 1 because 'Cloud engineering' is itself one of the alternative areas. This departs from the usual rule that keeps a broad skill out of its examples' group, so it is flagged uncertain.\nllms, agents, rag, evaluation and apis also appear inside the one-or-more areas, but each is asked for on its own elsewhere. They therefore leave the group and are standalone requirements.\nci-cd is also named on its own in the Ideally section ('CI/CD evaluation gates'). Under the 'asked on its own elsewhere' rule I removed it from the group. It stays required because a required mention wins.\nraw_text for ci-cd is 'DevSecOps, CI/CD' because the bare 'CI/CD' string occurs in both the required and the nice_to_have mention.\ncybersecurity is quoted from 'What We Look For' ('cybersecurity knowledge'), which has no optional marker. It is flagged uncertain because it is close to domain knowledge.\n'agentic architectures' is mapped to agent-architecture; flagged uncertain.\n'safeguards informed by OWASP Top 10 for LLMs' is mapped to llm-guardrails; flagged uncertain.\n'data protection' is mapped to data-privacy-and-security; flagged uncertain.\nai-deployment is taken from 'secure AI deployment' in the alternative area list; flagged uncertain.\n'contributing to open-source AI or security projects' is not labeled open-source-llms: it is a contribution activity, not a skill with open-source models.\n'model integrations' and 'model tool integrations' were not mapped to a separate skill; tool-calling covers 'tool-calling agents'.\nSecurity domain areas such as security operations, threat investigation, vulnerability management and incident response are domain knowledge and are left unlabeled or put in unmapped.\nSeniority is stated as Senior in the title and in 'Senior Consultant level'. This is consistent with the 3–5 years of experience asked for."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "9158fc433fbb9ffb20cd0fd5d78d8a6b052bb5798812c0cce4497fcd93368174",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

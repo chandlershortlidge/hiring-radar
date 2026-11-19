@@ -1,0 +1,151 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"prompt engineering\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"backend systems\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building production software\"\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"transformer-based stack\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"embeddings\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"vector databases\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tool-calling\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"2+ years shipping LLM-based products to real users in production\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"llm-guardrails\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"build guardrails against them\"\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Security Mindset: You treat access to enterprise data as part of the design, not an afterthought\"\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LangGraph\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"llamaindex\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LlamaIndex\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"pydanticai\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"PydanticAI\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Fine-tuning\"\n    },\n    {\n      \"skill_id\": \"open-source-llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"open-weight models\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Model optimization\",\n      \"raw_text\": \"model optimization\"\n    },\n    {\n      \"label\": \"Systems engineering\",\n      \"raw_text\": \"Systems Engineering\"\n    },\n    {\n      \"label\": \"Context window management\",\n      \"raw_text\": \"context window management\"\n    },\n    {\n      \"label\": \"Parameter-efficient fine-tuning\",\n      \"raw_text\": \"PEFT\"\n    },\n    {\n      \"label\": \"LoRA\",\n      \"raw_text\": \"LoRA\"\n    },\n    {\n      \"label\": \"QLoRA\",\n      \"raw_text\": \"QLoRA\"\n    },\n    {\n      \"label\": \"Human-in-the-loop workflows\",\n      \"raw_text\": \"human-in-the-loop workflows\"\n    },\n    {\n      \"label\": \"Enterprise identity\",\n      \"raw_text\": \"enterprise identity\"\n    },\n    {\n      \"label\": \"Single sign-on\",\n      \"raw_text\": \"SSO\"\n    },\n    {\n      \"label\": \"Role-based access control\",\n      \"raw_text\": \"role-based access\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"7+ years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The introductory description explicitly asks for a builder who can move between prompt engineering, backend systems, and model optimization, so these are candidate qualifications rather than responsibilities alone.\\nThe Nice to Have heading makes its technical qualifications optional; its three framework examples form one alternative group.\\nOpen-weight models are provisionally mapped to open-source-llms; open weights do not necessarily imply open-source licensing, so this mapping is flagged.\\nGeneric model optimization is not narrowed to inference optimization. Systems engineering is not assumed to mean distributed systems.\\nTechnologies appearing only under What You'll Do are excluded. Failure-mode examples do not independently establish requirements for APIs, agents, or hallucination detection.\\nEnterprise Operations and its industry examples are domain knowledge, not skills under this guide.\\nFounding is not a defined seniority level, and architect describes a responsibility here; seniority is inferred from the explicit seven-year requirement.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompt engineering"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend systems"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "building production software"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "transformer-based stack"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "embeddings"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector databases"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool-calling"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "2+ years shipping LLM-based products to real users in production"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "build guardrails against them"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "Security Mindset: You treat access to enterprise data as part of the design, not an afterthought"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "nice_to_have",
+        "raw_text": "LangGraph",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "nice_to_have",
+        "raw_text": "LlamaIndex",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "pydanticai",
+        "requirement": "nice_to_have",
+        "raw_text": "PydanticAI",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "Fine-tuning"
+      },
+      {
+        "skill_id": "open-source-llms",
+        "requirement": "nice_to_have",
+        "raw_text": "open-weight models",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Model optimization",
+        "raw_text": "model optimization"
+      },
+      {
+        "label": "Systems engineering",
+        "raw_text": "Systems Engineering"
+      },
+      {
+        "label": "Context window management",
+        "raw_text": "context window management"
+      },
+      {
+        "label": "Parameter-efficient fine-tuning",
+        "raw_text": "PEFT"
+      },
+      {
+        "label": "LoRA",
+        "raw_text": "LoRA"
+      },
+      {
+        "label": "QLoRA",
+        "raw_text": "QLoRA"
+      },
+      {
+        "label": "Human-in-the-loop workflows",
+        "raw_text": "human-in-the-loop workflows"
+      },
+      {
+        "label": "Enterprise identity",
+        "raw_text": "enterprise identity"
+      },
+      {
+        "label": "Single sign-on",
+        "raw_text": "SSO"
+      },
+      {
+        "label": "Role-based access control",
+        "raw_text": "role-based access"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "7+ years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The introductory description explicitly asks for a builder who can move between prompt engineering, backend systems, and model optimization, so these are candidate qualifications rather than responsibilities alone.\nThe Nice to Have heading makes its technical qualifications optional; its three framework examples form one alternative group.\nOpen-weight models are provisionally mapped to open-source-llms; open weights do not necessarily imply open-source licensing, so this mapping is flagged.\nGeneric model optimization is not narrowed to inference optimization. Systems engineering is not assumed to mean distributed systems.\nTechnologies appearing only under What You'll Do are excluded. Failure-mode examples do not independently establish requirements for APIs, agents, or hallucination detection.\nEnterprise Operations and its industry examples are domain knowledge, not skills under this guide.\nFounding is not a defined seniority level, and architect describes a responsibility here; seniority is inferred from the explicit seven-year requirement."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "3d3c2b8acd05bac665ce8122986d3e51a8ed9ec3b98bdc640476c609411ebeef",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

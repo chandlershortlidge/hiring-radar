@@ -1,0 +1,25 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"groups_reviewed\": true,\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Remote ML Engineer Intern – Gaming Data & AI\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"No requirements, qualifications, optional-skills lists, or dedicated tech-stack section appear. Technical references describe the role and learning opportunities, not skills the candidate is asked to have.\"\n}",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "groups_reviewed": true,
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Remote ML Engineer Intern – Gaming Data & AI",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "No requirements, qualifications, optional-skills lists, or dedicated tech-stack section appear. Technical references describe the role and learning opportunities, not skills the candidate is asked to have."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "99c159e6043500a5959c3488860f92b8166fa5a4850010b63ba1b31dcceb860b",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}
