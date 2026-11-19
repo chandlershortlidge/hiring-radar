@@ -2,7 +2,7 @@
 // the four. The match counts it once; the chart is untouched (tested on the server side).
 import { describe, expect, it } from "vitest";
 import { fitTitle, missingNames } from "./JobList.jsx";
-import { EMPTY, fit, metSkills, requirementUnits } from "./profile.js";
+import { EMPTY, fit, metSkills, requirementUnits, skillSides } from "./profile.js";
 
 const me = (skills) => ({ ...EMPTY, skills });
 const LANGS = ["go", "java", "python", "rust"];
@@ -53,6 +53,36 @@ describe("a group of alternatives", () => {
   it("marks every member met once one is in the profile, so none shows as missing", () => {
     expect([...metSkills(me(["rust"]), detail)].sort()).toEqual(LANGS);
     expect([...metSkills(me(["docker"]), detail)]).toEqual(["docker"]);
+  });
+
+  // HIR-357: skills asked for on their own are separate requirements. If the detail shape
+  // collected them into a group, having Docker would tick SQL too and the job would read
+  // as a full match. One ungrouped skill (the job above) cannot show the difference.
+  it("leaves skills asked for on their own as separate requirements on a job detail", () => {
+    const mixed = {
+      id: 3,
+      skills: [
+        { skill_id: "docker", requirement: "required", alternative_group: null },
+        { skill_id: "sql", requirement: "required", alternative_group: null },
+        { skill_id: "python", requirement: "required", alternative_group: 1 },
+        { skill_id: "go", requirement: "required", alternative_group: 1 },
+      ],
+    };
+    expect(skillSides(mixed).groups).toEqual([["python", "go"]]);
+    expect(requirementUnits(mixed)).toEqual(["docker", "sql", ["python", "go"]]);
+    const f = fit(me(["docker", "python"]), mixed);
+    expect([f.covered, f.total]).toEqual([2, 3]);
+    expect(f.score).toBeLessThan(1);
+    expect(f.missing).toEqual(["sql"]);
+    const met = metSkills(me(["docker", "python"]), mixed);
+    expect(met.has("sql")).toBe(false);
+    expect([...met].sort()).toEqual(["docker", "go", "python"]);
+  });
+
+  // HIR-357: the detail view asks this for every visitor, including one with no profile.
+  it("marks nothing met, and does not throw, for a visitor with no profile", () => {
+    expect(metSkills(null, detail)).toEqual(new Set());
+    expect(metSkills(undefined, detail)).toEqual(new Set());
   });
 
   it("leaves a job without groups scored exactly as before", () => {
