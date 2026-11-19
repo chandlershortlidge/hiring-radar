@@ -4,6 +4,12 @@ Usage:
     uv run python scripts/run_eval.py                 # dev split, 3 repeats
     uv run python scripts/run_eval.py --repeats 1     # quick look
     uv run python scripts/run_eval.py --split heldout --i-am-releasing   # release points only
+    uv run python scripts/run_eval.py --model claude-haiku-5-5 --max-tokens 8192  # a trial
+
+`--max-tokens` raises the output cap for one run and nothing else; the extractor the live
+poll uses is untouched. It exists because a reading cut off at the cap returns nothing and
+is scored as a total miss, so a model that writes more before it finishes is measured on
+our cap instead of on how well it reads (HIR-223). Each run records the cap it ran under.
 
 Needs ANTHROPIC_API_KEY, from the environment or a .env file at the repo root (see .env.example). Calls the model sequentially, no retries.
 Writes evals/results/<run_id>/{predictions.jsonl, summary.json, summary.md}.
@@ -33,7 +39,9 @@ from dotenv import load_dotenv  # noqa: E402
 load_dotenv(ROOT / ".env")  # existing environment variables win over .env
 
 from app import evaluation, extras_judge, langsmith_eval  # noqa: E402
-from app.extract import DEFAULT_MODEL, extract, extractor_version, make_client  # noqa: E402
+from app.extract import (  # noqa: E402
+    DEFAULT_MODEL, MAX_TOKENS, build_request, extraction_from_message, extractor_version, make_client,
+)
 from app.taxonomy import Taxonomy  # noqa: E402
 
 
@@ -54,7 +62,8 @@ def fmt(x):
 def render_md(meta, agg, runs) -> str:
     lines = [f"# Eval {meta['run_id']}", "",
              f"- split: `{meta['split']}`, goldens: {meta['n_goldens']}, repeats: {meta['repeats']}",
-             f"- model: `{meta['model']}`, extractor: `{meta['extractor_version']}`, taxonomy v{meta['taxonomy_version']}",
+             f"- model: `{meta['model']}`, extractor: `{meta['extractor_version']}`, taxonomy v{meta['taxonomy_version']}"
+             + (f", output cap {meta['max_tokens']}" if meta.get("max_tokens") else ""),
              "", "| metric | mean | min | max |", "|---|---|---|---|"]
     for m, v in agg.items():
         lines.append(f"| {m} | {fmt(v['mean'])} | {fmt(v['min'])} | {fmt(v['max'])} |")
@@ -126,6 +135,12 @@ def main(argv=None):
     ap.add_argument("--split", default="dev", choices=["dev", "heldout"])
     ap.add_argument("--repeats", type=int, default=3)
     ap.add_argument("--model", default=DEFAULT_MODEL)
+    ap.add_argument("--max-tokens", type=int, default=None,
+                    help="output cap for this run only; the default is the extractor's own "
+                         f"({MAX_TOKENS}). Raise it to measure a model that runs out of room "
+                         "before it finishes answering: a reading cut off at the cap returns "
+                         "nothing and scores as a total miss, which measures the cap rather "
+                         "than the model (HIR-223). Changes nothing outside this run.")
     ap.add_argument("--i-am-releasing", action="store_true")
     ap.add_argument("--no-langsmith", action="store_true",
                     help="do not report this run to LangSmith even if LANGSMITH_API_KEY is set")
@@ -148,8 +163,12 @@ def main(argv=None):
         sys.exit(f"No Goldens in split {args.split!r}.")
     version = extractor_version(tax, args.model)
     run_id = f"{datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}_{args.split}_{version}"
+    # The cap is recorded because the run id and extractor_version do not encode it:
+    # extractor_version hashes the prompt, the tool schema, the model and the input format,
+    # so two runs of one model under different caps are indistinguishable without this.
     meta = {"run_id": run_id, "split": args.split, "n_goldens": len(goldens), "repeats": args.repeats,
-            "model": args.model, "extractor_version": version, "taxonomy_version": tax.version}
+            "model": args.model, "extractor_version": version, "taxonomy_version": tax.version,
+            "max_tokens": args.max_tokens or MAX_TOKENS}
 
     # Held-out text is never uploaded (app/langsmith_eval.py raises on a non-dev Golden),
     # and nothing is sent without a key.
@@ -158,7 +177,17 @@ def main(argv=None):
         print(f"langsmith experiment: {experiment.name} {experiment.url or ''}", flush=True)
 
     client = langsmith_eval.wrap_client(make_client()) if experiment else make_client()
-    extract_fn = lambda text: extract(text, tax, client, args.model)
+
+    def extract_fn(text):
+        """app.extract.extract, with this run's output cap if one was asked for.
+
+        Built here rather than by adding an argument to the extractor, so the module the
+        live poll uses is untouched: the cap is a property of this measurement only.
+        """
+        request = build_request(tax, text, args.model)
+        if args.max_tokens:
+            request["max_tokens"] = args.max_tokens
+        return extraction_from_message(client.messages.create(**request), tax, text, args.model)
 
     runs = []
     for i in range(args.repeats):
