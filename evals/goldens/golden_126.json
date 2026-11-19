@@ -1,0 +1,84 @@
+{
+  "id": "golden_126",
+  "split": "dev",
+  "seniority": "mid",
+  "seniority_basis": "inferred",
+  "seniority_signal": "Mindestens drei Jahre Berufserfahrung",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "inferred",
+  "german_signal": null,
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Abgeschlossenes Studium der Informatik, Wirtschaftsinformatik oder vergleichbare Qualifikation",
+  "attrs_reviewed": true,
+  "source_sha256": "65481f487bfe7b6f54d02e69723cdddc806154889d097f0942b237a2ad905324",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:software-engineering"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "AI Engineer / KI-Entwickler (m/w/d)\n\n--------------------------------------\n\nAls einer der größten Banken-IT-Dienstleister und Digitalisierungspartner Europas sind wir der Treiber der Digitalisierung innerhalb der Sparkassen-Finanzgruppe. Mit über 5.000 Mitarbeitenden an 3 Standorten machen wir digitales Banking von heute leistungsfähig und entwickeln smarte Finanz-Services von morgen. Dabei bieten wir ein breites Aufgabenspektrum, in dem die individuellen Stärken hervorragend eingebracht werden können. Ob App-Entwicklung, Netzwerktechnologien und Serverbetrieb oder Beratung, Schulung und Support – bei uns findet jede:r seine bzw. ihre Berufung! Als Spezialist:in oder auch als Generalist:in. Alles mit besten Karrierechancen, viel Raum für persönliche Entfaltung und zahlreichen Benefits.\n\nFür die Organisationseinheit Interne Individualsysteme suchen wir zum nächstmöglichen Termin für den Standort Hannover oder Münster einen\n\nAI Engineer / KI-Entwickler (m/w/d).\n\nUnsere Abteilung in der Internen IT– Interne Individuelle Systeme (OE5152) gestaltet die digitale Zukunft des Unternehmens aktiv mit. Wir entwickeln und betreiben maßgeschneiderte SharePoint-Lösungen, setzen KI-Technologien für interne Prozesse ein und schaffen standardisierte Kommunikationsplattformen. Wir arbeiten gemeinsam in zukunftsweisenden KI- und Digitalisierungsprojekten mit. In unserem Team herrschen flachen Hierarchien und wir feiern Erfolge gemeinsam!\n\nHinweis: Die Abteilung ist ausschließlich am Standort Hannover angesiedelt \n\nIhre Aufgaben:\n--------------------------------------\n- Entwicklung & Implementierung: Sie entwickeln und implementieren produktive KI- und Generative-AI-Lösungen im Rahmen interner Projekte.\n- AI-Agents & Workflows: Sie erstellen AI-Agents und agentic Workflows, die Geschäftsprozesse intelligent unterstützen und automatisieren.\n- Integration & Anbindung: Sie integrieren KI-Modelle und AI-Services über APIs und MCP (Model Context Protocol) in bestehende Unternehmenssysteme.\n- RAG-Systeme: Sie konzipieren und implementieren Retrieval-Augmented-Generation (RAG)-Systeme für den Zugriff auf Unternehmenswissen.\n- Dokumentation & Wissensmanagement: Sie erstellen und pflegen technische Dokumentationen für KI-Komponenten, APIs und Workflows. Zudem gestalten Sie übergreifende Dokumentationsstrukturen, um die Kommunikation in Projekten zu stärken und das AI-Wissen nachhaltig im Unternehmen zu sichern.\n- Technische Qualität: Sie sorgen für die technische Umsetzung und Qualität der KI-Komponenten, inklusive Testing und Monitoring.\n- Architekturmitwirkung: Sie wirken an Lösungs- und Architekturentscheidungen mit und beraten fachliche Teams bei der KI-Nutzung.\n- Arbeiten an zukunftsweisenden KI-Projekten mit direktem Unternehmensnutzen.\n\nIhr Profil:\n--------------------------------------\n- Abgeschlossenes Studium der Informatik, Wirtschaftsinformatik oder vergleichbare Qualifikation.\n- Mindestens drei Jahre Berufserfahrung im genannten Aufgabenbereich und in der Softwareentwicklung.\n- Kenntnisse in Python und modernen KI-Frameworks (z. B. LangChain, LlamaIndex).\n- Praxiserfahrung im Umgang mit LLMs und Generative AI (Prompting, Fine-Tuning).\n- Erfahrung mit API-Entwicklung (REST) und Git-basierter Softwareentwicklung.\n- Grundverständnis von Software-Engineering-Prinzipien (Testing, CI/CD).\n- Ausgeprägte kommunikative Stärken sowie die Bereitschaft, Fachwissen durch verständliche Dokumentation an andere Teams zu übertragen.\n\nIhre Benefits bei der Finanz Informatik:\n--------------------------------------\n\nSie fragen sich, warum Sie bei der Finanz Informatik arbeiten sollten? Wir hätten da ein paar gute Gründe für Sie. Neben flexiblen Arbeitszeiten, vergünstigten Jobtickets oder der Möglichkeit, mobil zu arbeiten, bieten wir Ihnen noch viel mehr:\n\n- Altersvorsorge\n- Barrierefrei\n- Betriebssport\n- Familienservice\n- Firmenevents\n- Flexible Arbeitszeiten\n- Mobiles Arbeiten\n- Jobticket\n- Kantine\n- Tarifvertrag\n-",
+  "expected": [
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "API-Entwicklung (REST)"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD"
+    },
+    {
+      "skill_id": "fine-tuning",
+      "requirement": "required",
+      "raw_text": "Fine-Tuning"
+    },
+    {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "Git-basierter Softwareentwicklung"
+    },
+    {
+      "skill_id": "langchain",
+      "requirement": "required",
+      "raw_text": "LangChain"
+    },
+    {
+      "skill_id": "llamaindex",
+      "requirement": "required",
+      "raw_text": "LlamaIndex"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Praxiserfahrung im Umgang mit LLMs und Generative AI"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "Prompting"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Kenntnisse in Python"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Software-Engineering-Prinzipien"
+    },
+    {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "Testing, CI/CD"
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"data-science\", \"requirement\": \"required\", \"raw_text\": \"Deep expertise in data science\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"data science and machine learning\"},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"MLOps systems\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Docker\"},\n    {\"skill_id\": \"databricks\", \"requirement\": \"required\", \"raw_text\": \"Databricks\"},\n    {\"skill_id\": \"mlflow\", \"requirement\": \"required\", \"raw_text\": \"MLflow\"}\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"5+ years experience in a similar role\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"All skills sit under 'What makes you the ideal candidate?', which is a requirements heading, so every skill is required. 'preferably' attaches only to the media/advertising environment, which is domain knowledge and not a skill.\\n'MLOps systems such as Docker, Databricks, and MLflow' joins the examples with 'and', so I read them as asked for together and gave them no alternative_group (literal reading).\\nI did not label data-modeling for 'transforming data models into scalable data products'. In context 'data models' means ML/data science models, not schema design.\\n'design, train, and implement models in production environments' never names deployment or MLOps as a skill, so I added no ai-deployment.\\nThe 'machine learning engineering' mention is in the responsibilities only and is covered by machine-learning from the requirements.\\nI inferred seniority from '5+ years'. 'take the lead in integrating' is a project-lead phrase, not a stated level.\\nThe posting mentions no language, so German is null. It mentions no degree, so degree is null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "Deep expertise in data science"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "data science and machine learning"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps systems"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "required",
+        "raw_text": "Databricks"
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "required",
+        "raw_text": "MLflow"
+      }
+    ],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "5+ years experience in a similar role",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "All skills sit under 'What makes you the ideal candidate?', which is a requirements heading, so every skill is required. 'preferably' attaches only to the media/advertising environment, which is domain knowledge and not a skill.\n'MLOps systems such as Docker, Databricks, and MLflow' joins the examples with 'and', so I read them as asked for together and gave them no alternative_group (literal reading).\nI did not label data-modeling for 'transforming data models into scalable data products'. In context 'data models' means ML/data science models, not schema design.\n'design, train, and implement models in production environments' never names deployment or MLOps as a skill, so I added no ai-deployment.\nThe 'machine learning engineering' mention is in the responsibilities only and is covered by machine-learning from the requirements.\nI inferred seniority from '5+ years'. 'take the lead in integrating' is a project-lead phrase, not a stated level.\nThe posting mentions no language, so German is null. It mentions no degree, so degree is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "c90cd27821a2fc81cde21a778c4a01ff7585b068a93ec18c33d181d00ddea3d3",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,87 @@
+{
+  "id": "golden_113",
+  "split": "heldout",
+  "seniority": "junior",
+  "seniority_basis": "inferred",
+  "seniority_signal": "verfügst über erste Erfahrungen",
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "verhandlungssicher in Deutsch",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz",
+  "attrs_reviewed": false,
+  "source_sha256": "4b6d486194af5943edefaf34c347205f0126fbe60643b2f0652c634fed719b27",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "seniority",
+    "skill:ai-deployment",
+    "skill:ci-cd",
+    "skill:cybersecurity"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Public Cloud Engineer (m/w/d) Generative AI befristet bis 31.01.2028\n\nDas sind wir SIGNAL IDUNA ist ein Versicherungs- und\nFinanzdienstleister mit Hauptsitz in Hamburg und Dortmund. In den\nletzten Jahren haben wir uns als Unternehmen stark verändert. Wir\nhaben eine moderne Arbeitswelt geschaffen und innerhalb unserer neuen\nOrganisationsstruktur etablieren sich agile Arbeitsweisen. Wir\narbeiten nutzerzentriert, entscheiden datenbasiert und vertrauen\neinander. Wir sind bereit für Neues und haben Raum für Ideen. Wir\nmöchten gemeinsam mit dir das Jetzt verändern. Dein Aufgabengebiet\nDie SIGNAL IDUNA plant die Cloud-Plattform und -Infrastruktur weiter\nauszubauen und sucht dafür erfahrene und hochmotivierte\nIT-Spezialist:innen im Umfeld Cloud Engineering/ Architektur mit dem\nFokus Google Cloud. Insbesondere arbeiten wir in der Google Cloud an\nGenerative AI-Lösungen und Hand in Hand mit internen Fachbereichen,\nData Science sowie Expert:innen von Google, um technologisch ganz\nvorne dabei zu sein. Als Cloud Platform Engineer (m/w/d) unterstützt\ndu diese Cloud Entwicklungen und bist für die technologische Planung,\ndie Implementierung der Plattform und die Unterstützung bei Umsetzung\nder Generative AI-Lösungen mitverantwortlich. Deine Hauptaufgaben\nsind: Unterstützung eines interdisziplinären Teams (Squad) bei der\nEntwicklung von neuen Lösungen auf Basis von Large Language Models\n(LLMs) unter Einsatz folgender Technologien: Google Cloud, Vertex\nAI/Gemini Enterprise Agent Platform, Gemini Enterprise,\nPython-basierte Microservices, Cloud Run, Cloud Build, Terraform\nEtablierung von standardisierten Prozessen und Methoden (Best\nPractices) sowie einer nachhaltigen Unternehmens-Architektur im Umfeld\nGenerative die Mitwirkung bei der Entwicklung/ Implementierung von\nCloud Sicherheitskonzepten Mitarbeit bei der Entwicklung von\nArchitekturrichtlinien und Betreuung von Projekten mit modernen\nArchitekturstandards im Public Cloud Umfeld Berücksichtigung von\ndatenschutzrechtlichen, rechtlichen und ethischen Gesichtspunkten im\nZusammenhang mit der Anwendung von ML-Modellen auf personenbezogene\nDaten Enger Kontakt mit den technischen Produktverantwortlichen, um\nsie durch fundiertes Wissen über die Cloud-Vorteile zur Migration\nihrer Anwendungen zu bewegen Etablierung von standardisierten\nProzessen und Mechanismen sowie Beratung bei der Implementierung und\nInbetriebnahme von Produkten und Services in der Google Cloud Nutzung\nmoderner Methoden zu Automatisierung, Deployment (CI/CD) und\nWeiterentwicklung komplexer Infrastrukturen und Services in der Public\nCloud Bei uns findest du moderne Räume und Flächen, die deine\nkreative Arbeit unterstützen kannst du durch ein flexibles\nArbeitszeitmodell dein Privatleben und deine Arbeit gut kombinieren\nwird lebenslanges Lernen großgeschrieben und Weiterbildung gehört\nzum Alltag teilen und vermitteln wir unser Wissen gerne miteinander\nkannst du deine Persönlichkeit und deine Kenntnisse in\nprofessionellen Coachings und Trainings weiterentwickeln unterstützt\ndas Betriebliche Gesundheitsmanagement deine Gesundheit Du hast ein\nabgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit\nIT-Kompetenz hast Erfahrung im Bereich Public Cloud (AWS, Azure,\nvorzugsweise GCP) und Terraform (IaC) verfügst über erste\nErfahrungen in der Entwicklung, Bereitstellung und Integration von\nGenerative AI-Anwendungen im Unternehmenskontext, durch den Aufbau\ngeeigneter Infrastruktur-Komponenten auf Basis von Terraform\n(CI/CD-Pipeline) bist vertraut mit dem Einsatz von Python als\nProgrammiersprache verfügst über erste praktische Erfahrungen mit\nagilen Methoden und agil geführten Projekten hast idealerweise\nKenntnisse von Industriestandards, Sicherheitskonzepten, Richtlinien\nund regulatorischen Compliance-Anforderungen aus dem Versicherungs-\nund Finanzumfeld bist teamfähig und verfügst über eine ausgeprägte\nKommunikationsfähigkeit (verhandlungssicher in Deutsch und gut in\nEnglisch) Hinweis zur Bewerbung Bitte lade deine vollständigen\nBewerbungsunterlagen (inkl. Zeugnisse und Zertifikate) über den\n\"Jetzt bewerben\"-Button in unser Bewerbermanagementsystem hoch. Der\ngewöhnliche Einsatzort ist Hamburg oder Dortmund. Bitte gib deine\nGehaltsvorstellung und deine Verfügbarkeit an. Ansprechpartnerin Lara\nKubiak - lara.kubiak@signal-iduna.de (Bewerbungen per E-Mail können\nleider nicht berücksichtigt werden.) Hinweis für Personalvermittler\nBitte beachten Sie, dass die SIGNAL IDUNA Gruppe keine unaufgefordert\ndurch Personalvermittler zugesandten Profile akzeptiert. Kommt es zur\nBerücksichtigung oder Einstellung von Kandidaten, deren Profile durch\nPersonalvermittler mit denen kein Vertragsverhältnis besteht,\nübersandt wurden, besteht daher kein Vergütungsanspruch.\nAnsprechpartner in Lara Kubiak - lara.kubiak@signal-iduna.de\n(Bewerbungen per E-Mail können leider nicht berücksichtigt werden.)\nHinweis für Personalvermittler Bitte beachten Sie, dass die SIGNAL\nIDUNA Gruppe keine unaufgefordert durch Personalvermittler zugesandten\nProfile akzeptiert. Kommt es zur Berücksichtigung oder Einstellung\nvon Kandidaten, deren Profile durch Personalvermittler mit denen kein\nVertragsverhältnis besteht, übersandt wurden, besteht daher kein\nVergütungsanspruch.",
+  "expected": [
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "Bereitstellung und Integration von\nGenerative AI-Anwendungen"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "Public Cloud (AWS"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "AWS, Azure"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD-Pipeline"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Erfahrung im Bereich Public Cloud"
+    },
+    {
+      "skill_id": "cybersecurity",
+      "requirement": "nice_to_have",
+      "raw_text": "idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten"
+    },
+    {
+      "skill_id": "gcp",
+      "requirement": "nice_to_have",
+      "raw_text": "vorzugsweise GCP"
+    },
+    {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "required",
+      "raw_text": "Terraform (IaC)"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Integration von Generative AI-Anwendungen"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "vertraut mit dem Einsatz von Python"
+    },
+    {
+      "skill_id": "terraform",
+      "requirement": "required",
+      "raw_text": "Terraform (IaC)"
+    }
+  ]
+}

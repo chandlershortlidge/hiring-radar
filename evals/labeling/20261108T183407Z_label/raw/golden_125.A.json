@@ -1,0 +1,91 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"bash\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Shell Scripting (Bash)\", \"alternative_group\": 1},\n    {\"skill_id\": \"sql\", \"requirement\": \"nice_to_have\", \"raw_text\": \"T-SQL\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Python\", \"alternative_group\": 1},\n    {\"skill_id\": \"javascript\", \"requirement\": \"nice_to_have\", \"raw_text\": \"JavaScript\"},\n    {\"skill_id\": \"java\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Java, Jenkins\"},\n    {\"skill_id\": \"jenkins\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Jenkins\"},\n    {\"skill_id\": \"networking\", \"requirement\": \"required\", \"raw_text\": \"Netzwerkprotokollen\", \"uncertain\": true},\n    {\"skill_id\": \"cybersecurity\", \"requirement\": \"required\", \"raw_text\": \"Sicherheitsstandards\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"System administration\", \"raw_text\": \"Systemadministration\"},\n    {\"label\": \"Microsoft SQL Server\", \"raw_text\": \"Microsoft SQL Server\"},\n    {\"label\": \"VPN technologies\", \"raw_text\": \"VPN-Technologien\"},\n    {\"label\": \"Agile methods\", \"raw_text\": \"agilen Arbeitsmethoden\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": \"required\", \"german_basis\": \"inferred\", \"german_signal\": null,\n  \"degree\": \"bachelor\", \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Abgeschlossene Ausbildung oder Studium im Bereich Informatik oder eine vergleichbare Qualifikation\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"There is no optional heading. The items are under 'Qualifikationen', which defaults to required.\\n'wünschenswert' (desirable) is read as the guide's 'preferred' marker, so VPN, Bash, T-SQL and Python are nice_to_have. The guide's marker list is English and does not name this word.\\n'von Vorteil' (is an advantage) is the guide's marker, so JavaScript, Java and Jenkins are nice_to_have.\\nT-SQL is mapped to sql as a SQL dialect. This is uncertain.\\n'Shell Scripting (Bash), T-SQL oder Python' is an 'X, Y or Z' set, so it is alternative_group 1. VPN is joined to it by 'sowie' (and), so it stays out of the group.\\nMicrosoft SQL Server is a database product. It is not the SQL language, so it is unmapped rather than mapped to sql.\\nVPN is unmapped rather than mapped to networking, because networking is not named in that bullet.\\n'Netzwerkprotokollen' is mapped to networking (alias 'netzwerke'). 'Sicherheitsstandards' is mapped to cybersecurity (alias 'security standards').\\nThe role list under 'Wen wir suchen' is not labeled: it lists roles, not skills (Office 365 Administrator etc.).\\nThe soft skills are not labeled.\\nThe degree accepts an 'Ausbildung' (vocational training) or 'vergleichbare Qualifikation' (comparable qualification), so degree_or_equivalent is true. It is flagged for review because 'Studium' with no level was read as bachelor.\\nThe posting is in German and says nothing about language, so German is required with basis inferred.\\nThere is no seniority signal.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "bash",
+        "requirement": "nice_to_have",
+        "raw_text": "Shell Scripting (Bash)",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "nice_to_have",
+        "raw_text": "T-SQL",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "nice_to_have",
+        "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "nice_to_have",
+        "raw_text": "Java, Jenkins"
+      },
+      {
+        "skill_id": "jenkins",
+        "requirement": "nice_to_have",
+        "raw_text": "Jenkins"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "Netzwerkprotokollen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "Sicherheitsstandards",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "System administration",
+        "raw_text": "Systemadministration"
+      },
+      {
+        "label": "Microsoft SQL Server",
+        "raw_text": "Microsoft SQL Server"
+      },
+      {
+        "label": "VPN technologies",
+        "raw_text": "VPN-Technologien"
+      },
+      {
+        "label": "Agile methods",
+        "raw_text": "agilen Arbeitsmethoden"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Abgeschlossene Ausbildung oder Studium im Bereich Informatik oder eine vergleichbare Qualifikation",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "There is no optional heading. The items are under 'Qualifikationen', which defaults to required.\n'wünschenswert' (desirable) is read as the guide's 'preferred' marker, so VPN, Bash, T-SQL and Python are nice_to_have. The guide's marker list is English and does not name this word.\n'von Vorteil' (is an advantage) is the guide's marker, so JavaScript, Java and Jenkins are nice_to_have.\nT-SQL is mapped to sql as a SQL dialect. This is uncertain.\n'Shell Scripting (Bash), T-SQL oder Python' is an 'X, Y or Z' set, so it is alternative_group 1. VPN is joined to it by 'sowie' (and), so it stays out of the group.\nMicrosoft SQL Server is a database product. It is not the SQL language, so it is unmapped rather than mapped to sql.\nVPN is unmapped rather than mapped to networking, because networking is not named in that bullet.\n'Netzwerkprotokollen' is mapped to networking (alias 'netzwerke'). 'Sicherheitsstandards' is mapped to cybersecurity (alias 'security standards').\nThe role list under 'Wen wir suchen' is not labeled: it lists roles, not skills (Office 365 Administrator etc.).\nThe soft skills are not labeled.\nThe degree accepts an 'Ausbildung' (vocational training) or 'vergleichbare Qualifikation' (comparable qualification), so degree_or_equivalent is true. It is flagged for review because 'Studium' with no level was read as bachelor.\nThe posting is in German and says nothing about language, so German is required with basis inferred.\nThere is no seniority signal."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "58c2e9228e5ed3358d90f46a093c42892bc2bde210f66297856a743335802cb0",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

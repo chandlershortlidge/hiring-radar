@@ -1,0 +1,71 @@
+{
+  "id": "golden_114",
+  "split": "heldout",
+  "seniority": "junior",
+  "seniority_basis": "stated",
+  "seniority_signal": "(2026/27 Graduate)",
+  "seniority_reviewed": true,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": false,
+  "degree_signal": "Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)",
+  "attrs_reviewed": true,
+  "source_sha256": "c1544b85f7ccabbc48ca4641b87b869e52864e2b5fee3f53c6c861c277349119",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "degree",
+    "skill:backend-development",
+    "skill:cloud",
+    "skill:data-engineering",
+    "skill:devops",
+    "skill:full-stack-development",
+    "skill:software-architecture",
+    "skill:software-engineering"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Software Engineering /Data and AI Engineering/ IT-Management Consultant (2026/27 Graduate) (m/f/d)\n\nAbout us\n\nNetlight is an international digital consulting firm, helping leading companies to succeed in the digital landscape, from advice to implementation. Our service contains the collective intelligence of more than 2000 consultants offering a comprehensive range of digital services, from strategy to technology. Co-creating the future today, since 1999.\n\n \n\nNetlight has been awarded several times for profitable growth and management, as a top employer, and for our engagement in Diversity, Equity, and Inclusion. Located in Stockholm, Gothenburg, Oslo, Helsinki, Copenhagen, Munich, Hamburg, Berlin, Frankfurt, Zurich, Cologne, Amsterdam, Madrid, Toronto and London.\n\n \n\nWhat does it mean to be a consultant at Netlight? \n\nJoin the Netlight Hamburg team as a consultant and be a part of shaping the software products and technical solutions of today and tomorrow alongside your colleagues and clients. Our focus is not just on the digital product, but also on the team and the business. You'll have the ownership to carve your own career path, choosing from a range of clients and roles based on your personal experience, strengths, interests, and market demand. Our projects encompass a wide technical spectrum, including Fullstack Development, Backend, Data Engineering, Cloud Solutions, Architecture, Web Development, DevOps, and more. Instead of predefined roles, we tailor positions to fit individuals. At Netlight, you define your career path, clients you engage with, your role (based on your strengths, interests, and experience), and your connections with mentors, coaches, EDGE networks, and social circles. The possibilities are endless. Come build the future with us at Netlight.\n\nWho you are\n\n- Soon-to-be/recent Graduate (2026/2027) with a relevant Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)\n\n- Full business-level fluency in English\n\n- Some hands-on industry experience through internships, working student roles or full-time in Software Engineering, Data Engineering or IT-Management with modern technologies, (e.g. Fullstack Development, Backend, Data Engineering, Cloud Solutions, Architecture, Web Development, DevOps, Product Ownership or similar)\n\n- Based in Hamburg or willing to relocate to Hamburg (for other locations, please apply to our other openings)\n\nWe offer\n\n- Possibility to be part of growing one of the most successful tech consultancies in the industry\n\n- Diverse client landscape, incl. some of the most innovative tech companies & exciting projects with lots of room for professional development\n\n- Access to an international network of 2,000+ highly talented individuals\n\n- An experienced mentor and a professional coach to guide you throughout your career\n\n- An international & diverse working environment with a central and modern office space\n\n- Competitive and transparent salary model with equal pay regardless of the assignment, biannual salary reviews, and attractive benefits (e.g. company shares, Deutschlandticket, parental benefits & much more)\n\nCome work with us\n\nNetlight as a company strives to be a truly diverse, equitable, and inclusive organisation. Regardless of who you are, what personality, background, and experience you have, you enrich our culture through your values. Netlight’s purpose is to unleash full potential, realise great careers, and fulfil personal growth.\n\n \n\nTo achieve this, we have a highly engaged network organisation, where every employee gets a mentor, delivery coach, and personal communities. The key to our continued success is trust and personal responsibility, diverse experiences, challenging opportunities, and development based on personal values. Every Netlighter is an active part of building and shaping this culture, which leads to a clear correlation between personal growth and the growth of Netlight.\n\n \n\nReady to shape the future with us?\n\nWe are always looking for new Netlighters, so feel free to apply if you meet the qualifications. We will get in touch within two weeks if we find that your profile and experiences are a match with the qualifications at this time.\n\n \n\nWe're excited to get to know you!\n\nFind more English Speaking Jobs in Germany on Arbeitnow",
+  "expected": [
+    {
+      "skill_id": "backend-development",
+      "requirement": "required",
+      "raw_text": "Backend"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Cloud Solutions"
+    },
+    {
+      "skill_id": "data-engineering",
+      "requirement": "required",
+      "raw_text": "Data Engineering"
+    },
+    {
+      "skill_id": "devops",
+      "requirement": "required",
+      "raw_text": "DevOps"
+    },
+    {
+      "skill_id": "full-stack-development",
+      "requirement": "required",
+      "raw_text": "Fullstack Development"
+    },
+    {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "Architecture"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Software Engineering"
+    }
+  ]
+}

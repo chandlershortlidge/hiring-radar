@@ -1,0 +1,124 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"shipping models on real robots\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"large machine learning models at scale\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"tests\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CI pipelines\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Vision Language Models\",\n      \"raw_text\": \"Vision Language Models (VLM)\"\n    },\n    {\n      \"label\": \"Vision-Language-Action models\",\n      \"raw_text\": \"Vision-Language-Action (VLA) models\"\n    },\n    {\n      \"label\": \"Robotic perception\",\n      \"raw_text\": \"perception\"\n    },\n    {\n      \"label\": \"Robotic navigation\",\n      \"raw_text\": \"navigation\"\n    },\n    {\n      \"label\": \"Robotic manipulation\",\n      \"raw_text\": \"manipulation\"\n    },\n    {\n      \"label\": \"Simulation tools\",\n      \"raw_text\": \"simulation tools\"\n    },\n    {\n      \"label\": \"Isaac SIM\",\n      \"raw_text\": \"Isaac SIM\"\n    },\n    {\n      \"label\": \"Working with large codebases\",\n      \"raw_text\": \"Not afraid of contributing to a big codebase; finds their way around independently with little guidance.\"\n    },\n    {\n      \"label\": \"Clean, readable coding\",\n      \"raw_text\": \"clean, readable\"\n    },\n    {\n      \"label\": \"High-performance programming\",\n      \"raw_text\": \"high-performance\"\n    },\n    {\n      \"label\": \"Fault-tolerant programming\",\n      \"raw_text\": \"fault-tolerant Python code\"\n    },\n    {\n      \"label\": \"Sim-to-real transfer\",\n      \"raw_text\": \"sim-to-real transfer\"\n    },\n    {\n      \"label\": \"World models\",\n      \"raw_text\": \"world models\"\n    },\n    {\n      \"label\": \"Large-scale robot data collection\",\n      \"raw_text\": \"large-scale robot data collection\"\n    },\n    {\n      \"label\": \"Code typing\",\n      \"raw_text\": \"typing\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Lead / Staff Applied Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD / Master in a relevant field (Robotics, Machine Learning) — exceptional candidates from other backgrounds welcome.\",\n  \"notes\": \"ABOUT YOU sets required qualifications; NICE TO HAVE makes its items optional. Technologies appearing only in the company description or responsibilities are excluded.\\nPyTorch and JAX are alternatives in group 1. The optional sim-to-real transfer, world models, and large-scale robot data collection form a second alternative set, but all three lack taxonomy entries and are recorded in unmapped.\\nVLMs and VLA models are not silently mapped to LLMs; robotic perception is not silently expanded to computer vision.\\nThe unmapped practices for readable, high-performance, and fault-tolerant coding follow the literal qualifiers on the Python requirement. Typing is treated as a coding practice, not keyboard proficiency.\\nLarge-codebase experience is required through ABOUT YOU despite its optional repetition later. Machine learning is supported by the optional experience bullet, not merely by the degree's field examples.\\nOther backgrounds welcome does not explicitly accept equivalent experience in place of the degree, so degree_or_equivalent is false.\\nEnglish, robotics as a domain, leadership, stakeholder management, and other soft skills are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "shipping models on real robots"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "large machine learning models at scale"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "tests"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI pipelines"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Vision Language Models",
+        "raw_text": "Vision Language Models (VLM)"
+      },
+      {
+        "label": "Vision-Language-Action models",
+        "raw_text": "Vision-Language-Action (VLA) models"
+      },
+      {
+        "label": "Robotic perception",
+        "raw_text": "perception"
+      },
+      {
+        "label": "Robotic navigation",
+        "raw_text": "navigation"
+      },
+      {
+        "label": "Robotic manipulation",
+        "raw_text": "manipulation"
+      },
+      {
+        "label": "Simulation tools",
+        "raw_text": "simulation tools"
+      },
+      {
+        "label": "Isaac SIM",
+        "raw_text": "Isaac SIM"
+      },
+      {
+        "label": "Working with large codebases",
+        "raw_text": "Not afraid of contributing to a big codebase; finds their way around independently with little guidance."
+      },
+      {
+        "label": "Clean, readable coding",
+        "raw_text": "clean, readable"
+      },
+      {
+        "label": "High-performance programming",
+        "raw_text": "high-performance"
+      },
+      {
+        "label": "Fault-tolerant programming",
+        "raw_text": "fault-tolerant Python code"
+      },
+      {
+        "label": "Sim-to-real transfer",
+        "raw_text": "sim-to-real transfer"
+      },
+      {
+        "label": "World models",
+        "raw_text": "world models"
+      },
+      {
+        "label": "Large-scale robot data collection",
+        "raw_text": "large-scale robot data collection"
+      },
+      {
+        "label": "Code typing",
+        "raw_text": "typing"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead / Staff Applied Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD / Master in a relevant field (Robotics, Machine Learning) — exceptional candidates from other backgrounds welcome.",
+    "notes": "ABOUT YOU sets required qualifications; NICE TO HAVE makes its items optional. Technologies appearing only in the company description or responsibilities are excluded.\nPyTorch and JAX are alternatives in group 1. The optional sim-to-real transfer, world models, and large-scale robot data collection form a second alternative set, but all three lack taxonomy entries and are recorded in unmapped.\nVLMs and VLA models are not silently mapped to LLMs; robotic perception is not silently expanded to computer vision.\nThe unmapped practices for readable, high-performance, and fault-tolerant coding follow the literal qualifiers on the Python requirement. Typing is treated as a coding practice, not keyboard proficiency.\nLarge-codebase experience is required through ABOUT YOU despite its optional repetition later. Machine learning is supported by the optional experience bullet, not merely by the degree's field examples.\nOther backgrounds welcome does not explicitly accept equivalent experience in place of the degree, so degree_or_equivalent is false.\nEnglish, robotics as a domain, leadership, stakeholder management, and other soft skills are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "b2275ed431ab4ffedd67ac3be6530f9ff1ac89c5e26ce4f291d7c973d85ea361",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

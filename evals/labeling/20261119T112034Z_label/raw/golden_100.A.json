@@ -1,0 +1,159 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"professional software engineering experience\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong proficiency in Python\", \"alternative_group\": 1},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"TypeScript\", \"alternative_group\": 1},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM-powered applications\", \"alternative_group\": 2},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"AI agents in production\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"LangChain\", \"alternative_group\": 3},\n    {\"skill_id\": \"llamaindex\", \"requirement\": \"required\", \"raw_text\": \"LlamaIndex\", \"alternative_group\": 3},\n    {\"skill_id\": \"llm-guardrails\", \"requirement\": \"required\", \"raw_text\": \"Guardrails\", \"alternative_group\": 3, \"uncertain\": true},\n    {\"skill_id\": \"mcp\", \"requirement\": \"required\", \"raw_text\": \"MCP\", \"alternative_group\": 3},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG pipelines\", \"alternative_group\": 4},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"RAG pipelines, tool use\", \"alternative_group\": 4},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"AI system evaluation\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"debugging, and observability\"},\n    {\"skill_id\": \"devops\", \"requirement\": \"required\", \"raw_text\": \"modern DevOps practices\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience deploying AI systems in enterprise environments is a plus\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"cloud platforms\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AWS\", \"alternative_group\": 5},\n    {\"skill_id\": \"gcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"GCP\", \"alternative_group\": 5},\n    {\"skill_id\": \"azure\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Azure\", \"alternative_group\": 5},\n    {\"skill_id\": \"agent-architecture\", \"requirement\": \"nice_to_have\", \"raw_text\": \"agent architectures\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"multi-step AI workflows\", \"raw_text\": \"multi-step AI workflows\"},\n    {\"label\": \"debugging\", \"raw_text\": \"debugging\"},\n    {\"label\": \"long-horizon task execution\", \"raw_text\": \"long-horizon task execution\"},\n    {\"label\": \"responsible AI / auditability / governance\", \"raw_text\": \"responsible AI practices, including auditability and governance\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"8+ years of professional software engineering experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The 'WHO YOU ARE' heading does not mark the section optional, so items default to required. Only the bullets ending in 'is a plus' are nice_to_have.\\nTechnologies named only under KEY RESPONSIBILITIES (prompt engineering, agent workflows, full-stack AI products) are not labeled.\\n'agents' appears in two alternative sets ('LLM-powered applications or AI agents' and '...MCP, or agent frameworks'). A criterion can carry only one group number, so it is kept in group 2 (first occurrence) and flagged uncertain. Its raw_text uses the first mention.\\n'Guardrails' most likely refers to the Guardrails AI library. It is mapped to llm-guardrails and flagged uncertain.\\n'tool use' raw_text is extended to 'RAG pipelines, tool use' because the bare 'tool use' also appears in the responsibilities section.\\n'deploying AI systems in enterprise environments' is mapped to ai-deployment (nice_to_have) and flagged uncertain, because the text does not name the alias exactly.\\n'multi-step AI workflows' does not match the llm-orchestration aliases, so it is left unmapped. Group 4 therefore holds only rag and tool-calling.\\nSoftware engineering is labeled as a skill; the years count drives seniority only.\\nSeniority is inferred from '8+ years', which is above 5, so senior. The title 'AI Engineer' states no level.\\nThere is no German or degree mention in the posting.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "professional software engineering experience"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong proficiency in Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-powered applications",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "AI agents in production",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "required",
+        "raw_text": "LlamaIndex",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "Guardrails",
+        "alternative_group": 3,
+        "uncertain": true
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "MCP",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG pipelines",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "RAG pipelines, tool use",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "AI system evaluation"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "debugging, and observability"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "modern DevOps practices"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience deploying AI systems in enterprise environments is a plus",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "GCP",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "agent-architecture",
+        "requirement": "nice_to_have",
+        "raw_text": "agent architectures"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "multi-step AI workflows",
+        "raw_text": "multi-step AI workflows"
+      },
+      {
+        "label": "debugging",
+        "raw_text": "debugging"
+      },
+      {
+        "label": "long-horizon task execution",
+        "raw_text": "long-horizon task execution"
+      },
+      {
+        "label": "responsible AI / auditability / governance",
+        "raw_text": "responsible AI practices, including auditability and governance"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "8+ years of professional software engineering experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The 'WHO YOU ARE' heading does not mark the section optional, so items default to required. Only the bullets ending in 'is a plus' are nice_to_have.\nTechnologies named only under KEY RESPONSIBILITIES (prompt engineering, agent workflows, full-stack AI products) are not labeled.\n'agents' appears in two alternative sets ('LLM-powered applications or AI agents' and '...MCP, or agent frameworks'). A criterion can carry only one group number, so it is kept in group 2 (first occurrence) and flagged uncertain. Its raw_text uses the first mention.\n'Guardrails' most likely refers to the Guardrails AI library. It is mapped to llm-guardrails and flagged uncertain.\n'tool use' raw_text is extended to 'RAG pipelines, tool use' because the bare 'tool use' also appears in the responsibilities section.\n'deploying AI systems in enterprise environments' is mapped to ai-deployment (nice_to_have) and flagged uncertain, because the text does not name the alias exactly.\n'multi-step AI workflows' does not match the llm-orchestration aliases, so it is left unmapped. Group 4 therefore holds only rag and tool-calling.\nSoftware engineering is labeled as a skill; the years count drives seniority only.\nSeniority is inferred from '8+ years', which is above 5, so senior. The title 'AI Engineer' states no level.\nThere is no German or degree mention in the posting."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "8a69d4b0da2183a908150e1398a974d68390c39e33f6d31f3a3a36f2a6c82d27",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

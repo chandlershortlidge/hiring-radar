@@ -141,11 +141,77 @@ def test_the_senior_agent_says_the_kind_and_doubt_never_costs_his_thinking_time(
     assert "Anything about how quality is measured is always to think about, never downgraded." in text
 
 
-def test_the_split_puts_nothing_on_the_list_and_decides_nothing_without_him():
-    # The ticket's "Out of scope": what is small does not change, no big call is decided alone.
+def test_the_split_puts_nothing_on_the_list_and_takes_nothing_off_it():
+    # HIR-297's "Out of scope": what is small does not change. Which big calls still wait
+    # for him is HIR-315's, below.
     text = the_two_kinds()
     assert "puts nothing on the list and takes nothing off it" in text
-    assert "no big call is decided without his yes" in text
+    assert "no big call is decided without his yes" not in text
+
+
+# --- a recommendation to approve is decided, not asked (HIR-315) ---------------------------
+
+def decided_not_asked():
+    """AGENTS.md's block on which big calls are decided for him, as one line of text."""
+    section = AGENTS_MD.read_text().split("**A recommendation to approve is decided, not asked")[1]
+    return " ".join(section.split("How the list is used:")[0].split())
+
+
+def test_a_recommendation_is_decided_by_the_senior_agent_and_reported_with_its_undo():
+    text = decided_not_asked()
+    assert "**To approve → decided.** The senior agent takes its own written recommendation" in text
+    assert "**Decided for you**" in text and "He reverses it by replying on the ticket." in text
+    assert "No @mention, no `needs-chandler`, no `attended` label." in text
+    assert "never the worker that asked, the decider, the reviewer or the lead agent" in text
+
+
+def test_a_question_to_think_about_is_his_for_a_week_and_there_is_no_one_a_week_limit():
+    text = decided_not_asked()
+    assert "no limit of one question a week" in text
+    assert "talks it through with Claude by voice" in text
+    assert "seven days have passed with no answer" in text
+    assert "One that no Monday list has shown him is never decided this way" in text
+    # The number in the rule is the number in the code.
+    assert "\nTHINK_DAYS = 7\n" in (ROOT / "scripts" / "lead_pick.py").read_text()
+
+
+def test_money_stored_data_and_how_quality_is_measured_keep_their_safety():
+    text = decided_not_asked()
+    assert "a spend on the big side of item 5 waits for his yes" in text
+    assert "the trial on a copy of the database, last night's backup" in text
+    assert "nobody is asked and nothing is deleted" in text
+    assert "the reason goes into the decisions log in the same pull request" in text
+
+
+def test_what_only_he_can_do_goes_under_yours_this_week_at_most_three():
+    text = decided_not_asked()
+    assert "**Yours this week**" in text and "at most three; the rest wait" in text
+    for action in ("A merge that the rules gate or the labelling guide requires from him",
+                   "a credential, account, payment or setting only he can change",
+                   "work that has to run by hand on his Mac or the server"):
+        assert action in text, action
+    assert "still waits for his merge" in text
+
+
+@pytest.mark.parametrize("name", [
+    ".claude/agents/senior.md", ".claude/agents/decider.md", ".claude/agents/reviewer.md",
+    ".claude/skills/work-issue/SKILL.md", ".claude/skills/work-issue-orchestrator/SKILL.md",
+    ".claude/skills/lead-agent/SKILL.md", ".github/pull_request_template.md"])
+def test_every_agent_and_skill_points_at_that_paragraph(name):
+    text = " ".join((ROOT / name).read_text().split())
+    assert "A recommendation to approve is decided, not asked" in text
+
+
+def test_the_senior_agent_decides_and_the_lead_agent_only_hands_over():
+    senior = " ".join((ROOT / ".claude" / "agents" / "senior.md").read_text().split())
+    assert "do not ask: reply **DECISION:**" in senior and "**DECIDED FOR YOU:**" in senior
+    assert "Money above his limit is never yours: TO APPROVE." in senior
+    lead = " ".join((ROOT / ".claude" / "skills" / "lead-agent" / "SKILL.md").read_text().split())
+    assert "`monday_decisions.decide`" in lead and "Hand the ticket to the `senior` agent" in lead
+    assert "You never decide one yourself" in lead
+    reviewer = " ".join(REVIEWER.read_text().split())
+    assert "**Recommendations decided for him**" in reviewer
+    assert "a change to the labelling guide is still CHANDLER" in reviewer
 
 
 def test_monday_and_the_speed_limit_are_written_where_the_list_is():

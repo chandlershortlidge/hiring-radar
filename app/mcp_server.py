@@ -57,7 +57,7 @@ MAX_JOBS = 50  # per call; page with `offset` for more
 
 INSTRUCTIONS = """\
 hiring-radar tracks AI and ML job postings (Berlin, Hamburg, Frankfurt, Munich, Remote (EU),
-San Francisco, New York) and reads each posting into a fixed list of skills, each marked
+San Francisco, New York, Austin, Boston, London, Amsterdam) and reads each posting into a fixed list of skills, each marked
 required or nice-to-have, plus seniority, German, degree and production-experience
 requirements. All tools are read-only."""
 
@@ -156,8 +156,97 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str]) -> MCPSer
             r = q.list_jobs(conn, f, now(), sort, limit, offset)
         return {"total": r["total"], "offset": offset, "jobs": [_job(j) for j in r["jobs"]]}
 
-    # The next tool goes here (HIR-103's table): a function like search_jobs above.
+  
+    @server.tool(annotations=READ_ONLY)
+    def get_job(job_id: int) -> dict[str, Any]:
+        """Get one job posting in full, with the same details as the hiring-radar
+        dashboard's job page. Use search_jobs first to find a job's id.
 
+        - job_id: the id of the job, as search_jobs returns it. An id that does not
+          exist is an error.
+
+        Returns company, title, places, family, seniority, first_seen / last_seen (dates
+        we saw it), status (open or closed), url (the posting), required_skills and
+        nice_to_have_skills (skill ids), german, degree and production requirements
+        (null = not mentioned), and description_text (the full posting text, which
+        search_jobs leaves out).
+
+        Example: the details of job 42:
+        get_job(job_id=42)
+        """
+        with connect() as conn:
+            detail = q.job_detail(conn, job_id, now())
+            if detail is None:
+                raise ToolError(f"no job with id {job_id}")
+        # The details hold one list of skill mentions; split it into the two lists the tool returns.
+        required_skills = [s["skill_id"] for s in detail["skills"] if s["requirement"] == "required"]
+        nice_to_have_skills = [s["skill_id"] for s in detail["skills"] if s["requirement"] == "nice_to_have"]
+        return {
+            "company": detail["company"], "title": detail["title"], "places": detail["places"],
+            "family": detail["family"], "seniority": detail["seniority"],
+            "first_seen": detail["first_seen"][:10], "last_seen": detail["last_seen"][:10], "status": detail["status"],
+            "url": next((s["url"] for s in detail["sources"] if s["url"]), None),
+            "required_skills": required_skills, "nice_to_have_skills": nice_to_have_skills,
+            "german": detail["german"], "production": detail["production"],
+            "degree": None if detail["degree"] is None else {
+                "level": detail["degree"], "requirement": detail["degree_requirement"],
+                "or_equivalent_experience": detail["degree_or_equivalent"]}, "description_text": detail["description_text"]
+        }
+
+    @server.tool(annotations=READ_ONLY)
+    def skill_demand(
+        city: list[Place] | None = None,
+        seniority: list[Seniority] | None = None,
+        family: list[Family] | None = None,
+        requirement: Requirement = "required",
+        window: Window = "open",
+        german: German = "any",
+        degree: Degree = "any",
+        production: Production = "any"
+        
+    ) -> dict[str, Any]:
+        """Find which skills job postings ask for most, with the same filters and numbers
+        as the hiring-radar dashboard's skill list. Every filter is optional; filters
+        combine with AND. Use search_jobs to see the jobs behind a skill.
+
+        - city: any of these places; a job in several places matches each of them.
+        - seniority: junior, mid or senior. Leaving it out includes jobs whose seniority
+          is unknown; naming any level excludes them.
+        - family: ai-engineer, ml-engineer, data-scientist, ml-platform or research,
+          assigned from the job title.
+        - requirement: "required" (default) counts a skill only where the posting requires
+          it; "all" also counts it where it is only nice-to-have.
+        - window: "open" (default) = still being advertised; "30d" / "90d" = seen in the
+          last 30 / 90 days, open or closed; "all" = every job ever collected.
+        - german / production: "any" (default); "none" = the posting does not mention it;
+          "not_required" = not mentioned or only nice-to-have; "required" = required.
+          production means prior experience shipping to production.
+        - degree: "any" (default); "none" = no degree mentioned; "open" = someone without
+          a degree can apply (none named, optional, or equivalent experience accepted);
+          "required" = a degree is required with no alternative.
+
+        Returns total (all jobs matching the filters) and skills: the 50 most asked-for
+        skills, most asked-for first. Per skill: skill_id, count (jobs asking for it) and
+        pct (count as a percent of total). total counts every matching job, not just the
+        jobs behind the 50 skills listed. For the split by city, call once per city.
+
+        Example: what open Berlin AI engineer jobs ask for most:
+        skill_demand(city=["Berlin"], family=["ai-engineer"])
+        """
+        try:
+            f = q.make_filters(tax.skills, cities=city or (), seniorities=seniority or (),
+                                        families=family or (), requirement=requirement, window=window,
+                                        german=german, degree=degree, production=production)
+        except ValueError as e:
+            raise ToolError(str(e)) from None
+        with connect() as conn:
+            demand = q.skill_frequency(conn, f, now())
+        for skill in demand["skills"]:
+            skill.pop("by_city")
+        return {"total": demand["total"], "skills": demand["skills"][:MAX_SKILLS_TO_RETURN]}
+        
+
+            
     return server
 
 
@@ -184,7 +273,7 @@ def _job(j: dict) -> dict:
 BURST = 30
 RATE = 1.0
 _MAX_VISITORS = 10_000  # forget idle visitors past this, so the table cannot grow forever
-
+MAX_SKILLS_TO_RETURN = 50
 
 class RateLimit:
     """A token bucket per client address in front of an ASGI app; 429 when empty.

@@ -1,0 +1,55 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud-, Data- und AI-Technologien\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI-Technologien\"\n    },\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Snowflake\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data technologies\",\n      \"raw_text\": \"Cloud-, Data- und AI-Technologien\"\n    },\n    {\n      \"label\": \"Engineering tools (unspecified)\",\n      \"raw_text\": \"modernen Engineering-Werkzeugen\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Treated the explicitly titled “Moderner Technologie-Stack” item as a tech-stack section despite its placement under benefits; its unmarked technologies are required.\\nMapped “AI-Technologien” literally to the broad AI/ML entry; unspecified data technologies and engineering tools have no matching taxonomy entry.\\nExcluded skills appearing only in the company description, individual-focus offer, or responsibilities. The supplied posting ends before any qualifications section.\\nSnowflake and Python are joined by “und”, so they are not alternatives.\\nGerman is inferred solely from the posting being written in German.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-, Data- und AI-Technologien"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI-Technologien"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data technologies",
+        "raw_text": "Cloud-, Data- und AI-Technologien"
+      },
+      {
+        "label": "Engineering tools (unspecified)",
+        "raw_text": "modernen Engineering-Werkzeugen"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Treated the explicitly titled “Moderner Technologie-Stack” item as a tech-stack section despite its placement under benefits; its unmarked technologies are required.\nMapped “AI-Technologien” literally to the broad AI/ML entry; unspecified data technologies and engineering tools have no matching taxonomy entry.\nExcluded skills appearing only in the company description, individual-focus offer, or responsibilities. The supplied posting ends before any qualifications section.\nSnowflake and Python are joined by “und”, so they are not alternatives.\nGerman is inferred solely from the posting being written in German."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "c1ba12b549f9781c6aefcd52651f0a7299d7e09c83dacdebbe739a2c179fe95d",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

@@ -1,0 +1,92 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"linux\", \"requirement\": \"required\", \"raw_text\": \"Proficient in Linux environments\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"with Python, or Bash scripting\", \"alternative_group\": 1},\n    {\"skill_id\": \"bash\", \"requirement\": \"required\", \"raw_text\": \"Bash scripting\", \"alternative_group\": 1},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"manage CI pipelines\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"SystemVerilog\", \"raw_text\": \"strong SystemVerilog skills\"},\n    {\"label\": \"Verification methodologies\", \"raw_text\": \"Experienced in modern verification methodologies\"},\n    {\"label\": \"Testbench development\", \"raw_text\": \"exposure to structured testbench development\"},\n    {\"label\": \"Block-level to system-level verification\", \"raw_text\": \"Comfortable working from block-level to system-level verification\"},\n    {\"label\": \"Coverage-driven verification\", \"raw_text\": \"Skilled in coverage-driven verification\"},\n    {\"label\": \"RTL debugging\", \"raw_text\": \"confident debugging across RTL, testbench, and workload scenarios\"},\n    {\"label\": \"Functional safety (FuSa) verification\", \"raw_text\": \"Nice to have: Exposure to functional safety (FuSa) verification concepts\"},\n    {\"label\": \"Formal verification\", \"raw_text\": \"Nice to have: Familiarity with formal verification methodologies\"},\n    {\"label\": \"SVA (SystemVerilog Assertions)\", \"raw_text\": \"SVA (SystemVerilog Assertions)\"},\n    {\"label\": \"Formal property verification\", \"raw_text\": \"formal property verification\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff Design Verification Engineer, AI HW\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"'Who You Are' is the requirements section, so its items default to required.\\n'What We Need' is responsibilities. Only its two explicit 'Nice to have:' items are asked of the candidate, and both map to unmapped verification skills.\\n'What You Will Learn' is not asked of the candidate, so BF16/FP4/INT8 and containerized regression systems are not labeled.\\n'Python, or Bash scripting' offers either one, so they share group 1. Python's other mention ('in SystemVerilog and Python') is a responsibility, not a standalone ask, so Python stays in the group.\\nci-cd is uncertain. 'manage CI pipelines' is phrased as what the scripting proficiency is used for. I read it as asking the candidate to manage CI, so it is labeled required.\\n'agents, scoreboards' are verification testbench components, not AI agents, and they appear only in responsibilities, so they are not labeled.\\n'eager to learn verification strategies' is appetite toward non-taxonomy concepts and maps to nothing.\\nSeniority: the title says 'Staff', which the guide lists as senior (stated). However, the posting welcomes 'candidates at various experience levels', so seniority is flagged uncertain.\\nDegree: there is no degree mention. 'education' appears only in the compensation boilerplate, so degree is null.\\nGerman: no mention, so null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Proficient in Linux environments"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "with Python, or Bash scripting",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "bash",
+        "requirement": "required",
+        "raw_text": "Bash scripting",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "manage CI pipelines",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "SystemVerilog",
+        "raw_text": "strong SystemVerilog skills"
+      },
+      {
+        "label": "Verification methodologies",
+        "raw_text": "Experienced in modern verification methodologies"
+      },
+      {
+        "label": "Testbench development",
+        "raw_text": "exposure to structured testbench development"
+      },
+      {
+        "label": "Block-level to system-level verification",
+        "raw_text": "Comfortable working from block-level to system-level verification"
+      },
+      {
+        "label": "Coverage-driven verification",
+        "raw_text": "Skilled in coverage-driven verification"
+      },
+      {
+        "label": "RTL debugging",
+        "raw_text": "confident debugging across RTL, testbench, and workload scenarios"
+      },
+      {
+        "label": "Functional safety (FuSa) verification",
+        "raw_text": "Nice to have: Exposure to functional safety (FuSa) verification concepts"
+      },
+      {
+        "label": "Formal verification",
+        "raw_text": "Nice to have: Familiarity with formal verification methodologies"
+      },
+      {
+        "label": "SVA (SystemVerilog Assertions)",
+        "raw_text": "SVA (SystemVerilog Assertions)"
+      },
+      {
+        "label": "Formal property verification",
+        "raw_text": "formal property verification"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff Design Verification Engineer, AI HW",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "'Who You Are' is the requirements section, so its items default to required.\n'What We Need' is responsibilities. Only its two explicit 'Nice to have:' items are asked of the candidate, and both map to unmapped verification skills.\n'What You Will Learn' is not asked of the candidate, so BF16/FP4/INT8 and containerized regression systems are not labeled.\n'Python, or Bash scripting' offers either one, so they share group 1. Python's other mention ('in SystemVerilog and Python') is a responsibility, not a standalone ask, so Python stays in the group.\nci-cd is uncertain. 'manage CI pipelines' is phrased as what the scripting proficiency is used for. I read it as asking the candidate to manage CI, so it is labeled required.\n'agents, scoreboards' are verification testbench components, not AI agents, and they appear only in responsibilities, so they are not labeled.\n'eager to learn verification strategies' is appetite toward non-taxonomy concepts and maps to nothing.\nSeniority: the title says 'Staff', which the guide lists as senior (stated). However, the posting welcomes 'candidates at various experience levels', so seniority is flagged uncertain.\nDegree: there is no degree mention. 'education' appears only in the compensation boilerplate, so degree is null.\nGerman: no mention, so null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "d35e99fb08f64473aea58431ddd380c3d79ae8a3a49199fa0c085ae1a41c1567",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

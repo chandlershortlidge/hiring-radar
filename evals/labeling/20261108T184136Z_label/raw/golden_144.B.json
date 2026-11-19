@@ -1,0 +1,143 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"generative AI\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"prompt/context engineering\"\n    },\n    {\n      \"skill_id\": \"context-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"prompt/context engineering\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"multi-agent-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"multi-agent orchestration\",\n      \"alternative_group\": 1,\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"multi-agent orchestration\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"fine-tuning\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Good knowledge of Python\"\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"common ML libraries (such as LangChain\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"pandas\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"pandas\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"sklearn\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"data-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data engineering\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agentic systems\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"function calling\"\n    },\n    {\n      \"skill_id\": \"llamaindex\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LlamaIndex\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Few-shot learning\",\n      \"raw_text\": \"few shot learning\"\n    },\n    {\n      \"label\": \"Multimodal understanding\",\n      \"raw_text\": \"multimodal understanding\"\n    },\n    {\n      \"label\": \"Pydantic\",\n      \"raw_text\": \"pydantic\"\n    },\n    {\n      \"label\": \"Technical proof-of-concept development\",\n      \"raw_text\": \"Hands-on experience with technical Proof of Concept projects\"\n    },\n    {\n      \"label\": \"ERP systems\",\n      \"raw_text\": \"ERPs\"\n    },\n    {\n      \"label\": \"SAP\",\n      \"raw_text\": \"SAP\"\n    },\n    {\n      \"label\": \"Oracle\",\n      \"raw_text\": \"Oracle\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Orbit Graduate program\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"fluency in German and English (must)\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Degree in Engineering, Data Analytics/Science, Computer Science, Mathematics, or a related STEM field.\",\n  \"notes\": \"What You Need sets required qualifications; Bonus Points sets optional qualifications.\\nTraining outcomes and responsibilities are not candidate requirements: SQL, PQL, Celonis, OpenAI and Databricks are excluded on that basis.\\nThe generative-AI technique examples form alternative group 1; few-shot learning and multimodal understanding are also members conceptually but lack taxonomy IDs. RAG, prompt engineering and LLM orchestration leave that group because they are separately asked for together in Bonus Points; their required mentions still determine their labels.\\nMulti-agent orchestration is read as naming both orchestration and multi-agent systems; the latter mapping is flagged for review.\\nThe ML-library examples form alternative group 2; Pydantic lacks a taxonomy ID. LangChain's required mention wins over its optional mention. The optional LangChain/LlamaIndex alternative set has only LlamaIndex remaining after collapsing the required LangChain criterion, so no separate group is emitted.\\nSAP and Oracle are optional alternatives, but neither has a taxonomy ID. ERP systems and technical proof-of-concept work are retained as unmapped technical skills/practices.\\nDegree fields, supply-chain knowledge, business-case ROI/TCO modeling, customer-facing experience and soft skills are excluded as degree subjects, domain/business knowledge or nontechnical skills.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "generative AI"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompt/context engineering"
+      },
+      {
+        "skill_id": "context-engineering",
+        "requirement": "required",
+        "raw_text": "prompt/context engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "required",
+        "raw_text": "multi-agent orchestration",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "multi-agent orchestration"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Good knowledge of Python"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "common ML libraries (such as LangChain",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "required",
+        "raw_text": "pandas",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "sklearn",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "data-engineering",
+        "requirement": "required",
+        "raw_text": "data engineering"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic systems"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "nice_to_have",
+        "raw_text": "function calling"
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "nice_to_have",
+        "raw_text": "LlamaIndex"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Few-shot learning",
+        "raw_text": "few shot learning"
+      },
+      {
+        "label": "Multimodal understanding",
+        "raw_text": "multimodal understanding"
+      },
+      {
+        "label": "Pydantic",
+        "raw_text": "pydantic"
+      },
+      {
+        "label": "Technical proof-of-concept development",
+        "raw_text": "Hands-on experience with technical Proof of Concept projects"
+      },
+      {
+        "label": "ERP systems",
+        "raw_text": "ERPs"
+      },
+      {
+        "label": "SAP",
+        "raw_text": "SAP"
+      },
+      {
+        "label": "Oracle",
+        "raw_text": "Oracle"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Orbit Graduate program",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "fluency in German and English (must)",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Degree in Engineering, Data Analytics/Science, Computer Science, Mathematics, or a related STEM field.",
+    "notes": "What You Need sets required qualifications; Bonus Points sets optional qualifications.\nTraining outcomes and responsibilities are not candidate requirements: SQL, PQL, Celonis, OpenAI and Databricks are excluded on that basis.\nThe generative-AI technique examples form alternative group 1; few-shot learning and multimodal understanding are also members conceptually but lack taxonomy IDs. RAG, prompt engineering and LLM orchestration leave that group because they are separately asked for together in Bonus Points; their required mentions still determine their labels.\nMulti-agent orchestration is read as naming both orchestration and multi-agent systems; the latter mapping is flagged for review.\nThe ML-library examples form alternative group 2; Pydantic lacks a taxonomy ID. LangChain's required mention wins over its optional mention. The optional LangChain/LlamaIndex alternative set has only LlamaIndex remaining after collapsing the required LangChain criterion, so no separate group is emitted.\nSAP and Oracle are optional alternatives, but neither has a taxonomy ID. ERP systems and technical proof-of-concept work are retained as unmapped technical skills/practices.\nDegree fields, supply-chain knowledge, business-case ROI/TCO modeling, customer-facing experience and soft skills are excluded as degree subjects, domain/business knowledge or nontechnical skills."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "b0cf2ddbd01c69e33d98f89c5012d2cb1755b3b9b13c5d8956466e2549c36971",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

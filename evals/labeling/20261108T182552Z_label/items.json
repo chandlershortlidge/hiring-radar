@@ -1,6 +1,6 @@
 [
   {
-    "golden_id": "golden_049",
+    "golden_id": "golden_107",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -12,12 +12,12 @@
     "place": "Hamburg",
     "language": "de",
     "source": "arbeitsagentur",
-    "n_skills": 11,
+    "n_skills": 8,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_050",
+    "golden_id": "golden_108",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -29,12 +29,12 @@
     "place": "Hamburg",
     "language": "de",
     "source": "arbeitsagentur",
-    "n_skills": 8,
+    "n_skills": 12,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_051",
+    "golden_id": "golden_109",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -46,12 +46,12 @@
     "place": "Hamburg",
     "language": "de",
     "source": "arbeitsagentur",
-    "n_skills": 14,
+    "n_skills": 15,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_052",
+    "golden_id": "golden_110",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -68,7 +68,7 @@
     "decision": "yes"
   },
   {
-    "golden_id": "golden_053",
+    "golden_id": "golden_111",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -85,7 +85,7 @@
     "decision": "yes"
   },
   {
-    "golden_id": "golden_054",
+    "golden_id": "golden_112",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -97,12 +97,12 @@
     "place": "Hamburg",
     "language": "de",
     "source": "arbeitsagentur",
-    "n_skills": 15,
+    "n_skills": 13,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_055",
+    "golden_id": "golden_113",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -119,7 +119,7 @@
     "decision": "yes"
   },
   {
-    "golden_id": "golden_056",
+    "golden_id": "golden_114",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -131,12 +131,12 @@
     "place": "Hamburg",
     "language": "en",
     "source": "arbeitnow",
-    "n_skills": 4,
+    "n_skills": 0,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_057",
+    "golden_id": "golden_115",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -153,7 +153,7 @@
     "decision": "yes"
   },
   {
-    "golden_id": "golden_058",
+    "golden_id": "golden_116",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -170,7 +170,7 @@
     "decision": "yes"
   },
   {
-    "golden_id": "golden_059",
+    "golden_id": "golden_117",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -182,12 +182,12 @@
     "place": "Hamburg",
     "language": "de",
     "source": "arbeitsagentur",
-    "n_skills": 0,
+    "n_skills": 3,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_060",
+    "golden_id": "golden_118",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -199,12 +199,12 @@
     "place": "Hamburg",
     "language": "de",
     "source": "arbeitsagentur",
-    "n_skills": 10,
+    "n_skills": 13,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_061",
+    "golden_id": "golden_119",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -216,12 +216,12 @@
     "place": "Hamburg",
     "language": "de",
     "source": "arbeitsagentur",
-    "n_skills": 9,
+    "n_skills": 10,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_062",
+    "golden_id": "golden_120",
     "kind": "scope",
     "key": "in_scope",
     "reason": "in-scope",
@@ -233,12 +233,12 @@
     "place": "Hamburg",
     "language": "de",
     "source": "arbeitsagentur",
-    "n_skills": 8,
+    "n_skills": 12,
     "problems": [],
     "decision": "yes"
   },
   {
-    "golden_id": "golden_051",
+    "golden_id": "golden_109",
     "kind": "skill",
     "key": "full-stack-development",
     "reason": "disagreement",
@@ -253,7 +253,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_052",
+    "golden_id": "golden_110",
     "kind": "attribute",
     "key": "degree",
     "reason": "disagreement",
@@ -274,7 +274,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_054",
+    "golden_id": "golden_110",
     "kind": "skill",
     "key": "ai-ml",
     "reason": "disagreement",
@@ -282,44 +282,230 @@
     "b": {
       "skill_id": "ai-ml",
       "requirement": "required",
-      "raw_text": "KI-Projekten"
+      "raw_text": "Berufserfahrung in der Entwicklung, Umsetzung und im Betrieb von KI-Lösungen"
     },
-    "excerpt": "...mit Python, davon mindestens ein Jahr in KI-Projekten, die produktiv gegangen sind. Dazu ein Studium der Data...",
+    "excerpt": "...Deep Learning oder einer vergleichbaren Fachrichtung * Berufserfahrung in der Entwicklung, Umsetzung und im Betrieb von KI-Lösungen (Agenten, Workflows, API-Integrationen) *...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_055",
+    "golden_id": "golden_110",
     "kind": "skill",
-    "key": "cybersecurity",
+    "key": "workflow-automation",
     "reason": "disagreement",
     "a": null,
     "b": {
-      "skill_id": "cybersecurity",
-      "requirement": "nice_to_have",
-      "raw_text": "hast idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten"
+      "skill_id": "workflow-automation",
+      "requirement": "required",
+      "raw_text": "Workflows"
     },
-    "excerpt": "...mit agilen Methoden und agil geführten Projekten hast idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten, Richtlinien und regulatorischen Compliance-Anforderungen...",
+    "excerpt": "...Optimierung von Schnittstellen * Generierung KI-gestützter Workflows, stetige Weiterentwicklung integrierter Agenten /...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_057",
+    "golden_id": "golden_111",
+    "kind": "skill",
+    "key": "apis",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "APIs"
+    },
+    "excerpt": "...Technische Anbindung von KI-Services über APIs - Weiterentwicklung von Datenbankarchitekturen,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_111",
+    "kind": "skill",
+    "key": "ci-cd",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD-Pipelines"
+    },
+    "excerpt": "...Plattformumgebungen - Konzeption und Automatisierung von CI/CD-Pipelines - Umsetzung von Infrastructure as Code und Cloud-native...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_111",
+    "kind": "skill",
+    "key": "containerization",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "containerization",
+      "requirement": "required",
+      "raw_text": "containerisierter Umgebungen"
+    },
+    "excerpt": "...Cloud-native Architekturen - Betrieb und Weiterentwicklung containerisierter Umgebungen mit Docker, Kubernetes oder OpenShift - Umsetzung von...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_111",
+    "kind": "skill",
+    "key": "docker",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Docker"
+    },
+    "excerpt": "...und Weiterentwicklung containerisierter Umgebungen mit Docker, Kubernetes oder OpenShift - Umsetzung von...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_111",
+    "kind": "skill",
+    "key": "infrastructure-as-code",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "required",
+      "raw_text": "Infrastructure as Code"
+    },
+    "excerpt": "...und Automatisierung von CI/CD-Pipelines - Umsetzung von Infrastructure as Code und Cloud-native Architekturen - Betrieb und...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_111",
+    "kind": "skill",
+    "key": "kubernetes",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes"
+    },
+    "excerpt": "...Weiterentwicklung containerisierter Umgebungen mit Docker, Kubernetes oder OpenShift - Umsetzung von...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_111",
+    "kind": "skill",
+    "key": "llms",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "LLM- und Generative-AI-Lösungen"
+    },
+    "excerpt": "...Integration von KI-, Machine-Learning-, LLM- und Generative-AI-Lösungen - Technische Anbindung von KI-Services über APIs -...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_111",
+    "kind": "skill",
+    "key": "machine-learning",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "Machine-Learning-"
+    },
+    "excerpt": "...im gesamten Software-Lifecycle - Integration von KI-, Machine-Learning-, LLM- und Generative-AI-Lösungen - Technische Anbindung...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_111",
+    "kind": "skill",
+    "key": "observability",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "Observability-"
+    },
+    "excerpt": "...Aufbau und Optimierung von Monitoring-, Observability- und SRE-Strukturen - Zusammenarbeit mit Entwicklung,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_111",
+    "kind": "skill",
+    "key": "openshift",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "openshift",
+      "requirement": "required",
+      "raw_text": "OpenShift"
+    },
+    "excerpt": "...containerisierter Umgebungen mit Docker, Kubernetes oder OpenShift - Umsetzung von Security-by-Design-Prinzipien im gesamten...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_113",
+    "kind": "skill",
+    "key": "ai-deployment",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "Bereitstellung und Integration von\nGenerative AI-Anwendungen"
+    },
+    "excerpt": "...(IaC) verfügst über erste Erfahrungen in der Entwicklung, Bereitstellung und Integration von Generative AI-Anwendungen im Unternehmenskontext, durch den Aufbau geeigneter...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_114",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "disagreement",
+    "a": {
+      "degree": "master",
+      "degree_requirement": "required",
+      "degree_or_equivalent": false,
+      "degree_signal": "relevant Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)"
+    },
+    "b": {
+      "degree": "master",
+      "degree_requirement": "required",
+      "degree_or_equivalent": true,
+      "degree_signal": "Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)"
+    },
+    "excerpt": "...you are - Soon-to-be/recent Graduate (2026/2027) with a relevant Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience) - Full business-level fluency in English - Some hands-on...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_115",
     "kind": "skill",
     "key": "rag",
     "reason": "disagreement",
     "a": {
       "skill_id": "rag",
       "requirement": "required",
-      "raw_text": "LLMs, retrieval and evaluation in production"
+      "raw_text": "retrieval"
     },
     "b": null,
-    "excerpt": "...or applied AI engineering • Hands-on experience with LLMs, retrieval and evaluation in production • Strong Python • Experience with document processing or...",
+    "excerpt": "...understanding, structuring and synthesis • Develop retrieval and citation logic so every claim links back to its...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_059",
+    "golden_id": "golden_117",
     "kind": "skill",
     "key": "ai-ml",
     "reason": "disagreement",
@@ -334,7 +520,22 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_061",
+    "golden_id": "golden_117",
+    "kind": "skill",
+    "key": "software-architecture",
+    "reason": "disagreement",
+    "a": null,
+    "b": {
+      "skill_id": "software-architecture",
+      "requirement": "nice_to_have",
+      "raw_text": "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture"
+    },
+    "excerpt": "...Functions sowie Interesse an Microsoft Foundry • Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture • Idealerweise hast Du schon erste Erfahrungen mit...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_119",
     "kind": "attribute",
     "key": "seniority",
     "reason": "disagreement",
@@ -353,22 +554,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_061",
-    "kind": "skill",
-    "key": "ai-deployment",
-    "reason": "disagreement",
-    "a": null,
-    "b": {
-      "skill_id": "ai-deployment",
-      "requirement": "required",
-      "raw_text": "Bereitstellung und Integration von Generative AI-Anwendungen"
-    },
-    "excerpt": "...verfügst über erste Erfahrungen in der Entwicklung, Bereitstellung und Integration von Generative AI-Anwendungen im Unternehmenskontext, durch den Aufbau geeigneter...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_062",
+    "golden_id": "golden_120",
     "kind": "attribute",
     "key": "seniority",
     "reason": "disagreement",
@@ -387,56 +573,22 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_062",
-    "kind": "skill",
-    "key": "active-directory",
-    "reason": "disagreement",
-    "a": {
-      "skill_id": "active-directory",
-      "requirement": "required",
-      "raw_text": "Entra ID"
-    },
-    "b": null,
-    "excerpt": "...DevOps Spezialist gehören Azure DevOps, Git, Terraform, Entra ID, Key Vaults, Private Endpoints, Networking, Landing Zones...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_062",
+    "golden_id": "golden_120",
     "kind": "skill",
     "key": "openai-api",
     "reason": "disagreement",
     "a": {
       "skill_id": "openai-api",
       "requirement": "nice_to_have",
-      "raw_text": "Idealerweise bringst du nachweisbare Erfahrung im Umgang mit dem Microsoft Azure AI Stack, insbesondere Azure OpenAI"
+      "raw_text": "Azure OpenAI"
     },
     "b": null,
-    "excerpt": "...von Azure-Ressourcen mit Terraform und Azure DevOps. * Idealerweise bringst du nachweisbare Erfahrung im Umgang mit dem Microsoft Azure AI Stack, insbesondere Azure OpenAI, AI Foundry, Cognitive Services, AI Search und Azure...",
+    "excerpt": "...im Umgang mit dem Microsoft Azure AI Stack, insbesondere Azure OpenAI, AI Foundry, Cognitive Services, AI Search und Azure...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_049",
-    "kind": "attribute",
-    "key": "seniority",
-    "reason": "uncertain",
-    "a": {
-      "seniority": null,
-      "seniority_basis": null,
-      "seniority_signal": null
-    },
-    "b": {
-      "seniority": null,
-      "seniority_basis": null,
-      "seniority_signal": null
-    },
-    "excerpt": "Generative AI Engineer (all gender)",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_050",
+    "golden_id": "golden_108",
     "kind": "attribute",
     "key": "seniority",
     "reason": "uncertain",
@@ -455,66 +607,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_050",
+    "golden_id": "golden_108",
     "kind": "skill",
     "key": "cloud",
     "reason": "uncertain",
     "a": {
       "skill_id": "cloud",
       "requirement": "required",
-      "raw_text": "Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke"
+      "raw_text": "Anbindung von Cloud-Umgebungen"
     },
     "b": {
       "skill_id": "cloud",
       "requirement": "required",
       "raw_text": "Erfahrung in der netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke"
     },
-    "excerpt": "...sind von Vorteil. - Erfahrung in der netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke - Praxiserfahrung im Einsatz von Coding Agents (z.B....",
+    "excerpt": "...sind von Vorteil. - Erfahrung in der netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke - Praxiserfahrung im Einsatz von...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_050",
-    "kind": "skill",
-    "key": "networking",
-    "reason": "uncertain",
-    "a": {
-      "skill_id": "networking",
-      "requirement": "required",
-      "raw_text": "netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke"
-    },
-    "b": {
-      "skill_id": "networking",
-      "requirement": "required",
-      "raw_text": "Erfahrung in der netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke"
-    },
-    "excerpt": "...Lake Storage Gen2), sind von Vorteil. - Erfahrung in der netzwerkseitigen Anbindung von Cloud-Umgebungen an Unternehmensnetzwerke - Praxiserfahrung im Einsatz von Coding Agents (z.B....",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_051",
-    "kind": "attribute",
-    "key": "degree",
-    "reason": "uncertain",
-    "a": {
-      "degree": "bachelor",
-      "degree_requirement": "nice_to_have",
-      "degree_or_equivalent": true,
-      "degree_signal": "Optional: Ein abgeschlossenes Hochschulstudium in (Wirtschafts-) Informatik oder eine vergleichbare Ausbildung sind von Vorteil"
-    },
-    "b": {
-      "degree": "bachelor",
-      "degree_requirement": "nice_to_have",
-      "degree_or_equivalent": true,
-      "degree_signal": "Optional: Ein abgeschlossenes Hochschulstudium in (Wirtschafts-) Informatik oder eine vergleichbare Ausbildung sind von Vorteil."
-    },
-    "excerpt": "...auf mind. C1-Niveau und gute Englischkenntnisse. Optional: Ein abgeschlossenes Hochschulstudium in (Wirtschafts-) Informatik oder eine vergleichbare Ausbildung sind von Vorteil. Du erfüllst nicht alle Qualifikationen 100%? Kein Problem...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_051",
+    "golden_id": "golden_109",
     "kind": "attribute",
     "key": "seniority",
     "reason": "uncertain",
@@ -533,7 +645,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_051",
+    "golden_id": "golden_109",
     "kind": "skill",
     "key": "cloud",
     "reason": "uncertain",
@@ -552,45 +664,45 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_052",
+    "golden_id": "golden_110",
     "kind": "skill",
-    "key": "ai-ml",
+    "key": "cybersecurity",
     "reason": "uncertain",
     "a": {
-      "skill_id": "ai-ml",
+      "skill_id": "cybersecurity",
       "requirement": "required",
-      "raw_text": "Entwicklung, Umsetzung und im Betrieb von KI-Lösungen"
+      "raw_text": "Informationssicherheit"
     },
     "b": {
-      "skill_id": "ai-ml",
+      "skill_id": "cybersecurity",
       "requirement": "required",
-      "raw_text": "KI-Lösungen"
+      "raw_text": "Informationssicherheit"
     },
-    "excerpt": "...einer vergleichbaren Fachrichtung * Berufserfahrung in der Entwicklung, Umsetzung und im Betrieb von KI-Lösungen (Agenten, Workflows, API-Integrationen) *...",
+    "excerpt": "...Praktische Berührungen mit Datenschutzkonzepten und Informationssicherheit, idealerweise in regulierten Umfeldern (z. B....",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_052",
+    "golden_id": "golden_110",
     "kind": "skill",
-    "key": "workflow-automation",
+    "key": "data-privacy-and-security",
     "reason": "uncertain",
     "a": {
-      "skill_id": "workflow-automation",
+      "skill_id": "data-privacy-and-security",
       "requirement": "required",
-      "raw_text": "Workflows, API-Integrationen"
+      "raw_text": "Datenschutzkonzepten"
     },
     "b": {
-      "skill_id": "workflow-automation",
+      "skill_id": "data-privacy-and-security",
       "requirement": "required",
-      "raw_text": "Workflows"
+      "raw_text": "Datenschutzkonzepten"
     },
-    "excerpt": "...Umsetzung und im Betrieb von KI-Lösungen (Agenten, Workflows, API-Integrationen) * Anwenderkenntnisse in Low-Code/No-Code-Plattformen (z....",
+    "excerpt": "...Agenten-Orchestrierung) * Praktische Berührungen mit Datenschutzkonzepten und Informationssicherheit, idealerweise in regulierten...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_053",
+    "golden_id": "golden_111",
     "kind": "skill",
     "key": "ai-ml",
     "reason": "uncertain",
@@ -602,185 +714,14 @@
     "b": {
       "skill_id": "ai-ml",
       "requirement": "required",
-      "raw_text": "KI-Projekt"
+      "raw_text": "Mindestens ein selbst technisch umgesetztes KI-Projekt"
     },
     "excerpt": "...Berufserfahrung in oben genannten Aufgaben** - **Mindestens ein selbst technisch umgesetztes KI-Projekt** - Fundierte DevOps- und Cloud-Erfahrung - Praktische...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_053",
-    "kind": "skill",
-    "key": "apis",
-    "reason": "uncertain",
-    "a": {
-      "skill_id": "apis",
-      "requirement": "required",
-      "raw_text": "Anbindung von KI-Services über APIs"
-    },
-    "b": {
-      "skill_id": "apis",
-      "requirement": "required",
-      "raw_text": "APIs"
-    },
-    "excerpt": "...LLM- und Generative-AI-Lösungen - Technische Anbindung von KI-Services über APIs - Weiterentwicklung von Datenbankarchitekturen,...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_053",
-    "kind": "skill",
-    "key": "ci-cd",
-    "reason": "uncertain",
-    "a": {
-      "skill_id": "ci-cd",
-      "requirement": "required",
-      "raw_text": "CI/CD-Pipelines"
-    },
-    "b": {
-      "skill_id": "ci-cd",
-      "requirement": "required",
-      "raw_text": "CI/CD-Pipelines"
-    },
-    "excerpt": "...Plattformumgebungen - Konzeption und Automatisierung von CI/CD-Pipelines - Umsetzung von Infrastructure as Code und Cloud-native...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_053",
-    "kind": "skill",
-    "key": "containerization",
-    "reason": "uncertain",
-    "a": {
-      "skill_id": "containerization",
-      "requirement": "required",
-      "raw_text": "containerisierter Umgebungen"
-    },
-    "b": {
-      "skill_id": "containerization",
-      "requirement": "required",
-      "raw_text": "containerisierter Umgebungen"
-    },
-    "excerpt": "...Cloud-native Architekturen - Betrieb und Weiterentwicklung containerisierter Umgebungen mit Docker, Kubernetes oder OpenShift - Umsetzung von...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_053",
-    "kind": "skill",
-    "key": "docker",
-    "reason": "uncertain",
-    "a": {
-      "skill_id": "docker",
-      "requirement": "required",
-      "raw_text": "Docker"
-    },
-    "b": {
-      "skill_id": "docker",
-      "requirement": "required",
-      "raw_text": "Docker"
-    },
-    "excerpt": "...und Weiterentwicklung containerisierter Umgebungen mit Docker, Kubernetes oder OpenShift - Umsetzung von...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_053",
-    "kind": "skill",
-    "key": "infrastructure-as-code",
-    "reason": "uncertain",
-    "a": {
-      "skill_id": "infrastructure-as-code",
-      "requirement": "required",
-      "raw_text": "Infrastructure as Code"
-    },
-    "b": {
-      "skill_id": "infrastructure-as-code",
-      "requirement": "required",
-      "raw_text": "Infrastructure as Code"
-    },
-    "excerpt": "...und Automatisierung von CI/CD-Pipelines - Umsetzung von Infrastructure as Code und Cloud-native Architekturen - Betrieb und...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_053",
-    "kind": "skill",
-    "key": "kubernetes",
-    "reason": "uncertain",
-    "a": {
-      "skill_id": "kubernetes",
-      "requirement": "required",
-      "raw_text": "Kubernetes"
-    },
-    "b": {
-      "skill_id": "kubernetes",
-      "requirement": "required",
-      "raw_text": "Kubernetes"
-    },
-    "excerpt": "...Weiterentwicklung containerisierter Umgebungen mit Docker, Kubernetes oder OpenShift - Umsetzung von...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_053",
-    "kind": "skill",
-    "key": "llms",
-    "reason": "uncertain",
-    "a": {
-      "skill_id": "llms",
-      "requirement": "required",
-      "raw_text": "LLM- und Generative-AI-Lösungen"
-    },
-    "b": {
-      "skill_id": "llms",
-      "requirement": "required",
-      "raw_text": "Generative-AI-Lösungen"
-    },
-    "excerpt": "...Integration von KI-, Machine-Learning-, LLM- und Generative-AI-Lösungen - Technische Anbindung von KI-Services über APIs -...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_053",
-    "kind": "skill",
-    "key": "machine-learning",
-    "reason": "uncertain",
-    "a": {
-      "skill_id": "machine-learning",
-      "requirement": "required",
-      "raw_text": "Machine-Learning-"
-    },
-    "b": {
-      "skill_id": "machine-learning",
-      "requirement": "required",
-      "raw_text": "Machine-Learning-"
-    },
-    "excerpt": "...im gesamten Software-Lifecycle - Integration von KI-, Machine-Learning-, LLM- und Generative-AI-Lösungen - Technische Anbindung...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_053",
-    "kind": "skill",
-    "key": "observability",
-    "reason": "uncertain",
-    "a": {
-      "skill_id": "observability",
-      "requirement": "required",
-      "raw_text": "Monitoring-, Observability-"
-    },
-    "b": {
-      "skill_id": "observability",
-      "requirement": "required",
-      "raw_text": "Observability-"
-    },
-    "excerpt": "...und Performance-Optimierungen - Aufbau und Optimierung von Monitoring-, Observability- und SRE-Strukturen - Zusammenarbeit mit Entwicklung,...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_054",
+    "golden_id": "golden_112",
     "kind": "skill",
     "key": "agents",
     "reason": "uncertain",
@@ -799,7 +740,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_054",
+    "golden_id": "golden_112",
+    "kind": "skill",
+    "key": "ai-ml",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "in KI-Projekten"
+    },
+    "b": {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "KI-Projekten, die produktiv gegangen sind"
+    },
+    "excerpt": "...Softwareentwicklung mit Python, davon mindestens ein Jahr in KI-Projekten, die produktiv gegangen sind. Dazu ein Studium der Data...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_112",
     "kind": "skill",
     "key": "apis",
     "reason": "uncertain",
@@ -818,7 +778,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_055",
+    "golden_id": "golden_112",
+    "kind": "skill",
+    "key": "devsecops",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "devsecops",
+      "requirement": "nice_to_have",
+      "raw_text": "DevSecOps"
+    },
+    "b": {
+      "skill_id": "devsecops",
+      "requirement": "nice_to_have",
+      "raw_text": "DevSecOps"
+    },
+    "excerpt": "...(etwa Azure Document Intelligence), Agentic AI oder DevSecOps mit Kubernetes und Terraform. ## Warum zur PTA? - KI als...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_113",
     "kind": "attribute",
     "key": "seniority",
     "reason": "uncertain",
@@ -830,54 +809,52 @@
     "b": {
       "seniority": "junior",
       "seniority_basis": "inferred",
-      "seniority_signal": "erste Erfahrungen"
+      "seniority_signal": "erste\nErfahrungen"
     },
     "excerpt": "...Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) verfügst über erste Erfahrungen in der Entwicklung, Bereitstellung und Integration...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_055",
+    "golden_id": "golden_113",
     "kind": "skill",
-    "key": "ai-deployment",
+    "key": "cybersecurity",
     "reason": "uncertain",
     "a": {
-      "skill_id": "ai-deployment",
-      "requirement": "required",
-      "raw_text": "Bereitstellung und Integration von Generative AI-Anwendungen"
+      "skill_id": "cybersecurity",
+      "requirement": "nice_to_have",
+      "raw_text": "idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten"
     },
     "b": {
-      "skill_id": "ai-deployment",
-      "requirement": "required",
-      "raw_text": "Bereitstellung und Integration von Generative AI-Anwendungen"
+      "skill_id": "cybersecurity",
+      "requirement": "nice_to_have",
+      "raw_text": "hast idealerweise\nKenntnisse von Industriestandards, Sicherheitskonzepten"
     },
-    "excerpt": "...(IaC) verfügst über erste Erfahrungen in der Entwicklung, Bereitstellung und Integration von Generative AI-Anwendungen im Unternehmenskontext, durch den Aufbau geeigneter...",
+    "excerpt": "...mit agilen Methoden und agil geführten Projekten hast idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten, Richtlinien und regulatorischen Compliance-Anforderungen...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_056",
-    "kind": "attribute",
-    "key": "degree",
+    "golden_id": "golden_114",
+    "kind": "skill",
+    "key": "backend-development",
     "reason": "uncertain",
     "a": {
-      "degree": "master",
-      "degree_requirement": "required",
-      "degree_or_equivalent": false,
-      "degree_signal": "relevant Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)"
+      "skill_id": "backend-development",
+      "requirement": "required",
+      "raw_text": "Backend"
     },
     "b": {
-      "degree": "master",
-      "degree_requirement": "required",
-      "degree_or_equivalent": false,
-      "degree_signal": "Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)"
+      "skill_id": "backend-development",
+      "requirement": "required",
+      "raw_text": "Backend"
     },
-    "excerpt": "...you are - Soon-to-be/recent Graduate (2026/2027) with a relevant Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience) - Full business-level fluency in English - Some hands-on...",
+    "excerpt": "...wide technical spectrum, including Fullstack Development, Backend, Data Engineering, Cloud Solutions, Architecture, Web...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_056",
+    "golden_id": "golden_114",
     "kind": "skill",
     "key": "cloud",
     "reason": "uncertain",
@@ -896,7 +873,64 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_056",
+    "golden_id": "golden_114",
+    "kind": "skill",
+    "key": "data-engineering",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "data-engineering",
+      "requirement": "required",
+      "raw_text": "Data Engineering or IT-Management"
+    },
+    "b": {
+      "skill_id": "data-engineering",
+      "requirement": "required",
+      "raw_text": "Data Engineering"
+    },
+    "excerpt": "...student roles or full-time in Software Engineering, Data Engineering or IT-Management with modern technologies, (e.g. Fullstack Development,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_114",
+    "kind": "skill",
+    "key": "devops",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "devops",
+      "requirement": "required",
+      "raw_text": "DevOps, Product Ownership"
+    },
+    "b": {
+      "skill_id": "devops",
+      "requirement": "required",
+      "raw_text": "DevOps"
+    },
+    "excerpt": "...Cloud Solutions, Architecture, Web Development, DevOps, Product Ownership or similar) - Based in Hamburg or willing to relocate to...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_114",
+    "kind": "skill",
+    "key": "full-stack-development",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "full-stack-development",
+      "requirement": "required",
+      "raw_text": "e.g. Fullstack Development"
+    },
+    "b": {
+      "skill_id": "full-stack-development",
+      "requirement": "required",
+      "raw_text": "Fullstack Development"
+    },
+    "excerpt": "...Engineering or IT-Management with modern technologies, (e.g. Fullstack Development, Backend, Data Engineering, Cloud Solutions, Architecture,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_114",
     "kind": "skill",
     "key": "software-architecture",
     "reason": "uncertain",
@@ -915,7 +949,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_057",
+    "golden_id": "golden_114",
+    "kind": "skill",
+    "key": "software-engineering",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "in Software Engineering, Data Engineering or IT-Management"
+    },
+    "b": {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Software Engineering"
+    },
+    "excerpt": "...through internships, working student roles or full-time in Software Engineering, Data Engineering or IT-Management with modern technologies, (e.g. Fullstack Development,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_115",
     "kind": "skill",
     "key": "ai-ml",
     "reason": "uncertain",
@@ -934,26 +987,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_058",
+    "golden_id": "golden_116",
     "kind": "attribute",
     "key": "seniority",
     "reason": "uncertain",
     "a": {
       "seniority": "junior",
       "seniority_basis": "inferred",
-      "seniority_signal": "erste praktische Berührungspunkte"
+      "seniority_signal": "erste praktische Berührungspunkte mit AI-Anwendungen"
     },
     "b": {
       "seniority": "junior",
       "seniority_basis": "inferred",
       "seniority_signal": "erste praktische Berührungspunkte mit AI-Anwendungen oder datengetriebenen Ansätzen"
     },
-    "excerpt": "...Digitalisierung und technologische Innovationen - bringst erste praktische Berührungspunkte mit AI-Anwendungen oder datengetriebenen Ansätzen mit -...",
+    "excerpt": "...Digitalisierung und technologische Innovationen - bringst erste praktische Berührungspunkte mit AI-Anwendungen oder datengetriebenen Ansätzen mit - arbeitest...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_058",
+    "golden_id": "golden_116",
     "kind": "skill",
     "key": "ai-ml",
     "reason": "uncertain",
@@ -972,7 +1025,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_059",
+    "golden_id": "golden_117",
     "kind": "attribute",
     "key": "german",
     "reason": "uncertain",
@@ -991,7 +1044,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_059",
+    "golden_id": "golden_117",
     "kind": "skill",
     "key": "azure",
     "reason": "uncertain",
@@ -1010,33 +1063,90 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_059",
+    "golden_id": "golden_117",
     "kind": "skill",
-    "key": "business-intelligence",
+    "key": "azure-data-factory",
     "reason": "uncertain",
     "a": {
-      "skill_id": "business-intelligence",
+      "skill_id": "azure-data-factory",
       "requirement": "nice_to_have",
-      "raw_text": "Interesse an der Entwicklung von DWH / Data Lake und BI"
+      "raw_text": "Data Factory"
     },
     "b": {
-      "skill_id": "business-intelligence",
+      "skill_id": "azure-data-factory",
       "requirement": "nice_to_have",
-      "raw_text": "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture"
+      "raw_text": "Data Factory"
     },
-    "excerpt": "...Functions sowie Interesse an Microsoft Foundry • Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture • Idealerweise hast Du schon erste...",
+    "excerpt": "...Gute Kenntnisse rund um die Azure Data Dienste wie z. B. Data Factory, SQL DB, Data Lake Storage, Databricks, Functions sowie...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_059",
+    "golden_id": "golden_117",
+    "kind": "skill",
+    "key": "azure-data-lake-storage",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "azure-data-lake-storage",
+      "requirement": "nice_to_have",
+      "raw_text": "Data Lake Storage"
+    },
+    "b": {
+      "skill_id": "azure-data-lake-storage",
+      "requirement": "nice_to_have",
+      "raw_text": "Data Lake Storage"
+    },
+    "excerpt": "...um die Azure Data Dienste wie z. B. Data Factory, SQL DB, Data Lake Storage, Databricks, Functions sowie Interesse an Microsoft...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_117",
+    "kind": "skill",
+    "key": "azure-functions",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "azure-functions",
+      "requirement": "nice_to_have",
+      "raw_text": "Functions sowie"
+    },
+    "b": {
+      "skill_id": "azure-functions",
+      "requirement": "nice_to_have",
+      "raw_text": "Functions"
+    },
+    "excerpt": "...z. B. Data Factory, SQL DB, Data Lake Storage, Databricks, Functions sowie Interesse an Microsoft Foundry • Starkes Interesse an der...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_117",
+    "kind": "skill",
+    "key": "azure-sql-database",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "azure-sql-database",
+      "requirement": "nice_to_have",
+      "raw_text": "SQL DB"
+    },
+    "b": {
+      "skill_id": "azure-sql-database",
+      "requirement": "nice_to_have",
+      "raw_text": "SQL DB"
+    },
+    "excerpt": "...rund um die Azure Data Dienste wie z. B. Data Factory, SQL DB, Data Lake Storage, Databricks, Functions sowie Interesse...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_117",
     "kind": "skill",
     "key": "cloud",
     "reason": "uncertain",
     "a": {
       "skill_id": "cloud",
       "requirement": "nice_to_have",
-      "raw_text": "Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture"
+      "raw_text": "Starkes Interesse an der Entwicklung von DWH / Data Lake und BI Cloud Architecture"
     },
     "b": {
       "skill_id": "cloud",
@@ -1048,26 +1158,45 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_059",
+    "golden_id": "golden_117",
+    "kind": "skill",
+    "key": "data-engineering",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "data-engineering",
+      "requirement": "nice_to_have",
+      "raw_text": "Umsetzung von innovativen Data-Engineering-Lösungen"
+    },
+    "b": {
+      "skill_id": "data-engineering",
+      "requirement": "nice_to_have",
+      "raw_text": "Data-Engineering-Lösungen"
+    },
+    "excerpt": "...macht • Mehrjährige Berufserfahrung in der Konzeption und Umsetzung von innovativen Data-Engineering-Lösungen, vorzugsweise im Beratungsumfeld • Gute Kenntnisse rund um...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_117",
     "kind": "skill",
     "key": "databricks",
     "reason": "uncertain",
     "a": {
       "skill_id": "databricks",
       "requirement": "nice_to_have",
-      "raw_text": "Databricks"
+      "raw_text": "Databricks, Functions"
     },
     "b": {
       "skill_id": "databricks",
       "requirement": "nice_to_have",
       "raw_text": "Databricks"
     },
-    "excerpt": "...Dienste wie z. B. Data Factory, SQL DB, Data Lake Storage, Databricks, Functions sowie Interesse an Microsoft Foundry • Starkes...",
+    "excerpt": "...Dienste wie z. B. Data Factory, SQL DB, Data Lake Storage, Databricks, Functions sowie Interesse an Microsoft Foundry • Starkes Interesse...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_060",
+    "golden_id": "golden_118",
     "kind": "attribute",
     "key": "degree",
     "reason": "uncertain",
@@ -1088,45 +1217,205 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_060",
+    "golden_id": "golden_118",
+    "kind": "skill",
+    "key": "argocd",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "argocd",
+      "requirement": "required",
+      "raw_text": "z. B. Terraform, Argo CD, Helm oder Kustomize"
+    },
+    "b": {
+      "skill_id": "argocd",
+      "requirement": "required",
+      "raw_text": "Argo CD"
+    },
+    "excerpt": "...Deployments sowie Infrastructure as Code und GitOps, z. B. Terraform, Argo CD, Helm oder Kustomize - Erfahrung mit Monitoring, Logging und Alerting sowie...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_118",
     "kind": "skill",
     "key": "cybersecurity",
     "reason": "uncertain",
     "a": {
       "skill_id": "cybersecurity",
       "requirement": "required",
-      "raw_text": "Kubernetes- und Cloud-Security"
+      "raw_text": "Gutes Verständnis für Kubernetes- und Cloud-Security"
     },
     "b": {
       "skill_id": "cybersecurity",
       "requirement": "required",
       "raw_text": "Kubernetes- und Cloud-Security"
     },
-    "excerpt": "...wie PostgreSQL oder MongoDB - Gutes Verständnis für Kubernetes- und Cloud-Security, insbesondere IAM/RBAC, Network Policies, Secrets...",
+    "excerpt": "...Plattform- und Datenservices wie PostgreSQL oder MongoDB - Gutes Verständnis für Kubernetes- und Cloud-Security, insbesondere IAM/RBAC, Network Policies, Secrets...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_061",
+    "golden_id": "golden_118",
     "kind": "skill",
-    "key": "gcp",
+    "key": "helm",
     "reason": "uncertain",
     "a": {
-      "skill_id": "gcp",
-      "requirement": "nice_to_have",
-      "raw_text": "vorzugsweise GCP"
+      "skill_id": "helm",
+      "requirement": "required",
+      "raw_text": "z. B. Terraform, Argo CD, Helm oder Kustomize"
     },
     "b": {
-      "skill_id": "gcp",
-      "requirement": "nice_to_have",
-      "raw_text": "vorzugsweise GCP"
+      "skill_id": "helm",
+      "requirement": "required",
+      "raw_text": "Helm"
     },
-    "excerpt": "...Erfahrung im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) - verfügst über erste Erfahrungen in...",
+    "excerpt": "...Deployments sowie Infrastructure as Code und GitOps, z. B. Terraform, Argo CD, Helm oder Kustomize - Erfahrung mit Monitoring, Logging und Alerting sowie...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_049",
+    "golden_id": "golden_118",
+    "kind": "skill",
+    "key": "terraform",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "terraform",
+      "requirement": "required",
+      "raw_text": "z. B. Terraform, Argo CD, Helm oder Kustomize"
+    },
+    "b": {
+      "skill_id": "terraform",
+      "requirement": "required",
+      "raw_text": "Terraform"
+    },
+    "excerpt": "...Deployments sowie Infrastructure as Code und GitOps, z. B. Terraform, Argo CD, Helm oder Kustomize - Erfahrung mit Monitoring, Logging und Alerting sowie...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_119",
+    "kind": "skill",
+    "key": "cybersecurity",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "cybersecurity",
+      "requirement": "nice_to_have",
+      "raw_text": "idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten"
+    },
+    "b": {
+      "skill_id": "cybersecurity",
+      "requirement": "nice_to_have",
+      "raw_text": "hast idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten"
+    },
+    "excerpt": "...mit agilen Methoden und agil geführten Projekten - hast idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten, Richtlinien und regulatorischen Compliance-Anforderungen...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_120",
+    "kind": "skill",
+    "key": "azure",
+    "reason": "uncertain",
+    "a": {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Bereitstellung von Azure-Ressourcen"
+    },
+    "b": {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Azure-Ressourcen"
+    },
+    "excerpt": "...und Pflege von Infrastructure-as-Code-Projekten zur Bereitstellung von Azure-Ressourcen mit Terraform und Azure DevOps. * Idealerweise bringst du...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_107",
+    "kind": "skill",
+    "key": "ci-cd",
+    "reason": "check-failed",
+    "a": {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD-Pipelines mit"
+    },
+    "b": {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD-Pipelines"
+    },
+    "excerpt": "(not found in the posting) CI/CD-Pipelines mit",
+    "problems": [
+      "A: raw_text does not appear in the posting: 'CI/CD-Pipelines mit'"
+    ],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_107",
+    "kind": "skill",
+    "key": "docker",
+    "reason": "check-failed",
+    "a": {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Docker, Kubernetes und CI/CD-Pipelines mit"
+    },
+    "b": {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Docker"
+    },
+    "excerpt": "(not found in the posting) Docker, Kubernetes und CI/CD-Pipelines mit",
+    "problems": [
+      "A: raw_text does not appear in the posting: 'Docker, Kubernetes und CI/CD-Pipelines mit'"
+    ],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_107",
+    "kind": "skill",
+    "key": "kubernetes",
+    "reason": "check-failed",
+    "a": {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes und CI/CD-Pipelines mit"
+    },
+    "b": {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes"
+    },
+    "excerpt": "(not found in the posting) Kubernetes und CI/CD-Pipelines mit",
+    "problems": [
+      "A: raw_text does not appear in the posting: 'Kubernetes und CI/CD-Pipelines mit'"
+    ],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_112",
+    "kind": "skill",
+    "key": "testing",
+    "reason": "check-failed",
+    "a": {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "automatisierten Tests"
+    },
+    "b": {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "automatisierte Tests"
+    },
+    "excerpt": "(not found in the posting) automatisierten Tests",
+    "problems": [
+      "A: raw_text does not appear in the posting: 'automatisierten Tests'"
+    ],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_107",
     "kind": "attribute",
     "key": "degree",
     "reason": "spot-check",
@@ -1147,7 +1436,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_049",
+    "golden_id": "golden_107",
     "kind": "attribute",
     "key": "german",
     "reason": "spot-check",
@@ -1166,83 +1455,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_049",
-    "kind": "skill",
-    "key": "langchain",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "langchain",
-      "requirement": "required",
-      "raw_text": "LangChain"
-    },
-    "b": {
-      "skill_id": "langchain",
-      "requirement": "required",
-      "raw_text": "LangChain"
-    },
-    "excerpt": "...in Python sowie Erfahrung mit Frameworks wie LangChain, PyTorch und TensorFlow - besitzt Kenntnisse im Bereich...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_049",
-    "kind": "skill",
-    "key": "llms",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "llms",
-      "requirement": "required",
-      "raw_text": "Generative-AI-, LLM-"
-    },
-    "b": {
-      "skill_id": "llms",
-      "requirement": "required",
-      "raw_text": "Generative-AI-, LLM-"
-    },
-    "excerpt": "...bringst fundierte Erfahrung in der Entwicklung von Generative-AI-, LLM- und RAG-Lösungen mit - hast sehr gute...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_049",
-    "kind": "skill",
-    "key": "mlops",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "mlops",
-      "requirement": "required",
-      "raw_text": "Kenntnisse im Bereich MLOps"
-    },
-    "b": {
-      "skill_id": "mlops",
-      "requirement": "required",
-      "raw_text": "Kenntnisse im Bereich MLOps"
-    },
-    "excerpt": "...Frameworks wie LangChain, PyTorch und TensorFlow - besitzt Kenntnisse im Bereich MLOps, Containerisierung und Orchestrierung mit Docker,...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_049",
+    "golden_id": "golden_107",
     "kind": "skill",
     "key": "python",
     "reason": "spot-check",
     "a": {
       "skill_id": "python",
       "requirement": "required",
-      "raw_text": "Python"
+      "raw_text": "Programmierkenntnisse in Python"
     },
     "b": {
       "skill_id": "python",
       "requirement": "required",
-      "raw_text": "Python"
+      "raw_text": "Programmierkenntnisse in Python"
     },
-    "excerpt": "...RAG-Lösungen mit - hast sehr gute Programmierkenntnisse in Python sowie Erfahrung mit Frameworks wie LangChain, PyTorch und...",
+    "excerpt": "...Generative-AI-, LLM- und RAG-Lösungen mit - hast sehr gute Programmierkenntnisse in Python sowie Erfahrung mit Frameworks wie LangChain, PyTorch und...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_049",
+    "golden_id": "golden_107",
     "kind": "skill",
     "key": "pytorch",
     "reason": "spot-check",
@@ -1261,7 +1493,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_049",
+    "golden_id": "golden_107",
     "kind": "skill",
     "key": "rag",
     "reason": "spot-check",
@@ -1280,7 +1512,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_049",
+    "golden_id": "golden_107",
     "kind": "skill",
     "key": "tensorflow",
     "reason": "spot-check",
@@ -1299,178 +1531,237 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_050",
+    "golden_id": "golden_108",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "spot-check",
+    "a": {
+      "degree": "bachelor",
+      "degree_requirement": "required",
+      "degree_or_equivalent": true,
+      "degree_signal": "Erfolgreiches Studium in Naturwissenschaften, Informatik oder eine vergleichbare Qualifikation"
+    },
+    "b": {
+      "degree": "bachelor",
+      "degree_requirement": "required",
+      "degree_or_equivalent": true,
+      "degree_signal": "Erfolgreiches Studium in Naturwissenschaften, Informatik oder eine vergleichbare Qualifikation"
+    },
+    "excerpt": "...dabei persönlich weiterentwickeln. **Qualifikationen** - Erfolgreiches Studium in Naturwissenschaften, Informatik oder eine vergleichbare Qualifikation. - Interesse daran, Dichin moderne Data- und Cloud...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_108",
+    "kind": "attribute",
+    "key": "german",
+    "reason": "spot-check",
+    "a": {
+      "german": "required",
+      "german_basis": "stated",
+      "german_signal": "Fließende Deutschkenntnisse (mind. Level B2-C1)"
+    },
+    "b": {
+      "german": "required",
+      "german_basis": "stated",
+      "german_signal": "Fließende Deutschkenntnisse (mind. Level B2-C1)"
+    },
+    "excerpt": "...in der Zusammenarbeit interdisziplinären Teams mit. - Fließende Deutschkenntnisse (mind. Level B2-C1). **Zusätzliche Informationen** **Homeoffice:** Flexible...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_108",
+    "kind": "skill",
+    "key": "access-control",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "access-control",
+      "requirement": "nice_to_have",
+      "raw_text": "Identity Management, RBAC/ACL"
+    },
+    "b": {
+      "skill_id": "access-control",
+      "requirement": "nice_to_have",
+      "raw_text": "Identity Management, RBAC/ACL"
+    },
+    "excerpt": "...und - Services, z.B. VNets, Service und Private Endpoints, Identity Management, RBAC/ACL sowie Azure Storage (insbesondere Azure Data Lake Storage...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_108",
+    "kind": "skill",
+    "key": "azure",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "azure",
+      "requirement": "nice_to_have",
+      "raw_text": "Kenntnisse in Azure-Infrastrukturen"
+    },
+    "b": {
+      "skill_id": "azure",
+      "requirement": "nice_to_have",
+      "raw_text": "Kenntnisse in Azure-Infrastrukturen"
+    },
+    "excerpt": "...Docker-Images sowie im Umgang mit Terraform und Python. - Kenntnisse in Azure-Infrastrukturen und - Services, z.B. VNets, Service und Private Endpoints,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_108",
     "kind": "skill",
     "key": "claude-code",
     "reason": "spot-check",
     "a": {
       "skill_id": "claude-code",
       "requirement": "required",
-      "raw_text": "z.B. Claude Code"
+      "raw_text": "(z.B. Claude Code"
     },
     "b": {
       "skill_id": "claude-code",
       "requirement": "required",
-      "raw_text": "z.B. Claude Code"
+      "raw_text": "(z.B. Claude Code"
     },
     "excerpt": "...Praxiserfahrung im Einsatz von Coding Agents (z.B. Claude Code oder Codex) sowie ein gutes Verständnis für modernes...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_050",
+    "golden_id": "golden_108",
     "kind": "skill",
-    "key": "codex",
+    "key": "terraform",
     "reason": "spot-check",
     "a": {
-      "skill_id": "codex",
+      "skill_id": "terraform",
       "requirement": "required",
-      "raw_text": "z.B. Claude Code oder Codex"
+      "raw_text": "Terraform"
     },
     "b": {
-      "skill_id": "codex",
+      "skill_id": "terraform",
       "requirement": "required",
-      "raw_text": "z.B. Claude Code oder Codex"
+      "raw_text": "Terraform"
     },
-    "excerpt": "...Praxiserfahrung im Einsatz von Coding Agents (z.B. Claude Code oder Codex) sowie ein gutes Verständnis für modernes AI-assisted...",
+    "excerpt": "...und Debuggen von Docker-Images sowie im Umgang mit Terraform und Python. - Kenntnisse in Azure-Infrastrukturen und -...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_050",
-    "kind": "skill",
-    "key": "data-pipelines",
+    "golden_id": "golden_109",
+    "kind": "attribute",
+    "key": "german",
     "reason": "spot-check",
     "a": {
-      "skill_id": "data-pipelines",
-      "requirement": "nice_to_have",
-      "raw_text": "Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory/ Synapse Pipeline sowie Data Ingestion (ETL/ELT)"
+      "german": "required",
+      "german_basis": "stated",
+      "german_signal": "Verhandlungssichere Deutschkenntnisse auf mind. C1-Niveau"
     },
     "b": {
-      "skill_id": "data-pipelines",
-      "requirement": "nice_to_have",
-      "raw_text": "Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory/ Synapse Pipeline sowie Data Ingestion (ETL/ELT)"
+      "german": "required",
+      "german_basis": "stated",
+      "german_signal": "Verhandlungssichere Deutschkenntnisse auf mind. C1-Niveau"
     },
-    "excerpt": "...Informatik oder eine vergleichbare Qualifikation. - Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory/ Synapse Pipeline sowie Data Ingestion (ETL/ELT). - Erfahrung im Erstellen und Debuggen von Docker-Images...",
+    "excerpt": "...auch vor Ort innerhalb Deutschlands zu unterstützen. Verhandlungssichere Deutschkenntnisse auf mind. C1-Niveau und gute Englischkenntnisse. Optional: Ein abgeschlossenes...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_050",
+    "golden_id": "golden_109",
     "kind": "skill",
-    "key": "python",
+    "key": "angular",
     "reason": "spot-check",
     "a": {
-      "skill_id": "python",
+      "skill_id": "angular",
       "requirement": "required",
-      "raw_text": "Terraform und Python"
+      "raw_text": "Frontend mit Angular"
     },
     "b": {
-      "skill_id": "python",
+      "skill_id": "angular",
       "requirement": "required",
-      "raw_text": "Terraform und Python"
+      "raw_text": "Frontend mit Angular"
     },
-    "excerpt": "...und Debuggen von Docker-Images sowie im Umgang mit Terraform und Python. - Kenntnisse in Azure-Infrastrukturen und - Services,...",
+    "excerpt": "...in der Softwareentwicklung mit Java (Spring Boot) sowie im Frontend mit Angular. Fundierte Kenntnisse in Cloud-nativen Architekturen,...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_051",
-    "kind": "skill",
-    "key": "ai-developer-tooling",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "ai-developer-tooling",
-      "requirement": "required",
-      "raw_text": "Agentic Coding)"
-    },
-    "b": {
-      "skill_id": "ai-developer-tooling",
-      "requirement": "required",
-      "raw_text": "Agentic Coding)"
-    },
-    "excerpt": "...von AI-gestützten Entwicklungsansätzen (z. B. Copilot, Agentic Coding). Know-how in DevOps-Prozessen, CI/CD und...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_051",
+    "golden_id": "golden_109",
     "kind": "skill",
     "key": "ci-cd",
     "reason": "spot-check",
     "a": {
       "skill_id": "ci-cd",
       "requirement": "required",
-      "raw_text": "CI/CD und Observability-Standards"
+      "raw_text": "CI/CD"
     },
     "b": {
       "skill_id": "ci-cd",
       "requirement": "required",
-      "raw_text": "CI/CD und Observability-Standards"
+      "raw_text": "CI/CD"
     },
-    "excerpt": "...B. Copilot, Agentic Coding). Know-how in DevOps-Prozessen, CI/CD und Observability-Standards. Ein agiles Mindset, hohes Qualitätsbewusstsein sowie...",
+    "excerpt": "...B. Copilot, Agentic Coding). Know-how in DevOps-Prozessen, CI/CD und Observability-Standards. Ein agiles Mindset, hohes...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_051",
+    "golden_id": "golden_109",
     "kind": "skill",
     "key": "devops",
     "reason": "spot-check",
     "a": {
       "skill_id": "devops",
       "requirement": "required",
-      "raw_text": "DevOps-Prozessen"
+      "raw_text": "Know-how in DevOps-Prozessen"
     },
     "b": {
       "skill_id": "devops",
       "requirement": "required",
-      "raw_text": "DevOps-Prozessen"
+      "raw_text": "Know-how in DevOps-Prozessen"
     },
-    "excerpt": "...(z. B. Copilot, Agentic Coding). Know-how in DevOps-Prozessen, CI/CD und Observability-Standards. Ein agiles Mindset,...",
+    "excerpt": "...Entwicklungsansätzen (z. B. Copilot, Agentic Coding). Know-how in DevOps-Prozessen, CI/CD und Observability-Standards. Ein agiles Mindset,...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_051",
+    "golden_id": "golden_109",
     "kind": "skill",
     "key": "docker",
     "reason": "spot-check",
     "a": {
       "skill_id": "docker",
       "requirement": "required",
-      "raw_text": "Kubernetes, Docker und idealerweise Cloud Foundry"
+      "raw_text": "Kubernetes, Docker und idealerweise"
     },
     "b": {
       "skill_id": "docker",
       "requirement": "required",
-      "raw_text": "Kubernetes, Docker und idealerweise Cloud Foundry"
+      "raw_text": "Kubernetes, Docker und idealerweise"
     },
-    "excerpt": "...Fundierte Kenntnisse in Cloud-nativen Architekturen, Kubernetes, Docker und idealerweise Cloud Foundry. Erfahrung mit Microservices, RESTful APIs sowie...",
+    "excerpt": "...Fundierte Kenntnisse in Cloud-nativen Architekturen, Kubernetes, Docker und idealerweise Cloud Foundry. Erfahrung mit Microservices, RESTful APIs...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_051",
+    "golden_id": "golden_109",
     "kind": "skill",
-    "key": "github-copilot",
+    "key": "frontend-development",
     "reason": "spot-check",
     "a": {
-      "skill_id": "github-copilot",
+      "skill_id": "frontend-development",
       "requirement": "required",
-      "raw_text": "(z. B. Copilot, Agentic Coding)"
+      "raw_text": "im Frontend mit Angular"
     },
     "b": {
-      "skill_id": "github-copilot",
+      "skill_id": "frontend-development",
       "requirement": "required",
-      "raw_text": "(z. B. Copilot, Agentic Coding)"
+      "raw_text": "im Frontend mit Angular"
     },
-    "excerpt": "...im Einsatz von AI-gestützten Entwicklungsansätzen (z. B. Copilot, Agentic Coding). Know-how in DevOps-Prozessen, CI/CD und...",
+    "excerpt": "...in der Softwareentwicklung mit Java (Spring Boot) sowie im Frontend mit Angular. Fundierte Kenntnisse in Cloud-nativen Architekturen,...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_051",
+    "golden_id": "golden_109",
     "kind": "skill",
     "key": "java",
     "reason": "spot-check",
@@ -1489,26 +1780,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_051",
-    "kind": "skill",
-    "key": "kubernetes",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "kubernetes",
-      "requirement": "required",
-      "raw_text": "Cloud-nativen Architekturen, Kubernetes"
-    },
-    "b": {
-      "skill_id": "kubernetes",
-      "requirement": "required",
-      "raw_text": "Cloud-nativen Architekturen, Kubernetes"
-    },
-    "excerpt": "...sowie im Frontend mit Angular. Fundierte Kenntnisse in Cloud-nativen Architekturen, Kubernetes, Docker und idealerweise Cloud Foundry. Erfahrung mit...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_051",
+    "golden_id": "golden_109",
     "kind": "skill",
     "key": "microservices",
     "reason": "spot-check",
@@ -1527,7 +1799,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_051",
+    "golden_id": "golden_109",
     "kind": "skill",
     "key": "observability",
     "reason": "spot-check",
@@ -1546,7 +1818,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_051",
+    "golden_id": "golden_109",
     "kind": "skill",
     "key": "software-architecture",
     "reason": "spot-check",
@@ -1565,26 +1837,45 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_051",
+    "golden_id": "golden_109",
     "kind": "skill",
     "key": "software-engineering",
     "reason": "spot-check",
     "a": {
       "skill_id": "software-engineering",
       "requirement": "required",
-      "raw_text": "Erfahrung in der Softwareentwicklung"
+      "raw_text": "Mehrjährige Erfahrung in der Softwareentwicklung"
     },
     "b": {
       "skill_id": "software-engineering",
       "requirement": "required",
-      "raw_text": "Erfahrung in der Softwareentwicklung"
+      "raw_text": "Mehrjährige Erfahrung in der Softwareentwicklung"
     },
-    "excerpt": "...von Best Practices. Das bringst du mit Mehrjährige Erfahrung in der Softwareentwicklung mit Java (Spring Boot) sowie im Frontend mit Angular....",
+    "excerpt": "...Weiterentwicklung von Best Practices. Das bringst du mit Mehrjährige Erfahrung in der Softwareentwicklung mit Java (Spring Boot) sowie im Frontend mit Angular....",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_052",
+    "golden_id": "golden_109",
+    "kind": "skill",
+    "key": "spring-boot",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "spring-boot",
+      "requirement": "required",
+      "raw_text": "Java (Spring Boot) sowie im Frontend"
+    },
+    "b": {
+      "skill_id": "spring-boot",
+      "requirement": "required",
+      "raw_text": "Java (Spring Boot) sowie im Frontend"
+    },
+    "excerpt": "...mit Mehrjährige Erfahrung in der Softwareentwicklung mit Java (Spring Boot) sowie im Frontend mit Angular. Fundierte Kenntnisse in Cloud-nativen...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_110",
     "kind": "attribute",
     "key": "german",
     "reason": "spot-check",
@@ -1603,45 +1894,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_052",
-    "kind": "attribute",
-    "key": "seniority",
-    "reason": "spot-check",
-    "a": {
-      "seniority": null,
-      "seniority_basis": null,
-      "seniority_signal": null
-    },
-    "b": {
-      "seniority": null,
-      "seniority_basis": null,
-      "seniority_signal": null
-    },
-    "excerpt": "AI Engineer – KI-Enablement & Solutions (m/w/d)",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_052",
-    "kind": "skill",
-    "key": "agents",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "agents",
-      "requirement": "required",
-      "raw_text": "KI-Lösungen (Agenten"
-    },
-    "b": {
-      "skill_id": "agents",
-      "requirement": "required",
-      "raw_text": "KI-Lösungen (Agenten"
-    },
-    "excerpt": "...in der Entwicklung, Umsetzung und im Betrieb von KI-Lösungen (Agenten, Workflows, API-Integrationen) * Anwenderkenntnisse in...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_052",
+    "golden_id": "golden_110",
     "kind": "skill",
     "key": "apis",
     "reason": "spot-check",
@@ -1660,45 +1913,47 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_052",
-    "kind": "skill",
-    "key": "data-privacy-and-security",
+    "golden_id": "golden_111",
+    "kind": "attribute",
+    "key": "degree",
     "reason": "spot-check",
     "a": {
-      "skill_id": "data-privacy-and-security",
-      "requirement": "required",
-      "raw_text": "Datenschutzkonzepten und Informationssicherheit"
+      "degree": null,
+      "degree_requirement": null,
+      "degree_or_equivalent": false,
+      "degree_signal": null
     },
     "b": {
-      "skill_id": "data-privacy-and-security",
-      "requirement": "required",
-      "raw_text": "Datenschutzkonzepten und Informationssicherheit"
+      "degree": null,
+      "degree_requirement": null,
+      "degree_or_equivalent": false,
+      "degree_signal": null
     },
-    "excerpt": "...Agenten-Orchestrierung) * Praktische Berührungen mit Datenschutzkonzepten und Informationssicherheit, idealerweise in regulierten Umfeldern (z. B....",
+    "excerpt": "Senior DevOps Engineer mit KI- und Security-Erfahrung (m/w/d) ARBEITNEHMERÜBERLASSUNG",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_052",
-    "kind": "skill",
-    "key": "prompt-engineering",
+    "golden_id": "golden_111",
+    "kind": "attribute",
+    "key": "german",
     "reason": "spot-check",
     "a": {
-      "skill_id": "prompt-engineering",
-      "requirement": "required",
-      "raw_text": "Prompt Engineering"
+      "german": "required",
+      "german_basis": "inferred",
+      "german_signal": null
     },
     "b": {
-      "skill_id": "prompt-engineering",
-      "requirement": "required",
-      "raw_text": "Prompt Engineering"
+      "german": "required",
+      "german_basis": "inferred",
+      "german_signal": null
     },
-    "excerpt": "...Studio, Power Automate, n8n) * Erweitertes Know-how im Prompt Engineering für den Enterprise-Einsatz (Systemprompts,...",
+    "excerpt": "Senior DevOps Engineer mit KI- und Security-Erfahrung (m/w/d) ARBEITNEHMERÜBERLASSUNG",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_053",
+    "golden_id": "golden_111",
     "kind": "skill",
     "key": "cybersecurity",
     "reason": "spot-check",
@@ -1717,45 +1972,47 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_053",
+    "golden_id": "golden_111",
     "kind": "skill",
     "key": "devops",
     "reason": "spot-check",
     "a": {
       "skill_id": "devops",
       "requirement": "required",
-      "raw_text": "Fundierte DevOps-"
+      "raw_text": "Fundierte DevOps- und Cloud-Erfahrung"
     },
     "b": {
       "skill_id": "devops",
       "requirement": "required",
-      "raw_text": "Fundierte DevOps-"
+      "raw_text": "Fundierte DevOps- und Cloud-Erfahrung"
     },
-    "excerpt": "...ein selbst technisch umgesetztes KI-Projekt** - Fundierte DevOps- und Cloud-Erfahrung - Praktische Erfahrung im Bereich...",
+    "excerpt": "...ein selbst technisch umgesetztes KI-Projekt** - Fundierte DevOps- und Cloud-Erfahrung - Praktische Erfahrung im Bereich IT-Security -...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_054",
+    "golden_id": "golden_112",
     "kind": "attribute",
-    "key": "seniority",
+    "key": "degree",
     "reason": "spot-check",
     "a": {
-      "seniority": "mid",
-      "seniority_basis": "inferred",
-      "seniority_signal": "Mindestens drei Jahre Erfahrung in der Softwareentwicklung mit Python"
+      "degree": "bachelor",
+      "degree_requirement": "required",
+      "degree_or_equivalent": true,
+      "degree_signal": "ein Studium der Data Science, Informatik, Mathematik oder eine vergleichbare Qualifikation mit entsprechender Berufserfahrung"
     },
     "b": {
-      "seniority": "mid",
-      "seniority_basis": "inferred",
-      "seniority_signal": "Mindestens drei Jahre Erfahrung in der Softwareentwicklung mit Python"
+      "degree": "bachelor",
+      "degree_requirement": "required",
+      "degree_or_equivalent": true,
+      "degree_signal": "ein Studium der Data Science, Informatik, Mathematik oder eine vergleichbare Qualifikation mit entsprechender Berufserfahrung"
     },
-    "excerpt": "...oder halten einen Fachvortrag. ## Was Sie mitbringen - Mindestens drei Jahre Erfahrung in der Softwareentwicklung mit Python, davon mindestens ein Jahr in KI-Projekten, die produktiv...",
+    "excerpt": "...Jahr in KI-Projekten, die produktiv gegangen sind. Dazu ein Studium der Data Science, Informatik, Mathematik oder eine vergleichbare Qualifikation mit entsprechender Berufserfahrung. - Fundierte Python-Kenntnisse, von objektorientierter...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_054",
+    "golden_id": "golden_112",
     "kind": "skill",
     "key": "aws",
     "reason": "spot-check",
@@ -1774,7 +2031,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_054",
+    "golden_id": "golden_112",
     "kind": "skill",
     "key": "azure",
     "reason": "spot-check",
@@ -1793,7 +2050,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_054",
+    "golden_id": "golden_112",
+    "kind": "skill",
+    "key": "cloud",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "mindestens einer Cloud-Plattform"
+    },
+    "b": {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "mindestens einer Cloud-Plattform"
+    },
+    "excerpt": "...SQL und unterschiedlichen Datenbanken. Dazu Erfahrung mit mindestens einer Cloud-Plattform wie Microsoft Azure, AWS oder Google Cloud. - Freude am...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_112",
     "kind": "skill",
     "key": "gcp",
     "reason": "spot-check",
@@ -1812,26 +2088,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_054",
-    "kind": "skill",
-    "key": "kubernetes",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "kubernetes",
-      "requirement": "nice_to_have",
-      "raw_text": "Kubernetes"
-    },
-    "b": {
-      "skill_id": "kubernetes",
-      "requirement": "nice_to_have",
-      "raw_text": "Kubernetes"
-    },
-    "excerpt": "...Document Intelligence), Agentic AI oder DevSecOps mit Kubernetes und Terraform. ## Warum zur PTA? - KI als zentrale...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_054",
+    "golden_id": "golden_112",
     "kind": "skill",
     "key": "langchain",
     "reason": "spot-check",
@@ -1850,7 +2107,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_054",
+    "golden_id": "golden_112",
     "kind": "skill",
     "key": "llms",
     "reason": "spot-check",
@@ -1869,26 +2126,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_054",
+    "golden_id": "golden_112",
     "kind": "skill",
-    "key": "prompt-engineering",
+    "key": "python",
     "reason": "spot-check",
     "a": {
-      "skill_id": "prompt-engineering",
+      "skill_id": "python",
       "requirement": "required",
-      "raw_text": "Prompt Engineering"
+      "raw_text": "Fundierte Python-Kenntnisse"
     },
     "b": {
-      "skill_id": "prompt-engineering",
+      "skill_id": "python",
       "requirement": "required",
-      "raw_text": "Prompt Engineering"
+      "raw_text": "Fundierte Python-Kenntnisse"
     },
-    "excerpt": "...beeinflussen. - Praxis mit großen Sprachmodellen: Prompt Engineering, Retrieval-Augmented Generation und die Anbindung von...",
+    "excerpt": "...Qualifikation mit entsprechender Berufserfahrung. - Fundierte Python-Kenntnisse, von objektorientierter Programmierung über automatisierte...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_054",
+    "golden_id": "golden_112",
     "kind": "skill",
     "key": "rag",
     "reason": "spot-check",
@@ -1907,7 +2164,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_054",
+    "golden_id": "golden_112",
+    "kind": "skill",
+    "key": "software-engineering",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Softwareentwicklung"
+    },
+    "b": {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Softwareentwicklung"
+    },
+    "excerpt": "...Sie mitbringen - Mindestens drei Jahre Erfahrung in der Softwareentwicklung mit Python, davon mindestens ein Jahr in KI-Projekten, die...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_112",
     "kind": "skill",
     "key": "sql",
     "reason": "spot-check",
@@ -1926,66 +2202,64 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_054",
+    "golden_id": "golden_112",
     "kind": "skill",
-    "key": "testing",
+    "key": "terraform",
     "reason": "spot-check",
     "a": {
-      "skill_id": "testing",
-      "requirement": "required",
-      "raw_text": "automatisierte Tests"
+      "skill_id": "terraform",
+      "requirement": "nice_to_have",
+      "raw_text": "Terraform"
     },
     "b": {
-      "skill_id": "testing",
-      "requirement": "required",
-      "raw_text": "automatisierte Tests"
+      "skill_id": "terraform",
+      "requirement": "nice_to_have",
+      "raw_text": "Terraform"
     },
-    "excerpt": "...von objektorientierter Programmierung über automatisierte Tests bis zum Verständnis, wie Datenstrukturen, Algorithmen und...",
+    "excerpt": "...Agentic AI oder DevSecOps mit Kubernetes und Terraform. ## Warum zur PTA? - KI als zentrale Strategie: KI ist...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_055",
-    "kind": "attribute",
-    "key": "degree",
-    "reason": "spot-check",
-    "a": {
-      "degree": "bachelor",
-      "degree_requirement": "required",
-      "degree_or_equivalent": true,
-      "degree_signal": "abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz"
-    },
-    "b": {
-      "degree": "bachelor",
-      "degree_requirement": "required",
-      "degree_or_equivalent": true,
-      "degree_signal": "abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz"
-    },
-    "excerpt": "...Gesundheitsmanagement deine Gesundheit Du hast ein abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz hast Erfahrung im Bereich Public Cloud (AWS,...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_055",
+    "golden_id": "golden_113",
     "kind": "skill",
-    "key": "azure",
+    "key": "ci-cd",
     "reason": "spot-check",
     "a": {
-      "skill_id": "azure",
+      "skill_id": "ci-cd",
       "requirement": "required",
-      "raw_text": "Azure"
+      "raw_text": "Terraform (CI/CD-Pipeline)"
     },
     "b": {
-      "skill_id": "azure",
+      "skill_id": "ci-cd",
       "requirement": "required",
-      "raw_text": "Azure"
+      "raw_text": "Terraform (CI/CD-Pipeline)"
     },
-    "excerpt": "...hast Erfahrung im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) verfügst über...",
+    "excerpt": "...Aufbau geeigneter Infrastruktur-Komponenten auf Basis von Terraform (CI/CD-Pipeline) bist vertraut mit dem Einsatz von Python...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_055",
+    "golden_id": "golden_113",
+    "kind": "skill",
+    "key": "cloud",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Erfahrung im Bereich Public Cloud"
+    },
+    "b": {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Erfahrung im Bereich Public Cloud"
+    },
+    "excerpt": "...eine vergleichbare Qualifikation mit IT-Kompetenz hast Erfahrung im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC)...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_113",
     "kind": "skill",
     "key": "gcp",
     "reason": "spot-check",
@@ -2004,45 +2278,45 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_055",
+    "golden_id": "golden_113",
     "kind": "skill",
     "key": "infrastructure-as-code",
     "reason": "spot-check",
     "a": {
       "skill_id": "infrastructure-as-code",
       "requirement": "required",
-      "raw_text": "IaC"
+      "raw_text": "Terraform (IaC)"
     },
     "b": {
       "skill_id": "infrastructure-as-code",
       "requirement": "required",
-      "raw_text": "IaC"
+      "raw_text": "Terraform (IaC)"
     },
-    "excerpt": "...Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) verfügst über erste Erfahrungen in der Entwicklung,...",
+    "excerpt": "...im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) verfügst über erste Erfahrungen in der Entwicklung,...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_055",
+    "golden_id": "golden_113",
     "kind": "skill",
     "key": "llms",
     "reason": "spot-check",
     "a": {
       "skill_id": "llms",
       "requirement": "required",
-      "raw_text": "Generative AI-Anwendungen"
+      "raw_text": "Integration von Generative AI-Anwendungen"
     },
     "b": {
       "skill_id": "llms",
       "requirement": "required",
-      "raw_text": "Generative AI-Anwendungen"
+      "raw_text": "Integration von Generative AI-Anwendungen"
     },
-    "excerpt": "...in der Entwicklung, Bereitstellung und Integration von Generative AI-Anwendungen im Unternehmenskontext, durch den Aufbau geeigneter...",
+    "excerpt": "...erste Erfahrungen in der Entwicklung, Bereitstellung und Integration von Generative AI-Anwendungen im Unternehmenskontext, durch den Aufbau geeigneter...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_055",
+    "golden_id": "golden_113",
     "kind": "skill",
     "key": "terraform",
     "reason": "spot-check",
@@ -2061,83 +2335,64 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_056",
-    "kind": "attribute",
-    "key": "german",
-    "reason": "spot-check",
-    "a": {
-      "german": null,
-      "german_basis": null,
-      "german_signal": null
-    },
-    "b": {
-      "german": null,
-      "german_basis": null,
-      "german_signal": null
-    },
-    "excerpt": "Software Engineering /Data and AI Engineering/ IT-Management Consultant (2026/27 Graduate) (m/f/d)",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_056",
-    "kind": "skill",
-    "key": "software-engineering",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "software-engineering",
-      "requirement": "required",
-      "raw_text": "full-time in Software Engineering"
-    },
-    "b": {
-      "skill_id": "software-engineering",
-      "requirement": "required",
-      "raw_text": "full-time in Software Engineering"
-    },
-    "excerpt": "...experience through internships, working student roles or full-time in Software Engineering, Data Engineering or IT-Management with modern...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_057",
+    "golden_id": "golden_114",
     "kind": "attribute",
     "key": "seniority",
     "reason": "spot-check",
     "a": {
-      "seniority": "mid",
-      "seniority_basis": "inferred",
-      "seniority_signal": "3+ years in machine learning or applied AI engineering"
+      "seniority": "junior",
+      "seniority_basis": "stated",
+      "seniority_signal": "(2026/27 Graduate)"
     },
     "b": {
-      "seniority": "mid",
-      "seniority_basis": "inferred",
-      "seniority_signal": "3+ years in machine learning or applied AI engineering"
+      "seniority": "junior",
+      "seniority_basis": "stated",
+      "seniority_signal": "(2026/27 Graduate)"
     },
-    "excerpt": "...together with the engineering team What you bring • 3+ years in machine learning or applied AI engineering • Hands-on experience with LLMs, retrieval and evaluation...",
+    "excerpt": ".../Data and AI Engineering/ IT-Management Consultant (2026/27 Graduate) (m/f/d) About us Netlight is an international digital...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_057",
-    "kind": "skill",
-    "key": "evaluation",
+    "golden_id": "golden_115",
+    "kind": "attribute",
+    "key": "german",
     "reason": "spot-check",
     "a": {
-      "skill_id": "evaluation",
-      "requirement": "required",
-      "raw_text": "evaluation in production"
+      "german": "nice_to_have",
+      "german_basis": "stated",
+      "german_signal": "German is a plus"
     },
     "b": {
-      "skill_id": "evaluation",
-      "requirement": "required",
-      "raw_text": "evaluation in production"
+      "german": "nice_to_have",
+      "german_basis": "stated",
+      "german_signal": "German is a plus"
     },
-    "excerpt": "...engineering • Hands-on experience with LLMs, retrieval and evaluation in production • Strong Python • Experience with document processing or...",
+    "excerpt": "...document processing or NLP is a plus • Fluent English; German is a plus What we offer • Hybrid setup: office in Hamburg plus...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_057",
+    "golden_id": "golden_115",
+    "kind": "skill",
+    "key": "llms",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Hands-on experience with LLMs"
+    },
+    "b": {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Hands-on experience with LLMs"
+    },
+    "excerpt": "...3+ years in machine learning or applied AI engineering • Hands-on experience with LLMs, retrieval and evaluation in production • Strong Python •...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_115",
     "kind": "skill",
     "key": "machine-learning",
     "reason": "spot-check",
@@ -2156,47 +2411,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_058",
-    "kind": "attribute",
-    "key": "degree",
+    "golden_id": "golden_115",
+    "kind": "skill",
+    "key": "python",
     "reason": "spot-check",
     "a": {
-      "degree": "bachelor",
-      "degree_requirement": "required",
-      "degree_or_equivalent": false,
-      "degree_signal": "abgeschlossenes Studium in Maschinenbau, Produktionstechnik, Luft- und Raumfahrttechnik oder einer vergleichbaren Fachrichtung"
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Strong Python"
     },
     "b": {
-      "degree": "bachelor",
-      "degree_requirement": "required",
-      "degree_or_equivalent": false,
-      "degree_signal": "abgeschlossenes Studium in Maschinenbau, Produktionstechnik, Luft- und Raumfahrttechnik oder einer vergleichbaren Fachrichtung"
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Strong Python"
     },
-    "excerpt": "...und AI ### Be our forward thinker **DU…** - hast ein abgeschlossenes Studium in Maschinenbau, Produktionstechnik, Luft- und Raumfahrttechnik oder einer vergleichbaren Fachrichtung - verfügst über fundierte Kenntnisse im Bereich Artificial...",
+    "excerpt": "...with LLMs, retrieval and evaluation in production • Strong Python • Experience with document processing or NLP is a plus •...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_058",
-    "kind": "attribute",
-    "key": "german",
-    "reason": "spot-check",
-    "a": {
-      "german": "required",
-      "german_basis": "stated",
-      "german_signal": "sehr gute Deutsch- und Englischkenntnisse"
-    },
-    "b": {
-      "german": "required",
-      "german_basis": "stated",
-      "german_signal": "sehr gute Deutsch- und Englischkenntnisse"
-    },
-    "excerpt": "...und gerne in interdisziplinären Teams - verfügst über sehr gute Deutsch- und Englischkenntnisse Wir wertschätzen Vielfalt und begrüßen daher alle...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_059",
+    "golden_id": "golden_117",
     "kind": "attribute",
     "key": "degree",
     "reason": "spot-check",
@@ -2217,7 +2451,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_060",
+    "golden_id": "golden_117",
+    "kind": "skill",
+    "key": "azure-ai-foundry",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "azure-ai-foundry",
+      "requirement": "nice_to_have",
+      "raw_text": "Interesse an Microsoft Foundry"
+    },
+    "b": {
+      "skill_id": "azure-ai-foundry",
+      "requirement": "nice_to_have",
+      "raw_text": "Interesse an Microsoft Foundry"
+    },
+    "excerpt": "...SQL DB, Data Lake Storage, Databricks, Functions sowie Interesse an Microsoft Foundry • Starkes Interesse an der Entwicklung von DWH / Data Lake...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_118",
     "kind": "attribute",
     "key": "german",
     "reason": "spot-check",
@@ -2236,7 +2489,7 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_060",
+    "golden_id": "golden_118",
     "kind": "attribute",
     "key": "seniority",
     "reason": "spot-check",
@@ -2255,45 +2508,26 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_060",
+    "golden_id": "golden_118",
     "kind": "skill",
-    "key": "ci-cd",
+    "key": "access-control",
     "reason": "spot-check",
     "a": {
-      "skill_id": "ci-cd",
+      "skill_id": "access-control",
       "requirement": "required",
-      "raw_text": "CI/CD, Container-Technologien"
+      "raw_text": "IAM/RBAC"
     },
     "b": {
-      "skill_id": "ci-cd",
+      "skill_id": "access-control",
       "requirement": "required",
-      "raw_text": "CI/CD, Container-Technologien"
+      "raw_text": "IAM/RBAC"
     },
-    "excerpt": "...Umfangreiche Kenntnisse in Cloud-Infrastrukturen, CI/CD, Container-Technologien, automatisierten Deployments sowie Infrastructure as Code...",
+    "excerpt": "...für Kubernetes- und Cloud-Security, insbesondere IAM/RBAC, Network Policies, Secrets Management, TLS/Zertifikate,...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_060",
-    "kind": "skill",
-    "key": "cloud",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "cloud",
-      "requirement": "required",
-      "raw_text": "Kenntnisse in Cloud-Infrastrukturen"
-    },
-    "b": {
-      "skill_id": "cloud",
-      "requirement": "required",
-      "raw_text": "Kenntnisse in Cloud-Infrastrukturen"
-    },
-    "excerpt": "...STACKIT SKE, AKS, EKS, GKE oder OpenShift - Umfangreiche Kenntnisse in Cloud-Infrastrukturen, CI/CD, Container-Technologien, automatisierten...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_060",
+    "golden_id": "golden_118",
     "kind": "skill",
     "key": "gitops",
     "reason": "spot-check",
@@ -2312,83 +2546,83 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_060",
-    "kind": "skill",
-    "key": "helm",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "helm",
-      "requirement": "required",
-      "raw_text": "Helm"
-    },
-    "b": {
-      "skill_id": "helm",
-      "requirement": "required",
-      "raw_text": "Helm"
-    },
-    "excerpt": "...as Code und GitOps, z. B. Terraform, Argo CD, Helm oder Kustomize - Erfahrung mit Monitoring, Logging und...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_060",
+    "golden_id": "golden_118",
     "kind": "skill",
     "key": "infrastructure-as-code",
     "reason": "spot-check",
     "a": {
       "skill_id": "infrastructure-as-code",
       "requirement": "required",
-      "raw_text": "sowie Infrastructure as Code"
+      "raw_text": "Infrastructure as Code und GitOps, z. B."
     },
     "b": {
       "skill_id": "infrastructure-as-code",
       "requirement": "required",
-      "raw_text": "sowie Infrastructure as Code"
+      "raw_text": "Infrastructure as Code und GitOps, z. B."
     },
-    "excerpt": "...CI/CD, Container-Technologien, automatisierten Deployments sowie Infrastructure as Code und GitOps, z. B. Terraform, Argo CD, Helm oder...",
+    "excerpt": "...Container-Technologien, automatisierten Deployments sowie Infrastructure as Code und GitOps, z. B. Terraform, Argo CD, Helm oder Kustomize - Erfahrung mit...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_060",
+    "golden_id": "golden_118",
     "kind": "skill",
-    "key": "postgresql",
+    "key": "mongodb",
     "reason": "spot-check",
     "a": {
-      "skill_id": "postgresql",
+      "skill_id": "mongodb",
       "requirement": "nice_to_have",
-      "raw_text": "idealerweise mit dem Betrieb zentraler Plattform- und Datenservices wie PostgreSQL"
+      "raw_text": "idealerweise mit dem Betrieb zentraler Plattform- und Datenservices wie PostgreSQL oder MongoDB"
     },
     "b": {
-      "skill_id": "postgresql",
+      "skill_id": "mongodb",
       "requirement": "nice_to_have",
-      "raw_text": "idealerweise mit dem Betrieb zentraler Plattform- und Datenservices wie PostgreSQL"
+      "raw_text": "idealerweise mit dem Betrieb zentraler Plattform- und Datenservices wie PostgreSQL oder MongoDB"
     },
-    "excerpt": "...Erfahrung mit Monitoring, Logging und Alerting sowie idealerweise mit dem Betrieb zentraler Plattform- und Datenservices wie PostgreSQL oder MongoDB - Gutes Verständnis für Kubernetes- und...",
+    "excerpt": "...Erfahrung mit Monitoring, Logging und Alerting sowie idealerweise mit dem Betrieb zentraler Plattform- und Datenservices wie PostgreSQL oder MongoDB - Gutes Verständnis für Kubernetes- und Cloud-Security,...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_060",
+    "golden_id": "golden_118",
     "kind": "skill",
-    "key": "terraform",
+    "key": "openshift",
     "reason": "spot-check",
     "a": {
-      "skill_id": "terraform",
-      "requirement": "required",
-      "raw_text": "z. B. Terraform"
+      "skill_id": "openshift",
+      "requirement": "nice_to_have",
+      "raw_text": "idealerweise mit Managed Kubernetes wie STACKIT SKE, AKS, EKS, GKE oder OpenShift"
     },
     "b": {
-      "skill_id": "terraform",
-      "requirement": "required",
-      "raw_text": "z. B. Terraform"
+      "skill_id": "openshift",
+      "requirement": "nice_to_have",
+      "raw_text": "idealerweise mit Managed Kubernetes wie STACKIT SKE, AKS, EKS, GKE oder OpenShift"
     },
-    "excerpt": "...Deployments sowie Infrastructure as Code und GitOps, z. B. Terraform, Argo CD, Helm oder Kustomize - Erfahrung mit Monitoring,...",
+    "excerpt": "...im Aufbau und Betrieb von Kubernetes-Plattformen, idealerweise mit Managed Kubernetes wie STACKIT SKE, AKS, EKS, GKE oder OpenShift - Umfangreiche Kenntnisse in Cloud-Infrastrukturen, CI/CD,...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_061",
+    "golden_id": "golden_118",
+    "kind": "skill",
+    "key": "secrets-management",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "secrets-management",
+      "requirement": "required",
+      "raw_text": "Network Policies, Secrets Management"
+    },
+    "b": {
+      "skill_id": "secrets-management",
+      "requirement": "required",
+      "raw_text": "Network Policies, Secrets Management"
+    },
+    "excerpt": "...für Kubernetes- und Cloud-Security, insbesondere IAM/RBAC, Network Policies, Secrets Management, TLS/Zertifikate, Container-/Image-Security, Audit Logging...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_119",
     "kind": "attribute",
     "key": "degree",
     "reason": "spot-check",
@@ -2396,39 +2630,20 @@
       "degree": "bachelor",
       "degree_requirement": "required",
       "degree_or_equivalent": true,
-      "degree_signal": "abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation"
+      "degree_signal": "abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz"
     },
     "b": {
       "degree": "bachelor",
       "degree_requirement": "required",
       "degree_or_equivalent": true,
-      "degree_signal": "abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation"
+      "degree_signal": "abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz"
     },
-    "excerpt": "...deine Gesundheit **Du** - hast ein abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz - hast einschlägige Erfahrung im Bereich...",
+    "excerpt": "...deine Gesundheit **Du** - hast ein abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz - hast einschlägige Erfahrung im Bereich Public Cloud...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_061",
-    "kind": "skill",
-    "key": "aws",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "aws",
-      "requirement": "required",
-      "raw_text": "AWS"
-    },
-    "b": {
-      "skill_id": "aws",
-      "requirement": "required",
-      "raw_text": "AWS"
-    },
-    "excerpt": "...hast einschlägige Erfahrung im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) - verfügst...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_061",
+    "golden_id": "golden_119",
     "kind": "skill",
     "key": "azure",
     "reason": "spot-check",
@@ -2447,74 +2662,74 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_061",
-    "kind": "skill",
-    "key": "ci-cd",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "ci-cd",
-      "requirement": "required",
-      "raw_text": "CI/CD-Pipeline"
-    },
-    "b": {
-      "skill_id": "ci-cd",
-      "requirement": "required",
-      "raw_text": "CI/CD-Pipeline"
-    },
-    "excerpt": "...Infrastruktur-Komponenten auf Basis von Terraform (CI/CD-Pipeline) - bringst Erfahrungen im Umgang mit...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_061",
+    "golden_id": "golden_119",
     "kind": "skill",
     "key": "cloud",
     "reason": "spot-check",
     "a": {
       "skill_id": "cloud",
       "requirement": "required",
-      "raw_text": "Public Cloud"
+      "raw_text": "Erfahrung im Bereich Public Cloud"
     },
     "b": {
       "skill_id": "cloud",
       "requirement": "required",
-      "raw_text": "Public Cloud"
+      "raw_text": "Erfahrung im Bereich Public Cloud"
     },
-    "excerpt": "Public Cloud Engineer (m/w/d) Schwerpunkt Generative AI ### **Das sind...",
+    "excerpt": "...Qualifikation mit IT-Kompetenz - hast einschlägige Erfahrung im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) -...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_061",
+    "golden_id": "golden_119",
     "kind": "skill",
-    "key": "python",
+    "key": "gcp",
     "reason": "spot-check",
     "a": {
-      "skill_id": "python",
-      "requirement": "required",
-      "raw_text": "Python als Programmiersprache"
+      "skill_id": "gcp",
+      "requirement": "nice_to_have",
+      "raw_text": "vorzugsweise GCP"
     },
     "b": {
-      "skill_id": "python",
-      "requirement": "required",
-      "raw_text": "Python als Programmiersprache"
+      "skill_id": "gcp",
+      "requirement": "nice_to_have",
+      "raw_text": "vorzugsweise GCP"
     },
-    "excerpt": "...oder Bitbucket mit - bist vertraut mit dem Einsatz von Python als Programmiersprache - verfügst über praktische Erfahrungen mit agilen Methoden...",
+    "excerpt": "...Erfahrung im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC) - verfügst über erste Erfahrungen in...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_061",
+    "golden_id": "golden_119",
     "kind": "skill",
-    "key": "terraform",
+    "key": "git",
     "reason": "spot-check",
     "a": {
-      "skill_id": "terraform",
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "Versionskontrollsystemen wie GitLab, GitHub oder Bitbucket"
+    },
+    "b": {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "Versionskontrollsystemen wie GitLab, GitHub oder Bitbucket"
+    },
+    "excerpt": "...(CI/CD-Pipeline) - bringst Erfahrungen im Umgang mit Versionskontrollsystemen wie GitLab, GitHub oder Bitbucket mit - bist vertraut mit dem Einsatz von Python als...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_119",
+    "kind": "skill",
+    "key": "infrastructure-as-code",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "infrastructure-as-code",
       "requirement": "required",
       "raw_text": "Terraform (IaC)"
     },
     "b": {
-      "skill_id": "terraform",
+      "skill_id": "infrastructure-as-code",
       "requirement": "required",
       "raw_text": "Terraform (IaC)"
     },
@@ -2523,7 +2738,47 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_062",
+    "golden_id": "golden_119",
+    "kind": "skill",
+    "key": "llms",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Generative AI-Anwendungen"
+    },
+    "b": {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Generative AI-Anwendungen"
+    },
+    "excerpt": "...in der Entwicklung, Bereitstellung und Integration von Generative AI-Anwendungen im Unternehmenskontext, durch den Aufbau geeigneter...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_120",
+    "kind": "attribute",
+    "key": "degree",
+    "reason": "spot-check",
+    "a": {
+      "degree": "bachelor",
+      "degree_requirement": "required",
+      "degree_or_equivalent": true,
+      "degree_signal": "abgeschlossenes Studium der Informatik, Data Science, Mathematik oder eine vergleichbare Qualifikation"
+    },
+    "b": {
+      "degree": "bachelor",
+      "degree_requirement": "required",
+      "degree_or_equivalent": true,
+      "degree_signal": "abgeschlossenes Studium der Informatik, Data Science, Mathematik oder eine vergleichbare Qualifikation"
+    },
+    "excerpt": "...AI-Use-Cases. Was dich auszeichnet * Du verfügst über ein abgeschlossenes Studium der Informatik, Data Science, Mathematik oder eine vergleichbare Qualifikation. * Als Microsoft Azure DevOps Spezialist gehören Azure...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_120",
     "kind": "attribute",
     "key": "german",
     "reason": "spot-check",
@@ -2542,26 +2797,64 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_062",
+    "golden_id": "golden_120",
     "kind": "skill",
-    "key": "azure",
+    "key": "azure-ai-foundry",
     "reason": "spot-check",
     "a": {
-      "skill_id": "azure",
-      "requirement": "required",
-      "raw_text": "Bereitstellung von Azure-Ressourcen"
+      "skill_id": "azure-ai-foundry",
+      "requirement": "nice_to_have",
+      "raw_text": "AI Foundry"
     },
     "b": {
-      "skill_id": "azure",
-      "requirement": "required",
-      "raw_text": "Bereitstellung von Azure-Ressourcen"
+      "skill_id": "azure-ai-foundry",
+      "requirement": "nice_to_have",
+      "raw_text": "AI Foundry"
     },
-    "excerpt": "...und Pflege von Infrastructure-as-Code-Projekten zur Bereitstellung von Azure-Ressourcen mit Terraform und Azure DevOps. * Idealerweise bringst du...",
+    "excerpt": "...dem Microsoft Azure AI Stack, insbesondere Azure OpenAI, AI Foundry, Cognitive Services, AI Search und Azure DevOps, mit. *...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_062",
+    "golden_id": "golden_120",
+    "kind": "skill",
+    "key": "azure-ai-search",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "azure-ai-search",
+      "requirement": "nice_to_have",
+      "raw_text": "AI Search"
+    },
+    "b": {
+      "skill_id": "azure-ai-search",
+      "requirement": "nice_to_have",
+      "raw_text": "AI Search"
+    },
+    "excerpt": "...insbesondere Azure OpenAI, AI Foundry, Cognitive Services, AI Search und Azure DevOps, mit. * Eine strukturierte,...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_120",
+    "kind": "skill",
+    "key": "git",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "Git"
+    },
+    "b": {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "Git"
+    },
+    "excerpt": "...sicher, wirtschaftlich und im Einklang mit der Digitalisierungs- und KI-Strategie erfolgen. * Darüber hinaus...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_120",
     "kind": "skill",
     "key": "infrastructure-as-code",
     "reason": "spot-check",
@@ -2580,78 +2873,78 @@
     "decision": "?"
   },
   {
-    "golden_id": "golden_062",
+    "golden_id": "golden_120",
+    "kind": "skill",
+    "key": "microsoft-entra-id",
+    "reason": "spot-check",
+    "a": {
+      "skill_id": "microsoft-entra-id",
+      "requirement": "required",
+      "raw_text": "Entra ID"
+    },
+    "b": {
+      "skill_id": "microsoft-entra-id",
+      "requirement": "required",
+      "raw_text": "Entra ID"
+    },
+    "excerpt": "...DevOps Spezialist gehören Azure DevOps, Git, Terraform, Entra ID, Key Vaults, Private Endpoints, Networking, Landing Zones...",
+    "problems": [],
+    "decision": "?"
+  },
+  {
+    "golden_id": "golden_120",
     "kind": "skill",
     "key": "networking",
     "reason": "spot-check",
     "a": {
       "skill_id": "networking",
       "requirement": "required",
-      "raw_text": "Networking"
+      "raw_text": "Private Endpoints, Networking"
     },
     "b": {
       "skill_id": "networking",
       "requirement": "required",
-      "raw_text": "Networking"
+      "raw_text": "Private Endpoints, Networking"
     },
-    "excerpt": "...Git, Terraform, Entra ID, Key Vaults, Private Endpoints, Networking, Landing Zones sowie Monitoring zu deinem täglichen...",
+    "excerpt": "...Azure DevOps, Git, Terraform, Entra ID, Key Vaults, Private Endpoints, Networking, Landing Zones sowie Monitoring zu deinem täglichen...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_062",
+    "golden_id": "golden_120",
     "kind": "skill",
     "key": "observability",
     "reason": "spot-check",
     "a": {
       "skill_id": "observability",
       "requirement": "required",
-      "raw_text": "sowie Monitoring"
+      "raw_text": "Monitoring"
     },
     "b": {
       "skill_id": "observability",
       "requirement": "required",
-      "raw_text": "sowie Monitoring"
+      "raw_text": "Monitoring"
     },
-    "excerpt": "...Key Vaults, Private Endpoints, Networking, Landing Zones sowie Monitoring zu deinem täglichen Handwerkszeug. * Zudem verfügst du...",
+    "excerpt": "...Vaults, Private Endpoints, Networking, Landing Zones sowie Monitoring zu deinem täglichen Handwerkszeug. * Zudem verfügst du...",
     "problems": [],
     "decision": "?"
   },
   {
-    "golden_id": "golden_062",
-    "kind": "skill",
-    "key": "rag",
-    "reason": "spot-check",
-    "a": {
-      "skill_id": "rag",
-      "requirement": "nice_to_have",
-      "raw_text": "RAG-Technologien"
-    },
-    "b": {
-      "skill_id": "rag",
-      "requirement": "nice_to_have",
-      "raw_text": "RAG-Technologien"
-    },
-    "excerpt": "...im Einsatz von Large Language Models (LLMs) sowie RAG-Technologien und -Architekturen sind von Vorteil. Was uns...",
-    "problems": [],
-    "decision": "?"
-  },
-  {
-    "golden_id": "golden_062",
+    "golden_id": "golden_120",
     "kind": "skill",
     "key": "terraform",
     "reason": "spot-check",
     "a": {
       "skill_id": "terraform",
       "requirement": "required",
-      "raw_text": "Azure-Ressourcen mit Terraform"
+      "raw_text": "Git, Terraform"
     },
     "b": {
       "skill_id": "terraform",
       "requirement": "required",
-      "raw_text": "Azure-Ressourcen mit Terraform"
+      "raw_text": "Git, Terraform"
     },
-    "excerpt": "...Infrastructure-as-Code-Projekten zur Bereitstellung von Azure-Ressourcen mit Terraform und Azure DevOps. * Idealerweise bringst du nachweisbare...",
+    "excerpt": "...Microsoft Azure DevOps Spezialist gehören Azure DevOps, Git, Terraform, Entra ID, Key Vaults, Private Endpoints, Networking,...",
     "problems": [],
     "decision": "?"
   }

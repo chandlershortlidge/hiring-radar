@@ -1,0 +1,112 @@
+{
+  "id": "golden_131",
+  "split": "dev",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Verhandlungssichere Deutsch-",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Abgeschlossenes IT-Studium oder vergleichbare Qualifikation",
+  "attrs_reviewed": true,
+  "source_sha256": "3ce5081f65d0627657a9a496444156f643dc654c8af21f885abccac62b49a434",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:ci-cd",
+    "skill:evaluation",
+    "skill:java",
+    "skill:llm-orchestration"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "#15245 Agentic AI Software Engineer (m/w/d)\n\n**Aufgaben:**\n\n- Entwicklung KI-gestützter Softwarelösungen und agentischer Workflows\n- Orchestrierung von KI-Agenten für Entwicklungs-, Test- und Betriebsprozesse\n- Gestaltung der Lösungsarchitektur und technischer Prozessregeln\n- Entwicklung und Qualitätssicherung von Softwarekomponenten und Generatoren\n- Aufbau und Pflege von Entwicklungsumgebungen und CI/CD-Pipelines\n- Prüfung und Optimierung KI-generierter Codes, Tests und Dokumentationen\n- Bewertung neuer KI-Technologien und Sicherstellung der Zukunftsfähigkeit der Lösungen\n- Enge Abstimmung mit Product Ownern und Entwicklungsteams\n\n**Anforderungen:**\n\n- Abgeschlossenes IT-Studium oder vergleichbare Qualifikation\n- Fundierte Erfahrung im Software Engineering, Architekturdesign und CI/CD\n- Praktische Programmierkenntnisse in Python, TypeScript oder Java\n- Erfahrung mit KI-Agenten und deren Orchestrierung\n- Praxis im Einsatz agentischer Entwicklungstools, z. B. Claude Code, Cursor oder vergleichbare Lösungen\n- Cloud-Erfahrung, idealerweise AWS, sowie Kenntnisse in Infrastructure as Code\n- Erfahrung im Data Engineering, idealerweise mit AWS Glue oder Lake Formation\n- Kenntnisse in der Bewertung und Qualitätssicherung KI-generierter Ergebnisse\n- Analytische, eigenständige und lösungsorientierte Arbeitsweise\n- Product Mindset sowie Team- und Kommunikationsfähigkeit\n- Verhandlungssichere Deutsch- und gute Englischkenntnisse\n\nAufgrund von Kundenvorgaben wird eine projektbezogene Anstellung vorausgesetzt.\n\nHaben Sie Zeit und Interesse an einem spannenden Projekt?\nDann freuen wir uns auf Ihre Kontaktaufnahme!",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "Erfahrung mit KI-Agenten"
+    },
+    {
+      "skill_id": "ai-developer-tooling",
+      "requirement": "required",
+      "raw_text": "agentischer Entwicklungstools"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "nice_to_have",
+      "raw_text": "idealerweise AWS"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD"
+    },
+    {
+      "skill_id": "claude-code",
+      "requirement": "required",
+      "raw_text": "Claude Code"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Cloud-Erfahrung"
+    },
+    {
+      "skill_id": "cursor",
+      "requirement": "required",
+      "raw_text": "Cursor"
+    },
+    {
+      "skill_id": "data-engineering",
+      "requirement": "required",
+      "raw_text": "Data Engineering"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "Bewertung und Qualitätssicherung KI-generierter Ergebnisse"
+    },
+    {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "required",
+      "raw_text": "Infrastructure as Code"
+    },
+    {
+      "skill_id": "java",
+      "requirement": "required",
+      "raw_text": "Java"
+    },
+    {
+      "skill_id": "llm-orchestration",
+      "requirement": "required",
+      "raw_text": "KI-Agenten und deren Orchestrierung"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python, TypeScript oder Java"
+    },
+    {
+      "skill_id": "software-architecture",
+      "requirement": "required",
+      "raw_text": "Architekturdesign"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Software Engineering"
+    },
+    {
+      "skill_id": "typescript",
+      "requirement": "required",
+      "raw_text": "Python, TypeScript oder Java"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"3+ years in machine learning\", \"alternative_group\": 1},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"applied AI engineering\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Hands-on experience with LLMs\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"retrieval\", \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"evaluation in production\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong Python\"},\n    {\"skill_id\": \"nlp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"NLP is a plus\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"document processing\", \"raw_text\": \"Experience with document processing\"}\n  ],\n  \"seniority\": \"mid\", \"seniority_basis\": \"inferred\", \"seniority_signal\": \"3+ years\",\n  \"german\": \"nice_to_have\", \"german_basis\": \"stated\", \"german_signal\": \"German is a plus\",\n  \"degree\": null, \"degree_requirement\": null,\n  \"degree_or_equivalent\": false, \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Only the 'What you bring' section is labeled. Skills that appear only under 'What you'll do' (OCR, citation logic, prompts) are not labeled.\\nmachine-learning and ai-ml are offered as alternatives ('machine learning or applied AI engineering'), so they share group 1. Mapping 'applied AI engineering' to ai-ml through its alias 'applied ai' is flagged uncertain.\\n'retrieval' is a bare word in the requirements. I mapped it to rag, but that is uncertain because the posting never says RAG or retrieval pipelines.\\n'document processing or NLP' would be an alternative pair, but document processing has no taxonomy entry. That leaves nlp alone, and a group needs at least two skills, so nlp gets no group. nlp is nice_to_have via the inline 'is a plus' marker.\\n'Hybrid setup: office in Hamburg' is not a German signal. German is labeled nice_to_have from 'German is a plus'.\\nNo degree is mentioned, so degree is null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "3+ years in machine learning",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "applied AI engineering",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Hands-on experience with LLMs"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "retrieval",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation in production"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "nice_to_have",
+        "raw_text": "NLP is a plus"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "document processing",
+        "raw_text": "Experience with document processing"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years",
+    "german": "nice_to_have",
+    "german_basis": "stated",
+    "german_signal": "German is a plus",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Only the 'What you bring' section is labeled. Skills that appear only under 'What you'll do' (OCR, citation logic, prompts) are not labeled.\nmachine-learning and ai-ml are offered as alternatives ('machine learning or applied AI engineering'), so they share group 1. Mapping 'applied AI engineering' to ai-ml through its alias 'applied ai' is flagged uncertain.\n'retrieval' is a bare word in the requirements. I mapped it to rag, but that is uncertain because the posting never says RAG or retrieval pipelines.\n'document processing or NLP' would be an alternative pair, but document processing has no taxonomy entry. That leaves nlp alone, and a group needs at least two skills, so nlp gets no group. nlp is nice_to_have via the inline 'is a plus' marker.\n'Hybrid setup: office in Hamburg' is not a German signal. German is labeled nice_to_have from 'German is a plus'.\nNo degree is mentioned, so degree is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "b2915aba66673fb8b50810ddcd7b19b839bf4e29ac22068af4d831834b5b15b2",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

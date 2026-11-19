@@ -1,0 +1,91 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"You've shipped a neural network, not just trained one.\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"taking models from data collection through training\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Real depth in one modern ML area\"\n    },\n    {\n      \"skill_id\": \"computer-vision\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"computer vision\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"large language models\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"a modern deep learning framework\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Enough C++ to be useful.\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"inference-optimization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"You've made a model meaningfully faster on target hardware\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data collection\",\n      \"raw_text\": \"data collection\"\n    },\n    {\n      \"label\": \"Generative modelling\",\n      \"raw_text\": \"generative modelling\"\n    },\n    {\n      \"label\": \"Large-scale data tooling\",\n      \"raw_text\": \"large-scale data tooling\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"At least three years taking models from data collection through training to something that ran in production or on real hardware, and stayed working.\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"“Things that would stand out” is treated as an optional qualifications heading.\\nAlternative group 1 also includes the unmapped generative modelling option; generative modelling is not equated with LLMs because it includes non-language models.\\nLarge-scale data tooling is not equated with data pipelines or a particular tool; none is named.\\nData collection is treated literally as an explicitly requested technical practice and left unmapped.\\nAutonomous vehicles and robotics are excluded as domain experience; communication, research-reading habits, publications, and self-direction are not taxonomy skills.\\nTransformers and evaluation appear only in the role/problem description and are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "You've shipped a neural network, not just trained one."
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "taking models from data collection through training"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Real depth in one modern ML area"
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "computer vision",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "large language models",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "a modern deep learning framework"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "Enough C++ to be useful."
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "nice_to_have",
+        "raw_text": "You've made a model meaningfully faster on target hardware"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data collection",
+        "raw_text": "data collection"
+      },
+      {
+        "label": "Generative modelling",
+        "raw_text": "generative modelling"
+      },
+      {
+        "label": "Large-scale data tooling",
+        "raw_text": "large-scale data tooling"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "At least three years taking models from data collection through training to something that ran in production or on real hardware, and stayed working.",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "“Things that would stand out” is treated as an optional qualifications heading.\nAlternative group 1 also includes the unmapped generative modelling option; generative modelling is not equated with LLMs because it includes non-language models.\nLarge-scale data tooling is not equated with data pipelines or a particular tool; none is named.\nData collection is treated literally as an explicitly requested technical practice and left unmapped.\nAutonomous vehicles and robotics are excluded as domain experience; communication, research-reading habits, publications, and self-direction are not taxonomy skills.\nTransformers and evaluation appear only in the role/problem description and are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "ca3a56f74f515b477a49b8fffb50b9d138b324af1b125dbba0c511020af0c70d",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

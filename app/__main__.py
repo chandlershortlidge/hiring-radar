@@ -15,7 +15,11 @@
                     --since/--until YYYY-MM-DD pick the range (HIR-290)
   discover-boards   web-search for Greenhouse/Lever/Ashby/JOIN boards we don't poll, check each live, report;
                     --add source:token appends to feeds.json, --reject source:token --reason R remembers a no;
-                    --launch CITY applies the written board policy itself and adds what passes
+                    --launch CITY applies the written board policy itself and adds what passes,
+                    then runs backfill-places for that city
+  backfill-places   credit stored jobs, open and closed, with every tracked city their location names
+                    (a "Berlin, London" job stored before London was a city gains London). Only adds;
+                    --city CITY limits it to one, --dry-run writes nothing. No model call (HIR-331)
   repair-companies  fill in companies on jobs stored without one and merge the duplicates
                     that appear; a dry run by default, --apply writes (HIR-198)
   reread-cost       what a change to the extractor or the skill list would cost to merge:
@@ -311,6 +315,22 @@ def cmd_discover_boards(args):
         print(line)
     if breach:
         sys.exit(2)
+    from app.geo import CITIES
+    if args.launch in CITIES:   # the stored jobs whose posting already named it (HIR-331)
+        from app.backfill_places import backfill, report_lines
+        print()
+        for line in report_lines(backfill(open_db(), city=args.launch, apply=applied), args.launch):
+            print(line)
+
+
+def cmd_backfill_places(args):
+    from app.backfill_places import backfill, report_lines
+    try:
+        b = backfill(open_db(), city=args.city, apply=not args.dry_run)
+    except ValueError as e:
+        sys.exit(str(e))
+    for line in report_lines(b, args.city):
+        print(line)
 
 
 def cmd_repair_companies(args):
@@ -466,6 +486,11 @@ def main(argv=None):
                         "(5+ roles there, employers only), then report; stops on a spending cap")
     p.add_argument("--dry-run", action="store_true", help="with --launch: decide and report, write nothing")
     p.set_defaults(fn=cmd_discover_boards)
+    p = sub.add_parser("backfill-places",
+                       help="credit stored jobs, open and closed, with every tracked city their location names")
+    p.add_argument("--city", default=None, help="only this tracked city (default: all of them)")
+    p.add_argument("--dry-run", action="store_true", help="count and show, write nothing")
+    p.set_defaults(fn=cmd_backfill_places)
     p = sub.add_parser("repair-companies", help="fill blank companies off each job's stored link, merge duplicates")
     p.add_argument("--apply", action="store_true", help="write the repairs; without it, a dry run that changes nothing")
     p.set_defaults(fn=cmd_repair_companies)

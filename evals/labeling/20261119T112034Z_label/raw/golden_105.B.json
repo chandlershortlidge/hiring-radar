@@ -1,0 +1,116 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"experience as a software engineer\"\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"working on production backend systems\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"rust\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Rust\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"networking\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cloud infrastructure\"\n    },\n    {\n      \"skill_id\": \"full-stack-development\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"High-load web applications\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"large-scale APIs\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"real-time data pipelines\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Building and operating high-load, low-latency systems\",\n      \"raw_text\": \"Have built and operated high-load, low-latency user-facing systems handling thousands of RPS under strict latency constraints\"\n    },\n    {\n      \"label\": \"Systems-level performance analysis\",\n      \"raw_text\": \"Understand performance at a systems level — CPU, memory, networking, and data access\"\n    },\n    {\n      \"label\": \"Production software deployment\",\n      \"raw_text\": \"deployed it\"\n    },\n    {\n      \"label\": \"Production incident debugging\",\n      \"raw_text\": \"debugged incidents\"\n    },\n    {\n      \"label\": \"Production change rollback\",\n      \"raw_text\": \"rolled back changes\"\n    },\n    {\n      \"label\": \"DBMS internals\",\n      \"raw_text\": \"DBMS internals\"\n    },\n    {\n      \"label\": \"Low-level performance tuning\",\n      \"raw_text\": \"Low-level performance tuning\"\n    },\n    {\n      \"label\": \"Hardware-level optimisation\",\n      \"raw_text\": \"hardware-level optimisation\"\n    },\n    {\n      \"label\": \"Competitive programming\",\n      \"raw_text\": \"Competitive programming\"\n    },\n    {\n      \"label\": \"Capture-the-flag participation\",\n      \"raw_text\": \"CTF participation\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff Software Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"“You may be a good fit if you” is treated as the required qualifications section; “Strong candidates may also have experience with” introduces optional qualifications.\\nMapped web application experience to full-stack-development using the taxonomy's explicit web application development alias; this does not infer separate frontend or backend skills from that optional item.\\nProduction deployment, incident debugging, and rollback are retained as unmapped practices rather than inferred DevOps or AI deployment skills.\\nCompetitive programming and CTF participation are optional technical practices, but have no exact taxonomy entries; neither is inferred to require cybersecurity.\\nOpen-source contributions, community involvement, advanced programmes, talks, and publications are treated literally as activities or credentials rather than standalone technical skills. Trading platforms describe an application domain, not a named technology.\\nTechnologies and practices mentioned only in the company description, product description, or responsibilities are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "experience as a software engineer"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "working on production backend systems"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "rust",
+        "requirement": "required",
+        "raw_text": "Rust",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "networking"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud infrastructure"
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "nice_to_have",
+        "raw_text": "High-load web applications",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "nice_to_have",
+        "raw_text": "large-scale APIs",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "real-time data pipelines"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Building and operating high-load, low-latency systems",
+        "raw_text": "Have built and operated high-load, low-latency user-facing systems handling thousands of RPS under strict latency constraints"
+      },
+      {
+        "label": "Systems-level performance analysis",
+        "raw_text": "Understand performance at a systems level — CPU, memory, networking, and data access"
+      },
+      {
+        "label": "Production software deployment",
+        "raw_text": "deployed it"
+      },
+      {
+        "label": "Production incident debugging",
+        "raw_text": "debugged incidents"
+      },
+      {
+        "label": "Production change rollback",
+        "raw_text": "rolled back changes"
+      },
+      {
+        "label": "DBMS internals",
+        "raw_text": "DBMS internals"
+      },
+      {
+        "label": "Low-level performance tuning",
+        "raw_text": "Low-level performance tuning"
+      },
+      {
+        "label": "Hardware-level optimisation",
+        "raw_text": "hardware-level optimisation"
+      },
+      {
+        "label": "Competitive programming",
+        "raw_text": "Competitive programming"
+      },
+      {
+        "label": "Capture-the-flag participation",
+        "raw_text": "CTF participation"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff Software Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "“You may be a good fit if you” is treated as the required qualifications section; “Strong candidates may also have experience with” introduces optional qualifications.\nMapped web application experience to full-stack-development using the taxonomy's explicit web application development alias; this does not infer separate frontend or backend skills from that optional item.\nProduction deployment, incident debugging, and rollback are retained as unmapped practices rather than inferred DevOps or AI deployment skills.\nCompetitive programming and CTF participation are optional technical practices, but have no exact taxonomy entries; neither is inferred to require cybersecurity.\nOpen-source contributions, community involvement, advanced programmes, talks, and publications are treated literally as activities or credentials rather than standalone technical skills. Trading platforms describe an application domain, not a named technology.\nTechnologies and practices mentioned only in the company description, product description, or responsibilities are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "2f9f29752ed59c4b1cfb73bf37a92fae1829674f01cddb3321d0e4e784e83836",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

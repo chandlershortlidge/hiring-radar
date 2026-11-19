@@ -177,7 +177,9 @@ One message at the end, written for Chandler:
   kinds", HIR-297): **To think about**, each a full question, and **To approve**, each
   the three lines of a recommendation, copied as the senior agent or the reviewer wrote
   them. Never reword one kind into the other.
-- **Decided for you:** the small calls the senior agent made in this batch, copied from
+- **Decided for you:** the small calls the senior agent made in this batch, and the
+  recommendations it took instead of asking him (AGENTS.md "What Chandler is asked", "A
+  recommendation to approve is decided, not asked", HIR-315), copied from
   each PR's "Decided for you" — what, why, how to undo. "None" if there were none.
 - **Not reviewed:** a PR no reviewer could open the ticket for, even with the ticket
   handed over (step 3, `NO TICKET`). PR, issue, and that the next lead-agent run reviews

@@ -1,0 +1,124 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"training\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"fine-tuning\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"large language models\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning on tabular data\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"pandas\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"pandas\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"spreadsheet agents\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement learning using verifiable rewards\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"tests\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CI pipelines\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Tabular foundation models\",\n      \"raw_text\": \"tabular foundation models\"\n    },\n    {\n      \"label\": \"TabPFN\",\n      \"raw_text\": \"TabPFN\"\n    },\n    {\n      \"label\": \"Gradient boosting\",\n      \"raw_text\": \"gradient boosting\"\n    },\n    {\n      \"label\": \"Working with messy real-world data\",\n      \"raw_text\": \"messy real-world data\"\n    },\n    {\n      \"label\": \"Text-to-SQL\",\n      \"raw_text\": \"text-to-SQL\"\n    },\n    {\n      \"label\": \"Table question answering\",\n      \"raw_text\": \"table question answering\"\n    },\n    {\n      \"label\": \"Code typing\",\n      \"raw_text\": \"typing\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD / Master in a relevant field (Computer Science, Statistics, Machine Learning) — exceptional candidates from other backgrounds welcome.\",\n  \"notes\": \"ABOUT YOU defaults to required; NICE TO HAVE makes its items optional. Technologies appearing only in the company description or responsibilities are excluded.\\nTraining and fine-tuning are read literally as alternative technical practices, mapped to model-development and fine-tuning.\\nLarge language models and tabular foundation models are alternative model families, but the latter and its TabPFN example have no taxonomy entries; no singleton alternative_group is emitted for llms.\\nText-to-SQL, table question answering, and spreadsheet agents are alternatives; only agents maps to the taxonomy, so no singleton alternative_group is emitted.\\nText-to-SQL is not treated as a separate standalone SQL requirement; SQL is independently required in ABOUT YOU.\\nTyping is read literally as code typing, not inferred to mean TypeScript. Query execution is an example of a verifiable reward, not a separate candidate skill.\\nExpertise, independence, and a track record of success do not provide a permitted seniority signal.\\nThe degree takes the highest named level. Welcoming other backgrounds does not explicitly specify equivalent experience or a comparable qualification.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "training",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "large language models"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning on tabular data"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "required",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "spreadsheet agents"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning using verifiable rewards"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "tests"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI pipelines"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Tabular foundation models",
+        "raw_text": "tabular foundation models"
+      },
+      {
+        "label": "TabPFN",
+        "raw_text": "TabPFN"
+      },
+      {
+        "label": "Gradient boosting",
+        "raw_text": "gradient boosting"
+      },
+      {
+        "label": "Working with messy real-world data",
+        "raw_text": "messy real-world data"
+      },
+      {
+        "label": "Text-to-SQL",
+        "raw_text": "text-to-SQL"
+      },
+      {
+        "label": "Table question answering",
+        "raw_text": "table question answering"
+      },
+      {
+        "label": "Code typing",
+        "raw_text": "typing"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD / Master in a relevant field (Computer Science, Statistics, Machine Learning) — exceptional candidates from other backgrounds welcome.",
+    "notes": "ABOUT YOU defaults to required; NICE TO HAVE makes its items optional. Technologies appearing only in the company description or responsibilities are excluded.\nTraining and fine-tuning are read literally as alternative technical practices, mapped to model-development and fine-tuning.\nLarge language models and tabular foundation models are alternative model families, but the latter and its TabPFN example have no taxonomy entries; no singleton alternative_group is emitted for llms.\nText-to-SQL, table question answering, and spreadsheet agents are alternatives; only agents maps to the taxonomy, so no singleton alternative_group is emitted.\nText-to-SQL is not treated as a separate standalone SQL requirement; SQL is independently required in ABOUT YOU.\nTyping is read literally as code typing, not inferred to mean TypeScript. Query execution is an example of a verifiable reward, not a separate candidate skill.\nExpertise, independence, and a track record of success do not provide a permitted seniority signal.\nThe degree takes the highest named level. Welcoming other backgrounds does not explicitly specify equivalent experience or a comparable qualification."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "ea562468ce765926983813cf63e8660108ec1c7aaf8d1c0ddb628ff61fb2ca83",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

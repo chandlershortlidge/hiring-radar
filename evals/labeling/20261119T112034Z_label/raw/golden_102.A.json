@@ -1,0 +1,52 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"kotlin\", \"requirement\": \"required\", \"raw_text\": \"Strong native Android experience using Kotlin\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Android development\", \"raw_text\": \"Strong native Android experience\"},\n    {\"label\": \"Android architecture\", \"raw_text\": \"Android architecture\"},\n    {\"label\": \"Jetpack\", \"raw_text\": \"Jetpack\"},\n    {\"label\": \"Kotlin Coroutines\", \"raw_text\": \"Coroutines\"},\n    {\"label\": \"Kotlin Flow\", \"raw_text\": \"Flow\"}\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Under 'WHAT WE'RE LOOKING FOR', Kotlin is the only requirement that maps to the taxonomy.\\nAndroid, Jetpack, Coroutines and Flow have no taxonomy entry, so they are listed in unmapped.\\n'APIs' and 'authentication' appear only in the 'WHAT WILL YOU BUILD' responsibilities section and are not labeled.\\n'Able to debug production issues' is not mapped to testing. The posting never names testing, and the alias is 'debugging & testing', not debugging alone.\\nSeniority is none: the posting gives no years, level, lead or mentoring duty. 'Strong' and 'real technology career highlights' are not level signals.\\nGerman is none: the only language requirement is English, and the UK location is not a basis.\\nDegree is none: no degree is mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "kotlin",
+        "requirement": "required",
+        "raw_text": "Strong native Android experience using Kotlin"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Android development",
+        "raw_text": "Strong native Android experience"
+      },
+      {
+        "label": "Android architecture",
+        "raw_text": "Android architecture"
+      },
+      {
+        "label": "Jetpack",
+        "raw_text": "Jetpack"
+      },
+      {
+        "label": "Kotlin Coroutines",
+        "raw_text": "Coroutines"
+      },
+      {
+        "label": "Kotlin Flow",
+        "raw_text": "Flow"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Under 'WHAT WE'RE LOOKING FOR', Kotlin is the only requirement that maps to the taxonomy.\nAndroid, Jetpack, Coroutines and Flow have no taxonomy entry, so they are listed in unmapped.\n'APIs' and 'authentication' appear only in the 'WHAT WILL YOU BUILD' responsibilities section and are not labeled.\n'Able to debug production issues' is not mapped to testing. The posting never names testing, and the alias is 'debugging & testing', not debugging alone.\nSeniority is none: the posting gives no years, level, lead or mentoring duty. 'Strong' and 'real technology career highlights' are not level signals.\nGerman is none: the only language requirement is English, and the UK location is not a basis.\nDegree is none: no degree is mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "74e0ba994fdf73f117d4a6dc000a49749082428d1da1d89d9ba25330356d449c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

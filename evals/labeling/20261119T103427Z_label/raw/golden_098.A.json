@@ -1,0 +1,144 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Proficiency in machine learning\"},\n    {\"skill_id\": \"data-science\", \"requirement\": \"required\", \"raw_text\": \"Proficiency in machine learning and data science\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agentic systems\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Excellence in Python\"},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\", \"alternative_group\": 1},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\", \"alternative_group\": 1},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"required\", \"raw_text\": \"and/or scikit-learn\", \"alternative_group\": 1},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Exposure to software development life cycle and tools\", \"uncertain\": true},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience deploying machine learning and data science solutions to production environments\"},\n    {\"skill_id\": \"devops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Exposure to DevOps\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"cloud infrastructure\"},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"nice_to_have\", \"raw_text\": \"ETL pipelines, data pipelines\", \"alternative_group\": 2},\n    {\"skill_id\": \"workflow-automation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"and/or workflow automation\", \"alternative_group\": 2},\n    {\"skill_id\": \"go\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Go\", \"alternative_group\": 3},\n    {\"skill_id\": \"rust\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Rust\", \"alternative_group\": 3},\n    {\"skill_id\": \"cpp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"C++\", \"alternative_group\": 3},\n    {\"skill_id\": \"java\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Java\", \"alternative_group\": 3},\n    {\"skill_id\": \"scala\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Scala\", \"alternative_group\": 3}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Data structures and algorithms\", \"raw_text\": \"Proficiency in implementing and analyzing data structures and algorithms\"},\n    {\"label\": \"Systems programming\", \"raw_text\": \"developing software in a systems programming language\"},\n    {\"label\": \"Unstructured data processing\", \"raw_text\": \"Experience processing a variety of unstructured data types\"}\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"2+ years of relevant experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"A BS degree in computer science, machine learning, mathematics, or a related discipline\",\n  \"uncertain\": [\"seniority\", \"degree\"],\n  \"notes\": \"Heading 'The following isn't required, but we'd love to see it:' makes that section nice_to_have; 'What we're looking for' items are required.\\n'image data, video data, or agentic systems': image and video data are data domains, not named skills; only agentic systems is mapped, to agents, flagged uncertain. Computer-vision is not added because the posting never names it.\\nSDLC is mapped to software-engineering by way of the 'softwareentwicklung' (software development) alias; flagged uncertain.\\nScikit-learn's raw_text includes 'and/or' because a bare 'scikit-learn' is a substring of the quote in the other group-1 bullet; the extra words make the located span unique.\\n'ETL pipelines, data pipelines' are both aliases of data-pipelines and collapse into one criterion. That criterion is grouped with workflow-automation through 'and/or'.\\nSystems programming languages given as e.g. examples form one alternative group: go, rust, cpp, java, scala. 'etc.' adds nothing.\\nThe unstructured data examples (image/video, text, telemetry, graphs) are data types, not named techniques. They are not mapped to nlp or knowledge-graphs.\\nMachine-learning and data-science also appear in the nice-to-have deployment bullet; the required mentions win.\\nSeniority '2+ years' sits on the 0-2 / 3-5 boundary; read as junior per the 0-2 band, flagged uncertain.\\nDegree: the required BS is named; the nice-to-have 'advanced degree' names no specific level (master vs phd), so the label is bachelor/required. Flagged uncertain.\\nActive Secret clearance and US citizenship are not skills.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Proficiency in machine learning"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "Proficiency in machine learning and data science"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Excellence in Python"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "and/or scikit-learn",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Exposure to software development life cycle and tools",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience deploying machine learning and data science solutions to production environments"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "nice_to_have",
+        "raw_text": "Exposure to DevOps"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud infrastructure"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "ETL pipelines, data pipelines",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "nice_to_have",
+        "raw_text": "and/or workflow automation",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "go",
+        "requirement": "nice_to_have",
+        "raw_text": "Go",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "rust",
+        "requirement": "nice_to_have",
+        "raw_text": "Rust",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "nice_to_have",
+        "raw_text": "C++",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "java",
+        "requirement": "nice_to_have",
+        "raw_text": "Java",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "nice_to_have",
+        "raw_text": "Scala",
+        "alternative_group": 3
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data structures and algorithms",
+        "raw_text": "Proficiency in implementing and analyzing data structures and algorithms"
+      },
+      {
+        "label": "Systems programming",
+        "raw_text": "developing software in a systems programming language"
+      },
+      {
+        "label": "Unstructured data processing",
+        "raw_text": "Experience processing a variety of unstructured data types"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "2+ years of relevant experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "A BS degree in computer science, machine learning, mathematics, or a related discipline",
+    "uncertain": [
+      "seniority",
+      "degree"
+    ],
+    "notes": "Heading 'The following isn't required, but we'd love to see it:' makes that section nice_to_have; 'What we're looking for' items are required.\n'image data, video data, or agentic systems': image and video data are data domains, not named skills; only agentic systems is mapped, to agents, flagged uncertain. Computer-vision is not added because the posting never names it.\nSDLC is mapped to software-engineering by way of the 'softwareentwicklung' (software development) alias; flagged uncertain.\nScikit-learn's raw_text includes 'and/or' because a bare 'scikit-learn' is a substring of the quote in the other group-1 bullet; the extra words make the located span unique.\n'ETL pipelines, data pipelines' are both aliases of data-pipelines and collapse into one criterion. That criterion is grouped with workflow-automation through 'and/or'.\nSystems programming languages given as e.g. examples form one alternative group: go, rust, cpp, java, scala. 'etc.' adds nothing.\nThe unstructured data examples (image/video, text, telemetry, graphs) are data types, not named techniques. They are not mapped to nlp or knowledge-graphs.\nMachine-learning and data-science also appear in the nice-to-have deployment bullet; the required mentions win.\nSeniority '2+ years' sits on the 0-2 / 3-5 boundary; read as junior per the 0-2 band, flagged uncertain.\nDegree: the required BS is named; the nice-to-have 'advanced degree' names no specific level (master vs phd), so the label is bachelor/required. Flagged uncertain.\nActive Secret clearance and US citizenship are not skills."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "09f468168dca7c7aaeae5c11ce780d8fa9f64b60d7f994048275f232934d5565",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}
