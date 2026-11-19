@@ -142,6 +142,77 @@ def test_get_job_rejects_an_id_that_does_not_exist(server):
     with pytest.raises(ToolError, match="no job with id 99999"):
         call(server, "get_job", job_id=99999)
 
+# --- skill_demand ------------------------------------------------------------------------
+
+
+def demand(server, **args) -> dict:
+    return call(server, "skill_demand", **args).structured_content
+
+
+def counts(result: dict) -> dict:
+    """{skill id: number of jobs asking for it}, from a skill_demand result."""
+    return {s["skill_id"]: s["count"] for s in result["skills"]}
+
+
+def test_skill_demand_counts_the_skills_of_one_city(server):
+    r = demand(server, city=["Berlin"])
+    assert r["total"] == 3
+    assert counts(r) == {"python": 2, "rag": 2, "aws": 1}
+
+
+@pytest.mark.parametrize("args, params", [
+    ({}, {}),
+    ({"city": ["Berlin"]}, {"city": "Berlin"}),
+    ({"seniority": ["mid", "senior"]}, {"seniority": ["mid", "senior"]}),
+    ({"family": ["ml-engineer"], "window": "all"}, {"family": "ml-engineer", "window": "all"}),
+    ({"requirement": "all"}, {"requirement": "all"}),
+])
+def test_skill_demand_matches_the_dashboard_skill_list(db_path, server, args, params):
+    """Same filters -> the same total and the same count per skill as /api/skills."""
+    api = TestClient(create_app(db_path, TAX)).get("/api/skills", params=params).json()
+    tool = demand(server, **args)
+    assert tool["total"] == api["total"]
+    assert [(s["skill_id"], s["count"], s["pct"]) for s in tool["skills"]] == \
+           [(s["skill_id"], s["count"], s["pct"]) for s in api["skills"]]
+
+
+def test_skill_demand_rejects_what_the_api_rejects(server):
+    with pytest.raises(ToolError):  # not one of the schema's values
+        call(server, "skill_demand", seniority=["intern"])
+    with pytest.raises(ToolError):
+        call(server, "skill_demand", window="forever")
+
+
+def test_skill_demand_accepts_exactly_the_api_values(server):
+    """The schema a model sees offers the values the dashboard's API accepts, no more, no fewer."""
+    tool = next(t for t in asyncio.run(server.list_tools()) if t.name == "skill_demand")
+    props = tool.input_schema["properties"]
+    hints = typing.get_type_hints(server._tool_manager.get_tool("skill_demand").fn)
+    expected = {"city": {*CITIES, REMOTE_EU}, "seniority": set(q.SENIORITIES), "family": set(q.FAMILIES),
+                "requirement": set(q.REQUIREMENTS), "window": set(q.WINDOWS), "german": set(q.GERMAN_FILTERS),
+                "degree": set(q.DEGREE_FILTERS), "production": set(q.PRODUCTION_FILTERS)}
+    for name, values in expected.items():
+        assert _enum(hints[name]) == values, name
+        assert name in props, name
+    assert tool.annotations.read_only_hint is True
+
+
+def test_skill_demand_counts_nice_to_have_skills_when_asked_for_all(server):
+    assert counts(demand(server, city=["Berlin"], requirement="all")) == {"python": 2, "rag": 3, "aws": 1}
+
+
+def test_skill_demand_includes_closed_jobs_when_the_window_is_all(server):
+    assert demand(server)["total"] == 4
+    assert demand(server, window="all")["total"] == 5
+
+
+def test_skill_demand_is_empty_when_nothing_matches(server):
+    r = demand(server, city=["Berlin"], seniority=["junior"], family=["ai-engineer"])
+    assert r["total"] == 0 and r["skills"] == []
+
+
+
+
 
 def _enum(arg) -> set:
     """The values a tool argument's type allows: Literal, list[Literal], or either | None."""
@@ -188,7 +259,7 @@ def test_an_mcp_client_calls_search_jobs_over_http(db_path):
                 return names, result
 
     names, result = asyncio.run(run())
-    assert names == ["search_jobs", "get_job"]
+    assert names == ["search_jobs", "get_job", "skill_demand"]
     assert not result.is_error
     assert [j["company"] for j in result.structured_content["jobs"]] == ["Acme"]
 
