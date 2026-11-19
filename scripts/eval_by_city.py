@@ -1,10 +1,17 @@
 """Per-city scores for one eval run, so a city's own numbers can be read off a run.
 
     uv run python scripts/eval_by_city.py <run_id>
+    uv run python scripts/eval_by_city.py <run_id> --by language   # German vs English
 
 Why this exists: the headline scores pool every answer key, so a city the model reads badly
 is invisible while the other cities carry the average (HIR-253). This splits one run by the
 city of each posting and prints the same measures per city.
+
+`--by language` splits the same run by the language the posting is written in instead,
+German against English, which is the other place a weakness hides in the pooled average
+(HIR-223: comparing a cheaper model needs to say where it loses, not only by how much).
+The language is read off the posting's own words by `scripts/new_goldens.py:is_german`,
+the same test the labelling pipeline used when it picked German postings on purpose.
 
 How the numbers are made:
 
@@ -21,6 +28,7 @@ Only the keys in the run's own split appear: a `dev` run says nothing about the 
 
 import argparse
 import collections
+import importlib.util
 import json
 import sys
 from pathlib import Path
@@ -50,6 +58,23 @@ def cities() -> dict[str, str]:
 def goldens() -> dict[str, dict]:
     return {g["id"]: g for g in
             (json.loads(f.read_text()) for f in GOLDENS.glob("golden_*.json"))}
+
+
+def languages(keys: dict[str, dict]) -> dict[str, str]:
+    """golden_id -> "German" or "English", from the posting's own words.
+
+    Imported from scripts/new_goldens.py rather than re-implemented, so this agrees with
+    the test the labelling pipeline used to pick German postings in the first place. A key
+    whose posting text is missing is reported as not recorded instead of guessed at.
+    """
+    spec = importlib.util.spec_from_file_location("new_goldens", Path(__file__).parent / "new_goldens.py")
+    ng = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(ng)
+    out = {}
+    for gid, g in keys.items():
+        text = g.get("job_description")
+        out[gid] = NOT_RECORDED if not text else ("German" if ng.is_german(text) else "English")
+    return out
 
 
 def tally(rows: list[dict], city: dict[str, str], keys: dict[str, dict]):
@@ -85,8 +110,8 @@ def rate(a: collections.Counter, metric: str) -> str:
     return f"{a[f'{metric}_ok'] / n:.3f}" if n else "  -   "
 
 
-def render(agg, seen) -> list[str]:
-    lines = [f"{'city':<16}{'keys':>5}{'prec':>8}{'recall':>8}{'f1':>8}"
+def render(agg, seen, label: str = "city") -> list[str]:
+    lines = [f"{label:<16}{'keys':>5}{'prec':>8}{'recall':>8}{'f1':>8}"
              f"{'seniority':>11}{'german':>8}{'degree':>8}"]
     total = collections.Counter()
     for c, a in sorted(agg.items(), key=lambda kv: (-len(seen[kv[0]]), kv[0])):
@@ -106,7 +131,9 @@ def render(agg, seen) -> list[str]:
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument("run", help="run id or path of the eval run to split by city")
+    ap.add_argument("run", help="run id or path of the eval run to split")
+    ap.add_argument("--by", default="city", choices=["city", "language"],
+                    help="split by the posting's city (default) or the language it is written in")
     args = ap.parse_args(argv)
 
     path = Path(args.run)
@@ -117,8 +144,10 @@ def main(argv=None):
         raise SystemExit(f"no predictions.jsonl in {path}")
 
     rows = [json.loads(l) for l in preds.read_text().splitlines() if l.strip()]
-    agg, seen = tally(rows, cities(), goldens())
-    print("\n".join(render(agg, seen)))
+    keys = goldens()
+    groups = languages(keys) if args.by == "language" else cities()
+    agg, seen = tally(rows, groups, keys)
+    print("\n".join(render(agg, seen, args.by)))
 
 
 if __name__ == "__main__":

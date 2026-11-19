@@ -109,3 +109,33 @@ def test_cities_come_from_the_labelling_runs_picks(tmp_path, monkeypatch):
     monkeypatch.setattr(ebc, "RUNS", runs)
 
     assert ebc.cities() == {"golden_107": "Hamburg", "golden_108": ebc.NOT_RECORDED}
+
+
+# Long enough for the language test to fire: it wants at least 20 German function words
+# before it will call a posting German at all (scripts/new_goldens.py).
+DE_POSTING = ("Wir suchen eine Data Scientist für unser Team in Berlin. Du arbeitest mit "
+              "Python und der Cloud, bist für die Modelle zuständig und bringst Erfahrung "
+              "mit Daten mit. ") * 4
+EN_POSTING = ("We are looking for a Data Scientist for our team in Berlin. You work with "
+              "Python and the cloud, own the models and bring experience with data. ") * 4
+
+
+def test_language_split_reads_the_posting_not_the_german_requirement():
+    """The split is about which language the posting is written in. A posting written in
+    English that *asks* for German still counts as English — otherwise the column would
+    only repeat the german attribute (HIR-223)."""
+    keys = {
+        "golden_001": _key("golden_001", german="required", job_description=EN_POSTING),
+        "golden_002": _key("golden_002", german=None, job_description=DE_POSTING),
+    }
+    assert ebc.languages(keys) == {"golden_001": "English", "golden_002": "German"}
+
+
+def test_a_key_with_no_posting_text_is_not_guessed_at():
+    assert ebc.languages({"golden_003": _key("golden_003")}) == {"golden_003": ebc.NOT_RECORDED}
+
+
+def test_the_table_is_headed_by_whatever_it_was_split_on():
+    agg, seen = ebc.tally([_row("golden_001", tp=["python"])], {"golden_001": "German"}, {})
+    assert ebc.render(agg, seen, "language")[0].startswith("language")
+    assert ebc.render(agg, seen)[0].startswith("city")
