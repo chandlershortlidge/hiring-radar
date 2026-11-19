@@ -1,0 +1,42 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"required\", \"raw_text\": \"strong experience with distributed systems\"},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"excellent software engineering fundamentals\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"large-scale infrastructure\", \"raw_text\": \"large-scale infrastructure\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": null, \"german_basis\": null, \"german_signal\": null,\n  \"degree\": null, \"degree_requirement\": null,\n  \"degree_or_equivalent\": false, \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The heading 'You might thrive in this role if you:' is not one of the guide's optional headings, so its items take the default 'required' (literal reading). The heading is soft enough that a reviewer may want to check this.\\nData pipelines, distributed compute, data orchestration, streaming and ML infrastructure appear only under 'In this role, you will' (responsibilities), so they are not labeled.\\n'with a strong interest in data' is appetite toward 'data', which is domain knowledge with no taxonomy entry, so no criterion.\\n'large-scale infrastructure' is too vague for any taxonomy id (not 'cloud'; the posting never names cloud), so it goes in unmapped.\\n'software engineering fundamentals' is mapped to software-engineering. It is flagged uncertain as possibly too generic, but it is a technical practice and the candidate is asked for it.\\nSeniority is none: the title has no level and 'strong experience' is not a level signal under the guide.\\nGerman is none: there is no mention of German.\\nDegree is none: no degree is mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "strong experience with distributed systems"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "excellent software engineering fundamentals",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "large-scale infrastructure",
+        "raw_text": "large-scale infrastructure"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The heading 'You might thrive in this role if you:' is not one of the guide's optional headings, so its items take the default 'required' (literal reading). The heading is soft enough that a reviewer may want to check this.\nData pipelines, distributed compute, data orchestration, streaming and ML infrastructure appear only under 'In this role, you will' (responsibilities), so they are not labeled.\n'with a strong interest in data' is appetite toward 'data', which is domain knowledge with no taxonomy entry, so no criterion.\n'large-scale infrastructure' is too vague for any taxonomy id (not 'cloud'; the posting never names cloud), so it goes in unmapped.\n'software engineering fundamentals' is mapped to software-engineering. It is flagged uncertain as possibly too generic, but it is a technical practice and the candidate is asked for it.\nSeniority is none: the title has no level and 'strong experience' is not a level signal under the guide.\nGerman is none: there is no mention of German.\nDegree is none: no degree is mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "14e300b0ddece0682062915f828ce3e49bd1d2b31d78304255227e6efe0bea56",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

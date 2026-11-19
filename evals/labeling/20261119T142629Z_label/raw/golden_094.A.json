@@ -1,0 +1,120 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"professional software engineering experience\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"production-grade LLM-based systems\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"at least one agentic system\", \"uncertain\": true},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"active tool use\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"evaluation frameworks\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"AI/ML systems\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"retrieval and context pipelines\", \"uncertain\": true},\n    {\"skill_id\": \"llm-guardrails\", \"requirement\": \"required\", \"raw_text\": \"security guardrails for AI\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience with Observability\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"cloud-native infrastructure at scale\", \"uncertain\": true},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"nice_to_have\", \"raw_text\": \"specifically Kubernetes\"},\n    {\"skill_id\": \"opentelemetry\", \"requirement\": \"nice_to_have\", \"raw_text\": \"OpenTelemetry\", \"alternative_group\": 1},\n    {\"skill_id\": \"mcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"MCP\", \"alternative_group\": 1, \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"time-series databases\", \"raw_text\": \"time-series databases\"},\n    {\"label\": \"latency optimization\", \"raw_text\": \"latency optimization\"},\n    {\"label\": \"multi-tenancy\", \"raw_text\": \"multi-tenancy\"},\n    {\"label\": \"cost management\", \"raw_text\": \"cost management\"},\n    {\"label\": \"alerting workflows\", \"raw_text\": \"alerting workflows\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Software Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Section headings: 'Minimum Qualifications' sets required; 'Preferred Qualifications' sets nice_to_have.\\nsoftware-engineering: labeled required from the years-of-experience bullet. Years are not a skill, but software engineering is named; flagged uncertain.\\nagents: 'agentic system' is mapped to the broad agents skill and is required. The later 'agent frameworks' mention in the preferred section collapses into this criterion.\\nrag: 'retrieval and context pipelines' is mapped via the 'retrieval pipelines' alias. Flagged uncertain because the posting does not say 'RAG'.\\nllm-guardrails: matched via the 'security guardrails' alias.\\nobservability: the first preferred bullet names it as a domain ('Observability, SRE, or incident management domains') and also says 'distributed tracing' ('tracing' is an alias). The 'observability ecosystems' mention collapses into this criterion. Flagged uncertain because a domain mention is borderline.\\ncloud: 'cloud-native infrastructure' is read as the broad cloud skill. Kubernetes is named on its own ('specifically'), so it is not an alternative.\\nGroup 1: OpenTelemetry and MCP are 'e.g.' examples for a single ask (open-source contributions), so they share alternative_group 1.\\nai-ml, agents and observability are not in group 1 or any other group: the 'AI, agent frameworks, or observability ecosystems' list offers them as alternatives, but each is also asked for on its own elsewhere in the posting.\\nlatency optimization: left unmapped rather than forced to inference-optimization, because the text is not specific to inference.\\nGerman and degree: neither is mentioned anywhere in the posting.\\nSeniority: 'Principal' in the title is a stated senior label; the 12+ years and the mentoring duty agree.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "professional software engineering experience",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "production-grade LLM-based systems"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "at least one agentic system",
+        "uncertain": true
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "active tool use"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation frameworks"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML systems"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "retrieval and context pipelines",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "security guardrails for AI"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with Observability",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud-native infrastructure at scale",
+        "uncertain": true
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "specifically Kubernetes"
+      },
+      {
+        "skill_id": "opentelemetry",
+        "requirement": "nice_to_have",
+        "raw_text": "OpenTelemetry",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "nice_to_have",
+        "raw_text": "MCP",
+        "alternative_group": 1,
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "time-series databases",
+        "raw_text": "time-series databases"
+      },
+      {
+        "label": "latency optimization",
+        "raw_text": "latency optimization"
+      },
+      {
+        "label": "multi-tenancy",
+        "raw_text": "multi-tenancy"
+      },
+      {
+        "label": "cost management",
+        "raw_text": "cost management"
+      },
+      {
+        "label": "alerting workflows",
+        "raw_text": "alerting workflows"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Software Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Section headings: 'Minimum Qualifications' sets required; 'Preferred Qualifications' sets nice_to_have.\nsoftware-engineering: labeled required from the years-of-experience bullet. Years are not a skill, but software engineering is named; flagged uncertain.\nagents: 'agentic system' is mapped to the broad agents skill and is required. The later 'agent frameworks' mention in the preferred section collapses into this criterion.\nrag: 'retrieval and context pipelines' is mapped via the 'retrieval pipelines' alias. Flagged uncertain because the posting does not say 'RAG'.\nllm-guardrails: matched via the 'security guardrails' alias.\nobservability: the first preferred bullet names it as a domain ('Observability, SRE, or incident management domains') and also says 'distributed tracing' ('tracing' is an alias). The 'observability ecosystems' mention collapses into this criterion. Flagged uncertain because a domain mention is borderline.\ncloud: 'cloud-native infrastructure' is read as the broad cloud skill. Kubernetes is named on its own ('specifically'), so it is not an alternative.\nGroup 1: OpenTelemetry and MCP are 'e.g.' examples for a single ask (open-source contributions), so they share alternative_group 1.\nai-ml, agents and observability are not in group 1 or any other group: the 'AI, agent frameworks, or observability ecosystems' list offers them as alternatives, but each is also asked for on its own elsewhere in the posting.\nlatency optimization: left unmapped rather than forced to inference-optimization, because the text is not specific to inference.\nGerman and degree: neither is mentioned anywhere in the posting.\nSeniority: 'Principal' in the title is a stated senior label; the 12+ years and the mentoring duty agree."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "a43fd05fac12a9b939c3f7542f6f3e356343976e7ea8b38fbe64f2b9f5b3e989",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

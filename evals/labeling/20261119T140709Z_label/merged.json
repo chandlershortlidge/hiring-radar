@@ -1,0 +1,2113 @@
+{
+  "golden_094": {
+    "accepted_skills": [],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": null,
+        "seniority_basis": null,
+        "seniority_signal": null
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": []
+  },
+  "golden_095": {
+    "accepted_skills": [
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "embeddings"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "Hands-on experience with Fine-tuning"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "nice_to_have",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "nice_to_have",
+        "raw_text": "LlamaIndex"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "2+ years shipping LLM-based products"
+      },
+      {
+        "skill_id": "pydanticai",
+        "requirement": "nice_to_have",
+        "raw_text": "PydanticAI"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python Power-User"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool-calling"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "transformer-based stack"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector databases"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "inferred",
+        "seniority_signal": "7+ years of experience"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Context window management",
+        "raw_text": "context window management"
+      },
+      {
+        "labeler": "A",
+        "label": "PEFT (LoRA/QLoRA)",
+        "raw_text": "PEFT (LoRA/QLoRA)"
+      },
+      {
+        "labeler": "A",
+        "label": "Human-in-the-loop workflows",
+        "raw_text": "human-in-the-loop workflows"
+      },
+      {
+        "labeler": "A",
+        "label": "Enterprise identity (SSO, role-based access)",
+        "raw_text": "enterprise identity (SSO, role-based access)"
+      },
+      {
+        "labeler": "B",
+        "label": "Model optimization",
+        "raw_text": "model optimization"
+      },
+      {
+        "labeler": "B",
+        "label": "Systems engineering",
+        "raw_text": "Systems Engineering"
+      },
+      {
+        "labeler": "B",
+        "label": "Context window management",
+        "raw_text": "context window management"
+      },
+      {
+        "labeler": "B",
+        "label": "Parameter-efficient fine-tuning",
+        "raw_text": "PEFT"
+      },
+      {
+        "labeler": "B",
+        "label": "LoRA",
+        "raw_text": "LoRA"
+      },
+      {
+        "labeler": "B",
+        "label": "QLoRA",
+        "raw_text": "QLoRA"
+      },
+      {
+        "labeler": "B",
+        "label": "Human-in-the-loop workflows",
+        "raw_text": "human-in-the-loop workflows"
+      },
+      {
+        "labeler": "B",
+        "label": "Enterprise identity",
+        "raw_text": "enterprise identity"
+      },
+      {
+        "labeler": "B",
+        "label": "Single sign-on",
+        "raw_text": "SSO"
+      },
+      {
+        "labeler": "B",
+        "label": "Role-based access control",
+        "raw_text": "role-based access"
+      }
+    ]
+  },
+  "golden_096": {
+    "accepted_skills": [
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agent frameworks"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS or Azure acceptable"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure acceptable"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD pipelines"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "deploying ML on a major cloud"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "thorough offline and online evaluation"
+      },
+      {
+        "skill_id": "google-adk",
+        "requirement": "nice_to_have",
+        "raw_text": "Google ADK"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "nice_to_have",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-based information extraction from documents"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "nice_to_have",
+        "raw_text": "via MCP"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps practices"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "model registry, and monitoring"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Expertise in Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch or TensorFlow"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "plus scikit-learn"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "data, or software engineering"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "Python and SQL"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow, plus scikit-learn"
+      },
+      {
+        "skill_id": "vector-search",
+        "requirement": "nice_to_have",
+        "raw_text": "vector search plus graph traversal"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Lead ML Engineer"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Entity resolution",
+        "raw_text": "entity-resolution systems in production"
+      },
+      {
+        "labeler": "A",
+        "label": "Graph databases (Neo4j, Amazon Neptune, TigerGraph)",
+        "raw_text": "at least one graph database (e.g., Neo4j, Amazon Neptune, TigerGraph)"
+      },
+      {
+        "labeler": "A",
+        "label": "Graph query languages (Cypher/GQL, SPARQL, Gremlin)",
+        "raw_text": "one graph query language (Cypher/GQL, SPARQL, or Gremlin)"
+      },
+      {
+        "labeler": "A",
+        "label": "Ontology / semantic-web standards (RDF, OWL, SHACL, SKOS)",
+        "raw_text": "ontology and semantic-web standards (RDF, OWL, SHACL, SKOS)"
+      },
+      {
+        "labeler": "A",
+        "label": "Property-graph modeling",
+        "raw_text": "property-graph modeling"
+      },
+      {
+        "labeler": "A",
+        "label": "Entity resolution tools (Splink, Zingg, Senzing)",
+        "raw_text": "Splink, Zingg, Senzing"
+      },
+      {
+        "labeler": "A",
+        "label": "Graph machine learning / link prediction",
+        "raw_text": "graph embeddings and link prediction"
+      },
+      {
+        "labeler": "A",
+        "label": "PyTorch Geometric / DGL",
+        "raw_text": "using PyTorch Geometric or DGL"
+      },
+      {
+        "labeler": "A",
+        "label": "Classical predictive modeling",
+        "raw_text": "classical predictive modeling"
+      },
+      {
+        "labeler": "A",
+        "label": "Model registry",
+        "raw_text": "model registry"
+      },
+      {
+        "labeler": "A",
+        "label": "Master data management / data governance tools (Collibra, Informatica, Google Dataplex)",
+        "raw_text": "master data management and data governance tools (e.g., Collibra, Informatica, Google Dataplex)"
+      },
+      {
+        "labeler": "A",
+        "label": "Data mesh / data products",
+        "raw_text": "data-product or data-mesh delivery"
+      },
+      {
+        "labeler": "A",
+        "label": "Wikidata / Wikibase, Palantir Foundry Ontology",
+        "raw_text": "Wikidata / Wikibase, Palantir Foundry Ontology"
+      },
+      {
+        "labeler": "B",
+        "label": "ML frameworks",
+        "raw_text": "ML frameworks"
+      },
+      {
+        "labeler": "B",
+        "label": "Entity resolution",
+        "raw_text": "entity resolution at scale"
+      },
+      {
+        "labeler": "B",
+        "label": "Graph databases",
+        "raw_text": "graph database"
+      },
+      {
+        "labeler": "B",
+        "label": "Neo4j",
+        "raw_text": "Neo4j"
+      },
+      {
+        "labeler": "B",
+        "label": "Amazon Neptune",
+        "raw_text": "Amazon Neptune"
+      },
+      {
+        "labeler": "B",
+        "label": "TigerGraph",
+        "raw_text": "TigerGraph"
+      },
+      {
+        "labeler": "B",
+        "label": "Graph query languages",
+        "raw_text": "graph query language"
+      },
+      {
+        "labeler": "B",
+        "label": "Cypher",
+        "raw_text": "Cypher"
+      },
+      {
+        "labeler": "B",
+        "label": "GQL",
+        "raw_text": "GQL"
+      },
+      {
+        "labeler": "B",
+        "label": "SPARQL",
+        "raw_text": "SPARQL"
+      },
+      {
+        "labeler": "B",
+        "label": "Gremlin",
+        "raw_text": "Gremlin"
+      },
+      {
+        "labeler": "B",
+        "label": "Ontology modeling",
+        "raw_text": "ontology"
+      },
+      {
+        "labeler": "B",
+        "label": "Semantic-web standards",
+        "raw_text": "semantic-web standards"
+      },
+      {
+        "labeler": "B",
+        "label": "RDF",
+        "raw_text": "RDF"
+      },
+      {
+        "labeler": "B",
+        "label": "OWL",
+        "raw_text": "OWL"
+      },
+      {
+        "labeler": "B",
+        "label": "SHACL",
+        "raw_text": "SHACL"
+      },
+      {
+        "labeler": "B",
+        "label": "SKOS",
+        "raw_text": "SKOS"
+      },
+      {
+        "labeler": "B",
+        "label": "Property-graph modeling",
+        "raw_text": "property-graph modeling"
+      },
+      {
+        "labeler": "B",
+        "label": "Semantic model governance and versioning",
+        "raw_text": "turning business concepts into governed, versioned models"
+      },
+      {
+        "labeler": "B",
+        "label": "Probabilistic matching",
+        "raw_text": "probabilistic or embedding-based matching"
+      },
+      {
+        "labeler": "B",
+        "label": "Embedding-based matching",
+        "raw_text": "embedding-based matching"
+      },
+      {
+        "labeler": "B",
+        "label": "Splink",
+        "raw_text": "Splink"
+      },
+      {
+        "labeler": "B",
+        "label": "Zingg",
+        "raw_text": "Zingg"
+      },
+      {
+        "labeler": "B",
+        "label": "Senzing",
+        "raw_text": "Senzing"
+      },
+      {
+        "labeler": "B",
+        "label": "Graph machine learning",
+        "raw_text": "graph machine learning"
+      },
+      {
+        "labeler": "B",
+        "label": "Link prediction",
+        "raw_text": "link prediction"
+      },
+      {
+        "labeler": "B",
+        "label": "PyTorch Geometric",
+        "raw_text": "PyTorch Geometric"
+      },
+      {
+        "labeler": "B",
+        "label": "DGL",
+        "raw_text": "DGL"
+      },
+      {
+        "labeler": "B",
+        "label": "Classical predictive modeling",
+        "raw_text": "classical predictive modeling"
+      },
+      {
+        "labeler": "B",
+        "label": "Model registry",
+        "raw_text": "model registry"
+      },
+      {
+        "labeler": "B",
+        "label": "Rights-management platforms",
+        "raw_text": "rights-management platforms"
+      },
+      {
+        "labeler": "B",
+        "label": "Hybrid retrieval",
+        "raw_text": "hybrid retrieval"
+      },
+      {
+        "labeler": "B",
+        "label": "Graph traversal",
+        "raw_text": "graph traversal"
+      },
+      {
+        "labeler": "B",
+        "label": "Master data management",
+        "raw_text": "master data management"
+      },
+      {
+        "labeler": "B",
+        "label": "Data governance tools",
+        "raw_text": "data governance tools"
+      },
+      {
+        "labeler": "B",
+        "label": "Collibra",
+        "raw_text": "Collibra"
+      },
+      {
+        "labeler": "B",
+        "label": "Informatica",
+        "raw_text": "Informatica"
+      },
+      {
+        "labeler": "B",
+        "label": "Google Dataplex",
+        "raw_text": "Google Dataplex"
+      },
+      {
+        "labeler": "B",
+        "label": "Data-product delivery",
+        "raw_text": "data-product or data-mesh delivery"
+      },
+      {
+        "labeler": "B",
+        "label": "Data-mesh delivery",
+        "raw_text": "data-mesh delivery"
+      },
+      {
+        "labeler": "B",
+        "label": "Wikidata",
+        "raw_text": "Wikidata"
+      },
+      {
+        "labeler": "B",
+        "label": "Wikibase",
+        "raw_text": "Wikibase"
+      },
+      {
+        "labeler": "B",
+        "label": "Palantir Foundry Ontology",
+        "raw_text": "Palantir Foundry Ontology"
+      }
+    ]
+  },
+  "golden_097": {
+    "accepted_skills": [
+      {
+        "skill_id": "apache-spark",
+        "requirement": "nice_to_have",
+        "raw_text": "Spark implementation"
+      },
+      {
+        "skill_id": "bash",
+        "requirement": "nice_to_have",
+        "raw_text": "Bash (Unix shell)"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "nice_to_have",
+        "raw_text": "Preferred: Exposure to Java"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "foundational knowledge of machine learning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Familiarity with Python"
+      },
+      {
+        "skill_id": "r-lang",
+        "requirement": "nice_to_have",
+        "raw_text": "Java, C, R, SAS"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "Familiarity with Python and SQL"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "AI models, statistical analysis, and database design"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "junior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Technical Intern"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Database design",
+        "raw_text": "database design"
+      },
+      {
+        "labeler": "A",
+        "label": "C",
+        "raw_text": "Java, C, R"
+      },
+      {
+        "labeler": "A",
+        "label": "SAS",
+        "raw_text": "R, SAS, VBA"
+      },
+      {
+        "labeler": "A",
+        "label": "VBA",
+        "raw_text": "SAS, VBA"
+      },
+      {
+        "labeler": "A",
+        "label": "Talend",
+        "raw_text": "Talend"
+      },
+      {
+        "labeler": "A",
+        "label": "Linked data",
+        "raw_text": "linked data"
+      },
+      {
+        "labeler": "A",
+        "label": "Big data",
+        "raw_text": "Interest in big data"
+      },
+      {
+        "labeler": "B",
+        "label": "Database design",
+        "raw_text": "database design"
+      },
+      {
+        "labeler": "B",
+        "label": "C",
+        "raw_text": "C"
+      },
+      {
+        "labeler": "B",
+        "label": "SAS",
+        "raw_text": "SAS"
+      },
+      {
+        "labeler": "B",
+        "label": "VBA",
+        "raw_text": "VBA"
+      },
+      {
+        "labeler": "B",
+        "label": "Talend",
+        "raw_text": "Talend"
+      },
+      {
+        "labeler": "B",
+        "label": "Linked data",
+        "raw_text": "linked data"
+      },
+      {
+        "labeler": "B",
+        "label": "Scalability",
+        "raw_text": "Interest in big data, scalability"
+      }
+    ]
+  },
+  "golden_098": {
+    "accepted_skills": [],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "junior",
+        "seniority_basis": "stated",
+        "seniority_signal": "ML Engineer Intern"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": []
+  },
+  "golden_099": {
+    "accepted_skills": [
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "data modeling"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "RAG, embeddings"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation and observability practices"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "observability practices"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompt engineering"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python skills"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "Solid understanding of RAG"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Hands-on Snowflake experience"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "Strong SQL"
+      },
+      {
+        "skill_id": "streamlit",
+        "requirement": "nice_to_have",
+        "raw_text": "Streamlit in Snowflake"
+      }
+    ],
+    "accepted_attrs": {
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "bachelor",
+        "degree_requirement": "required",
+        "degree_or_equivalent": true,
+        "degree_signal": "A BS in Computer Science, Engineering or a related field, or equivalent practical experience"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Snowflake Cortex",
+        "raw_text": "Production experience with Snowflake Cortex"
+      },
+      {
+        "labeler": "A",
+        "label": "Cortex Agents",
+        "raw_text": "Cortex Agents"
+      },
+      {
+        "labeler": "A",
+        "label": "Cortex Analyst / Semantic Models or Views",
+        "raw_text": "Cortex Analyst with Semantic Models or Views"
+      },
+      {
+        "labeler": "A",
+        "label": "Cortex Search",
+        "raw_text": "Cortex Search"
+      },
+      {
+        "labeler": "A",
+        "label": "Cortex AI Functions (AISQL)",
+        "raw_text": "Cortex AI Functions (AISQL)"
+      },
+      {
+        "labeler": "A",
+        "label": "Cortex AI Functions examples",
+        "raw_text": "AI_COMPLETE, AI_CLASSIFY, AI_EXTRACT, AI_AGG and AI_EMBED"
+      },
+      {
+        "labeler": "A",
+        "label": "Snowflake CoWork / Snowflake Intelligence",
+        "raw_text": "Snowflake CoWork (Snowflake Intelligence)"
+      },
+      {
+        "labeler": "A",
+        "label": "Semantic Views",
+        "raw_text": "Semantic Views"
+      },
+      {
+        "labeler": "A",
+        "label": "Document AI",
+        "raw_text": "Document AI"
+      },
+      {
+        "labeler": "A",
+        "label": "Snowpark",
+        "raw_text": "Snowpark"
+      },
+      {
+        "labeler": "A",
+        "label": "text-to-SQL",
+        "raw_text": "text-to-SQL"
+      },
+      {
+        "labeler": "A",
+        "label": "performance tuning",
+        "raw_text": "performance tuning"
+      },
+      {
+        "labeler": "A",
+        "label": "security and governance",
+        "raw_text": "security and governance"
+      },
+      {
+        "labeler": "A",
+        "label": "Snowflake Native Apps",
+        "raw_text": "Snowflake Native Apps"
+      },
+      {
+        "labeler": "A",
+        "label": "SnowPro certification",
+        "raw_text": "A SnowPro Core or Advanced certification is a plus"
+      },
+      {
+        "labeler": "B",
+        "label": "Snowflake Cortex",
+        "raw_text": "Snowflake Cortex"
+      },
+      {
+        "labeler": "B",
+        "label": "Cortex Agents",
+        "raw_text": "Cortex Agents"
+      },
+      {
+        "labeler": "B",
+        "label": "Cortex Analyst",
+        "raw_text": "Cortex Analyst"
+      },
+      {
+        "labeler": "B",
+        "label": "Cortex Search",
+        "raw_text": "Cortex Search"
+      },
+      {
+        "labeler": "B",
+        "label": "Cortex AI Functions (AISQL)",
+        "raw_text": "Cortex AI Functions (AISQL)"
+      },
+      {
+        "labeler": "B",
+        "label": "Semantic Views",
+        "raw_text": "Semantic Views"
+      },
+      {
+        "labeler": "B",
+        "label": "Document AI",
+        "raw_text": "Document AI"
+      },
+      {
+        "labeler": "B",
+        "label": "Snowpark",
+        "raw_text": "Snowpark"
+      },
+      {
+        "labeler": "B",
+        "label": "Text-to-SQL",
+        "raw_text": "text-to-SQL"
+      },
+      {
+        "labeler": "B",
+        "label": "Data engineering",
+        "raw_text": "data engineering"
+      },
+      {
+        "labeler": "B",
+        "label": "Analytics engineering",
+        "raw_text": "analytics engineering"
+      },
+      {
+        "labeler": "B",
+        "label": "Data architecture",
+        "raw_text": "data architecture"
+      },
+      {
+        "labeler": "B",
+        "label": "Snowflake Semantic Models",
+        "raw_text": "Semantic Models"
+      },
+      {
+        "labeler": "B",
+        "label": "AI_COMPLETE",
+        "raw_text": "AI_COMPLETE"
+      },
+      {
+        "labeler": "B",
+        "label": "AI_CLASSIFY",
+        "raw_text": "AI_CLASSIFY"
+      },
+      {
+        "labeler": "B",
+        "label": "AI_EXTRACT",
+        "raw_text": "AI_EXTRACT"
+      },
+      {
+        "labeler": "B",
+        "label": "AI_AGG",
+        "raw_text": "AI_AGG"
+      },
+      {
+        "labeler": "B",
+        "label": "AI_EMBED",
+        "raw_text": "AI_EMBED"
+      },
+      {
+        "labeler": "B",
+        "label": "Snowflake CoWork / Snowflake Intelligence",
+        "raw_text": "Snowflake CoWork (Snowflake Intelligence)"
+      },
+      {
+        "labeler": "B",
+        "label": "Performance tuning",
+        "raw_text": "performance tuning"
+      },
+      {
+        "labeler": "B",
+        "label": "Data governance",
+        "raw_text": "governance"
+      },
+      {
+        "labeler": "B",
+        "label": "Cost and latency tuning",
+        "raw_text": "cost and latency tuning"
+      },
+      {
+        "labeler": "B",
+        "label": "Multi-user concurrency",
+        "raw_text": "multi-user concurrency"
+      },
+      {
+        "labeler": "B",
+        "label": "Snowflake Native Apps",
+        "raw_text": "Snowflake Native Apps"
+      }
+    ]
+  },
+  "golden_100": {
+    "accepted_skills": [
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "strong experience with distributed systems"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": null,
+        "seniority_basis": null,
+        "seniority_signal": null
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "large-scale infrastructure",
+        "raw_text": "large-scale infrastructure"
+      },
+      {
+        "labeler": "B",
+        "label": "Large-scale infrastructure",
+        "raw_text": "large-scale infrastructure"
+      }
+    ]
+  },
+  "golden_101": {
+    "accepted_skills": [
+      {
+        "skill_id": "airflow",
+        "requirement": "required",
+        "raw_text": "Airflow"
+      },
+      {
+        "skill_id": "anthropic-api",
+        "requirement": "required",
+        "raw_text": "Anthropic"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "build APIs"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "Cloud: AWS"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend services"
+      },
+      {
+        "skill_id": "chain-of-thought",
+        "requirement": "required",
+        "raw_text": "multi-step reasoning"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud infrastructure (AWS)"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "data pipelines, and backend services"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "nice_to_have",
+        "raw_text": "embeddings"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Version control: Git & GitHub"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "Copilot on GitHub"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java (limited)"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM APIs"
+      },
+      {
+        "skill_id": "mysql",
+        "requirement": "required",
+        "raw_text": "MySQL"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "required",
+        "raw_text": "OpenAI"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "PostgreSQL"
+      },
+      {
+        "skill_id": "prefect",
+        "requirement": "required",
+        "raw_text": "Prefect"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompt engineering"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python skills"
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "React"
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "required",
+        "raw_text": "Scala (principally)"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "cloud data warehouses such as Snowflake"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "6+ years of software engineering experience"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "nice_to_have",
+        "raw_text": "vector databases"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Senior AI Engineer"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Workflow orchestration",
+        "raw_text": "workflow orchestration tools"
+      },
+      {
+        "labeler": "A",
+        "label": "Data engineering / data transformation",
+        "raw_text": "data engineering fundamentals including SQL, data transformation"
+      },
+      {
+        "labeler": "A",
+        "label": "Cloud data warehouses",
+        "raw_text": "cloud data warehouses"
+      },
+      {
+        "labeler": "A",
+        "label": "Datadog",
+        "raw_text": "Datadog"
+      },
+      {
+        "labeler": "B",
+        "label": "Data engineering",
+        "raw_text": "data engineering fundamentals"
+      },
+      {
+        "labeler": "B",
+        "label": "Data transformation",
+        "raw_text": "data transformation"
+      },
+      {
+        "labeler": "B",
+        "label": "Cloud data warehouses",
+        "raw_text": "cloud data warehouses"
+      },
+      {
+        "labeler": "B",
+        "label": "Workflow orchestration",
+        "raw_text": "workflow orchestration tools"
+      },
+      {
+        "labeler": "B",
+        "label": "Semantic search",
+        "raw_text": "semantic search"
+      },
+      {
+        "labeler": "B",
+        "label": "Datadog",
+        "raw_text": "Datadog"
+      }
+    ]
+  },
+  "golden_102": {
+    "accepted_skills": [
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "nice_to_have",
+        "raw_text": "AI coding tools"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "nice_to_have",
+        "raw_text": "vector embeddings"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "evaluation golden sets"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM compute unit economics"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning data pipelines"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "natural language processing (NLP)"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL for data analysis"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Senior Data Engineer"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "data engineering",
+        "raw_text": "data engineering"
+      },
+      {
+        "labeler": "A",
+        "label": "data warehousing",
+        "raw_text": "distributed data warehouses"
+      },
+      {
+        "labeler": "A",
+        "label": "text classification",
+        "raw_text": "text classification"
+      },
+      {
+        "labeler": "A",
+        "label": "ontology design",
+        "raw_text": "designing ontologies"
+      },
+      {
+        "labeler": "A",
+        "label": "taxonomy versioning",
+        "raw_text": "versioned taxonomies"
+      },
+      {
+        "labeler": "A",
+        "label": "semantic layers",
+        "raw_text": "semantic layers"
+      },
+      {
+        "labeler": "A",
+        "label": "metadata management",
+        "raw_text": "metadata management platforms"
+      },
+      {
+        "labeler": "A",
+        "label": "lightweight classifiers",
+        "raw_text": "lightweight classifiers"
+      },
+      {
+        "labeler": "B",
+        "label": "Data engineering",
+        "raw_text": "data engineering"
+      },
+      {
+        "labeler": "B",
+        "label": "Distributed data warehouses",
+        "raw_text": "building and operating production ETL/ELT pipelines and distributed data warehouses"
+      },
+      {
+        "labeler": "B",
+        "label": "General-purpose programming",
+        "raw_text": "a general-purpose programming language"
+      },
+      {
+        "labeler": "B",
+        "label": "Text classification",
+        "raw_text": "text classification"
+      },
+      {
+        "labeler": "B",
+        "label": "Ontology design",
+        "raw_text": "designing ontologies"
+      },
+      {
+        "labeler": "B",
+        "label": "Versioned taxonomies",
+        "raw_text": "versioned taxonomies"
+      },
+      {
+        "labeler": "B",
+        "label": "Semantic layers",
+        "raw_text": "semantic layers"
+      },
+      {
+        "labeler": "B",
+        "label": "Metadata management platforms",
+        "raw_text": "metadata management platforms"
+      },
+      {
+        "labeler": "B",
+        "label": "ML and LLM compute-cost optimization",
+        "raw_text": "optimizing ML vs. LLM compute unit economics"
+      },
+      {
+        "labeler": "B",
+        "label": "Lightweight classifiers",
+        "raw_text": "lightweight classifiers"
+      }
+    ]
+  },
+  "golden_103": {
+    "accepted_skills": [],
+    "accepted_attrs": {
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "bachelor",
+        "degree_requirement": "required",
+        "degree_or_equivalent": false,
+        "degree_signal": "At least a Bachelor's degree"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Model drift",
+        "raw_text": "drift"
+      }
+    ]
+  },
+  "golden_104": {
+    "accepted_skills": [],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": null,
+        "seniority_basis": null,
+        "seniority_signal": null
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": []
+  },
+  "golden_105": {
+    "accepted_skills": [
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "tool-calling agents"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML solutions"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containers"
+      },
+      {
+        "skill_id": "devsecops",
+        "requirement": "required",
+        "raw_text": "DevSecOps"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation harnesses"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "fine-tuning models"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "infrastructure-as-code"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "nice_to_have",
+        "raw_text": "agent orchestration"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "model-selection",
+        "requirement": "nice_to_have",
+        "raw_text": "model selection"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "model serving"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM observability"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "retrieval-augmented generation"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software engineering skills"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automated testing"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool-calling agents"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Senior Consultant level"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "bachelor",
+        "degree_requirement": "required",
+        "degree_or_equivalent": false,
+        "degree_signal": "A bachelor's degree in Cybersecurity, Computer Science, Information Systems, Engineering, or a related field"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Prompt injection",
+        "raw_text": "prompt injection"
+      },
+      {
+        "labeler": "A",
+        "label": "OWASP Top 10 for LLMs",
+        "raw_text": "OWASP Top 10 for LLMs"
+      },
+      {
+        "labeler": "A",
+        "label": "MITRE ATLAS",
+        "raw_text": "MITRE ATLAS"
+      },
+      {
+        "labeler": "A",
+        "label": "Security architecture",
+        "raw_text": "security architecture"
+      },
+      {
+        "labeler": "A",
+        "label": "Identity and access management",
+        "raw_text": "identity and access management"
+      },
+      {
+        "labeler": "A",
+        "label": "Detection engineering",
+        "raw_text": "detection engineering"
+      },
+      {
+        "labeler": "A",
+        "label": "Incident response automation",
+        "raw_text": "incident response automation"
+      },
+      {
+        "labeler": "A",
+        "label": "SIEM",
+        "raw_text": "SIEM"
+      },
+      {
+        "labeler": "A",
+        "label": "SOAR",
+        "raw_text": "SOAR"
+      },
+      {
+        "labeler": "A",
+        "label": "EDR",
+        "raw_text": "EDR"
+      },
+      {
+        "labeler": "A",
+        "label": "Application security",
+        "raw_text": "Application security"
+      },
+      {
+        "labeler": "A",
+        "label": "Secure code review",
+        "raw_text": "secure code review"
+      },
+      {
+        "labeler": "A",
+        "label": "AI red teaming",
+        "raw_text": "AI red teaming"
+      },
+      {
+        "labeler": "A",
+        "label": "Adversarial testing",
+        "raw_text": "adversarial testing"
+      },
+      {
+        "labeler": "A",
+        "label": "Sandboxing",
+        "raw_text": "sandboxing"
+      },
+      {
+        "labeler": "A",
+        "label": "CISSP / CCSP certifications",
+        "raw_text": "CISSP, CCSP"
+      },
+      {
+        "labeler": "B",
+        "label": "Model integration",
+        "raw_text": "model integrations"
+      },
+      {
+        "labeler": "B",
+        "label": "Secure security-platform integration",
+        "raw_text": "secure security-platform connections"
+      },
+      {
+        "labeler": "B",
+        "label": "Debugging and troubleshooting",
+        "raw_text": "Strong troubleshooting skills across cyber workflows, model behavior, data quality, and production issues"
+      },
+      {
+        "labeler": "B",
+        "label": "Technical documentation",
+        "raw_text": "technical documentation skills"
+      },
+      {
+        "labeler": "B",
+        "label": "Secure engineering",
+        "raw_text": "secure engineering"
+      },
+      {
+        "labeler": "B",
+        "label": "Security operations",
+        "raw_text": "Security operations"
+      },
+      {
+        "labeler": "B",
+        "label": "Threat investigation",
+        "raw_text": "threat investigation"
+      },
+      {
+        "labeler": "B",
+        "label": "Detection engineering",
+        "raw_text": "detection engineering"
+      },
+      {
+        "labeler": "B",
+        "label": "Incident response automation",
+        "raw_text": "incident response automation"
+      },
+      {
+        "labeler": "B",
+        "label": "SIEM integration",
+        "raw_text": "API integration with SIEM"
+      },
+      {
+        "labeler": "B",
+        "label": "SOAR integration",
+        "raw_text": "SOAR"
+      },
+      {
+        "labeler": "B",
+        "label": "EDR integration",
+        "raw_text": "EDR"
+      },
+      {
+        "labeler": "B",
+        "label": "Vulnerability-management platform integration",
+        "raw_text": "vulnerability management"
+      },
+      {
+        "labeler": "B",
+        "label": "Code-security platform integration",
+        "raw_text": "code security platforms"
+      },
+      {
+        "labeler": "B",
+        "label": "Application security",
+        "raw_text": "Application security"
+      },
+      {
+        "labeler": "B",
+        "label": "Vulnerability analysis",
+        "raw_text": "vulnerability analysis"
+      },
+      {
+        "labeler": "B",
+        "label": "Secure code review",
+        "raw_text": "secure code review"
+      },
+      {
+        "labeler": "B",
+        "label": "Automated remediation",
+        "raw_text": "automated remediation"
+      },
+      {
+        "labeler": "B",
+        "label": "OWASP Top 10 for LLMs",
+        "raw_text": "OWASP Top 10 for LLMs"
+      },
+      {
+        "labeler": "B",
+        "label": "MITRE ATLAS",
+        "raw_text": "MITRE ATLAS"
+      },
+      {
+        "labeler": "B",
+        "label": "Security architecture",
+        "raw_text": "security architecture"
+      },
+      {
+        "labeler": "B",
+        "label": "Identity and access management",
+        "raw_text": "identity and access management"
+      },
+      {
+        "labeler": "B",
+        "label": "Secure AI operations",
+        "raw_text": "secure AI operations"
+      },
+      {
+        "labeler": "B",
+        "label": "CISSP certification",
+        "raw_text": "CISSP"
+      },
+      {
+        "labeler": "B",
+        "label": "CCSP certification",
+        "raw_text": "CCSP"
+      },
+      {
+        "labeler": "B",
+        "label": "Model adaptation",
+        "raw_text": "adaptation"
+      },
+      {
+        "labeler": "B",
+        "label": "Adversarial testing",
+        "raw_text": "adversarial testing"
+      },
+      {
+        "labeler": "B",
+        "label": "AI red teaming",
+        "raw_text": "AI red teaming"
+      },
+      {
+        "labeler": "B",
+        "label": "Sandboxing",
+        "raw_text": "sandboxing"
+      },
+      {
+        "labeler": "B",
+        "label": "Deployment in regulated or restricted environments",
+        "raw_text": "deployment in regulated or restricted environments"
+      },
+      {
+        "labeler": "B",
+        "label": "Prototyping",
+        "raw_text": "live prototyping"
+      },
+      {
+        "labeler": "B",
+        "label": "Evaluation dataset construction",
+        "raw_text": "building cyber evaluation datasets"
+      },
+      {
+        "labeler": "B",
+        "label": "Open-source contribution",
+        "raw_text": "contributing to open-source AI or security projects"
+      }
+    ]
+  },
+  "golden_106": {
+    "accepted_skills": [
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "Strong C++"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning frameworks"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "applying machine learning to address real-world problems"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python programming"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "Tensor Flow"
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "nice_to_have",
+        "raw_text": "using TensorRT"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "nice_to_have",
+        "raw_text": "modern network architectures like Transformers"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "Senior Machine Learning Engineer"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": "phd",
+        "degree_requirement": "required",
+        "degree_or_equivalent": true,
+        "degree_signal": "MS or PhD in Computer Science, Engineering, or a related field, or equivalent experience"
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "LiDAR/camera perception",
+        "raw_text": "lidar/camera perception"
+      },
+      {
+        "labeler": "A",
+        "label": "multi-sensor fusion",
+        "raw_text": "multi-sensor fusion"
+      },
+      {
+        "labeler": "B",
+        "label": "Debugging",
+        "raw_text": "debugging skills"
+      },
+      {
+        "labeler": "B",
+        "label": "Multi-sensor fusion",
+        "raw_text": "multi-sensor fusion"
+      },
+      {
+        "labeler": "B",
+        "label": "Model metric workflows",
+        "raw_text": "essential metric workflows"
+      }
+    ]
+  },
+  "golden_107": {
+    "accepted_skills": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python skills"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG-based workflows"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "strong SQL"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": null,
+        "seniority_basis": null,
+        "seniority_signal": null
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Snowflake Cortex",
+        "raw_text": "experience with Cortex components"
+      },
+      {
+        "labeler": "A",
+        "label": "Snowflake Semantic Views",
+        "raw_text": "Semantic Views"
+      },
+      {
+        "labeler": "B",
+        "label": "Snowflake Cortex",
+        "raw_text": "Cortex components"
+      },
+      {
+        "labeler": "B",
+        "label": "Snowflake Semantic Views",
+        "raw_text": "Semantic Views"
+      }
+    ]
+  },
+  "golden_108": {
+    "accepted_skills": [
+      {
+        "skill_id": "agent-architecture",
+        "requirement": "required",
+        "raw_text": "agent-based architectures"
+      },
+      {
+        "skill_id": "api-design",
+        "requirement": "required",
+        "raw_text": "REST API design"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure"
+      },
+      {
+        "skill_id": "azure-devops",
+        "requirement": "required",
+        "raw_text": "Azure DevOps"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD pipelines"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java / Spring Boot"
+      },
+      {
+        "skill_id": "spring-boot",
+        "requirement": "required",
+        "raw_text": "Java / Spring Boot"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "workflow automation"
+      }
+    ],
+    "accepted_attrs": {
+      "seniority": {
+        "seniority": "senior",
+        "seniority_basis": "stated",
+        "seniority_signal": "One senior engineer (8-10+ years)"
+      },
+      "german": {
+        "german": null,
+        "german_basis": null,
+        "german_signal": null
+      },
+      "degree": {
+        "degree": null,
+        "degree_requirement": null,
+        "degree_or_equivalent": false,
+        "degree_signal": null
+      }
+    },
+    "unmapped": [
+      {
+        "labeler": "A",
+        "label": "Azure App Services",
+        "raw_text": "App Services"
+      },
+      {
+        "labeler": "A",
+        "label": "Azure Functions",
+        "raw_text": "Functions"
+      },
+      {
+        "labeler": "A",
+        "label": "Azure API Management",
+        "raw_text": "API Management"
+      },
+      {
+        "labeler": "A",
+        "label": "Azure Storage",
+        "raw_text": "Storage"
+      },
+      {
+        "labeler": "A",
+        "label": "Azure AI Services",
+        "raw_text": "Azure AI Services"
+      },
+      {
+        "labeler": "A",
+        "label": "Data integration",
+        "raw_text": "data integration experience"
+      },
+      {
+        "labeler": "A",
+        "label": "Summarization",
+        "raw_text": "summarization"
+      },
+      {
+        "labeler": "A",
+        "label": "Document intelligence",
+        "raw_text": "document intelligence"
+      },
+      {
+        "labeler": "A",
+        "label": "Knowledge retrieval",
+        "raw_text": "knowledge retrieval solutions"
+      },
+      {
+        "labeler": "A",
+        "label": "HL7 FHIR APIs",
+        "raw_text": "HL7 FHIR APIs"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure App Services",
+        "raw_text": "App Services"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure Functions",
+        "raw_text": "Functions"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure API Management",
+        "raw_text": "API Management"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure Storage",
+        "raw_text": "Storage"
+      },
+      {
+        "labeler": "B",
+        "label": "Azure AI Services",
+        "raw_text": "Azure AI Services"
+      },
+      {
+        "labeler": "B",
+        "label": "Data integration",
+        "raw_text": "data integration"
+      },
+      {
+        "labeler": "B",
+        "label": "Summarization",
+        "raw_text": "summarization"
+      },
+      {
+        "labeler": "B",
+        "label": "Document intelligence",
+        "raw_text": "document intelligence"
+      },
+      {
+        "labeler": "B",
+        "label": "Knowledge retrieval",
+        "raw_text": "knowledge retrieval solutions"
+      },
+      {
+        "labeler": "B",
+        "label": "HL7 FHIR APIs and healthcare interoperability standards",
+        "raw_text": "HL7 FHIR APIs and healthcare interoperability standards"
+      },
+      {
+        "labeler": "B",
+        "label": "HIPAA-compliant application development",
+        "raw_text": "HIPAA-compliant application development"
+      }
+    ]
+  }
+}

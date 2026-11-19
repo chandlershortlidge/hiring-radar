@@ -1,0 +1,66 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software development\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI-native delivery: consistent use of AI across the SDLC\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud-native systems\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"observability best practices\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"integrating AI/LLM capabilities into product experiences responsibly\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI/LLM capabilities\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"architectural direction\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Reliability best practices\",\n      \"raw_text\": \"reliability and observability best practices\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Software Engineer, Axon AI\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor’s degree or equivalent experience.\",\n  \"notes\": \"Required Skills sets required labels; Preferred Qualifications sets optional labels.\\nAI-native use across the SDLC maps to AI Coding Tools; integrating AI/LLM capabilities into products is a separate preferred ask.\\nArchitectural direction is labeled from Preferred Qualifications; architecture, testing, security, and other practices mentioned only in responsibilities do not create additional requirements.\\nReliability best practices is an explicit technical-practice requirement without a matching taxonomy entry.\\nAI/LLM names broad AI and LLM capabilities rather than interchangeable alternatives; no alternative groups apply.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software development"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI-native delivery: consistent use of AI across the SDLC"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud-native systems"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "observability best practices"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "nice_to_have",
+        "raw_text": "integrating AI/LLM capabilities into product experiences responsibly"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "AI/LLM capabilities"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "nice_to_have",
+        "raw_text": "architectural direction"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Reliability best practices",
+        "raw_text": "reliability and observability best practices"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Software Engineer, Axon AI",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor’s degree or equivalent experience.",
+    "notes": "Required Skills sets required labels; Preferred Qualifications sets optional labels.\nAI-native use across the SDLC maps to AI Coding Tools; integrating AI/LLM capabilities into products is a separate preferred ask.\nArchitectural direction is labeled from Preferred Qualifications; architecture, testing, security, and other practices mentioned only in responsibilities do not create additional requirements.\nReliability best practices is an explicit technical-practice requirement without a matching taxonomy entry.\nAI/LLM names broad AI and LLM capabilities rather than interchangeable alternatives; no alternative groups apply."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "d4cf4b57251c37a041997a676a4a09b95e9ae07166e899244c323182c5e6782f",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

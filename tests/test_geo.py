@@ -255,3 +255,46 @@ def test_places_named_london_that_are_not_london(location):
 def test_amsterdam_is_collected_hir_252(location):
     """Amsterdam launched on 2026-11-19 (HIR-252), Dutch spellings of its address included."""
     assert active_place(location) == "Amsterdam"
+
+
+# --- Seattle, Los Angeles, Chicago and San Jose (HIR-302) ------------------------------
+
+def test_every_hir_302_city_has_a_start_date():
+    for city in ("Seattle", "Los Angeles", "Chicago", "San Jose"):
+        assert city in geo.ACTIVE_CITIES and city in geo.COLLECTING_SINCE
+
+
+@pytest.mark.parametrize("location, city", [
+    ("Seattle, WA", "Seattle"), ("Bellevue, WA", "Seattle"), ("Redmond, Washington, United States", "Seattle"),
+    ("Los Angeles, CA", "Los Angeles"), ("LA, CA", "Los Angeles"), ("Santa Monica, California", "Los Angeles"),
+    ("Chicago, IL", "Chicago"), ("Chicago, Illinois, United States", "Chicago"),
+    ("San Jose, CA", "San Jose"), ("Santa Clara, CA", "San Jose"), ("Sunnyvale, CA", "San Jose"),
+    ("Mountain View, California", "San Jose"), ("Palo Alto", "San Jose"), ("Cupertino, CA", "San Jose"),
+])
+def test_hir_302_cities_are_collected(location, city):
+    assert active_place(location) == city
+
+
+@pytest.mark.parametrize("location", [
+    "Bellevue, NE", "Redmond, OR",                    # same names, other states
+    "LA", "Remote - LA", "New Orleans, LA",            # a bare LA is never Los Angeles
+    "Los Angeles, Chile",
+    "San Jose, Costa Rica", "San José, CR", "San Jose, Philippines", "San Jose del Monte, Bulacan",
+    "Santa Clara, Cuba",
+])
+def test_places_named_like_hir_302_cities_that_are_not_them(location):
+    assert place_of(location) is None
+
+
+@pytest.mark.parametrize("location, places", [
+    ("San Jose, CA (Bay Area)", ["San Jose"]),                 # the ticket's case
+    ("San Jose, CA (San Francisco Bay Area)", ["San Jose"]),
+    ("Sunnyvale, CA - SF Bay Area", ["San Jose"]),
+    ("San Francisco Bay Area", ["San Francisco"]),             # Bay Area alone stays SF
+    ("Bay Area", ["San Francisco"]),
+    ("San Francisco, CA; Sunnyvale, CA", ["San Francisco", "San Jose"]),  # names both cities
+    ("Mountain View, CA; San Francisco Bay Area; San Francisco, CA", ["San Francisco", "San Jose"]),
+])
+def test_san_jose_vs_san_francisco(location, places):
+    assert geo.places_of(location) == places
+    assert geo.city_of(location) == places[0]

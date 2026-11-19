@@ -1,0 +1,123 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"data-modeling\", \"requirement\": \"required\", \"raw_text\": \"data modeling\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"required\", \"raw_text\": \"production ETL/ELT pipelines\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL for data analysis\"},\n    {\"skill_id\": \"nlp\", \"requirement\": \"required\", \"raw_text\": \"natural language processing (NLP)\", \"alternative_group\": 2},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"machine learning data pipelines\", \"alternative_group\": 2},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LLM compute unit economics\"},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"nice_to_have\", \"raw_text\": \"vector embeddings\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"evaluation golden sets\"},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AI coding tools\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"nice_to_have\", \"raw_text\": \"building APIs\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"data engineering\", \"raw_text\": \"data engineering\"},\n    {\"label\": \"data warehousing\", \"raw_text\": \"distributed data warehouses\"},\n    {\"label\": \"text classification\", \"raw_text\": \"text classification\"},\n    {\"label\": \"ontology design\", \"raw_text\": \"designing ontologies\"},\n    {\"label\": \"taxonomy versioning\", \"raw_text\": \"versioned taxonomies\"},\n    {\"label\": \"semantic layers\", \"raw_text\": \"semantic layers\"},\n    {\"label\": \"metadata management\", \"raw_text\": \"metadata management platforms\"},\n    {\"label\": \"lightweight classifiers\", \"raw_text\": \"lightweight classifiers\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Data Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Master's degree in Computer Science, Engineering, Statistics, Mathematics, or a related quantitative discipline or equivalent professional experience\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"Sections: 'Minimum qualifications' is required; 'Preferred qualifications' is nice_to_have. Skills named only in Responsibilities and About The Job (LLM inference, AI agents, vector-embedding classification pipelines) are not labeled.\\nGroup 1 is the 'data engineering, data modeling, or ... ETL/ELT pipelines and distributed data warehouses' alternatives. Only data-modeling and data-pipelines map to taxonomy ids; data engineering and data warehouses are unmapped.\\ndata-pipelines is also implied by 'machine learning data pipelines' in the 4th required bullet. That mention is also in an or-list, so the skill is never asked for on its own and stays in group 1 (one criterion per skill).\\ndata-modeling also appears in preferred 'architecting data models'. That mention is optional, not a stand-alone requirement, so it stays in group 1; flagged uncertain.\\nGroup 2 is the 'text classification, natural language processing (NLP), or machine learning data pipelines' alternatives; text classification is unmapped.\\n'Python or a general-purpose programming language' is treated like 'or other': python alone, no group. It is required, as is SQL.\\n'building APIs or architecting data models' is an or-pair, but data-modeling is already required and grouped elsewhere, so apis is left ungrouped; flagged uncertain.\\n'ML' in the preferred bullet duplicates the required machine-learning; the required mention wins.\\nDegree: Bachelor's is required and Master's is preferred. Following 'highest level named', I labeled master / nice_to_have with 'or equivalent professional experience' (or_equivalent true). The alternative reading is bachelor / required (also 'or equivalent practical experience'); flagged for review.\\nStatistics appears only as a degree field in the Master's line, so it is not labeled as a skill.\\nNo German mentioned; posting is in English; German is null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "data modeling",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "production ETL/ELT pipelines",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL for data analysis"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "natural language processing (NLP)",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning data pipelines",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM compute unit economics"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "nice_to_have",
+        "raw_text": "vector embeddings"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "evaluation golden sets"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "nice_to_have",
+        "raw_text": "AI coding tools"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "nice_to_have",
+        "raw_text": "building APIs",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "data engineering",
+        "raw_text": "data engineering"
+      },
+      {
+        "label": "data warehousing",
+        "raw_text": "distributed data warehouses"
+      },
+      {
+        "label": "text classification",
+        "raw_text": "text classification"
+      },
+      {
+        "label": "ontology design",
+        "raw_text": "designing ontologies"
+      },
+      {
+        "label": "taxonomy versioning",
+        "raw_text": "versioned taxonomies"
+      },
+      {
+        "label": "semantic layers",
+        "raw_text": "semantic layers"
+      },
+      {
+        "label": "metadata management",
+        "raw_text": "metadata management platforms"
+      },
+      {
+        "label": "lightweight classifiers",
+        "raw_text": "lightweight classifiers"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Data Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": true,
+    "degree_signal": "Master's degree in Computer Science, Engineering, Statistics, Mathematics, or a related quantitative discipline or equivalent professional experience",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Sections: 'Minimum qualifications' is required; 'Preferred qualifications' is nice_to_have. Skills named only in Responsibilities and About The Job (LLM inference, AI agents, vector-embedding classification pipelines) are not labeled.\nGroup 1 is the 'data engineering, data modeling, or ... ETL/ELT pipelines and distributed data warehouses' alternatives. Only data-modeling and data-pipelines map to taxonomy ids; data engineering and data warehouses are unmapped.\ndata-pipelines is also implied by 'machine learning data pipelines' in the 4th required bullet. That mention is also in an or-list, so the skill is never asked for on its own and stays in group 1 (one criterion per skill).\ndata-modeling also appears in preferred 'architecting data models'. That mention is optional, not a stand-alone requirement, so it stays in group 1; flagged uncertain.\nGroup 2 is the 'text classification, natural language processing (NLP), or machine learning data pipelines' alternatives; text classification is unmapped.\n'Python or a general-purpose programming language' is treated like 'or other': python alone, no group. It is required, as is SQL.\n'building APIs or architecting data models' is an or-pair, but data-modeling is already required and grouped elsewhere, so apis is left ungrouped; flagged uncertain.\n'ML' in the preferred bullet duplicates the required machine-learning; the required mention wins.\nDegree: Bachelor's is required and Master's is preferred. Following 'highest level named', I labeled master / nice_to_have with 'or equivalent professional experience' (or_equivalent true). The alternative reading is bachelor / required (also 'or equivalent practical experience'); flagged for review.\nStatistics appears only as a degree field in the Master's line, so it is not labeled as a skill.\nNo German mentioned; posting is in English; German is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "79cd208cee1f46ad51855604be4ac16440478451098e7f87b88a80799afb142c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

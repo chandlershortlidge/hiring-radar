@@ -1,0 +1,308 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"devops\", \"requirement\": \"required\", \"raw_text\": \"7+ years in DevOps\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud engineering\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"software engineering, or a related discipline\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Microsoft Azure environments\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD & Source Control\"},\n    {\"skill_id\": \"azure-devops\", \"requirement\": \"required\", \"raw_text\": \"Azure DevOps; Azure Boards\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"Git; pull requests\"},\n    {\"skill_id\": \"github-actions\", \"requirement\": \"required\", \"raw_text\": \"GitHub Actions\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"required\", \"raw_text\": \"Hands-on expertise with Terraform\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"required\", \"raw_text\": \"reusable IaC modules\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Docker, Kubernetes, Linux\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Docker; Kubernetes; Helm\"},\n    {\"skill_id\": \"helm\", \"requirement\": \"required\", \"raw_text\": \"Kubernetes; Helm\"},\n    {\"skill_id\": \"linux\", \"requirement\": \"required\", \"raw_text\": \"Linux\"},\n    {\"skill_id\": \"networking\", \"requirement\": \"required\", \"raw_text\": \"networking\"},\n    {\"skill_id\": \"secrets-management\", \"requirement\": \"required\", \"raw_text\": \"secrets management\"},\n    {\"skill_id\": \"cybersecurity\", \"requirement\": \"required\", \"raw_text\": \"cloud security fundamentals\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Proficiency in Python\"},\n    {\"skill_id\": \"bash\", \"requirement\": \"required\", \"raw_text\": \"Python; Bash\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"Monitoring, logging, tracing\"},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"required\", \"raw_text\": \"production support for distributed systems\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"automated testing\"},\n    {\"skill_id\": \"azure-ai-foundry\", \"requirement\": \"required\", \"raw_text\": \"Microsoft Foundry / Azure AI services\", \"uncertain\": true},\n    {\"skill_id\": \"openai-api\", \"requirement\": \"required\", \"raw_text\": \"Azure OpenAI\", \"uncertain\": true},\n    {\"skill_id\": \"azure-key-vault\", \"requirement\": \"required\", \"raw_text\": \"Key Vault\"},\n    {\"skill_id\": \"microsoft-entra-id\", \"requirement\": \"required\", \"raw_text\": \"Entra ID\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"AI application and agent evaluation\"},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG quality\"},\n    {\"skill_id\": \"opentelemetry\", \"requirement\": \"required\", \"raw_text\": \"Open Telemetry\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"REST APIs\"},\n    {\"skill_id\": \"microservices\", \"requirement\": \"required\", \"raw_text\": \"microservices\"},\n    {\"skill_id\": \"event-driven-systems\", \"requirement\": \"required\", \"raw_text\": \"event-driven integration\"},\n    {\"skill_id\": \"snowflake\", \"requirement\": \"required\", \"raw_text\": \"Snowflake/Databricks familiarity\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"databricks\", \"requirement\": \"required\", \"raw_text\": \"Snowflake/Databricks familiarity\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"devsecops\", \"requirement\": \"required\", \"raw_text\": \"DevSecOps scanning\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LLM-powered services\", \"alternative_group\": 3},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AI agents\", \"alternative_group\": 3},\n    {\"skill_id\": \"vector-search\", \"requirement\": \"nice_to_have\", \"raw_text\": \"vector search\", \"alternative_group\": 3},\n    {\"skill_id\": \"mlops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"GenAIOps, MLOps, AgentOps\"},\n    {\"skill_id\": \"gitops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"GitOps/deployment tooling\"},\n    {\"skill_id\": \"argocd\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Argo CD\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Bicep\", \"raw_text\": \"Terraform; Bicep\"},\n    {\"label\": \"PowerShell\", \"raw_text\": \"Bash; PowerShell\"},\n    {\"label\": \"Azure Machine Learning\", \"raw_text\": \"Azure Machine Learning\"},\n    {\"label\": \"Azure API Management\", \"raw_text\": \"API Management\"},\n    {\"label\": \"Azure Monitor\", \"raw_text\": \"Azure Monitor\"},\n    {\"label\": \"Azure Boards\", \"raw_text\": \"Azure Boards\"},\n    {\"label\": \"JSON/YAML\", \"raw_text\": \"JSON/YAML\"},\n    {\"label\": \"ServiceNow\", \"raw_text\": \"ServiceNow\"},\n    {\"label\": \"GenAIOps\", \"raw_text\": \"GenAIOps\"},\n    {\"label\": \"AgentOps\", \"raw_text\": \"AgentOps\"},\n    {\"label\": \"Application Insights\", \"raw_text\": \"Application Insights\"},\n    {\"label\": \"Datadog\", \"raw_text\": \"Datadog\"},\n    {\"label\": \"Dynatrace\", \"raw_text\": \"Dynatrace\"},\n    {\"label\": \"Splunk\", \"raw_text\": \"Splunk\"},\n    {\"label\": \"SLI/SLO practices\", \"raw_text\": \"SLI/SLO practices\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"7+ years in DevOps\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor's degree in Computer Science, Engineering, Information Technology, or a related discipline, or equivalent practical experience\",\n  \"uncertain\": [],\n  \"notes\": \"Everything under 'Required Skills & Experience' is required, including the semicolon tech-stack lines, which are treated as unmarked tech-stack entries; the 'Nice-to-Haves' heading makes its items nice_to_have unless the skill is also asked for in the required section.\\nThe 'Required Certification' list (Microsoft Azure, GitHub, Kubernetes, Terraform, DevOps, MLOps, or AI engineering) asks for certifications, not skills, so it is not labeled on its own. Every skill in it except MLOps is labeled from other required mentions; MLOps comes only from the Nice-to-Haves list.\\nThe '7+ years in DevOps, platform engineering, cloud engineering, SRE, software engineering, or a related discipline' line is read as alternatives, giving group 1 (devops, cloud, software-engineering). I am unsure these disciplines count as asked skills, and cloud is mapped from 'cloud engineering'.\\nAzure DevOps and/or GitHub would be alternatives, but both are also unmarked stack entries ('Azure DevOps; Azure Boards; GitHub; GitHub Actions; Git'), so they leave the group. GitHub and Git collapse into git.\\nBash, PowerShell or a comparable language: bash is also an unmarked stack entry ('Python; Bash; PowerShell'), so it leaves the group, and PowerShell is unmapped, so there is no group.\\nSnowflake/Databricks is grouped on the slash as an either-or (group 2). This is uncertain because a slash is not a listed marker.\\nIn the Nice-to-Haves line 'GenAI apps, LLM-powered services, AI agents, RAG, vector search, or shared enterprise AI platforms', rag is required elsewhere ('RAG quality'), so it leaves the group. llms, agents and vector-search form group 3.\\nHelm is nice_to_have in 'GitOps/deployment tooling (Argo CD, Helm, or equivalent)' but required in the stack line, so required wins and it leaves that group. Argo CD alone cannot form a group.\\nMicrosoft Foundry is mapped to azure-ai-foundry (the product was renamed). Azure OpenAI is mapped to openai-api (uncertain). AKS collapses into kubernetes.\\n'cloud security fundamentals' is mapped to cybersecurity (uncertain).\\nRequired mentions of evaluation, observability and opentelemetry win over their nice-to-have mentions.\\nNot labeled: 'prompt and configuration versioning', 'model and endpoint operations', 'safety testing, content controls, red-team support' (no clean taxonomy fit or not a technology), and financial-services domain knowledge.\\nResponsibilities-only items (orchestration services, policy-as-code tooling) are not labeled.\\nSeniority is inferred from 7+ years, which mentoring duty in the responsibilities corroborates. No title level is stated. German is not mentioned anywhere.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "7+ years in DevOps",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud engineering",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering, or a related discipline",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure environments"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD & Source Control"
+      },
+      {
+        "skill_id": "azure-devops",
+        "requirement": "required",
+        "raw_text": "Azure DevOps; Azure Boards"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git; pull requests"
+      },
+      {
+        "skill_id": "github-actions",
+        "requirement": "required",
+        "raw_text": "GitHub Actions"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Hands-on expertise with Terraform"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "reusable IaC modules"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker, Kubernetes, Linux"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Docker; Kubernetes; Helm"
+      },
+      {
+        "skill_id": "helm",
+        "requirement": "required",
+        "raw_text": "Kubernetes; Helm"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "networking"
+      },
+      {
+        "skill_id": "secrets-management",
+        "requirement": "required",
+        "raw_text": "secrets management"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "cloud security fundamentals",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Proficiency in Python"
+      },
+      {
+        "skill_id": "bash",
+        "requirement": "required",
+        "raw_text": "Python; Bash"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring, logging, tracing"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "production support for distributed systems"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automated testing"
+      },
+      {
+        "skill_id": "azure-ai-foundry",
+        "requirement": "required",
+        "raw_text": "Microsoft Foundry / Azure AI services",
+        "uncertain": true
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "required",
+        "raw_text": "Azure OpenAI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "azure-key-vault",
+        "requirement": "required",
+        "raw_text": "Key Vault"
+      },
+      {
+        "skill_id": "microsoft-entra-id",
+        "requirement": "required",
+        "raw_text": "Entra ID"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "AI application and agent evaluation"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG quality"
+      },
+      {
+        "skill_id": "opentelemetry",
+        "requirement": "required",
+        "raw_text": "Open Telemetry"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST APIs"
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "microservices"
+      },
+      {
+        "skill_id": "event-driven-systems",
+        "requirement": "required",
+        "raw_text": "event-driven integration"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake/Databricks familiarity",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "required",
+        "raw_text": "Snowflake/Databricks familiarity",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "devsecops",
+        "requirement": "required",
+        "raw_text": "DevSecOps scanning"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM-powered services",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "AI agents",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "vector-search",
+        "requirement": "nice_to_have",
+        "raw_text": "vector search",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "nice_to_have",
+        "raw_text": "GenAIOps, MLOps, AgentOps"
+      },
+      {
+        "skill_id": "gitops",
+        "requirement": "nice_to_have",
+        "raw_text": "GitOps/deployment tooling"
+      },
+      {
+        "skill_id": "argocd",
+        "requirement": "nice_to_have",
+        "raw_text": "Argo CD"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Bicep",
+        "raw_text": "Terraform; Bicep"
+      },
+      {
+        "label": "PowerShell",
+        "raw_text": "Bash; PowerShell"
+      },
+      {
+        "label": "Azure Machine Learning",
+        "raw_text": "Azure Machine Learning"
+      },
+      {
+        "label": "Azure API Management",
+        "raw_text": "API Management"
+      },
+      {
+        "label": "Azure Monitor",
+        "raw_text": "Azure Monitor"
+      },
+      {
+        "label": "Azure Boards",
+        "raw_text": "Azure Boards"
+      },
+      {
+        "label": "JSON/YAML",
+        "raw_text": "JSON/YAML"
+      },
+      {
+        "label": "ServiceNow",
+        "raw_text": "ServiceNow"
+      },
+      {
+        "label": "GenAIOps",
+        "raw_text": "GenAIOps"
+      },
+      {
+        "label": "AgentOps",
+        "raw_text": "AgentOps"
+      },
+      {
+        "label": "Application Insights",
+        "raw_text": "Application Insights"
+      },
+      {
+        "label": "Datadog",
+        "raw_text": "Datadog"
+      },
+      {
+        "label": "Dynatrace",
+        "raw_text": "Dynatrace"
+      },
+      {
+        "label": "Splunk",
+        "raw_text": "Splunk"
+      },
+      {
+        "label": "SLI/SLO practices",
+        "raw_text": "SLI/SLO practices"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "7+ years in DevOps",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor's degree in Computer Science, Engineering, Information Technology, or a related discipline, or equivalent practical experience",
+    "uncertain": [],
+    "notes": "Everything under 'Required Skills & Experience' is required, including the semicolon tech-stack lines, which are treated as unmarked tech-stack entries; the 'Nice-to-Haves' heading makes its items nice_to_have unless the skill is also asked for in the required section.\nThe 'Required Certification' list (Microsoft Azure, GitHub, Kubernetes, Terraform, DevOps, MLOps, or AI engineering) asks for certifications, not skills, so it is not labeled on its own. Every skill in it except MLOps is labeled from other required mentions; MLOps comes only from the Nice-to-Haves list.\nThe '7+ years in DevOps, platform engineering, cloud engineering, SRE, software engineering, or a related discipline' line is read as alternatives, giving group 1 (devops, cloud, software-engineering). I am unsure these disciplines count as asked skills, and cloud is mapped from 'cloud engineering'.\nAzure DevOps and/or GitHub would be alternatives, but both are also unmarked stack entries ('Azure DevOps; Azure Boards; GitHub; GitHub Actions; Git'), so they leave the group. GitHub and Git collapse into git.\nBash, PowerShell or a comparable language: bash is also an unmarked stack entry ('Python; Bash; PowerShell'), so it leaves the group, and PowerShell is unmapped, so there is no group.\nSnowflake/Databricks is grouped on the slash as an either-or (group 2). This is uncertain because a slash is not a listed marker.\nIn the Nice-to-Haves line 'GenAI apps, LLM-powered services, AI agents, RAG, vector search, or shared enterprise AI platforms', rag is required elsewhere ('RAG quality'), so it leaves the group. llms, agents and vector-search form group 3.\nHelm is nice_to_have in 'GitOps/deployment tooling (Argo CD, Helm, or equivalent)' but required in the stack line, so required wins and it leaves that group. Argo CD alone cannot form a group.\nMicrosoft Foundry is mapped to azure-ai-foundry (the product was renamed). Azure OpenAI is mapped to openai-api (uncertain). AKS collapses into kubernetes.\n'cloud security fundamentals' is mapped to cybersecurity (uncertain).\nRequired mentions of evaluation, observability and opentelemetry win over their nice-to-have mentions.\nNot labeled: 'prompt and configuration versioning', 'model and endpoint operations', 'safety testing, content controls, red-team support' (no clean taxonomy fit or not a technology), and financial-services domain knowledge.\nResponsibilities-only items (orchestration services, policy-as-code tooling) are not labeled.\nSeniority is inferred from 7+ years, which mentoring duty in the responsibilities corroborates. No title level is stated. German is not mentioned anywhere."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "c28d10859574a4c3c02119e7c4717098e1478e60fea51bc0ca4371508927fa47",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

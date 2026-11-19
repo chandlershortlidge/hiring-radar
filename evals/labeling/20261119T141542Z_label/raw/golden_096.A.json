@@ -1,0 +1,27 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"leading architecture, testing, and governance efforts\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"The posting has only a company/role description and responsibilities. It has no requirements, qualifications, nice-to-have or tech-stack section, so the guide gives no skills to label.\\nThese were left unlabeled because they appear only as responsibilities: architecture, testing and governance efforts; prototyping AI workflows; building agentic systems (agents, workflow automation, software architecture, testing). The candidate is never asked to have them.\\nSeniority: the title has no level and the posting gives no years. 'leading architecture, testing, and governance efforts' is read literally as a lead duty, which gives senior (inferred). It could instead be read as ownership language, which the guide says is not a level signal; that reading gives none. Flagged for review.\\nGerman: no language is mentioned and the posting is in English, so null.\\nDegree: no degree is mentioned, so null.\"\n}\n```",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "leading architecture, testing, and governance efforts",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The posting has only a company/role description and responsibilities. It has no requirements, qualifications, nice-to-have or tech-stack section, so the guide gives no skills to label.\nThese were left unlabeled because they appear only as responsibilities: architecture, testing and governance efforts; prototyping AI workflows; building agentic systems (agents, workflow automation, software architecture, testing). The candidate is never asked to have them.\nSeniority: the title has no level and the posting gives no years. 'leading architecture, testing, and governance efforts' is read literally as a lead duty, which gives senior (inferred). It could instead be read as ownership language, which the guide says is not a level signal; that reading gives none. Flagged for review.\nGerman: no language is mentioned and the posting is in English, so null.\nDegree: no degree is mentioned, so null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "bcf44ed36d28927339101d379934665d01a69c7d42fa1fbc9f506ebf3b8f5c53",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

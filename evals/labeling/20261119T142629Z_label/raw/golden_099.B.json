@@ -1,0 +1,112 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"applied statistics\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software development\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"scala\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Scala\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"r-lang\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"R\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"scikit learn\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"At Adobe, we empower employees to innovate with AI — and we look for candidates eager to do the same.\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data mining\",\n      \"raw_text\": \"data mining\"\n    },\n    {\n      \"label\": \"Working with large-scale datasets\",\n      \"raw_text\": \"Familiarity with working with large-scale datasets and big data techniques would be a plus.\"\n    },\n    {\n      \"label\": \"Big data techniques\",\n      \"raw_text\": \"Familiarity with working with large-scale datasets and big data techniques would be a plus.\"\n    },\n    {\n      \"label\": \"C\",\n      \"raw_text\": \"C\"\n    },\n    {\n      \"label\": \"Matlab\",\n      \"raw_text\": \"Matlab\"\n    },\n    {\n      \"label\": \"Relational databases\",\n      \"raw_text\": \"relational databases\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"University Graduate\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"PhD or MS in Computer Science, Statistics, Electrical Engineering, Applied Math, Operations Research, Econometrics or equivalent experience required\",\n  \"notes\": \"The explicit ideal-candidate qualifications in The Opportunity count as asks; its project descriptions and What You’ll Do do not. No qualification heading marks a whole section optional.\\nLarge-scale dataset experience and big data techniques are optional because of the inline plus marker; neither has a matching taxonomy entry.\\nStatistics, machine learning and data mining are independently requested in the ideal-candidate paragraph. They therefore leave the later alternatives set, leaving deep learning without another groupable member.\\nThe programming-language alternatives also include unmapped C; the modeling-tool alternatives also include unmapped Matlab.\\nThe final candidate-appetite sentence is read literally as interest in applied AI, not specifically AI coding tools. This interpretation is flagged for review.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "applied statistics"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software development"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "required",
+        "raw_text": "Scala",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "r-lang",
+        "requirement": "required",
+        "raw_text": "R",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit learn",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "nice_to_have",
+        "raw_text": "At Adobe, we empower employees to innovate with AI — and we look for candidates eager to do the same.",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data mining",
+        "raw_text": "data mining"
+      },
+      {
+        "label": "Working with large-scale datasets",
+        "raw_text": "Familiarity with working with large-scale datasets and big data techniques would be a plus."
+      },
+      {
+        "label": "Big data techniques",
+        "raw_text": "Familiarity with working with large-scale datasets and big data techniques would be a plus."
+      },
+      {
+        "label": "C",
+        "raw_text": "C"
+      },
+      {
+        "label": "Matlab",
+        "raw_text": "Matlab"
+      },
+      {
+        "label": "Relational databases",
+        "raw_text": "relational databases"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "University Graduate",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "PhD or MS in Computer Science, Statistics, Electrical Engineering, Applied Math, Operations Research, Econometrics or equivalent experience required",
+    "notes": "The explicit ideal-candidate qualifications in The Opportunity count as asks; its project descriptions and What You’ll Do do not. No qualification heading marks a whole section optional.\nLarge-scale dataset experience and big data techniques are optional because of the inline plus marker; neither has a matching taxonomy entry.\nStatistics, machine learning and data mining are independently requested in the ideal-candidate paragraph. They therefore leave the later alternatives set, leaving deep learning without another groupable member.\nThe programming-language alternatives also include unmapped C; the modeling-tool alternatives also include unmapped Matlab.\nThe final candidate-appetite sentence is read literally as interest in applied AI, not specifically AI coding tools. This interpretation is flagged for review."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "ddc76f6977f3c52344e3a717bd6d4c606f3dd9ceb117c0d494cc8cf2eb220403",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,50 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python & ML Infra\", \"uncertain\": true},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"backend services\", \"uncertain\": true},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"required\", \"raw_text\": \"data pipelines\", \"uncertain\": true},\n    {\"skill_id\": \"ai-infrastructure\", \"requirement\": \"required\", \"raw_text\": \"ML infrastructure\", \"uncertain\": true}\n  ],\n  \"unmapped\": [],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": null, \"german_basis\": null, \"german_signal\": null,\n  \"degree\": null, \"degree_requirement\": null,\n  \"degree_or_equivalent\": false, \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The posting has no requirements or qualifications section; it is only a role description and a contract line.\\nI labeled the skills named in the title and in the focus sentence ('Python across backend services, data pipelines, and ML infrastructure') as asked of the candidate. With no heading, they default to required. All four are flagged uncertain because a strict reader could treat this sentence as responsibilities-only, which would leave the Golden empty.\\nThe Python raw_text quotes the title '(Python & ML Infra)' because it explicitly names the stack.\\nI mapped 'ML infrastructure' to ai-infrastructure, the closest taxonomy entry; mlops was not chosen because the text does not name it.\\nI did not label full-stack-development: 'Full Stack Engineer' is the job title, and the body never asks for full-stack skills.\\nI did not label LLMs: 'training large language models' describes the company's dataset work, not a candidate skill.\\n'Software Engineering Evaluator' and 'AI-driven coding solutions' are not mapped to ai-developer-tooling; they describe the work, not a tool the candidate must have.\\nCommunication and collaboration are soft skills and are excluded.\\nSeniority: there are no years, level words or lead duty, so it is none.\\nGerman: the role is US-based with no language mention, so it is none.\\nDegree: none is mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python & ML Infra",
+        "uncertain": true
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend services",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "data pipelines",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "required",
+        "raw_text": "ML infrastructure",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The posting has no requirements or qualifications section; it is only a role description and a contract line.\nI labeled the skills named in the title and in the focus sentence ('Python across backend services, data pipelines, and ML infrastructure') as asked of the candidate. With no heading, they default to required. All four are flagged uncertain because a strict reader could treat this sentence as responsibilities-only, which would leave the Golden empty.\nThe Python raw_text quotes the title '(Python & ML Infra)' because it explicitly names the stack.\nI mapped 'ML infrastructure' to ai-infrastructure, the closest taxonomy entry; mlops was not chosen because the text does not name it.\nI did not label full-stack-development: 'Full Stack Engineer' is the job title, and the body never asks for full-stack skills.\nI did not label LLMs: 'training large language models' describes the company's dataset work, not a candidate skill.\n'Software Engineering Evaluator' and 'AI-driven coding solutions' are not mapped to ai-developer-tooling; they describe the work, not a tool the candidate must have.\nCommunication and collaboration are soft skills and are excluded.\nSeniority: there are no years, level words or lead duty, so it is none.\nGerman: the role is US-based with no language mention, so it is none.\nDegree: none is mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "6849a8949d7dd0774b91e9555d566f694b0c703fecf5ddb59a18e0afe255ba9a",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

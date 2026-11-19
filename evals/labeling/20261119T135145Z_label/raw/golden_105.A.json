@@ -1,0 +1,54 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"consistent use of AI across the SDLC\", \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"operating cloud-native systems that scale\", \"uncertain\": true},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"observability best practices\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AI/LLM capabilities\"},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AI/LLM capabilities\", \"uncertain\": true}\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Software Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor’s degree or equivalent experience\",\n  \"uncertain\": [],\n  \"notes\": \"Under 'Required Skills' the items default to required. Under 'Preferred Qualifications' the items are nice_to_have.\\n'AI-native delivery: consistent use of AI across the SDLC' is mapped to ai-developer-tooling (AI-assisted development). No tool is named, so this is flagged uncertain.\\n'cloud-native systems' is mapped to cloud. This is flagged uncertain because 'cloud-native' is not a verbatim alias.\\n'AI/LLM capabilities' is labeled llms. ai-ml is added but flagged uncertain, since the text says 'AI' rather than 'AI/ML'.\\nReliability, architecture and 'tooling' in the preferred section are too generic to map to a skill.\\nThe responsibilities section (code review, testing, debugging) is not labeled because it is not a candidate ask.\\nThe '9+ years' requirement would also infer senior, but the title states it, so seniority basis is stated.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "consistent use of AI across the SDLC",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "operating cloud-native systems that scale",
+        "uncertain": true
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "observability best practices"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "AI/LLM capabilities"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "nice_to_have",
+        "raw_text": "AI/LLM capabilities",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Software Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor’s degree or equivalent experience",
+    "uncertain": [],
+    "notes": "Under 'Required Skills' the items default to required. Under 'Preferred Qualifications' the items are nice_to_have.\n'AI-native delivery: consistent use of AI across the SDLC' is mapped to ai-developer-tooling (AI-assisted development). No tool is named, so this is flagged uncertain.\n'cloud-native systems' is mapped to cloud. This is flagged uncertain because 'cloud-native' is not a verbatim alias.\n'AI/LLM capabilities' is labeled llms. ai-ml is added but flagged uncertain, since the text says 'AI' rather than 'AI/ML'.\nReliability, architecture and 'tooling' in the preferred section are too generic to map to a skill.\nThe responsibilities section (code review, testing, debugging) is not labeled because it is not a candidate ask.\nThe '9+ years' requirement would also infer senior, but the title states it, so seniority basis is stated."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "d4cf4b57251c37a041997a676a4a09b95e9ae07166e899244c323182c5e6782f",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

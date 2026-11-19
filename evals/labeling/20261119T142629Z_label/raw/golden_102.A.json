@@ -1,0 +1,151 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"production Python\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL experience\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"LLM agent systems\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM agent systems\", \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"evaluations\"},\n    {\"skill_id\": \"fastapi\", \"requirement\": \"required\", \"raw_text\": \"FastAPI, and Async Python\"},\n    {\"skill_id\": \"async-processing\", \"requirement\": \"required\", \"raw_text\": \"Async Python\", \"uncertain\": true},\n    {\"skill_id\": \"airflow\", \"requirement\": \"required\", \"raw_text\": \"Apache Airflow\"},\n    {\"skill_id\": \"postgresql\", \"requirement\": \"required\", \"raw_text\": \"PostgreSQL\"},\n    {\"skill_id\": \"claude-code\", \"requirement\": \"required\", \"raw_text\": \"Claude Code\", \"alternative_group\": 1},\n    {\"skill_id\": \"codex\", \"requirement\": \"required\", \"raw_text\": \"Codex\", \"alternative_group\": 1},\n    {\"skill_id\": \"langgraph\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LangGraph\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Structured outputs\", \"raw_text\": \"structured outputs\"},\n    {\"label\": \"Web-search grounding\", \"raw_text\": \"web-search grounding\"},\n    {\"label\": \"Citation checks\", \"raw_text\": \"citation checks\"},\n    {\"label\": \"Apache Iceberg / lakehouse technologies\", \"raw_text\": \"Apache Iceberg or similar lakehouse technologies\"},\n    {\"label\": \"Trino\", \"raw_text\": \"Trino\"},\n    {\"label\": \"AWS Athena\", \"raw_text\": \"AWS Athena\"},\n    {\"label\": \"AWS Glue\", \"raw_text\": \"AWS Glue\"},\n    {\"label\": \"Cube semantic layer\", \"raw_text\": \"Cube semantic layer\"},\n    {\"label\": \"pytest\", \"raw_text\": \"pytest\"},\n    {\"label\": \"ruff\", \"raw_text\": \"ruff\"},\n    {\"label\": \"mypy\", \"raw_text\": \"mypy\"},\n    {\"label\": \"Entity resolution\", \"raw_text\": \"entity resolution\"},\n    {\"label\": \"Graph/entity data\", \"raw_text\": \"graph/entity data\"},\n    {\"label\": \"AWS Lake Formation\", \"raw_text\": \"AWS Lake Formation\"},\n    {\"label\": \"Data quality testing\", \"raw_text\": \"data quality testing\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"5+ years of production Python and SQL experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"LLM agent systems: labeled agents. llms is flagged uncertain because 'LLM' only qualifies the agent systems.\\nAsync Python mapped to async-processing; flagged uncertain because it is a closer fit to Python asyncio than to a broad async-processing skill.\\nClaude Code or Codex: 'X or Y' makes them alternative group 1. ai-developer-tooling is not added because the posting never names the broad skill.\\nAWS Athena, AWS Glue and AWS Lake Formation are specific products. aws is not added as a parent, since the posting never asks for AWS itself.\\npytest is left unmapped rather than mapped to testing; mapping it would add a broader skill the text does not name.\\nData quality testing is left unmapped, not mapped to testing; it is data validation, not software testing.\\nApache Iceberg is unmapped. 'or similar' adds nothing, so there is no lakehouse parent and no group.\\nStructured outputs is not mapped to structured-data-extraction; it means LLM output formatting, not extraction.\\n'data pipelines' and 'semantic data layers' appear only in the job description and are not labeled.\\nSeniority is inferred from '5+ years'. 'experienced' alone is not a signal. No mention of German or a degree.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "production Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL experience"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "LLM agent systems"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM agent systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluations"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI, and Async Python"
+      },
+      {
+        "skill_id": "async-processing",
+        "requirement": "required",
+        "raw_text": "Async Python",
+        "uncertain": true
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "required",
+        "raw_text": "Apache Airflow"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "PostgreSQL"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "codex",
+        "requirement": "required",
+        "raw_text": "Codex",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "nice_to_have",
+        "raw_text": "LangGraph"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Structured outputs",
+        "raw_text": "structured outputs"
+      },
+      {
+        "label": "Web-search grounding",
+        "raw_text": "web-search grounding"
+      },
+      {
+        "label": "Citation checks",
+        "raw_text": "citation checks"
+      },
+      {
+        "label": "Apache Iceberg / lakehouse technologies",
+        "raw_text": "Apache Iceberg or similar lakehouse technologies"
+      },
+      {
+        "label": "Trino",
+        "raw_text": "Trino"
+      },
+      {
+        "label": "AWS Athena",
+        "raw_text": "AWS Athena"
+      },
+      {
+        "label": "AWS Glue",
+        "raw_text": "AWS Glue"
+      },
+      {
+        "label": "Cube semantic layer",
+        "raw_text": "Cube semantic layer"
+      },
+      {
+        "label": "pytest",
+        "raw_text": "pytest"
+      },
+      {
+        "label": "ruff",
+        "raw_text": "ruff"
+      },
+      {
+        "label": "mypy",
+        "raw_text": "mypy"
+      },
+      {
+        "label": "Entity resolution",
+        "raw_text": "entity resolution"
+      },
+      {
+        "label": "Graph/entity data",
+        "raw_text": "graph/entity data"
+      },
+      {
+        "label": "AWS Lake Formation",
+        "raw_text": "AWS Lake Formation"
+      },
+      {
+        "label": "Data quality testing",
+        "raw_text": "data quality testing"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "5+ years of production Python and SQL experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "LLM agent systems: labeled agents. llms is flagged uncertain because 'LLM' only qualifies the agent systems.\nAsync Python mapped to async-processing; flagged uncertain because it is a closer fit to Python asyncio than to a broad async-processing skill.\nClaude Code or Codex: 'X or Y' makes them alternative group 1. ai-developer-tooling is not added because the posting never names the broad skill.\nAWS Athena, AWS Glue and AWS Lake Formation are specific products. aws is not added as a parent, since the posting never asks for AWS itself.\npytest is left unmapped rather than mapped to testing; mapping it would add a broader skill the text does not name.\nData quality testing is left unmapped, not mapped to testing; it is data validation, not software testing.\nApache Iceberg is unmapped. 'or similar' adds nothing, so there is no lakehouse parent and no group.\nStructured outputs is not mapped to structured-data-extraction; it means LLM output formatting, not extraction.\n'data pipelines' and 'semantic data layers' appear only in the job description and are not labeled.\nSeniority is inferred from '5+ years'. 'experienced' alone is not a signal. No mention of German or a degree."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "cd565e2523fa9b1e3255e607fb54be19b4648cba60e7ad7c71c3de325f19f388",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

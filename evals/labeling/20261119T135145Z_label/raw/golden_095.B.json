@@ -1,0 +1,286 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"backend software engineering\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed systems\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic AI systems\"\n    },\n    {\n      \"skill_id\": \"agent-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"architecting and deploying agentic AI systems\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying agentic AI systems\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Production experience with modern agentic orchestration frameworks\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java (limited)\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Languages + Frameworks: TypeScript\"\n    },\n    {\n      \"skill_id\": \"async-processing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"async concurrency\"\n    },\n    {\n      \"skill_id\": \"api-design\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"API design\"\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangGraph\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Anthropic MCP\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"google-adk\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Google ADK\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"autogen\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AutoGen\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"llamaindex\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LlamaIndex\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"microservices\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"microservices architecture\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"container orchestration\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud platforms\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Observability and LLMOps expertise\"\n    },\n    {\n      \"skill_id\": \"llmops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMOps expertise\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"vector databases\"\n    },\n    {\n      \"skill_id\": \"kafka\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kafka\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI-powered development tools\"\n    },\n    {\n      \"skill_id\": \"claude-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI Tooling: Copilot on GitHub and Claude Code\"\n    },\n    {\n      \"skill_id\": \"github-copilot\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Copilot on GitHub\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"fine-tuning models\"\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Security compliance expertise regarding data privacy\"\n    },\n    {\n      \"skill_id\": \"secrets-management\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"secrets management\"\n    },\n    {\n      \"skill_id\": \"react\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"React\"\n    },\n    {\n      \"skill_id\": \"scala\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Scala\"\n    },\n    {\n      \"skill_id\": \"mysql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MySQL\"\n    },\n    {\n      \"skill_id\": \"postgresql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PostgreSQL\"\n    },\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Snowflake\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Git & GitHub\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Platform infrastructure\",\n      \"raw_text\": \"platform infrastructure\"\n    },\n    {\n      \"label\": \"AI platform tooling\",\n      \"raw_text\": \"AI platform tooling\"\n    },\n    {\n      \"label\": \"System performance tuning\",\n      \"raw_text\": \"system performance tuning\"\n    },\n    {\n      \"label\": \"A2A\",\n      \"raw_text\": \"A2A\"\n    },\n    {\n      \"label\": \"Debugging agent execution\",\n      \"raw_text\": \"debugging agent execution runs\"\n    },\n    {\n      \"label\": \"Relational databases\",\n      \"raw_text\": \"relational databases\"\n    },\n    {\n      \"label\": \"Event streaming\",\n      \"raw_text\": \"event streaming\"\n    },\n    {\n      \"label\": \"Amazon SQS\",\n      \"raw_text\": \"SQS\"\n    },\n    {\n      \"label\": \"Caching patterns\",\n      \"raw_text\": \"caching patterns\"\n    },\n    {\n      \"label\": \"Context engineering\",\n      \"raw_text\": \"context engineering\"\n    },\n    {\n      \"label\": \"Agent harness development\",\n      \"raw_text\": \"building customized agent harnesses\"\n    },\n    {\n      \"label\": \"RLHF/RLAIF optimization\",\n      \"raw_text\": \"RLHF/RLAIF optimization loops\"\n    },\n    {\n      \"label\": \"Security compliance\",\n      \"raw_text\": \"Security compliance expertise\"\n    },\n    {\n      \"label\": \"Prompt injection defenses\",\n      \"raw_text\": \"prompt injection defenses\"\n    },\n    {\n      \"label\": \"Access controls\",\n      \"raw_text\": \"access controls\"\n    },\n    {\n      \"label\": \"Datadog\",\n      \"raw_text\": \"Datadog\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Software Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Advanced degree in Computer Science, Machine Learning, or related technical field\",\n  \"groups_reviewed\": true,\n  \"notes\": \"The plus section is optional; Our Stack starts a new, required section. Technologies appearing only in responsibilities or company descriptions are excluded.\\nAdvanced degree names no explicit degree level; the guide's literal unspecified-level rule therefore gives bachelor, not an inferred master or PhD.\\nJava, TypeScript, Claude Code and GitHub Copilot are independently required by Our Stack, so they do not retain alternative grouping from the qualifications.\\nLLM orchestration is independently requested in the following qualification; its earlier alternative set has fewer than two mapped members remaining and receives no group.\\nThe framework/protocol examples form alternative group 1. MCP's optional contribution mention is itself part of an alternatives list, not an independent mandatory ask.\\nKafka and SQS are alternative examples, but SQS is unmapped, leaving fewer than two taxonomy skills for a group. The same limitation applies to the optional harness/fine-tuning/RLHF-RLAIF alternatives.\\nMetrics, distributed tracing and structured logging are covered by observability rather than duplicated as unmapped skills. Relational databases do not imply SQL, and RLHF/RLAIF do not add an unnamed broader reinforcement-learning criterion.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend software engineering"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic AI systems"
+      },
+      {
+        "skill_id": "agent-architecture",
+        "requirement": "required",
+        "raw_text": "architecting and deploying agentic AI systems"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying agentic AI systems"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "Production experience with modern agentic orchestration frameworks"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java (limited)"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "Languages + Frameworks: TypeScript"
+      },
+      {
+        "skill_id": "async-processing",
+        "requirement": "required",
+        "raw_text": "async concurrency"
+      },
+      {
+        "skill_id": "api-design",
+        "requirement": "required",
+        "raw_text": "API design"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "Anthropic MCP",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "google-adk",
+        "requirement": "required",
+        "raw_text": "Google ADK",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "autogen",
+        "requirement": "required",
+        "raw_text": "AutoGen",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "required",
+        "raw_text": "LlamaIndex",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "microservices architecture"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "container orchestration"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Observability and LLMOps expertise"
+      },
+      {
+        "skill_id": "llmops",
+        "requirement": "required",
+        "raw_text": "LLMOps expertise"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector databases"
+      },
+      {
+        "skill_id": "kafka",
+        "requirement": "required",
+        "raw_text": "Kafka"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI-powered development tools"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "AI Tooling: Copilot on GitHub and Claude Code"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "Copilot on GitHub"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "fine-tuning models"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "nice_to_have",
+        "raw_text": "Security compliance expertise regarding data privacy"
+      },
+      {
+        "skill_id": "secrets-management",
+        "requirement": "nice_to_have",
+        "raw_text": "secrets management"
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "React"
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "required",
+        "raw_text": "Scala"
+      },
+      {
+        "skill_id": "mysql",
+        "requirement": "required",
+        "raw_text": "MySQL"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "PostgreSQL"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git & GitHub"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Platform infrastructure",
+        "raw_text": "platform infrastructure"
+      },
+      {
+        "label": "AI platform tooling",
+        "raw_text": "AI platform tooling"
+      },
+      {
+        "label": "System performance tuning",
+        "raw_text": "system performance tuning"
+      },
+      {
+        "label": "A2A",
+        "raw_text": "A2A"
+      },
+      {
+        "label": "Debugging agent execution",
+        "raw_text": "debugging agent execution runs"
+      },
+      {
+        "label": "Relational databases",
+        "raw_text": "relational databases"
+      },
+      {
+        "label": "Event streaming",
+        "raw_text": "event streaming"
+      },
+      {
+        "label": "Amazon SQS",
+        "raw_text": "SQS"
+      },
+      {
+        "label": "Caching patterns",
+        "raw_text": "caching patterns"
+      },
+      {
+        "label": "Context engineering",
+        "raw_text": "context engineering"
+      },
+      {
+        "label": "Agent harness development",
+        "raw_text": "building customized agent harnesses"
+      },
+      {
+        "label": "RLHF/RLAIF optimization",
+        "raw_text": "RLHF/RLAIF optimization loops"
+      },
+      {
+        "label": "Security compliance",
+        "raw_text": "Security compliance expertise"
+      },
+      {
+        "label": "Prompt injection defenses",
+        "raw_text": "prompt injection defenses"
+      },
+      {
+        "label": "Access controls",
+        "raw_text": "access controls"
+      },
+      {
+        "label": "Datadog",
+        "raw_text": "Datadog"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Software Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Advanced degree in Computer Science, Machine Learning, or related technical field",
+    "groups_reviewed": true,
+    "notes": "The plus section is optional; Our Stack starts a new, required section. Technologies appearing only in responsibilities or company descriptions are excluded.\nAdvanced degree names no explicit degree level; the guide's literal unspecified-level rule therefore gives bachelor, not an inferred master or PhD.\nJava, TypeScript, Claude Code and GitHub Copilot are independently required by Our Stack, so they do not retain alternative grouping from the qualifications.\nLLM orchestration is independently requested in the following qualification; its earlier alternative set has fewer than two mapped members remaining and receives no group.\nThe framework/protocol examples form alternative group 1. MCP's optional contribution mention is itself part of an alternatives list, not an independent mandatory ask.\nKafka and SQS are alternative examples, but SQS is unmapped, leaving fewer than two taxonomy skills for a group. The same limitation applies to the optional harness/fine-tuning/RLHF-RLAIF alternatives.\nMetrics, distributed tracing and structured logging are covered by observability rather than duplicated as unmapped skills. Relational databases do not imply SQL, and RLHF/RLAIF do not add an unnamed broader reinforcement-learning criterion."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "475c3f6644064c1a708e2b613e1cedff26f3ed3dd5fba4acdcc6782105efe385",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

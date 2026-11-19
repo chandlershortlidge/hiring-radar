@@ -1,0 +1,65 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"experience building and deploying a relevant ML application\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying a relevant ML application\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"developing ML training code\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud computing environment\"\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"JAX\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Collaborative coding practices\",\n      \"raw_text\": \"collaborative coding practices\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"2-4 years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Have a Ph. D. in computer or computational science, atmospheric science or a related geophysical science, or applied mathematics/statistics\",\n  \"groups_reviewed\": true,\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"What You’ll Need supplies required skills; It's A Bonus If You supplies optional skills.\\nThe 2-4-year range crosses the guide’s junior/mid boundary; mid is selected provisionally for review.\\nDeveloping ML training code is provisionally mapped to model-development; the wording asks for training-code development rather than explicitly for model training.\\nCollaborative coding practices is a technical practice without an exact taxonomy entry; no Git requirement is inferred.\\nPhysically-based atmospheric/oceanic modeling is treated literally as domain knowledge, not AI model development.\\nGoogle Cloud, NVIDIA GPUs, TPUs, GitHub, testing, and code review occur only in project descriptions or responsibilities and are not labeled. JAX is independently requested in the bonus section.\\nThe highest degree named is the optional Ph. D.; the required B.Sc. does not override the highest-level rule.\\nNo alternative skill groups are present.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "experience building and deploying a relevant ML application"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying a relevant ML application"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "developing ML training code",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud computing environment"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "nice_to_have",
+        "raw_text": "JAX"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Collaborative coding practices",
+        "raw_text": "collaborative coding practices"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "2-4 years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Have a Ph. D. in computer or computational science, atmospheric science or a related geophysical science, or applied mathematics/statistics",
+    "groups_reviewed": true,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "What You’ll Need supplies required skills; It's A Bonus If You supplies optional skills.\nThe 2-4-year range crosses the guide’s junior/mid boundary; mid is selected provisionally for review.\nDeveloping ML training code is provisionally mapped to model-development; the wording asks for training-code development rather than explicitly for model training.\nCollaborative coding practices is a technical practice without an exact taxonomy entry; no Git requirement is inferred.\nPhysically-based atmospheric/oceanic modeling is treated literally as domain knowledge, not AI model development.\nGoogle Cloud, NVIDIA GPUs, TPUs, GitHub, testing, and code review occur only in project descriptions or responsibilities and are not labeled. JAX is independently requested in the bonus section.\nThe highest degree named is the optional Ph. D.; the required B.Sc. does not override the highest-level rule.\nNo alternative skill groups are present."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "4536e5bb6f7ac9731a3675b482951b0bc97bb2ba22d8384080c597ce085cb778",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

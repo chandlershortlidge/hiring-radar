@@ -1,0 +1,100 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"foundational knowledge of machine learning\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI models\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"foundational knowledge of machine learning, AI models, statistical analysis\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Preferred: Exposure to Java\"\n    },\n    {\n      \"skill_id\": \"r-lang\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"R\"\n    },\n    {\n      \"skill_id\": \"bash\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Bash (Unix shell)\"\n    },\n    {\n      \"skill_id\": \"apache-spark\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Spark implementation\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Database design\",\n      \"raw_text\": \"database design\"\n    },\n    {\n      \"label\": \"C\",\n      \"raw_text\": \"C\"\n    },\n    {\n      \"label\": \"SAS\",\n      \"raw_text\": \"SAS\"\n    },\n    {\n      \"label\": \"VBA\",\n      \"raw_text\": \"VBA\"\n    },\n    {\n      \"label\": \"Talend\",\n      \"raw_text\": \"Talend\"\n    },\n    {\n      \"label\": \"Linked data\",\n      \"raw_text\": \"linked data\"\n    },\n    {\n      \"label\": \"Scalability\",\n      \"raw_text\": \"Interest in big data, scalability\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Technical Intern\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Qualifications defaults to required; the inline Preferred marker makes only its bullet optional.\\nThe word 'plus' in the Essential bullet connects mandatory qualifications rather than marking foundational knowledge optional.\\nAI models is mapped to the broad AI/ML entry, not model development; no training experience is requested in Qualifications.\\nDatabase design and linked data are left unmapped rather than inferred to mean data modeling and knowledge graphs.\\nBig data and quantum engineering are treated literally as domain interests and excluded under the domain-knowledge rule; scalability is treated as a technical practice, requested only as an interest.\\nStatistical analysis remains required despite the later interest in statistical analysis tools.\\nTechnologies and practices appearing only in Duties are excluded. Coursework does not establish a degree requirement.\\nNo alternative skill groups are stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "foundational knowledge of machine learning"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI models"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "foundational knowledge of machine learning, AI models, statistical analysis"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "nice_to_have",
+        "raw_text": "Preferred: Exposure to Java"
+      },
+      {
+        "skill_id": "r-lang",
+        "requirement": "nice_to_have",
+        "raw_text": "R"
+      },
+      {
+        "skill_id": "bash",
+        "requirement": "nice_to_have",
+        "raw_text": "Bash (Unix shell)"
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "nice_to_have",
+        "raw_text": "Spark implementation"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Database design",
+        "raw_text": "database design"
+      },
+      {
+        "label": "C",
+        "raw_text": "C"
+      },
+      {
+        "label": "SAS",
+        "raw_text": "SAS"
+      },
+      {
+        "label": "VBA",
+        "raw_text": "VBA"
+      },
+      {
+        "label": "Talend",
+        "raw_text": "Talend"
+      },
+      {
+        "label": "Linked data",
+        "raw_text": "linked data"
+      },
+      {
+        "label": "Scalability",
+        "raw_text": "Interest in big data, scalability"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Technical Intern",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Qualifications defaults to required; the inline Preferred marker makes only its bullet optional.\nThe word 'plus' in the Essential bullet connects mandatory qualifications rather than marking foundational knowledge optional.\nAI models is mapped to the broad AI/ML entry, not model development; no training experience is requested in Qualifications.\nDatabase design and linked data are left unmapped rather than inferred to mean data modeling and knowledge graphs.\nBig data and quantum engineering are treated literally as domain interests and excluded under the domain-knowledge rule; scalability is treated as a technical practice, requested only as an interest.\nStatistical analysis remains required despite the later interest in statistical analysis tools.\nTechnologies and practices appearing only in Duties are excluded. Coursework does not establish a degree requirement.\nNo alternative skill groups are stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "a09d146e8c7e442b88bab43826f638efa365baa2b3ceaf36a1913bba795f5f9e",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

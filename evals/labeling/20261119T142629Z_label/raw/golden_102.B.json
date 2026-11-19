@@ -1,0 +1,149 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"production Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM agent systems\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM agent systems\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluations\"\n    },\n    {\n      \"skill_id\": \"fastapi\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"FastAPI\"\n    },\n    {\n      \"skill_id\": \"async-processing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Async Python\"\n    },\n    {\n      \"skill_id\": \"airflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Apache Airflow\"\n    },\n    {\n      \"skill_id\": \"postgresql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PostgreSQL\"\n    },\n    {\n      \"skill_id\": \"claude-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Claude Code\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"codex\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Codex\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LangGraph\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Structured outputs\",\n      \"raw_text\": \"structured outputs\"\n    },\n    {\n      \"label\": \"Web-search grounding\",\n      \"raw_text\": \"web-search grounding\"\n    },\n    {\n      \"label\": \"Citation checks\",\n      \"raw_text\": \"citation checks\"\n    },\n    {\n      \"label\": \"Apache Iceberg\",\n      \"raw_text\": \"Apache Iceberg\"\n    },\n    {\n      \"label\": \"Trino\",\n      \"raw_text\": \"Trino\"\n    },\n    {\n      \"label\": \"AWS Athena\",\n      \"raw_text\": \"AWS Athena\"\n    },\n    {\n      \"label\": \"AWS Glue\",\n      \"raw_text\": \"AWS Glue\"\n    },\n    {\n      \"label\": \"Cube semantic layer\",\n      \"raw_text\": \"Cube semantic layer\"\n    },\n    {\n      \"label\": \"pytest\",\n      \"raw_text\": \"pytest\"\n    },\n    {\n      \"label\": \"ruff\",\n      \"raw_text\": \"ruff\"\n    },\n    {\n      \"label\": \"mypy\",\n      \"raw_text\": \"mypy\"\n    },\n    {\n      \"label\": \"Entity resolution\",\n      \"raw_text\": \"entity resolution\"\n    },\n    {\n      \"label\": \"Graph/entity data\",\n      \"raw_text\": \"graph/entity data\"\n    },\n    {\n      \"label\": \"AWS Lake Formation\",\n      \"raw_text\": \"AWS Lake Formation\"\n    },\n    {\n      \"label\": \"Data quality testing\",\n      \"raw_text\": \"data quality testing\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"5+ years of production Python and SQL experience.\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Required Skills sets required labels; Nice to Have sets optional labels for its two bullets, including unmapped skills.\\nAsync Python is mapped to asynchronous processing; structured outputs is not treated as structured data extraction.\\nGraph/entity data does not explicitly ask for knowledge graphs; data quality testing is not treated as software testing. Both remain unmapped under a literal reading.\\nAWS product names do not independently establish a broad AWS requirement; pytest does not independently establish a broad software-testing requirement.\\nApache Iceberg or similar lakehouse technologies supplies only one named alternative, so it has no alternative group.\\nThe introductory job description is not a candidate-qualification or dedicated tech-stack section.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "production Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM agent systems"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "LLM agent systems"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluations"
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "required",
+        "raw_text": "FastAPI"
+      },
+      {
+        "skill_id": "async-processing",
+        "requirement": "required",
+        "raw_text": "Async Python"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "required",
+        "raw_text": "Apache Airflow"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "PostgreSQL"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "codex",
+        "requirement": "required",
+        "raw_text": "Codex",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "nice_to_have",
+        "raw_text": "LangGraph"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Structured outputs",
+        "raw_text": "structured outputs"
+      },
+      {
+        "label": "Web-search grounding",
+        "raw_text": "web-search grounding"
+      },
+      {
+        "label": "Citation checks",
+        "raw_text": "citation checks"
+      },
+      {
+        "label": "Apache Iceberg",
+        "raw_text": "Apache Iceberg"
+      },
+      {
+        "label": "Trino",
+        "raw_text": "Trino"
+      },
+      {
+        "label": "AWS Athena",
+        "raw_text": "AWS Athena"
+      },
+      {
+        "label": "AWS Glue",
+        "raw_text": "AWS Glue"
+      },
+      {
+        "label": "Cube semantic layer",
+        "raw_text": "Cube semantic layer"
+      },
+      {
+        "label": "pytest",
+        "raw_text": "pytest"
+      },
+      {
+        "label": "ruff",
+        "raw_text": "ruff"
+      },
+      {
+        "label": "mypy",
+        "raw_text": "mypy"
+      },
+      {
+        "label": "Entity resolution",
+        "raw_text": "entity resolution"
+      },
+      {
+        "label": "Graph/entity data",
+        "raw_text": "graph/entity data"
+      },
+      {
+        "label": "AWS Lake Formation",
+        "raw_text": "AWS Lake Formation"
+      },
+      {
+        "label": "Data quality testing",
+        "raw_text": "data quality testing"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "5+ years of production Python and SQL experience.",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Required Skills sets required labels; Nice to Have sets optional labels for its two bullets, including unmapped skills.\nAsync Python is mapped to asynchronous processing; structured outputs is not treated as structured data extraction.\nGraph/entity data does not explicitly ask for knowledge graphs; data quality testing is not treated as software testing. Both remain unmapped under a literal reading.\nAWS product names do not independently establish a broad AWS requirement; pytest does not independently establish a broad software-testing requirement.\nApache Iceberg or similar lakehouse technologies supplies only one named alternative, so it has no alternative group.\nThe introductory job description is not a candidate-qualification or dedicated tech-stack section."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "cd565e2523fa9b1e3255e607fb54be19b4648cba60e7ad7c71c3de325f19f388",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

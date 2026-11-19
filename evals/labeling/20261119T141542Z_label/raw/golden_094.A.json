@@ -1,0 +1,151 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"databricks\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Databricks\", \"alternative_group\": 1},\n    {\"skill_id\": \"sql\", \"requirement\": \"nice_to_have\", \"raw_text\": \"MS SQL\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"data-visualization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"visualization tools (Power BI)\", \"uncertain\": true},\n    {\"skill_id\": \"power-bi\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Power BI\", \"alternative_group\": 1},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"cloud platforms (AWS, Azure, GCP)\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AWS\", \"alternative_group\": 1},\n    {\"skill_id\": \"azure\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Azure\", \"alternative_group\": 1},\n    {\"skill_id\": \"gcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"GCP\", \"alternative_group\": 1},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"predictive modeling/ML\"},\n    {\"skill_id\": \"python\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Python\", \"alternative_group\": 1},\n    {\"skill_id\": \"knowledge-graphs\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Designing and implementing knowledge graphs\"},\n    {\"skill_id\": \"data-modeling\", \"requirement\": \"nice_to_have\", \"raw_text\": \"conceptual modeling\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"SAS\", \"raw_text\": \"SAS\"},\n    {\"label\": \"Databases\", \"raw_text\": \"databases\"},\n    {\"label\": \"RDF\", \"raw_text\": \"RDF\"},\n    {\"label\": \"OWL\", \"raw_text\": \"OWL\"},\n    {\"label\": \"SPARQL\", \"raw_text\": \"SPARQL\"},\n    {\"label\": \"Ontology development\", \"raw_text\": \"ontology development and management\"},\n    {\"label\": \"Semantic layers\", \"raw_text\": \"semantic layer creation\"},\n    {\"label\": \"Query optimization\", \"raw_text\": \"query optimization\"},\n    {\"label\": \"Master data management\", \"raw_text\": \"master data management\"},\n    {\"label\": \"Data governance frameworks\", \"raw_text\": \"Designing governance frameworks\"},\n    {\"label\": \"Data integration\", \"raw_text\": \"data integration approaches\"},\n    {\"label\": \"Data analysis\", \"raw_text\": \"complex data analysis\"},\n    {\"label\": \"Governed metadata\", \"raw_text\": \"governed metadata initiatives\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"you will lead client workstreams\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"At least a Bachelor's degree\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"Treated the 'What Sets You Apart' heading as an optional section like 'Preferred qualifications', so every skill under it is nice_to_have. The 'What You Must Have' section lists only the degree and years, no skills.\\nThe certification bullet ('At least one of the following') is a single ask. Its specific examples form alternative_group 1. The broad skills named alongside them (cloud, data-visualization, machine-learning) stay out of the group per the guide. SAS is a member of the same set but is unmapped.\\n'MS SQL' (Microsoft SQL Server) is mapped to sql. The taxonomy has no SQL Server entry; marked uncertain.\\n'visualization tools' is mapped to data-visualization as the broad skill the text names; marked uncertain.\\n'conceptual modeling' is mapped to data-modeling; marked uncertain.\\n'or similar' after RDF/OWL/SPARQL adds nothing.\\nStatistical modeling and explainability appear only in Responsibilities, so they are not labeled.\\nSeniority: the title 'Manager' is not in the guide's stated list. I inferred senior from the lead and coaching duty ('you will lead client workstreams', 'Coaching team members'). 'At least 4 years of experience' alone would give mid; marked uncertain.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "databricks",
+        "requirement": "nice_to_have",
+        "raw_text": "Databricks",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "nice_to_have",
+        "raw_text": "MS SQL",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-visualization",
+        "requirement": "nice_to_have",
+        "raw_text": "visualization tools (Power BI)",
+        "uncertain": true
+      },
+      {
+        "skill_id": "power-bi",
+        "requirement": "nice_to_have",
+        "raw_text": "Power BI",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud platforms (AWS, Azure, GCP)"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "GCP",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "predictive modeling/ML"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "knowledge-graphs",
+        "requirement": "nice_to_have",
+        "raw_text": "Designing and implementing knowledge graphs"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "nice_to_have",
+        "raw_text": "conceptual modeling",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "SAS",
+        "raw_text": "SAS"
+      },
+      {
+        "label": "Databases",
+        "raw_text": "databases"
+      },
+      {
+        "label": "RDF",
+        "raw_text": "RDF"
+      },
+      {
+        "label": "OWL",
+        "raw_text": "OWL"
+      },
+      {
+        "label": "SPARQL",
+        "raw_text": "SPARQL"
+      },
+      {
+        "label": "Ontology development",
+        "raw_text": "ontology development and management"
+      },
+      {
+        "label": "Semantic layers",
+        "raw_text": "semantic layer creation"
+      },
+      {
+        "label": "Query optimization",
+        "raw_text": "query optimization"
+      },
+      {
+        "label": "Master data management",
+        "raw_text": "master data management"
+      },
+      {
+        "label": "Data governance frameworks",
+        "raw_text": "Designing governance frameworks"
+      },
+      {
+        "label": "Data integration",
+        "raw_text": "data integration approaches"
+      },
+      {
+        "label": "Data analysis",
+        "raw_text": "complex data analysis"
+      },
+      {
+        "label": "Governed metadata",
+        "raw_text": "governed metadata initiatives"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "you will lead client workstreams",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "At least a Bachelor's degree",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Treated the 'What Sets You Apart' heading as an optional section like 'Preferred qualifications', so every skill under it is nice_to_have. The 'What You Must Have' section lists only the degree and years, no skills.\nThe certification bullet ('At least one of the following') is a single ask. Its specific examples form alternative_group 1. The broad skills named alongside them (cloud, data-visualization, machine-learning) stay out of the group per the guide. SAS is a member of the same set but is unmapped.\n'MS SQL' (Microsoft SQL Server) is mapped to sql. The taxonomy has no SQL Server entry; marked uncertain.\n'visualization tools' is mapped to data-visualization as the broad skill the text names; marked uncertain.\n'conceptual modeling' is mapped to data-modeling; marked uncertain.\n'or similar' after RDF/OWL/SPARQL adds nothing.\nStatistical modeling and explainability appear only in Responsibilities, so they are not labeled.\nSeniority: the title 'Manager' is not in the guide's stated list. I inferred senior from the lead and coaching duty ('you will lead client workstreams', 'Coaching team members'). 'At least 4 years of experience' alone would give mid; marked uncertain."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "3523482233eb1a40a002932f8b7c7e0f68e2968436b4457603c3d8b39c6c80a7",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

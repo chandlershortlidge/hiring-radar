@@ -1,0 +1,126 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"a deep background in building production software\", \"uncertain\": true},\n    {\"skill_id\": \"transformers\", \"requirement\": \"required\", \"raw_text\": \"transformer-based stack\"},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"required\", \"raw_text\": \"embeddings\"},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"required\", \"raw_text\": \"vector databases\"},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"tool-calling\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"2+ years shipping LLM-based products\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python Power-User\"},\n    {\"skill_id\": \"llm-guardrails\", \"requirement\": \"required\", \"raw_text\": \"how to build guardrails against them\", \"uncertain\": true},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"prompt engineering\", \"uncertain\": true},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"backend systems\", \"uncertain\": true},\n    {\"skill_id\": \"langgraph\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LangGraph\", \"alternative_group\": 1},\n    {\"skill_id\": \"llamaindex\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LlamaIndex\", \"alternative_group\": 1},\n    {\"skill_id\": \"pydanticai\", \"requirement\": \"nice_to_have\", \"raw_text\": \"PydanticAI\", \"alternative_group\": 1},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Hands-on experience with Fine-tuning\"},\n    {\"skill_id\": \"open-source-llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"open-weight models for domain-specific tasks\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Context window management\", \"raw_text\": \"context window management\"},\n    {\"label\": \"PEFT (LoRA/QLoRA)\", \"raw_text\": \"PEFT (LoRA/QLoRA)\"},\n    {\"label\": \"Human-in-the-loop workflows\", \"raw_text\": \"human-in-the-loop workflows\"},\n    {\"label\": \"Enterprise identity (SSO, role-based access)\", \"raw_text\": \"enterprise identity (SSO, role-based access)\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"7+ years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Section headings: 'What We're Looking For' is a requirements section, so its items default to required. 'Nice to Have' is optional, so every item under it is nice_to_have.\\nprompt-engineering and backend-development come from the intro sentence 'a role for a high-leverage builder who can move fluidly between prompt engineering, backend systems, and model optimization'. That sentence describes the candidate, so the literal reading labels them required. They are flagged uncertain because the sentence sits in the company/role description, not the qualifications.\\n'model optimization' in the same intro sentence is not labeled. It is too vague to map to inference-optimization.\\nRAG, evaluation and LLM orchestration appear only in the responsibilities section ('What You'll Do'), so they are not labeled.\\n'complex, multi-step workflows using frameworks such as' is not labeled as llm-orchestration. That would add a broad skill the text does not name by its taxonomy name. Only the three example frameworks are labeled.\\nLangGraph, LlamaIndex and PydanticAI are offered as examples for a single ask ('such as X, Y or Z'), so they share alternative_group 1.\\nllm-guardrails is flagged uncertain: the ask is 'instincts for failure modes … and how to build guardrails against them'.\\nhallucination-detection is not labeled. Hallucinations appear only as an example failure mode.\\n'Security Mindset' (treating access to enterprise data as part of the design) is not mapped to data-privacy-and-security. It reads as a mindset rather than a named skill.\\nThe notebooks mention is not labeled: 'not just experimenting in notebooks' is not an ask.\\n'Founding' in the title is not a level word under the guide. Seniority is inferred senior from '7+ years of experience'.\\nGerman: no mention of German and the posting is in English, so null.\\nDegree: no degree is mentioned, so null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "a deep background in building production software",
+        "uncertain": true
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "transformer-based stack"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "embeddings"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector databases"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool-calling"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "2+ years shipping LLM-based products"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python Power-User"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "how to build guardrails against them",
+        "uncertain": true
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompt engineering",
+        "uncertain": true
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "nice_to_have",
+        "raw_text": "LangGraph",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "nice_to_have",
+        "raw_text": "LlamaIndex",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "pydanticai",
+        "requirement": "nice_to_have",
+        "raw_text": "PydanticAI",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "Hands-on experience with Fine-tuning"
+      },
+      {
+        "skill_id": "open-source-llms",
+        "requirement": "nice_to_have",
+        "raw_text": "open-weight models for domain-specific tasks",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Context window management",
+        "raw_text": "context window management"
+      },
+      {
+        "label": "PEFT (LoRA/QLoRA)",
+        "raw_text": "PEFT (LoRA/QLoRA)"
+      },
+      {
+        "label": "Human-in-the-loop workflows",
+        "raw_text": "human-in-the-loop workflows"
+      },
+      {
+        "label": "Enterprise identity (SSO, role-based access)",
+        "raw_text": "enterprise identity (SSO, role-based access)"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "7+ years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Section headings: 'What We're Looking For' is a requirements section, so its items default to required. 'Nice to Have' is optional, so every item under it is nice_to_have.\nprompt-engineering and backend-development come from the intro sentence 'a role for a high-leverage builder who can move fluidly between prompt engineering, backend systems, and model optimization'. That sentence describes the candidate, so the literal reading labels them required. They are flagged uncertain because the sentence sits in the company/role description, not the qualifications.\n'model optimization' in the same intro sentence is not labeled. It is too vague to map to inference-optimization.\nRAG, evaluation and LLM orchestration appear only in the responsibilities section ('What You'll Do'), so they are not labeled.\n'complex, multi-step workflows using frameworks such as' is not labeled as llm-orchestration. That would add a broad skill the text does not name by its taxonomy name. Only the three example frameworks are labeled.\nLangGraph, LlamaIndex and PydanticAI are offered as examples for a single ask ('such as X, Y or Z'), so they share alternative_group 1.\nllm-guardrails is flagged uncertain: the ask is 'instincts for failure modes … and how to build guardrails against them'.\nhallucination-detection is not labeled. Hallucinations appear only as an example failure mode.\n'Security Mindset' (treating access to enterprise data as part of the design) is not mapped to data-privacy-and-security. It reads as a mindset rather than a named skill.\nThe notebooks mention is not labeled: 'not just experimenting in notebooks' is not an ask.\n'Founding' in the title is not a level word under the guide. Seniority is inferred senior from '7+ years of experience'.\nGerman: no mention of German and the posting is in English, so null.\nDegree: no degree is mentioned, so null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "3d3c2b8acd05bac665ce8122986d3e51a8ed9ec3b98bdc640476c609411ebeef",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

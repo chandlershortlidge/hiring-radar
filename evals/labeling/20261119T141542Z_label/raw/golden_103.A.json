@@ -1,0 +1,25 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The posting has no requirements, qualifications, nice-to-have or tech-stack section. It holds only a role and company description, so no skill is asked of the candidate.\\n'AI-enabled tools', 'AI capabilities' and 'hands-on engineering' appear only in the role description. Under the guide these are not labeled, so `expected` is empty.\\nSeniority: no years, level words, or lead/mentoring duty. 'Forward Deployed Engineer' is not a level, so seniority is null.\\nGerman: no language mention. The posting is in English and the locations are Chicago, Houston, London and Singapore, so German is null.\\nDegree: no degree mentioned, so degree is null.\"\n}\n```",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The posting has no requirements, qualifications, nice-to-have or tech-stack section. It holds only a role and company description, so no skill is asked of the candidate.\n'AI-enabled tools', 'AI capabilities' and 'hands-on engineering' appear only in the role description. Under the guide these are not labeled, so `expected` is empty.\nSeniority: no years, level words, or lead/mentoring duty. 'Forward Deployed Engineer' is not a level, so seniority is null.\nGerman: no language mention. The posting is in English and the locations are Chicago, Houston, London and Singapore, so German is null.\nDegree: no degree mentioned, so degree is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "d2286300721b275accafc9f95aca9d417fddb3a528df5c4a5766448606bfbb20",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

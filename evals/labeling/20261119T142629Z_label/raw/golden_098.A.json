@@ -1,0 +1,27 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"1 to 3 years of related experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor’s degree or equivalent combination of education and experience\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"Skills: none labeled, on the most literal reading. The only candidate asks are under 'Requirements': years of experience and a degree, neither of which is a skill.\\nSkills: LLM agents, RAG, APIs, cloud infrastructure, vector databases, full-stack and backend appear only in the title and Key Responsibilities. Per the guide they are not labeled, because the candidate is never asked to have them.\\nSkills: the title 'LLM Agents & RAG Pipelines' describes the role, not a qualification, so it is not labeled. A reviewer may disagree.\\nSeniority: '1 to 3 years' straddles the junior band (0–2) and the mid band (3–5). I chose junior because most of the range falls in 0–2.\\nSeniority: 'Lead hardware engineering use case projects' in the responsibilities is project leadership, not people lead or mentoring. I did not treat it as a senior signal. Flagged for review.\\nGerman: no language mentioned. The posting is in English, so German is null.\\nDegree: 'equivalent combination of education and experience' accepts experience in place of the degree, so degree_or_equivalent is true.\"\n}\n```",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "1 to 3 years of related experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor’s degree or equivalent combination of education and experience",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Skills: none labeled, on the most literal reading. The only candidate asks are under 'Requirements': years of experience and a degree, neither of which is a skill.\nSkills: LLM agents, RAG, APIs, cloud infrastructure, vector databases, full-stack and backend appear only in the title and Key Responsibilities. Per the guide they are not labeled, because the candidate is never asked to have them.\nSkills: the title 'LLM Agents & RAG Pipelines' describes the role, not a qualification, so it is not labeled. A reviewer may disagree.\nSeniority: '1 to 3 years' straddles the junior band (0–2) and the mid band (3–5). I chose junior because most of the range falls in 0–2.\nSeniority: 'Lead hardware engineering use case projects' in the responsibilities is project leadership, not people lead or mentoring. I did not treat it as a senior signal. Flagged for review.\nGerman: no language mentioned. The posting is in English, so German is null.\nDegree: 'equivalent combination of education and experience' accepts experience in place of the degree, so degree_or_equivalent is true."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "5a4feb26160896c3ca70a4e8f18e3db06e8b7148afb4b1bdf624182f3299b842",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}
