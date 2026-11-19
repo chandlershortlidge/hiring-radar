@@ -159,8 +159,13 @@ English, "multiple languages" and other languages are none.
 
 One label per posting, or none (`null`) when no degree is mentioned.
 
-- `degree` is the highest level named: `bachelor`, `master`, `phd`. "Degree in …",
-  "university degree", "completed studies", "currently studying" with no level → `bachelor`.
+- `degree` is the **lowest** level named: `bachelor`, `master`, `phd` — the least a
+  candidate must hold to get in. "Bachelor's or Master's" → `bachelor`; "MS or PhD" →
+  `master`; "Master's degree (or above)" → `master`. "Degree in …", "university degree",
+  "completed studies", "currently studying" with no level → `bachelor`. When the whole
+  mention is optional ("ein Master oder Ph.D. ist von Vorteil"), the level is still the
+  lowest named, with `nice_to_have`. A higher level the posting also welcomes is not
+  recorded: one label per posting (decision of 2026-11-19, HIR-245).
 - `degree_requirement` follows the skill rule: `nice_to_have` only when marked optional;
   otherwise `required`, including a bare mention in a requirements list. Most postings
   are bare mentions, so most labeled degrees are `required` — that is correct, not a
@@ -231,4 +236,5 @@ first bound on this answer key that does not rest on models agreeing with each o
 Two readings were put up as candidate rule changes and came back **confirmed as-is**, so the
 rules above stand unedited: "These are meant to be indicative, not hard requirements" above a
 list does not flip the section to `nice_to_have` (golden_038), and "MS or PhD" takes the
-highest level named (golden_040).
+highest level named (golden_040). The second was later reversed: on 2026-11-19 (HIR-245)
+the degree rule became the lowest level named, and golden_040 moved to `master`.
