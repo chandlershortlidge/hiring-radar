@@ -130,6 +130,20 @@ def test_both_fixes_appear_in_the_next_weekly_summary(conn):
     assert "Spent" not in text                                 # bookkeeping is not a finding
 
 
+def test_a_us_search_is_judged_on_yesterdays_run_and_a_europe_one_on_todays(conn):
+    """The US collection runs at 07:00 New York, after this check (HIR-369): a feed only the
+    US run fetches is judged on yesterday's record; a Europe feed's yesterday is not re-judged."""
+    us = {"type": "jsearch", "enabled": True, "search": "AI engineer in Seattle", "country": "us"}
+    eu = {"type": "jsearch", "enabled": True, "search": "AI engineer in Berlin", "country": "de"}
+    poll.record_run(conn, us, None, "HTTPError: 500", day="2026-11-15")
+    poll.record_run(conn, eu, None, "HTTPError: 500", day="2026-11-15")
+    poll_today(conn, feeds_doc()["feeds"])
+    found = morning(conn, doc={"feeds": feeds_doc()["feeds"] + [us, eu]})
+    errors = {f.subject for f in found if f.finding == "feed_error"}
+    assert "jsearch:AI engineer in Seattle" in errors
+    assert "jsearch:AI engineer in Berlin" not in errors
+
+
 def test_report_only_never_writes_the_feeds_file(conn, tmp_path, monkeypatch):
     from app import caretaker
     monkeypatch.setattr(caretaker, "write_feeds", lambda *a, **k: pytest.fail("wrote feeds.json"))
