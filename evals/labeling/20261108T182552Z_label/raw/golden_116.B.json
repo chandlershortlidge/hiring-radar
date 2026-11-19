@@ -1,0 +1,36 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"fundierte Kenntnisse im Bereich Artificial Intelligence\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Datengetriebene Ansätze\",\n      \"raw_text\": \"datengetriebenen Ansätzen\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"erste praktische Berührungspunkte mit AI-Anwendungen oder datengetriebenen Ansätzen\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"sehr gute Deutsch- und Englischkenntnisse\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"abgeschlossenes Studium in Maschinenbau, Produktionstechnik, Luft- und Raumfahrttechnik oder einer vergleichbaren Fachrichtung\",\n  \"notes\": \"Die Qualifikationen unter „Be our forward thinker“ sind nicht optional.\\nArtificial Intelligence wird als AI/ML eingeordnet; die zusätzlich genannte Interessenbekundung schwächt die ausdrücklich geforderten fundierten Kenntnisse nicht ab.\\nDatengetriebene Ansätze werden wörtlich als technische Vorgehensweise erfasst; dafür existiert kein passender Taxonomieeintrag.\\nManufacturing-Erfahrung ist Domänenwissen; Digitalisierung und technologische Innovationen benennen hier keine konkrete technische Fertigkeit.\\n„erste praktische Berührungspunkte“ wird als erste Erfahrung und damit als Junior-Signal gelesen.\\nKeine Alternativgruppe: AI wird unabhängig von der Alternative ausdrücklich vorausgesetzt.\\nDie vergleichbare Fachrichtung erweitert nur das Studienfach, nicht die Möglichkeit eines Abschlussersatzes.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "fundierte Kenntnisse im Bereich Artificial Intelligence"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Datengetriebene Ansätze",
+        "raw_text": "datengetriebenen Ansätzen"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "erste praktische Berührungspunkte mit AI-Anwendungen oder datengetriebenen Ansätzen",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "sehr gute Deutsch- und Englischkenntnisse",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "abgeschlossenes Studium in Maschinenbau, Produktionstechnik, Luft- und Raumfahrttechnik oder einer vergleichbaren Fachrichtung",
+    "notes": "Die Qualifikationen unter „Be our forward thinker“ sind nicht optional.\nArtificial Intelligence wird als AI/ML eingeordnet; die zusätzlich genannte Interessenbekundung schwächt die ausdrücklich geforderten fundierten Kenntnisse nicht ab.\nDatengetriebene Ansätze werden wörtlich als technische Vorgehensweise erfasst; dafür existiert kein passender Taxonomieeintrag.\nManufacturing-Erfahrung ist Domänenwissen; Digitalisierung und technologische Innovationen benennen hier keine konkrete technische Fertigkeit.\n„erste praktische Berührungspunkte“ wird als erste Erfahrung und damit als Junior-Signal gelesen.\nKeine Alternativgruppe: AI wird unabhängig von der Alternative ausdrücklich vorausgesetzt.\nDie vergleichbare Fachrichtung erweitert nur das Studienfach, nicht die Möglichkeit eines Abschlussersatzes."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "f3712052c60fccd18ce9ef5719364e05cc8c6aa686bbe1aee0e410e763920bec",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

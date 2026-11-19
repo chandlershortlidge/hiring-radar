@@ -1,0 +1,226 @@
+{
+  "id": "golden_138",
+  "split": "heldout",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "inferred",
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "30c45c8de6f90b9ea234e232f28ca337aba7c68210d6dae011f5caee5d5dc985",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:ai-ml",
+    "skill:apis",
+    "skill:backend-development",
+    "skill:cloud",
+    "skill:git",
+    "skill:gitlab-ci",
+    "skill:java",
+    "skill:kotlin",
+    "skill:kubernetes",
+    "skill:llm-orchestration",
+    "skill:mlops",
+    "skill:openshift",
+    "skill:software-engineering"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Cloud Software Engineer mit KI-Fokus (m/w/d)\n\n## Wer wir sind\n\ntekkminds ist ein innovatives Unternehmen, das sich auf die Entwicklung maßgeschneiderter Software-Lösungen im Cloud-Bereich spezialisiert hat. Wir begleiten unsere Kunden von der strategischen Beratung bis zur vollständigen Implementierung moderner, skalierbarer und zukunftssicherer Anwendungen. Mit unserer Expertise in Cloud-Technologien, KI-Integration und IoT helfen wir Unternehmen, die digitale Transformation erfolgreich zu meistern.\n\n## Was dich erwartet\n\nAls Cloud Software Engineer mit KI-Fokus bei tekkminds bewegst du dich an der Schnittstelle zwischen klassischer Softwareentwicklung und modernster KI-Technologie. Du entwickelst innovative Lösungen für anspruchsvolle Enterprise-Kunden, die auf neuesten Cloud-Technologien basieren und KI-gestützte Funktionalitäten intelligent integrieren. Dabei bringst du dein Verständnis für bestehende Backend-Systeme ein und gestaltest die Zukunft der KI-Integration aktiv mit.\n\n## Deine Aufgaben\n\n- KI-Integration in Enterprise-Systeme: Entwicklung und Implementierung von Retrieval-Augmented Generation (RAG) Systemen zur intelligenten Wissenserschließung\n- MCP-Server-Entwicklung: Bereitstellung bestehender REST APIs als Model Context Protocol (MCP) Server für nahtlose LLM-Integration\n- Agentenbasierte Architekturen: Konzeption und Umsetzung von KI-Agenten und Agent-to-Agent-Kommunikation für komplexe Workflows\n- Cloud-native Entwicklung: Konzeption und Entwicklung skalierbarer, cloud-nativer Anwendungen mit KI-Komponenten\n- API-Design und -Migration: Analyse bestehender Java/Kotlin REST APIs und deren Transformation für KI-Nutzung\n- CI/CD für ML/AI: Implementierung von MLOps-Pipelines und DevOps-Praktiken für KI-Modelle\n- Kundenberatung: Enge Zusammenarbeit mit Enterprise-Kunden zur Erarbeitung technischer Lösungen an der Schnittstelle von klassischer Software und KI\n- Innovation treiben: Kontinuierliche Weiterentwicklung unserer internen Standards im Bereich KI-Integration\n\n## Was wir suchen\n\n### Technisches Know-how\n\n**Backend-Entwicklung:**\n\n- Fundierte Erfahrung in Java/Kotlin und Python\n- Umfassende Erfahrung mit Spring (Boot) oder Jakarta Enterprise Edition (oder vergleichbares)\n- Verständnis von REST API-Design und -Implementierung\n- Hands-on Erfahrung mit Containerisierungstechnologien (Docker, Podman)\n- Kenntnisse in Kubernetes/OpenShift und Cloud-Plattformen (AWS, Azure, GCP)\n- Praxiserfahrung mit CI/CD-Tools (GitLab, GitHub, Jenkins, AWS CodeBuild/CodePipeline, Azure DevOps)\n\n**KI & ML (Nice-to-have, aber Lernbereitschaft ist Pflicht):**\n\n- Grundverständnis von Large Language Models (LLMs) und deren Einsatzmöglichkeiten\n- Interesse an Retrieval-Augmented Generation (RAG), Vektordatenbanken und Embedding-Techniken\n- Vertrautheit mit Model Context Protocol (MCP) oder Bereitschaft, sich intensiv einzuarbeiten\n- Idealerweise erste Erfahrungen mit Agent-Frameworks oder Orchestrierung\n- Optional: Kenntnisse in Model Fine-tuning, Prompt Engineering oder MLOps\n- Bereitschaft, sich kontinuierlich in schnell evolvierende KI-Technologien einzuarbeiten\n\n**Bonus:**\n\n- Erfahrung mit LangChain, LlamaIndex, LangChain4J oder vergleichbaren Frameworks\n- Kenntnisse in Vektordatenbanken (Pinecone, Weaviate, Qdrant, ChromaDB)\n- Verständnis von GitOps-Prinzipien und Tools wie ArgoCD oder Flux\n\n### Persönliche Eigenschaften\n\n- Ausgeprägtes Interesse an KI-Themen und die Motivation, in diesem dynamischen Feld am Ball zu bleiben\n- Erfahrung in agilen Softwareentwicklungsteams\n- Brückenbauer-Mentalität: Du verstehst sowohl die klassische Backend-Welt als auch KI-Konzepte\n- Problemlösungsorientierte Denkweise mit der Fähigkeit, komplexe Systeme zu durchdringen\n- Neugierde und Lernbereitschaft für schnell evolvierende Technologien\n- Teamgeist und ausgeprägte kommunikative Fähigkeiten, insbesondere im Kundenkontakt\n- Pragmatischer Ansatz: Du findest die Balance zwischen Innovation und praktischer Umsetzbarkeit\n\n## Was wir bieten\n\n- **Pionierarbeit in einem Zukunftsfeld**: Arbeite an der Spitze der KI-Integration in Enterprise-Systemen mit echten Kundenprojekten\n- **Lernbudget & Weiterbildung**: Großzügiges Budget für Kurse, Zertifizierungen und Konferenzen im KI-Bereich – wir investieren in deine Entwicklung\n- **Technologievielfalt**: Arbeite mit modernsten KI-Frameworks, Cloud-Plattformen und Enterprise-Technologien\n- **Fachliche Herausforderung**: Anspruchsvolle, abwechslungsreiche Projekte mit namhaften Enterprise-Kunden\n- **Wertschätzung deiner Arbeit**: Ein attraktives, marktgerechtes Gehalt, das deine Expertise würdigt\n- **Technische Freiheit**: Du entscheidest selbst über dein Tech-Setup – wähle das Notebook und Handy, das zu dir passt\n- **Wissensaustausch**: Aktive Teilnahme an MeetUps, Konferenzen und internen Talks – gerne auch als Speaker. Zugang zu führenden KI-Communities\n- **Raum für Kreativität**: Verfasse Blogs und Fachartikel während deiner Arbeitszeit. Teile deine Erkenntnisse zur KI-Integration\n- **Gemeinsames Wachstum**: Regelmäßige interne Events mit Präsentationen zu aktuellen KI-Trends und Projekten\n- **Gestaltungsfreiraum**: Deine Ideen für KI-Innovationen zählen! Wir ermutigen dich, eigene Initiativen zu starten und Verantwortung für interne Projekte zu übernehmen\n- **Innovation Lab**: Zeit für Experimente mit neuen KI-Technologien und Proof-of-Concepts\n- **Kontinuierliche Weiterbildung**: Regelmäßige Schulungen und Zeit für persönliche Weiterentwicklung\n- **Zentrale Lage**: Schönes, modern ausgestattetes Büro in zentraler Lage Münchens mit sehr guter Verkehrsanbindung\n\n## Klingt das nach dir?\n\nDu musst kein KI-Experte sein, aber du solltest echtes Interesse an KI-Technologien mitbringen und bereit sein, dich intensiv in dieses spannende Feld einzuarbeiten. Wenn du solide Backend-Entwicklungsskills hast und die Zukunft der KI-Integration mitgestalten möchtest, dann bist du bei uns richtig!\n\nSchicke uns deinen Lebenslauf und erzähle uns in wenigen Sätzen welche Erfahrungen oder Projekte (auch privat/experimentell) du im KI-Bereich bereits hast!\n\n**Kontakt:**\nGerne per E-Mail an: [jobs@tekkminds.com](https://mailto:jobs@tekkminds.com)\n\n*Bei tekkminds glauben wir an die Kraft der Vielfalt. Wir begrüßen Bewerbungen von allen qualifizierten Kandidat:innen, unabhängig von Alter, Geschlecht, Herkunft oder Hintergrund.*",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "nice_to_have",
+      "raw_text": "Idealerweise erste Erfahrungen mit Agent-Frameworks"
+    },
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "Du verstehst sowohl die klassische Backend-Welt als auch KI-Konzepte"
+    },
+    {
+      "skill_id": "api-design",
+      "requirement": "required",
+      "raw_text": "REST API-Design"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "REST API-Design und -Implementierung"
+    },
+    {
+      "skill_id": "argocd",
+      "requirement": "nice_to_have",
+      "raw_text": "ArgoCD"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "AWS"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Azure"
+    },
+    {
+      "skill_id": "azure-devops",
+      "requirement": "required",
+      "raw_text": "Azure DevOps"
+    },
+    {
+      "skill_id": "backend-development",
+      "requirement": "required",
+      "raw_text": "solide Backend-Entwicklungsskills"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD-Tools"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Cloud-Plattformen"
+    },
+    {
+      "skill_id": "containerization",
+      "requirement": "required",
+      "raw_text": "Containerisierungstechnologien"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Docker"
+    },
+    {
+      "skill_id": "embeddings",
+      "requirement": "nice_to_have",
+      "raw_text": "Interesse an Retrieval-Augmented Generation (RAG), Vektordatenbanken und Embedding-Techniken"
+    },
+    {
+      "skill_id": "fine-tuning",
+      "requirement": "nice_to_have",
+      "raw_text": "Model Fine-tuning"
+    },
+    {
+      "skill_id": "gcp",
+      "requirement": "required",
+      "raw_text": "GCP"
+    },
+    {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "GitHub"
+    },
+    {
+      "skill_id": "gitlab-ci",
+      "requirement": "required",
+      "raw_text": "GitLab"
+    },
+    {
+      "skill_id": "gitops",
+      "requirement": "nice_to_have",
+      "raw_text": "GitOps-Prinzipien"
+    },
+    {
+      "skill_id": "java",
+      "requirement": "required",
+      "raw_text": "Java"
+    },
+    {
+      "skill_id": "jenkins",
+      "requirement": "required",
+      "raw_text": "Jenkins"
+    },
+    {
+      "skill_id": "kotlin",
+      "requirement": "required",
+      "raw_text": "Kotlin"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes"
+    },
+    {
+      "skill_id": "langchain",
+      "requirement": "nice_to_have",
+      "raw_text": "Erfahrung mit LangChain"
+    },
+    {
+      "skill_id": "llamaindex",
+      "requirement": "nice_to_have",
+      "raw_text": "LlamaIndex"
+    },
+    {
+      "skill_id": "llm-orchestration",
+      "requirement": "nice_to_have",
+      "raw_text": "Orchestrierung"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "nice_to_have",
+      "raw_text": "Grundverständnis von Large Language Models (LLMs)"
+    },
+    {
+      "skill_id": "mcp",
+      "requirement": "nice_to_have",
+      "raw_text": "Vertrautheit mit Model Context Protocol (MCP) oder Bereitschaft, sich intensiv einzuarbeiten"
+    },
+    {
+      "skill_id": "mlops",
+      "requirement": "nice_to_have",
+      "raw_text": "MLOps"
+    },
+    {
+      "skill_id": "openshift",
+      "requirement": "required",
+      "raw_text": "OpenShift"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "nice_to_have",
+      "raw_text": "Prompt Engineering"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Java/Kotlin und Python"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "nice_to_have",
+      "raw_text": "Interesse an Retrieval-Augmented Generation (RAG)"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Erfahrung in agilen Softwareentwicklungsteams"
+    },
+    {
+      "skill_id": "spring-boot",
+      "requirement": "required",
+      "raw_text": "Spring (Boot)"
+    },
+    {
+      "skill_id": "vector-databases",
+      "requirement": "nice_to_have",
+      "raw_text": "Kenntnisse in Vektordatenbanken"
+    },
+    {
+      "skill_id": "weaviate",
+      "requirement": "nice_to_have",
+      "raw_text": "Weaviate"
+    }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "id": "golden_107",
+  "split": "heldout",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "sehr gute Deutsch- und Englischkenntnisse",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": false,
+  "degree_signal": "abgeschlossenes Studium der Informatik, Ingenieurinformatik, Data Science oder einer vergleichbaren Fachrichtung",
+  "attrs_reviewed": true,
+  "source_sha256": "797754eb165b31c33b25aa93a2721e10a64ad0377cdb012a6aede2c9f1d05859",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:ci-cd",
+    "skill:docker",
+    "skill:kubernetes"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Generative AI Engineer (all gender)\n\nDie ALTEN Consulting Services GmbH bietet mit über 20 Jahren Branchenerfahrung ihren namhaften Kunden aus Industrie und Wirtschaft hochspezialisierte Engineering- und IT-Dienstleistungen zur gemeinsamen Realisierung von branchen- und technologieübergreifenden Lösungen an.\nKompetenz, Engagement und Leidenschaft verbinden alle unsere Mitarbeiter der ALTEN Consulting Services GmbH. Dabei stehen ein partnerschaftliches Miteinander, ein starkes WIR-Gefühl, der persönliche Kontakt zu unseren Kunden und die Kreativität jedes Einzelnen stets im Fokus. Werde auch Du Teil unserer Erfolgsgeschichte.\n\nGenerative AI Engineer (all gender)\n\nMake it happen\nDU...\n\n- konzipierst, entwickelst und betreibst LLM-Anwendungen, RAG-Pipelines sowie autonome KI-Agenten zur Automatisierung von Geschäftsprozessen\n- optimierst Retrieval-Qualität und Antwortgenauigkeit durch Chunking-Strategien, Reranking-Verfahren und Prompt Engineering\n- führst das Fine-Tuning und die Inferenzoptimierung von Deep-Learning- und LLM-Modellen für Cloud- und On-Premise-Umgebungen durch\n- entwickelst KI-basierte und klassische Bildverarbeitungslösungen für automatisierte Qualitätskontrollen und industrielle Anwendungen\n- baust skalierbare MLOps-Infrastrukturen mit Docker, Kubernetes und CI/CD-Pipelines auf und entwickelst diese kontinuierlich weiter\n- arbeitest eng mit Fachbereichen und Technologiepartnern zusammen, um innovative KI-Lösungen erfolgreich in den Produktivbetrieb zu überführen\n\nBe our forward thinker\nDU...\n\n- verfügst über ein abgeschlossenes Studium der Informatik, Ingenieurinformatik, Data Science oder einer vergleichbaren Fachrichtung\n- bringst fundierte Erfahrung in der Entwicklung von Generative-AI-, LLM- und RAG-Lösungen mit\n- hast sehr gute Programmierkenntnisse in Python sowie Erfahrung mit Frameworks wie LangChain, PyTorch und TensorFlow\n- besitzt Kenntnisse im Bereich MLOps, Containerisierung und Orchestrierung mit Docker, Kubernetes und CI/CD-Pipelines\n- verfügst über sehr gute Deutsch- und Englischkenntnisse\n\nA home where people learn and thrive\n\n- Zukunftsorientierter Arbeitsplatz mit unbefristetem Arbeitsvertrag\n- Attraktive Vergütung\n- Mobiles Arbeiten nach Absprache\n- Individuelle interne und externe Weiterbildungen\n- Flexible Arbeitszeitgestaltung mit Gleitzeitkontenregelung\n- Persönlichen Ansprechpartner\n- Regelmäßige Teamevents mit netten Kollegen\n- Subventioniertes und umfangreiches Sportangebot mit Wellpass\n- Attraktive Corporate Benefits und Mitarbeiterangebote bei unseren Partnern\n\nWeitere Informationen findest Du unter: www.alten-consulting.de\n\nWir wertschätzen Vielfalt und begrüßen daher alle Bewerbungen - unabhängig von Geschlecht, Nationalität, ethnischer und sozialer Herkunft, Religion / Weltanschauung, Behinderung, Alter sowie sexueller Orientierung und Identität.\n\nSchwerbehinderte werden bei gleicher Eignung bevorzugt berücksichtigt.\n\nBewirb dich jetzt über unser Online-Bewerbungsformular.",
+  "expected": [
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD-Pipelines"
+    },
+    {
+      "skill_id": "containerization",
+      "requirement": "required",
+      "raw_text": "Containerisierung"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Docker"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes"
+    },
+    {
+      "skill_id": "langchain",
+      "requirement": "required",
+      "raw_text": "LangChain"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Generative-AI-, LLM-"
+    },
+    {
+      "skill_id": "mlops",
+      "requirement": "required",
+      "raw_text": "Kenntnisse im Bereich MLOps"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Programmierkenntnisse in Python"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG-Lösungen"
+    },
+    {
+      "skill_id": "tensorflow",
+      "requirement": "required",
+      "raw_text": "TensorFlow"
+    }
+  ]
+}

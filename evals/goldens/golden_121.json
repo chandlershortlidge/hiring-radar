@@ -1,0 +1,52 @@
+{
+  "id": "golden_121",
+  "split": "dev",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "inferred",
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "fb38a43b2d77100b7f766963bb68aa094eeb068d90ef6c5f9aba95878a61b4e3",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:ai-ml",
+    "skill:cloud",
+    "skill:python",
+    "skill:snowflake"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Data & AI Engineer (m/w/d)\n\nFitness First Germany – Deine Karriere bei Deutschlands führendem Premium-Fitnessanbieter.\n\nFitness First ist der führende nationale Premium-Fitnessanbieter in Deutschland mit zahlreichen Studios bundesweit. Wir bieten unseren Kunden ein umfassendes Fitness- und Wellnesserlebnis mit innovativen Trainingskonzepten – und dafür brauchen wir dich!\n\nWerde Teil eines Teams, das Menschen täglich motiviert, ihre Fitnessziele zu erreichen. Bei uns arbeitest du in einer modernen, dynamischen Umgebung, in der deine Ideen zählen und dein Engagement geschätzt wird. Unsere qualifizierten Trainer und Mitarbeiter sind nicht nur Experten auf ihrem Gebiet, sondern auch Motivatoren, Coaches und Teamplayer.\n\nOb im Studio oder hinter den Kulissen – bei Fitness First Germany hast du die Möglichkeit, dich weiterzuentwickeln, Verantwortung zu übernehmen und aktiv an unserer Erfolgsgeschichte mitzuwirken.\n\nEntdecke deine Karrierechancen bei Fitness First und werde Teil unseres motivierenden Teams!\nDas bieten wir dir✓ Gestaltungsspielraum: Du baust unsere zukuenftige Data-und-AI-Plattform von Grund auf mit auf und praegst ihre Architektur und Standards.✓ Direkter Business Impact: Deine Loesungen unterstuetzen datenbasierte Entscheidungen, automatisieren Prozesse und schaffen konkreten Mehrwert fuer unsere Unternehmensgruppe.✓ Moderner Technologie-Stack: Du arbeitest mit aktuellen Cloud-, Data- und AI-Technologien – unter anderem mit Snowflake, Python und modernen Engineering-Werkzeugen.✓ Individueller Schwerpunkt: Je nach Erfahrung und Interesse kannst du deinen Fokus staerker auf Data Engineering oder AI Engineering legen.✓ Persoenliche Weiterentwicklung: Wir unterstuetzen dich mit individuellen Weiterbildungen und relevanten Zertifizierungen.✓ Flexibles Arbeiten: Dich erwarten flexible Arbeitszeiten und eine Kombination aus mobilem Arbeiten und Praesenz in unserem Service Center in Frankfurt am Main.✓ Team und Kultur: Du arbeitest in einem neu entstehenden, motivierten Team mit kurzen Entscheidungswegen, viel Eigenverantwortung und direktem Austausch mit den Fachbereichen.✓ Attraktive Zusatzleistungen: Du erhaeltst Zuschuesse zur betrieblichen Altersvorsorge sowie weitere Corporate Benefits.✓ Fitness inklusive: Trainiere in unseren Fitness First Studios und profitiere von attraktiven Mitarbeiterangeboten der gesamten LifeFit Group.\nWir motivieren Menschen. Jeden Tag. Die LifeFit Group ist die groesste Fitness- und Gesundheitsplattform Deutschlands. Mit unseren Marken – allen voran Fitness First – begleiten wir taeglich Tausende Menschen auf ihrem Weg zu mehr Gesundheit, Fitness und Wohlbefinden. Gleichzeitig entwickeln wir unsere technologische Landschaft konsequent weiter. In unserem neu entstehenden Data-und-AI-Team bauen wir eine moderne, unternehmensweite Cloud Data Platform auf, modernisieren bestehende Datenstrukturen und entwickeln skalierbare Loesungen fuer Analytics und Artificial Intelligence. Als Data und AI Engineer (m/w/d) uebernimmst du keine fertige Plattform. Du kannst Architektur, Technologien und Standards von Beginn an mitgestalten und Loesungen entwickeln, die in unseren Clubs, digitalen Angeboten und Unternehmensprozessen unmittelbar Wirkung entfalten. Der Schwerpunkt der Rolle liegt im Data Engineering und im Aufbau unserer Cloud Data Platform auf Basis von Snowflake.Deine Aufgaben✓ Du gestaltest den Aufbau und die Weiterentwicklung unserer unternehmensweiten Cloud Data Platform auf Basis von Snowflake.✓ Du analysierst bestehende Datenlandschaften und begleitest die schrittweise Transformation von Legacy- und On-Premises-Loesungen in eine moderne Cloud-Architektur.✓ Du entwickelst robuste Data Pipelines, ETL-/ELT-Prozesse und skalierbare Datenmodelle fuer Analytics- und AI-Anwendungen.✓ Du integrierst interne und externe Datenquellen ueber APIs, Datenbanken ...(Lesen Sie die vollständige Jobbeschreibung auf der Seite des Partners)",
+  "expected": [
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "AI-Technologien"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Cloud-, Data- und AI-Technologien"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "snowflake",
+      "requirement": "required",
+      "raw_text": "Snowflake"
+    }
+  ]
+}

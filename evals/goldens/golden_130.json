@@ -1,0 +1,26 @@
+{
+  "id": "golden_130",
+  "split": "dev",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "inferred",
+  "german_signal": null,
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "08c693aa2ab948e556d61316005c6cb50668d2f31c6e7c87bbc03f28fc085fa3",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Agentic AI Software Engineer (m/w/d) | Frankfurt | 80% Remote | JBA15245\n\nStart: Dezember 2026\r\nDauer: 36 Monate\r\nOrt: Frankfurt am Main / 80% Remote\r\nProjekt-ID: 15245\r\nBewerbungsfrist: 27.11.2026\r\n\r\nLiebes Netzwerk, \r\nfür unseren Kunden in Frankfurt suchen wir einen Agentic AI Software Engineer (m/w/d).\r\n\r\nAufgaben:\r\n• Entwicklung KI-gestützter Softwarelösungen und agentischer Workflows",
+  "expected": []
+}

@@ -1,0 +1,103 @@
+{
+  "id": "golden_120",
+  "split": "heldout",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "inferred",
+  "german_signal": null,
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "abgeschlossenes Studium der Informatik, Data Science, Mathematik oder eine vergleichbare Qualifikation",
+  "attrs_reviewed": true,
+  "source_sha256": "2d4508fb60b5b3b106c8aa8f1fe1150416f5a06fefebeeb3341d427b16ffb6d0",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "seniority",
+    "skill:azure",
+    "skill:networking",
+    "skill:openai-api",
+    "skill:terraform"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Azure DevOps Engineer mit Fokus Azure AI (a*)\n\nDie Hamburger Energienetze bieten dir eine spannende Karriere in der zukunftssicheren Energiebranche! Mit über 2.400 engagierten Mitarbeitenden meistern wir täglich die Herausforderungen der Energieversorgung für Hamburgs Bürgerinnen und Bürger. Durch unsere Fusion aus Stromnetz Hamburg und Gasnetz Hamburg eröffnen sich dir zahlreiche neue Chancen. Werde Teil unseres Teams, gestalte die Zukunft aktiv mit und profitiere von attraktiven Benefits!\nWas du bewegst\n* Zu deinen Aufgaben gehört der Aufbau sowie die kontinuierliche Weiterentwicklung von Azure-(AI)Lösungen und damit die aktive Mitgestaltung der Energiewende in Hamburg.\n* Du stellst sicher, dass die Entwicklung und der Betrieb von Azure-(AI)Lösungen koordiniert, sicher, wirtschaftlich und im Einklang mit der Digitalisierungs- und KI-Strategie erfolgen.\n* Darüber hinaus definierst und entwickelst du Azure-(AI) Zielarchitekturen sowie Governance- und Securitystrukturen. Zudem verantwortest du die zentrale Kostensteuerung für den plattformspezifischen Betrieb und dessen Weiterentwicklung.\n* Du entwickelst und betreibst standardisierte CI/CD-Pipelines sowie Infrastructure-as-Code-Komponenten auf Basis von Terraform. Ergänzend dazu erstellst du Templates, Starter-Kits und Referenzlösungen.\n* Außerdem berätst und unterstützt du unsere IT-Plattform-Teams, beispielsweise bei der Bewertung und Umsetzung konkreter AI-Use-Cases.\n\nWas dich auszeichnet\n* Du verfügst über ein abgeschlossenes Studium der Informatik, Data Science, Mathematik oder eine vergleichbare Qualifikation.\n* Als Microsoft Azure DevOps Spezialist gehören Azure DevOps, Git, Terraform, Entra ID, Key Vaults, Private Endpoints, Networking, Landing Zones sowie Monitoring zu deinem täglichen Handwerkszeug.\n* Zudem verfügst du über fundierte Kenntnisse in der Entwicklung und Pflege von Infrastructure-as-Code-Projekten zur Bereitstellung von Azure-Ressourcen mit Terraform und Azure DevOps.\n* Idealerweise bringst du nachweisbare Erfahrung im Umgang mit dem Microsoft Azure AI Stack, insbesondere Azure OpenAI, AI Foundry, Cognitive Services, AI Search und Azure DevOps, mit.\n* Eine strukturierte, konzeptionelle und zugleich praxisorientierte Arbeitsweise zeichnet dich ebenso aus wie Deine Fähigkeit, Lösungen erfolgreich in den operativen Betrieb zu überführen.\n* Selbstständiges und eigenverantwortliches Arbeiten sowie Teamfähigkeit und Kommunikationsstärke runden dein Profil ab.\n* Kenntnisse im Einsatz von Large Language Models (LLMs) sowie RAG-Technologien und -Architekturen sind von Vorteil.\n\nWas uns auszeichnet\nDie Hamburger Energienetze bieten dir eine spannende Karriere in der zukunftssicheren Energiebranche! Mit über 2.400 engagierten Mitarbeitenden meistern wir täglich die Herausforderungen der Energieversorgung für Hamburgs Bürgerinnen und Bürger. Durch unsere Fusion aus Stromnetz Hamburg und Gasnetz Hamburg eröffnen sich dir zahlreiche neue Chancen. Werde Teil unseres Teams, gestalte die Zukunft aktiv mit und profitiere von attraktiven Benefits!\n* Das ist uns auch wichtig\nWarum bei uns ein (a) im Stellentitel steht? Weil bei uns die Bewerbungen aller Menschen willkommen sind, die Lust darauf haben, uns mit ihren vielfältigen Talenten weiterzubringen. Bewerbungen aller Geschlechter sind gleichermaßen erwünscht. Bewerbungen von Menschen mit Behinderungen werden bei gleicher Eignung bevorzugt berücksichtigt. Vollzeit oder Teilzeit - bei uns ist grundsätzlich beides möglich.\n© Hamburger Energienetze GmbH",
+  "expected": [
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Azure-Ressourcen"
+    },
+    {
+      "skill_id": "azure-ai-foundry",
+      "requirement": "nice_to_have",
+      "raw_text": "AI Foundry"
+    },
+    {
+      "skill_id": "azure-ai-search",
+      "requirement": "nice_to_have",
+      "raw_text": "AI Search"
+    },
+    {
+      "skill_id": "azure-devops",
+      "requirement": "required",
+      "raw_text": "Azure DevOps, Git"
+    },
+    {
+      "skill_id": "azure-key-vault",
+      "requirement": "required",
+      "raw_text": "Key Vaults"
+    },
+    {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "Git"
+    },
+    {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "required",
+      "raw_text": "Infrastructure-as-Code-Projekten"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "nice_to_have",
+      "raw_text": "Large Language Models (LLMs)"
+    },
+    {
+      "skill_id": "microsoft-entra-id",
+      "requirement": "required",
+      "raw_text": "Entra ID"
+    },
+    {
+      "skill_id": "networking",
+      "requirement": "required",
+      "raw_text": "Networking"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "Monitoring"
+    },
+    {
+      "skill_id": "openai-api",
+      "requirement": "nice_to_have",
+      "raw_text": "Azure OpenAI"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "nice_to_have",
+      "raw_text": "RAG-Technologien"
+    },
+    {
+      "skill_id": "terraform",
+      "requirement": "required",
+      "raw_text": "Terraform"
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"data-science\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung in Data Science\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Machine Learning\"},\n    {\"skill_id\": \"langchain\", \"requirement\": \"required\", \"raw_text\": \"LangChain\"},\n    {\"skill_id\": \"langgraph\", \"requirement\": \"required\", \"raw_text\": \"LangGraph\"},\n    {\"skill_id\": \"llamaindex\", \"requirement\": \"required\", \"raw_text\": \"LlamaIndex\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Generativer KI\"},\n    {\"skill_id\": \"nlp\", \"requirement\": \"required\", \"raw_text\": \"NLP\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"agentenbasierten KI-Systemen\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL\"},\n    {\"skill_id\": \"mcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"MCP\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"AI Engineering\", \"raw_text\": \"AI- Engineering\"},\n    {\"label\": \"Low-code/no-code platforms\", \"raw_text\": \"Low-Code-/No-Code-Plattformen\"},\n    {\"label\": \"AI governance (EU AI Act, GDPR)\", \"raw_text\": \"Grundlagen in KI-Governance (EU AI Act, DSGVO)\"}\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Mindestens zwei Jahre Erfahrung\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Deutschkenntnisse auf mindestens B12 Niveau\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Abgeschlossenes Studium der Informatik, Data Science, Wirtschaftsinformatik oder einer vergleichbaren Fachrichtung\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"Alternative groups are not encoded because the output schema has no alternative_group field. Group 1 is data-science and machine-learning ('Data Science, Machine Learning oder AI- Engineering'); AI-Engineering is unmapped, so it is not a group member.\\nGroup 2 is langchain, langgraph, llamaindex and pytorch ('Frameworks wie ... oder PyTorch').\\nGroup 3 is llms, nlp and agents ('Generativer KI, NLP oder agentenbasierten KI-Systemen').\\nThe broad parent for 'Frameworks wie' is not labeled; no taxonomy entry names it.\\n'Generativer KI' is mapped to llms via the alias 'generative ai'.\\n'agentenbasierten KI-Systemen' is mapped to agents, not multi-agent-systems. This is uncertain.\\n'idealerweise' (ideally) is an inline optional marker. It is read as governing the whole coordinated clause: low-code, KI-Governance and MCP are all nice_to_have. Python and SQL come before the semicolon, so they stay required.\\nSeniority: 'Mindestens zwei Jahre' is treated as about 2 years, which the guide maps to junior (0–2). The 'mindestens' (at least) wording makes this borderline, so it is flagged uncertain.\\n'vergleichbaren Fachrichtung' widens the field of study, not the requirement, so degree_or_equivalent is false.\\nThe German level 'B12' is likely a typo for B1/B2. A stated level counts as required either way.\\nEnglish C1/C2 is not labeled; only German counts.\\nThe Data Science degree field is not counted as a skill ask. data-science is labeled from the experience bullet instead.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "Erfahrung in Data Science"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Machine Learning"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "required",
+        "raw_text": "LlamaIndex"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generativer KI"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "NLP"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentenbasierten KI-Systemen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "nice_to_have",
+        "raw_text": "MCP",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "AI Engineering",
+        "raw_text": "AI- Engineering"
+      },
+      {
+        "label": "Low-code/no-code platforms",
+        "raw_text": "Low-Code-/No-Code-Plattformen"
+      },
+      {
+        "label": "AI governance (EU AI Act, GDPR)",
+        "raw_text": "Grundlagen in KI-Governance (EU AI Act, DSGVO)"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Mindestens zwei Jahre Erfahrung",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Deutschkenntnisse auf mindestens B12 Niveau",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Abgeschlossenes Studium der Informatik, Data Science, Wirtschaftsinformatik oder einer vergleichbaren Fachrichtung",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Alternative groups are not encoded because the output schema has no alternative_group field. Group 1 is data-science and machine-learning ('Data Science, Machine Learning oder AI- Engineering'); AI-Engineering is unmapped, so it is not a group member.\nGroup 2 is langchain, langgraph, llamaindex and pytorch ('Frameworks wie ... oder PyTorch').\nGroup 3 is llms, nlp and agents ('Generativer KI, NLP oder agentenbasierten KI-Systemen').\nThe broad parent for 'Frameworks wie' is not labeled; no taxonomy entry names it.\n'Generativer KI' is mapped to llms via the alias 'generative ai'.\n'agentenbasierten KI-Systemen' is mapped to agents, not multi-agent-systems. This is uncertain.\n'idealerweise' (ideally) is an inline optional marker. It is read as governing the whole coordinated clause: low-code, KI-Governance and MCP are all nice_to_have. Python and SQL come before the semicolon, so they stay required.\nSeniority: 'Mindestens zwei Jahre' is treated as about 2 years, which the guide maps to junior (0–2). The 'mindestens' (at least) wording makes this borderline, so it is flagged uncertain.\n'vergleichbaren Fachrichtung' widens the field of study, not the requirement, so degree_or_equivalent is false.\nThe German level 'B12' is likely a typo for B1/B2. A stated level counts as required either way.\nEnglish C1/C2 is not labeled; only German counts.\nThe Data Science degree field is not counted as a skill ask. data-science is labeled from the experience bullet instead."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "7a14ef4205926e8046c39fe485646abb1cc37f2bc2dd7d1cc2119868e57deef0",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

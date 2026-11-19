@@ -1,0 +1,67 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"applied AI engineering\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation in production\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"NLP is a plus\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Retrieval\",\n      \"raw_text\": \"retrieval\"\n    },\n    {\n      \"label\": \"Document processing\",\n      \"raw_text\": \"document processing\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years in machine learning or applied AI engineering\",\n  \"german\": \"nice_to_have\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"German is a plus\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Only 'What you bring' asks for candidate skills; no optional section heading is present, but inline 'plus' makes document processing and NLP optional.\\nRead 'retrieval' literally: it does not explicitly name RAG or vector search, so it remains unmapped. Document processing likewise has no exact taxonomy fit.\\nDocument processing and NLP are alternatives, but no alternative_group is emitted for NLP alone because document processing has no taxonomy ID.\\nOCR, citation logic, and deployment appear only in responsibilities and are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "applied AI engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation in production"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "nice_to_have",
+        "raw_text": "NLP is a plus"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Retrieval",
+        "raw_text": "retrieval"
+      },
+      {
+        "label": "Document processing",
+        "raw_text": "document processing"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years in machine learning or applied AI engineering",
+    "german": "nice_to_have",
+    "german_basis": "stated",
+    "german_signal": "German is a plus",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Only 'What you bring' asks for candidate skills; no optional section heading is present, but inline 'plus' makes document processing and NLP optional.\nRead 'retrieval' literally: it does not explicitly name RAG or vector search, so it remains unmapped. Document processing likewise has no exact taxonomy fit.\nDocument processing and NLP are alternatives, but no alternative_group is emitted for NLP alone because document processing has no taxonomy ID.\nOCR, citation logic, and deployment appear only in responsibilities and are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "b2915aba66673fb8b50810ddcd7b19b839bf4e29ac22068af4d831834b5b15b2",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

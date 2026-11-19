@@ -1,0 +1,155 @@
+{
+  "id": "golden_135",
+  "split": "heldout",
+  "seniority": "mid",
+  "seniority_basis": "inferred",
+  "seniority_signal": "mindestens 4\nJahre Erfahrung",
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Deutschkenntnisse auf C2-Niveau",
+  "degree": null,
+  "degree_requirement": null,
+  "degree_or_equivalent": false,
+  "degree_signal": null,
+  "attrs_reviewed": true,
+  "source_sha256": "dc09314563b923f8bf2e1dc35922b17d4ea8560b19c5738c11f7880fcb341798",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:access-control",
+    "skill:cybersecurity",
+    "skill:data-privacy-and-security",
+    "skill:evaluation",
+    "skill:git",
+    "skill:llm-orchestration",
+    "skill:rag"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "AI Native Developer (m/w/d)\n\nÜber uns TechMinds ist die Recruiting-Boutique für Tech, IT und\nEngineering mit Standorten in Hamburg und München. Wir besetzen Fach-\nund Führungspositionen exklusiv im Auftrag unserer Mandanten.\nEngagiert. Exzellent. Integer. Aufgaben Du entwickelst KI-Agenten und\nintelligente Controlling-Funktionen für Liquiditätsprognosen,\nBudgetüberwachung und Honorarberechnungen Du automatisierst manuelle\nProzesse wie Zeiterfassung, Rechnungserstellung und die Vorbereitung\nvon Honorarberechnungen Du gestaltest APIs und MCP-Schnittstellen für\nden sicheren Zugriff externer KI-Assistenten und weiterer Produkte der\nSuite auf Controlling-Daten Du strukturierst komplexe Finanzdaten zu\nProjekten, Kosten, Honoraren und Rechnungen und stellst deren\nmandantengetrennte Verarbeitung sicher Du sicherst die Qualität über\nSpezifikationen, automatisierte und End-to-End-Tests sowie\nEvaluationen der KI-Funktionen Du verantwortest die fachliche\nKorrektheit der Berechnungen und die Einhaltung von XRechnung und\nZUGFeRD Du bringst Deine Erfahrung mit AI-Coding-Agents und modernen\nEngineering-Standards aktiv ins Team ein Profil Du hast mindestens 4\nJahre Erfahrung in der professionellen Softwareentwicklung,\nidealerweise mit produktiven Cloud- oder SaaS-Anwendungen und einem\nstarken Fokus auf Testautomatisierung Du hast bereits LLM-basierte\nAgenten oder KI-Funktionen entwickelt und produktiv eingesetzt,\nbeispielsweise mit Tool Calling, Retrieval oder mehrstufigen Workflows\nDu bringst Erfahrung in der Modellierung komplexer Geschäftsdaten mit\nund verstehst Anforderungen an Berechtigungen, Datenschutz und\nMandantentrennung Du arbeitest regelmäßig mit AI-Coding-Tools wie\nClaude Code, Cursor oder Codex, entwickelst spezifikationsbasiert und\nüberprüfst KI-generierte Ergebnisse systematisch Du beherrschst\nautomatisierte Tests auf unterschiedlichen Ebenen, beispielsweise mit\nPlaywright, sowie CI/CD-Prozesse auf GitHub und legst großen Wert auf\ndie Korrektheit geschäftskritischer Berechnungen Du kennst Dich mit\nmodernen Agenten-Frameworks und Schnittstellen wie MCP, A2A oder\nLangGraph aus und bringst Verständnis für Cloud-Architekturen,\nMonitoring und sichere KI-Anwendungen mit Du arbeitest strukturiert,\neigenverantwortlich und qualitätsorientiert und verfügst über\nDeutschkenntnisse auf C2-Niveau sowie Englischkenntnisse auf C1-Niveau\nZusätzlich hilfreich: Kenntnisse in HOAI, Bürocontrolling,\nAccounting- oder ERP-Software, XRechnung, ZUGFeRD oder Forecasting Wir\nbieten Du arbeitest flexibel im Home-Office, bis zu 100% remote Du\nerhältst 30 Urlaubstage Du profitierst von einer betrieblichen\nAltersvorsorge und einem Zuschuss zu den Kindergartengebühren Du\nnutzt den Wellpass und genießt an zwei Tagen pro Woche ein frisch\ngekochtes Mittagessen Du gestaltest eine KI-Offensive mit voller\nRückendeckung der Geschäftsführung und kurzen Entscheidungswegen\nKontakt Weitere Details abseits der Stellenbeschreibung sowie\nInformationen zum Unternehmen erhältst Du gerne im Gespräch.",
+  "expected": [
+    {
+      "skill_id": "access-control",
+      "requirement": "required",
+      "raw_text": "Berechtigungen"
+    },
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "modernen Agenten-Frameworks"
+    },
+    {
+      "skill_id": "ai-developer-tooling",
+      "requirement": "required",
+      "raw_text": "AI-Coding-Tools"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD-Prozesse"
+    },
+    {
+      "skill_id": "claude-code",
+      "requirement": "required",
+      "raw_text": "Claude Code"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Verständnis für Cloud-Architekturen"
+    },
+    {
+      "skill_id": "codex",
+      "requirement": "required",
+      "raw_text": "Codex"
+    },
+    {
+      "skill_id": "cursor",
+      "requirement": "required",
+      "raw_text": "Cursor"
+    },
+    {
+      "skill_id": "cybersecurity",
+      "requirement": "required",
+      "raw_text": "sichere KI-Anwendungen"
+    },
+    {
+      "skill_id": "data-modeling",
+      "requirement": "required",
+      "raw_text": "Modellierung komplexer Geschäftsdaten"
+    },
+    {
+      "skill_id": "data-privacy-and-security",
+      "requirement": "required",
+      "raw_text": "Datenschutz"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "überprüfst KI-generierte Ergebnisse systematisch"
+    },
+    {
+      "skill_id": "forecasting",
+      "requirement": "nice_to_have",
+      "raw_text": "Forecasting"
+    },
+    {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "GitHub"
+    },
+    {
+      "skill_id": "langgraph",
+      "requirement": "required",
+      "raw_text": "LangGraph"
+    },
+    {
+      "skill_id": "llm-orchestration",
+      "requirement": "required",
+      "raw_text": "mehrstufigen Workflows"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "LLM-basierte Agenten"
+    },
+    {
+      "skill_id": "mcp",
+      "requirement": "required",
+      "raw_text": "wie MCP"
+    },
+    {
+      "skill_id": "observability",
+      "requirement": "required",
+      "raw_text": "Monitoring"
+    },
+    {
+      "skill_id": "playwright",
+      "requirement": "required",
+      "raw_text": "Playwright"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "Retrieval"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "professionellen Softwareentwicklung"
+    },
+    {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "Du beherrschst automatisierte Tests"
+    },
+    {
+      "skill_id": "tool-calling",
+      "requirement": "required",
+      "raw_text": "Tool Calling"
+    }
+  ]
+}

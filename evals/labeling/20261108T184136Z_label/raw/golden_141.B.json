@@ -1,0 +1,121 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Familiarity with common RL algorithms\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"onnx\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ONNX\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying learning-based policies on physical robots\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"training locomotion and locomanipulation policies\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Imitation learning (IL)\",\n      \"raw_text\": \"applying RL or IL in physical systems\"\n    },\n    {\n      \"label\": \"Proximal Policy Optimization (PPO)\",\n      \"raw_text\": \"PPO\"\n    },\n    {\n      \"label\": \"Soft Actor-Critic (SAC)\",\n      \"raw_text\": \"SAC\"\n    },\n    {\n      \"label\": \"Reinforcement learning frameworks\",\n      \"raw_text\": \"common RL frameworks\"\n    },\n    {\n      \"label\": \"Stable Baselines 3\",\n      \"raw_text\": \"Stable Baselines 3\"\n    },\n    {\n      \"label\": \"RSL-RL\",\n      \"raw_text\": \"RSL-RL\"\n    },\n    {\n      \"label\": \"Physics-based simulation\",\n      \"raw_text\": \"physics-based simulators\"\n    },\n    {\n      \"label\": \"IsaacSim\",\n      \"raw_text\": \"IsaacSim\"\n    },\n    {\n      \"label\": \"MuJoCo\",\n      \"raw_text\": \"MuJoCo\"\n    },\n    {\n      \"label\": \"Control theory\",\n      \"raw_text\": \"control theory\"\n    },\n    {\n      \"label\": \"Motion planning\",\n      \"raw_text\": \"motion planning\"\n    },\n    {\n      \"label\": \"Robot kinematics and dynamics\",\n      \"raw_text\": \"robot kinematics/dynamics\"\n    },\n    {\n      \"label\": \"Sim-to-real transfer\",\n      \"raw_text\": \"sim-to-real transfer\"\n    },\n    {\n      \"label\": \"Locomotion and locomanipulation policy training\",\n      \"raw_text\": \"training locomotion and locomanipulation policies\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI / Reinforcement Learning Engineer (m/f/d)\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s or PhD in robotics, computer science, engineering, or a related field\",\n  \"notes\": \"Essential Skills is required; Beneficial Skills is optional. Technologies and practices appearing only in responsibilities or company descriptions are excluded.\\nPython and C++ form the first retained alternative group. RL is independently required by familiarity with RL algorithms, so it does not remain grouped with IL.\\nUnmapped alternatives include Stable Baselines 3/RSL-RL and IsaacSim/MuJoCo; no taxonomy IDs were invented for them.\\nPolicy training is provisionally mapped to model-development as training learned models; the specialized locomotion/locomanipulation technique is also recorded as unmapped.\\nControl theory and robot kinematics/dynamics are retained as unmapped technical competencies; this boundary with excluded domain knowledge warrants review.\\nHumanoid/high-DOF robot experience is treated as application-domain experience, not a separate skill. Publication history and soft skills are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "Familiarity with common RL algorithms"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "onnx",
+        "requirement": "required",
+        "raw_text": "ONNX"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying learning-based policies on physical robots"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "nice_to_have",
+        "raw_text": "training locomotion and locomanipulation policies",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Imitation learning (IL)",
+        "raw_text": "applying RL or IL in physical systems"
+      },
+      {
+        "label": "Proximal Policy Optimization (PPO)",
+        "raw_text": "PPO"
+      },
+      {
+        "label": "Soft Actor-Critic (SAC)",
+        "raw_text": "SAC"
+      },
+      {
+        "label": "Reinforcement learning frameworks",
+        "raw_text": "common RL frameworks"
+      },
+      {
+        "label": "Stable Baselines 3",
+        "raw_text": "Stable Baselines 3"
+      },
+      {
+        "label": "RSL-RL",
+        "raw_text": "RSL-RL"
+      },
+      {
+        "label": "Physics-based simulation",
+        "raw_text": "physics-based simulators"
+      },
+      {
+        "label": "IsaacSim",
+        "raw_text": "IsaacSim"
+      },
+      {
+        "label": "MuJoCo",
+        "raw_text": "MuJoCo"
+      },
+      {
+        "label": "Control theory",
+        "raw_text": "control theory"
+      },
+      {
+        "label": "Motion planning",
+        "raw_text": "motion planning"
+      },
+      {
+        "label": "Robot kinematics and dynamics",
+        "raw_text": "robot kinematics/dynamics"
+      },
+      {
+        "label": "Sim-to-real transfer",
+        "raw_text": "sim-to-real transfer"
+      },
+      {
+        "label": "Locomotion and locomanipulation policy training",
+        "raw_text": "training locomotion and locomanipulation policies"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI / Reinforcement Learning Engineer (m/f/d)",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s or PhD in robotics, computer science, engineering, or a related field",
+    "notes": "Essential Skills is required; Beneficial Skills is optional. Technologies and practices appearing only in responsibilities or company descriptions are excluded.\nPython and C++ form the first retained alternative group. RL is independently required by familiarity with RL algorithms, so it does not remain grouped with IL.\nUnmapped alternatives include Stable Baselines 3/RSL-RL and IsaacSim/MuJoCo; no taxonomy IDs were invented for them.\nPolicy training is provisionally mapped to model-development as training learned models; the specialized locomotion/locomanipulation technique is also recorded as unmapped.\nControl theory and robot kinematics/dynamics are retained as unmapped technical competencies; this boundary with excluded domain knowledge warrants review.\nHumanoid/high-DOF robot experience is treated as application-domain experience, not a separate skill. Publication history and soft skills are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "7b8ef5f58550e145d86a3c326b85e61e75e9fec87ed631e51e1824ab88eab04f",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

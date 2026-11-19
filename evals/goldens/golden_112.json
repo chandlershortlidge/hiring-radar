@@ -1,0 +1,123 @@
+{
+  "id": "golden_112",
+  "split": "heldout",
+  "seniority": "mid",
+  "seniority_basis": "inferred",
+  "seniority_signal": "Mindestens drei Jahre Erfahrung in der Softwareentwicklung",
+  "seniority_reviewed": false,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Sehr gutes Deutsch (mind. C1) in Wort und Schrift",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "ein Studium der Data Science, Informatik, Mathematik oder eine vergleichbare Qualifikation mit entsprechender Berufserfahrung",
+  "attrs_reviewed": true,
+  "source_sha256": "a6727b4ae2fe248b9cc5fa86e1969a7834f375ede6d064f78d99c8664d36144c",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:agents",
+    "skill:ai-ml",
+    "skill:apis",
+    "skill:devsecops",
+    "skill:testing"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "AI Engineer / KI-Entwickler – LLM & RAG (m/w/d)\n\n## Was Sie bewegen\n\n- Gemeinsam mit Fachbereich und IT unserer Kunden entwickeln Sie Anwendungen auf Basis großer Sprachmodelle, von Assistenten über Dokumentenpipelines bis zu Agenten, und begleiten sie von der Konzeption bis zum produktiven Einsatz.\n- Sie bauen RAG-Architekturen: Dokumente aufbereiten, Chunking, Embeddings, Vektordatenbanken, Retrieval und Re-Ranking.\n- Sie machen unstrukturierte Dokumente nutzbar, mit Pipelines für Texterkennung, Strukturierung, Extraktion, Klassifikation und Zusammenfassung.\n- Über Backend-Services und Schnittstellen binden Sie die KI-Komponenten an die Systeme unserer Kunden an. Mit Containern, CI/CD und Monitoring bringen Sie sie in Betrieb, in der Cloud oder beim Kunden vor Ort.\n- Sie wägen ab, welches Modell zur Aufgabe passt, ob groß oder klein, nach Ergebnisqualität, Kosten, Antwortzeit, Skalierbarkeit und Datenschutz, und erklären Ihre Empfehlung so, dass der Kunde fundiert entscheiden kann.\n- Aus Ihren Projekten entstehen Referenzarchitekturen und wiederverwendbare Bausteine für unser Portfolio. Gelegentlich unterstützen Sie Angebote mit Aufwandsschätzungen und Lösungskonzepten oder halten einen Fachvortrag.\n\n## Was Sie mitbringen\n\n- Mindestens drei Jahre Erfahrung in der Softwareentwicklung mit Python, davon mindestens ein Jahr in KI-Projekten, die produktiv gegangen sind. Dazu ein Studium der Data Science, Informatik, Mathematik oder eine vergleichbare Qualifikation mit entsprechender Berufserfahrung.\n- Fundierte Python-Kenntnisse, von objektorientierter Programmierung über automatisierte Tests bis zum Verständnis, wie Datenstrukturen, Algorithmen und Designentscheidungen die Performance beeinflussen.\n- Praxis mit großen Sprachmodellen: Prompt Engineering, Retrieval-Augmented Generation und die Anbindung von Modellen über APIs, mit LangChain oder einer vergleichbaren Bibliothek. Sie wissen, wie Sprachmodelle funktionieren, und verstehen deshalb auch, wo sie an Grenzen stoßen.\n- Sicherer Umgang mit SQL und unterschiedlichen Datenbanken. Dazu Erfahrung mit mindestens einer Cloud-Plattform wie Microsoft Azure, AWS oder Google Cloud.\n- Freude am direkten Austausch mit Kunden, auch vor Ort, wenn das Projekt es erfordert. Sie verstehen, was der Fachbereich braucht, erklären technische Abwägungen verständlich und bleiben souverän, wenn kritisch nachgefragt wird.\n- Sehr gutes Deutsch (mind. C1) in Wort und Schrift, denn Sie arbeiten mit deutschsprachigen Fachdokumenten, und gutes Englisch (mind. B2).\n\nEin Plus: Idealerweise kennen Sie das Gesundheitswesen und haben Erfahrung mit Dokumentenverarbeitung (etwa Azure Document Intelligence), Agentic AI oder DevSecOps mit Kubernetes und Terraform.\n\n## Warum zur PTA?\n\n- KI als zentrale Strategie: KI ist bei uns fester Bestandteil der Unternehmensstrategie, und mit einer eigenen Business Unit bauen wir das Thema gezielt aus. Sie gestalten unser KI-Portfolio mit, und Ihre Projekterfahrung fließt in unsere Standards ein. Flache Hierarchien und viel Eigenverantwortung geben Ihnen den Raum, Ihre Projekte selbst zum Erfolg zu führen.\n- Flexibles Arbeitszeitmodell: Bei uns können Sie sich Ihre Arbeitszeit nicht nur flexibel einteilen. Sie entscheiden selbst, was Sie mit jeder zusätzlich geleisteten Arbeitsstunde machen möchten: ausbezahlen, in Freizeit ausgleichen oder als Puffer in den nächsten Arbeitsmonat übertragen.\n- Faire Gehaltsstruktur: Je nach Erfahrung und Qualifikation bieten wir Ihnen ein Jahresgehalt zwischen 55.000 und 80.000 Euro mit weiterer Entwicklungsperspektive.\n- „Klassiker“ und mehr: Ihr Kind ist krank? Kein Problem. Wir bieten den Eltern unter uns zusätzliche Kinderkranktage. Natürlich unterstützen wir auch die „Klassiker“ unter den Benefits: Von Mobile Office, über vermögenswirksame Leistungen und eine zusätzliche Unterstützung zur Altersvorsorge bis hin zu Sonderurlauben und dem BusinessBike.\n\nDie ausgeschriebene Stelle wird nicht im Rahmen einer Personalvermittlung besetzt.",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "nice_to_have",
+      "raw_text": "Agentic AI"
+    },
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "in KI-Projekten"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "Anbindung von Modellen über APIs"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "AWS"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Microsoft Azure"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "mindestens einer Cloud-Plattform"
+    },
+    {
+      "skill_id": "devsecops",
+      "requirement": "nice_to_have",
+      "raw_text": "DevSecOps"
+    },
+    {
+      "skill_id": "gcp",
+      "requirement": "required",
+      "raw_text": "Google Cloud"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "nice_to_have",
+      "raw_text": "Kubernetes"
+    },
+    {
+      "skill_id": "langchain",
+      "requirement": "required",
+      "raw_text": "mit LangChain oder einer vergleichbaren Bibliothek"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Praxis mit großen Sprachmodellen"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "Prompt Engineering"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Fundierte Python-Kenntnisse"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "Retrieval-Augmented Generation"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Softwareentwicklung"
+    },
+    {
+      "skill_id": "sql",
+      "requirement": "required",
+      "raw_text": "Sicherer Umgang mit SQL"
+    },
+    {
+      "skill_id": "terraform",
+      "requirement": "nice_to_have",
+      "raw_text": "Terraform"
+    },
+    {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "automatisierte Tests"
+    }
+  ]
+}
