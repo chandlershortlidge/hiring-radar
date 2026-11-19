@@ -82,6 +82,10 @@
     {"type": "ashby", "enabled": true, "token": "qonto", "company": "Qonto"},
     {"type": "join", "enabled": true, "token": "get-incacom", "company": "inca"},
     {"type": "ashby", "enabled": true, "token": "cohere", "company": "Cohere"},
-    {"type": "greenhouse", "enabled": true, "token": "capco", "company": "Capco"}
+    {"type": "greenhouse", "enabled": true, "token": "capco", "company": "Capco"},
+    {"type": "greenhouse", "enabled": true, "token": "tenstorrent", "company": "tenstorrent"},
+    {"type": "greenhouse", "enabled": true, "token": "avride", "company": "avride"},
+    {"type": "greenhouse", "enabled": true, "token": "striveworks", "company": "striveworks"},
+    {"type": "ashby", "enabled": true, "token": "webai", "company": "webai"}
   ]
 }

@@ -12,7 +12,8 @@ San Francisco became active on 2026-11-03 once the held-out eval passed (DECISIO
 2026-11-03, HIR-12), and New York on 2026-11-03 as the first city launched end to end
 without a human step (DECISIONS 2026-11-03, HIR-132). Hamburg, Frankfurt and Munich became
 active on 2026-11-08, the three cities Chandler named in HIR-165, each launched by that same
-automated path. Turning on a city Chandler has not named is still on the AGENTS.md stop list.
+automated path. Austin, Boston, London and Amsterdam became active on 2026-11-19, the four
+Chandler named in HIR-252. Turning on a city Chandler has not named is still on the AGENTS.md stop list.
 
 EU-remote (DECISIONS 2026-10-26): a remote posting counts when its location names an
 EU-wide region or Germany ("Remote (EMEA)", "Leipzig, Germany (remote)"), or names no
@@ -44,12 +45,13 @@ CITIES: dict[str, tuple[str, ...]] = {
     "Hamburg": ("hamburg",),
     "Frankfurt": ("frankfurt",),
     "Munich": ("munich", "münchen", "muenchen"),
+    "Austin": ("austin",),
 }
 
 REMOTE_EU = "Remote (EU)"
 
 ACTIVE_CITIES: tuple[str, ...] = ("Berlin", REMOTE_EU, "San Francisco", "New York", "Hamburg",
-                                  "Frankfurt", "Munich")
+                                  "Frankfurt", "Munich", "Austin")
 
 # The day each active place started being collected (HIR-232). A place's first weeks hold
 # every posting that was already open on that day, all "first seen" at once, so nothing
@@ -63,6 +65,7 @@ COLLECTING_SINCE: dict[str, str] = {
     "Hamburg": "2026-11-08",         # HIR-165
     "Frankfurt": "2026-11-08",
     "Munich": "2026-11-08",
+    "Austin": "2026-11-19",          # HIR-252
 }
 
 _PATTERNS = {city: re.compile(r"\b(" + "|".join(re.escape(a) for a in aliases) + r")\b", re.I)

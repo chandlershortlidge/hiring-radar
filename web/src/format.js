@@ -29,6 +29,7 @@ export const PLACES = [
   { name: "Remote (EU)", slug: "remote-eu", group: "Remote", aliases: ["remote", "eu", "europe", "anywhere"] },
   { name: "San Francisco", slug: "san-francisco", group: "United States", aliases: ["sf", "bay area", "usa", "us", "california"] },
   { name: "New York", slug: "new-york", group: "United States", aliases: ["nyc", "usa", "us", "manhattan", "brooklyn"] },
+  { name: "Austin", slug: "austin", group: "United States", aliases: ["atx", "usa", "us", "texas"] },
 ];
 // The group headings, in the order the picker and the grid show them.
 export const PLACE_GROUPS = ["Germany", "Remote", "United States"];

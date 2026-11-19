@@ -213,3 +213,14 @@ def test_json_ld_telecommute_becomes_a_remote_location():
 def test_places_of_names_every_tracked_city(loc, places):
     assert geo.places_of(loc) == places
     assert place_of(loc) == (places[0] if places else None)
+
+
+@pytest.mark.parametrize("location", ["Austin, TX", "Austin, Texas, United States", "Hybrid - Austin"])
+def test_austin_is_collected_hir_252(location):
+    """Austin launched on 2026-11-19 (HIR-252): its postings are kept."""
+    assert active_place(location) == "Austin"
+
+
+def test_every_hir_252_city_has_a_start_date():
+    for city in ("Austin",):
+        assert city in geo.ACTIVE_CITIES and city in geo.COLLECTING_SINCE
