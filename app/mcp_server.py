@@ -225,9 +225,10 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str]) -> MCPSer
           a degree can apply (none named, optional, or equivalent experience accepted);
           "required" = a degree is required with no alternative.
 
-        Returns total (all jobs matching the filters) and skills, most asked-for first.
-        Per skill: skill_id, count (jobs asking for it), pct (count as a percent of total)
-        and by_city (the count in each place).
+        Returns total (all jobs matching the filters) and skills: the 50 most asked-for
+        skills, most asked-for first. Per skill: skill_id, count (jobs asking for it) and
+        pct (count as a percent of total). total counts every matching job, not just the
+        jobs behind the 50 skills listed. For the split by city, call once per city.
 
         Example: what open Berlin AI engineer jobs ask for most:
         skill_demand(city=["Berlin"], family=["ai-engineer"])
@@ -240,7 +241,9 @@ def build_server(db_path: Path, tax: Taxonomy, now: Callable[[], str]) -> MCPSer
             raise ToolError(str(e)) from None
         with connect() as conn:
             demand = q.skill_frequency(conn, f, now())
-        return {"total": demand["total"], "skills": demand["skills"]}
+        for skill in demand["skills"]:
+            skill.pop("by_city")
+        return {"total": demand["total"], "skills": demand["skills"][:MAX_SKILLS_TO_RETURN]}
         
 
             
@@ -270,7 +273,7 @@ def _job(j: dict) -> dict:
 BURST = 30
 RATE = 1.0
 _MAX_VISITORS = 10_000  # forget idle visitors past this, so the table cannot grow forever
-
+MAX_SKILLS_TO_RETURN = 50
 
 class RateLimit:
     """A token bucket per client address in front of an ASGI app; 429 when empty.

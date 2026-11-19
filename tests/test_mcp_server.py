@@ -206,6 +206,17 @@ def test_skill_demand_includes_closed_jobs_when_the_window_is_all(server):
     assert demand(server, window="all")["total"] == 5
 
 
+def test_skill_demand_returns_only_the_most_asked_for_skills_up_to_the_cap(server, monkeypatch):
+    monkeypatch.setattr(mcp_server, "MAX_SKILLS_TO_RETURN", 2)
+    r = demand(server, city=["Berlin"])
+    assert [s["skill_id"] for s in r["skills"]] == ["python", "rag"]  # aws (1 job) is cut
+    assert r["total"] == 3  # still every matching job, not just the jobs behind the two skills
+
+
+def test_skill_demand_leaves_out_the_split_by_city(server):
+    assert all("by_city" not in s for s in demand(server)["skills"])
+
+
 def test_skill_demand_is_empty_when_nothing_matches(server):
     r = demand(server, city=["Berlin"], seniority=["junior"], family=["ai-engineer"])
     assert r["total"] == 0 and r["skills"] == []
