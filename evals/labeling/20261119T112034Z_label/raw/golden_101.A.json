@@ -1,0 +1,96 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"Expert with PyTorch or JAX\", \"alternative_group\": 1},\n    {\"skill_id\": \"jax\", \"requirement\": \"required\", \"raw_text\": \"Expert with PyTorch or JAX\", \"alternative_group\": 1},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python code\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"nice_to_have\", \"raw_text\": \"large machine learning models at scale\", \"uncertain\": true},\n    {\"skill_id\": \"testing\", \"requirement\": \"nice_to_have\", \"raw_text\": \"tests\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"nice_to_have\", \"raw_text\": \"CI pipelines\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Vision Language Models (VLM)\", \"raw_text\": \"Vision Language Models (VLM)\"},\n    {\"label\": \"Vision-Language-Action (VLA) models\", \"raw_text\": \"Vision-Language-Action (VLA) models\"},\n    {\"label\": \"Robot perception, navigation and manipulation\", \"raw_text\": \"perception, navigation and manipulation\"},\n    {\"label\": \"Robotics simulation tools\", \"raw_text\": \"simulation tools\"},\n    {\"label\": \"Isaac Sim\", \"raw_text\": \"Isaac SIM\"},\n    {\"label\": \"Sim-to-real transfer\", \"raw_text\": \"sim-to-real transfer\"},\n    {\"label\": \"World models\", \"raw_text\": \"world models\"},\n    {\"label\": \"Large-scale robot data collection\", \"raw_text\": \"large-scale robot data collection\"},\n    {\"label\": \"Typing (type annotations)\", \"raw_text\": \"typing\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Applied Scientist Lead\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD / Master in a relevant field (Robotics, Machine Learning)\",\n  \"uncertain\": [],\n  \"notes\": \"Two sections: ABOUT YOU is the requirements section, so its items default to required. NICE TO HAVE marks its items nice_to_have.\\nPyTorch and JAX are offered as alternatives ('PyTorch or JAX'), so they form alternative_group 1.\\nmachine-learning comes from 'large machine learning models at scale' under NICE TO HAVE. It is flagged uncertain because it could be read as describing scale experience rather than asking for ML as a skill.\\n'Machine Learning' inside the degree field list is a field of study, not a separate ask.\\n'Enjoys improving existing code: typing, tests, CI pipelines' sits under NICE TO HAVE. 'Enjoys' is not in the guide's appetite list, but the heading already makes these items nice_to_have.\\nNo taxonomy entries exist for VLM, VLA, robot perception/navigation/manipulation, simulation tools, Isaac Sim, sim-to-real or world models, so they are listed in unmapped. computer-vision and llms were not substituted because the posting does not name them.\\nPyTorch, JAX, Python and the pre-training/post-training work in the responsibilities section are not labeled from that section. Only the asks in ABOUT YOU and NICE TO HAVE are labeled.\\nDegree: 'PhD / Master' takes the highest level named, phd. It is nice_to_have because it sits under NICE TO HAVE.\\n'exceptional candidates from other backgrounds welcome' does not say 'or equivalent experience', so degree_or_equivalent is false.\\nSeniority: the title says 'Lead' and the body says 'Lead / Staff', so it is stated senior.\\nGerman: only English fluency is required, so German is null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "Expert with PyTorch or JAX",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "Expert with PyTorch or JAX",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python code"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "large machine learning models at scale",
+        "uncertain": true
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "tests"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI pipelines"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Vision Language Models (VLM)",
+        "raw_text": "Vision Language Models (VLM)"
+      },
+      {
+        "label": "Vision-Language-Action (VLA) models",
+        "raw_text": "Vision-Language-Action (VLA) models"
+      },
+      {
+        "label": "Robot perception, navigation and manipulation",
+        "raw_text": "perception, navigation and manipulation"
+      },
+      {
+        "label": "Robotics simulation tools",
+        "raw_text": "simulation tools"
+      },
+      {
+        "label": "Isaac Sim",
+        "raw_text": "Isaac SIM"
+      },
+      {
+        "label": "Sim-to-real transfer",
+        "raw_text": "sim-to-real transfer"
+      },
+      {
+        "label": "World models",
+        "raw_text": "world models"
+      },
+      {
+        "label": "Large-scale robot data collection",
+        "raw_text": "large-scale robot data collection"
+      },
+      {
+        "label": "Typing (type annotations)",
+        "raw_text": "typing"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Applied Scientist Lead",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD / Master in a relevant field (Robotics, Machine Learning)",
+    "uncertain": [],
+    "notes": "Two sections: ABOUT YOU is the requirements section, so its items default to required. NICE TO HAVE marks its items nice_to_have.\nPyTorch and JAX are offered as alternatives ('PyTorch or JAX'), so they form alternative_group 1.\nmachine-learning comes from 'large machine learning models at scale' under NICE TO HAVE. It is flagged uncertain because it could be read as describing scale experience rather than asking for ML as a skill.\n'Machine Learning' inside the degree field list is a field of study, not a separate ask.\n'Enjoys improving existing code: typing, tests, CI pipelines' sits under NICE TO HAVE. 'Enjoys' is not in the guide's appetite list, but the heading already makes these items nice_to_have.\nNo taxonomy entries exist for VLM, VLA, robot perception/navigation/manipulation, simulation tools, Isaac Sim, sim-to-real or world models, so they are listed in unmapped. computer-vision and llms were not substituted because the posting does not name them.\nPyTorch, JAX, Python and the pre-training/post-training work in the responsibilities section are not labeled from that section. Only the asks in ABOUT YOU and NICE TO HAVE are labeled.\nDegree: 'PhD / Master' takes the highest level named, phd. It is nice_to_have because it sits under NICE TO HAVE.\n'exceptional candidates from other backgrounds welcome' does not say 'or equivalent experience', so degree_or_equivalent is false.\nSeniority: the title says 'Lead' and the body says 'Lead / Staff', so it is stated senior.\nGerman: only English fluency is required, so German is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "b2275ed431ab4ffedd67ac3be6530f9ff1ac89c5e26ce4f291d7c973d85ea361",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

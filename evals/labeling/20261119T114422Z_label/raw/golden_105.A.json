@@ -1,0 +1,80 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"ansible\", \"requirement\": \"required\", \"raw_text\": \"Expert knowledge of Ansible\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"required\", \"raw_text\": \"Ansible (roles, playbooks), Terraform\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Ansible (roles, playbooks), Terraform, and Kubernetes\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"monitoring and observability practices\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Advanced knowledge of cloud services\"},\n    {\"skill_id\": \"networking\", \"requirement\": \"required\", \"raw_text\": \"You specialize in systems (operating systems, storage subsystems, networking)\", \"uncertain\": true},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"nice_to_have\", \"raw_text\": \"interests in algorithms and distributed systems\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Site Reliability Engineering (SRE)\", \"raw_text\": \"professional SRE or related experience\"},\n    {\"label\": \"programming/scripting languages (unspecified)\", \"raw_text\": \"Proficiency in programming/scripting languages\"},\n    {\"label\": \"operating systems\", \"raw_text\": \"operating systems\"},\n    {\"label\": \"storage subsystems\", \"raw_text\": \"storage subsystems\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Lead/Manager AI Infra Systems Engineering Team\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor's degree in Computer Science or a related field or equivalent work experience\",\n  \"uncertain\": [],\n  \"notes\": \"Ansible, Terraform and Kubernetes also appear in Responsibilities. Each is labeled from the Requirements bullet, which is the mention that sets the label.\\n'cloud services' is mapped to the broad cloud skill. No specific provider is named.\\n'monitoring and observability practices' is mapped to observability; monitoring is an alias of that id.\\nNetworking comes from the About the Role text 'You specialize in systems (...networking)'. I read this as describing what the candidate has, so it is required. It is flagged uncertain because the text is not under a requirements heading.\\nDistributed systems is governed by 'interests in', an appetite phrase under rule 3, so it is nice_to_have. It is flagged uncertain for the same section reason as networking.\\nPagerDuty appears only in Responsibilities and has no taxonomy entry, so it is not labeled.\\nSRE, operating systems and storage subsystems have no taxonomy ids, so they go in unmapped.\\nSeniority rests on 'Lead' in the title, which makes it stated. The 7+ years requirement and the team-management duty point to senior as well.\\nThe posting says nothing about German, so german is null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ansible",
+        "requirement": "required",
+        "raw_text": "Expert knowledge of Ansible"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Ansible (roles, playbooks), Terraform"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Ansible (roles, playbooks), Terraform, and Kubernetes"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring and observability practices"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Advanced knowledge of cloud services"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "You specialize in systems (operating systems, storage subsystems, networking)",
+        "uncertain": true
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "interests in algorithms and distributed systems",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Site Reliability Engineering (SRE)",
+        "raw_text": "professional SRE or related experience"
+      },
+      {
+        "label": "programming/scripting languages (unspecified)",
+        "raw_text": "Proficiency in programming/scripting languages"
+      },
+      {
+        "label": "operating systems",
+        "raw_text": "operating systems"
+      },
+      {
+        "label": "storage subsystems",
+        "raw_text": "storage subsystems"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead/Manager AI Infra Systems Engineering Team",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor's degree in Computer Science or a related field or equivalent work experience",
+    "uncertain": [],
+    "notes": "Ansible, Terraform and Kubernetes also appear in Responsibilities. Each is labeled from the Requirements bullet, which is the mention that sets the label.\n'cloud services' is mapped to the broad cloud skill. No specific provider is named.\n'monitoring and observability practices' is mapped to observability; monitoring is an alias of that id.\nNetworking comes from the About the Role text 'You specialize in systems (...networking)'. I read this as describing what the candidate has, so it is required. It is flagged uncertain because the text is not under a requirements heading.\nDistributed systems is governed by 'interests in', an appetite phrase under rule 3, so it is nice_to_have. It is flagged uncertain for the same section reason as networking.\nPagerDuty appears only in Responsibilities and has no taxonomy entry, so it is not labeled.\nSRE, operating systems and storage subsystems have no taxonomy ids, so they go in unmapped.\nSeniority rests on 'Lead' in the title, which makes it stated. The 7+ years requirement and the team-management duty point to senior as well.\nThe posting says nothing about German, so german is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "a837b9b7eea46ff8dbfb979b7d3257d059abdc88c20e2fe382f7b2822c9ec8e5",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,135 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"a solid foundation in machine learning\"},\n    {\"skill_id\": \"statistics\", \"requirement\": \"required\", \"raw_text\": \"statistics and probability theory\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Proficiency in Python\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL\"},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"required\", \"raw_text\": \"scikit-learn\", \"alternative_group\": 1},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\", \"alternative_group\": 1},\n    {\"skill_id\": \"feature-engineering\", \"requirement\": \"required\", \"raw_text\": \"engineering features\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"evaluating them against baselines and metrics\", \"uncertain\": true},\n    {\"skill_id\": \"nlp\", \"requirement\": \"required\", \"raw_text\": \"natural language processing\", \"alternative_group\": 2},\n    {\"skill_id\": \"computer-vision\", \"requirement\": \"required\", \"raw_text\": \"computer vision\", \"alternative_group\": 2},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"Familiarity with the production ML lifecycle\", \"uncertain\": true},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"including deployment\", \"uncertain\": true},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"monitoring and retraining\", \"uncertain\": true},\n    {\"skill_id\": \"data-privacy-and-security\", \"requirement\": \"required\", \"raw_text\": \"care for data privacy\", \"uncertain\": true},\n    {\"skill_id\": \"transformers\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience with transformers\", \"alternative_group\": 3},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LLM-based workflows\", \"alternative_group\": 3}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Multimodal models\", \"raw_text\": \"multimodal models\"},\n    {\"label\": \"Content classification\", \"raw_text\": \"content classification\"},\n    {\"label\": \"Fraud detection\", \"raw_text\": \"fraud detection\"},\n    {\"label\": \"Probability theory\", \"raw_text\": \"probability theory\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": null, \"german_basis\": null, \"german_signal\": null,\n  \"degree\": null, \"degree_requirement\": null,\n  \"degree_or_equivalent\": false, \"degree_signal\": null,\n  \"uncertain\": [],\n  \"groups_reviewed\": true,\n  \"notes\": \"The 'Nice to have' heading makes transformers and llms nice_to_have. The 'About you' section has no heading marker, so its items default to required.\\nThe Equal opportunity line ('guides, not checklists... apply anyway') is company framing and changes no label (golden_038 precedent).\\nscikit-learn and PyTorch are offered as examples for one ask ('such as X or Y'), so they form alternative group 1.\\nThe 'at least one of' list gives group 2 (nlp, computer-vision). 'Tabular or behavioural data' is not a skill and is left out of the group.\\nThe nice-to-have list 'transformers, multimodal models or LLM-based workflows' gives group 3. Multimodal models have no taxonomy id and are listed in unmapped.\\nI mapped 'production ML lifecycle' to mlops, the deployment mention to ai-deployment and the monitoring mention to observability. All three are flagged uncertain as taxonomy interpretations.\\nI mapped 'evaluating them against baselines and metrics' to evaluation (alias 'model evaluation') and flagged it uncertain.\\n'Care for data privacy' sits inside a motivation bullet and may be an attitude rather than a skill. I included it as data-privacy-and-security and flagged it uncertain.\\nFraud detection and Trust & Safety applications are domain knowledge. They are listed in unmapped for visibility only, not as skills.\\nSeniority is none: there are no years, level words or lead duties. 'Take ownership of well-defined projects' is ownership language, which is not a level signal.\\nNo German or degree is mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "a solid foundation in machine learning"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistics and probability theory"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Proficiency in Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "feature-engineering",
+        "requirement": "required",
+        "raw_text": "engineering features"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluating them against baselines and metrics",
+        "uncertain": true
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "natural language processing",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "computer vision",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "Familiarity with the production ML lifecycle",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "including deployment",
+        "uncertain": true
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring and retraining",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "care for data privacy",
+        "uncertain": true
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with transformers",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM-based workflows",
+        "alternative_group": 3
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Multimodal models",
+        "raw_text": "multimodal models"
+      },
+      {
+        "label": "Content classification",
+        "raw_text": "content classification"
+      },
+      {
+        "label": "Fraud detection",
+        "raw_text": "fraud detection"
+      },
+      {
+        "label": "Probability theory",
+        "raw_text": "probability theory"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "groups_reviewed": true,
+    "notes": "The 'Nice to have' heading makes transformers and llms nice_to_have. The 'About you' section has no heading marker, so its items default to required.\nThe Equal opportunity line ('guides, not checklists... apply anyway') is company framing and changes no label (golden_038 precedent).\nscikit-learn and PyTorch are offered as examples for one ask ('such as X or Y'), so they form alternative group 1.\nThe 'at least one of' list gives group 2 (nlp, computer-vision). 'Tabular or behavioural data' is not a skill and is left out of the group.\nThe nice-to-have list 'transformers, multimodal models or LLM-based workflows' gives group 3. Multimodal models have no taxonomy id and are listed in unmapped.\nI mapped 'production ML lifecycle' to mlops, the deployment mention to ai-deployment and the monitoring mention to observability. All three are flagged uncertain as taxonomy interpretations.\nI mapped 'evaluating them against baselines and metrics' to evaluation (alias 'model evaluation') and flagged it uncertain.\n'Care for data privacy' sits inside a motivation bullet and may be an attitude rather than a skill. I included it as data-privacy-and-security and flagged it uncertain.\nFraud detection and Trust & Safety applications are domain knowledge. They are listed in unmapped for visibility only, not as skills.\nSeniority is none: there are no years, level words or lead duties. 'Take ownership of well-defined projects' is ownership language, which is not a level signal.\nNo German or degree is mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "3d3057094590199e3b1a71ec06f32d741502907fb017d91d329dc49fe7f1eba6",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

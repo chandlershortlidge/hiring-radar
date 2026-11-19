@@ -1,0 +1,173 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong proficiency in Python\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\", \"alternative_group\": 1},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\", \"alternative_group\": 1},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"required\", \"raw_text\": \"scikit-learn\", \"alternative_group\": 1},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Strong software engineering fundamentals\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"development and use of machine learning models\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"agentic workflows\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LLM evaluation\", \"alternative_group\": 2},\n    {\"skill_id\": \"testing\", \"requirement\": \"nice_to_have\", \"raw_text\": \"testing\", \"alternative_group\": 2},\n    {\"skill_id\": \"observability\", \"requirement\": \"nice_to_have\", \"raw_text\": \"observability\", \"alternative_group\": 2},\n    {\"skill_id\": \"llm-guardrails\", \"requirement\": \"nice_to_have\", \"raw_text\": \"guardrails\", \"alternative_group\": 2},\n    {\"skill_id\": \"vector-databases\", \"requirement\": \"nice_to_have\", \"raw_text\": \"vector databases\", \"alternative_group\": 3},\n    {\"skill_id\": \"embeddings\", \"requirement\": \"nice_to_have\", \"raw_text\": \"embeddings\", \"alternative_group\": 3},\n    {\"skill_id\": \"rag\", \"requirement\": \"nice_to_have\", \"raw_text\": \"retrieval-augmented generation (RAG)\", \"alternative_group\": 3},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"nice_to_have\", \"raw_text\": \"architectures and design patterns for client-server systems\", \"uncertain\": true},\n    {\"skill_id\": \"containerization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"containerized\", \"alternative_group\": 4, \"uncertain\": true},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"cloud environments\", \"alternative_group\": 4, \"uncertain\": true},\n    {\"skill_id\": \"docker\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Docker\", \"alternative_group\": 5},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Kubernetes (K8s)\", \"alternative_group\": 5},\n    {\"skill_id\": \"async-processing\", \"requirement\": \"nice_to_have\", \"raw_text\": \"asynchronous programming\", \"alternative_group\": 6, \"uncertain\": true},\n    {\"skill_id\": \"event-driven-systems\", \"requirement\": \"nice_to_have\", \"raw_text\": \"event-driven architectures\", \"alternative_group\": 6}\n  ],\n  \"unmapped\": [\n    {\"label\": \"systems programming language\", \"raw_text\": \"at least one systems programming language\"},\n    {\"label\": \"exploratory data analysis\", \"raw_text\": \"exploratory data analysis on structured and unstructured data\"},\n    {\"label\": \"Podman\", \"raw_text\": \"Podman\"},\n    {\"label\": \"concurrency\", \"raw_text\": \"concurrency\"}\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Junior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"A BS degree in computer science, machine learning, or a related discipline\",\n  \"uncertain\": [\"degree\"],\n  \"groups_reviewed\": true,\n  \"notes\": \"The heading 'The following isn't required, but we'd love to see it' marks that section optional, so every item under it is nice_to_have.\\nPython, software engineering and machine learning are asked for again in the optional section; the required mentions win.\\n'like PyTorch, TensorFlow, and/or scikit-learn' is examples offered for one ask, so the three form alternative group 1, all required.\\n'agentic workflows' is mapped to agents; no exact taxonomy entry exists for agentic workflows.\\n'containerized or cloud environments' is read as two alternatives (group 4).\\nDocker, Podman and Kubernetes are examples for one ask (group 5); Podman is unmapped, so the group has only two mapped members.\\n'asynchronous programming' is mapped to async-processing; this mapping is uncertain.\\n'concurrency' has no taxonomy entry and is left unmapped.\\n'or other modern AI application patterns' adds no skill.\\nDegree: the posting names a required BS and a nice-to-have 'Advanced degree' with no explicit level. I labeled bachelor/required from the requirement; it could arguably be master by the 'highest level named' rule, so a person should review it.\\nSeniority: 'Junior' in the title is the stated basis; '0–2 years' is consistent with it.\\n'data engineering pipelines' appears only in the responsibilities, so it is not labeled.\\n'modern software engineering tools and processes' is too vague to map to a skill.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong proficiency in Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software engineering fundamentals"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "development and use of machine learning models"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic workflows",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM evaluation",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "testing",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "observability",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "nice_to_have",
+        "raw_text": "guardrails",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "nice_to_have",
+        "raw_text": "vector databases",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "nice_to_have",
+        "raw_text": "embeddings",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "retrieval-augmented generation (RAG)",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "nice_to_have",
+        "raw_text": "architectures and design patterns for client-server systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerized",
+        "alternative_group": 4,
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud environments",
+        "alternative_group": 4,
+        "uncertain": true
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes (K8s)",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "async-processing",
+        "requirement": "nice_to_have",
+        "raw_text": "asynchronous programming",
+        "alternative_group": 6,
+        "uncertain": true
+      },
+      {
+        "skill_id": "event-driven-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "event-driven architectures",
+        "alternative_group": 6
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "systems programming language",
+        "raw_text": "at least one systems programming language"
+      },
+      {
+        "label": "exploratory data analysis",
+        "raw_text": "exploratory data analysis on structured and unstructured data"
+      },
+      {
+        "label": "Podman",
+        "raw_text": "Podman"
+      },
+      {
+        "label": "concurrency",
+        "raw_text": "concurrency"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Junior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "A BS degree in computer science, machine learning, or a related discipline",
+    "uncertain": [
+      "degree"
+    ],
+    "groups_reviewed": true,
+    "notes": "The heading 'The following isn't required, but we'd love to see it' marks that section optional, so every item under it is nice_to_have.\nPython, software engineering and machine learning are asked for again in the optional section; the required mentions win.\n'like PyTorch, TensorFlow, and/or scikit-learn' is examples offered for one ask, so the three form alternative group 1, all required.\n'agentic workflows' is mapped to agents; no exact taxonomy entry exists for agentic workflows.\n'containerized or cloud environments' is read as two alternatives (group 4).\nDocker, Podman and Kubernetes are examples for one ask (group 5); Podman is unmapped, so the group has only two mapped members.\n'asynchronous programming' is mapped to async-processing; this mapping is uncertain.\n'concurrency' has no taxonomy entry and is left unmapped.\n'or other modern AI application patterns' adds no skill.\nDegree: the posting names a required BS and a nice-to-have 'Advanced degree' with no explicit level. I labeled bachelor/required from the requirement; it could arguably be master by the 'highest level named' rule, so a person should review it.\nSeniority: 'Junior' in the title is the stated basis; '0–2 years' is consistent with it.\n'data engineering pipelines' appears only in the responsibilities, so it is not labeled.\n'modern software engineering tools and processes' is too vague to map to a skill."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "89a676a5719f5de7afc4e385680064d49618d6ecb3ea0fc199051da3d94ab0f4",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

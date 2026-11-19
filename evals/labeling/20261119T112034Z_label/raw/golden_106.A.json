@@ -1,0 +1,130 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"data-science\", \"requirement\": \"required\", \"raw_text\": \"building and deploying data science solutions\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"applied machine learning\"},\n    {\"skill_id\": \"model-development\", \"requirement\": \"required\", \"raw_text\": \"model development\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud environments\"},\n    {\"skill_id\": \"azure\", \"requirement\": \"required\", \"raw_text\": \"Azure\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"GCP\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"apache-spark\", \"requirement\": \"required\", \"raw_text\": \"Spark\"},\n    {\"skill_id\": \"mlops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"MLOps practices\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"nice_to_have\", \"raw_text\": \"CI/CD\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"nice_to_have\", \"raw_text\": \"model monitoring\"},\n    {\"skill_id\": \"devops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"DevOps integration\"},\n    {\"skill_id\": \"nlp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"advanced NLP frameworks such as spaCy\"},\n    {\"skill_id\": \"transformers\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Transformers\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Generative AI or LLMs\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Hive\", \"raw_text\": \"Hive\"},\n    {\"label\": \"Redshift\", \"raw_text\": \"Redshift\"},\n    {\"label\": \"data engineering\", \"raw_text\": \"data engineering\"},\n    {\"label\": \"Kaggle / data science competitions\", \"raw_text\": \"Participation in Kaggle or other data science competitions\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Data Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"MSc or PhD in a numerate discipline\",\n  \"uncertain\": [],\n  \"notes\": \"\\\"What We're Looking For\\\" defaults to required. \\\"Bonus Points For\\\" is an optional heading, so every item under it is nice_to_have.\\nCloud: `cloud` is the broad skill. Azure/AWS/GCP are parenthetical examples for a single ask, so I grouped them as alternative_group 1 even though the list has no 'or'. Flagged uncertain.\\nSpark, Hive and Redshift are joined with 'and', so they are asked for together and not grouped.\\nspaCy is an alias of `nlp`, so it collapses into the broad `nlp` criterion. That leaves `transformers` as the only specific example, and a group needs two skills, so there is no group there.\\n'Generative AI or LLMs' both map to `llms`, so they are one criterion and no group.\\n'related ML libraries' names no specific library, so nothing is labeled from it.\\n'responsible AI principles' and 'AI-enabled approaches' are too vague to map. 'approved AI tools' appears only in the role and responsibilities, so it is not labeled.\\n`data-science` is labeled from 'building and deploying data science solutions'. It is a literal reading and flagged uncertain.\\nDegree: 'MSc or PhD' takes the highest level named, phd. It is nice_to_have because it sits under Bonus Points.\\nGerman: no language is mentioned, and the posting is in English, so german is null.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "building and deploying data science solutions",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "applied machine learning"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "model development"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud environments"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "required",
+        "raw_text": "Spark"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "nice_to_have",
+        "raw_text": "MLOps practices"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "model monitoring"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "nice_to_have",
+        "raw_text": "DevOps integration"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "nice_to_have",
+        "raw_text": "advanced NLP frameworks such as spaCy"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "nice_to_have",
+        "raw_text": "Transformers"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "Generative AI or LLMs"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Hive",
+        "raw_text": "Hive"
+      },
+      {
+        "label": "Redshift",
+        "raw_text": "Redshift"
+      },
+      {
+        "label": "data engineering",
+        "raw_text": "data engineering"
+      },
+      {
+        "label": "Kaggle / data science competitions",
+        "raw_text": "Participation in Kaggle or other data science competitions"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Data Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "MSc or PhD in a numerate discipline",
+    "uncertain": [],
+    "notes": "\"What We're Looking For\" defaults to required. \"Bonus Points For\" is an optional heading, so every item under it is nice_to_have.\nCloud: `cloud` is the broad skill. Azure/AWS/GCP are parenthetical examples for a single ask, so I grouped them as alternative_group 1 even though the list has no 'or'. Flagged uncertain.\nSpark, Hive and Redshift are joined with 'and', so they are asked for together and not grouped.\nspaCy is an alias of `nlp`, so it collapses into the broad `nlp` criterion. That leaves `transformers` as the only specific example, and a group needs two skills, so there is no group there.\n'Generative AI or LLMs' both map to `llms`, so they are one criterion and no group.\n'related ML libraries' names no specific library, so nothing is labeled from it.\n'responsible AI principles' and 'AI-enabled approaches' are too vague to map. 'approved AI tools' appears only in the role and responsibilities, so it is not labeled.\n`data-science` is labeled from 'building and deploying data science solutions'. It is a literal reading and flagged uncertain.\nDegree: 'MSc or PhD' takes the highest level named, phd. It is nice_to_have because it sits under Bonus Points.\nGerman: no language is mentioned, and the posting is in English, so german is null."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "22e5323933d07997537d8a8c76e7e0aa589d59b6b5c0de3c9e19275598de12de",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

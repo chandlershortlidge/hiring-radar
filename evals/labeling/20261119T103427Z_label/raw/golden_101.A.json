@@ -1,0 +1,119 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"specific expertise in Large Language Models\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"6 years of experience in machine learning\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong programming skills in Python\"},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"required\", \"raw_text\": \"TensorFlow\", \"alternative_group\": 1},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\", \"alternative_group\": 1},\n    {\"skill_id\": \"cloud\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience with cloud computing services\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AWS\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"azure\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Azure\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"gcp\", \"requirement\": \"nice_to_have\", \"raw_text\": \"GCP\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"hadoop\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Hadoop\", \"alternative_group\": 3, \"uncertain\": true},\n    {\"skill_id\": \"apache-spark\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Spark\", \"alternative_group\": 3, \"uncertain\": true},\n    {\"skill_id\": \"containerization\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Familiarity with containerization\"},\n    {\"skill_id\": \"docker\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Docker\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Kubernetes\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Mixture of Experts\", \"raw_text\": \"specific expertise in Large Language Models and Mixture of Experts\"},\n    {\"label\": \"Big Data technologies\", \"raw_text\": \"Knowledge of Big Data technologies\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Advanced degree (Ph.D. preferred) in Computer Science, or a related field\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"The 'Preferred Skills' heading makes every item under it nice_to_have; 'Qualifications' items are required.\\nOn-device inference optimization, quantization, RAG, agentic framework and tool calling appear only as duties ('You will lead core product initiatives across...'), so they are not labeled.\\nLLMs appear both in About the Role ('strong background in') and in Qualifications; collapsed to the Qualifications mention.\\nTensorFlow and PyTorch form group 1 because of the explicit 'and/or'.\\nAWS/Azure/GCP and Hadoop/Spark are parenthesized examples for a single ask with no 'or'; I grouped them by analogy to the guide's cloud example. Flagged uncertain.\\nDocker and Kubernetes are not grouped: one is containerization and the other orchestration, both asked for together.\\n'machine learning frameworks' has no taxonomy entry. It is covered by machine-learning plus its examples, and no parent was added.\\nDegree: 'Advanced degree' is required, and Ph.D. is the highest level named but marked preferred. I took phd as the highest level named with requirement required. Flagged for review; master/required is the alternative reading.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "specific expertise in Large Language Models"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "6 years of experience in machine learning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong programming skills in Python"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with cloud computing services"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "GCP",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "hadoop",
+        "requirement": "nice_to_have",
+        "raw_text": "Hadoop",
+        "alternative_group": 3,
+        "uncertain": true
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "nice_to_have",
+        "raw_text": "Spark",
+        "alternative_group": 3,
+        "uncertain": true
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "Familiarity with containerization"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Mixture of Experts",
+        "raw_text": "specific expertise in Large Language Models and Mixture of Experts"
+      },
+      {
+        "label": "Big Data technologies",
+        "raw_text": "Knowledge of Big Data technologies"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Advanced degree (Ph.D. preferred) in Computer Science, or a related field",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "The 'Preferred Skills' heading makes every item under it nice_to_have; 'Qualifications' items are required.\nOn-device inference optimization, quantization, RAG, agentic framework and tool calling appear only as duties ('You will lead core product initiatives across...'), so they are not labeled.\nLLMs appear both in About the Role ('strong background in') and in Qualifications; collapsed to the Qualifications mention.\nTensorFlow and PyTorch form group 1 because of the explicit 'and/or'.\nAWS/Azure/GCP and Hadoop/Spark are parenthesized examples for a single ask with no 'or'; I grouped them by analogy to the guide's cloud example. Flagged uncertain.\nDocker and Kubernetes are not grouped: one is containerization and the other orchestration, both asked for together.\n'machine learning frameworks' has no taxonomy entry. It is covered by machine-learning plus its examples, and no parent was added.\nDegree: 'Advanced degree' is required, and Ph.D. is the highest level named but marked preferred. I took phd as the highest level named with requirement required. Flagged for review; master/required is the alternative reading."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "dd7f5f337708bd1c71c9747b16ba935dbcc65e8da6365e73ce312c27da8b6c04",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

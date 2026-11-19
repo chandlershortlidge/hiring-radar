@@ -1,0 +1,672 @@
+{
+  "run_id": "20261119T103427Z_label",
+  "seed": 0,
+  "provider_a": "anthropic",
+  "model_a": "claude-opus-5-5",
+  "provider_b": "openai",
+  "model_b": "gpt-6.1-sol",
+  "extractor": "claude-sonnet-5-5",
+  "spot_n": 80,
+  "spot_pool": 177,
+  "taxonomy_version": 11,
+  "n_picked": 15,
+  "n_labeled": 15,
+  "failed": [],
+  "agreement": {
+    "n_postings": 15,
+    "skills": {
+      "tp": 173,
+      "fp": 19,
+      "fn": 0,
+      "precision": 0.9010416666666666,
+      "recall": 1.0,
+      "f1": 0.947945205479452
+    },
+    "requirement_agreement": 0.9942196531791907,
+    "attributes": {
+      "seniority": {
+        "agreed": 12,
+        "n": 15,
+        "rate": 0.8
+      },
+      "german": {
+        "agreed": 15,
+        "n": 15,
+        "rate": 1.0
+      },
+      "degree": {
+        "agreed": 13,
+        "n": 15,
+        "rate": 0.8666666666666667
+      }
+    }
+  },
+  "accepted_skills": 143,
+  "accepted_attributes": 34,
+  "review_items": {
+    "in-scope": 15,
+    "disagreement": 25,
+    "uncertain": 35,
+    "spot-check": 80
+  },
+  "spot_check": {
+    "n": 80,
+    "pool": 177,
+    "seed": 0,
+    "sample": [
+      [
+        "golden_094",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_095",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_096",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_096",
+        "skill",
+        "aws"
+      ],
+      [
+        "golden_096",
+        "skill",
+        "cloud"
+      ],
+      [
+        "golden_096",
+        "skill",
+        "containerization"
+      ],
+      [
+        "golden_096",
+        "skill",
+        "deep-learning"
+      ],
+      [
+        "golden_096",
+        "skill",
+        "distributed-training"
+      ],
+      [
+        "golden_096",
+        "skill",
+        "model-development"
+      ],
+      [
+        "golden_096",
+        "skill",
+        "model-versioning"
+      ],
+      [
+        "golden_096",
+        "skill",
+        "nlp"
+      ],
+      [
+        "golden_096",
+        "skill",
+        "observability"
+      ],
+      [
+        "golden_096",
+        "skill",
+        "tensorflow"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "angular"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "apis"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "ci-cd"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "cloud"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "cpp"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "docker"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "java"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "mcp"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "pytorch"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "rag"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "react"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "tensorflow"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "vue"
+      ],
+      [
+        "golden_098",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_098",
+        "skill",
+        "ai-deployment"
+      ],
+      [
+        "golden_098",
+        "skill",
+        "data-pipelines"
+      ],
+      [
+        "golden_098",
+        "skill",
+        "data-science"
+      ],
+      [
+        "golden_098",
+        "skill",
+        "go"
+      ],
+      [
+        "golden_098",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_098",
+        "skill",
+        "rust"
+      ],
+      [
+        "golden_098",
+        "skill",
+        "scikit-learn"
+      ],
+      [
+        "golden_098",
+        "skill",
+        "tensorflow"
+      ],
+      [
+        "golden_099",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_099",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_099",
+        "skill",
+        "computer-vision"
+      ],
+      [
+        "golden_099",
+        "skill",
+        "sql"
+      ],
+      [
+        "golden_100",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_101",
+        "skill",
+        "kubernetes"
+      ],
+      [
+        "golden_101",
+        "skill",
+        "pytorch"
+      ],
+      [
+        "golden_101",
+        "skill",
+        "tensorflow"
+      ],
+      [
+        "golden_102",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_102",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_103",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "docker"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "embeddings"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "pytorch"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "rag"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "scikit-learn"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "software-engineering"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "tensorflow"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "testing"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "vector-databases"
+      ],
+      [
+        "golden_104",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "deep-learning"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "distributed-training"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "jax"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "quantization"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "transformers"
+      ],
+      [
+        "golden_105",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_105",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_106",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_106",
+        "skill",
+        "bash"
+      ],
+      [
+        "golden_106",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_107",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_107",
+        "skill",
+        "apis"
+      ],
+      [
+        "golden_107",
+        "skill",
+        "cpp"
+      ],
+      [
+        "golden_107",
+        "skill",
+        "data-pipelines"
+      ],
+      [
+        "golden_107",
+        "skill",
+        "kubernetes"
+      ],
+      [
+        "golden_107",
+        "skill",
+        "ray"
+      ],
+      [
+        "golden_108",
+        "skill",
+        "devops"
+      ],
+      [
+        "golden_108",
+        "skill",
+        "distributed-systems"
+      ],
+      [
+        "golden_108",
+        "skill",
+        "onnx"
+      ],
+      [
+        "golden_108",
+        "skill",
+        "pytorch"
+      ],
+      [
+        "golden_108",
+        "skill",
+        "software-engineering"
+      ]
+    ]
+  },
+  "signal_mismatches": [
+    "golden_094 seniority: A 'Sr. Staff Engineer' vs B 'Senior Staff / Principal Engineer'",
+    "golden_094 degree: A 'You have a BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline' vs B 'BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline'",
+    "golden_096 degree: A 'PhD in Computer Science, Robotics, AI/ML, or related field' vs B 'PhD in Computer Science, Robotics, AI/ML, or related field with focus on multimodal learning or robotics'",
+    "golden_099 seniority: A 'At least three years' vs B 'At least three years taking models from data collection through training to something that ran in production or on real hardware, and stayed working.'",
+    "golden_102 degree: A 'MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field' vs B 'MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field with rigorous statistical coursework'"
+  ],
+  "unmapped": [
+    "3D computer vision",
+    "AI alignment",
+    "Academic publication contributions",
+    "Advanced node methodology",
+    "Agent planning",
+    "Agent-environment interaction",
+    "Agile",
+    "Algorithms",
+    "Algorithms and data structures",
+    "Application of machine learning and data science to image data",
+    "Application of machine learning and data science to video data",
+    "Argo Workflows",
+    "Attention mechanisms",
+    "BACnet",
+    "Big Data technologies",
+    "Block-level and system-level verification",
+    "Block-level to system-level verification",
+    "Build automation",
+    "Building or operating ML training systems",
+    "CAD flow development and support",
+    "CNNs",
+    "CPF",
+    "Cache micro-architecture",
+    "Cadence Innovus / Genus",
+    "Client-server architecture",
+    "Client-server systems",
+    "Clock tree synthesis",
+    "Complex-system debugging",
+    "Concurrency",
+    "Control systems",
+    "Control theory",
+    "Convolutional neural networks",
+    "Coverage-driven verification",
+    "Data cleaning",
+    "Data collection",
+    "Data engineering",
+    "Data skills",
+    "Data structures",
+    "Data structures and algorithms",
+    "Dataset construction",
+    "Debugging",
+    "Design patterns",
+    "Design rule checking",
+    "Diffusion models",
+    "Distributed control systems",
+    "Dynamic thermal management",
+    "EDA release qualification",
+    "EDA tools",
+    "Edge AI deployment",
+    "Edge inference",
+    "Electromigration analysis",
+    "Embodied AI",
+    "Ethernet-based control networks",
+    "Evaluating large-scale AI systems (appetite only)",
+    "Experience with unstructured data",
+    "Experimental design",
+    "Experimentation",
+    "Exploratory data analysis",
+    "FairScale",
+    "Fault detection",
+    "Federated learning",
+    "Feedback systems",
+    "Formal property verification",
+    "Formal verification",
+    "Formal verification methodologies",
+    "Functional safety (FuSa) verification",
+    "Functional safety verification",
+    "Fusion Compiler",
+    "FusionCompiler",
+    "GPU scheduling",
+    "Generative modelling",
+    "Genus",
+    "Hardware interaction",
+    "Hardware verification methodologies",
+    "Hardware, firmware, and software subsystem integration",
+    "Hardware-aware training",
+    "Hierarchical design flows",
+    "Horovod",
+    "Human feedback integration for model alignment",
+    "ICC2",
+    "IR-drop analysis",
+    "Imitation learning",
+    "Implementing and analyzing algorithms",
+    "Implementing and analyzing data structures",
+    "Industrial automation",
+    "Industrial communication and management protocols",
+    "Industrial communication protocols",
+    "Innovus",
+    "Inverse reinforcement learning",
+    "Issue tracking",
+    "Large-scale AI system evaluation",
+    "Large-scale data tooling",
+    "Layout versus schematic verification",
+    "Learning from demonstrations",
+    "Learning verification strategies for new architectures and domains",
+    "Liquid-cooling systems",
+    "Log parsing",
+    "Logic design and timing/power tradeoffs",
+    "Logic design principles",
+    "Logic synthesis",
+    "Low-power intent",
+    "Low-power intent (UPF/CPF)",
+    "ML frameworks",
+    "MQTT",
+    "Machine learning frameworks",
+    "Micro-architecture of caches / scratch-pad memories",
+    "Microarchitecture analysis from specifications and waveforms",
+    "Microprocessor architecture",
+    "Mixture of Experts",
+    "Modbus",
+    "Model inference",
+    "Model optimization",
+    "Model optimization techniques",
+    "Model pruning",
+    "Modern data stack",
+    "Multimodal architectures",
+    "Multimodal learning",
+    "Multimodal perception",
+    "Neural network development",
+    "OPC UA",
+    "Object detection",
+    "On-device ML",
+    "On-device machine learning",
+    "Open-source ML project contributions",
+    "PID control",
+    "PPA exploration",
+    "PPA optimization",
+    "PPA/runtime optimization",
+    "PPO / SAC / TD3",
+    "Patent contributions",
+    "Performance investigation",
+    "Performance modeling for architecture exploration",
+    "Performance tuning",
+    "Perl",
+    "Physical Design CAD methodology",
+    "Physical design / CAD methodology flows (RTL-to-GDSII)",
+    "Physical design methodology",
+    "Physical design signoff",
+    "Place and route",
+    "Podman",
+    "Power- and area-efficient architectures",
+    "Power- and area-efficient hardware architecture",
+    "PrimeTime",
+    "Privacy-preserving ML",
+    "Processing unstructured data",
+    "Production analytics",
+    "Production service operation",
+    "Production troubleshooting",
+    "Proximal Policy Optimization (PPO)",
+    "Pruning",
+    "RLHF",
+    "RNNs",
+    "RTL debugging",
+    "RTL design",
+    "RTL, testbench, and workload debugging",
+    "Recurrent neural networks",
+    "RedHawk",
+    "Reinforcement Learning from Human Feedback",
+    "Reliability practices",
+    "Resource and performance optimization",
+    "Runtime optimization",
+    "SVA (SystemVerilog Assertions)",
+    "Scratch-pad memory micro-architecture",
+    "Semantic segmentation",
+    "Sequential decision-making",
+    "Sequential decision-making / control systems",
+    "Signoff (EM/IR, DRC/LVS)",
+    "Sim-to-real transfer",
+    "Soft Actor-Critic (SAC)",
+    "Software development life cycle and tools",
+    "Spatial reasoning",
+    "Static timing analysis",
+    "Storage and I/O",
+    "Structured testbench development",
+    "Synopsys Fusion Compiler / ICC2",
+    "Synthesis / P&R / STA / signoff / hierarchical flows",
+    "System modeling",
+    "SystemVerilog",
+    "SystemVerilog Assertions",
+    "Systems debugging",
+    "Systems programming",
+    "Systems programming language",
+    "Tcl",
+    "Technical documentation",
+    "Technology-node, PDK, and foundry flow bring-up",
+    "Telemetry",
+    "Testbench development",
+    "Thermal management systems",
+    "Twin Delayed DDPG (TD3)",
+    "UPF",
+    "Unstructured data processing",
+    "Unstructured data types",
+    "Verification methodologies",
+    "Vision-Language-Action models",
+    "Visual tracking",
+    "concurrency",
+    "data skills",
+    "edge deployment",
+    "exploratory data analysis",
+    "hardware interaction",
+    "large-scale data tooling",
+    "model inference debugging",
+    "performance tuning",
+    "systems programming language"
+  ]
+}

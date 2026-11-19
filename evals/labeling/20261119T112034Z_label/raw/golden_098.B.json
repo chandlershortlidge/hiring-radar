@@ -1,0 +1,52 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning techniques\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Generative AI and agentic AI applications with Large Language Models\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic AI applications\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building and maintaining scalable codebases\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Data Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"WHO WE'RE LOOKING FOR is a required qualifications section; no optional qualifications heading appears.\\nMapped building and maintaining scalable codebases to software engineering as a technical practice; flagged the mapping for review because software engineering is not explicitly named.\\nGenerative AI and Large Language Models collapse into one llms criterion; agentic AI is separately labeled agents.\\nFinancial-services knowledge, management, communication, and other soft skills are excluded under the guide. Technologies mentioned only in responsibilities or company descriptions are excluded.\\nThe general encouragement to apply without meeting all requirements does not make the qualifications optional.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning techniques"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generative AI and agentic AI applications with Large Language Models"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic AI applications"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "building and maintaining scalable codebases",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Data Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "WHO WE'RE LOOKING FOR is a required qualifications section; no optional qualifications heading appears.\nMapped building and maintaining scalable codebases to software engineering as a technical practice; flagged the mapping for review because software engineering is not explicitly named.\nGenerative AI and Large Language Models collapse into one llms criterion; agentic AI is separately labeled agents.\nFinancial-services knowledge, management, communication, and other soft skills are excluded under the guide. Technologies mentioned only in responsibilities or company descriptions are excluded.\nThe general encouragement to apply without meeting all requirements does not make the qualifications optional."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "383ab09885b0c889418bfcbb00146d96cc6294158bfcb52573f73f7f9bf5ca46",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

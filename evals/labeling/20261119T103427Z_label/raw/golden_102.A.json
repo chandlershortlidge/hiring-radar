@@ -1,0 +1,56 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"statistics\", \"requirement\": \"required\", \"raw_text\": \"strong background in statistical reasoning and methods\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"strong Python\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL\"},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"required\", \"raw_text\": \"ship analyses and pipelines end to end\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Data engineering\", \"raw_text\": \"experience in data engineering\"},\n    {\"label\": \"Modern data stack\", \"raw_text\": \"Familiarity with the modern data stack\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Lead Data Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field\",\n  \"uncertain\": [],\n  \"notes\": \"statistics: the required mention in the What you'll need section wins over the 'Formal training in statistics' line under Nice to have.\\ndata-pipelines: 'pipelines' sits in the Coding requirement and, read in context, means analysis/data pipelines. This is a judgment call and is flagged uncertain.\\nExperiment design ('run experiments') is not mapped to a-b-testing because A/B testing is never named.\\n'evaluating change and uncertainty' is a statistical evaluation ask, not AI/LLM evaluation, so the evaluation id was not added.\\nThe tools mentioned in responsibilities (analysis pipelines, data infrastructure) are not labeled beyond what the requirements name.\\nDegree: 'MS or PhD' takes the highest level named (phd), per golden_040. It sits under the Nice to have heading, so it is nice_to_have.\\n'or a quantitative field' widens the field only, so degree_or_equivalent is false.\\nSeniority is stated from the 'Lead' title. It is consistent with the leadership/mentoring duty, even though '4+ years' alone would infer mid.\\nNo German mention anywhere in the posting; the US work authorization line is not a language signal.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "strong background in statistical reasoning and methods"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "strong Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "ship analyses and pipelines end to end",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data engineering",
+        "raw_text": "experience in data engineering"
+      },
+      {
+        "label": "Modern data stack",
+        "raw_text": "Familiarity with the modern data stack"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead Data Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field",
+    "uncertain": [],
+    "notes": "statistics: the required mention in the What you'll need section wins over the 'Formal training in statistics' line under Nice to have.\ndata-pipelines: 'pipelines' sits in the Coding requirement and, read in context, means analysis/data pipelines. This is a judgment call and is flagged uncertain.\nExperiment design ('run experiments') is not mapped to a-b-testing because A/B testing is never named.\n'evaluating change and uncertainty' is a statistical evaluation ask, not AI/LLM evaluation, so the evaluation id was not added.\nThe tools mentioned in responsibilities (analysis pipelines, data infrastructure) are not labeled beyond what the requirements name.\nDegree: 'MS or PhD' takes the highest level named (phd), per golden_040. It sits under the Nice to have heading, so it is nice_to_have.\n'or a quantitative field' widens the field only, so degree_or_equivalent is false.\nSeniority is stated from the 'Lead' title. It is consistent with the leadership/mentoring duty, even though '4+ years' alone would infer mid.\nNo German mention anywhere in the posting; the US work authorization line is not a language signal."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "e82d71176fe9a83ffdba7fb66199c341b87e4a677898a8aeed63db4a614339b4",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

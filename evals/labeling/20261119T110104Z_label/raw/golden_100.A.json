@@ -1,0 +1,103 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"modern LLMs\"},\n    {\"skill_id\": \"fine-tuning\", \"requirement\": \"required\", \"raw_text\": \"fine-tuning\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"post-training, benchmarking\", \"uncertain\": true},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"ML systems\", \"uncertain\": true},\n    {\"skill_id\": \"hallucination-detection\", \"requirement\": \"required\", \"raw_text\": \"hallucination risk\", \"uncertain\": true},\n    {\"skill_id\": \"explainable-ai\", \"requirement\": \"required\", \"raw_text\": \"interpretability\", \"uncertain\": true},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"deploying AI/ML\", \"uncertain\": true},\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"AI/ML for biology systems\", \"uncertain\": true},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"scientific agents\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Multimodal modeling\", \"raw_text\": \"multimodal modeling\"},\n    {\"label\": \"Representation learning\", \"raw_text\": \"representation learning\"},\n    {\"label\": \"Post-training\", \"raw_text\": \"post-training\"},\n    {\"label\": \"Biological foundation models\", \"raw_text\": \"biological foundation models\"},\n    {\"label\": \"Protein language models\", \"raw_text\": \"protein language models\"},\n    {\"label\": \"Genomic foundation models\", \"raw_text\": \"genomic foundation models\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"PhD, MS, or equivalent experience\",\n  \"uncertain\": [],\n  \"notes\": \"The 'Qualifications' and 'Requirements' headings both mark requirement sections, so every item defaults to required.\\n'Please apply anyway' is company encouragement, not an optional marker; no label changes.\\nThe Requirements or-list ('LLMs, biological foundation models, protein language models, genomic foundation models, scientific agents, or AI discovery platforms') forms no alternative_group.\\nIn that list, llms leaves the group because it is asked for on its own in Qualifications ('modern LLMs').\\nThe other or-list members are unmapped, so agents is the only mapped member left; a group needs at least two skills, so there is none.\\n'scientific agents' was mapped to agents; this is uncertain because it may refer to a domain-specific concept.\\n'benchmarking' was mapped to evaluation (alias 'ai evaluation & benchmarking'); the quote includes 'post-training' to pick out the qualifications mention over the one in responsibilities.\\n'ML systems' was mapped to machine-learning; ml-engineering is a possible alternative.\\nhallucination-detection and explainable-ai come from 'Strong judgment around ... hallucination risk, interpretability'; whether these count as skills or as judgment is unclear.\\n'deploying AI/ML for biology systems' was mapped to ai-deployment and ai-ml.\\nBiological domains (computational biology, genomics, transcriptomics, perturbation biology, drug discovery, protein structure, etc.) were treated as domain knowledge and not labeled.\\n'translational data science' was treated as domain knowledge, not data-science.\\nSeniority is stated by 'Principal' in the title; the role is also described as 'Lead'.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "modern LLMs"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "post-training, benchmarking",
+        "uncertain": true
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ML systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "hallucination-detection",
+        "requirement": "required",
+        "raw_text": "hallucination risk",
+        "uncertain": true
+      },
+      {
+        "skill_id": "explainable-ai",
+        "requirement": "required",
+        "raw_text": "interpretability",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying AI/ML",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML for biology systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "scientific agents",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Multimodal modeling",
+        "raw_text": "multimodal modeling"
+      },
+      {
+        "label": "Representation learning",
+        "raw_text": "representation learning"
+      },
+      {
+        "label": "Post-training",
+        "raw_text": "post-training"
+      },
+      {
+        "label": "Biological foundation models",
+        "raw_text": "biological foundation models"
+      },
+      {
+        "label": "Protein language models",
+        "raw_text": "protein language models"
+      },
+      {
+        "label": "Genomic foundation models",
+        "raw_text": "genomic foundation models"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "PhD, MS, or equivalent experience",
+    "uncertain": [],
+    "notes": "The 'Qualifications' and 'Requirements' headings both mark requirement sections, so every item defaults to required.\n'Please apply anyway' is company encouragement, not an optional marker; no label changes.\nThe Requirements or-list ('LLMs, biological foundation models, protein language models, genomic foundation models, scientific agents, or AI discovery platforms') forms no alternative_group.\nIn that list, llms leaves the group because it is asked for on its own in Qualifications ('modern LLMs').\nThe other or-list members are unmapped, so agents is the only mapped member left; a group needs at least two skills, so there is none.\n'scientific agents' was mapped to agents; this is uncertain because it may refer to a domain-specific concept.\n'benchmarking' was mapped to evaluation (alias 'ai evaluation & benchmarking'); the quote includes 'post-training' to pick out the qualifications mention over the one in responsibilities.\n'ML systems' was mapped to machine-learning; ml-engineering is a possible alternative.\nhallucination-detection and explainable-ai come from 'Strong judgment around ... hallucination risk, interpretability'; whether these count as skills or as judgment is unclear.\n'deploying AI/ML for biology systems' was mapped to ai-deployment and ai-ml.\nBiological domains (computational biology, genomics, transcriptomics, perturbation biology, drug discovery, protein structure, etc.) were treated as domain knowledge and not labeled.\n'translational data science' was treated as domain knowledge, not data-science.\nSeniority is stated by 'Principal' in the title; the role is also described as 'Lead'."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "8fa968fa2f6aa87806095e6a48f15ed23d37f694f04c2cad9a440044616ac26b",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

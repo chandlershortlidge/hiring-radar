@@ -1,0 +1,46 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"you will need prior experience in AI\", \"uncertain\": true},\n    {\"skill_id\": \"model-development\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Experience training ML models\", \"uncertain\": true},\n    {\"skill_id\": \"mlops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"operating them in production, at scale\", \"uncertain\": true}\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"lead a team of expert engineers\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"ai-ml: 'you will need prior experience in AI' is outside the requirements section but is addressed to the candidate as a need, so it is labeled required. The 'appetite to continually invest in deepening' clause deepens a skill already asked for, so it does not soften the label (golden_014). 'Curiosity and enthusiasm for AI' is appetite only, and the required mention wins on collapse. It is uncertain whether bare 'AI' is a skill or domain knowledge.\\nmodel-development and mlops: both come from the 'Nice to have' section, and the body also says 'significant advantage, but not a hard requirement'. 'training ML models' maps to model-development (alias 'ai model training'). 'operating them in production' maps to mlops (alias 'production operation of ai models').\\nmachine-learning: not added as a separate criterion, because 'ML' only qualifies 'models' here. This is borderline and a reviewer may want to add it.\\nNot labeled as skills: 'Experience leading infra or platform teams' (leadership experience, with no concrete infrastructure technology named) and 'Strong prior experience working as an engineer' (too generic for software-engineering).\\nSeniority: the title says Engineering Manager, and 'Manager' is not among the stated triggers. It is inferred as senior from the lead duty ('lead a team of expert engineers').\\nGerman and degree: no language or degree is mentioned anywhere in the posting.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "you will need prior experience in AI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience training ML models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "nice_to_have",
+        "raw_text": "operating them in production, at scale",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "lead a team of expert engineers",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "ai-ml: 'you will need prior experience in AI' is outside the requirements section but is addressed to the candidate as a need, so it is labeled required. The 'appetite to continually invest in deepening' clause deepens a skill already asked for, so it does not soften the label (golden_014). 'Curiosity and enthusiasm for AI' is appetite only, and the required mention wins on collapse. It is uncertain whether bare 'AI' is a skill or domain knowledge.\nmodel-development and mlops: both come from the 'Nice to have' section, and the body also says 'significant advantage, but not a hard requirement'. 'training ML models' maps to model-development (alias 'ai model training'). 'operating them in production' maps to mlops (alias 'production operation of ai models').\nmachine-learning: not added as a separate criterion, because 'ML' only qualifies 'models' here. This is borderline and a reviewer may want to add it.\nNot labeled as skills: 'Experience leading infra or platform teams' (leadership experience, with no concrete infrastructure technology named) and 'Strong prior experience working as an engineer' (too generic for software-engineering).\nSeniority: the title says Engineering Manager, and 'Manager' is not among the stated triggers. It is inferred as senior from the lead duty ('lead a team of expert engineers').\nGerman and degree: no language or degree is mentioned anywhere in the posting."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "7fce50566f61437b6c960324b99f4c483146c1324bcb1ff4aeb8265c73f4829c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

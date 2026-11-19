@@ -1,0 +1,101 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"real-time monitoring\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Distributed control systems\", \"raw_text\": \"complex distributed control systems\"},\n    {\"label\": \"Industrial automation\", \"raw_text\": \"industrial automation\"},\n    {\"label\": \"Thermal management systems\", \"raw_text\": \"thermal management systems\"},\n    {\"label\": \"Liquid-cooling systems\", \"raw_text\": \"liquid-cooling systems\"},\n    {\"label\": \"Control theory\", \"raw_text\": \"control theory\"},\n    {\"label\": \"Feedback systems\", \"raw_text\": \"feedback systems\"},\n    {\"label\": \"PID control\", \"raw_text\": \"PID control\"},\n    {\"label\": \"System modeling\", \"raw_text\": \"system modeling\"},\n    {\"label\": \"Dynamic thermal management\", \"raw_text\": \"dynamic thermal management\"},\n    {\"label\": \"Industrial communication protocols\", \"raw_text\": \"industrial communication and management protocols\"},\n    {\"label\": \"Modbus\", \"raw_text\": \"Modbus\"},\n    {\"label\": \"BACnet\", \"raw_text\": \"BACnet\"},\n    {\"label\": \"OPC UA\", \"raw_text\": \"OPC UA\"},\n    {\"label\": \"MQTT\", \"raw_text\": \"MQTT\"},\n    {\"label\": \"Ethernet-based control networks\", \"raw_text\": \"Ethernet-based control networks\"},\n    {\"label\": \"Telemetry\", \"raw_text\": \"telemetry\"},\n    {\"label\": \"Fault detection\", \"raw_text\": \"fault detection\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Sr. Staff Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"You have a BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline\",\n  \"uncertain\": [],\n  \"notes\": \"Only the 'Who You Are' section asks things of the candidate. 'What We Need' lists duties (cybersecurity, APIs, testing) and 'What You Will Learn' lists things to be learned; neither is labeled.\\nI mapped 'real-time monitoring' to observability through the 'monitoring' alias. It is flagged uncertain because the context is industrial and facility monitoring, not software observability.\\n'distributed control systems' (industrial DCS) is not mapped to distributed-systems; it is listed in unmapped.\\n'Ethernet-based control networks' is not mapped to networking, because it names a specific industrial control-network practice. The 'networking' mention in the company description is not asked of the candidate.\\nModbus, BACnet, OPC UA and MQTT form an 'industrial communication and management protocols such as' alternative set. Under the guide this would be alternative_group 1, but none of them is in the taxonomy, so no group is recorded.\\nSeniority is stated from the title 'Sr. Staff Engineer' and also matches 'Senior Staff / Principal Engineer' and '12+ years'. The text 'We welcome candidates at various experience levels' does not override the title.\\nDegree takes the highest level named in 'BS, MS, or PhD', so it is phd. 'or a related technical discipline' widens the field only, so degree_or_equivalent is false.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "real-time monitoring",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Distributed control systems",
+        "raw_text": "complex distributed control systems"
+      },
+      {
+        "label": "Industrial automation",
+        "raw_text": "industrial automation"
+      },
+      {
+        "label": "Thermal management systems",
+        "raw_text": "thermal management systems"
+      },
+      {
+        "label": "Liquid-cooling systems",
+        "raw_text": "liquid-cooling systems"
+      },
+      {
+        "label": "Control theory",
+        "raw_text": "control theory"
+      },
+      {
+        "label": "Feedback systems",
+        "raw_text": "feedback systems"
+      },
+      {
+        "label": "PID control",
+        "raw_text": "PID control"
+      },
+      {
+        "label": "System modeling",
+        "raw_text": "system modeling"
+      },
+      {
+        "label": "Dynamic thermal management",
+        "raw_text": "dynamic thermal management"
+      },
+      {
+        "label": "Industrial communication protocols",
+        "raw_text": "industrial communication and management protocols"
+      },
+      {
+        "label": "Modbus",
+        "raw_text": "Modbus"
+      },
+      {
+        "label": "BACnet",
+        "raw_text": "BACnet"
+      },
+      {
+        "label": "OPC UA",
+        "raw_text": "OPC UA"
+      },
+      {
+        "label": "MQTT",
+        "raw_text": "MQTT"
+      },
+      {
+        "label": "Ethernet-based control networks",
+        "raw_text": "Ethernet-based control networks"
+      },
+      {
+        "label": "Telemetry",
+        "raw_text": "telemetry"
+      },
+      {
+        "label": "Fault detection",
+        "raw_text": "fault detection"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Sr. Staff Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "You have a BS, MS, or PhD in Electrical, Mechanical, Computer, or Controls Engineering, or a related technical discipline",
+    "uncertain": [],
+    "notes": "Only the 'Who You Are' section asks things of the candidate. 'What We Need' lists duties (cybersecurity, APIs, testing) and 'What You Will Learn' lists things to be learned; neither is labeled.\nI mapped 'real-time monitoring' to observability through the 'monitoring' alias. It is flagged uncertain because the context is industrial and facility monitoring, not software observability.\n'distributed control systems' (industrial DCS) is not mapped to distributed-systems; it is listed in unmapped.\n'Ethernet-based control networks' is not mapped to networking, because it names a specific industrial control-network practice. The 'networking' mention in the company description is not asked of the candidate.\nModbus, BACnet, OPC UA and MQTT form an 'industrial communication and management protocols such as' alternative set. Under the guide this would be alternative_group 1, but none of them is in the taxonomy, so no group is recorded.\nSeniority is stated from the title 'Sr. Staff Engineer' and also matches 'Senior Staff / Principal Engineer' and '12+ years'. The text 'We welcome candidates at various experience levels' does not override the title.\nDegree takes the highest level named in 'BS, MS, or PhD', so it is phd. 'or a related technical discipline' widens the field only, so degree_or_equivalent is false."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "5e3b357a9689adf9421c51a07edf3da208e61ee4af525330bfe91bcd4564bab0",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

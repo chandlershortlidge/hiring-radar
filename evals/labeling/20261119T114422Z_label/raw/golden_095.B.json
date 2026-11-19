@@ -1,0 +1,56 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"focus on AI\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agents\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"designing evaluation and feedback loops\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Python\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Agent harnesses\",\n      \"raw_text\": \"harnesses\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Internship\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"To have a background in a highly quantitative field, with a focus on AI (MSc or PhD)\",\n  \"notes\": \"The 'Nice to have' heading makes Python optional; the earlier required AI qualification wins over the optional AI research mention.\\nHarnesses are explicitly requested technical tooling but have no matching taxonomy entry.\\nEvaluation and feedback loops are treated as one evaluation practice in this context.\\nQuantitative research, mathematics, and trading exposure are domain knowledge and are excluded. Technologies mentioned only in responsibilities are excluded.\\nNo alternative skill groups or German-language requirement are present.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "focus on AI"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agents"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "designing evaluation and feedback loops"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Python"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Agent harnesses",
+        "raw_text": "harnesses"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Internship",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "To have a background in a highly quantitative field, with a focus on AI (MSc or PhD)",
+    "notes": "The 'Nice to have' heading makes Python optional; the earlier required AI qualification wins over the optional AI research mention.\nHarnesses are explicitly requested technical tooling but have no matching taxonomy entry.\nEvaluation and feedback loops are treated as one evaluation practice in this context.\nQuantitative research, mathematics, and trading exposure are domain knowledge and are excluded. Technologies mentioned only in responsibilities are excluded.\nNo alternative skill groups or German-language requirement are present."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "8ac9bc2be8ebd070488004b41d38cd8a5ae2da7ca85f50ba3ef249f72f4c0822",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

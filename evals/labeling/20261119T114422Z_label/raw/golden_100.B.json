@@ -1,0 +1,153 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"backend engineering experience\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"designing systems yourself\"\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Go for the platform control plane\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript and Python for services and APIs\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python for services and APIs\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"integrating third-party APIs\"\n    },\n    {\n      \"skill_id\": \"oauth\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"OAuth2/OIDC\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"running services on Kubernetes\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Observability\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform, Helm and ArgoCD\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GenAI systems\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"helm\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Helm\"\n    },\n    {\n      \"skill_id\": \"argocd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ArgoCD\"\n    },\n    {\n      \"skill_id\": \"grafana\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Grafana\"\n    },\n    {\n      \"skill_id\": \"prometheus\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Prometheus\"\n    },\n    {\n      \"skill_id\": \"opentelemetry\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"OpenTelemetry\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"github-actions\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitHub Actions\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data integration\",\n      \"raw_text\": \"combining data from multiple sources into one consistent view\"\n    },\n    {\n      \"label\": \"Role-based access control\",\n      \"raw_text\": \"role-based access models\"\n    },\n    {\n      \"label\": \"Kubernetes controllers\",\n      \"raw_text\": \"Kubernetes controllers\"\n    },\n    {\n      \"label\": \"Kubernetes operators\",\n      \"raw_text\": \"Kubernetes controllers or operators\"\n    },\n    {\n      \"label\": \"Declarative reconcile-based systems\",\n      \"raw_text\": \"declarative reconcile-based systems\"\n    },\n    {\n      \"label\": \"Usage metering\",\n      \"raw_text\": \"usage metering\"\n    },\n    {\n      \"label\": \"Amazon EKS\",\n      \"raw_text\": \"EKS\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Around 5 years of backend engineering experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"groups_reviewed\": true,\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"The candidate qualifications default to required; the additional-experience sentence is optional because it says “is considered an advantage.” Unmarked entries in Our stack are required, overriding optional or appetite-only mentions of Go, Terraform and the languages.\\nMapped designing systems to software architecture and metrics/alerts to observability; no data-pipelines skill was inferred from combining data sources.\\nFinOps data is treated literally as domain knowledge and excluded.\\nKubernetes controllers/operators are optional specialized skills not represented separately in the taxonomy; EKS is also unmapped.\\nNo alternative group remains among mapped skills: the languages and Go/Terraform are independently required by the stack, leaving only GenAI systems from the optional alternatives.\\nAround 5 years is provisionally treated as mid under the 3–5-year band; it is flagged because it borders the senior threshold.\\nNo German-language or degree requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend engineering experience"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "designing systems yourself"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go for the platform control plane"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript and Python for services and APIs"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python for services and APIs"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "integrating third-party APIs"
+      },
+      {
+        "skill_id": "oauth",
+        "requirement": "required",
+        "raw_text": "OAuth2/OIDC"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "running services on Kubernetes"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Observability"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform, Helm and ArgoCD"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "GenAI systems"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "helm",
+        "requirement": "required",
+        "raw_text": "Helm"
+      },
+      {
+        "skill_id": "argocd",
+        "requirement": "required",
+        "raw_text": "ArgoCD"
+      },
+      {
+        "skill_id": "grafana",
+        "requirement": "required",
+        "raw_text": "Grafana"
+      },
+      {
+        "skill_id": "prometheus",
+        "requirement": "required",
+        "raw_text": "Prometheus"
+      },
+      {
+        "skill_id": "opentelemetry",
+        "requirement": "required",
+        "raw_text": "OpenTelemetry"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "github-actions",
+        "requirement": "required",
+        "raw_text": "GitHub Actions"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data integration",
+        "raw_text": "combining data from multiple sources into one consistent view"
+      },
+      {
+        "label": "Role-based access control",
+        "raw_text": "role-based access models"
+      },
+      {
+        "label": "Kubernetes controllers",
+        "raw_text": "Kubernetes controllers"
+      },
+      {
+        "label": "Kubernetes operators",
+        "raw_text": "Kubernetes controllers or operators"
+      },
+      {
+        "label": "Declarative reconcile-based systems",
+        "raw_text": "declarative reconcile-based systems"
+      },
+      {
+        "label": "Usage metering",
+        "raw_text": "usage metering"
+      },
+      {
+        "label": "Amazon EKS",
+        "raw_text": "EKS"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Around 5 years of backend engineering experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "groups_reviewed": true,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The candidate qualifications default to required; the additional-experience sentence is optional because it says “is considered an advantage.” Unmarked entries in Our stack are required, overriding optional or appetite-only mentions of Go, Terraform and the languages.\nMapped designing systems to software architecture and metrics/alerts to observability; no data-pipelines skill was inferred from combining data sources.\nFinOps data is treated literally as domain knowledge and excluded.\nKubernetes controllers/operators are optional specialized skills not represented separately in the taxonomy; EKS is also unmapped.\nNo alternative group remains among mapped skills: the languages and Go/Terraform are independently required by the stack, leaving only GenAI systems from the optional alternatives.\nAround 5 years is provisionally treated as mid under the 3–5-year band; it is flagged because it borders the senior threshold.\nNo German-language or degree requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "8dcec55b01e95147927780dbbd61bf51383da5ffb7cb0c8c7f60a2f7a1693522",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}
