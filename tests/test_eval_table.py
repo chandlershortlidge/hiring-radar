@@ -145,14 +145,17 @@ def repo(tmp_path):
     subprocess.run(["git", "config", "user.email", "t@t"], cwd=tmp_path, check=True)
     subprocess.run(["git", "config", "user.name", "t"], cwd=tmp_path, check=True)
 
-    def write(run_id, **kw):
-        d = tmp_path / "evals/results" / run_id
+    def write(run_id, folder="evals/results", **kw):
+        d = tmp_path / folder / run_id
         d.mkdir(parents=True)
         (d / "summary.json").write_text(json.dumps(summary(run_id=run_id, **kw)))
 
     write("20261016T084520Z_dev_x2-first", extractor="x2-first", f1=0.80)
     write("20261101T100707Z_dev_x2-latest", extractor="x2-latest", f1=0.92)
     write("20261102T100707Z_heldout_x2-latest", split="heldout", f1=0.99)
+    # An experiment: a dev run of something production does not run, e.g. another model.
+    write("20261119T150000Z_dev_x2-haiku", folder="evals/experiments",
+          extractor="x2-haiku", f1=0.95)
     subprocess.run(["git", "add", "-A"], cwd=tmp_path, check=True)
     subprocess.run(["git", "commit", "-qm", "runs"], cwd=tmp_path, check=True)
 
@@ -174,6 +177,17 @@ def test_an_uncommitted_run_is_not_a_baseline(repo):
 def test_heldout_runs_are_never_the_baseline(repo):
     ids = [p.parent.name for p in eval_table.committed_dev_summaries(repo)]
     assert all("heldout" not in i for i in ids)
+
+
+def test_experiment_runs_are_never_the_baseline(repo):
+    """A run under evals/experiments/ measures something production does not run — another
+    model, a prompt trial. It is committed so its numbers can be checked later, but it must
+    never become the gate's baseline: the next extractor change would then be measured
+    against a model nobody is using (HIR-223).
+    """
+    ids = [p.parent.name for p in eval_table.committed_dev_summaries(repo)]
+    assert "20261119T150000Z_dev_x2-haiku" not in ids
+    assert eval_table.load_baseline(repo)["meta"]["run_id"] == "20261101T100707Z_dev_x2-latest"
 
 
 def test_the_run_being_reported_is_excluded_from_its_own_baseline(repo):
