@@ -28,3 +28,18 @@ Agreed value, different quoted signal (A's kept):
 
 No taxonomy entry fits (a taxonomy gap, never a Golden label):
 - AI frameworks, AI frameworks (generic), AI hallucinations, AWS Bedrock AgentCore, AWS Glue, AWS Glue (nice_to_have, alternative to Lake Formation), AWS Lake Formation (nice_to_have, alternative to AWS Glue), Agentic skills, Agile / SDLC, Agile Arbeitsweisen, Agile methods, Amazon Lex, Azure AI, Backlog management, Blue/green deployments, Classification Models, Classification models, Cloud Native, Clustering, Code review, Customer-managed encryption keys, Data residency, Data technologies, Dataflow, Definition of Done, Design patterns, Encryption / CMEK, Encryption at rest and in transit, Encryption at rest and in transit, including CMEK, Engineering tools (unspecified), Famulor, Google Cloud Dataflow, Google Cloud Pub/Sub, JSON, Jira, Keras, Kiro CLI, Lake Formation, Microsoft Copilot Studio, Microsoft Copilot Studio (nice to have), Microsoft Foundry Agents Service, Microsoft SQL Server, Model identification, Programming languages, Prompt injection, Pub/Sub, Re-ranking, SAFe, SAFe (nice to have), Scrum, Shell scripting, Software design patterns, Software development lifecycle, System administration, T-SQL, Text-to-Speech (TTS), Text-to-speech (TTS), Token cost, Token costs, Trunk-based development, VPN technologies, Vertex AI Agent Builder, Vertical task slicing, Voice-AI platforms, Voicebots, Webhooks
+
+## Spot-check error rate (after review)
+
+- 8 errors in 80 reviewed labels = 0.100
+- 95% Wilson interval: 0.052 to 0.185
+
+Wrong labels found:
+- golden_123 skill `python` -> {"raw_text": "Python"}
+- golden_124 skill `node-js` -> {"raw_text": "Node.js im Backend"}
+- golden_125 skill `java` -> {"raw_text": "Java"}
+- golden_127 skill `prompt-engineering` -> {"raw_text": "Prompt Engineering"}
+- golden_128 skill `observability` -> drop
+- golden_131 skill `ci-cd` -> {"raw_text": "CI/CD"}
+- golden_131 skill `java` -> {"raw_text": "Java"}
+- golden_132 skill `observability` -> drop

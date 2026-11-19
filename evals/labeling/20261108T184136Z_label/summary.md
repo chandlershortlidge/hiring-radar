@@ -31,3 +31,21 @@ Agreed value, different quoted signal (A's kept):
 
 No taxonomy entry fits (a taxonomy gap, never a Golden label):
 - A2A, A2A (Agent2Agent protocol), AI Engineering, AI governance (EU AI Act, GDPR), AI model integration, AWS CodeBuild, AWS CodeBuild/CodePipeline, AWS CodePipeline, AWS Lambda, Accounting software, Agile software development, Amazon EKS, Control theory, DSPy, Data-driven applications, Databases, Deployment, Dynamic code analysis, ERP / accounting software, ERP software, ERP systems, Edge AI, Enterprise application and systems integration, Enterprise application integration, Few-shot learning, Flux, Fuzzing, GenAI application optimisation, Imitation Learning, Imitation learning (IL), Integration architectures, Integration of AI models, Isaac Sim, IsaacSim, JSON, Jakarta EE, Jakarta Enterprise Edition, KI-Governance, LangChain4J, Locomotion and locomanipulation policy training, Locomotion/locomanipulation policy training, Low-Code-/No-Code-Plattformen, Low-code/no-code platforms, ML frameworks, ML frameworks (generic), Microsoft 365, Model optimization, Model pruning, Motion planning, MuJoCo, Multi-tenancy, Multimodal models, Multimodal understanding, Object Detection, Object detection, Object tracking, On-premise / hybrid infrastructure, On-premise and hybrid infrastructure, OpenAPI, Oracle, PPO, Penetration testing, Penetration testing tools, Physics-based simulation, Physics-based simulators, Podman, Power Platform, PowerShell, Programmierung, Proximal Policy Optimization (PPO), Pruning, Pydantic, RL frameworks, RSL-RL, Reinforcement learning frameworks, Reliable production operation, Robot kinematics and dynamics, Robot kinematics/dynamics, SAC, SAP, SaaS applications, Scalability, Scientific research, Scripting, Security toolchain development or operation, Segmentation, Sim-to-real transfer, Soft Actor-Critic (SAC), Software deployment, Specification-driven development, Stable Baselines 3, Static and dynamic code analysis, Static code analysis, Technical proof-of-concept development, Text-to-SQL, Text2SQL, Tracking, Vision-Language Models, Vision-language models, XRechnung / ZUGFeRD e-invoicing standards, secure AI applications, security toolchains
+
+## Spot-check error rate (after review)
+
+- 11 errors in 80 reviewed labels = 0.138
+- 95% Wilson interval: 0.079 to 0.230
+
+Wrong labels found:
+- golden_136 skill `rag` -> {"raw_text": "RAG"}
+- golden_137 skill `azure` -> {"raw_text": "Azure"}
+- golden_137 skill `pytorch` -> {"raw_text": "PyTorch"}
+- golden_137 skill `tensorflow` -> {"raw_text": "TensorFlow"}
+- golden_138 skill `cloud` -> {"raw_text": "Cloud-Plattformen"}
+- golden_138 skill `mlops` -> {"raw_text": "MLOps"}
+- golden_141 attribute `degree` -> {"degree": "master", "degree_requirement": "required", "degree_or_equivalent": false, "degree_signal": "Master’s or PhD in robotics, computer science, engineering, or a related field"}
+- golden_142 skill `ci-cd` -> {"raw_text": "CI/CD"}
+- golden_142 skill `containerization` -> {"raw_text": "Container"}
+- golden_142 skill `infrastructure-as-code` -> {"raw_text": "Infrastructure as Code"}
+- golden_147 skill `microsoft-entra-id` -> {"raw_text": "Entra ID"}

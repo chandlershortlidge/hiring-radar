@@ -1,0 +1,100 @@
+{
+  "id": "golden_142",
+  "split": "heldout",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Sehr gute Sprachkenntnisse in Deutsch und Englisch in Wort und Schrift",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Abgeschlossenes Studium der Informatik, Softwaretechnik oder eine vergleichbare Qualifikation mit einschlägiger Berufserfahrung",
+  "attrs_reviewed": true,
+  "source_sha256": "ebe55f43cfd6a7b581b801de8e7cf927ebf34a595678b56e8e8ed3e3be62135a",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:agents",
+    "skill:ai-developer-tooling",
+    "skill:ci-cd",
+    "skill:containerization",
+    "skill:distributed-systems",
+    "skill:infrastructure-as-code",
+    "skill:software-engineering"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Wir suchen Dich als\nEngineer, Software AI DevOps (m/w/d)\n\nWas erwartet Dich bei uns?\n\n- langjährige Erfahrung in der Jobsuche.\n- Unbefristeter Arbeitsvertrag für berufliche Sicherheit und Stabilität.\n- Persönlicher Ansprechpartner und individuelle Karriereberatung.\n- Chance auf Übernahme im Kundenunternehmen.\n\nDeine Aufgaben\n\n- Entwicklung AI-gestützter DevSecOps-Toolchains und Testautomatisierungslösungen für ASMPT WORKS sowie die nächste Generation unserer Softwareplattform\n- Verantwortung für wiederverwendbare CI/CD-Pipelines, Entwicklungsinfrastrukturen, Testframeworks und Quality Gates\n- Einsatz moderner Technologien wie AI-Assistenten, agentischer Workflows, Infrastructure as Code, Containerplattformen und Observability für produktive Anwendungen\n- Zusammenarbeit mit erfahrenen Architekten, Product Ownern, Entwicklungs- und Testteams sowie unserem strategischen Plattformpartner an Lösungen mit globaler Reichweite\n- Gestaltung automatisierter Integrations-, System- und End-to-End-Tests sowie Unterstützung der Teams bei der effizienten Nutzung der bereitgestellten DevSecOps-Fähigkeiten\n- Sicherstellung reproduzierbarer Softwareintegration, zuverlässiger Releases und kontinuierlicher Qualität durch einen hohen Automatisierungsgrad und den gezielten Einsatz von AI\n\nDas bringst Du mit\n\n- Abgeschlossenes Studium der Informatik, Softwaretechnik oder eine vergleichbare Qualifikation mit einschlägiger Berufserfahrung\n- Fundierte Erfahrung in DevSecOps, CI/CD, Infrastructure as Code und Container, in Softwareentwicklung oder Testautomatisierung für verteilte Softwarelösungen on-premise und in der Cloud\n- Sehr gute Kenntnisse in Programmierung und Scripting, beispielsweise mit C#/.NET, PowerShell oder TypeScript\n- Ausgeprägtes Interesse an AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering\n- Ganzheitliches Denkvermögen, hohe Eigenverantwortung und ausgeprägte Umsetzungsstärke bei technischen Fragestellungen\n- Freude an der Zusammenarbeit und am Wissensaustausch in internationalen, interdisziplinären Teams sowie an der strukturierten Analyse komplexer Fehlersituationen\n- Sehr gute Sprachkenntnisse in Deutsch und Englisch in Wort und Schrift\n\nInteresse?\nDann freuen wir uns auf Deine Bewerbung!Gerne kannst Du Dich vorab informieren:Telefonisch: Nico Göbel: 089/829982 - 19Per Mail: nico.goebel@accu-personalservice.de\naccu Personalservice GmbHUntere Bahnhofstr. 4082110 Germering\n\nDas sind wir\nPersonaldienstleistung ist für uns mehr als nur ein Geschäft.Wir nehmen uns Zeit, hören genau hin und führen ehrliche, tiefgehende Gespräche – mit Bewerbern genauso wie mit Kunden.Denn nur so entsteht echte Zufriedenheit: wenn Mensch und Job wirklich zueinander passen.Gemeinsam zum Perfect Match.",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz"
+    },
+    {
+      "skill_id": "ai-developer-tooling",
+      "requirement": "required",
+      "raw_text": "AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "CI/CD"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "in der Cloud"
+    },
+    {
+      "skill_id": "containerization",
+      "requirement": "required",
+      "raw_text": "Container"
+    },
+    {
+      "skill_id": "csharp",
+      "requirement": "required",
+      "raw_text": "C#/.NET"
+    },
+    {
+      "skill_id": "devsecops",
+      "requirement": "required",
+      "raw_text": "Fundierte Erfahrung in DevSecOps"
+    },
+    {
+      "skill_id": "distributed-systems",
+      "requirement": "required",
+      "raw_text": "verteilte Softwarelösungen"
+    },
+    {
+      "skill_id": "dotnet",
+      "requirement": "required",
+      "raw_text": "C#/.NET"
+    },
+    {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "required",
+      "raw_text": "Infrastructure as Code"
+    },
+    {
+      "skill_id": "software-engineering",
+      "requirement": "required",
+      "raw_text": "Softwareentwicklung"
+    },
+    {
+      "skill_id": "testing",
+      "requirement": "required",
+      "raw_text": "oder Testautomatisierung"
+    },
+    {
+      "skill_id": "typescript",
+      "requirement": "required",
+      "raw_text": "oder TypeScript"
+    }
+  ]
+}

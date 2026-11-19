@@ -186,7 +186,7 @@ DECISION: yes
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 15. golden_123 - attribute `seniority` (disagreement)
 
@@ -197,7 +197,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 16. golden_124 - skill `cloud` (disagreement)
 
@@ -208,7 +208,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 17. golden_124 - skill `cybersecurity` (disagreement)
 
@@ -219,7 +219,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 18. golden_124 - skill `full-stack-development` (disagreement)
 
@@ -230,7 +230,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: drop
 
 ## 19. golden_124 - skill `software-architecture` (disagreement)
 
@@ -241,7 +241,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 20. golden_125 - skill `sql` (disagreement)
 
@@ -252,7 +252,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 21. golden_128 - skill `vertex-ai` (disagreement)
 
@@ -263,7 +263,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 22. golden_132 - skill `data-privacy-and-security` (disagreement)
 
@@ -274,7 +274,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 23. golden_132 - skill `vertex-ai` (disagreement)
 
@@ -285,7 +285,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 24. golden_133 - skill `aws-bedrock` (disagreement)
 
@@ -296,7 +296,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 25. golden_133 - skill `azure-ai-foundry` (disagreement)
 
@@ -307,7 +307,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 26. golden_133 - skill `hallucination-detection` (disagreement)
 
@@ -318,7 +318,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 27. golden_121 - skill `cloud` (uncertain)
 
@@ -329,7 +329,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 28. golden_121 - skill `python` (uncertain)
 
@@ -340,7 +340,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 29. golden_121 - skill `snowflake` (uncertain)
 
@@ -351,7 +351,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 30. golden_122 - skill `cloud` (uncertain)
 
@@ -362,7 +362,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 31. golden_123 - skill `ai-ml` (uncertain)
 
@@ -373,7 +373,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 32. golden_123 - skill `llm-guardrails` (uncertain)
 
@@ -384,7 +384,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 33. golden_123 - skill `nlp` (uncertain)
 
@@ -395,7 +395,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 34. golden_124 - skill `backend-development` (uncertain)
 
@@ -406,7 +406,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 35. golden_124 - skill `containerization` (uncertain)
 
@@ -417,7 +417,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: {"raw_text": "Container"}
 
 ## 36. golden_124 - skill `distributed-systems` (uncertain)
 
@@ -428,7 +428,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 37. golden_124 - skill `hallucination-detection` (uncertain)
 
@@ -439,7 +439,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 38. golden_125 - attribute `degree` (uncertain)
 
@@ -450,7 +450,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 39. golden_125 - skill `cybersecurity` (uncertain)
 
@@ -461,7 +461,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 40. golden_125 - skill `networking` (uncertain)
 
@@ -472,7 +472,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 41. golden_126 - skill `software-engineering` (uncertain)
 
@@ -483,7 +483,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 42. golden_127 - skill `ai-ml` (uncertain)
 
@@ -494,7 +494,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 43. golden_127 - skill `llms` (uncertain)
 
@@ -505,7 +505,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 44. golden_128 - skill `data-engineering` (uncertain)
 
@@ -516,7 +516,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 45. golden_128 - skill `software-engineering` (uncertain)
 
@@ -527,7 +527,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 46. golden_131 - skill `evaluation` (uncertain)
 
@@ -538,7 +538,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 47. golden_131 - skill `llm-orchestration` (uncertain)
 
@@ -549,7 +549,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 48. golden_132 - skill `data-engineering` (uncertain)
 
@@ -560,7 +560,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 49. golden_132 - skill `model-selection` (uncertain)
 
@@ -571,7 +571,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 50. golden_132 - skill `reinforcement-learning` (uncertain)
 
@@ -582,7 +582,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 51. golden_132 - skill `software-engineering` (uncertain)
 
@@ -593,7 +593,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 52. golden_133 - attribute `seniority` (uncertain)
 
@@ -604,7 +604,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 53. golden_133 - skill `llm-orchestration` (uncertain)
 
@@ -615,7 +615,7 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: ok
 
 ## 54. golden_128 - skill `mlops|aiops` (mapping)
 
@@ -626,7 +626,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 55. golden_132 - skill `mlops|aiops` (mapping)
 
@@ -637,7 +637,7 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: A
 
 ## 56. golden_121 - attribute `degree` (spot-check)
 
@@ -647,7 +647,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 57. golden_122 - attribute `degree` (spot-check)
 
@@ -657,7 +657,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 58. golden_122 - skill `llms` (spot-check)
 
@@ -667,7 +667,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 59. golden_122 - skill `n8n` (spot-check)
 
@@ -677,7 +677,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 60. golden_122 - skill `python` (spot-check)
 
@@ -687,7 +687,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 61. golden_122 - skill `typescript` (spot-check)
 
@@ -697,7 +697,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 62. golden_122 - skill `workflow-automation` (spot-check)
 
@@ -707,7 +707,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 63. golden_123 - attribute `german` (spot-check)
 
@@ -717,7 +717,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 64. golden_123 - skill `embeddings` (spot-check)
 
@@ -727,7 +727,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 65. golden_123 - skill `gcp` (spot-check)
 
@@ -737,7 +737,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 66. golden_123 - skill `langchain` (spot-check)
 
@@ -747,7 +747,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 67. golden_123 - skill `llamaindex` (spot-check)
 
@@ -757,7 +757,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 68. golden_123 - skill `machine-learning` (spot-check)
 
@@ -767,7 +767,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 69. golden_123 - skill `python` (spot-check)
 
@@ -777,7 +777,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: {"raw_text": "Python"}
 
 ## 70. golden_123 - skill `sql` (spot-check)
 
@@ -787,7 +787,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 71. golden_123 - skill `tensorflow` (spot-check)
 
@@ -797,7 +797,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 72. golden_124 - attribute `degree` (spot-check)
 
@@ -807,7 +807,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 73. golden_124 - attribute `german` (spot-check)
 
@@ -817,7 +817,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 74. golden_124 - skill `chain-of-thought` (spot-check)
 
@@ -827,7 +827,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 75. golden_124 - skill `context-engineering` (spot-check)
 
@@ -837,7 +837,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 76. golden_124 - skill `node-js` (spot-check)
 
@@ -847,7 +847,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: {"raw_text": "Node.js im Backend"}
 
 ## 77. golden_124 - skill `react` (spot-check)
 
@@ -857,7 +857,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 78. golden_125 - attribute `seniority` (spot-check)
 
@@ -867,7 +867,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 79. golden_125 - skill `bash` (spot-check)
 
@@ -877,7 +877,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 80. golden_125 - skill `java` (spot-check)
 
@@ -887,7 +887,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: {"raw_text": "Java"}
 
 ## 81. golden_126 - attribute `german` (spot-check)
 
@@ -897,7 +897,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 82. golden_126 - skill `apis` (spot-check)
 
@@ -907,7 +907,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 83. golden_126 - skill `ci-cd` (spot-check)
 
@@ -917,7 +917,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 84. golden_126 - skill `fine-tuning` (spot-check)
 
@@ -927,7 +927,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 85. golden_126 - skill `llamaindex` (spot-check)
 
@@ -937,7 +937,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 86. golden_126 - skill `llms` (spot-check)
 
@@ -947,7 +947,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 87. golden_126 - skill `python` (spot-check)
 
@@ -957,7 +957,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 88. golden_127 - attribute `german` (spot-check)
 
@@ -967,7 +967,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 89. golden_127 - attribute `seniority` (spot-check)
 
@@ -977,7 +977,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 90. golden_127 - skill `agents` (spot-check)
 
@@ -987,7 +987,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 91. golden_127 - skill `azure` (spot-check)
 
@@ -997,7 +997,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 92. golden_127 - skill `conversational-ai` (spot-check)
 
@@ -1007,7 +1007,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 93. golden_127 - skill `power-automate` (spot-check)
 
@@ -1017,7 +1017,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 94. golden_127 - skill `prompt-engineering` (spot-check)
 
@@ -1027,7 +1027,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: {"raw_text": "Prompt Engineering"}
 
 ## 95. golden_127 - skill `python` (spot-check)
 
@@ -1037,7 +1037,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 96. golden_128 - attribute `german` (spot-check)
 
@@ -1047,7 +1047,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 97. golden_128 - attribute `seniority` (spot-check)
 
@@ -1057,7 +1057,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 98. golden_128 - skill `explainable-ai` (spot-check)
 
@@ -1067,7 +1067,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 99. golden_128 - skill `llm-orchestration` (spot-check)
 
@@ -1077,7 +1077,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 100. golden_128 - skill `llms` (spot-check)
 
@@ -1087,7 +1087,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 101. golden_128 - skill `machine-learning` (spot-check)
 
@@ -1097,7 +1097,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 102. golden_128 - skill `observability` (spot-check)
 
@@ -1107,7 +1107,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: drop
 
 ## 103. golden_128 - skill `python` (spot-check)
 
@@ -1117,7 +1117,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 104. golden_128 - skill `vector-databases` (spot-check)
 
@@ -1127,7 +1127,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 105. golden_129 - attribute `degree` (spot-check)
 
@@ -1137,7 +1137,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 106. golden_129 - attribute `german` (spot-check)
 
@@ -1147,7 +1147,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 107. golden_129 - attribute `seniority` (spot-check)
 
@@ -1157,7 +1157,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 108. golden_130 - attribute `german` (spot-check)
 
@@ -1167,7 +1167,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 109. golden_130 - attribute `seniority` (spot-check)
 
@@ -1177,7 +1177,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 110. golden_131 - attribute `degree` (spot-check)
 
@@ -1187,7 +1187,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 111. golden_131 - attribute `seniority` (spot-check)
 
@@ -1197,7 +1197,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 112. golden_131 - skill `agents` (spot-check)
 
@@ -1207,7 +1207,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 113. golden_131 - skill `ai-developer-tooling` (spot-check)
 
@@ -1217,7 +1217,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 114. golden_131 - skill `ci-cd` (spot-check)
 
@@ -1227,7 +1227,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: {"raw_text": "CI/CD"}
 
 ## 115. golden_131 - skill `cloud` (spot-check)
 
@@ -1237,7 +1237,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 116. golden_131 - skill `infrastructure-as-code` (spot-check)
 
@@ -1247,7 +1247,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 117. golden_131 - skill `java` (spot-check)
 
@@ -1257,7 +1257,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: {"raw_text": "Java"}
 
 ## 118. golden_131 - skill `software-engineering` (spot-check)
 
@@ -1267,7 +1267,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 119. golden_132 - attribute `german` (spot-check)
 
@@ -1277,7 +1277,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 120. golden_132 - skill `api-design` (spot-check)
 
@@ -1287,7 +1287,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 121. golden_132 - skill `devops` (spot-check)
 
@@ -1297,7 +1297,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 122. golden_132 - skill `explainable-ai` (spot-check)
 
@@ -1307,7 +1307,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 123. golden_132 - skill `llms` (spot-check)
 
@@ -1317,7 +1317,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 124. golden_132 - skill `machine-learning` (spot-check)
 
@@ -1327,7 +1327,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 125. golden_132 - skill `observability` (spot-check)
 
@@ -1337,7 +1337,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: drop
 
 ## 126. golden_132 - skill `python` (spot-check)
 
@@ -1347,7 +1347,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 127. golden_132 - skill `vector-databases` (spot-check)
 
@@ -1357,7 +1357,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 128. golden_133 - attribute `german` (spot-check)
 
@@ -1367,7 +1367,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 129. golden_133 - skill `agents` (spot-check)
 
@@ -1377,7 +1377,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 130. golden_133 - skill `ai-developer-tooling` (spot-check)
 
@@ -1387,7 +1387,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 131. golden_133 - skill `cloud` (spot-check)
 
@@ -1397,7 +1397,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 132. golden_133 - skill `cursor` (spot-check)
 
@@ -1407,7 +1407,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 133. golden_133 - skill `embeddings` (spot-check)
 
@@ -1417,7 +1417,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 134. golden_133 - skill `llms` (spot-check)
 
@@ -1427,7 +1427,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 135. golden_133 - skill `mcp` (spot-check)
 
@@ -1437,4 +1437,4 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok

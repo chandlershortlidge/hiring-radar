@@ -1,0 +1,121 @@
+{
+  "id": "golden_146",
+  "split": "heldout",
+  "seniority": "mid",
+  "seniority_basis": "inferred",
+  "seniority_signal": "Min 4 years' experience",
+  "seniority_reviewed": false,
+  "german": null,
+  "german_basis": null,
+  "german_signal": null,
+  "degree": "master",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "Graduate degree in a quantitative discipline (Computer Science, Engineering, Statistics, Operations Research, etc.) or equivalent practical experience",
+  "attrs_reviewed": true,
+  "source_sha256": "d07610853377049a1300cbbfb9493cdb7a876f9aa8837f3215d027074d07598f",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "degree",
+    "skill:ai-deployment",
+    "skill:llms"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "AI Forward Deployed Engineer - Germany\n\nAI Engineer - FDE (Forward Deployed Engineer)\n\nReq ID: CSQ427R334\n\nWe welcome remote applicants located near our offices. Preferred locations: Munich, Berlin, Frankfurt, Germany. Remote location for candidates to be based in the Germany region only (not remote from any other country)\n\nMission\n\nThe AI Forward Deployed Engineering (AI FDE) team is a highly specialised customer-facing AI team at Databricks. We deliver professional services engagements to help our customers build and productionize first-of-its-kind AI applications. We work cross-functionally to shape long-term strategic priorities and initiatives alongside engineering, product, and developer relations, as well as support internal subject matter expert (SME) teams. We view our team as an ensemble: we look for individuals with strong, unique specialisations to improve the overall strength of the team. This team is the right fit for you if you love working with customers, teammates, and fueling your curiosity for the latest trends in GenAI, LLMOps, and ML more broadly.\n\nReporting to: Senior Manager - AI FDE, EMEA\n\nThe impact you will have:\n\n- Develop cutting-edge GenAI solutions, incorporating the latest techniques from Databricks AI research to solve customer problems\n\n- Own production rollouts of consumer and internally facing GenAI applications\n\n- Serve as a trusted technical advisor to customers across a variety of domains\n\n- Present at conferences such as Data + AI Summit, recognized as a thought leader internally and externally\n\n- Collaborate cross-functionally with the product and engineering teams to influence priorities and shape the product roadmap \n\nWhat we look for:\n\n- Min 4 years' experience \n\n- Experience building GenAI applications, including RAG, multi-agent systems, Text2SQL, fine-tuning, etc., with tools such as HuggingFace, LangChain, and DSPy\n\n- Expertise in deploying production-grade GenAI applications, including evaluation and optimisations \n\n- Extensive years of hands-on industry data science experience, leveraging common machine learning and data science tools, i.e. pandas, scikit-learn, PyTorch, etc.\n\n- Experience building production-grade machine learning deployments on AWS, Azure, or GCP\n\n- Graduate degree in a quantitative discipline (Computer Science, Engineering, Statistics, Operations Research, etc.) or equivalent practical experience\n\n- Experience communicating and/or teaching technical concepts to non-technical and technical audiences alike\n\n- Passion for collaboration, life-long learning, and driving business value through AI\n\n- [Preferred] Experience using the Databricks Intelligence Platform and Apache Spark™ to process large-scale distributed datasets\n\n- Willing to travel once every 4-8 weeks to see customers (as needed)\n\nAbout Databricks\n\nDatabricks is the Data and AI company. More than 20,000 organizations worldwide — including adidas, AT&T, Bayer, Block, Mastercard, Rivian, Unilever, and 70% of the Fortune 500 — rely on the Databricks Data + AI Platform to build and scale data and AI apps, analytics and agents. Headquartered in San Francisco with 30+ offices around the globe, Databricks offers a unified platform that includes Genie, Lakebase, Agent Bricks, Lakeflow, Lakehouse, and Unity Catalog. To learn more, follow Databricks on LinkedIn, X, YouTube, and Instagram.\n\nBenefits\n\nAt Databricks, we strive to provide comprehensive benefits and perks that meet the needs of all of our employees. For specific details on the benefits offered in your region click here.\n\nOur Commitment to Diversity and Inclusion\n\nAt Databricks, we are committed to fostering a diverse and inclusive culture where everyone can excel. We take great care to ensure that our hiring practices are inclusive and meet equal employment opportunity standards. Individuals looking for employment at Databricks are considered without regard to age, color, disability, ethnicity, family or marital status, gender identity or expression, language, national origin, physical and mental ability, political affiliation, race, religion, sexual orientation, socio-economic status, veteran status, and other protected characteristics.\n\nCompliance\n\nIf access to export-controlled technology or source code is required for performance of job duties, it is within Employer's discretion whether to apply for a U.S. government license for such positions, and Employer may decline to proceed with an applicant on this basis alone.",
+  "expected": [
+    {
+      "skill_id": "ai-deployment",
+      "requirement": "required",
+      "raw_text": "deploying production-grade GenAI applications"
+    },
+    {
+      "skill_id": "apache-spark",
+      "requirement": "nice_to_have",
+      "raw_text": "Apache Spark™"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "AWS"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Azure"
+    },
+    {
+      "skill_id": "data-science",
+      "requirement": "required",
+      "raw_text": "industry data science experience"
+    },
+    {
+      "skill_id": "databricks",
+      "requirement": "nice_to_have",
+      "raw_text": "[Preferred] Experience using the Databricks Intelligence Platform"
+    },
+    {
+      "skill_id": "evaluation",
+      "requirement": "required",
+      "raw_text": "evaluation"
+    },
+    {
+      "skill_id": "fine-tuning",
+      "requirement": "required",
+      "raw_text": "fine-tuning"
+    },
+    {
+      "skill_id": "gcp",
+      "requirement": "required",
+      "raw_text": "GCP"
+    },
+    {
+      "skill_id": "hugging-face",
+      "requirement": "required",
+      "raw_text": "HuggingFace"
+    },
+    {
+      "skill_id": "langchain",
+      "requirement": "required",
+      "raw_text": "LangChain"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "GenAI applications"
+    },
+    {
+      "skill_id": "machine-learning",
+      "requirement": "required",
+      "raw_text": "common machine learning"
+    },
+    {
+      "skill_id": "multi-agent-systems",
+      "requirement": "required",
+      "raw_text": "multi-agent systems"
+    },
+    {
+      "skill_id": "pandas",
+      "requirement": "required",
+      "raw_text": "pandas"
+    },
+    {
+      "skill_id": "pytorch",
+      "requirement": "required",
+      "raw_text": "PyTorch"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG"
+    },
+    {
+      "skill_id": "scikit-learn",
+      "requirement": "required",
+      "raw_text": "scikit-learn"
+    }
+  ]
+}

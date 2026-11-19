@@ -1,0 +1,101 @@
+{
+  "id": "golden_127",
+  "split": "dev",
+  "seniority": null,
+  "seniority_basis": null,
+  "seniority_signal": null,
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "inferred",
+  "german_signal": null,
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": false,
+  "degree_signal": "abgeschlossenes Studium der Informatik, Wirtschaftsinformatik, Data Science, AI, Engineering oder vergleichbarer Fachrichtung",
+  "attrs_reviewed": true,
+  "source_sha256": "53a2dbe882fb27617d18b4197a238258f5783e6d6cf43f81f9ab994afeb60f18",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "skill:ai-ml",
+    "skill:llms",
+    "skill:prompt-engineering"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "AI & Automation Engineer – Life Sciences (all gender)\n\n### #weareALTEN – the home of forward thinkers\n\n**Wir sind die Gestalter von heute für die Welt von morgen.**\n\nAls einer der weltweit führenden Entwicklungsdienstleister setzen wir uns bei ALTEN dafür ein, die Zukunft unserer Partnerunternehmen, die Karrieren unserer Mitarbeiter und Mitarbeiterinnen sowie die Herausforderungen für unsere Gesellschaft und Umwelt positiv zu gestalten.\n\nKnapp 60.000 Angestellte in 30 Ländern arbeiten schon heute an innovativen Lösungen in verschiedenen Ingenieur- und IT-Branchen wie Luft- und Raumfahrt, erneuerbare Energien, Medizintechnik, Bahntechnik und Automobil.\n\n### AI & Automation Engineer – Life Sciences (all gender)\n\n### A home where people learn and thrive\n\n- **Talent Management** – wir entwickeln deine Karriere\n- **Work Life Balance** – flexible Arbeitszeiten und mobiles Arbeiten möglich\n- **Fit and relaxed –** mit EGYM Wellpass\n- **Enjoy biking** – immer on tour mit Dienstradleasing\n- **Green Mobility** – mit uns bist du vergünstigt unterwegs\n\n…zudem bieten wir einen unbefristeten Arbeitsvertrag, Corporate Benefits und Teamevents.\n\n### Make it happen\n\n**DU…**\n\n- entwickelst AI- und GenAI-Anwendungen für Life-Science-Prozesse\n- entwickelst Chatbot- und Voicebot-Lösungen und baust AI-Agenten und automatisierte Workflows\n- bist zuständig für Prompt Engineering und Integration von Large Language Models\n- automatisierst Customer-Service- und Supportprozessen\n- integrierst AI-Lösungen in bestehende Unternehmenssysteme\n- bindest Datenquellen über APIs und Schnittstellen an\n- entwickelst und bewertest neue AI Use Cases\n- unterstützt bei Prototypen und Proof of Concepts\n- arbeitest mit Fachbereichen aus Bereichen wie Customer Service, Supply Chain, Quality, Manufacturing, Regulatory oder IT zusammen\n\n### Be our forward thinker\n\n**DU…**\n\n- hast ein abgeschlossenes Studium der Informatik, Wirtschaftsinformatik, Data Science, AI, Engineering oder vergleichbarer Fachrichtung\n- bringst praktische Erfahrung mit AI, GenAI oder Prozessautomatisierung mit\n- hast Kenntnisse in Python, JavaScript oder TypeScript und Erfahrung mit REST APIs, JSON oder Webhooks\n- kennst dich aus mit Azure, Azure AI oder vergleichbaren Cloud-Technologien\n- verfügst über Kenntnisse in Workflow Automation, beispielsweise n8n, Microsoft Power Automate oder vergleichbaren Plattformen\n- bringst Erfahrung mit LLMs, Prompt Engineering oder RAG-Ansätzen mit\n- hast Interesse an Conversational AI, Chatbots, Voicebots oder AI Agents\n\nWir wertschätzen Vielfalt und begrüßen daher alle Bewerbungen – unabhängig von Geschlecht, Nationalität, ethnischer und sozialer Herkunft, Religion / Weltanschauung, Behinderung, Alter sowie sexueller Orientierung und Identität.\n\nSchwerbehinderte werden bei gleicher Eignung bevorzugt berücksichtigt.\n\nBewirb dich jetzt über unser Online-Bewerbungsformular.",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "nice_to_have",
+      "raw_text": "Interesse an Conversational AI, Chatbots, Voicebots oder AI Agents"
+    },
+    {
+      "skill_id": "ai-ml",
+      "requirement": "required",
+      "raw_text": "praktische Erfahrung mit AI"
+    },
+    {
+      "skill_id": "apis",
+      "requirement": "required",
+      "raw_text": "REST APIs"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "kennst dich aus mit Azure"
+    },
+    {
+      "skill_id": "conversational-ai",
+      "requirement": "nice_to_have",
+      "raw_text": "Interesse an Conversational AI"
+    },
+    {
+      "skill_id": "javascript",
+      "requirement": "required",
+      "raw_text": "JavaScript"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "GenAI"
+    },
+    {
+      "skill_id": "n8n",
+      "requirement": "required",
+      "raw_text": "n8n"
+    },
+    {
+      "skill_id": "power-automate",
+      "requirement": "required",
+      "raw_text": "Microsoft Power Automate"
+    },
+    {
+      "skill_id": "prompt-engineering",
+      "requirement": "required",
+      "raw_text": "Prompt Engineering"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python"
+    },
+    {
+      "skill_id": "rag",
+      "requirement": "required",
+      "raw_text": "RAG-Ansätzen"
+    },
+    {
+      "skill_id": "typescript",
+      "requirement": "required",
+      "raw_text": "TypeScript"
+    },
+    {
+      "skill_id": "workflow-automation",
+      "requirement": "required",
+      "raw_text": "Kenntnisse in Workflow Automation"
+    }
+  ]
+}

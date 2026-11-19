@@ -455,7 +455,25 @@
         "skill",
         "mcp"
       ]
-    ]
+    ],
+    "errors": 8,
+    "rate": 0.1,
+    "wilson_95": [
+      0.05154761556738083,
+      0.18510688806104086
+    ],
+    "wrong": [
+      "golden_123 skill `python` -> {\"raw_text\": \"Python\"}",
+      "golden_124 skill `node-js` -> {\"raw_text\": \"Node.js im Backend\"}",
+      "golden_125 skill `java` -> {\"raw_text\": \"Java\"}",
+      "golden_127 skill `prompt-engineering` -> {\"raw_text\": \"Prompt Engineering\"}",
+      "golden_128 skill `observability` -> drop",
+      "golden_131 skill `ci-cd` -> {\"raw_text\": \"CI/CD\"}",
+      "golden_131 skill `java` -> {\"raw_text\": \"Java\"}",
+      "golden_132 skill `observability` -> drop"
+    ],
+    "sample_items": null,
+    "answered_by": null
   },
   "signal_mismatches": [
     "golden_122 seniority: A 'Senior AI Voicebot & Automation Engineer' vs B 'Senior AI Voicebot & Automation Engineer (all gender)'",

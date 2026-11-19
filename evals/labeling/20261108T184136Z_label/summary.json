@@ -454,7 +454,28 @@
         "skill",
         "sql"
       ]
-    ]
+    ],
+    "errors": 11,
+    "rate": 0.1375,
+    "wilson_95": [
+      0.07854714324339108,
+      0.22967100066986607
+    ],
+    "wrong": [
+      "golden_136 skill `rag` -> {\"raw_text\": \"RAG\"}",
+      "golden_137 skill `azure` -> {\"raw_text\": \"Azure\"}",
+      "golden_137 skill `pytorch` -> {\"raw_text\": \"PyTorch\"}",
+      "golden_137 skill `tensorflow` -> {\"raw_text\": \"TensorFlow\"}",
+      "golden_138 skill `cloud` -> {\"raw_text\": \"Cloud-Plattformen\"}",
+      "golden_138 skill `mlops` -> {\"raw_text\": \"MLOps\"}",
+      "golden_141 attribute `degree` -> {\"degree\": \"master\", \"degree_requirement\": \"required\", \"degree_or_equivalent\": false, \"degree_signal\": \"Master’s or PhD in robotics, computer science, engineering, or a related field\"}",
+      "golden_142 skill `ci-cd` -> {\"raw_text\": \"CI/CD\"}",
+      "golden_142 skill `containerization` -> {\"raw_text\": \"Container\"}",
+      "golden_142 skill `infrastructure-as-code` -> {\"raw_text\": \"Infrastructure as Code\"}",
+      "golden_147 skill `microsoft-entra-id` -> {\"raw_text\": \"Entra ID\"}"
+    ],
+    "sample_items": null,
+    "answered_by": null
   },
   "signal_mismatches": [
     "golden_134 degree: A 'Abgeschlossenes wissenschaftliches Hochschulstudium (min. Bachelor) in einem MINT-Fach, oder vergleichbare Qualifikation als Quereinsteiger' vs B 'Abgeschlossenes wissenschaftliches Hochschulstudium (min. Bachelor) in einem MINT-Fach, oder vergleichbare Qualifikation als Quereinsteiger, Tech Enthusiast oder Vibe Coder mit Proof Record'",
