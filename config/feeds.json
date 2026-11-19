@@ -115,6 +115,17 @@
     {"type": "greenhouse", "enabled": true, "token": "metropolis", "company": "metropolis"},
     {"type": "greenhouse", "enabled": true, "token": "axon", "company": "axon"},
     {"type": "greenhouse", "enabled": true, "token": "thealleninstitute", "company": "thealleninstitute"},
-    {"type": "ashby", "enabled": true, "token": "elastix", "company": "elastix"}
+    {"type": "ashby", "enabled": true, "token": "elastix", "company": "elastix"},
+    {"type": "greenhouse", "enabled": true, "token": "zscaler", "company": "zscaler"},
+    {"type": "greenhouse", "enabled": true, "token": "roku", "company": "roku"},
+    {"type": "greenhouse", "enabled": true, "token": "figureai", "company": "figureai"},
+    {"type": "greenhouse", "enabled": true, "token": "samsungsemiconductor", "company": "samsungsemiconductor"},
+    {"type": "greenhouse", "enabled": true, "token": "archer56", "company": "archer56"},
+    {"type": "greenhouse", "enabled": true, "token": "okx", "company": "okx"},
+    {"type": "greenhouse", "enabled": true, "token": "xai", "company": "xai"},
+    {"type": "lever", "enabled": true, "token": "floqast", "company": "floqast"},
+    {"type": "ashby", "enabled": true, "token": "applied", "company": "applied"},
+    {"type": "ashby", "enabled": true, "token": "wayve", "company": "wayve"},
+    {"type": "ashby", "enabled": true, "token": "etched", "company": "etched"}
   ]
 }
