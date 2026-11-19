@@ -501,6 +501,13 @@ The trigger is a file list, not a judgment. The diff touches any of:
 - `scripts/rules_gate.py` — the gate's own code, so a PR cannot rewrite the check into
   one that always passes
 
+**Or it removes a test** (HIR-332): a test file deleted, a test function or `it(...)` /
+`test(...)` removed and not re-added elsewhere in the PR (a move is fine), or a skip / xfail
+marker added. Making a failing test pass by deleting or skipping it is the cheapest way to a
+green suite, and it hides exactly the bugs the test was there for. In a back-test of 100
+merged PRs, 8 removed or skipped tests with no one asked. Most were legitimate (the feature
+went too), and that is the bullet's job to say.
+
 Then the PR gets `needs-chandler`, does not merge, and its description carries this block,
 with nothing more in it:
 
@@ -527,7 +534,10 @@ PR back when they are not, and still writes the bullets itself.
 **Two enforcers, because one of them is itself a rule file.** The reviewer applies the rule
 (`.claude/agents/reviewer.md`). And `scripts/rules_gate.py` runs in CI on every PR
 (`.github/workflows/rules-gate.yml`, check name "Rules gate"): it reads the PR's own changed
-files and fails when one of them is a rule file and the block is absent. That half is the
+files and fails when one of them is a rule file, or a test was removed, and the block is
+absent. It runs on `pull_request_target`, from the **base branch's** copy of the workflow and
+the script (HIR-332), so a PR that rewrites the gate is judged by the version it is trying to
+change, never by its own rewrite. That half is the
 backstop — it still fires on a PR that edits the reviewer's instructions out of existence. It
 re-runs when the PR description is edited, which is how it goes green once the reviewer has
 added the block.
