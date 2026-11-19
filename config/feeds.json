@@ -86,6 +86,7 @@
     {"type": "greenhouse", "enabled": true, "token": "tenstorrent", "company": "tenstorrent"},
     {"type": "greenhouse", "enabled": true, "token": "avride", "company": "avride"},
     {"type": "greenhouse", "enabled": true, "token": "striveworks", "company": "striveworks"},
-    {"type": "ashby", "enabled": true, "token": "webai", "company": "webai"}
+    {"type": "ashby", "enabled": true, "token": "webai", "company": "webai"},
+    {"type": "greenhouse", "enabled": true, "token": "flagshippioneeringinc", "company": "flagshippioneeringinc"}
   ]
 }

@@ -222,5 +222,16 @@ def test_austin_is_collected_hir_252(location):
 
 
 def test_every_hir_252_city_has_a_start_date():
-    for city in ("Austin",):
+    for city in ("Austin", "Boston"):
         assert city in geo.ACTIVE_CITIES and city in geo.COLLECTING_SINCE
+
+
+@pytest.mark.parametrize("location", ["Boston, MA", "Cambridge, MA", "Cambridge, Massachusetts, United States"])
+def test_boston_is_collected_hir_252(location):
+    """Boston launched on 2026-11-19 (HIR-252); Cambridge, MA is part of its job market."""
+    assert active_place(location) == "Boston"
+
+
+def test_cambridge_in_england_is_not_boston():
+    assert place_of("Cambridge, UK") is None
+    assert place_of("Cambridge, England") is None

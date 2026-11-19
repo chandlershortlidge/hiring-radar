@@ -46,12 +46,13 @@ CITIES: dict[str, tuple[str, ...]] = {
     "Frankfurt": ("frankfurt",),
     "Munich": ("munich", "münchen", "muenchen"),
     "Austin": ("austin",),
+    "Boston": ("boston", "cambridge, ma", "cambridge, massachusetts"),
 }
 
 REMOTE_EU = "Remote (EU)"
 
 ACTIVE_CITIES: tuple[str, ...] = ("Berlin", REMOTE_EU, "San Francisco", "New York", "Hamburg",
-                                  "Frankfurt", "Munich", "Austin")
+                                  "Frankfurt", "Munich", "Austin", "Boston")
 
 # The day each active place started being collected (HIR-232). A place's first weeks hold
 # every posting that was already open on that day, all "first seen" at once, so nothing
@@ -66,6 +67,7 @@ COLLECTING_SINCE: dict[str, str] = {
     "Frankfurt": "2026-11-08",
     "Munich": "2026-11-08",
     "Austin": "2026-11-19",          # HIR-252
+    "Boston": "2026-11-19",
 }
 
 _PATTERNS = {city: re.compile(r"\b(" + "|".join(re.escape(a) for a in aliases) + r")\b", re.I)
