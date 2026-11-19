@@ -32,7 +32,7 @@ import urllib.request
 from datetime import date, datetime, timedelta, timezone
 
 from app import caretaker as ct
-from app import misses, poll
+from app import geo, misses, poll
 from app.caretaker import Budget, FeedRun, Finding
 from app.sources import jsearch, registry
 
@@ -114,6 +114,9 @@ def morning(conn: sqlite3.Connection, day: str, feeds_doc: dict, rejected: set, 
     now = now or datetime.now(timezone.utc)
     runs = load_runs(conn, _day(day, ct.FEED_HISTORY_DAYS), day)
     today = latest_today(runs, day)
+    # The US collection runs at 07:00 New York, after this check (HIR-369): a feed only that
+    # run fetches is judged on its run from yesterday, so US searches are checked a day late.
+    yesterday = latest_today(runs, _day(day, 1))
     budget = Budget(spent=spent_on(conn, day))
     start_spent = budget.spent
     known = {(f["type"], f["token"].lower()) for f in feeds_doc["feeds"] if f.get("token")}
@@ -131,10 +134,10 @@ def morning(conn: sqlite3.Connection, day: str, feeds_doc: dict, rejected: set, 
                 except Exception as e:
                     found += ct.recheck_paused(feed, None, f"{type(e).__name__}: {str(e)[:120]}")
             continue
-        run = today.get(label)
+        run = yesterday.get(label) if poll.feed_regions(feed) == (geo.US,) else today.get(label)
         if run is None:
             continue
-        history = [r for r in runs if r.label == label and r.day < day]
+        history = [r for r in runs if r.label == label and r.day < run.day]
         source = registry.BY_NAME.get(feed["type"])
         if source and source.kind == "board":
             n, last_seen = poll.board_history(conn, feed)

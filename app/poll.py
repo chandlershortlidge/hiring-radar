@@ -5,7 +5,10 @@ extract_pending. Feeds that fail are logged and skipped so one bad source doesn'
 the rest. Each feed's result (worked or not, how many postings, which fields they carried)
 is also kept in `feed_run`, which the morning caretaker reads (HIR-257).
 
-Does NOT: schedule itself (the systemd timer on the VM / `python -m app poll` does), or
+With a region (`--region europe|us`, HIR-369) it fetches only that region's feeds
+(`feed_regions`): the VM runs Europe at 07:00 Berlin and the US at 07:00 New York.
+
+Does NOT: schedule itself (the systemd timers on the VM / `python -m app poll` do), or
 retry a failed feed within a run.
 
 Invariant: safe to run twice in a row — the second run finds everything still-listed and
@@ -17,6 +20,7 @@ import sqlite3
 from datetime import datetime, timezone
 from pathlib import Path
 
+from app import geo
 from app.ingest import Report, ingest
 from app.sources import jsearch, registry
 
@@ -49,6 +53,46 @@ def select_feeds(feeds: list[dict], only: list[str]) -> list[dict]:
     if unknown:
         raise ValueError(f"no enabled feed labelled {sorted(unknown)}")
     return [f for f in feeds if feed_label(f) in only]
+
+
+# Sources that only ever list jobs in Germany, whatever their search says (HIR-369).
+GERMAN_SOURCES = ("arbeitsagentur", "arbeitnow")
+
+
+def feed_regions(feed: dict) -> tuple[str, ...]:
+    """Pure: which regional collections fetch this feed (HIR-369, DECISIONS 2026-11-19).
+
+    A search naming a tracked city belongs to that city's region; one naming no city goes
+    by its country (`us` → US, any other → Europe); the German sources are Europe. A
+    company board can list jobs anywhere, so it is in both, as is anything not otherwise
+    placed: a feed fetched twice costs a still-listed bump, a feed in neither is lost."""
+    if feed["type"] in registry.BOARD_SOURCES:
+        return geo.REGIONS
+    if feed["type"] in GERMAN_SOURCES:
+        return (geo.EUROPE,)
+    city = geo.city_of(" ".join(str(feed.get(k) or "") for k in ("search", "where")))
+    if city in geo.REGION_OF:
+        return (geo.REGION_OF[city],)
+    country = (feed.get("country") or "").lower()
+    if country:
+        return (geo.US,) if country == "us" else (geo.EUROPE,)
+    return geo.REGIONS
+
+
+def select_region(feeds: list[dict], region: str | None) -> list[dict]:
+    """Pure: the feeds `region`'s collection fetches (all of them when `region` is None)."""
+    if region is None:
+        return feeds
+    if region not in geo.REGIONS:
+        raise ValueError(f"unknown region {region!r}; one of {', '.join(geo.REGIONS)}")
+    return [f for f in feeds if region in feed_regions(f)]
+
+
+def region_line(region: str, feeds: list[dict]) -> str:
+    """The first line of a regional poll's log: the cities it covers and what it fetches."""
+    shared = sum(1 for f in feeds if len(feed_regions(f)) > 1)
+    return (f"region {region}: covers {', '.join(geo.region_places(region))}; "
+            f"{len(feeds)} feeds, {shared} of them also fetched by the other region's run (company boards)")
 
 
 # Posting fields an adapter fills when the source gives them. One that was there last week

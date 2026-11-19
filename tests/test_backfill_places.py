@@ -115,6 +115,7 @@ def test_the_launch_runs_the_backfill_for_the_launched_city(conn, monkeypatch, c
     job = add(conn, "Acme", "Berlin", "Berlin, Paris")
     track(monkeypatch, "Paris")
     monkeypatch.setattr(geo, "ACTIVE_CITIES", (*geo.ACTIVE_CITIES, "Paris"))
+    monkeypatch.setattr(geo, "REGION_OF", {**geo.REGION_OF, "Paris": geo.EUROPE})   # HIR-369
     monkeypatch.setattr(cli, "open_db", lambda: conn)
     monkeypatch.setattr(brave, "api_key", lambda: "k")
     monkeypatch.setattr(discover, "run", lambda *a, **k: discover.Report())
@@ -128,6 +129,7 @@ def test_a_dry_run_launch_reports_the_gain_and_writes_nothing(conn, monkeypatch,
     job = add(conn, "Acme", "Berlin", "Berlin, Paris")
     track(monkeypatch, "Paris")
     monkeypatch.setattr(geo, "ACTIVE_CITIES", (*geo.ACTIVE_CITIES, "Paris"))
+    monkeypatch.setattr(geo, "REGION_OF", {**geo.REGION_OF, "Paris": geo.EUROPE})   # HIR-369
     monkeypatch.setattr(cli, "open_db", lambda: conn)
     monkeypatch.setattr(brave, "api_key", lambda: "k")
     monkeypatch.setattr(discover, "run", lambda *a, **k: discover.Report())
