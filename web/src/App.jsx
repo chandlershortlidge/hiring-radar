@@ -284,7 +284,7 @@ export default function App() {
             ))}
           </p>
         )}
-        <Panel label="The market grid"><HomeGrid data={skills} counts={cityCounts} family={market.family} onRequestCity={requestCity} /></Panel>
+        <Panel label="The market grid"><HomeGrid data={skills} counts={cityCounts} family={market.family} onRequestCity={requestCity} loading={!stats || (!skills && !skillsFailed)} /></Panel>
       </main> : <main className={`main${market.view === "city" ? " split" : ""}`}>
         {/* A city page is two columns (HIR-285): the chart, and what hangs off it, on the
             left; the jobs on the right, so a click on a bar filters a list already in
