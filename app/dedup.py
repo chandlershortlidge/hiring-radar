@@ -38,19 +38,31 @@ _SUFFIX = re.compile(r"\b(gmbh|ag|se|inc\.?|ltd\.?|llc|co\.?|kg|ug|b\.?v\.?|s\.?
 _NONWORD = re.compile(r"[^a-z0-9]+")
 
 
+def _fold(s: str) -> str:
+    """`s` with letter case removed, the same way however the text was capitalized.
+
+    Not `lower()`: German writes "ß" as "SS" in capitals, so "Großkunden" and "GROSSKUNDEN"
+    lower to different strings and the same posting in capitals stopped matching itself
+    (HIR-333, found by tests/test_dedup_properties.py). Upper-casing first and then
+    case-folding gives one answer for every way of capitalizing a text; for plain a-z and
+    for ä, ö, ü it is exactly what `lower()` gave.
+    """
+    return s.upper().casefold()
+
+
 def company_key(company: str | None) -> str:
-    s = (company or "").lower()
+    s = _fold(company or "")
     s = _SUFFIX.sub(" ", s)
     return _NONWORD.sub(" ", s).strip()
 
 
 def title_key(title: str) -> str:
-    s = _GENDER_TAG.sub(" ", title.lower())
+    s = _GENDER_TAG.sub(" ", _fold(title))
     return _NONWORD.sub(" ", s).strip()
 
 
 def _words(text: str) -> list[str]:
-    return _NONWORD.sub(" ", text.lower()).split()
+    return _NONWORD.sub(" ", _fold(text)).split()
 
 
 def shingles(text: str, n: int = SHINGLE) -> set[str]:

@@ -33,6 +33,19 @@ def test_company_key_strips_legal_suffixes_and_punctuation():
     assert dedup.company_key(None) == ""
 
 
+def test_a_posting_in_capitals_is_still_the_same_posting():
+    """HIR-333, found by the generated-input tests (smallest failing input: the text "0ß"
+    against its own upper-case form "0SS"). German capitals spell ß as SS, and the two used
+    to normalize differently, so a title or a text in capitals missed its own original."""
+    assert dedup.title_key("Großkundenbetreuer KI") == dedup.title_key("GROSSKUNDENBETREUER KI")
+    assert dedup.company_key("Weiß & Söhne GmbH") == dedup.company_key("WEISS & SÖHNE GMBH")
+    body = "Wir suchen Verstärkung für unser Team in der Hauptstraße: Python, RAG, große Sprachmodelle."
+    assert dedup.similarity(body, body.upper()) == 1.0
+    assert dedup.is_same_posting("Großkundenbetreuer KI", "x", "GROSSKUNDENBETREUER KI", "y")
+    # Unchanged for everything else: plain letters and umlauts fold as lower() always did.
+    assert dedup.title_key("Senior AI Engineer Geschäftsführung") == "senior ai engineer gesch ftsf hrung"
+
+
 def test_title_key_strips_gender_tags():
     assert dedup.title_key("AI Engineer (m/w/d)") == "ai engineer"
     assert dedup.title_key("AI Engineer (f/m/x)") == dedup.title_key("AI Engineer (all genders)")
