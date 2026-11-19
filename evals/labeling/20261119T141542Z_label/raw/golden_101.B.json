@@ -1,0 +1,456 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Microsoft Azure environments\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Git; pull requests\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Certifications: Microsoft Azure, GitHub, Kubernetes, Terraform, DevOps\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model and endpoint operations\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud engineering\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"azure-devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure DevOps; Azure Boards\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"IaC modules\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Linux\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"networking\"\n    },\n    {\n      \"skill_id\": \"secrets-management\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"secrets management\"\n    },\n    {\n      \"skill_id\": \"cybersecurity\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud security fundamentals\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"bash\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python; Bash; PowerShell\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Monitoring\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed systems\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"automated testing\"\n    },\n    {\n      \"skill_id\": \"azure-ai-foundry\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Microsoft Foundry\"\n    },\n    {\n      \"skill_id\": \"azure-key-vault\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Key Vault\"\n    },\n    {\n      \"skill_id\": \"microsoft-entra-id\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Entra ID\"\n    },\n    {\n      \"skill_id\": \"github-actions\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitHub Actions\"\n    },\n    {\n      \"skill_id\": \"helm\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes; Helm; Linux\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI application and agent evaluation\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agent evaluation\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG quality\"\n    },\n    {\n      \"skill_id\": \"opentelemetry\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Open Telemetry\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"REST APIs\"\n    },\n    {\n      \"skill_id\": \"microservices\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"microservices\"\n    },\n    {\n      \"skill_id\": \"event-driven-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"event-driven integration\"\n    },\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Snowflake\",\n      \"alternative_group\": 2,\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"databricks\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Databricks familiarity\",\n      \"alternative_group\": 2,\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"devsecops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevSecOps scanning\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Deploying/operating GenAI apps\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GenAI apps\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"vector-search\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vector search\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"llmops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GenAIOps\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"gitops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GitOps\"\n    },\n    {\n      \"skill_id\": \"argocd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Argo CD\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"AI engineering\",\n      \"raw_text\": \"AI engineering\"\n    },\n    {\n      \"label\": \"Platform engineering\",\n      \"raw_text\": \"platform engineering\"\n    },\n    {\n      \"label\": \"Site reliability engineering\",\n      \"raw_text\": \"site reliability engineering\"\n    },\n    {\n      \"label\": \"Pull requests\",\n      \"raw_text\": \"pull requests\"\n    },\n    {\n      \"label\": \"Pipeline-as-code\",\n      \"raw_text\": \"pipeline-as-code\"\n    },\n    {\n      \"label\": \"Artifact management\",\n      \"raw_text\": \"artifact management\"\n    },\n    {\n      \"label\": \"Release automation and controls\",\n      \"raw_text\": \"approvals, release automation\"\n    },\n    {\n      \"label\": \"Bicep\",\n      \"raw_text\": \"Terraform; Bicep; Docker\"\n    },\n    {\n      \"label\": \"Cloud-native templating\",\n      \"raw_text\": \"cloud-native templating (beneficial)\"\n    },\n    {\n      \"label\": \"PowerShell\",\n      \"raw_text\": \"Python; Bash; PowerShell\"\n    },\n    {\n      \"label\": \"Production support\",\n      \"raw_text\": \"production support\"\n    },\n    {\n      \"label\": \"Secure software development lifecycle\",\n      \"raw_text\": \"Secure SDLC\"\n    },\n    {\n      \"label\": \"Change and release management\",\n      \"raw_text\": \"change/release management\"\n    },\n    {\n      \"label\": \"Incident response\",\n      \"raw_text\": \"incident response\"\n    },\n    {\n      \"label\": \"Root-cause analysis\",\n      \"raw_text\": \"root-cause analysis\"\n    },\n    {\n      \"label\": \"Operational documentation\",\n      \"raw_text\": \"operational documentation\"\n    },\n    {\n      \"label\": \"Azure AI services\",\n      \"raw_text\": \"Azure AI services\"\n    },\n    {\n      \"label\": \"Azure Machine Learning\",\n      \"raw_text\": \"Azure Machine Learning\"\n    },\n    {\n      \"label\": \"Azure OpenAI\",\n      \"raw_text\": \"Azure OpenAI\"\n    },\n    {\n      \"label\": \"Azure Kubernetes Service\",\n      \"raw_text\": \"AKS\"\n    },\n    {\n      \"label\": \"Azure API Management\",\n      \"raw_text\": \"API Management\"\n    },\n    {\n      \"label\": \"Azure Monitor\",\n      \"raw_text\": \"Azure Monitor\"\n    },\n    {\n      \"label\": \"Azure Boards\",\n      \"raw_text\": \"Azure Boards\"\n    },\n    {\n      \"label\": \"Configuration-as-code\",\n      \"raw_text\": \"configuration and policy-as-code\"\n    },\n    {\n      \"label\": \"Policy-as-code\",\n      \"raw_text\": \"policy-as-code\"\n    },\n    {\n      \"label\": \"Prompt versioning\",\n      \"raw_text\": \"prompt and configuration versioning\"\n    },\n    {\n      \"label\": \"Configuration versioning\",\n      \"raw_text\": \"configuration versioning\"\n    },\n    {\n      \"label\": \"Safety and approval gates\",\n      \"raw_text\": \"safety and approval gates\"\n    },\n    {\n      \"label\": \"SLI/SLO practices\",\n      \"raw_text\": \"SLI/SLO practices\"\n    },\n    {\n      \"label\": \"Capacity monitoring\",\n      \"raw_text\": \"capacity and cost monitoring\"\n    },\n    {\n      \"label\": \"Cost monitoring\",\n      \"raw_text\": \"cost monitoring\"\n    },\n    {\n      \"label\": \"JSON\",\n      \"raw_text\": \"JSON\"\n    },\n    {\n      \"label\": \"YAML\",\n      \"raw_text\": \"YAML\"\n    },\n    {\n      \"label\": \"Identity and access controls\",\n      \"raw_text\": \"identity and access controls\"\n    },\n    {\n      \"label\": \"Encryption\",\n      \"raw_text\": \"encryption\"\n    },\n    {\n      \"label\": \"ServiceNow\",\n      \"raw_text\": \"ServiceNow; change/release/problem management\"\n    },\n    {\n      \"label\": \"Problem management\",\n      \"raw_text\": \"change/release/problem management\"\n    },\n    {\n      \"label\": \"Audit evidence\",\n      \"raw_text\": \"audit evidence\"\n    },\n    {\n      \"label\": \"Shared enterprise AI platforms\",\n      \"raw_text\": \"shared enterprise AI platforms\"\n    },\n    {\n      \"label\": \"AgentOps\",\n      \"raw_text\": \"AgentOps\"\n    },\n    {\n      \"label\": \"Model and endpoint lifecycle management\",\n      \"raw_text\": \"model/endpoint lifecycle management\"\n    },\n    {\n      \"label\": \"Agent versioning\",\n      \"raw_text\": \"prompt/agent versioning\"\n    },\n    {\n      \"label\": \"AI safety testing\",\n      \"raw_text\": \"safety testing\"\n    },\n    {\n      \"label\": \"AI content controls\",\n      \"raw_text\": \"content controls\"\n    },\n    {\n      \"label\": \"AI red-team support\",\n      \"raw_text\": \"red-team support\"\n    },\n    {\n      \"label\": \"Responsible AI governance\",\n      \"raw_text\": \"responsible AI governance\"\n    },\n    {\n      \"label\": \"Application Insights\",\n      \"raw_text\": \"Application Insights\"\n    },\n    {\n      \"label\": \"Datadog\",\n      \"raw_text\": \"Datadog\"\n    },\n    {\n      \"label\": \"Dynatrace\",\n      \"raw_text\": \"Dynatrace\"\n    },\n    {\n      \"label\": \"Splunk\",\n      \"raw_text\": \"Splunk\"\n    },\n    {\n      \"label\": \"IT service request management\",\n      \"raw_text\": \"incident/change/problem/request/configuration-management processes\"\n    },\n    {\n      \"label\": \"Configuration management\",\n      \"raw_text\": \"configuration-management processes\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"7+ years in DevOps, platform engineering, cloud engineering, site reliability engineering, software engineering, or a related discipline.\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor's degree in Computer Science, Engineering, Information Technology, or a related discipline, or equivalent practical experience.\",\n  \"notes\": \"Required Education, Required Certification, and Required Skills & Experience are required sections; Nice-to-Haves is optional and ends at the subsequent company/role narrative. Responsibilities-only technologies are excluded.\\nThe unmarked stack makes Bicep, Bash, PowerShell, Helm, GitHub, Azure DevOps, and other repeated technologies required despite earlier alternatives or optional mentions.\\nMicrosoft Foundry is mapped to the renamed Azure AI Foundry product. Distinct Azure products without matching taxonomy entries remain unmapped rather than being reduced to their underlying vendor or general capability.\\nModel and endpoint operations is interpreted as MLOps; this mapping is flagged. GenAIOps is interpreted as LLMOps and flagged. Agent evaluation is treated as asking for agent expertise as well as evaluation and is flagged.\\nThe slash in Snowflake/Databricks is read as an alternative familiarity ask; both criteria are flagged because the guide does not explicitly define slash-separated alternatives.\\nAlternative group 1 contains the remaining mapped experience alternatives; platform engineering and site reliability engineering are unmapped, and DevOps is independently required. Group 3 contains the remaining mapped deployment alternatives; agents and RAG are independently required.\\nCertification alternatives have no surviving multi-skill mapped group after independently required skills are removed. Helm is independently required, so Argo CD has no alternative group. The optional observability-product alternatives are unmapped except Azure Monitor, which is independently required.\\nLogging, metrics, tracing, dashboards, and alerting are represented by observability; regression testing is represented by testing. Prompt/configuration/agent versioning is not silently mapped to model versioning.\\nFinancial-services knowledge, regulated-industry experience, communication, spoken languages other than German, and years of experience are not skill criteria.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure environments"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git; pull requests"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "Certifications: Microsoft Azure, GitHub, Kubernetes, Terraform, DevOps"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "model and endpoint operations",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "azure-devops",
+        "requirement": "required",
+        "raw_text": "Azure DevOps; Azure Boards"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "IaC modules"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "networking"
+      },
+      {
+        "skill_id": "secrets-management",
+        "requirement": "required",
+        "raw_text": "secrets management"
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "cloud security fundamentals"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "bash",
+        "requirement": "required",
+        "raw_text": "Python; Bash; PowerShell"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "automated testing"
+      },
+      {
+        "skill_id": "azure-ai-foundry",
+        "requirement": "required",
+        "raw_text": "Microsoft Foundry"
+      },
+      {
+        "skill_id": "azure-key-vault",
+        "requirement": "required",
+        "raw_text": "Key Vault"
+      },
+      {
+        "skill_id": "microsoft-entra-id",
+        "requirement": "required",
+        "raw_text": "Entra ID"
+      },
+      {
+        "skill_id": "github-actions",
+        "requirement": "required",
+        "raw_text": "GitHub Actions"
+      },
+      {
+        "skill_id": "helm",
+        "requirement": "required",
+        "raw_text": "Kubernetes; Helm; Linux"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "AI application and agent evaluation"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agent evaluation",
+        "uncertain": true
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG quality"
+      },
+      {
+        "skill_id": "opentelemetry",
+        "requirement": "required",
+        "raw_text": "Open Telemetry"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST APIs"
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "microservices"
+      },
+      {
+        "skill_id": "event-driven-systems",
+        "requirement": "required",
+        "raw_text": "event-driven integration"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "required",
+        "raw_text": "Databricks familiarity",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "devsecops",
+        "requirement": "required",
+        "raw_text": "DevSecOps scanning"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "nice_to_have",
+        "raw_text": "Deploying/operating GenAI apps"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "GenAI apps",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "vector-search",
+        "requirement": "nice_to_have",
+        "raw_text": "vector search",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "llmops",
+        "requirement": "nice_to_have",
+        "raw_text": "GenAIOps",
+        "uncertain": true
+      },
+      {
+        "skill_id": "gitops",
+        "requirement": "nice_to_have",
+        "raw_text": "GitOps"
+      },
+      {
+        "skill_id": "argocd",
+        "requirement": "nice_to_have",
+        "raw_text": "Argo CD"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "AI engineering",
+        "raw_text": "AI engineering"
+      },
+      {
+        "label": "Platform engineering",
+        "raw_text": "platform engineering"
+      },
+      {
+        "label": "Site reliability engineering",
+        "raw_text": "site reliability engineering"
+      },
+      {
+        "label": "Pull requests",
+        "raw_text": "pull requests"
+      },
+      {
+        "label": "Pipeline-as-code",
+        "raw_text": "pipeline-as-code"
+      },
+      {
+        "label": "Artifact management",
+        "raw_text": "artifact management"
+      },
+      {
+        "label": "Release automation and controls",
+        "raw_text": "approvals, release automation"
+      },
+      {
+        "label": "Bicep",
+        "raw_text": "Terraform; Bicep; Docker"
+      },
+      {
+        "label": "Cloud-native templating",
+        "raw_text": "cloud-native templating (beneficial)"
+      },
+      {
+        "label": "PowerShell",
+        "raw_text": "Python; Bash; PowerShell"
+      },
+      {
+        "label": "Production support",
+        "raw_text": "production support"
+      },
+      {
+        "label": "Secure software development lifecycle",
+        "raw_text": "Secure SDLC"
+      },
+      {
+        "label": "Change and release management",
+        "raw_text": "change/release management"
+      },
+      {
+        "label": "Incident response",
+        "raw_text": "incident response"
+      },
+      {
+        "label": "Root-cause analysis",
+        "raw_text": "root-cause analysis"
+      },
+      {
+        "label": "Operational documentation",
+        "raw_text": "operational documentation"
+      },
+      {
+        "label": "Azure AI services",
+        "raw_text": "Azure AI services"
+      },
+      {
+        "label": "Azure Machine Learning",
+        "raw_text": "Azure Machine Learning"
+      },
+      {
+        "label": "Azure OpenAI",
+        "raw_text": "Azure OpenAI"
+      },
+      {
+        "label": "Azure Kubernetes Service",
+        "raw_text": "AKS"
+      },
+      {
+        "label": "Azure API Management",
+        "raw_text": "API Management"
+      },
+      {
+        "label": "Azure Monitor",
+        "raw_text": "Azure Monitor"
+      },
+      {
+        "label": "Azure Boards",
+        "raw_text": "Azure Boards"
+      },
+      {
+        "label": "Configuration-as-code",
+        "raw_text": "configuration and policy-as-code"
+      },
+      {
+        "label": "Policy-as-code",
+        "raw_text": "policy-as-code"
+      },
+      {
+        "label": "Prompt versioning",
+        "raw_text": "prompt and configuration versioning"
+      },
+      {
+        "label": "Configuration versioning",
+        "raw_text": "configuration versioning"
+      },
+      {
+        "label": "Safety and approval gates",
+        "raw_text": "safety and approval gates"
+      },
+      {
+        "label": "SLI/SLO practices",
+        "raw_text": "SLI/SLO practices"
+      },
+      {
+        "label": "Capacity monitoring",
+        "raw_text": "capacity and cost monitoring"
+      },
+      {
+        "label": "Cost monitoring",
+        "raw_text": "cost monitoring"
+      },
+      {
+        "label": "JSON",
+        "raw_text": "JSON"
+      },
+      {
+        "label": "YAML",
+        "raw_text": "YAML"
+      },
+      {
+        "label": "Identity and access controls",
+        "raw_text": "identity and access controls"
+      },
+      {
+        "label": "Encryption",
+        "raw_text": "encryption"
+      },
+      {
+        "label": "ServiceNow",
+        "raw_text": "ServiceNow; change/release/problem management"
+      },
+      {
+        "label": "Problem management",
+        "raw_text": "change/release/problem management"
+      },
+      {
+        "label": "Audit evidence",
+        "raw_text": "audit evidence"
+      },
+      {
+        "label": "Shared enterprise AI platforms",
+        "raw_text": "shared enterprise AI platforms"
+      },
+      {
+        "label": "AgentOps",
+        "raw_text": "AgentOps"
+      },
+      {
+        "label": "Model and endpoint lifecycle management",
+        "raw_text": "model/endpoint lifecycle management"
+      },
+      {
+        "label": "Agent versioning",
+        "raw_text": "prompt/agent versioning"
+      },
+      {
+        "label": "AI safety testing",
+        "raw_text": "safety testing"
+      },
+      {
+        "label": "AI content controls",
+        "raw_text": "content controls"
+      },
+      {
+        "label": "AI red-team support",
+        "raw_text": "red-team support"
+      },
+      {
+        "label": "Responsible AI governance",
+        "raw_text": "responsible AI governance"
+      },
+      {
+        "label": "Application Insights",
+        "raw_text": "Application Insights"
+      },
+      {
+        "label": "Datadog",
+        "raw_text": "Datadog"
+      },
+      {
+        "label": "Dynatrace",
+        "raw_text": "Dynatrace"
+      },
+      {
+        "label": "Splunk",
+        "raw_text": "Splunk"
+      },
+      {
+        "label": "IT service request management",
+        "raw_text": "incident/change/problem/request/configuration-management processes"
+      },
+      {
+        "label": "Configuration management",
+        "raw_text": "configuration-management processes"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "7+ years in DevOps, platform engineering, cloud engineering, site reliability engineering, software engineering, or a related discipline.",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor's degree in Computer Science, Engineering, Information Technology, or a related discipline, or equivalent practical experience.",
+    "notes": "Required Education, Required Certification, and Required Skills & Experience are required sections; Nice-to-Haves is optional and ends at the subsequent company/role narrative. Responsibilities-only technologies are excluded.\nThe unmarked stack makes Bicep, Bash, PowerShell, Helm, GitHub, Azure DevOps, and other repeated technologies required despite earlier alternatives or optional mentions.\nMicrosoft Foundry is mapped to the renamed Azure AI Foundry product. Distinct Azure products without matching taxonomy entries remain unmapped rather than being reduced to their underlying vendor or general capability.\nModel and endpoint operations is interpreted as MLOps; this mapping is flagged. GenAIOps is interpreted as LLMOps and flagged. Agent evaluation is treated as asking for agent expertise as well as evaluation and is flagged.\nThe slash in Snowflake/Databricks is read as an alternative familiarity ask; both criteria are flagged because the guide does not explicitly define slash-separated alternatives.\nAlternative group 1 contains the remaining mapped experience alternatives; platform engineering and site reliability engineering are unmapped, and DevOps is independently required. Group 3 contains the remaining mapped deployment alternatives; agents and RAG are independently required.\nCertification alternatives have no surviving multi-skill mapped group after independently required skills are removed. Helm is independently required, so Argo CD has no alternative group. The optional observability-product alternatives are unmapped except Azure Monitor, which is independently required.\nLogging, metrics, tracing, dashboards, and alerting are represented by observability; regression testing is represented by testing. Prompt/configuration/agent versioning is not silently mapped to model versioning.\nFinancial-services knowledge, regulated-industry experience, communication, spoken languages other than German, and years of experience are not skill criteria."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "c28d10859574a4c3c02119e7c4717098e1478e60fea51bc0ca4371508927fa47",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

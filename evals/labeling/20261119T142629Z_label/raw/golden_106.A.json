@@ -1,0 +1,121 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Solid ML background\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"current ML frameworks like PyTorch\"},\n    {\"skill_id\": \"feature-engineering\", \"requirement\": \"required\", \"raw_text\": \"from feature engineering to production deployment\"},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"guiding ML systems from feature engineering to production deployment\", \"uncertain\": true},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"production deployment and monitoring\", \"uncertain\": true},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Strong software/data engineering skills\"},\n    {\"skill_id\": \"backend-development\", \"requirement\": \"required\", \"raw_text\": \"across ML, backend, and data infrastructure\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"Experience building with LLMs\", \"alternative_group\": 1},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"LLMs and/or AI agents\", \"alternative_group\": 1},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AI-assisted evaluation systems\", \"uncertain\": true},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Distributed systems\"},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"nice_to_have\", \"raw_text\": \"high-scale data pipelines\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Device fingerprinting\", \"raw_text\": \"Device fingerprinting\"},\n    {\"label\": \"VPN/proxy detection\", \"raw_text\": \"VPN/proxy detection\"},\n    {\"label\": \"Human-in-the-loop systems\", \"raw_text\": \"Human-in-the-loop\"},\n    {\"label\": \"Real-time risk evaluation\", \"raw_text\": \"Real-time risk evaluation and automated control systems\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI / Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor's or equivalent experience in Computer Science, Statistics, Mathematics, or related field\",\n  \"uncertain\": [\"degree\"],\n  \"groups_reviewed\": true,\n  \"notes\": \"Sections: 'What you'll need to succeed' defaults to required. 'Preferred Attributes' makes everything under it nice_to_have.\\nLLMs and AI agents form alternative_group 1 because of the 'and/or' wording in the requirements bullet.\\nPyTorch is the only example given for 'current ML frameworks like PyTorch', so it is a single ask and gets no group.\\nLLMs, AI agents, anomaly detection and monitoring in the responsibilities and intro are covered by the requirements section; anomaly detection is not labeled because it appears only in responsibilities.\\n'production deployment' was mapped to ai-deployment (ML systems context) and 'monitoring' to observability via its alias. Both are flagged uncertain as generic phrasing.\\n'AI-assisted evaluation systems' was mapped to evaluation, nice_to_have, and flagged uncertain: it may describe a domain system rather than the skill.\\nDegree: 'Bachelor's' is the only named level; 'advanced degree a plus' names no specific level, so the label stays bachelor. It is flagged for review in case advanced degree should be read as master.\\n'8+ years' would also infer senior, but the title states it.\\nDomain items under Preferred Attributes have no taxonomy entry and are listed in unmapped: device fingerprinting, identity verification, behavioral signals, network intelligence, VPN/proxy detection and real-time risk evaluation.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Solid ML background"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "current ML frameworks like PyTorch"
+      },
+      {
+        "skill_id": "feature-engineering",
+        "requirement": "required",
+        "raw_text": "from feature engineering to production deployment"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "guiding ML systems from feature engineering to production deployment",
+        "uncertain": true
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "production deployment and monitoring",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software/data engineering skills"
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "across ML, backend, and data infrastructure"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Experience building with LLMs",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "LLMs and/or AI agents",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "AI-assisted evaluation systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "Distributed systems"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "high-scale data pipelines"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Device fingerprinting",
+        "raw_text": "Device fingerprinting"
+      },
+      {
+        "label": "VPN/proxy detection",
+        "raw_text": "VPN/proxy detection"
+      },
+      {
+        "label": "Human-in-the-loop systems",
+        "raw_text": "Human-in-the-loop"
+      },
+      {
+        "label": "Real-time risk evaluation",
+        "raw_text": "Real-time risk evaluation and automated control systems"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI / Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor's or equivalent experience in Computer Science, Statistics, Mathematics, or related field",
+    "uncertain": [
+      "degree"
+    ],
+    "groups_reviewed": true,
+    "notes": "Sections: 'What you'll need to succeed' defaults to required. 'Preferred Attributes' makes everything under it nice_to_have.\nLLMs and AI agents form alternative_group 1 because of the 'and/or' wording in the requirements bullet.\nPyTorch is the only example given for 'current ML frameworks like PyTorch', so it is a single ask and gets no group.\nLLMs, AI agents, anomaly detection and monitoring in the responsibilities and intro are covered by the requirements section; anomaly detection is not labeled because it appears only in responsibilities.\n'production deployment' was mapped to ai-deployment (ML systems context) and 'monitoring' to observability via its alias. Both are flagged uncertain as generic phrasing.\n'AI-assisted evaluation systems' was mapped to evaluation, nice_to_have, and flagged uncertain: it may describe a domain system rather than the skill.\nDegree: 'Bachelor's' is the only named level; 'advanced degree a plus' names no specific level, so the label stays bachelor. It is flagged for review in case advanced degree should be read as master.\n'8+ years' would also infer senior, but the title states it.\nDomain items under Preferred Attributes have no taxonomy entry and are listed in unmapped: device fingerprinting, identity verification, behavioral signals, network intelligence, VPN/proxy detection and real-time risk evaluation."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "191114ad3d116574f63b44fb2ccccc78133c033644a878ab9f6a84f8a04fc942",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

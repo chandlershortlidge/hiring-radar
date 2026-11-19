@@ -1,0 +1,25 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI/ML Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The posting has no requirements, qualifications, nice-to-have or tech-stack section. Its only content is the company and role description and the responsibilities.\\nAI/ML, agents, automation and predictive models appear only as responsibilities ('own AI/ML platforms and integrations, expanding automation, agents, and predictive models'). The guide says such skills are not labeled unless the candidate is also asked for them, so none are labeled.\\nAn empty skill list is the literal reading. A reviewer may want to confirm this posting belongs in the eval set.\\nSeniority is stated by the title 'Senior AI/ML Engineer', and 'Sr.' in the body agrees.\\nGerman is null: there is no language mention, and the posting is in English.\\nDegree is null: no degree is mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI/ML Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The posting has no requirements, qualifications, nice-to-have or tech-stack section. Its only content is the company and role description and the responsibilities.\nAI/ML, agents, automation and predictive models appear only as responsibilities ('own AI/ML platforms and integrations, expanding automation, agents, and predictive models'). The guide says such skills are not labeled unless the candidate is also asked for them, so none are labeled.\nAn empty skill list is the literal reading. A reviewer may want to confirm this posting belongs in the eval set.\nSeniority is stated by the title 'Senior AI/ML Engineer', and 'Sr.' in the body agrees.\nGerman is null: there is no language mention, and the posting is in English.\nDegree is null: no degree is mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "3c633c205ff269d7ff8dac88e6d5321d2b5dea4fa9622c32272e9a1002a063f6",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

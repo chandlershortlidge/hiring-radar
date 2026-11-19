@@ -1,0 +1,151 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"databricks\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Databricks\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MS SQL\",\n      \"alternative_group\": 1,\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"data-visualization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"visualization tools\"\n    },\n    {\n      \"skill_id\": \"power-bi\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Power BI\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud platforms\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GCP\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"predictive modeling/ML\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"knowledge-graphs\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Designing and implementing knowledge graphs\"\n    },\n    {\n      \"skill_id\": \"data-modeling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"conceptual modeling\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Databases\",\n      \"raw_text\": \"databases\"\n    },\n    {\n      \"label\": \"SAS\",\n      \"raw_text\": \"SAS\"\n    },\n    {\n      \"label\": \"Predictive modeling\",\n      \"raw_text\": \"predictive modeling\"\n    },\n    {\n      \"label\": \"Data governance framework design\",\n      \"raw_text\": \"Designing governance frameworks\"\n    },\n    {\n      \"label\": \"Data integration\",\n      \"raw_text\": \"data integration approaches\"\n    },\n    {\n      \"label\": \"Ontology development and management\",\n      \"raw_text\": \"ontology development and management\"\n    },\n    {\n      \"label\": \"RDF\",\n      \"raw_text\": \"RDF\"\n    },\n    {\n      \"label\": \"OWL\",\n      \"raw_text\": \"OWL\"\n    },\n    {\n      \"label\": \"SPARQL\",\n      \"raw_text\": \"SPARQL\"\n    },\n    {\n      \"label\": \"Semantic layer creation\",\n      \"raw_text\": \"semantic layer creation\"\n    },\n    {\n      \"label\": \"Query optimization\",\n      \"raw_text\": \"query optimization\"\n    },\n    {\n      \"label\": \"Data analysis\",\n      \"raw_text\": \"complex data analysis\"\n    },\n    {\n      \"label\": \"Master data management\",\n      \"raw_text\": \"master data management\"\n    },\n    {\n      \"label\": \"Metadata governance\",\n      \"raw_text\": \"governed metadata initiatives\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"you will lead client workstreams\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"At least a Bachelor's degree\",\n  \"notes\": \"“What Sets You Apart” does not explicitly mark its section optional; under the literal default, its technical qualifications are required. The inline academic preference applies only to fields of study.\\nThe certification alternatives form group 1 across their concrete technology examples; explicitly named broad skills remain outside that group. RDF, OWL, and SPARQL are a separate alternative set, but all are unmapped.\\nMS SQL is provisionally mapped to SQL and flagged because it may specifically mean Microsoft SQL Server, which has no taxonomy entry.\\nConceptual modeling is read as data modeling in this data-governance context. Data integration is not silently expanded to data pipelines.\\nPredictive modeling is retained as unmapped rather than assumed to mean statistical modeling; the explicit ML mention maps to machine-learning.\\nSeniority rests on explicit leadership duties, not on treating Manager as an enumerated senior title or on the four-year minimum.\\nTechnologies and practices appearing only in the opportunity description or responsibilities are excluded. Academic fields, credentials themselves, and interpersonal or management skills are not technical-skill criteria.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "databricks",
+        "requirement": "required",
+        "raw_text": "Databricks",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "MS SQL",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-visualization",
+        "requirement": "required",
+        "raw_text": "visualization tools"
+      },
+      {
+        "skill_id": "power-bi",
+        "requirement": "required",
+        "raw_text": "Power BI",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "predictive modeling/ML"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "knowledge-graphs",
+        "requirement": "required",
+        "raw_text": "Designing and implementing knowledge graphs"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "conceptual modeling"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Databases",
+        "raw_text": "databases"
+      },
+      {
+        "label": "SAS",
+        "raw_text": "SAS"
+      },
+      {
+        "label": "Predictive modeling",
+        "raw_text": "predictive modeling"
+      },
+      {
+        "label": "Data governance framework design",
+        "raw_text": "Designing governance frameworks"
+      },
+      {
+        "label": "Data integration",
+        "raw_text": "data integration approaches"
+      },
+      {
+        "label": "Ontology development and management",
+        "raw_text": "ontology development and management"
+      },
+      {
+        "label": "RDF",
+        "raw_text": "RDF"
+      },
+      {
+        "label": "OWL",
+        "raw_text": "OWL"
+      },
+      {
+        "label": "SPARQL",
+        "raw_text": "SPARQL"
+      },
+      {
+        "label": "Semantic layer creation",
+        "raw_text": "semantic layer creation"
+      },
+      {
+        "label": "Query optimization",
+        "raw_text": "query optimization"
+      },
+      {
+        "label": "Data analysis",
+        "raw_text": "complex data analysis"
+      },
+      {
+        "label": "Master data management",
+        "raw_text": "master data management"
+      },
+      {
+        "label": "Metadata governance",
+        "raw_text": "governed metadata initiatives"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "you will lead client workstreams",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "At least a Bachelor's degree",
+    "notes": "“What Sets You Apart” does not explicitly mark its section optional; under the literal default, its technical qualifications are required. The inline academic preference applies only to fields of study.\nThe certification alternatives form group 1 across their concrete technology examples; explicitly named broad skills remain outside that group. RDF, OWL, and SPARQL are a separate alternative set, but all are unmapped.\nMS SQL is provisionally mapped to SQL and flagged because it may specifically mean Microsoft SQL Server, which has no taxonomy entry.\nConceptual modeling is read as data modeling in this data-governance context. Data integration is not silently expanded to data pipelines.\nPredictive modeling is retained as unmapped rather than assumed to mean statistical modeling; the explicit ML mention maps to machine-learning.\nSeniority rests on explicit leadership duties, not on treating Manager as an enumerated senior title or on the four-year minimum.\nTechnologies and practices appearing only in the opportunity description or responsibilities are excluded. Academic fields, credentials themselves, and interpersonal or management skills are not technical-skill criteria."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "3523482233eb1a40a002932f8b7c7e0f68e2968436b4457603c3d8b39c6c80a7",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

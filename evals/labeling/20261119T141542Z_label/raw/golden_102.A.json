@@ -1,0 +1,51 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"sagemaker\", \"requirement\": \"required\", \"raw_text\": \"SageMaker\"},\n    {\"skill_id\": \"databricks\", \"requirement\": \"required\", \"raw_text\": \"Databricks\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"required\", \"raw_text\": \"Terraform\"},\n    {\"skill_id\": \"mlflow\", \"requirement\": \"required\", \"raw_text\": \"MLflow for model management\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"AI platforms\", \"raw_text\": \"AI platforms like SageMaker, Databricks, and Terraform\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior AI Platform & MLOps Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The posting is truncated mid-sentence. Only the text shown was labeled.\\nThe 'role requires strong experience with...' sentence is the only candidate ask. It has no heading, so it defaults to required.\\nThese appear only in the responsibilities paragraph, so they are not labeled: observability, model registries, cloud-based solutions, streaming data and 'AI/ML platforms'.\\nThe skill pair 'cloud'/'observability' is not labeled because it comes only from the responsibilities paragraph.\\nMLOps appears only in the job title and is never asked of the candidate, so it is not labeled.\\n'AI platforms like SageMaker, Databricks, and Terraform' is joined with 'and', not 'or'. On the literal reading these are skills asked for together, not alternatives, so there is no alternative_group. groups_reviewed is not set.\\n'AI platforms' has no exact taxonomy entry. ai-infrastructure and ai-ml are not literal matches, so it goes to unmapped.\\nSeniority is stated by the title 'Senior'. The body also says 'Principal AI Operations Engineer', which is also senior.\\nNo mention of German, other languages, a degree, or years of experience.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "sagemaker",
+        "requirement": "required",
+        "raw_text": "SageMaker"
+      },
+      {
+        "skill_id": "databricks",
+        "requirement": "required",
+        "raw_text": "Databricks"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "required",
+        "raw_text": "MLflow for model management"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "AI platforms",
+        "raw_text": "AI platforms like SageMaker, Databricks, and Terraform"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior AI Platform & MLOps Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The posting is truncated mid-sentence. Only the text shown was labeled.\nThe 'role requires strong experience with...' sentence is the only candidate ask. It has no heading, so it defaults to required.\nThese appear only in the responsibilities paragraph, so they are not labeled: observability, model registries, cloud-based solutions, streaming data and 'AI/ML platforms'.\nThe skill pair 'cloud'/'observability' is not labeled because it comes only from the responsibilities paragraph.\nMLOps appears only in the job title and is never asked of the candidate, so it is not labeled.\n'AI platforms like SageMaker, Databricks, and Terraform' is joined with 'and', not 'or'. On the literal reading these are skills asked for together, not alternatives, so there is no alternative_group. groups_reviewed is not set.\n'AI platforms' has no exact taxonomy entry. ai-infrastructure and ai-ml are not literal matches, so it goes to unmapped.\nSeniority is stated by the title 'Senior'. The body also says 'Principal AI Operations Engineer', which is also senior.\nNo mention of German, other languages, a degree, or years of experience."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "019466e57a03c289752da5e002f9f38f13ce6c53b44bcb72646ec78722394621",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

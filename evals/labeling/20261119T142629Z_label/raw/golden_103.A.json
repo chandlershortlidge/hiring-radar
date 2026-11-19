@@ -1,0 +1,209 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"software engineering\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"ml-engineering\", \"requirement\": \"required\", \"raw_text\": \"ML engineering\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"mlops\", \"requirement\": \"required\", \"raw_text\": \"MLOps/DevOps\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"devops\", \"requirement\": \"required\", \"raw_text\": \"MLOps/DevOps\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"required\", \"raw_text\": \"model deployment\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"Google Cloud Platform (GCP)\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"vertex-ai\", \"requirement\": \"required\", \"raw_text\": \"(Vertex AI, Kubeflow)\", \"alternative_group\": 2},\n    {\"skill_id\": \"kubeflow\", \"requirement\": \"required\", \"raw_text\": \"(Vertex AI, Kubeflow)\", \"alternative_group\": 2},\n    {\"skill_id\": \"airflow\", \"requirement\": \"required\", \"raw_text\": \"(Apache Airflow, MLflow)\", \"alternative_group\": 2},\n    {\"skill_id\": \"mlflow\", \"requirement\": \"required\", \"raw_text\": \"(Apache Airflow, MLflow)\", \"alternative_group\": 2},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"such as Python or Go\", \"alternative_group\": 3},\n    {\"skill_id\": \"go\", \"requirement\": \"required\", \"raw_text\": \"such as Python or Go\", \"alternative_group\": 3},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"required\", \"raw_text\": \"large-scale data processing and distributed systems\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"container orchestration\"},\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"container orchestration (e.g., Kubernetes, Docker)\", \"alternative_group\": 4, \"uncertain\": true},\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"container orchestration (e.g., Kubernetes, Docker)\", \"alternative_group\": 4, \"uncertain\": true},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD pipelines\"},\n    {\"skill_id\": \"jenkins\", \"requirement\": \"required\", \"raw_text\": \"(e.g., Jenkins, GitLab CI)\", \"alternative_group\": 5},\n    {\"skill_id\": \"gitlab-ci\", \"requirement\": \"required\", \"raw_text\": \"(e.g., Jenkins, GitLab CI)\", \"alternative_group\": 5},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"monitoring and alerting\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Familiarity with Large Language Models (LLMs)\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"open-source Agentic AI frameworks\"},\n    {\"skill_id\": \"langchain\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LangChain\", \"alternative_group\": 6},\n    {\"skill_id\": \"autogen\", \"requirement\": \"nice_to_have\", \"raw_text\": \"AutoGen\", \"alternative_group\": 6},\n    {\"skill_id\": \"llamaindex\", \"requirement\": \"nice_to_have\", \"raw_text\": \"LlamaIndex\", \"alternative_group\": 6},\n    {\"skill_id\": \"google-adk\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Agent Development Kit\", \"alternative_group\": 6, \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"standard ML evaluation metrics\"},\n    {\"skill_id\": \"data-privacy-and-security\", \"requirement\": \"nice_to_have\", \"raw_text\": \"implementing strict access control and encryption mechanisms\", \"uncertain\": true},\n    {\"skill_id\": \"a-b-testing\", \"requirement\": \"nice_to_have\", \"raw_text\": \"A/B testing\"},\n    {\"skill_id\": \"grafana\", \"requirement\": \"nice_to_have\", \"raw_text\": \"(e.g., Grafana, Datadog)\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Datadog\", \"raw_text\": \"(e.g., Grafana, Datadog)\"}\n  ],\n  \"seniority\": \"senior\", \"seniority_basis\": \"stated\", \"seniority_signal\": \"AI Engineer Lead\",\n  \"german\": null, \"german_basis\": null, \"german_signal\": null,\n  \"degree\": null, \"degree_requirement\": null,\n  \"degree_or_equivalent\": false, \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Labels come only from the Minimum Qualifications section, which is required, and the Preferred Qualifications section, which is nice_to_have. Kafka, RBAC/IAM, experiment tracking and feature engineering appear only in the responsibilities, so they are not labeled.\\nGroup 1: 'software engineering, ML engineering, or MLOps/DevOps' is read as alternatives inside a years-of-experience phrase. These four are flagged because the phrase is mainly a years statement.\\nThe mlops criterion is kept in group 1. 'GCP MLOps services' names services rather than asking for MLOps as a skill on its own.\\nGroup 2: the GCP services (Vertex AI, Kubeflow) are offered 'or equivalent' to the open-source tools (Airflow, MLflow). GCP itself is included in the group as part of the first alternative; this is flagged.\\nGroup 4: Kubernetes and Docker are treated as examples offered for the single ask 'container orchestration', even though the list has no 'or'. Flagged.\\nGroup 5: Jenkins and GitLab CI are treated as examples for the single ask 'CI/CD pipelines'. The same reasoning applies.\\n'Agent Development Kit' is mapped to google-adk, since it is the internal equivalent named after LangChain/AutoGen/LlamaIndex. Flagged.\\nObservability: the required mention 'monitoring and alerting' wins over the preferred drift-monitoring and dashboard mentions.\\nGrafana is not grouped, because its only alternative (Datadog) is not in the taxonomy.\\n'end-to-end ML pipelines for ... model training, evaluation, and deployment' is too generic to label. The evaluation criterion is taken from the preferred mention 'standard ML evaluation metrics'.\\nDebugging skills and SRE organization experience are not labeled.\\nSeniority is senior, stated by 'Lead' in the title. It is also supported by '8+ years' and the mentoring duty.\\nThe posting mentions no degree and no German.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "ML engineering",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps/DevOps",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "MLOps/DevOps",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "model deployment"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google Cloud Platform (GCP)",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "vertex-ai",
+        "requirement": "required",
+        "raw_text": "(Vertex AI, Kubeflow)",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "kubeflow",
+        "requirement": "required",
+        "raw_text": "(Vertex AI, Kubeflow)",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "required",
+        "raw_text": "(Apache Airflow, MLflow)",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "required",
+        "raw_text": "(Apache Airflow, MLflow)",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "such as Python or Go",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "such as Python or Go",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "large-scale data processing and distributed systems"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "container orchestration"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "container orchestration (e.g., Kubernetes, Docker)",
+        "alternative_group": 4,
+        "uncertain": true
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "container orchestration (e.g., Kubernetes, Docker)",
+        "alternative_group": 4,
+        "uncertain": true
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD pipelines"
+      },
+      {
+        "skill_id": "jenkins",
+        "requirement": "required",
+        "raw_text": "(e.g., Jenkins, GitLab CI)",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "gitlab-ci",
+        "requirement": "required",
+        "raw_text": "(e.g., Jenkins, GitLab CI)",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring and alerting"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "Familiarity with Large Language Models (LLMs)"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "open-source Agentic AI frameworks"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "nice_to_have",
+        "raw_text": "LangChain",
+        "alternative_group": 6
+      },
+      {
+        "skill_id": "autogen",
+        "requirement": "nice_to_have",
+        "raw_text": "AutoGen",
+        "alternative_group": 6
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "nice_to_have",
+        "raw_text": "LlamaIndex",
+        "alternative_group": 6
+      },
+      {
+        "skill_id": "google-adk",
+        "requirement": "nice_to_have",
+        "raw_text": "Agent Development Kit",
+        "alternative_group": 6,
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "standard ML evaluation metrics"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "nice_to_have",
+        "raw_text": "implementing strict access control and encryption mechanisms",
+        "uncertain": true
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "nice_to_have",
+        "raw_text": "A/B testing"
+      },
+      {
+        "skill_id": "grafana",
+        "requirement": "nice_to_have",
+        "raw_text": "(e.g., Grafana, Datadog)"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Datadog",
+        "raw_text": "(e.g., Grafana, Datadog)"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "AI Engineer Lead",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Labels come only from the Minimum Qualifications section, which is required, and the Preferred Qualifications section, which is nice_to_have. Kafka, RBAC/IAM, experiment tracking and feature engineering appear only in the responsibilities, so they are not labeled.\nGroup 1: 'software engineering, ML engineering, or MLOps/DevOps' is read as alternatives inside a years-of-experience phrase. These four are flagged because the phrase is mainly a years statement.\nThe mlops criterion is kept in group 1. 'GCP MLOps services' names services rather than asking for MLOps as a skill on its own.\nGroup 2: the GCP services (Vertex AI, Kubeflow) are offered 'or equivalent' to the open-source tools (Airflow, MLflow). GCP itself is included in the group as part of the first alternative; this is flagged.\nGroup 4: Kubernetes and Docker are treated as examples offered for the single ask 'container orchestration', even though the list has no 'or'. Flagged.\nGroup 5: Jenkins and GitLab CI are treated as examples for the single ask 'CI/CD pipelines'. The same reasoning applies.\n'Agent Development Kit' is mapped to google-adk, since it is the internal equivalent named after LangChain/AutoGen/LlamaIndex. Flagged.\nObservability: the required mention 'monitoring and alerting' wins over the preferred drift-monitoring and dashboard mentions.\nGrafana is not grouped, because its only alternative (Datadog) is not in the taxonomy.\n'end-to-end ML pipelines for ... model training, evaluation, and deployment' is too generic to label. The evaluation criterion is taken from the preferred mention 'standard ML evaluation metrics'.\nDebugging skills and SRE organization experience are not labeled.\nSeniority is senior, stated by 'Lead' in the title. It is also supported by '8+ years' and the mentoring duty.\nThe posting mentions no degree and no German."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "69e709ebaf9f7d53fd0aed19d89c88be188cf914defa86a708ea5cc5a651895c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,281 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"ml-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML engineering\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps services\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevOps\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model deployment\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"continuous monitoring\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Google Cloud Platform (GCP)\"\n    },\n    {\n      \"skill_id\": \"vertex-ai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Vertex AI\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"kubeflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubeflow) or equivalent open-source ecosystems\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"airflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Apache Airflow, MLflow\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"mlflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Apache Airflow, MLflow\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Go\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed systems\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"container orchestration\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes, Docker\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes, Docker\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD pipelines\"\n    },\n    {\n      \"skill_id\": \"jenkins\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Jenkins\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"gitlab-ci\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitLab CI\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model training\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model training, evaluation, and deployment\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Large Language Models (LLMs)\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"open-source Agentic AI frameworks\"\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LangChain\",\n      \"alternative_group\": 6\n    },\n    {\n      \"skill_id\": \"autogen\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AutoGen\",\n      \"alternative_group\": 6\n    },\n    {\n      \"skill_id\": \"llamaindex\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LlamaIndex\",\n      \"alternative_group\": 6\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Experience managing highly sensitive data (e.g., PII/PHI) and implementing strict access control and encryption mechanisms.\"\n    },\n    {\n      \"skill_id\": \"a-b-testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"A/B testing\"\n    },\n    {\n      \"skill_id\": \"grafana\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Grafana\",\n      \"alternative_group\": 7\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Continuous training\",\n      \"raw_text\": \"continuous training\"\n    },\n    {\n      \"label\": \"Large-scale data processing\",\n      \"raw_text\": \"large-scale data processing\"\n    },\n    {\n      \"label\": \"Production operations\",\n      \"raw_text\": \"production operations for distributed systems\"\n    },\n    {\n      \"label\": \"Alerting\",\n      \"raw_text\": \"alerting\"\n    },\n    {\n      \"label\": \"Service-level objective definition\",\n      \"raw_text\": \"SLO definition\"\n    },\n    {\n      \"label\": \"On-call incident triage\",\n      \"raw_text\": \"on-call incident triage\"\n    },\n    {\n      \"label\": \"Root-cause analysis\",\n      \"raw_text\": \"root-cause analysis\"\n    },\n    {\n      \"label\": \"End-to-end ML pipelines\",\n      \"raw_text\": \"end-to-end ML pipelines\"\n    },\n    {\n      \"label\": \"Data management\",\n      \"raw_text\": \"data management\"\n    },\n    {\n      \"label\": \"Agent Development Kit (internal equivalent)\",\n      \"raw_text\": \"internal equivalent like Agent Development Kit\"\n    },\n    {\n      \"label\": \"BLEURT\",\n      \"raw_text\": \"BLEURT\"\n    },\n    {\n      \"label\": \"ROUGE\",\n      \"raw_text\": \"ROUGE\"\n    },\n    {\n      \"label\": \"Precision/Recall\",\n      \"raw_text\": \"Precision/Recall\"\n    },\n    {\n      \"label\": \"AUC\",\n      \"raw_text\": \"AUC\"\n    },\n    {\n      \"label\": \"Trajectory Exact Match\",\n      \"raw_text\": \"Trajectory Exact Match\"\n    },\n    {\n      \"label\": \"Access control\",\n      \"raw_text\": \"access control\"\n    },\n    {\n      \"label\": \"Encryption\",\n      \"raw_text\": \"encryption mechanisms\"\n    },\n    {\n      \"label\": \"Debugging and troubleshooting\",\n      \"raw_text\": \"debugging skills, with the ability to troubleshoot complex, distributed ML systems and infrastructure dependencies\"\n    },\n    {\n      \"label\": \"Data/concept drift detection\",\n      \"raw_text\": \"data/concept drift detection\"\n    },\n    {\n      \"label\": \"Quality dashboard development\",\n      \"raw_text\": \"building quality dashboards\"\n    },\n    {\n      \"label\": \"Datadog\",\n      \"raw_text\": \"Datadog\"\n    },\n    {\n      \"label\": \"Site reliability engineering\",\n      \"raw_text\": \"working in a sustenance, support-engineering, or SRE organization\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"AI Engineer Lead\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Minimum Qualifications defaults to required; Preferred Qualifications makes its items nice_to_have. Technologies appearing only in Key Responsibilities were excluded.\\nThe GCP-services/open-source-ecosystems wording is treated as one alternative tool ask; its four concrete tools share group 2, while the named platform stays outside the examples group. MLOps is independently required by the services qualification and therefore leaves group 1.\\nFragments for tools repeated in responsibilities include enough adjacent text to identify the qualification mention.\\nGroup 7 includes Grafana and the unmapped Datadog; only the taxonomy-mapped member can be represented in expected.\\nAgent Development Kit is explicitly described as an internal equivalent, so it is not assumed to be Google ADK.\\nDebugging alone is not treated as Software Testing. Continuous training, ML pipelines, and large-scale data processing are not silently mapped to broader or different practices.\\nSpecific evaluation metrics, access control, and encryption are retained as unmapped techniques in addition to the explicitly supported broad skills.\\nKnowledge-transfer and service-transition programs are read literally as organizational experience rather than a named technical practice; leadership, communication, analytical ability, and stakeholder management are excluded as soft skills.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "ML engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps services"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "model deployment"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "continuous monitoring"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google Cloud Platform (GCP)"
+      },
+      {
+        "skill_id": "vertex-ai",
+        "requirement": "required",
+        "raw_text": "Vertex AI",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "kubeflow",
+        "requirement": "required",
+        "raw_text": "Kubeflow) or equivalent open-source ecosystems",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "required",
+        "raw_text": "Apache Airflow, MLflow",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "required",
+        "raw_text": "Apache Airflow, MLflow",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "container orchestration"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes, Docker",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Kubernetes, Docker",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD pipelines"
+      },
+      {
+        "skill_id": "jenkins",
+        "requirement": "required",
+        "raw_text": "Jenkins",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "gitlab-ci",
+        "requirement": "required",
+        "raw_text": "GitLab CI",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "model training"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "model training, evaluation, and deployment"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "Large Language Models (LLMs)"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "open-source Agentic AI frameworks"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "nice_to_have",
+        "raw_text": "LangChain",
+        "alternative_group": 6
+      },
+      {
+        "skill_id": "autogen",
+        "requirement": "nice_to_have",
+        "raw_text": "AutoGen",
+        "alternative_group": 6
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "nice_to_have",
+        "raw_text": "LlamaIndex",
+        "alternative_group": 6
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience managing highly sensitive data (e.g., PII/PHI) and implementing strict access control and encryption mechanisms."
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "nice_to_have",
+        "raw_text": "A/B testing"
+      },
+      {
+        "skill_id": "grafana",
+        "requirement": "nice_to_have",
+        "raw_text": "Grafana",
+        "alternative_group": 7
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Continuous training",
+        "raw_text": "continuous training"
+      },
+      {
+        "label": "Large-scale data processing",
+        "raw_text": "large-scale data processing"
+      },
+      {
+        "label": "Production operations",
+        "raw_text": "production operations for distributed systems"
+      },
+      {
+        "label": "Alerting",
+        "raw_text": "alerting"
+      },
+      {
+        "label": "Service-level objective definition",
+        "raw_text": "SLO definition"
+      },
+      {
+        "label": "On-call incident triage",
+        "raw_text": "on-call incident triage"
+      },
+      {
+        "label": "Root-cause analysis",
+        "raw_text": "root-cause analysis"
+      },
+      {
+        "label": "End-to-end ML pipelines",
+        "raw_text": "end-to-end ML pipelines"
+      },
+      {
+        "label": "Data management",
+        "raw_text": "data management"
+      },
+      {
+        "label": "Agent Development Kit (internal equivalent)",
+        "raw_text": "internal equivalent like Agent Development Kit"
+      },
+      {
+        "label": "BLEURT",
+        "raw_text": "BLEURT"
+      },
+      {
+        "label": "ROUGE",
+        "raw_text": "ROUGE"
+      },
+      {
+        "label": "Precision/Recall",
+        "raw_text": "Precision/Recall"
+      },
+      {
+        "label": "AUC",
+        "raw_text": "AUC"
+      },
+      {
+        "label": "Trajectory Exact Match",
+        "raw_text": "Trajectory Exact Match"
+      },
+      {
+        "label": "Access control",
+        "raw_text": "access control"
+      },
+      {
+        "label": "Encryption",
+        "raw_text": "encryption mechanisms"
+      },
+      {
+        "label": "Debugging and troubleshooting",
+        "raw_text": "debugging skills, with the ability to troubleshoot complex, distributed ML systems and infrastructure dependencies"
+      },
+      {
+        "label": "Data/concept drift detection",
+        "raw_text": "data/concept drift detection"
+      },
+      {
+        "label": "Quality dashboard development",
+        "raw_text": "building quality dashboards"
+      },
+      {
+        "label": "Datadog",
+        "raw_text": "Datadog"
+      },
+      {
+        "label": "Site reliability engineering",
+        "raw_text": "working in a sustenance, support-engineering, or SRE organization"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "AI Engineer Lead",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Minimum Qualifications defaults to required; Preferred Qualifications makes its items nice_to_have. Technologies appearing only in Key Responsibilities were excluded.\nThe GCP-services/open-source-ecosystems wording is treated as one alternative tool ask; its four concrete tools share group 2, while the named platform stays outside the examples group. MLOps is independently required by the services qualification and therefore leaves group 1.\nFragments for tools repeated in responsibilities include enough adjacent text to identify the qualification mention.\nGroup 7 includes Grafana and the unmapped Datadog; only the taxonomy-mapped member can be represented in expected.\nAgent Development Kit is explicitly described as an internal equivalent, so it is not assumed to be Google ADK.\nDebugging alone is not treated as Software Testing. Continuous training, ML pipelines, and large-scale data processing are not silently mapped to broader or different practices.\nSpecific evaluation metrics, access control, and encryption are retained as unmapped techniques in addition to the explicitly supported broad skills.\nKnowledge-transfer and service-transition programs are read literally as organizational experience rather than a named technical practice; leadership, communication, analytical ability, and stakeholder management are excluded as soft skills."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "69e709ebaf9f7d53fd0aed19d89c88be188cf914defa86a708ea5cc5a651895c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,146 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS expertise\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong Python skills\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"experience building agents\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM solutions\"\n    },\n    {\n      \"skill_id\": \"aws-bedrock\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Bedrock agents\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"tool use\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation\"\n    },\n    {\n      \"skill_id\": \"llm-guardrails\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"guardrails\"\n    },\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Snowflake, Iceberg, S3, Glue, Athena and IAM\"\n    },\n    {\n      \"skill_id\": \"aws-s3\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"S3\"\n    },\n    {\n      \"skill_id\": \"power-bi\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Power BI\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Git\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"testing\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Amazon Quick Suite\",\n      \"raw_text\": \"hands-on Amazon Quick Suite experience\"\n    },\n    {\n      \"label\": \"Semantic and knowledge-layer design\",\n      \"raw_text\": \"semantic/knowledge-layer design\"\n    },\n    {\n      \"label\": \"Apache Iceberg\",\n      \"raw_text\": \"strong Apache Iceberg and AWS engineering skills\"\n    },\n    {\n      \"label\": \"Text-to-SQL\",\n      \"raw_text\": \"text-to-SQL\"\n    },\n    {\n      \"label\": \"AWS Glue\",\n      \"raw_text\": \"Glue\"\n    },\n    {\n      \"label\": \"Amazon Athena\",\n      \"raw_text\": \"Athena\"\n    },\n    {\n      \"label\": \"AWS IAM\",\n      \"raw_text\": \"IAM\"\n    },\n    {\n      \"label\": \"DAX\",\n      \"raw_text\": \"DAX\"\n    },\n    {\n      \"label\": \"AWS CloudFormation\",\n      \"raw_text\": \"CloudFormation\"\n    },\n    {\n      \"label\": \"Jira\",\n      \"raw_text\": \"Jira\"\n    },\n    {\n      \"label\": \"Atlan\",\n      \"raw_text\": \"Atlan data catalog\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior/architect-level\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Required and Preferred set their respective section defaults; the opening candidate-expertise statement also supplies requirements.\\nThe longer Snowflake quote identifies its required mention rather than its responsibilities-only mention.\\nText-to-SQL and semantic/knowledge-layer design are unmapped techniques; neither is expanded into SQL, RAG, knowledge graphs, or data modeling.\\nSAP, JDE and M3 data concepts are read literally as domain knowledge and excluded.\\nCertifications are credentials, not additional technical skills; their titles do not independently establish machine-learning or software-architecture requirements.\\nTechnologies and practices appearing only under What You’ll Do are excluded.\\nTerraform/CloudFormation contains only one taxonomy-mapped skill, so no alternative group with at least two mapped skills is emitted.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS expertise"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python skills"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "experience building agents"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM solutions"
+      },
+      {
+        "skill_id": "aws-bedrock",
+        "requirement": "required",
+        "raw_text": "Bedrock agents"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "tool use"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "guardrails"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake, Iceberg, S3, Glue, Athena and IAM"
+      },
+      {
+        "skill_id": "aws-s3",
+        "requirement": "required",
+        "raw_text": "S3"
+      },
+      {
+        "skill_id": "power-bi",
+        "requirement": "nice_to_have",
+        "raw_text": "Power BI"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "nice_to_have",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "nice_to_have",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "testing"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Amazon Quick Suite",
+        "raw_text": "hands-on Amazon Quick Suite experience"
+      },
+      {
+        "label": "Semantic and knowledge-layer design",
+        "raw_text": "semantic/knowledge-layer design"
+      },
+      {
+        "label": "Apache Iceberg",
+        "raw_text": "strong Apache Iceberg and AWS engineering skills"
+      },
+      {
+        "label": "Text-to-SQL",
+        "raw_text": "text-to-SQL"
+      },
+      {
+        "label": "AWS Glue",
+        "raw_text": "Glue"
+      },
+      {
+        "label": "Amazon Athena",
+        "raw_text": "Athena"
+      },
+      {
+        "label": "AWS IAM",
+        "raw_text": "IAM"
+      },
+      {
+        "label": "DAX",
+        "raw_text": "DAX"
+      },
+      {
+        "label": "AWS CloudFormation",
+        "raw_text": "CloudFormation"
+      },
+      {
+        "label": "Jira",
+        "raw_text": "Jira"
+      },
+      {
+        "label": "Atlan",
+        "raw_text": "Atlan data catalog"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior/architect-level",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Required and Preferred set their respective section defaults; the opening candidate-expertise statement also supplies requirements.\nThe longer Snowflake quote identifies its required mention rather than its responsibilities-only mention.\nText-to-SQL and semantic/knowledge-layer design are unmapped techniques; neither is expanded into SQL, RAG, knowledge graphs, or data modeling.\nSAP, JDE and M3 data concepts are read literally as domain knowledge and excluded.\nCertifications are credentials, not additional technical skills; their titles do not independently establish machine-learning or software-architecture requirements.\nTechnologies and practices appearing only under What You’ll Do are excluded.\nTerraform/CloudFormation contains only one taxonomy-mapped skill, so no alternative group with at least two mapped skills is emitted."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "d363f3f89be5e8ac8a4dd1caae594308bb428cf30b670d41bf234bbdb9bd6ca1",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

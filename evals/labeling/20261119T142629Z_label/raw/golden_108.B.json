@@ -1,0 +1,190 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"developing AI and ML algorithms or technologies\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML algorithms or technologies\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"programming with Python\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Go\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"scala\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Scala\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"cuda\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"programming with Python, Go, Scala, CUDA, or Java\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"programming with Python, Go, Scala, CUDA, or Java\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"deploying scalable and responsible AI solutions\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cloud platforms\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AWS\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Google Cloud\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Azure\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLM Inference\"\n    },\n    {\n      \"skill_id\": \"vector-search\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Similarity Search\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"VectorDBs\"\n    },\n    {\n      \"skill_id\": \"llm-guardrails\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Guardrails\"\n    },\n    {\n      \"skill_id\": \"agent-state-management\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Memory\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"C++\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"csharp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"C#\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"inference-optimization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"optimizing training and inference software\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agentic AI systems and agentic workflows\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distributed systems\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"model training\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"evaluation\"\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"online inference\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"architectural decisions\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Training software optimization\",\n      \"raw_text\": \"optimizing training and inference software\"\n    },\n    {\n      \"label\": \"AI model governance\",\n      \"raw_text\": \"AI model governance processes\"\n    },\n    {\n      \"label\": \"Producibility\",\n      \"raw_text\": \"producibility\"\n    },\n    {\n      \"label\": \"Lineage tracking\",\n      \"raw_text\": \"lineage tracking\"\n    },\n    {\n      \"label\": \"Automated retaining schedules\",\n      \"raw_text\": \"automated retaining schedules\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Mentor Principal and Senior Associates on scalable design, performance tuning and research-to-production translation\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Bachelor's Degree in Computer Science, AI, Electrical Engineering, Computer Engineering, or related fields plus at least 4 years of experience developing AI and ML algorithms or technologies, or a Master's degree in Computer Science, AI, Electrical Engineering, Computer Engineering, or related fields plus at least 2 years of experience developing AI and ML algorithms or technologies\",\n  \"notes\": \"The Ideal Candidate and Basic Qualifications default to required; Preferred Qualifications defaults to nice_to_have. Responsibilities and company descriptions do not independently establish skill requirements.\\nSeniority is inferred from explicit mentoring duty, not the numeric title or the levels of the people being mentored.\\nThe highest degree named is master's; the bachelor's pathway is not an experience-only alternative.\\nThe overlapping programming-language lists are collapsed by retaining the basic-qualification alternatives in group 1; group 3 contains the two additional preferred alternatives. The guide does not explicitly specify representation of overlapping alternative sets.\\nSimilarity Search is tentatively mapped to vector-search because it is paired with VectorDBs; Memory is tentatively mapped to agent-state-management. Both mappings need review.\\nOnline inference is tentatively treated as model serving rather than adding an inference skill absent from the taxonomy.\\nThe wording producibility and automated retaining schedules is preserved literally, without correcting presumed typographical errors.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "developing AI and ML algorithms or technologies"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ML algorithms or technologies"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "programming with Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "required",
+        "raw_text": "Scala",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cuda",
+        "requirement": "required",
+        "raw_text": "programming with Python, Go, Scala, CUDA, or Java",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "programming with Python, Go, Scala, CUDA, or Java",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "nice_to_have",
+        "raw_text": "deploying scalable and responsible AI solutions"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "Google Cloud",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM Inference"
+      },
+      {
+        "skill_id": "vector-search",
+        "requirement": "nice_to_have",
+        "raw_text": "Similarity Search",
+        "uncertain": true
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "nice_to_have",
+        "raw_text": "VectorDBs"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "nice_to_have",
+        "raw_text": "Guardrails"
+      },
+      {
+        "skill_id": "agent-state-management",
+        "requirement": "nice_to_have",
+        "raw_text": "Memory",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "nice_to_have",
+        "raw_text": "C++",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "csharp",
+        "requirement": "nice_to_have",
+        "raw_text": "C#",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "nice_to_have",
+        "raw_text": "optimizing training and inference software"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic AI systems and agentic workflows"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "nice_to_have",
+        "raw_text": "model training"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "evaluation"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "online inference",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "nice_to_have",
+        "raw_text": "architectural decisions"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Training software optimization",
+        "raw_text": "optimizing training and inference software"
+      },
+      {
+        "label": "AI model governance",
+        "raw_text": "AI model governance processes"
+      },
+      {
+        "label": "Producibility",
+        "raw_text": "producibility"
+      },
+      {
+        "label": "Lineage tracking",
+        "raw_text": "lineage tracking"
+      },
+      {
+        "label": "Automated retaining schedules",
+        "raw_text": "automated retaining schedules"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Mentor Principal and Senior Associates on scalable design, performance tuning and research-to-production translation",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor's Degree in Computer Science, AI, Electrical Engineering, Computer Engineering, or related fields plus at least 4 years of experience developing AI and ML algorithms or technologies, or a Master's degree in Computer Science, AI, Electrical Engineering, Computer Engineering, or related fields plus at least 2 years of experience developing AI and ML algorithms or technologies",
+    "notes": "The Ideal Candidate and Basic Qualifications default to required; Preferred Qualifications defaults to nice_to_have. Responsibilities and company descriptions do not independently establish skill requirements.\nSeniority is inferred from explicit mentoring duty, not the numeric title or the levels of the people being mentored.\nThe highest degree named is master's; the bachelor's pathway is not an experience-only alternative.\nThe overlapping programming-language lists are collapsed by retaining the basic-qualification alternatives in group 1; group 3 contains the two additional preferred alternatives. The guide does not explicitly specify representation of overlapping alternative sets.\nSimilarity Search is tentatively mapped to vector-search because it is paired with VectorDBs; Memory is tentatively mapped to agent-state-management. Both mappings need review.\nOnline inference is tentatively treated as model serving rather than adding an inference skill absent from the taxonomy.\nThe wording producibility and automated retaining schedules is preserved literally, without correcting presumed typographical errors."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "839007b4489234b15d4e0c4592569a19e7565b956e7d80114e00f5795228125c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

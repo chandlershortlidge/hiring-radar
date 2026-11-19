@@ -1,0 +1,153 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Software Development to design, build, and deploy applications\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"javascript\", \"requirement\": \"required\", \"raw_text\": \"JavaScript/Node.js\"},\n    {\"skill_id\": \"node-js\", \"requirement\": \"required\", \"raw_text\": \"JavaScript/Node.js\"},\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"SQL/BigQuery\"},\n    {\"skill_id\": \"bigquery\", \"requirement\": \"required\", \"raw_text\": \"SQL/BigQuery\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"AI & LLM Engineering\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"machine learning applications\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Cloud & API Architecture\"},\n    {\"skill_id\": \"api-design\", \"requirement\": \"required\", \"raw_text\": \"API Architecture\", \"uncertain\": true},\n    {\"skill_id\": \"oauth\", \"requirement\": \"required\", \"raw_text\": \"OAuth2 authentication flows\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"REST APIs\"},\n    {\"skill_id\": \"gcp\", \"requirement\": \"required\", \"raw_text\": \"Google Cloud\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"AWS\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"Git workflows, GitHub\"},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"AI coding assistants\"},\n    {\"skill_id\": \"gemini\", \"requirement\": \"required\", \"raw_text\": \"AI coding assistants such as Gemini\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"HTML5\", \"raw_text\": \"HTML5\"},\n    {\"label\": \"CSS\", \"raw_text\": \"CSS\"},\n    {\"label\": \"Database management\", \"raw_text\": \"Database Management to design, deploy, maintain, and modify scalable database structures\"},\n    {\"label\": \"Agile\", \"raw_text\": \"Agile methodologies\"},\n    {\"label\": \"Windsurf\", \"raw_text\": \"Windsurf\"},\n    {\"label\": \"Google Docs automation (preferred)\", \"raw_text\": \"Experience with Google Docs automation preferred\"},\n    {\"label\": \"VSCode / IDEs (preferred)\", \"raw_text\": \"IDEs such as VSCode\"},\n    {\"label\": \"Microsoft Office (preferred)\", \"raw_text\": \"Microsoft Office\"},\n    {\"label\": \"Google Workspace (preferred)\", \"raw_text\": \"Google Workspace preferred\"}\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"2+ years of experience in software development\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Bachelor's Degree\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"The 'Specific Knowledge and Skills' heading does not mark the section optional, so unmarked items are required. Only the Google Docs automation and IDE/Office/Workspace items carry 'preferred'.\\nI labeled the 'Software Development' heading phrase as software-engineering. It is uncertain because it works as a category label for the language list.\\nI did not add ai-ml for 'AI & LLM Engineering', because llms is the named skill there.\\nI mapped 'API Architecture' to api-design through its taxonomy alias. It is uncertain because it sits in a category heading.\\n'Google Cloud' maps to gcp.\\nGemini is listed as an example of an AI coding assistant. I mapped it to the gemini id, which is uncertain because that entry covers the model family.\\nI assigned no alternative_group. In 'Gemini or Windsurf', Windsurf is unmapped, so the group would have only one taxonomy skill. I did not treat 'SQL/BigQuery' as alternatives.\\nGit and GitHub collapse into git.\\nGoogle Docs automation is left unmapped rather than forced to workflow-automation.\\nSeniority rests on '2+ years', which is on the junior/mid boundary under the guide (0–2 junior). 'Position Type Experienced' is not a level signal.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Software Development to design, build, and deploy applications",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript/Node.js"
+      },
+      {
+        "skill_id": "node-js",
+        "requirement": "required",
+        "raw_text": "JavaScript/Node.js"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL/BigQuery"
+      },
+      {
+        "skill_id": "bigquery",
+        "requirement": "required",
+        "raw_text": "SQL/BigQuery"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "AI & LLM Engineering"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning applications"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud & API Architecture"
+      },
+      {
+        "skill_id": "api-design",
+        "requirement": "required",
+        "raw_text": "API Architecture",
+        "uncertain": true
+      },
+      {
+        "skill_id": "oauth",
+        "requirement": "required",
+        "raw_text": "OAuth2 authentication flows"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "REST APIs"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google Cloud"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git workflows, GitHub"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI coding assistants"
+      },
+      {
+        "skill_id": "gemini",
+        "requirement": "required",
+        "raw_text": "AI coding assistants such as Gemini",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "HTML5",
+        "raw_text": "HTML5"
+      },
+      {
+        "label": "CSS",
+        "raw_text": "CSS"
+      },
+      {
+        "label": "Database management",
+        "raw_text": "Database Management to design, deploy, maintain, and modify scalable database structures"
+      },
+      {
+        "label": "Agile",
+        "raw_text": "Agile methodologies"
+      },
+      {
+        "label": "Windsurf",
+        "raw_text": "Windsurf"
+      },
+      {
+        "label": "Google Docs automation (preferred)",
+        "raw_text": "Experience with Google Docs automation preferred"
+      },
+      {
+        "label": "VSCode / IDEs (preferred)",
+        "raw_text": "IDEs such as VSCode"
+      },
+      {
+        "label": "Microsoft Office (preferred)",
+        "raw_text": "Microsoft Office"
+      },
+      {
+        "label": "Google Workspace (preferred)",
+        "raw_text": "Google Workspace preferred"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "2+ years of experience in software development",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor's Degree",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The 'Specific Knowledge and Skills' heading does not mark the section optional, so unmarked items are required. Only the Google Docs automation and IDE/Office/Workspace items carry 'preferred'.\nI labeled the 'Software Development' heading phrase as software-engineering. It is uncertain because it works as a category label for the language list.\nI did not add ai-ml for 'AI & LLM Engineering', because llms is the named skill there.\nI mapped 'API Architecture' to api-design through its taxonomy alias. It is uncertain because it sits in a category heading.\n'Google Cloud' maps to gcp.\nGemini is listed as an example of an AI coding assistant. I mapped it to the gemini id, which is uncertain because that entry covers the model family.\nI assigned no alternative_group. In 'Gemini or Windsurf', Windsurf is unmapped, so the group would have only one taxonomy skill. I did not treat 'SQL/BigQuery' as alternatives.\nGit and GitHub collapse into git.\nGoogle Docs automation is left unmapped rather than forced to workflow-automation.\nSeniority rests on '2+ years', which is on the junior/mid boundary under the guide (0–2 junior). 'Position Type Experienced' is not a level signal."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "5acca53d6cf4d64b453b9c112f3d7ded6ebca51c3b1d853a46639e3fa3326dd1",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,81 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Go\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience with web and mobile tests\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience with AI tools\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"integrating AI agents\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"benchmarking and evaluating AI agents\"\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"intelligent automation solutions\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"large-scale distributed systems architecture\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Productivity tool development\",\n      \"raw_text\": \"building scalable test automation, or productivity tools\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Proven experience building scalable test automation, or productivity tools.\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"BS in Computer Science or related fields\",\n  \"notes\": \"Minimum Qualifications defaults to required; Preferred Qualifications makes its items nice_to_have.\\nGeneric AI tools is provisionally mapped to ai-ml, not AI coding tools; the posting does not specify coding assistance.\\nIntelligent automation solutions is provisionally mapped to workflow-automation in the testing-workflow context.\\nProductivity tool development has no direct taxonomy entry. Its alternative, test automation, maps to testing, which is also independently required by web and mobile tests; consequently this alternative does not form a scored group.\\nTesting and agents are independently requested outside the preferred list of AI testing frameworks, autonomous testing agents or intelligent automation solutions, so that list produces no additional alternative group.\\nCI/CD and LLMs appear only in responsibilities and are excluded. Business logic knowledge and soft skills are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "Experience with web and mobile tests"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Experience with AI tools",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "integrating AI agents"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "benchmarking and evaluating AI agents"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "nice_to_have",
+        "raw_text": "intelligent automation solutions",
+        "uncertain": true
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "large-scale distributed systems architecture"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Productivity tool development",
+        "raw_text": "building scalable test automation, or productivity tools"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Proven experience building scalable test automation, or productivity tools.",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "BS in Computer Science or related fields",
+    "notes": "Minimum Qualifications defaults to required; Preferred Qualifications makes its items nice_to_have.\nGeneric AI tools is provisionally mapped to ai-ml, not AI coding tools; the posting does not specify coding assistance.\nIntelligent automation solutions is provisionally mapped to workflow-automation in the testing-workflow context.\nProductivity tool development has no direct taxonomy entry. Its alternative, test automation, maps to testing, which is also independently required by web and mobile tests; consequently this alternative does not form a scored group.\nTesting and agents are independently requested outside the preferred list of AI testing frameworks, autonomous testing agents or intelligent automation solutions, so that list produces no additional alternative group.\nCI/CD and LLMs appear only in responsibilities and are excluded. Business logic knowledge and soft skills are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "c7e5d55b0fbfdcf619ac9236c1b2cf656a10235cf96338e8c0966f33a125683f",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

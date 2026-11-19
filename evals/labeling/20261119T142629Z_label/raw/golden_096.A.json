@@ -1,0 +1,27 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"lead prompt engineering\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"The posting has no requirements, qualifications, nice-to-have or tech-stack section. Every technology appears only in the role description or duties ('You will implement...', 'You will perform...').\\nThe guide says such technologies are not labeled unless the candidate is also asked for them, so 'expected' is empty on the most literal reading.\\nIf a reviewer treats the duties as implied requirements, the candidates are: llms ('Gen AI LLMs'), agents ('agentic platforms'), langchain, langgraph, langsmith, prompt-engineering, pandas, numpy and matplotlib. Seaborn would go in unmapped, since it has no taxonomy entry. The 'AI/ML engineer' role title could also be read as ai-ml.\\nThe title 'Gen AI Engineer: Prompting, LLMs' names topics but asks nothing of the candidate.\\nSeniority: 'lead prompt engineering' is a lead duty, so I inferred senior per the guide. It leads an activity rather than people, so it is flagged uncertain; none is the alternative.\\nGerman and degree are not mentioned anywhere, so both are null.\\n'J-18808-Ljbffr' is a job-board tracking artifact and was ignored.\"\n}\n```",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "lead prompt engineering",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The posting has no requirements, qualifications, nice-to-have or tech-stack section. Every technology appears only in the role description or duties ('You will implement...', 'You will perform...').\nThe guide says such technologies are not labeled unless the candidate is also asked for them, so 'expected' is empty on the most literal reading.\nIf a reviewer treats the duties as implied requirements, the candidates are: llms ('Gen AI LLMs'), agents ('agentic platforms'), langchain, langgraph, langsmith, prompt-engineering, pandas, numpy and matplotlib. Seaborn would go in unmapped, since it has no taxonomy entry. The 'AI/ML engineer' role title could also be read as ai-ml.\nThe title 'Gen AI Engineer: Prompting, LLMs' names topics but asks nothing of the candidate.\nSeniority: 'lead prompt engineering' is a lead duty, so I inferred senior per the guide. It leads an activity rather than people, so it is flagged uncertain; none is the alternative.\nGerman and degree are not mentioned anywhere, so both are null.\n'J-18808-Ljbffr' is a job-board tracking artifact and was ignored."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "35e5a4bee0735d03a36b5eadcb9bd136f3cc428e5367aefd4a62491cfe244ecf",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}
