@@ -34,7 +34,7 @@ for a posting that got past the title and city filters but is not the job market
 measure - a marketing role, a listing in the wrong field. The rest of that posting's items
 are then ignored, so you can answer `no` and skip them.
 
-## 1. golden_049 - scope `in_scope` (in-scope)
+## 1. golden_121 - scope `in_scope` (in-scope)
 
 > MaxIT | Applied AI Competence Center AI-DevOps Engineer (m/w/d) Die
 
@@ -45,7 +45,7 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 2. golden_050 - scope `in_scope` (in-scope)
+## 2. golden_122 - scope `in_scope` (in-scope)
 
 > AI Native Developer (m/w/d)
 
@@ -56,7 +56,7 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 3. golden_051 - scope `in_scope` (in-scope)
+## 3. golden_123 - scope `in_scope` (in-scope)
 
 > Senior AI Engineer / AI Architect (all gender)
 
@@ -67,7 +67,7 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 4. golden_052 - scope `in_scope` (in-scope)
+## 4. golden_124 - scope `in_scope` (in-scope)
 
 > Machine Learning Innovation Engineer (m/w/d)
 
@@ -78,7 +78,7 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 5. golden_053 - scope `in_scope` (in-scope)
+## 5. golden_125 - scope `in_scope` (in-scope)
 
 > Cloud Software Engineer mit KI-Fokus (m/w/d)
 
@@ -89,7 +89,7 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 6. golden_054 - scope `in_scope` (in-scope)
+## 6. golden_126 - scope `in_scope` (in-scope)
 
 > AI & Machine Learning Engineer (m/w/d)
 
@@ -100,7 +100,7 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 7. golden_055 - scope `in_scope` (in-scope)
+## 7. golden_127 - scope `in_scope` (in-scope)
 
 > Automotive Security Backend AI Engineer (f/m/x)
 
@@ -111,7 +111,7 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 8. golden_056 - scope `in_scope` (in-scope)
+## 8. golden_128 - scope `in_scope` (in-scope)
 
 > Senior AI / Reinforcement Learning Engineer (m/f/d)
 
@@ -122,7 +122,7 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 9. golden_057 - scope `in_scope` (in-scope)
+## 9. golden_129 - scope `in_scope` (in-scope)
 
 > Wir suchen Dich als
 
@@ -133,7 +133,7 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 10. golden_058 - scope `in_scope` (in-scope)
+## 10. golden_130 - scope `in_scope` (in-scope)
 
 > Principal Data Scientist (m/f/d)
 
@@ -144,7 +144,7 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 11. golden_059 - scope `in_scope` (in-scope)
+## 11. golden_131 - scope `in_scope` (in-scope)
 
 > Associate Applied (AI) Value Engineer (DACH) - Orbit Program
 
@@ -155,7 +155,7 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 12. golden_060 - scope `in_scope` (in-scope)
+## 12. golden_132 - scope `in_scope` (in-scope)
 
 > Automotive AI Security Engineer (f/m/x)
 
@@ -166,7 +166,7 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 13. golden_061 - scope `in_scope` (in-scope)
+## 13. golden_133 - scope `in_scope` (in-scope)
 
 > AI Forward Deployed Engineer - Germany
 
@@ -177,7 +177,7 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 14. golden_062 - scope `in_scope` (in-scope)
+## 14. golden_134 - scope `in_scope` (in-scope)
 
 > Senior IT Engineer (w/m/d) API, AI, Infrastruktur
 
@@ -188,7 +188,7 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 15. golden_063 - scope `in_scope` (in-scope)
+## 15. golden_135 - scope `in_scope` (in-scope)
 
 > AI Process & Agent Solutions Engineer (m/w/d)
 
@@ -199,7 +199,7 @@ Options: `yes` (already filled in) / `no <why>` - `no` keeps it out of the Golde
 
 DECISION: yes
 
-## 16. golden_049 - skill `ai-deployment` (disagreement)
+## 16. golden_121 - skill `ai-deployment` (disagreement)
 
 > ...Vektordatenbanken Erfahrung in der Entwicklung und Bereitstellung von KI-Agenten und automatisierten Gesprächssystemen (Chatbots/KI-Bots)...
 
@@ -210,7 +210,7 @@ Options: `A` / `B` / `both` / `drop`
 
 DECISION: ?
 
-## 17. golden_050 - skill `ai-deployment` (disagreement)
+## 17. golden_122 - skill `ai-deployment` (disagreement)
 
 > ...und einem starken Fokus auf Testautomatisierung Du hast bereits LLM-basierte Agenten oder KI-Funktionen entwickelt und produktiv eingesetzt, beispielsweise mit Tool Calling, Retrieval oder...
 
@@ -221,7 +221,7 @@ Options: `A` / `B` / `both` / `drop`
 
 DECISION: ?
 
-## 18. golden_050 - skill `evaluation` (disagreement)
+## 18. golden_122 - skill `evaluation` (disagreement)
 
 > ...Cursor oder Codex, entwickelst spezifikationsbasiert und überprüfst KI-generierte Ergebnisse systematisch Du beherrschst automatisierte Tests auf unterschiedlichen...
 
@@ -232,7 +232,7 @@ Options: `A` / `B` / `both` / `drop`
 
 DECISION: ?
 
-## 19. golden_050 - skill `rag` (disagreement)
+## 19. golden_122 - skill `rag` (disagreement)
 
 > ...und produktiv eingesetzt, beispielsweise mit Tool Calling, Retrieval oder mehrstufigen Workflows Du bringst Erfahrung in der...
 
@@ -243,7 +243,7 @@ Options: `A` / `B` / `both` / `drop`
 
 DECISION: ?
 
-## 20. golden_052 - skill `inference-optimization` (disagreement)
+## 20. golden_124 - skill `inference-optimization` (disagreement)
 
 > ...Embeddings und Fine-Tuning • Erfahrung mit Edge AI und Model Optimization, z. B. Quantization, Pruning, ONNX, CUDA/TensorRT oder...
 
@@ -254,7 +254,7 @@ Options: `A` / `B` / `both` / `drop`
 
 DECISION: ?
 
-## 21. golden_053 - skill `ai-ml` (disagreement)
+## 21. golden_125 - skill `ai-ml` (disagreement)
 
 > ...wie ArgoCD oder Flux ### Persönliche Eigenschaften - Ausgeprägtes Interesse an KI-Themen und die Motivation, in diesem dynamischen Feld am Ball zu...
 
@@ -265,7 +265,7 @@ Options: `A` / `B` / `both` / `drop`
 
 DECISION: ?
 
-## 22. golden_054 - attribute `degree` (disagreement)
+## 22. golden_126 - attribute `degree` (disagreement)
 
 > ...im AI Engineering oder Machine Learning gearbeitet. Ein abgeschlossenes Studium in Informatik, Data Science oder einem verwandten Bereich ist willkommen – ebenso eine vergleichbare Qualifikation durch Praxiserfahrung.✓ Du übernimmst gerne Verantwortung: Du arbeitest...
 
@@ -276,7 +276,7 @@ Options: `A` / `B` / `both` / `drop`
 
 DECISION: ?
 
-## 23. golden_054 - skill `ai-deployment` (disagreement)
+## 23. golden_126 - skill `ai-deployment` (disagreement)
 
 > ...Du denkst über den Prototyp hinaus: Themen wie Testing, Deployment, Skalierbarkeit, Sicherheit und zuverlässiger...
 
@@ -287,7 +287,7 @@ Options: `A` / `B` / `both` / `drop`
 
 DECISION: ?
 
-## 24. golden_056 - skill `ai-deployment` (disagreement)
+## 24. golden_128 - skill `ai-deployment` (disagreement)
 
 > ...Demonstrated success in sim-to-real transfer and deploying learning-based policies on physical robots - Strong problem-solving skills and the ability to work...
 
@@ -298,7 +298,7 @@ Options: `A` / `B` / `both` / `drop`
 
 DECISION: ?
 
-## 25. golden_056 - skill `model-development` (disagreement)
+## 25. golden_128 - skill `model-development` (disagreement)
 
 > ...simulators (IsaacSim, MuJoCo or equivalent) for large-scale policy training - Strong understanding of control theory, motion...
 
@@ -309,7 +309,7 @@ Options: `A` / `B` / `both` / `drop`
 
 DECISION: ?
 
-## 26. golden_059 - skill `machine-learning` (disagreement)
+## 26. golden_131 - skill `machine-learning` (disagreement)
 
 > ...automated text processors. - Good knowledge of Python and common ML libraries (such as LangChain, pandas, pydantic, sklearn, PyTorch) as...
 
@@ -320,7 +320,7 @@ Options: `A` / `B` / `both` / `drop`
 
 DECISION: ?
 
-## 27. golden_059 - skill `multi-agent-systems` (disagreement)
+## 27. golden_131 - skill `multi-agent-systems` (disagreement)
 
 > ...like RAG, few shot learning, prompt/context engineering, multi-agent orchestration, multimodal understanding, or fine-tuning that are used to...
 
@@ -331,7 +331,7 @@ Options: `A` / `B` / `both` / `drop`
 
 DECISION: ?
 
-## 28. golden_063 - skill `ai-deployment` (disagreement)
+## 28. golden_135 - skill `ai-deployment` (disagreement)
 
 > ...Machine Learning oder AI- Engineering sowie in der Umsetzung produktiver KI-Lösungen. • Erfahrung mit Frameworks wie LangChain, LangGraph,...
 
@@ -342,7 +342,7 @@ Options: `A` / `B` / `both` / `drop`
 
 DECISION: ?
 
-## 29. golden_049 - skill `conversational-ai` (uncertain)
+## 29. golden_121 - skill `conversational-ai` (uncertain)
 
 > ...in der Entwicklung und Bereitstellung von KI-Agenten und automatisierten Gesprächssystemen (Chatbots/KI-Bots) Grundkenntnisse in DevOps-Methoden, insbesondere...
 
@@ -353,7 +353,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 30. golden_049 - skill `llms` (uncertain)
+## 30. golden_121 - skill `llms` (uncertain)
 
 > ...Enthusiast oder Vibe Coder mit Proof Record Erfahrung mit Large Language Model (LLM)-Frameworks (z. B. LangChain, LlamaIndex, Hugging Face) Kenntnisse im...
 
@@ -364,7 +364,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 31. golden_050 - skill `data-privacy-and-security` (uncertain)
+## 31. golden_122 - skill `data-privacy-and-security` (uncertain)
 
 > ...mit und verstehst Anforderungen an Berechtigungen, Datenschutz und Mandantentrennung Du arbeitest regelmäßig mit...
 
@@ -375,7 +375,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 32. golden_050 - skill `llm-orchestration` (uncertain)
+## 32. golden_122 - skill `llm-orchestration` (uncertain)
 
 > ...mit Tool Calling, Retrieval oder mehrstufigen Workflows Du bringst Erfahrung in der Modellierung komplexer...
 
@@ -386,7 +386,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 33. golden_051 - skill `agents` (uncertain)
+## 33. golden_123 - skill `agents` (uncertain)
 
 > ...(Azure, AWS, GCP) - Praktische Erfahrung mit LLMs, RAG, Agentic AI, Vektordatenbanken und Orchestrierungsframeworks...
 
@@ -397,7 +397,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 34. golden_052 - attribute `degree` (uncertain)
+## 34. golden_124 - attribute `degree` (uncertain)
 
 > ...am Standort Unterschleißheim möglich • IHR PROFIL • Erfolgreich abgeschlossenes Studium der Informatik, Künstlichen Intelligenz, Data Science, Robotik, Mathematik, Physik oder einer vergleichbaren Fachrichtung, Promotion erwünscht • Mehrjährige Erfahrung in Machine Learning und Deep...
 
@@ -408,7 +408,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 35. golden_052 - attribute `seniority` (uncertain)
+## 35. golden_124 - attribute `seniority` (uncertain)
 
 > ...mit unseren Teams und Kunden • Fachliche Begleitung und Mentoring innerhalb des Teams sowie aktive Weitergabe von Wissen und Best Practices. •...
 
@@ -419,7 +419,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 36. golden_052 - skill `ai-deployment` (uncertain)
+## 36. golden_124 - skill `ai-deployment` (uncertain)
 
 > ...oder vergleichbaren Technologien • Kenntnisse der MLOps und Deployment, z. B. Docker, Kubernetes, MLflow und CI/CD • Azure oder...
 
@@ -430,7 +430,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 37. golden_052 - skill `deep-learning` (uncertain)
+## 37. golden_124 - skill `deep-learning` (uncertain)
 
 > ...erwünscht • Mehrjährige Erfahrung in Machine Learning und Deep Learning, idealerweise in produktiven Projekten • Fundierte Kenntnisse in Computer Vision, z. B. Object...
 
@@ -441,7 +441,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 38. golden_053 - skill `apis` (uncertain)
+## 38. golden_125 - skill `apis` (uncertain)
 
 > ...Enterprise Edition (oder vergleichbares) - Verständnis von REST API-Design und -Implementierung - Hands-on Erfahrung mit Containerisierungstechnologien...
 
@@ -452,7 +452,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 39. golden_053 - skill `backend-development` (uncertain)
+## 39. golden_125 - skill `backend-development` (uncertain)
 
 > ...intensiv in dieses spannende Feld einzuarbeiten. Wenn du solide Backend-Entwicklungsskills hast und die Zukunft der KI-Integration mitgestalten...
 
@@ -463,7 +463,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 40. golden_053 - skill `git` (uncertain)
+## 40. golden_125 - skill `git` (uncertain)
 
 > ...(AWS, Azure, GCP) - Praxiserfahrung mit CI/CD-Tools (GitLab, GitHub, Jenkins, AWS CodeBuild/CodePipeline, Azure DevOps) **KI...
 
@@ -474,7 +474,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 41. golden_053 - skill `gitlab-ci` (uncertain)
+## 41. golden_125 - skill `gitlab-ci` (uncertain)
 
 > ...Cloud-Plattformen (AWS, Azure, GCP) - Praxiserfahrung mit CI/CD-Tools (GitLab, GitHub, Jenkins, AWS CodeBuild/CodePipeline, Azure...
 
@@ -485,7 +485,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 42. golden_053 - skill `llm-orchestration` (uncertain)
+## 42. golden_125 - skill `llm-orchestration` (uncertain)
 
 > ...einzuarbeiten - Idealerweise erste Erfahrungen mit Agent-Frameworks oder Orchestrierung - Optional: Kenntnisse in Model Fine-tuning, Prompt...
 
@@ -496,7 +496,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 43. golden_054 - attribute `seniority` (uncertain)
+## 43. golden_126 - attribute `seniority` (uncertain)
 
 > ...Softwareentwicklung.✓ Du bringst praktische Erfahrung mit: Idealerweise hast du bereits 3–5 Jahre in der Softwareentwicklung, im AI Engineering oder Machine Learning gearbeitet. Ein abgeschlossenes Studium in Informatik, Data Science...
 
@@ -507,7 +507,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 44. golden_054 - skill `model-development` (uncertain)
+## 44. golden_126 - skill `model-development` (uncertain)
 
 > ...Machine Learning: Du kennst grundlegende ML-Verfahren, Modelltraining und Evaluation und hast idealerweise bereits mit...
 
@@ -518,7 +518,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 45. golden_054 - skill `software-engineering` (uncertain)
+## 45. golden_126 - skill `software-engineering` (uncertain)
 
 > ...Erfahrung mit APIs, Datenbanken, Softwarearchitektur und der Entwicklung professioneller Softwarelösungen.✓ Du kennst dich mit moderner AI aus: Du hast praktische...
 
@@ -529,7 +529,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 46. golden_055 - attribute `seniority` (uncertain)
+## 46. golden_127 - attribute `seniority` (uncertain)
 
 > ...in Computer Science or a comparable IT-related field. - Several years of professional experience in Automotive Cybersecurity. - Strong expertise in...
 
@@ -540,7 +540,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 47. golden_055 - skill `agents` (uncertain)
+## 47. golden_127 - skill `agents` (uncertain)
 
 > ...in Automotive Cybersecurity. - Strong expertise in building, operating, and maintaining agentic AI toolchains using both commercial and open-source technologies. -...
 
@@ -551,7 +551,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 48. golden_055 - skill `cybersecurity` (uncertain)
+## 48. golden_127 - skill `cybersecurity` (uncertain)
 
 > ...IT-related field. - Several years of professional experience in Automotive Cybersecurity. - Strong expertise in building, operating, and...
 
@@ -562,7 +562,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 49. golden_056 - skill `cpp` (uncertain)
+## 49. golden_128 - skill `cpp` (uncertain)
 
 > ...common RL algorithms (PPO, SAC, ...) - Proficiency in Python and/or C++, PyTorch, ONNX, and common RL frameworks (e.g, Stable...
 
@@ -573,7 +573,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 50. golden_057 - skill `agents` (uncertain)
+## 50. golden_129 - skill `agents` (uncertain)
 
 > ...mit C#/.NET, PowerShell oder TypeScript - Ausgeprägtes Interesse an AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering - Ganzheitliches Denkvermögen,...
 
@@ -584,7 +584,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 51. golden_057 - skill `ai-developer-tooling` (uncertain)
+## 51. golden_129 - skill `ai-developer-tooling` (uncertain)
 
 > ...beispielsweise mit C#/.NET, PowerShell oder TypeScript - Ausgeprägtes Interesse an AI-Assistenten und agentischen Workflows sowie Erfahrung mit deren sicherem und praxisorientiertem Einsatz im Software Engineering - Ganzheitliches Denkvermögen, hohe Eigenverantwortung und...
 
@@ -595,7 +595,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 52. golden_057 - skill `distributed-systems` (uncertain)
+## 52. golden_129 - skill `distributed-systems` (uncertain)
 
 > ...in Softwareentwicklung oder Testautomatisierung für verteilte Softwarelösungen on-premise und in der Cloud - Sehr gute Kenntnisse in...
 
@@ -606,7 +606,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 53. golden_059 - skill `agents` (uncertain)
+## 53. golden_131 - skill `agents` (uncertain)
 
 > ...technical Proof of Concept projects - Hands-on experience building agentic systems using LLM orchestration, RAG, function calling, and prompt...
 
@@ -617,7 +617,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 54. golden_059 - skill `llm-orchestration` (uncertain)
+## 54. golden_131 - skill `llm-orchestration` (uncertain)
 
 > ...like RAG, few shot learning, prompt/context engineering, multi-agent orchestration, multimodal understanding, or fine-tuning that are used to...
 
@@ -628,7 +628,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 55. golden_060 - attribute `degree` (uncertain)
+## 55. golden_132 - attribute `degree` (uncertain)
 
 > ...toolchain performance. What should you bring along? - University degree in Computer Science, Electrical Engineering, or a comparable qualification. - Several years of professional experience in Automotive...
 
@@ -639,7 +639,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 56. golden_060 - attribute `seniority` (uncertain)
+## 56. golden_132 - attribute `seniority` (uncertain)
 
 > ...Electrical Engineering, or a comparable qualification. - Several years of professional experience in Automotive Cybersecurity. - Strong expertise in...
 
@@ -650,7 +650,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 57. golden_061 - attribute `degree` (uncertain)
+## 57. golden_133 - attribute `degree` (uncertain)
 
 > ...machine learning deployments on AWS, Azure, or GCP - Graduate degree in a quantitative discipline (Computer Science, Engineering, Statistics, Operations Research, etc.) or equivalent practical experience - Experience communicating and/or teaching technical...
 
@@ -661,7 +661,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 58. golden_061 - skill `ai-deployment` (uncertain)
+## 58. golden_133 - skill `ai-deployment` (uncertain)
 
 > ...such as HuggingFace, LangChain, and DSPy - Expertise in deploying production-grade GenAI applications, including evaluation and optimisations - Extensive...
 
@@ -672,7 +672,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 59. golden_061 - skill `llms` (uncertain)
+## 59. golden_133 - skill `llms` (uncertain)
 
 > ...Own production rollouts of consumer and internally facing GenAI applications - Serve as a trusted technical advisor to customers...
 
@@ -683,7 +683,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 60. golden_061 - skill `machine-learning` (uncertain)
+## 60. golden_133 - skill `machine-learning` (uncertain)
 
 > ...industry data science experience, leveraging common machine learning and data science tools, i.e. pandas, scikit-learn, PyTorch, etc. - Experience...
 
@@ -694,7 +694,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 61. golden_062 - attribute `degree` (uncertain)
+## 61. golden_134 - attribute `degree` (uncertain)
 
 > ...und technischen Rollout-Konzepten ## Anforderungen: - Studium oder abgeschlossene Berufsausbildung IT (z.B. Systemintegration, Anwendungsentwicklung, Computer...
 
@@ -705,7 +705,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 62. golden_062 - skill `ai-ml` (uncertain)
+## 62. golden_134 - skill `ai-ml` (uncertain)
 
 > ...sowie komplexen Systemlandschaften - Gute Kenntnisse AI, GenAI, Automatisierung oder datengetriebenen...
 
@@ -716,7 +716,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 63. golden_062 - skill `backend-development` (uncertain)
+## 63. golden_134 - skill `backend-development` (uncertain)
 
 > ...Know-how im Umgang mit Docker, Power Platform, Backend-Systemen und API-gesteuerten Anwendungen - Erfahrung in der...
 
@@ -727,7 +727,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 64. golden_062 - skill `cloud` (uncertain)
+## 64. golden_134 - skill `cloud` (uncertain)
 
 > ...Praxiserfahrung mit MS Azure, Microsoft 365, Entra ID und Cloud-Services - Know-how im Umgang mit Docker, Power Platform,...
 
@@ -738,7 +738,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 65. golden_062 - skill `workflow-automation` (uncertain)
+## 65. golden_134 - skill `workflow-automation` (uncertain)
 
 > ...komplexen Systemlandschaften - Gute Kenntnisse AI, GenAI, Automatisierung oder datengetriebenen Anwendungen - Strukturierte,...
 
@@ -749,7 +749,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 66. golden_063 - attribute `seniority` (uncertain)
+## 66. golden_135 - attribute `seniority` (uncertain)
 
 > ...oder einer vergleichbaren Fachrichtung. • Mindestens zwei Jahre Erfahrung in Data Science, Machine Learning oder AI- Engineering...
 
@@ -760,7 +760,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 67. golden_063 - skill `agents` (uncertain)
+## 67. golden_135 - skill `agents` (uncertain)
 
 > ...oder PyTorch sowie Kenntnisse in Generativer KI, NLP oder agentenbasierten KI-Systemen. • Gute Kenntnisse in Python und SQL; idealerweise...
 
@@ -771,7 +771,7 @@ Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
 DECISION: ?
 
-## 68. golden_049 - attribute `degree` (spot-check)
+## 68. golden_121 - attribute `degree` (spot-check)
 
 > ...Bereitstellung von Best Practices WAS SIE MITBRINGEN Abgeschlossenes wissenschaftliches Hochschulstudium (min. Bachelor) in einem MINT-Fach, oder vergleichbare Qualifikation als Quereinsteiger, Tech Enthusiast oder Vibe Coder mit Proof Record...
 
@@ -781,7 +781,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 69. golden_049 - skill `agents` (spot-check)
+## 69. golden_121 - skill `agents` (spot-check)
 
 > ...Erfahrung in der Entwicklung und Bereitstellung von KI-Agenten und automatisierten Gesprächssystemen (Chatbots/KI-Bots)...
 
@@ -791,7 +791,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 70. golden_049 - skill `langchain` (spot-check)
+## 70. golden_121 - skill `langchain` (spot-check)
 
 > ...Erfahrung mit Large Language Model (LLM)-Frameworks (z. B. LangChain, LlamaIndex, Hugging Face) Kenntnisse im Aufbau von...
 
@@ -801,7 +801,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 71. golden_050 - attribute `german` (spot-check)
+## 71. golden_122 - attribute `german` (spot-check)
 
 > ...und qualitätsorientiert und verfügst über Deutschkenntnisse auf C2-Niveau sowie Englischkenntnisse auf C1-Niveau Zusätzlich...
 
@@ -811,7 +811,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 72. golden_050 - attribute `seniority` (spot-check)
+## 72. golden_122 - attribute `seniority` (spot-check)
 
 > ...aktiv ins Team ein Profil Du hast mindestens 4 Jahre Erfahrung in der professionellen Softwareentwicklung, idealerweise...
 
@@ -821,7 +821,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 73. golden_050 - skill `ai-developer-tooling` (spot-check)
+## 73. golden_122 - skill `ai-developer-tooling` (spot-check)
 
 > ...und Mandantentrennung Du arbeitest regelmäßig mit AI-Coding-Tools wie Claude Code, Cursor oder Codex, entwickelst...
 
@@ -831,7 +831,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 74. golden_050 - skill `claude-code` (spot-check)
+## 74. golden_122 - skill `claude-code` (spot-check)
 
 > ...Du arbeitest regelmäßig mit AI-Coding-Tools wie Claude Code, Cursor oder Codex, entwickelst spezifikationsbasiert...
 
@@ -841,7 +841,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 75. golden_050 - skill `cursor` (spot-check)
+## 75. golden_122 - skill `cursor` (spot-check)
 
 > ...arbeitest regelmäßig mit AI-Coding-Tools wie Claude Code, Cursor oder Codex, entwickelst spezifikationsbasiert...
 
@@ -851,7 +851,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 76. golden_050 - skill `data-modeling` (spot-check)
+## 76. golden_122 - skill `data-modeling` (spot-check)
 
 > ...oder mehrstufigen Workflows Du bringst Erfahrung in der Modellierung komplexer Geschäftsdaten mit und verstehst Anforderungen an Berechtigungen,...
 
@@ -861,7 +861,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 77. golden_050 - skill `forecasting` (spot-check)
+## 77. golden_122 - skill `forecasting` (spot-check)
 
 > ...oder ERP-Software, XRechnung, ZUGFeRD oder Forecasting Wir bieten Du arbeitest flexibel im Home-Office, bis zu...
 
@@ -871,7 +871,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 78. golden_050 - skill `langgraph` (spot-check)
+## 78. golden_122 - skill `langgraph` (spot-check)
 
 > ...Agenten-Frameworks und Schnittstellen wie MCP, A2A oder LangGraph aus und bringst Verständnis für...
 
@@ -881,7 +881,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 79. golden_050 - skill `software-engineering` (spot-check)
+## 79. golden_122 - skill `software-engineering` (spot-check)
 
 > ...ein Profil Du hast mindestens 4 Jahre Erfahrung in der professionellen Softwareentwicklung, idealerweise mit produktiven Cloud- oder SaaS-Anwendungen...
 
@@ -891,7 +891,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 80. golden_051 - attribute `german` (spot-check)
+## 80. golden_123 - attribute `german` (spot-check)
 
 > ...Ausgeprägte Beratungskompetenz, Workshop-Leitung - Fließend in Deutsch und Englisch Wir wertschätzen Vielfalt und begrüßen daher alle...
 
@@ -901,7 +901,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 81. golden_051 - attribute `seniority` (spot-check)
+## 81. golden_123 - attribute `seniority` (spot-check)
 
 > Senior AI Engineer / AI Architect (all gender) **Wir sind die Gestalter von...
 
@@ -911,7 +911,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 82. golden_051 - skill `ai-ml` (spot-check)
+## 82. golden_123 - skill `ai-ml` (spot-check)
 
 > ...**Erfahrung**: - Relevante Praxis in Softwareentwicklung, AI/ML oder Generative AI - Fundierte Kenntnisse in Python,...
 
@@ -921,7 +921,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 83. golden_051 - skill `llm-orchestration` (spot-check)
+## 83. golden_123 - skill `llm-orchestration` (spot-check)
 
 > ...Erfahrung mit LLMs, RAG, Agentic AI, Vektordatenbanken und Orchestrierungsframeworks (LangGraph, CrewAI, LlamaIndex) - MLOps/LLMOps, CI/CD,...
 
@@ -931,7 +931,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 84. golden_051 - skill `python` (spot-check)
+## 84. golden_123 - skill `python` (spot-check)
 
 > ...AI/ML oder Generative AI - Fundierte Kenntnisse in Python, Software-Architektur, Cloud-Plattformen (Azure, AWS,...
 
@@ -941,7 +941,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 85. golden_051 - skill `software-engineering` (spot-check)
+## 85. golden_123 - skill `software-engineering` (spot-check)
 
 > ...oder vergleichbar - **Erfahrung**: - Relevante Praxis in Softwareentwicklung, AI/ML oder Generative AI - Fundierte Kenntnisse in...
 
@@ -951,7 +951,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 86. golden_051 - skill `testing` (spot-check)
+## 86. golden_123 - skill `testing` (spot-check)
 
 > ...LlamaIndex) - MLOps/LLMOps, CI/CD, Kubernetes, Git und automatisiertes Testing. - **Soft Skills**: - Ausgeprägte Beratungskompetenz,...
 
@@ -961,7 +961,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 87. golden_052 - skill `ci-cd` (spot-check)
+## 87. golden_124 - skill `ci-cd` (spot-check)
 
 > ...MLOps und Deployment, z. B. Docker, Kubernetes, MLflow und CI/CD • Azure oder AWS sowie On-Premise- und hybrides...
 
@@ -971,7 +971,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 88. golden_052 - skill `computer-vision` (spot-check)
+## 88. golden_124 - skill `computer-vision` (spot-check)
 
 > ...Deep Learning, idealerweise in produktiven Projekten • Fundierte Kenntnisse in Computer Vision, z. B. Object Detection, Segmentation, Tracking, Vision...
 
@@ -981,7 +981,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 89. golden_052 - skill `cuda` (spot-check)
+## 89. golden_124 - skill `cuda` (spot-check)
 
 > ...und Model Optimization, z. B. Quantization, Pruning, ONNX, CUDA/TensorRT oder vergleichbaren Technologien • Kenntnisse...
 
@@ -991,7 +991,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 90. golden_052 - skill `embeddings` (spot-check)
+## 90. golden_124 - skill `embeddings` (spot-check)
 
 > ...Generative AI, z. B. LLMs, Vision-Language Models, RAG, Embeddings und Fine-Tuning • Erfahrung mit Edge AI und Model...
 
@@ -1001,7 +1001,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 91. golden_052 - skill `machine-learning` (spot-check)
+## 91. golden_124 - skill `machine-learning` (spot-check)
 
 > ...Fachrichtung, Promotion erwünscht • Mehrjährige Erfahrung in Machine Learning und Deep Learning, idealerweise in produktiven...
 
@@ -1011,7 +1011,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 92. golden_052 - skill `mlops` (spot-check)
+## 92. golden_124 - skill `mlops` (spot-check)
 
 > ...ONNX, CUDA/TensorRT oder vergleichbaren Technologien • Kenntnisse der MLOps und Deployment, z. B. Docker, Kubernetes, MLflow und...
 
@@ -1021,7 +1021,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 93. golden_052 - skill `pytorch` (spot-check)
+## 93. golden_124 - skill `pytorch` (spot-check)
 
 > ...und hybrides Infrastrukturen Wissen • Sehr gute Python, PyTorch/TensorFlow und OpenCV Kenntnisse • Sehr gutes...
 
@@ -1031,7 +1031,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 94. golden_052 - skill `rag` (spot-check)
+## 94. golden_124 - skill `rag` (spot-check)
 
 > ...und Generative AI ein, bewerten neue Technologien und übertragen diese in robuste, skalierbare Lösungen. Durch Ihre...
 
@@ -1041,7 +1041,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 95. golden_052 - skill `software-engineering` (spot-check)
+## 95. golden_124 - skill `software-engineering` (spot-check)
 
 > ...PyTorch/TensorFlow und OpenCV Kenntnisse • Sehr gutes Software-Engineering Know how mit Git, Linux und Testing; C++ • Idealerweise Erfahrung...
 
@@ -1051,7 +1051,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 96. golden_052 - skill `tensorflow` (spot-check)
+## 96. golden_124 - skill `tensorflow` (spot-check)
 
 > ...Infrastrukturen Wissen • Sehr gute Python, PyTorch/TensorFlow und OpenCV Kenntnisse • Sehr gutes Software-Engineering...
 
@@ -1061,7 +1061,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 97. golden_052 - skill `testing` (spot-check)
+## 97. golden_124 - skill `testing` (spot-check)
 
 > ...gutes Software-Engineering Know how mit Git, Linux und Testing; C++ • Idealerweise Erfahrung im wissenschaftlichen...
 
@@ -1071,7 +1071,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 98. golden_053 - attribute `degree` (spot-check)
+## 98. golden_125 - attribute `degree` (spot-check)
 
 > Cloud Software Engineer mit KI-Fokus (m/w/d)
 
@@ -1081,7 +1081,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 99. golden_053 - attribute `german` (spot-check)
+## 99. golden_125 - attribute `german` (spot-check)
 
 > Cloud Software Engineer mit KI-Fokus (m/w/d)
 
@@ -1091,7 +1091,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 100. golden_053 - skill `azure` (spot-check)
+## 100. golden_125 - skill `azure` (spot-check)
 
 > ...Kenntnisse in Kubernetes/OpenShift und Cloud-Plattformen (AWS, Azure, GCP) - Praxiserfahrung mit CI/CD-Tools (GitLab, GitHub,...
 
@@ -1101,7 +1101,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 101. golden_053 - skill `ci-cd` (spot-check)
+## 101. golden_125 - skill `ci-cd` (spot-check)
 
 > ...Cloud-Plattformen (AWS, Azure, GCP) - Praxiserfahrung mit CI/CD-Tools (GitLab, GitHub, Jenkins, AWS CodeBuild/CodePipeline,...
 
@@ -1111,7 +1111,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 102. golden_053 - skill `gitops` (spot-check)
+## 102. golden_125 - skill `gitops` (spot-check)
 
 > ...(Pinecone, Weaviate, Qdrant, ChromaDB) - Verständnis von GitOps-Prinzipien und Tools wie ArgoCD oder Flux ### Persönliche...
 
@@ -1121,7 +1121,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 103. golden_053 - skill `langchain` (spot-check)
+## 103. golden_125 - skill `langchain` (spot-check)
 
 > ...evolvierende KI-Technologien einzuarbeiten **Bonus:** - Erfahrung mit LangChain, LlamaIndex, LangChain4J oder vergleichbaren Frameworks -...
 
@@ -1131,7 +1131,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 104. golden_053 - skill `llamaindex` (spot-check)
+## 104. golden_125 - skill `llamaindex` (spot-check)
 
 > ...einzuarbeiten **Bonus:** - Erfahrung mit LangChain, LlamaIndex, LangChain4J oder vergleichbaren Frameworks - Kenntnisse...
 
@@ -1141,7 +1141,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 105. golden_053 - skill `prompt-engineering` (spot-check)
+## 105. golden_125 - skill `prompt-engineering` (spot-check)
 
 > ...Optional: Kenntnisse in Model Fine-tuning, Prompt Engineering oder MLOps - Bereitschaft, sich kontinuierlich in schnell...
 
@@ -1151,7 +1151,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 106. golden_053 - skill `vector-databases` (spot-check)
+## 106. golden_125 - skill `vector-databases` (spot-check)
 
 > ...LlamaIndex, LangChain4J oder vergleichbaren Frameworks - Kenntnisse in Vektordatenbanken (Pinecone, Weaviate, Qdrant, ChromaDB) - Verständnis von...
 
@@ -1161,7 +1161,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 107. golden_054 - attribute `german` (spot-check)
+## 107. golden_126 - attribute `german` (spot-check)
 
 > ...technische Zusammenhänge verständlich vermitteln und verfügst über gute Deutsch- und Englischkenntnisse. Attraktive Vorteile:✓ Gestalten statt nur umsetzen:...
 
@@ -1171,7 +1171,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 108. golden_054 - skill `agents` (spot-check)
+## 108. golden_126 - skill `agents` (spot-check)
 
 > ...von AI-Modellen. Konzepte wie Prompt Engineering, RAG oder AI Agents sind dir vertraut.✓ Du verstehst Machine Learning: Du kennst grundlegende...
 
@@ -1181,7 +1181,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 109. golden_054 - skill `python` (spot-check)
+## 109. golden_126 - skill `python` (spot-check)
 
 > ...Voraussetzungen:✓ Du bist technisch stark: Python gehört zu deinem Werkzeugkasten. Du hast Erfahrung mit APIs, Datenbanken,...
 
@@ -1191,7 +1191,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 110. golden_054 - skill `rag` (spot-check)
+## 110. golden_126 - skill `rag` (spot-check)
 
 > ...AI und der Integration von AI-Modellen. Konzepte wie Prompt Engineering, RAG oder AI Agents sind dir vertraut.✓ Du verstehst Machine...
 
@@ -1201,7 +1201,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 111. golden_054 - skill `software-architecture` (spot-check)
+## 111. golden_126 - skill `software-architecture` (spot-check)
 
 > ...Werkzeugkasten. Du hast Erfahrung mit APIs, Datenbanken, Softwarearchitektur und der Entwicklung professioneller Softwarelösungen.✓ Du...
 
@@ -1211,7 +1211,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 112. golden_054 - skill `testing` (spot-check)
+## 112. golden_126 - skill `testing` (spot-check)
 
 > ...Du denkst über den Prototyp hinaus: Themen wie Testing, Deployment, Skalierbarkeit, Sicherheit und zuverlässiger...
 
@@ -1221,7 +1221,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 113. golden_055 - attribute `degree` (spot-check)
+## 113. golden_127 - attribute `degree` (spot-check)
 
 > ...future analysis cycles. What should you bring along? - University degree in Computer Science or a comparable IT-related field. - Several years of professional experience in Automotive...
 
@@ -1231,7 +1231,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 114. golden_055 - skill `aws` (spot-check)
+## 114. golden_127 - skill `aws` (spot-check)
 
 > ...tools). - Hands-on experience with cloud platforms (AWS/Azure), containerization and orchestration technologies...
 
@@ -1241,7 +1241,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 115. golden_055 - skill `azure` (spot-check)
+## 115. golden_127 - skill `azure` (spot-check)
 
 > ...tools). - Hands-on experience with cloud platforms (AWS/Azure), containerization and orchestration technologies...
 
@@ -1251,7 +1251,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 116. golden_055 - skill `containerization` (spot-check)
+## 116. golden_127 - skill `containerization` (spot-check)
 
 > ...Hands-on experience with cloud platforms (AWS/Azure), containerization and orchestration technologies (Docker/Kubernetes), as well as CI/CD and...
 
@@ -1261,7 +1261,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 117. golden_055 - skill `gitlab-ci` (spot-check)
+## 117. golden_127 - skill `gitlab-ci` (spot-check)
 
 > ...Infrastructure-as-Code tools (e.g., Terraform, Ansible, GitHub Actions/GitLab CI). - Business-fluent German and English language...
 
@@ -1271,7 +1271,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 118. golden_055 - skill `terraform` (spot-check)
+## 118. golden_127 - skill `terraform` (spot-check)
 
 > ...technologies (Docker/Kubernetes), as well as CI/CD and Infrastructure-as-Code tools (e.g., Terraform, Ansible, GitHub Actions/GitLab CI). - Business-fluent...
 
@@ -1281,7 +1281,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 119. golden_056 - attribute `degree` (spot-check)
+## 119. golden_128 - attribute `degree` (spot-check)
 
 > ...on open-ended, evolving tasks Essential Skills - Master’s or PhD in robotics, computer science, engineering, or a related field - Proven experience (5+ years) applying RL or IL in...
 
@@ -1291,7 +1291,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 120. golden_056 - attribute `german` (spot-check)
+## 120. golden_128 - attribute `german` (spot-check)
 
 > Senior AI / Reinforcement Learning Engineer (m/f/d)
 
@@ -1301,7 +1301,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 121. golden_056 - skill `onnx` (spot-check)
+## 121. golden_128 - skill `onnx` (spot-check)
 
 > ...SAC, ...) - Proficiency in Python and/or C++, PyTorch, ONNX, and common RL frameworks (e.g, Stable Baselines 3,...
 
@@ -1311,7 +1311,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 122. golden_056 - skill `pytorch` (spot-check)
+## 122. golden_128 - skill `pytorch` (spot-check)
 
 > ...(PPO, SAC, ...) - Proficiency in Python and/or C++, PyTorch, ONNX, and common RL frameworks (e.g, Stable Baselines 3,...
 
@@ -1321,7 +1321,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 123. golden_057 - attribute `seniority` (spot-check)
+## 123. golden_129 - attribute `seniority` (spot-check)
 
 > Wir suchen Dich als
 
@@ -1331,7 +1331,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 124. golden_057 - skill `devsecops` (spot-check)
+## 124. golden_129 - skill `devsecops` (spot-check)
 
 > ...Qualifikation mit einschlägiger Berufserfahrung - Fundierte Erfahrung in DevSecOps, CI/CD, Infrastructure as Code und Container, in...
 
@@ -1341,7 +1341,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 125. golden_057 - skill `software-engineering` (spot-check)
+## 125. golden_129 - skill `software-engineering` (spot-check)
 
 > ...in DevSecOps, CI/CD, Infrastructure as Code und Container, in Softwareentwicklung oder Testautomatisierung für verteilte Softwarelösungen...
 
@@ -1351,7 +1351,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 126. golden_057 - skill `typescript` (spot-check)
+## 126. golden_129 - skill `typescript` (spot-check)
 
 > ...Programmierung und Scripting, beispielsweise mit C#/.NET, PowerShell oder TypeScript - Ausgeprägtes Interesse an AI-Assistenten und agentischen...
 
@@ -1361,7 +1361,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 127. golden_058 - attribute `german` (spot-check)
+## 127. golden_130 - attribute `german` (spot-check)
 
 > Principal Data Scientist (m/f/d)
 
@@ -1371,7 +1371,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 128. golden_058 - skill `ai-ml` (spot-check)
+## 128. golden_130 - skill `ai-ml` (spot-check)
 
 > ...years of experience in data science, machine learning, or applied AI - strong hands-on skills in Python, SQL, and common ML...
 
@@ -1381,7 +1381,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 129. golden_058 - skill `python` (spot-check)
+## 129. golden_130 - skill `python` (spot-check)
 
 > ...in data science, machine learning, or applied AI - strong hands-on skills in Python, SQL, and common ML frameworks - proven experience with...
 
@@ -1391,7 +1391,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 130. golden_059 - attribute `german` (spot-check)
+## 130. golden_131 - attribute `german` (spot-check)
 
 > ...on deadlines. - Excellent communication skills and fluency in German and English (must). - Foundational business acumen and domain...
 
@@ -1401,7 +1401,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 131. golden_059 - skill `fine-tuning` (spot-check)
+## 131. golden_131 - skill `fine-tuning` (spot-check)
 
 > ...multi-agent orchestration, multimodal understanding, or fine-tuning that are used to build high-impact use cases like...
 
@@ -1411,7 +1411,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 132. golden_059 - skill `llms` (spot-check)
+## 132. golden_131 - skill `llms` (spot-check)
 
 > ...of business and technology. - Understanding of generative AI techniques like RAG, few shot learning, prompt/context engineering,...
 
@@ -1421,7 +1421,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 133. golden_059 - skill `python` (spot-check)
+## 133. golden_131 - skill `python` (spot-check)
 
 > ...intelligent chatbots and automated text processors. - Good knowledge of Python and common ML libraries (such as LangChain, pandas,...
 
@@ -1431,7 +1431,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 134. golden_059 - skill `scikit-learn` (spot-check)
+## 134. golden_131 - skill `scikit-learn` (spot-check)
 
 > ...common ML libraries (such as LangChain, pandas, pydantic, sklearn, PyTorch) as well as data engineering tools and...
 
@@ -1441,7 +1441,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 135. golden_061 - skill `apache-spark` (spot-check)
+## 135. golden_133 - skill `apache-spark` (spot-check)
 
 > ...Experience using the Databricks Intelligence Platform and Apache Spark™ to process large-scale distributed datasets - Willing to...
 
@@ -1451,7 +1451,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 136. golden_061 - skill `aws` (spot-check)
+## 136. golden_133 - skill `aws` (spot-check)
 
 > ...building production-grade machine learning deployments on AWS, Azure, or GCP - Graduate degree in a quantitative...
 
@@ -1461,7 +1461,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 137. golden_061 - skill `data-science` (spot-check)
+## 137. golden_133 - skill `data-science` (spot-check)
 
 > ...and optimisations - Extensive years of hands-on industry data science experience, leveraging common machine learning and data science...
 
@@ -1471,7 +1471,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 138. golden_061 - skill `databricks` (spot-check)
+## 138. golden_133 - skill `databricks` (spot-check)
 
 > ...learning, and driving business value through AI - [Preferred] Experience using the Databricks Intelligence Platform and Apache Spark™ to process large-scale distributed...
 
@@ -1481,7 +1481,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 139. golden_061 - skill `gcp` (spot-check)
+## 139. golden_133 - skill `gcp` (spot-check)
 
 > ...machine learning deployments on AWS, Azure, or GCP - Graduate degree in a quantitative discipline (Computer...
 
@@ -1491,7 +1491,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 140. golden_062 - attribute `seniority` (spot-check)
+## 140. golden_134 - attribute `seniority` (spot-check)
 
 > Senior IT Engineer (w/m/d) API, AI, Infrastruktur Robert Half gehört zu den...
 
@@ -1501,7 +1501,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 141. golden_062 - skill `docker` (spot-check)
+## 141. golden_134 - skill `docker` (spot-check)
 
 > ...Microsoft 365, Entra ID und Cloud-Services - Know-how im Umgang mit Docker, Power Platform, Backend-Systemen und API-gesteuerten...
 
@@ -1511,7 +1511,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 142. golden_063 - attribute `degree` (spot-check)
+## 142. golden_135 - attribute `degree` (spot-check)
 
 > ...Inhalte. Diese Qualifikationen solltest Du mitbringen • Abgeschlossenes Studium der Informatik, Data Science, Wirtschaftsinformatik oder einer vergleichbaren Fachrichtung. • Mindestens zwei Jahre Erfahrung in Data Science,...
 
@@ -1521,7 +1521,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 143. golden_063 - attribute `german` (spot-check)
+## 143. golden_135 - attribute `german` (spot-check)
 
 > ...auf Niveau C1 oder C2, (Projektsprache ist Englisch); Deutschkenntnisse auf mindestens B12 Niveau. Gestalten Sie mit uns die nächste Generation...
 
@@ -1531,7 +1531,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 144. golden_063 - skill `data-science` (spot-check)
+## 144. golden_135 - skill `data-science` (spot-check)
 
 > ...einer vergleichbaren Fachrichtung. • Mindestens zwei Jahre Erfahrung in Data Science, Machine Learning oder AI- Engineering sowie in der...
 
@@ -1541,7 +1541,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 145. golden_063 - skill `llms` (spot-check)
+## 145. golden_135 - skill `llms` (spot-check)
 
 > ...LangGraph, LlamaIndex oder PyTorch sowie Kenntnisse in Generativer KI, NLP oder agentenbasierten KI-Systemen. • Gute Kenntnisse...
 
@@ -1551,7 +1551,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 146. golden_063 - skill `machine-learning` (spot-check)
+## 146. golden_135 - skill `machine-learning` (spot-check)
 
 > ...Mindestens zwei Jahre Erfahrung in Data Science, Machine Learning oder AI- Engineering sowie in der Umsetzung produktiver...
 
@@ -1561,7 +1561,7 @@ Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
 DECISION: ?
 
-## 147. golden_063 - skill `python` (spot-check)
+## 147. golden_135 - skill `python` (spot-check)
 
 > ...oder agentenbasierten KI-Systemen. • Gute Kenntnisse in Python und SQL; idealerweise Erfahrung mit...
 
