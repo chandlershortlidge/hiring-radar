@@ -425,7 +425,8 @@ def test_jsearch_request_per_host():
     for part in ("query=AI+engineer+in+Berlin", "country=de", "date_posted=week", "page=1", "num_pages=1"):
         assert part in url
     url, headers = jsearch.request("x", None, None, 1, 1, "rapidapi", "k")
-    assert url.startswith("https://jsearch.p.rapidapi.com/search?") and "country" not in url
+    # RapidAPI answers /search with 404 "Endpoint '/search' does not exist" (HIR-352).
+    assert url.startswith("https://jsearch.p.rapidapi.com/search-v2?") and "country" not in url
     assert headers == {"X-RapidAPI-Key": "k", "X-RapidAPI-Host": "jsearch.p.rapidapi.com"}
 
 
@@ -593,6 +594,42 @@ def test_jsearch_german_search_remote_unchanged():
     item = _js(job_city=None, job_location="Anywhere", job_country=None, job_is_remote=True)
     assert active_place(jsearch.parse({"data": [item]}, country="de")[0].location_raw) == "Remote (EU)"
     assert active_place(jsearch.parse({"data": [item]})[0].location_raw) == "Remote (EU)"
+
+
+def test_jsearch_uk_and_dutch_remote_anywhere_is_not_eu_remote():
+    """HIR-352: a London or Amsterdam search's region-less remote job is not one a Berlin
+    resident can take, the same as a US one; a real city is kept."""
+    from app.geo import active_place
+    from app.sources import jsearch
+    item = _js(job_city=None, job_location="Anywhere", job_country=None, job_is_remote=True)
+    for country in ("gb", "nl"):
+        loc = jsearch.parse({"data": [item]}, country=country)[0].location_raw
+        assert loc == f"Remote ({country.upper()})" and active_place(loc) is None
+    kept = _js(job_city="London", job_location="London, UK", job_country="GB", job_is_remote=True)
+    loc = jsearch.parse({"data": [kept]}, country="gb")[0].location_raw
+    assert loc == "London; Remote (GB)" and active_place(loc) == "London"
+
+
+def test_jsearch_parse_reads_the_search_v2_wrapper():
+    """RapidAPI's /search-v2 nests the job list: {"data": {"jobs": [...]}} (HIR-352)."""
+    from app.sources import jsearch
+    jobs = load("jsearch_recorded.json")["data"]
+    assert jsearch.parse({"status": "OK", "data": {"jobs": jobs}}) == jsearch.parse({"data": jobs})
+    assert jsearch.parse({"data": {}}) == [] and jsearch.parse({"data": {"jobs": None}}) == []
+
+
+def test_jsearch_pace_keeps_calls_apart():
+    from app.sources import jsearch
+    now, slept = [100.0], []
+    clock = lambda: now[0]
+    def sleep(s):
+        slept.append(s); now[0] += s
+    jsearch._last_call = 0.0
+    jsearch._pace(clock, sleep)
+    assert slept == []
+    now[0] += 0.05
+    jsearch._pace(clock, sleep)
+    assert slept and abs(slept[0] - (jsearch.MIN_INTERVAL_S - 0.05)) < 1e-9
 
 
 def test_jsearch_us_onsite_new_york():

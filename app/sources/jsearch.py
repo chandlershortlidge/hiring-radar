@@ -3,14 +3,20 @@ company career pages), sold by OpenWeb Ninja and, as the same API, on RapidAPI.
 
 Keys and hosts:
 - OpenWeb Ninja: `GET https://api.openwebninja.com/jsearch/search`, header `x-api-key`.
-- RapidAPI: `GET https://jsearch.p.rapidapi.com/search`, headers `X-RapidAPI-Key` and
-  `X-RapidAPI-Host: jsearch.p.rapidapi.com`.
+- RapidAPI: `GET https://jsearch.p.rapidapi.com/search-v2`, headers `X-RapidAPI-Key` and
+  `X-RapidAPI-Host: jsearch.p.rapidapi.com`. RapidAPI answers `/search` with 404
+  "Endpoint '/search' does not exist" (seen live 2026-11-19, HIR-352), and `/search-v2`
+  wraps the job list one level deeper: `{"data": {"jobs": [...]}}`. `parse` reads both.
 `JSEARCH_API_KEY` holds the key; `JSEARCH_HOST` (`openwebninja` default, or `rapidapi`)
-says where it is from.
+says where it is from. The server uses RapidAPI since 2026-11-19.
 
-Budget: the free plan is 200 requests a month, hard limit. One request = one results page
-(~10 postings). Keep `num_pages` at 1 per feed and poll once a day: each feed is ~30
-requests a month, so five feeds (three German, two New York since HIR-255) is ~150.
+Budget (HIR-352): the RapidAPI Pro plan, 10,000 requests a month, then billed per request
+(not cut off), 5 requests a second; the limit was read from the `x-ratelimit-requests-limit`
+header with the server's key. Because going over costs money instead of stopping, our own
+ceiling is `MONTHLY_CAP` (5,000): the poll counts this month's JSearch runs and skips every
+JSearch feed once the cap is reached (app/poll.py). One request = one results page (~10
+postings). Keep `num_pages` at 1 per feed and poll once a day: each feed is ~30 requests a
+month. `fetch` waits so two calls are never closer than `MIN_INTERVAL_S` apart.
 
 Query: `query` is free text ("AI engineer in Berlin"); `country` (ISO code), `date_posted`
 (`all`, `today`, `3days`, `week`, `month`), `page`, `num_pages`.
@@ -77,6 +83,7 @@ import base64
 import binascii
 import os
 import re
+import time
 import urllib.parse
 
 from app.sources import Posting, fetch_json
@@ -84,7 +91,7 @@ from app.sources import Posting, fetch_json
 SOURCE = "jsearch"
 HOSTS = {
     "openwebninja": ("https://api.openwebninja.com/jsearch/search", "x-api-key", {}),
-    "rapidapi": ("https://jsearch.p.rapidapi.com/search", "X-RapidAPI-Key",
+    "rapidapi": ("https://jsearch.p.rapidapi.com/search-v2", "X-RapidAPI-Key",
                  {"X-RapidAPI-Host": "jsearch.p.rapidapi.com"}),
 }
 
@@ -135,14 +142,15 @@ def _location(j: dict, country: str | None = None) -> str | None:
     otherwise the city, then the location text.
 
     The country is the posting's own `job_country`, else the country the search was run
-    in. For a US posting only a real `job_city` is kept beside it: JSearch fills
+    in. Outside Germany only a real `job_city` is kept beside it: JSearch fills
     `job_location` with "Anywhere" for region-less remote postings, and geo reads a bare
     "Anywhere" as remote-from-the-EU — so a US search's remote jobs landed in Remote (EU)
-    (seen live on the first New York search, HIR-255)."""
+    (seen live on the first New York search, HIR-255). A UK or Netherlands remote job is no
+    more open to a Berlin resident than a US one, so the same holds there (HIR-352)."""
     loc = j.get("job_city") or j.get("job_location")
     if j.get("job_is_remote") is True:
         where = j.get("job_country") or (country.upper() if country else None)
-        if where == "US":
+        if where and where != "DE":
             return "; ".join(x for x in (j.get("job_city"), f"Remote ({where})") if x)
         where = {"DE": "Germany"}.get(where, where)
         return "; ".join(x for x in (loc, f"Remote ({where})" if where else "Remote") if x)
@@ -151,6 +159,8 @@ def _location(j: dict, country: str | None = None) -> str | None:
 
 def parse(payload, country: str | None = None) -> list[Posting]:
     items = payload.get("data") if isinstance(payload, dict) else None
+    if isinstance(items, dict):     # RapidAPI's /search-v2: {"data": {"jobs": [...]}}
+        items = items.get("jobs")
     out = []
     for j in items or []:
         title, text, job_id = j.get("job_title"), (j.get("job_description") or "").strip(), j.get("job_id")
@@ -186,6 +196,20 @@ def request(query: str, country: str | None, date_posted: str | None, page: int,
     return f"{base}?{urllib.parse.urlencode(params)}", {key_header: key, **extra}
 
 
+MONTHLY_CAP = 5000          # our ceiling, well under the plan's 10,000 (HIR-352)
+MIN_INTERVAL_S = 0.25       # the plan allows 5 requests a second; stay under it
+_last_call = 0.0
+
+
+def _pace(clock=time.monotonic, sleep=time.sleep) -> None:
+    """Wait until MIN_INTERVAL_S has passed since the previous call in this process."""
+    global _last_call
+    wait = _last_call + MIN_INTERVAL_S - clock()
+    if wait > 0:
+        sleep(wait)
+    _last_call = clock()
+
+
 def fetch(query: str, country: str | None = "de", date_posted: str | None = "week",
           num_pages: int = 1, api_key: str | None = None, host: str | None = None) -> list[Posting]:
     key = api_key or os.environ.get("JSEARCH_API_KEY")
@@ -193,4 +217,5 @@ def fetch(query: str, country: str | None = "de", date_posted: str | None = "wee
         raise RuntimeError("JSEARCH_API_KEY is not set")
     url, headers = request(query, country, date_posted, 1, num_pages,
                            host or os.environ.get("JSEARCH_HOST", "openwebninja"), key)
+    _pace()
     return parse(fetch_json(url, headers=headers, timeout=60), country)
