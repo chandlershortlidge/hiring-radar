@@ -222,7 +222,7 @@ def test_austin_is_collected_hir_252(location):
 
 
 def test_every_hir_252_city_has_a_start_date():
-    for city in ("Austin", "Boston", "London"):
+    for city in ("Austin", "Boston", "London", "Amsterdam"):
         assert city in geo.ACTIVE_CITIES and city in geo.COLLECTING_SINCE
 
 
@@ -248,3 +248,10 @@ def test_london_is_collected_hir_252(location):
                                       "New London, CT"])
 def test_places_named_london_that_are_not_london(location):
     assert place_of(location) is None
+
+
+@pytest.mark.parametrize("location", ["Amsterdam, Netherlands", "Amsterdam, Noord-Holland", "Amsterdam-Zuidoost",
+                                      "Amsterdam, Noord-Holland, Nederland"])
+def test_amsterdam_is_collected_hir_252(location):
+    """Amsterdam launched on 2026-11-19 (HIR-252), Dutch spellings of its address included."""
+    assert active_place(location) == "Amsterdam"

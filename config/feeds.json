@@ -94,6 +94,7 @@
     {"type": "greenhouse", "enabled": true, "token": "deliveroo", "company": "deliveroo"},
     {"type": "ashby", "enabled": true, "token": "bjakcareer", "company": "bjakcareer"},
     {"type": "ashby", "enabled": true, "token": "mistral.ai", "company": "mistral.ai"},
-    {"type": "ashby", "enabled": true, "token": "faculty", "company": "faculty"}
+    {"type": "ashby", "enabled": true, "token": "faculty", "company": "faculty"},
+    {"type": "ashby", "enabled": true, "token": "prosus", "company": "prosus"}
   ]
 }

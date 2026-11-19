@@ -48,12 +48,13 @@ CITIES: dict[str, tuple[str, ...]] = {
     "Austin": ("austin",),
     "Boston": ("boston", "cambridge, ma", "cambridge, massachusetts"),
     "London": ("london",),
+    "Amsterdam": ("amsterdam",),
 }
 
 REMOTE_EU = "Remote (EU)"
 
 ACTIVE_CITIES: tuple[str, ...] = ("Berlin", REMOTE_EU, "San Francisco", "New York", "Hamburg",
-                                  "Frankfurt", "Munich", "Austin", "Boston", "London")
+                                  "Frankfurt", "Munich", "Austin", "Boston", "London", "Amsterdam")
 
 # The day each active place started being collected (HIR-232). A place's first weeks hold
 # every posting that was already open on that day, all "first seen" at once, so nothing
@@ -70,6 +71,7 @@ COLLECTING_SINCE: dict[str, str] = {
     "Austin": "2026-11-19",          # HIR-252
     "Boston": "2026-11-19",
     "London": "2026-11-19",
+    "Amsterdam": "2026-11-19",
 }
 
 # Places that share a tracked city's name (HIR-252). Each is a lookbehind and lookahead

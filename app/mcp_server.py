@@ -57,7 +57,7 @@ MAX_JOBS = 50  # per call; page with `offset` for more
 
 INSTRUCTIONS = """\
 hiring-radar tracks AI and ML job postings (Berlin, Hamburg, Frankfurt, Munich, Remote (EU),
-San Francisco, New York) and reads each posting into a fixed list of skills, each marked
+San Francisco, New York, Austin, Boston, London, Amsterdam) and reads each posting into a fixed list of skills, each marked
 required or nice-to-have, plus seniority, German, degree and production-experience
 requirements. All tools are read-only."""
 
