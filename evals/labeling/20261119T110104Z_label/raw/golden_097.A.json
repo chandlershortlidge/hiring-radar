@@ -1,0 +1,66 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"causal-inference\", \"requirement\": \"required\", \"raw_text\": \"advanced Bayesian causal modeling\", \"uncertain\": true},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Strong software engineering skills\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Bayesian modeling / Bayesian model comparison\", \"raw_text\": \"Bayesian model comparison and weighting\"},\n    {\"label\": \"Evolutionary programming\", \"raw_text\": \"evolutionary programming\"},\n    {\"label\": \"Probabilistic programming\", \"raw_text\": \"probabilistic programming\"},\n    {\"label\": \"Genetic/evolutionary algorithms\", \"raw_text\": \"genetic/evolutionary algorithms\"},\n    {\"label\": \"Quality-diversity methods\", \"raw_text\": \"quality-diversity methods\"},\n    {\"label\": \"Population-based search\", \"raw_text\": \"population-based search\"},\n    {\"label\": \"Parallel/distributed computation\", \"raw_text\": \"parallel/distributed execution of many model evaluations\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal AI Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"PhD in a quantitative field (statistics, computer science, applied mathematics, computational biology, physics, or related) with a strong research track record, or equivalent demonstrated expertise\",\n  \"uncertain\": [],\n  \"notes\": \"Bayesian causal modeling is mapped to causal-inference. This is uncertain: the closest entry, but the phrase is Bayesian-specific.\\nThe Bayesian / evolutionary / probabilistic-programming techniques have no taxonomy entry, so they are unmapped. Their 'and/or' alternatives get no alternative_group because only one member maps.\\nThe distributed execution phrase is about running experiments at scale, not distributed-systems engineering. Left unmapped rather than forcing distributed-systems.\\nReinforcement learning and optimization appear only in the role description, so they are not labeled.\\nStatistics is named only as a degree field, so it is not labeled.\\nNeurIPS/ICML/ICLR are publication venues, not skills.\\nMechanistic-modeling domains are domain knowledge, not a skill.\\nDegree: the posting says 'or equivalent demonstrated expertise', so degree_or_equivalent is true.\\nSeniority: the title says 'Principal' and the text says 'Senior Principal Scientist', so it is stated senior.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "causal-inference",
+        "requirement": "required",
+        "raw_text": "advanced Bayesian causal modeling",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software engineering skills"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Bayesian modeling / Bayesian model comparison",
+        "raw_text": "Bayesian model comparison and weighting"
+      },
+      {
+        "label": "Evolutionary programming",
+        "raw_text": "evolutionary programming"
+      },
+      {
+        "label": "Probabilistic programming",
+        "raw_text": "probabilistic programming"
+      },
+      {
+        "label": "Genetic/evolutionary algorithms",
+        "raw_text": "genetic/evolutionary algorithms"
+      },
+      {
+        "label": "Quality-diversity methods",
+        "raw_text": "quality-diversity methods"
+      },
+      {
+        "label": "Population-based search",
+        "raw_text": "population-based search"
+      },
+      {
+        "label": "Parallel/distributed computation",
+        "raw_text": "parallel/distributed execution of many model evaluations"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal AI Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "PhD in a quantitative field (statistics, computer science, applied mathematics, computational biology, physics, or related) with a strong research track record, or equivalent demonstrated expertise",
+    "uncertain": [],
+    "notes": "Bayesian causal modeling is mapped to causal-inference. This is uncertain: the closest entry, but the phrase is Bayesian-specific.\nThe Bayesian / evolutionary / probabilistic-programming techniques have no taxonomy entry, so they are unmapped. Their 'and/or' alternatives get no alternative_group because only one member maps.\nThe distributed execution phrase is about running experiments at scale, not distributed-systems engineering. Left unmapped rather than forcing distributed-systems.\nReinforcement learning and optimization appear only in the role description, so they are not labeled.\nStatistics is named only as a degree field, so it is not labeled.\nNeurIPS/ICML/ICLR are publication venues, not skills.\nMechanistic-modeling domains are domain knowledge, not a skill.\nDegree: the posting says 'or equivalent demonstrated expertise', so degree_or_equivalent is true.\nSeniority: the title says 'Principal' and the text says 'Senior Principal Scientist', so it is stated senior."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "1cb83a736f1362846c7eda1cd07c241f1a8562144552a2a7179428f31a67539d",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

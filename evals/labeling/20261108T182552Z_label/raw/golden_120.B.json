@@ -1,0 +1,108 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"azure-devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"gehören Azure DevOps\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Git\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"microsoft-entra-id\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Entra ID\"\n    },\n    {\n      \"skill_id\": \"azure-key-vault\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Key Vaults\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Networking\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Monitoring\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Infrastructure-as-Code-Projekten\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure-Ressourcen\"\n    },\n    {\n      \"skill_id\": \"azure-ai-foundry\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI Foundry\"\n    },\n    {\n      \"skill_id\": \"azure-ai-search\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI Search\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Large Language Models (LLMs)\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"RAG-Technologien und -Architekturen\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Azure Landing Zones\",\n      \"raw_text\": \"Landing Zones\"\n    },\n    {\n      \"label\": \"Microsoft Azure AI Stack\",\n      \"raw_text\": \"Microsoft Azure AI Stack\"\n    },\n    {\n      \"label\": \"Azure OpenAI\",\n      \"raw_text\": \"Azure OpenAI\"\n    },\n    {\n      \"label\": \"Azure Cognitive Services\",\n      \"raw_text\": \"Cognitive Services\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"nachweisbare Erfahrung\",\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"abgeschlossenes Studium der Informatik, Data Science, Mathematik oder eine vergleichbare Qualifikation\",\n  \"notes\": \"“Was dich auszeichnet” is a requirements section; “Idealerweise” and “von Vorteil” make their respective items optional. Azure DevOps remains required because it is also requested without an optional marker.\\nCI/CD appears only in responsibilities and is excluded. Data Science is a degree field, not a separate skill requirement.\\nAzure OpenAI is treated literally as the Azure service, not as the distinct OpenAI API taxonomy entry. The Azure AI Stack and other unmapped services have no matching taxonomy entries.\\n“nachweisbare Erfahrung” is read as “proven experience,” supporting inferred mid seniority even though that experience is preferred.\\n“vergleichbare Qualifikation” is treated as an accepted alternative qualification to the degree. No alternative skill groups are present.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "azure-devops",
+        "requirement": "required",
+        "raw_text": "gehören Azure DevOps"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "microsoft-entra-id",
+        "requirement": "required",
+        "raw_text": "Entra ID"
+      },
+      {
+        "skill_id": "azure-key-vault",
+        "requirement": "required",
+        "raw_text": "Key Vaults"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "Networking"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "Infrastructure-as-Code-Projekten"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure-Ressourcen"
+      },
+      {
+        "skill_id": "azure-ai-foundry",
+        "requirement": "nice_to_have",
+        "raw_text": "AI Foundry"
+      },
+      {
+        "skill_id": "azure-ai-search",
+        "requirement": "nice_to_have",
+        "raw_text": "AI Search"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "Large Language Models (LLMs)"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "RAG-Technologien und -Architekturen"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Azure Landing Zones",
+        "raw_text": "Landing Zones"
+      },
+      {
+        "label": "Microsoft Azure AI Stack",
+        "raw_text": "Microsoft Azure AI Stack"
+      },
+      {
+        "label": "Azure OpenAI",
+        "raw_text": "Azure OpenAI"
+      },
+      {
+        "label": "Azure Cognitive Services",
+        "raw_text": "Cognitive Services"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "nachweisbare Erfahrung",
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "abgeschlossenes Studium der Informatik, Data Science, Mathematik oder eine vergleichbare Qualifikation",
+    "notes": "“Was dich auszeichnet” is a requirements section; “Idealerweise” and “von Vorteil” make their respective items optional. Azure DevOps remains required because it is also requested without an optional marker.\nCI/CD appears only in responsibilities and is excluded. Data Science is a degree field, not a separate skill requirement.\nAzure OpenAI is treated literally as the Azure service, not as the distinct OpenAI API taxonomy entry. The Azure AI Stack and other unmapped services have no matching taxonomy entries.\n“nachweisbare Erfahrung” is read as “proven experience,” supporting inferred mid seniority even though that experience is preferred.\n“vergleichbare Qualifikation” is treated as an accepted alternative qualification to the degree. No alternative skill groups are present."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "ae8a6d95fe6e790e41ca5471d20cdde1e3cc1795b00fc8ff42ff5a12cc057b89",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

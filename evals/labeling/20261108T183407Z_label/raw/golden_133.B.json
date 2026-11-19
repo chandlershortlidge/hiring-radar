@@ -1,0 +1,172 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MCP-Servern\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"KI-Werkzeugen in der Softwareentwicklung\"\n    },\n    {\n      \"skill_id\": \"github-copilot\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitHub Copilot\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"claude-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Claude Code\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"cursor\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cursor\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM\"\n    },\n    {\n      \"skill_id\": \"context-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Context Window\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Embeddings\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Tool Calling\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Agenten\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Orchestrierung\"\n    },\n    {\n      \"skill_id\": \"llm-guardrails\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Guardrails\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Evaluation\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud-Umgebungen\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Agile Arbeitsweisen\",\n      \"raw_text\": \"agiler Arbeitsweisen\"\n    },\n    {\n      \"label\": \"Software development lifecycle\",\n      \"raw_text\": \"end-to-end SDLC\"\n    },\n    {\n      \"label\": \"Agentic skills\",\n      \"raw_text\": \"agentischen Skills\"\n    },\n    {\n      \"label\": \"Kiro CLI\",\n      \"raw_text\": \"Kiro CLI\"\n    },\n    {\n      \"label\": \"Prompt injection\",\n      \"raw_text\": \"Prompt Injection\"\n    },\n    {\n      \"label\": \"AI hallucinations\",\n      \"raw_text\": \"Halluzinationen\"\n    },\n    {\n      \"label\": \"Token costs\",\n      \"raw_text\": \"Kosten je Token\"\n    },\n    {\n      \"label\": \"Scrum\",\n      \"raw_text\": \"Scrum\"\n    },\n    {\n      \"label\": \"Backlog management\",\n      \"raw_text\": \"Backlog-Arbeit\"\n    },\n    {\n      \"label\": \"Vertical task slicing\",\n      \"raw_text\": \"vertikalem Aufgabenschnitt\"\n    },\n    {\n      \"label\": \"Definition of Done\",\n      \"raw_text\": \"Definition of Done\"\n    },\n    {\n      \"label\": \"Jira\",\n      \"raw_text\": \"Jira\"\n    },\n    {\n      \"label\": \"SAFe\",\n      \"raw_text\": \"idealerweise im SAFe-Umfeld\"\n    },\n    {\n      \"label\": \"AWS Bedrock AgentCore\",\n      \"raw_text\": \"Kenntnisse in AWS Bedrock AgentCore, Microsoft Foundry Agents Service und Microsoft Copilot Studio von Vorteil.\"\n    },\n    {\n      \"label\": \"Microsoft Foundry Agents Service\",\n      \"raw_text\": \"Kenntnisse in AWS Bedrock AgentCore, Microsoft Foundry Agents Service und Microsoft Copilot Studio von Vorteil.\"\n    },\n    {\n      \"label\": \"Microsoft Copilot Studio\",\n      \"raw_text\": \"Kenntnisse in AWS Bedrock AgentCore, Microsoft Foundry Agents Service und Microsoft Copilot Studio von Vorteil.\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Mehrjährige Erfahrung in Wissensvermittlung und Beratung im IT-Umfeld.\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Sehr gute Deutschkenntnisse (C1 oder höher).\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"Ihre Qualifikationen defaults to required; idealerweise makes SAFe optional, and von Vorteil makes the three named agent-platform products optional.\\nAlternative group 1 comprises the illustrative coding tools; unmapped Kiro CLI is also an alternative in that set.\\nThe named agent-platform products are treated literally as distinct products, not silently mapped to their broader platforms or to GitHub Copilot.\\nHalluzinationen asks for understanding hallucinations, not explicitly hallucination detection, so it remains unmapped.\\nSoftwareentwicklung describes the context of AI-tool use rather than a separate software-engineering qualification.\\nSecurity, Datenschutz and Compliance occur as characteristics of optional industry/organizational experience, not separate technical qualifications.\\nTechnologies and practices appearing only under Ihre Aufgaben are excluded.\\nSeniority is uncertain: mehrjährige experience supports mid, while the only numeric minimum is 12 months of AI-tool experience; no level is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "MCP-Servern"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "KI-Werkzeugen in der Softwareentwicklung"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "GitHub Copilot",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM"
+      },
+      {
+        "skill_id": "context-engineering",
+        "requirement": "required",
+        "raw_text": "Context Window"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "Embeddings"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "Tool Calling"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Agenten"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "Orchestrierung"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "required",
+        "raw_text": "Guardrails"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Evaluation"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud-Umgebungen"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Agile Arbeitsweisen",
+        "raw_text": "agiler Arbeitsweisen"
+      },
+      {
+        "label": "Software development lifecycle",
+        "raw_text": "end-to-end SDLC"
+      },
+      {
+        "label": "Agentic skills",
+        "raw_text": "agentischen Skills"
+      },
+      {
+        "label": "Kiro CLI",
+        "raw_text": "Kiro CLI"
+      },
+      {
+        "label": "Prompt injection",
+        "raw_text": "Prompt Injection"
+      },
+      {
+        "label": "AI hallucinations",
+        "raw_text": "Halluzinationen"
+      },
+      {
+        "label": "Token costs",
+        "raw_text": "Kosten je Token"
+      },
+      {
+        "label": "Scrum",
+        "raw_text": "Scrum"
+      },
+      {
+        "label": "Backlog management",
+        "raw_text": "Backlog-Arbeit"
+      },
+      {
+        "label": "Vertical task slicing",
+        "raw_text": "vertikalem Aufgabenschnitt"
+      },
+      {
+        "label": "Definition of Done",
+        "raw_text": "Definition of Done"
+      },
+      {
+        "label": "Jira",
+        "raw_text": "Jira"
+      },
+      {
+        "label": "SAFe",
+        "raw_text": "idealerweise im SAFe-Umfeld"
+      },
+      {
+        "label": "AWS Bedrock AgentCore",
+        "raw_text": "Kenntnisse in AWS Bedrock AgentCore, Microsoft Foundry Agents Service und Microsoft Copilot Studio von Vorteil."
+      },
+      {
+        "label": "Microsoft Foundry Agents Service",
+        "raw_text": "Kenntnisse in AWS Bedrock AgentCore, Microsoft Foundry Agents Service und Microsoft Copilot Studio von Vorteil."
+      },
+      {
+        "label": "Microsoft Copilot Studio",
+        "raw_text": "Kenntnisse in AWS Bedrock AgentCore, Microsoft Foundry Agents Service und Microsoft Copilot Studio von Vorteil."
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Mehrjährige Erfahrung in Wissensvermittlung und Beratung im IT-Umfeld.",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Sehr gute Deutschkenntnisse (C1 oder höher).",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Ihre Qualifikationen defaults to required; idealerweise makes SAFe optional, and von Vorteil makes the three named agent-platform products optional.\nAlternative group 1 comprises the illustrative coding tools; unmapped Kiro CLI is also an alternative in that set.\nThe named agent-platform products are treated literally as distinct products, not silently mapped to their broader platforms or to GitHub Copilot.\nHalluzinationen asks for understanding hallucinations, not explicitly hallucination detection, so it remains unmapped.\nSoftwareentwicklung describes the context of AI-tool use rather than a separate software-engineering qualification.\nSecurity, Datenschutz and Compliance occur as characteristics of optional industry/organizational experience, not separate technical qualifications.\nTechnologies and practices appearing only under Ihre Aufgaben are excluded.\nSeniority is uncertain: mehrjährige experience supports mid, while the only numeric minimum is 12 months of AI-tool experience; no level is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "c603d01a03723a3b30a02c1a66fe533a7f418d0e404cacf5720ce246eecda83f",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

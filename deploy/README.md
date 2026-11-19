@@ -18,7 +18,7 @@ the setup in the 2026-11-01 entry.
 | `hiring-radar-backup.service` / `.timer` | The 03:30 Europe/Berlin backup. |
 | `hiring-radar-caretaker.service` / `.timer` | The 10:00 Europe/Berlin caretaker. |
 | `install-units.sh` | Makes the unit files in `/etc/systemd/system` match the ones here. Run by every deploy and by `provision.sh`. |
-| `Caddyfile` | HTTPS + basic auth in front of the API. The bcrypt hash is a placeholder. |
+| `Caddyfile` | HTTPS + basic auth in front of the API, except `/mcp`, which is open. The bcrypt hash is a placeholder. |
 | `backup.sh` | What the backup unit runs: snapshot → integrity check → gzip → bucket. |
 | `remote-deploy.sh` | What the GitHub deploy job runs on the VM. |
 | `gcs-lifecycle.json` | Bucket rule: delete backups older than 30 days. |
@@ -258,6 +258,38 @@ gcloud compute ssh hiring-radar --zone europe-west3-a --tunnel-through-iap --com
   'sudo -u hiring-radar -H git -C /opt/hiring-radar/app pull --ff-only &&
    sudo bash /opt/hiring-radar/app/deploy/remote-deploy.sh /tmp/web-dist.tgz'
 ```
+
+## Caddy: open `/mcp` (once, after HIR-338 is deployed)
+
+No deploy touches the web server's config, so the change that lets anyone's Claude reach
+the MCP server without the dashboard password is applied by hand, once. Run it after the
+deploy of the merge, so the app already answers at `/mcp`. It keeps the VM's current
+password hash and takes the rest from `deploy/Caddyfile`.
+
+```
+gcloud compute ssh hiring-radar --zone europe-west3-a --tunnel-through-iap
+sudo cp /etc/caddy/Caddyfile /etc/caddy/Caddyfile.before-mcp
+HASH=$(sudo awk '$1 == "chandler" {print $2}' /etc/caddy/Caddyfile)
+sudo sed "s|REPLACE_WITH_BCRYPT_HASH|$HASH|" /opt/hiring-radar/app/deploy/Caddyfile > /tmp/Caddyfile
+sudo caddy validate --config /tmp/Caddyfile --adapter caddyfile \
+  && sudo install -m 644 -o root -g root /tmp/Caddyfile /etc/caddy/Caddyfile \
+  && sudo systemctl reload caddy
+rm /tmp/Caddyfile
+```
+
+Check from the Mac: the dashboard still asks for the password, and `/mcp` answers without it.
+
+```
+curl -s -o /dev/null -w '%{http_code}\n' https://34-159-223-190.sslip.io/          # 401
+curl -s -o /dev/null -w '%{http_code}\n' -X POST https://34-159-223-190.sslip.io/mcp \
+  -H 'content-type: application/json' -H 'accept: application/json, text/event-stream' \
+  -H 'mcp-protocol-version: 2025-06-18' -d '{"jsonrpc":"2.0","id":1,"method":"ping","params":{}}'   # 200
+```
+
+Undo: `sudo cp /etc/caddy/Caddyfile.before-mcp /etc/caddy/Caddyfile && sudo systemctl reload caddy`.
+
+Then add it to Claude: `claude mcp add --transport http hiring-radar https://34-159-223-190.sslip.io/mcp`,
+or in claude.ai, Settings → Connectors → Add custom connector, with that URL.
 
 ## Get the database onto the Mac
 

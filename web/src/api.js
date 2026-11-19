@@ -46,6 +46,11 @@ export const api = {
   jobs: (f, { sort, limit, offset }) =>
     call(`/api/jobs${qs({ ...filterParams(f), skill: f.skillIds, q: f.query, text: f.text, sort, limit, offset })}`),
   job: (id) => call(`/api/jobs/${id}`),
+  // "Doesn't belong here" (HIR-226). `view` is the whole screen state (flagView.js), stored
+  // as sent; un-flagging closes the flag on the server, it does not delete it.
+  flag: (id, view) => call(`/api/jobs/${id}/flag`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ view }) }),
+  unflag: (id) => call(`/api/jobs/${id}/flag`, { method: "DELETE" }),
+  flagNote: (flagId, note) => call(`/api/flags/${flagId}/note`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ note }) }),
   proposed: () => call("/api/proposed"),
   resolve: (ids, status, resolved_skill_id) =>
     call("/api/proposed/resolve", {
@@ -60,3 +65,32 @@ export const api = {
     return call(`/api/add/screenshot${qs(fields)}`, { method: "POST", body: fd });
   },
 };
+
+// The chart's numbers for these filters, or the fact that they could not be fetched
+// (HIR-318). Never rejects: the page has to tell "still waiting" from "failed" from "zero
+// jobs", and an unhandled failure used to look like the first of those for good.
+// The answer is tagged with the family it was asked for, so the market cards never show a
+// new family's order over the previous family's numbers while a request is in flight.
+export const fetchSkills = (filters, get = api.skills) => get(filters).then(
+  (r) => ({ data: { ...r, family: filters.families[0] || null }, failed: false }),
+  () => ({ data: null, failed: true }),
+);
+
+// The largest page /api/jobs serves (tests/test_api.py pins it).
+export const JOBS_MAX = 200;
+
+// Every job these filters match, a page at a time, newest first (that order ends on the
+// job's id, so pages neither overlap nor skip). For the per-city match count (HIR-16),
+// which has to see the whole set and cannot ask the server to count: the server is never
+// told the profile. Stops on an empty page, so a total that shrinks mid-way cannot loop.
+export async function allJobs(filters, get = api.jobs) {
+  const jobs = [];
+  let total = 0;
+  do {
+    const r = await get(filters, { sort: "newest", limit: JOBS_MAX, offset: jobs.length });
+    total = r.total;
+    if (!r.jobs.length) break;
+    jobs.push(...r.jobs);
+  } while (jobs.length < total);
+  return { jobs, total };
+}

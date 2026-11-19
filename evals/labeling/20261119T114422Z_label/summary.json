@@ -1,0 +1,608 @@
+{
+  "run_id": "20261119T114422Z_label",
+  "seed": 0,
+  "provider_a": "anthropic",
+  "model_a": "claude-opus-5-5",
+  "provider_b": "openai",
+  "model_b": "gpt-6.1-sol",
+  "extractor": "claude-sonnet-5-5",
+  "spot_n": 80,
+  "spot_pool": 170,
+  "taxonomy_version": 11,
+  "n_picked": 13,
+  "n_labeled": 13,
+  "failed": [],
+  "agreement": {
+    "n_postings": 13,
+    "skills": {
+      "tp": 176,
+      "fp": 14,
+      "fn": 4,
+      "precision": 0.9263157894736842,
+      "recall": 0.9777777777777777,
+      "f1": 0.9513513513513514
+    },
+    "requirement_agreement": 0.9943181818181818,
+    "attributes": {
+      "seniority": {
+        "agreed": 13,
+        "n": 13,
+        "rate": 1.0
+      },
+      "german": {
+        "agreed": 13,
+        "n": 13,
+        "rate": 1.0
+      },
+      "degree": {
+        "agreed": 13,
+        "n": 13,
+        "rate": 1.0
+      }
+    }
+  },
+  "accepted_skills": 133,
+  "accepted_attributes": 37,
+  "review_items": {
+    "in-scope": 13,
+    "disagreement": 19,
+    "uncertain": 44,
+    "spot-check": 80
+  },
+  "spot_check": {
+    "n": 80,
+    "pool": 170,
+    "seed": 0,
+    "sample": [
+      [
+        "golden_094",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_094",
+        "skill",
+        "distributed-training"
+      ],
+      [
+        "golden_094",
+        "skill",
+        "recommender-systems"
+      ],
+      [
+        "golden_095",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_095",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_095",
+        "skill",
+        "agents"
+      ],
+      [
+        "golden_095",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_096",
+        "skill",
+        "distributed-systems"
+      ],
+      [
+        "golden_097",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_097",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_097",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "agents"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "aws"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "containerization"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "mcp"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_097",
+        "skill",
+        "software-engineering"
+      ],
+      [
+        "golden_098",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_098",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_098",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_098",
+        "skill",
+        "knowledge-distillation"
+      ],
+      [
+        "golden_098",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_098",
+        "skill",
+        "pytorch"
+      ],
+      [
+        "golden_098",
+        "skill",
+        "quantization"
+      ],
+      [
+        "golden_099",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_099",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_099",
+        "skill",
+        "computer-vision"
+      ],
+      [
+        "golden_099",
+        "skill",
+        "feature-engineering"
+      ],
+      [
+        "golden_099",
+        "skill",
+        "nlp"
+      ],
+      [
+        "golden_099",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_099",
+        "skill",
+        "scikit-learn"
+      ],
+      [
+        "golden_099",
+        "skill",
+        "transformers"
+      ],
+      [
+        "golden_100",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_100",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_100",
+        "skill",
+        "argocd"
+      ],
+      [
+        "golden_100",
+        "skill",
+        "aws"
+      ],
+      [
+        "golden_100",
+        "skill",
+        "go"
+      ],
+      [
+        "golden_100",
+        "skill",
+        "grafana"
+      ],
+      [
+        "golden_100",
+        "skill",
+        "prometheus"
+      ],
+      [
+        "golden_100",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_100",
+        "skill",
+        "typescript"
+      ],
+      [
+        "golden_101",
+        "skill",
+        "databricks"
+      ],
+      [
+        "golden_101",
+        "skill",
+        "machine-learning"
+      ],
+      [
+        "golden_101",
+        "skill",
+        "mlops"
+      ],
+      [
+        "golden_102",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_102",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_102",
+        "skill",
+        "machine-learning"
+      ],
+      [
+        "golden_103",
+        "attribute",
+        "degree"
+      ],
+      [
+        "golden_103",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "ai-developer-tooling"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "ai-infrastructure"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "ci-cd"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "codex"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "cursor"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "github-copilot"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "llms"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "mcp"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "testing"
+      ],
+      [
+        "golden_103",
+        "skill",
+        "tool-calling"
+      ],
+      [
+        "golden_104",
+        "attribute",
+        "german"
+      ],
+      [
+        "golden_104",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "deepspeed"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "distributed-training"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "knowledge-distillation"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "megatron-lm"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "ml-engineering"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "quantization"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "reinforcement-learning"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "tensorrt"
+      ],
+      [
+        "golden_104",
+        "skill",
+        "vllm"
+      ],
+      [
+        "golden_105",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_105",
+        "skill",
+        "cloud"
+      ],
+      [
+        "golden_105",
+        "skill",
+        "kubernetes"
+      ],
+      [
+        "golden_106",
+        "attribute",
+        "seniority"
+      ],
+      [
+        "golden_106",
+        "skill",
+        "deepspeed"
+      ],
+      [
+        "golden_106",
+        "skill",
+        "machine-learning"
+      ],
+      [
+        "golden_106",
+        "skill",
+        "python"
+      ],
+      [
+        "golden_106",
+        "skill",
+        "pytorch"
+      ]
+    ]
+  },
+  "signal_mismatches": [
+    "golden_094 degree: A 'A PhD or equivalent industry research experience' vs B 'A PhD or equivalent industry research experience in machine learning, computer science, statistics or a related field.'",
+    "golden_095 degree: A '(MSc or PhD)' vs B 'To have a background in a highly quantitative field, with a focus on AI (MSc or PhD)'",
+    "golden_097 seniority: A '3+ years of professional software engineering experience' vs B '3+ years of professional software engineering experience.'",
+    "golden_106 degree: A 'A PhD or equivalent industry research experience in machine learning, computer science, statistics or a related field' vs B 'A PhD or equivalent industry research experience in machine learning, computer science, statistics or a related field.'"
+  ],
+  "unmapped": [
+    "A2A",
+    "A2A (Agent2Agent protocol)",
+    "Accelerate",
+    "Agent harnesses",
+    "Agent loops",
+    "Agent training environments",
+    "Algorithms",
+    "Amazon EKS",
+    "Availability, reliability and scalability practices",
+    "Axolotl",
+    "B300",
+    "BF16",
+    "Bandits",
+    "Code review",
+    "Content classification",
+    "Continual learning",
+    "Continued pre-training",
+    "DPO",
+    "Data deduplication",
+    "Data filtering",
+    "Data integration",
+    "Data mixture design",
+    "Data mixture research",
+    "Debugging",
+    "Decision-model training",
+    "Declarative reconcile-based systems",
+    "Developer productivity tooling",
+    "Distributed training failure debugging",
+    "Distributed-training debugging",
+    "Domain adaptation",
+    "Encoder models",
+    "Entity representations",
+    "Event sourcing",
+    "Experimental design",
+    "FP16",
+    "FP8",
+    "FinOps",
+    "Firecracker",
+    "Fraud detection",
+    "GPU architectures",
+    "GRPO",
+    "Generative retrieval",
+    "Gradient checkpointing",
+    "H100",
+    "H200",
+    "Integration template development",
+    "Kubernetes controllers",
+    "Kubernetes controllers/operators",
+    "Kubernetes operators",
+    "Language-model post-training",
+    "Large-scale training dataset preparation",
+    "Large-scale training-data preparation",
+    "Learning rate schedule tuning",
+    "Machine learning on tabular or behavioural data",
+    "Memory and GPU optimisation",
+    "Memory optimization",
+    "Mid-training",
+    "Mixed precision training",
+    "Model compression",
+    "Model pruning",
+    "Model routing",
+    "Multi-model routing",
+    "Multi-node job orchestration",
+    "Multi-node training job orchestration",
+    "Multimodal models",
+    "NeMo RL",
+    "Online experimentation",
+    "Open-source contribution",
+    "OpenRLHF",
+    "Operating systems",
+    "Operational automation",
+    "Post-training",
+    "Pre-training",
+    "Probability theory",
+    "Programming and scripting languages",
+    "Pruning",
+    "RLHF",
+    "Recommendation metrics",
+    "Reward modelling",
+    "Role-based access control",
+    "Running inference workloads at scale",
+    "Running inference/evaluation workloads at scale",
+    "SDK development",
+    "Sandboxing / isolation",
+    "Sandboxing and isolation",
+    "Scaling laws",
+    "Semantic IDs",
+    "Setup troubleshooting",
+    "Site Reliability Engineering (SRE)",
+    "Site reliability engineering",
+    "Storage subsystems",
+    "Synthetic data",
+    "Synthetic data generation",
+    "Synthetic-data generation pipelines",
+    "TabICL",
+    "TabPFN",
+    "Tabular foundation models",
+    "Terminal / command line",
+    "Terminal usage",
+    "Tokenisation",
+    "Training data quality assessment",
+    "Training dataset preparation",
+    "Training dataset preparation (filtering, deduplication, data mixture design)",
+    "Training dynamics and stability",
+    "Training loss instability debugging",
+    "Training throughput optimisation",
+    "Training throughput optimization",
+    "Training-data deduplication",
+    "Training-data filtering",
+    "Training-data quality assessment",
+    "Usage metering",
+    "User behaviour modelling",
+    "ZeRO",
+    "ZeRO optimization",
+    "agent training environments",
+    "code review",
+    "continual learning",
+    "continued pre-training / mid-training",
+    "data mixture research",
+    "entity representations",
+    "gVisor",
+    "generative retrieval",
+    "language-model post-training",
+    "memory optimization (gradient checkpointing, mixed precision, ZeRO)",
+    "model compression",
+    "offline RL and bandits",
+    "online experiments",
+    "operating systems",
+    "pre-training / continued pre-training",
+    "programming/scripting languages (unspecified)",
+    "reward modelling",
+    "scaling laws",
+    "semantic IDs",
+    "storage subsystems",
+    "synthetic data",
+    "synthetic data generation",
+    "tabular foundation models",
+    "tokenisation",
+    "training data preparation (filtering, deduplication, data mixture)",
+    "user behaviour modelling",
+    "verl"
+  ]
+}

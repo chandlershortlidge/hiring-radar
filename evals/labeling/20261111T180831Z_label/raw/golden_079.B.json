@@ -1,0 +1,95 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Software Engineering\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"generative AI products\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI development\"\n    },\n    {\n      \"skill_id\": \"model-selection\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ideating on which models to use\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"productionizing\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"from ideating on which models to use through productionizing and maintaining them\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI-assisted development tools\"\n    },\n    {\n      \"skill_id\": \"github-copilot\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitHub Copilot\"\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"natural language processing\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Prototyping\",\n      \"raw_text\": \"prototyping\"\n    },\n    {\n      \"label\": \"ChatGPT\",\n      \"raw_text\": \"ChatGPT\"\n    },\n    {\n      \"label\": \"Claude\",\n      \"raw_text\": \"Claude\"\n    },\n    {\n      \"label\": \"AI indexing\",\n      \"raw_text\": \"AI indexing\"\n    },\n    {\n      \"label\": \"Retrieval systems\",\n      \"raw_text\": \"retrieval systems\"\n    },\n    {\n      \"label\": \"Personalization\",\n      \"raw_text\": \"personalization\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"5+ years of experience of Software Engineering\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"A relevant advanced degree (Masters or PhD) in Machine Learning, Artificial Intelligence, Statistics, or a related field\",\n  \"notes\": \"The qualifications heading defaults to required; the section beginning “While it’s not required” is optional.\\nModel selection, deployment, and MLOps map to the explicitly requested practices of choosing models, productionizing them, and maintaining them.\\nRetrieval systems and personalization are read literally, without assuming RAG, vector search, or recommender systems.\\nChatGPT and Claude are named development tools, not explicit requests for OpenAI or Anthropic API skills.\\nMachine learning, data analysis, and experimental design appear only in responsibilities; degree fields are not separately treated as skill requirements.\\nThe title has no stated seniority; 5+ years supports inferred seniority.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Software Engineering"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "generative AI products"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI development"
+      },
+      {
+        "skill_id": "model-selection",
+        "requirement": "required",
+        "raw_text": "ideating on which models to use"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "productionizing"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "from ideating on which models to use through productionizing and maintaining them"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI-assisted development tools"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "GitHub Copilot"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "nice_to_have",
+        "raw_text": "natural language processing"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Prototyping",
+        "raw_text": "prototyping"
+      },
+      {
+        "label": "ChatGPT",
+        "raw_text": "ChatGPT"
+      },
+      {
+        "label": "Claude",
+        "raw_text": "Claude"
+      },
+      {
+        "label": "AI indexing",
+        "raw_text": "AI indexing"
+      },
+      {
+        "label": "Retrieval systems",
+        "raw_text": "retrieval systems"
+      },
+      {
+        "label": "Personalization",
+        "raw_text": "personalization"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "5+ years of experience of Software Engineering",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "A relevant advanced degree (Masters or PhD) in Machine Learning, Artificial Intelligence, Statistics, or a related field",
+    "notes": "The qualifications heading defaults to required; the section beginning “While it’s not required” is optional.\nModel selection, deployment, and MLOps map to the explicitly requested practices of choosing models, productionizing them, and maintaining them.\nRetrieval systems and personalization are read literally, without assuming RAG, vector search, or recommender systems.\nChatGPT and Claude are named development tools, not explicit requests for OpenAI or Anthropic API skills.\nMachine learning, data analysis, and experimental design appear only in responsibilities; degree fields are not separately treated as skill requirements.\nThe title has no stated seniority; 5+ years supports inferred seniority."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "ea5c6ec3cb81e4f868cb521afffa4185619475f9bfca1a53f68d072ca4e9d960",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

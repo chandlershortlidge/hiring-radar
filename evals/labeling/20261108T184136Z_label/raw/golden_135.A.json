@@ -1,0 +1,166 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"professionellen Softwareentwicklung\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"Du beherrschst automatisierte Tests\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Verständnis für Cloud-Architekturen\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"LLM-basierte Agenten\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"modernen Agenten-Frameworks\"},\n    {\"skill_id\": \"tool-calling\", \"requirement\": \"required\", \"raw_text\": \"Tool Calling\", \"alternative_group\": 1},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"Retrieval\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"required\", \"raw_text\": \"mehrstufigen Workflows\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"data-modeling\", \"requirement\": \"required\", \"raw_text\": \"Modellierung komplexer Geschäftsdaten\"},\n    {\"skill_id\": \"access-control\", \"requirement\": \"required\", \"raw_text\": \"Berechtigungen\", \"uncertain\": true},\n    {\"skill_id\": \"data-privacy-and-security\", \"requirement\": \"required\", \"raw_text\": \"Datenschutz\", \"uncertain\": true},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"AI-Coding-Tools\"},\n    {\"skill_id\": \"claude-code\", \"requirement\": \"required\", \"raw_text\": \"Claude Code\", \"alternative_group\": 2},\n    {\"skill_id\": \"cursor\", \"requirement\": \"required\", \"raw_text\": \"Cursor\", \"alternative_group\": 2},\n    {\"skill_id\": \"codex\", \"requirement\": \"required\", \"raw_text\": \"Codex\", \"alternative_group\": 2},\n    {\"skill_id\": \"playwright\", \"requirement\": \"required\", \"raw_text\": \"Playwright\"},\n    {\"skill_id\": \"ci-cd\", \"requirement\": \"required\", \"raw_text\": \"CI/CD-Prozesse\"},\n    {\"skill_id\": \"git\", \"requirement\": \"required\", \"raw_text\": \"auf GitHub\", \"uncertain\": true},\n    {\"skill_id\": \"mcp\", \"requirement\": \"required\", \"raw_text\": \"wie MCP\", \"alternative_group\": 3},\n    {\"skill_id\": \"langgraph\", \"requirement\": \"required\", \"raw_text\": \"LangGraph\", \"alternative_group\": 3},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"Monitoring\"},\n    {\"skill_id\": \"forecasting\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Forecasting\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"A2A (Agent2Agent protocol)\", \"raw_text\": \"A2A\"},\n    {\"label\": \"secure AI applications\", \"raw_text\": \"sichere KI-Anwendungen\"},\n    {\"label\": \"ERP / accounting software\", \"raw_text\": \"Accounting- oder ERP-Software\"},\n    {\"label\": \"XRechnung / ZUGFeRD e-invoicing standards\", \"raw_text\": \"XRechnung, ZUGFeRD\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"mindestens 4\\nJahre Erfahrung\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Deutschkenntnisse auf C2-Niveau\",\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Optional sections: only 'Zusätzlich hilfreich' marks its items optional. The 'Profil' section defaults to required. Responsibilities ('Aufgaben') are not labeled; this excludes APIs, MCP-Schnittstellen and Evaluationen as they appear there.\\n'idealerweise' makes cloud and Testautomatisierung nice_to_have in item 1. Both are asked for again unmarked later ('Cloud-Architekturen', 'automatisierte Tests'), so required wins.\\nRetrieval is mapped to rag. 'mehrstufigen Workflows' is mapped to llm-orchestration (alias 'multi-step orchestration'). Both mappings are loose, so both are flagged uncertain.\\nTool Calling, Retrieval and mehrstufigen Workflows are examples offered for one ask ('beispielsweise ... oder'), so they form group 1.\\nClaude Code, Cursor and Codex are examples of AI-Coding-Tools offered as alternatives ('wie ... oder'), so they form group 2. ai-developer-tooling is the broad skill and stays out of the group.\\nMCP, A2A and LangGraph are offered as alternatives. A2A has no taxonomy id, so group 3 is mcp plus langgraph.\\nPlaywright is a single example ('beispielsweise mit Playwright'), so it has no group.\\n'CI/CD-Prozesse auf GitHub' is labeled ci-cd plus git (via the GitHub alias). github-actions is not named, so it is not added.\\nBerechtigungen maps to access-control and Datenschutz maps to data-privacy-and-security. The posting says 'verstehst Anforderungen an', which could be read as domain understanding, so both are flagged uncertain.\\nThe nice-to-have list mentions HOAI and Bürocontrolling. These are domain knowledge and are not labeled.\\nThe single 'or' list in 'Zusätzlich hilfreich' contains only one mapped skill (forecasting), so it has no group.\\nSeniority is inferred from 'mindestens 4 Jahre', which falls in the 3–5 year band, so mid. The title carries no level.\\nGerman is required at C2 and is not marked optional. English C1 is ignored.\\nNo degree is mentioned.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "professionellen Softwareentwicklung"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "Du beherrschst automatisierte Tests"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Verständnis für Cloud-Architekturen"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM-basierte Agenten"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "modernen Agenten-Frameworks"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "Tool Calling",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "Retrieval",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "mehrstufigen Workflows",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "Modellierung komplexer Geschäftsdaten"
+      },
+      {
+        "skill_id": "access-control",
+        "requirement": "required",
+        "raw_text": "Berechtigungen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "required",
+        "raw_text": "Datenschutz",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI-Coding-Tools"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "codex",
+        "requirement": "required",
+        "raw_text": "Codex",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "playwright",
+        "requirement": "required",
+        "raw_text": "Playwright"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD-Prozesse"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "auf GitHub",
+        "uncertain": true
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "wie MCP",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Monitoring"
+      },
+      {
+        "skill_id": "forecasting",
+        "requirement": "nice_to_have",
+        "raw_text": "Forecasting"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "A2A (Agent2Agent protocol)",
+        "raw_text": "A2A"
+      },
+      {
+        "label": "secure AI applications",
+        "raw_text": "sichere KI-Anwendungen"
+      },
+      {
+        "label": "ERP / accounting software",
+        "raw_text": "Accounting- oder ERP-Software"
+      },
+      {
+        "label": "XRechnung / ZUGFeRD e-invoicing standards",
+        "raw_text": "XRechnung, ZUGFeRD"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "mindestens 4\nJahre Erfahrung",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Deutschkenntnisse auf C2-Niveau",
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Optional sections: only 'Zusätzlich hilfreich' marks its items optional. The 'Profil' section defaults to required. Responsibilities ('Aufgaben') are not labeled; this excludes APIs, MCP-Schnittstellen and Evaluationen as they appear there.\n'idealerweise' makes cloud and Testautomatisierung nice_to_have in item 1. Both are asked for again unmarked later ('Cloud-Architekturen', 'automatisierte Tests'), so required wins.\nRetrieval is mapped to rag. 'mehrstufigen Workflows' is mapped to llm-orchestration (alias 'multi-step orchestration'). Both mappings are loose, so both are flagged uncertain.\nTool Calling, Retrieval and mehrstufigen Workflows are examples offered for one ask ('beispielsweise ... oder'), so they form group 1.\nClaude Code, Cursor and Codex are examples of AI-Coding-Tools offered as alternatives ('wie ... oder'), so they form group 2. ai-developer-tooling is the broad skill and stays out of the group.\nMCP, A2A and LangGraph are offered as alternatives. A2A has no taxonomy id, so group 3 is mcp plus langgraph.\nPlaywright is a single example ('beispielsweise mit Playwright'), so it has no group.\n'CI/CD-Prozesse auf GitHub' is labeled ci-cd plus git (via the GitHub alias). github-actions is not named, so it is not added.\nBerechtigungen maps to access-control and Datenschutz maps to data-privacy-and-security. The posting says 'verstehst Anforderungen an', which could be read as domain understanding, so both are flagged uncertain.\nThe nice-to-have list mentions HOAI and Bürocontrolling. These are domain knowledge and are not labeled.\nThe single 'or' list in 'Zusätzlich hilfreich' contains only one mapped skill (forecasting), so it has no group.\nSeniority is inferred from 'mindestens 4 Jahre', which falls in the 3–5 year band, so mid. The title carries no level.\nGerman is required at C2 and is not marked optional. English C1 is ignored.\nNo degree is mentioned."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "3c77b64d8b822d4754ae134f5dc577149d1620445b643bb4c9e5bb1751e8228b",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

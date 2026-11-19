@@ -1,0 +1,111 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Data Science\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Machine Learning\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangChain\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangGraph\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"llamaindex\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LlamaIndex\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Generativer KI\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"NLP\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentenbasierten KI-Systemen\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"idealerweise Erfahrung mit Low-Code-/No-Code-Plattformen sowie Grundlagen in KI-Governance (EU AI Act, DSGVO) und MCP\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"AI Engineering\",\n      \"raw_text\": \"AI- Engineering\"\n    },\n    {\n      \"label\": \"Low-Code-/No-Code-Plattformen\",\n      \"raw_text\": \"idealerweise Erfahrung mit Low-Code-/No-Code-Plattformen\"\n    },\n    {\n      \"label\": \"KI-Governance\",\n      \"raw_text\": \"idealerweise Erfahrung mit Low-Code-/No-Code-Plattformen sowie Grundlagen in KI-Governance (EU AI Act, DSGVO)\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Mindestens zwei Jahre Erfahrung\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Deutschkenntnisse auf mindestens B12 Niveau\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Abgeschlossenes Studium der Informatik, Data Science, Wirtschaftsinformatik oder einer vergleichbaren Fachrichtung.\",\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"Die Qualifikationen sind grundsätzlich erforderlich; „idealerweise“ wird wörtlich auf den gesamten nachfolgenden Satzteil einschließlich KI-Governance und MCP bezogen.\\nAlternative Gruppe 1 umfasst zusätzlich das nicht abbildbare „AI- Engineering“; dafür wurde keine gleichbedeutende Taxonomie-ID angenommen.\\nEU AI Act und DSGVO werden als regulatorisches Domänenwissen, nicht als eigenständige technische Skills gewertet.\\n„Umsetzung produktiver KI-Lösungen“ wird nicht automatisch mit Model Deployment gleichgesetzt; eine eindeutige zusätzliche Taxonomiezuordnung fehlt.\\nJunior folgt der Richtlinie für zwei Jahre Erfahrung; wegen der offenen Untergrenze „Mindestens“ zur Prüfung markiert.\\n„B12“ wurde unverändert übernommen, nicht zu einem anderen Sprachniveau korrigiert.\\nDie vergleichbare Fachrichtung erweitert das Studienfach, ersetzt aber nicht den Studienabschluss.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "Data Science",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Machine Learning",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "required",
+        "raw_text": "LangChain",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "required",
+        "raw_text": "LlamaIndex",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Generativer KI",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "NLP",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentenbasierten KI-Systemen",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise Erfahrung mit Low-Code-/No-Code-Plattformen sowie Grundlagen in KI-Governance (EU AI Act, DSGVO) und MCP"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "AI Engineering",
+        "raw_text": "AI- Engineering"
+      },
+      {
+        "label": "Low-Code-/No-Code-Plattformen",
+        "raw_text": "idealerweise Erfahrung mit Low-Code-/No-Code-Plattformen"
+      },
+      {
+        "label": "KI-Governance",
+        "raw_text": "idealerweise Erfahrung mit Low-Code-/No-Code-Plattformen sowie Grundlagen in KI-Governance (EU AI Act, DSGVO)"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "junior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Mindestens zwei Jahre Erfahrung",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Deutschkenntnisse auf mindestens B12 Niveau",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Abgeschlossenes Studium der Informatik, Data Science, Wirtschaftsinformatik oder einer vergleichbaren Fachrichtung.",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Die Qualifikationen sind grundsätzlich erforderlich; „idealerweise“ wird wörtlich auf den gesamten nachfolgenden Satzteil einschließlich KI-Governance und MCP bezogen.\nAlternative Gruppe 1 umfasst zusätzlich das nicht abbildbare „AI- Engineering“; dafür wurde keine gleichbedeutende Taxonomie-ID angenommen.\nEU AI Act und DSGVO werden als regulatorisches Domänenwissen, nicht als eigenständige technische Skills gewertet.\n„Umsetzung produktiver KI-Lösungen“ wird nicht automatisch mit Model Deployment gleichgesetzt; eine eindeutige zusätzliche Taxonomiezuordnung fehlt.\nJunior folgt der Richtlinie für zwei Jahre Erfahrung; wegen der offenen Untergrenze „Mindestens“ zur Prüfung markiert.\n„B12“ wurde unverändert übernommen, nicht zu einem anderen Sprachniveau korrigiert.\nDie vergleichbare Fachrichtung erweitert das Studienfach, ersetzt aber nicht den Studienabschluss."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "7a14ef4205926e8046c39fe485646abb1cc37f2bc2dd7d1cc2119868e57deef0",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

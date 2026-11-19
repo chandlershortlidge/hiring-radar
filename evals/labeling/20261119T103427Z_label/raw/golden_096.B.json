@@ -1,0 +1,274 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML engineering\"\n    },\n    {\n      \"skill_id\": \"ml-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML engineering\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model development\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"reinforcement learning algorithms\"\n    },\n    {\n      \"skill_id\": \"computer-vision\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong expertise in both computer vision\"\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"natural language processing\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying large-scale models\"\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"transformer architectures\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"large language model fine-tuning\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"large language model fine-tuning\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"distributed-training\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python with experience in distributed training\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps\"\n    },\n    {\n      \"skill_id\": \"model-versioning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model versioning\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"monitoring\"\n    },\n    {\n      \"skill_id\": \"deepspeed\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"DeepSpeed\"\n    },\n    {\n      \"skill_id\": \"quantization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"quantization\"\n    },\n    {\n      \"skill_id\": \"knowledge-distillation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distillation\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cloud platforms\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AWS\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GCP\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Azure\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"containerization technologies\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Neural network development\",\n      \"raw_text\": \"neural network development\"\n    },\n    {\n      \"label\": \"Proximal Policy Optimization (PPO)\",\n      \"raw_text\": \"PPO\"\n    },\n    {\n      \"label\": \"Soft Actor-Critic (SAC)\",\n      \"raw_text\": \"SAC\"\n    },\n    {\n      \"label\": \"Twin Delayed DDPG (TD3)\",\n      \"raw_text\": \"TD3\"\n    },\n    {\n      \"label\": \"Attention mechanisms\",\n      \"raw_text\": \"attention mechanisms\"\n    },\n    {\n      \"label\": \"Object detection\",\n      \"raw_text\": \"object detection\"\n    },\n    {\n      \"label\": \"Semantic segmentation\",\n      \"raw_text\": \"semantic segmentation\"\n    },\n    {\n      \"label\": \"Visual tracking\",\n      \"raw_text\": \"visual tracking\"\n    },\n    {\n      \"label\": \"Model optimization\",\n      \"raw_text\": \"model optimization\"\n    },\n    {\n      \"label\": \"Sequential decision-making\",\n      \"raw_text\": \"sequential decision-making\"\n    },\n    {\n      \"label\": \"Control systems\",\n      \"raw_text\": \"control systems fundamentals\"\n    },\n    {\n      \"label\": \"Vision-Language-Action models\",\n      \"raw_text\": \"Vision-Language-Action (VLA) models\"\n    },\n    {\n      \"label\": \"Multimodal architectures\",\n      \"raw_text\": \"multimodal architectures\"\n    },\n    {\n      \"label\": \"Reinforcement Learning from Human Feedback\",\n      \"raw_text\": \"RLHF implementation\"\n    },\n    {\n      \"label\": \"Human feedback integration for model alignment\",\n      \"raw_text\": \"human feedback integration for model alignment\"\n    },\n    {\n      \"label\": \"Imitation learning\",\n      \"raw_text\": \"imitation learning\"\n    },\n    {\n      \"label\": \"Inverse reinforcement learning\",\n      \"raw_text\": \"inverse reinforcement learning\"\n    },\n    {\n      \"label\": \"Learning from demonstrations\",\n      \"raw_text\": \"learning from demonstrations\"\n    },\n    {\n      \"label\": \"Sim-to-real transfer\",\n      \"raw_text\": \"sim-to-real transfer techniques\"\n    },\n    {\n      \"label\": \"3D computer vision\",\n      \"raw_text\": \"3D computer vision\"\n    },\n    {\n      \"label\": \"Spatial reasoning\",\n      \"raw_text\": \"spatial reasoning\"\n    },\n    {\n      \"label\": \"Multimodal perception\",\n      \"raw_text\": \"multi-modal perception systems\"\n    },\n    {\n      \"label\": \"FairScale\",\n      \"raw_text\": \"FairScale\"\n    },\n    {\n      \"label\": \"Horovod\",\n      \"raw_text\": \"Horovod\"\n    },\n    {\n      \"label\": \"Model pruning\",\n      \"raw_text\": \"pruning\"\n    },\n    {\n      \"label\": \"Embodied AI\",\n      \"raw_text\": \"embodied AI\"\n    },\n    {\n      \"label\": \"Agent-environment interaction\",\n      \"raw_text\": \"agent-environment interaction\"\n    },\n    {\n      \"label\": \"AI alignment\",\n      \"raw_text\": \"AI alignment research\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff R&D AI Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD in Computer Science, Robotics, AI/ML, or related field with focus on multimodal learning or robotics\",\n  \"notes\": \"Qualifications & Skills is required; Preferred Qualifications is optional. Technologies appearing only in responsibilities or company description are excluded.\\nAI/ML engineering is read literally as naming both AI/ML and ML engineering.\\nGeneral model optimization is not assumed to mean inference optimization. RLHF is not equated with fine-tuning or generic reinforcement learning alone.\\nUnmapped entries preserve specifically named technical methods and technologies absent from the taxonomy; they inherit the requirement status of their source section.\\nDistributed training and computer vision remain required because they are independently required, despite their optional framework examples and specialist variants.\\nDegree fields, startup experience, publication history, soft skills, and safety-critical application-domain experience are not treated as technical skills.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML engineering"
+      },
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "AI/ML engineering"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "model development"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "reinforcement learning algorithms"
+      },
+      {
+        "skill_id": "computer-vision",
+        "requirement": "required",
+        "raw_text": "Strong expertise in both computer vision"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "natural language processing"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying large-scale models"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "transformer architectures"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "large language model fine-tuning"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "large language model fine-tuning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "Python with experience in distributed training"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps"
+      },
+      {
+        "skill_id": "model-versioning",
+        "requirement": "required",
+        "raw_text": "model versioning"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "deepspeed",
+        "requirement": "nice_to_have",
+        "raw_text": "DeepSpeed"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "nice_to_have",
+        "raw_text": "quantization"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "nice_to_have",
+        "raw_text": "distillation"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "GCP",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerization technologies"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Neural network development",
+        "raw_text": "neural network development"
+      },
+      {
+        "label": "Proximal Policy Optimization (PPO)",
+        "raw_text": "PPO"
+      },
+      {
+        "label": "Soft Actor-Critic (SAC)",
+        "raw_text": "SAC"
+      },
+      {
+        "label": "Twin Delayed DDPG (TD3)",
+        "raw_text": "TD3"
+      },
+      {
+        "label": "Attention mechanisms",
+        "raw_text": "attention mechanisms"
+      },
+      {
+        "label": "Object detection",
+        "raw_text": "object detection"
+      },
+      {
+        "label": "Semantic segmentation",
+        "raw_text": "semantic segmentation"
+      },
+      {
+        "label": "Visual tracking",
+        "raw_text": "visual tracking"
+      },
+      {
+        "label": "Model optimization",
+        "raw_text": "model optimization"
+      },
+      {
+        "label": "Sequential decision-making",
+        "raw_text": "sequential decision-making"
+      },
+      {
+        "label": "Control systems",
+        "raw_text": "control systems fundamentals"
+      },
+      {
+        "label": "Vision-Language-Action models",
+        "raw_text": "Vision-Language-Action (VLA) models"
+      },
+      {
+        "label": "Multimodal architectures",
+        "raw_text": "multimodal architectures"
+      },
+      {
+        "label": "Reinforcement Learning from Human Feedback",
+        "raw_text": "RLHF implementation"
+      },
+      {
+        "label": "Human feedback integration for model alignment",
+        "raw_text": "human feedback integration for model alignment"
+      },
+      {
+        "label": "Imitation learning",
+        "raw_text": "imitation learning"
+      },
+      {
+        "label": "Inverse reinforcement learning",
+        "raw_text": "inverse reinforcement learning"
+      },
+      {
+        "label": "Learning from demonstrations",
+        "raw_text": "learning from demonstrations"
+      },
+      {
+        "label": "Sim-to-real transfer",
+        "raw_text": "sim-to-real transfer techniques"
+      },
+      {
+        "label": "3D computer vision",
+        "raw_text": "3D computer vision"
+      },
+      {
+        "label": "Spatial reasoning",
+        "raw_text": "spatial reasoning"
+      },
+      {
+        "label": "Multimodal perception",
+        "raw_text": "multi-modal perception systems"
+      },
+      {
+        "label": "FairScale",
+        "raw_text": "FairScale"
+      },
+      {
+        "label": "Horovod",
+        "raw_text": "Horovod"
+      },
+      {
+        "label": "Model pruning",
+        "raw_text": "pruning"
+      },
+      {
+        "label": "Embodied AI",
+        "raw_text": "embodied AI"
+      },
+      {
+        "label": "Agent-environment interaction",
+        "raw_text": "agent-environment interaction"
+      },
+      {
+        "label": "AI alignment",
+        "raw_text": "AI alignment research"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff R&D AI Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD in Computer Science, Robotics, AI/ML, or related field with focus on multimodal learning or robotics",
+    "notes": "Qualifications & Skills is required; Preferred Qualifications is optional. Technologies appearing only in responsibilities or company description are excluded.\nAI/ML engineering is read literally as naming both AI/ML and ML engineering.\nGeneral model optimization is not assumed to mean inference optimization. RLHF is not equated with fine-tuning or generic reinforcement learning alone.\nUnmapped entries preserve specifically named technical methods and technologies absent from the taxonomy; they inherit the requirement status of their source section.\nDistributed training and computer vision remain required because they are independently required, despite their optional framework examples and specialist variants.\nDegree fields, startup experience, publication history, soft skills, and safety-critical application-domain experience are not treated as technical skills."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "549a3350160d3b6459a469271c9515926e5714ecd79edf2af8aeef6c2625d61b",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

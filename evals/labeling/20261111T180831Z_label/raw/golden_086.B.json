@@ -1,0 +1,60 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineer\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"javascript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JavaScript\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLM\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agent-based systems\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Have deployed or integrated LLM or agent-based systems in production settings\"\n    }\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Degree in a STEM field or equivalent hands-on experience\",\n  \"notes\": \"Interpreted “YOU MIGHT EXCEL IF YOU…” as an optional qualifications heading.\\nMapped production deployment of LLM or agent-based systems to AI deployment; no general AI/ML parent skill was added.\\nDevin, DeepWiki, and MCP integrations appear only in company context or responsibilities and were excluded.\\nInferred mid seniority from 3+ years; leading interactive programs is workshop facilitation rather than engineering-team leadership.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineer"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "javascript",
+        "requirement": "required",
+        "raw_text": "JavaScript"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agent-based systems"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "nice_to_have",
+        "raw_text": "Have deployed or integrated LLM or agent-based systems in production settings"
+      }
+    ],
+    "unmapped": [],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Degree in a STEM field or equivalent hands-on experience",
+    "notes": "Interpreted “YOU MIGHT EXCEL IF YOU…” as an optional qualifications heading.\nMapped production deployment of LLM or agent-based systems to AI deployment; no general AI/ML parent skill was added.\nDevin, DeepWiki, and MCP integrations appear only in company context or responsibilities and were excluded.\nInferred mid seniority from 3+ years; leading interactive programs is workshop facilitation rather than engineering-team leadership."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "462546902de6d8b2479db6d4fb32df85d02f95155bf372717f6a3d308a3f8b49",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

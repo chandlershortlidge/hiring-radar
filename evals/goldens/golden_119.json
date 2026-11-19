@@ -1,0 +1,85 @@
+{
+  "id": "golden_119",
+  "split": "heldout",
+  "seniority": "junior",
+  "seniority_basis": "inferred",
+  "seniority_signal": "erste Erfahrungen",
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "verhandlungssicher in Deutsch",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": true,
+  "degree_signal": "abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz",
+  "attrs_reviewed": true,
+  "source_sha256": "f00cf2270e6cf50d1ffb1e8245deb967f988e7005b15305a014811b01ca6eb26",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "seniority",
+    "skill:cybersecurity"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Public Cloud Engineer (m/w/d) Schwerpunkt Generative AI\n\n### **Das sind wir**\n\nWir verändern die Versicherungswelt – und suchen dich, um die Zukunft mitzugestalten. Als einer der größten deutschen Versicherer und Finanzdienstleister mit Hauptsitz in Hamburg und Dortmund haben wir uns in den letzten Jahren grundlegend transformiert. Unsere moderne und agile Arbeitswelt, in der wir nutzenzentriert arbeiten, ist von Offenheit und Mut geprägt. Dabei legen wir viel Wert auf gegenseitige Wertschätzung und Vertrauen. Wir heißen Vielfalt in all ihren Facetten willkommen und glauben, dass unterschiedliche Perspektiven und Erfahrungen entscheidend für Innovation sind. Werde Teil unseres Teams, bring deine Ideen ein und verändere mit uns das Jetzt.\n\n**Dein Aufgabengebiet**\nDie SIGNAL IDUNA plant die Cloud-Plattform und -Infrastruktur weiter auszubauen und sucht dafür erfahrene und hochmotivierte IT-Spezialist:innen im Umfeld Cloud Engineering/ Architektur mit dem Fokus Google Cloud. Insbesondere arbeiten wir in der Google Cloud an Generative AI-Lösungen und Hand in Hand mit internen Fachbereichen, Data Science sowie Expert:innen von Google, um technologisch ganz vorne dabei zu sein. Als Cloud Platform Engineer (m/w/d) unterstützt du diese Cloud Entwicklungen und bist für die technologische Planung, die Implementierung der Plattform und die Unterstützung bei Umsetzung der Generative AI-Lösungen mitverantwortlich.  \n\nDeine Hauptaufgaben sind: \n\n- Unterstützung eines interdisziplinären Teams (Squad) bei der Entwicklung von neuen Lösungen auf Basis von Large Language Models (LLMs) unter Einsatz folgender Technologien: Google Cloud, Vertex AI, LangChain, Gemini, Python-basierte Microservices, Cloud Run, Cloud Build, Terraform \n- Etablierung von standardisierten Prozessen und Methoden (Best Practices) sowie einer nachhaltigen Unternehmens-Architektur im Umfeld Generative die Mitwirkung bei der Entwicklung/ Implementierung von Cloud Sicherheitskonzepten \n- Mitarbeit bei der Entwicklung von Architekturrichtlinien und Betreuung von Projekten mit modernen Architekturstandards im Public Cloud Umfeld \n- Berücksichtigung von datenschutzrechtlichen, rechtlichen und ethischen Gesichtspunkten im Zusammenhang mit der Anwendung von ML-Modellen auf personenbezogene Daten \n- Enger Kontakt mit den technischen Produktverantwortlichen, um sie durch fundiertes Wissen über die Cloud-Vorteile zur Migration ihrer Anwendungen zu bewegen\n- Etablierung von standardisierten Prozessen und Mechanismen sowie Beratung bei der Implementierung und Inbetriebnahme von Produkten und Services in der Google Cloud\n- Nutzung moderner Methoden zu Automatisierung, Deployment (CI/CD) und Weiterentwicklung komplexer Infrastrukturen und Services in der Public Cloud\n\n**Bei uns**\n\n- findest du moderne Räume und Flächen, die deine kreative Arbeit unterstützen\n- kannst du durch ein flexibles Arbeitszeitmodell dein Privatleben und deine Arbeit gut kombinieren \n- wird lebenslanges Lernen großgeschrieben und Weiterbildung gehört zum Alltag \n- teilen und vermitteln wir unser Wissen gerne miteinander  \n- kannst du deine Persönlichkeit und deine Kenntnisse in professionellen Coachings und Trainings weiterentwickeln \n- unterstützt das Betriebliche Gesundheitsmanagement deine Gesundheit \n\n**Du** \n\n- hast ein abgeschlossenes IT-Studium oder eine vergleichbare Qualifikation mit IT-Kompetenz\n- hast einschlägige Erfahrung im Bereich Public Cloud (AWS, Azure, vorzugsweise GCP) und Terraform (IaC)\n- verfügst über erste Erfahrungen in der Entwicklung, Bereitstellung und Integration von Generative AI-Anwendungen im Unternehmenskontext, durch den Aufbau geeigneter Infrastruktur-Komponenten auf Basis von Terraform (CI/CD-Pipeline) \n- bringst Erfahrungen im Umgang mit Versionskontrollsystemen wie GitLab, GitHub oder Bitbucket mit\n- bist vertraut mit dem Einsatz von Python als Programmiersprache\n- verfügst über praktische Erfahrungen mit agilen Methoden und agil geführten Projekten \n- hast idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten, Richtlinien und regulatorischen Compliance-Anforderungen aus dem Versicherungs- und Finanzumfeld\n- hast idealerweise bereit Cloud Zertifizierungen. Gerne schulen wir dich diesbezüglich. Wichtig ist die Bereitschaft zur Teilnahme an Schulungen zum Erwerb von Kenntnissen sowie die erfolgreiche Zertifizierung dieser  \n- bist teamfähig und verfügst über eine ausgeprägte Kommunikationsfähigkeit (verhandlungssicher in Deutsch und sehr gut in Englisch)\n\n**Hinweis zur Bewerbung** \nBitte lade deine vollständigen Bewerbungsunterlagen (inkl. Zeugnisse und Zertifikate) über den \"Jetzt bewerben\"-Button in unser Bewerbermanagementsystem hoch. Der gewöhnliche Einsatzort ist Hamburg oder Dortmund. Bitte gib deine Gehaltsvorstellung und deine Verfügbarkeit an.",
+  "expected": [
+    {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "AWS"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Azure"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "(CI/CD-Pipeline)"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "Erfahrung im Bereich Public Cloud"
+    },
+    {
+      "skill_id": "cybersecurity",
+      "requirement": "nice_to_have",
+      "raw_text": "idealerweise Kenntnisse von Industriestandards, Sicherheitskonzepten"
+    },
+    {
+      "skill_id": "gcp",
+      "requirement": "nice_to_have",
+      "raw_text": "vorzugsweise GCP"
+    },
+    {
+      "skill_id": "git",
+      "requirement": "required",
+      "raw_text": "Versionskontrollsystemen wie GitLab, GitHub oder Bitbucket"
+    },
+    {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "required",
+      "raw_text": "Terraform (IaC)"
+    },
+    {
+      "skill_id": "llms",
+      "requirement": "required",
+      "raw_text": "Generative AI-Anwendungen"
+    },
+    {
+      "skill_id": "python",
+      "requirement": "required",
+      "raw_text": "Python als Programmiersprache"
+    },
+    {
+      "skill_id": "terraform",
+      "requirement": "required",
+      "raw_text": "und Terraform"
+    }
+  ]
+}

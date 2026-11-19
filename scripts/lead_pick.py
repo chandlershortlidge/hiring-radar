@@ -1,7 +1,7 @@
 """Which tickets the lead agent may start in this run (HIR-266, HIR-280), which of
 the decisions waiting for Chandler go into Monday's comment (HIR-277), under which of its
-two headings (HIR-297), and which pull requests that collide with main it may have
-repaired (HIR-305).
+two headings (HIR-297), which of them are decided for him instead of asked (HIR-315), and
+which pull requests that collide with main it may have repaired (HIR-305).
 
 The lead agent (.claude/skills/lead-agent) is a model following instructions. Its hard
 limits are here instead, as code with tests, so a "never" cannot be skipped
@@ -65,16 +65,26 @@ model-call spend starting the ticket would cause; null when it cannot be known.
 think about; left out, it counts as true. `rereads` is whether merging it makes the model re-read the
 stored jobs. `repair` marks the ticket that fixes what `red` names.
 
-`decisions` is optional: the open `attended` tickets, handed over by the run that writes
-Monday's "Decisions waiting for you" comment (HIR-277). `kind` is `think` (a big call he
+`decisions` is optional: the open `attended` tickets, handed over by every run since
+HIR-315 (before it, only by the run that writes Monday's "Decisions waiting for you"
+comment, HIR-277). `kind` is `think` (a big call he
 works out, because doing so teaches a skill he would be hired for), `approve` (any other
 big call: a recommendation he says yes or no to) or `yours` (work he does with an agent:
 an eval session, a cost session). Left out, or the older `question`, it is `approve`: when
 unsure, his time for thinking is not spent (HIR-297). `answered` is true once he has answered and the lead agent has
 recorded it on the ticket. `blocks_milestone`: the ticket is in the launch order's current
 milestone, or blocks a ticket that is. `blocks_todo`: it blocks a ticket in Todo. `since`
-is the day the ticket was filed. Left out altogether, the answer has no
+is the day the ticket was filed. `asked`, optional, is the day a Monday comment first
+listed the question for him; left out, it has not been listed yet. `needs_him`, optional,
+is true for the one recommendation that is never taken without his yes: a spend above his
+limit (AGENTS.md "What Chandler is asked", item 5). Left out altogether, the answer has no
 `monday_decisions`: a run that did not look must not be read as "No decisions waiting".
+
+Not every waiting decision is asked (HIR-315). A recommendation to approve is decided by
+the senior agent on its own recommendation, unless it `needs_him`. A decision to think
+about is his for a week: once a Monday comment has listed it (`asked`) and seven days
+have passed with no answer, it is decided the same way. The script only says which; the
+senior agent does the deciding and may still say a call is his.
 
 `answers` is optional too: one entry per open `attended` ticket that carries a question
 an agent put to Chandler, as `{"id", "question_at", "comments": [{"at", "body"}, ...]}`.
@@ -123,8 +133,9 @@ summary as plain sentences. When the state has `decisions`, also `monday_decisio
 (the ids for "To approve", in order: the rest of the 10), `ask` (the two together),
 `more` (how many did not fit, with `more_think` and `more_approve` saying which kind),
 `yours` (the ids for "Yours this week", at most 3) and `text` (the line that follows the
-questions: how many more are waiting, or "No decisions waiting"). When the state has
-`collided`, also `repairs` (above).
+questions: how many more are waiting, or "No decisions waiting") and `decide` (the ids
+the lead agent hands to the senior agent to be decided on its recommendation, in the same
+order; none of them is in `ask`). When the state has `collided`, also `repairs` (above).
 
 Does NOT: talk to Linear or GitHub, start anything, write anything, or call a model. It
 does not judge what a ticket's area, milestone or spend is, whether it may add a
@@ -341,6 +352,47 @@ NOT_A_QUESTION = ("hands-on", "parked")
 # whether working a call out teaches a career skill, his thinking time is not spent on it.
 THINK, APPROVE, YOURS = "think", "approve", "yours"
 
+# How long a decision to think about stays his after a Monday comment first listed it
+# (HIR-315). After that the recommendation is taken, and reported.
+THINK_DAYS = 7
+
+
+def _decision_order(item):
+    return (0 if item.get("blocks_milestone") else 1,
+            0 if item.get("blocks_todo") else 1,
+            item.get("since") or "9999",
+            item["id"])
+
+
+def to_decide(decisions, today):
+    """Splits the waiting decisions into the ones decided for him and the ones still his
+    (HIR-315). Answers `(decide, his)`: `decide` is the ticket ids, in Monday's order, that
+    the senior agent decides on its own recommendation; `his` is every other item,
+    unchanged, for `monday_decisions`.
+
+    Decided for him: a recommendation to approve, unless it `needs_him` (a spend above his
+    limit); and a decision to think about that a Monday comment listed `THINK_DAYS` or
+    more days ago and he has not answered. Never decided: work that is his to do, a ticket
+    he answered, a `hands-on` or `parked` ticket, and a decision to think about that no
+    Monday comment has shown him yet or whose `asked` cannot be read as a date."""
+    day = datetime.date.fromisoformat(today)
+    decide, his = [], []
+    for item in decisions:
+        labels = {str(name).lower() for name in item.get("labels") or []}
+        kind = item.get("kind")
+        if (item.get("answered") or item.get("needs_him") or kind == YOURS
+                or any(name in labels for name in NOT_A_QUESTION)):
+            his.append(item)
+        elif kind == THINK:
+            try:
+                overdue = (day - datetime.date.fromisoformat(item.get("asked") or "")).days >= THINK_DAYS
+            except ValueError:
+                overdue = False  # in doubt, it is still his
+            (decide if overdue else his).append(item)
+        else:
+            decide.append(item)
+    return [item["id"] for item in sorted(decide, key=_decision_order)], his
+
 
 def monday_decisions(decisions, max_questions=10, max_yours=3, max_think=3):
     """Which waiting decisions Monday's comment asks, under which heading, in what order
@@ -354,19 +406,13 @@ def monday_decisions(decisions, max_questions=10, max_yours=3, max_think=3):
     `hands-on` and `parked` tickets are not questions. Work he does with an agent is not a
     question either: up to `max_yours` of those go under "Yours this week", in the same
     order."""
-    def order(item):
-        return (0 if item.get("blocks_milestone") else 1,
-                0 if item.get("blocks_todo") else 1,
-                item.get("since") or "9999",
-                item["id"])
-
     waiting = []
     for item in decisions:
         labels = {str(name).lower() for name in item.get("labels") or []}
         if item.get("answered") or any(name in labels for name in NOT_A_QUESTION):
             continue
         waiting.append(item)
-    waiting.sort(key=order)
+    waiting.sort(key=_decision_order)
     yours = [item["id"] for item in waiting if item.get("kind") == YOURS]
     thinking = [item["id"] for item in waiting if item.get("kind") == THINK]
     approving = [item["id"] for item in waiting if item.get("kind") not in (THINK, YOURS)]
@@ -425,7 +471,9 @@ def pick(tickets, log, today, cap_eur, decisions_waiting=0, red=(), max_decision
         result["monday"] = monday_text(log, today, tickets, decisions_waiting, queue_min,
                                        approvals_waiting)
     if decisions is not None:
-        result["monday_decisions"] = monday_decisions(decisions, max_questions, max_yours, max_think)
+        decide, his = to_decide(decisions, today)
+        result["monday_decisions"] = monday_decisions(his, max_questions, max_yours, max_think)
+        result["monday_decisions"]["decide"] = decide
     if answers is not None:
         result["answer_candidates"] = [
             {"id": item["id"],

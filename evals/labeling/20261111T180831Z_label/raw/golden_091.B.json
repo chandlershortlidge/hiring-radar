@@ -1,0 +1,98 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML algorithms\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"developing and deploying AI/ML models\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying AI/ML models\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps practices\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"CAE tools\",\n      \"raw_text\": \"CAE\"\n    },\n    {\n      \"label\": \"CAD tools\",\n      \"raw_text\": \"CAD\"\n    },\n    {\n      \"label\": \"PLM tools\",\n      \"raw_text\": \"PLM tools\"\n    },\n    {\n      \"label\": \"Ansys\",\n      \"raw_text\": \"Ansys\"\n    },\n    {\n      \"label\": \"Abaqus\",\n      \"raw_text\": \"Abaqus\"\n    },\n    {\n      \"label\": \"COMSOL\",\n      \"raw_text\": \"COMSOL\"\n    },\n    {\n      \"label\": \"SolidWorks\",\n      \"raw_text\": \"SolidWorks\"\n    },\n    {\n      \"label\": \"NX\",\n      \"raw_text\": \"NX\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"2+ years of technical leadership guiding AI/ML projects from research to production.\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Bachelor's or advanced degree in Computer Science, Mechanical Engineering, Electrical Engineering, or a related field.\",\n  \"notes\": \"Required and Nice to Have set their respective section defaults; all unmapped tools are nice-to-have.\\nTechnical leadership supports inferred seniority despite the separate 4+ years experience requirement.\\nThe only explicit degree level is bachelor's; 'advanced degree' does not explicitly name a master's or PhD.\\nEngineering principles and sequential, spatial, time-series, mesh, and simulation-output data descriptions are treated literally as domain knowledge or data types, not additional named technical skills. Time-series data does not establish a forecasting requirement.\\nSkills mentioned only in ABOUT THE ROLE or WHAT YOU'LL DO are not independently labeled.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML algorithms"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "developing and deploying AI/ML models"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying AI/ML models"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps practices"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "CAE tools",
+        "raw_text": "CAE"
+      },
+      {
+        "label": "CAD tools",
+        "raw_text": "CAD"
+      },
+      {
+        "label": "PLM tools",
+        "raw_text": "PLM tools"
+      },
+      {
+        "label": "Ansys",
+        "raw_text": "Ansys"
+      },
+      {
+        "label": "Abaqus",
+        "raw_text": "Abaqus"
+      },
+      {
+        "label": "COMSOL",
+        "raw_text": "COMSOL"
+      },
+      {
+        "label": "SolidWorks",
+        "raw_text": "SolidWorks"
+      },
+      {
+        "label": "NX",
+        "raw_text": "NX"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "2+ years of technical leadership guiding AI/ML projects from research to production.",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Bachelor's or advanced degree in Computer Science, Mechanical Engineering, Electrical Engineering, or a related field.",
+    "notes": "Required and Nice to Have set their respective section defaults; all unmapped tools are nice-to-have.\nTechnical leadership supports inferred seniority despite the separate 4+ years experience requirement.\nThe only explicit degree level is bachelor's; 'advanced degree' does not explicitly name a master's or PhD.\nEngineering principles and sequential, spatial, time-series, mesh, and simulation-output data descriptions are treated literally as domain knowledge or data types, not additional named technical skills. Time-series data does not establish a forecasting requirement.\nSkills mentioned only in ABOUT THE ROLE or WHAT YOU'LL DO are not independently labeled."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "edf99168baf590a7101663cea31b34ce02b0dc3d5121186911c162c2b156e1e2",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

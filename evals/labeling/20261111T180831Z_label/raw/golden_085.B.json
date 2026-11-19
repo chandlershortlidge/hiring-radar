@@ -1,0 +1,77 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Very strong software engineering background\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\"\n    },\n    {\n      \"skill_id\": \"react\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"React\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong practical experience working with AI\"\n    },\n    {\n      \"skill_id\": \"cursor\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cursor\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"ideally you have experience coding with AI\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Tech stack: TypeScript, React, Cursor, Supabase, Prisma, Typesense, LLM APIs, Trigger.dev\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Supabase\",\n      \"raw_text\": \"Supabase\"\n    },\n    {\n      \"label\": \"Prisma\",\n      \"raw_text\": \"Prisma\"\n    },\n    {\n      \"label\": \"Typesense\",\n      \"raw_text\": \"Typesense\"\n    },\n    {\n      \"label\": \"Trigger.dev\",\n      \"raw_text\": \"Trigger.dev\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"The unmarked Tech stack entries are required; its LLM APIs mention overrides the earlier Bonus mention. The longer LLM quote identifies the determining tech-stack occurrence.\\nGeneric experience coding with AI is nice_to_have because it is marked ideally; Cursor itself is independently required by the tech stack.\\nFounding engineer and strong practical experience do not supply a seniority signal under the guide.\\nSupabase, Prisma, Typesense, and Trigger.dev have no matching taxonomy entries.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Very strong software engineering background"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "React"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Strong practical experience working with AI"
+      },
+      {
+        "skill_id": "cursor",
+        "requirement": "required",
+        "raw_text": "Cursor"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "nice_to_have",
+        "raw_text": "ideally you have experience coding with AI"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Tech stack: TypeScript, React, Cursor, Supabase, Prisma, Typesense, LLM APIs, Trigger.dev"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Supabase",
+        "raw_text": "Supabase"
+      },
+      {
+        "label": "Prisma",
+        "raw_text": "Prisma"
+      },
+      {
+        "label": "Typesense",
+        "raw_text": "Typesense"
+      },
+      {
+        "label": "Trigger.dev",
+        "raw_text": "Trigger.dev"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "The unmarked Tech stack entries are required; its LLM APIs mention overrides the earlier Bonus mention. The longer LLM quote identifies the determining tech-stack occurrence.\nGeneric experience coding with AI is nice_to_have because it is marked ideally; Cursor itself is independently required by the tech stack.\nFounding engineer and strong practical experience do not supply a seniority signal under the guide.\nSupabase, Prisma, Typesense, and Trigger.dev have no matching taxonomy entries."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "ddeb8706f6c6edfeeca1e007f80ac4bd399dfb89d64b661e0cf1eca3c933b47e",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

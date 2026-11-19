@@ -15,7 +15,11 @@
                     --since/--until YYYY-MM-DD pick the range (HIR-290)
   discover-boards   web-search for Greenhouse/Lever/Ashby/JOIN boards we don't poll, check each live, report;
                     --add source:token appends to feeds.json, --reject source:token --reason R remembers a no;
-                    --launch CITY applies the written board policy itself and adds what passes
+                    --launch CITY applies the written board policy itself and adds what passes,
+                    then runs backfill-places for that city
+  backfill-places   credit stored jobs, open and closed, with every tracked city their location names
+                    (a "Berlin, London" job stored before London was a city gains London). Only adds;
+                    --city CITY limits it to one, --dry-run writes nothing. No model call (HIR-331)
   repair-companies  fill in companies on jobs stored without one and merge the duplicates
                     that appear; a dry run by default, --apply writes (HIR-198)
   reread-cost       what a change to the extractor or the skill list would cost to merge:
@@ -27,6 +31,10 @@
                     when LINEAR_API_KEY is set: what needs Chandler, what merged, what was
                     sent back and fixed, what broke on the live site (read from the robot
                     visitor's Linear tickets), then the job sources (HIR-257, HIR-264, HIR-260)
+  flags             why each job flagged "doesn't belong here" showed: every filter that was on
+                    screen against what was stored and what the posting says, grouped by cause.
+                    Makes no model call. --fixed ID [ID ...] closes flags whose cause is fixed,
+                    which takes the "flagged" mark off their jobs (HIR-226)
   migrate           apply pending migrations and exit
 
 Database path: $HIRING_RADAR_DB, default ./data/hiring-radar.db.
@@ -307,6 +315,22 @@ def cmd_discover_boards(args):
         print(line)
     if breach:
         sys.exit(2)
+    from app.geo import CITIES
+    if args.launch in CITIES:   # the stored jobs whose posting already named it (HIR-331)
+        from app.backfill_places import backfill, report_lines
+        print()
+        for line in report_lines(backfill(open_db(), city=args.launch, apply=applied), args.launch):
+            print(line)
+
+
+def cmd_backfill_places(args):
+    from app.backfill_places import backfill, report_lines
+    try:
+        b = backfill(open_db(), city=args.city, apply=not args.dry_run)
+    except ValueError as e:
+        sys.exit(str(e))
+    for line in report_lines(b, args.city):
+        print(line)
 
 
 def cmd_repair_companies(args):
@@ -397,6 +421,15 @@ def cmd_caretaker(args):
         site_watch=lambda start, end: site_watch_week.week_text(start, end, linear_key, team, caretaker_run.post_json))
 
 
+def cmd_flags(args):
+    from app import flags
+    conn = open_db()
+    if args.fixed:
+        print(f"closed {flags.mark_fixed(conn, args.fixed, now_iso())} of {len(args.fixed)} flags as fixed")
+        return
+    print("\n".join(flags.report_lines(flags.open_flags(conn))))
+
+
 def cmd_migrate(args):
     open_db()
     print("ok")
@@ -453,6 +486,11 @@ def main(argv=None):
                         "(5+ roles there, employers only), then report; stops on a spending cap")
     p.add_argument("--dry-run", action="store_true", help="with --launch: decide and report, write nothing")
     p.set_defaults(fn=cmd_discover_boards)
+    p = sub.add_parser("backfill-places",
+                       help="credit stored jobs, open and closed, with every tracked city their location names")
+    p.add_argument("--city", default=None, help="only this tracked city (default: all of them)")
+    p.add_argument("--dry-run", action="store_true", help="count and show, write nothing")
+    p.set_defaults(fn=cmd_backfill_places)
     p = sub.add_parser("repair-companies", help="fill blank companies off each job's stored link, merge duplicates")
     p.add_argument("--apply", action="store_true", help="write the repairs; without it, a dry run that changes nothing")
     p.set_defaults(fn=cmd_repair_companies)
@@ -463,6 +501,10 @@ def main(argv=None):
     p.add_argument("--day", default=None, help="judge this day's poll (YYYY-MM-DD, UTC); default today")
     p.add_argument("--no-post", action="store_true", help="print the summaries, post nothing to Linear")
     p.set_defaults(fn=cmd_caretaker)
+    p = sub.add_parser("flags", help="why each job flagged \"doesn't belong here\" showed, grouped by cause")
+    p.add_argument("--fixed", nargs="+", type=int, metavar="ID", default=[],
+                   help="close these flags: their cause is fixed (removes the mark from the job)")
+    p.set_defaults(fn=cmd_flags)
     sub.add_parser("migrate").set_defaults(fn=cmd_migrate)
     sub.add_parser("import-labels",
                    help="load each labeller's own answer from evals/labeling/<run>/raw into the database"

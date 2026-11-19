@@ -1,0 +1,108 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"research or applied science experience in machine learning\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"developing and training models\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"reinforcement learning\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"statistical judgment\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"distributed-training\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"hands-on experience with distributed training\"\n    },\n    {\n      \"skill_id\": \"recommender-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"recommender systems\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"knowledge-distillation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distillation\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"a-b-testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"online experimentation\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Pre-training\",\n      \"raw_text\": \"pre-training\"\n    },\n    {\n      \"label\": \"Post-training\",\n      \"raw_text\": \"post-training\"\n    },\n    {\n      \"label\": \"Generative retrieval\",\n      \"raw_text\": \"generative retrieval\"\n    },\n    {\n      \"label\": \"Semantic IDs\",\n      \"raw_text\": \"semantic IDs\"\n    },\n    {\n      \"label\": \"Continual learning\",\n      \"raw_text\": \"continual learning\"\n    },\n    {\n      \"label\": \"Synthetic data\",\n      \"raw_text\": \"synthetic data\"\n    },\n    {\n      \"label\": \"Tabular foundation models\",\n      \"raw_text\": \"tabular foundation models\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Applied AI Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"A PhD or equivalent industry research experience in machine learning, computer science, statistics or a related field.\",\n  \"groups_reviewed\": true,\n  \"notes\": \"Minimum qualifications are required; Preferred qualifications are optional.\\nResearch-area bullets introduced by 'Work may include' describe potential responsibilities, not additional candidate requirements; technologies appearing only there or in company/team descriptions and benefits are excluded.\\nThe minimum-qualification alternatives are pre-training, post-training or reinforcement learning. Only reinforcement learning has a taxonomy entry, so no singleton alternative_group is emitted; group 2 identifies the mapped members of the subsequent preferred-experience alternatives.\\nPre-training and post-training are not equated with fine-tuning. Generative retrieval is not equated with RAG.\\nOnline experimentation is tentatively mapped to A/B Testing; the posting does not explicitly name A/B tests, so this mapping is flagged for review.\\nThe large-language-model sentence explicitly requires distributed-training experience; on a literal reading, it does not separately require prior LLM experience.\\nCommerce knowledge and degree-field names are excluded as domain knowledge rather than technical skills.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "research or applied science experience in machine learning"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "developing and training models"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistical judgment"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "hands-on experience with distributed training"
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "recommender systems",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "nice_to_have",
+        "raw_text": "distillation",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "nice_to_have",
+        "raw_text": "online experimentation",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Pre-training",
+        "raw_text": "pre-training"
+      },
+      {
+        "label": "Post-training",
+        "raw_text": "post-training"
+      },
+      {
+        "label": "Generative retrieval",
+        "raw_text": "generative retrieval"
+      },
+      {
+        "label": "Semantic IDs",
+        "raw_text": "semantic IDs"
+      },
+      {
+        "label": "Continual learning",
+        "raw_text": "continual learning"
+      },
+      {
+        "label": "Synthetic data",
+        "raw_text": "synthetic data"
+      },
+      {
+        "label": "Tabular foundation models",
+        "raw_text": "tabular foundation models"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Applied AI Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "A PhD or equivalent industry research experience in machine learning, computer science, statistics or a related field.",
+    "groups_reviewed": true,
+    "notes": "Minimum qualifications are required; Preferred qualifications are optional.\nResearch-area bullets introduced by 'Work may include' describe potential responsibilities, not additional candidate requirements; technologies appearing only there or in company/team descriptions and benefits are excluded.\nThe minimum-qualification alternatives are pre-training, post-training or reinforcement learning. Only reinforcement learning has a taxonomy entry, so no singleton alternative_group is emitted; group 2 identifies the mapped members of the subsequent preferred-experience alternatives.\nPre-training and post-training are not equated with fine-tuning. Generative retrieval is not equated with RAG.\nOnline experimentation is tentatively mapped to A/B Testing; the posting does not explicitly name A/B tests, so this mapping is flagged for review.\nThe large-language-model sentence explicitly requires distributed-training experience; on a literal reading, it does not separately require prior LLM experience.\nCommerce knowledge and degree-field names are excluded as domain knowledge rather than technical skills."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "3fdec858f76c3f8eba22ccfb7f31f7791ee3ae9dc3a7925c53d8ed45d6b3f365",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

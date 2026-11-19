@@ -1,0 +1,112 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Team members direct AI agents in their daily work for literature synthesis, study design, data analysis, and code. We are looking for someone who wants to work this way.\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"substantial applied machine learning experience\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Statistical modeling\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Human study methodology\",\n      \"raw_text\": \"Experience taking a measurement or digital biomarker through human studies\"\n    },\n    {\n      \"label\": \"Endpoint selection\",\n      \"raw_text\": \"endpoint selection\"\n    },\n    {\n      \"label\": \"Reference measurements\",\n      \"raw_text\": \"reference measurements\"\n    },\n    {\n      \"label\": \"IRB-governed protocols\",\n      \"raw_text\": \"IRB-governed protocols\"\n    },\n    {\n      \"label\": \"Agreement analysis\",\n      \"raw_text\": \"agreement analysis\"\n    },\n    {\n      \"label\": \"Within-subject study designs\",\n      \"raw_text\": \"within-subject\"\n    },\n    {\n      \"label\": \"Longitudinal study designs\",\n      \"raw_text\": \"longitudinal designs\"\n    },\n    {\n      \"label\": \"Imaging\",\n      \"raw_text\": \"imaging\"\n    },\n    {\n      \"label\": \"Signal processing\",\n      \"raw_text\": \"signal-processing\"\n    },\n    {\n      \"label\": \"Measurement calibration\",\n      \"raw_text\": \"calibration\"\n    },\n    {\n      \"label\": \"Image registration\",\n      \"raw_text\": \"registration\"\n    },\n    {\n      \"label\": \"Measurement sampling\",\n      \"raw_text\": \"sampling\"\n    },\n    {\n      \"label\": \"Monte Carlo simulation\",\n      \"raw_text\": \"Monte Carlo simulation\"\n    },\n    {\n      \"label\": \"Diffusion theory\",\n      \"raw_text\": \"diffusion theory\"\n    },\n    {\n      \"label\": \"Chromophore decomposition\",\n      \"raw_text\": \"chromophore decomposition\"\n    },\n    {\n      \"label\": \"Individual baseline and temporal change modeling\",\n      \"raw_text\": \"modeling individual baselines and change over time\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD in biomedical engineering, physiology, bioengineering, biophotonics, or a related field, or an MD/PhD\",\n  \"notes\": \"REQUIRED QUALIFICATIONS sets required labels; PREFERRED QUALIFICATIONS sets nice-to-have labels, including its unmapped techniques.\\nThe explicit request for someone who wants to work by directing AI agents is treated as candidate appetite, rather than merely company description; flagged for review because the desire refers back to the preceding sentence.\\nHuman-study methods, imaging methods, and simulation/modeling methods are read literally as technical practices and listed as unmapped where the taxonomy has no matching entry. Physiology specialties, sensing application areas, and startup experience are excluded as domain knowledge or experience context.\\nThe modern ML stack is not expanded into unnamed libraries or tools. Imaging is not equated with computer vision.\\nMonte Carlo simulation, diffusion theory, and chromophore decomposition are listed together without an alternative marker, so no alternative group is assigned.\\nSubstantial applied experience is not a seniority signal under the guide. No German requirement is stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "Team members direct AI agents in their daily work for literature synthesis, study design, data analysis, and code. We are looking for someone who wants to work this way.",
+        "uncertain": true
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "substantial applied machine learning experience"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "Statistical modeling"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Human study methodology",
+        "raw_text": "Experience taking a measurement or digital biomarker through human studies"
+      },
+      {
+        "label": "Endpoint selection",
+        "raw_text": "endpoint selection"
+      },
+      {
+        "label": "Reference measurements",
+        "raw_text": "reference measurements"
+      },
+      {
+        "label": "IRB-governed protocols",
+        "raw_text": "IRB-governed protocols"
+      },
+      {
+        "label": "Agreement analysis",
+        "raw_text": "agreement analysis"
+      },
+      {
+        "label": "Within-subject study designs",
+        "raw_text": "within-subject"
+      },
+      {
+        "label": "Longitudinal study designs",
+        "raw_text": "longitudinal designs"
+      },
+      {
+        "label": "Imaging",
+        "raw_text": "imaging"
+      },
+      {
+        "label": "Signal processing",
+        "raw_text": "signal-processing"
+      },
+      {
+        "label": "Measurement calibration",
+        "raw_text": "calibration"
+      },
+      {
+        "label": "Image registration",
+        "raw_text": "registration"
+      },
+      {
+        "label": "Measurement sampling",
+        "raw_text": "sampling"
+      },
+      {
+        "label": "Monte Carlo simulation",
+        "raw_text": "Monte Carlo simulation"
+      },
+      {
+        "label": "Diffusion theory",
+        "raw_text": "diffusion theory"
+      },
+      {
+        "label": "Chromophore decomposition",
+        "raw_text": "chromophore decomposition"
+      },
+      {
+        "label": "Individual baseline and temporal change modeling",
+        "raw_text": "modeling individual baselines and change over time"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD in biomedical engineering, physiology, bioengineering, biophotonics, or a related field, or an MD/PhD",
+    "notes": "REQUIRED QUALIFICATIONS sets required labels; PREFERRED QUALIFICATIONS sets nice-to-have labels, including its unmapped techniques.\nThe explicit request for someone who wants to work by directing AI agents is treated as candidate appetite, rather than merely company description; flagged for review because the desire refers back to the preceding sentence.\nHuman-study methods, imaging methods, and simulation/modeling methods are read literally as technical practices and listed as unmapped where the taxonomy has no matching entry. Physiology specialties, sensing application areas, and startup experience are excluded as domain knowledge or experience context.\nThe modern ML stack is not expanded into unnamed libraries or tools. Imaging is not equated with computer vision.\nMonte Carlo simulation, diffusion theory, and chromophore decomposition are listed together without an alternative marker, so no alternative group is assigned.\nSubstantial applied experience is not a seniority signal under the guide. No German requirement is stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "7919368e18abc124b7e4bf6442aba57c93ca9766936dd9facad1429e277f0f74",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

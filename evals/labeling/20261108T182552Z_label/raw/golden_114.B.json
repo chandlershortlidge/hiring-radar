@@ -1,0 +1,84 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Software Engineering\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"data-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Data Engineering\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"full-stack-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Fullstack Development\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Backend\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Cloud Solutions\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Architecture\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevOps\",\n      \"alternative_group\": 1\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"IT management\",\n      \"raw_text\": \"IT-Management\"\n    },\n    {\n      \"label\": \"Web development\",\n      \"raw_text\": \"Web Development\"\n    },\n    {\n      \"label\": \"Product ownership\",\n      \"raw_text\": \"Product Ownership\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"2026/27 Graduate\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)\",\n  \"uncertain\": [\n    \"degree\"\n  ],\n  \"notes\": \"Only the 'Who you are' qualifications supply skills; repeated technologies in the company/project description do not independently establish requirements. No heading marks qualifications optional.\\nThe experience fields and their illustrative technologies describe alternatives for one hands-on industry-experience ask, so mapped alternatives share group 1.\\n'Architecture' is read literally in its software/IT context as software architecture. Generic 'Web Development' is left unmapped rather than assuming full-stack development.\\nIT management and product ownership are treated as technical practices without matching taxonomy entries.\\nThe highest degree named is master's. degree_or_equivalent is true because a bachelor's plus experience explicitly substitutes for the master's; flagged because the alternative still requires a degree.\\nGerman is not requested; the posting is in English.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Software Engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "data-engineering",
+        "requirement": "required",
+        "raw_text": "Data Engineering",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "Fullstack Development",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "Backend",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Cloud Solutions",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Architecture",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps",
+        "alternative_group": 1
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "IT management",
+        "raw_text": "IT-Management"
+      },
+      {
+        "label": "Web development",
+        "raw_text": "Web Development"
+      },
+      {
+        "label": "Product ownership",
+        "raw_text": "Product Ownership"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "2026/27 Graduate",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Master’s Degree in Computer Science, IT, Business Informatics or similar (or Bachelor's + ≥2yrs of full-time experience)",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Only the 'Who you are' qualifications supply skills; repeated technologies in the company/project description do not independently establish requirements. No heading marks qualifications optional.\nThe experience fields and their illustrative technologies describe alternatives for one hands-on industry-experience ask, so mapped alternatives share group 1.\n'Architecture' is read literally in its software/IT context as software architecture. Generic 'Web Development' is left unmapped rather than assuming full-stack development.\nIT management and product ownership are treated as technical practices without matching taxonomy entries.\nThe highest degree named is master's. degree_or_equivalent is true because a bachelor's plus experience explicitly substitutes for the master's; flagged because the alternative still requires a degree.\nGerman is not requested; the posting is in English."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "d2df138e06782697c16d2fee36b396284bf4fa7d2307fc3d53d8669f29f7c18f",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

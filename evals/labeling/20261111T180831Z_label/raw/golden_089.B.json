@@ -1,0 +1,84 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data science experience\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"business-intelligence\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"business intelligence tool\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"statistics\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning for credit\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Microsoft Excel\",\n      \"raw_text\": \"Microsoft Excel\"\n    },\n    {\n      \"label\": \"Looker\",\n      \"raw_text\": \"Looker\"\n    },\n    {\n      \"label\": \"Scorecards\",\n      \"raw_text\": \"scorecards\"\n    },\n    {\n      \"label\": \"Gradient-boosted models\",\n      \"raw_text\": \"gradient-boosted models\"\n    },\n    {\n      \"label\": \"Swap-set analysis\",\n      \"raw_text\": \"swap-set analysis\"\n    },\n    {\n      \"label\": \"Vintage analysis\",\n      \"raw_text\": \"vintage analysis\"\n    },\n    {\n      \"label\": \"Experiment design\",\n      \"raw_text\": \"experiment design\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Lead Data Scientist, Credit Risk\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"a PhD is a plus\",\n  \"notes\": \"The qualifications section defaults to required; its final Nice to have bullet contains domain experience rather than taxonomy skills.\\nCredit products, underwriting programs, credit bureau data, and lending regulations are treated as domain knowledge and excluded.\\nNamed analytical techniques without taxonomy entries are listed as unmapped; gradient-boosted models do not imply XGBoost, and experiment design does not explicitly name A/B testing.\\nThe degree label records the highest level named: the PhD is optional, although the Master's degree is explicitly required.\\nTechnologies and practices mentioned only in responsibilities are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "data science experience"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "business-intelligence",
+        "requirement": "required",
+        "raw_text": "business intelligence tool"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistics"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning for credit"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Microsoft Excel",
+        "raw_text": "Microsoft Excel"
+      },
+      {
+        "label": "Looker",
+        "raw_text": "Looker"
+      },
+      {
+        "label": "Scorecards",
+        "raw_text": "scorecards"
+      },
+      {
+        "label": "Gradient-boosted models",
+        "raw_text": "gradient-boosted models"
+      },
+      {
+        "label": "Swap-set analysis",
+        "raw_text": "swap-set analysis"
+      },
+      {
+        "label": "Vintage analysis",
+        "raw_text": "vintage analysis"
+      },
+      {
+        "label": "Experiment design",
+        "raw_text": "experiment design"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead Data Scientist, Credit Risk",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "a PhD is a plus",
+    "notes": "The qualifications section defaults to required; its final Nice to have bullet contains domain experience rather than taxonomy skills.\nCredit products, underwriting programs, credit bureau data, and lending regulations are treated as domain knowledge and excluded.\nNamed analytical techniques without taxonomy entries are listed as unmapped; gradient-boosted models do not imply XGBoost, and experiment design does not explicitly name A/B testing.\nThe degree label records the highest level named: the PhD is optional, although the Master's degree is explicitly required.\nTechnologies and practices mentioned only in responsibilities are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "d30b3d81c0d160682001cbb6132a2e9f5666f4efbfe3149d36056ec4b9faa334",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

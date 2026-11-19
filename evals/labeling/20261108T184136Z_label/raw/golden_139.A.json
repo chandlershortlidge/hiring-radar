@@ -1,0 +1,116 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python gehört zu deinem Werkzeugkasten\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung mit APIs\"},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"Softwarearchitektur\"},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"Entwicklung professioneller Softwarelösungen\", \"uncertain\": true},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"praktische Erfahrung mit Large Language Models\"},\n    {\"skill_id\": \"prompt-engineering\", \"requirement\": \"required\", \"raw_text\": \"Prompt Engineering\", \"uncertain\": true},\n    {\"skill_id\": \"rag\", \"requirement\": \"required\", \"raw_text\": \"RAG oder AI Agents\", \"uncertain\": true},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"AI Agents sind dir vertraut\", \"uncertain\": true},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Du verstehst Machine Learning\"},\n    {\"skill_id\": \"model-development\", \"requirement\": \"required\", \"raw_text\": \"Modelltraining\", \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"Modelltraining und Evaluation\"},\n    {\"skill_id\": \"scikit-learn\", \"requirement\": \"nice_to_have\", \"raw_text\": \"idealerweise bereits mit scikit-learn\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"nice_to_have\", \"raw_text\": \"PyTorch oder vergleichbaren Technologien\"},\n    {\"skill_id\": \"testing\", \"requirement\": \"required\", \"raw_text\": \"Themen wie Testing\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Databases\", \"raw_text\": \"Datenbanken\"},\n    {\"label\": \"Deployment\", \"raw_text\": \"Deployment\"},\n    {\"label\": \"Integration of AI models\", \"raw_text\": \"Integration von AI-Modellen\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Idealerweise hast du bereits 3–5 Jahre in der Softwareentwicklung\",\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"gute Deutsch- und Englischkenntnisse\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Ein abgeschlossenes Studium in Informatik, Data Science oder einem verwandten Bereich ist willkommen – ebenso eine vergleichbare Qualifikation durch Praxiserfahrung\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"Section 'Überzeugende Voraussetzungen' is a requirements heading, so items default to required. Skills named only in 'Spannender Aufgabenbereich' (Monitoring, automatisierte Tests, agentenbasierte Workflows) are not labeled from there.\\n'Generative AI' collapses into the single llms criterion with 'Large Language Models'.\\nThe JSON schema has no alternative_group field, so the groups are recorded here. Group 1 is 'Konzepte wie Prompt Engineering, RAG oder AI Agents', read as an X, Y or Z alternative: prompt-engineering, rag, agents. This grouping is uncertain; it could also be read as all three asked together.\\nGroup 2 is scikit-learn and pytorch ('scikit-learn, PyTorch oder vergleichbaren'). Both are nice_to_have because of the inline marker 'idealerweise'.\\n'Modelltraining' is mapped to model-development via the 'ai model training' alias; this mapping is uncertain.\\n'Deployment' is a bare software-deployment mention with no AI qualifier, so it is put in unmapped rather than ai-deployment. 'Sicherheit' is a generic quality and is not labeled as cybersecurity.\\nsoftware-engineering is quoted from 'Erfahrung mit ... der Entwicklung professioneller Softwarelösungen'. The 'Softwareentwicklung' alias also appears in 'zu guter Softwareentwicklung'.\\nSeniority is inferred from the 3–5 years phrase, even though that phrase is marked 'Idealerweise'.\\nThe degree is marked 'willkommen' (welcome). This is treated as an optional marker, so the degree is nice_to_have. 'vergleichbare Qualifikation durch Praxiserfahrung' makes degree_or_equivalent true.\\nGerman is stated as required: an unmarked 'gute Deutsch...kenntnisse' in the requirements list.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python gehört zu deinem Werkzeugkasten"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Erfahrung mit APIs"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "Softwarearchitektur"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Entwicklung professioneller Softwarelösungen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "praktische Erfahrung mit Large Language Models"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "Prompt Engineering",
+        "uncertain": true
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG oder AI Agents",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "AI Agents sind dir vertraut",
+        "uncertain": true
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Du verstehst Machine Learning"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "Modelltraining",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Modelltraining und Evaluation"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "nice_to_have",
+        "raw_text": "idealerweise bereits mit scikit-learn"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "PyTorch oder vergleichbaren Technologien"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "Themen wie Testing"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Databases",
+        "raw_text": "Datenbanken"
+      },
+      {
+        "label": "Deployment",
+        "raw_text": "Deployment"
+      },
+      {
+        "label": "Integration of AI models",
+        "raw_text": "Integration von AI-Modellen"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Idealerweise hast du bereits 3–5 Jahre in der Softwareentwicklung",
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "gute Deutsch- und Englischkenntnisse",
+    "degree": "bachelor",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": true,
+    "degree_signal": "Ein abgeschlossenes Studium in Informatik, Data Science oder einem verwandten Bereich ist willkommen – ebenso eine vergleichbare Qualifikation durch Praxiserfahrung",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Section 'Überzeugende Voraussetzungen' is a requirements heading, so items default to required. Skills named only in 'Spannender Aufgabenbereich' (Monitoring, automatisierte Tests, agentenbasierte Workflows) are not labeled from there.\n'Generative AI' collapses into the single llms criterion with 'Large Language Models'.\nThe JSON schema has no alternative_group field, so the groups are recorded here. Group 1 is 'Konzepte wie Prompt Engineering, RAG oder AI Agents', read as an X, Y or Z alternative: prompt-engineering, rag, agents. This grouping is uncertain; it could also be read as all three asked together.\nGroup 2 is scikit-learn and pytorch ('scikit-learn, PyTorch oder vergleichbaren'). Both are nice_to_have because of the inline marker 'idealerweise'.\n'Modelltraining' is mapped to model-development via the 'ai model training' alias; this mapping is uncertain.\n'Deployment' is a bare software-deployment mention with no AI qualifier, so it is put in unmapped rather than ai-deployment. 'Sicherheit' is a generic quality and is not labeled as cybersecurity.\nsoftware-engineering is quoted from 'Erfahrung mit ... der Entwicklung professioneller Softwarelösungen'. The 'Softwareentwicklung' alias also appears in 'zu guter Softwareentwicklung'.\nSeniority is inferred from the 3–5 years phrase, even though that phrase is marked 'Idealerweise'.\nThe degree is marked 'willkommen' (welcome). This is treated as an optional marker, so the degree is nice_to_have. 'vergleichbare Qualifikation durch Praxiserfahrung' makes degree_or_equivalent true.\nGerman is stated as required: an unmarked 'gute Deutsch...kenntnisse' in the requirements list."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "378e2b9587bff9ec1b6332f7cb0b23ba8edb4f2806227085a74d9b2a4b40fec9",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

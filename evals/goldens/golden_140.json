@@ -1,0 +1,105 @@
+{
+  "id": "golden_140",
+  "split": "heldout",
+  "seniority": "mid",
+  "seniority_basis": "inferred",
+  "seniority_signal": "Several years of professional experience",
+  "seniority_reviewed": true,
+  "german": "required",
+  "german_basis": "stated",
+  "german_signal": "Business-fluent German",
+  "degree": "bachelor",
+  "degree_requirement": "required",
+  "degree_or_equivalent": false,
+  "degree_signal": "University degree in Computer Science or a comparable IT-related field",
+  "attrs_reviewed": true,
+  "source_sha256": "1ae8ad6c0dd2295e60e47398cd8ef48a763f477b25268087a3fee0381240afcb",
+  "labeled_by": [
+    "claude-opus-5-5",
+    "gpt-6.1-sol"
+  ],
+  "adjudicated": [
+    "seniority",
+    "skill:agents",
+    "skill:ansible",
+    "skill:cybersecurity",
+    "skill:docker",
+    "skill:kubernetes",
+    "skill:terraform"
+  ],
+  "adjudicated_by_model": [],
+  "spot_checked_by": "human",
+  "job_description": "Automotive Security Backend AI Engineer (f/m/x)\n\nStellenreferenz: 194945\n\nWith our brands BMW, MINI, Rolls-Royce and BMW Motorrad, we are among the world's leading premium manufacturers of automobiles and motorcycles, while also providing premium financial and mobility services.\n\nOur team is responsible for IT security across the entire ConnectedDrive Offboard Platform. We are a multidisciplinary group of internal software engineers and product owners who develop and operate cybersecurity processes and solutions, while driving IT security governance across the platform.\n\nWhat awaits you?\n\n- You develop and maintain an agentic AI toolchain for the automated vulnerability assessment of our backend systems.\n- You design automated methods for identifying vulnerabilities in source code and backend functionalities using both commercial and open-source AI models.\n- By expanding AI-powered analysis, fuzzing, and penetration testing workflows, you continuously enhance our security assessment capabilities.\n- You integrate new analysis techniques, models, and AI agents into the existing toolchain in a targeted and scalable manner.\n- Through the design of intuitive frontends, you enable both security experts and software engineers to easily leverage the capabilities of the toolchain.\n- You automate build, deployment, and testing processes using CI/CD pipelines (e.g., GitHub Actions, GitLab CI) and Infrastructure-as-Code frameworks (e.g., Terraform, Ansible).\n- In addition, you implement closed-loop feedback and learning mechanisms to continuously optimize future analysis cycles.\n\nWhat should you bring along?\n\n- University degree in Computer Science or a comparable IT-related field.\n- Several years of professional experience in Automotive Cybersecurity.\n- Strong expertise in building, operating, and maintaining agentic AI toolchains using both commercial and open-source technologies.\n- Experience in developing or operating complex security toolchains (e.g., static and dynamic code analysis, fuzzing, and penetration testing tools).\n- Hands-on experience with cloud platforms (AWS/Azure), containerization and orchestration technologies (Docker/Kubernetes), as well as CI/CD and Infrastructure-as-Code tools (e.g., Terraform, Ansible, GitHub Actions/GitLab CI).\n- Business-fluent German and English language skills.\n\nAre you passionate about advancing agentic AI systems for automated vulnerability assessments and actively shaping the cybersecurity of the ConnectedDrive Offboard Platform? Apply now!\n\nNote: Please apply exclusively online via our career portal. Applications via other channels (esp. e-mail) cannot be considered.\n\nWhat we offer?\n\n- Challenging projects with which we are shaping the mobility of tomorrow together.\n- Wide range of personal and professional development opportunities.\n- Attractive, fair and performance-related remuneration.\n- High level of job security.\n- Annual special payments such as vacation pay, Christmas bonus, and profit sharing.\n- Flexible working hours including 6 weeks annual leave and overtime compensation.\n- Discounted BMW & MINI conditions.\n- Many other benefits at bmw.jobs/benefits\n\nStart date: from now on\nWorking hours: fulltime\n\nIf you apply, the next stages of the recruiting process include online testing and an interview with the hiring manager (either virtual or in person).\n\nFind out more about Artificial Intelligence at the BMW Grouphere .\n\nYou can find helpful tips on your application and the application processhere .\n\nAt the BMW Group, we place great importance on equal treatment and equal opportunities. Our recruiting decisions are based on the personality, experience, and skills of the applicants. Learn morehere .",
+  "expected": [
+    {
+      "skill_id": "agents",
+      "requirement": "required",
+      "raw_text": "agentic AI toolchains"
+    },
+    {
+      "skill_id": "ansible",
+      "requirement": "required",
+      "raw_text": "Ansible"
+    },
+    {
+      "skill_id": "aws",
+      "requirement": "required",
+      "raw_text": "AWS"
+    },
+    {
+      "skill_id": "azure",
+      "requirement": "required",
+      "raw_text": "Azure"
+    },
+    {
+      "skill_id": "ci-cd",
+      "requirement": "required",
+      "raw_text": "as well as CI/CD"
+    },
+    {
+      "skill_id": "cloud",
+      "requirement": "required",
+      "raw_text": "cloud platforms"
+    },
+    {
+      "skill_id": "containerization",
+      "requirement": "required",
+      "raw_text": "containerization and orchestration technologies"
+    },
+    {
+      "skill_id": "cybersecurity",
+      "requirement": "required",
+      "raw_text": "Automotive Cybersecurity"
+    },
+    {
+      "skill_id": "docker",
+      "requirement": "required",
+      "raw_text": "Docker"
+    },
+    {
+      "skill_id": "github-actions",
+      "requirement": "required",
+      "raw_text": "GitHub Actions/GitLab CI"
+    },
+    {
+      "skill_id": "gitlab-ci",
+      "requirement": "required",
+      "raw_text": "GitHub Actions/GitLab CI"
+    },
+    {
+      "skill_id": "infrastructure-as-code",
+      "requirement": "required",
+      "raw_text": "Infrastructure-as-Code tools"
+    },
+    {
+      "skill_id": "kubernetes",
+      "requirement": "required",
+      "raw_text": "Kubernetes"
+    },
+    {
+      "skill_id": "terraform",
+      "requirement": "required",
+      "raw_text": "Terraform"
+    }
+  ]
+}

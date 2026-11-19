@@ -1,0 +1,60 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"full-stack-development\", \"requirement\": \"required\", \"raw_text\": \"as a full-stack developer\"},\n    {\"skill_id\": \"react\", \"requirement\": \"required\", \"raw_text\": \"React\"},\n    {\"skill_id\": \"typescript\", \"requirement\": \"required\", \"raw_text\": \"Typescript\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"built generative AI products\", \"uncertain\": true},\n    {\"skill_id\": \"agents\", \"requirement\": \"nice_to_have\", \"raw_text\": \"agentic product features\", \"uncertain\": true},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"nice_to_have\", \"raw_text\": \"curating and developing eval sets and LLMs as judges\"}\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years of experience shipping user-facing features or products as a full-stack developer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"'We'd love to hear from you if you have:' is the requirements section. Per golden_038 the company's enthusiasm does not soften it, so its items are required.\\n'While it's not required, it's an added plus if you also have experience:' marks its section optional, so its items are nice_to_have.\\nllms is required because the intro says 'We're looking for people who have built generative AI products', a direct candidate ask outside the requirements list. If that intro is read as company description, llms falls back to nice_to_have via 'Working with user facing LLM'. Flagged uncertain.\\nagents is mapped from 'agentic product features' in the optional section. The taxonomy fit is loose. Flagged uncertain.\\nMCP, agentic coding and Dev Mode appear only in the responsibilities and company description, so they are not labeled.\\n'eager to lead AI efforts' asks for leadership appetite, not a taxonomy skill, so nothing is labeled from it.\\nSeniority is inferred mid from '3+ years'. 'Hiring across multiple levels' and the mutual mentoring line ('Be a mentor to, and be mentored by') are not treated as senior signals. Flagged uncertain.\\nThere are no alternative groups: React and TypeScript are asked for together.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "as a full-stack developer"
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "React"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "Typescript"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "built generative AI products",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic product features",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "curating and developing eval sets and LLMs as judges"
+      }
+    ],
+    "unmapped": [],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years of experience shipping user-facing features or products as a full-stack developer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "'We'd love to hear from you if you have:' is the requirements section. Per golden_038 the company's enthusiasm does not soften it, so its items are required.\n'While it's not required, it's an added plus if you also have experience:' marks its section optional, so its items are nice_to_have.\nllms is required because the intro says 'We're looking for people who have built generative AI products', a direct candidate ask outside the requirements list. If that intro is read as company description, llms falls back to nice_to_have via 'Working with user facing LLM'. Flagged uncertain.\nagents is mapped from 'agentic product features' in the optional section. The taxonomy fit is loose. Flagged uncertain.\nMCP, agentic coding and Dev Mode appear only in the responsibilities and company description, so they are not labeled.\n'eager to lead AI efforts' asks for leadership appetite, not a taxonomy skill, so nothing is labeled from it.\nSeniority is inferred mid from '3+ years'. 'Hiring across multiple levels' and the mutual mentoring line ('Be a mentor to, and be mentored by') are not treated as senior signals. Flagged uncertain.\nThere are no alternative groups: React and TypeScript are asked for together."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "0ff8032398611f13c96a2c3e2d9f07a0bd73e1116cbf178e9b0bf001977c51bb",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

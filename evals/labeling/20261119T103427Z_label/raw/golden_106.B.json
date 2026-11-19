@@ -1,0 +1,108 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Linux\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"bash\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Bash scripting\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"manage CI pipelines\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Hardware verification methodologies\",\n      \"raw_text\": \"modern verification methodologies\"\n    },\n    {\n      \"label\": \"SystemVerilog\",\n      \"raw_text\": \"SystemVerilog skills\"\n    },\n    {\n      \"label\": \"Structured testbench development\",\n      \"raw_text\": \"structured testbench development\"\n    },\n    {\n      \"label\": \"Block-level and system-level verification\",\n      \"raw_text\": \"block-level to system-level verification\"\n    },\n    {\n      \"label\": \"Microarchitecture analysis from specifications and waveforms\",\n      \"raw_text\": \"reasoning about microarchitecture behavior from specs and waveforms\"\n    },\n    {\n      \"label\": \"Build automation\",\n      \"raw_text\": \"automate builds\"\n    },\n    {\n      \"label\": \"Log parsing\",\n      \"raw_text\": \"parse logs\"\n    },\n    {\n      \"label\": \"Coverage-driven verification\",\n      \"raw_text\": \"coverage-driven verification\"\n    },\n    {\n      \"label\": \"RTL, testbench, and workload debugging\",\n      \"raw_text\": \"debugging across RTL, testbench, and workload scenarios\"\n    },\n    {\n      \"label\": \"Learning verification strategies for new architectures and domains\",\n      \"raw_text\": \"eager to learn verification strategies for new architectures and domains\"\n    },\n    {\n      \"label\": \"Functional safety verification\",\n      \"raw_text\": \"Nice to have: Exposure to functional safety (FuSa) verification concepts\"\n    },\n    {\n      \"label\": \"Formal verification methodologies\",\n      \"raw_text\": \"formal verification methodologies\"\n    },\n    {\n      \"label\": \"SystemVerilog Assertions\",\n      \"raw_text\": \"SVA (SystemVerilog Assertions)\"\n    },\n    {\n      \"label\": \"Formal property verification\",\n      \"raw_text\": \"formal property verification\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff Design Verification Engineer, AI HW\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"Who You Are supplies required qualifications; What We Need otherwise describes responsibilities, except its two explicitly optional qualification bullets. What You Will Learn does not ask for existing skills.\\nHardware verification and RTL/testbench debugging are treated literally as hardware practices, not mapped to Software Testing; the taxonomy lacks suitable entries.\\nThe appetite-only verification-strategy item is optional. Functional safety verification and all three formal-verification items are also optional; the unmapped schema has no requirement field.\\nThe three formal-verification items are offered as alternatives, but no taxonomy IDs exist for them, so no scored alternative group can be assigned.\\nPython and Bash are alternatives in the qualification. Their appearance in responsibilities does not establish a separate qualification requirement.\\nManaging CI pipelines is mapped to CI/CD; no additional CD experience is inferred.\\nThe Staff title supports senior, but the explicit welcome to various experience levels and potentially different offer levels makes seniority ambiguous.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "bash",
+        "requirement": "required",
+        "raw_text": "Bash scripting",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "manage CI pipelines"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Hardware verification methodologies",
+        "raw_text": "modern verification methodologies"
+      },
+      {
+        "label": "SystemVerilog",
+        "raw_text": "SystemVerilog skills"
+      },
+      {
+        "label": "Structured testbench development",
+        "raw_text": "structured testbench development"
+      },
+      {
+        "label": "Block-level and system-level verification",
+        "raw_text": "block-level to system-level verification"
+      },
+      {
+        "label": "Microarchitecture analysis from specifications and waveforms",
+        "raw_text": "reasoning about microarchitecture behavior from specs and waveforms"
+      },
+      {
+        "label": "Build automation",
+        "raw_text": "automate builds"
+      },
+      {
+        "label": "Log parsing",
+        "raw_text": "parse logs"
+      },
+      {
+        "label": "Coverage-driven verification",
+        "raw_text": "coverage-driven verification"
+      },
+      {
+        "label": "RTL, testbench, and workload debugging",
+        "raw_text": "debugging across RTL, testbench, and workload scenarios"
+      },
+      {
+        "label": "Learning verification strategies for new architectures and domains",
+        "raw_text": "eager to learn verification strategies for new architectures and domains"
+      },
+      {
+        "label": "Functional safety verification",
+        "raw_text": "Nice to have: Exposure to functional safety (FuSa) verification concepts"
+      },
+      {
+        "label": "Formal verification methodologies",
+        "raw_text": "formal verification methodologies"
+      },
+      {
+        "label": "SystemVerilog Assertions",
+        "raw_text": "SVA (SystemVerilog Assertions)"
+      },
+      {
+        "label": "Formal property verification",
+        "raw_text": "formal property verification"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff Design Verification Engineer, AI HW",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Who You Are supplies required qualifications; What We Need otherwise describes responsibilities, except its two explicitly optional qualification bullets. What You Will Learn does not ask for existing skills.\nHardware verification and RTL/testbench debugging are treated literally as hardware practices, not mapped to Software Testing; the taxonomy lacks suitable entries.\nThe appetite-only verification-strategy item is optional. Functional safety verification and all three formal-verification items are also optional; the unmapped schema has no requirement field.\nThe three formal-verification items are offered as alternatives, but no taxonomy IDs exist for them, so no scored alternative group can be assigned.\nPython and Bash are alternatives in the qualification. Their appearance in responsibilities does not establish a separate qualification requirement.\nManaging CI pipelines is mapped to CI/CD; no additional CD experience is inferred.\nThe Staff title supports senior, but the explicit welcome to various experience levels and potentially different offer levels makes seniority ambiguous."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "d35e99fb08f64473aea58431ddd380c3d79ae8a3a49199fa0c085ae1a41c1567",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -74,3 +74,13 @@ answers, act on the whole group at once (e.g. `check --file <group.txt> --add`).
 
 If `config/feeds.json` changed: one commit for the batch,
 `feeds: add <type>:<token>, <type>:<token> (<Companies>)`. Do not commit the database.
+
+Every batch goes under the standing ticket **HIR-328** (always In Progress, never closed):
+`echo HIR-328 > TICKET`, branch `chandlershortlidge/hir-328-urls-YYYY-MM-DD` from main, open a
+PR, and add a one-paragraph comment on HIR-328 (added / left out and why). A reader or filter
+bug found in a batch gets its own ticket, linked to HIR-328.
+
+Location: every link the person sends comes from a LinkedIn search set to one of our cities
+(mostly Berlin), so it is in scope. A different or missing location is our reading error:
+confirm the city from the source and add with `--location`, don't ask. We also track New
+York, so a posting can name both.

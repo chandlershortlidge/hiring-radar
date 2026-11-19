@@ -1,0 +1,25 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"inferred\",\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"The posting appears truncated: it has only a header and one 'Aufgaben' (responsibilities) bullet, with no requirements, qualifications or tech-stack section.\\n'Entwicklung KI-gestützter Softwarelösungen und agentischer Workflows' appears only under responsibilities, so it is not labeled. 'KI-gestützte' there describes the solutions being built, not the ai-developer-tooling alias 'ki-gestützte tools'.\\nThe job title 'Agentic AI Software Engineer' is not a requirement section, so it yields no skills (no agents or software-engineering).\\nSeniority: none. There is no level word in the title and no years or lead signal.\\nGerman: the posting is written in German and says nothing about language, so it is required with basis inferred and a null signal, per the guide.\\nDegree: no degree is mentioned.\\nThe expected list is empty because the visible text asks the candidate for no skill. If the full posting is recovered, it should be relabeled.\"\n}\n```",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "inferred",
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "The posting appears truncated: it has only a header and one 'Aufgaben' (responsibilities) bullet, with no requirements, qualifications or tech-stack section.\n'Entwicklung KI-gestützter Softwarelösungen und agentischer Workflows' appears only under responsibilities, so it is not labeled. 'KI-gestützte' there describes the solutions being built, not the ai-developer-tooling alias 'ki-gestützte tools'.\nThe job title 'Agentic AI Software Engineer' is not a requirement section, so it yields no skills (no agents or software-engineering).\nSeniority: none. There is no level word in the title and no years or lead signal.\nGerman: the posting is written in German and says nothing about language, so it is required with basis inferred and a null signal, per the guide.\nDegree: no degree is mentioned.\nThe expected list is empty because the visible text asks the candidate for no skill. If the full posting is recovered, it should be relabeled."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "87896663688d81931f1b0ce9c3fb3e7b0ee905c12dc603e045a1f03d2f5efb7f",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

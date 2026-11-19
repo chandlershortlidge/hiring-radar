@@ -1,0 +1,88 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"sql\", \"requirement\": \"required\", \"raw_text\": \"Excellent SQL\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python skills\"},\n    {\"skill_id\": \"business-intelligence\", \"requirement\": \"required\", \"raw_text\": \"a similar business intelligence tool\"},\n    {\"skill_id\": \"statistics\", \"requirement\": \"required\", \"raw_text\": \"A strong grounding in statistics\"},\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"machine learning for credit\"},\n    {\"skill_id\": \"data-science\", \"requirement\": \"required\", \"raw_text\": \"analytical or data science experience\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Microsoft Excel\", \"raw_text\": \"advanced Microsoft Excel skills\"},\n    {\"label\": \"Looker\", \"raw_text\": \"Looker\"},\n    {\"label\": \"Gradient-boosted models\", \"raw_text\": \"gradient-boosted models\"},\n    {\"label\": \"Scorecards\", \"raw_text\": \"scorecards\"},\n    {\"label\": \"Swap-set analysis\", \"raw_text\": \"swap-set analysis\"},\n    {\"label\": \"Vintage analysis\", \"raw_text\": \"vintage analysis\"},\n    {\"label\": \"Experiment design\", \"raw_text\": \"experiment design\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Lead Data Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"A Master's degree (required)\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"All skills come from the 'To thrive in this role, you have' section. It is a requirements heading, so items default to required.\\nThe Lead title is the seniority basis. '7+ years' and mentoring duty agree with senior.\\nDegree: the posting requires a Master's and lists 'a PhD is a plus'. The guide's 'highest level named' rule would give phd, but the PhD is marked optional. I labeled master/required because that is what the candidate must have. A reviewer should decide between this and a literal phd/nice_to_have reading.\\nThe guide confirmed 'MS or PhD' -> phd only for a case where either degree qualifies. That case is not this one.\\ndata-science: it is quoted from a years-of-experience line ('7+ years of analytical or data science experience'). I labeled it as a skill the candidate is asked to have and flagged it uncertain.\\nbusiness-intelligence: labeled from 'Looker or a similar business intelligence tool'. Looker itself is not in the taxonomy, so it is unmapped.\\nThere is no taxonomy entry for Excel, gradient-boosted models (XGBoost and LightGBM are not named), scorecards, swap-set analysis, vintage analysis or experiment design. These are unmapped. Experiment design was not mapped to a-b-testing, which the posting does not name.\\nCredit bureau data, prescreen programs, and lending regulation (FCRA, ECOA) are domain knowledge, so they are not labeled.\\nChampion/challenger tests and dashboards appear only in responsibilities, so they are not labeled.\\nThe nice-to-have line lists only lending domain experience, so it adds no skills.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "Excellent SQL"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python skills"
+      },
+      {
+        "skill_id": "business-intelligence",
+        "requirement": "required",
+        "raw_text": "a similar business intelligence tool"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "A strong grounding in statistics"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning for credit"
+      },
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "analytical or data science experience",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Microsoft Excel",
+        "raw_text": "advanced Microsoft Excel skills"
+      },
+      {
+        "label": "Looker",
+        "raw_text": "Looker"
+      },
+      {
+        "label": "Gradient-boosted models",
+        "raw_text": "gradient-boosted models"
+      },
+      {
+        "label": "Scorecards",
+        "raw_text": "scorecards"
+      },
+      {
+        "label": "Swap-set analysis",
+        "raw_text": "swap-set analysis"
+      },
+      {
+        "label": "Vintage analysis",
+        "raw_text": "vintage analysis"
+      },
+      {
+        "label": "Experiment design",
+        "raw_text": "experiment design"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead Data Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "A Master's degree (required)",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "All skills come from the 'To thrive in this role, you have' section. It is a requirements heading, so items default to required.\nThe Lead title is the seniority basis. '7+ years' and mentoring duty agree with senior.\nDegree: the posting requires a Master's and lists 'a PhD is a plus'. The guide's 'highest level named' rule would give phd, but the PhD is marked optional. I labeled master/required because that is what the candidate must have. A reviewer should decide between this and a literal phd/nice_to_have reading.\nThe guide confirmed 'MS or PhD' -> phd only for a case where either degree qualifies. That case is not this one.\ndata-science: it is quoted from a years-of-experience line ('7+ years of analytical or data science experience'). I labeled it as a skill the candidate is asked to have and flagged it uncertain.\nbusiness-intelligence: labeled from 'Looker or a similar business intelligence tool'. Looker itself is not in the taxonomy, so it is unmapped.\nThere is no taxonomy entry for Excel, gradient-boosted models (XGBoost and LightGBM are not named), scorecards, swap-set analysis, vintage analysis or experiment design. These are unmapped. Experiment design was not mapped to a-b-testing, which the posting does not name.\nCredit bureau data, prescreen programs, and lending regulation (FCRA, ECOA) are domain knowledge, so they are not labeled.\nChampion/challenger tests and dashboards appear only in responsibilities, so they are not labeled.\nThe nice-to-have line lists only lending domain experience, so it adds no skills."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "d30b3d81c0d160682001cbb6132a2e9f5666f4efbfe3149d36056ec4b9faa334",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

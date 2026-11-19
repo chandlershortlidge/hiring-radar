@@ -1,0 +1,112 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong foundation in machine learning\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning\"\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"natural language processing (NLP)\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Proven experience deploying LLM-powered applications in production environments\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying LLM-powered applications in production environments\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"vllm\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"vLLM\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangGraph\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"RAG, agentic orchestration, or multi-agent systems is strongly preferred\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agentic orchestration, or multi-agent systems is strongly preferred\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"multi-agent-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"multi-agent systems is strongly preferred\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"large-scale data pipelines\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"standard evaluation protocols\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"monitoring\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"FlowNet-9 architecture\",\n      \"raw_text\": \"Strong experience in FlowNet-9 architecture\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior ML Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Master's degree (or above) in Computer Science, Machine Learning, AI, or a related field; equivalent practical experience considered\",\n  \"notes\": \"Professional Experience & Qualifications defaults to required; inline preferred, plus, and bonus markers apply only to their respective items.\\nAlthough located under Key Responsibilities, the FlowNet-9 bullet explicitly asks for candidate experience, so it is included as unmapped. Other responsibility-only technologies and practices are excluded.\\nRAG, agentic orchestration, and multi-agent systems remain optional: their required-looking appearances elsewhere describe responsibilities rather than candidate qualifications.\\n“Or above” does not explicitly name a doctorate; master is the highest degree level named.\\nGeneric tools for ML development do not identify an additional concrete taxonomy skill.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Strong foundation in machine learning"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "natural language processing (NLP)"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Proven experience deploying LLM-powered applications in production environments"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying LLM-powered applications in production environments"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "required",
+        "raw_text": "vLLM",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "RAG, agentic orchestration, or multi-agent systems is strongly preferred",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic orchestration, or multi-agent systems is strongly preferred",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "multi-agent systems is strongly preferred",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "large-scale data pipelines"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "standard evaluation protocols"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "FlowNet-9 architecture",
+        "raw_text": "Strong experience in FlowNet-9 architecture"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior ML Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Master's degree (or above) in Computer Science, Machine Learning, AI, or a related field; equivalent practical experience considered",
+    "notes": "Professional Experience & Qualifications defaults to required; inline preferred, plus, and bonus markers apply only to their respective items.\nAlthough located under Key Responsibilities, the FlowNet-9 bullet explicitly asks for candidate experience, so it is included as unmapped. Other responsibility-only technologies and practices are excluded.\nRAG, agentic orchestration, and multi-agent systems remain optional: their required-looking appearances elsewhere describe responsibilities rather than candidate qualifications.\n“Or above” does not explicitly name a doctorate; master is the highest degree level named.\nGeneric tools for ML development do not identify an additional concrete taxonomy skill."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "6ae99a4568646c0014463d9dfb173f22a281e7018ddb85a705ed1b861819a351",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,97 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"interest or experience in ML frameworks\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"interest or experience in ML frameworks (PyTorch, TensorFlow)\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"interest or experience in ML frameworks (PyTorch, TensorFlow)\",\n      \"alternative_group\": 1\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Physical Design CAD methodology\",\n      \"raw_text\": \"Physical Design CAD methodology\"\n    },\n    {\n      \"label\": \"PPA optimization\",\n      \"raw_text\": \"improving PPA\"\n    },\n    {\n      \"label\": \"Runtime optimization\",\n      \"raw_text\": \"improving PPA and/or runtime\"\n    },\n    {\n      \"label\": \"EDA tools\",\n      \"raw_text\": \"industry-standard EDA tools\"\n    },\n    {\n      \"label\": \"Fusion Compiler\",\n      \"raw_text\": \"Fusion Compiler\"\n    },\n    {\n      \"label\": \"Logic synthesis\",\n      \"raw_text\": \"synthesis\"\n    },\n    {\n      \"label\": \"Place and route\",\n      \"raw_text\": \"P&R\"\n    },\n    {\n      \"label\": \"Static timing analysis\",\n      \"raw_text\": \"STA\"\n    },\n    {\n      \"label\": \"Physical design signoff\",\n      \"raw_text\": \"signoff\"\n    },\n    {\n      \"label\": \"Hierarchical design flows\",\n      \"raw_text\": \"hierarchical flows\"\n    },\n    {\n      \"label\": \"Tcl\",\n      \"raw_text\": \"Tcl\"\n    },\n    {\n      \"label\": \"Data skills\",\n      \"raw_text\": \"data skills\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"BS in Electrical or Computer Engineering (or equivalent experience)\",\n  \"notes\": \"“Who you are” supplies required qualifications; there is no optional qualifications heading. Responsibilities and “What you will learn” do not independently establish candidate skills.\\nInterest is accepted instead of experience in ML frameworks, so machine-learning, PyTorch, and TensorFlow are nice_to_have. The two concrete framework examples form one alternative group; the broad skill remains outside it.\\nSeniority is null because the posting explicitly welcomes contributors of all seniorities and candidates at various experience levels, despite the 5+ years qualification and lead duties.\\nPhysical design methodologies and named EDA techniques are treated literally as technical practices, not merely domain knowledge. Generic “data skills” is retained as unmapped rather than inferred to mean a particular data technique.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "interest or experience in ML frameworks"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "interest or experience in ML frameworks (PyTorch, TensorFlow)",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "nice_to_have",
+        "raw_text": "interest or experience in ML frameworks (PyTorch, TensorFlow)",
+        "alternative_group": 1
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Physical Design CAD methodology",
+        "raw_text": "Physical Design CAD methodology"
+      },
+      {
+        "label": "PPA optimization",
+        "raw_text": "improving PPA"
+      },
+      {
+        "label": "Runtime optimization",
+        "raw_text": "improving PPA and/or runtime"
+      },
+      {
+        "label": "EDA tools",
+        "raw_text": "industry-standard EDA tools"
+      },
+      {
+        "label": "Fusion Compiler",
+        "raw_text": "Fusion Compiler"
+      },
+      {
+        "label": "Logic synthesis",
+        "raw_text": "synthesis"
+      },
+      {
+        "label": "Place and route",
+        "raw_text": "P&R"
+      },
+      {
+        "label": "Static timing analysis",
+        "raw_text": "STA"
+      },
+      {
+        "label": "Physical design signoff",
+        "raw_text": "signoff"
+      },
+      {
+        "label": "Hierarchical design flows",
+        "raw_text": "hierarchical flows"
+      },
+      {
+        "label": "Tcl",
+        "raw_text": "Tcl"
+      },
+      {
+        "label": "Data skills",
+        "raw_text": "data skills"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "BS in Electrical or Computer Engineering (or equivalent experience)",
+    "notes": "“Who you are” supplies required qualifications; there is no optional qualifications heading. Responsibilities and “What you will learn” do not independently establish candidate skills.\nInterest is accepted instead of experience in ML frameworks, so machine-learning, PyTorch, and TensorFlow are nice_to_have. The two concrete framework examples form one alternative group; the broad skill remains outside it.\nSeniority is null because the posting explicitly welcomes contributors of all seniorities and candidates at various experience levels, despite the 5+ years qualification and lead duties.\nPhysical design methodologies and named EDA techniques are treated literally as technical practices, not merely domain knowledge. Generic “data skills” is retained as unmapped rather than inferred to mean a particular data technique."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "bde9a3c4788b11cfe5b2aa4d84f9bf2ffb14c750ce0389c287ad0a4f8750a262",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

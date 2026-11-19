@@ -1,0 +1,225 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Expert-level Kubernetes administration\"\n    },\n    {\n      \"skill_id\": \"slurm\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Slurm job scheduling\"\n    },\n    {\n      \"skill_id\": \"distributed-training\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience with deploying and managing distributed training systems at scale\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"container orchestration\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed systems architecture\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM architecture and training processes\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"networking\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"networking\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience developing APIs\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Solid debugging and monitoring skills with expertise in observability tools\"\n    },\n    {\n      \"skill_id\": \"cuda\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CUDA optimization\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"infrastructure as code\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Terraform\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"ansible\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Ansible\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"gitops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GitOps practices\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Previous roles in SRE, DevOps, or Platform Engineering\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Ideally, 3-5 years of relevant experience in ML systems deployment\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Kubernetes custom resource definitions\",\n      \"raw_text\": \"custom resource definitions\"\n    },\n    {\n      \"label\": \"Kubernetes operators and custom controllers\",\n      \"raw_text\": \"Kubernetes operators and custom controllers\"\n    },\n    {\n      \"label\": \"Cluster management and configuration\",\n      \"raw_text\": \"cluster management\"\n    },\n    {\n      \"label\": \"Job scheduling\",\n      \"raw_text\": \"job scheduling\"\n    },\n    {\n      \"label\": \"Compute resource allocation and optimization\",\n      \"raw_text\": \"job scheduling, resource allocation, and cluster optimization\"\n    },\n    {\n      \"label\": \"Multi-Head Attention\",\n      \"raw_text\": \"Multi-Head Attention\"\n    },\n    {\n      \"label\": \"Multi/Grouped-Query attention\",\n      \"raw_text\": \"Multi/Grouped-Query\"\n    },\n    {\n      \"label\": \"GPU cluster management\",\n      \"raw_text\": \"Experience managing GPU clusters and optimizing compute resource utilization\"\n    },\n    {\n      \"label\": \"YAML configuration management\",\n      \"raw_text\": \"YAML configuration management\"\n    },\n    {\n      \"label\": \"Systems programming\",\n      \"raw_text\": \"Python and C++ programming with focus on systems and infrastructure automation\"\n    },\n    {\n      \"label\": \"Infrastructure automation\",\n      \"raw_text\": \"infrastructure automation\"\n    },\n    {\n      \"label\": \"ML frameworks\",\n      \"raw_text\": \"ML frameworks\"\n    },\n    {\n      \"label\": \"Storage management\",\n      \"raw_text\": \"storage\"\n    },\n    {\n      \"label\": \"Debugging\",\n      \"raw_text\": \"debugging\"\n    },\n    {\n      \"label\": \"Slurm multi-cluster federation\",\n      \"raw_text\": \"multi-cluster federation\"\n    },\n    {\n      \"label\": \"High-performance computing\",\n      \"raw_text\": \"HPC workload management\"\n    },\n    {\n      \"label\": \"Parallel computing\",\n      \"raw_text\": \"parallel computing\"\n    },\n    {\n      \"label\": \"Container registries\",\n      \"raw_text\": \"container registries\"\n    },\n    {\n      \"label\": \"Container image optimization\",\n      \"raw_text\": \"image optimization\"\n    },\n    {\n      \"label\": \"Multi-stage container builds\",\n      \"raw_text\": \"multi-stage builds\"\n    },\n    {\n      \"label\": \"Site reliability engineering\",\n      \"raw_text\": \"SRE\"\n    },\n    {\n      \"label\": \"Platform engineering\",\n      \"raw_text\": \"Platform Engineering\"\n    },\n    {\n      \"label\": \"Supporting training jobs and highly available inference services\",\n      \"raw_text\": \"Experience supporting both long-running training jobs and high-availability inference services\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Member of Technical Staff\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"The introductory 'We work with' sentence is treated literally as company description, not a dedicated tech-stack section; AWS is therefore excluded.\\nPREFERRED SKILLS is optional; all other qualification and skills sections default to required. Required mentions override preferred repetitions.\\nTerraform and Ansible are examples for the single infrastructure-as-code ask and form an alternative group. The SRE/DevOps/Platform Engineering alternatives have only one mapped taxonomy member, so no mapped group is emitted.\\nML frameworks, debugging, storage, and HPC are retained as unmapped rather than inferred to be Machine Learning, Software Testing, Object Storage, or another broader or narrower taxonomy skill.\\nML systems deployment is provisionally mapped to AI deployment; it could instead mean infrastructure deployment rather than model deployment. Its 'Ideally' marker makes it optional.\\nThe title contains 'Staff', which the guide identifies as senior; flagged because 'Member of Technical Staff' can also be a level-neutral title. The optional 3-5 years phrase would otherwise support mid.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Expert-level Kubernetes administration"
+      },
+      {
+        "skill_id": "slurm",
+        "requirement": "required",
+        "raw_text": "Slurm job scheduling"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "Experience with deploying and managing distributed training systems at scale"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "container orchestration"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed systems architecture"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM architecture and training processes"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "networking"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Experience developing APIs"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Solid debugging and monitoring skills with expertise in observability tools"
+      },
+      {
+        "skill_id": "cuda",
+        "requirement": "nice_to_have",
+        "raw_text": "CUDA optimization"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "nice_to_have",
+        "raw_text": "infrastructure as code"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "nice_to_have",
+        "raw_text": "Terraform",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "ansible",
+        "requirement": "nice_to_have",
+        "raw_text": "Ansible",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "gitops",
+        "requirement": "nice_to_have",
+        "raw_text": "GitOps practices"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "Previous roles in SRE, DevOps, or Platform Engineering"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "nice_to_have",
+        "raw_text": "Ideally, 3-5 years of relevant experience in ML systems deployment",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Kubernetes custom resource definitions",
+        "raw_text": "custom resource definitions"
+      },
+      {
+        "label": "Kubernetes operators and custom controllers",
+        "raw_text": "Kubernetes operators and custom controllers"
+      },
+      {
+        "label": "Cluster management and configuration",
+        "raw_text": "cluster management"
+      },
+      {
+        "label": "Job scheduling",
+        "raw_text": "job scheduling"
+      },
+      {
+        "label": "Compute resource allocation and optimization",
+        "raw_text": "job scheduling, resource allocation, and cluster optimization"
+      },
+      {
+        "label": "Multi-Head Attention",
+        "raw_text": "Multi-Head Attention"
+      },
+      {
+        "label": "Multi/Grouped-Query attention",
+        "raw_text": "Multi/Grouped-Query"
+      },
+      {
+        "label": "GPU cluster management",
+        "raw_text": "Experience managing GPU clusters and optimizing compute resource utilization"
+      },
+      {
+        "label": "YAML configuration management",
+        "raw_text": "YAML configuration management"
+      },
+      {
+        "label": "Systems programming",
+        "raw_text": "Python and C++ programming with focus on systems and infrastructure automation"
+      },
+      {
+        "label": "Infrastructure automation",
+        "raw_text": "infrastructure automation"
+      },
+      {
+        "label": "ML frameworks",
+        "raw_text": "ML frameworks"
+      },
+      {
+        "label": "Storage management",
+        "raw_text": "storage"
+      },
+      {
+        "label": "Debugging",
+        "raw_text": "debugging"
+      },
+      {
+        "label": "Slurm multi-cluster federation",
+        "raw_text": "multi-cluster federation"
+      },
+      {
+        "label": "High-performance computing",
+        "raw_text": "HPC workload management"
+      },
+      {
+        "label": "Parallel computing",
+        "raw_text": "parallel computing"
+      },
+      {
+        "label": "Container registries",
+        "raw_text": "container registries"
+      },
+      {
+        "label": "Container image optimization",
+        "raw_text": "image optimization"
+      },
+      {
+        "label": "Multi-stage container builds",
+        "raw_text": "multi-stage builds"
+      },
+      {
+        "label": "Site reliability engineering",
+        "raw_text": "SRE"
+      },
+      {
+        "label": "Platform engineering",
+        "raw_text": "Platform Engineering"
+      },
+      {
+        "label": "Supporting training jobs and highly available inference services",
+        "raw_text": "Experience supporting both long-running training jobs and high-availability inference services"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Member of Technical Staff",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "The introductory 'We work with' sentence is treated literally as company description, not a dedicated tech-stack section; AWS is therefore excluded.\nPREFERRED SKILLS is optional; all other qualification and skills sections default to required. Required mentions override preferred repetitions.\nTerraform and Ansible are examples for the single infrastructure-as-code ask and form an alternative group. The SRE/DevOps/Platform Engineering alternatives have only one mapped taxonomy member, so no mapped group is emitted.\nML frameworks, debugging, storage, and HPC are retained as unmapped rather than inferred to be Machine Learning, Software Testing, Object Storage, or another broader or narrower taxonomy skill.\nML systems deployment is provisionally mapped to AI deployment; it could instead mean infrastructure deployment rather than model deployment. Its 'Ideally' marker makes it optional.\nThe title contains 'Staff', which the guide identifies as senior; flagged because 'Member of Technical Staff' can also be a level-neutral title. The optional 3-5 years phrase would otherwise support mid."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "bac597b278ed7bbedf08f3db94bd949f38f00fc045dbc674acaf7dfc2a843692",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,87 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"6+ years of industry experience in Data Science\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"data-visualization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data visualization tools\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Understanding of modern machine learning techniques\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience evaluating model performance\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Experience building or partnering on data pipelines using dbt or Airflow is a plus.\"\n    },\n    {\n      \"skill_id\": \"dbt\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"dbt or Airflow is a plus.\"\n    },\n    {\n      \"skill_id\": \"airflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Airflow is a plus.\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Classification\",\n      \"raw_text\": \"classification\"\n    },\n    {\n      \"label\": \"Clustering\",\n      \"raw_text\": \"clustering\"\n    },\n    {\n      \"label\": \"Optimization\",\n      \"raw_text\": \"optimization\"\n    },\n    {\n      \"label\": \"Exploratory data analysis\",\n      \"raw_text\": \"exploratory data analysis\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Data Scientist - Embedded Insights\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor’s degree or equivalent work experience in Computer Science, Statistics, Engineering, Economics, or a closely related field.\",\n  \"notes\": \"WHAT EXCITES US is the qualifications section; its data-pipeline bullet is optional because of the inline 'plus' marker. No heading explicitly marks an optional section.\\nWHAT EXCITES YOU describes motivating work activities rather than qualifications to possess; technologies and techniques appearing only there or in ABOUT THE ROLE are not labeled.\\nClassification, clustering, optimization, and exploratory data analysis are explicitly requested techniques without matching taxonomy entries.\\nStatistics appears only as a degree field and is not separately labeled as a skill.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "6+ years of industry experience in Data Science"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "data-visualization",
+        "requirement": "required",
+        "raw_text": "data visualization tools"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Understanding of modern machine learning techniques"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Experience evaluating model performance"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience building or partnering on data pipelines using dbt or Airflow is a plus."
+      },
+      {
+        "skill_id": "dbt",
+        "requirement": "nice_to_have",
+        "raw_text": "dbt or Airflow is a plus."
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Airflow is a plus."
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Classification",
+        "raw_text": "classification"
+      },
+      {
+        "label": "Clustering",
+        "raw_text": "clustering"
+      },
+      {
+        "label": "Optimization",
+        "raw_text": "optimization"
+      },
+      {
+        "label": "Exploratory data analysis",
+        "raw_text": "exploratory data analysis"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Data Scientist - Embedded Insights",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor’s degree or equivalent work experience in Computer Science, Statistics, Engineering, Economics, or a closely related field.",
+    "notes": "WHAT EXCITES US is the qualifications section; its data-pipeline bullet is optional because of the inline 'plus' marker. No heading explicitly marks an optional section.\nWHAT EXCITES YOU describes motivating work activities rather than qualifications to possess; technologies and techniques appearing only there or in ABOUT THE ROLE are not labeled.\nClassification, clustering, optimization, and exploratory data analysis are explicitly requested techniques without matching taxonomy entries.\nStatistics appears only as a degree field and is not separately labeled as a skill."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "cb9f5b8e42196928843ff44a6dd23d8256cd1f1b8da80ae4648d3fb6158068a2",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

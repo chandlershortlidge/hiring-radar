@@ -1,0 +1,113 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"docker\", \"requirement\": \"required\", \"raw_text\": \"Erstellen und Debuggen von Docker-Images\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"required\", \"raw_text\": \"Terraform\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python\"},\n    {\"skill_id\": \"networking\", \"requirement\": \"required\", \"raw_text\": \"Erfahrung in der netzwerkseitigen Anbindung\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"Anbindung von Cloud-Umgebungen\", \"uncertain\": true},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"Praxiserfahrung im Einsatz von Coding Agents\"},\n    {\"skill_id\": \"claude-code\", \"requirement\": \"required\", \"raw_text\": \"(z.B. Claude Code\", \"alternative_group\": 1},\n    {\"skill_id\": \"codex\", \"requirement\": \"required\", \"raw_text\": \"Claude Code oder Codex)\", \"alternative_group\": 1},\n    {\"skill_id\": \"azure\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Kenntnisse in Azure-Infrastrukturen\"},\n    {\"skill_id\": \"access-control\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Identity Management, RBAC/ACL\"},\n    {\"skill_id\": \"azure-data-lake-storage\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Azure Data Lake Storage Gen2\"},\n    {\"skill_id\": \"azure-data-factory\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory\"},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory/ Synapse Pipeline sowie Data Ingestion (ETL/ELT)\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Azure Machine Learning\", \"raw_text\": \"Azure Machine Learning\"},\n    {\"label\": \"Azure Synapse Pipelines\", \"raw_text\": \"Synapse Pipeline\"},\n    {\"label\": \"Azure Storage\", \"raw_text\": \"Azure Storage\"},\n    {\"label\": \"Vibe Engineering\", \"raw_text\": \"Vibe Engineering\"}\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": \"required\",\n  \"german_basis\": \"stated\",\n  \"german_signal\": \"Fließende Deutschkenntnisse (mind. Level B2-C1)\",\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Erfolgreiches Studium in Naturwissenschaften, Informatik oder eine vergleichbare Qualifikation\",\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"Section headings: 'Qualifikationen' is the requirements section (default required). 'Stellenbeschreibung' is responsibilities: DevOps, Cloud-Architekturen and Scrum appear only there and are not labeled. The coding-agent ask in 'Stellenbeschreibung' is repeated in Qualifikationen, so the quotes come from Qualifikationen.\\nAppetite bullet: 'Interesse daran, ... einzuarbeiten' makes Azure ML, Public Cloud, Data Factory, Synapse and ETL/ELT nice_to_have (rule 3). The raw_text for those labels keeps the appetite phrase, including the source typo 'Dichin'.\\nCloud: required, from the unmarked bullet 'Anbindung von Cloud-Umgebungen'. That wins over the appetite mention 'Cloud Technologien'/'Public Cloud'. Flagged uncertain in case the 'Cloud-Umgebungen' bullet is read as purely about networking.\\nNetworking: required, from 'netzwerkseitigen Anbindung'. That wins over the VNets/Private Endpoints mention, which is under the 'von Vorteil' bullet.\\n'von Vorteil' bullet: the marker ('is an advantage') makes everything in it nice_to_have: Azure, Identity Management/RBAC/ACL and ADLS Gen2. Azure is never asked for as a requirement elsewhere, so it stays nice_to_have.\\nAzure Storage: not mapped to object-storage, because the posting never names object storage.\\nClaude Code and Codex: offered as alternatives ('z.B. Claude Code oder Codex'), so they form alternative_group 1. The broad ai-developer-tooling ('Coding Agents', 'AI-assisted Coding') stays out of the group.\\nSeniority: the posting hires at multiple levels ('Professional, Senior Professional und Principal'), which is treated like 'all levels', so null. Flagged uncertain.\\nDegree: 'oder eine vergleichbare Qualifikation' counts as an equivalent-qualification clause, so degree_or_equivalent is true. 'Studium' with no level maps to bachelor.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Erstellen und Debuggen von Docker-Images"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "required",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "Erfahrung in der netzwerkseitigen Anbindung"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "Anbindung von Cloud-Umgebungen",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Praxiserfahrung im Einsatz von Coding Agents"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "(z.B. Claude Code",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "codex",
+        "requirement": "required",
+        "raw_text": "Claude Code oder Codex)",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Kenntnisse in Azure-Infrastrukturen"
+      },
+      {
+        "skill_id": "access-control",
+        "requirement": "nice_to_have",
+        "raw_text": "Identity Management, RBAC/ACL"
+      },
+      {
+        "skill_id": "azure-data-lake-storage",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure Data Lake Storage Gen2"
+      },
+      {
+        "skill_id": "azure-data-factory",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "nice_to_have",
+        "raw_text": "Interesse daran, Dichin moderne Data- und Cloud Technologien einzuarbeiten, insbesondere im Umfeld von Azure Machine Learning, Public Cloud, Data Factory/ Synapse Pipeline sowie Data Ingestion (ETL/ELT)"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Azure Machine Learning",
+        "raw_text": "Azure Machine Learning"
+      },
+      {
+        "label": "Azure Synapse Pipelines",
+        "raw_text": "Synapse Pipeline"
+      },
+      {
+        "label": "Azure Storage",
+        "raw_text": "Azure Storage"
+      },
+      {
+        "label": "Vibe Engineering",
+        "raw_text": "Vibe Engineering"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": "required",
+    "german_basis": "stated",
+    "german_signal": "Fließende Deutschkenntnisse (mind. Level B2-C1)",
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Erfolgreiches Studium in Naturwissenschaften, Informatik oder eine vergleichbare Qualifikation",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Section headings: 'Qualifikationen' is the requirements section (default required). 'Stellenbeschreibung' is responsibilities: DevOps, Cloud-Architekturen and Scrum appear only there and are not labeled. The coding-agent ask in 'Stellenbeschreibung' is repeated in Qualifikationen, so the quotes come from Qualifikationen.\nAppetite bullet: 'Interesse daran, ... einzuarbeiten' makes Azure ML, Public Cloud, Data Factory, Synapse and ETL/ELT nice_to_have (rule 3). The raw_text for those labels keeps the appetite phrase, including the source typo 'Dichin'.\nCloud: required, from the unmarked bullet 'Anbindung von Cloud-Umgebungen'. That wins over the appetite mention 'Cloud Technologien'/'Public Cloud'. Flagged uncertain in case the 'Cloud-Umgebungen' bullet is read as purely about networking.\nNetworking: required, from 'netzwerkseitigen Anbindung'. That wins over the VNets/Private Endpoints mention, which is under the 'von Vorteil' bullet.\n'von Vorteil' bullet: the marker ('is an advantage') makes everything in it nice_to_have: Azure, Identity Management/RBAC/ACL and ADLS Gen2. Azure is never asked for as a requirement elsewhere, so it stays nice_to_have.\nAzure Storage: not mapped to object-storage, because the posting never names object storage.\nClaude Code and Codex: offered as alternatives ('z.B. Claude Code oder Codex'), so they form alternative_group 1. The broad ai-developer-tooling ('Coding Agents', 'AI-assisted Coding') stays out of the group.\nSeniority: the posting hires at multiple levels ('Professional, Senior Professional und Principal'), which is treated like 'all levels', so null. Flagged uncertain.\nDegree: 'oder eine vergleichbare Qualifikation' counts as an equivalent-qualification clause, so degree_or_equivalent is true. 'Studium' with no level maps to bachelor."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "9581d44a95735f403411f841fe0e29bdff6b6a125603d863fa47adc752f52e55",
+  "prompt_sha256": "6a937bacb2e4f9e2d64f2849c7193b892b506ead3ec38b8f6c0cc3eabbedd0bd"
+}

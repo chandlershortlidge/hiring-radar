@@ -1,0 +1,185 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"knowledge-distillation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distillation\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"reinforcement learning\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"research or applied science experience in machine learning\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"designing and running model-training experiments\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"large language models\"\n    },\n    {\n      \"skill_id\": \"distributed-training\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed training\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"statistical analysis\"\n    },\n    {\n      \"skill_id\": \"megatron-lm\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Megatron-LM\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"deepspeed\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"DeepSpeed\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"recommender-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"recommender systems\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Continued pre-training\",\n      \"raw_text\": \"continued pre-training\"\n    },\n    {\n      \"label\": \"Mid-training\",\n      \"raw_text\": \"mid-training\"\n    },\n    {\n      \"label\": \"Data mixture research\",\n      \"raw_text\": \"data mixture research\"\n    },\n    {\n      \"label\": \"Scaling laws\",\n      \"raw_text\": \"scaling laws\"\n    },\n    {\n      \"label\": \"Tokenisation\",\n      \"raw_text\": \"tokenisation\"\n    },\n    {\n      \"label\": \"Entity representations\",\n      \"raw_text\": \"entity representations\"\n    },\n    {\n      \"label\": \"Tabular foundation models\",\n      \"raw_text\": \"tabular foundation models\"\n    },\n    {\n      \"label\": \"TabPFN\",\n      \"raw_text\": \"TabPFN\"\n    },\n    {\n      \"label\": \"TabICL\",\n      \"raw_text\": \"TabICL\"\n    },\n    {\n      \"label\": \"Language-model post-training\",\n      \"raw_text\": \"language-model post-training\"\n    },\n    {\n      \"label\": \"Reward modelling\",\n      \"raw_text\": \"reward modelling\"\n    },\n    {\n      \"label\": \"Agent training environments\",\n      \"raw_text\": \"agent training environments\"\n    },\n    {\n      \"label\": \"Continual learning\",\n      \"raw_text\": \"continual learning\"\n    },\n    {\n      \"label\": \"Bandits\",\n      \"raw_text\": \"bandits\"\n    },\n    {\n      \"label\": \"Decision-model training\",\n      \"raw_text\": \"decision-model training\"\n    },\n    {\n      \"label\": \"NeMo RL\",\n      \"raw_text\": \"NeMo RL\"\n    },\n    {\n      \"label\": \"verl\",\n      \"raw_text\": \"verl\"\n    },\n    {\n      \"label\": \"OpenRLHF\",\n      \"raw_text\": \"OpenRLHF\"\n    },\n    {\n      \"label\": \"Generative retrieval\",\n      \"raw_text\": \"generative retrieval\"\n    },\n    {\n      \"label\": \"Semantic IDs\",\n      \"raw_text\": \"semantic IDs\"\n    },\n    {\n      \"label\": \"User behaviour modelling\",\n      \"raw_text\": \"user behaviour modelling\"\n    },\n    {\n      \"label\": \"Synthetic data\",\n      \"raw_text\": \"synthetic data\"\n    },\n    {\n      \"label\": \"Model compression\",\n      \"raw_text\": \"compression for production\"\n    },\n    {\n      \"label\": \"Online experimentation\",\n      \"raw_text\": \"evaluating changes through online experiments\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Applied AI Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"A PhD or equivalent industry research experience in machine learning, computer science, statistics or a related field.\",\n  \"notes\": \"Treated the explicit 'Relevant experience includes' statements as candidate qualifications, defaulting to required; track-specific asks are not universal requirements across both tracks.\\nTreated research-agenda bullets as descriptions of proposed work rather than additional candidate qualifications. The introductory request for depth in those areas makes this boundary potentially ambiguous.\\nDistillation is required because its explicit Track 1 relevant-experience mention overrides the preferred mention.\\nMapped offline RL to reinforcement-learning rather than inventing a separate taxonomy ID; retained bandits as unmapped.\\nDid not equate online experiments with A/B testing, or language-model post-training generally with fine-tuning.\\nThe framework examples form the only alternative group with at least two retained taxonomy skills; NeMo RL, verl and OpenRLHF are additional unmapped alternatives in that same ask.\\nExcluded commerce domain knowledge, academic fields in the degree requirement, communication skills, and technologies mentioned only in company descriptions or benefits.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "required",
+        "raw_text": "distillation"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "research or applied science experience in machine learning"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "designing and running model-training experiments"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "large language models"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "distributed training"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistical analysis"
+      },
+      {
+        "skill_id": "megatron-lm",
+        "requirement": "nice_to_have",
+        "raw_text": "Megatron-LM",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "deepspeed",
+        "requirement": "nice_to_have",
+        "raw_text": "DeepSpeed",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "recommender systems"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Continued pre-training",
+        "raw_text": "continued pre-training"
+      },
+      {
+        "label": "Mid-training",
+        "raw_text": "mid-training"
+      },
+      {
+        "label": "Data mixture research",
+        "raw_text": "data mixture research"
+      },
+      {
+        "label": "Scaling laws",
+        "raw_text": "scaling laws"
+      },
+      {
+        "label": "Tokenisation",
+        "raw_text": "tokenisation"
+      },
+      {
+        "label": "Entity representations",
+        "raw_text": "entity representations"
+      },
+      {
+        "label": "Tabular foundation models",
+        "raw_text": "tabular foundation models"
+      },
+      {
+        "label": "TabPFN",
+        "raw_text": "TabPFN"
+      },
+      {
+        "label": "TabICL",
+        "raw_text": "TabICL"
+      },
+      {
+        "label": "Language-model post-training",
+        "raw_text": "language-model post-training"
+      },
+      {
+        "label": "Reward modelling",
+        "raw_text": "reward modelling"
+      },
+      {
+        "label": "Agent training environments",
+        "raw_text": "agent training environments"
+      },
+      {
+        "label": "Continual learning",
+        "raw_text": "continual learning"
+      },
+      {
+        "label": "Bandits",
+        "raw_text": "bandits"
+      },
+      {
+        "label": "Decision-model training",
+        "raw_text": "decision-model training"
+      },
+      {
+        "label": "NeMo RL",
+        "raw_text": "NeMo RL"
+      },
+      {
+        "label": "verl",
+        "raw_text": "verl"
+      },
+      {
+        "label": "OpenRLHF",
+        "raw_text": "OpenRLHF"
+      },
+      {
+        "label": "Generative retrieval",
+        "raw_text": "generative retrieval"
+      },
+      {
+        "label": "Semantic IDs",
+        "raw_text": "semantic IDs"
+      },
+      {
+        "label": "User behaviour modelling",
+        "raw_text": "user behaviour modelling"
+      },
+      {
+        "label": "Synthetic data",
+        "raw_text": "synthetic data"
+      },
+      {
+        "label": "Model compression",
+        "raw_text": "compression for production"
+      },
+      {
+        "label": "Online experimentation",
+        "raw_text": "evaluating changes through online experiments"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Applied AI Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "A PhD or equivalent industry research experience in machine learning, computer science, statistics or a related field.",
+    "notes": "Treated the explicit 'Relevant experience includes' statements as candidate qualifications, defaulting to required; track-specific asks are not universal requirements across both tracks.\nTreated research-agenda bullets as descriptions of proposed work rather than additional candidate qualifications. The introductory request for depth in those areas makes this boundary potentially ambiguous.\nDistillation is required because its explicit Track 1 relevant-experience mention overrides the preferred mention.\nMapped offline RL to reinforcement-learning rather than inventing a separate taxonomy ID; retained bandits as unmapped.\nDid not equate online experiments with A/B testing, or language-model post-training generally with fine-tuning.\nThe framework examples form the only alternative group with at least two retained taxonomy skills; NeMo RL, verl and OpenRLHF are additional unmapped alternatives in that same ask.\nExcluded commerce domain knowledge, academic fields in the degree requirement, communication skills, and technologies mentioned only in company descriptions or benefits."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "6c315c713c8cd8425ba13deb8cb3f21aedfb429a59696929b6361227a227dc9d",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -332,7 +332,10 @@ def test_the_committed_batch_renders_without_an_unlocated_quote():
     cannot find in its posting leaves a reviewer nothing to read."""
     tax = sc.Taxonomy.load()
     goldens = {g["id"]: g for g in sc.batch_goldens()}
-    assert len(goldens) == 22
+    # Grows whenever a labelling batch is written to the sealed half: 27 before HIR-348,
+    # 56 with Hamburg's 14 and Munich's 15. The count is a guard that the batch is the
+    # committed one; the assertion that matters is the empty `unlocated` below.
+    assert len(goldens) == 56
     drawn = sc.draw(sc.pool(list(goldens.values())), 24, 2, 0)
     unlocated = []
     for gid, kind, key in drawn:

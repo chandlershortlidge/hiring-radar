@@ -1,0 +1,59 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"statistical reasoning and methods\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ship analyses and pipelines end to end\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Experimentation\",\n      \"raw_text\": \"independently run experiments\"\n    },\n    {\n      \"label\": \"Modern data stack\",\n      \"raw_text\": \"Familiarity with the modern data stack\"\n    },\n    {\n      \"label\": \"Data engineering\",\n      \"raw_text\": \"experience in data engineering\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Lead Data Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field with rigorous statistical coursework\",\n  \"groups_reviewed\": true,\n  \"notes\": \"The What you’ll need section sets required skills; Nice to have makes its entries optional.\\nInterpreted pipelines in the coding qualification as data pipelines, given the explicit analyses and dataset-processing context.\\nExperimentation, modern data stack, and data engineering have no matching taxonomy entries; the latter two are nice-to-have asks.\\nStatistics remains required despite the optional formal-training mention.\\nExcluded autonomy background as domain knowledge and leadership, mentoring, and hiring as nontechnical skills. Technologies and practices appearing only in responsibilities were not labeled.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistical reasoning and methods"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "ship analyses and pipelines end to end"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Experimentation",
+        "raw_text": "independently run experiments"
+      },
+      {
+        "label": "Modern data stack",
+        "raw_text": "Familiarity with the modern data stack"
+      },
+      {
+        "label": "Data engineering",
+        "raw_text": "experience in data engineering"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Lead Data Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "MS or PhD in Statistics, Applied Statistics, Biostatistics, Econometrics, or a quantitative field with rigorous statistical coursework",
+    "groups_reviewed": true,
+    "notes": "The What you’ll need section sets required skills; Nice to have makes its entries optional.\nInterpreted pipelines in the coding qualification as data pipelines, given the explicit analyses and dataset-processing context.\nExperimentation, modern data stack, and data engineering have no matching taxonomy entries; the latter two are nice-to-have asks.\nStatistics remains required despite the optional formal-training mention.\nExcluded autonomy background as domain knowledge and leadership, mentoring, and hiring as nontechnical skills. Technologies and practices appearing only in responsibilities were not labeled."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "e82d71176fe9a83ffdba7fb66199c341b87e4a677898a8aeed63db4a614339b4",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

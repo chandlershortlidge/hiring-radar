@@ -1,0 +1,63 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Meaningful experience building with large language models\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"developing agents\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"integrating models into production systems\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience designing evals\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Programming language proficiency (no language specified)\",\n      \"raw_text\": \"strong proficiency in at least one programming language\"\n    },\n    {\n      \"label\": \"AI workflow development\",\n      \"raw_text\": \"developing agents or workflows\"\n    },\n    {\n      \"label\": \"Prototyping\",\n      \"raw_text\": \"building prototypes\"\n    },\n    {\n      \"label\": \"Technical enablement\",\n      \"raw_text\": \"developing technical enablement for complex products\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"6+ years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Bachelor’s degree or an equivalent combination of education, training, and/or experience\",\n  \"notes\": \"The qualifications section defaults to required; no optional skills section appears. The general encouragement to apply without every qualification does not change labels.\\nConcrete alternatives illustrating LLM-building experience are included as required skills under the examples rule.\\nIntegrating models into production systems is provisionally mapped to AI deployment; integration does not unambiguously mean deployment, so this mapping is flagged.\\nWorkflow development is left unmapped rather than assuming workflow automation. Prototyping and technical enablement have no matching taxonomy entries.\\nJob-role names in the experience requirement are treated literally as experience backgrounds, not additional named technical practices. Technologies and practices appearing only in responsibilities or company descriptions are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Meaningful experience building with large language models"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "developing agents"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "integrating models into production systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Experience designing evals"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Programming language proficiency (no language specified)",
+        "raw_text": "strong proficiency in at least one programming language"
+      },
+      {
+        "label": "AI workflow development",
+        "raw_text": "developing agents or workflows"
+      },
+      {
+        "label": "Prototyping",
+        "raw_text": "building prototypes"
+      },
+      {
+        "label": "Technical enablement",
+        "raw_text": "developing technical enablement for complex products"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "6+ years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Bachelor’s degree or an equivalent combination of education, training, and/or experience",
+    "notes": "The qualifications section defaults to required; no optional skills section appears. The general encouragement to apply without every qualification does not change labels.\nConcrete alternatives illustrating LLM-building experience are included as required skills under the examples rule.\nIntegrating models into production systems is provisionally mapped to AI deployment; integration does not unambiguously mean deployment, so this mapping is flagged.\nWorkflow development is left unmapped rather than assuming workflow automation. Prototyping and technical enablement have no matching taxonomy entries.\nJob-role names in the experience requirement are treated literally as experience backgrounds, not additional named technical practices. Technologies and practices appearing only in responsibilities or company descriptions are excluded."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "8605e57f4999c9ac85d3588a6f2e43e70bd7a1ee8d1717c46e4a30b5729064b2",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

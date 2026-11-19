@@ -1684,3 +1684,89 @@ def test_apply_overwrites_the_same_posting_so_rerunning_after_a_fix_still_works(
 
     al.main(["apply", "--run", run_dir.name, "--split", "dev"])  # no refusal
     assert json.loads((goldens / "golden_001.json").read_text())["source_sha256"] == first["source_sha256"]
+
+
+# --- renumber: the fix the id-clash refusal sends you to ---------------------------
+
+def _taken_slot(goldens, gid="golden_001"):
+    """A Golden already on disk for a posting this run knows nothing about."""
+    held = {"id": gid, "company": "Other GmbH", "title": "AI Engineer",
+            "source_sha256": "f" * 64, "split": "dev", "expected": []}
+    (goldens / f"{gid}.json").write_text(json.dumps(held) + "\n")
+    return held
+
+
+def test_renumber_moves_the_run_off_a_taken_id_and_apply_then_writes(tmp_path, monkeypatch):
+    """The whole point: a run whose ids another run took becomes applicable, and the
+    posting already on disk is left alone."""
+    goldens, run_dir = _scope_run(tmp_path, monkeypatch, [("Acme", "Senior AI Engineer", POSTING)])
+    _answer(run_dir / "review_queue.md", lambda n, b: "yes" if n == 1 else "ok")
+    held = _taken_slot(goldens)
+
+    with pytest.raises(SystemExit):
+        al.main(["apply", "--run", run_dir.name, "--split", "dev"])
+
+    al.main(["renumber", "--run", run_dir.name])
+    al.main(["apply", "--run", run_dir.name, "--split", "dev"])
+
+    assert json.loads((goldens / "golden_001.json").read_text()) == held
+    written = json.loads((goldens / "golden_002.json").read_text())
+    assert written["id"] == "golden_002"
+    assert written["source_sha256"] == al.ng.sha(POSTING) != held["source_sha256"]
+
+
+def test_renumber_rewrites_every_file_and_the_cached_labeler_replies(tmp_path, monkeypatch):
+    goldens, run_dir = _scope_run(tmp_path, monkeypatch, [("Acme", "Senior AI Engineer", POSTING)])
+    _taken_slot(goldens)
+    al.main(["renumber", "--run", run_dir.name])
+
+    for name in ("picks.json", "items.json", "merged.json", "summary.json", "review_queue.md"):
+        text = (run_dir / name).read_text()
+        assert "golden_001" not in text, name
+        assert "golden_002" in text, name
+    raw = sorted(p.name for p in (run_dir / "raw").iterdir())
+    assert raw and all(p.startswith("golden_002.") for p in raw)
+    assert not any(p.endswith(".renumbering") for p in raw)
+
+
+def test_renumber_keeps_the_decisions_already_written(tmp_path, monkeypatch):
+    """Decisions are keyed by item number, so renumbering must not disturb one."""
+    goldens, run_dir = _scope_run(tmp_path, monkeypatch, [("Acme", "Senior AI Engineer", POSTING)])
+    queue = run_dir / "review_queue.md"
+    _answer(queue, lambda n, b: "yes" if n == 1 else "ok")
+    before = al.parse_queue(queue.read_text())
+    _taken_slot(goldens)
+
+    al.main(["renumber", "--run", run_dir.name])
+    assert al.parse_queue(queue.read_text()) == before
+
+
+def test_renumber_refuses_a_start_that_holds_another_posting(tmp_path, monkeypatch):
+    goldens, run_dir = _scope_run(tmp_path, monkeypatch, [("Acme", "Senior AI Engineer", POSTING)])
+    held = _taken_slot(goldens)
+
+    with pytest.raises(SystemExit) as e:
+        al.main(["renumber", "--run", run_dir.name, "--start", "1"])
+    msg = str(e.value)
+    assert "golden_001 is already 'Other GmbH'" in msg
+    assert "renumber from golden_002" in msg
+    assert json.loads((goldens / "golden_001.json").read_text()) == held
+    assert "golden_001" in (run_dir / "picks.json").read_text()  # the run is untouched
+
+
+def test_renumber_dry_run_writes_nothing(tmp_path, monkeypatch, capsys):
+    goldens, run_dir = _scope_run(tmp_path, monkeypatch, [("Acme", "Senior AI Engineer", POSTING)])
+    _taken_slot(goldens)
+    al.main(["renumber", "--run", run_dir.name, "--dry-run"])
+
+    out = capsys.readouterr().out
+    assert "golden_001 -> golden_002" in out
+    assert "golden_001" in (run_dir / "picks.json").read_text()
+
+
+def test_renumber_does_nothing_when_the_ids_are_already_free(tmp_path, monkeypatch, capsys):
+    goldens, run_dir = _scope_run(tmp_path, monkeypatch, [("Acme", "Senior AI Engineer", POSTING)])
+    al.main(["renumber", "--run", run_dir.name])
+
+    assert "nothing to do" in capsys.readouterr().out
+    assert "golden_001" in (run_dir / "picks.json").read_text()

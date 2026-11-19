@@ -1,0 +1,67 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"Hands-on work on evaluations\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"Agentic systems understanding\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Proficiency in Python\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\"},\n    {\"skill_id\": \"jax\", \"requirement\": \"required\", \"raw_text\": \"(or JAX)\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"AI red-teaming\", \"raw_text\": \"red-teaming\"},\n    {\"label\": \"AI alignment\", \"raw_text\": \"alignment\"},\n    {\"label\": \"Interpretability\", \"raw_text\": \"interpretability\"}\n  ],\n  \"seniority\": null, \"seniority_basis\": null, \"seniority_signal\": null,\n  \"german\": null, \"german_basis\": null, \"german_signal\": null,\n  \"degree\": \"phd\", \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true, \"degree_signal\": \"PhD in Computer Science, Machine Learning, Physics, Mathematics, or a related discipline; or equivalent industry research experience\",\n  \"uncertain\": [\"degree\"],\n  \"notes\": \"The heading 'EXCEPTIONAL CANDIDATES HAVE DEMONSTRATED' is not one of the guide's optional markers and is the posting's only qualifications list, so it defaults to required. This is the most literal reading, but a reviewer might treat the heading as aspirational.\\n'agents' is mapped from 'Agentic systems understanding'. The bullet asks for knowledge of how agents fail, not for a named framework, so this item is flagged uncertain.\\nJAX is offered as an alternative to PyTorch ('or JAX'). Both are labeled required because neither carries an optional marker.\\nRed-teaming, alignment and interpretability have no taxonomy entry. 'interpretability' is not an alias of explainable-ai, so it is not mapped there.\\nPrompt injection, reward modeling, preference data and regression tests appear only under WHAT YOU'LL ACCOMPLISH (responsibilities), so they are not labeled.\\nCursor appears only in the company description and is not labeled.\\n'build eval infrastructure' is folded into the evaluation criterion.\\n'Strong engineering fundamentals' is too generic to label as software-engineering.\\nSeniority is none. The title 'Research Engineer' and the phrases 'founding member' and 'reporting to the Head of Safety' carry no stated level. No years of experience are given, and there is no lead or mentoring duty.\\nDegree: PhD is the highest level named. The phrase 'or equivalent industry research experience' sets degree_or_equivalent to true. The degree is labeled required by the heading default, which is flagged uncertain for the same heading reason as above.\\nGerman: no language mention in the posting.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Hands-on work on evaluations"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Agentic systems understanding",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Proficiency in Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "(or JAX)"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "AI red-teaming",
+        "raw_text": "red-teaming"
+      },
+      {
+        "label": "AI alignment",
+        "raw_text": "alignment"
+      },
+      {
+        "label": "Interpretability",
+        "raw_text": "interpretability"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "PhD in Computer Science, Machine Learning, Physics, Mathematics, or a related discipline; or equivalent industry research experience",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "The heading 'EXCEPTIONAL CANDIDATES HAVE DEMONSTRATED' is not one of the guide's optional markers and is the posting's only qualifications list, so it defaults to required. This is the most literal reading, but a reviewer might treat the heading as aspirational.\n'agents' is mapped from 'Agentic systems understanding'. The bullet asks for knowledge of how agents fail, not for a named framework, so this item is flagged uncertain.\nJAX is offered as an alternative to PyTorch ('or JAX'). Both are labeled required because neither carries an optional marker.\nRed-teaming, alignment and interpretability have no taxonomy entry. 'interpretability' is not an alias of explainable-ai, so it is not mapped there.\nPrompt injection, reward modeling, preference data and regression tests appear only under WHAT YOU'LL ACCOMPLISH (responsibilities), so they are not labeled.\nCursor appears only in the company description and is not labeled.\n'build eval infrastructure' is folded into the evaluation criterion.\n'Strong engineering fundamentals' is too generic to label as software-engineering.\nSeniority is none. The title 'Research Engineer' and the phrases 'founding member' and 'reporting to the Head of Safety' carry no stated level. No years of experience are given, and there is no lead or mentoring duty.\nDegree: PhD is the highest level named. The phrase 'or equivalent industry research experience' sets degree_or_equivalent to true. The degree is labeled required by the heading default, which is flagged uncertain for the same heading reason as above.\nGerman: no language mention in the posting."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "63d515af889a3974b76de4a7654518107966de90fd44e2d31c4040419165a6cd",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

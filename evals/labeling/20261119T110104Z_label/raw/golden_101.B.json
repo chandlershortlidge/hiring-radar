@@ -1,0 +1,309 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML projects\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"version control\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning architectures\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"spin up LLM based agents\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"spin up LLM based agents\"\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agents that automate scientific workflows\"\n    },\n    {\n      \"skill_id\": \"cheminformatics\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cheminformatics\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"MLOps expertise\"\n    },\n    {\n      \"skill_id\": \"experiment-tracking\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"experiment tracking\"\n    },\n    {\n      \"skill_id\": \"mlflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"MLflow\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"weights-and-biases\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"W&B\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"aws-s3\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"S3\"\n    },\n    {\n      \"skill_id\": \"sagemaker\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"SageMaker\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"IaC\"\n    },\n    {\n      \"skill_id\": \"terraform\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Terraform\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"github-actions\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GitHub Actions\"\n    },\n    {\n      \"skill_id\": \"airflow\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Airflow\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"prefect\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Prefect\",\n      \"alternative_group\": 3\n    },\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Snowflake\"\n    },\n    {\n      \"skill_id\": \"vector-search\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vector search\"\n    },\n    {\n      \"skill_id\": \"faiss\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"FAISS\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"pgvector\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"pgvector\",\n      \"alternative_group\": 4\n    },\n    {\n      \"skill_id\": \"fastapi\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"FastAPI\",\n      \"alternative_group\": 5\n    },\n    {\n      \"skill_id\": \"streamlit\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Streamlit\",\n      \"alternative_group\": 5\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Protein design\",\n      \"raw_text\": \"protein design\"\n    },\n    {\n      \"label\": \"Mass spectrometry\",\n      \"raw_text\": \"mass spec\"\n    },\n    {\n      \"label\": \"Docking pipelines\",\n      \"raw_text\": \"docking pipelines\"\n    },\n    {\n      \"label\": \"Modern ML frameworks\",\n      \"raw_text\": \"modern ML frameworks\"\n    },\n    {\n      \"label\": \"Databases\",\n      \"raw_text\": \"databases\"\n    },\n    {\n      \"label\": \"Informatics software\",\n      \"raw_text\": \"relevant informatics software\"\n    },\n    {\n      \"label\": \"Protein modeling\",\n      \"raw_text\": \"protein modeling/design\"\n    },\n    {\n      \"label\": \"Molecular dynamics\",\n      \"raw_text\": \"biophysics/MD\"\n    },\n    {\n      \"label\": \"Data contracts\",\n      \"raw_text\": \"data contracts\"\n    },\n    {\n      \"label\": \"Data lineage\",\n      \"raw_text\": \"lineage\"\n    },\n    {\n      \"label\": \"DVC\",\n      \"raw_text\": \"DVC\"\n    },\n    {\n      \"label\": \"LakeFS\",\n      \"raw_text\": \"LakeFS\"\n    },\n    {\n      \"label\": \"AWS Batch\",\n      \"raw_text\": \"Batch\"\n    },\n    {\n      \"label\": \"AWS ECS\",\n      \"raw_text\": \"ECS\"\n    },\n    {\n      \"label\": \"AWS EKS\",\n      \"raw_text\": \"EKS\"\n    },\n    {\n      \"label\": \"AWS CDK\",\n      \"raw_text\": \"CDK\"\n    },\n    {\n      \"label\": \"Generative modeling\",\n      \"raw_text\": \"Generative modeling\"\n    },\n    {\n      \"label\": \"Diffusion models\",\n      \"raw_text\": \"diffusion\"\n    },\n    {\n      \"label\": \"Flow models\",\n      \"raw_text\": \"flow\"\n    },\n    {\n      \"label\": \"Variational autoencoders\",\n      \"raw_text\": \"VAEs\"\n    },\n    {\n      \"label\": \"Docking rescoring\",\n      \"raw_text\": \"docking rescoring\"\n    },\n    {\n      \"label\": \"gnina\",\n      \"raw_text\": \"gnina\"\n    },\n    {\n      \"label\": \"DiffDock\",\n      \"raw_text\": \"DiffDock\"\n    },\n    {\n      \"label\": \"Pose quality metrics\",\n      \"raw_text\": \"pose quality metrics\"\n    },\n    {\n      \"label\": \"Workflow orchestration\",\n      \"raw_text\": \"Workflow orchestration\"\n    },\n    {\n      \"label\": \"Argo\",\n      \"raw_text\": \"Argo\"\n    },\n    {\n      \"label\": \"Data warehouses\",\n      \"raw_text\": \"data warehouses\"\n    },\n    {\n      \"label\": \"Amazon Redshift\",\n      \"raw_text\": \"Redshift\"\n    },\n    {\n      \"label\": \"Gradio\",\n      \"raw_text\": \"Gradio\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s, or PhD in a relevant field\",\n  \"notes\": \"The explicit ideal-candidate sentence in THE ROLE is treated as a candidate qualification, not merely a responsibility; it makes protein design, mass spectrometry/docking pipelines, LLMs, agents, and scientific workflow automation required.\\nPreferred Qualifications makes its technical items nice_to_have; the closing invitation to apply without every qualification does not change those labels.\\nSlash-separated framework/tool examples for a single ask are treated as alternatives. AWS services are complementary infrastructure components, not one interchangeable set. Groups containing only one taxonomy-mapped skill are omitted.\\nUnmapped alternatives include mass spec/docking pipelines, DVC/LakeFS, Terraform/CDK, diffusion/flow/VAEs, gnina/DiffDock, and Redshift/Snowflake; unmapped entries have no skill IDs or group fields.\\nProteomics, biophysics, ADMET, degree fields, and application domains are excluded as domain knowledge; explicitly named technical methods such as molecular dynamics and protein modeling are retained.\\nArgo is not mapped to Argo CD, and workflow orchestration is not mapped to LLM orchestration. Generic databases and ML frameworks have no exact taxonomy entries.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML projects"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "version control"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning architectures"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "spin up LLM based agents"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "spin up LLM based agents"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "agents that automate scientific workflows"
+      },
+      {
+        "skill_id": "cheminformatics",
+        "requirement": "nice_to_have",
+        "raw_text": "cheminformatics"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "nice_to_have",
+        "raw_text": "MLOps expertise"
+      },
+      {
+        "skill_id": "experiment-tracking",
+        "requirement": "nice_to_have",
+        "raw_text": "experiment tracking"
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "nice_to_have",
+        "raw_text": "MLflow",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "weights-and-biases",
+        "requirement": "nice_to_have",
+        "raw_text": "W&B",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "aws-s3",
+        "requirement": "nice_to_have",
+        "raw_text": "S3"
+      },
+      {
+        "skill_id": "sagemaker",
+        "requirement": "nice_to_have",
+        "raw_text": "SageMaker"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "nice_to_have",
+        "raw_text": "IaC"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "nice_to_have",
+        "raw_text": "Terraform"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "github-actions",
+        "requirement": "nice_to_have",
+        "raw_text": "GitHub Actions"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "nice_to_have",
+        "raw_text": "Airflow",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "prefect",
+        "requirement": "nice_to_have",
+        "raw_text": "Prefect",
+        "alternative_group": 3
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "nice_to_have",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "vector-search",
+        "requirement": "nice_to_have",
+        "raw_text": "vector search"
+      },
+      {
+        "skill_id": "faiss",
+        "requirement": "nice_to_have",
+        "raw_text": "FAISS",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "pgvector",
+        "requirement": "nice_to_have",
+        "raw_text": "pgvector",
+        "alternative_group": 4
+      },
+      {
+        "skill_id": "fastapi",
+        "requirement": "nice_to_have",
+        "raw_text": "FastAPI",
+        "alternative_group": 5
+      },
+      {
+        "skill_id": "streamlit",
+        "requirement": "nice_to_have",
+        "raw_text": "Streamlit",
+        "alternative_group": 5
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Protein design",
+        "raw_text": "protein design"
+      },
+      {
+        "label": "Mass spectrometry",
+        "raw_text": "mass spec"
+      },
+      {
+        "label": "Docking pipelines",
+        "raw_text": "docking pipelines"
+      },
+      {
+        "label": "Modern ML frameworks",
+        "raw_text": "modern ML frameworks"
+      },
+      {
+        "label": "Databases",
+        "raw_text": "databases"
+      },
+      {
+        "label": "Informatics software",
+        "raw_text": "relevant informatics software"
+      },
+      {
+        "label": "Protein modeling",
+        "raw_text": "protein modeling/design"
+      },
+      {
+        "label": "Molecular dynamics",
+        "raw_text": "biophysics/MD"
+      },
+      {
+        "label": "Data contracts",
+        "raw_text": "data contracts"
+      },
+      {
+        "label": "Data lineage",
+        "raw_text": "lineage"
+      },
+      {
+        "label": "DVC",
+        "raw_text": "DVC"
+      },
+      {
+        "label": "LakeFS",
+        "raw_text": "LakeFS"
+      },
+      {
+        "label": "AWS Batch",
+        "raw_text": "Batch"
+      },
+      {
+        "label": "AWS ECS",
+        "raw_text": "ECS"
+      },
+      {
+        "label": "AWS EKS",
+        "raw_text": "EKS"
+      },
+      {
+        "label": "AWS CDK",
+        "raw_text": "CDK"
+      },
+      {
+        "label": "Generative modeling",
+        "raw_text": "Generative modeling"
+      },
+      {
+        "label": "Diffusion models",
+        "raw_text": "diffusion"
+      },
+      {
+        "label": "Flow models",
+        "raw_text": "flow"
+      },
+      {
+        "label": "Variational autoencoders",
+        "raw_text": "VAEs"
+      },
+      {
+        "label": "Docking rescoring",
+        "raw_text": "docking rescoring"
+      },
+      {
+        "label": "gnina",
+        "raw_text": "gnina"
+      },
+      {
+        "label": "DiffDock",
+        "raw_text": "DiffDock"
+      },
+      {
+        "label": "Pose quality metrics",
+        "raw_text": "pose quality metrics"
+      },
+      {
+        "label": "Workflow orchestration",
+        "raw_text": "Workflow orchestration"
+      },
+      {
+        "label": "Argo",
+        "raw_text": "Argo"
+      },
+      {
+        "label": "Data warehouses",
+        "raw_text": "data warehouses"
+      },
+      {
+        "label": "Amazon Redshift",
+        "raw_text": "Redshift"
+      },
+      {
+        "label": "Gradio",
+        "raw_text": "Gradio"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s, or PhD in a relevant field",
+    "notes": "The explicit ideal-candidate sentence in THE ROLE is treated as a candidate qualification, not merely a responsibility; it makes protein design, mass spectrometry/docking pipelines, LLMs, agents, and scientific workflow automation required.\nPreferred Qualifications makes its technical items nice_to_have; the closing invitation to apply without every qualification does not change those labels.\nSlash-separated framework/tool examples for a single ask are treated as alternatives. AWS services are complementary infrastructure components, not one interchangeable set. Groups containing only one taxonomy-mapped skill are omitted.\nUnmapped alternatives include mass spec/docking pipelines, DVC/LakeFS, Terraform/CDK, diffusion/flow/VAEs, gnina/DiffDock, and Redshift/Snowflake; unmapped entries have no skill IDs or group fields.\nProteomics, biophysics, ADMET, degree fields, and application domains are excluded as domain knowledge; explicitly named technical methods such as molecular dynamics and protein modeling are retained.\nArgo is not mapped to Argo CD, and workflow orchestration is not mapped to LLM orchestration. Generic databases and ML frameworks have no exact taxonomy entries."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "7ebff664e45916dc525daca7e6dc49726fedf637ea40025ec0ab80af89e88fb8",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

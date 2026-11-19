@@ -1,0 +1,81 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"ai-ml\", \"requirement\": \"required\", \"raw_text\": \"Agentic AI/ML systems\"},\n    {\"skill_id\": \"agents\", \"requirement\": \"required\", \"raw_text\": \"Agentic AI\", \"uncertain\": true},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"APIs\"},\n    {\"skill_id\": \"cloud\", \"requirement\": \"required\", \"raw_text\": \"cloud\"},\n    {\"skill_id\": \"software-architecture\", \"requirement\": \"required\", \"raw_text\": \"cloud and enterprise architecture\"},\n    {\"skill_id\": \"software-engineering\", \"requirement\": \"required\", \"raw_text\": \"coding fluency\", \"uncertain\": true},\n    {\"skill_id\": \"cybersecurity\", \"requirement\": \"required\", \"raw_text\": \"Cybersecurity\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"data flows\", \"raw_text\": \"data flows\"},\n    {\"label\": \"security considerations\", \"raw_text\": \"security considerations\"},\n    {\"label\": \"IAM\", \"raw_text\": \"IAM\"},\n    {\"label\": \"Document processing\", \"raw_text\": \"Document processing\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"senior Enterprise AI Architect\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Required section: every item is required. The Preferred section names no concrete technologies, so it adds no skills.\\n'Agentic AI/ML systems': mapped to ai-ml. Also mapped to agents, uncertain, because 'Agentic AI' is not an exact taxonomy alias.\\n'enterprise architecture' / 'solution architecture': mapped to software-architecture, whose aliases include enterprise architecture. The mention is quoted from the 'Strong working knowledge' bullet rather than from the years-of-experience bullet.\\n'coding fluency': mapped to software-engineering as the closest entry. Flagged uncertain.\\nCybersecurity: listed among domain-expertise examples ('Deep domain expertise in one or more enterprise areas such as ...'). The README excludes domain knowledge, but Cybersecurity has a taxonomy id and examples after 'such as' count as skills. Labeled required and flagged uncertain. Voice, MarTech, IAM and customer support are treated as domain areas and not labeled as skills.\\n'integrations': folded into apis rather than given a separate criterion.\\nSeniority is stated in the title text ('senior Enterprise AI Architect'). It is also supported by '8+ years' and the 'Architect' title.\\nGerman: no mention of German, Deutsch or Sprache in the posting.\\nDegree: no mention of a degree in the posting.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "Agentic AI/ML systems"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Agentic AI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "cloud and enterprise architecture"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "coding fluency",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cybersecurity",
+        "requirement": "required",
+        "raw_text": "Cybersecurity",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "data flows",
+        "raw_text": "data flows"
+      },
+      {
+        "label": "security considerations",
+        "raw_text": "security considerations"
+      },
+      {
+        "label": "IAM",
+        "raw_text": "IAM"
+      },
+      {
+        "label": "Document processing",
+        "raw_text": "Document processing"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "senior Enterprise AI Architect",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Required section: every item is required. The Preferred section names no concrete technologies, so it adds no skills.\n'Agentic AI/ML systems': mapped to ai-ml. Also mapped to agents, uncertain, because 'Agentic AI' is not an exact taxonomy alias.\n'enterprise architecture' / 'solution architecture': mapped to software-architecture, whose aliases include enterprise architecture. The mention is quoted from the 'Strong working knowledge' bullet rather than from the years-of-experience bullet.\n'coding fluency': mapped to software-engineering as the closest entry. Flagged uncertain.\nCybersecurity: listed among domain-expertise examples ('Deep domain expertise in one or more enterprise areas such as ...'). The README excludes domain knowledge, but Cybersecurity has a taxonomy id and examples after 'such as' count as skills. Labeled required and flagged uncertain. Voice, MarTech, IAM and customer support are treated as domain areas and not labeled as skills.\n'integrations': folded into apis rather than given a separate criterion.\nSeniority is stated in the title text ('senior Enterprise AI Architect'). It is also supported by '8+ years' and the 'Architect' title.\nGerman: no mention of German, Deutsch or Sprache in the posting.\nDegree: no mention of a degree in the posting."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "69642451d53ddfeb83499b88c31481244020218d4bf25a5f8b4c04735560a96a",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

@@ -1,0 +1,112 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building and shipping ML systems\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM post-training\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"reinforcement learning\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agent systems\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model training\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"designing rigorous evaluations\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"training models to use tools\"\n    },\n    {\n      \"skill_id\": \"multi-agent-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Multi-agent training, coordination, or evaluation\"\n    },\n    {\n      \"skill_id\": \"distributed-training\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distributed training systems\"\n    },\n    {\n      \"skill_id\": \"recommender-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"recommendation systems\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"LLM post-training\",\n      \"raw_text\": \"LLM post-training\"\n    },\n    {\n      \"label\": \"Search and retrieval\",\n      \"raw_text\": \"search and retrieval\"\n    },\n    {\n      \"label\": \"Experimentation infrastructure\",\n      \"raw_text\": \"experimentation infrastructure\"\n    },\n    {\n      \"label\": \"Agent harnesses\",\n      \"raw_text\": \"Building agent harnesses\"\n    },\n    {\n      \"label\": \"Scalable inference infrastructure\",\n      \"raw_text\": \"scalable inference infrastructure\"\n    },\n    {\n      \"label\": \"Ranking systems\",\n      \"raw_text\": \"ranking\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Member of Technical Staff\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"QUALIFICATIONS defaults to required; NICE TO HAVE makes its items optional. Technologies appearing only in the introduction or responsibilities were excluded.\\nGroup 1 represents the qualification accepting one or more of LLM post-training, reinforcement learning, search and retrieval, or agent systems; search and retrieval has no matching taxonomy entry.\\nLLMs is explicitly named within LLM post-training. Post-training itself is left unmapped rather than equated with fine-tuning.\\nGeneric retrieval is not assumed to mean RAG or vector search; agent harnesses are not assumed to mean agent architecture; scalable inference infrastructure is not assumed to mean inference optimization.\\nThe optional alternatives involving agent harnesses/distributed training/inference infrastructure and retrieval/ranking/recommendation each have only one mapped member, so no additional groups are emitted.\\nSeniority follows the literal rule that Staff in a title indicates senior, but is flagged because Member of Technical Staff can be a level-neutral title.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "building and shipping ML systems"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLM post-training",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "reinforcement learning",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agent systems",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "model training"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "designing rigorous evaluations"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "nice_to_have",
+        "raw_text": "training models to use tools"
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "Multi-agent training, coordination, or evaluation"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed training systems"
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "recommendation systems"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "LLM post-training",
+        "raw_text": "LLM post-training"
+      },
+      {
+        "label": "Search and retrieval",
+        "raw_text": "search and retrieval"
+      },
+      {
+        "label": "Experimentation infrastructure",
+        "raw_text": "experimentation infrastructure"
+      },
+      {
+        "label": "Agent harnesses",
+        "raw_text": "Building agent harnesses"
+      },
+      {
+        "label": "Scalable inference infrastructure",
+        "raw_text": "scalable inference infrastructure"
+      },
+      {
+        "label": "Ranking systems",
+        "raw_text": "ranking"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Member of Technical Staff",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "QUALIFICATIONS defaults to required; NICE TO HAVE makes its items optional. Technologies appearing only in the introduction or responsibilities were excluded.\nGroup 1 represents the qualification accepting one or more of LLM post-training, reinforcement learning, search and retrieval, or agent systems; search and retrieval has no matching taxonomy entry.\nLLMs is explicitly named within LLM post-training. Post-training itself is left unmapped rather than equated with fine-tuning.\nGeneric retrieval is not assumed to mean RAG or vector search; agent harnesses are not assumed to mean agent architecture; scalable inference infrastructure is not assumed to mean inference optimization.\nThe optional alternatives involving agent harnesses/distributed training/inference infrastructure and retrieval/ranking/recommendation each have only one mapped member, so no additional groups are emitted.\nSeniority follows the literal rule that Staff in a title indicates senior, but is flagged because Member of Technical Staff can be a level-neutral title."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "ffccf25966eba0ef219ab3f8a681de88c9c66cde6b3c951c25e0a86ae243b8d8",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

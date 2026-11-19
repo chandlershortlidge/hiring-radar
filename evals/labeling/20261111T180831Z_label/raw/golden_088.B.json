@@ -1,0 +1,102 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"recommender-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"production recommendation, ranking, or personalization systems\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong ML fundamentals\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience integrating LLMs\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"offline and online metrics\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"ai-infrastructure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"large-scale ranking and training infrastructure\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"real-time serving\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Ranking systems\",\n      \"raw_text\": \"ranking\"\n    },\n    {\n      \"label\": \"Personalization systems\",\n      \"raw_text\": \"personalization systems\"\n    },\n    {\n      \"label\": \"Engagement modeling\",\n      \"raw_text\": \"engagement modeling\"\n    },\n    {\n      \"label\": \"Model calibration\",\n      \"raw_text\": \"model calibration\"\n    },\n    {\n      \"label\": \"Online experimentation\",\n      \"raw_text\": \"online experimentation\"\n    },\n    {\n      \"label\": \"Retrieval\",\n      \"raw_text\": \"retrieval\"\n    },\n    {\n      \"label\": \"Multi-stage retrieval and ranking\",\n      \"raw_text\": \"multi-stage retrieval and ranking\"\n    },\n    {\n      \"label\": \"Feature stores\",\n      \"raw_text\": \"feature stores\"\n    },\n    {\n      \"label\": \"User understanding\",\n      \"raw_text\": \"user understanding\"\n    },\n    {\n      \"label\": \"Feed ranking\",\n      \"raw_text\": \"feed ranking\"\n    },\n    {\n      \"label\": \"Lifecycle modeling\",\n      \"raw_text\": \"lifecycle modeling\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"WHAT WE'RE LOOKING FOR defaults to required; NICE TO HAVE makes its items optional. Company descriptions and responsibilities are excluded.\\nMember of Technical Staff is treated literally as a generic role title, not an explicit Staff-level designation. Experienced and deep experience are not seniority signals; the technical-leadership condition applies only to a subset of roles, so no posting-wide seniority is assigned.\\nOffline and online metrics are provisionally mapped to Evaluation; the wording does not explicitly name evaluation, so review is requested.\\nRanking and training infrastructure is provisionally mapped to AI Infrastructure in its ML context; review is requested.\\nOnline experimentation is not assumed to mean A/B testing, and retrieval is not assumed to mean RAG or vector search.\\nNotifications and growth are treated as product-domain background, not technical skills. User understanding is retained as an unmapped user-modeling capability in this context.\\nNo German-language or degree requirement is mentioned.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "required",
+        "raw_text": "production recommendation, ranking, or personalization systems"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Strong ML fundamentals"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "Experience integrating LLMs"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "offline and online metrics",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "nice_to_have",
+        "raw_text": "large-scale ranking and training infrastructure",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "real-time serving"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Ranking systems",
+        "raw_text": "ranking"
+      },
+      {
+        "label": "Personalization systems",
+        "raw_text": "personalization systems"
+      },
+      {
+        "label": "Engagement modeling",
+        "raw_text": "engagement modeling"
+      },
+      {
+        "label": "Model calibration",
+        "raw_text": "model calibration"
+      },
+      {
+        "label": "Online experimentation",
+        "raw_text": "online experimentation"
+      },
+      {
+        "label": "Retrieval",
+        "raw_text": "retrieval"
+      },
+      {
+        "label": "Multi-stage retrieval and ranking",
+        "raw_text": "multi-stage retrieval and ranking"
+      },
+      {
+        "label": "Feature stores",
+        "raw_text": "feature stores"
+      },
+      {
+        "label": "User understanding",
+        "raw_text": "user understanding"
+      },
+      {
+        "label": "Feed ranking",
+        "raw_text": "feed ranking"
+      },
+      {
+        "label": "Lifecycle modeling",
+        "raw_text": "lifecycle modeling"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "WHAT WE'RE LOOKING FOR defaults to required; NICE TO HAVE makes its items optional. Company descriptions and responsibilities are excluded.\nMember of Technical Staff is treated literally as a generic role title, not an explicit Staff-level designation. Experienced and deep experience are not seniority signals; the technical-leadership condition applies only to a subset of roles, so no posting-wide seniority is assigned.\nOffline and online metrics are provisionally mapped to Evaluation; the wording does not explicitly name evaluation, so review is requested.\nRanking and training infrastructure is provisionally mapped to AI Infrastructure in its ML context; review is requested.\nOnline experimentation is not assumed to mean A/B testing, and retrieval is not assumed to mean RAG or vector search.\nNotifications and growth are treated as product-domain background, not technical skills. User understanding is retained as an unmapped user-modeling capability in this context.\nNo German-language or degree requirement is mentioned."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "2955c01a4194fe08ff50df9b440e459a8d4447be4577ff9dcbc789b59c43c495",
+  "prompt_sha256": "59662c4d89ff7fff47843b7f02442747ce294654dfd58707366812ea0ea6cd65"
+}

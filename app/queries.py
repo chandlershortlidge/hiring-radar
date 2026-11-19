@@ -119,7 +119,38 @@ class Filters:
 
 # --- the job set ----------------------------------------------------------------------
 
-_HAS_FEED = f"EXISTS (SELECT 1 FROM job_source s WHERE s.job_id = j.id AND s.source IN {FEED_SOURCES})"
+def make_filters(known_skills, *, cities=(), seniorities=(), families=(), requirement="required",
+                 window="open", german="any", degree="any", production="any", skill_ids=(), query="",
+                 text="") -> Filters:
+    """Filters from request values, or ValueError naming the first bad one. The one check
+    shared by the dashboard API and the MCP tools, so both accept exactly the same values.
+    Cities are not checked: a place we don't collect matches no jobs. Several skill ids
+    mean AND; deduplicated, order kept, so a skill sent twice adds no redundant clause."""
+    for s in seniorities:
+        if s not in SENIORITIES:
+            raise ValueError(f"bad seniority {s!r}")
+    for s in families:
+        if s not in FAMILIES:
+            raise ValueError(f"bad family {s!r}")
+    if requirement not in REQUIREMENTS:
+        raise ValueError(f"bad requirement {requirement!r}")
+    if window not in WINDOWS:
+        raise ValueError(f"bad window {window!r}")
+    if german not in GERMAN_FILTERS:
+        raise ValueError(f"bad german {german!r}")
+    if degree not in DEGREE_FILTERS:
+        raise ValueError(f"bad degree {degree!r}")
+    if production not in PRODUCTION_FILTERS:
+        raise ValueError(f"bad production {production!r}")
+    for s in skill_ids:
+        if s not in known_skills:
+            raise ValueError(f"unknown skill {s!r}")
+    return Filters(cities=tuple(cities), seniorities=tuple(seniorities), families=tuple(families),
+                   requirement=requirement, window=window, german=german, degree=degree,
+                   production=production, skill_ids=tuple(dict.fromkeys(skill_ids)), query=query, text=text)
+
+
+_HAS_FEED =f"EXISTS (SELECT 1 FROM job_source s WHERE s.job_id = j.id AND s.source IN {FEED_SOURCES})"
 
 
 _FEED_SEEN = (f"EXISTS (SELECT 1 FROM job_source s WHERE s.job_id = j.id AND s.source IN {FEED_SOURCES}"
@@ -457,6 +488,35 @@ def _status(row, now: str, sources: list[dict]) -> str:
 
 def list_jobs(conn: sqlite3.Connection, f: Filters, now: str, sort: str = "newest",
               limit: int = 20, offset: int = 0) -> dict:
+    """Find the jobs that match a set of filters, one page at a time.
+
+    This is the dashboard's job list and the search_jobs tool's search: both call it,
+    so they always agree. Every filter must match (they combine with AND).
+
+    Example: open Berlin jobs that require RAG, newest first, the first 20:
+    list_jobs(conn, filters, now) with filters built from skill "rag" and city "Berlin".
+
+    Args:
+        conn: an open database connection.
+        f: the filters: which window of jobs, which skills, city, seniority and so
+            on, and any words to find in the company, title or posting text.
+        now: the current time, as an ISO string. A job is open or closed relative to it.
+        sort: "newest" (default), "oldest", "reposts" (most re-advertised first) or
+            "company". An unknown value falls back to "newest".
+        limit: how many jobs to return.
+        offset: how many matching jobs to skip, to reach the next page.
+
+    Returns:
+        A dict with:
+            total: how many jobs match in all, not just on this page.
+            jobs: this page's jobs, in the chosen order. Each has its id, company,
+                title, places, family, seniority, first_seen, last_seen, status
+                (open or closed), sources (where it was posted, with links),
+                required_skills and nice_skills (skill ids), skill_counts, and its
+                german, degree and production requirements.
+            limit, offset: as passed in.
+        When nothing matches, total is 0 and jobs is an empty list.
+    """
     jc, jp = job_set_clause(f, now, include_legacy=True)
     params = list(jp)
     where = [jc]
