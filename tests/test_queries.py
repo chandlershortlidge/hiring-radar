@@ -284,6 +284,37 @@ def test_legacy_jobs_stay_out_of_the_chart_but_in_the_list(conn):
     assert q.stats(conn, NOW, 1)["legacy"] == 1
 
 
+def test_stored_sales_jobs_stay_out_of_the_charts_but_in_the_list(conn):
+    """HIR-246: a sales posting stored before the title filter refused it is not deleted,
+    and does not count in the chart, the city totals, the related panel or the skill tree."""
+    from app import skill_tree
+    f = q.Filters(window="all", requirement="all")
+    before = q.skill_frequency(conn, f, NOW)
+    tree_before = skill_tree.fetch_jobs(conn, f, NOW)
+    jid = add(conn, "Oediv", "PreSales Engineer Data & AI", "Berlin", "arbeitnow", ts(0),
+              [("python", "required"), ("kubernetes", "required")])
+    after = q.skill_frequency(conn, f, NOW)
+    assert after == before and after["total"] == 5
+    assert "kubernetes" not in {s["skill_id"] for s in after["skills"]}
+    assert q.city_totals(conn, f, NOW) == {"Berlin": 4, "San Francisco": 1}
+    assert skill_tree.fetch_jobs(conn, f, NOW) == tree_before
+    r = q.list_jobs(conn, q.Filters(window="all"), NOW)
+    assert r["total"] == 6 and "Oediv" in {j["company"] for j in r["jobs"]}
+    assert conn.execute("SELECT count(*) FROM skill_mention WHERE job_id=?", (jid,)).fetchone()[0] == 2
+
+
+def test_the_chart_hides_exactly_the_titles_ingest_refuses_as_sales(conn):
+    """One list, two readers: the SQL built from it and ingest.sales_title must agree."""
+    from app.ingest import sales_title
+    from tests.test_ingest import NOT_SALES_TITLES, SALES_TITLES
+    titles = SALES_TITLES + NOT_SALES_TITLES
+    for i, t in enumerate(titles):
+        add(conn, f"Co{i}", t, "Berlin", "paste", ts(0), [("python", "required")])
+    kept = {r["title"] for r in conn.execute(f"SELECT j.title FROM job j WHERE {q._NOT_SALES}")}
+    assert {t for t in titles if t in kept} == {t for t in titles if not sales_title(t)}
+    assert kept >= set(NOT_SALES_TITLES) and not kept & set(SALES_TITLES)
+
+
 def test_too_short_jobs_stay_out_of_the_chart_but_in_the_list(conn):
     p = Posting("screenshot", "", "", "Theta", "AI Engineer", "Berlin", "Theta AI Engineer. Python.")
     jid = ingest_one(conn, p, ts(1), require_city=False, trust_title=True).job_id
