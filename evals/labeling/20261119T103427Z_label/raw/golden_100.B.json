@@ -1,0 +1,63 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"RTL design\",\n      \"raw_text\": \"RTL design\"\n    },\n    {\n      \"label\": \"Cache micro-architecture\",\n      \"raw_text\": \"micro-architecture of caches\"\n    },\n    {\n      \"label\": \"Scratch-pad memory micro-architecture\",\n      \"raw_text\": \"micro-architecture of caches and/or scratch-pad memories\"\n    },\n    {\n      \"label\": \"Performance modeling for architecture exploration\",\n      \"raw_text\": \"developing and/or working with performance models for architecture exploration\"\n    },\n    {\n      \"label\": \"Power- and area-efficient hardware architecture\",\n      \"raw_text\": \"power- and area-efficient architectures\"\n    },\n    {\n      \"label\": \"Microprocessor architecture\",\n      \"raw_text\": \"microprocessor architecture\"\n    },\n    {\n      \"label\": \"Logic design and timing/power tradeoffs\",\n      \"raw_text\": \"logic design principles, and their timing/power tradeoffs\"\n    },\n    {\n      \"label\": \"Large-scale AI system evaluation\",\n      \"raw_text\": \"Deep interest in evaluating large-scale AI systems from software to physical design.\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"A Bachelor’s degree in EE/ECE/CE/CS or a related field (MS or PhD preferred).\",\n  \"notes\": \"What We Need and What You Bring are requirements sections; What You’ll Learn describes future learning and supplies no candidate requirements.\\nHardware architecture, RTL design, and hardware performance modeling have no fitting taxonomy entries; they are not mapped to software architecture or model evaluation.\\nLarge-scale AI system evaluation is an appetite-only, nice-to-have ask, recorded as unmapped because the context is hardware/system performance rather than model evaluation.\\nAI workload characteristics are treated literally as domain knowledge and excluded; the explicitly named LLM technology is included.\\nThe all-seniorities and various-experience-levels statements make seniority null despite Architect in the title.\\nThe highest degree named is PhD, explicitly preferred; the bachelor's degree is required, but the schema records only the highest named level.\\nCache and scratch-pad micro-architecture are alternatives, but neither has a taxonomy ID, so no expected-skill alternative group is created.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "RTL design",
+        "raw_text": "RTL design"
+      },
+      {
+        "label": "Cache micro-architecture",
+        "raw_text": "micro-architecture of caches"
+      },
+      {
+        "label": "Scratch-pad memory micro-architecture",
+        "raw_text": "micro-architecture of caches and/or scratch-pad memories"
+      },
+      {
+        "label": "Performance modeling for architecture exploration",
+        "raw_text": "developing and/or working with performance models for architecture exploration"
+      },
+      {
+        "label": "Power- and area-efficient hardware architecture",
+        "raw_text": "power- and area-efficient architectures"
+      },
+      {
+        "label": "Microprocessor architecture",
+        "raw_text": "microprocessor architecture"
+      },
+      {
+        "label": "Logic design and timing/power tradeoffs",
+        "raw_text": "logic design principles, and their timing/power tradeoffs"
+      },
+      {
+        "label": "Large-scale AI system evaluation",
+        "raw_text": "Deep interest in evaluating large-scale AI systems from software to physical design."
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "A Bachelor’s degree in EE/ECE/CE/CS or a related field (MS or PhD preferred).",
+    "notes": "What We Need and What You Bring are requirements sections; What You’ll Learn describes future learning and supplies no candidate requirements.\nHardware architecture, RTL design, and hardware performance modeling have no fitting taxonomy entries; they are not mapped to software architecture or model evaluation.\nLarge-scale AI system evaluation is an appetite-only, nice-to-have ask, recorded as unmapped because the context is hardware/system performance rather than model evaluation.\nAI workload characteristics are treated literally as domain knowledge and excluded; the explicitly named LLM technology is included.\nThe all-seniorities and various-experience-levels statements make seniority null despite Architect in the title.\nThe highest degree named is PhD, explicitly preferred; the bachelor's degree is required, but the schema records only the highest named level.\nCache and scratch-pad micro-architecture are alternatives, but neither has a taxonomy ID, so no expected-skill alternative group is created."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "8b02280c204ed9e48555795d85050ee4ed8789713e6f4d55489a46d00cdb80a2",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

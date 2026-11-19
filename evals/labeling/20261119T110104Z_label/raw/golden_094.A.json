@@ -1,0 +1,110 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"Strong foundation in machine learning\"},\n    {\"skill_id\": \"deep-learning\", \"requirement\": \"required\", \"raw_text\": \"deep learning\"},\n    {\"skill_id\": \"nlp\", \"requirement\": \"required\", \"raw_text\": \"natural language processing (NLP)\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"deploying LLM-powered applications\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch\", \"alternative_group\": 1},\n    {\"skill_id\": \"vllm\", \"requirement\": \"required\", \"raw_text\": \"vLLM\", \"alternative_group\": 1},\n    {\"skill_id\": \"langgraph\", \"requirement\": \"required\", \"raw_text\": \"LangGraph\", \"alternative_group\": 1},\n    {\"skill_id\": \"rag\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Hands-on experience with RAG\", \"alternative_group\": 2},\n    {\"skill_id\": \"llm-orchestration\", \"requirement\": \"nice_to_have\", \"raw_text\": \"RAG, agentic orchestration\", \"alternative_group\": 2, \"uncertain\": true},\n    {\"skill_id\": \"multi-agent-systems\", \"requirement\": \"nice_to_have\", \"raw_text\": \"multi-agent systems is strongly preferred\", \"alternative_group\": 2},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Proficiency in Python\"},\n    {\"skill_id\": \"data-pipelines\", \"requirement\": \"required\", \"raw_text\": \"large-scale data pipelines\"},\n    {\"skill_id\": \"evaluation\", \"requirement\": \"required\", \"raw_text\": \"standard evaluation protocols\", \"uncertain\": true},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"including monitoring\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"FlowNet-9 architecture\", \"raw_text\": \"Strong experience in FlowNet-9 architecture\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior ML Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Master's degree (or above) in Computer Science, Machine Learning, AI, or a related field; equivalent practical experience considered\",\n  \"uncertain\": [],\n  \"notes\": \"Skills named only in the role description and Key Responsibilities are not labeled because the candidate is not asked for them: fine-tuning, knowledge graphs, feature engineering, MLOps, CI/CD, experiment tracking, OpenAI/Anthropic APIs.\\n'Strong experience in FlowNet-9 architecture' sits under Key Responsibilities but is worded as a candidate ask. It is not in the taxonomy and does not look like a known technology, so it goes to unmapped for review.\\nQualifications has no optional heading, so items default to required.\\nPyTorch, vLLM and LangGraph are offered as 'frameworks such as X, Y, or Z' for one ask, so they form alternative_group 1, all required.\\nRAG, agentic orchestration and multi-agent systems carry the inline 'strongly preferred' marker, so they are nice_to_have. They are offered as 'X, Y, or Z', so they form alternative_group 2.\\n'agentic orchestration' is mapped to llm-orchestration via the alias 'agent orchestration'.\\n'deploying LLM-powered applications' is labeled llms only. ai-deployment (model deployment) was not added, because deploying applications is not clearly model deployment.\\n'tools for ML development' is too vague to map, so it is not labeled.\\n'monitoring and iterating post-deployment' is mapped to observability via the alias 'monitoring'.\\n'standard evaluation protocols' is mapped to evaluation.\\nPublications, startup experience and communication skills are not skills under the guide.\\nDegree: 'Master's degree (or above)' gives master as the highest level named. 'equivalent practical experience considered' sets degree_or_equivalent to true.\\nSeniority is stated in the title; '5+ years' agrees with it.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "Strong foundation in machine learning"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "natural language processing (NLP)"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "deploying LLM-powered applications"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "required",
+        "raw_text": "vLLM",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "Hands-on experience with RAG",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "nice_to_have",
+        "raw_text": "RAG, agentic orchestration",
+        "alternative_group": 2,
+        "uncertain": true
+      },
+      {
+        "skill_id": "multi-agent-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "multi-agent systems is strongly preferred",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Proficiency in Python"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "large-scale data pipelines"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "standard evaluation protocols",
+        "uncertain": true
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "including monitoring",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "FlowNet-9 architecture",
+        "raw_text": "Strong experience in FlowNet-9 architecture"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior ML Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "Master's degree (or above) in Computer Science, Machine Learning, AI, or a related field; equivalent practical experience considered",
+    "uncertain": [],
+    "notes": "Skills named only in the role description and Key Responsibilities are not labeled because the candidate is not asked for them: fine-tuning, knowledge graphs, feature engineering, MLOps, CI/CD, experiment tracking, OpenAI/Anthropic APIs.\n'Strong experience in FlowNet-9 architecture' sits under Key Responsibilities but is worded as a candidate ask. It is not in the taxonomy and does not look like a known technology, so it goes to unmapped for review.\nQualifications has no optional heading, so items default to required.\nPyTorch, vLLM and LangGraph are offered as 'frameworks such as X, Y, or Z' for one ask, so they form alternative_group 1, all required.\nRAG, agentic orchestration and multi-agent systems carry the inline 'strongly preferred' marker, so they are nice_to_have. They are offered as 'X, Y, or Z', so they form alternative_group 2.\n'agentic orchestration' is mapped to llm-orchestration via the alias 'agent orchestration'.\n'deploying LLM-powered applications' is labeled llms only. ai-deployment (model deployment) was not added, because deploying applications is not clearly model deployment.\n'tools for ML development' is too vague to map, so it is not labeled.\n'monitoring and iterating post-deployment' is mapped to observability via the alias 'monitoring'.\n'standard evaluation protocols' is mapped to evaluation.\nPublications, startup experience and communication skills are not skills under the guide.\nDegree: 'Master's degree (or above)' gives master as the highest level named. 'equivalent practical experience considered' sets degree_or_equivalent to true.\nSeniority is stated in the title; '5+ years' agrees with it."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "6ae99a4568646c0014463d9dfb173f22a281e7018ddb85a705ed1b861819a351",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

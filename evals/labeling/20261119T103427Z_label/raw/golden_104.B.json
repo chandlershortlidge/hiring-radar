@@ -1,0 +1,173 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning research\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"training and fine-tuning large-scale models\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning architectures\"\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"transformers\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"fine-tuning large-scale models\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"validating ML model performance\"\n    },\n    {\n      \"skill_id\": \"quantization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"quantization\"\n    },\n    {\n      \"skill_id\": \"knowledge-distillation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distillation\"\n    },\n    {\n      \"skill_id\": \"distributed-training\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distributed training\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"generative AI\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement learning\",\n      \"alternative_group\": 2\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"privacy-preserving ML techniques\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Convolutional neural networks\",\n      \"raw_text\": \"CNNs\"\n    },\n    {\n      \"label\": \"Recurrent neural networks\",\n      \"raw_text\": \"RNNs\"\n    },\n    {\n      \"label\": \"Diffusion models\",\n      \"raw_text\": \"diffusion models\"\n    },\n    {\n      \"label\": \"Dataset construction\",\n      \"raw_text\": \"building datasets\"\n    },\n    {\n      \"label\": \"Experimental design\",\n      \"raw_text\": \"designing experiments\"\n    },\n    {\n      \"label\": \"Model optimization techniques\",\n      \"raw_text\": \"optimization techniques\"\n    },\n    {\n      \"label\": \"Model pruning\",\n      \"raw_text\": \"pruning\"\n    },\n    {\n      \"label\": \"Hardware-aware training\",\n      \"raw_text\": \"hardware-aware training\"\n    },\n    {\n      \"label\": \"Edge inference\",\n      \"raw_text\": \"edge inference\"\n    },\n    {\n      \"label\": \"On-device machine learning\",\n      \"raw_text\": \"on-device ML\"\n    },\n    {\n      \"label\": \"Multimodal learning\",\n      \"raw_text\": \"multimodal learning\"\n    },\n    {\n      \"label\": \"Federated learning\",\n      \"raw_text\": \"federated learning\"\n    },\n    {\n      \"label\": \"Academic publication contributions\",\n      \"raw_text\": \"contributing to academic publications\"\n    },\n    {\n      \"label\": \"Patent contributions\",\n      \"raw_text\": \"patents\"\n    },\n    {\n      \"label\": \"Open-source ML project contributions\",\n      \"raw_text\": \"open-source ML projects\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"4+ years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s or PhD in Machine Learning, Computer Science, AI, or a related field\",\n  \"notes\": \"Qualifications defaults to required; Preferred Skills makes its items nice_to_have. Technologies appearing only in responsibilities or company descriptions are excluded.\\nThe degree label records the highest named degree, the preferred PhD; a bachelor’s degree is separately required in the posting.\\nModel development is independently required by the training qualification, so it leaves the experience alternative set; machine learning consequently has no remaining two-member group.\\nDistributed training is offered alongside edge inference and on-device ML, both unmapped; no singleton alternative_group is emitted. Multimodal learning is an unmapped additional alternative to generative AI and reinforcement learning.\\nPrivacy-preserving ML is tentatively mapped to Data Privacy & Security; review the taxonomy fit.\\nResearch-output contribution practices are retained as unmapped technical practices, rather than mapped to unrelated tooling. ML frameworks has no separate generic taxonomy entry; its concrete examples are labeled.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning research"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "training and fine-tuning large-scale models"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning architectures"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "transformers"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning large-scale models"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "validating ML model performance"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "required",
+        "raw_text": "quantization"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "required",
+        "raw_text": "distillation"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed training"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "generative AI",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning",
+        "alternative_group": 2
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "nice_to_have",
+        "raw_text": "privacy-preserving ML techniques",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Convolutional neural networks",
+        "raw_text": "CNNs"
+      },
+      {
+        "label": "Recurrent neural networks",
+        "raw_text": "RNNs"
+      },
+      {
+        "label": "Diffusion models",
+        "raw_text": "diffusion models"
+      },
+      {
+        "label": "Dataset construction",
+        "raw_text": "building datasets"
+      },
+      {
+        "label": "Experimental design",
+        "raw_text": "designing experiments"
+      },
+      {
+        "label": "Model optimization techniques",
+        "raw_text": "optimization techniques"
+      },
+      {
+        "label": "Model pruning",
+        "raw_text": "pruning"
+      },
+      {
+        "label": "Hardware-aware training",
+        "raw_text": "hardware-aware training"
+      },
+      {
+        "label": "Edge inference",
+        "raw_text": "edge inference"
+      },
+      {
+        "label": "On-device machine learning",
+        "raw_text": "on-device ML"
+      },
+      {
+        "label": "Multimodal learning",
+        "raw_text": "multimodal learning"
+      },
+      {
+        "label": "Federated learning",
+        "raw_text": "federated learning"
+      },
+      {
+        "label": "Academic publication contributions",
+        "raw_text": "contributing to academic publications"
+      },
+      {
+        "label": "Patent contributions",
+        "raw_text": "patents"
+      },
+      {
+        "label": "Open-source ML project contributions",
+        "raw_text": "open-source ML projects"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "4+ years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s or PhD in Machine Learning, Computer Science, AI, or a related field",
+    "notes": "Qualifications defaults to required; Preferred Skills makes its items nice_to_have. Technologies appearing only in responsibilities or company descriptions are excluded.\nThe degree label records the highest named degree, the preferred PhD; a bachelor’s degree is separately required in the posting.\nModel development is independently required by the training qualification, so it leaves the experience alternative set; machine learning consequently has no remaining two-member group.\nDistributed training is offered alongside edge inference and on-device ML, both unmapped; no singleton alternative_group is emitted. Multimodal learning is an unmapped additional alternative to generative AI and reinforcement learning.\nPrivacy-preserving ML is tentatively mapped to Data Privacy & Security; review the taxonomy fit.\nResearch-output contribution practices are retained as unmapped technical practices, rather than mapped to unrelated tooling. ML frameworks has no separate generic taxonomy entry; its concrete examples are labeled."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "16c59820e65f0483ce212f2cc8871980e04a459a07460d55bcab999fdeb4cfd9",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,103 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"building and evaluating ML systems\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"reliable production software development\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience owning evaluation frameworks\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Transformers\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"statistics, including sampling, uncertainty, repeated trials and comparisons across model versions\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"language-model training\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"language-model training\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Experience with agent or gaming environments\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Experimental design\",\n      \"raw_text\": \"experimental design\"\n    },\n    {\n      \"label\": \"Running inference workloads at scale\",\n      \"raw_text\": \"running inference or evaluation workloads at scale\"\n    },\n    {\n      \"label\": \"Debugging\",\n      \"raw_text\": \"debugging failures across models, data, scoring code and infrastructure\"\n    },\n    {\n      \"label\": \"Language-model post-training\",\n      \"raw_text\": \"language-model training or post-training\"\n    },\n    {\n      \"label\": \"Recommendation metrics\",\n      \"raw_text\": \"recommendation metrics\"\n    },\n    {\n      \"label\": \"Online experimentation\",\n      \"raw_text\": \"online experimentation\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"notes\": \"Minimum qualifications are required; Preferred qualifications are optional. Responsibilities, company descriptions and benefits do not independently establish skill requirements.\\nPyTorch and Transformers are alternatives for the ML-library ask; comparable libraries add no criterion.\\nMachine learning and software engineering each have independent required support beyond the initial alternative experience wording.\\nLanguage-model training maps to model development and LLMs; post-training is not assumed to mean fine-tuning specifically.\\nHuman evaluation and LLM-as-judge calibration collapse into the independently required evaluation criterion.\\nExperimental design, inference execution, debugging, recommendation metrics and online experimentation are read literally rather than equated with statistics, model serving, software testing, recommender systems or A/B testing respectively.\\nGaming is treated as domain knowledge, not a skill.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "building and evaluating ML systems"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "reliable production software development"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "Experience owning evaluation frameworks"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "Transformers",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistics, including sampling, uncertainty, repeated trials and comparisons across model versions"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "nice_to_have",
+        "raw_text": "language-model training"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "language-model training"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience with agent or gaming environments"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Experimental design",
+        "raw_text": "experimental design"
+      },
+      {
+        "label": "Running inference workloads at scale",
+        "raw_text": "running inference or evaluation workloads at scale"
+      },
+      {
+        "label": "Debugging",
+        "raw_text": "debugging failures across models, data, scoring code and infrastructure"
+      },
+      {
+        "label": "Language-model post-training",
+        "raw_text": "language-model training or post-training"
+      },
+      {
+        "label": "Recommendation metrics",
+        "raw_text": "recommendation metrics"
+      },
+      {
+        "label": "Online experimentation",
+        "raw_text": "online experimentation"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "notes": "Minimum qualifications are required; Preferred qualifications are optional. Responsibilities, company descriptions and benefits do not independently establish skill requirements.\nPyTorch and Transformers are alternatives for the ML-library ask; comparable libraries add no criterion.\nMachine learning and software engineering each have independent required support beyond the initial alternative experience wording.\nLanguage-model training maps to model development and LLMs; post-training is not assumed to mean fine-tuning specifically.\nHuman evaluation and LLM-as-judge calibration collapse into the independently required evaluation criterion.\nExperimental design, inference execution, debugging, recommendation metrics and online experimentation are read literally rather than equated with statistics, model serving, software testing, recommender systems or A/B testing respectively.\nGaming is treated as domain knowledge, not a skill."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "e7cb63a403b4941ecc704626c04ebab6a30d68ec72df76591d83946e1ce6c2f1",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

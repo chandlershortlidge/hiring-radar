@@ -1,0 +1,66 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"substantial applied machine learning experience\"},\n    {\"skill_id\": \"statistics\", \"requirement\": \"required\", \"raw_text\": \"Statistical modeling\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Proficiency in Python\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Signal processing\", \"raw_text\": \"signal-processing background\"},\n    {\"label\": \"Imaging\", \"raw_text\": \"Enough imaging\"},\n    {\"label\": \"Agreement analysis\", \"raw_text\": \"agreement analysis\"},\n    {\"label\": \"Monte Carlo simulation\", \"raw_text\": \"Monte Carlo simulation\"},\n    {\"label\": \"Diffusion theory\", \"raw_text\": \"diffusion theory\"},\n    {\"label\": \"Chromophore decomposition\", \"raw_text\": \"chromophore decomposition\"}\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD in biomedical engineering, physiology, bioengineering, biophotonics, or a related field, or an MD/PhD\",\n  \"uncertain\": [],\n  \"notes\": \"Sections: 'REQUIRED QUALIFICATIONS' defaults to required; 'PREFERRED QUALIFICATIONS' makes its items nice_to_have.\\n'modern ML stack' names no specific tool. It is not labeled separately; machine-learning is already required from 'applied machine learning experience'.\\nAI agents appear only in the role and company description ('Team members direct AI agents ... We are looking for someone who wants to work this way'). They are not in a qualifications section, so they are not labeled as agents or ai-developer-tooling.\\nThe physiology, digital biomarker, IRB and skin-optics items are domain knowledge, not taxonomy skills.\\nThe signal-processing, imaging, agreement-analysis, Monte Carlo, diffusion-theory and chromophore-decomposition items have no taxonomy entry, so they are listed in unmapped.\\nThe title 'Scientist' carries no level, there are no years of experience and no lead duty. A PhD is not a seniority basis under the guide, so seniority is none.\\n'or a related field' widens the field, not the requirement, so degree_or_equivalent is false. MD/PhD is still PhD level.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "substantial applied machine learning experience"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "Statistical modeling"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Proficiency in Python"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Signal processing",
+        "raw_text": "signal-processing background"
+      },
+      {
+        "label": "Imaging",
+        "raw_text": "Enough imaging"
+      },
+      {
+        "label": "Agreement analysis",
+        "raw_text": "agreement analysis"
+      },
+      {
+        "label": "Monte Carlo simulation",
+        "raw_text": "Monte Carlo simulation"
+      },
+      {
+        "label": "Diffusion theory",
+        "raw_text": "diffusion theory"
+      },
+      {
+        "label": "Chromophore decomposition",
+        "raw_text": "chromophore decomposition"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD in biomedical engineering, physiology, bioengineering, biophotonics, or a related field, or an MD/PhD",
+    "uncertain": [],
+    "notes": "Sections: 'REQUIRED QUALIFICATIONS' defaults to required; 'PREFERRED QUALIFICATIONS' makes its items nice_to_have.\n'modern ML stack' names no specific tool. It is not labeled separately; machine-learning is already required from 'applied machine learning experience'.\nAI agents appear only in the role and company description ('Team members direct AI agents ... We are looking for someone who wants to work this way'). They are not in a qualifications section, so they are not labeled as agents or ai-developer-tooling.\nThe physiology, digital biomarker, IRB and skin-optics items are domain knowledge, not taxonomy skills.\nThe signal-processing, imaging, agreement-analysis, Monte Carlo, diffusion-theory and chromophore-decomposition items have no taxonomy entry, so they are listed in unmapped.\nThe title 'Scientist' carries no level, there are no years of experience and no lead duty. A PhD is not a seniority basis under the guide, so seniority is none.\n'or a related field' widens the field, not the requirement, so degree_or_equivalent is false. MD/PhD is still PhD level."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "7919368e18abc124b7e4bf6442aba57c93ca9766936dd9facad1429e277f0f74",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

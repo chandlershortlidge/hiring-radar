@@ -1,0 +1,173 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"research or applied science experience in machine learning\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"pre-training or mid-training of language models\", \"uncertain\": true},\n    {\"skill_id\": \"reinforcement-learning\", \"requirement\": \"required\", \"raw_text\": \"or reinforcement learning and decision-model training\", \"uncertain\": true},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Strong Python\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"PyTorch skills\"},\n    {\"skill_id\": \"distributed-training\", \"requirement\": \"required\", \"raw_text\": \"hands-on experience with distributed training\"},\n    {\"skill_id\": \"statistics\", \"requirement\": \"required\", \"raw_text\": \"statistical analysis\"},\n    {\"skill_id\": \"knowledge-distillation\", \"requirement\": \"required\", \"raw_text\": \"entity representations, distillation\", \"uncertain\": true},\n    {\"skill_id\": \"megatron-lm\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Megatron-LM\"},\n    {\"skill_id\": \"deepspeed\", \"requirement\": \"nice_to_have\", \"raw_text\": \"DeepSpeed\"},\n    {\"skill_id\": \"recommender-systems\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Research in recommender systems\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"NeMo RL\", \"raw_text\": \"NeMo RL\"},\n    {\"label\": \"verl\", \"raw_text\": \"verl\"},\n    {\"label\": \"OpenRLHF\", \"raw_text\": \"OpenRLHF\"},\n    {\"label\": \"generative retrieval\", \"raw_text\": \"generative retrieval\"},\n    {\"label\": \"semantic IDs\", \"raw_text\": \"semantic IDs or user behaviour modelling\"},\n    {\"label\": \"user behaviour modelling\", \"raw_text\": \"user behaviour modelling\"},\n    {\"label\": \"synthetic data\", \"raw_text\": \"Experience with synthetic data\"},\n    {\"label\": \"model compression\", \"raw_text\": \"compression for production\"},\n    {\"label\": \"online experiments\", \"raw_text\": \"evaluating changes through online experiments\"},\n    {\"label\": \"language-model post-training\", \"raw_text\": \"language-model post-training\"},\n    {\"label\": \"continued pre-training / mid-training\", \"raw_text\": \"continued pre-training or mid-training\"},\n    {\"label\": \"data mixture research\", \"raw_text\": \"data mixture research\"},\n    {\"label\": \"scaling laws\", \"raw_text\": \"scaling laws\"},\n    {\"label\": \"tokenisation\", \"raw_text\": \"tokenisation\"},\n    {\"label\": \"entity representations\", \"raw_text\": \"entity representations\"},\n    {\"label\": \"tabular foundation models\", \"raw_text\": \"tabular foundation models such as TabPFN and TabICL\"},\n    {\"label\": \"TabPFN\", \"raw_text\": \"TabPFN\"},\n    {\"label\": \"TabICL\", \"raw_text\": \"TabICL\"},\n    {\"label\": \"reward modelling\", \"raw_text\": \"reward modelling\"},\n    {\"label\": \"agent training environments\", \"raw_text\": \"agent training environments\"},\n    {\"label\": \"continual learning\", \"raw_text\": \"continual learning, or offline RL and bandits\"},\n    {\"label\": \"offline RL and bandits\", \"raw_text\": \"offline RL and bandits applied to real decisions\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Applied AI Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"A PhD or equivalent industry research experience in machine learning, computer science, statistics or a related field\",\n  \"uncertain\": [],\n  \"notes\": \"The 'Relevant experience includes ...' lines under each Track describe the candidate's background and sit under no optional heading. I read them as asked of the candidate and default to required, but flagged them uncertain because they say 'one or more' and are track-specific.\\nknowledge-distillation is required because the Track 1 'Relevant experience' mention ('distillation') is unmarked and outranks the Preferred-section mention ('model distillation'). The raw_text quotes the Track 1 mention; this rests on the reading above.\\nllms is mapped from 'pre-training or mid-training of language models' in the minimum qualifications, which apply to Track 1 only. It is flagged uncertain because 'language models' is not literally a taxonomy alias.\\nreinforcement-learning is quoted from the Track 2 clause in the minimum qualifications, where it is offered as an alternative to language-model post-training. It is kept required per the guide, since a group changes no requirement, and flagged uncertain.\\nAlternative groups are not emitted because the output schema has no field for them. Candidate groups: the Track 2 qualification 'language-model post-training, or reinforcement learning' (post-training is unmapped), and the Preferred 'frameworks such as Megatron-LM, DeepSpeed, NeMo RL, verl or OpenRLHF'.\\nThings I deliberately did not label:\\n- 'Supervised fine-tuning', DPO/GRPO/PPO, evaluation and experimentation appear only in research-area or responsibility bullets.\\n- Hugging Face and coding assistants appear only in 'What we offer'.\\n- 'online experiments' is not explicitly A/B testing, so it is left unmapped rather than mapped to a-b-testing.\\n- Statistics as a degree field is covered by the degree label; the statistics skill comes from 'statistical analysis'.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "research or applied science experience in machine learning"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "pre-training or mid-training of language models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "or reinforcement learning and decision-model training",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch skills"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "hands-on experience with distributed training"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistical analysis"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "required",
+        "raw_text": "entity representations, distillation",
+        "uncertain": true
+      },
+      {
+        "skill_id": "megatron-lm",
+        "requirement": "nice_to_have",
+        "raw_text": "Megatron-LM"
+      },
+      {
+        "skill_id": "deepspeed",
+        "requirement": "nice_to_have",
+        "raw_text": "DeepSpeed"
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "Research in recommender systems"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "NeMo RL",
+        "raw_text": "NeMo RL"
+      },
+      {
+        "label": "verl",
+        "raw_text": "verl"
+      },
+      {
+        "label": "OpenRLHF",
+        "raw_text": "OpenRLHF"
+      },
+      {
+        "label": "generative retrieval",
+        "raw_text": "generative retrieval"
+      },
+      {
+        "label": "semantic IDs",
+        "raw_text": "semantic IDs or user behaviour modelling"
+      },
+      {
+        "label": "user behaviour modelling",
+        "raw_text": "user behaviour modelling"
+      },
+      {
+        "label": "synthetic data",
+        "raw_text": "Experience with synthetic data"
+      },
+      {
+        "label": "model compression",
+        "raw_text": "compression for production"
+      },
+      {
+        "label": "online experiments",
+        "raw_text": "evaluating changes through online experiments"
+      },
+      {
+        "label": "language-model post-training",
+        "raw_text": "language-model post-training"
+      },
+      {
+        "label": "continued pre-training / mid-training",
+        "raw_text": "continued pre-training or mid-training"
+      },
+      {
+        "label": "data mixture research",
+        "raw_text": "data mixture research"
+      },
+      {
+        "label": "scaling laws",
+        "raw_text": "scaling laws"
+      },
+      {
+        "label": "tokenisation",
+        "raw_text": "tokenisation"
+      },
+      {
+        "label": "entity representations",
+        "raw_text": "entity representations"
+      },
+      {
+        "label": "tabular foundation models",
+        "raw_text": "tabular foundation models such as TabPFN and TabICL"
+      },
+      {
+        "label": "TabPFN",
+        "raw_text": "TabPFN"
+      },
+      {
+        "label": "TabICL",
+        "raw_text": "TabICL"
+      },
+      {
+        "label": "reward modelling",
+        "raw_text": "reward modelling"
+      },
+      {
+        "label": "agent training environments",
+        "raw_text": "agent training environments"
+      },
+      {
+        "label": "continual learning",
+        "raw_text": "continual learning, or offline RL and bandits"
+      },
+      {
+        "label": "offline RL and bandits",
+        "raw_text": "offline RL and bandits applied to real decisions"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Applied AI Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "A PhD or equivalent industry research experience in machine learning, computer science, statistics or a related field",
+    "uncertain": [],
+    "notes": "The 'Relevant experience includes ...' lines under each Track describe the candidate's background and sit under no optional heading. I read them as asked of the candidate and default to required, but flagged them uncertain because they say 'one or more' and are track-specific.\nknowledge-distillation is required because the Track 1 'Relevant experience' mention ('distillation') is unmarked and outranks the Preferred-section mention ('model distillation'). The raw_text quotes the Track 1 mention; this rests on the reading above.\nllms is mapped from 'pre-training or mid-training of language models' in the minimum qualifications, which apply to Track 1 only. It is flagged uncertain because 'language models' is not literally a taxonomy alias.\nreinforcement-learning is quoted from the Track 2 clause in the minimum qualifications, where it is offered as an alternative to language-model post-training. It is kept required per the guide, since a group changes no requirement, and flagged uncertain.\nAlternative groups are not emitted because the output schema has no field for them. Candidate groups: the Track 2 qualification 'language-model post-training, or reinforcement learning' (post-training is unmapped), and the Preferred 'frameworks such as Megatron-LM, DeepSpeed, NeMo RL, verl or OpenRLHF'.\nThings I deliberately did not label:\n- 'Supervised fine-tuning', DPO/GRPO/PPO, evaluation and experimentation appear only in research-area or responsibility bullets.\n- Hugging Face and coding assistants appear only in 'What we offer'.\n- 'online experiments' is not explicitly A/B testing, so it is left unmapped rather than mapped to a-b-testing.\n- Statistics as a degree field is covered by the degree label; the statistics skill comes from 'statistical analysis'."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "6c315c713c8cd8425ba13deb8cb3f21aedfb429a59696929b6361227a227dc9d",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

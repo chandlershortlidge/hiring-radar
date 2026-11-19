@@ -1,0 +1,117 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning/AI systems\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying and maintaining machine learning/AI systems in production\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"maintaining machine learning/AI systems in production\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"onnx\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ONNX\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\",\n      \"alternative_group\": 1\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data pipelines\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distributed systems\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"DevOps tooling\"\n    },\n    {\n      \"skill_id\": \"full-stack-development\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"developing full stack applications\"\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"privacy-preserving AI and secure compute environments\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Complex-system debugging\",\n      \"raw_text\": \"debugging complex systems\"\n    },\n    {\n      \"label\": \"Model inference\",\n      \"raw_text\": \"model inference\"\n    },\n    {\n      \"label\": \"Hardware interaction\",\n      \"raw_text\": \"hardware interaction\"\n    },\n    {\n      \"label\": \"Performance tuning\",\n      \"raw_text\": \"performance tuning\"\n    }\n  ],\n  \"groups_reviewed\": true,\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Forward Deployed AI Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s degree in a relevant technical discipline.\",\n  \"notes\": \"Required Skills & Qualifications sets required labels; Preferred Qualifications sets optional labels.\\nFramework examples form one alternative group; the broad machine-learning skill is outside that group.\\nProduction deployment and maintenance support AI deployment and MLOps respectively; the optional edge-deployment mention does not soften the required deployment criterion.\\nLiteral reading: debugging alone is not software testing, model inference alone is not model serving or inference optimization, and generic performance tuning is not specifically inference optimization; these remain unmapped.\\nPrivacy-preserving AI and secure compute environments map jointly to Data Privacy & Security.\\nTechnologies and practices appearing only in the role description or responsibilities are excluded. Security clearance, customer-facing experience, and soft skills are not taxonomy skills.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "machine learning/AI systems"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying and maintaining machine learning/AI systems in production"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "maintaining machine learning/AI systems in production"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "onnx",
+        "requirement": "required",
+        "raw_text": "ONNX",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX",
+        "alternative_group": 1
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "data pipelines"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "nice_to_have",
+        "raw_text": "DevOps tooling"
+      },
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "nice_to_have",
+        "raw_text": "developing full stack applications"
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "nice_to_have",
+        "raw_text": "privacy-preserving AI and secure compute environments"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Complex-system debugging",
+        "raw_text": "debugging complex systems"
+      },
+      {
+        "label": "Model inference",
+        "raw_text": "model inference"
+      },
+      {
+        "label": "Hardware interaction",
+        "raw_text": "hardware interaction"
+      },
+      {
+        "label": "Performance tuning",
+        "raw_text": "performance tuning"
+      }
+    ],
+    "groups_reviewed": true,
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Forward Deployed AI Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s degree in a relevant technical discipline.",
+    "notes": "Required Skills & Qualifications sets required labels; Preferred Qualifications sets optional labels.\nFramework examples form one alternative group; the broad machine-learning skill is outside that group.\nProduction deployment and maintenance support AI deployment and MLOps respectively; the optional edge-deployment mention does not soften the required deployment criterion.\nLiteral reading: debugging alone is not software testing, model inference alone is not model serving or inference optimization, and generic performance tuning is not specifically inference optimization; these remain unmapped.\nPrivacy-preserving AI and secure compute environments map jointly to Data Privacy & Security.\nTechnologies and practices appearing only in the role description or responsibilities are excluded. Security clearance, customer-facing experience, and soft skills are not taxonomy skills."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "66d4de774a0ba9753a1b197213da0cda912c2b60850f55a5c74d457a766ee89d",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

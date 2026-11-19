@@ -1,0 +1,63 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"in particular LLMs\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"RTL design\", \"raw_text\": \"Extensive experience in RTL design\"},\n    {\"label\": \"Micro-architecture of caches / scratch-pad memories\", \"raw_text\": \"micro-architecture of caches and/or scratch-pad memories\"},\n    {\"label\": \"Performance modeling for architecture exploration\", \"raw_text\": \"performance models for architecture exploration\"},\n    {\"label\": \"Power- and area-efficient architectures\", \"raw_text\": \"power- and area-efficient architectures\"},\n    {\"label\": \"Microprocessor architecture\", \"raw_text\": \"microprocessor architecture\"},\n    {\"label\": \"Logic design principles\", \"raw_text\": \"logic design principles\"},\n    {\"label\": \"Evaluating large-scale AI systems (appetite only)\", \"raw_text\": \"Deep interest in evaluating large-scale AI systems\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"AI Accelerator Architect\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"A Bachelor’s degree in EE/ECE/CE/CS or a related field (MS or PhD preferred)\",\n  \"uncertain\": [\"seniority\", \"degree\"],\n  \"notes\": \"Only LLMs maps to the taxonomy. RTL design, micro-architecture, performance models, microprocessor architecture and logic design are hardware skills with no taxonomy entry, so they go to unmapped.\\n'AI workload characteristics' is not labeled ai-ml. The posting names AI workloads as a domain, not the AI/ML skill. The only taxonomy skill it names is LLMs, so no broad parent is added.\\n'Deep interest in evaluating large-scale AI systems' asks only for appetite. It is not a mappable skill anyway, so it is listed in unmapped and not labeled.\\nSeniority is senior, basis stated, because the guide maps 'architect' to senior. The posting also says it welcomes 'contributors of all seniorities' and 'candidates at various experience levels', so this is flagged for review.\\nDegree follows the literal guide rule 'highest level named' (as in golden_040), so it is phd. The PhD itself is marked 'preferred', while the bachelor's is a bare requirement. I set the degree requirement to required because a degree is asked for unmarked. The phd/nice_to_have versus bachelor/required tension is flagged for review.\\n'or a related field' widens the field only, so degree_or_equivalent is false.\\n'What You’ll Learn' describes the job, not what the candidate must have, so no labels come from it.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "in particular LLMs"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "RTL design",
+        "raw_text": "Extensive experience in RTL design"
+      },
+      {
+        "label": "Micro-architecture of caches / scratch-pad memories",
+        "raw_text": "micro-architecture of caches and/or scratch-pad memories"
+      },
+      {
+        "label": "Performance modeling for architecture exploration",
+        "raw_text": "performance models for architecture exploration"
+      },
+      {
+        "label": "Power- and area-efficient architectures",
+        "raw_text": "power- and area-efficient architectures"
+      },
+      {
+        "label": "Microprocessor architecture",
+        "raw_text": "microprocessor architecture"
+      },
+      {
+        "label": "Logic design principles",
+        "raw_text": "logic design principles"
+      },
+      {
+        "label": "Evaluating large-scale AI systems (appetite only)",
+        "raw_text": "Deep interest in evaluating large-scale AI systems"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "AI Accelerator Architect",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "A Bachelor’s degree in EE/ECE/CE/CS or a related field (MS or PhD preferred)",
+    "uncertain": [
+      "seniority",
+      "degree"
+    ],
+    "notes": "Only LLMs maps to the taxonomy. RTL design, micro-architecture, performance models, microprocessor architecture and logic design are hardware skills with no taxonomy entry, so they go to unmapped.\n'AI workload characteristics' is not labeled ai-ml. The posting names AI workloads as a domain, not the AI/ML skill. The only taxonomy skill it names is LLMs, so no broad parent is added.\n'Deep interest in evaluating large-scale AI systems' asks only for appetite. It is not a mappable skill anyway, so it is listed in unmapped and not labeled.\nSeniority is senior, basis stated, because the guide maps 'architect' to senior. The posting also says it welcomes 'contributors of all seniorities' and 'candidates at various experience levels', so this is flagged for review.\nDegree follows the literal guide rule 'highest level named' (as in golden_040), so it is phd. The PhD itself is marked 'preferred', while the bachelor's is a bare requirement. I set the degree requirement to required because a degree is asked for unmarked. The phd/nice_to_have versus bachelor/required tension is flagged for review.\n'or a related field' widens the field only, so degree_or_equivalent is false.\n'What You’ll Learn' describes the job, not what the candidate must have, so no labels come from it."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "8b02280c204ed9e48555795d85050ee4ed8789713e6f4d55489a46d00cdb80a2",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

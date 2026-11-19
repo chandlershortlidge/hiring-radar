@@ -1,0 +1,61 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Bonus points if you've worked with distributed systems.\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"hugging-face\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"HuggingFace\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"ML fundamentals\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"trained models yourself\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI assistants and use them regularly for coding and writing\"\n    }\n  ],\n  \"unmapped\": [],\n  \"groups_reviewed\": true,\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"ML Engineering Intern\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"currently enrolled at a university\",\n  \"notes\": \"All skills in 'Preferred qualifications & traits' are nice_to_have under the optional-heading rule, despite assertive wording in individual bullets.\\nModel training is explicitly asked for through prior hands-on experience, so model-development is included separately from ML fundamentals.\\nTechnologies and practices appearing only in responsibilities, company descriptions, or benefits are excluded.\\nUniversity enrollment is treated literally as currently studying with no specified degree level, mapping to bachelor under the guide.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "Bonus points if you've worked with distributed systems."
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "nice_to_have",
+        "raw_text": "HuggingFace"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "ML fundamentals"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "nice_to_have",
+        "raw_text": "trained models yourself"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "nice_to_have",
+        "raw_text": "AI assistants and use them regularly for coding and writing"
+      }
+    ],
+    "unmapped": [],
+    "groups_reviewed": true,
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "ML Engineering Intern",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "currently enrolled at a university",
+    "notes": "All skills in 'Preferred qualifications & traits' are nice_to_have under the optional-heading rule, despite assertive wording in individual bullets.\nModel training is explicitly asked for through prior hands-on experience, so model-development is included separately from ML fundamentals.\nTechnologies and practices appearing only in responsibilities, company descriptions, or benefits are excluded.\nUniversity enrollment is treated literally as currently studying with no specified degree level, mapping to bachelor under the guide."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "8bea1431d03cb7078fb58de82649c5b962022b3c96535be6e8075b59ada0a702",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

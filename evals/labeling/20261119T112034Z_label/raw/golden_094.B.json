@@ -1,0 +1,52 @@
+{
+  "provider": "openai",
+  "model": "gpt-6.1-sol",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"prior experience in AI\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Experience training ML models\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Experience training ML models\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Experience training ML models and operating them in production, at scale.\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Engineering experience\",\n      \"raw_text\": \"Strong prior experience working as an engineer.\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"you’ll lead a team of expert engineers\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"groups_reviewed\": true,\n  \"notes\": \"Prior AI experience is explicitly required; subsequent curiosity and enthusiasm do not soften that requirement.\\nModel training and production operation are explicitly optional and repeated under Nice to have.\\nFlagged whether ML in 'training ML models' additionally names machine-learning beyond the specific training practice.\\nRead 'working as an engineer' literally: it does not explicitly specify software engineering, so retained it as unmapped rather than assuming that specialization.\\nLeadership, communication, technical judgment, and adaptability are excluded as soft skills. Technologies and infrastructure mentioned only in the title, company description, or responsibilities are excluded.\\nNo alternative skill groups, German requirement, or degree requirement are stated.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "prior experience in AI"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience training ML models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience training ML models"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience training ML models and operating them in production, at scale."
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Engineering experience",
+        "raw_text": "Strong prior experience working as an engineer."
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "you’ll lead a team of expert engineers",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "groups_reviewed": true,
+    "notes": "Prior AI experience is explicitly required; subsequent curiosity and enthusiasm do not soften that requirement.\nModel training and production operation are explicitly optional and repeated under Nice to have.\nFlagged whether ML in 'training ML models' additionally names machine-learning beyond the specific training practice.\nRead 'working as an engineer' literally: it does not explicitly specify software engineering, so retained it as unmapped rather than assuming that specialization.\nLeadership, communication, technical judgment, and adaptability are excluded as soft skills. Technologies and infrastructure mentioned only in the title, company description, or responsibilities are excluded.\nNo alternative skill groups, German requirement, or degree requirement are stated."
+  },
+  "error": null,
+  "labeler": "B",
+  "posting_sha256": "7fce50566f61437b6c960324b99f4c483146c1324bcb1ff4aeb8265c73f4829c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

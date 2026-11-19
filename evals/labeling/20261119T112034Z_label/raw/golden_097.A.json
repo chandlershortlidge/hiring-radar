@@ -1,0 +1,182 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"kubernetes\", \"requirement\": \"required\", \"raw_text\": \"Strong expertise in Kubernetes administration\"},\n    {\"skill_id\": \"slurm\", \"requirement\": \"required\", \"raw_text\": \"Hands-on experience with Slurm workload management\"},\n    {\"skill_id\": \"distributed-training\", \"requirement\": \"required\", \"raw_text\": \"managing distributed training systems\"},\n    {\"skill_id\": \"containerization\", \"requirement\": \"required\", \"raw_text\": \"container orchestration\"},\n    {\"skill_id\": \"distributed-systems\", \"requirement\": \"required\", \"raw_text\": \"distributed systems architecture\"},\n    {\"skill_id\": \"llms\", \"requirement\": \"required\", \"raw_text\": \"familiarity with LLM architecture\"},\n    {\"skill_id\": \"python\", \"requirement\": \"required\", \"raw_text\": \"Python and C++ programming\"},\n    {\"skill_id\": \"cpp\", \"requirement\": \"required\", \"raw_text\": \"C++ programming\"},\n    {\"skill_id\": \"pytorch\", \"requirement\": \"required\", \"raw_text\": \"ML frameworks such as PyTorch\"},\n    {\"skill_id\": \"networking\", \"requirement\": \"required\", \"raw_text\": \"Strong understanding of networking\"},\n    {\"skill_id\": \"apis\", \"requirement\": \"required\", \"raw_text\": \"Experience developing APIs\"},\n    {\"skill_id\": \"observability\", \"requirement\": \"required\", \"raw_text\": \"expertise in observability tools\"},\n    {\"skill_id\": \"aws\", \"requirement\": \"required\", \"raw_text\": \"primarily on AWS\", \"uncertain\": true},\n    {\"skill_id\": \"ai-infrastructure\", \"requirement\": \"required\", \"raw_text\": \"focus on ML infrastructure\", \"uncertain\": true},\n    {\"skill_id\": \"devops\", \"requirement\": \"required\", \"raw_text\": \"Previous roles in SRE, DevOps, or Platform Engineering\", \"uncertain\": true},\n    {\"skill_id\": \"model-serving\", \"requirement\": \"required\", \"raw_text\": \"high-availability inference services\", \"uncertain\": true},\n    {\"skill_id\": \"ai-deployment\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Ideally, 3-5 years of relevant experience in ML systems deployment\", \"uncertain\": true},\n    {\"skill_id\": \"cuda\", \"requirement\": \"nice_to_have\", \"raw_text\": \"CUDA optimization\"},\n    {\"skill_id\": \"tensorflow\", \"requirement\": \"nice_to_have\", \"raw_text\": \"other ML frameworks like TensorFlow\"},\n    {\"skill_id\": \"infrastructure-as-code\", \"requirement\": \"nice_to_have\", \"raw_text\": \"infrastructure as code\"},\n    {\"skill_id\": \"terraform\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Terraform\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"ansible\", \"requirement\": \"nice_to_have\", \"raw_text\": \"Ansible\", \"alternative_group\": 1, \"uncertain\": true},\n    {\"skill_id\": \"gitops\", \"requirement\": \"nice_to_have\", \"raw_text\": \"GitOps practices\"}\n  ],\n  \"unmapped\": [\n    {\"label\": \"GPU cluster management\", \"raw_text\": \"Experience managing GPU clusters\"},\n    {\"label\": \"YAML configuration management\", \"raw_text\": \"YAML configuration management\"},\n    {\"label\": \"Attention mechanisms (Multi-Head / Grouped-Query Attention)\", \"raw_text\": \"Multi-Head Attention, Multi/Grouped-Query\"},\n    {\"label\": \"HPC / parallel computing\", \"raw_text\": \"Background in HPC environments, parallel computing\"},\n    {\"label\": \"SRE\", \"raw_text\": \"SRE\"},\n    {\"label\": \"Platform Engineering\", \"raw_text\": \"Platform Engineering\"},\n    {\"label\": \"Container registries / image optimization / multi-stage builds\", \"raw_text\": \"container registries, image optimization, and multi-stage builds\"}\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Ideally, 3-5 years of relevant experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"groups_reviewed\": true,\n  \"uncertain\": [\"seniority\"],\n  \"notes\": \"AWS appears only in the intro sentence 'We work with ... primarily on AWS'. I read that as a tech-stack statement and labeled it required, but it may count as company description only, so it is flagged.\\nKubernetes, Slurm, Python, C++ and PyTorch are also in the intro but are asked for again in the requirement sections. The quotes come from those sections.\\nKubernetes and Slurm appear again under PREFERRED. The required mentions win.\\nThe networking requirement comes from 'networking' under REQUIRED SKILLS. The preferred 'high-performance networking' does not change it.\\nDistributed training appears in both required and preferred sections, so it is labeled required.\\n'container orchestration' is a taxonomy alias of containerization, so it maps there. 'containerized environments' is the same skill and also required.\\n'monitoring' appears in the debugging/monitoring bullet. It maps to observability, quoted from 'observability tools'.\\n'ML infrastructure' is mapped to ai-infrastructure as the closest entry. Flagged.\\nDevOps comes from a prior-roles requirement listing SRE, DevOps or Platform Engineering. It is only arguably a skill, so it is flagged. It gets no alternative group because the other two options are unmapped.\\nHigh-availability inference services is mapped to model-serving. It is a judgment call and flagged.\\nML systems deployment sits in the 'Ideally, 3-5 years' item, so 'Ideally' makes it nice_to_have. Flagged.\\nTerraform and Ansible are parenthesized examples for a single IaC ask. I grouped them as alternatives even though there is no explicit 'or'. Flagged.\\nInfrastructure as code is named as a broad skill, so it gets its own criterion and stays out of the group.\\nPyTorch and TensorFlow are each the only example for their ML-frameworks ask. They are in different sections, so they get no group.\\nSeniority: 'Member of Technical Staff' names no level. Mid is inferred from '3-5 years', even though that phrase is marked 'Ideally'. Flagged.\\nNo German, Deutsch or language mention. No degree mention.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Strong expertise in Kubernetes administration"
+      },
+      {
+        "skill_id": "slurm",
+        "requirement": "required",
+        "raw_text": "Hands-on experience with Slurm workload management"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "managing distributed training systems"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "container orchestration"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed systems architecture"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "familiarity with LLM architecture"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python and C++ programming"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++ programming"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "ML frameworks such as PyTorch"
+      },
+      {
+        "skill_id": "networking",
+        "requirement": "required",
+        "raw_text": "Strong understanding of networking"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "Experience developing APIs"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "expertise in observability tools"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "primarily on AWS",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "required",
+        "raw_text": "focus on ML infrastructure",
+        "uncertain": true
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "Previous roles in SRE, DevOps, or Platform Engineering",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "required",
+        "raw_text": "high-availability inference services",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "nice_to_have",
+        "raw_text": "Ideally, 3-5 years of relevant experience in ML systems deployment",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cuda",
+        "requirement": "nice_to_have",
+        "raw_text": "CUDA optimization"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "nice_to_have",
+        "raw_text": "other ML frameworks like TensorFlow"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "nice_to_have",
+        "raw_text": "infrastructure as code"
+      },
+      {
+        "skill_id": "terraform",
+        "requirement": "nice_to_have",
+        "raw_text": "Terraform",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "ansible",
+        "requirement": "nice_to_have",
+        "raw_text": "Ansible",
+        "alternative_group": 1,
+        "uncertain": true
+      },
+      {
+        "skill_id": "gitops",
+        "requirement": "nice_to_have",
+        "raw_text": "GitOps practices"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "GPU cluster management",
+        "raw_text": "Experience managing GPU clusters"
+      },
+      {
+        "label": "YAML configuration management",
+        "raw_text": "YAML configuration management"
+      },
+      {
+        "label": "Attention mechanisms (Multi-Head / Grouped-Query Attention)",
+        "raw_text": "Multi-Head Attention, Multi/Grouped-Query"
+      },
+      {
+        "label": "HPC / parallel computing",
+        "raw_text": "Background in HPC environments, parallel computing"
+      },
+      {
+        "label": "SRE",
+        "raw_text": "SRE"
+      },
+      {
+        "label": "Platform Engineering",
+        "raw_text": "Platform Engineering"
+      },
+      {
+        "label": "Container registries / image optimization / multi-stage builds",
+        "raw_text": "container registries, image optimization, and multi-stage builds"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Ideally, 3-5 years of relevant experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "groups_reviewed": true,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "AWS appears only in the intro sentence 'We work with ... primarily on AWS'. I read that as a tech-stack statement and labeled it required, but it may count as company description only, so it is flagged.\nKubernetes, Slurm, Python, C++ and PyTorch are also in the intro but are asked for again in the requirement sections. The quotes come from those sections.\nKubernetes and Slurm appear again under PREFERRED. The required mentions win.\nThe networking requirement comes from 'networking' under REQUIRED SKILLS. The preferred 'high-performance networking' does not change it.\nDistributed training appears in both required and preferred sections, so it is labeled required.\n'container orchestration' is a taxonomy alias of containerization, so it maps there. 'containerized environments' is the same skill and also required.\n'monitoring' appears in the debugging/monitoring bullet. It maps to observability, quoted from 'observability tools'.\n'ML infrastructure' is mapped to ai-infrastructure as the closest entry. Flagged.\nDevOps comes from a prior-roles requirement listing SRE, DevOps or Platform Engineering. It is only arguably a skill, so it is flagged. It gets no alternative group because the other two options are unmapped.\nHigh-availability inference services is mapped to model-serving. It is a judgment call and flagged.\nML systems deployment sits in the 'Ideally, 3-5 years' item, so 'Ideally' makes it nice_to_have. Flagged.\nTerraform and Ansible are parenthesized examples for a single IaC ask. I grouped them as alternatives even though there is no explicit 'or'. Flagged.\nInfrastructure as code is named as a broad skill, so it gets its own criterion and stays out of the group.\nPyTorch and TensorFlow are each the only example for their ML-frameworks ask. They are in different sections, so they get no group.\nSeniority: 'Member of Technical Staff' names no level. Mid is inferred from '3-5 years', even though that phrase is marked 'Ideally'. Flagged.\nNo German, Deutsch or language mention. No degree mention."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "bac597b278ed7bbedf08f3db94bd949f38f00fc045dbc674acaf7dfc2a843692",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,52 @@
+{
+  "provider": "anthropic",
+  "model": "claude-opus-5-5",
+  "raw": "```json\n{\n  \"expected\": [\n    {\"skill_id\": \"machine-learning\", \"requirement\": \"required\", \"raw_text\": \"deep machine learning expertise\"},\n    {\"skill_id\": \"nlp\", \"requirement\": \"required\", \"raw_text\": \"NLP\"},\n    {\"skill_id\": \"recommender-systems\", \"requirement\": \"required\", \"raw_text\": \"recommender systems\"},\n    {\"skill_id\": \"ai-developer-tooling\", \"requirement\": \"required\", \"raw_text\": \"using AI to improve how ML engineers work\", \"uncertain\": true}\n  ],\n  \"unmapped\": [\n    {\"label\": \"Audio / music content understanding\", \"raw_text\": \"audio / music content understanding\"}\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineering Manager\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Only the 'Who You Are' section is labeled. It has no optional heading and no inline markers, so every skill in it is required.\\n'What You'll Do' is responsibilities only. Modelling, retrieval choices and AI tools there are not labeled on their own.\\n'audio / music content understanding' has no taxonomy entry, so it goes to unmapped. speech-recognition does not fit it.\\nai-developer-tooling is flagged uncertain. The requirement asks for 'a clear, informed point of view on using AI to improve how ML engineers work', which reads as AI-assisted development but is phrased as a viewpoint rather than a named tool skill.\\nThe team-management track record and coaching are management/soft skills and are not labeled.\\nSeniority is stated from 'Senior' in the title. The player-coach lead and management duty supports it.\\nThere is no mention of German, any other language requirement, or a degree.\"\n}\n```",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "deep machine learning expertise"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "NLP"
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "required",
+        "raw_text": "recommender systems"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "using AI to improve how ML engineers work",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Audio / music content understanding",
+        "raw_text": "audio / music content understanding"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineering Manager",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Only the 'Who You Are' section is labeled. It has no optional heading and no inline markers, so every skill in it is required.\n'What You'll Do' is responsibilities only. Modelling, retrieval choices and AI tools there are not labeled on their own.\n'audio / music content understanding' has no taxonomy entry, so it goes to unmapped. speech-recognition does not fit it.\nai-developer-tooling is flagged uncertain. The requirement asks for 'a clear, informed point of view on using AI to improve how ML engineers work', which reads as AI-assisted development but is phrased as a viewpoint rather than a named tool skill.\nThe team-management track record and coaching are management/soft skills and are not labeled.\nSeniority is stated from 'Senior' in the title. The player-coach lead and management duty supports it.\nThere is no mention of German, any other language requirement, or a degree."
+  },
+  "error": null,
+  "labeler": "A",
+  "posting_sha256": "2791fbe7e79f1947b40af8e3f3b9ee0443dce8a324dcd280e234d9e62086a531",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}
