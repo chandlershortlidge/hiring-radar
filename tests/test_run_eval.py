@@ -204,3 +204,31 @@ def test_langsmith_is_not_touched_without_a_key(monkeypatch, tmp_path):
     monkeypatch.setattr(run_eval.langsmith_eval, "enabled", lambda: False)
     run_eval.main(["--repeats", "1", "--model", "m", "--no-langsmith"])
     assert list((tmp_path / "evals/results").iterdir())
+
+
+def test_prompt_trial_reaches_the_request_and_only_this_run(monkeypatch, tmp_path):
+    """HIR-368: a trial instruction is measured without touching the live prompt. It sits
+    after the rules and before the skill list, the run is marked as a trial, and its
+    extractor version is not the live one, so it can never pass for the live extractor."""
+    from app.taxonomy import Taxonomy
+    trial = tmp_path / "trial.md"
+    trial.write_text("10. TRIAL RULE\n")
+    live = extract.system_prompt(Taxonomy.load())
+    seen, summary, md = _capture_cap(monkeypatch, tmp_path,
+                                     ["--repeats", "1", "--model", "m", "--prompt-trial", str(trial)])
+    sent = seen[0]["system"][0]["text"]
+    rules = extract.PRINCIPLES.rstrip("\n")
+    assert sent == rules + "\n\n10. TRIAL RULE\n" + live[len(extract.PRINCIPLES):]
+    assert sent.index("10. TRIAL RULE") < sent.index("TAXONOMY (version")
+    assert extract.system_prompt(Taxonomy.load()) == live
+    assert summary["meta"]["prompt_trial"] == {"file": "trial.md", "text": "10. TRIAL RULE\n"}
+    assert summary["meta"]["extractor_version"] != extract.extractor_version(Taxonomy.load(), "m")
+    assert "prompt trial `trial.md`" in md
+
+
+def test_without_a_trial_the_prompt_is_the_live_one(monkeypatch, tmp_path):
+    from app.taxonomy import Taxonomy
+    seen, summary, _ = _capture_cap(monkeypatch, tmp_path, ["--repeats", "1", "--model", "m"])
+    assert seen[0]["system"][0]["text"] == extract.system_prompt(Taxonomy.load())
+    assert "prompt_trial" not in summary["meta"]
+    assert summary["meta"]["extractor_version"] == extract.extractor_version(Taxonomy.load(), "m")
