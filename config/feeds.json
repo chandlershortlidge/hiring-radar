@@ -130,6 +130,7 @@
     {"type": "lever", "enabled": true, "token": "floqast", "company": "floqast"},
     {"type": "ashby", "enabled": true, "token": "applied", "company": "applied"},
     {"type": "ashby", "enabled": true, "token": "wayve", "company": "wayve"},
-    {"type": "ashby", "enabled": true, "token": "etched", "company": "etched"}
+    {"type": "ashby", "enabled": true, "token": "etched", "company": "etched"},
+    {"type": "ashby", "enabled": true, "token": "elevenlabs", "company": "ElevenLabs"}
   ]
 }
