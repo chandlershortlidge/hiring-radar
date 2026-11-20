@@ -778,8 +778,9 @@ PROPOSE_SYSTEM = _swap(_swap(_swap(
     "Rule on what the posting supports, not on which labeler sounds more confident.")
 
 # The proposer must not be the extractor, either labeler, or the judge (the judge refuses the
-# recorded proposer). Fable, not the Opus that labeled A: verified model id in the ladder.
-DEFAULT_PROPOSER = "claude-fable-5-1"
+# recorded proposer). Haiku: no stake, and about €0.20 for eight batches where Fable measured
+# about €17 (HIR-379); the cross-family judge still has to agree before an item settles.
+DEFAULT_PROPOSER = "claude-haiku-5-5"
 
 
 BULLET_CHARS = ("-", "*", "•", "·")
