@@ -94,8 +94,10 @@ Nothing smaller than 10.5px. No third font family.
   market as one ranked table. The band's two halves stack on a narrow screen.
 - **City page:** the fit line (only once a profile has skills) in a white band; then the
   chart on the left and the jobs on the right, side by side from 1100px up, stacked below
-  that. Smaller panels (what's rising, related skills) go under the chart, in the left
-  column.
+  that, in equal halves. Side by side, the left column stays in view while the jobs
+  scroll, never taller than the window (a longer one scrolls inside itself). Related
+  skills go under the chart, in that column; what's rising goes under the jobs. Stacked,
+  the order is chart, what's rising, related skills, jobs.
 - **Compare** keeps one column: the chart needs the full width for its two or three
   city columns.
 
