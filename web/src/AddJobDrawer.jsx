@@ -80,11 +80,23 @@ export default function AddJobDrawer({ onClose, onAdded, onViewJob }) {
   );
 }
 
+// After a job is added: will the company's other jobs now arrive on their own (HIR-324)?
+// `board` is the server's answer about the company's job board, sent whenever the add came
+// with a link: "queued" (we did not collect it; it is now on its way into the list),
+// "collected" (we already do), "none" (there is no board we can collect). Without a link
+// nothing was checked, and the line is left out rather than guessed.
+const BOARD_LINE = {
+  queued: "We'll also collect this company's other jobs from tomorrow.",
+  collected: "We already collect this company's other jobs.",
+  none: "This company's jobs can't be collected automatically yet.",
+};
+
 // Exported for the tests: what the drawer says about one server reply.
 export function Result({ r, onViewJob, onText }) {
   if (r.outcome === "added") return (
     <div className="note" role="status"><Check />
       <span><b>Added — {r.skills_found} skill{r.skills_found === 1 ? "" : "s"} found{r.proposed ? `, ${r.proposed} proposed for review` : ""}.</b>{" "}
+        {BOARD_LINE[r.board] ? `${BOARD_LINE[r.board]} ` : ""}
         {r.failed?.length ? <span>Extraction failed: {r.failed[0][1]}. The job is stored and will be retried on the next extract run.</span> : <a href="#" onClick={(e) => { e.preventDefault(); onViewJob(r.job_id); }}>View row</a>}
       </span>
     </div>
