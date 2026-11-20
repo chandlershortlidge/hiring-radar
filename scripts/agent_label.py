@@ -500,12 +500,17 @@ DECISIONS = {
     "uncertain": "`ok` (keep as agreed) / `A` / `B` / `drop`",
     "check-failed": "`A` / `B` / `drop`",
     "spot-check": "`ok` (correct) / `drop` (not a real label) / JSON (what it should be)",
+    # An agreed label written under a rule that has changed since (HIR-381, the degree rule).
+    "rule-change": "`ok` (right under today's rule) / `drop` / JSON (what it should be)",
 }
 # The order a human works the queue in: scope first (a `no` there skips the rest of that
 # posting's items), then the items that need a judgment between two labelers, then the blind
 # spot-check sample last, so the sample is not read in the light of the disagreements above it.
+# `rule-change` items are never made by `label`; `recheck` appends them after the rest.
 REASON_ORDER = {"in-scope": 0, "disagreement": 1, "uncertain": 2,
-                "mapping": 3, "check-failed": 4, "spot-check": 5}
+                "mapping": 3, "check-failed": 4, "spot-check": 5, "rule-change": 6}
+# Reasons whose item carries one agreed label rather than two answers to choose between.
+AGREED_REASONS = ("uncertain", "spot-check", "rule-change")
 
 QUEUE_HEADER = """# Review queue - {run_id}
 
@@ -565,7 +570,7 @@ def render_item(n: int, item: dict) -> str:
         lines += ["", f"Options: {DECISIONS[item['reason']]}", "",
                   f"DECISION: {item.get('decision', '?')}", ""]
         return "\n".join(lines)
-    if item["reason"] == "spot-check":
+    if item["reason"] in ("spot-check", "rule-change"):
         # Blind on purpose: both labelers agreed, so printing them twice only invites
         # agreeing with them. The question is whether the posting supports the label.
         lines.append("- agreed label: " + fmt_value(item["kind"], item["a"]))
@@ -655,7 +660,7 @@ def apply_decision(item: dict, decision: str):
             group["degree_or_equivalent"] = False
         return [], group
     if word == "ok":
-        if item["reason"] not in ("uncertain", "spot-check"):
+        if item["reason"] not in AGREED_REASONS:
             raise ValueError(f"`ok` needs an agreed value; this item is a {item['reason']}")
         side = item.get("a") or item.get("b")
         return ([side], None) if item["kind"] == "skill" else ([], side)
@@ -769,22 +774,78 @@ def _swap(text: str, old: str, new: str) -> str:
     return out
 
 
-PROPOSE_SYSTEM = _swap(_swap(_swap(
-    JUDGE_SYSTEM,
-    "You adjudicate one item", "You propose a decision on one item"),
-    "the item comes to you with both answers and a proposed decision from an earlier "
-    "reviewer. Your job is to rule on that one item.",
-    "the item comes to you with both answers. You are the first reader: propose the\n"
-    "decision. A separate judge rules on your proposal afterwards."),
-    "Rule on what the posting supports, not on what the proposal says. Agreeing with the "
-    "proposal because it is there is worth nothing; the whole point of asking you is that you "
-    "are a third reader.",
-    "Rule on what the posting supports, not on which labeler sounds more confident.")
+def proposer_system(judge_system: str) -> str:
+    """The judge's system prompt reframed for the first reader, rules untouched."""
+    return _swap(_swap(_swap(
+        judge_system,
+        "You adjudicate one item", "You propose a decision on one item"),
+        "the item comes to you with both answers and a proposed decision from an earlier "
+        "reviewer. Your job is to rule on that one item.",
+        "the item comes to you with both answers. You are the first reader: propose the\n"
+        "decision. A separate judge rules on your proposal afterwards."),
+        "Rule on what the posting supports, not on what the proposal says. Agreeing with the "
+        "proposal because it is there is worth nothing; the whole point of asking you is that "
+        "you are a third reader.",
+        "Rule on what the posting supports, not on which labeler sounds more confident.")
+
+
+PROPOSE_SYSTEM = proposer_system(JUDGE_SYSTEM)
 
 # The proposer must not be the extractor, either labeler, or the judge (the judge refuses the
 # recorded proposer). Haiku: no stake, and about €0.20 for eight batches where Fable measured
 # about €17 (HIR-379); the cross-family judge still has to agree before an item settles.
 DEFAULT_PROPOSER = "claude-haiku-5-5"
+
+
+# --- degree items: the guide's own Degree rule, not the skill rules (HIR-381) ------------
+
+def guide_section(guide_md: str, heading: str) -> str:
+    """One `## heading` section of the labelling guide, verbatim, without its heading line."""
+    m = re.search(rf"^##[ \t]+{re.escape(heading)}[ \t]*$(.*?)(?=^##[ \t]|\Z)",
+                  guide_md, flags=re.M | re.S)
+    if not m or not m.group(1).strip():
+        raise ValueError(f"the labelling guide has no `## {heading}` section")
+    return m.group(1).strip()
+
+
+def degree_judge_system(guide_md: str) -> str:
+    """JUDGE_SYSTEM with the skill rules swapped for the guide's Degree section.
+
+    The five skill rules say nothing about degrees, and the batches this is for were labelled
+    when the guide said "the highest level named" (HIR-245): a judge given the skill rules
+    would confirm the old answer. So the rule goes in word for word from LABELING.md, and the
+    prompt says outright that an agreed label may predate it.
+    """
+    rule = guide_section(guide_md, "Degree")
+    text = _swap(JUDGE_SYSTEM, "from a review queue of job-posting skill labels.",
+                 "from a review queue of job-posting labels. The item is the posting's degree "
+                 "label.")
+    text = _swap(text, "The rules, in priority order. Rule 1 beats rule 2, and so on:\n\n"
+                 + JUDGE_RULES,
+                 "The rule is the labelling guide's Degree section, quoted in full. It is the "
+                 "only policy you may use:\n\n<degree-rule>\n" + rule + "\n</degree-rule>\n\n"
+                 "These labels were written under an older rule that recorded the highest "
+                 "degree level a posting names. Where the posting names several levels, an "
+                 "agreed label can be wrong under the rule above even though both labelers "
+                 "gave it.")
+    text = _swap(text, "citing the rule number you applied", "citing the part of the rule you applied")
+    return _swap(text, '{"seniority": null, "seniority_basis": null, "seniority_signal": null} '
+                 "for an attribute.",
+                 '{"degree": "bachelor", "degree_requirement": "required", '
+                 '"degree_or_equivalent": false, "degree_signal": "BS or MS in Computer '
+                 'Science"} for a degree.')
+
+
+def systems_for(item: dict, guide_md: str | None = None) -> tuple[str, str, str]:
+    """(judge system prompt, proposer system prompt, the rules in it) for one queue item.
+
+    A degree item is ruled on under the guide's Degree section; everything else under the
+    five skill rules, exactly as before."""
+    if item["kind"] == "attribute" and item["key"] == "degree":
+        guide_md = GUIDE_FILE.read_text() if guide_md is None else guide_md
+        judge = degree_judge_system(guide_md)
+        return judge, proposer_system(judge), guide_section(guide_md, "Degree")
+    return JUDGE_SYSTEM, PROPOSE_SYSTEM, JUDGE_RULES
 
 
 BULLET_CHARS = ("-", "*", "•", "·")
@@ -864,11 +925,19 @@ def judge_question(item: dict, posting: str, proposed: str | None, reason: str |
     With `proposed=None` it is the proposer's question: the same item, no proposal lines."""
     quote = (item.get("a") or item.get("b") or {}).get("raw_text") if item["kind"] == "skill" \
         else (item.get("a") or item.get("b") or {}).get(f"{item['key']}_signal")
+    if item["kind"] == "attribute" and item["key"] == "degree":
+        # The whole posting: the lowest-level rule turns on every level the posting names,
+        # and a second level ("Master's preferred") often sits lines away from the quote.
+        # A null label is a claim that no degree is named anywhere, which a window can't show.
+        context = ["<posting>", posting.strip(), "</posting>"]
+    else:
+        context = ["<posting-excerpt>", wide_excerpt(posting, quote), "</posting-excerpt>"]
     lines = [f"posting: {item['golden_id']}",
              f"item: {item['kind']} `{item['key']}` ({item['reason']})", "",
-             "<posting-excerpt>", wide_excerpt(posting, quote), "</posting-excerpt>", ""]
-    if item["reason"] == "uncertain":
-        # Both labelers said the same thing; one of them flagged itself unsure.
+             *context, ""]
+    if item["reason"] in AGREED_REASONS:
+        # Both labelers said the same thing: one flagged itself unsure, or the label is a
+        # spot-check, or it was written under a rule that has changed since.
         lines.append("- agreed label: " + fmt_value(item["kind"], item.get("a") or item.get("b")))
     else:
         for side in ("a", "b"):
@@ -980,8 +1049,30 @@ def verdicts_agree(item: dict, proposed: str, verdict) -> bool:
         right = apply_decision(item, verdict_text(verdict))
     except (ValueError, json.JSONDecodeError):
         return False
+    if item["kind"] == "attribute":
+        # An attribute agrees on its ATTR_KEYS, the same test merge uses between A and B: two
+        # quotes of the same requirement often differ in length, and that is not a split
+        # worth Chandler's time (HIR-381).
+        pick = lambda group: tuple((group or {}).get(f) for f in ATTR_KEYS[item["key"]])
+        return pick(left[1]) == pick(right[1])
     key = lambda out: (sorted(json.dumps(s, sort_keys=True) for s in out[0]), out[1])
     return key(left) == key(right)
+
+
+def settled_decision(item: dict, proposed: str, judge_said: str) -> str:
+    """The DECISION line for an item the proposer and the judge agree on.
+
+    A word (`A`, `ok`, `drop`) when either gave one, the proposer's first, so the line names
+    a labeler's value rather than a copy of it. Two written values agree on what they decide,
+    not on their quote: keep the shorter quote (Chandler's standing preference)."""
+    for text in (proposed, judge_said):
+        if not text.startswith("{"):
+            return text
+    if item["kind"] != "attribute":
+        return judge_said
+    signal = f"{item['key']}_signal"
+    by_len = lambda text: len(json.loads(text).get(signal) or "")
+    return min((proposed, judge_said), key=by_len)
 
 
 def write_decisions(text: str, new: dict[int, str]) -> str:
@@ -1038,6 +1129,22 @@ def write_proposals(text: str, new: dict[int, tuple[str, str]]) -> str:
 def skipped_key(item: dict, keys) -> bool:
     """An attribute item left for a person whatever the models say (`--skip-key`)."""
     return bool(keys) and item["kind"] == "attribute" and item["key"] in keys
+
+
+def model_target(item: dict, only_keys) -> bool:
+    """Whether `propose` and `judge` read this item, before its decision is looked at.
+
+    Without `--key`: every item that asks for a judgment, as before - not the scope questions
+    and not the spot-check sample, which is a person's to answer. With `--key degree`: only
+    that attribute's items, and its spot-check items too, because those labels were agreed
+    under a rule that has changed since (HIR-381). A `rule-change` item exists only to be
+    re-read, so it is always a target.
+    """
+    if item["kind"] == "scope":
+        return False
+    if only_keys:
+        return item["kind"] == "attribute" and item["key"] in only_keys
+    return item["reason"] != "spot-check"
 
 
 def reset_decisions(text: str, numbers) -> str:
@@ -1772,10 +1879,11 @@ def cmd_judge(args):
         raise SystemExit(f"the judge is {args.model!r}, which wrote this run's proposals. "
                          f"A model cannot rule on its own proposal; pick another judge.")
     skip = out_of_scope_goldens(items, decisions)
+    only_keys = set(getattr(args, "key", None) or ())
 
     targets, no_proposal = [], []
     for n, item in enumerate(items, 1):
-        if item["kind"] == "scope" or item["reason"] == "spot-check":
+        if not model_target(item, only_keys):
             continue
         if item["golden_id"] in skip or decisions.get(n, "?") not in ("?", ""):
             continue
@@ -1793,10 +1901,13 @@ def cmd_judge(args):
     cache = run_dir / "judge"
     cache.mkdir(exist_ok=True)
     client, agreed, disagreed, unusable = None, {}, [], []
+    rules_used: set[str] = set()
     for n, item in targets:
         proposed, reason = proposals[n]
+        system, _, rules = systems_for(item)
+        rules_used.add(rules)
         question = judge_question(item, picks[item["golden_id"]]["job_description"], proposed, reason)
-        key = ng.sha(JUDGE_SYSTEM + "\n" + question + "\n" + args.model)
+        key = ng.sha(system + "\n" + question + "\n" + args.model)
         path = cache / f"{n:03d}.json"
         record = None
         if path.exists():
@@ -1807,7 +1918,7 @@ def cmd_judge(args):
             if client is None:
                 client = make_client(args.provider)
             print(f"  judging {n:>3} {item['golden_id']} {item['kind']} `{item['key']}`", flush=True)
-            raw = PROVIDERS[args.provider](client, args.model, JUDGE_SYSTEM, question)
+            raw = PROVIDERS[args.provider](client, args.model, system, question)
             record = {"item": n, "golden_id": item["golden_id"], "kind": item["kind"],
                       "key": item["key"], "reason": item["reason"], "provider": args.provider,
                       "model": args.model, "proposed": proposed, "key_sha256": key, "raw": raw,
@@ -1835,7 +1946,7 @@ def cmd_judge(args):
             agreed[n] = {"n": n, "golden_id": item["golden_id"], "kind": item["kind"],
                          "key": item["key"], "reason": item["reason"], "mode": "judge",
                          "by": "model", "model": args.model, "proposed": proposed,
-                         "decision": proposed if not proposed.startswith("{") else text,
+                         "decision": settled_decision(item, proposed, text),
                          "judge_said": text, "why": record["why"]}
         else:
             disagreed.append((n, item, proposed, text, record["why"]))
@@ -1849,7 +1960,8 @@ def cmd_judge(args):
         # items themselves; a per-pass record keeps what each run did.
         adj.setdefault("judge_passes", []).append(
             {"model": args.model, "provider": args.provider, "ruled": len(targets),
-             "agreed": len(agreed), "disagreed": len(disagreed), "unusable": len(unusable)})
+             "agreed": len(agreed), "disagreed": len(disagreed), "unusable": len(unusable),
+             **({"keys": sorted(only_keys), "rules": sorted(rules_used)} if only_keys else {})})
         settled = sum(1 for v in adj["items"].values() if v.get("mode") == "judge")
         adj["judge"] = {"model": args.model, "provider": args.provider,
                         "ruled": settled + len(disagreed) + len(unusable),
@@ -1884,10 +1996,16 @@ def cmd_propose(args):
     check_extra_model("proposer", args.model, [summary["model_a"], summary["model_b"]])
     skip = out_of_scope_goldens(items, decisions)
     keys = set(args.skip_key or ())
+    only_keys = set(getattr(args, "key", None) or ())
+    was = (load_adjudication(run_dir).get("proposer") or {}).get("model")
+    if was and was != args.model and proposals:
+        # The judge refuses one recorded proposer; a second proposer would slip past that.
+        raise SystemExit(f"this run's proposals were written by {was!r}; propose with that "
+                         f"model, so the judge's check on the proposer still holds.")
 
     targets, held = [], []
     for n, item in enumerate(items, 1):
-        if item["kind"] == "scope" or item["reason"] == "spot-check":
+        if not model_target(item, only_keys):
             continue
         if item["golden_id"] in skip or decisions.get(n, "?") not in ("?", "") or n in proposals:
             continue
@@ -1906,9 +2024,12 @@ def cmd_propose(args):
     cache = run_dir / "propose"
     cache.mkdir(exist_ok=True)
     client, written, unusable = None, {}, []
+    rules_used: set[str] = set()
     for n, item in targets:
+        _, system, rules = systems_for(item)
+        rules_used.add(rules)
         question = judge_question(item, picks[item["golden_id"]]["job_description"], None, None)
-        key = ng.sha(PROPOSE_SYSTEM + "\n" + question + "\n" + args.model)
+        key = ng.sha(system + "\n" + question + "\n" + args.model)
         path = cache / f"{n:03d}.json"
         record = None
         if path.exists():
@@ -1919,7 +2040,7 @@ def cmd_propose(args):
             if client is None:
                 client = make_client(args.provider)
             print(f"  proposing {n:>3} {item['golden_id']} {item['kind']} `{item['key']}`", flush=True)
-            raw = PROVIDERS[args.provider](client, args.model, PROPOSE_SYSTEM, question)
+            raw = PROVIDERS[args.provider](client, args.model, system, question)
             record = {"item": n, "golden_id": item["golden_id"], "kind": item["kind"],
                       "key": item["key"], "reason": item["reason"], "provider": args.provider,
                       "model": args.model, "key_sha256": key, "raw": raw,
@@ -1947,9 +2068,19 @@ def cmd_propose(args):
     if written:
         (run_dir / "review_queue.md").write_text(write_proposals(queue_text, written))
     adj = load_adjudication(run_dir)
-    adj["proposer"] = {"model": args.model, "provider": args.provider,
-                       "proposed": len(written) + len(proposals), "unusable": len(unusable),
-                       "skip_keys": sorted(keys), "rules": JUDGE_RULES}
+    if only_keys:
+        # A second, narrower pass (HIR-381) is recorded beside the first, not over it: the
+        # first pass's record says which items it left for a person and under what rules.
+        was = adj.get("proposer") or {}
+        adj["proposer"] = {**was, "model": args.model, "provider": args.provider,
+                           "proposed": len(written) + len(proposals)}
+        adj.setdefault("proposer_passes", []).append(
+            {"model": args.model, "provider": args.provider, "keys": sorted(only_keys),
+             "proposed": len(written), "unusable": len(unusable), "rules": sorted(rules_used)})
+    else:
+        adj["proposer"] = {"model": args.model, "provider": args.provider,
+                           "proposed": len(written) + len(proposals), "unusable": len(unusable),
+                           "skip_keys": sorted(keys), "rules": JUDGE_RULES}
     save_adjudication(run_dir, adj)
 
     print(f"\nwrote {len(written)} PROPOSED lines")
@@ -1957,6 +2088,90 @@ def cmd_propose(args):
         print(f"\n{len(unusable)} left without a proposal - the answer could not be used:")
         for u in unusable:
             print("  " + u)
+
+
+# Each degree level as the postings write it. Abbreviations are matched in capitals only
+# ("MS", "B.Sc."), words in any case. A plain "degree" / "Studium" with no level counts as
+# bachelor, as the guide reads it. Over-matching costs one model call; under-matching lets
+# an old-rule label into an answer key, so the patterns lean wide.
+DEGREE_PATTERNS = {
+    "bachelor": (r"\b(bachelor|undergraduate|degree|studium|hochschulabschluss)",
+                 r"\b(B\.?S\.?|B\.?Sc\.?|B\.?A\.?|B\.?Eng\.?)(?![A-Za-z])"),
+    "master": (r"\b(master|graduate degree|advanced degree|postgraduate)",
+               r"\b(M\.?S\.?|M\.?Sc\.?|M\.?Eng\.?|MBA)(?![A-Za-z])"),
+    "phd": (r"\b(ph\.?\s?d|doctora|promotion)", None),
+}
+
+
+def degree_levels_named(text: str) -> set[str]:
+    """The degree levels a posting names anywhere, by DEGREE_PATTERNS.
+
+    "Master's degree" names master, not master and a plain degree: the word "degree" after a
+    level is removed before a bare "degree" is looked for."""
+    out = set()
+    bare = re.sub(r"(master|bachelor|graduate|advanced|doctoral|ph\.?\s?d)['’]?s?\s+degree", "",
+                  text, flags=re.I)
+    for level, (words, caps) in DEGREE_PATTERNS.items():
+        haystack = bare if level == "bachelor" else text
+        if re.search(words, haystack, flags=re.I) or (caps and re.search(caps, text)):
+            out.add(level)
+    return out
+
+
+def rule_change_items(items: list[dict], merged: dict, picks: dict, key: str,
+                      skip: set[str]) -> list[dict]:
+    """Queue items for agreed labels the changed rule could move (HIR-381).
+
+    Only `degree` so far: an agreed, non-null degree in a posting that names more than one
+    level. A posting naming one level or none reads the same under the highest-level and the
+    lowest-level rule, so it needs no second reading. A posting that already has an item for
+    the key is skipped: that item is re-read in its own right, and a second item would give
+    apply two decisions for one field.
+    """
+    if key != "degree":
+        raise SystemExit(f"recheck knows the changed rule for `degree` only, not {key!r}")
+    queued = {i["golden_id"] for i in items if i["kind"] == "attribute" and i["key"] == key}
+    out = []
+    for gid in sorted(merged):
+        group = (merged[gid].get("accepted_attrs") or {}).get(key)
+        if gid in queued or gid in skip or not group or group.get(key) is None:
+            continue
+        posting = picks[gid]["job_description"]
+        if len(degree_levels_named(posting)) < 2:
+            continue
+        out.append({"golden_id": gid, "kind": "attribute", "key": key, "reason": "rule-change",
+                    "a": group, "b": group, "excerpt": excerpt(posting, group.get(f"{key}_signal")),
+                    "problems": [], "decision": "?"})
+    return out
+
+
+def cmd_recheck(args):
+    """Append a `rule-change` item for every agreed label the changed rule could move.
+
+    `apply` already reads such an item like any other: `ok` keeps the agreed label, a JSON
+    value replaces it, `drop` empties it. `propose --key` and `judge --key` then settle them.
+    Run it once per batch; a second run finds nothing new to add.
+    """
+    run_dir, items, picks, summary, queue_text = load_run(args.run)
+    merged = json.loads((run_dir / "merged.json").read_text())
+    skip = out_of_scope_goldens(items, dict(parse_queue(queue_text)))
+    new = rule_change_items(items, merged, picks, args.key, skip)
+    first = len(items) + 1
+    print(f"{len(new)} agreed `{args.key}` labels in postings naming more than one level"
+          + (f" -> items {first}-{first + len(new) - 1}" if new else ""))
+    for n, item in enumerate(new, first):
+        print(f"  [{n}] {item['golden_id']}  {fmt_value('attribute', item['a'])}")
+    if args.dry_run or not new:
+        return
+    numbered = list(enumerate(new, first))
+    (run_dir / "items.json").write_text(
+        json.dumps(items + new, indent=2, ensure_ascii=False) + "\n")
+    (run_dir / "review_queue.md").write_text(
+        queue_text.rstrip("\n") + "\n\n" + "\n".join(render_item(n, i) for n, i in numbered))
+    adj = load_adjudication(run_dir)
+    adj.setdefault("rule_change", []).append(
+        {"key": args.key, "rule": "lowest level named (HIR-245)", "items": [n for n, _ in numbered]})
+    save_adjudication(run_dir, adj)
 
 
 def kv(text: str) -> tuple[str, int]:
@@ -2292,6 +2507,9 @@ def main(argv=None):
     jud.add_argument("--provider", default="google", choices=sorted(PROVIDERS))
     jud.add_argument("--model", default=DEFAULT_MODEL_C, help=f"the judge (default {DEFAULT_MODEL_C})")
     jud.add_argument("--items", type=item_range, help="only these item numbers, e.g. 30-121")
+    jud.add_argument("--key", action="append", metavar="ATTR",
+                     help="only this attribute's items, its agreed spot-check items included "
+                          "(e.g. degree, re-read under a changed rule)")
     jud.add_argument("--dry-run", action="store_true", help="list what would be judged and stop")
     jud.set_defaults(fn=cmd_judge)
 
@@ -2303,6 +2521,9 @@ def main(argv=None):
     pro.add_argument("--items", type=item_range, help="only these item numbers, e.g. 30-121")
     pro.add_argument("--skip-key", action="append", metavar="ATTR",
                      help="leave this attribute's items for a person, repeatable (e.g. degree)")
+    pro.add_argument("--key", action="append", metavar="ATTR",
+                     help="only this attribute's items, its agreed spot-check items included "
+                          "(e.g. degree, re-read under a changed rule)")
     pro.add_argument("--dry-run", action="store_true", help="list what would be proposed and stop")
     pro.set_defaults(fn=cmd_propose)
 
@@ -2329,6 +2550,13 @@ def main(argv=None):
     smp.add_argument("--force", action="store_true", help="draw a new sample over an existing one")
     smp.add_argument("--dry-run", action="store_true", help="print the sample without recording it")
     smp.set_defaults(fn=cmd_sample)
+
+    rec = sub.add_parser("recheck", help="queue the agreed labels a changed rule could move")
+    rec.add_argument("--run", required=True)
+    rec.add_argument("--key", default="degree", choices=("degree",),
+                     help="the attribute whose rule changed (only degree so far)")
+    rec.add_argument("--dry-run", action="store_true", help="list what would be added and stop")
+    rec.set_defaults(fn=cmd_recheck)
 
     args = ap.parse_args(argv)
     return args.fn(args)

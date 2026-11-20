@@ -1092,7 +1092,7 @@ def test_judge_question_shows_both_labelers_the_proposal_and_the_options():
 
 
 def judge_run(tmp_path, monkeypatch, proposal="`B` - the heading says required", spot=2,
-              b_over=None):
+              b_over=None, posting=POSTING):
     """A one-posting run whose single disagreement carries a proposal, ready to judge."""
     goldens = tmp_path / "goldens"
     goldens.mkdir()
@@ -1104,7 +1104,7 @@ def judge_run(tmp_path, monkeypatch, proposal="`B` - the heading says required",
         " description_text TEXT, first_seen TEXT, extracted_version TEXT);"
         "CREATE TABLE job_source (job_id INTEGER, source TEXT);")
     conn.execute("INSERT INTO job VALUES (1,'Acme','Senior AI Engineer','Berlin','senior',?,'2026-10-20',NULL)",
-                 (POSTING,))
+                 (posting,))
     conn.execute("INSERT INTO job_source VALUES (1, 'greenhouse')")
     conn.commit()
     conn.close()
@@ -1307,6 +1307,163 @@ def test_judge_refuses_the_model_that_wrote_the_proposals(tmp_path, monkeypatch)
     judge_client(monkeypatch)
     with pytest.raises(SystemExit, match="wrote this run's proposals"):
         al.main(["judge", "--run", run_dir.name, "--model", "proposer-model"])
+
+
+# --- degree labels re-read under the lowest-level rule (HIR-381) ----------------------
+
+MULTI_LEVEL = POSTING.replace("- Master's degree in computer science",
+                              "- Bachelor's or Master's degree in computer science")
+DEGREE_ITEM = {"golden_id": "golden_001", "kind": "attribute", "key": "degree",
+               "reason": "spot-check", "problems": [], "excerpt": "...Master's degree...",
+               "a": {"degree": "master", "degree_requirement": "required",
+                     "degree_or_equivalent": True,
+                     "degree_signal": "Master's degree in computer science or equivalent experience"}}
+DEGREE_ITEM["b"] = DEGREE_ITEM["a"]
+
+
+@pytest.mark.parametrize("text, levels", [
+    ("BS, MS or PhD in Computer Engineering", {"bachelor", "master", "phd"}),
+    ("PhD / Master in a relevant field", {"master", "phd"}),
+    ("MSc or PhD in a numerate discipline", {"master", "phd"}),
+    ("Master's degree in Computer Science", {"master"}),          # "degree" after a level is not a second level
+    ("Degree in computer science; a PhD is a plus", {"bachelor", "phd"}),  # a bare degree reads as bachelor
+    ("Abgeschlossenes Studium, Promotion von Vorteil", {"bachelor", "phd"}),
+    ("A bachelor's or above degree in computer science", {"bachelor"}),
+    ("PhD in Computer Science, Robotics, AI/ML", {"phd"}),
+    ("Strong Python and Docker", set()),
+])
+def test_degree_levels_named(text, levels):
+    assert al.degree_levels_named(text) == levels
+
+
+def test_degree_items_are_ruled_on_under_the_guides_degree_section_not_the_skill_rules():
+    guide = al.GUIDE_FILE.read_text()
+    judge, propose, rules = al.systems_for(DEGREE_ITEM, guide)
+    assert rules == al.guide_section(guide, "Degree") and "**lowest** level named" in rules
+    for system in (judge, propose):
+        assert rules in system and al.JUDGE_RULES not in system
+        assert "older rule that recorded the highest" in system
+    assert "earlier reviewer" not in propose and "earlier reviewer" in judge
+    # everything else keeps the skill rules, byte for byte, so cached rulings stay valid
+    skill = {**DEGREE_ITEM, "kind": "skill", "key": "docker"}
+    assert al.systems_for(skill) == (al.JUDGE_SYSTEM, al.PROPOSE_SYSTEM, al.JUDGE_RULES)
+    with pytest.raises(ValueError, match="no `## Degree` section"):
+        al.guide_section("# Guide\n\n## Seniority\n\ntext\n", "Degree")
+
+
+def test_a_degree_item_shows_the_model_the_whole_posting_and_the_agreed_label():
+    posting = POSTING + "\n" + "filler line\n" * 200 + "PhD preferred\n"
+    q = al.judge_question(DEGREE_ITEM, posting, None, None)
+    assert "<posting>" in q and "PhD preferred" in q
+    assert "- agreed label: value=\"master\"" in q and "- B:" not in q
+
+
+def test_key_degree_takes_agreed_degree_items_and_nothing_else():
+    rule_change = {**DEGREE_ITEM, "reason": "rule-change"}
+    skill_spot = {**DEGREE_ITEM, "kind": "skill", "key": "docker"}
+    assert al.model_target(DEGREE_ITEM, {"degree"})
+    assert al.model_target(rule_change, {"degree"}) and al.model_target(rule_change, set())
+    assert not al.model_target(skill_spot, {"degree"})
+    assert not al.model_target(DEGREE_ITEM, set())        # the spot-check stays a person's
+    assert not al.model_target({**DEGREE_ITEM, "kind": "scope"}, {"degree"})
+
+
+def test_attribute_verdicts_agree_on_value_requirement_and_flag_not_on_the_quote():
+    item = {**DEGREE_ITEM, "reason": "rule-change"}
+    long = json.dumps({"degree": "bachelor", "degree_requirement": "required",
+                       "degree_or_equivalent": True,
+                       "degree_signal": "Bachelor's or Master's degree in computer science or equivalent experience"})
+    short = {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": True,
+             "degree_signal": "Bachelor's or Master's degree"}
+    assert al.verdicts_agree(item, long, short)
+    assert not al.verdicts_agree(item, long, {**short, "degree_requirement": "nice_to_have"})
+    assert not al.verdicts_agree(item, "ok", short)        # ok keeps master
+    assert al.settled_decision(item, long, json.dumps(short)) == json.dumps(short)
+    assert al.settled_decision(item, "ok", json.dumps(short)) == "ok"
+
+
+def test_rule_change_items_are_read_by_apply_like_any_decision():
+    item = {**DEGREE_ITEM, "reason": "rule-change"}
+    assert al.apply_decision(item, "ok") == ([], DEGREE_ITEM["a"])
+    _, group = al.apply_decision(item, '{"degree": "bachelor", "degree_requirement": "required"}')
+    assert group["degree"] == "bachelor" and group["degree_or_equivalent"] is False
+    assert al.apply_decision(item, "drop")[1]["degree"] is None
+    assert "- agreed label:" in al.render_item(9, item) and "- A:" not in al.render_item(9, item)
+
+
+def recheck_run(tmp_path, monkeypatch, posting=MULTI_LEVEL):
+    run_dir, queue, n = judge_run(tmp_path, monkeypatch, proposal=None, spot=0, posting=posting)
+    judge_client(monkeypatch)                    # no answers: recheck must not call a model
+    al.main(["recheck", "--run", run_dir.name])
+    return run_dir, queue, n
+
+
+def test_recheck_queues_an_agreed_degree_in_a_posting_naming_two_levels(tmp_path, monkeypatch, capsys):
+    run_dir, queue, _ = recheck_run(tmp_path, monkeypatch)
+    items = json.loads((run_dir / "items.json").read_text())
+    new = items[-1]
+    assert (new["reason"], new["key"], new["a"]["degree"]) == ("rule-change", "degree", "master")
+    assert al.parse_queue(queue.read_text())[-1] == (len(items), "?")
+    assert f"## {len(items)}. golden_001 - attribute `degree` (rule-change)" in queue.read_text()
+    adj = json.loads((run_dir / "adjudication.json").read_text())
+    assert adj["rule_change"] == [{"key": "degree", "rule": "lowest level named (HIR-245)",
+                                   "items": [len(items)]}]
+    # a second run adds nothing: the posting now has a degree item
+    al.main(["recheck", "--run", run_dir.name])
+    assert len(json.loads((run_dir / "items.json").read_text())) == len(items)
+    assert "0 agreed `degree` labels" in capsys.readouterr().out
+
+
+def test_recheck_leaves_a_posting_that_names_one_level(tmp_path, monkeypatch):
+    run_dir, queue, _ = recheck_run(tmp_path, monkeypatch, posting=POSTING)
+    assert not any(i["reason"] == "rule-change"
+                   for i in json.loads((run_dir / "items.json").read_text()))
+    assert not (run_dir / "adjudication.json").exists()
+
+
+def test_propose_and_judge_with_key_degree_settle_a_rule_change_item(tmp_path, monkeypatch, capsys):
+    run_dir, queue, docker = recheck_run(tmp_path, monkeypatch)
+    n, = item_numbers(run_dir, reason="rule-change")
+    signal = "Bachelor's or Master's degree in computer science or equivalent experience"
+    value = {"degree": "bachelor", "degree_requirement": "required", "degree_or_equivalent": True}
+    proposer = judge_client(monkeypatch, {"decision": {**value, "degree_signal": signal},
+                                          "why": "lowest level named"})
+    monkeypatch.setitem(al.PROVIDERS, "anthropic", al.call_anthropic)
+    al.main(["propose", "--run", run_dir.name, "--model", "proposer-model", "--key", "degree"])
+    assert set(al.parse_proposals(queue.read_text())) == {n}       # not the docker disagreement
+    call, = proposer.calls
+    assert "**lowest** level named" in call["system"][0]["text"]
+    assert MULTI_LEVEL.strip() in call["messages"][0]["content"]
+
+    judge = judge_client(monkeypatch, {"decision": {**value, "degree_signal": "Bachelor's or Master's degree"},
+                                       "why": "lowest level"})
+    al.main(["judge", "--run", run_dir.name, "--model", "judge-model", "--key", "degree"])
+    assert len(judge.calls) == 1 and "**lowest** level named" in judge.calls[0]["system"][0]["text"]
+    decisions = dict(al.parse_queue(queue.read_text()))
+    assert json.loads(decisions[n])["degree_signal"] == "Bachelor's or Master's degree"  # the shorter quote
+    assert decisions[docker] == "?"
+    adj = json.loads((run_dir / "adjudication.json").read_text())
+    assert adj["items"][str(n)]["by"] == "model"
+    assert adj["proposer_passes"][0]["keys"] == ["degree"]
+    assert adj["judge_passes"][0]["keys"] == ["degree"]
+
+    # apply writes the re-read level into the answer key
+    _answer(queue, lambda i, b: None if i == n else
+            "yes" if "(in-scope)" in b else "A")
+    al.main(["apply", "--run", run_dir.name])
+    golden = json.loads((tmp_path / "goldens" / "golden_001.json").read_text())
+    assert golden["degree"] == "bachelor"
+    assert golden["degree_signal"] == "Bachelor's or Master's degree"
+    assert "degree" in golden["adjudicated_by_model"]
+
+
+def test_propose_refuses_a_second_proposer_on_a_run(tmp_path, monkeypatch):
+    run_dir, queue, n = recheck_run(tmp_path, monkeypatch)
+    judge_client(monkeypatch, {"decision": "B", "why": "rule 3"})
+    monkeypatch.setitem(al.PROVIDERS, "anthropic", al.call_anthropic)
+    al.main(["propose", "--run", run_dir.name, "--model", "proposer-model", "--items", str(n)])
+    with pytest.raises(SystemExit, match="written by 'proposer-model'"):
+        al.main(["propose", "--run", run_dir.name, "--model", "other-model", "--key", "degree"])
 
 
 def test_write_proposals_refuses_a_decided_item():
