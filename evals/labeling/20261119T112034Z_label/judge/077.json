@@ -1,0 +1,15 @@
+{
+  "item": 77,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "hugging-face",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "d553b079d9d6c19d553606bf7e21b272ab500fe179cb8cd1efbd26524f49da9f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, 'Hugging Face Transformers' is explicitly named as a required skill in the qualifications bullet list.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, 'Hugging Face Transformers' is explicitly named as a required skill in the qualifications bullet list.",
+  "error": null
+}

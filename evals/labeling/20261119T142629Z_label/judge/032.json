@@ -1,0 +1,15 @@
+{
+  "item": 32,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "model-serving",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "3b15a609021ba9a10725a43922a2783eb04ae6bdda68f2fb5e85404864c4a4d1",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the preferred qualification bullet explicitly asks for proficiency in designing systems for 'online inference', which directly denotes the model-serving skill.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the preferred qualification bullet explicitly asks for proficiency in designing systems for 'online inference', which directly denotes the model-serving skill.",
+  "error": null
+}

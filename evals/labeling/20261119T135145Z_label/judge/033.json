@@ -1,0 +1,15 @@
+{
+  "item": 33,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "14e312038ddc53ee9f0bfb2e68d151f5fdaec0906f10343e65874eefc3134cca",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a required qualification bullet explicitly asks for \\\"experience using ML frameworks\\\" and deploying \\\"AI/ML models\\\", directly naming the machine learning skill.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a required qualification bullet explicitly asks for \"experience using ML frameworks\" and deploying \"AI/ML models\", directly naming the machine learning skill.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 27,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a0f29f2b1a7dfbef8e1ee00a7a9d9187cbdfa38afdec31a17dafb9ba91c333a8",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Minimum Qualifications, rule 1 applies: the \\\"System design\\\" bullet requires having \\\"designed robot software systems end to end\\\" with data flow and interfaces, which is software architecture work the posting actually asks for, so labeler B's required tag stands.\"}",
+  "decision": "B",
+  "why": "Under Minimum Qualifications, rule 1 applies: the \"System design\" bullet requires having \"designed robot software systems end to end\" with data flow and interfaces, which is software architecture work the posting actually asks for, so labeler B's required tag stands.",
+  "error": null
+}

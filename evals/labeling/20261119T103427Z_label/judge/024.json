@@ -1,0 +1,15 @@
+{
+  "item": 24,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "5fb1d4181b943e5d7883d4c97d7e1490d08dc099aa499fdbf251f939d41172e7",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 3, any required mention wins, and 'Exposure to software development life cycle and tools' in the required qualifications section establishes software-engineering as required.\"}",
+  "decision": "A",
+  "why": "Under Rule 3, any required mention wins, and 'Exposure to software development life cycle and tools' in the required qualifications section establishes software-engineering as required.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 57,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "ml-engineering",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "24a2dfd46a9c6dcd56098cdc3232fb6596daac85d06c428bc5b18e77d2086312",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 1, a years-of-experience line naming a role or domain ('8+ years of experience in software engineering, ML engineering, or MLOps/DevOps') does not count as a skill qualification.\"}",
+  "decision": "drop",
+  "why": "Under Rule 1, a years-of-experience line naming a role or domain ('8+ years of experience in software engineering, ML engineering, or MLOps/DevOps') does not count as a skill qualification.",
+  "error": null
+}

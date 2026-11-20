@@ -1,0 +1,14 @@
+{
+  "item": 38,
+  "golden_id": "golden_104",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "ae77fc1e62719396dec196eb49f23afb1fa39269ffcb922fbd76af6d25c6d4aa",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 4, the mentoring signal sits in the 'What you'll do' responsibilities and the candidate isn't asked for it, so B's basis fails; A's '3+ years' qualification line is the only requirement-side seniority evidence, so A's mid reading stands.\"}",
+  "decision": "A",
+  "why": "Under rule 4, the mentoring signal sits in the 'What you'll do' responsibilities and the candidate isn't asked for it, so B's basis fails; A's '3+ years' qualification line is the only requirement-side seniority evidence, so A's mid reading stands.",
+  "error": null
+}

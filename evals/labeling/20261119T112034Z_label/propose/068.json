@@ -1,0 +1,14 @@
+{
+  "item": 68,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "8958a916cd979e6b609037e44ab1121d1aa45be2229b6984c88bf09b6ae045d4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the bullet \\\"Working with user facing LLM and agentic product features\\\" is a qualification that names agent work, and the \\\"not required... added plus\\\" framing correctly makes it nice_to_have, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the bullet \"Working with user facing LLM and agentic product features\" is a qualification that names agent work, and the \"not required... added plus\" framing correctly makes it nice_to_have, so the agreed label stands.",
+  "error": null
+}

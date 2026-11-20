@@ -1,0 +1,15 @@
+{
+  "item": 34,
+  "golden_id": "golden_105",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "9c01159212cca9c070ab0ee4ae29d223b15fe78e9c27e11a09ac6aa0285626eb",
+  "raw": "{\"decision\": \"A\", \"why\": \"Rule 1 excludes years-of-experience lines from counting as skills, not from serving as an inferred seniority signal, and 5+ years of experience supports inferring senior level.\"}",
+  "decision": "A",
+  "why": "Rule 1 excludes years-of-experience lines from counting as skills, not from serving as an inferred seniority signal, and 5+ years of experience supports inferring senior level.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 27,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "54e283729b60ed4ff86547f602e6dc52fbe45e7aba90d4af0603362a9a44c700",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, the text asks for 'building and maintaining scalable codebases' and does not explicitly name the broad skill 'software-engineering'.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, the text asks for 'building and maintaining scalable codebases' and does not explicitly name the broad skill 'software-engineering'.",
+  "error": null
+}

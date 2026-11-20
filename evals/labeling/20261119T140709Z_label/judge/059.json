@@ -1,0 +1,15 @@
+{
+  "item": 59,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "data-modeling",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "9d32e927febf7aae73ce68d25b89a7196bbf6d548a25382298384d599b077195",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 1, a mention of a skill in the job title does not count.\"}",
+  "decision": "drop",
+  "why": "Under Rule 1, a mention of a skill in the job title does not count.",
+  "error": null
+}

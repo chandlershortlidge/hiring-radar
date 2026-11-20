@@ -1,0 +1,171 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"professional software development experience\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed systems\"\n    },\n    {\n      \"skill_id\": \"event-driven-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"event-driven architecture\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud-native engineering\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"infrastructure-as-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"infrastructure-as-code\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"containerization\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"APIs\"\n    },\n    {\n      \"skill_id\": \"api-design\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"designing SDKs, APIs\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agentic AI\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"orchestration frameworks\"\n    },\n    {\n      \"skill_id\": \"pydanticai\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Pydantic AI\"\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LangGraph\"\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LangChain\"\n    },\n    {\n      \"skill_id\": \"crewai\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CrewAI\"\n    },\n    {\n      \"skill_id\": \"autogen\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AutoGen\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"anthropic-api\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Anthropic\"\n    },\n    {\n      \"skill_id\": \"openai-api\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"OpenAI\"\n    },\n    {\n      \"skill_id\": \"vertex-ai\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Vertex AI\"\n    },\n    {\n      \"skill_id\": \"aws-bedrock\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Amazon Bedrock\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"evaluation and feedback-loop frameworks\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLM observability and monitoring tooling\"\n    },\n    {\n      \"skill_id\": \"ai-infrastructure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI infrastructure\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Workflow Orchestration\",\n      \"raw_text\": \"workflow orchestration\"\n    },\n    {\n      \"label\": \"Autoscaling\",\n      \"raw_text\": \"autoscaling\"\n    },\n    {\n      \"label\": \"SDK Design\",\n      \"raw_text\": \"designing SDKs\"\n    },\n    {\n      \"label\": \"Sandboxed Code Execution\",\n      \"raw_text\": \"sandboxed code execution\"\n    },\n    {\n      \"label\": \"Agent Harness Development\",\n      \"raw_text\": \"agent harness development\"\n    },\n    {\n      \"label\": \"FinOps\",\n      \"raw_text\": \"cost-governance / FinOps\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Principal Software Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"B.S. or M.S. in Computer Science, Engineering, or a related field\",\n  \"notes\": \"AWS CDK and Terraform appear only under Key Responsibilities, so they are excluded per the labeling guide. 'observable' in 'take systems from prototype to hardened, observable, operationally excellent production' was treated as a system property rather than an explicit skill requirement, while 'LLM observability and monitoring tooling' under Preferred Qualifications is mapped to observability as nice_to_have. Marked api-design as uncertain alongside apis for 'designing SDKs, APIs'.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "professional software development experience"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "event-driven-systems",
+        "requirement": "required",
+        "raw_text": "event-driven architecture"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud-native engineering"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "infrastructure-as-code",
+        "requirement": "required",
+        "raw_text": "infrastructure-as-code"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containerization"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "APIs"
+      },
+      {
+        "skill_id": "api-design",
+        "requirement": "required",
+        "raw_text": "designing SDKs, APIs",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic AI"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "nice_to_have",
+        "raw_text": "orchestration frameworks"
+      },
+      {
+        "skill_id": "pydanticai",
+        "requirement": "nice_to_have",
+        "raw_text": "Pydantic AI"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "nice_to_have",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "nice_to_have",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "crewai",
+        "requirement": "nice_to_have",
+        "raw_text": "CrewAI"
+      },
+      {
+        "skill_id": "autogen",
+        "requirement": "nice_to_have",
+        "raw_text": "AutoGen"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "anthropic-api",
+        "requirement": "nice_to_have",
+        "raw_text": "Anthropic"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "nice_to_have",
+        "raw_text": "OpenAI"
+      },
+      {
+        "skill_id": "vertex-ai",
+        "requirement": "nice_to_have",
+        "raw_text": "Vertex AI"
+      },
+      {
+        "skill_id": "aws-bedrock",
+        "requirement": "nice_to_have",
+        "raw_text": "Amazon Bedrock"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "evaluation and feedback-loop frameworks"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM observability and monitoring tooling"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "nice_to_have",
+        "raw_text": "AI infrastructure"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Workflow Orchestration",
+        "raw_text": "workflow orchestration"
+      },
+      {
+        "label": "Autoscaling",
+        "raw_text": "autoscaling"
+      },
+      {
+        "label": "SDK Design",
+        "raw_text": "designing SDKs"
+      },
+      {
+        "label": "Sandboxed Code Execution",
+        "raw_text": "sandboxed code execution"
+      },
+      {
+        "label": "Agent Harness Development",
+        "raw_text": "agent harness development"
+      },
+      {
+        "label": "FinOps",
+        "raw_text": "cost-governance / FinOps"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Principal Software Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "B.S. or M.S. in Computer Science, Engineering, or a related field",
+    "notes": "AWS CDK and Terraform appear only under Key Responsibilities, so they are excluded per the labeling guide. 'observable' in 'take systems from prototype to hardened, observable, operationally excellent production' was treated as a system property rather than an explicit skill requirement, while 'LLM observability and monitoring tooling' under Preferred Qualifications is mapped to observability as nice_to_have. Marked api-design as uncertain alongside apis for 'designing SDKs, APIs'."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "0e668578325a1c2e2c4665a34686f84f2b4d27758e21b7c35a303336483776a6",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

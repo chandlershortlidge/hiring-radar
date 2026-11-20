@@ -1,0 +1,15 @@
+{
+  "item": 79,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "d356a2db7addbcf4416d401353bb9b237a91158b8e4e301d6bc88d7103276473",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the required qualification bullet asks for experience with object detection and segmentation models including 'production deployment', which supports `ai-deployment` as required.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the required qualification bullet asks for experience with object detection and segmentation models including 'production deployment', which supports `ai-deployment` as required.",
+  "error": null
+}

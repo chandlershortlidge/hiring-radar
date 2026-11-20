@@ -1,0 +1,14 @@
+{
+  "item": 49,
+  "golden_id": "golden_098",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b666ac0afa851e08ac5e2ef284e38169fa8e9ba9e7c0159cf1c7ac50ee26dc44",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only support for seniority is a years-of-experience line (\\\"2+ years of relevant experience\\\"), which does not count, so the attribute should be null rather than \\\"junior\\\".\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only support for seniority is a years-of-experience line (\"2+ years of relevant experience\"), which does not count, so the attribute should be null rather than \"junior\".",
+  "error": null
+}

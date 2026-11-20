@@ -1,0 +1,14 @@
+{
+  "item": 31,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "20519560ed31082fec37b2d327afa41a14c020c53bccee259e18af35db54b046",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the qualification sentence \\\"The ideal candidate will have a proven track record of developing and deploying advanced AI models\\\" names a skill, and under rule 3 its firm \\\"will have\\\" wording makes it a required mention that outweighs labeler A's omission.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the qualification sentence \"The ideal candidate will have a proven track record of developing and deploying advanced AI models\" names a skill, and under rule 3 its firm \"will have\" wording makes it a required mention that outweighs labeler A's omission.",
+  "error": null
+}

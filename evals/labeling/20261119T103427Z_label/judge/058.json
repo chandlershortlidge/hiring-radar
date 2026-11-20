@@ -1,0 +1,15 @@
+{
+  "item": 58,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "data-pipelines",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "eabc20bcb7dc1c6c4ff3ebca9a93072faa1074e243db2921a41ebd55f45942ce",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a required qualification bullet asks the candidate to 'ship analyses and pipelines end to end', which directly supports the data-pipelines skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a required qualification bullet asks the candidate to 'ship analyses and pipelines end to end', which directly supports the data-pipelines skill.",
+  "error": null
+}

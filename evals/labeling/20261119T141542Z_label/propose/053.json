@@ -1,0 +1,14 @@
+{
+  "item": 53,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "api-design",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e2ae3bdbf42235f7ebf51cb8f6190a2a984e254b6b1834bb27a50fd0938714df",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'Specific Knowledge and Skills' bullet names 'Cloud & API Architecture' and asks the candidate to implement REST APIs, which is building APIs rather than just consuming them (rule 2), and the raw_text 'API Architecture' appears verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'Specific Knowledge and Skills' bullet names 'Cloud & API Architecture' and asks the candidate to implement REST APIs, which is building APIs rather than just consuming them (rule 2), and the raw_text 'API Architecture' appears verbatim in the posting.",
+  "error": null
+}

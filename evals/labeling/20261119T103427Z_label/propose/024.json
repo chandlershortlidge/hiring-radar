@@ -1,0 +1,14 @@
+{
+  "item": 24,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "2c41755680dcc6eb2f1128bef8bf9e1e3f588318639aa7adc946c7dddf24c850",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 3, the required mention wins: the required qualification bullet \\\"Exposure to software development life cycle and tools\\\" names software-engineering practice, which outweighs the nice-to-have \\\"Experience developing software\\\" that labeler B cited.\"}",
+  "decision": "A",
+  "why": "Under rule 3, the required mention wins: the required qualification bullet \"Exposure to software development life cycle and tools\" names software-engineering practice, which outweighs the nice-to-have \"Experience developing software\" that labeler B cited.",
+  "error": null
+}

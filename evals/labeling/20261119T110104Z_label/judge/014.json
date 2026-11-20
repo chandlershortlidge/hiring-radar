@@ -1,0 +1,15 @@
+{
+  "item": 14,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "e16c093bf78a1704bea45d9b39341b516f638d1683a9b6606bb851d69cf88d16",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a required qualification bullet explicitly asks for depth in 'modern ML frameworks' as well as driving 'AI/ML projects' and 'AI/ML models', making machine-learning a required skill.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a required qualification bullet explicitly asks for depth in 'modern ML frameworks' as well as driving 'AI/ML projects' and 'AI/ML models', making machine-learning a required skill.",
+  "error": null
+}

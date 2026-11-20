@@ -1,0 +1,14 @@
+{
+  "item": 33,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "979a024dc33a0a8fd1d28e7f3cb357fd4af2e85d2327c983ba55af554c8d19c6",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the Preferred Skills bullet \\\"Familiarity with privacy-preserving ML techniques such as federated learning\\\" is a named qualification, so the skill counts, and labeler B's nice_to_have requirement and raw_text match that bullet word for word.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the Preferred Skills bullet \"Familiarity with privacy-preserving ML techniques such as federated learning\" is a named qualification, so the skill counts, and labeler B's nice_to_have requirement and raw_text match that bullet word for word.",
+  "error": null
+}

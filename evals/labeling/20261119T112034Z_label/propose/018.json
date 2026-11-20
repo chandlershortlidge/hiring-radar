@@ -1,0 +1,14 @@
+{
+  "item": 18,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9ae58a156934545424a8246a0abbefb0275e7ff53804b140b85b062b1c8fc2c0",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the qualification bullet in the \\\"You should apply if\\\" section names model development (\\\"leading the development and deployment of advanced Machine Learning models\\\"), and rule 3 makes that required mention decisive, so labeler B's required tag is right and labeler A simply omitted it.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the qualification bullet in the \"You should apply if\" section names model development (\"leading the development and deployment of advanced Machine Learning models\"), and rule 3 makes that required mention decisive, so labeler B's required tag is right and labeler A simply omitted it.",
+  "error": null
+}

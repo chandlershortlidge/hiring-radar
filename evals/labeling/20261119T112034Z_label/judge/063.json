@@ -1,0 +1,15 @@
+{
+  "item": 63,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "a016bec1c2b0af0de484e0e953b507cb79a7061b2a0ae40b681c1e0c5d861de4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification bullet under ABOUT YOU explicitly requires 'Experience training or fine-tuning large language models', which supports the model-development skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification bullet under ABOUT YOU explicitly requires 'Experience training or fine-tuning large language models', which supports the model-development skill.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 47,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "c841102c7655f4d126e3e29fe22925fbe9d8266474886dadc519e4cd4d626917",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the MINIMUM QUALIFICATIONS bullet explicitly requires \\\"Proven experience training and deploying language models to production,\\\" which supports the agreed required ai-deployment label with that raw_text.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the MINIMUM QUALIFICATIONS bullet explicitly requires \"Proven experience training and deploying language models to production,\" which supports the agreed required ai-deployment label with that raw_text.",
+  "error": null
+}

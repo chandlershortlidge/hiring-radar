@@ -1,0 +1,155 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong proficiency in Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"scikit-learn\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"scikit-learn\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong software engineering fundamentals\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"use of machine learning models\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"development and use of machine learning models\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agentic workflows\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLM evaluation\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"testing\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"observability\"\n    },\n    {\n      \"skill_id\": \"llm-guardrails\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"guardrails\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vector databases\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"embeddings\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"retrieval-augmented generation (RAG)\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"architectures and design patterns for client-server systems\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"containerized\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cloud environments\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Kubernetes (K8s)\"\n    },\n    {\n      \"skill_id\": \"async-processing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"asynchronous programming\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"event-driven-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"event-driven architectures\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"exploratory data analysis\",\n      \"raw_text\": \"exploratory data analysis\"\n    },\n    {\n      \"label\": \"Podman\",\n      \"raw_text\": \"Podman\"\n    },\n    {\n      \"label\": \"concurrency\",\n      \"raw_text\": \"concurrency\"\n    }\n  ],\n  \"seniority\": \"junior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Junior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"A BS degree in computer science, machine learning, or a related discipline\",\n  \"uncertain\": [\n    \"degree\"\n  ],\n  \"notes\": \"Degree: BS degree is required, while 'Advanced degree' (Master/PhD, exact level not specified) is in the nice-to-have section; labeled bachelor/required and flagged uncertain.\\nMapped 'development and use of machine learning models' to both machine-learning and model-development (flagged model-development uncertain).\\nMapped 'agentic workflows' to agents (flagged uncertain).\\nMapped 'asynchronous programming' to async-processing (flagged uncertain).\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong proficiency in Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "scikit-learn",
+        "requirement": "required",
+        "raw_text": "scikit-learn"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software engineering fundamentals"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "use of machine learning models"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "development and use of machine learning models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic workflows",
+        "uncertain": true
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM evaluation"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "testing"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "observability"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "nice_to_have",
+        "raw_text": "guardrails"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "nice_to_have",
+        "raw_text": "vector databases"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "nice_to_have",
+        "raw_text": "embeddings"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "nice_to_have",
+        "raw_text": "retrieval-augmented generation (RAG)"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "nice_to_have",
+        "raw_text": "architectures and design patterns for client-server systems",
+        "uncertain": true
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerized"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud environments"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes (K8s)"
+      },
+      {
+        "skill_id": "async-processing",
+        "requirement": "nice_to_have",
+        "raw_text": "asynchronous programming",
+        "uncertain": true
+      },
+      {
+        "skill_id": "event-driven-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "event-driven architectures"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "exploratory data analysis",
+        "raw_text": "exploratory data analysis"
+      },
+      {
+        "label": "Podman",
+        "raw_text": "Podman"
+      },
+      {
+        "label": "concurrency",
+        "raw_text": "concurrency"
+      }
+    ],
+    "seniority": "junior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Junior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "A BS degree in computer science, machine learning, or a related discipline",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Degree: BS degree is required, while 'Advanced degree' (Master/PhD, exact level not specified) is in the nice-to-have section; labeled bachelor/required and flagged uncertain.\nMapped 'development and use of machine learning models' to both machine-learning and model-development (flagged model-development uncertain).\nMapped 'agentic workflows' to agents (flagged uncertain).\nMapped 'asynchronous programming' to async-processing (flagged uncertain)."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "89a676a5719f5de7afc4e385680064d49618d6ecb3ea0fc199051da3d94ab0f4",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

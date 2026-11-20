@@ -1,0 +1,14 @@
+{
+  "item": 73,
+  "golden_id": "golden_107",
+  "kind": "skill",
+  "key": "networking",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0d8e2423587fd447226641886149983f9b0976c0ea879b802a92c72c80ba85a0",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required 'What you will need' bullet names networking as part of the Linux and systems debugging skills, and rule 3 confirms the required quote 'performance investigation, networking' is the determining mention.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required 'What you will need' bullet names networking as part of the Linux and systems debugging skills, and rule 3 confirms the required quote 'performance investigation, networking' is the determining mention.",
+  "error": null
+}

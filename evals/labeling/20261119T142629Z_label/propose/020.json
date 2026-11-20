@@ -1,0 +1,14 @@
+{
+  "item": 20,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "6fef33c2529d7587c95643cddc8bea91f88d1b1c45ea9408e8182cdf149d9b40",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only AI mention is company-culture and interview-policy boilerplate ('we empower employees to innovate with AI', 'eager to do the same'), not a qualification bullet naming a skill the candidate must or should have, so ai-ml does not belong in the key.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only AI mention is company-culture and interview-policy boilerplate ('we empower employees to innovate with AI', 'eager to do the same'), not a qualification bullet naming a skill the candidate must or should have, so ai-ml does not belong in the key.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 62,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "agent-architecture",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "bc5cea7fef34d9a212b5c34e9035112b2901f385a355c8bc6fb086be5f5744a4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'Skills And Attributes For Success' bullet names 'agentic architectures' as a required understanding, and the agreed required label and raw_text match that wording verbatim.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'Skills And Attributes For Success' bullet names 'agentic architectures' as a required understanding, and the agreed required label and raw_text match that wording verbatim.",
+  "error": null
+}

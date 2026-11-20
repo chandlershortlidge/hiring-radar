@@ -1,0 +1,14 @@
+{
+  "item": 74,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "inference-optimization",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f9a8bff39f1a5326f47b3e4268a250ee4d7e07a6c1dabcb5aff7cce3ab17b0f1",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the Preferred Qualifications bullet about optimizing training and inference software for latency, throughput, and cost names this skill, the nice_to_have tier matches the section heading, and the agreed raw_text appears word for word (Rule 3).\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the Preferred Qualifications bullet about optimizing training and inference software for latency, throughput, and cost names this skill, the nice_to_have tier matches the section heading, and the agreed raw_text appears word for word (Rule 3).",
+  "error": null
+}

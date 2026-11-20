@@ -1,0 +1,14 @@
+{
+  "item": 56,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "gcp",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1895a1ec56eb0062c51c3bea197dd94b8507270fcd03bff3e0d6c649c39b82f1",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Preferred Skills bullet names GCP explicitly in a qualification (\"Experience with cloud computing services (AWS, Azure, GCP)\"), so the agreed gcp / nice_to_have / raw_text \"GCP\" stands as is.\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 112 (char 111)"
+}

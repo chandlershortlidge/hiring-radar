@@ -1,0 +1,15 @@
+{
+  "item": 65,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "hadoop",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "57f65c3783b33b231d3430c8556aab857a5e18bab439c356e7954a67ae572e8f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet under the 'It’s Great if you have' section explicitly names Hadoop, supporting the agreed nice-to-have label.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet under the 'It’s Great if you have' section explicitly names Hadoop, supporting the agreed nice-to-have label.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 30,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f3acc31c1033cef262675acdba76d1cf7751ac0af10dcd80715005d8bd21184a",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the sentence \\\"The ideal candidate will have a proven track record of developing and deploying advanced AI models\\\" is a qualification that names deployment, and the required framing and verbatim raw_text support B's tag under rule 3.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the sentence \"The ideal candidate will have a proven track record of developing and deploying advanced AI models\" is a qualification that names deployment, and the required framing and verbatim raw_text support B's tag under rule 3.",
+  "error": null
+}

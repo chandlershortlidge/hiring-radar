@@ -1,0 +1,14 @@
+{
+  "item": 15,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d877988efd8633a825cb4fb85f074ab7b9ae1901a445c742f5f96227456fed06",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the preferred-qualifications bullet \\\"you've trained models yourself\\\" names a skill (training models, i.e. model development), and the labeler's nice_to_have tag and quoted raw_text match the posting word for word.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the preferred-qualifications bullet \"you've trained models yourself\" names a skill (training models, i.e. model development), and the labeler's nice_to_have tag and quoted raw_text match the posting word for word.",
+  "error": null
+}

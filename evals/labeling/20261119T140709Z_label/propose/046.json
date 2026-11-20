@@ -1,0 +1,14 @@
+{
+  "item": 46,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "dc0449faf5d9c111e6e43af0a4830c3139e542e97a3287055d1363e209e40dce",
+  "raw": "{\"requirement\": \"required\", \"raw_text\": \"proficiency with ML frameworks (PyTorch or TensorFlow, plus scikit-learn)\"}\n\n\"why\": \"Rule 1 says the years-of-experience line ('8+ years of experience in machine learning') does not count, but the Required Qualifications bullet 'proficiency with ML frameworks (PyTorch or TensorFlow, plus scikit-learn)' names the skill as required, so per rule 3 I'm keeping the skill and re-quoting raw_text from that bullet.\"",
+  "decision": null,
+  "why": null,
+  "error": null
+}

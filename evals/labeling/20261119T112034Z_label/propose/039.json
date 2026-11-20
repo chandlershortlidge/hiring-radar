@@ -1,0 +1,14 @@
+{
+  "item": 39,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "full-stack-development",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "5648f756092f91c452007d397aaca4a7c4440724b86cb91583fa785393205245",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 5, \\\"High-load web applications\\\" does not name full-stack development; it is at most a generic web-development mention, so the `full-stack-development` skill is not supported by the posting.\"}",
+  "decision": "drop",
+  "why": "Under rule 5, \"High-load web applications\" does not name full-stack development; it is at most a generic web-development mention, so the `full-stack-development` skill is not supported by the posting.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 22,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "inference-optimization",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "90875dd10eb8268f5479c7a156daefd53a9912252f40ca2e3611b8bddf4c92c4",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 5, the posting never names inference or serving; \\\"optimizing the performance of machine learning models\\\" is a generic performance-optimization phrase that does not support the narrower inference-optimization skill.\"}",
+  "decision": "drop",
+  "why": "Under rule 5, the posting never names inference or serving; \"optimizing the performance of machine learning models\" is a generic performance-optimization phrase that does not support the narrower inference-optimization skill.",
+  "error": null
+}

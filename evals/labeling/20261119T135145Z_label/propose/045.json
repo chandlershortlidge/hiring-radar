@@ -1,0 +1,14 @@
+{
+  "item": 45,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "apis",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7a1b00914f353d164416126c12f9bddc9b0f10ca641e0a8c6c940fa0be1db22a",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Preferred/Bonus qualification bullet names the skill of building customer-facing API platforms (onboarding, key/auth management, metering), which is building APIs rather than consuming them under rule 2, and the nice_to_have level matches the Preferred section.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Preferred/Bonus qualification bullet names the skill of building customer-facing API platforms (onboarding, key/auth management, metering), which is building APIs rather than consuming them under rule 2, and the nice_to_have level matches the Preferred section.",
+  "error": null
+}

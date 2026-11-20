@@ -1,0 +1,15 @@
+{
+  "item": 63,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "cab4ca9dc75eb8641ed423bda85b2fd629c066fcc91d2a36c4a14851ab438b22",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the preferred qualifications section explicitly names experience with language-model training (as well as LLM-as-judge calibration), supporting the agreed nice_to_have label.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the preferred qualifications section explicitly names experience with language-model training (as well as LLM-as-judge calibration), supporting the agreed nice_to_have label.",
+  "error": null
+}

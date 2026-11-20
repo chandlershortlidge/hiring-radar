@@ -1,0 +1,14 @@
+{
+  "item": 71,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "aws",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "59d3a18bc54ca67744802904bd0adaa0009d1ebe69931d3e7b28e5154c9760d0",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'What We're Looking For' section names AWS in a required experience line ('Experience with cloud environments (Azure, AWS, GCP)'), and the agreed raw_text 'AWS' appears verbatim, so the required aws label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'What We're Looking For' section names AWS in a required experience line ('Experience with cloud environments (Azure, AWS, GCP)'), and the agreed raw_text 'AWS' appears verbatim, so the required aws label stands.",
+  "error": null
+}

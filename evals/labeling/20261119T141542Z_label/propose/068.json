@@ -1,0 +1,14 @@
+{
+  "item": 68,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "observability",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e79c64b40484a983b1cf730dfdd27b2739a86e30aefce005bd83666087c1806a",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 4, the only visible mention of monitoring is in the 'In This Role, You'll Get to' responsibilities list, and the qualifications section is cut off, so the posting does not show the candidate being asked for observability.\"}",
+  "decision": "drop",
+  "why": "Under rule 4, the only visible mention of monitoring is in the 'In This Role, You'll Get to' responsibilities list, and the qualifications section is cut off, so the posting does not show the candidate being asked for observability.",
+  "error": null
+}

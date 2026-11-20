@@ -35,6 +35,8 @@ Invariants:
   - The spot-check samples accepted labels at the label level (one skill, one attribute),
     not whole postings, with a recorded seed, so the error rate it measures is per label.
   - apply writes only Goldens whose every queued item carries a decision.
+  - apply never overwrites a Golden someone changed after the run last wrote it: it stops
+    and prints the difference, and writes only the Goldens named with --only (HIR-376).
 
     uv run python scripts/agent_label.py label --dry-run
     uv run python scripts/agent_label.py label --count 24 --remote-eu 3 --german 6
@@ -43,6 +45,8 @@ Invariants:
 """
 
 import argparse
+import difflib
+import hashlib
 import importlib.util
 import json
 import os
@@ -754,6 +758,34 @@ Rule on what the posting supports, not on what the proposal says. Agreeing with 
 proposal because it is there is worth nothing; the whole point of asking you is that you
 are a third reader."""
 
+# The proposer reads the same item with the same rules and answers in the same form, so the
+# rules it proposes under and the rules the judge rules under are identical by construction
+# (HIR-379). Only the framing changes: it is the first reader, so there is no proposal to see.
+def _swap(text: str, old: str, new: str) -> str:
+    """Replace `old` in `text`, matching any run of whitespace, and insist it was there."""
+    pattern = r"\s+".join(re.escape(w) for w in old.split())
+    out, n = re.subn(pattern, lambda _: new, text)
+    assert n == 1, f"JUDGE_SYSTEM no longer contains {old!r}"
+    return out
+
+
+PROPOSE_SYSTEM = _swap(_swap(_swap(
+    JUDGE_SYSTEM,
+    "You adjudicate one item", "You propose a decision on one item"),
+    "the item comes to you with both answers and a proposed decision from an earlier "
+    "reviewer. Your job is to rule on that one item.",
+    "the item comes to you with both answers. You are the first reader: propose the\n"
+    "decision. A separate judge rules on your proposal afterwards."),
+    "Rule on what the posting supports, not on what the proposal says. Agreeing with the "
+    "proposal because it is there is worth nothing; the whole point of asking you is that you "
+    "are a third reader.",
+    "Rule on what the posting supports, not on which labeler sounds more confident.")
+
+# The proposer must not be the extractor, either labeler, or the judge (the judge refuses the
+# recorded proposer). Haiku: no stake, and about €0.20 for eight batches where Fable measured
+# about €17 (HIR-379); the cross-family judge still has to agree before an item settles.
+DEFAULT_PROPOSER = "claude-haiku-5-5"
+
 
 BULLET_CHARS = ("-", "*", "•", "·")
 
@@ -826,8 +858,10 @@ def wide_excerpt(posting: str, quote, width: int = 600) -> str:
         ("..." if a > 0 else "") + body + ("..." if b < len(posting) else "")
 
 
-def judge_question(item: dict, posting: str, proposed: str, reason: str) -> str:
-    """The one item as the judge sees it: context, both labelers, the proposal, the options."""
+def judge_question(item: dict, posting: str, proposed: str | None, reason: str | None) -> str:
+    """The one item as the judge sees it: context, both labelers, the proposal, the options.
+
+    With `proposed=None` it is the proposer's question: the same item, no proposal lines."""
     quote = (item.get("a") or item.get("b") or {}).get("raw_text") if item["kind"] == "skill" \
         else (item.get("a") or item.get("b") or {}).get(f"{item['key']}_signal")
     lines = [f"posting: {item['golden_id']}",
@@ -844,9 +878,10 @@ def judge_question(item: dict, posting: str, proposed: str, reason: str) -> str:
                                            else "(did not label this)"))
     if item["problems"]:
         lines += ["", "auto-check problems:"] + [f"- {p}" for p in item["problems"]]
-    lines += ["", f"options: {DECISIONS[item['reason']]}", "",
-              f"proposed decision: {proposed}",
-              f"proposer's reason: {reason or '(none given)'}"]
+    lines += ["", f"options: {DECISIONS[item['reason']]}"]
+    if proposed is not None:
+        lines += ["", f"proposed decision: {proposed}",
+                  f"proposer's reason: {reason or '(none given)'}"]
     return "\n".join(lines)
 
 
@@ -863,8 +898,8 @@ def parse_proposal(line: str) -> tuple[str, str]:
 
 
 def parse_proposals(text: str) -> dict[int, tuple[str, str]]:
-    """Every `PROPOSED:` line in the queue, by item number. Written by hand, so a line that
-    cannot be read is reported rather than guessed at.
+    """Every `PROPOSED:` line in the queue, by item number. Written by hand or by `propose`,
+    so a line that cannot be read is reported rather than guessed at.
 
     Scoped to one item's block on purpose. Most items have no proposal (every scope item and
     every spot-check), and a pattern that scanned forward from an item's heading would hand
@@ -970,6 +1005,39 @@ def write_decisions(text: str, new: dict[int, str]) -> str:
         raise ValueError(f"items not found in the queue: {sorted(todo)}")
     out.append(text[last:])
     return "".join(out)
+
+
+def write_proposals(text: str, new: dict[int, tuple[str, str]]) -> str:
+    """Put a `PROPOSED:` line above the given items' DECISION lines, the rest byte-identical.
+
+    Refuses an item that already carries a proposal or a decision: a proposal is only ever
+    added to an open item, never rewritten under one a person or the judge already read.
+    """
+    todo = dict(new)
+    out, last = [], 0
+    pattern = r"^##\s+(\d+)\.(.*?)^(DECISION:[ \t]*(.*?)[ \t]*)$"
+    for m in re.finditer(pattern, text, flags=re.M | re.S):
+        n = int(m.group(1))
+        if n not in todo:
+            continue
+        if m.group(4).strip() not in ("?", ""):
+            raise ValueError(f"item {n} already says {m.group(4)!r}; refusing to propose over it")
+        if re.search(r"^PROPOSED:", m.group(2), flags=re.M):
+            raise ValueError(f"item {n} already carries a PROPOSED line; refusing to add another")
+        verdict, why = todo.pop(n)
+        why = " ".join((why or "").split())
+        line = f"PROPOSED: {verdict}" + (f" - {why}" if why else "")
+        out += [text[last:m.start(3)], line, "\n\n"]
+        last = m.start(3)
+    if todo:
+        raise ValueError(f"items not found in the queue: {sorted(todo)}")
+    out.append(text[last:])
+    return "".join(out)
+
+
+def skipped_key(item: dict, keys) -> bool:
+    """An attribute item left for a person whatever the models say (`--skip-key`)."""
+    return bool(keys) and item["kind"] == "attribute" and item["key"] in keys
 
 
 def reset_decisions(text: str, numbers) -> str:
@@ -1537,6 +1605,45 @@ def cmd_apply(args):
         if path.exists():
             third_by_gid[gid] = json.loads(path.read_text()).get("model")
 
+    # Build every Golden before writing anything, so a refusal below leaves the disk as it was.
+    built = {gid: final_golden({**picks[gid], "id": gid}, list(skills[gid].values()),
+                               attrs.get(gid, {}), labeled_by, adjudicated[gid],
+                               spot_by_gid.get(gid), third_by_gid.get(gid),
+                               reviewed[gid], split=args.split)
+             for gid in sorted(skills)}
+    texts = {gid: json.dumps(g, indent=2, ensure_ascii=False) + "\n" for gid, g in built.items()}
+
+    # A correction made to a Golden after this run wrote it is lost to a rewrite from the
+    # run's own files (HIR-376: re-applying an October batch took five skills, an any-of
+    # group and the reviewed marker off one Berlin key, and printed success). So a Golden on
+    # disk that differs both from what this run would write and from what this run last
+    # wrote (applied.json) is someone's later edit: stop and show it. The ordinary loop -
+    # fix a decision, apply again - still writes, because the disk is then this run's own
+    # output. `--only` names the Goldens to write once a person has looked; nothing else in
+    # the batch is touched.
+    if args.only:
+        unknown = sorted(set(args.only) - set(built))
+        if unknown:
+            raise SystemExit(f"--only names {', '.join(unknown)}, which this run does not "
+                             f"write. Its Goldens: {', '.join(built) or 'none'}.")
+        built = {gid: g for gid, g in built.items() if gid in args.only}
+    else:
+        changed = changed_since_applied(run_dir, texts)
+        if changed:
+            lines = [f"{len(changed)} of this run's Goldens were changed on disk after this "
+                     f"run last wrote them. Writing now would undo those changes:", ""]
+            for gid, disk, text in changed:
+                lines += difflib.unified_diff(disk.splitlines(), text.splitlines(),
+                                              f"{gid} on disk", f"{gid} as this run would write it",
+                                              n=1, lineterm="")
+                lines.append("")
+            ids = " ".join(gid for gid, _, _ in changed)
+            raise SystemExit("\n".join(lines) + (
+                "\nNothing was written. Lines marked - are on disk and would be lost. If they "
+                "are a correction, carry it into this run's decisions first. To write only "
+                "some of this run's Goldens and leave the rest as they are, name them with "
+                f"--only. To overwrite these deliberately, name them too: --only {ids}"))
+
     if out_of_scope and not args.dry_run:
         excluded = ng.excluded_path()
         record = json.loads(excluded.read_text()) if excluded.exists() else {"excluded": []}
@@ -1553,14 +1660,10 @@ def cmd_apply(args):
         excluded.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
 
     written = []
-    for gid in sorted(skills):
-        golden = final_golden({**picks[gid], "id": gid}, list(skills[gid].values()),
-                              attrs.get(gid, {}), labeled_by, adjudicated[gid],
-                              spot_by_gid.get(gid), third_by_gid.get(gid),
-                              reviewed[gid], split=args.split)
+    for gid, golden in built.items():
         path = GOLDENS / f"{gid}.json"
         if not args.dry_run:
-            path.write_text(json.dumps(golden, indent=2, ensure_ascii=False) + "\n")
+            path.write_text(texts[gid])
         written.append(f"{gid}  {golden['split']}  {len(golden['expected'])} skills  "
                        f"{len(golden['adjudicated'])} adjudicated"
                        f"{'  spot-checked by ' + golden['spot_checked_by'] if golden['spot_checked_by'] else ''}")
@@ -1575,6 +1678,8 @@ def cmd_apply(args):
     if not args.dry_run:
         (run_dir / "summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n")
         (run_dir / "summary.md").write_text(render_summary(summary, spot))
+        save_applied(run_dir, {**load_applied(run_dir),
+                               **{gid: sha256_text(texts[gid]) for gid in built}})
     print(("(dry run) " if args.dry_run else "") + f"{len(written)} Goldens:")
     print("\n".join("  " + w for w in written))
     if out_of_scope:
@@ -1593,6 +1698,37 @@ def cmd_apply(args):
                   f"gate from now on and may be looked at while tuning. The next extractor "
                   f"change is measured against a baseline that includes them, so commit a "
                   f"fresh dev run: uv run python scripts/run_eval.py")
+
+
+def sha256_text(text: str) -> str:
+    return hashlib.sha256(text.encode()).hexdigest()
+
+
+def load_applied(run_dir: Path) -> dict:
+    """{golden_id: sha256 of the file} as `apply` last wrote it for this run (HIR-376). A run
+    applied before this record existed has none, so any difference on disk there stops."""
+    path = run_dir / "applied.json"
+    return json.loads(path.read_text()) if path.exists() else {}
+
+
+def save_applied(run_dir: Path, data: dict):
+    (run_dir / "applied.json").write_text(json.dumps(data, indent=2, sort_keys=True) + "\n")
+
+
+def changed_since_applied(run_dir: Path, texts: dict[str, str]) -> list[tuple[str, str, str]]:
+    """(golden_id, on disk, would write) for each Golden someone changed after this run last
+    wrote it: on disk, different from what the run would write now, and not the run's own
+    last output."""
+    last = load_applied(run_dir)
+    changed = []
+    for gid, text in texts.items():
+        path = GOLDENS / f"{gid}.json"
+        if not path.exists():
+            continue
+        disk = path.read_text()
+        if disk != text and last.get(gid) != sha256_text(disk):
+            changed.append((gid, disk, text))
+    return changed
 
 
 def load_run(run: str):
@@ -1630,6 +1766,11 @@ def cmd_judge(args):
     decisions = dict(parse_queue(queue_text))
     proposals = parse_proposals(queue_text)
     check_extra_model("judge", args.model, [summary["model_a"], summary["model_b"]])
+    proposer = (load_adjudication(run_dir).get("proposer") or {}).get("model")
+    if proposer and args.model == proposer:
+        # A judge agreeing with its own proposal settles the item with one reader.
+        raise SystemExit(f"the judge is {args.model!r}, which wrote this run's proposals. "
+                         f"A model cannot rule on its own proposal; pick another judge.")
     skip = out_of_scope_goldens(items, decisions)
 
     targets, no_proposal = [], []
@@ -1730,6 +1871,94 @@ def cmd_judge(args):
             print("  " + u)
 
 
+def cmd_propose(args):
+    """A model with no stake writes the PROPOSED line the judge then rules on (HIR-379).
+
+    Same item, same rules and same answer form as the judge, without a proposal to read. The
+    proposer is refused if it is the extractor or either labeler, and the judge later refuses
+    the recorded proposer, so a settled item is always two different models agreeing.
+    """
+    run_dir, items, picks, summary, queue_text = load_run(args.run)
+    decisions = dict(parse_queue(queue_text))
+    proposals = parse_proposals(queue_text)
+    check_extra_model("proposer", args.model, [summary["model_a"], summary["model_b"]])
+    skip = out_of_scope_goldens(items, decisions)
+    keys = set(args.skip_key or ())
+
+    targets, held = [], []
+    for n, item in enumerate(items, 1):
+        if item["kind"] == "scope" or item["reason"] == "spot-check":
+            continue
+        if item["golden_id"] in skip or decisions.get(n, "?") not in ("?", "") or n in proposals:
+            continue
+        if args.items and n not in args.items:
+            continue
+        (held if skipped_key(item, keys) else targets).append((n, item))
+
+    print(f"{len(targets)} undecided items without a proposal, proposer `{args.model}` "
+          f"({args.provider})")
+    if held:
+        print(f"  {len(held)} left for a person by --skip-key: "
+              + ", ".join(str(n) for n, _ in held))
+    if args.dry_run or not targets:
+        return
+
+    cache = run_dir / "propose"
+    cache.mkdir(exist_ok=True)
+    client, written, unusable = None, {}, []
+    for n, item in targets:
+        question = judge_question(item, picks[item["golden_id"]]["job_description"], None, None)
+        key = ng.sha(PROPOSE_SYSTEM + "\n" + question + "\n" + args.model)
+        path = cache / f"{n:03d}.json"
+        record = None
+        if path.exists():
+            cached = json.loads(path.read_text())
+            if cached.get("key_sha256") == key:
+                record = cached
+        if record is None:
+            if client is None:
+                client = make_client(args.provider)
+            print(f"  proposing {n:>3} {item['golden_id']} {item['kind']} `{item['key']}`", flush=True)
+            raw = PROVIDERS[args.provider](client, args.model, PROPOSE_SYSTEM, question)
+            record = {"item": n, "golden_id": item["golden_id"], "kind": item["kind"],
+                      "key": item["key"], "reason": item["reason"], "provider": args.provider,
+                      "model": args.model, "key_sha256": key, "raw": raw,
+                      "decision": None, "why": None, "error": None}
+            try:
+                parsed = parse_response(raw)
+                record["decision"] = parsed.get("decision")
+                record["why"] = parsed.get("why")
+            except (ValueError, json.JSONDecodeError) as e:
+                record["error"] = f"{type(e).__name__}: {e}"
+            path.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
+
+        where = f"{n:>3} {item['golden_id']} {item['kind']} `{item['key']}`"
+        if record["error"] or record["decision"] in (None, ""):
+            unusable.append(f"{where}: {record['error'] or 'no decision in the response'}")
+            continue
+        text = verdict_text(record["decision"])
+        try:
+            apply_decision(item, text)
+        except (ValueError, json.JSONDecodeError) as e:
+            unusable.append(f"{where}: proposer said {text!r}, which this item does not allow ({e})")
+            continue
+        written[n] = (text, record["why"] or "")
+
+    if written:
+        (run_dir / "review_queue.md").write_text(write_proposals(queue_text, written))
+    adj = load_adjudication(run_dir)
+    adj["proposer"] = {"model": args.model, "provider": args.provider,
+                       "proposed": len(written) + len(proposals), "unusable": len(unusable),
+                       "skip_keys": sorted(keys), "rules": JUDGE_RULES}
+    save_adjudication(run_dir, adj)
+
+    print(f"\nwrote {len(written)} PROPOSED lines")
+    if unusable:
+        print(f"\n{len(unusable)} left without a proposal - the answer could not be used:")
+        for u in unusable:
+            print("  " + u)
+
+
 def kv(text: str) -> tuple[str, int]:
     key, _, n = text.partition("=")
     if not n.isdigit():
@@ -1758,6 +1987,8 @@ def cmd_third(args):
     targets = []
     for n, item in enumerate(items, 1):
         if item["reason"] != "spot-check" or item["golden_id"] in skip:
+            continue
+        if skipped_key(item, set(args.skip_key or ())):
             continue
         if decisions.get(n, "?") not in ("?", "") or (args.items and n not in args.items):
             continue
@@ -2041,6 +2272,10 @@ def main(argv=None):
     app.add_argument("--run", required=True)
     app.add_argument("--split", default="heldout", choices=SPLITS,
                      help="which eval split these Goldens join (default heldout; `dev` grows the set the gate tunes against, HIR-164)")
+    app.add_argument("--only", nargs="+", metavar="GOLDEN_ID",
+                     help="write only these Goldens and leave the rest of the batch as it is on "
+                          "disk; a Golden named here is written even if it was changed since "
+                          "this run last wrote it (HIR-376)")
     app.add_argument("--dry-run", action="store_true")
     app.set_defaults(fn=cmd_apply)
 
@@ -2060,12 +2295,25 @@ def main(argv=None):
     jud.add_argument("--dry-run", action="store_true", help="list what would be judged and stop")
     jud.set_defaults(fn=cmd_judge)
 
+    pro = sub.add_parser("propose", help="a model with no stake writes the PROPOSED lines the judge rules on")
+    pro.add_argument("--run", required=True)
+    pro.add_argument("--provider", default="anthropic", choices=sorted(PROVIDERS))
+    pro.add_argument("--model", default=DEFAULT_PROPOSER,
+                     help=f"the proposer (default {DEFAULT_PROPOSER})")
+    pro.add_argument("--items", type=item_range, help="only these item numbers, e.g. 30-121")
+    pro.add_argument("--skip-key", action="append", metavar="ATTR",
+                     help="leave this attribute's items for a person, repeatable (e.g. degree)")
+    pro.add_argument("--dry-run", action="store_true", help="list what would be proposed and stop")
+    pro.set_defaults(fn=cmd_propose)
+
     thi = sub.add_parser("third", help="a blind third labeler over the agreed spot-check labels")
     thi.add_argument("--run", required=True)
     thi.add_argument("--provider", default="google", choices=sorted(PROVIDERS))
     thi.add_argument("--model", default=DEFAULT_MODEL_C,
                      help=f"the third labeler (default {DEFAULT_MODEL_C})")
     thi.add_argument("--items", type=item_range, help="only these item numbers")
+    thi.add_argument("--skip-key", action="append", metavar="ATTR",
+                     help="leave this attribute's items for a person, repeatable (e.g. degree)")
     thi.add_argument("--no-record", action="store_true",
                      help="report the comparison without writing `ok` on three-way agreement")
     thi.add_argument("--dry-run", action="store_true", help="list what would be labeled and stop")

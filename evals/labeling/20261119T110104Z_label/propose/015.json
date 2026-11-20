@@ -1,0 +1,14 @@
+{
+  "item": 15,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "data-science",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "bf4d8983b3847e884126f0717f58332f5807d11fead7c6e7151dca09bb5da37e",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Qualifications, the bullet 'Deep experience in ... translational data science' names data science as a required qualification, so rules 1 and 3 support B's required tag, and the text is specific enough that rule 5 does not block it.\"}",
+  "decision": "B",
+  "why": "Under Qualifications, the bullet 'Deep experience in ... translational data science' names data science as a required qualification, so rules 1 and 3 support B's required tag, and the text is specific enough that rule 5 does not block it.",
+  "error": null
+}

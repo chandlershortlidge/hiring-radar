@@ -1,0 +1,15 @@
+{
+  "item": 33,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "9885d05365af938a1dcf51d0e619549963735f58480f0ef561c64323f36ac419",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the qualification sentence in the Job Summary asking for experience 'building scalable cloud-native applications' explicitly names the skill.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the qualification sentence in the Job Summary asking for experience 'building scalable cloud-native applications' explicitly names the skill.",
+  "error": null
+}

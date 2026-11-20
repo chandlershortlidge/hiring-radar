@@ -1,0 +1,15 @@
+{
+  "item": 56,
+  "golden_id": "golden_099",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "6b3afc7370e379d146f82c82fb5432b164b2bf472b3a1f1cffdaf6eb8f4bacdb",
+  "raw": "{\"decision\": \"ok\", \"why\": \"While Rule 4 excludes responsibilities from counting as required candidate skills, job duties like guiding mid-level engineers directly define the seniority level of the role itself.\"}",
+  "decision": "ok",
+  "why": "While Rule 4 excludes responsibilities from counting as required candidate skills, job duties like guiding mid-level engineers directly define the seniority level of the role itself.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 55,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "gcp",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "cf830d49f8aba61efbee11681c92619383368513ff4a6361db8fc3ee5418dda4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a Minimum Qualifications sentence explicitly names Google Cloud Platform (GCP), so it counts as a required skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a Minimum Qualifications sentence explicitly names Google Cloud Platform (GCP), so it counts as a required skill.",
+  "error": null
+}

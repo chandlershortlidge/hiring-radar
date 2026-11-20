@@ -1,0 +1,15 @@
+{
+  "item": 75,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "apis",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "9275ea36e902811350ed5776a34281356f655c28fc88182cbe2c39da038c6725",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rules 1, 2, and 3, 'API development' is explicitly listed in a qualification bullet under Required Skills and directly refers to building APIs.\"}",
+  "decision": "ok",
+  "why": "Under rules 1, 2, and 3, 'API development' is explicitly listed in a qualification bullet under Required Skills and directly refers to building APIs.",
+  "error": null
+}

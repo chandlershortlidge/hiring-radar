@@ -1,0 +1,14 @@
+{
+  "item": 48,
+  "golden_id": "golden_094",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "56b867b02c4c71bc8240df33fd02fead100aa26006aaf98a2f62d6deda583048",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the quoted signal \\\"lead a team of expert engineers\\\" appears verbatim in the posting and supports a senior, management-level role, and the \\\"inferred\\\" basis fits since no explicit seniority term is stated.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the quoted signal \"lead a team of expert engineers\" appears verbatim in the posting and supports a senior, management-level role, and the \"inferred\" basis fits since no explicit seniority term is stated.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 34,
+  "golden_id": "golden_105",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1313142943e6ac3b6c235d5826482ca6622a2fca5f49b17b49e0f3dc1c2a0530",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, a years-of-experience line ('5+ years developing and supporting physical design methodology') does not count as qualifying evidence, and the posting has no other explicit seniority wording, so the seniority value should be null.\"}",
+  "decision": "B",
+  "why": "Under rule 1, a years-of-experience line ('5+ years developing and supporting physical design methodology') does not count as qualifying evidence, and the posting has no other explicit seniority wording, so the seniority value should be null.",
+  "error": null
+}

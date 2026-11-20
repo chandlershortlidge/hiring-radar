@@ -1,0 +1,14 @@
+{
+  "item": 13,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "10d725f777e3719f3f60b1955d3e23bedf62747518c0aaae11d1fcbcd5b8d242",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only mention is inside the years-of-experience line \\\"10+ years of professional software development experience\\\", which does not count, and rule 5 bars adding the broad parent skill from the surrounding distributed-systems and architecture bullets.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only mention is inside the years-of-experience line \"10+ years of professional software development experience\", which does not count, and rule 5 bars adding the broad parent skill from the surrounding distributed-systems and architecture bullets.",
+  "error": null
+}

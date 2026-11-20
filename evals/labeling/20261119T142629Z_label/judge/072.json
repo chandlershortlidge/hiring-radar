@@ -1,0 +1,15 @@
+{
+  "item": 72,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "0cd6d1cc7132a5fe2984dcca2d874e072bab0012cd5888a1f0c25da3fdcab676",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a Preferred Qualifications bullet explicitly asks for experience 'deploying scalable and responsible AI solutions', directly supporting the nice_to_have `ai-deployment` skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a Preferred Qualifications bullet explicitly asks for experience 'deploying scalable and responsible AI solutions', directly supporting the nice_to_have `ai-deployment` skill.",
+  "error": null
+}

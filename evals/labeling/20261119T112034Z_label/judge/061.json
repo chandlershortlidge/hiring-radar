@@ -1,0 +1,15 @@
+{
+  "item": 61,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "75e8aaaac9679c81089997181a0e3af2f6841ec1d062dc81de8e547b47c2a5ea",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a required qualification bullet explicitly asks for experience building 'agentic AI applications', which directly supports the `agents` skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a required qualification bullet explicitly asks for experience building 'agentic AI applications', which directly supports the `agents` skill.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 69,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "584c991746147c837d27587d482f60c5d8ffb8937be8088c9c6d6b7c9bd1380d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'Who You Are' bullet names LLMs as a candidate trait rather than a responsibility, and under rule 3 the required framing of that profile section, quoted in the raw_text, supports keeping it as required.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'Who You Are' bullet names LLMs as a candidate trait rather than a responsibility, and under rule 3 the required framing of that profile section, quoted in the raw_text, supports keeping it as required.",
+  "error": null
+}

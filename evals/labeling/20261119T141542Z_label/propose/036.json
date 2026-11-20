@@ -1,0 +1,14 @@
+{
+  "item": 36,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "workflow-automation",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "407d66b0f986c72183f2dacee02d96468bb4497a9528491cfda5079092507af2",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 5, \\\"financial/tax automation\\\" in the Bonus line names a finance/tax domain, not a workflow-automation skill, so the broader skill is not named by the text and should not be added.\"}",
+  "decision": "drop",
+  "why": "Under rule 5, \"financial/tax automation\" in the Bonus line names a finance/tax domain, not a workflow-automation skill, so the broader skill is not named by the text and should not be added.",
+  "error": null
+}

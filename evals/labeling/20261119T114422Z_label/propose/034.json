@@ -1,0 +1,14 @@
+{
+  "item": 34,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e187925276d06ccad4740c7ed6f6445202d1c99798386e77e616b061311b840b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the Minimum qualifications bullet \\\"Substantial experience developing and training models\\\" names the skill as a requirement, and the agreed raw_text appears verbatim in the posting, so the agreed required label stands (Rule 3).\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the Minimum qualifications bullet \"Substantial experience developing and training models\" names the skill as a requirement, and the agreed raw_text appears verbatim in the posting, so the agreed required label stands (Rule 3).",
+  "error": null
+}

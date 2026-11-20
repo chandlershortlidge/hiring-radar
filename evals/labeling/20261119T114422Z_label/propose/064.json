@@ -1,0 +1,17 @@
+{
+  "item": 64,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "66357d501ad74fd09e779481e2739941da16f20840cfc25840d7eb792a692b82",
+  "raw": "{\"decision\": {\"requirement\": \"required\", \"raw_text\": \"reliable production software development\"}, \"why\": \"Rule 1 excludes the years-of-experience line \\\"At least five years of ML or software engineering experience\\\", but the minimum-qualifications bullet \\\"alongside reliable production software development\\\" names the skill directly, so I re-anchor the required mention to that quote (rules 1 and 3).\"}",
+  "decision": {
+    "requirement": "required",
+    "raw_text": "reliable production software development"
+  },
+  "why": "Rule 1 excludes the years-of-experience line \"At least five years of ML or software engineering experience\", but the minimum-qualifications bullet \"alongside reliable production software development\" names the skill directly, so I re-anchor the required mention to that quote (rules 1 and 3).",
+  "error": null
+}

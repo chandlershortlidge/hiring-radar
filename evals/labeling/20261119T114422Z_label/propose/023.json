@@ -1,0 +1,14 @@
+{
+  "item": 23,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "a-b-testing",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "11cb9becb51f02df29f88e551f6f182cc4755b48122d408af48278751bff64bd",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1, the preferred-qualifications bullet names \\\"online experimentation\\\", which is a close synonym for A/B testing, so labeler A's nice_to_have a-b-testing tag stands (rule 5 is not violated because this is not a broader parent skill).\"}",
+  "decision": "A",
+  "why": "Under rule 1, the preferred-qualifications bullet names \"online experimentation\", which is a close synonym for A/B testing, so labeler A's nice_to_have a-b-testing tag stands (rule 5 is not violated because this is not a broader parent skill).",
+  "error": null
+}

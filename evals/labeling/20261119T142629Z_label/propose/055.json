@@ -1,0 +1,14 @@
+{
+  "item": 55,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "gcp",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b3fc2fad44842f98fa0d9e55be442234746309f238ab5633387c2e03908cc1d6",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Minimum Qualifications bullet names GCP as a required experience area, and the quoted raw_text \\\"Google Cloud Platform (GCP)\\\" is the determining mention, so the agreed required label stands even though an open-source alternative is offered.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Minimum Qualifications bullet names GCP as a required experience area, and the quoted raw_text \"Google Cloud Platform (GCP)\" is the determining mention, so the agreed required label stands even though an open-source alternative is offered.",
+  "error": null
+}

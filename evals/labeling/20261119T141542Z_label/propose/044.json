@@ -1,0 +1,14 @@
+{
+  "item": 44,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "ff9fcf103f74a21b823bd57489ea9d46d07963bab7bcb6871f7adfbb31869956",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the \\\"Skills:\\\" section names \\\"Cloud Computing\\\" as a skill the candidate is asked for, so the cloud label stands, and rule 3 supports it as required since the posting lists it as a skill without marking it optional.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the \"Skills:\" section names \"Cloud Computing\" as a skill the candidate is asked for, so the cloud label stands, and rule 3 supports it as required since the posting lists it as a skill without marking it optional.",
+  "error": null
+}

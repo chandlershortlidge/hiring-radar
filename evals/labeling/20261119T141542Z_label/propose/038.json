@@ -1,0 +1,14 @@
+{
+  "item": 38,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "29a599e0ec84f95ffd93a6265468b103c9581c1dccab25c22e7a0900d51e6504",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 3, B's required claim rests on the phrase \\\"agent evaluation,\\\" which does not appear in the visible posting, while A's \\\"AI agents\\\" appears verbatim in the Nice-to-Haves section, so the nice_to_have ruling is the one the text supports.\"}",
+  "decision": "A",
+  "why": "Under rule 3, B's required claim rests on the phrase \"agent evaluation,\" which does not appear in the visible posting, while A's \"AI agents\" appears verbatim in the Nice-to-Haves section, so the nice_to_have ruling is the one the text supports.",
+  "error": null
+}

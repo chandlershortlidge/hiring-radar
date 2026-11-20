@@ -1,0 +1,15 @@
+{
+  "item": 50,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "ef163ea6d0c5854ce7d48bf3e511e0a63d7fcd740b711a4945691838f1e787ef",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the Essential qualifications bullet explicitly requires foundational knowledge of \\\"machine learning, AI models\\\", which supports the agreed label and raw_text.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the Essential qualifications bullet explicitly requires foundational knowledge of \"machine learning, AI models\", which supports the agreed label and raw_text.",
+  "error": null
+}

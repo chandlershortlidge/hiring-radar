@@ -1,0 +1,15 @@
+{
+  "item": 68,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "8daca589bbe7724920db9c6601f21e6a55eb84a475a315ddadf78657b16e001d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'Working with user facing LLM and agentic product features' is a qualification bullet naming the skill under an 'added plus' section, making the agreed nice_to_have label correct.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'Working with user facing LLM and agentic product features' is a qualification bullet naming the skill under an 'added plus' section, making the agreed nice_to_have label correct.",
+  "error": null
+}

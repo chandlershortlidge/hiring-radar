@@ -1,0 +1,14 @@
+{
+  "item": 34,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0cc3e38950811391315c2674ca48abb51c32b388aff7322af391159d81a8cc6d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 3, the required-skills line \\\"Strong understanding of secure healthcare application development\\\" is a required mention of security, so labeler B's required `data-privacy-and-security` tag stands as written.\"}",
+  "decision": "ok",
+  "why": "Under rule 3, the required-skills line \"Strong understanding of secure healthcare application development\" is a required mention of security, so labeler B's required `data-privacy-and-security` tag stands as written.",
+  "error": null
+}

@@ -1,0 +1,17 @@
+{
+  "item": 74,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "devops",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "5cef647ac66623bcf2a9fead1f6fa5309acd0b1e3e1e02221f7379b4d6b0a5a4",
+  "raw": "{\"decision\": {\"requirement\": \"required\", \"raw_text\": \"Certifications: Microsoft Azure, GitHub, Kubernetes, Terraform, DevOps, MLOps, or AI engineering\"}, \"why\": \"Under rule 1 the years-of-experience line ('7+ years in DevOps') does not count, but the section headed 'Required Certification' names DevOps, so the skill stays and the raw_text is re-quoted from that required mention (rule 3).\"}",
+  "decision": {
+    "requirement": "required",
+    "raw_text": "Certifications: Microsoft Azure, GitHub, Kubernetes, Terraform, DevOps, MLOps, or AI engineering"
+  },
+  "why": "Under rule 1 the years-of-experience line ('7+ years in DevOps') does not count, but the section headed 'Required Certification' names DevOps, so the skill stays and the raw_text is re-quoted from that required mention (rule 3).",
+  "error": null
+}

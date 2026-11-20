@@ -1,0 +1,14 @@
+{
+  "item": 25,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "6480a74a276be42c8963452d1a80f0d455fafa1667bc0cbe13d9d32039524d42",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the quoted sentence sits in the \\\"What we're looking for\\\" qualifications and names deploying a model to production or hardware, which is the ai-deployment skill, and rule 3 makes the required mention stand.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the quoted sentence sits in the \"What we're looking for\" qualifications and names deploying a model to production or hardware, which is the ai-deployment skill, and rule 3 makes the required mention stand.",
+  "error": null
+}

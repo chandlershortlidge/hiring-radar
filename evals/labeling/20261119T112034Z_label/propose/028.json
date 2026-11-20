@@ -1,0 +1,14 @@
+{
+  "item": 28,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0d3b10539a5a9c89068c7cf0a1ccb6e93bf85fc34244f14e190c619904e288cd",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 3, the required mention wins: the unhedged bullet \\\"Experience building and deploying LLM-powered applications or AI agents in production\\\" sits in the required list and is quoted by labeler B, so the nice_to_have \\\"enterprise\\\" line does not override it.\"}",
+  "decision": "B",
+  "why": "Under rule 3, the required mention wins: the unhedged bullet \"Experience building and deploying LLM-powered applications or AI agents in production\" sits in the required list and is quoted by labeler B, so the nice_to_have \"enterprise\" line does not override it.",
+  "error": null
+}

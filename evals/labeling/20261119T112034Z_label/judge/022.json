@@ -1,0 +1,15 @@
+{
+  "item": 22,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "f1fefbcb0f86a16f018458b6e7e750b6a69a050429918546eea04aa8417c4c0e",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1 and Rule 3, the qualification bullet asking for someone who can \\\"understand the full ML lifecycle\\\" counts as a required mention of machine learning.\"}",
+  "decision": "B",
+  "why": "Under Rule 1 and Rule 3, the qualification bullet asking for someone who can \"understand the full ML lifecycle\" counts as a required mention of machine learning.",
+  "error": null
+}

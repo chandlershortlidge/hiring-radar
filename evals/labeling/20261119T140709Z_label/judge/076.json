@@ -1,0 +1,15 @@
+{
+  "item": 76,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "conversational-ai",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "89f5aac097dee883a0638b095036247f4ec75057e738d5d7fd9c04852aa66e71",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet asking for experience implementing 'conversational assistants' names the conversational-ai skill and is required since it precedes the 'Preferred Experience' section.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet asking for experience implementing 'conversational assistants' names the conversational-ai skill and is required since it precedes the 'Preferred Experience' section.",
+  "error": null
+}

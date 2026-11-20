@@ -1,0 +1,15 @@
+{
+  "item": 58,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "apis",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "047ed36f1d57a93fb32948f1ff01904f3a8ad13b87bfa974587f8daae8d4d522",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The 'Preferred qualifications' bullet explicitly names 'Experience building APIs', which counts under Rule 1 and satisfies Rule 2 as it refers to building rather than consuming APIs.\"}",
+  "decision": "ok",
+  "why": "The 'Preferred qualifications' bullet explicitly names 'Experience building APIs', which counts under Rule 1 and satisfies Rule 2 as it refers to building rather than consuming APIs.",
+  "error": null
+}

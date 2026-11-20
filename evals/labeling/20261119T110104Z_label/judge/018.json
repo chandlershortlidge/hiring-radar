@@ -1,0 +1,15 @@
+{
+  "item": 18,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "99150212ca69b9c6ffd8551f4b0ec4f02e1132b98eaf66a34f323db0042a1f0c",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1, a qualification bullet under Preferred Qualifications names 'LLM/agentic automation' as a nice-to-have skill, whereas B's quote does not appear in the posting excerpt (or likely comes from a responsibilities section per Rule 4).\"}",
+  "decision": "A",
+  "why": "Under Rule 1, a qualification bullet under Preferred Qualifications names 'LLM/agentic automation' as a nice-to-have skill, whereas B's quote does not appear in the posting excerpt (or likely comes from a responsibilities section per Rule 4).",
+  "error": null
+}

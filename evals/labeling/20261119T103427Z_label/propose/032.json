@@ -1,0 +1,14 @@
+{
+  "item": 32,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "3712ea5474d951531ae741a1f612fcf50909bf44bcd984ba59a51dcbd074b7f9",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the required qualification bullet \\\"Exposure to the development and use of machine learning models\\\" names the skill, and under Rule 3 that required mention wins, so B's required tag with that raw_text is supported.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the required qualification bullet \"Exposure to the development and use of machine learning models\" names the skill, and under Rule 3 that required mention wins, so B's required tag with that raw_text is supported.",
+  "error": null
+}

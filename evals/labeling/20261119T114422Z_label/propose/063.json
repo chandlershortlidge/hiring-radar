@@ -1,0 +1,14 @@
+{
+  "item": 63,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "dc4abc3da6d95676f0da941f2440518dc6c6f7935350b6b3a396afc7933c02c5",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'Preferred qualifications' bullet 'Experience with language-model training or post-training' names a skill, which supports llms as nice_to_have, and the raw_text is quoted verbatim from the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'Preferred qualifications' bullet 'Experience with language-model training or post-training' names a skill, which supports llms as nice_to_have, and the raw_text is quoted verbatim from the posting.",
+  "error": null
+}

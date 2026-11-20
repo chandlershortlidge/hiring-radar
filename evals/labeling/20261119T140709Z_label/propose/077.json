@@ -1,0 +1,14 @@
+{
+  "item": 77,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "frontend-development",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "2e42a5b8d9fb5569e3ed58521e4fc66fa71e9e21e2f4addfc8caf07033bcea34",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under the \\\"Required Skills\\\" heading, the bullet \\\"Angular (preferred latest versions) for frontend application development\\\" names frontend development as a required qualification (rules 1 and 3), and the agreed raw_text appears verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under the \"Required Skills\" heading, the bullet \"Angular (preferred latest versions) for frontend application development\" names frontend development as a required qualification (rules 1 and 3), and the agreed raw_text appears verbatim in the posting.",
+  "error": null
+}

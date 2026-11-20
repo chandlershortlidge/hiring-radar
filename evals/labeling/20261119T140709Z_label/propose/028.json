@@ -1,0 +1,14 @@
+{
+  "item": 28,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a3932c3af4f4fe261ad11c4e2c4634d9410d39c159e237f0f5808256c6df94da",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1, the enterprise architecture mention sits in the 'What Sets You Apart' bullets, which are preferred rather than required, and nothing in 'What You Must Have' names it, so rule 3 does not promote it to required.\"}",
+  "decision": "A",
+  "why": "Under rule 1, the enterprise architecture mention sits in the 'What Sets You Apart' bullets, which are preferred rather than required, and nothing in 'What You Must Have' names it, so rule 3 does not promote it to required.",
+  "error": null
+}

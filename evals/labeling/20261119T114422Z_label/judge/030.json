@@ -1,0 +1,15 @@
+{
+  "item": 30,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "6823a0595afa5c59f87d3444f552ceeeef727215060eb603f7e83f6f4df0daa9",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, the phrase 'training and deploying language models to production' does not name the broad skill `model-development`.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, the phrase 'training and deploying language models to production' does not name the broad skill `model-development`.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 55,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "recommender-systems",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "f5b1ec5997c812cf1bb57287953b72975eae7c4e204065ac1b62becb63887264",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a 'Nice to haves' qualification bullet asks for experience working on 'recommendation' problems, which directly supports the recommender-systems skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a 'Nice to haves' qualification bullet asks for experience working on 'recommendation' problems, which directly supports the recommender-systems skill.",
+  "error": null
+}

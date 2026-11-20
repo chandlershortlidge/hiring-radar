@@ -1,0 +1,15 @@
+{
+  "item": 80,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "inference-optimization",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "289db29586d469fd056052b3c11881675bba84f29bde6bac4e58b0b1251a6341",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a required qualification bullet asks for a track record in 'model optimization' in the context of taking models to production and inference serving, supporting the skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a required qualification bullet asks for a track record in 'model optimization' in the context of taking models to production and inference serving, supporting the skill.",
+  "error": null
+}

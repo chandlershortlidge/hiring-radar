@@ -1,0 +1,14 @@
+{
+  "item": 56,
+  "golden_id": "golden_099",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "67aadf59f9226a80009e583d2db78fb11a9ffa5d13b5ce9a0e8c96830f1e0299",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 4, the only signal for \\\"senior\\\" is the \\\"Lead & Future-Proof\\\" bullet under What You'll Do, which is a responsibility the candidate is not asked to have, and the only stated requirement is 3+ years, which does not support senior on its own, so the attribute should be null.\"}",
+  "decision": "drop",
+  "why": "Under rule 4, the only signal for \"senior\" is the \"Lead & Future-Proof\" bullet under What You'll Do, which is a responsibility the candidate is not asked to have, and the only stated requirement is 3+ years, which does not support senior on its own, so the attribute should be null.",
+  "error": null
+}

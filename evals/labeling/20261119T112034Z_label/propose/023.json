@@ -1,0 +1,14 @@
+{
+  "item": 23,
+  "golden_id": "golden_097",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e032919e8d4511314ded1b7e39a2b865ed57538ad78a8e5edc1b96966d5236f1",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1 a years-of-experience line does not establish seniority, and A's only signal is the hedged \\\"Ideally, 3-5 years\\\" nice-to-have. B's quoted signal \\\"Member of Technical Staff\\\" does not appear in the excerpt, so the attribute is unsupported and should be null.\"}",
+  "decision": "drop",
+  "why": "Under rule 1 a years-of-experience line does not establish seniority, and A's only signal is the hedged \"Ideally, 3-5 years\" nice-to-have. B's quoted signal \"Member of Technical Staff\" does not appear in the excerpt, so the attribute is unsupported and should be null.",
+  "error": null
+}

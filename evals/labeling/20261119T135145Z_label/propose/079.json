@@ -1,0 +1,14 @@
+{
+  "item": 79,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "model-serving",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "24c11e3c3f1501d6aa802c0d8d6424701eedec53e4c445687eb35e58f49ac0dd",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the REQUIRED QUALIFICATIONS bullet asks for 'Deep familiarity with one or more LLM serving frameworks,' and Rule 3 makes that required mention decisive, so the agreed required model-serving label with raw_text 'LLM serving frameworks' stands.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the REQUIRED QUALIFICATIONS bullet asks for 'Deep familiarity with one or more LLM serving frameworks,' and Rule 3 makes that required mention decisive, so the agreed required model-serving label with raw_text 'LLM serving frameworks' stands.",
+  "error": null
+}

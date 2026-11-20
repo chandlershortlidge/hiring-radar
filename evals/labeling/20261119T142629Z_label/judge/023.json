@@ -1,0 +1,15 @@
+{
+  "item": 23,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "ddd21ad5a5e610224719aaa03d7a7fc4be2caa7fdf2daacc7885984edb2b1db1",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 3, any required mention wins over a preferred one, and the required qualifications ask for proven ability with pipelines for 'model training, evaluation, and deployment'.\"}",
+  "decision": "B",
+  "why": "Under Rule 3, any required mention wins over a preferred one, and the required qualifications ask for proven ability with pipelines for 'model training, evaluation, and deployment'.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 19,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "rag",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "10eee7f68dee9255de1b25cd5c3eb2416e4ce30c82384b49c783c06b04c5452f",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 5, the posting never names RAG; \\\"retrieval\\\" appears only as a generic item in a GenAI list and could mean information retrieval, so adding the specific `rag` skill goes beyond what the text states.\"}",
+  "decision": "drop",
+  "why": "Under rule 5, the posting never names RAG; \"retrieval\" appears only as a generic item in a GenAI list and could mean information retrieval, so adding the specific `rag` skill goes beyond what the text states.",
+  "error": null
+}

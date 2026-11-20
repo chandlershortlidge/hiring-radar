@@ -1,0 +1,123 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"data-science\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data science solutions\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"applied machine learning\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model development\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud environments\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GCP\"\n    },\n    {\n      \"skill_id\": \"apache-spark\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Spark\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"MLOps practices\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"model monitoring\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"DevOps integration\"\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"advanced NLP frameworks such as spaCy\"\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Transformers\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Generative AI or LLMs\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data Engineering\",\n      \"raw_text\": \"data engineering\"\n    },\n    {\n      \"label\": \"Responsible AI\",\n      \"raw_text\": \"responsible AI principles\"\n    },\n    {\n      \"label\": \"Apache Hive\",\n      \"raw_text\": \"Hive\"\n    },\n    {\n      \"label\": \"Amazon Redshift\",\n      \"raw_text\": \"Redshift\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Data Scientist\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"MSc or PhD in a numerate discipline\",\n  \"uncertain\": [],\n  \"notes\": \"spaCy is an alias of nlp in the taxonomy, so both 'NLP frameworks' and 'spaCy' collapse into skill_id 'nlp'. Generative AI is an alias of llms, so 'Generative AI or LLMs' maps to 'llms'. Degree 'MSc or PhD' is under 'Bonus Points For', hence nice_to_have and takes the highest level (phd).\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "data-science",
+        "requirement": "required",
+        "raw_text": "data science solutions"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "applied machine learning"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "model development"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud environments"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "required",
+        "raw_text": "Spark"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "nice_to_have",
+        "raw_text": "MLOps practices"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "model monitoring"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "nice_to_have",
+        "raw_text": "DevOps integration"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "nice_to_have",
+        "raw_text": "advanced NLP frameworks such as spaCy"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "nice_to_have",
+        "raw_text": "Transformers"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "Generative AI or LLMs"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data Engineering",
+        "raw_text": "data engineering"
+      },
+      {
+        "label": "Responsible AI",
+        "raw_text": "responsible AI principles"
+      },
+      {
+        "label": "Apache Hive",
+        "raw_text": "Hive"
+      },
+      {
+        "label": "Amazon Redshift",
+        "raw_text": "Redshift"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Data Scientist",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "MSc or PhD in a numerate discipline",
+    "uncertain": [],
+    "notes": "spaCy is an alias of nlp in the taxonomy, so both 'NLP frameworks' and 'spaCy' collapse into skill_id 'nlp'. Generative AI is an alias of llms, so 'Generative AI or LLMs' maps to 'llms'. Degree 'MSc or PhD' is under 'Bonus Points For', hence nice_to_have and takes the highest level (phd)."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "22e5323933d07997537d8a8c76e7e0aa589d59b6b5c0de3c9e19275598de12de",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

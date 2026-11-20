@@ -1,0 +1,14 @@
+{
+  "item": 37,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "python",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "735921e445367562618205e2ea02f46cf53c52e9ee143f52b4a26475f0ac1c78",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification bullet names Python, and the trailing \\\"is preferred\\\" applies to the whole sentence, so nice_to_have with raw_text \\\"Proficiency with Python\\\" (verbatim in the posting) is correct as agreed.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification bullet names Python, and the trailing \"is preferred\" applies to the whole sentence, so nice_to_have with raw_text \"Proficiency with Python\" (verbatim in the posting) is correct as agreed.",
+  "error": null
+}

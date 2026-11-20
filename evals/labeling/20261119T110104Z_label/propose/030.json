@@ -1,0 +1,14 @@
+{
+  "item": 30,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1a439b2e4ebfa960b89405c34ef14693f2364f56890113c090153eca59aa2bcf",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1 the phrase sits in a qualifications bullet, and under rule 3 the required bullets also name AI/ML models and ML frameworks, so the required ai-ml tag with this raw_text is correct as agreed.\"}",
+  "decision": "ok",
+  "why": "Under rule 1 the phrase sits in a qualifications bullet, and under rule 3 the required bullets also name AI/ML models and ML frameworks, so the required ai-ml tag with this raw_text is correct as agreed.",
+  "error": null
+}

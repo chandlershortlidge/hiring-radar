@@ -1,0 +1,15 @@
+{
+  "item": 24,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "5368de142f660df844d69219b91d6f14aee584fe5999ef9f97219319c905faa6",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1 and Rule 3, the only mention of ML ('predictive modeling/ML') appears in a qualification bullet under the 'What Sets You Apart' section, making it a nice_to_have rather than required.\"}",
+  "decision": "A",
+  "why": "Under Rule 1 and Rule 3, the only mention of ML ('predictive modeling/ML') appears in a qualification bullet under the 'What Sets You Apart' section, making it a nice_to_have rather than required.",
+  "error": null
+}

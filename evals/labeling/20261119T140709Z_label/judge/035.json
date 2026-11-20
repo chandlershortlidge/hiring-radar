@@ -1,0 +1,15 @@
+{
+  "item": 35,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "908de08722df6aee6c936b86fb2fed54586b35df1a5298b6167aad2f2053aca1",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a qualification bullet in the Experience Level section explicitly requires \\\"architecture and technical leadership experience\\\".\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a qualification bullet in the Experience Level section explicitly requires \"architecture and technical leadership experience\".",
+  "error": null
+}

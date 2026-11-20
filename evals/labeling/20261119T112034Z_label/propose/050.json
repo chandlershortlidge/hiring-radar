@@ -1,0 +1,14 @@
+{
+  "item": 50,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "mlops",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "3997a231b8ba68590fbf8eb98feb4c83d46e530bac4aa8c08753deef99baf871",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1 the nice-to-have bullet names the skill by describing training ML models and operating them in production at scale, which is MLOps, and rule 3 is satisfied because the agreed raw_text appears verbatim and no required mention overrides it; the posting explicitly calls this 'not a hard requirement', so nice_to_have is correct.\"}",
+  "decision": "ok",
+  "why": "Under rule 1 the nice-to-have bullet names the skill by describing training ML models and operating them in production at scale, which is MLOps, and rule 3 is satisfied because the agreed raw_text appears verbatim and no required mention overrides it; the posting explicitly calls this 'not a hard requirement', so nice_to_have is correct.",
+  "error": null
+}

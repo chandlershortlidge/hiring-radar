@@ -1,0 +1,15 @@
+{
+  "item": 31,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "cheminformatics",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "0428c5dd633bff260aeb11c71a4cb36e6533a54a1bdd1f5cb1a98cad6e9b9d38",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'cheminformatics/docking/ADMET' is explicitly named in a preferred qualifications bullet, making it a valid nice-to-have skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'cheminformatics/docking/ADMET' is explicitly named in a preferred qualifications bullet, making it a valid nice-to-have skill.",
+  "error": null
+}

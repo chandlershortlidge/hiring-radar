@@ -1,0 +1,15 @@
+{
+  "item": 53,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "devops",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "6872363c8aca8fdb90cdd480886ee6dd3821cef814c4e05bcb642a27fde2df0a",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet that names a skill counts; the rule only excludes generic job-role experience lines (\\\"experience as a software engineer\\\"), not specific technical skills like DevOps named in a qualifications sentence.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet that names a skill counts; the rule only excludes generic job-role experience lines (\"experience as a software engineer\"), not specific technical skills like DevOps named in a qualifications sentence.",
+  "error": null
+}

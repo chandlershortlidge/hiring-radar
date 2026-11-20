@@ -1,0 +1,14 @@
+{
+  "item": 57,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "mlops",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e28d6d72b726d68df9f4af93c5a0da7cd2714fd974b47064ed3c7326cbb5dbb4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'About you' bullet 'Familiarity with the production ML lifecycle, including deployment, monitoring and retraining' is a required qualification that names MLOps practice, and rule 3 makes the required mention decisive, so the agreed required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'About you' bullet 'Familiarity with the production ML lifecycle, including deployment, monitoring and retraining' is a required qualification that names MLOps practice, and rule 3 makes the required mention decisive, so the agreed required label stands.",
+  "error": null
+}

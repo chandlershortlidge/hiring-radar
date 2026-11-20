@@ -1,0 +1,14 @@
+{
+  "item": 57,
+  "golden_id": "golden_100",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b4aa254e976af234d41bde9b254e35b91b358346909f6baf53bb11118b4403c5",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, a years-of-experience qualification line does not count as a seniority signal, and the posting names no seniority level (no junior, mid, senior or similar), so the inferred \\\"mid\\\" is unsupported and the attribute should be null.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, a years-of-experience qualification line does not count as a seniority signal, and the posting names no seniority level (no junior, mid, senior or similar), so the inferred \"mid\" is unsupported and the attribute should be null.",
+  "error": null
+}

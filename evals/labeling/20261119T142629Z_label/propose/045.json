@@ -1,0 +1,14 @@
+{
+  "item": 45,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "distributed-systems",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0e6bd7c922a883fab94b340cbedee00ea0901b79bf37821b93a6827a186a3d3c",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Minimum Qualifications bullet names distributed computing (\"In-depth understanding of distributed computing\"), and under rule 3 that required mention supports the agreed required label and raw_text.\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 106 (char 105)"
+}

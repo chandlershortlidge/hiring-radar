@@ -1,0 +1,15 @@
+{
+  "item": 38,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "09c0cf9e5758a254a5d619a0aa51e32e9349971f282a01637592ef7ef0e1f620",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 3, only mentions actually present in the text can determine requirement level, and 'AI agents' appears verbatim in the Nice-to-Haves section whereas 'agent evaluation' is not in the visible excerpt.\"}",
+  "decision": "A",
+  "why": "Under Rule 3, only mentions actually present in the text can determine requirement level, and 'AI agents' appears verbatim in the Nice-to-Haves section whereas 'agent evaluation' is not in the visible excerpt.",
+  "error": null
+}

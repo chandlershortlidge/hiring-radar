@@ -1,0 +1,14 @@
+{
+  "item": 49,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "95290db5c72c0736d141c88475de62c1af24ee50a777286f4d2f27bc2c3dbbd1",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the sentence \\\"you will need prior experience in AI\\\" is a required qualification that names AI as a skill, not just a title or years line, and rule 3 makes that required mention decisive, so the agreed `ai-ml` required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the sentence \"you will need prior experience in AI\" is a required qualification that names AI as a skill, not just a title or years line, and rule 3 makes that required mention decisive, so the agreed `ai-ml` required label stands.",
+  "error": null
+}

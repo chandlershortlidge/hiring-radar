@@ -1,0 +1,81 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Linux environments\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"bash\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Bash scripting\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI pipelines\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"SystemVerilog\",\n      \"raw_text\": \"SystemVerilog\"\n    },\n    {\n      \"label\": \"Testbench development\",\n      \"raw_text\": \"structured testbench development\"\n    },\n    {\n      \"label\": \"Coverage-driven verification\",\n      \"raw_text\": \"coverage-driven verification\"\n    },\n    {\n      \"label\": \"RTL debugging\",\n      \"raw_text\": \"debugging across RTL, testbench, and workload scenarios\"\n    },\n    {\n      \"label\": \"Functional safety (FuSa) verification\",\n      \"raw_text\": \"Nice to have: Exposure to functional safety (FuSa) verification concepts\"\n    },\n    {\n      \"label\": \"Formal verification\",\n      \"raw_text\": \"Nice to have: Familiarity with formal verification methodologies\"\n    },\n    {\n      \"label\": \"SystemVerilog Assertions (SVA)\",\n      \"raw_text\": \"SVA (SystemVerilog Assertions)\"\n    },\n    {\n      \"label\": \"Formal property verification\",\n      \"raw_text\": \"formal property verification\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff Design Verification Engineer, AI HW\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"Title states 'Staff', which maps to senior (stated), though the body also mentions 'looking for contributors of all seniorities' and 'We welcome candidates at various experience levels for this role'; flagged seniority as uncertain. In 'What We Need', the first five bullets are written as responsibilities/duties ( though Python, SystemVerilog, and CI/CD also overlap with 'Who You Are'), while the last two bullets are explicitly marked 'Nice to have:' qualifications. Hardware verification skills (SystemVerilog, SVA, formal verification, RTL, testbench, FuSa) are placed in unmapped. 'agents' in 'verification environments, agents, scoreboards' refers to UVM/verification testbench agents, not AI agents, so it is not mapped to taxonomy 'agents'.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "linux",
+        "requirement": "required",
+        "raw_text": "Linux environments"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "bash",
+        "requirement": "required",
+        "raw_text": "Bash scripting"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI pipelines"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "SystemVerilog",
+        "raw_text": "SystemVerilog"
+      },
+      {
+        "label": "Testbench development",
+        "raw_text": "structured testbench development"
+      },
+      {
+        "label": "Coverage-driven verification",
+        "raw_text": "coverage-driven verification"
+      },
+      {
+        "label": "RTL debugging",
+        "raw_text": "debugging across RTL, testbench, and workload scenarios"
+      },
+      {
+        "label": "Functional safety (FuSa) verification",
+        "raw_text": "Nice to have: Exposure to functional safety (FuSa) verification concepts"
+      },
+      {
+        "label": "Formal verification",
+        "raw_text": "Nice to have: Familiarity with formal verification methodologies"
+      },
+      {
+        "label": "SystemVerilog Assertions (SVA)",
+        "raw_text": "SVA (SystemVerilog Assertions)"
+      },
+      {
+        "label": "Formal property verification",
+        "raw_text": "formal property verification"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff Design Verification Engineer, AI HW",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Title states 'Staff', which maps to senior (stated), though the body also mentions 'looking for contributors of all seniorities' and 'We welcome candidates at various experience levels for this role'; flagged seniority as uncertain. In 'What We Need', the first five bullets are written as responsibilities/duties ( though Python, SystemVerilog, and CI/CD also overlap with 'Who You Are'), while the last two bullets are explicitly marked 'Nice to have:' qualifications. Hardware verification skills (SystemVerilog, SVA, formal verification, RTL, testbench, FuSa) are placed in unmapped. 'agents' in 'verification environments, agents, scoreboards' refers to UVM/verification testbench agents, not AI agents, so it is not mapped to taxonomy 'agents'."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "d35e99fb08f64473aea58431ddd380c3d79ae8a3a49199fa0c085ae1a41c1567",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

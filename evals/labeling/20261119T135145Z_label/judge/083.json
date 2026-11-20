@@ -1,0 +1,15 @@
+{
+  "item": 83,
+  "golden_id": "golden_107",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "cf66ff52931a01048b7ed0a7260e00e33bb97395a69269209ac28b0aedaf95aa",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a required qualification bullet explicitly asks for experience in 'Machine Learning research initiatives', which names the skill rather than just a job title.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a required qualification bullet explicitly asks for experience in 'Machine Learning research initiatives', which names the skill rather than just a job title.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 38,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "open-source-llms",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "1c1b3f4c415980910f264c34997483f1d6214b121b38d15921cdb307136ac921",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet under 'Nice to Have' explicitly asks for experience adapting 'open-weight models', which corresponds to open-source LLMs.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet under 'Nice to Have' explicitly asks for experience adapting 'open-weight models', which corresponds to open-source LLMs.",
+  "error": null
+}

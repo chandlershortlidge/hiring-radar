@@ -1,0 +1,15 @@
+{
+  "item": 56,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "observability",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "909d782b8c7be6c542179f6966aba90ffb515aec7ac07dedc964b0b6f992e7fe",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rules 1 and 4, 'Observability: Datadog' is a category label in an informational 'Our Stack' section, not a qualification bullet asking the candidate for the skill.\"}",
+  "decision": "drop",
+  "why": "Under rules 1 and 4, 'Observability: Datadog' is a category label in an informational 'Our Stack' section, not a qualification bullet asking the candidate for the skill.",
+  "error": null
+}

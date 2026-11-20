@@ -1,0 +1,14 @@
+{
+  "item": 37,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b4028d77bb7d4c9a60a0db531c6bfe918c2f6997477f5a978886df5859b04368",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the QUALIFICATIONS sentence 'the ability to work across model training, experimentation infrastructure, and production systems' names model training as a required skill, and rule 3 makes that required mention win, so labeler B's required model-development tag is correct.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the QUALIFICATIONS sentence 'the ability to work across model training, experimentation infrastructure, and production systems' names model training as a required skill, and rule 3 makes that required mention win, so labeler B's required model-development tag is correct.",
+  "error": null
+}

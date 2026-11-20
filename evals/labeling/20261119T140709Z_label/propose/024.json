@@ -1,0 +1,14 @@
+{
+  "item": 24,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "44c6816ce08cf39b7f1fd20483e08a23b8f6c8dc1b52d502705128d207a6136b",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 3 the only required mention would have to sit in the \"What You Must Have\" list, which names just a degree and years of experience; the \"AI evaluation standards\" text falls under \"What Sets You Apart\", so nice_to_have is correct, and labeler A's raw_text \"AI evaluation\" appears verbatim.\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 92 (char 91)"
+}

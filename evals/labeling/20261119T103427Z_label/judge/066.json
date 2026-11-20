@@ -1,0 +1,15 @@
+{
+  "item": 66,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "a5b49bcae1be4ce23b3fae36def41bec3456c3a8f4ca1f3506a164c15309b937",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the required qualification bullet 'validating ML model performance' explicitly describes model evaluation, and Rule 3 keeps the required mention as the raw_text.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the required qualification bullet 'validating ML model performance' explicitly describes model evaluation, and Rule 3 keeps the required mention as the raw_text.",
+  "error": null
+}

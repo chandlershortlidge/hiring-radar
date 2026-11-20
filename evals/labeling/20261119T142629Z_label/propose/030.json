@@ -1,0 +1,14 @@
+{
+  "item": 30,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "3a232d1286b88d57ae044eb0c10101080567f9c51c36ab9a92482903bc71955d",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the Basic Qualifications bullet requiring experience developing AI and ML algorithms or technologies names a skill, and rule 3 makes that required mention count, with the quoted raw_text appearing verbatim in the posting.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the Basic Qualifications bullet requiring experience developing AI and ML algorithms or technologies names a skill, and rule 3 makes that required mention count, with the quoted raw_text appearing verbatim in the posting.",
+  "error": null
+}

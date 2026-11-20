@@ -1,0 +1,15 @@
+{
+  "item": 26,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "3cfa9165b38c25c2a0c0e3013e743932c7acb24b496737b5f1335be6f67c9b0a",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1 and Rule 3, the qualification bullet asking for experience 'taking models from data collection through training' requires model development and justifies B's required label and quote.\"}",
+  "decision": "B",
+  "why": "Under Rule 1 and Rule 3, the qualification bullet asking for experience 'taking models from data collection through training' requires model development and justifies B's required label and quote.",
+  "error": null
+}

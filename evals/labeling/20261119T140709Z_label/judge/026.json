@@ -1,0 +1,15 @@
+{
+  "item": 26,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "hallucination-detection",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "56bcd6f4a9abfe1c31e076205e7b62453216edd32be3abf27916e84de5c54617",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rules 1 and 3, the mention of evaluating hallucinations appears only in the 'What Sets You Apart' preferred qualifications section, making A's nice_to_have classification correct.\"}",
+  "decision": "A",
+  "why": "Under rules 1 and 3, the mention of evaluating hallucinations appears only in the 'What Sets You Apart' preferred qualifications section, making A's nice_to_have classification correct.",
+  "error": null
+}

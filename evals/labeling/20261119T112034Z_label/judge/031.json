@@ -1,0 +1,15 @@
+{
+  "item": 31,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "72f5b898df43b16094d520313c92e6dbf6bdc9015ab386b254ba5c2db20baa54",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the qualification bullet explicitly asks for a good understanding of 'Android architecture', which supports the software-architecture skill.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the qualification bullet explicitly asks for a good understanding of 'Android architecture', which supports the software-architecture skill.",
+  "error": null
+}

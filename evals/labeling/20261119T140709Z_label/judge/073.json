@@ -1,0 +1,15 @@
+{
+  "item": 73,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "7a82d1738c8efa3421ed93610a147b2cd82dae5ebae8db2a078c32a7aad72085",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a sentence describing the ideal candidate's experience ('integrating AI/ML capabilities') counts as a required qualification.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a sentence describing the ideal candidate's experience ('integrating AI/ML capabilities') counts as a required qualification.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 43,
+  "golden_id": "golden_108",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "0cac66e6d678d5e3de5efa0e75fbfeb9754bbb36738fc950103b2321a21e511f",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 3, the required qualification of 2+ years in a specialized executive-facing role coupled with proven expertise and technical depth indicates mid-level seniority rather than junior.\"}",
+  "decision": "A",
+  "why": "Under Rule 3, the required qualification of 2+ years in a specialized executive-facing role coupled with proven expertise and technical depth indicates mid-level seniority rather than junior.",
+  "error": null
+}

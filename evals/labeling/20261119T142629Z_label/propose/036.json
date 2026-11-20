@@ -1,0 +1,14 @@
+{
+  "item": 36,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "mcp",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "4a6f1ed65903c9f075c9136c63ee5d176f9ebd4dbe5f06171a87d5a5a7a35ec8",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Preferred Qualifications bullet names MCP directly as an open-source ecosystem the candidate should have contributed to, so the nice_to_have label with raw_text \\\"MCP\\\" is supported as agreed.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Preferred Qualifications bullet names MCP directly as an open-source ecosystem the candidate should have contributed to, so the nice_to_have label with raw_text \"MCP\" is supported as agreed.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 46,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "networking",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "c0a73d90f4537d96d6efa6eff094f85b9c1f9d36e1504a8d7c5ad992d1e85ba9",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rules 1 and 3, the Required Qualifications bullet explicitly asks for experience with 'networking, and storage considerations', making the agreed required label correct.\"}",
+  "decision": "ok",
+  "why": "Under rules 1 and 3, the Required Qualifications bullet explicitly asks for experience with 'networking, and storage considerations', making the agreed required label correct.",
+  "error": null
+}

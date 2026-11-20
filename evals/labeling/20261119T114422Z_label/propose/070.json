@@ -1,0 +1,14 @@
+{
+  "item": 70,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0a7c42be40f4696213e4eb101dde887931b9522b943e8a98d9eb65fde03f954b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the MINIMUM QUALIFICATIONS bullet \\\"Proven experience training and deploying language models to production\\\" names LLM work as a required qualification, and the quoted raw_text appears verbatim, so the agreed `llms` required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the MINIMUM QUALIFICATIONS bullet \"Proven experience training and deploying language models to production\" names LLM work as a required qualification, and the quoted raw_text appears verbatim, so the agreed `llms` required label stands.",
+  "error": null
+}

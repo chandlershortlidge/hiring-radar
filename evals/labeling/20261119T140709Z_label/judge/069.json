@@ -1,0 +1,15 @@
+{
+  "item": 69,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "08d0c258a84e11518f7e1b022a29605d1641f651a2cdd47d0d917704b1630546",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a required qualification bullet explicitly asks for working knowledge of \\\"data protection,\\\" which directly supports the `data-privacy-and-security` skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a required qualification bullet explicitly asks for working knowledge of \"data protection,\" which directly supports the `data-privacy-and-security` skill.",
+  "error": null
+}

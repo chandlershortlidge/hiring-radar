@@ -1,0 +1,14 @@
+{
+  "item": 42,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "990e3db43fc86e180b082c776dd0743f8852afe11c255d85c9f2399280d3fb0a",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Requirements bullet 'Experience deploying AI/ML for biology systems into scientific workflows at enterprise scale' names AI/ML as a required qualification, and the agreed raw_text appears verbatim in it.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Requirements bullet 'Experience deploying AI/ML for biology systems into scientific workflows at enterprise scale' names AI/ML as a required qualification, and the agreed raw_text appears verbatim in it.",
+  "error": null
+}

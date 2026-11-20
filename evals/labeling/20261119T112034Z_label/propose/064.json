@@ -1,0 +1,14 @@
+{
+  "item": 64,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "78cb02e838b40a1fb649a3d289d0850f071cf899707c922c5eafcb065c0db165",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required qualification bullet \"Experience building and deploying LLM-powered applications or AI agents in production\" names agents, and under rule 3 that required mention wins over the nice-to-have \"agent architectures\" line, so the agreed required label and quote stand.\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 77 (char 76)"
+}

@@ -1,0 +1,15 @@
+{
+  "item": 16,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "aws",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "03e5b2fd16fc118085f83f056808626c212a7ca2de30ded8e192a06e69e68c8c",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rules 1 and 3, 'AWS' appears only in the 'What Sets You Apart' preferred qualifications section, making it a nice-to-have skill.\"}",
+  "decision": "A",
+  "why": "Under rules 1 and 3, 'AWS' appears only in the 'What Sets You Apart' preferred qualifications section, making it a nice-to-have skill.",
+  "error": null
+}

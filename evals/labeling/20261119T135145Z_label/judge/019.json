@@ -1,0 +1,15 @@
+{
+  "item": 19,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "e0a82ae364e3d4e74001ed7cabb7b2a9f2173d6bbb69d94360129092dcfc600c",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 1, a years-of-experience line ('6+ years of backend software engineering experience') does not count as naming a skill.\"}",
+  "decision": "drop",
+  "why": "Under Rule 1, a years-of-experience line ('6+ years of backend software engineering experience') does not count as naming a skill.",
+  "error": null
+}

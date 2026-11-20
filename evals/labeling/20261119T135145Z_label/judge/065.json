@@ -1,0 +1,15 @@
+{
+  "item": 65,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "d4082faaed1c1863ef8389d4bdbb6fcd43fe81280b36abbd56aadbc43c52da7d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a required qualification bullet explicitly names 'inference, and deployment' in the context of ML infrastructure experience, which supports the required ai-deployment skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a required qualification bullet explicitly names 'inference, and deployment' in the context of ML infrastructure experience, which supports the required ai-deployment skill.",
+  "error": null
+}

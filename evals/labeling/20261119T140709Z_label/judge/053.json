@@ -1,0 +1,15 @@
+{
+  "item": 53,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "llm-guardrails",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "72c6b23fb60dd92f2d0d4352a691b7ac076e4e0bda27d7c3146878c1ec221358",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification bullet names guardrails in the context of agentic AI systems as a plus, so the agreed nice_to_have label is correct.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification bullet names guardrails in the context of agentic AI systems as a plus, so the agreed nice_to_have label is correct.",
+  "error": null
+}

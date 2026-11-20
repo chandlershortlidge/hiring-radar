@@ -1,0 +1,15 @@
+{
+  "item": 53,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "apache-spark",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "a604ccd91280cb2226fe52b7571268c4ba4ce552a76b692c98fc16a491680e9f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet under Preferred Skills explicitly names 'Spark', making it a valid nice-to-have skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet under Preferred Skills explicitly names 'Spark', making it a valid nice-to-have skill.",
+  "error": null
+}

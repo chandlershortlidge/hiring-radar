@@ -1,0 +1,97 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying deep learning models in production\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML fundamentals\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation design\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed compute\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"sagemaker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SageMaker\"\n    },\n    {\n      \"skill_id\": \"airflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Airflow\"\n    },\n    {\n      \"skill_id\": \"kafka\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kafka\"\n    },\n    {\n      \"skill_id\": \"redis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Redis\"\n    },\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Snowflake\"\n    }\n  ],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Mapped 'distributed compute' to distributed-systems (marked uncertain as it could also be unmapped or relate to distributed-training). 'deploying deep learning models in production' mapped to both ai-deployment and deep-learning. AWS, SageMaker, Airflow, Kafka, Redis, Snowflake are alternatives ('X, Y or Z').\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying deep learning models in production"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ML fundamentals"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation design"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed compute",
+        "uncertain": true
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "sagemaker",
+        "requirement": "required",
+        "raw_text": "SageMaker"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "required",
+        "raw_text": "Airflow"
+      },
+      {
+        "skill_id": "kafka",
+        "requirement": "required",
+        "raw_text": "Kafka"
+      },
+      {
+        "skill_id": "redis",
+        "requirement": "required",
+        "raw_text": "Redis"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake"
+      }
+    ],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Mapped 'distributed compute' to distributed-systems (marked uncertain as it could also be unmapped or relate to distributed-training). 'deploying deep learning models in production' mapped to both ai-deployment and deep-learning. AWS, SageMaker, Airflow, Kafka, Redis, Snowflake are alternatives ('X, Y or Z')."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "9ee2a4d8c7b89c55795ab4545e5607920ae1e1c35e4c4f04563d81ed7a315fbc",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

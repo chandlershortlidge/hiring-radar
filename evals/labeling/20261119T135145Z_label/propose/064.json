@@ -1,0 +1,14 @@
+{
+  "item": 64,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "agent-state-management",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "af952ef7df91fa953bef5a45c063178a4fd1bbefb286e38f22a0bf0e74afa4b3",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'What You'll Need' bullet 'Agentic systems knowledge — tools, memory, and long-running workflows' is a qualification that names the skill, and the agreed raw_text 'memory, and long-running workflows' appears verbatim in it (rule 3), so the required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'What You'll Need' bullet 'Agentic systems knowledge — tools, memory, and long-running workflows' is a qualification that names the skill, and the agreed raw_text 'memory, and long-running workflows' appears verbatim in it (rule 3), so the required label stands.",
+  "error": null
+}

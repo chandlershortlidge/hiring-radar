@@ -1,0 +1,15 @@
+{
+  "item": 31,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "2e83f9e33d940643789911f5696ace2f651614f122aea065a8601d6141268eb9",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the qualification sentence asking for a candidate with a track record of \\\"developing and deploying advanced AI models\\\" explicitly names the model-development skill.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the qualification sentence asking for a candidate with a track record of \"developing and deploying advanced AI models\" explicitly names the model-development skill.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 50,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "cadec0aa469d3cf0634eca26e8f398ccb42b1180625faf210dbeefde9a8f9681",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a required qualification bullet explicitly asks for demonstrated application to \\\"agentic systems\\\", supporting the agreed `agents` label.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a required qualification bullet explicitly asks for demonstrated application to \"agentic systems\", supporting the agreed `agents` label.",
+  "error": null
+}

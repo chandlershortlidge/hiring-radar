@@ -1,0 +1,17 @@
+{
+  "item": 42,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "nlp",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "113c1b018556c307e7ef1d40177afa60286e25a123de4ab66fb8ff48d5f0d22b",
+  "raw": "{\"decision\": {\"requirement\": \"nice_to_have\", \"raw_text\": \"multilingual NLP\"}, \"why\": \"Under rule 1 the required 'Natural Language Processing (NLP)' is only inside a years-of-experience line, which does not count, but the preferred bullet 'Proficiency in multilingual NLP' names NLP as a skill, so the skill stays as nice_to_have.\"}",
+  "decision": {
+    "requirement": "nice_to_have",
+    "raw_text": "multilingual NLP"
+  },
+  "why": "Under rule 1 the required 'Natural Language Processing (NLP)' is only inside a years-of-experience line, which does not count, but the preferred bullet 'Proficiency in multilingual NLP' names NLP as a skill, so the skill stays as nice_to_have.",
+  "error": null
+}

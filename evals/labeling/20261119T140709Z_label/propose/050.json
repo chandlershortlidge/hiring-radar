@@ -1,0 +1,14 @@
+{
+  "item": 50,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "42a22a445f222649877a9989056708a43d6c09d3c3c34e3aa73e6eed1377c5ad",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Essential qualification names foundational knowledge of machine learning and AI models, and under rule 3 that required mention wins; the agreed raw_text \\\"machine learning, AI models\\\" appears verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Essential qualification names foundational knowledge of machine learning and AI models, and under rule 3 that required mention wins; the agreed raw_text \"machine learning, AI models\" appears verbatim in the posting.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 28,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "00d3840b0ee47b0c88fb0c12db11e28c65c095343e9acff56369417ca631feca",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1 and Rule 3, 'enterprise architecture' appears only in the 'What Sets You Apart' preferred qualifications section, making it a nice_to_have rather than required.\"}",
+  "decision": "A",
+  "why": "Under Rule 1 and Rule 3, 'enterprise architecture' appears only in the 'What Sets You Apart' preferred qualifications section, making it a nice_to_have rather than required.",
+  "error": null
+}

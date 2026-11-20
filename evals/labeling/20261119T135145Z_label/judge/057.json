@@ -1,0 +1,15 @@
+{
+  "item": 57,
+  "golden_id": "golden_100",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "5fa748debca9a9989ea46062a35928a9567c878ca8bd2646be846e90d00eff6d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Rule 1 excludes years-of-experience lines from counting as skills, not from serving as an inferred seniority signal, so 'a Masters + 3 years of experience' properly supports inferring 'mid' seniority.\"}",
+  "decision": "ok",
+  "why": "Rule 1 excludes years-of-experience lines from counting as skills, not from serving as an inferred seniority signal, so 'a Masters + 3 years of experience' properly supports inferring 'mid' seniority.",
+  "error": null
+}

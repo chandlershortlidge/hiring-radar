@@ -1,0 +1,15 @@
+{
+  "item": 80,
+  "golden_id": "golden_107",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "73afaede4998c436713df774e6b070431fe4c89e863598efc42e716bae186569",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 4, the responsibility to 'Define and lead high impact applied research initiatives' is backed by the required qualification '3+ years of experience leading Machine Learning research initiatives', validating the agreed inferred 'senior' seniority.\"}",
+  "decision": "ok",
+  "why": "Under rule 4, the responsibility to 'Define and lead high impact applied research initiatives' is backed by the required qualification '3+ years of experience leading Machine Learning research initiatives', validating the agreed inferred 'senior' seniority.",
+  "error": null
+}

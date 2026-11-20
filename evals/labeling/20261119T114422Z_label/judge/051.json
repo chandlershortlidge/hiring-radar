@@ -1,0 +1,15 @@
+{
+  "item": 51,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "ml-engineering",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "eac0cc56f43f630b21a69bf78ce5fcacb2757f1ee82240e6dc4f423a1bef3e11",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 1, a years-of-experience line like \\\"3+ years of ML engineering experience\\\" does not count as a skill mention.\"}",
+  "decision": "drop",
+  "why": "Under Rule 1, a years-of-experience line like \"3+ years of ML engineering experience\" does not count as a skill mention.",
+  "error": null
+}

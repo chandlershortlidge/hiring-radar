@@ -1,0 +1,14 @@
+{
+  "item": 52,
+  "golden_id": "golden_098",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "eb9ef564d6eabfef64a4d0668f36c542b33322642edf87f217fe741fd455fa15",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only support is a years-of-experience line (\"2+ years of experience in software development\"), which does not name a seniority level, and nothing in the posting says \"junior,\" so the attribute should be null.\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 93 (char 92)"
+}

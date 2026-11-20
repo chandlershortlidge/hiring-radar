@@ -1,0 +1,14 @@
+{
+  "item": 53,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "devops",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "5291214d419c5c4e191fc2ca1d3d4ea1315f4d96d153fc2a8dd808eb2fd0fbf7",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only mention of DevOps is inside the 8+ years of experience line ('experience in software engineering, ML engineering, or MLOps/DevOps'), which is a years-of-experience line and does not count as naming a skill; the visible CI/CD and container bullets name other tools, not `devops`.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only mention of DevOps is inside the 8+ years of experience line ('experience in software engineering, ML engineering, or MLOps/DevOps'), which is a years-of-experience line and does not count as naming a skill; the visible CI/CD and container bullets name other tools, not `devops`.",
+  "error": null
+}

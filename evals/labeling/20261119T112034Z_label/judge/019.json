@@ -1,0 +1,15 @@
+{
+  "item": 19,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "rag",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "da534925845aff277f8c852d53afe3a7861acebc0e1e1401e228f2b8e65c2cd8",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1 and rule 5, the posting mentions generic \\\"retrieval\\\" rather than specifically naming RAG (Retrieval-Augmented Generation).\"}",
+  "decision": "drop",
+  "why": "Under rule 1 and rule 5, the posting mentions generic \"retrieval\" rather than specifically naming RAG (Retrieval-Augmented Generation).",
+  "error": null
+}

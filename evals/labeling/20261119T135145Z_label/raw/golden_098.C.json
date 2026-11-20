@@ -1,0 +1,123 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong Python\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"solid real-time C++\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RL\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"ros\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"ROS 2\"\n    },\n    {\n      \"skill_id\": \"linux\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"real-time Linux\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"containerization\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CI/CD\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"MPC\",\n      \"raw_text\": \"MPC\"\n    },\n    {\n      \"label\": \"CAD\",\n      \"raw_text\": \"CAD\"\n    },\n    {\n      \"label\": \"SolidWorks\",\n      \"raw_text\": \"SolidWorks\"\n    },\n    {\n      \"label\": \"Fusion 360\",\n      \"raw_text\": \"Fusion 360\"\n    },\n    {\n      \"label\": \"Onshape\",\n      \"raw_text\": \"Onshape\"\n    },\n    {\n      \"label\": \"Imitation learning\",\n      \"raw_text\": \"imitation learning\"\n    },\n    {\n      \"label\": \"VLA\",\n      \"raw_text\": \"VLA\"\n    },\n    {\n      \"label\": \"Isaac Lab\",\n      \"raw_text\": \"Isaac Lab\"\n    },\n    {\n      \"label\": \"MuJoCo\",\n      \"raw_text\": \"MuJoCo\"\n    },\n    {\n      \"label\": \"Unitree\",\n      \"raw_text\": \"Unitree platforms\"\n    },\n    {\n      \"label\": \"MuJoCo Warp\",\n      \"raw_text\": \"MuJoCo Warp\"\n    },\n    {\n      \"label\": \"Kalman filtering\",\n      \"raw_text\": \"Kalman filtering\"\n    },\n    {\n      \"label\": \"DDS\",\n      \"raw_text\": \"DDS\"\n    },\n    {\n      \"label\": \"Zenoh\",\n      \"raw_text\": \"Zenoh\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Master’s with 3+ years of experience, or PhD, in robotics, control or a related field. Strong candidates with a bachelor’s and 3+ years of industry experience are also considered.\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master’s with 3+ years of experience, or PhD, in robotics, control or a related field. Strong candidates with a bachelor’s and 3+ years of industry experience are also considered.\",\n  \"uncertain\": [],\n  \"notes\": \"Highest degree named in minimum qualifications is PhD ('Master’s with 3+ years of experience, or PhD... Strong candidates with a bachelor’s and 3+ years of industry experience are also considered'). Seniority inferred as mid from '3+ years of experience'. Specialized robotics tools and simulators (CAD, SolidWorks, Fusion 360, Onshape, Isaac Lab, MuJoCo, DDS, Zenoh, etc.) placed in unmapped.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "solid real-time C++"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "required",
+        "raw_text": "RL"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "ros",
+        "requirement": "nice_to_have",
+        "raw_text": "ROS 2"
+      },
+      {
+        "skill_id": "linux",
+        "requirement": "nice_to_have",
+        "raw_text": "real-time Linux"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerization"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI/CD"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "MPC",
+        "raw_text": "MPC"
+      },
+      {
+        "label": "CAD",
+        "raw_text": "CAD"
+      },
+      {
+        "label": "SolidWorks",
+        "raw_text": "SolidWorks"
+      },
+      {
+        "label": "Fusion 360",
+        "raw_text": "Fusion 360"
+      },
+      {
+        "label": "Onshape",
+        "raw_text": "Onshape"
+      },
+      {
+        "label": "Imitation learning",
+        "raw_text": "imitation learning"
+      },
+      {
+        "label": "VLA",
+        "raw_text": "VLA"
+      },
+      {
+        "label": "Isaac Lab",
+        "raw_text": "Isaac Lab"
+      },
+      {
+        "label": "MuJoCo",
+        "raw_text": "MuJoCo"
+      },
+      {
+        "label": "Unitree",
+        "raw_text": "Unitree platforms"
+      },
+      {
+        "label": "MuJoCo Warp",
+        "raw_text": "MuJoCo Warp"
+      },
+      {
+        "label": "Kalman filtering",
+        "raw_text": "Kalman filtering"
+      },
+      {
+        "label": "DDS",
+        "raw_text": "DDS"
+      },
+      {
+        "label": "Zenoh",
+        "raw_text": "Zenoh"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Master’s with 3+ years of experience, or PhD, in robotics, control or a related field. Strong candidates with a bachelor’s and 3+ years of industry experience are also considered.",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master’s with 3+ years of experience, or PhD, in robotics, control or a related field. Strong candidates with a bachelor’s and 3+ years of industry experience are also considered.",
+    "uncertain": [],
+    "notes": "Highest degree named in minimum qualifications is PhD ('Master’s with 3+ years of experience, or PhD... Strong candidates with a bachelor’s and 3+ years of industry experience are also considered'). Seniority inferred as mid from '3+ years of experience'. Specialized robotics tools and simulators (CAD, SolidWorks, Fusion 360, Onshape, Isaac Lab, MuJoCo, DDS, Zenoh, etc.) placed in unmapped."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "399c6a6eb32e09ff58f787318c561b5dcfe625381d97bab49f3c6702d2dcfc5d",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,15 @@
+{
+  "item": 62,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "6a51b0b806235f2ed978d08d1ee2dede14c61c75e9916633ec8ae2571bdf028b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet explicitly naming 'machine learning frameworks' under the 'plus' section counts as a nice_to_have skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet explicitly naming 'machine learning frameworks' under the 'plus' section counts as a nice_to_have skill.",
+  "error": null
+}

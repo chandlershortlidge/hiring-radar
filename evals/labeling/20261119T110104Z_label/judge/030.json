@@ -1,0 +1,15 @@
+{
+  "item": 30,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "3ce9a8dd69d1698f520f0f115b8f092df2ff0c3f28fd64a74a675e100512e40e",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, AI/ML is explicitly named in a required qualifications bullet, so the agreed required label and raw_text are correct.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, AI/ML is explicitly named in a required qualifications bullet, so the agreed required label and raw_text are correct.",
+  "error": null
+}

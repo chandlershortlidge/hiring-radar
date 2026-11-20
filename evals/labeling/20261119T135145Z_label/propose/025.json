@@ -1,0 +1,14 @@
+{
+  "item": 25,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "computer-vision",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9c8bd6daac73cf58c1a8e2c496412a684cf2f64a86c79e0a239259e109d7c3f8",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the Preferred Qualifications bullet names 3D perception and depth sensing, which are computer-vision skills, so the nice_to_have tag with the verbatim raw_text \\\"3D perception on hardware\\\" holds even though the word \\\"computer vision\\\" never appears.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the Preferred Qualifications bullet names 3D perception and depth sensing, which are computer-vision skills, so the nice_to_have tag with the verbatim raw_text \"3D perception on hardware\" holds even though the word \"computer vision\" never appears.",
+  "error": null
+}

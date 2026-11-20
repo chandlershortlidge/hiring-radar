@@ -1,0 +1,14 @@
+{
+  "item": 40,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "67425fadd85e44fd1cd1cdcbe31c32253c2060ba428e226dc504ba738c0ed26f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification sentence in 'What We're Looking For' ('a deep background in building production software') names a skill rather than just a title or years line, and rule 3 makes that required mention control, so the agreed required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification sentence in 'What We're Looking For' ('a deep background in building production software') names a skill rather than just a title or years line, and rule 3 makes that required mention control, so the agreed required label stands.",
+  "error": null
+}

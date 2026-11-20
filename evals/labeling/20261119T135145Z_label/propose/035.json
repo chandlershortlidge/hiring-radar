@@ -1,0 +1,14 @@
+{
+  "item": 35,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "937358402254b58b2b5349020af177876c4d1168f5386b2334e1b178266fae56",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only mention, \\\"9+ years of software development experience,\\\" is a years-of-experience line, which does not count as a named skill, and rule 5 bars adding a broad skill the qualifications do not otherwise name.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only mention, \"9+ years of software development experience,\" is a years-of-experience line, which does not count as a named skill, and rule 5 bars adding a broad skill the qualifications do not otherwise name.",
+  "error": null
+}

@@ -1,0 +1,17 @@
+{
+  "item": 58,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "mlops",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "5af991d2818d1a547a44457f631f95e6d229661c33593501211955a9154f275c",
+  "raw": "{\"decision\": {\"requirement\": \"required\", \"raw_text\": \"Strong experience with Google Cloud Platform (GCP) MLOps services\"}, \"why\": \"Under rule 1 the agreed quote \\\"MLOps/DevOps\\\" sits in a years-of-experience line that doesn't count, but the qualification sentence \\\"Strong experience with Google Cloud Platform (GCP) MLOps services\\\" names MLOps as a required skill, so rule 3 makes that the determining mention.\"}",
+  "decision": {
+    "requirement": "required",
+    "raw_text": "Strong experience with Google Cloud Platform (GCP) MLOps services"
+  },
+  "why": "Under rule 1 the agreed quote \"MLOps/DevOps\" sits in a years-of-experience line that doesn't count, but the qualification sentence \"Strong experience with Google Cloud Platform (GCP) MLOps services\" names MLOps as a required skill, so rule 3 makes that the determining mention.",
+  "error": null
+}

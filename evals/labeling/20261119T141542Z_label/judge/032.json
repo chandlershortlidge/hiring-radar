@@ -1,0 +1,15 @@
+{
+  "item": 32,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "python",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"raw_text\": \"Focus will be on Python across backend services\", \"requirement\": \"required\"}",
+  "key_sha256": "5143e25aeefa85cb44731765aafc8f781f2214f756f7d5ed48fb62a2a2fe0028",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 1, the job title fragment ('Python & ML Infra') does not count, and under Rule 4, the description of the role's focus ('Focus will be on Python...') is a responsibility rather than a candidate qualification.\"}",
+  "decision": "drop",
+  "why": "Under Rule 1, the job title fragment ('Python & ML Infra') does not count, and under Rule 4, the description of the role's focus ('Focus will be on Python...') is a responsibility rather than a candidate qualification.",
+  "error": null
+}

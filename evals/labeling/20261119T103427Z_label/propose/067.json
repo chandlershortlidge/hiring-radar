@@ -1,0 +1,14 @@
+{
+  "item": 67,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "34c75450f4616cca9a5608344e492f8f6cbb25bfb761177e64cc2d8a1207ce2c",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only quoted mention of machine learning is inside the years-of-experience line (\\\"4+ years of experience ... in machine learning research\\\"), which does not count; the qualification bullets name deep learning, frameworks, and model training instead.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only quoted mention of machine learning is inside the years-of-experience line (\"4+ years of experience ... in machine learning research\"), which does not count; the qualification bullets name deep learning, frameworks, and model training instead.",
+  "error": null
+}

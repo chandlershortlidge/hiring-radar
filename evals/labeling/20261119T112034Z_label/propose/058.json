@@ -1,0 +1,14 @@
+{
+  "item": 58,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "ansible",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "459eac5a17d4ed5511dcc18fd43c06ccd73bd0f1140889e90782ebf4edefed6d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the PREFERRED SKILLS bullet names Ansible directly in a qualification line ('Knowledge of infrastructure as code (Terraform, Ansible)'), so the skill counts as nice_to_have and the agreed raw_text 'Ansible' is quoted verbatim.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the PREFERRED SKILLS bullet names Ansible directly in a qualification line ('Knowledge of infrastructure as code (Terraform, Ansible)'), so the skill counts as nice_to_have and the agreed raw_text 'Ansible' is quoted verbatim.",
+  "error": null
+}

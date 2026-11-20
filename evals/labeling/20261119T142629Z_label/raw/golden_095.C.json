@@ -1,0 +1,67 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Go\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"test automation\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Experience with AI tools, with an understanding of practical use to improve testing efficiency\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI agents\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"benchmarking and evaluating AI agents\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distributed systems\"\n    }\n  ],\n  \"unmapped\": [],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Proven experience building scalable test automation, or productivity tools.\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"BS in Computer Science or related fields\",\n  \"uncertain\": [],\n  \"notes\": \"CI/CD validation pipelines and LLMs appear only in Responsibilities, so they are omitted.\\nMapped 'Experience with AI tools, with an understanding of practical use to improve testing efficiency' to ai-developer-tooling (marked uncertain as 'AI tools' is not an exact alias).\\nPython, Go, and Java are offered as alternatives ('at least one programming language (e.g., Python, Go, Java, etc.)').\\nInferred mid seniority from 'Proven experience building scalable test automation'.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "test automation"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "Experience with AI tools, with an understanding of practical use to improve testing efficiency",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "AI agents"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "benchmarking and evaluating AI agents"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "distributed systems"
+      }
+    ],
+    "unmapped": [],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Proven experience building scalable test automation, or productivity tools.",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "BS in Computer Science or related fields",
+    "uncertain": [],
+    "notes": "CI/CD validation pipelines and LLMs appear only in Responsibilities, so they are omitted.\nMapped 'Experience with AI tools, with an understanding of practical use to improve testing efficiency' to ai-developer-tooling (marked uncertain as 'AI tools' is not an exact alias).\nPython, Go, and Java are offered as alternatives ('at least one programming language (e.g., Python, Go, Java, etc.)').\nInferred mid seniority from 'Proven experience building scalable test automation'."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "c7e5d55b0fbfdcf619ac9236c1b2cf656a10235cf96338e8c0966f33a125683f",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

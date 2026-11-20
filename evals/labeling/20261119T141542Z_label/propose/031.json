@@ -1,0 +1,14 @@
+{
+  "item": 31,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "data-pipelines",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f4c0b3e190089f4768bf74dcafe1afd8ea9f92b127996e49b1346e201292fec0",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 4, \\\"Focus will be on Python across backend services, data pipelines, and ML infrastructure\\\" describes the work the role will do, not a qualification the candidate must already have, and the only candidate requirement here is communication skills.\"}",
+  "decision": "drop",
+  "why": "Under rule 4, \"Focus will be on Python across backend services, data pipelines, and ML infrastructure\" describes the work the role will do, not a qualification the candidate must already have, and the only candidate requirement here is communication skills.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 46,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "2545bb0af1b0555eaf536cce4bbeea3da5bb729595ca02d1bb8ada0c1e30743e",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, the broad skill `model-development` should not be added when the posting only names specific activities like \\\"training\\\" and \\\"tuning\\\" rather than model development.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, the broad skill `model-development` should not be added when the posting only names specific activities like \"training\" and \"tuning\" rather than model development.",
+  "error": null
+}

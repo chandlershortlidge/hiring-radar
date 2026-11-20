@@ -1,0 +1,15 @@
+{
+  "item": 29,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "698ac39e79b099e4a82a33978b35f569028414973702bd63a385181495c0c4ca",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1 and Rule 3, the required qualification bullets explicitly demand understanding and implementation of ML models and 'ML optimization techniques'.\"}",
+  "decision": "B",
+  "why": "Under Rule 1 and Rule 3, the required qualification bullets explicitly demand understanding and implementation of ML models and 'ML optimization techniques'.",
+  "error": null
+}

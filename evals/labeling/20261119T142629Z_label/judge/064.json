@@ -1,0 +1,15 @@
+{
+  "item": 64,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "33318c8503e5bc3f0d34fc38e89549e6078fe373e078c12b9e84641b235ee776",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the required qualification line explicitly asks for experience 'guiding ML systems from feature engineering to production deployment', directly supporting the ai-deployment skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the required qualification line explicitly asks for experience 'guiding ML systems from feature engineering to production deployment', directly supporting the ai-deployment skill.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 73,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "databricks",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "ffd52bba34140df2564e165ccbd25f3f51c15ff462e40af940aac350419b2913",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, \\\"Snowflake/Databricks familiarity\\\" sits in the main qualifications list above the Nice-to-Haves heading, so it is a required skill mention that rule 3 keeps as agreed.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, \"Snowflake/Databricks familiarity\" sits in the main qualifications list above the Nice-to-Haves heading, so it is a required skill mention that rule 3 keeps as agreed.",
+  "error": null
+}

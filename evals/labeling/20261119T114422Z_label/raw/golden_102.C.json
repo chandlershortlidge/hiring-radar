@@ -1,0 +1,108 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML or software engineering experience, including substantial hands-on work building and evaluating ML systems\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"reliable production software development\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation frameworks\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Transformers\"\n    },\n    {\n      \"skill_id\": \"statistics\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"statistics\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"language-model training\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"language-model training\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"post-training\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agent or gaming environments\"\n    },\n    {\n      \"skill_id\": \"recommender-systems\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"recommendation metrics\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"a-b-testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"online experimentation\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Experimental design\",\n      \"raw_text\": \"experimental design\"\n    },\n    {\n      \"label\": \"LLM-as-judge calibration\",\n      \"raw_text\": \"LLM-as-judge calibration\"\n    },\n    {\n      \"label\": \"Human evaluation\",\n      \"raw_text\": \"human evaluation\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer, Evals\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"In 'At least five years of ML or software engineering experience, including substantial hands-on work building and evaluating ML systems', ML is clearly required from the second clause, and software engineering is also required independently in the third bullet ('reliable production software development'). PyTorch and Transformers in 'PyTorch, Transformers or comparable ML libraries' would share an alternative_group if requested in the schema. Flagged 'language-model training' -> llms, 'post-training' -> fine-tuning, 'recommendation metrics' -> recommender-systems, and 'online experimentation' -> a-b-testing as uncertain due to slight phrasing differences from canonical taxonomy aliases.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ML or software engineering experience, including substantial hands-on work building and evaluating ML systems"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "reliable production software development"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation frameworks"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Strong Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "Transformers"
+      },
+      {
+        "skill_id": "statistics",
+        "requirement": "required",
+        "raw_text": "statistics"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "language-model training",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "nice_to_have",
+        "raw_text": "language-model training"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "post-training",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "agent or gaming environments"
+      },
+      {
+        "skill_id": "recommender-systems",
+        "requirement": "nice_to_have",
+        "raw_text": "recommendation metrics",
+        "uncertain": true
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "nice_to_have",
+        "raw_text": "online experimentation",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Experimental design",
+        "raw_text": "experimental design"
+      },
+      {
+        "label": "LLM-as-judge calibration",
+        "raw_text": "LLM-as-judge calibration"
+      },
+      {
+        "label": "Human evaluation",
+        "raw_text": "human evaluation"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer, Evals",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "In 'At least five years of ML or software engineering experience, including substantial hands-on work building and evaluating ML systems', ML is clearly required from the second clause, and software engineering is also required independently in the third bullet ('reliable production software development'). PyTorch and Transformers in 'PyTorch, Transformers or comparable ML libraries' would share an alternative_group if requested in the schema. Flagged 'language-model training' -> llms, 'post-training' -> fine-tuning, 'recommendation metrics' -> recommender-systems, and 'online experimentation' -> a-b-testing as uncertain due to slight phrasing differences from canonical taxonomy aliases."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "e7cb63a403b4941ecc704626c04ebab6a30d68ec72df76591d83946e1ce6c2f1",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

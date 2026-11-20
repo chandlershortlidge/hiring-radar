@@ -1,0 +1,15 @@
+{
+  "item": 66,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "ai-infrastructure",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "9901dc65a7d161d6312ec43e6890da1849b695007357c6cae0faabe464e60015",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, a qualification bullet that names a specific skill ('4+ years of ML infrastructure experience') counts, unlike a generic role-tenure line.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, a qualification bullet that names a specific skill ('4+ years of ML infrastructure experience') counts, unlike a generic role-tenure line.",
+  "error": null
+}

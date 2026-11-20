@@ -1,0 +1,14 @@
+{
+  "item": 14,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b0a573ee8c5ea7e1edeef0af81700fb517dbc196e350962c48b97ee611467ec8",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the required qualifications name ML work (\\\"progression of AI/ML models\\\" and \\\"modern ML frameworks\\\" in the required list), so machine-learning is a required skill and labeler B's version stands, with its quoted raw_text appearing in the posting.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the required qualifications name ML work (\"progression of AI/ML models\" and \"modern ML frameworks\" in the required list), so machine-learning is a required skill and labeler B's version stands, with its quoted raw_text appearing in the posting.",
+  "error": null
+}

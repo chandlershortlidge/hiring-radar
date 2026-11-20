@@ -1,0 +1,15 @@
+{
+  "item": 18,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "e81b376a0fa4b682b84ffad1643ec5b4d3fa71af3d4da705e75dab6dc559c188",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1 and Rule 3, the qualification bullet under 'What we're looking for' explicitly requires experience 'deploying agentic AI systems', making B correct.\"}",
+  "decision": "B",
+  "why": "Under Rule 1 and Rule 3, the qualification bullet under 'What we're looking for' explicitly requires experience 'deploying agentic AI systems', making B correct.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 53,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a9f036a7e89879397e637628cf3073bf495b3463eb8d9ea26c57e575f72ae850",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'You should apply if' qualification bullet 'experience developing and shipping state-of-the-art ML models to production' names the skill as a requirement, and the agreed raw_text appears verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'You should apply if' qualification bullet 'experience developing and shipping state-of-the-art ML models to production' names the skill as a requirement, and the agreed raw_text appears verbatim in the posting.",
+  "error": null
+}

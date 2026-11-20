@@ -1,0 +1,17 @@
+{
+  "item": 20,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "workflow-automation",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "2731f538616ad70cda6e5f0c1f3026d3f42ce77edbbf65f124ee4b4b391e63ea",
+  "raw": "{\"decision\": {\"requirement\": \"nice_to_have\", \"raw_text\": \"agents that automate scientific workflows\"}, \"why\": \"Under rule 1 the skill is named in a sentence describing the ideal candidate, so it counts, but under rule 3 the only mention is framed as 'ideal candidate' rather than a requirement, so it should be nice_to_have, not required.\"}",
+  "decision": {
+    "requirement": "nice_to_have",
+    "raw_text": "agents that automate scientific workflows"
+  },
+  "why": "Under rule 1 the skill is named in a sentence describing the ideal candidate, so it counts, but under rule 3 the only mention is framed as 'ideal candidate' rather than a requirement, so it should be nice_to_have, not required.",
+  "error": null
+}

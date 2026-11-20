@@ -1,0 +1,15 @@
+{
+  "item": 16,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "c85659958469b2f771fe536f60c1b73bc78ecad970a4de8c7bb5adf0e6449608",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a required qualification bullet explicitly asks for a 'Security Mindset' regarding access to enterprise data, justifying the data-privacy-and-security label.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a required qualification bullet explicitly asks for a 'Security Mindset' regarding access to enterprise data, justifying the data-privacy-and-security label.",
+  "error": null
+}

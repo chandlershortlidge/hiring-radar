@@ -1,0 +1,15 @@
+{
+  "item": 59,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "devops",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "ab90ebc42a2c3938b0aa4a916b3dcb5c0ff8839d603813c65d9d9d2970e94a19",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, 'Previous roles in SRE, DevOps, or Platform Engineering' is a qualification bullet naming DevOps as a required domain background rather than a mere job-title experience line.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, 'Previous roles in SRE, DevOps, or Platform Engineering' is a qualification bullet naming DevOps as a required domain background rather than a mere job-title experience line.",
+  "error": null
+}

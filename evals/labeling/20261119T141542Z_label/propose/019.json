@@ -1,0 +1,14 @@
+{
+  "item": 19,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "data-modeling",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "4cc10adc40d9441b3039c8c957dd6ef5a27d7e626dfe7f6d5055a72186fc3c77",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1 the bullet names conceptual modeling, but it sits under the \"What Sets You Apart\" heading and is framed as \"Familiarity with\", which marks it as a differentiator rather than a rule 3 required mention, so nice_to_have is correct.\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 101 (char 100)"
+}

@@ -1,0 +1,15 @@
+{
+  "item": 71,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "transformers",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "770f8024000686113f71da6bbae846b2d9ead16b8e3ad9d9a191287d8f6ab925",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a minimum qualifications bullet directly names Transformers as a required training library.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a minimum qualifications bullet directly names Transformers as a required training library.",
+  "error": null
+}

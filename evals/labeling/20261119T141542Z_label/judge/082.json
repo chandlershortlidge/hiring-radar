@@ -1,0 +1,15 @@
+{
+  "item": 82,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "4c60592ce0033bc9cd485b29cad955f47ac50f5e544b06d753fa6c9529da672e",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification bullet explicitly asks for experience 'building and shipping ML systems', which names the skill rather than just a job title.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification bullet explicitly asks for experience 'building and shipping ML systems', which names the skill rather than just a job title.",
+  "error": null
+}

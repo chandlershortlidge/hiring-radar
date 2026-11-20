@@ -1,0 +1,15 @@
+{
+  "item": 82,
+  "golden_id": "golden_107",
+  "kind": "skill",
+  "key": "kubernetes",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "7cb239d603581ad483727092b545f3ef8b6b7e5e8a1a78360220357c3c238a0c",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet under Preferred/Bonus Qualifications explicitly names 'Kubernetes', making it a valid nice_to_have skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet under Preferred/Bonus Qualifications explicitly names 'Kubernetes', making it a valid nice_to_have skill.",
+  "error": null
+}

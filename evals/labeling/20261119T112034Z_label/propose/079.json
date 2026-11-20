@@ -1,0 +1,14 @@
+{
+  "item": 79,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "scikit-learn",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "87220865407a590f62f6d40a675bcd5b9e4030c5570a5e6956ff2904299986f4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, scikit-learn is named in a qualification bullet ('The qualifications you need'), and rule 3 makes that required mention decisive, with the agreed raw_text 'scikit-learn' appearing verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, scikit-learn is named in a qualification bullet ('The qualifications you need'), and rule 3 makes that required mention decisive, with the agreed raw_text 'scikit-learn' appearing verbatim in the posting.",
+  "error": null
+}

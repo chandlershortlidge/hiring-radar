@@ -1,0 +1,14 @@
+{
+  "item": 53,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "apache-spark",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7606f1e4e7c44e8418026536196772d142c94e97000e3e4c4cd84e467eb50887",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Preferred Skills bullet \\\"Knowledge of Big Data technologies (Hadoop, Spark)\\\" is a qualification naming Spark, its nice_to_have status matches the Preferred heading, and the raw_text \\\"Spark\\\" appears verbatim, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Preferred Skills bullet \"Knowledge of Big Data technologies (Hadoop, Spark)\" is a qualification naming Spark, its nice_to_have status matches the Preferred heading, and the raw_text \"Spark\" appears verbatim, so the agreed label stands.",
+  "error": null
+}

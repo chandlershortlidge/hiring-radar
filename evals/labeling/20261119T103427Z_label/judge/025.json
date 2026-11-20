@@ -1,0 +1,15 @@
+{
+  "item": 25,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "9bc1dff7cda8b56e9c38b64c231c44757add1e789a4c4082916e459884e56b28",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the qualification bullet asks for experience shipping a neural network and taking models to run in production or on real hardware, which explicitly describes AI deployment.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the qualification bullet asks for experience shipping a neural network and taking models to run in production or on real hardware, which explicitly describes AI deployment.",
+  "error": null
+}

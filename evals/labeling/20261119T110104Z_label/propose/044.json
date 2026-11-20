@@ -1,0 +1,14 @@
+{
+  "item": 44,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "explainable-ai",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a3114c3e816afc5e0b1475044a10ba951c94833fd1c760c86049267c06e21412",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Qualifications bullet names interpretability as something the candidate must have strong judgment about, and rule 3 makes that required mention control, so the agreed explainable-ai label with raw_text \\\"interpretability\\\" stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Qualifications bullet names interpretability as something the candidate must have strong judgment about, and rule 3 makes that required mention control, so the agreed explainable-ai label with raw_text \"interpretability\" stands.",
+  "error": null
+}

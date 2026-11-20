@@ -1,0 +1,15 @@
+{
+  "item": 39,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "backend-development",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "4d9f1f116d1236572623eefbad7739928132323eafaa07cf72d4a72e2bf16ab1",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, a qualification sentence in 'WHAT YOU’LL NEED' explicitly names 'Backend or full-stack background', which counts as a required mention of backend-development.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, a qualification sentence in 'WHAT YOU’LL NEED' explicitly names 'Backend or full-stack background', which counts as a required mention of backend-development.",
+  "error": null
+}

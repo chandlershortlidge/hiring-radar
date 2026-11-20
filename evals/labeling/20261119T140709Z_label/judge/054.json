@@ -1,0 +1,15 @@
+{
+  "item": 54,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "922cad17cc041a0394416fc367ad48e13aedb705bf19b3f06a8a3164275cbf6f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet that names a skill directly counts, and 'excellent software engineering fundamentals' explicitly names the skill rather than just a job title.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet that names a skill directly counts, and 'excellent software engineering fundamentals' explicitly names the skill rather than just a job title.",
+  "error": null
+}

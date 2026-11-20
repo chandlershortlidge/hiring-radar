@@ -1,0 +1,15 @@
+{
+  "item": 46,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "7730650093a220ba93a43c91d04e73a084a0fc7f13e145e622bb78ba1afa7e35",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a required qualification bullet explicitly names 'Software/Data Engineering', which counts as the software-engineering skill.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a required qualification bullet explicitly names 'Software/Data Engineering', which counts as the software-engineering skill.",
+  "error": null
+}

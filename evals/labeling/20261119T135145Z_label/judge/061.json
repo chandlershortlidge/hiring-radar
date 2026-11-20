@@ -1,0 +1,15 @@
+{
+  "item": 61,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "networking",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "56a330093d1b308cd3ecbf91159641d95c71ad3ee606586ffe34ae97c5e20488",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification bullet 'High-speed inter-chip networking experience' explicitly names networking as a skill under Preferred/Bonus Qualifications.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification bullet 'High-speed inter-chip networking experience' explicitly names networking as a skill under Preferred/Bonus Qualifications.",
+  "error": null
+}

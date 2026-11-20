@@ -1,0 +1,14 @@
+{
+  "item": 71,
+  "golden_id": "golden_106",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "109d2324573785a177e31053b41bb2eadcbb55d8e6bbe0757df0e25d54410def",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Rule 1 excludes job titles only as skill evidence, and this is a seniority attribute, where the explicit title term \\\"Staff\\\" is a reasonable stated basis for \\\"senior\\\" and the agreed signal appears verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Rule 1 excludes job titles only as skill evidence, and this is a seniority attribute, where the explicit title term \"Staff\" is a reasonable stated basis for \"senior\" and the agreed signal appears verbatim in the posting.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 42,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "cursor",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "89b21fbea56d1ba783d60e9cb8309dfc7b1fbb9897a852f357be8c5319b3dfff",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet under 'WHAT YOU'LL NEED' directly names Cursor as an AI coding tool the candidate uses daily.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet under 'WHAT YOU'LL NEED' directly names Cursor as an AI coding tool the candidate uses daily.",
+  "error": null
+}

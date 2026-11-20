@@ -1,0 +1,15 @@
+{
+  "item": 74,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "gcp",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "6cb5bc1cc67c55def9fcdfd90fca311980651e52f140f97cf7699ec5d0155a4e",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'GCP' is explicitly named as a required skill in a qualification bullet under 'What We’re Looking For'.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'GCP' is explicitly named as a required skill in a qualification bullet under 'What We’re Looking For'.",
+  "error": null
+}
