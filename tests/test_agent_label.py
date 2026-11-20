@@ -1794,6 +1794,100 @@ def test_apply_overwrites_the_same_posting_so_rerunning_after_a_fix_still_works(
     assert json.loads((goldens / "golden_001.json").read_text())["source_sha256"] == first["source_sha256"]
 
 
+# --- a correction made after apply is not undone by applying again (HIR-376) --------
+#
+# Re-applying an October batch rewrote 20 Berlin keys from the run's own files and took
+# five skills, an any-of group and a reviewed marker off one of them, with a success
+# message. apply now stops on a Golden someone changed after the run last wrote it.
+
+def _two_goldens_applied(tmp_path, monkeypatch):
+    goldens, run_dir = _scope_run(tmp_path, monkeypatch,
+                                  [("Acme", "Senior AI Engineer", POSTING),
+                                   ("Beta", "ML Engineer", POSTING)])
+    items = json.loads((run_dir / "items.json").read_text())
+    scope = {n for n, i in enumerate(items, 1) if i["kind"] == "scope"}
+    _answer(run_dir / "review_queue.md", lambda n, b: "yes" if n in scope else "ok")
+    al.main(["apply", "--run", run_dir.name, "--split", "dev"])
+    return goldens, run_dir
+
+
+def _correct_by_hand(path):
+    """A person adds a skill to a written Golden, the way the October keys were corrected."""
+    g = json.loads(path.read_text())
+    g["expected"].append({"skill_id": "cuda", "requirement": "required", "raw_text": "CUDA"})
+    path.write_text(json.dumps(g, indent=2, ensure_ascii=False) + "\n")
+    return g
+
+
+def test_apply_stops_on_a_golden_corrected_since_it_was_written(tmp_path, monkeypatch):
+    goldens, run_dir = _two_goldens_applied(tmp_path, monkeypatch)
+    corrected = _correct_by_hand(goldens / "golden_001.json")
+    untouched = (goldens / "golden_002.json").read_text()
+
+    with pytest.raises(SystemExit) as e:
+        al.main(["apply", "--run", run_dir.name, "--split", "dev"])
+    msg = str(e.value)
+    assert "golden_001" in msg and "changed on disk" in msg
+    lost = [ln for ln in msg.splitlines() if ln.startswith("-") and not ln.startswith("---")]
+    assert any('"cuda"' in ln for ln in lost)  # the line that would be lost is shown
+    assert "golden_002" not in msg.split("--only")[0]  # an untouched key is not reported
+    assert "--only golden_001" in msg
+    # nothing was written: the correction and the other key are as they were
+    assert json.loads((goldens / "golden_001.json").read_text()) == corrected
+    assert (goldens / "golden_002.json").read_text() == untouched
+
+
+def test_apply_stops_on_a_changed_golden_of_a_run_applied_before_the_record(tmp_path, monkeypatch):
+    """Batches applied before HIR-376 carry no record of what apply wrote, so any
+    difference on disk is treated as a correction - which is the October case exactly."""
+    goldens, run_dir = _two_goldens_applied(tmp_path, monkeypatch)
+    (run_dir / "applied.json").unlink()
+    _correct_by_hand(goldens / "golden_002.json")
+
+    with pytest.raises(SystemExit, match="golden_002"):
+        al.main(["apply", "--run", run_dir.name, "--split", "dev"])
+
+
+def test_naming_a_changed_golden_writes_it_and_leaves_the_rest_of_the_batch_alone(tmp_path, monkeypatch):
+    goldens, run_dir = _two_goldens_applied(tmp_path, monkeypatch)
+    _correct_by_hand(goldens / "golden_001.json")
+    corrected_2 = _correct_by_hand(goldens / "golden_002.json")
+
+    al.main(["apply", "--run", run_dir.name, "--split", "dev", "--only", "golden_001"])
+    # the named key is rewritten from the run; the unnamed one keeps its correction
+    assert "cuda" not in {s["skill_id"] for s in json.loads((goldens / "golden_001.json").read_text())["expected"]}
+    assert json.loads((goldens / "golden_002.json").read_text()) == corrected_2
+
+
+def test_only_refuses_a_golden_the_run_does_not_write(tmp_path, monkeypatch):
+    goldens, run_dir = _two_goldens_applied(tmp_path, monkeypatch)
+    with pytest.raises(SystemExit, match="golden_099"):
+        al.main(["apply", "--run", run_dir.name, "--split", "dev", "--only", "golden_099"])
+
+
+def test_a_batch_whose_goldens_are_untouched_applies_again_normally(tmp_path, monkeypatch):
+    goldens, run_dir = _two_goldens_applied(tmp_path, monkeypatch)
+    before = {p.name: p.read_text() for p in goldens.glob("golden_*.json")}
+    al.main(["apply", "--run", run_dir.name, "--split", "dev"])  # no refusal
+    assert {p.name: p.read_text() for p in goldens.glob("golden_*.json")} == before
+
+
+def test_fixing_a_decision_and_applying_again_still_writes(tmp_path, monkeypatch):
+    """The ordinary loop: the Golden on disk is this run's own last output, so a changed
+    decision rewrites it without a stop. Only an edit made outside the run stops it."""
+    goldens, run_dir = _two_goldens_applied(tmp_path, monkeypatch)
+    items = json.loads((run_dir / "items.json").read_text())
+    n, spot = next((n, i) for n, i in enumerate(items, 1) if i["reason"] == "spot-check")
+    scope = {k for k, i in enumerate(items, 1) if i["kind"] == "scope"}
+    _answer(run_dir / "review_queue.md",
+            lambda k, b: "yes" if k in scope else "drop" if k == n else "ok")
+    path = goldens / f"{spot['golden_id']}.json"
+    before = path.read_text()
+
+    al.main(["apply", "--run", run_dir.name, "--split", "dev"])  # no refusal
+    assert path.read_text() != before
+
+
 # --- renumber: the fix the id-clash refusal sends you to ---------------------------
 
 def _taken_slot(goldens, gid="golden_001"):

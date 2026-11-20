@@ -35,6 +35,8 @@ Invariants:
   - The spot-check samples accepted labels at the label level (one skill, one attribute),
     not whole postings, with a recorded seed, so the error rate it measures is per label.
   - apply writes only Goldens whose every queued item carries a decision.
+  - apply never overwrites a Golden someone changed after the run last wrote it: it stops
+    and prints the difference, and writes only the Goldens named with --only (HIR-376).
 
     uv run python scripts/agent_label.py label --dry-run
     uv run python scripts/agent_label.py label --count 24 --remote-eu 3 --german 6
@@ -43,6 +45,8 @@ Invariants:
 """
 
 import argparse
+import difflib
+import hashlib
 import importlib.util
 import json
 import os
@@ -1601,6 +1605,45 @@ def cmd_apply(args):
         if path.exists():
             third_by_gid[gid] = json.loads(path.read_text()).get("model")
 
+    # Build every Golden before writing anything, so a refusal below leaves the disk as it was.
+    built = {gid: final_golden({**picks[gid], "id": gid}, list(skills[gid].values()),
+                               attrs.get(gid, {}), labeled_by, adjudicated[gid],
+                               spot_by_gid.get(gid), third_by_gid.get(gid),
+                               reviewed[gid], split=args.split)
+             for gid in sorted(skills)}
+    texts = {gid: json.dumps(g, indent=2, ensure_ascii=False) + "\n" for gid, g in built.items()}
+
+    # A correction made to a Golden after this run wrote it is lost to a rewrite from the
+    # run's own files (HIR-376: re-applying an October batch took five skills, an any-of
+    # group and the reviewed marker off one Berlin key, and printed success). So a Golden on
+    # disk that differs both from what this run would write and from what this run last
+    # wrote (applied.json) is someone's later edit: stop and show it. The ordinary loop -
+    # fix a decision, apply again - still writes, because the disk is then this run's own
+    # output. `--only` names the Goldens to write once a person has looked; nothing else in
+    # the batch is touched.
+    if args.only:
+        unknown = sorted(set(args.only) - set(built))
+        if unknown:
+            raise SystemExit(f"--only names {', '.join(unknown)}, which this run does not "
+                             f"write. Its Goldens: {', '.join(built) or 'none'}.")
+        built = {gid: g for gid, g in built.items() if gid in args.only}
+    else:
+        changed = changed_since_applied(run_dir, texts)
+        if changed:
+            lines = [f"{len(changed)} of this run's Goldens were changed on disk after this "
+                     f"run last wrote them. Writing now would undo those changes:", ""]
+            for gid, disk, text in changed:
+                lines += difflib.unified_diff(disk.splitlines(), text.splitlines(),
+                                              f"{gid} on disk", f"{gid} as this run would write it",
+                                              n=1, lineterm="")
+                lines.append("")
+            ids = " ".join(gid for gid, _, _ in changed)
+            raise SystemExit("\n".join(lines) + (
+                "\nNothing was written. Lines marked - are on disk and would be lost. If they "
+                "are a correction, carry it into this run's decisions first. To write only "
+                "some of this run's Goldens and leave the rest as they are, name them with "
+                f"--only. To overwrite these deliberately, name them too: --only {ids}"))
+
     if out_of_scope and not args.dry_run:
         excluded = ng.excluded_path()
         record = json.loads(excluded.read_text()) if excluded.exists() else {"excluded": []}
@@ -1617,14 +1660,10 @@ def cmd_apply(args):
         excluded.write_text(json.dumps(record, indent=2, ensure_ascii=False) + "\n")
 
     written = []
-    for gid in sorted(skills):
-        golden = final_golden({**picks[gid], "id": gid}, list(skills[gid].values()),
-                              attrs.get(gid, {}), labeled_by, adjudicated[gid],
-                              spot_by_gid.get(gid), third_by_gid.get(gid),
-                              reviewed[gid], split=args.split)
+    for gid, golden in built.items():
         path = GOLDENS / f"{gid}.json"
         if not args.dry_run:
-            path.write_text(json.dumps(golden, indent=2, ensure_ascii=False) + "\n")
+            path.write_text(texts[gid])
         written.append(f"{gid}  {golden['split']}  {len(golden['expected'])} skills  "
                        f"{len(golden['adjudicated'])} adjudicated"
                        f"{'  spot-checked by ' + golden['spot_checked_by'] if golden['spot_checked_by'] else ''}")
@@ -1639,6 +1678,8 @@ def cmd_apply(args):
     if not args.dry_run:
         (run_dir / "summary.json").write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n")
         (run_dir / "summary.md").write_text(render_summary(summary, spot))
+        save_applied(run_dir, {**load_applied(run_dir),
+                               **{gid: sha256_text(texts[gid]) for gid in built}})
     print(("(dry run) " if args.dry_run else "") + f"{len(written)} Goldens:")
     print("\n".join("  " + w for w in written))
     if out_of_scope:
@@ -1657,6 +1698,37 @@ def cmd_apply(args):
                   f"gate from now on and may be looked at while tuning. The next extractor "
                   f"change is measured against a baseline that includes them, so commit a "
                   f"fresh dev run: uv run python scripts/run_eval.py")
+
+
+def sha256_text(text: str) -> str:
+    return hashlib.sha256(text.encode()).hexdigest()
+
+
+def load_applied(run_dir: Path) -> dict:
+    """{golden_id: sha256 of the file} as `apply` last wrote it for this run (HIR-376). A run
+    applied before this record existed has none, so any difference on disk there stops."""
+    path = run_dir / "applied.json"
+    return json.loads(path.read_text()) if path.exists() else {}
+
+
+def save_applied(run_dir: Path, data: dict):
+    (run_dir / "applied.json").write_text(json.dumps(data, indent=2, sort_keys=True) + "\n")
+
+
+def changed_since_applied(run_dir: Path, texts: dict[str, str]) -> list[tuple[str, str, str]]:
+    """(golden_id, on disk, would write) for each Golden someone changed after this run last
+    wrote it: on disk, different from what the run would write now, and not the run's own
+    last output."""
+    last = load_applied(run_dir)
+    changed = []
+    for gid, text in texts.items():
+        path = GOLDENS / f"{gid}.json"
+        if not path.exists():
+            continue
+        disk = path.read_text()
+        if disk != text and last.get(gid) != sha256_text(disk):
+            changed.append((gid, disk, text))
+    return changed
 
 
 def load_run(run: str):
@@ -2200,6 +2272,10 @@ def main(argv=None):
     app.add_argument("--run", required=True)
     app.add_argument("--split", default="heldout", choices=SPLITS,
                      help="which eval split these Goldens join (default heldout; `dev` grows the set the gate tunes against, HIR-164)")
+    app.add_argument("--only", nargs="+", metavar="GOLDEN_ID",
+                     help="write only these Goldens and leave the rest of the batch as it is on "
+                          "disk; a Golden named here is written even if it was changed since "
+                          "this run last wrote it (HIR-376)")
     app.add_argument("--dry-run", action="store_true")
     app.set_defaults(fn=cmd_apply)
 

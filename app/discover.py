@@ -304,7 +304,19 @@ def launch_report_lines(city: str, decisions: list[LaunchDecision],
         lines.append("dry run: nothing written")
     else:
         lines.append(f"{len(by('add'))} boards written to config/feeds.json")
+        if by("add"):
+            lines.append("first collection, reading only this city's new jobs (HIR-380): "
+                         + first_collection_command(city, by("add")))
     return lines
+
+
+def first_collection_command(city: str, adds: list[LaunchDecision]) -> str:
+    """The poll that collects the added boards and reads only `city`'s new jobs. Pure.
+
+    A plain poll would also read every older job waiting in this copy of the database,
+    which the server reads for itself (HIR-380)."""
+    only = " ".join(f"--only {d.board[0]}:{d.board[1]}" for d in adds)
+    return f'uv run python -m app poll --launch "{city}" {only}'
 
 
 # --- approval: the only writes ---------------------------------------------------------
