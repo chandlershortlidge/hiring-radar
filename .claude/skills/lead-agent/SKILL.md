@@ -52,6 +52,32 @@ under "Needs you" in the log (step 7) as one plain question with a recommendatio
   hit").
 - Message Chandler outside the log, except the three cases in "Telling Chandler now".
 - Replace a Linear description. Comments, labels and status only (AGENTS.md, HIR-124).
+- Change the `fixes_only` line in `config/lead_agent.json`, or add the label `Bug` to a
+  ticket so that it runs during fixes-only mode ("Fixes-only mode", below).
+
+## Fixes-only mode (HIR-341)
+
+Over the Christmas break (from 16 Dec 2026 until Chandler turns it off) agents repair
+what breaks and ship nothing new. The script's answer (step 4) has `fixes_only`: `null`,
+or one sentence saying the mode is on. While it is a sentence:
+
+- **Step 2.** A ticket you file for a red check gets the label `Bug`. When you sort a new
+  ticket that reports something broken on the live site or in the daily collection (a
+  bug, a failed check, a failed deploy or rollback, data that stopped updating), add
+  `Bug` beside its other label. A feature or an improvement never gets it.
+- **Step 3.** Start no reviewer on a pull request whose ticket has no `Bug` label, stuck
+  or not. It stays open as it is. List it once under "Held", not in every run.
+- **Step 4.** The script picks only tickets labelled `Bug`, and the repair for a red
+  check. Its "fixes-only mode is on" skips need no mention.
+- **Step 5.** A reviewer may reply `HELD`: the pull request passed review and is left
+  open because its ticket is not a fix. Result `held`. The script's `repairs` already
+  says `review` false for a collided pull request that is not a fix.
+- **Step 7.** Put the script's `fixes_only` sentence, unchanged, on the line under the
+  log's heading. Monday's `monday` text already opens with it, and the Monday summary
+  writes its own first line.
+
+When the mode ends, the pull requests left open have no review label and are stuck, so
+step 3 starts a fresh reviewer on each as usual.
 
 ## 0. Can this run work at all?
 
@@ -470,6 +496,8 @@ Design review: <Fridays only, the first run of the day>
   went green, or review failed three times. Two of these and the ticket is never picked
   again; it is Monday's.
 - `waiting` — it stopped on a question for Chandler. Not a failure.
+- `held` — only in fixes-only mode: it passed review and stays open because its ticket
+  is not a fix. Not a failure.
 - `not-started` — picked, but held back (a file an open pull request already changes, or
   the usage limit). Also a ticket whose pull request is built but got no review because
   no reviewer could open the ticket (the orchestrator's "Not reviewed", HIR-306): that
