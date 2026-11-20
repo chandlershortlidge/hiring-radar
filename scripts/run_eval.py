@@ -5,11 +5,19 @@ Usage:
     uv run python scripts/run_eval.py --repeats 1     # quick look
     uv run python scripts/run_eval.py --split heldout --i-am-releasing   # release points only
     uv run python scripts/run_eval.py --model claude-haiku-5-5 --max-tokens 8192  # a trial
+    uv run python scripts/run_eval.py --prompt-trial evals/experiments/trials/<name>.md  # a prompt trial
 
 `--max-tokens` raises the output cap for one run and nothing else; the extractor the live
 poll uses is untouched. It exists because a reading cut off at the cap returns nothing and
 is scored as a total miss, so a model that writes more before it finishes is measured on
 our cap instead of on how well it reads (HIR-223). Each run records the cap it ran under.
+
+`--prompt-trial FILE` adds the file's text to the extractor's rules for one run, right after
+them and before the skill list, so an instruction change can be measured without touching
+the prompt the live poll uses (HIR-368). The run gets its own extractor version, hashed from
+the prompt it was actually sent, so it can never pass for a run of the live extractor; the
+trial file's name and text are recorded in the run. A trial run is an experiment: move it to
+evals/experiments/ before committing (evals/experiments/README.md).
 
 Needs ANTHROPIC_API_KEY, from the environment or a .env file at the repo root (see .env.example). Calls the model sequentially, no retries.
 Writes evals/results/<run_id>/{predictions.jsonl, summary.json, summary.md}.
@@ -24,6 +32,7 @@ flag (AGENTS.md: never tune on held-out).
 """
 
 import argparse
+import hashlib
 import json
 import os
 import sys
@@ -40,7 +49,8 @@ load_dotenv(ROOT / ".env")  # existing environment variables win over .env
 
 from app import evaluation, extras_judge, langsmith_eval  # noqa: E402
 from app.extract import (  # noqa: E402
-    DEFAULT_MODEL, MAX_TOKENS, build_request, extraction_from_message, extractor_version, make_client,
+    DEFAULT_MODEL, INPUT_FORMAT, MAX_TOKENS, PRINCIPLES, TOOL, build_request, extraction_from_message,
+    extractor_version, make_client, system_prompt,
 )
 from app.taxonomy import Taxonomy  # noqa: E402
 
@@ -55,6 +65,19 @@ def load_goldens(split: str) -> list[dict]:
     return out
 
 
+def trial_prompt(tax: Taxonomy, addition: str) -> str:
+    """The live system prompt with `addition` placed after the rules, before the skill list."""
+    live = system_prompt(tax)
+    assert live.startswith(PRINCIPLES), "the system prompt no longer starts with the rules"
+    return PRINCIPLES.rstrip("\n") + "\n\n" + addition.strip() + "\n" + live[len(PRINCIPLES):]
+
+
+def trial_version(prompt: str, model: str) -> str:
+    """extractor_version's hash, over the trial prompt instead of the live one."""
+    h = hashlib.sha256((prompt + repr(TOOL) + model + INPUT_FORMAT).encode()).hexdigest()
+    return f"x2-{h[:10]}"
+
+
 def fmt(x):
     return "—" if x is None else f"{x:.3f}"
 
@@ -63,7 +86,8 @@ def render_md(meta, agg, runs) -> str:
     lines = [f"# Eval {meta['run_id']}", "",
              f"- split: `{meta['split']}`, goldens: {meta['n_goldens']}, repeats: {meta['repeats']}",
              f"- model: `{meta['model']}`, extractor: `{meta['extractor_version']}`, taxonomy v{meta['taxonomy_version']}"
-             + (f", output cap {meta['max_tokens']}" if meta.get("max_tokens") else ""),
+             + (f", output cap {meta['max_tokens']}" if meta.get("max_tokens") else "")
+             + (f", prompt trial `{meta['prompt_trial']['file']}`" if meta.get("prompt_trial") else ""),
              "", "| metric | mean | min | max |", "|---|---|---|---|"]
     for m, v in agg.items():
         lines.append(f"| {m} | {fmt(v['mean'])} | {fmt(v['min'])} | {fmt(v['max'])} |")
@@ -141,6 +165,9 @@ def main(argv=None):
                          "before it finishes answering: a reading cut off at the cap returns "
                          "nothing and scores as a total miss, which measures the cap rather "
                          "than the model (HIR-223). Changes nothing outside this run.")
+    ap.add_argument("--prompt-trial", type=Path, default=None,
+                    help="a file whose text is added to the extractor's rules for this run only "
+                         "(HIR-368); the live prompt is untouched")
     ap.add_argument("--i-am-releasing", action="store_true")
     ap.add_argument("--no-langsmith", action="store_true",
                     help="do not report this run to LangSmith even if LANGSMITH_API_KEY is set")
@@ -161,7 +188,9 @@ def main(argv=None):
     goldens = load_goldens(args.split)
     if not goldens:
         sys.exit(f"No Goldens in split {args.split!r}.")
-    version = extractor_version(tax, args.model)
+    trial = args.prompt_trial.read_text() if args.prompt_trial else None
+    prompt = trial_prompt(tax, trial) if trial else None
+    version = trial_version(prompt, args.model) if trial else extractor_version(tax, args.model)
     run_id = f"{datetime.now(timezone.utc):%Y%m%dT%H%M%SZ}_{args.split}_{version}"
     # The cap is recorded because the run id and extractor_version do not encode it:
     # extractor_version hashes the prompt, the tool schema, the model and the input format,
@@ -169,6 +198,8 @@ def main(argv=None):
     meta = {"run_id": run_id, "split": args.split, "n_goldens": len(goldens), "repeats": args.repeats,
             "model": args.model, "extractor_version": version, "taxonomy_version": tax.version,
             "max_tokens": args.max_tokens or MAX_TOKENS}
+    if trial:
+        meta["prompt_trial"] = {"file": args.prompt_trial.name, "text": trial}
 
     # Held-out text is never uploaded (app/langsmith_eval.py raises on a non-dev Golden),
     # and nothing is sent without a key.
@@ -187,6 +218,8 @@ def main(argv=None):
         request = build_request(tax, text, args.model)
         if args.max_tokens:
             request["max_tokens"] = args.max_tokens
+        if prompt:
+            request["system"] = [{**request["system"][0], "text": prompt}]
         return extraction_from_message(client.messages.create(**request), tax, text, args.model)
 
     runs = []
