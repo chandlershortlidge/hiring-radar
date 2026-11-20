@@ -570,7 +570,11 @@ def diagnose(posting: Posting, ref: AtsRef | None, feeds: list[dict], board_had_
     if (ref.source, ref.token) not in polled_boards(feeds):
         hint = json.dumps({"type": ref.source, "enabled": True, "token": ref.token,
                            "company": posting.company or ""})
-        return f"board {ref.source}:{ref.token} is not in config/feeds.json — add {hint}"
+        # Say the drop here too (HIR-325): adding the board alone would not bring this
+        # posting in, and a first check that only says "add the board" hides that.
+        dropped = (", and the posting would be dropped even with the board collected: " + "; ".join(reasons)
+                   if reasons else "")
+        return f"board {ref.source}:{ref.token} is not in config/feeds.json{dropped} — add {hint}"
     if board_had_it is False:
         return f"board {ref.source}:{ref.token} is polled but no longer lists job {ref.job_id} (closed or re-posted under a new id)"
     if reasons:
@@ -764,6 +768,9 @@ def careers_system(url: str) -> str:
 _BOARD_RE = re.compile(r"^board (?P<board>\S+) ")
 
 
+_ALSO_DROPPED = re.compile(r"would be dropped even with the board collected: (.*) — add \{")
+
+
 def miss_reason(url: str, verdict: str, had_it: bool, diagnosis: str | None) -> tuple[str, str]:
     """Pure: (reason, detail) for one check. `diagnosis` is `diagnose`'s sentence, so a
     check logged before reasons were recorded gets the same answer as a new one.
@@ -783,7 +790,8 @@ def miss_reason(url: str, verdict: str, had_it: bool, diagnosis: str | None) -> 
         d = diagnosis or ""
     board = _BOARD_RE.match(d)
     if board and "is not in config/feeds.json" in d:
-        return NOT_IN_SOURCES, f"board {board['board']}"
+        dropped = _ALSO_DROPPED.search(d)
+        return NOT_IN_SOURCES, f"board {board['board']}" + (f"; would also be dropped: {dropped[1]}" if dropped else "")
     if board and "no longer lists job" in d:
         return OTHER, f"closed or re-posted under a new id on board {board['board']}"
     if board and "ingest would drop it: " in d:

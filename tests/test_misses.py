@@ -39,6 +39,21 @@ def test_a_board_we_do_not_poll_is_company_not_in_our_sources():
     assert (r, detail) == (NOT_IN_SOURCES, "board greenhouse:other")
 
 
+def test_a_board_we_do_not_poll_also_says_when_the_location_would_drop_the_job():
+    """HIR-325: the first check of ElevenLabs' posting said only "add the board"; adding it
+    would still have lost the job. The sentence names the location read, and still ends in
+    the JSON to add."""
+    import json
+    ref = AtsRef("ashby", "elevenlabs", "1")
+    d = diagnose(posting(location="United Kingdom; France; Germany", company="ElevenLabs"), ref, FEEDS, None)
+    assert d.startswith("board ashby:elevenlabs is not in config/feeds.json, and the posting would be "
+                        "dropped even with the board collected: location 'United Kingdom; France; Germany' ")
+    assert json.loads(d.split(" — add ", 1)[1])["token"] == "elevenlabs"
+    r, detail = miss_reason("https://jobs.ashbyhq.com/elevenlabs/1", "not_found", False, d)
+    assert r == NOT_IN_SOURCES
+    assert detail.startswith("board ashby:elevenlabs; would also be dropped: location 'United Kingdom; France; Germany'")
+
+
 def test_a_polled_board_dropping_the_title_names_the_title_filter_and_the_title():
     r, detail = reason_of(posting(title="Office Manager"), AtsRef("greenhouse", "acme", "1"))
     assert r == TITLE_FILTER

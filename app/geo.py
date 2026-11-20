@@ -181,6 +181,24 @@ def names_eu_region(location_raw: str | None) -> bool:
     return bool(location_raw and _EU_WIDE.search(location_raw))
 
 
+def remote_location(location_raw: str | None) -> str:
+    """The location to store for a posting its board marks remote in a field of its own
+    (Ashby's `workplaceType`, Lever's), so the rules below see a remote posting whatever the
+    location text says (HIR-325: ElevenLabs lists ten countries and never writes "remote").
+
+    A location that names a tracked city, or already says remote, is returned unchanged:
+    a city match wins anyway, and its own wording is judged as before. Anything else
+    becomes one segment, "Remote (United Kingdom, France, Germany)", so `is_remote_eu`
+    decides it by the existing rule: Germany or an EU-wide region among the names counts,
+    "Remote (United States)" or "Remote (France, Spain)" does not. No location at all is
+    plain "Remote", a remote posting naming no region."""
+    if not location_raw or not location_raw.strip():
+        return "Remote"
+    if _cities_in(location_raw) or _REMOTE.search(location_raw):
+        return location_raw
+    return "Remote (" + re.sub(r"\s*[;|/]\s*", ", ", location_raw.strip()) + ")"
+
+
 def _cities_in(location_raw: str | None) -> list[str]:
     """Every tracked city the location names, in CITIES order (the San Jose rule applied)."""
     if not location_raw:
