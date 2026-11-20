@@ -1,0 +1,14 @@
+{
+  "item": 42,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "4e8b96cc455c9f99f6d8394f0584587e344ec1abe18a9543bc949016480cc321",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the required qualification bullets name applied machine learning and model development, so ai-ml belongs in the key as required, and the quoted phrase \\\"apply AI-enabled approaches\\\" appears word for word in that required section (rule 3).\"}",
+  "decision": "B",
+  "why": "Under rule 1, the required qualification bullets name applied machine learning and model development, so ai-ml belongs in the key as required, and the quoted phrase \"apply AI-enabled approaches\" appears word for word in that required section (rule 3).",
+  "error": null
+}

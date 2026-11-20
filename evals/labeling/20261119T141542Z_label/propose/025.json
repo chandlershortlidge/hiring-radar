@@ -1,0 +1,14 @@
+{
+  "item": 25,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "power-bi",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "ac71e200c5acd73fc118c14d925a88b38b8fad2e42463f55d53b70f5b144bf5d",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1 the Power BI mention sits in the 'What Sets You Apart' preferred block, not 'What You Must Have', and it is one option in an 'at least one of' credential list, so under rule 3 no required mention exists and it is nice_to_have.\"}",
+  "decision": "A",
+  "why": "Under rule 1 the Power BI mention sits in the 'What Sets You Apart' preferred block, not 'What You Must Have', and it is one option in an 'at least one of' credential list, so under rule 3 no required mention exists and it is nice_to_have.",
+  "error": null
+}

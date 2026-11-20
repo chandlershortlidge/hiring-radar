@@ -1,0 +1,15 @@
+{
+  "item": 73,
+  "golden_id": "golden_107",
+  "kind": "skill",
+  "key": "networking",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "1d45133ad2b41557be5bf0c16d2d8145e51189d61a74da218c1f4d403bd947ec",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, a qualification bullet in the required 'What you will need' section explicitly names networking as a required skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, a qualification bullet in the required 'What you will need' section explicitly names networking as a required skill.",
+  "error": null
+}

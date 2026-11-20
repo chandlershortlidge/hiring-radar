@@ -1,0 +1,14 @@
+{
+  "item": 41,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "mlops",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "49384372f11fe62522de2e410edf688e077608941ec8f5faf4eeee2dbadf47a2",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 3, a required mention wins, and the required qualification \"model and endpoint operations\" describes MLOps work, so requirement should be required rather than the nice-to-have label that quotes only the optional \"MLOps\" term.\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 98 (char 97)"
+}

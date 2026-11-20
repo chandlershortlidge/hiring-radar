@@ -1,0 +1,14 @@
+{
+  "item": 28,
+  "golden_id": "golden_100",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7ed8c5e8be8a8e69cf1390cbbaa52f7c5a7a5a9c8215da26ab4ae5b634540f97",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only signal is the job title \\\"AI Accelerator Architect\\\", which does not count, and the excerpt has no stated seniority word, so the attribute should be null.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only signal is the job title \"AI Accelerator Architect\", which does not count, and the excerpt has no stated seniority word, so the attribute should be null.",
+  "error": null
+}

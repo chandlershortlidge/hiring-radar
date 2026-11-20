@@ -1,0 +1,15 @@
+{
+  "item": 67,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "aws",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "206e108099cf44009120062d6922921f86d778585b1b34dd259bc6e828a5423e",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'AWS' is explicitly named in a qualification bullet under 'What You’ll Need:' ('Familiarity with cloud and containerization (e.g., GCP, AWS, Docker)').\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'AWS' is explicitly named in a qualification bullet under 'What You’ll Need:' ('Familiarity with cloud and containerization (e.g., GCP, AWS, Docker)').",
+  "error": null
+}

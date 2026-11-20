@@ -1,0 +1,156 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deep learning\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Proficiency in Python\"\n    },\n    {\n      \"skill_id\": \"ai-infrastructure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML infrastructure\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"end-to-end model development\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"evaluation\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deployment\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"fine-tuning\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"monitoring\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Agentic systems\"\n    },\n    {\n      \"skill_id\": \"tool-calling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Agentic systems knowledge — tools\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"agent-state-management\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"memory\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Strong software engineering fundamentals\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"containerization\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GCP\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Vision-language models\",\n      \"raw_text\": \"vision-language models (e.g., Molmo, LLaVA)\"\n    },\n    {\n      \"label\": \"MoEs\",\n      \"raw_text\": \"MoEs\"\n    },\n    {\n      \"label\": \"Data preprocessing\",\n      \"raw_text\": \"data preprocessing\"\n    },\n    {\n      \"label\": \"Dataset construction\",\n      \"raw_text\": \"dataset construction\"\n    },\n    {\n      \"label\": \"Model profiling\",\n      \"raw_text\": \"profiling\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Research Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"BS or MSc in Computer Science, Statistics, Engineering, Applied Mathematics, or a related quantitative field (or equivalent experience)\",\n  \"uncertain\": [\n    \"degree\"\n  ],\n  \"notes\": \"Degree: 'Who You Are' states 'whether through a PhD in ML or equivalent hands-on industry work' while 'Education/Experience' states 'BS or MSc ... (or equivalent experience)'; labeled PhD as highest level named, flagged uncertain. Mapped 'tools' and 'memory' under 'Agentic systems knowledge' to tool-calling and agent-state-management, flagged uncertain.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "deep learning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Proficiency in Python"
+      },
+      {
+        "skill_id": "ai-infrastructure",
+        "requirement": "required",
+        "raw_text": "ML infrastructure"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "end-to-end model development"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "evaluation"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deployment"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "monitoring"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "Agentic systems"
+      },
+      {
+        "skill_id": "tool-calling",
+        "requirement": "required",
+        "raw_text": "Agentic systems knowledge — tools",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agent-state-management",
+        "requirement": "required",
+        "raw_text": "memory",
+        "uncertain": true
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "Strong software engineering fundamentals"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "containerization"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Vision-language models",
+        "raw_text": "vision-language models (e.g., Molmo, LLaVA)"
+      },
+      {
+        "label": "MoEs",
+        "raw_text": "MoEs"
+      },
+      {
+        "label": "Data preprocessing",
+        "raw_text": "data preprocessing"
+      },
+      {
+        "label": "Dataset construction",
+        "raw_text": "dataset construction"
+      },
+      {
+        "label": "Model profiling",
+        "raw_text": "profiling"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Research Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "BS or MSc in Computer Science, Statistics, Engineering, Applied Mathematics, or a related quantitative field (or equivalent experience)",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Degree: 'Who You Are' states 'whether through a PhD in ML or equivalent hands-on industry work' while 'Education/Experience' states 'BS or MSc ... (or equivalent experience)'; labeled PhD as highest level named, flagged uncertain. Mapped 'tools' and 'memory' under 'Agentic systems knowledge' to tool-calling and agent-state-management, flagged uncertain."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "a3b7f57755152d100aefa7827118362febbb50a8486197cf31ea7dd80ad49e96",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

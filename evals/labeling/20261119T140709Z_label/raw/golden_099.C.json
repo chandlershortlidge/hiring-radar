@@ -1,0 +1,151 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Snowflake\"\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"RAG\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"embeddings\"\n    },\n    {\n      \"skill_id\": \"prompt-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"prompt engineering\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM evaluation\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML delivery\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"observability practices\"\n    },\n    {\n      \"skill_id\": \"data-modeling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data modeling\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"external agent frameworks is a plus\"\n    },\n    {\n      \"skill_id\": \"llm-guardrails\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Experience building or scaling production agentic AI systems, including evaluations, guardrails, cost and latency tuning and multi-user concurrency, is a plus.\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"streamlit\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Hands-on work with Streamlit in Snowflake, Snowflake Native Apps or external agent frameworks is a plus.\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Snowflake Cortex\",\n      \"raw_text\": \"Snowflake Cortex\"\n    },\n    {\n      \"label\": \"Cortex Agents\",\n      \"raw_text\": \"Cortex Agents\"\n    },\n    {\n      \"label\": \"Cortex Analyst\",\n      \"raw_text\": \"Cortex Analyst\"\n    },\n    {\n      \"label\": \"Cortex Search\",\n      \"raw_text\": \"Cortex Search\"\n    },\n    {\n      \"label\": \"Cortex AI Functions (AISQL)\",\n      \"raw_text\": \"Cortex AI Functions (AISQL)\"\n    },\n    {\n      \"label\": \"Semantic Views\",\n      \"raw_text\": \"Semantic Views\"\n    },\n    {\n      \"label\": \"Document AI\",\n      \"raw_text\": \"Document AI\"\n    },\n    {\n      \"label\": \"Snowpark\",\n      \"raw_text\": \"Snowpark\"\n    },\n    {\n      \"label\": \"text-to-SQL\",\n      \"raw_text\": \"text-to-SQL\"\n    },\n    {\n      \"label\": \"Data engineering\",\n      \"raw_text\": \"data engineering\"\n    },\n    {\n      \"label\": \"Analytics engineering\",\n      \"raw_text\": \"analytics engineering\"\n    },\n    {\n      \"label\": \"Data architecture\",\n      \"raw_text\": \"data architecture\"\n    },\n    {\n      \"label\": \"Snowflake CoWork\",\n      \"raw_text\": \"Snowflake CoWork (Snowflake Intelligence)\"\n    },\n    {\n      \"label\": \"Snowflake Native Apps\",\n      \"raw_text\": \"Snowflake Native Apps\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3 to 6 years of experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"bachelor\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"A BS in Computer Science, Engineering or a related field, or equivalent practical experience.\",\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"Seniority marked mid based on '3 to 6 years of experience', though responsibilities include 'support junior team members' which borders on mentoring duty; flagged uncertain.\\n'Core skills for this role:' treated as a required skills list.\\n'guardrails' in the nice-to-have bullet on agentic AI systems mapped to llm-guardrails and flagged uncertain.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "RAG"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "embeddings"
+      },
+      {
+        "skill_id": "prompt-engineering",
+        "requirement": "required",
+        "raw_text": "prompt engineering"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "LLM evaluation"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML delivery"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "observability practices"
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "data modeling"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "external agent frameworks is a plus"
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "nice_to_have",
+        "raw_text": "Experience building or scaling production agentic AI systems, including evaluations, guardrails, cost and latency tuning and multi-user concurrency, is a plus.",
+        "uncertain": true
+      },
+      {
+        "skill_id": "streamlit",
+        "requirement": "nice_to_have",
+        "raw_text": "Hands-on work with Streamlit in Snowflake, Snowflake Native Apps or external agent frameworks is a plus."
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Snowflake Cortex",
+        "raw_text": "Snowflake Cortex"
+      },
+      {
+        "label": "Cortex Agents",
+        "raw_text": "Cortex Agents"
+      },
+      {
+        "label": "Cortex Analyst",
+        "raw_text": "Cortex Analyst"
+      },
+      {
+        "label": "Cortex Search",
+        "raw_text": "Cortex Search"
+      },
+      {
+        "label": "Cortex AI Functions (AISQL)",
+        "raw_text": "Cortex AI Functions (AISQL)"
+      },
+      {
+        "label": "Semantic Views",
+        "raw_text": "Semantic Views"
+      },
+      {
+        "label": "Document AI",
+        "raw_text": "Document AI"
+      },
+      {
+        "label": "Snowpark",
+        "raw_text": "Snowpark"
+      },
+      {
+        "label": "text-to-SQL",
+        "raw_text": "text-to-SQL"
+      },
+      {
+        "label": "Data engineering",
+        "raw_text": "data engineering"
+      },
+      {
+        "label": "Analytics engineering",
+        "raw_text": "analytics engineering"
+      },
+      {
+        "label": "Data architecture",
+        "raw_text": "data architecture"
+      },
+      {
+        "label": "Snowflake CoWork",
+        "raw_text": "Snowflake CoWork (Snowflake Intelligence)"
+      },
+      {
+        "label": "Snowflake Native Apps",
+        "raw_text": "Snowflake Native Apps"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3 to 6 years of experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "bachelor",
+    "degree_requirement": "required",
+    "degree_or_equivalent": true,
+    "degree_signal": "A BS in Computer Science, Engineering or a related field, or equivalent practical experience.",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Seniority marked mid based on '3 to 6 years of experience', though responsibilities include 'support junior team members' which borders on mentoring duty; flagged uncertain.\n'Core skills for this role:' treated as a required skills list.\n'guardrails' in the nice-to-have bullet on agentic AI systems mapped to llm-guardrails and flagged uncertain."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "be016fb4aa674895669dbfa2e9d51c845f14ac8fef245405d840ad88e04e3d26",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

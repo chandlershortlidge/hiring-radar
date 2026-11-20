@@ -1,0 +1,15 @@
+{
+  "item": 54,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "aws",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "5ee4a537580bd983c52425f472563770927b24cd0dd7fc5238e22306bac5837b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification bullet under 'Preferred Skills' explicitly names 'AWS', supporting the nice_to_have requirement.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification bullet under 'Preferred Skills' explicitly names 'AWS', supporting the nice_to_have requirement.",
+  "error": null
+}

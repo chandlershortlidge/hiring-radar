@@ -1,0 +1,221 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ml-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML engineering experience\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"training language models at scale\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying language models to production\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"embedding models\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"specialized LLMs\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"fine-tuning\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"rigorous evaluation\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed systems\"\n    },\n    {\n      \"skill_id\": \"distributed-training\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed training frameworks\"\n    },\n    {\n      \"skill_id\": \"deepspeed\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"training libraries (Transformers, DeepSpeed, Accelerate)\"\n    },\n    {\n      \"skill_id\": \"fsdp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"FSDP\"\n    },\n    {\n      \"skill_id\": \"megatron-lm\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Megatron-LM\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Transformers\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering practices\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"version control\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"testing\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD\"\n    },\n    {\n      \"skill_id\": \"hugging-face\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Hugging Face\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement learning approaches\"\n    },\n    {\n      \"skill_id\": \"inference-optimization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"optimizing models for production inference\"\n    },\n    {\n      \"skill_id\": \"quantization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"quantization\"\n    },\n    {\n      \"skill_id\": \"knowledge-distillation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distillation\"\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"serving frameworks\"\n    },\n    {\n      \"skill_id\": \"vllm\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vLLM\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Pre-training\",\n      \"raw_text\": \"pre-training\"\n    },\n    {\n      \"label\": \"Continued pre-training\",\n      \"raw_text\": \"continued pre-training\"\n    },\n    {\n      \"label\": \"Encoder models\",\n      \"raw_text\": \"encoder models\"\n    },\n    {\n      \"label\": \"Axolotl\",\n      \"raw_text\": \"Axolotl\"\n    },\n    {\n      \"label\": \"Hugging Face Accelerate\",\n      \"raw_text\": \"Accelerate\"\n    },\n    {\n      \"label\": \"Code review\",\n      \"raw_text\": \"code review\"\n    },\n    {\n      \"label\": \"RLHF\",\n      \"raw_text\": \"RLHF\"\n    },\n    {\n      \"label\": \"DPO\",\n      \"raw_text\": \"DPO\"\n    },\n    {\n      \"label\": \"GRPO\",\n      \"raw_text\": \"GRPO\"\n    },\n    {\n      \"label\": \"Model compression\",\n      \"raw_text\": \"model compression\"\n    },\n    {\n      \"label\": \"Gradient checkpointing\",\n      \"raw_text\": \"gradient checkpointing\"\n    },\n    {\n      \"label\": \"Mixed precision training\",\n      \"raw_text\": \"mixed precision training (FP16, BF16, FP8)\"\n    },\n    {\n      \"label\": \"ZeRO optimization\",\n      \"raw_text\": \"ZeRO optimization\"\n    },\n    {\n      \"label\": \"Synthetic data generation\",\n      \"raw_text\": \"synthetic data generation pipelines\"\n    },\n    {\n      \"label\": \"Instruction tuning\",\n      \"raw_text\": \"instruction tuning\"\n    },\n    {\n      \"label\": \"Domain adaptation\",\n      \"raw_text\": \"domain adaptation\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"3+ years of ML engineering experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Mapped 'training language models at scale' to model-development (alias: AI model training). Mapped 'optimizing models for production inference' to inference-optimization and 'serving frameworks' to model-serving. DeepSpeed appears in both an alternative list ('DeepSpeed, FSDP, Megatron-LM, or Axolotl') and a required list ('training libraries (Transformers, DeepSpeed, Accelerate)'), so it is quoted from the non-alternative required list.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "ML engineering experience"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "training language models at scale"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying language models to production"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "required",
+        "raw_text": "embedding models"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "specialized LLMs"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "rigorous evaluation"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "distributed training frameworks"
+      },
+      {
+        "skill_id": "deepspeed",
+        "requirement": "required",
+        "raw_text": "training libraries (Transformers, DeepSpeed, Accelerate)"
+      },
+      {
+        "skill_id": "fsdp",
+        "requirement": "required",
+        "raw_text": "FSDP"
+      },
+      {
+        "skill_id": "megatron-lm",
+        "requirement": "required",
+        "raw_text": "Megatron-LM"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "Transformers"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering practices"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "version control"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "required",
+        "raw_text": "testing"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD"
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "nice_to_have",
+        "raw_text": "Hugging Face"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning approaches"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "nice_to_have",
+        "raw_text": "optimizing models for production inference"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "nice_to_have",
+        "raw_text": "quantization"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "nice_to_have",
+        "raw_text": "distillation"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "serving frameworks"
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "nice_to_have",
+        "raw_text": "vLLM"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Pre-training",
+        "raw_text": "pre-training"
+      },
+      {
+        "label": "Continued pre-training",
+        "raw_text": "continued pre-training"
+      },
+      {
+        "label": "Encoder models",
+        "raw_text": "encoder models"
+      },
+      {
+        "label": "Axolotl",
+        "raw_text": "Axolotl"
+      },
+      {
+        "label": "Hugging Face Accelerate",
+        "raw_text": "Accelerate"
+      },
+      {
+        "label": "Code review",
+        "raw_text": "code review"
+      },
+      {
+        "label": "RLHF",
+        "raw_text": "RLHF"
+      },
+      {
+        "label": "DPO",
+        "raw_text": "DPO"
+      },
+      {
+        "label": "GRPO",
+        "raw_text": "GRPO"
+      },
+      {
+        "label": "Model compression",
+        "raw_text": "model compression"
+      },
+      {
+        "label": "Gradient checkpointing",
+        "raw_text": "gradient checkpointing"
+      },
+      {
+        "label": "Mixed precision training",
+        "raw_text": "mixed precision training (FP16, BF16, FP8)"
+      },
+      {
+        "label": "ZeRO optimization",
+        "raw_text": "ZeRO optimization"
+      },
+      {
+        "label": "Synthetic data generation",
+        "raw_text": "synthetic data generation pipelines"
+      },
+      {
+        "label": "Instruction tuning",
+        "raw_text": "instruction tuning"
+      },
+      {
+        "label": "Domain adaptation",
+        "raw_text": "domain adaptation"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "3+ years of ML engineering experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Mapped 'training language models at scale' to model-development (alias: AI model training). Mapped 'optimizing models for production inference' to inference-optimization and 'serving frameworks' to model-serving. DeepSpeed appears in both an alternative list ('DeepSpeed, FSDP, Megatron-LM, or Axolotl') and a required list ('training libraries (Transformers, DeepSpeed, Accelerate)'), so it is quoted from the non-alternative required list."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "591beea78f5bf5acff6dbb51443dd8a15ae812c874e33a6d244a661f171247fe",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

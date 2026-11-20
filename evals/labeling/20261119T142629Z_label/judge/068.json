@@ -1,0 +1,15 @@
+{
+  "item": 68,
+  "golden_id": "golden_107",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "66f314a54fbd1ef80d6ec31fb718bed427a6cd1058647ec930aae2df8725df2b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification sentence stating that the role demands 'extensive ML leadership' explicitly names machine learning as a requirement.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification sentence stating that the role demands 'extensive ML leadership' explicitly names machine learning as a requirement.",
+  "error": null
+}

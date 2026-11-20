@@ -1,0 +1,14 @@
+{
+  "item": 41,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "async-processing",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "609983736cdd8abb7b30b7458eafdf916e78c880f59d0671df20e381f9414c2d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'What we're looking for' bullet names 'production expertise in async concurrency' as a requirement, and under rule 3 that required mention supports the agreed required async-processing label with its quoted raw_text.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'What we're looking for' bullet names 'production expertise in async concurrency' as a requirement, and under rule 3 that required mention supports the agreed required async-processing label with its quoted raw_text.",
+  "error": null
+}

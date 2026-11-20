@@ -1,0 +1,15 @@
+{
+  "item": 22,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "llm-orchestration",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "56132db31c344b4a6f26d6abf1106ea31c215a06ab9232e0620413328aa731f6",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'agentic orchestration' in the qualification bullet counts as the skill and is explicitly marked 'strongly preferred' (nice_to_have).\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'agentic orchestration' in the qualification bullet counts as the skill and is explicitly marked 'strongly preferred' (nice_to_have).",
+  "error": null
+}

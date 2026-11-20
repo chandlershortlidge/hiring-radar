@@ -1,0 +1,15 @@
+{
+  "item": 35,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "fine-tuning",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "e668c83d76d8a51043772e829606a6f33dfe5234152783646490ac77d3140d04",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 1 and Rule 5, the qualification names \\\"LLM post-training\\\" rather than \\\"fine-tuning\\\", so `fine-tuning` is not named by the text.\"}",
+  "decision": "drop",
+  "why": "Under Rule 1 and Rule 5, the qualification names \"LLM post-training\" rather than \"fine-tuning\", so `fine-tuning` is not named by the text.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 27,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "llm-guardrails",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a8881de51ae975b5bc7ee4cb7fa6c083db1c5589d0761b2c35c83cdab426a9fa",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1 the only mention of guardrails sits in the 'What Sets You Apart' list of AI evaluation standards, and the 'What You Must Have' section names only a degree and years of experience, so under rule 3 no required mention exists and the nice_to_have reading is correct.\"}",
+  "decision": "A",
+  "why": "Under rule 1 the only mention of guardrails sits in the 'What Sets You Apart' list of AI evaluation standards, and the 'What You Must Have' section names only a degree and years of experience, so under rule 3 no required mention exists and the nice_to_have reading is correct.",
+  "error": null
+}

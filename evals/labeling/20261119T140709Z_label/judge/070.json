@@ -1,0 +1,15 @@
+{
+  "item": 70,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "gcp",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "12638e6a54c12408047b1dd70216de6214ebc7079acd1db576e4a8b1be551769",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rules 1 and 3, GCP is explicitly named in a qualification bullet under the required 'You Must Have' section.\"}",
+  "decision": "ok",
+  "why": "Under rules 1 and 3, GCP is explicitly named in a qualification bullet under the required 'You Must Have' section.",
+  "error": null
+}

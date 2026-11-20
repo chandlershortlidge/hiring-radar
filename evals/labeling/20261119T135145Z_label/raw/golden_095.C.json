@@ -1,0 +1,259 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"backend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"backend software engineering\"\n    },\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"backend software engineering\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed systems\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agentic AI systems\"\n    },\n    {\n      \"skill_id\": \"llm-orchestration\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLM orchestration frameworks\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\"\n    },\n    {\n      \"skill_id\": \"typescript\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TypeScript\"\n    },\n    {\n      \"skill_id\": \"async-processing\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"async concurrency\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"api-design\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"API design\"\n    },\n    {\n      \"skill_id\": \"langgraph\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LangGraph\"\n    },\n    {\n      \"skill_id\": \"mcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Anthropic MCP\"\n    },\n    {\n      \"skill_id\": \"google-adk\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Google ADK\"\n    },\n    {\n      \"skill_id\": \"autogen\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AutoGen\"\n    },\n    {\n      \"skill_id\": \"llamaindex\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LlamaIndex\"\n    },\n    {\n      \"skill_id\": \"microservices\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"microservices architecture\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"container orchestration\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud platforms\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Observability\"\n    },\n    {\n      \"skill_id\": \"llmops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMOps\"\n    },\n    {\n      \"skill_id\": \"vector-databases\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"vector databases\"\n    },\n    {\n      \"skill_id\": \"kafka\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kafka\"\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI-powered development tools\"\n    },\n    {\n      \"skill_id\": \"claude-code\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Claude Code\"\n    },\n    {\n      \"skill_id\": \"github-copilot\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitHub Copilot\"\n    },\n    {\n      \"skill_id\": \"software-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"design and document complex AI architectures\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"fine-tuning models\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"RLHF/RLAIF optimization loops\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"data privacy\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"llm-guardrails\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"prompt injection defenses\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"secrets-management\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"secrets management\"\n    },\n    {\n      \"skill_id\": \"agent-architecture\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"agentic system architectures\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"react\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"React\"\n    },\n    {\n      \"skill_id\": \"scala\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Scala\"\n    },\n    {\n      \"skill_id\": \"mysql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MySQL\"\n    },\n    {\n      \"skill_id\": \"postgresql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PostgreSQL\"\n    },\n    {\n      \"skill_id\": \"snowflake\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Snowflake\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Git & GitHub\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"A2A\",\n      \"raw_text\": \"A2A\"\n    },\n    {\n      \"label\": \"Relational databases\",\n      \"raw_text\": \"relational databases\"\n    },\n    {\n      \"label\": \"Event streaming\",\n      \"raw_text\": \"event streaming\"\n    },\n    {\n      \"label\": \"AWS SQS\",\n      \"raw_text\": \"SQS\"\n    },\n    {\n      \"label\": \"Context engineering\",\n      \"raw_text\": \"context engineering\"\n    },\n    {\n      \"label\": \"Datadog\",\n      \"raw_text\": \"Datadog\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Software Engineer, AI Agentic Platform\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Advanced degree in Computer Science, Machine Learning, or related technical field\",\n  \"uncertain\": [\n    \"degree\"\n  ],\n  \"notes\": \"Mapped 'Advanced degree' to 'master' and flagged degree as uncertain since 'Advanced degree' spans Master's and PhD without naming either explicitly.\\n'Our Stack' section treated as a dedicated tech-stack section per Rule 4 (all unmarked entries required, including 'Java (limited)').\\nFlagged 'async concurrency' -> async-processing, 'RLHF/RLAIF' -> reinforcement-learning, 'data privacy' -> data-privacy-and-security, 'prompt injection defenses' -> llm-guardrails, 'design and document complex AI architectures' -> software-architecture, and 'agentic system architectures' -> agent-architecture as uncertain due to partial/alias overlap.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "backend-development",
+        "requirement": "required",
+        "raw_text": "backend software engineering"
+      },
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "backend software engineering"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "required",
+        "raw_text": "agentic AI systems"
+      },
+      {
+        "skill_id": "llm-orchestration",
+        "requirement": "required",
+        "raw_text": "LLM orchestration frameworks"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "typescript",
+        "requirement": "required",
+        "raw_text": "TypeScript"
+      },
+      {
+        "skill_id": "async-processing",
+        "requirement": "required",
+        "raw_text": "async concurrency",
+        "uncertain": true
+      },
+      {
+        "skill_id": "api-design",
+        "requirement": "required",
+        "raw_text": "API design"
+      },
+      {
+        "skill_id": "langgraph",
+        "requirement": "required",
+        "raw_text": "LangGraph"
+      },
+      {
+        "skill_id": "mcp",
+        "requirement": "required",
+        "raw_text": "Anthropic MCP"
+      },
+      {
+        "skill_id": "google-adk",
+        "requirement": "required",
+        "raw_text": "Google ADK"
+      },
+      {
+        "skill_id": "autogen",
+        "requirement": "required",
+        "raw_text": "AutoGen"
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "required",
+        "raw_text": "LlamaIndex"
+      },
+      {
+        "skill_id": "microservices",
+        "requirement": "required",
+        "raw_text": "microservices architecture"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "container orchestration"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "required",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "Observability"
+      },
+      {
+        "skill_id": "llmops",
+        "requirement": "required",
+        "raw_text": "LLMOps"
+      },
+      {
+        "skill_id": "vector-databases",
+        "requirement": "required",
+        "raw_text": "vector databases"
+      },
+      {
+        "skill_id": "kafka",
+        "requirement": "required",
+        "raw_text": "Kafka"
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "required",
+        "raw_text": "AI-powered development tools"
+      },
+      {
+        "skill_id": "claude-code",
+        "requirement": "required",
+        "raw_text": "Claude Code"
+      },
+      {
+        "skill_id": "github-copilot",
+        "requirement": "required",
+        "raw_text": "GitHub Copilot"
+      },
+      {
+        "skill_id": "software-architecture",
+        "requirement": "required",
+        "raw_text": "design and document complex AI architectures",
+        "uncertain": true
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "fine-tuning models"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "RLHF/RLAIF optimization loops",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "nice_to_have",
+        "raw_text": "data privacy",
+        "uncertain": true
+      },
+      {
+        "skill_id": "llm-guardrails",
+        "requirement": "nice_to_have",
+        "raw_text": "prompt injection defenses",
+        "uncertain": true
+      },
+      {
+        "skill_id": "secrets-management",
+        "requirement": "nice_to_have",
+        "raw_text": "secrets management"
+      },
+      {
+        "skill_id": "agent-architecture",
+        "requirement": "nice_to_have",
+        "raw_text": "agentic system architectures",
+        "uncertain": true
+      },
+      {
+        "skill_id": "react",
+        "requirement": "required",
+        "raw_text": "React"
+      },
+      {
+        "skill_id": "scala",
+        "requirement": "required",
+        "raw_text": "Scala"
+      },
+      {
+        "skill_id": "mysql",
+        "requirement": "required",
+        "raw_text": "MySQL"
+      },
+      {
+        "skill_id": "postgresql",
+        "requirement": "required",
+        "raw_text": "PostgreSQL"
+      },
+      {
+        "skill_id": "snowflake",
+        "requirement": "required",
+        "raw_text": "Snowflake"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git & GitHub"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "A2A",
+        "raw_text": "A2A"
+      },
+      {
+        "label": "Relational databases",
+        "raw_text": "relational databases"
+      },
+      {
+        "label": "Event streaming",
+        "raw_text": "event streaming"
+      },
+      {
+        "label": "AWS SQS",
+        "raw_text": "SQS"
+      },
+      {
+        "label": "Context engineering",
+        "raw_text": "context engineering"
+      },
+      {
+        "label": "Datadog",
+        "raw_text": "Datadog"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Software Engineer, AI Agentic Platform",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": false,
+    "degree_signal": "Advanced degree in Computer Science, Machine Learning, or related technical field",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Mapped 'Advanced degree' to 'master' and flagged degree as uncertain since 'Advanced degree' spans Master's and PhD without naming either explicitly.\n'Our Stack' section treated as a dedicated tech-stack section per Rule 4 (all unmarked entries required, including 'Java (limited)').\nFlagged 'async concurrency' -> async-processing, 'RLHF/RLAIF' -> reinforcement-learning, 'data privacy' -> data-privacy-and-security, 'prompt injection defenses' -> llm-guardrails, 'design and document complex AI architectures' -> software-architecture, and 'agentic system architectures' -> agent-architecture as uncertain due to partial/alias overlap."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "475c3f6644064c1a708e2b613e1cedff26f3ed3dd5fba4acdcc6782105efe385",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

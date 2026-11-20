@@ -1,0 +1,14 @@
+{
+  "item": 71,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "transformers",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7a148c68e98137aff2c171067277bded6223ba78b30c9e01592b79663a547e67",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the MINIMUM QUALIFICATIONS bullet names Transformers as a library the candidate needs production experience with, and Rule 3 makes that required mention win, with the agreed raw_text appearing verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the MINIMUM QUALIFICATIONS bullet names Transformers as a library the candidate needs production experience with, and Rule 3 makes that required mention win, with the agreed raw_text appearing verbatim in the posting.",
+  "error": null
+}

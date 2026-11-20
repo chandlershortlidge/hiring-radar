@@ -1,0 +1,14 @@
+{
+  "item": 22,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "recommender-systems",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b45ffb0cb911d3909d33fbd7fb904f87f217d903be62018f0e0c771722c4c424",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 3, the candidate is sought \\\"to advance machine learning across recommendation\\\" systems, so the required mention of recommendation work stands as labeled by A, and rule 4 does not exclude it because the candidate is explicitly asked for this.\"}",
+  "decision": "A",
+  "why": "Under rule 3, the candidate is sought \"to advance machine learning across recommendation\" systems, so the required mention of recommendation work stands as labeled by A, and rule 4 does not exclude it because the candidate is explicitly asked for this.",
+  "error": null
+}

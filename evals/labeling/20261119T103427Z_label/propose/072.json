@@ -1,0 +1,14 @@
+{
+  "item": 72,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "ci-cd",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "350e29ae01f2ad1e3cb417e88be248b3e0b8b2dbdf20376cefada205673482b2",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'Who You Are' bullet 'Proficient in Linux environments with Python, or Bash scripting for automate builds, parse logs, manage CI pipelines' is a qualification that names CI pipeline management, and the quoted raw_text appears verbatim, so the required ci-cd label stands (rules 1 and 3).\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'Who You Are' bullet 'Proficient in Linux environments with Python, or Bash scripting for automate builds, parse logs, manage CI pipelines' is a qualification that names CI pipeline management, and the quoted raw_text appears verbatim, so the required ci-cd label stands (rules 1 and 3).",
+  "error": null
+}

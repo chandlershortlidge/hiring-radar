@@ -1,0 +1,15 @@
+{
+  "item": 46,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "tool-calling",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "dceb844e69e8da196f6f3e686dec0f480ee8c5e6cd1fa5129b7aad493ec878b9",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a required qualification bullet explicitly states the candidate must be able to explain how a 'tool call' works.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a required qualification bullet explicitly states the candidate must be able to explain how a 'tool call' works.",
+  "error": null
+}

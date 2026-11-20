@@ -1,0 +1,15 @@
+{
+  "item": 40,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "f269e7677d9d6e2f40daf3a7829395c5b5652a0b0c2b17a60fd07324a343f3ec",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, a qualification bullet in the Requirements section explicitly asks for experience with 'scientific agents', making the skill required.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, a qualification bullet in the Requirements section explicitly asks for experience with 'scientific agents', making the skill required.",
+  "error": null
+}

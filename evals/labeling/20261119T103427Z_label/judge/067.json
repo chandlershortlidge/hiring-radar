@@ -1,0 +1,15 @@
+{
+  "item": 67,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "5d984d835e2bd6f7283d0de54409d5e23bf0be70293311d957cd87c0e332e29a",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, a qualification bullet that names a skill ('machine learning research') counts, as the exclusion only applies to job-title years-of-experience lines like 'experience as a software engineer'.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, a qualification bullet that names a skill ('machine learning research') counts, as the exclusion only applies to job-title years-of-experience lines like 'experience as a software engineer'.",
+  "error": null
+}

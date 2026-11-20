@@ -1,0 +1,14 @@
+{
+  "item": 39,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "prompt-engineering",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "af98e1a3b8995cd31f276df5c0a8663603573b27e41b4bd289543aa867d13088",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the intro sentence describes the candidate as someone who \\\"can move fluidly between prompt engineering, backend systems, and model optimization,\\\" which is a qualification naming the skill, and rule 3 makes that required mention control, so the agreed required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the intro sentence describes the candidate as someone who \"can move fluidly between prompt engineering, backend systems, and model optimization,\" which is a qualification naming the skill, and rule 3 makes that required mention control, so the agreed required label stands.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 45,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "knowledge-graphs",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "f0762fe798b6735307d01369bfc974e4803143025aa14610e50182e7cbc4a6c5",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, a required qualification bullet explicitly asks for experience 'building knowledge graphs', making it a valid required skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, a required qualification bullet explicitly asks for experience 'building knowledge graphs', making it a valid required skill.",
+  "error": null
+}

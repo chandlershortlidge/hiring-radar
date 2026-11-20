@@ -1,0 +1,14 @@
+{
+  "item": 75,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f27e56a202e27f47850090970178c6d18984c5cf6dfccd896bb1e7e20b1e073c",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the Preferred Qualifications bullet \\\"Knowledge of privacy-preserving AI and secure compute environments\\\" names a qualifying skill in data privacy and security, and the nice_to_have requirement and quoted raw_text match the posting verbatim.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the Preferred Qualifications bullet \"Knowledge of privacy-preserving AI and secure compute environments\" names a qualifying skill in data privacy and security, and the nice_to_have requirement and quoted raw_text match the posting verbatim.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 36,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "fde1d53c16dd5c72eae530f2eaf25b5be65e6c0483fa5722c84fde0451d882d2",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification bullet under 'You’ll need' explicitly requires 'Comfort designing evaluation and feedback loops', making `evaluation` a required skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification bullet under 'You’ll need' explicitly requires 'Comfort designing evaluation and feedback loops', making `evaluation` a required skill.",
+  "error": null
+}

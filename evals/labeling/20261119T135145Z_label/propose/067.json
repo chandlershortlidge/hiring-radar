@@ -1,0 +1,14 @@
+{
+  "item": 67,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "aws",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "4dd374bbb5c0fbe51bd8ec4809206cf1a17ab940db1d6401be37fa522ad33937",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the 'What You'll Need' bullet 'Familiarity with cloud and containerization (e.g., GCP, AWS, Docker)' is a qualification naming AWS, the required raw_text 'AWS' appears verbatim, and Rule 5 is not triggered because AWS itself is named rather than inferred from a parent category.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the 'What You'll Need' bullet 'Familiarity with cloud and containerization (e.g., GCP, AWS, Docker)' is a qualification naming AWS, the required raw_text 'AWS' appears verbatim, and Rule 5 is not triggered because AWS itself is named rather than inferred from a parent category.",
+  "error": null
+}

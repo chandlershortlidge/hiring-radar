@@ -1,0 +1,97 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"LLMs\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML-driven optimization\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"FusionCompiler\",\n      \"raw_text\": \"FusionCompiler\"\n    },\n    {\n      \"label\": \"ICC2\",\n      \"raw_text\": \"ICC2\"\n    },\n    {\n      \"label\": \"Innovus\",\n      \"raw_text\": \"Innovus\"\n    },\n    {\n      \"label\": \"Genus\",\n      \"raw_text\": \"Genus\"\n    },\n    {\n      \"label\": \"PrimeTime\",\n      \"raw_text\": \"PrimeTime\"\n    },\n    {\n      \"label\": \"RedHawk\",\n      \"raw_text\": \"RedHawk\"\n    },\n    {\n      \"label\": \"Tcl\",\n      \"raw_text\": \"Tcl\"\n    },\n    {\n      \"label\": \"Perl\",\n      \"raw_text\": \"Perl\"\n    },\n    {\n      \"label\": \"UPF\",\n      \"raw_text\": \"UPF\"\n    },\n    {\n      \"label\": \"CPF\",\n      \"raw_text\": \"CPF\"\n    },\n    {\n      \"label\": \"Clock Tree Synthesis\",\n      \"raw_text\": \"clock tree synthesis\"\n    },\n    {\n      \"label\": \"EM/IR\",\n      \"raw_text\": \"EM/IR\"\n    },\n    {\n      \"label\": \"DRC/LVS\",\n      \"raw_text\": \"DRC/LVS\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"5+ years developing and supporting physical design methodology or CAD flows in production use\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"Seniority is marked uncertain because 'What We Need' asks for '5+ years' (inferred senior), while earlier paragraphs state 'looking for contributors of all seniorities' and 'welcome candidates at various experience levels for this role ... offers will align with that level, which may differ from the one in this posting'.\\nIn 'Who You Are', 'Building with AI as part of how you develop flows, and opinionated about where LLMs and ML-driven optimization genuinely help' maps to llms and machine-learning (uncertain on machine-learning from 'ML-driven optimization').\\nHardware/EDA tools and languages (FusionCompiler, ICC2, Innovus, Genus, PrimeTime, RedHawk, Tcl, Perl, UPF, CPF, clock tree synthesis, EM/IR, DRC/LVS) are placed in unmapped.\\n'What You Will Learn' describes on-the-job learning outcomes rather than required candidate qualifications, so skills only mentioned there are excluded.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "LLMs"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "ML-driven optimization",
+        "uncertain": true
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "FusionCompiler",
+        "raw_text": "FusionCompiler"
+      },
+      {
+        "label": "ICC2",
+        "raw_text": "ICC2"
+      },
+      {
+        "label": "Innovus",
+        "raw_text": "Innovus"
+      },
+      {
+        "label": "Genus",
+        "raw_text": "Genus"
+      },
+      {
+        "label": "PrimeTime",
+        "raw_text": "PrimeTime"
+      },
+      {
+        "label": "RedHawk",
+        "raw_text": "RedHawk"
+      },
+      {
+        "label": "Tcl",
+        "raw_text": "Tcl"
+      },
+      {
+        "label": "Perl",
+        "raw_text": "Perl"
+      },
+      {
+        "label": "UPF",
+        "raw_text": "UPF"
+      },
+      {
+        "label": "CPF",
+        "raw_text": "CPF"
+      },
+      {
+        "label": "Clock Tree Synthesis",
+        "raw_text": "clock tree synthesis"
+      },
+      {
+        "label": "EM/IR",
+        "raw_text": "EM/IR"
+      },
+      {
+        "label": "DRC/LVS",
+        "raw_text": "DRC/LVS"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "inferred",
+    "seniority_signal": "5+ years developing and supporting physical design methodology or CAD flows in production use",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Seniority is marked uncertain because 'What We Need' asks for '5+ years' (inferred senior), while earlier paragraphs state 'looking for contributors of all seniorities' and 'welcome candidates at various experience levels for this role ... offers will align with that level, which may differ from the one in this posting'.\nIn 'Who You Are', 'Building with AI as part of how you develop flows, and opinionated about where LLMs and ML-driven optimization genuinely help' maps to llms and machine-learning (uncertain on machine-learning from 'ML-driven optimization').\nHardware/EDA tools and languages (FusionCompiler, ICC2, Innovus, Genus, PrimeTime, RedHawk, Tcl, Perl, UPF, CPF, clock tree synthesis, EM/IR, DRC/LVS) are placed in unmapped.\n'What You Will Learn' describes on-the-job learning outcomes rather than required candidate qualifications, so skills only mentioned there are excluded."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "0face347ae77901b24d74c669f94f1553b153d614cdfe9db7188362b7d12e260",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

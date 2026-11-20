@@ -1,0 +1,15 @@
+{
+  "item": 78,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "kubernetes",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "9c0df8737c0885974a235b5ff37e9a3c767c3ab180010eadb8e497b6d0bc20f7",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification bullet under PREFERRED / BONUS explicitly names Kubernetes, supporting the nice_to_have label and verbatim raw_text.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification bullet under PREFERRED / BONUS explicitly names Kubernetes, supporting the nice_to_have label and verbatim raw_text.",
+  "error": null
+}

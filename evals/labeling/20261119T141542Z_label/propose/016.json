@@ -1,0 +1,14 @@
+{
+  "item": 16,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "aws",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "c3f43b9d9f02714a7acc6bc231225fe81d7bdf84cb2d953fecc49aeef70b3f5a",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 3, the only required content is in the 'What You Must Have' section (degree and years), and the AWS mention sits in the 'What Sets You Apart' section as one option among credentials, so nice_to_have (labeler A) is correct.\"}",
+  "decision": "A",
+  "why": "Under rule 3, the only required content is in the 'What You Must Have' section (degree and years), and the AWS mention sits in the 'What Sets You Apart' section as one option among credentials, so nice_to_have (labeler A) is correct.",
+  "error": null
+}

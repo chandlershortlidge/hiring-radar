@@ -1,0 +1,14 @@
+{
+  "item": 82,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "ml-engineering|machine-learning",
+  "reason": "mapping",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "05647bacd27cb946d3adb3d65cd6557a6cab26dc906d682a5015bf267ce3365a",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 5 the phrase should map to the specific skill it names: \\\"building and shipping ML systems\\\" centers on productionizing systems, which is ml-engineering, while the broader machine-learning field is not separately named beyond the \\\"ML\\\" abbreviation.\"}",
+  "decision": "A",
+  "why": "Under rule 5 the phrase should map to the specific skill it names: \"building and shipping ML systems\" centers on productionizing systems, which is ml-engineering, while the broader machine-learning field is not separately named beyond the \"ML\" abbreviation.",
+  "error": null
+}

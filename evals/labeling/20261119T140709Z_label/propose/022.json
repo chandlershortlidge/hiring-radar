@@ -1,0 +1,14 @@
+{
+  "item": 22,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "vector-search",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "c34e44337713c6b9938f14b868569ba7b6aaf38d2a6cfa8ea15646eace475812",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1, the nice-to-have qualification bullet names vector databases and semantic search, so vector-search counts as nice_to_have, and the quoted raw_text 'semantic search' appears verbatim in the posting.\"}",
+  "decision": "A",
+  "why": "Under rule 1, the nice-to-have qualification bullet names vector databases and semantic search, so vector-search counts as nice_to_have, and the quoted raw_text 'semantic search' appears verbatim in the posting.",
+  "error": null
+}

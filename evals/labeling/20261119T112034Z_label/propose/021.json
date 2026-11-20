@@ -1,0 +1,14 @@
+{
+  "item": 21,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "cybersecurity",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b7320a410a300f5236773e83814d83011821f9bba3eb0cc5c1468eb90080c9ca",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only quoted mention, \\\"security\\\", appears in \\\"UK Security Clearance (SC)\\\", which is an eligibility requirement and not a named cybersecurity skill, so the label should not stand (rule 5 bars adding a skill the text does not name).\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only quoted mention, \"security\", appears in \"UK Security Clearance (SC)\", which is an eligibility requirement and not a named cybersecurity skill, so the label should not stand (rule 5 bars adding a skill the text does not name).",
+  "error": null
+}

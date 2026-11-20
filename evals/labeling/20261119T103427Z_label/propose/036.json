@@ -1,0 +1,14 @@
+{
+  "item": 36,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "workflow-automation",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "76c155a5707fa2272a9c20e08d7706a01028e61ed9078b06910beef5ba3e20c3",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the 'Who You Are' bullet describes the candidate as 'automation-minded' and 'removing manual steps,' which is a candidate qualification naming workflow automation, and rule 3 supports keeping the required tag on that quote.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the 'Who You Are' bullet describes the candidate as 'automation-minded' and 'removing manual steps,' which is a candidate qualification naming workflow automation, and rule 3 supports keeping the required tag on that quote.",
+  "error": null
+}

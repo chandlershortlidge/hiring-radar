@@ -1,0 +1,14 @@
+{
+  "item": 81,
+  "golden_id": "golden_107",
+  "kind": "skill",
+  "key": "docker",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e1ead9d0eeb0a0ba3b4385af602cd896c32f90917a98b79e17e049db714a6360",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Preferred/Bonus bullet \\\"Experience with containerization and orchestration technologies (e.g., Docker, Kubernetes)\\\" is a qualification naming the skill, so it counts; it is correctly marked nice_to_have, and \\\"Docker\\\" appears verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Preferred/Bonus bullet \"Experience with containerization and orchestration technologies (e.g., Docker, Kubernetes)\" is a qualification naming the skill, so it counts; it is correctly marked nice_to_have, and \"Docker\" appears verbatim in the posting.",
+  "error": null
+}

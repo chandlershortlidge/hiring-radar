@@ -1,0 +1,15 @@
+{
+  "item": 36,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "66fca8eb765c1988528598738d2477e2c417ed616c56f6377906f8a6c24d7bea",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a required qualification bullet explicitly naming 'deploying a relevant ML application' counts as the ai-deployment skill.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a required qualification bullet explicitly naming 'deploying a relevant ML application' counts as the ai-deployment skill.",
+  "error": null
+}

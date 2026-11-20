@@ -1,0 +1,14 @@
+{
+  "item": 68,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "gcp",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f909911b5d2df5cb6c12286363ef43fa811e1692473539eed050972488e7de69",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the 'What You'll Need' bullet asks for familiarity with cloud platforms and explicitly names GCP as one of them, so the qualification names the skill as required, and the agreed raw_text \\\"GCP\\\" appears in the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the 'What You'll Need' bullet asks for familiarity with cloud platforms and explicitly names GCP as one of them, so the qualification names the skill as required, and the agreed raw_text \"GCP\" appears in the posting.",
+  "error": null
+}

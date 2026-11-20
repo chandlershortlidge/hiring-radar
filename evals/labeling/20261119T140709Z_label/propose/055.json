@@ -1,0 +1,14 @@
+{
+  "item": 55,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "8661f300ce52b5adb8c9cc5de84b8c08b12fee6912d3a081a0afa3e8af771bf8",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the bullet under 'What we're looking for' names agentic patterns (function calling, multi-step reasoning, tool use) as a required qualification, not a plus, so `agents` as required with raw_text \\\"agentic patterns\\\" is supported and rule 3 applies.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the bullet under 'What we're looking for' names agentic patterns (function calling, multi-step reasoning, tool use) as a required qualification, not a plus, so `agents` as required with raw_text \"agentic patterns\" is supported and rule 3 applies.",
+  "error": null
+}

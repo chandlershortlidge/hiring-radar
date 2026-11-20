@@ -1,0 +1,182 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"ml-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML engineering\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"language models\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"training and deploying language models\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"deploying language models to production\"\n    },\n    {\n      \"skill_id\": \"distributed-training\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed training\"\n    },\n    {\n      \"skill_id\": \"megatron-lm\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Megatron-LM\"\n    },\n    {\n      \"skill_id\": \"deepspeed\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"training libraries (Transformers, DeepSpeed, Accelerate)\"\n    },\n    {\n      \"skill_id\": \"fsdp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"FSDP\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"transformers\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Transformers\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement learning\"\n    },\n    {\n      \"skill_id\": \"inference-optimization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"optimising models for production inference\"\n    },\n    {\n      \"skill_id\": \"knowledge-distillation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distillation, pruning, quantisation, compression\"\n    },\n    {\n      \"skill_id\": \"quantization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"distillation, pruning, quantisation, compression\"\n    },\n    {\n      \"skill_id\": \"model-serving\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"serving frameworks\"\n    },\n    {\n      \"skill_id\": \"vllm\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vLLM\"\n    },\n    {\n      \"skill_id\": \"tensorrt\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"TensorRT-LLM\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"evaluating models\"\n    },\n    {\n      \"skill_id\": \"a-b-testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"evaluating models through online experiments and A/B tests\"\n    },\n    {\n      \"skill_id\": \"hugging-face\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"released models on Hugging Face\"\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"instruction tuning\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Axolotl\",\n      \"raw_text\": \"Axolotl\"\n    },\n    {\n      \"label\": \"Accelerate\",\n      \"raw_text\": \"Accelerate\"\n    },\n    {\n      \"label\": \"RLHF\",\n      \"raw_text\": \"RLHF\"\n    },\n    {\n      \"label\": \"DPO\",\n      \"raw_text\": \"DPO\"\n    },\n    {\n      \"label\": \"GRPO\",\n      \"raw_text\": \"GRPO\"\n    },\n    {\n      \"label\": \"Model pruning\",\n      \"raw_text\": \"pruning\"\n    },\n    {\n      \"label\": \"Model compression\",\n      \"raw_text\": \"compression\"\n    },\n    {\n      \"label\": \"Synthetic data generation\",\n      \"raw_text\": \"synthetic data generation pipelines\"\n    },\n    {\n      \"label\": \"Gradient checkpointing\",\n      \"raw_text\": \"gradient checkpointing\"\n    },\n    {\n      \"label\": \"Mixed precision training\",\n      \"raw_text\": \"mixed precision training (FP16, BF16, FP8)\"\n    },\n    {\n      \"label\": \"ZeRO\",\n      \"raw_text\": \"ZeRO\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer – LLMs\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Mapped 'language models' in qualifications to llms (consistent with title 'Senior Machine Learning Engineer – LLMs' and 'LLM training expertise' in How to Apply). DeepSpeed appears in both distributed training frameworks and training libraries; quoted the second mention to distinguish from the WHAT THE ROLE INVOLVES responsibility section. Flagged 'instruction tuning' -> fine-tuning as uncertain since it appears as the purpose of synthetic data generation pipelines.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "ML engineering"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "language models"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "training and deploying language models"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "deploying language models to production"
+      },
+      {
+        "skill_id": "distributed-training",
+        "requirement": "required",
+        "raw_text": "distributed training"
+      },
+      {
+        "skill_id": "megatron-lm",
+        "requirement": "required",
+        "raw_text": "Megatron-LM"
+      },
+      {
+        "skill_id": "deepspeed",
+        "requirement": "required",
+        "raw_text": "training libraries (Transformers, DeepSpeed, Accelerate)"
+      },
+      {
+        "skill_id": "fsdp",
+        "requirement": "required",
+        "raw_text": "FSDP"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "transformers",
+        "requirement": "required",
+        "raw_text": "Transformers"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "inference-optimization",
+        "requirement": "nice_to_have",
+        "raw_text": "optimising models for production inference"
+      },
+      {
+        "skill_id": "knowledge-distillation",
+        "requirement": "nice_to_have",
+        "raw_text": "distillation, pruning, quantisation, compression"
+      },
+      {
+        "skill_id": "quantization",
+        "requirement": "nice_to_have",
+        "raw_text": "distillation, pruning, quantisation, compression"
+      },
+      {
+        "skill_id": "model-serving",
+        "requirement": "nice_to_have",
+        "raw_text": "serving frameworks"
+      },
+      {
+        "skill_id": "vllm",
+        "requirement": "nice_to_have",
+        "raw_text": "vLLM"
+      },
+      {
+        "skill_id": "tensorrt",
+        "requirement": "nice_to_have",
+        "raw_text": "TensorRT-LLM"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "evaluating models"
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "nice_to_have",
+        "raw_text": "evaluating models through online experiments and A/B tests"
+      },
+      {
+        "skill_id": "hugging-face",
+        "requirement": "nice_to_have",
+        "raw_text": "released models on Hugging Face"
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "nice_to_have",
+        "raw_text": "instruction tuning",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Axolotl",
+        "raw_text": "Axolotl"
+      },
+      {
+        "label": "Accelerate",
+        "raw_text": "Accelerate"
+      },
+      {
+        "label": "RLHF",
+        "raw_text": "RLHF"
+      },
+      {
+        "label": "DPO",
+        "raw_text": "DPO"
+      },
+      {
+        "label": "GRPO",
+        "raw_text": "GRPO"
+      },
+      {
+        "label": "Model pruning",
+        "raw_text": "pruning"
+      },
+      {
+        "label": "Model compression",
+        "raw_text": "compression"
+      },
+      {
+        "label": "Synthetic data generation",
+        "raw_text": "synthetic data generation pipelines"
+      },
+      {
+        "label": "Gradient checkpointing",
+        "raw_text": "gradient checkpointing"
+      },
+      {
+        "label": "Mixed precision training",
+        "raw_text": "mixed precision training (FP16, BF16, FP8)"
+      },
+      {
+        "label": "ZeRO",
+        "raw_text": "ZeRO"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer – LLMs",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Mapped 'language models' in qualifications to llms (consistent with title 'Senior Machine Learning Engineer – LLMs' and 'LLM training expertise' in How to Apply). DeepSpeed appears in both distributed training frameworks and training libraries; quoted the second mention to distinguish from the WHAT THE ROLE INVOLVES responsibility section. Flagged 'instruction tuning' -> fine-tuning as uncertain since it appears as the purpose of synthetic data generation pipelines."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "966c0fc11eeea9679407221057773f225cf942d669f380b1320bd2bb101c3a62",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

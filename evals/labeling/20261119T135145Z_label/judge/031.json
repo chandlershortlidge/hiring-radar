@@ -1,0 +1,15 @@
+{
+  "item": 31,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "testing",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "b8fa42469428432243b5deb09edcf5095fde4afd9f2874caf61a3ada9974f38c",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, 'confident debugging' is not testing, and the text does not name testing as a required skill.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, 'confident debugging' is not testing, and the text does not name testing as a required skill.",
+  "error": null
+}

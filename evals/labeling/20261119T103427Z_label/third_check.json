@@ -1,0 +1,37 @@
+{
+  "model": "gemini-4-argon",
+  "provider": "google",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5",
+  "n_items": 76,
+  "agreed": 76,
+  "differed": 0,
+  "rate": 0.0,
+  "wilson_95": [
+    0.0,
+    0.048113585065137326
+  ],
+  "by_field": {
+    "seniority": {
+      "n": 5,
+      "agreed": 5,
+      "differed": 0,
+      "rate": 0.0
+    },
+    "skill": {
+      "n": 66,
+      "agreed": 66,
+      "differed": 0,
+      "rate": 0.0
+    },
+    "german": {
+      "n": 5,
+      "agreed": 5,
+      "differed": 0,
+      "rate": 0.0
+    }
+  },
+  "differences": [],
+  "auto_check_problems": [],
+  "failed": [],
+  "not_compared": []
+}

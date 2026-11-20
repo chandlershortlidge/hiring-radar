@@ -1,0 +1,15 @@
+{
+  "item": 70,
+  "golden_id": "golden_108",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "2a359a2305195970a7cc7ed2509cdd1e463355597d719164f6998714b7dab2ca",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 3, the verbatim signal 'Mentor Principal and Senior Associates on scalable design' directly indicates a senior-level role.\"}",
+  "decision": "ok",
+  "why": "Under Rule 3, the verbatim signal 'Mentor Principal and Senior Associates on scalable design' directly indicates a senior-level role.",
+  "error": null
+}

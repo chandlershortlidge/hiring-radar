@@ -1,0 +1,15 @@
+{
+  "item": 20,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "7aa726ce003d07f39206633d9de477ea527462800a6cfea2e599ecd8ff87104d",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the qualification bullet asking for 'interest or experience in ML frameworks' names ML as a desired candidate skill, while the other ML mentions are responsibilities excluded by rule 4.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the qualification bullet asking for 'interest or experience in ML frameworks' names ML as a desired candidate skill, while the other ML mentions are responsibilities excluded by rule 4.",
+  "error": null
+}

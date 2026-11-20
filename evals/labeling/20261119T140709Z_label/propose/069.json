@@ -1,0 +1,14 @@
+{
+  "item": 69,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "5950c420e466df015a4e2d00578146a36effa0db6fb8c5d21f3d87fa343fb2b4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the required \\\"To Qualify\\\" section names \\\"data protection\\\" in a qualification bullet, and Rule 3 makes that required mention determinative, so the agreed required label with raw_text \\\"data protection\\\" stands.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the required \"To Qualify\" section names \"data protection\" in a qualification bullet, and Rule 3 makes that required mention determinative, so the agreed required label with raw_text \"data protection\" stands.",
+  "error": null
+}

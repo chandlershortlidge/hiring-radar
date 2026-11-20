@@ -1,0 +1,15 @@
+{
+  "item": 60,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "react",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "2ce2c263aa4d9cde38a70d638b433eefe689cbe7715e240f4e4a7dcf9e42ade0",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the bonus qualification bullet explicitly asks for experience with 'Streamlit/React', supporting `react` as a nice_to_have skill.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the bonus qualification bullet explicitly asks for experience with 'Streamlit/React', supporting `react` as a nice_to_have skill.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 40,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "llmops",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "3bc0b1b10caac959772d5c2dd9105a1188a8fdd4e965156dbc112086d13a1caf",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the Nice-to-Haves bullet literally names \\\"GenAIOps\\\" as a qualification, so llmops applies at nice_to_have, and no required mention of it appears elsewhere in the visible excerpt (rule 3 doesn't override).\"}",
+  "decision": "B",
+  "why": "Under rule 1, the Nice-to-Haves bullet literally names \"GenAIOps\" as a qualification, so llmops applies at nice_to_have, and no required mention of it appears elsewhere in the visible excerpt (rule 3 doesn't override).",
+  "error": null
+}

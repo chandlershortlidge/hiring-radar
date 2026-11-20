@@ -1,0 +1,14 @@
+{
+  "item": 20,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "27452b6b0a793cf8b49f617a3b4631f724b2f98a36291860f8cf9437dc167db6",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the 'you bring' qualification bullet names deploying models ('implement models in production environments'), and under rule 3 that required mention supports labeler B's required ai-deployment tag.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the 'you bring' qualification bullet names deploying models ('implement models in production environments'), and under rule 3 that required mention supports labeler B's required ai-deployment tag.",
+  "error": null
+}

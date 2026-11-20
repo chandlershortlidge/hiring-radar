@@ -1,0 +1,15 @@
+{
+  "item": 58,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "observability",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "991c12ff384da527c764ddee9d78b3eb019f554a6b113a4fae0bdf93bb181d79",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, the mention of model monitoring within the ML lifecycle does not explicitly name the broader `observability` skill.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, the mention of model monitoring within the ML lifecycle does not explicitly name the broader `observability` skill.",
+  "error": null
+}

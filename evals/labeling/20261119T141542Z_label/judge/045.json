@@ -1,0 +1,15 @@
+{
+  "item": 45,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "cuda",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "03abbb8c5cf8e8a0e6909d8808d62ebd3737e8ce7efe25629a43a9fde43de6cf",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 3, CUDA is explicitly listed in the 'Nice to have' section, and B's raw_text does not appear word-for-word in the posting.\"}",
+  "decision": "A",
+  "why": "Under Rule 3, CUDA is explicitly listed in the 'Nice to have' section, and B's raw_text does not appear word-for-word in the posting.",
+  "error": null
+}

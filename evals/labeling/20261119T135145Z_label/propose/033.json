@@ -1,0 +1,14 @@
+{
+  "item": 33,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d1b3dee4e15ea87cde6ee5ecc9b144bce5120bb844755c16e75afc01f949ca37",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the required qualification bullets name ML directly (\\\"deploying AI/ML models to production\\\" and \\\"experience using ML frameworks such as PyTorch or TensorFlow\\\"), so labeler B's required machine-learning label is supported and its raw_text appears verbatim in the posting.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the required qualification bullets name ML directly (\"deploying AI/ML models to production\" and \"experience using ML frameworks such as PyTorch or TensorFlow\"), so labeler B's required machine-learning label is supported and its raw_text appears verbatim in the posting.",
+  "error": null
+}

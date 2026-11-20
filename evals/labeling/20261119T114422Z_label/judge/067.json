@@ -1,0 +1,15 @@
+{
+  "item": 67,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "cacbaeb4b249d44ea417eb0c42f9fdadd8248bd6305467ce6fc5dd7f976fff98",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rules 1 and 3, the minimum qualifications explicitly require 'deploying language models to production', supporting the agreed `ai-deployment` label.\"}",
+  "decision": "ok",
+  "why": "Under rules 1 and 3, the minimum qualifications explicitly require 'deploying language models to production', supporting the agreed `ai-deployment` label.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 28,
+  "golden_id": "golden_100",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "c75b5540e624331ae205c9ec79cec2a1823d2f0aca81f3f1c73c54b4165ace4b",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, the posting does not explicitly state a seniority level, as 'Architect' is a role title here rather than a stated seniority modifier.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, the posting does not explicitly state a seniority level, as 'Architect' is a role title here rather than a stated seniority modifier.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 63,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "957a3707b4c9b374553b961bf17b4e91479a1475589699f6328037fde27215d9",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the ABOUT YOU qualification bullet \\\"Experience training or fine-tuning large language models\\\" names model training as a required skill, and the quoted raw_text appears verbatim in the posting, so the agreed label stands (rule 3).\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the ABOUT YOU qualification bullet \"Experience training or fine-tuning large language models\" names model training as a required skill, and the quoted raw_text appears verbatim in the posting, so the agreed label stands (rule 3).",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 41,
+  "golden_id": "golden_096",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d88c56c73e01fb6297a564ffc78c1a214a70fd4d59574d1d9198410ba0f82ee1",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 4, \\\"lead prompt engineering\\\" is a responsibility listed under \\\"You will\\\" and does not establish a required seniority level, and the title \\\"Gen AI Engineer\\\" carries no seniority word (rule 1), so the seniority attribute should be null.\"}",
+  "decision": "drop",
+  "why": "Under rule 4, \"lead prompt engineering\" is a responsibility listed under \"You will\" and does not establish a required seniority level, and the title \"Gen AI Engineer\" carries no seniority word (rule 1), so the seniority attribute should be null.",
+  "error": null
+}

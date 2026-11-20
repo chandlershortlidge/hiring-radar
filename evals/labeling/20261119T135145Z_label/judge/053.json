@@ -1,0 +1,15 @@
+{
+  "item": 53,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "92b9c9e5623283735f020d8a59013e799d33763f751e7445f130c03022d31fb0",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, 'LLM architectures' is explicitly named in a bullet under REQUIRED QUALIFICATIONS, so the agreed required label and raw_text stand.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, 'LLM architectures' is explicitly named in a bullet under REQUIRED QUALIFICATIONS, so the agreed required label and raw_text stand.",
+  "error": null
+}

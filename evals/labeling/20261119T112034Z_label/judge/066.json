@@ -1,0 +1,15 @@
+{
+  "item": 66,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "67b6a10f29184ecfc1cfa308b277cb28104304ce154784e9eaf960fd17c88483",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the nice-to-have qualification bullet asking for experience with 'large machine learning models at scale' explicitly names the skill.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the nice-to-have qualification bullet asking for experience with 'large machine learning models at scale' explicitly names the skill.",
+  "error": null
+}

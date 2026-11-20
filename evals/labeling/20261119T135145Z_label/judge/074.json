@@ -1,0 +1,15 @@
+{
+  "item": 74,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "fc812c492a377a081f4fb812cfadd432e65b16dbfb61da1345a77702b19cb6e1",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Preferred Qualifications, the bullet 'Experience integrating AI/LLM capabilities into product experiences responsibly' explicitly names AI as a nice-to-have skill (Rule 1).\"}",
+  "decision": "ok",
+  "why": "Under Preferred Qualifications, the bullet 'Experience integrating AI/LLM capabilities into product experiences responsibly' explicitly names AI as a nice-to-have skill (Rule 1).",
+  "error": null
+}

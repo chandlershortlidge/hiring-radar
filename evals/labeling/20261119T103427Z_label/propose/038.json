@@ -1,0 +1,14 @@
+{
+  "item": 38,
+  "golden_id": "golden_107",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "23e8bfe147a1b9ab0e0d0b906d0503fd80436bcd5c6c0e08100c9d03cfc209ab",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the required 'What you will need' bullet asks for 'designing and building scalable, maintainable systems and services', which is a named qualification covering software architecture, and B's raw_text quotes it word for word.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the required 'What you will need' bullet asks for 'designing and building scalable, maintainable systems and services', which is a named qualification covering software architecture, and B's raw_text quotes it word for word.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 77,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "bfff5cb8c31dde090d73fe1544eab8383fbae4989dafa9b741cc0ce0274852f3",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the Requirements bullet 'Experience deploying deep learning models in production' explicitly asks for the skill as a required qualification.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the Requirements bullet 'Experience deploying deep learning models in production' explicitly asks for the skill as a required qualification.",
+  "error": null
+}

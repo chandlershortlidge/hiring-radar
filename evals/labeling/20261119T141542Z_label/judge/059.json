@@ -1,0 +1,15 @@
+{
+  "item": 59,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "mcp",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "b3396f0bcce66875aecfac1738abd5158678feae27abbf2c516dd72eaa9ad4fe",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet under 'What You Bring' explicitly names MCP as a bonus skill ('Bonus: Experience with MCP servers/connectors'), confirming it as nice_to_have.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet under 'What You Bring' explicitly names MCP as a bonus skill ('Bonus: Experience with MCP servers/connectors'), confirming it as nice_to_have.",
+  "error": null
+}

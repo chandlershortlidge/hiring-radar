@@ -1,0 +1,158 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"full-stack-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Full Stack development\"\n    },\n    {\n      \"skill_id\": \"java\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Java\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Microsoft Azure\"\n    },\n    {\n      \"skill_id\": \"angular\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Angular\"\n    },\n    {\n      \"skill_id\": \"ai-ml\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"AI/ML\"\n    },\n    {\n      \"skill_id\": \"frontend-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"frontend application development\"\n    },\n    {\n      \"skill_id\": \"spring-boot\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Spring Boot\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"API development\"\n    },\n    {\n      \"skill_id\": \"serverless\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Functions\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"api-design\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"REST API design\"\n    },\n    {\n      \"skill_id\": \"azure-devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure DevOps\"\n    },\n    {\n      \"skill_id\": \"git\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Git\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD pipelines\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"workflow-automation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"workflow automation\"\n    },\n    {\n      \"skill_id\": \"openai-api\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Azure OpenAI\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"agent-architecture\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"agent-based architectures\"\n    },\n    {\n      \"skill_id\": \"conversational-ai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"conversational assistants\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"rag\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"knowledge retrieval solutions\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Azure App Services\",\n      \"raw_text\": \"App Services\"\n    },\n    {\n      \"label\": \"Azure API Management\",\n      \"raw_text\": \"API Management\"\n    },\n    {\n      \"label\": \"Azure Storage\",\n      \"raw_text\": \"Storage\"\n    },\n    {\n      \"label\": \"Azure AI Services\",\n      \"raw_text\": \"Azure AI Services\"\n    },\n    {\n      \"label\": \"Azure OpenAI\",\n      \"raw_text\": \"Azure OpenAI\"\n    },\n    {\n      \"label\": \"Document Intelligence\",\n      \"raw_text\": \"document intelligence\"\n    },\n    {\n      \"label\": \"HL7 FHIR APIs\",\n      \"raw_text\": \"HL7 FHIR APIs\"\n    },\n    {\n      \"label\": \"HIPAA compliance\",\n      \"raw_text\": \"HIPAA-compliant application development\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"One senior engineer (8-10+ years)\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Mapped 'Functions' (under Microsoft Azure) to 'serverless' as uncertain; mapped 'Azure OpenAI' to 'openai-api' as uncertain (also placed in unmapped); mapped 'conversational assistants' to 'conversational-ai' and 'knowledge retrieval solutions' to 'rag' as uncertain. Hashtags at the bottom (#LLM, #RAG, #GenerativeAI) were treated as social media post tags rather than candidate requirements. In 'Angular (preferred latest versions)', 'preferred' qualifies the versions rather than making Angular optional.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "full-stack-development",
+        "requirement": "required",
+        "raw_text": "Full Stack development"
+      },
+      {
+        "skill_id": "java",
+        "requirement": "required",
+        "raw_text": "Java"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "required",
+        "raw_text": "Microsoft Azure"
+      },
+      {
+        "skill_id": "angular",
+        "requirement": "required",
+        "raw_text": "Angular"
+      },
+      {
+        "skill_id": "ai-ml",
+        "requirement": "required",
+        "raw_text": "AI/ML"
+      },
+      {
+        "skill_id": "frontend-development",
+        "requirement": "required",
+        "raw_text": "frontend application development"
+      },
+      {
+        "skill_id": "spring-boot",
+        "requirement": "required",
+        "raw_text": "Spring Boot"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "required",
+        "raw_text": "API development"
+      },
+      {
+        "skill_id": "serverless",
+        "requirement": "required",
+        "raw_text": "Functions",
+        "uncertain": true
+      },
+      {
+        "skill_id": "api-design",
+        "requirement": "required",
+        "raw_text": "REST API design"
+      },
+      {
+        "skill_id": "azure-devops",
+        "requirement": "required",
+        "raw_text": "Azure DevOps"
+      },
+      {
+        "skill_id": "git",
+        "requirement": "required",
+        "raw_text": "Git"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD pipelines"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "workflow-automation",
+        "requirement": "required",
+        "raw_text": "workflow automation"
+      },
+      {
+        "skill_id": "openai-api",
+        "requirement": "required",
+        "raw_text": "Azure OpenAI",
+        "uncertain": true
+      },
+      {
+        "skill_id": "agent-architecture",
+        "requirement": "required",
+        "raw_text": "agent-based architectures"
+      },
+      {
+        "skill_id": "conversational-ai",
+        "requirement": "required",
+        "raw_text": "conversational assistants",
+        "uncertain": true
+      },
+      {
+        "skill_id": "rag",
+        "requirement": "required",
+        "raw_text": "knowledge retrieval solutions",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Azure App Services",
+        "raw_text": "App Services"
+      },
+      {
+        "label": "Azure API Management",
+        "raw_text": "API Management"
+      },
+      {
+        "label": "Azure Storage",
+        "raw_text": "Storage"
+      },
+      {
+        "label": "Azure AI Services",
+        "raw_text": "Azure AI Services"
+      },
+      {
+        "label": "Azure OpenAI",
+        "raw_text": "Azure OpenAI"
+      },
+      {
+        "label": "Document Intelligence",
+        "raw_text": "document intelligence"
+      },
+      {
+        "label": "HL7 FHIR APIs",
+        "raw_text": "HL7 FHIR APIs"
+      },
+      {
+        "label": "HIPAA compliance",
+        "raw_text": "HIPAA-compliant application development"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "One senior engineer (8-10+ years)",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Mapped 'Functions' (under Microsoft Azure) to 'serverless' as uncertain; mapped 'Azure OpenAI' to 'openai-api' as uncertain (also placed in unmapped); mapped 'conversational assistants' to 'conversational-ai' and 'knowledge retrieval solutions' to 'rag' as uncertain. Hashtags at the bottom (#LLM, #RAG, #GenerativeAI) were treated as social media post tags rather than candidate requirements. In 'Angular (preferred latest versions)', 'preferred' qualifies the versions rather than making Angular optional."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "f694fd20a538d17002a6c1604e4c86aac711525e44878879e2fa56f2aed0180b",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

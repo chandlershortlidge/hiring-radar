@@ -1,0 +1,15 @@
+{
+  "item": 42,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "8fbb7efa53794a63f5822fa20e60072ff0cd607a746f2f0057e95801f55b5cd9",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a nice-to-have qualification bullet explicitly asks for security compliance expertise regarding 'data privacy', making this skill a valid nice-to-have.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a nice-to-have qualification bullet explicitly asks for security compliance expertise regarding 'data privacy', making this skill a valid nice-to-have.",
+  "error": null
+}

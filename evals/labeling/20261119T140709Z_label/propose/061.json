@@ -1,0 +1,14 @@
+{
+  "item": 61,
+  "golden_id": "golden_103",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "c03d1f6f773e1a2abcf6f82bc9e271fb6faece12915550445fd6e69b11a68ac9",
+  "raw": "{\"decision\": \"ok\", \"why\": \"The posting explicitly states the role is at Director level ('As a Director you will set strategic...' and the title 'AI Director'), so the agreed 'senior' value with stated basis and the verbatim signal 'AI Director' are supported by the text (rule 1 does not exclude seniority; the title is used only as the seniority signal).\"}",
+  "decision": "ok",
+  "why": "The posting explicitly states the role is at Director level ('As a Director you will set strategic...' and the title 'AI Director'), so the agreed 'senior' value with stated basis and the verbatim signal 'AI Director' are supported by the text (rule 1 does not exclude seniority; the title is used only as the seniority signal).",
+  "error": null
+}

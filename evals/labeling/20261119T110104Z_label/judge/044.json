@@ -1,0 +1,15 @@
+{
+  "item": 44,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "explainable-ai",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "8050202f088983005a2f4bcd4e5b4c268f2a0cbbe370f2d81cddad8d9117f8ee",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet explicitly requiring strong judgment around model interpretability counts as a required skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet explicitly requiring strong judgment around model interpretability counts as a required skill.",
+  "error": null
+}

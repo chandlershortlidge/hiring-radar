@@ -1,0 +1,15 @@
+{
+  "item": 62,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "llm-orchestration",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "ece585d39257698aacc09beb4ebfac672aa34a63277a1fef06efe9ff0ce183b8",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification bullet 'Built and shipped agent systems in production with orchestration' explicitly requires experience with agent orchestration.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification bullet 'Built and shipped agent systems in production with orchestration' explicitly requires experience with agent orchestration.",
+  "error": null
+}

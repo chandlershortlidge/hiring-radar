@@ -1,0 +1,14 @@
+{
+  "item": 42,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "data-modeling",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "66dfd09a9d277d1b09c6fc52464088babe6e2e60f3738a35a1c5c1817171289e",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Required Qualifications bullet names \\\"semantic data models\\\" as experience the candidate must have, and rule 3 makes that required mention decisive, so the agreed required `data-modeling` label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Required Qualifications bullet names \"semantic data models\" as experience the candidate must have, and rule 3 makes that required mention decisive, so the agreed required `data-modeling` label stands.",
+  "error": null
+}

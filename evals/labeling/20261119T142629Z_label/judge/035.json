@@ -1,0 +1,15 @@
+{
+  "item": 35,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "264f3c7d21032f47c0407a5944d88dce655ecf13260e529559f8cdddf4102d78",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a Preferred Qualifications bullet explicitly asks for experience with 'cloud-native infrastructure at scale', which supports the `cloud` skill as nice_to_have.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a Preferred Qualifications bullet explicitly asks for experience with 'cloud-native infrastructure at scale', which supports the `cloud` skill as nice_to_have.",
+  "error": null
+}

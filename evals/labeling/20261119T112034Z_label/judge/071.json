@@ -1,0 +1,15 @@
+{
+  "item": 71,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "aws",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "a76cf9450e31579b5f64e08f3dcb80cb93e6edefea7a2412a754281b77031a4b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, 'AWS' is explicitly named in a qualification bullet under the required 'What We’re Looking For' section.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, 'AWS' is explicitly named in a qualification bullet under the required 'What We’re Looking For' section.",
+  "error": null
+}

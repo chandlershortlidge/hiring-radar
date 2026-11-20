@@ -1,0 +1,14 @@
+{
+  "item": 55,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "transformers",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "b812c0a78f9a184db8c43f9a148bbf33667461de956eb532ad40ce01569dddd9",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 3, the mention 'transformer internals' appears verbatim in the REQUIRED QUALIFICATIONS section, so the agreed required tag and raw_text stand, though the 'one or more of the following' wording makes it one option among several.\"}",
+  "decision": "ok",
+  "why": "Under rule 3, the mention 'transformer internals' appears verbatim in the REQUIRED QUALIFICATIONS section, so the agreed required tag and raw_text stand, though the 'one or more of the following' wording makes it one option among several.",
+  "error": null
+}

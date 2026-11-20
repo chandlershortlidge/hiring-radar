@@ -1,0 +1,15 @@
+{
+  "item": 27,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "sql",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "47e630b8177ae652d6ab29d9999a6bdeafcd001aaf04ddde38c714ab54897580",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 3, 'MS SQL' appears only in the 'What Sets You Apart' preferred qualifications section, making it a nice_to_have skill rather than a required one.\"}",
+  "decision": "A",
+  "why": "Under Rule 3, 'MS SQL' appears only in the 'What Sets You Apart' preferred qualifications section, making it a nice_to_have skill rather than a required one.",
+  "error": null
+}

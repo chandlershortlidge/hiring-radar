@@ -1,0 +1,93 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning solutions\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"cloud platforms\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps foundations\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model development\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model development, deployment\"\n    },\n    {\n      \"skill_id\": \"ml-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML engineering tooling\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data pipelines\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD workflows\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"deep learning frameworks\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"ML observability solutions\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"feature stores\",\n      \"raw_text\": \"feature stores\"\n    },\n    {\n      \"label\": \"model optimization\",\n      \"raw_text\": \"model optimization for performance and cost\"\n    },\n    {\n      \"label\": \"real-time and batch inference systems\",\n      \"raw_text\": \"real-time and batch inference systems\"\n    },\n    {\n      \"label\": \"cloud security\",\n      \"raw_text\": \"cloud security\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Master's degree in Computer Science, Software Engineering, Machine Learning, or a related field\",\n  \"uncertain\": [],\n  \"notes\": \"Skills named only in Responsibilities (e.g., SageMaker, EC2, EKS, infrastructure-as-code, model serving) are omitted per the labeling guide.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning solutions"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "required",
+        "raw_text": "cloud platforms"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps foundations"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "model development"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "model development, deployment"
+      },
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "ML engineering tooling"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "data pipelines"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD workflows"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "deep learning frameworks"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "nice_to_have",
+        "raw_text": "ML observability solutions"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "feature stores",
+        "raw_text": "feature stores"
+      },
+      {
+        "label": "model optimization",
+        "raw_text": "model optimization for performance and cost"
+      },
+      {
+        "label": "real-time and batch inference systems",
+        "raw_text": "real-time and batch inference systems"
+      },
+      {
+        "label": "cloud security",
+        "raw_text": "cloud security"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Master's degree in Computer Science, Software Engineering, Machine Learning, or a related field",
+    "uncertain": [],
+    "notes": "Skills named only in Responsibilities (e.g., SageMaker, EC2, EKS, infrastructure-as-code, model serving) are omitted per the labeling guide."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "c24eb1b0c72f2ba311305fe83e390dfce81065cebb457485483f6b3fcee6f32d",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

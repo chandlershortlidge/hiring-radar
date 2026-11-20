@@ -1,0 +1,14 @@
+{
+  "item": 16,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "hallucination-detection",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f9b211b1111f2eff1a50ba084d37d1245a3d3315f8e07124535e7a7a41570833",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1, the Qualifications bullet names \"hallucination risk\" as an area requiring \"strong judgment,\" which counts as a named skill, and Labeler A's required tag with that raw_text is supported by the posting; Labeler B gave no reason to drop it.\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 74 (char 73)"
+}

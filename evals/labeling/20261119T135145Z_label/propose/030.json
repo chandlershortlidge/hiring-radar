@@ -1,0 +1,14 @@
+{
+  "item": 30,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "data-science",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7a4e8003295e5a2203103f85241463fd1b5c7f987a6d0a83e14d2995af7a9b20",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the 'plus' bullet asking for code that produces 'high-quality data science procedures' is a qualification that names data science, and under rule 3 the mention is nice_to_have since it sits under 'While not required,' so labeler B's tag and raw_text are supported.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the 'plus' bullet asking for code that produces 'high-quality data science procedures' is a qualification that names data science, and under rule 3 the mention is nice_to_have since it sits under 'While not required,' so labeler B's tag and raw_text are supported.",
+  "error": null
+}

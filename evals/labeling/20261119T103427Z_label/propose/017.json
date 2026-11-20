@@ -1,0 +1,14 @@
+{
+  "item": 17,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "networking",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "92df4d40624b98bde747471421d730231ffc3c6d002ff38999d0d39baa1e24cc",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the 'Who You Are' bullet says the candidate is experienced with 'Ethernet-based control networks', which names a networking skill as a qualification, and under rule 3 that required mention wins over A's omission.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the 'Who You Are' bullet says the candidate is experienced with 'Ethernet-based control networks', which names a networking skill as a qualification, and under rule 3 that required mention wins over A's omission.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 31,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "bd4d04380952fff66762da2fad39eef1aa796501ee71e9bc1dfcdd0a48646413",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 4, the only shown text mentioning model training ('foundation model training') sits in the 'What You'll Do' responsibilities list, and no qualification asks the candidate for this skill, so it does not belong in the key.\"}",
+  "decision": "drop",
+  "why": "Under rule 4, the only shown text mentioning model training ('foundation model training') sits in the 'What You'll Do' responsibilities list, and no qualification asks the candidate for this skill, so it does not belong in the key.",
+  "error": null
+}

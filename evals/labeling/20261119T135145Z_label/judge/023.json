@@ -1,0 +1,15 @@
+{
+  "item": 23,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "faa2625968b33fe99c74f44551a9225109cf06b4daff50000398daa810452144",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 1 and Rule 5, the qualification bullet names 'generative machine learning models' and does not specifically name LLMs.\"}",
+  "decision": "drop",
+  "why": "Under Rule 1 and Rule 5, the qualification bullet names 'generative machine learning models' and does not specifically name LLMs.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 35,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "fine-tuning",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "df8361f923235530d76171fda995e47537e578abe2916c0e907923c4564895c1",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Rule 5: the required line names \\\"LLM post-training,\\\" a broader parent category, not \\\"fine-tuning,\\\" and it is only one of four alternatives in \\\"one or more of,\\\" so the text does not clearly name the fine-tuning skill itself.\"}",
+  "decision": "drop",
+  "why": "Rule 5: the required line names \"LLM post-training,\" a broader parent category, not \"fine-tuning,\" and it is only one of four alternatives in \"one or more of,\" so the text does not clearly name the fine-tuning skill itself.",
+  "error": null
+}

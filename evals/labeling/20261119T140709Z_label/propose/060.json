@@ -1,0 +1,14 @@
+{
+  "item": 60,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "data-pipelines",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "4518776ab3fe1b9dac608f582009a9c77b2c70503f3ae9b194925c80c3b31be7",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required minimum qualification bullet names building and operating production ETL/ELT pipelines, and the quoted raw_text 'production ETL/ELT pipelines' appears verbatim, so the required `data-pipelines` label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required minimum qualification bullet names building and operating production ETL/ELT pipelines, and the quoted raw_text 'production ETL/ELT pipelines' appears verbatim, so the required `data-pipelines` label stands.",
+  "error": null
+}

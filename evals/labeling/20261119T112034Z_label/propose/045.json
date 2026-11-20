@@ -1,0 +1,14 @@
+{
+  "item": 45,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "azure",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "96064598f0d1c5c9feea149691d859fbddea911fc1a4d113c19c20b82f3cb3e5",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under Rule 1, the qualifications-section bullet on production ML/LLMOps names Azure AI as a cloud service the candidate must have experience with, and that bullet is not marked as a plus, so it is a required mention (Rule 3) and `azure` belongs in the key.\"}",
+  "decision": "A",
+  "why": "Under Rule 1, the qualifications-section bullet on production ML/LLMOps names Azure AI as a cloud service the candidate must have experience with, and that bullet is not marked as a plus, so it is a required mention (Rule 3) and `azure` belongs in the key.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 24,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "a3bb1e25a7c85d31e3e8bb051fbb48328fde710ea330691eb5832da8c4c6aa07",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1 the ML mention sits in the 'What Sets You Apart' section, not 'What You Must Have', and rule 3 finds no required mention, so nice_to_have (labeler A) is correct.\"}",
+  "decision": "A",
+  "why": "Under rule 1 the ML mention sits in the 'What Sets You Apart' section, not 'What You Must Have', and rule 3 finds no required mention, so nice_to_have (labeler A) is correct.",
+  "error": null
+}

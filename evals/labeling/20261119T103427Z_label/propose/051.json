@@ -1,0 +1,14 @@
+{
+  "item": 51,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "inference-optimization",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7ff9c617a1b0a295048e6099e453e8496012b0a6239b9d02c4d0ef61665827db",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the bullet \\\"You've made a model meaningfully faster on target hardware\\\" is a qualification line in the \\\"Things that would stand out\\\" section, so it names the skill and nice_to_have is the right requirement level, with the raw_text quoted verbatim.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the bullet \"You've made a model meaningfully faster on target hardware\" is a qualification line in the \"Things that would stand out\" section, so it names the skill and nice_to_have is the right requirement level, with the raw_text quoted verbatim.",
+  "error": null
+}

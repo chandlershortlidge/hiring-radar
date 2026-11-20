@@ -1,0 +1,15 @@
+{
+  "item": 36,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "c3c90035dd53268d3510e1731ca37dd93e08dc586b6d59356a2e9dd75cf4962f",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 4, the mentions of 'LLM post-training' only appear in the team overview and the responsibilities section, with no qualification bullet asking the candidate for this skill.\"}",
+  "decision": "drop",
+  "why": "Under Rule 4, the mentions of 'LLM post-training' only appear in the team overview and the responsibilities section, with no qualification bullet asking the candidate for this skill.",
+  "error": null
+}

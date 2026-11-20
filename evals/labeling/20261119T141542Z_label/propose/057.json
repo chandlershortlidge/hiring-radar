@@ -1,0 +1,14 @@
+{
+  "item": 57,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "backend-development",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "6f7f9293aadcf5111d44c5de9de10095dd2a0c28e291a454451a22512e2e6513",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required qualification 'Proven experience supporting the data backend for active, production AI applications' names backend work, and the agreed required label with that raw_text is supported by the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required qualification 'Proven experience supporting the data backend for active, production AI applications' names backend work, and the agreed required label with that raw_text is supported by the posting.",
+  "error": null
+}

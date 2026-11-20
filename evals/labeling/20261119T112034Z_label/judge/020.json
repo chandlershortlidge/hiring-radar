@@ -1,0 +1,15 @@
+{
+  "item": 20,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "a75c76b510ff635a1b06be82c2b47d625a59aec4302845e211df44754f10d2df",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 5, do not add the broad parent skill `software-engineering` when the text does not name it.\"}",
+  "decision": "drop",
+  "why": "Under rule 5, do not add the broad parent skill `software-engineering` when the text does not name it.",
+  "error": null
+}

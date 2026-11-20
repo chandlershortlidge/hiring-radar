@@ -1,0 +1,15 @@
+{
+  "item": 72,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "60614458725b2d545d3fb15689be21547d5435407f2b63f7f92c4c28fe9f0ffc",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Preferred qualification bullet explicitly names 'privacy-preserving machine learning', which supports the `data-privacy-and-security` skill as nice_to_have.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Preferred qualification bullet explicitly names 'privacy-preserving machine learning', which supports the `data-privacy-and-security` skill as nice_to_have.",
+  "error": null
+}

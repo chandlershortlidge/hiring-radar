@@ -1,0 +1,14 @@
+{
+  "item": 70,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "networking",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0c1047766e2d88cb9ef05bbd4c679cd518536eb49e392e2879c218c6e99f3fdd",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required 'You may be a good fit if you' bullet names networking as a systems-level performance area candidates must understand, and rule 3 makes that required mention control, so the agreed required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required 'You may be a good fit if you' bullet names networking as a systems-level performance area candidates must understand, and rule 3 makes that required mention control, so the agreed required label stands.",
+  "error": null
+}

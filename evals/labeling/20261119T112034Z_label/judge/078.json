@@ -1,0 +1,15 @@
+{
+  "item": 78,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "pytorch",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "78d61479263b251e2ba985d283d32448b17324d080579f041b0f409396375c92",
+  "raw": "{\"decision\": \"ok\", \"why\": \"By rules 1 and 3, PyTorch is explicitly named in a qualification bullet under required qualifications, making it a required skill.\"}",
+  "decision": "ok",
+  "why": "By rules 1 and 3, PyTorch is explicitly named in a qualification bullet under required qualifications, making it a required skill.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 41,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "codex",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "52e2920f8b71b8f8335a1e096d907596de7cdba0a766973d99325059e62e260a",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet under 'WHAT YOU'LL NEED' directly names Codex as a required daily AI coding tool.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet under 'WHAT YOU'LL NEED' directly names Codex as a required daily AI coding tool.",
+  "error": null
+}

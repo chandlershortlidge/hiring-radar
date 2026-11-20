@@ -1,0 +1,112 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"JAX\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"training or fine-tuning large language models\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"fine-tuning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"fine-tuning\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"large language models\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"pandas\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"pandas\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"spreadsheet agents\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement learning\"\n    },\n    {\n      \"skill_id\": \"testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"tests\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CI pipelines\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"TabPFN\",\n      \"raw_text\": \"TabPFN\"\n    },\n    {\n      \"label\": \"Gradient Boosting\",\n      \"raw_text\": \"gradient boosting\"\n    },\n    {\n      \"label\": \"Text-to-SQL\",\n      \"raw_text\": \"text-to-SQL\"\n    },\n    {\n      \"label\": \"Table Question Answering\",\n      \"raw_text\": \"table question answering\"\n    }\n  ],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"PhD / Master in a relevant field (Computer Science, Statistics, Machine Learning) — exceptional candidates from other backgrounds welcome.\",\n  \"uncertain\": [\n    \"degree\"\n  ],\n  \"notes\": \"Mapped 'training or fine-tuning large language models' to model-development, fine-tuning, and llms; marked model-development uncertain as it is part of an 'or' phrase with fine-tuning.\\nMapped 'spreadsheet agents' to agents and marked uncertain as it refers to a specific application domain of agents.\\nMarked degree uncertain regarding degree_or_equivalent: 'exceptional candidates from other backgrounds welcome' implies non-degree or alternative backgrounds are accepted, and the bullet itself is under NICE TO HAVE.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "required",
+        "raw_text": "JAX"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "training or fine-tuning large language models",
+        "uncertain": true
+      },
+      {
+        "skill_id": "fine-tuning",
+        "requirement": "required",
+        "raw_text": "fine-tuning"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "large language models"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "pandas",
+        "requirement": "required",
+        "raw_text": "pandas"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "spreadsheet agents",
+        "uncertain": true
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement learning"
+      },
+      {
+        "skill_id": "testing",
+        "requirement": "nice_to_have",
+        "raw_text": "tests"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "nice_to_have",
+        "raw_text": "CI pipelines"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "TabPFN",
+        "raw_text": "TabPFN"
+      },
+      {
+        "label": "Gradient Boosting",
+        "raw_text": "gradient boosting"
+      },
+      {
+        "label": "Text-to-SQL",
+        "raw_text": "text-to-SQL"
+      },
+      {
+        "label": "Table Question Answering",
+        "raw_text": "table question answering"
+      }
+    ],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": true,
+    "degree_signal": "PhD / Master in a relevant field (Computer Science, Statistics, Machine Learning) — exceptional candidates from other backgrounds welcome.",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "Mapped 'training or fine-tuning large language models' to model-development, fine-tuning, and llms; marked model-development uncertain as it is part of an 'or' phrase with fine-tuning.\nMapped 'spreadsheet agents' to agents and marked uncertain as it refers to a specific application domain of agents.\nMarked degree uncertain regarding degree_or_equivalent: 'exceptional candidates from other backgrounds welcome' implies non-degree or alternative backgrounds are accepted, and the bullet itself is under NICE TO HAVE."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "ea562468ce765926983813cf63e8660108ec1c7aaf8d1c0ddb628ff61fb2ca83",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

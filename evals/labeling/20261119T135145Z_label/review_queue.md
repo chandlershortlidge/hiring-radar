@@ -219,7 +219,9 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: B - Under rule 1, the required qualification "2+ years of hands-on experience architecting and deploying agentic AI systems" names a skill, not just a job title or a bare years line, so labeler B's required agent-architecture tag stands (rule 3 also favors the required mention).
+
+DECISION: B
 
 ## 18. golden_095 - skill `ai-deployment` (disagreement)
 
@@ -230,7 +232,9 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: B - Under rule 1, the 'What we're looking for' bullet requiring 2+ years of 'architecting and deploying agentic AI systems' is a qualification that names the skill, and rule 3 makes that required mention control, so B's required label with the verbatim quote is correct.
+
+DECISION: B
 
 ## 19. golden_095 - skill `software-engineering` (disagreement)
 
@@ -241,7 +245,9 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: drop - Under rule 1, the only quoted mention, "6+ years of backend software engineering experience," is a years-of-experience line, which does not count as naming a skill, and the excerpt shows no other mention of software engineering as a skill.
+
+DECISION: drop
 
 ## 20. golden_096 - skill `model-development` (disagreement)
 
@@ -251,6 +257,8 @@ DECISION: ?
 - B: `model-development` · required · raw_text: "AI inference and/or training workflows"
 
 Options: `A` / `B` / `both` / `drop`
+
+PROPOSED: B - Under rules 1 and 3, the required qualification bullet "Familiarity with AI inference and/or training workflows" names training workflows, which supports model-development as required, and labeler B's raw_text quotes it accurately; the operational framing is a weaker match, so this is a close call.
 
 DECISION: ?
 
@@ -263,7 +271,9 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: A - Under rule 3, the only model-serving mention visible in the excerpt is "model-serving patterns" in the Preferred/Bonus Qualifications section, so it is nice_to_have, and labeler B's quoted required phrase does not appear in the posting excerpt.
+
+DECISION: A
 
 ## 22. golden_097 - skill `inference-optimization` (disagreement)
 
@@ -274,7 +284,9 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: drop - Under rule 5, the posting never names inference or serving; "optimizing the performance of machine learning models" is a generic performance-optimization phrase that does not support the narrower inference-optimization skill.
+
+DECISION: drop
 
 ## 23. golden_097 - skill `llms` (disagreement)
 
@@ -285,7 +297,9 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: drop - Under rule 5, "generative machine learning models" is a broader category than LLMs and does not name LLMs, so adding `llms` would be inferring a specific skill the text does not state.
+
+DECISION: drop
 
 ## 24. golden_098 - attribute `seniority` (disagreement)
 
@@ -296,7 +310,9 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: A - Under rule 4, the 'Lead the setup, calibration, maintenance and tuning' signal is a responsibility rather than something the candidate is asked for, while the 'Minimum Qualifications' line requiring 3+ years of experience directly supports a mid-level reading.
+
+DECISION: A
 
 ## 25. golden_098 - skill `computer-vision` (disagreement)
 
@@ -306,6 +322,8 @@ DECISION: ?
 - B: `computer-vision` · nice_to_have · raw_text: "3D perception on hardware"
 
 Options: `A` / `B` / `both` / `drop`
+
+PROPOSED: B - Under rule 1, the Preferred Qualifications bullet names 3D perception and depth sensing, which are computer-vision skills, so the nice_to_have tag with the verbatim raw_text "3D perception on hardware" holds even though the word "computer vision" never appears.
 
 DECISION: ?
 
@@ -318,6 +336,8 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
+PROPOSED: B - Under rule 1, the required Minimum Qualifications bullet on robot learning names training or deploying learned policies, and rule 3 makes that required mention decisive, so the model-development label with its required tag and raw_text stands.
+
 DECISION: ?
 
 ## 27. golden_098 - skill `software-architecture` (disagreement)
@@ -328,6 +348,8 @@ DECISION: ?
 - B: `software-architecture` · required · raw_text: "designed robot software systems end to end"
 
 Options: `A` / `B` / `both` / `drop`
+
+PROPOSED: B - Under Minimum Qualifications, rule 1 applies: the "System design" bullet requires having "designed robot software systems end to end" with data flow and interfaces, which is software architecture work the posting actually asks for, so labeler B's required tag stands.
 
 DECISION: ?
 
@@ -340,7 +362,9 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: B - Under rule 1, the required-qualifications line "Deep expertise on ML frameworks" names ML expertise, and under rule 3 that required mention wins over labeler A's omission, so the required machine-learning label stands.
+
+DECISION: B
 
 ## 29. golden_101 - skill `machine-learning` (disagreement)
 
@@ -351,7 +375,9 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: B - Under rule 3, the required bullets name ML work ("Deep understanding of modern AI/ML models" and "hardware implementation of ML optimization techniques"), and B's quoted raw_text "ML optimization techniques" is a verbatim required mention, so B's label stands (rule 1 is also met since this is a qualification bullet).
+
+DECISION: B
 
 ## 30. golden_102 - skill `data-science` (disagreement)
 
@@ -362,7 +388,9 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: B - Under rule 1, the 'plus' bullet asking for code that produces 'high-quality data science procedures' is a qualification that names data science, and under rule 3 the mention is nice_to_have since it sits under 'While not required,' so labeler B's tag and raw_text are supported.
+
+DECISION: B
 
 ## 31. golden_103 - skill `testing` (disagreement)
 
@@ -373,7 +401,9 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: drop - Under rule 5, the posting never names testing; "confident debugging" is a different skill, and labeler A did not tag testing, so the testing label should not be in the key.
+
+DECISION: drop
 
 ## 32. golden_104 - skill `ai-ml` (disagreement)
 
@@ -384,7 +414,9 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: B - Under rule 1, the 'What You Bring' bullet requiring 'a proven track record of deploying AI/ML models to production in the cloud' is a qualification that names the skill, and under rule 3 that required mention wins, so labeler B's required ai-ml label stands.
+
+DECISION: B
 
 ## 33. golden_104 - skill `machine-learning` (disagreement)
 
@@ -395,7 +427,9 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: B - Under rule 1, the required qualification bullets name ML directly ("deploying AI/ML models to production" and "experience using ML frameworks such as PyTorch or TensorFlow"), so labeler B's required machine-learning label is supported and its raw_text appears verbatim in the posting.
+
+DECISION: B
 
 ## 34. golden_105 - skill `software-architecture` (disagreement)
 
@@ -406,7 +440,9 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: B - Under rule 1, the preferred-qualifications bullet on a track record of technical leadership names "architectural direction" as a skill area, so the nice_to_have software-architecture tag from labeler B stands.
+
+DECISION: B
 
 ## 35. golden_105 - skill `software-engineering` (disagreement)
 
@@ -417,7 +453,9 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: drop - Under rule 1, the only mention, "9+ years of software development experience," is a years-of-experience line, which does not count as a named skill, and rule 5 bars adding a broad skill the qualifications do not otherwise name.
+
+DECISION: drop
 
 ## 36. golden_108 - skill `ai-deployment` (disagreement)
 
@@ -428,7 +466,9 @@ DECISION: ?
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+PROPOSED: B - Under rule 1, the required qualification 'building and deploying a relevant ML application' names a skill rather than just a title or years line, and rule 3 supports the required mention quoted by labeler B.
+
+DECISION: B
 
 ## 37. golden_108 - skill `model-development` (disagreement)
 
@@ -438,6 +478,8 @@ DECISION: ?
 - B: `model-development` · required · raw_text: "developing ML training code"
 
 Options: `A` / `B` / `both` / `drop`
+
+PROPOSED: B - Under rule 1, the required qualification bullet "Experience in developing ML training code for use in a cloud computing environment" names ML development work, and under rule 3 that required mention, quoted as "developing ML training code", supports labeler B's required model-development tag.
 
 DECISION: ?
 
@@ -461,7 +503,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the qualification sentence "Experience building agentic AI solutions for pricing is highly desirable" names the skill, and it is the only mention, so nice_to_have is correct and the agreed raw_text is verbatim.
+
+DECISION: ok
 
 ## 40. golden_094 - skill `ai-deployment` (uncertain)
 
@@ -472,7 +516,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the 'What we're looking for' bullet requiring 'successfully deploying models' is a qualification naming the skill, and rule 3 makes that required mention decisive, so the agreed required label and quote stand.
+
+DECISION: ok
 
 ## 41. golden_095 - skill `async-processing` (uncertain)
 
@@ -483,7 +529,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the 'What we're looking for' bullet names 'production expertise in async concurrency' as a requirement, and under rule 3 that required mention supports the agreed required async-processing label with its quoted raw_text.
+
+DECISION: ok
 
 ## 42. golden_095 - skill `data-privacy-and-security` (uncertain)
 
@@ -494,7 +542,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the nice-to-have bullet names data privacy as part of its security compliance expertise, the quoted "data privacy" appears verbatim, and the "not required" framing correctly makes it nice_to_have.
+
+DECISION: ok
 
 ## 43. golden_095 - skill `mcp` (uncertain)
 
@@ -505,7 +555,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the 'What we're looking for' bullet asks for production experience with 'Anthropic MCP' as a named protocol, and rule 3 makes that required mention determinative, with the raw_text quoted verbatim.
+
+DECISION: ok
 
 ## 44. golden_096 - attribute `degree` (uncertain)
 
@@ -527,7 +579,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the Preferred/Bonus qualification bullet names the skill of building customer-facing API platforms (onboarding, key/auth management, metering), which is building APIs rather than consuming them under rule 2, and the nice_to_have level matches the Preferred section.
+
+DECISION: ok
 
 ## 46. golden_096 - skill `networking` (uncertain)
 
@@ -538,7 +592,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the Required Qualifications bullet on accelerated workloads in Kubernetes names networking, and under rule 3 that required mention makes the agreed required label correct; the raw_text appears verbatim in the posting.
+
+DECISION: ok
 
 ## 47. golden_097 - skill `ai-deployment` (uncertain)
 
@@ -548,6 +604,8 @@ DECISION: ?
 - B: `ai-deployment` · required · raw_text: "machine learning R&D and deployment experience"
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+PROPOSED: drop - Under rule 1, the only support is the years-of-experience line "3+ years of machine learning R&D and deployment experience," which does not count as a named skill, and no other required mention of AI deployment appears.
 
 DECISION: ?
 
@@ -560,7 +618,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the bonus-qualifications bullet "Experience with training generative machine learning models" names a skill, and its placement under Preferred/Bonus supports the nice_to_have requirement, so the agreed label stands.
+
+DECISION: ok
 
 ## 49. golden_098 - attribute `degree` (uncertain)
 
@@ -582,7 +642,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the Minimum Qualifications bullet names RL as one of the accepted forms of trained learned policies, and rule 3 makes that required mention control, so the agreed required label and quote stand.
+
+DECISION: ok
 
 ## 51. golden_099 - attribute `degree` (uncertain)
 
@@ -604,7 +666,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the required-qualifications bullet names deep learning in "Quantization, sparsity, or algorithmic optimization for deep learning", and rule 3 says a required mention wins, so the agreed required label and quoted raw_text stand.
+
+DECISION: ok
 
 ## 53. golden_099 - skill `llms` (uncertain)
 
@@ -615,7 +679,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under Rule 1, the REQUIRED QUALIFICATIONS bullet names LLM architectures as an option in a required list, and Rule 3 makes that required mention decisive, so the agreed required label with raw_text "LLM architectures" stands.
+
+DECISION: ok
 
 ## 54. golden_099 - skill `quantization` (uncertain)
 
@@ -626,7 +692,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: drop - Under rule 4, the only visible mention of quantization is in the ROLE SUMMARY as something the company may do ('if improving inference efficiency requires inventing new quantization schemes'), not a candidate requirement, and the excerpt is cut off before any qualifications list where the agreed raw_text 'Quantization' would need to appear.
+
+DECISION: drop
 
 ## 55. golden_099 - skill `transformers` (uncertain)
 
@@ -637,7 +705,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 3, the mention 'transformer internals' appears verbatim in the REQUIRED QUALIFICATIONS section, so the agreed required tag and raw_text stand, though the 'one or more of the following' wording makes it one option among several.
+
+DECISION: ok
 
 ## 56. golden_100 - attribute `degree` (uncertain)
 
@@ -658,6 +728,8 @@ DECISION: ?
 - B: value="mid" · basis="inferred" · signal="Masters + 3 years of experience"
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+PROPOSED: drop - Under rule 1, a years-of-experience qualification line does not count as a seniority signal, and the posting names no seniority level (no junior, mid, senior or similar), so the inferred "mid" is unsupported and the attribute should be null.
 
 DECISION: ?
 
@@ -681,7 +753,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the required qualification 'Deep understanding of modern AI/ML models, particularly LLMs' names the skill directly, and the agreed raw_text 'modern AI/ML models' appears verbatim, so the required label stands (rule 3).
+
+DECISION: ok
 
 ## 60. golden_101 - skill `distributed-systems` (uncertain)
 
@@ -692,7 +766,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the Required Qualifications bullet explicitly names "distributed computing" as a required understanding, and rule 3 makes that required mention decisive, so the agreed label stands.
+
+DECISION: ok
 
 ## 61. golden_101 - skill `networking` (uncertain)
 
@@ -703,7 +779,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the Preferred/Bonus bullet "High-speed inter-chip networking experience" is a qualification that names networking as a skill, and the nice_to_have requirement matches the preferred section heading.
+
+DECISION: ok
 
 ## 62. golden_102 - skill `machine-learning` (uncertain)
 
@@ -714,7 +792,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the bullet "Hands-on experience with machine learning frameworks such as scikit-learn, TensorFlow, or PyTorch" is a qualification naming the skill, and it sits under "While not required, these are a plus," so nice_to_have and the quoted raw_text are correct.
+
+DECISION: ok
 
 ## 63. golden_103 - attribute `degree` (uncertain)
 
@@ -736,7 +816,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the 'What You'll Need' bullet 'Agentic systems knowledge — tools, memory, and long-running workflows' is a qualification that names the skill, and the agreed raw_text 'memory, and long-running workflows' appears verbatim in it (rule 3), so the required label stands.
+
+DECISION: ok
 
 ## 65. golden_103 - skill `ai-deployment` (uncertain)
 
@@ -747,7 +829,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the required qualification bullet names deployment ("inference, and deployment") as part of its ML infrastructure experience list, so the agreed required ai-deployment label stands; the years-of-experience clause alone would not have counted.
+
+DECISION: ok
 
 ## 66. golden_103 - skill `ai-infrastructure` (uncertain)
 
@@ -757,6 +841,8 @@ DECISION: ?
 - B: `ai-infrastructure` · required · raw_text: "ML infrastructure experience"
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+PROPOSED: drop - Under rule 1, "4+ years of ML infrastructure experience" is a years-of-experience line like the rule's "experience as a software engineer" example, so it does not establish the ai-infrastructure skill, and no other required mention in the excerpt names it.
 
 DECISION: ?
 
@@ -769,7 +855,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under Rule 1, the 'What You'll Need' bullet 'Familiarity with cloud and containerization (e.g., GCP, AWS, Docker)' is a qualification naming AWS, the required raw_text 'AWS' appears verbatim, and Rule 5 is not triggered because AWS itself is named rather than inferred from a parent category.
+
+DECISION: ok
 
 ## 68. golden_103 - skill `gcp` (uncertain)
 
@@ -780,7 +868,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the 'What You'll Need' bullet asks for familiarity with cloud platforms and explicitly names GCP as one of them, so the qualification names the skill as required, and the agreed raw_text "GCP" appears in the posting.
+
+DECISION: ok
 
 ## 69. golden_103 - skill `observability` (uncertain)
 
@@ -790,6 +880,8 @@ DECISION: ?
 - B: `observability` · required · raw_text: "monitoring"
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+PROPOSED: ok - Under the 'What You'll Need' qualifications, rule 1 applies because the bullet asks for experience with 'profiling, and monitoring' as part of end-to-end model development, and monitoring is a named observability practice, so the agreed required label stands.
 
 DECISION: ?
 
@@ -802,7 +894,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the required qualification bullet "Agentic systems knowledge — tools, memory, and long-running workflows" names tools in an agentic context, which is tool-calling, and rule 3 makes that required mention decisive, so the agreed label stands.
+
+DECISION: ok
 
 ## 71. golden_104 - attribute `degree` (uncertain)
 
@@ -824,7 +918,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the Preferred bullet "Familiarity with model encryption, privacy-preserving machine learning, and secure AI techniques" is a qualification that names the skill, so the agreed nice_to_have label and the verbatim raw_text are correct.
+
+DECISION: ok
 
 ## 73. golden_105 - skill `ai-developer-tooling` (uncertain)
 
@@ -835,7 +931,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the required qualification bullet "Demonstrated, heavy AI-native delivery... consistent use of AI across the SDLC" names AI use in the development workflow, and rule 3 makes that required mention decisive, so the agreed required label stands.
+
+DECISION: ok
 
 ## 74. golden_105 - skill `ai-ml` (uncertain)
 
@@ -846,7 +944,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under Preferred Qualifications, the bullet 'Experience integrating AI/LLM capabilities into product experiences responsibly' names an AI/ML skill (rule 1), so nice_to_have and the verbatim raw_text 'AI/LLM capabilities' are correct as agreed.
+
+DECISION: ok
 
 ## 75. golden_105 - skill `cloud` (uncertain)
 
@@ -857,7 +957,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the Required Skills bullet names cloud-native systems as a qualification, and the agreed raw_text "operating cloud-native systems that scale" appears verbatim, so the required `cloud` label stands.
+
+DECISION: ok
 
 ## 76. golden_106 - skill `ai-infrastructure` (uncertain)
 
@@ -867,6 +969,8 @@ DECISION: ?
 - B: `ai-infrastructure` · required · raw_text: "ML infrastructure"
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
+
+PROPOSED: drop - Under rule 1, the only mention of ML infrastructure is inside the '3+ years of professional experience in ... ML infrastructure' line, which is a years-of-experience line and does not count as a named skill.
 
 DECISION: ?
 
@@ -879,7 +983,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the PREFERRED / BONUS bullet "Familiarity with containerized deployments (Docker/Kubernetes)" names Docker as a nice-to-have, and the agreed raw_text "Docker/Kubernetes" appears verbatim in the posting.
+
+DECISION: ok
 
 ## 78. golden_106 - skill `kubernetes` (uncertain)
 
@@ -890,7 +996,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the bullet "Familiarity with containerized deployments (Docker/Kubernetes)" names Kubernetes, the raw_text appears verbatim, and its placement under PREFERRED / BONUS makes nice_to_have the correct requirement level.
+
+DECISION: ok
 
 ## 79. golden_106 - skill `model-serving` (uncertain)
 
@@ -901,7 +1009,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under Rule 1, the REQUIRED QUALIFICATIONS bullet asks for 'Deep familiarity with one or more LLM serving frameworks,' and Rule 3 makes that required mention decisive, so the agreed required model-serving label with raw_text 'LLM serving frameworks' stands.
+
+DECISION: ok
 
 ## 80. golden_107 - attribute `seniority` (uncertain)
 
@@ -912,7 +1022,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 4, the responsibility-line signal is backed by a required qualification ('3+ years of experience leading Machine Learning research initiatives'), so the inferred 'senior' value stands with its verbatim signal.
+
+DECISION: ok
 
 ## 81. golden_107 - skill `docker` (uncertain)
 
@@ -923,7 +1035,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the Preferred/Bonus bullet "Experience with containerization and orchestration technologies (e.g., Docker, Kubernetes)" is a qualification naming the skill, so it counts; it is correctly marked nice_to_have, and "Docker" appears verbatim in the posting.
+
+DECISION: ok
 
 ## 82. golden_107 - skill `kubernetes` (uncertain)
 
@@ -934,7 +1048,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the preferred-qualifications bullet "Experience with containerization and orchestration technologies (e.g., Docker, Kubernetes)" names Kubernetes, so it counts as a nice_to_have skill, and the raw_text "Kubernetes" appears verbatim in the posting.
+
+DECISION: ok
 
 ## 83. golden_107 - skill `machine-learning` (uncertain)
 
@@ -945,7 +1061,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under rule 1, the required bullet '3+ years of experience leading Machine Learning research initiatives' names machine learning as a skill, not just a title or years line, and rule 3 makes that required mention decisive.
+
+DECISION: ok
 
 ## 84. golden_108 - attribute `degree` (uncertain)
 
@@ -967,7 +1085,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Rule 1 bars a years-of-experience line from counting as a skill, but seniority is an attribute, not a skill, and the quoted "2-4 years of experience" appears verbatim and supports an inferred mid level.
+
+DECISION: ok
 
 ## 86. golden_108 - skill `cloud` (uncertain)
 
@@ -978,7 +1098,9 @@ DECISION: ?
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+PROPOSED: ok - Under Rule 1, the 'What You'll Need' section names cloud computing as a required experience area ('ML training code for use in a cloud computing environment'), and Rule 3 confirms the required mention, so the agreed label and raw_text stand.
+
+DECISION: ok
 
 ## 87. golden_094 - attribute `german` (spot-check)
 
@@ -988,7 +1110,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 88. golden_094 - skill `ai-developer-tooling` (spot-check)
 
@@ -998,7 +1120,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 89. golden_094 - skill `forecasting` (spot-check)
 
@@ -1008,7 +1130,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 90. golden_095 - attribute `german` (spot-check)
 
@@ -1018,7 +1140,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 91. golden_095 - attribute `seniority` (spot-check)
 
@@ -1028,7 +1150,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 92. golden_095 - skill `ai-developer-tooling` (spot-check)
 
@@ -1048,7 +1170,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 94. golden_095 - skill `claude-code` (spot-check)
 
@@ -1058,7 +1180,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 95. golden_095 - skill `cloud` (spot-check)
 
@@ -1068,7 +1190,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 96. golden_095 - skill `containerization` (spot-check)
 
@@ -1078,7 +1200,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 97. golden_095 - skill `fine-tuning` (spot-check)
 
@@ -1088,7 +1210,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 98. golden_095 - skill `google-adk` (spot-check)
 
@@ -1098,7 +1220,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 99. golden_095 - skill `java` (spot-check)
 
@@ -1108,7 +1230,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 100. golden_095 - skill `llamaindex` (spot-check)
 
@@ -1118,7 +1240,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 101. golden_095 - skill `llm-orchestration` (spot-check)
 
@@ -1128,7 +1250,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 102. golden_095 - skill `llmops` (spot-check)
 
@@ -1138,7 +1260,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 103. golden_095 - skill `observability` (spot-check)
 
@@ -1148,7 +1270,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 104. golden_095 - skill `vector-databases` (spot-check)
 
@@ -1168,7 +1290,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 106. golden_096 - skill `gcp` (spot-check)
 
@@ -1178,7 +1300,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 107. golden_096 - skill `gitops` (spot-check)
 
@@ -1188,7 +1310,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 108. golden_096 - skill `observability` (spot-check)
 
@@ -1198,7 +1320,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 109. golden_096 - skill `python` (spot-check)
 
@@ -1208,7 +1330,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 110. golden_096 - skill `triton-inference-server` (spot-check)
 
@@ -1218,7 +1340,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 111. golden_097 - attribute `degree` (spot-check)
 
@@ -1238,7 +1360,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 113. golden_097 - skill `cpp` (spot-check)
 
@@ -1248,7 +1370,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 114. golden_097 - skill `docker` (spot-check)
 
@@ -1258,7 +1380,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 115. golden_097 - skill `kubernetes` (spot-check)
 
@@ -1278,7 +1400,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 117. golden_097 - skill `python` (spot-check)
 
@@ -1288,7 +1410,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 118. golden_097 - skill `pytorch` (spot-check)
 
@@ -1298,7 +1420,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 119. golden_097 - skill `tensorflow` (spot-check)
 
@@ -1308,7 +1430,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 120. golden_097 - skill `testing` (spot-check)
 
@@ -1318,7 +1440,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 121. golden_098 - attribute `german` (spot-check)
 
@@ -1338,7 +1460,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 123. golden_098 - skill `pytorch` (spot-check)
 
@@ -1348,7 +1470,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 124. golden_099 - skill `python` (spot-check)
 
@@ -1368,7 +1490,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 126. golden_100 - attribute `german` (spot-check)
 
@@ -1388,7 +1510,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 128. golden_101 - skill `cloud` (spot-check)
 
@@ -1398,7 +1520,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 129. golden_101 - skill `quantization` (spot-check)
 
@@ -1408,7 +1530,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 130. golden_102 - attribute `degree` (spot-check)
 
@@ -1428,7 +1550,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 132. golden_102 - skill `dbt` (spot-check)
 
@@ -1438,7 +1560,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 133. golden_102 - skill `pytorch` (spot-check)
 
@@ -1448,7 +1570,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 134. golden_102 - skill `sagemaker` (spot-check)
 
@@ -1468,7 +1590,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 136. golden_102 - skill `sql` (spot-check)
 
@@ -1478,7 +1600,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 137. golden_102 - skill `statistics` (spot-check)
 
@@ -1488,7 +1610,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 138. golden_102 - skill `tableau` (spot-check)
 
@@ -1508,7 +1630,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 140. golden_103 - skill `containerization` (spot-check)
 
@@ -1528,7 +1650,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 142. golden_103 - skill `evaluation` (spot-check)
 
@@ -1548,7 +1670,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 144. golden_103 - skill `jax` (spot-check)
 
@@ -1558,7 +1680,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 145. golden_103 - skill `model-development` (spot-check)
 
@@ -1568,7 +1690,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 146. golden_103 - skill `pytorch` (spot-check)
 
@@ -1578,7 +1700,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 147. golden_104 - attribute `seniority` (spot-check)
 
@@ -1588,7 +1710,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 148. golden_104 - skill `cpp` (spot-check)
 
@@ -1598,7 +1720,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 149. golden_104 - skill `fine-tuning` (spot-check)
 
@@ -1608,7 +1730,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 150. golden_104 - skill `knowledge-distillation` (spot-check)
 
@@ -1638,7 +1760,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 153. golden_104 - skill `software-architecture` (spot-check)
 
@@ -1668,7 +1790,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 156. golden_105 - attribute `german` (spot-check)
 
@@ -1678,7 +1800,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 157. golden_106 - skill `cpp` (spot-check)
 
@@ -1688,7 +1810,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 158. golden_106 - skill `deepspeed` (spot-check)
 
@@ -1698,7 +1820,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 159. golden_106 - skill `vllm` (spot-check)
 
@@ -1708,7 +1830,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 160. golden_107 - skill `aws` (spot-check)
 
@@ -1718,7 +1840,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 161. golden_107 - skill `gcp` (spot-check)
 
@@ -1728,7 +1850,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 162. golden_107 - skill `jax` (spot-check)
 
@@ -1748,7 +1870,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 164. golden_107 - skill `pytorch` (spot-check)
 
@@ -1758,7 +1880,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 165. golden_107 - skill `tensorflow` (spot-check)
 
@@ -1768,7 +1890,7 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 166. golden_108 - skill `python` (spot-check)
 
@@ -1778,4 +1900,4 @@ DECISION: ?
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok

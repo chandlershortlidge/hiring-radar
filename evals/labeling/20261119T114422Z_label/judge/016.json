@@ -1,0 +1,15 @@
+{
+  "item": 16,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "data-pipelines",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "5ae5fb7465636333b1870ae413261e8f7dbe195d6be9b24c4505d126cfcff373",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the preferred qualification bullet explicitly asks for experience building 'synthetic data generation pipelines', which directly supports labeling the `data-pipelines` skill as nice_to_have.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the preferred qualification bullet explicitly asks for experience building 'synthetic data generation pipelines', which directly supports labeling the `data-pipelines` skill as nice_to_have.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 35,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "deep-learning",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "54c254ed91efac1daa449d8a3c316892197d71c9887934e5f2934af8fa0999b8",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the qualification bullet asking for experience with 'geometric deep learning' explicitly names the skill as a requirement.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the qualification bullet asking for experience with 'geometric deep learning' explicitly names the skill as a requirement.",
+  "error": null
+}

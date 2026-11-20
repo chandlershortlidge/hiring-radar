@@ -1,0 +1,18 @@
+{
+  "item": 23,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "{\"raw_text\": \"AI and data strategy\", \"requirement\": \"nice_to_have\"}",
+  "key_sha256": "26816c77ebd8f6d5feef90d52d980202eb2dfa772c2d262acebcbeacce2c2286",
+  "raw": "{\"decision\": {\"requirement\": \"nice_to_have\", \"raw_text\": \"AI and data strategy\"}, \"why\": \"Under Rule 1, 'AI and data strategy' appears in a qualification bullet, and under Rule 3 it is nice_to_have because it is only listed under the preferred 'What Sets You Apart' section.\"}",
+  "decision": {
+    "requirement": "nice_to_have",
+    "raw_text": "AI and data strategy"
+  },
+  "why": "Under Rule 1, 'AI and data strategy' appears in a qualification bullet, and under Rule 3 it is nice_to_have because it is only listed under the preferred 'What Sets You Apart' section.",
+  "error": null
+}

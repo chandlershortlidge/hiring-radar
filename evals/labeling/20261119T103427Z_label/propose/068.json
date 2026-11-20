@@ -1,0 +1,17 @@
+{
+  "item": 68,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0b00eba3238ca88d0576ef203decf055f6b1154acc75ad0667e1f1b242a42eed",
+  "raw": "{\"decision\": {\"requirement\": \"required\", \"raw_text\": \"Hands-on experience training and fine-tuning large-scale models\"}, \"why\": \"Under rule 1 the labeled quote sits in a years-of-experience line, which does not count, but the separate qualification bullet 'Hands-on experience training and fine-tuning large-scale models' names model work and supports the skill as required, so rule 3 points to that quote.\"}",
+  "decision": {
+    "requirement": "required",
+    "raw_text": "Hands-on experience training and fine-tuning large-scale models"
+  },
+  "why": "Under rule 1 the labeled quote sits in a years-of-experience line, which does not count, but the separate qualification bullet 'Hands-on experience training and fine-tuning large-scale models' names model work and supports the skill as required, so rule 3 points to that quote.",
+  "error": null
+}

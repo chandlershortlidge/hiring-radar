@@ -1,0 +1,15 @@
+{
+  "item": 28,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "ee47861bb06e44dbeb73429ae25bd48edf819e142da2f109a7ad2a553236b503",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1 and Rule 3, the required qualification bullet asking for 'Deep expertise on ML frameworks' and 'understanding of ML model deployment challenges' explicitly names machine learning.\"}",
+  "decision": "B",
+  "why": "Under Rule 1 and Rule 3, the required qualification bullet asking for 'Deep expertise on ML frameworks' and 'understanding of ML model deployment challenges' explicitly names machine learning.",
+  "error": null
+}

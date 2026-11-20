@@ -1,0 +1,14 @@
+{
+  "item": 75,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "bd64ae7ad9bf1d8e9602c4b3aa592237be183865f5652e98bf45f6744984d944",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Minimum qualifications bullet names experience with pre-training or mid-training of language models (Track 1) and language-model post-training (Track 2), so `llms` is a required skill and the agreed raw_text appears verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Minimum qualifications bullet names experience with pre-training or mid-training of language models (Track 1) and language-model post-training (Track 2), so `llms` is a required skill and the agreed raw_text appears verbatim in the posting.",
+  "error": null
+}

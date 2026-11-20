@@ -1,0 +1,14 @@
+{
+  "item": 26,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "hallucination-detection",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "6f544868b930f82a5c4e8ac085228c9119a02a75695b7e769d1d9e92f71bf5b1",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 3 the only mention is in the 'What Sets You Apart' bullet, which makes it nice_to_have rather than required, and labeler A's raw_text 'hallucinations' is the exact quoted mention, while B's required tag has no support in the 'What You Must Have' list (rule 1).\"}",
+  "decision": "A",
+  "why": "Under rule 3 the only mention is in the 'What Sets You Apart' bullet, which makes it nice_to_have rather than required, and labeler A's raw_text 'hallucinations' is the exact quoted mention, while B's required tag has no support in the 'What You Must Have' list (rule 1).",
+  "error": null
+}

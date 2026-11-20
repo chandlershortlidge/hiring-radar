@@ -1,0 +1,14 @@
+{
+  "item": 46,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "networking",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "99660354725e820ba3b22f9d525e4d71aaee2ef09d001707880a82d2c39bd8ef",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Required Qualifications bullet on accelerated workloads in Kubernetes names networking, and under rule 3 that required mention makes the agreed required label correct; the raw_text appears verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Required Qualifications bullet on accelerated workloads in Kubernetes names networking, and under rule 3 that required mention makes the agreed required label correct; the raw_text appears verbatim in the posting.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 55,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "b8c978141bba91eea183f7d2c862f5245687d1b537e7cf2b87d7124a469eb7b8",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 1, asking for motivation and 'care for data privacy' is an attitudinal statement rather than a qualification asking for data privacy and security as a skill.\"}",
+  "decision": "drop",
+  "why": "Under Rule 1, asking for motivation and 'care for data privacy' is an attitudinal statement rather than a qualification asking for data privacy and security as a skill.",
+  "error": null
+}

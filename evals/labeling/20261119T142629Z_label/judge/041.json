@@ -1,0 +1,15 @@
+{
+  "item": 41,
+  "golden_id": "golden_096",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "523517b36eadca441dba65e65a28fcde120faa24c2f60d57669bf99209cab3f8",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 4, 'You will... lead prompt engineering' is a job responsibility rather than a candidate requirement, and neither the title nor the text specifies a seniority level.\"}",
+  "decision": "drop",
+  "why": "Under Rule 4, 'You will... lead prompt engineering' is a job responsibility rather than a candidate requirement, and neither the title nor the text specifies a seniority level.",
+  "error": null
+}

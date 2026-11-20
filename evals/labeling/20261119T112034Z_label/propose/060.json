@@ -1,0 +1,14 @@
+{
+  "item": 60,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "terraform",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f957d97d11ef5e375109aa3a0b9dd1649bead1bf0f7c8e6d7f88651985e5600d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the PREFERRED SKILLS bullet 'Knowledge of infrastructure as code (Terraform, Ansible)' names Terraform, so it counts as nice_to_have, and 'Terraform' appears verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the PREFERRED SKILLS bullet 'Knowledge of infrastructure as code (Terraform, Ansible)' names Terraform, so it counts as nice_to_have, and 'Terraform' appears verbatim in the posting.",
+  "error": null
+}

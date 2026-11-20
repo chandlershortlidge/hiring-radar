@@ -1,0 +1,15 @@
+{
+  "item": 44,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "gcp",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "f30c0bd0d594a4764418ca003a2501f0a316b6825d4160c3fd01a11eaca63980",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rules 1 and 3, Google Cloud is named in a qualification bullet specifically as 'preferred' while AWS or Azure are acceptable alternatives, making it a nice_to_have skill.\"}",
+  "decision": "ok",
+  "why": "Under rules 1 and 3, Google Cloud is named in a qualification bullet specifically as 'preferred' while AWS or Azure are acceptable alternatives, making it a nice_to_have skill.",
+  "error": null
+}

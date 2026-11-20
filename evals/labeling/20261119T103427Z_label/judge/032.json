@@ -1,0 +1,15 @@
+{
+  "item": 32,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "7be3e6d2a5dfa9d8cfbdf533afb74419360fa700b07e6d174829cec0d2f71bc3",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a required qualification bullet asks for \\\"Exposure to the development and use of machine learning models\\\", which explicitly names model development.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a required qualification bullet asks for \"Exposure to the development and use of machine learning models\", which explicitly names model development.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 17,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "agent-architecture",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d117088c81ac2201a2f18a4fdb3dedc4ab4c7f7a49d9104ba5956b8e64056a7e",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the required qualification \\\"2+ years of hands-on experience architecting and deploying agentic AI systems\\\" names a skill, not just a job title or a bare years line, so labeler B's required agent-architecture tag stands (rule 3 also favors the required mention).\"}",
+  "decision": "B",
+  "why": "Under rule 1, the required qualification \"2+ years of hands-on experience architecting and deploying agentic AI systems\" names a skill, not just a job title or a bare years line, so labeler B's required agent-architecture tag stands (rule 3 also favors the required mention).",
+  "error": null
+}

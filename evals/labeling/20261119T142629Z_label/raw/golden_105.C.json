@@ -1,0 +1,25 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Short summary posting containing only role overview and responsibilities ('You will write production-grade data pipelines and APIs...'); no requirements, qualifications, or tech-stack sections asking the candidate to have skills.\"\n}",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Short summary posting containing only role overview and responsibilities ('You will write production-grade data pipelines and APIs...'); no requirements, qualifications, or tech-stack sections asking the candidate to have skills."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "f20e4f0d910d06e6801c26b7333ba25b29dbb0985ed9079db7b9f2fe6b0181cb",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

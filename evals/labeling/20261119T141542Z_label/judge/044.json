@@ -1,0 +1,15 @@
+{
+  "item": 44,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "377599f943bb1efadf1786b29011f429e584bbaed57ec75cbc95615e3d7397d2",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the 'Skills:' section explicitly names 'Cloud Computing', which counts as a required qualification skill.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the 'Skills:' section explicitly names 'Cloud Computing', which counts as a required qualification skill.",
+  "error": null
+}

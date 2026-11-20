@@ -1,0 +1,14 @@
+{
+  "item": 44,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "github-copilot",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "50306db6d8fadb02f09f1384142b62ed1c03faf0b715c0e3c491ea3a76c8595f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the WHAT YOU'LL NEED bullet says the candidate uses AI coding tools including Copilot daily, which is a required qualification naming the skill, and rule 3 makes that required mention control with raw_text 'Copilot' appearing verbatim.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the WHAT YOU'LL NEED bullet says the candidate uses AI coding tools including Copilot daily, which is a required qualification naming the skill, and rule 3 makes that required mention control with raw_text 'Copilot' appearing verbatim.",
+  "error": null
+}

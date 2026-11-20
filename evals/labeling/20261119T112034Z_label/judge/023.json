@@ -1,0 +1,15 @@
+{
+  "item": 23,
+  "golden_id": "golden_097",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "cfddaf01b691dc186badefc8d39a32496425ababf764f673966a966f0c72fedd",
+  "raw": "{\"decision\": \"A\", \"why\": \"The posting explicitly states 'Ideally, 3-5 years of relevant experience' under Required Experience, which is the standard basis for inferring mid-level seniority (Rule 1 applies to skill extraction, not the seniority attribute).\"}",
+  "decision": "A",
+  "why": "The posting explicitly states 'Ideally, 3-5 years of relevant experience' under Required Experience, which is the standard basis for inferring mid-level seniority (Rule 1 applies to skill extraction, not the seniority attribute).",
+  "error": null
+}

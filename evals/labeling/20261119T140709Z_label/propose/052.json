@@ -1,0 +1,17 @@
+{
+  "item": 52,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "bd5f3fb0bdb1bc49374ba41bb0c33288002127543eb19dca5b6b2a065ff35863",
+  "raw": "{\"decision\": {\"requirement\": \"required\", \"raw_text\": \"Solid understanding of RAG, embeddings, text-to-SQL, prompt engineering\"}, \"why\": \"Under rule 1 the agreed quote \\\"AI/ML delivery\\\" sits in a years-of-experience line and doesn't count, but the required qualification bullet naming RAG, embeddings and prompt engineering does support ai-ml, so I re-anchor raw_text to that bullet (rule 3).\"}",
+  "decision": {
+    "requirement": "required",
+    "raw_text": "Solid understanding of RAG, embeddings, text-to-SQL, prompt engineering"
+  },
+  "why": "Under rule 1 the agreed quote \"AI/ML delivery\" sits in a years-of-experience line and doesn't count, but the required qualification bullet naming RAG, embeddings and prompt engineering does support ai-ml, so I re-anchor raw_text to that bullet (rule 3).",
+  "error": null
+}

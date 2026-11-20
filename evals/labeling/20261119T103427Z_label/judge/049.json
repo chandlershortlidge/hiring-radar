@@ -1,0 +1,15 @@
+{
+  "item": 49,
+  "golden_id": "golden_098",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "e052ee053c09a61b68b3bede43b0b556b7baae0218b621f5b129e350485a9c31",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Rule 1 excludes years-of-experience lines from counting as skills, not from serving as the inferred signal for the seniority attribute, which is properly inferred as junior from '2+ years of relevant experience'.\"}",
+  "decision": "ok",
+  "why": "Rule 1 excludes years-of-experience lines from counting as skills, not from serving as the inferred signal for the seniority attribute, which is properly inferred as junior from '2+ years of relevant experience'.",
+  "error": null
+}

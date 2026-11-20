@@ -1,0 +1,121 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"modern machine learning\"\n    },\n    {\n      \"skill_id\": \"deep-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"geometric deep learning\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model development\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model evaluation frameworks\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Proficiency with Python and modern ML frameworks such as PyTorch, PyTorch Geometric, DGL, or related tools and cheminformatics and molecular modeling toolkits such as RDKit, ORCA, Gaussian, Q-Chem, or related software is preferred\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"PyTorch\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"cheminformatics\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cheminformatics\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"rdkit\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"RDKit\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Graph Neural Networks (GNNs)\",\n      \"raw_text\": \"graph neural networks\"\n    },\n    {\n      \"label\": \"Geometric Deep Learning\",\n      \"raw_text\": \"geometric deep learning\"\n    },\n    {\n      \"label\": \"Equivariant Architectures\",\n      \"raw_text\": \"equivariant architectures\"\n    },\n    {\n      \"label\": \"Diffusion Models\",\n      \"raw_text\": \"diffusion models\"\n    },\n    {\n      \"label\": \"Generative Models\",\n      \"raw_text\": \"generative models\"\n    },\n    {\n      \"label\": \"Active Learning\",\n      \"raw_text\": \"active learning\"\n    },\n    {\n      \"label\": \"PyTorch Geometric\",\n      \"raw_text\": \"PyTorch Geometric\"\n    },\n    {\n      \"label\": \"DGL (Deep Graph Library)\",\n      \"raw_text\": \"DGL\"\n    },\n    {\n      \"label\": \"ORCA\",\n      \"raw_text\": \"ORCA\"\n    },\n    {\n      \"label\": \"Gaussian\",\n      \"raw_text\": \"Gaussian\"\n    },\n    {\n      \"label\": \"Q-Chem\",\n      \"raw_text\": \"Q-Chem\"\n    },\n    {\n      \"label\": \"DFT (Density Functional Theory)\",\n      \"raw_text\": \"DFT\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"(Senior) Scientist, Machine Learning\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Ph.D. in machine learning, computational chemistry, chemical physics, computer science, applied mathematics, or a related discipline with 2+ years of industry experience, or M.S. degree with 6+ years of industry experience\",\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"In the bullet 'Proficiency with Python and modern ML frameworks such as PyTorch, PyTorch Geometric, DGL, or related tools and cheminformatics and molecular modeling toolkits such as RDKit, ORCA, Gaussian, Q-Chem, or related software is preferred', it is grammatically ambiguous whether 'is preferred' governs the entire sentence (including Python and PyTorch) or only the second clause ('cheminformatics and molecular modeling toolkits...'); labeled all as nice_to_have and flagged uncertain.\\nTitle is '(Senior) Scientist, Machine Learning' (parenthetical Senior) and requirements ask for Ph.D. + 2+ years or M.S. + 6+ years; labeled senior (stated) and flagged uncertain.\\nMapped 'geometric deep learning' to deep-learning (flagged uncertain) and also recorded in unmapped.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "modern machine learning"
+      },
+      {
+        "skill_id": "deep-learning",
+        "requirement": "required",
+        "raw_text": "geometric deep learning",
+        "uncertain": true
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "model development"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "model evaluation frameworks"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "nice_to_have",
+        "raw_text": "Proficiency with Python and modern ML frameworks such as PyTorch, PyTorch Geometric, DGL, or related tools and cheminformatics and molecular modeling toolkits such as RDKit, ORCA, Gaussian, Q-Chem, or related software is preferred",
+        "uncertain": true
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "nice_to_have",
+        "raw_text": "PyTorch",
+        "uncertain": true
+      },
+      {
+        "skill_id": "cheminformatics",
+        "requirement": "nice_to_have",
+        "raw_text": "cheminformatics",
+        "uncertain": true
+      },
+      {
+        "skill_id": "rdkit",
+        "requirement": "nice_to_have",
+        "raw_text": "RDKit"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Graph Neural Networks (GNNs)",
+        "raw_text": "graph neural networks"
+      },
+      {
+        "label": "Geometric Deep Learning",
+        "raw_text": "geometric deep learning"
+      },
+      {
+        "label": "Equivariant Architectures",
+        "raw_text": "equivariant architectures"
+      },
+      {
+        "label": "Diffusion Models",
+        "raw_text": "diffusion models"
+      },
+      {
+        "label": "Generative Models",
+        "raw_text": "generative models"
+      },
+      {
+        "label": "Active Learning",
+        "raw_text": "active learning"
+      },
+      {
+        "label": "PyTorch Geometric",
+        "raw_text": "PyTorch Geometric"
+      },
+      {
+        "label": "DGL (Deep Graph Library)",
+        "raw_text": "DGL"
+      },
+      {
+        "label": "ORCA",
+        "raw_text": "ORCA"
+      },
+      {
+        "label": "Gaussian",
+        "raw_text": "Gaussian"
+      },
+      {
+        "label": "Q-Chem",
+        "raw_text": "Q-Chem"
+      },
+      {
+        "label": "DFT (Density Functional Theory)",
+        "raw_text": "DFT"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "(Senior) Scientist, Machine Learning",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Ph.D. in machine learning, computational chemistry, chemical physics, computer science, applied mathematics, or a related discipline with 2+ years of industry experience, or M.S. degree with 6+ years of industry experience",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "In the bullet 'Proficiency with Python and modern ML frameworks such as PyTorch, PyTorch Geometric, DGL, or related tools and cheminformatics and molecular modeling toolkits such as RDKit, ORCA, Gaussian, Q-Chem, or related software is preferred', it is grammatically ambiguous whether 'is preferred' governs the entire sentence (including Python and PyTorch) or only the second clause ('cheminformatics and molecular modeling toolkits...'); labeled all as nice_to_have and flagged uncertain.\nTitle is '(Senior) Scientist, Machine Learning' (parenthetical Senior) and requirements ask for Ph.D. + 2+ years or M.S. + 6+ years; labeled senior (stated) and flagged uncertain.\nMapped 'geometric deep learning' to deep-learning (flagged uncertain) and also recorded in unmapped."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "0908d24f3115afb287b4dd430de216b89512734badcfb33a092c7ac72cff7901",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

@@ -1,0 +1,14 @@
+{
+  "item": 27,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "observability",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e1fef079246ace92c6419ebf542dcae7216aeee21635b675b9cdab96f0972784",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required qualification bullet asks for a candidate who can take systems to production that are \\\"observable\\\", which names the observability skill, and rule 3 makes that required mention control.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required qualification bullet asks for a candidate who can take systems to production that are \"observable\", which names the observability skill, and rule 3 makes that required mention control.",
+  "error": null
+}

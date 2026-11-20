@@ -1,0 +1,14 @@
+{
+  "item": 39,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "rdkit",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "6a2817c93c4ec86710e91d4e6f3e2fbb21e26bb4e203c10ac07bd4a8aacf9ae9",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification bullet names RDKit as one of the toolkits for which experience is preferred, so the agreed nice_to_have label with raw_text \\\"RDKit\\\" is correct as it stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification bullet names RDKit as one of the toolkits for which experience is preferred, so the agreed nice_to_have label with raw_text \"RDKit\" is correct as it stands.",
+  "error": null
+}

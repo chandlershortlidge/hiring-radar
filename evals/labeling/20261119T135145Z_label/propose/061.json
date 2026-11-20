@@ -1,0 +1,14 @@
+{
+  "item": 61,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "networking",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d78fd485cc72a2cfa09ee999eb24e5b948805e7897383efcf496928aca151a38",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Preferred/Bonus bullet \\\"High-speed inter-chip networking experience\\\" is a qualification that names networking as a skill, and the nice_to_have requirement matches the preferred section heading.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Preferred/Bonus bullet \"High-speed inter-chip networking experience\" is a qualification that names networking as a skill, and the nice_to_have requirement matches the preferred section heading.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 61,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "observability",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "4647fac64617b7c16283901d3e8cc567cc31eaef28e5fb9866dbb6e0f42261d0",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1 the bullet naming Grafana, Prometheus and OpenTelemetry under observability is a skill-naming sentence, and rule 3 keeps the agreed required status since nothing in the excerpt marks it optional, though the 'Our stack' framing is a weak basis for 'required'.\"}",
+  "decision": "ok",
+  "why": "Under rule 1 the bullet naming Grafana, Prometheus and OpenTelemetry under observability is a skill-naming sentence, and rule 3 keeps the agreed required status since nothing in the excerpt marks it optional, though the 'Our stack' framing is a weak basis for 'required'.",
+  "error": null
+}

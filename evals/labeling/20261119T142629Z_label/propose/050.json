@@ -1,0 +1,14 @@
+{
+  "item": 50,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "async-processing",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f192b4589e5f0f65d689cd146f4cc3624f3d24cdad8198cd99905a69cd96a229",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Required Skills bullet names \\\"Async Python\\\" as a skill the candidate must have hands-on experience with, and rule 3 makes that required mention decisive, so the agreed required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Required Skills bullet names \"Async Python\" as a skill the candidate must have hands-on experience with, and rule 3 makes that required mention decisive, so the agreed required label stands.",
+  "error": null
+}

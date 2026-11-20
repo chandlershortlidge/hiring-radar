@@ -1,0 +1,15 @@
+{
+  "item": 67,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "mlops",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "38698feeabc5e9d7b0a103d0f043323c649a3560cd4a8766788a624615c1bdbc",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, '5+ years of experience in MLOps' is a qualification bullet that explicitly names the skill MLOps rather than a job title line like 'experience as a software engineer'.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, '5+ years of experience in MLOps' is a qualification bullet that explicitly names the skill MLOps rather than a job title line like 'experience as a software engineer'.",
+  "error": null
+}

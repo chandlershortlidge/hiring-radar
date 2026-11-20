@@ -1,0 +1,14 @@
+{
+  "item": 82,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "5d6fb8406ec7bf24f6c6b4840f80515f9a7a8d9cda625674b935647209ea7f46",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the requirements bullet \\\"5+ years building and shipping ML systems, with focus on computer vision\\\" names machine learning as a qualification the candidate must have, and the years framing describes the ML work itself rather than a job title, so the agreed required label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the requirements bullet \"5+ years building and shipping ML systems, with focus on computer vision\" names machine learning as a qualification the candidate must have, and the years framing describes the ML work itself rather than a job title, so the agreed required label stands.",
+  "error": null
+}

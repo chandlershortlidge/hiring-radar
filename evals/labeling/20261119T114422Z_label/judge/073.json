@@ -1,0 +1,15 @@
+{
+  "item": 73,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "networking",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "f7f2799ccba3894bfa93409a44d1e4a828fd680af5a77cb8cc60c9a6898eaf6f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a sentence describing what the candidate specializes in ('You specialize in systems (... networking)') counts as a required qualification naming the skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a sentence describing what the candidate specializes in ('You specialize in systems (... networking)') counts as a required qualification naming the skill.",
+  "error": null
+}

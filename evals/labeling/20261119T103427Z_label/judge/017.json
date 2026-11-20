@@ -1,0 +1,15 @@
+{
+  "item": 17,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "networking",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "8c8231678d109d16290a42ef282c33a35a5a17c945713116c3c5a229b2793e9c",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the 'Who You Are' qualification bullet requires experience with 'Ethernet-based control networks', which supports the networking skill.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the 'Who You Are' qualification bullet requires experience with 'Ethernet-based control networks', which supports the networking skill.",
+  "error": null
+}

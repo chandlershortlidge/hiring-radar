@@ -1,0 +1,15 @@
+{
+  "item": 56,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "58bd9f3983acd4364c17fdfce221fbceb8a8b4c91ec7d504ec2c1a211733b1e8",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the qualification bullet under 'About you' asks for experience 'evaluating them against baselines and metrics', which explicitly names model evaluation as a required skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the qualification bullet under 'About you' asks for experience 'evaluating them against baselines and metrics', which explicitly names model evaluation as a required skill.",
+  "error": null
+}

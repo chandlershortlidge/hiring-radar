@@ -1,0 +1,14 @@
+{
+  "item": 20,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f8012dc6672203b6c0857fbda9e7c4196f7e719006b58b33e9c5ec61ba983b60",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the nice-to-have bullet \\\"Commercial experience writing critical production code\\\" is a qualification that names a software engineering skill, and the quoted raw_text appears verbatim in the posting.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the nice-to-have bullet \"Commercial experience writing critical production code\" is a qualification that names a software engineering skill, and the quoted raw_text appears verbatim in the posting.",
+  "error": null
+}

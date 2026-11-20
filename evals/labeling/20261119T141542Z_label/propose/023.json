@@ -1,0 +1,14 @@
+{
+  "item": 23,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "knowledge-graphs",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "cd0cef0897de5327426c4ae5fb1d0ede41c0143ed4bc5ee261c7ff0438e3e57c",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1 the knowledge-graphs bullet is a qualification, but it sits under the heading \\\"What Sets You Apart\\\" and the surrounding text is framed as a preference, so it is nice_to_have rather than required, and rule 3 does not apply because no other required mention appears in the excerpt.\"}",
+  "decision": "A",
+  "why": "Under rule 1 the knowledge-graphs bullet is a qualification, but it sits under the heading \"What Sets You Apart\" and the surrounding text is framed as a preference, so it is nice_to_have rather than required, and rule 3 does not apply because no other required mention appears in the excerpt.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 74,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "knowledge-distillation",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "19e819bcd4f379ebd9debb7b8f0934c490f533ff0cd1c302978ffe90c2ab294f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the sentence 'Relevant experience includes ... distillation' is a qualification line that names the skill, and 'distillation' is the knowledge-distillation technique, so the agreed label stands (rule 3 favours the required reading, and rule 5 adds nothing beyond what is named).\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the sentence 'Relevant experience includes ... distillation' is a qualification line that names the skill, and 'distillation' is the knowledge-distillation technique, so the agreed label stands (rule 3 favours the required reading, and rule 5 adds nothing beyond what is named).",
+  "error": null
+}

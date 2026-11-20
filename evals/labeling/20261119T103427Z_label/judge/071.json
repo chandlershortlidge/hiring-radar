@@ -1,0 +1,15 @@
+{
+  "item": 71,
+  "golden_id": "golden_106",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "a4156b8709d51813ba9c0440011407bf320e0ea7d7229330177088735478b15b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Rule 1 excludes job titles as evidence for skills, not for the seniority attribute, which is explicitly stated here by 'Staff' in the job title.\"}",
+  "decision": "ok",
+  "why": "Rule 1 excludes job titles as evidence for skills, not for the seniority attribute, which is explicitly stated here by 'Staff' in the job title.",
+  "error": null
+}

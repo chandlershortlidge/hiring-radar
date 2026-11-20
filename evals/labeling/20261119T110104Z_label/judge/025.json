@@ -1,0 +1,15 @@
+{
+  "item": 25,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "api-design",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "d90df0bc0cbbce21059edc6d94e93861b02a1d73281885d9ffbcb7387005def5",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rules 1 and 2, the required qualification bullet 'Experience designing SDKs, APIs, and data contracts' directly names the api-design skill.\"}",
+  "decision": "ok",
+  "why": "Under rules 1 and 2, the required qualification bullet 'Experience designing SDKs, APIs, and data contracts' directly names the api-design skill.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 24,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "fine-tuning",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "0311769047fdc333ede0afbf7680b885839d185a7857db53f0959f2916258b3d",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1, the Preferred qualifications bullet \\\"Experience with language-model training or post-training\\\" names a skill, and post-training is effectively fine-tuning, so the labeler's nice_to_have fine-tuning tag with raw_text \\\"post-training\\\" is supported.\"}",
+  "decision": "A",
+  "why": "Under rule 1, the Preferred qualifications bullet \"Experience with language-model training or post-training\" names a skill, and post-training is effectively fine-tuning, so the labeler's nice_to_have fine-tuning tag with raw_text \"post-training\" is supported.",
+  "error": null
+}

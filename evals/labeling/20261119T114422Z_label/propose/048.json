@@ -1,0 +1,14 @@
+{
+  "item": 48,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "embeddings",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "33511bfac633dc771ba5f9c7ec55399c632b54841d05feba565f0175eb4e198b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the MINIMUM QUALIFICATIONS bullet names embedding models as experience the candidate must have, and under rule 3 that required mention, quoted as \\\"(embedding models\\\", supports the agreed required label.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the MINIMUM QUALIFICATIONS bullet names embedding models as experience the candidate must have, and under rule 3 that required mention, quoted as \"(embedding models\", supports the agreed required label.",
+  "error": null
+}

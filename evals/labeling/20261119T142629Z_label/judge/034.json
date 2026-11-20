@@ -1,0 +1,15 @@
+{
+  "item": 34,
+  "golden_id": "golden_094",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "853284d889082cd9e6cc341e703f3830e17051ca288880446245c9026cf036d8",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, the Minimum Qualifications bullet explicitly requires experience building 'at least one agentic system', which supports the `agents` skill as required.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, the Minimum Qualifications bullet explicitly requires experience building 'at least one agentic system', which supports the `agents` skill as required.",
+  "error": null
+}

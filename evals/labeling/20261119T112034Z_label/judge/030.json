@@ -1,0 +1,15 @@
+{
+  "item": 30,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "7a534817ba2bf50cd8efb78ce5aec90724c5ca746a590406e23a0187369dc9e4",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the qualification bullet asking for a track record of 'shipping models on real robots' directly refers to AI model deployment.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the qualification bullet asking for a track record of 'shipping models on real robots' directly refers to AI model deployment.",
+  "error": null
+}

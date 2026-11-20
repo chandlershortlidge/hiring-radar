@@ -1,0 +1,14 @@
+{
+  "item": 72,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "azure",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1a4b783be507d12a6ade1413c9fdb7832f8400920a25065d89a5cf81bf93c5b3",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, \\\"Experience with cloud environments (Azure, AWS, GCP)\\\" is a qualification bullet under \\\"What We're Looking For\\\" that names Azure, and Rule 3 makes that required mention decisive, so the agreed required label with raw_text \\\"Azure\\\" stands.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, \"Experience with cloud environments (Azure, AWS, GCP)\" is a qualification bullet under \"What We're Looking For\" that names Azure, and Rule 3 makes that required mention decisive, so the agreed required label with raw_text \"Azure\" stands.",
+  "error": null
+}

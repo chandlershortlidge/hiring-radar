@@ -1,0 +1,15 @@
+{
+  "item": 29,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "ai-infrastructure",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "1deb3a208df519bda086e10eb572265b237511793fd32f89c4da90b440a777d9",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 1 and Rule 4, the skill only appears in the job title and a responsibility sentence ('Focus will be on...'), without the candidate being asked for it as a qualification.\"}",
+  "decision": "drop",
+  "why": "Under Rule 1 and Rule 4, the skill only appears in the job title and a responsibility sentence ('Focus will be on...'), without the candidate being asked for it as a qualification.",
+  "error": null
+}

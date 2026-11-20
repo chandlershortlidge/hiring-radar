@@ -1,0 +1,14 @@
+{
+  "item": 56,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "kubernetes",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d186ee50c44604220d33bb8a8582d65c7e266a903e152a6cc88a034b1c225de2",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Minimum Qualifications sentence asks for container orchestration experience and names Kubernetes as its example, and under rule 3 that required mention, quoted word for word, supports keeping the agreed label.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Minimum Qualifications sentence asks for container orchestration experience and names Kubernetes as its example, and under rule 3 that required mention, quoted word for word, supports keeping the agreed label.",
+  "error": null
+}

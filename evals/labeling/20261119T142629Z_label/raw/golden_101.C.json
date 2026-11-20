@@ -1,0 +1,25 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [],\n  \"unmapped\": [],\n  \"seniority\": null,\n  \"seniority_basis\": null,\n  \"seniority_signal\": null,\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD-level candidate\",\n  \"uncertain\": [],\n  \"notes\": \"Very short summary posting. 'advance machine learning across recommendation, search, and e-commerce systems' and 'You will design scalable ML solutions with strong data governance, privacy, and security' describe responsibilities/the role's focus rather than explicit skill qualifications asked of the candidate, so no skills are extracted.\"\n}",
+  "parsed": {
+    "expected": [],
+    "unmapped": [],
+    "seniority": null,
+    "seniority_basis": null,
+    "seniority_signal": null,
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD-level candidate",
+    "uncertain": [],
+    "notes": "Very short summary posting. 'advance machine learning across recommendation, search, and e-commerce systems' and 'You will design scalable ML solutions with strong data governance, privacy, and security' describe responsibilities/the role's focus rather than explicit skill qualifications asked of the candidate, so no skills are extracted."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "f728a9abf690e9367358e7b15515917561a82c00af44858d59b7842f358bebf3",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

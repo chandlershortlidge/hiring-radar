@@ -1,0 +1,14 @@
+{
+  "item": 65,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "llm-guardrails",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "2d27f02347babd356e8eaca189a99668a918f79aaf5bcb56a4b19f016b440bfa",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1 the 'Guardrails' item sits in the required WHO YOU ARE list (not a 'plus' line), and under rule 3 the required mention in 'Experience with modern LLM tooling such as ... Guardrails ...' supports the agreed required label, though the 'such as' list makes it one of several acceptable examples.\"}",
+  "decision": "ok",
+  "why": "Under rule 1 the 'Guardrails' item sits in the required WHO YOU ARE list (not a 'plus' line), and under rule 3 the required mention in 'Experience with modern LLM tooling such as ... Guardrails ...' supports the agreed required label, though the 'such as' list makes it one of several acceptable examples.",
+  "error": null
+}

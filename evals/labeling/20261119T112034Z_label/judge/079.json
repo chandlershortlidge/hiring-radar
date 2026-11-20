@@ -1,0 +1,15 @@
+{
+  "item": 79,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "scikit-learn",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "8703ecfe86447efacc19676f89635f36bd0e78d595b21f6c283c3207dcb3671b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, 'scikit-learn' is explicitly named in a required qualification bullet ('The qualifications you need'), making the agreed label and raw_text correct.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, 'scikit-learn' is explicitly named in a required qualification bullet ('The qualifications you need'), making the agreed label and raw_text correct.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 28,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "ai-infrastructure",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "bd603c82bab93847ea8be59809efb8e36626728fbd896fa95cc5c5d44a86f0d2",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the required qualification sentence (\\\"Demonstrated hands-on experience delivering end-to-end ML systems, spanning model development, deployment, and production infrastructure\\\") names ML production infrastructure as a required skill, and B's raw_text quotes that wording verbatim.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the required qualification sentence (\"Demonstrated hands-on experience delivering end-to-end ML systems, spanning model development, deployment, and production infrastructure\") names ML production infrastructure as a required skill, and B's raw_text quotes that wording verbatim.",
+  "error": null
+}

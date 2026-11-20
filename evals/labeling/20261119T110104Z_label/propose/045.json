@@ -1,0 +1,14 @@
+{
+  "item": 45,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "042c6bc11d75ea3fc4e1140b4146d6f6a7fb17ac77afebe5f6a90f5c3388b9f3",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required qualifications section names AI/ML work in the quoted bullet \\\"cross disciplinary AI/ML projects\\\", and the same section also requires ML frameworks and AI/ML model progression, so the agreed required `ai-ml` label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required qualifications section names AI/ML work in the quoted bullet \"cross disciplinary AI/ML projects\", and the same section also requires ML frameworks and AI/ML model progression, so the agreed required `ai-ml` label stands.",
+  "error": null
+}

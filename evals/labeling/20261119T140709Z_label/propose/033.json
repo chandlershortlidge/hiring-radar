@@ -1,0 +1,14 @@
+{
+  "item": 33,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "eca05ce5bbfbc155a32761f61bc03263807769701772bf729803bd2cb34b9422",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the Job Summary's qualification sentence ('The ideal candidate will have experience ... building scalable cloud-native applications on Azure') names a skill, and rule 3 makes that required mention control, so B's required `cloud` label with its verbatim raw_text holds.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the Job Summary's qualification sentence ('The ideal candidate will have experience ... building scalable cloud-native applications on Azure') names a skill, and rule 3 makes that required mention control, so B's required `cloud` label with its verbatim raw_text holds.",
+  "error": null
+}

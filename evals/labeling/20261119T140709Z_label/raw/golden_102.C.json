@@ -1,0 +1,119 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"data-modeling\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"data modeling\"\n    },\n    {\n      \"skill_id\": \"data-pipelines\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ETL/ELT pipelines\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"sql\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"SQL\"\n    },\n    {\n      \"skill_id\": \"nlp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"natural language processing (NLP)\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"machine learning\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LLM\"\n    },\n    {\n      \"skill_id\": \"embeddings\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"vector embeddings\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"evaluation golden sets\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"ai-developer-tooling\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AI coding tools\"\n    },\n    {\n      \"skill_id\": \"apis\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"building APIs\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Data Engineering\",\n      \"raw_text\": \"data engineering\"\n    },\n    {\n      \"label\": \"Data Warehousing\",\n      \"raw_text\": \"distributed data warehouses\"\n    },\n    {\n      \"label\": \"Text Classification\",\n      \"raw_text\": \"text classification\"\n    },\n    {\n      \"label\": \"Ontologies\",\n      \"raw_text\": \"ontologies\"\n    },\n    {\n      \"label\": \"Taxonomies\",\n      \"raw_text\": \"versioned taxonomies\"\n    },\n    {\n      \"label\": \"Semantic Layers\",\n      \"raw_text\": \"semantic layers\"\n    },\n    {\n      \"label\": \"Metadata Management\",\n      \"raw_text\": \"metadata management platforms\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Senior Data Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"master\",\n  \"degree_requirement\": \"nice_to_have\",\n  \"degree_or_equivalent\": true,\n  \"degree_signal\": \"Master's degree in Computer Science, Engineering, Statistics, Mathematics, or a related quantitative discipline or equivalent professional experience.\",\n  \"uncertain\": [\n    \"degree\"\n  ],\n  \"notes\": \"MLOps appears only in the job title ('Senior Data Engineer, Taxonomy, AI Data Modeling, MLOps, YouTube Business'); included as required and flagged uncertain.\\nBachelor's degree is in Minimum qualifications (required) and Master's degree is in Preferred qualifications (nice_to_have); per guide rule 'degree is the highest level named', labeled master as nice_to_have and flagged degree uncertain.\\n'machine learning data pipelines' maps to both machine-learning and data-pipelines (the latter already covered by 'ETL/ELT pipelines').\\n'evaluation golden sets' mapped to evaluation and flagged uncertain.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-modeling",
+        "requirement": "required",
+        "raw_text": "data modeling"
+      },
+      {
+        "skill_id": "data-pipelines",
+        "requirement": "required",
+        "raw_text": "ETL/ELT pipelines"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "sql",
+        "requirement": "required",
+        "raw_text": "SQL"
+      },
+      {
+        "skill_id": "nlp",
+        "requirement": "required",
+        "raw_text": "natural language processing (NLP)"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "machine learning"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "LLM"
+      },
+      {
+        "skill_id": "embeddings",
+        "requirement": "nice_to_have",
+        "raw_text": "vector embeddings"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "nice_to_have",
+        "raw_text": "evaluation golden sets",
+        "uncertain": true
+      },
+      {
+        "skill_id": "ai-developer-tooling",
+        "requirement": "nice_to_have",
+        "raw_text": "AI coding tools"
+      },
+      {
+        "skill_id": "apis",
+        "requirement": "nice_to_have",
+        "raw_text": "building APIs"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Data Engineering",
+        "raw_text": "data engineering"
+      },
+      {
+        "label": "Data Warehousing",
+        "raw_text": "distributed data warehouses"
+      },
+      {
+        "label": "Text Classification",
+        "raw_text": "text classification"
+      },
+      {
+        "label": "Ontologies",
+        "raw_text": "ontologies"
+      },
+      {
+        "label": "Taxonomies",
+        "raw_text": "versioned taxonomies"
+      },
+      {
+        "label": "Semantic Layers",
+        "raw_text": "semantic layers"
+      },
+      {
+        "label": "Metadata Management",
+        "raw_text": "metadata management platforms"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Senior Data Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "master",
+    "degree_requirement": "nice_to_have",
+    "degree_or_equivalent": true,
+    "degree_signal": "Master's degree in Computer Science, Engineering, Statistics, Mathematics, or a related quantitative discipline or equivalent professional experience.",
+    "uncertain": [
+      "degree"
+    ],
+    "notes": "MLOps appears only in the job title ('Senior Data Engineer, Taxonomy, AI Data Modeling, MLOps, YouTube Business'); included as required and flagged uncertain.\nBachelor's degree is in Minimum qualifications (required) and Master's degree is in Preferred qualifications (nice_to_have); per guide rule 'degree is the highest level named', labeled master as nice_to_have and flagged degree uncertain.\n'machine learning data pipelines' maps to both machine-learning and data-pipelines (the latter already covered by 'ETL/ELT pipelines').\n'evaluation golden sets' mapped to evaluation and flagged uncertain."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "79cd208cee1f46ad51855604be4ac16440478451098e7f87b88a80799afb142c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

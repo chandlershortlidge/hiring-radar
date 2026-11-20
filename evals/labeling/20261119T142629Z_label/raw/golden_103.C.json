@@ -1,0 +1,204 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"software-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"software engineering\"\n    },\n    {\n      \"skill_id\": \"ml-engineering\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"ML engineering\"\n    },\n    {\n      \"skill_id\": \"mlops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLOps\"\n    },\n    {\n      \"skill_id\": \"devops\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"DevOps\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model deployment\"\n    },\n    {\n      \"skill_id\": \"observability\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"continuous monitoring\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Google Cloud Platform (GCP)\"\n    },\n    {\n      \"skill_id\": \"vertex-ai\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Vertex AI\"\n    },\n    {\n      \"skill_id\": \"kubeflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubeflow\"\n    },\n    {\n      \"skill_id\": \"airflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Apache Airflow\"\n    },\n    {\n      \"skill_id\": \"mlflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"MLflow\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"go\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Go\"\n    },\n    {\n      \"skill_id\": \"distributed-systems\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"distributed systems\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"container orchestration\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Kubernetes\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"ci-cd\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"CI/CD pipelines\"\n    },\n    {\n      \"skill_id\": \"jenkins\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Jenkins\"\n    },\n    {\n      \"skill_id\": \"gitlab-ci\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"GitLab CI\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model training\"\n    },\n    {\n      \"skill_id\": \"evaluation\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"model training, evaluation, and deployment\"\n    },\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Large Language Models (LLMs)\"\n    },\n    {\n      \"skill_id\": \"agents\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Agentic AI frameworks\"\n    },\n    {\n      \"skill_id\": \"langchain\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LangChain\"\n    },\n    {\n      \"skill_id\": \"autogen\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AutoGen\"\n    },\n    {\n      \"skill_id\": \"llamaindex\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"LlamaIndex\"\n    },\n    {\n      \"skill_id\": \"google-adk\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Agent Development Kit\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"data-privacy-and-security\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"managing highly sensitive data (e.g., PII/PHI) and implementing strict access control and encryption mechanisms\",\n      \"uncertain\": true\n    },\n    {\n      \"skill_id\": \"a-b-testing\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"A/B testing\"\n    },\n    {\n      \"skill_id\": \"grafana\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Grafana\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Datadog\",\n      \"raw_text\": \"Datadog\"\n    },\n    {\n      \"label\": \"Continuous Training\",\n      \"raw_text\": \"continuous training\"\n    },\n    {\n      \"label\": \"ML Pipelines\",\n      \"raw_text\": \"ML pipelines\"\n    },\n    {\n      \"label\": \"Data Drift Detection\",\n      \"raw_text\": \"data/concept drift detection\"\n    },\n    {\n      \"label\": \"SRE\",\n      \"raw_text\": \"SRE\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"AI Engineer Lead\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": null,\n  \"degree_requirement\": null,\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": null,\n  \"uncertain\": [],\n  \"notes\": \"Skills appearing only in 'Key Responsibilities' (such as feature engineering, SQL, Apache Kafka, experiment tracking, model serving) were omitted per the labeling guide.\\n'Agent Development Kit' is described as 'internal equivalent like Agent Development Kit', though the posting requires GCP experience, so it likely refers to Google ADK; marked uncertain.\\nMapped sensitive data management, access control, and encryption in Preferred Qualifications to data-privacy-and-security; marked uncertain.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "software-engineering",
+        "requirement": "required",
+        "raw_text": "software engineering"
+      },
+      {
+        "skill_id": "ml-engineering",
+        "requirement": "required",
+        "raw_text": "ML engineering"
+      },
+      {
+        "skill_id": "mlops",
+        "requirement": "required",
+        "raw_text": "MLOps"
+      },
+      {
+        "skill_id": "devops",
+        "requirement": "required",
+        "raw_text": "DevOps"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "model deployment"
+      },
+      {
+        "skill_id": "observability",
+        "requirement": "required",
+        "raw_text": "continuous monitoring"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "required",
+        "raw_text": "Google Cloud Platform (GCP)"
+      },
+      {
+        "skill_id": "vertex-ai",
+        "requirement": "required",
+        "raw_text": "Vertex AI"
+      },
+      {
+        "skill_id": "kubeflow",
+        "requirement": "required",
+        "raw_text": "Kubeflow"
+      },
+      {
+        "skill_id": "airflow",
+        "requirement": "required",
+        "raw_text": "Apache Airflow"
+      },
+      {
+        "skill_id": "mlflow",
+        "requirement": "required",
+        "raw_text": "MLflow"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "go",
+        "requirement": "required",
+        "raw_text": "Go"
+      },
+      {
+        "skill_id": "distributed-systems",
+        "requirement": "required",
+        "raw_text": "distributed systems"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "required",
+        "raw_text": "container orchestration"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "required",
+        "raw_text": "Kubernetes"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "required",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "ci-cd",
+        "requirement": "required",
+        "raw_text": "CI/CD pipelines"
+      },
+      {
+        "skill_id": "jenkins",
+        "requirement": "required",
+        "raw_text": "Jenkins"
+      },
+      {
+        "skill_id": "gitlab-ci",
+        "requirement": "required",
+        "raw_text": "GitLab CI"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "model training"
+      },
+      {
+        "skill_id": "evaluation",
+        "requirement": "required",
+        "raw_text": "model training, evaluation, and deployment"
+      },
+      {
+        "skill_id": "llms",
+        "requirement": "nice_to_have",
+        "raw_text": "Large Language Models (LLMs)"
+      },
+      {
+        "skill_id": "agents",
+        "requirement": "nice_to_have",
+        "raw_text": "Agentic AI frameworks"
+      },
+      {
+        "skill_id": "langchain",
+        "requirement": "nice_to_have",
+        "raw_text": "LangChain"
+      },
+      {
+        "skill_id": "autogen",
+        "requirement": "nice_to_have",
+        "raw_text": "AutoGen"
+      },
+      {
+        "skill_id": "llamaindex",
+        "requirement": "nice_to_have",
+        "raw_text": "LlamaIndex"
+      },
+      {
+        "skill_id": "google-adk",
+        "requirement": "nice_to_have",
+        "raw_text": "Agent Development Kit",
+        "uncertain": true
+      },
+      {
+        "skill_id": "data-privacy-and-security",
+        "requirement": "nice_to_have",
+        "raw_text": "managing highly sensitive data (e.g., PII/PHI) and implementing strict access control and encryption mechanisms",
+        "uncertain": true
+      },
+      {
+        "skill_id": "a-b-testing",
+        "requirement": "nice_to_have",
+        "raw_text": "A/B testing"
+      },
+      {
+        "skill_id": "grafana",
+        "requirement": "nice_to_have",
+        "raw_text": "Grafana"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Datadog",
+        "raw_text": "Datadog"
+      },
+      {
+        "label": "Continuous Training",
+        "raw_text": "continuous training"
+      },
+      {
+        "label": "ML Pipelines",
+        "raw_text": "ML pipelines"
+      },
+      {
+        "label": "Data Drift Detection",
+        "raw_text": "data/concept drift detection"
+      },
+      {
+        "label": "SRE",
+        "raw_text": "SRE"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "AI Engineer Lead",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": null,
+    "degree_requirement": null,
+    "degree_or_equivalent": false,
+    "degree_signal": null,
+    "uncertain": [],
+    "notes": "Skills appearing only in 'Key Responsibilities' (such as feature engineering, SQL, Apache Kafka, experiment tracking, model serving) were omitted per the labeling guide.\n'Agent Development Kit' is described as 'internal equivalent like Agent Development Kit', though the posting requires GCP experience, so it likely refers to Google ADK; marked uncertain.\nMapped sensitive data management, access control, and encryption in Preferred Qualifications to data-privacy-and-security; marked uncertain."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "69e709ebaf9f7d53fd0aed19d89c88be188cf914defa86a708ea5cc5a651895c",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

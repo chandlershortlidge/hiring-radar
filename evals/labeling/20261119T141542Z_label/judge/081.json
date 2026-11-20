@@ -1,0 +1,15 @@
+{
+  "item": 81,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "3566629cdb30a03dcb00d53db0498771149f6fae0640b50dcd835f90910ebc00",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualification bullet under the 'Nice to have' heading explicitly asks for experience with 'LLM tooling', supporting the `llms` skill as nice_to_have.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualification bullet under the 'Nice to have' heading explicitly asks for experience with 'LLM tooling', supporting the `llms` skill as nice_to_have.",
+  "error": null
+}

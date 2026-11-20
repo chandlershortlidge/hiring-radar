@@ -1,0 +1,14 @@
+{
+  "item": 62,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "machine-learning",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d7356c8287b173e2d4817eaf11abcb30a0db15341a10520c35d8131bfc473013",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the bullet \\\"Hands-on experience with machine learning frameworks such as scikit-learn, TensorFlow, or PyTorch\\\" is a qualification naming the skill, and it sits under \\\"While not required, these are a plus,\\\" so nice_to_have and the quoted raw_text are correct.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the bullet \"Hands-on experience with machine learning frameworks such as scikit-learn, TensorFlow, or PyTorch\" is a qualification naming the skill, and it sits under \"While not required, these are a plus,\" so nice_to_have and the quoted raw_text are correct.",
+  "error": null
+}

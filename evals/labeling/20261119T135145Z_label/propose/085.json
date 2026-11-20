@@ -1,0 +1,14 @@
+{
+  "item": 85,
+  "golden_id": "golden_108",
+  "kind": "attribute",
+  "key": "seniority",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e8df06f92d567c479398ffaa234bfcf3b5b679becb8c9ddda00946b31ea69726",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Rule 1 bars a years-of-experience line from counting as a skill, but seniority is an attribute, not a skill, and the quoted \\\"2-4 years of experience\\\" appears verbatim and supports an inferred mid level.\"}",
+  "decision": "ok",
+  "why": "Rule 1 bars a years-of-experience line from counting as a skill, but seniority is an attribute, not a skill, and the quoted \"2-4 years of experience\" appears verbatim and supports an inferred mid level.",
+  "error": null
+}

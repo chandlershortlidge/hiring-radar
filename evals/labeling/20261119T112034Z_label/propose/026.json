@@ -1,0 +1,14 @@
+{
+  "item": 26,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "model-serving",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "9acd0aba88c8618d8dec7c325cd3a36f2555d3306ef5f6a9be9eb9ea170db53c",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under the REQUIRED EXPERIENCE heading, the bullet 'Experience supporting both long-running training jobs and high-availability inference services' names serving models in production (rule 1), and rule 3 makes that required mention decisive, with A's raw_text appearing verbatim.\"}",
+  "decision": "A",
+  "why": "Under the REQUIRED EXPERIENCE heading, the bullet 'Experience supporting both long-running training jobs and high-availability inference services' names serving models in production (rule 1), and rule 3 makes that required mention decisive, with A's raw_text appearing verbatim.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 58,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "apis",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "3d0d28d21ce0b1dc5947e452d4c2a1ce49fb97cfb79d19161a1014051c75bb63",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the 'Preferred qualifications' bullet 'Experience building APIs' names a skill, and Rule 2 is satisfied because building APIs is not merely consuming them, so the agreed `apis` tag with nice_to_have and raw_text \\\"building APIs\\\" is correct.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the 'Preferred qualifications' bullet 'Experience building APIs' names a skill, and Rule 2 is satisfied because building APIs is not merely consuming them, so the agreed `apis` tag with nice_to_have and raw_text \"building APIs\" is correct.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 49,
+  "golden_id": "golden_096",
+  "kind": "skill",
+  "key": "structured-data-extraction",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1dd397e06c1a6df21eb74beff037271b11e463e7fc1ec5d82a910045b3337269",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Required Qualifications bullet names \\\"LLM-based information extraction from documents\\\", and the agreed raw_text appears word for word in that bullet, so the required structured-data-extraction label stands (rules 1 and 3).\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Required Qualifications bullet names \"LLM-based information extraction from documents\", and the agreed raw_text appears word for word in that bullet, so the required structured-data-extraction label stands (rules 1 and 3).",
+  "error": null
+}

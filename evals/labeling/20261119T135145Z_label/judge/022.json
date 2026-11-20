@@ -1,0 +1,15 @@
+{
+  "item": 22,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "inference-optimization",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "a56440422656fbc5842970ee53099d8b5a16a445116bc2f4768a44e15a46cf75",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1 and rule 5, the posting mentions 'optimizing the performance of machine learning models' generally without naming inference or inference optimization specifically.\"}",
+  "decision": "drop",
+  "why": "Under rule 1 and rule 5, the posting mentions 'optimizing the performance of machine learning models' generally without naming inference or inference optimization specifically.",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 75,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "apis",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "1f1c688172d8ce6726747b2e038c17468eeac19da8a7d19f372aeb56421797ab",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Required Skills section names building APIs ('Java / Spring Boot for middleware and API development' and 'REST API design and integration'), and under rule 3 the agreed raw_text 'API development' is a required mention that appears verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Required Skills section names building APIs ('Java / Spring Boot for middleware and API development' and 'REST API design and integration'), and under rule 3 the agreed raw_text 'API development' is a required mention that appears verbatim in the posting.",
+  "error": null
+}

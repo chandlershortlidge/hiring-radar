@@ -1,0 +1,14 @@
+{
+  "item": 38,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "pytorch",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "59bb2e1d13a1e799fd214402497ffb1e26f541748d3b4881df95b72fdb9fe86c",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the qualifications sentence ('Proficiency with Python and modern ML frameworks such as PyTorch... is preferred') names PyTorch, and the 'preferred' wording supports nice_to_have, with raw_text 'PyTorch' appearing verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the qualifications sentence ('Proficiency with Python and modern ML frameworks such as PyTorch... is preferred') names PyTorch, and the 'preferred' wording supports nice_to_have, with raw_text 'PyTorch' appearing verbatim in the posting.",
+  "error": null
+}

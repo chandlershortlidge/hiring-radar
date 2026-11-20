@@ -1,0 +1,14 @@
+{
+  "item": 67,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "mlops",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d4725d0643a5b6cba2a51858ae7b6514b5643141d957f7dd52ce8eeec6aa29f2",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only required mention of MLOps is the years-of-experience line \\\"5+ years of experience in MLOps,\\\" which does not count, and the other MLOps mentions are responsibilities, which rule 4 excludes.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only required mention of MLOps is the years-of-experience line \"5+ years of experience in MLOps,\" which does not count, and the other MLOps mentions are responsibilities, which rule 4 excludes.",
+  "error": null
+}

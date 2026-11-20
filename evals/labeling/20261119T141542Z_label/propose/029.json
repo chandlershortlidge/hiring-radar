@@ -1,0 +1,14 @@
+{
+  "item": 29,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "ai-infrastructure",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e4a240d454e3e4ca932944779d04b7056da809e692b74c366ffef947cb81b32d",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 4, \\\"ML infrastructure\\\" appears only in the role's focus/work description (\\\"Focus will be on...\\\") and in the section title, which rule 1 excludes, and the posting never asks the candidate to have ML infrastructure experience, so the required tag isn't supported.\"}",
+  "decision": "drop",
+  "why": "Under rule 4, \"ML infrastructure\" appears only in the role's focus/work description (\"Focus will be on...\") and in the section title, which rule 1 excludes, and the posting never asks the candidate to have ML infrastructure experience, so the required tag isn't supported.",
+  "error": null
+}

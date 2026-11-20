@@ -1,0 +1,14 @@
+{
+  "item": 79,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "openai-api",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e02a6a0ca69af54a5fff7ace9518df6533b71f759aa65f03fb3a97fecb1824a6",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the bullet \\\"Familiarity with Azure OpenAI and agent-based architectures\\\" sits in the Required Skills block and names the skill, and under rule 3 that required mention, quoted as \\\"Azure OpenAI\\\", supports the agreed required label.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the bullet \"Familiarity with Azure OpenAI and agent-based architectures\" sits in the Required Skills block and names the skill, and under rule 3 that required mention, quoted as \"Azure OpenAI\", supports the agreed required label.",
+  "error": null
+}

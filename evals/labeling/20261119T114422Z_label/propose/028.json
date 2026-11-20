@@ -1,0 +1,14 @@
+{
+  "item": 28,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "event-driven-systems",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "3cd85e81636c5c95aaac50f1636d67ee042f7992fa08e156c34ec45231a70ed0",
+  "raw": "{\"decision\": \"A\", \"why\": \"Under rule 1, the nice-to-have bullet \\\"Experience building or maintaining event-sourced systems\\\" is a qualification sentence that names an event-driven skill, and rule 5 is not triggered because event-sourced systems is the named skill rather than a broader parent.\"}",
+  "decision": "A",
+  "why": "Under rule 1, the nice-to-have bullet \"Experience building or maintaining event-sourced systems\" is a qualification sentence that names an event-driven skill, and rule 5 is not triggered because event-sourced systems is the named skill rather than a broader parent.",
+  "error": null
+}

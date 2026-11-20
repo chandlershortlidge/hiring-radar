@@ -1,0 +1,14 @@
+{
+  "item": 11,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "640dc7c5951401d758921d3453e298ae08df88c6e2dec0bb363038b0b8627b52",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1 the sentence names AI agents and asks the candidate for something (wanting to work this way), and under rule 4 that ask lets it count, so the agreed nice_to_have tag with B's raw_text stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1 the sentence names AI agents and asks the candidate for something (wanting to work this way), and under rule 4 that ask lets it count, so the agreed nice_to_have tag with B's raw_text stands.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 55,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "a2ef2de2562ac014af3fbfb80eada523990b50be2a09300b13dee3e9d3ed637b",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'Software Development to design, build, and deploy applications' appears as a required bullet under the 'Specific Knowledge and Skills' qualification section rather than a mere job title or years-of-experience line, and Rule 3 confirms the verbatim raw_text.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'Software Development to design, build, and deploy applications' appears as a required bullet under the 'Specific Knowledge and Skills' qualification section rather than a mere job title or years-of-experience line, and Rule 3 confirms the verbatim raw_text.",
+  "error": null
+}

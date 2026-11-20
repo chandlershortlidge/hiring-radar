@@ -1,0 +1,15 @@
+{
+  "item": 68,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "observability",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "5c72641f1603ea24d4fa86ddc2a7b9fc14ff46e5273ca085af544608021a2fe9",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 4, responsibilities do not count unless the candidate is also asked for the skill in the qualifications.\"}",
+  "decision": "drop",
+  "why": "Under Rule 4, responsibilities do not count unless the candidate is also asked for the skill in the qualifications.",
+  "error": null
+}

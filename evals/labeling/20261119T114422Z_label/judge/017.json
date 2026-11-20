@@ -1,0 +1,15 @@
+{
+  "item": 17,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "open-source-llms",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "d21e009523e946e146816a3ca5b737ae4f5ddb04d5f966801b7c306774c0b2da",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 5, the bullet asks for contributions to open-source LLM training projects or tools (open-source tooling for LLM training), rather than open-source LLMs themselves.\"}",
+  "decision": "drop",
+  "why": "Under rule 5, the bullet asks for contributions to open-source LLM training projects or tools (open-source tooling for LLM training), rather than open-source LLMs themselves.",
+  "error": null
+}

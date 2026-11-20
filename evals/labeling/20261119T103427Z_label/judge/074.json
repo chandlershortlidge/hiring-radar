@@ -1,0 +1,15 @@
+{
+  "item": 74,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "b2a01ef0c2d071b436aca0a5a110137999dd628ca285042ffe0ad0b36dcce590",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, a required qualification bullet explicitly asking for a proven track record of 'deploying and maintaining machine learning/AI systems in production' validates the required `ai-deployment` skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, a required qualification bullet explicitly asking for a proven track record of 'deploying and maintaining machine learning/AI systems in production' validates the required `ai-deployment` skill.",
+  "error": null
+}

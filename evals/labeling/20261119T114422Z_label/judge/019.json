@@ -1,0 +1,15 @@
+{
+  "item": 19,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "33af3d88e4929f9849a9ccbd750589ced89b62507fbaab0be42964fda32522d1",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a required qualification bullet explicitly asks for experience 'designing systems yourself', which directly corresponds to the `software-architecture` skill.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a required qualification bullet explicitly asks for experience 'designing systems yourself', which directly corresponds to the `software-architecture` skill.",
+  "error": null
+}

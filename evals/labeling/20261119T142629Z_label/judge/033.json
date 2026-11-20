@@ -1,0 +1,15 @@
+{
+  "item": 33,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "software-architecture",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "4443d1230bb7db10d7c0abbf7668e33cd70793156b6b0e81e2394638132e3855",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, the Preferred Qualifications bullet explicitly asks for the ability to influence 'architectural decisions', which directly supports the software-architecture skill as nice_to_have.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, the Preferred Qualifications bullet explicitly asks for the ability to influence 'architectural decisions', which directly supports the software-architecture skill as nice_to_have.",
+  "error": null
+}

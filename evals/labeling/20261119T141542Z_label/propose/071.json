@@ -1,0 +1,17 @@
+{
+  "item": 71,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d3a35c93370241ad436f134a5faf504b16fb0543638fd8b909c5bb8d9dc913bf",
+  "raw": "{\"decision\": {\"requirement\": \"required\", \"raw_text\": \"cloud security fundamentals\"}, \"why\": \"Under rule 1, the agreed raw_text \\\"cloud engineering\\\" sits in a years-of-experience line and doesn't count, but the required list under \\\"Required Skills & Experience\\\" names \\\"cloud security fundamentals\\\", which supports a required cloud mention under rule 3.\"}",
+  "decision": {
+    "requirement": "required",
+    "raw_text": "cloud security fundamentals"
+  },
+  "why": "Under rule 1, the agreed raw_text \"cloud engineering\" sits in a years-of-experience line and doesn't count, but the required list under \"Required Skills & Experience\" names \"cloud security fundamentals\", which supports a required cloud mention under rule 3.",
+  "error": null
+}

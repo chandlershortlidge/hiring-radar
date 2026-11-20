@@ -1,0 +1,15 @@
+{
+  "item": 61,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "observability",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "dad51289d3edc006dd7d048d19181645e303a959f5ce94dd2f4206bfe0dedef1",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rules 1 and 4, a bullet under 'Our stack' merely describes the team's tech environment and is not a qualification bullet or sentence asking the candidate for the skill.\"}",
+  "decision": "drop",
+  "why": "Under rules 1 and 4, a bullet under 'Our stack' merely describes the team's tech environment and is not a qualification bullet or sentence asking the candidate for the skill.",
+  "error": null
+}

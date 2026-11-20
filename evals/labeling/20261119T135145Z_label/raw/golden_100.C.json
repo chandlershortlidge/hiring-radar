@@ -1,0 +1,95 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"cpp\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"C++\"\n    },\n    {\n      \"skill_id\": \"cuda\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"CUDA\"\n    },\n    {\n      \"skill_id\": \"jax\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"JAX\"\n    },\n    {\n      \"skill_id\": \"reinforcement-learning\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"reinforcement or imitation learning\",\n      \"uncertain\": true\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"MuJoCo\",\n      \"raw_text\": \"MuJoCo\"\n    },\n    {\n      \"label\": \"Newton\",\n      \"raw_text\": \"Newton/Warp\"\n    },\n    {\n      \"label\": \"NVIDIA Warp\",\n      \"raw_text\": \"NVIDIA Warp\"\n    },\n    {\n      \"label\": \"PhysX\",\n      \"raw_text\": \"PhysX\"\n    },\n    {\n      \"label\": \"Drake\",\n      \"raw_text\": \"Drake\"\n    },\n    {\n      \"label\": \"Bullet\",\n      \"raw_text\": \"Bullet\"\n    },\n    {\n      \"label\": \"Genesis\",\n      \"raw_text\": \"Genesis\"\n    },\n    {\n      \"label\": \"URDF\",\n      \"raw_text\": \"URDF\"\n    },\n    {\n      \"label\": \"MJCF\",\n      \"raw_text\": \"MJCF\"\n    },\n    {\n      \"label\": \"OpenUSD\",\n      \"raw_text\": \"OpenUSD\"\n    }\n  ],\n  \"seniority\": \"mid\",\n  \"seniority_basis\": \"inferred\",\n  \"seniority_signal\": \"Masters + 3 years of experience. Exceptional candidates with a bachelor’s degree and 3+ years of relevant industry experience\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"PhD in robotics, mechanical engineering, applied mathematics, physics, computer graphics or a related field, or a Masters + 3 years of experience. Exceptional candidates with a bachelor’s degree and 3+ years of relevant industry experience are also welcome to apply.\",\n  \"uncertain\": [\n    \"seniority\"\n  ],\n  \"notes\": \"Seniority marked uncertain: asks for PhD (0 yrs) or Masters + 3 years or Bachelor's + 3+ years. Marked reinforcement-learning uncertain as it appears in the context 'scaling simulation for reinforcement or imitation learning'.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "cpp",
+        "requirement": "required",
+        "raw_text": "C++"
+      },
+      {
+        "skill_id": "cuda",
+        "requirement": "nice_to_have",
+        "raw_text": "CUDA"
+      },
+      {
+        "skill_id": "jax",
+        "requirement": "nice_to_have",
+        "raw_text": "JAX"
+      },
+      {
+        "skill_id": "reinforcement-learning",
+        "requirement": "nice_to_have",
+        "raw_text": "reinforcement or imitation learning",
+        "uncertain": true
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "MuJoCo",
+        "raw_text": "MuJoCo"
+      },
+      {
+        "label": "Newton",
+        "raw_text": "Newton/Warp"
+      },
+      {
+        "label": "NVIDIA Warp",
+        "raw_text": "NVIDIA Warp"
+      },
+      {
+        "label": "PhysX",
+        "raw_text": "PhysX"
+      },
+      {
+        "label": "Drake",
+        "raw_text": "Drake"
+      },
+      {
+        "label": "Bullet",
+        "raw_text": "Bullet"
+      },
+      {
+        "label": "Genesis",
+        "raw_text": "Genesis"
+      },
+      {
+        "label": "URDF",
+        "raw_text": "URDF"
+      },
+      {
+        "label": "MJCF",
+        "raw_text": "MJCF"
+      },
+      {
+        "label": "OpenUSD",
+        "raw_text": "OpenUSD"
+      }
+    ],
+    "seniority": "mid",
+    "seniority_basis": "inferred",
+    "seniority_signal": "Masters + 3 years of experience. Exceptional candidates with a bachelor’s degree and 3+ years of relevant industry experience",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "PhD in robotics, mechanical engineering, applied mathematics, physics, computer graphics or a related field, or a Masters + 3 years of experience. Exceptional candidates with a bachelor’s degree and 3+ years of relevant industry experience are also welcome to apply.",
+    "uncertain": [
+      "seniority"
+    ],
+    "notes": "Seniority marked uncertain: asks for PhD (0 yrs) or Masters + 3 years or Bachelor's + 3+ years. Marked reinforcement-learning uncertain as it appears in the context 'scaling simulation for reinforcement or imitation learning'."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "95822a15115bc5dca14b0f797804072d475b9f74c1b7d76ed6d472c27f8e8fef",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

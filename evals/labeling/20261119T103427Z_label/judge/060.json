@@ -1,0 +1,15 @@
+{
+  "item": 60,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "agents",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "0f24d0f3d057ee5b46ea40f64a715a46ff8adae63ea120da804b24e8c4995bed",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet under the 'isn't required, but we'd love to see it' section explicitly names 'agentic workflows', supporting the skill as nice_to_have.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet under the 'isn't required, but we'd love to see it' section explicitly names 'agentic workflows', supporting the skill as nice_to_have.",
+  "error": null
+}

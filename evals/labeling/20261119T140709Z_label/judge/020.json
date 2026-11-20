@@ -1,0 +1,15 @@
+{
+  "item": 20,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "ai-deployment",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "82f35b515126bdb525699b45334b92d4e37c1f78d3dd7bf90ff09abd2bf9ec39",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1 and Rule 3, the qualification bullet under 'What we're looking for' explicitly requires hands-on experience 'deploying LLM-based or AI-powered applications in production'.\"}",
+  "decision": "B",
+  "why": "Under Rule 1 and Rule 3, the qualification bullet under 'What we're looking for' explicitly requires hands-on experience 'deploying LLM-based or AI-powered applications in production'.",
+  "error": null
+}

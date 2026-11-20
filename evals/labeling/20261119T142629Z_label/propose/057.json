@@ -1,0 +1,14 @@
+{
+  "item": 57,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "ml-engineering",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "36c8a396ac5f5e70eb6ffa37fe0420ca3cfcb59bd73c3b942fbcbccb88d32fea",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only mention of \\\"ML engineering\\\" is inside the years-of-experience line (\\\"8+ years of experience in software engineering, ML engineering, or MLOps/DevOps\\\"), which does not count, and the job title \\\"AI Engineer Lead\\\" does not count either.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only mention of \"ML engineering\" is inside the years-of-experience line (\"8+ years of experience in software engineering, ML engineering, or MLOps/DevOps\"), which does not count, and the job title \"AI Engineer Lead\" does not count either.",
+  "error": null
+}

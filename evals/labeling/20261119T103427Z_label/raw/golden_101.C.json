@@ -1,0 +1,110 @@
+{
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "raw": "{\n  \"expected\": [\n    {\n      \"skill_id\": \"llms\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"specific expertise in Large Language Models\"\n    },\n    {\n      \"skill_id\": \"model-development\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"developing and deploying advanced AI models\"\n    },\n    {\n      \"skill_id\": \"ai-deployment\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"developing and deploying advanced AI models\"\n    },\n    {\n      \"skill_id\": \"machine-learning\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"6 years of experience in machine learning\"\n    },\n    {\n      \"skill_id\": \"python\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"Python\"\n    },\n    {\n      \"skill_id\": \"tensorflow\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"TensorFlow\"\n    },\n    {\n      \"skill_id\": \"pytorch\",\n      \"requirement\": \"required\",\n      \"raw_text\": \"PyTorch\"\n    },\n    {\n      \"skill_id\": \"cloud\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"cloud computing services\"\n    },\n    {\n      \"skill_id\": \"aws\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"AWS\"\n    },\n    {\n      \"skill_id\": \"azure\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Azure\"\n    },\n    {\n      \"skill_id\": \"gcp\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"GCP\"\n    },\n    {\n      \"skill_id\": \"hadoop\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Hadoop\"\n    },\n    {\n      \"skill_id\": \"apache-spark\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Spark\"\n    },\n    {\n      \"skill_id\": \"containerization\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"containerization and orchestration technologies\"\n    },\n    {\n      \"skill_id\": \"docker\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Docker\"\n    },\n    {\n      \"skill_id\": \"kubernetes\",\n      \"requirement\": \"nice_to_have\",\n      \"raw_text\": \"Kubernetes\"\n    }\n  ],\n  \"unmapped\": [\n    {\n      \"label\": \"Mixture of Experts (MoE)\",\n      \"raw_text\": \"Mixture of Experts\"\n    }\n  ],\n  \"seniority\": \"senior\",\n  \"seniority_basis\": \"stated\",\n  \"seniority_signal\": \"Staff Machine Learning Engineer\",\n  \"german\": null,\n  \"german_basis\": null,\n  \"german_signal\": null,\n  \"degree\": \"phd\",\n  \"degree_requirement\": \"required\",\n  \"degree_or_equivalent\": false,\n  \"degree_signal\": \"Advanced degree (Ph.D. preferred) in Computer Science, or a related field.\",\n  \"notes\": \"Skills in 'You will lead core product initiatives across on-device inference optimization, quantization, RAG, agentic framework and/or tool calling' are omitted as they describe responsibilities rather than candidate qualifications. 'Advanced degree (Ph.D. preferred)' sets degree to highest named level (phd) and requirement to required because an advanced degree (Master's+) is required even though Ph.D. specifically is preferred.\"\n}",
+  "parsed": {
+    "expected": [
+      {
+        "skill_id": "llms",
+        "requirement": "required",
+        "raw_text": "specific expertise in Large Language Models"
+      },
+      {
+        "skill_id": "model-development",
+        "requirement": "required",
+        "raw_text": "developing and deploying advanced AI models"
+      },
+      {
+        "skill_id": "ai-deployment",
+        "requirement": "required",
+        "raw_text": "developing and deploying advanced AI models"
+      },
+      {
+        "skill_id": "machine-learning",
+        "requirement": "required",
+        "raw_text": "6 years of experience in machine learning"
+      },
+      {
+        "skill_id": "python",
+        "requirement": "required",
+        "raw_text": "Python"
+      },
+      {
+        "skill_id": "tensorflow",
+        "requirement": "required",
+        "raw_text": "TensorFlow"
+      },
+      {
+        "skill_id": "pytorch",
+        "requirement": "required",
+        "raw_text": "PyTorch"
+      },
+      {
+        "skill_id": "cloud",
+        "requirement": "nice_to_have",
+        "raw_text": "cloud computing services"
+      },
+      {
+        "skill_id": "aws",
+        "requirement": "nice_to_have",
+        "raw_text": "AWS"
+      },
+      {
+        "skill_id": "azure",
+        "requirement": "nice_to_have",
+        "raw_text": "Azure"
+      },
+      {
+        "skill_id": "gcp",
+        "requirement": "nice_to_have",
+        "raw_text": "GCP"
+      },
+      {
+        "skill_id": "hadoop",
+        "requirement": "nice_to_have",
+        "raw_text": "Hadoop"
+      },
+      {
+        "skill_id": "apache-spark",
+        "requirement": "nice_to_have",
+        "raw_text": "Spark"
+      },
+      {
+        "skill_id": "containerization",
+        "requirement": "nice_to_have",
+        "raw_text": "containerization and orchestration technologies"
+      },
+      {
+        "skill_id": "docker",
+        "requirement": "nice_to_have",
+        "raw_text": "Docker"
+      },
+      {
+        "skill_id": "kubernetes",
+        "requirement": "nice_to_have",
+        "raw_text": "Kubernetes"
+      }
+    ],
+    "unmapped": [
+      {
+        "label": "Mixture of Experts (MoE)",
+        "raw_text": "Mixture of Experts"
+      }
+    ],
+    "seniority": "senior",
+    "seniority_basis": "stated",
+    "seniority_signal": "Staff Machine Learning Engineer",
+    "german": null,
+    "german_basis": null,
+    "german_signal": null,
+    "degree": "phd",
+    "degree_requirement": "required",
+    "degree_or_equivalent": false,
+    "degree_signal": "Advanced degree (Ph.D. preferred) in Computer Science, or a related field.",
+    "notes": "Skills in 'You will lead core product initiatives across on-device inference optimization, quantization, RAG, agentic framework and/or tool calling' are omitted as they describe responsibilities rather than candidate qualifications. 'Advanced degree (Ph.D. preferred)' sets degree to highest named level (phd) and requirement to required because an advanced degree (Master's+) is required even though Ph.D. specifically is preferred."
+  },
+  "error": null,
+  "labeler": "C",
+  "posting_sha256": "dd7f5f337708bd1c71c9747b16ba935dbcc65e8da6365e73ce312c27da8b6c04",
+  "prompt_sha256": "1852779bc1d80f47b99b70d6a88f48df93b154068f1cd483dc13a17ca18d42d5"
+}

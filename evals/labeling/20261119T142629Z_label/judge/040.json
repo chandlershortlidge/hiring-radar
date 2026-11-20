@@ -1,0 +1,15 @@
+{
+  "item": 40,
+  "golden_id": "golden_095",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "1395405518f8d4dee1d91d1f351b8a8f3b4b24999e2277512bcff0f5db652f55",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a Preferred Qualifications bullet explicitly asks for a background in evaluating AI agents, making it a valid nice-to-have skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a Preferred Qualifications bullet explicitly asks for a background in evaluating AI agents, making it a valid nice-to-have skill.",
+  "error": null
+}

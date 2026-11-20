@@ -1,0 +1,15 @@
+{
+  "item": 65,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "5ded3c69a3cace3b30ddeefcae265907b219f4c006d1ec152bd573c8b43db06e",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, 'AI-assisted evaluation systems' under Preferred Attributes is a qualification bullet naming the skill as nice_to_have.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, 'AI-assisted evaluation systems' under Preferred Attributes is a qualification bullet naming the skill as nice_to_have.",
+  "error": null
+}

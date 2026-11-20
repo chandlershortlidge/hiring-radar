@@ -1,0 +1,15 @@
+{
+  "item": 30,
+  "golden_id": "golden_102",
+  "kind": "skill",
+  "key": "data-science",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "e85ddb306c73784e52a05b3f2f5d44d8b4fdf7ccd9fac99852911756f761ef37",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under Rule 1, a qualification bullet under the 'plus' section explicitly asks for the ability to produce 'high-quality data science procedures', supporting labeler B's nice_to_have tag.\"}",
+  "decision": "B",
+  "why": "Under Rule 1, a qualification bullet under the 'plus' section explicitly asks for the ability to produce 'high-quality data science procedures', supporting labeler B's nice_to_have tag.",
+  "error": null
+}

@@ -1,0 +1,15 @@
+{
+  "item": 28,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "event-driven-systems",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "A",
+  "key_sha256": "914d31e073df6dfef9a0ab23771941dfcdf4878c7a4f1b88c99d185a25cef929",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 5, the posting names 'event-sourced systems' (event sourcing) rather than the broader parent skill 'event-driven-systems'.\"}",
+  "decision": "drop",
+  "why": "Under rule 5, the posting names 'event-sourced systems' (event sourcing) rather than the broader parent skill 'event-driven-systems'.",
+  "error": null
+}

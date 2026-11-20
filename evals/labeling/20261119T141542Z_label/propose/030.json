@@ -1,0 +1,14 @@
+{
+  "item": 30,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "backend-development",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f7158c76441c4c930eb8029950a6893a334f9fc8398c0add73202e1f7d665100",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 4, \\\"Focus will be on Python across backend services\\\" describes what the evaluator will work on, not a qualification the candidate must hold, so the required backend-development tag isn't supported.\"}",
+  "decision": "drop",
+  "why": "Under rule 4, \"Focus will be on Python across backend services\" describes what the evaluator will work on, not a qualification the candidate must hold, so the required backend-development tag isn't supported.",
+  "error": null
+}

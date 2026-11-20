@@ -1,0 +1,15 @@
+{
+  "item": 43,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "25d133dab57cc606ef946ab73a7baf333175dd80f0568a5e471819009e213bd0",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a Minimum Qualifications bullet explicitly asks for proficiency in software development, which counts as a required skill.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a Minimum Qualifications bullet explicitly asks for proficiency in software development, which counts as a required skill.",
+  "error": null
+}

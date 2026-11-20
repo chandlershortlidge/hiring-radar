@@ -1,0 +1,14 @@
+{
+  "item": 76,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "7fefcd18739dd0b897f5c56d62fd652bf14951959193090f166327ceed15dff5",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under the \\\"qualifications you need\\\" heading, the AI Architecture & Security bullet names data governance, privacy, and compliance as required understanding, so the agreed required label with its verbatim raw_text stands under rules 1 and 3.\"}",
+  "decision": "ok",
+  "why": "Under the \"qualifications you need\" heading, the AI Architecture & Security bullet names data governance, privacy, and compliance as required understanding, so the agreed required label with its verbatim raw_text stands under rules 1 and 3.",
+  "error": null
+}

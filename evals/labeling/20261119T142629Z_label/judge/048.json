@@ -1,0 +1,15 @@
+{
+  "item": 48,
+  "golden_id": "golden_100",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "d8d3b564c0a10cc180faae0b899f112590daeae9335203a4a01e9fcbbd42cf18",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a qualification bullet that names a skill ('experience in software engineering') counts, as it is not a job title line ('experience as a software engineer').\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a qualification bullet that names a skill ('experience in software engineering') counts, as it is not a job title line ('experience as a software engineer').",
+  "error": null
+}

@@ -1,0 +1,14 @@
+{
+  "item": 47,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "transformers",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "f699afd678f4ae6da60ce5add64f76fd1c9249a1b59940659eac800d9a1a0f91",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rule 1, the qualifications list under \\\"The qualifications you need\\\" names \\\"Hugging Face Transformers\\\" as an ML/AI library, and rule 3 makes that required mention count, so labeler B's required tag is right.\"}",
+  "decision": "B",
+  "why": "Under rule 1, the qualifications list under \"The qualifications you need\" names \"Hugging Face Transformers\" as an ML/AI library, and rule 3 makes that required mention count, so labeler B's required tag is right.",
+  "error": null
+}

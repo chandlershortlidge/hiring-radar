@@ -1,0 +1,15 @@
+{
+  "item": 67,
+  "golden_id": "golden_105",
+  "kind": "skill",
+  "key": "cloud",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "c68f9f23bdcca17bed56119e848f1bc5b998655b52588b54af84968a9d4bd060",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, 'Cloud engineering' is explicitly named as a qualification bullet under the required 'To Qualify for the Role, You Must Have' section.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, 'Cloud engineering' is explicitly named as a qualification bullet under the required 'To Qualify for the Role, You Must Have' section.",
+  "error": null
+}

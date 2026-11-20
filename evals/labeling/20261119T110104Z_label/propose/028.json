@@ -1,0 +1,14 @@
+{
+  "item": 28,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "causal-inference",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "6aa140e7770a55257696a0393817769ff3c044b3a70267fce7b164cc631ac90f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the Qualifications bullet names \\\"advanced Bayesian causal modeling\\\" as a required expertise, and rule 3 keeps the required mention with its quoted raw_text, so the agreed label stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the Qualifications bullet names \"advanced Bayesian causal modeling\" as a required expertise, and rule 3 keeps the required mention with its quoted raw_text, so the agreed label stands.",
+  "error": null
+}

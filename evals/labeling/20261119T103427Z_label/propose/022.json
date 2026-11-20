@@ -1,0 +1,14 @@
+{
+  "item": 22,
+  "golden_id": "golden_097",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "90e424741f9b2422b196fa49e9e356c74c5d038b6e5182106b4981d630eccb58",
+  "raw": "{\"decision\": \"B\", \"why\": \"Rule 1 applies: the required qualification bullets name AI/ML work (LLM-powered agents, machine learning, TensorFlow/PyTorch), and B's quoted raw_text \\\"Experience integrating AI systems\\\" appears verbatim as a required bullet, so the ai-ml skill belongs in the key.\"}",
+  "decision": "B",
+  "why": "Rule 1 applies: the required qualification bullets name AI/ML work (LLM-powered agents, machine learning, TensorFlow/PyTorch), and B's quoted raw_text \"Experience integrating AI systems\" appears verbatim as a required bullet, so the ai-ml skill belongs in the key.",
+  "error": null
+}

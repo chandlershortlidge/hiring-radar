@@ -1,0 +1,14 @@
+{
+  "item": 68,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "evaluation",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "e19037c282bddae0b002de93ce70a7e882f05f16ae07728ea86689830074ee9d",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the preferred-qualifications bullet \\\"Experience evaluating models through online experiments and A/B tests\\\" names evaluation as a skill, the nice_to_have requirement matches the PREFERRED section, and the raw_text appears verbatim in the posting.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the preferred-qualifications bullet \"Experience evaluating models through online experiments and A/B tests\" names evaluation as a skill, the nice_to_have requirement matches the PREFERRED section, and the raw_text appears verbatim in the posting.",
+  "error": null
+}

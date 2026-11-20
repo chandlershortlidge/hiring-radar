@@ -1,0 +1,15 @@
+{
+  "item": 50,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "llms",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "787574521f6a38c0fbc8fdeda1f32cc4492c289249f0b3c7bd8970b6a56fa291",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1 and Rule 3, large language models is explicitly named in a minimum qualifications bullet, making the required `llms` label correct.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1 and Rule 3, large language models is explicitly named in a minimum qualifications bullet, making the required `llms` label correct.",
+  "error": null
+}

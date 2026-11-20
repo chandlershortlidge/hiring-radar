@@ -1,0 +1,15 @@
+{
+  "item": 32,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "model-development",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "f775f6720bdb4ace03f61d09670101e0ad2ed8cf488634835280823f46758065",
+  "raw": "{\"decision\": \"B\", \"why\": \"Under rules 1 and 3, the minimum qualifications explicitly require 'designing and running model-training experiments,' which directly counts as required model-development.\"}",
+  "decision": "B",
+  "why": "Under rules 1 and 3, the minimum qualifications explicitly require 'designing and running model-training experiments,' which directly counts as required model-development.",
+  "error": null
+}

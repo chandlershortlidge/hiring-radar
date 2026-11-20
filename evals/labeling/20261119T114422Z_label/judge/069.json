@@ -1,0 +1,15 @@
+{
+  "item": 69,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "fine-tuning",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "f475b5a546986bd41e5eb625870f45301cc6dee0205b9b5360440742ffab5cb1",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, a preferred qualification bullet directly asks for experience with 'instruction tuning', which counts as fine-tuning and is properly marked nice_to_have.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, a preferred qualification bullet directly asks for experience with 'instruction tuning', which counts as fine-tuning and is properly marked nice_to_have.",
+  "error": null
+}

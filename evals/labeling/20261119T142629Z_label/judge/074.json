@@ -1,0 +1,15 @@
+{
+  "item": 74,
+  "golden_id": "golden_108",
+  "kind": "skill",
+  "key": "inference-optimization",
+  "reason": "uncertain",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "ok",
+  "key_sha256": "58ff9605c7a9767caf9454782344c4b93ab7dd416db128fbf69ae3d836f244be",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the Preferred Qualifications bullet explicitly asks for experience 'optimizing training and inference software', supporting the skill as nice_to_have.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the Preferred Qualifications bullet explicitly asks for experience 'optimizing training and inference software', supporting the skill as nice_to_have.",
+  "error": null
+}

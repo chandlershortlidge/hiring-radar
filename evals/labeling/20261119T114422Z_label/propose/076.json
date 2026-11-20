@@ -1,0 +1,14 @@
+{
+  "item": 76,
+  "golden_id": "golden_106",
+  "kind": "skill",
+  "key": "reinforcement-learning",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "ac35a8e423e5457c922e0186e2eba044cf7c658c0e1bcca093561e4d9cdb91d4",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under Rule 1, the Minimum qualifications bullet names reinforcement learning as an accepted Track 2 experience, and under Rule 3 that required mention stands, with the quoted raw_text appearing word for word.\"}",
+  "decision": "ok",
+  "why": "Under Rule 1, the Minimum qualifications bullet names reinforcement learning as an accepted Track 2 experience, and under Rule 3 that required mention stands, with the quoted raw_text appearing word for word.",
+  "error": null
+}

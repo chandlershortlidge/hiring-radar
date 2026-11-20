@@ -1,0 +1,15 @@
+{
+  "item": 26,
+  "golden_id": "golden_104",
+  "kind": "skill",
+  "key": "data-pipelines",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "B",
+  "key_sha256": "0656e1b0704c44699509f51d8d4619d02338bd7ab30cff51d6f95d35407851f1",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 5, the posting mentions 'data ingestion' as a conceptual problem rather than naming the broader skill 'data-pipelines'.\"}",
+  "decision": "drop",
+  "why": "Under Rule 5, the posting mentions 'data ingestion' as a conceptual problem rather than naming the broader skill 'data-pipelines'.",
+  "error": null
+}

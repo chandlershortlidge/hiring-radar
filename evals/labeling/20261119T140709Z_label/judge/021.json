@@ -1,0 +1,15 @@
+{
+  "item": 21,
+  "golden_id": "golden_101",
+  "kind": "skill",
+  "key": "ai-ml",
+  "reason": "disagreement",
+  "provider": "google",
+  "model": "gemini-4-argon",
+  "proposed": "drop",
+  "key_sha256": "b97734ae49d182ddebb1c9511f42fc900b9edf28da0924b1a162bb37836baf4e",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under Rule 4, the mention of 'AI-powered applications' is in the 'What you'll do' responsibilities section and does not count as a required skill.\"}",
+  "decision": "drop",
+  "why": "Under Rule 4, the mention of 'AI-powered applications' is in the 'What you'll do' responsibilities section and does not count as a required skill.",
+  "error": null
+}

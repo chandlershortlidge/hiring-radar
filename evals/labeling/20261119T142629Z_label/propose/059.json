@@ -1,0 +1,14 @@
+{
+  "item": 59,
+  "golden_id": "golden_103",
+  "kind": "skill",
+  "key": "software-engineering",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "cf4c04b0c0992807c5e25241c35abd106b59a74f3109feff06e5d39bc03af1e9",
+  "raw": "{\"decision\": \"drop\", \"why\": \"Under rule 1, the only quoted mention is \\\"8+ years of experience in software engineering, ML engineering, or MLOps/DevOps\\\", which is a years-of-experience line rather than a named skill, so `software-engineering` should not be in the key.\"}",
+  "decision": "drop",
+  "why": "Under rule 1, the only quoted mention is \"8+ years of experience in software engineering, ML engineering, or MLOps/DevOps\", which is a years-of-experience line rather than a named skill, so `software-engineering` should not be in the key.",
+  "error": null
+}

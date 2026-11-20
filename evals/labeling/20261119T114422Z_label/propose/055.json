@@ -1,0 +1,14 @@
+{
+  "item": 55,
+  "golden_id": "golden_099",
+  "kind": "skill",
+  "key": "data-privacy-and-security",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d7e45c20d88ce318ed57545cb9a72accb515db0a6813a5306c328aa5f354635f",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the required qualification bullet names data privacy as something the candidate must care about, and rule 3 makes that required mention count, so the agreed required label with raw_text \\\"care for data privacy\\\" stands.\"}",
+  "decision": "ok",
+  "why": "Under rule 1, the required qualification bullet names data privacy as something the candidate must care about, and rule 3 makes that required mention count, so the agreed required label with raw_text \"care for data privacy\" stands.",
+  "error": null
+}

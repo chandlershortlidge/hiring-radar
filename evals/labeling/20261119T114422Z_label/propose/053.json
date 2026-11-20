@@ -1,0 +1,14 @@
+{
+  "item": 53,
+  "golden_id": "golden_098",
+  "kind": "skill",
+  "key": "transformers",
+  "reason": "uncertain",
+  "provider": "anthropic",
+  "model": "claude-haiku-5-5",
+  "key_sha256": "d8c55a5b87b7e30249bc8e0152d5cd6861b7f005b7fef06c7b8e5790070443cd",
+  "raw": "{\"decision\": \"ok\", \"why\": \"Under rule 1, the MINIMUM QUALIFICATIONS bullet names Transformers as a training library the candidate needs production experience with, and under rule 3 that required mention, quoted as \"Transformers, DeepSpeed\", supports the agreed required label.\"}",
+  "decision": null,
+  "why": null,
+  "error": "JSONDecodeError: Expecting ',' delimiter: line 1 column 216 (char 215)"
+}
