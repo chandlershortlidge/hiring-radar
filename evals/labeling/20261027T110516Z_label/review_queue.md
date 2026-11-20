@@ -679,7 +679,7 @@ PROPOSED: `B` - golden_048 is out of scope, so this is discarded either way; any
 
 Options: `A` / `B` / `both` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 56. golden_025 - attribute `degree` (uncertain)
 
@@ -1526,7 +1526,7 @@ PROPOSED: `B` - shortest phrase. golden_048 is out of scope, so this is discarde
 
 Options: `ok` (keep as agreed) / `A` / `B` / `drop`
 
-DECISION: ?
+DECISION: B
 
 ## 121. golden_029 - skill `agents|agent-architecture` (mapping)
 
@@ -2059,7 +2059,7 @@ DECISION: ok
 
 Options: `ok` (correct) / `drop` (not a real label) / JSON (what it should be)
 
-DECISION: ?
+DECISION: ok
 
 ## 174. golden_040 - attribute `german` (spot-check)
 
