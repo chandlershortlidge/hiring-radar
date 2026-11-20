@@ -13,6 +13,10 @@ It merges only when all of these hold at the moment it looks:
 - it carries `review-passed` and does not carry `needs-chandler`;
 - it touches none of the agents' own rule files (the rules gate, `rules_gate.py`) and
   not the labelling guide — those always wait for Chandler, whatever their labels say;
+- while fixes-only mode is on (HIR-341, the Christmas break; one line in
+  config/lead_agent.json, read through app/fixes_only.py), it carries the label `fix`,
+  which the reviewer adds only to a pull request whose ticket is labelled Bug. A feature
+  PR that was passed before the break began has no such label, so it stays open;
 - GitHub reports it `clean`: every required check green and the branch up to date.
 
 "At the moment it looks" has one exception (HIR-275). A check that is not required — the
@@ -55,6 +59,8 @@ import time
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from app import fixes_only as fixes  # noqa: E402
 from rules_gate import matched_paths  # noqa: E402
 
 PASSED = "review-passed"
@@ -85,11 +91,12 @@ OWN_CHECK = "Merge if reviewed and green"
 GREEN = ("success", "neutral", "skipped")
 
 
-def decide(pr, files, own_check_only=False):
+def decide(pr, files, own_check_only=False, fixes_only=False):
     """(merge, reason) for a PR as the REST API returns it and its changed-file list.
 
     `own_check_only`: this script's own check is the only thing on the head commit that is
     not green (`_held_only_by_own_check`), so 'unstable' stands for 'clean'.
+    `fixes_only`: the mode is on today (HIR-341), so only a PR labelled `fix` merges.
     """
     labels = {lbl["name"] for lbl in pr.get("labels", [])}
     if pr.get("state") != "open":
@@ -106,6 +113,9 @@ def decide(pr, files, own_check_only=False):
     guide = sorted({f.strip() for f in files if f.strip() in CHANDLER_FILES})
     if guide:
         return False, "it changes the labelling guide, which always waits for Chandler: " + ", ".join(guide)
+    if fixes_only and fixes.PR_LABEL not in labels:
+        return False, (f"fixes-only mode is on and it has no '{fixes.PR_LABEL}' label: only repairs "
+                       "merge until Chandler turns the mode off")
     state = pr.get("mergeable_state")
     if state == "unstable" and own_check_only:
         return True, "reviewed, every check but the merger's own green, branch up to date, no rule files"
@@ -174,18 +184,26 @@ def _pr(repo, n, sleep):
     return pr
 
 
-def _only_waiting_on_checks(pr, files):
+def _only_waiting_on_checks(pr, files, fixes_only=False):
     """True when the PR is 'unstable' and would merge if GitHub said 'clean' instead."""
-    return pr.get("mergeable_state") == "unstable" and decide({**pr, "mergeable_state": "clean"}, files)[0]
+    return (pr.get("mergeable_state") == "unstable"
+            and decide({**pr, "mergeable_state": "clean"}, files, fixes_only=fixes_only)[0])
+
+
+def _fixes_only_now():
+    """Is fixes-only mode on today? Read from main's checkout, which is what the workflow
+    runs, so a PR cannot switch the mode off for its own merge."""
+    return fixes.is_on(fixes.load(), fixes.today_berlin())
 
 
 def run(repo, n, sleep=time.sleep):
+    frozen = _fixes_only_now()
     pr = _pr(repo, n, sleep)
     files = _files(repo, n)
 
     waited = quiet = 0
     own_check_only = False
-    while _only_waiting_on_checks(pr, files) and waited < PENDING_MAX_WAIT_S:
+    while _only_waiting_on_checks(pr, files, frozen) and waited < PENDING_MAX_WAIT_S:
         sha = pr["head"]["sha"]
         checks = _checks(repo, sha)
         # Its own check never finishes while this script waits, so it is not waited for.
@@ -211,7 +229,7 @@ def run(repo, n, sleep=time.sleep):
 
     # `pr` here is the same look the checks were read for; --match-head-commit below
     # refuses the merge if the head has moved since.
-    merge, reason = decide(pr, files, own_check_only)
+    merge, reason = decide(pr, files, own_check_only, frozen)
     if not merge:
         print(f"PR #{n} not merged: {reason}.")
         return False

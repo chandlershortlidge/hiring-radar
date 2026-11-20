@@ -102,6 +102,9 @@ The reviewer's reply starts with the verdict:
   @mention.
 - **`NEEDS CHANDLER`** — an item on the big side of his list (AGENTS.md "What Chandler is
   asked"), or a third failed review. Report it; never relabel it.
+- **`HELD`** — fixes-only mode is on (HIR-341, AGENTS.md "The lead agent") and the
+  ticket is not a bug: the PR passed review and stays open, unlabelled, until Chandler
+  turns the mode off. Report it; add no label and start no second reviewer.
 - **`NO TICKET`** — not a verdict; no review took place. Below.
 
 **`NO TICKET`: the reviewer could not open the ticket, so you hand it over** (HIR-306).
